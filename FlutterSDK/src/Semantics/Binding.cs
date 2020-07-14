@@ -437,7 +437,14 @@ namespace FlutterSDK.Semantics.Binding
         public virtual AccessibilityFeatures AccessibilityFeatures { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DisableAnimations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        public new void InitInstances() { throw new NotImplementedException(); }
+        public new void InitInstances()
+        {
+            base.InitInstances();
+            _Instance = this;
+            _AccessibilityFeatures = Window.AccessibilityFeatures;
+        }
+
+
 
 
         /// <Summary>
@@ -445,7 +452,12 @@ namespace FlutterSDK.Semantics.Binding
         ///
         /// See [Window.onAccessibilityFeaturesChanged].
         /// </Summary>
-        public virtual void HandleAccessibilityFeaturesChanged() { throw new NotImplementedException(); }
+        public virtual void HandleAccessibilityFeaturesChanged()
+        {
+            _AccessibilityFeatures = Window.AccessibilityFeatures;
+        }
+
+
 
     }
     public static class SemanticsBindingMixin

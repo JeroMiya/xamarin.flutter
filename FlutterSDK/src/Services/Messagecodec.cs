@@ -437,7 +437,10 @@ namespace FlutterSDK.Services.Messagecodec
         ///
         /// Returns null if the message is null.
         /// </Summary>
-        public virtual ByteData EncodeMessage(T message) { throw new NotImplementedException(); }
+        public virtual ByteData EncodeMessage(T message)
+        {
+            return default(ByteData);
+        }
 
 
         /// <Summary>
@@ -445,7 +448,10 @@ namespace FlutterSDK.Services.Messagecodec
         ///
         /// Returns null if the message is null.
         /// </Summary>
-        public virtual T DecodeMessage(ByteData message) { throw new NotImplementedException(); }
+        public virtual T DecodeMessage(ByteData message)
+        {
+            return default(T);
+        }
 
     }
     public static class MessageCodecMixin
@@ -473,13 +479,19 @@ namespace FlutterSDK.Services.Messagecodec
         /// <Summary>
         /// Encodes the specified [methodCall] into binary.
         /// </Summary>
-        public virtual ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall methodCall) { throw new NotImplementedException(); }
+        public virtual ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
+        {
+            return default(ByteData);
+        }
 
 
         /// <Summary>
         /// Decodes the specified [methodCall] from binary.
         /// </Summary>
-        public virtual FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Services.Messagecodec.MethodCall DecodeMethodCall(ByteData methodCall)
+        {
+            return default(MethodCall);
+        }
 
 
         /// <Summary>
@@ -488,13 +500,19 @@ namespace FlutterSDK.Services.Messagecodec
         /// Throws [PlatformException], if [envelope] represents an error, otherwise
         /// returns the enveloped result.
         /// </Summary>
-        public virtual object DecodeEnvelope(ByteData envelope) { throw new NotImplementedException(); }
+        public virtual object DecodeEnvelope(ByteData envelope)
+        {
+            return default(object);
+        }
 
 
         /// <Summary>
         /// Encodes a successful [result] into a binary envelope.
         /// </Summary>
-        public virtual ByteData EncodeSuccessEnvelope(object result) { throw new NotImplementedException(); }
+        public virtual ByteData EncodeSuccessEnvelope(object result)
+        {
+            return default(ByteData);
+        }
 
 
         /// <Summary>
@@ -503,7 +521,10 @@ namespace FlutterSDK.Services.Messagecodec
         /// The specified error [code], human-readable error [message], and error
         /// [details] correspond to the fields of [PlatformException].
         /// </Summary>
-        public virtual ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object)) { throw new NotImplementedException(); }
+        public virtual ByteData EncodeErrorEnvelope(string code = default(string), string message = default(string), object details = default(object))
+        {
+            return default(ByteData);
+        }
 
     }
     public static class MethodCodecMixin
@@ -534,90 +555,84 @@ namespace FlutterSDK.Services.Messagecodec
         #region constructors
         public MethodCall(string method, object arguments = default(object))
         : base()
-        {
-            this.Method = method;
-            this.Arguments = arguments; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string Method { get; set; }
-        public virtual object Arguments { get; set; }
-        #endregion
+    #region fields
+    public virtual string Method { get; set; }
+    public virtual object Arguments { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
+    #endregion
+}
 
 
-    /// <Summary>
-    /// Thrown to indicate that a platform interaction failed in the platform
-    /// plugin.
-    ///
-    /// See also:
-    ///
-    ///  * [MethodCodec], which throws a [PlatformException], if a received result
-    ///    envelope represents an error.
-    ///  * [MethodChannel.invokeMethod], which completes the returned future
-    ///    with a [PlatformException], if invoking the platform plugin method
-    ///    results in an error envelope.
-    ///  * [EventChannel.receiveBroadcastStream], which emits
-    ///    [PlatformException]s as error events, whenever an event received from the
-    ///    platform plugin is wrapped in an error envelope.
-    /// </Summary>
-    public class PlatformException : IException
-    {
-        #region constructors
-        public PlatformException(string code = default(string), string message = default(string), object details = default(object))
-        : base()
-        {
-            this.Code = code;
-            this.Message = message;
-            this.Details = details; throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Thrown to indicate that a platform interaction failed in the platform
+/// plugin.
+///
+/// See also:
+///
+///  * [MethodCodec], which throws a [PlatformException], if a received result
+///    envelope represents an error.
+///  * [MethodChannel.invokeMethod], which completes the returned future
+///    with a [PlatformException], if invoking the platform plugin method
+///    results in an error envelope.
+///  * [EventChannel.receiveBroadcastStream], which emits
+///    [PlatformException]s as error events, whenever an event received from the
+///    platform plugin is wrapped in an error envelope.
+/// </Summary>
+public class PlatformException : IException
+{
+    #region constructors
+    public PlatformException(string code = default(string), string message = default(string), object details = default(object))
+    : base()
 
-        #region fields
-        public virtual string Code { get; set; }
-        public virtual string Message { get; set; }
-        public virtual object Details { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual string Code { get; set; }
+public virtual string Message { get; set; }
+public virtual object Details { get; set; }
+#endregion
 
-        #endregion
-    }
+#region methods
+
+#endregion
+}
 
 
-    /// <Summary>
-    /// Thrown to indicate that a platform interaction failed to find a handling
-    /// plugin.
-    ///
-    /// See also:
-    ///
-    ///  * [MethodChannel.invokeMethod], which completes the returned future
-    ///    with a [MissingPluginException], if no plugin handler for the method call
-    ///    was found.
-    ///  * [OptionalMethodChannel.invokeMethod], which completes the returned future
-    ///    with null, if no plugin handler for the method call was found.
-    /// </Summary>
-    public class MissingPluginException : IException
-    {
-        #region constructors
-        public MissingPluginException(string message = default(string))
-        {
-            this.Message = message; throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Thrown to indicate that a platform interaction failed to find a handling
+/// plugin.
+///
+/// See also:
+///
+///  * [MethodChannel.invokeMethod], which completes the returned future
+///    with a [MissingPluginException], if no plugin handler for the method call
+///    was found.
+///  * [OptionalMethodChannel.invokeMethod], which completes the returned future
+///    with null, if no plugin handler for the method call was found.
+/// </Summary>
+public class MissingPluginException : IException
+{
+    #region constructors
+    public MissingPluginException(string message = default(string))
 
-        #region fields
-        public virtual string Message { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual string Message { get; set; }
+#endregion
 
-        #endregion
-    }
+#region methods
+
+#endregion
+}
 
 }

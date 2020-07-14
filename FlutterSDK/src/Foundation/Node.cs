@@ -317,7 +317,18 @@ namespace FlutterSDK.Foundation.Node
         ///
         /// Only call this method from overrides of [redepthChildren].
         /// </Summary>
-        public virtual void RedepthChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+        public virtual void RedepthChild(FlutterSDK.Foundation.Node.AbstractNode child)
+        {
+
+            if (child._Depth <= _Depth)
+            {
+                child._Depth = _Depth + 1;
+                child.RedepthChildren();
+            }
+
+        }
+
+
 
 
         /// <Summary>
@@ -326,7 +337,11 @@ namespace FlutterSDK.Foundation.Node
         /// Override this method in subclasses with child nodes to call [redepthChild]
         /// for each child. Do not call this method directly.
         /// </Summary>
-        public virtual void RedepthChildren() { throw new NotImplementedException(); }
+        public virtual void RedepthChildren()
+        {
+        }
+
+
 
 
         /// <Summary>
@@ -339,7 +354,14 @@ namespace FlutterSDK.Foundation.Node
         /// inherited [attach] method, and then [attach] all their children to the
         /// same [owner].
         /// </Summary>
-        public virtual void Attach(@Object owner) { throw new NotImplementedException(); }
+        public virtual void Attach(@Object owner)
+        {
+
+
+            _Owner = owner;
+        }
+
+
 
 
         /// <Summary>
@@ -351,7 +373,14 @@ namespace FlutterSDK.Foundation.Node
         /// Subclasses with children should override this method to first call their
         /// inherited [detach] method, and then [detach] all their children.
         /// </Summary>
-        public virtual void Detach() { throw new NotImplementedException(); }
+        public virtual void Detach()
+        {
+
+            _Owner = null;
+
+        }
+
+
 
 
         /// <Summary>
@@ -359,7 +388,17 @@ namespace FlutterSDK.Foundation.Node
         ///
         /// Subclasses should call this function when they acquire a new child.
         /// </Summary>
-        public virtual void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+        public virtual void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child)
+        {
+
+
+
+            child._Parent = this;
+            if (Attached) child.Attach(_Owner);
+            RedepthChild(child);
+        }
+
+
 
 
         /// <Summary>
@@ -367,7 +406,16 @@ namespace FlutterSDK.Foundation.Node
         ///
         /// Subclasses should call this function when they lose a child.
         /// </Summary>
-        public virtual void DropChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+        public virtual void DropChild(FlutterSDK.Foundation.Node.AbstractNode child)
+        {
+
+
+
+            child._Parent = null;
+            if (Attached) child.Detach();
+        }
+
+
 
     }
     public static class AbstractNodeMixin

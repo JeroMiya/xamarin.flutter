@@ -467,215 +467,304 @@ namespace FlutterSDK.Widgets.Scrollcontroller
         #region constructors
         public ScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
         : base()
-        {
-            this.KeepScrollOffset = keepScrollOffset;
-            this.DebugLabel = debugLabel; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual double _InitialScrollOffset { get; set; }
-        public virtual bool KeepScrollOffset { get; set; }
-        public virtual string DebugLabel { get; set; }
-        internal virtual List<FlutterSDK.Widgets.Scrollposition.ScrollPosition> _Positions { get; set; }
-        public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Iterable<FlutterSDK.Widgets.Scrollposition.ScrollPosition> Positions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool HasClients { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    internal virtual double _InitialScrollOffset { get; set; }
+    public virtual bool KeepScrollOffset { get; set; }
+    public virtual string DebugLabel { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Scrollposition.ScrollPosition> _Positions { get; set; }
+    public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual Iterable<FlutterSDK.Widgets.Scrollposition.ScrollPosition> Positions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool HasClients { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Animates the position from its current value to the given value.
-        ///
-        /// Any active animation is canceled. If the user is currently scrolling, that
-        /// action is canceled.
-        ///
-        /// The returned [Future] will complete when the animation ends, whether it
-        /// completed successfully or whether it was interrupted prematurely.
-        ///
-        /// An animation will be interrupted whenever the user attempts to scroll
-        /// manually, or whenever another activity is started, or whenever the
-        /// animation reaches the edge of the viewport and attempts to overscroll. (If
-        /// the [ScrollPosition] does not overscroll but instead allows scrolling
-        /// beyond the extents, then going beyond the extents will not interrupt the
-        /// animation.)
-        ///
-        /// The animation is indifferent to changes to the viewport or content
-        /// dimensions.
-        ///
-        /// Once the animation has completed, the scroll position will attempt to
-        /// begin a ballistic activity in case its value is not stable (for example,
-        /// if it is scrolled beyond the extents and in that situation the scroll
-        /// position would normally bounce back).
-        ///
-        /// The duration must not be zero. To jump to a particular value without an
-        /// animation, use [jumpTo].
-        ///
-        /// When calling [animateTo] in widget tests, `await`ing the returned
-        /// [Future] may cause the test to hang and timeout. Instead, use
-        /// [WidgetTester.pumpAndSettle].
-        /// </Summary>
-        public virtual Future<object> AnimateTo(double offset, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve)) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Animates the position from its current value to the given value.
+    ///
+    /// Any active animation is canceled. If the user is currently scrolling, that
+    /// action is canceled.
+    ///
+    /// The returned [Future] will complete when the animation ends, whether it
+    /// completed successfully or whether it was interrupted prematurely.
+    ///
+    /// An animation will be interrupted whenever the user attempts to scroll
+    /// manually, or whenever another activity is started, or whenever the
+    /// animation reaches the edge of the viewport and attempts to overscroll. (If
+    /// the [ScrollPosition] does not overscroll but instead allows scrolling
+    /// beyond the extents, then going beyond the extents will not interrupt the
+    /// animation.)
+    ///
+    /// The animation is indifferent to changes to the viewport or content
+    /// dimensions.
+    ///
+    /// Once the animation has completed, the scroll position will attempt to
+    /// begin a ballistic activity in case its value is not stable (for example,
+    /// if it is scrolled beyond the extents and in that situation the scroll
+    /// position would normally bounce back).
+    ///
+    /// The duration must not be zero. To jump to a particular value without an
+    /// animation, use [jumpTo].
+    ///
+    /// When calling [animateTo] in widget tests, `await`ing the returned
+    /// [Future] may cause the test to hang and timeout. Instead, use
+    /// [WidgetTester.pumpAndSettle].
+    /// </Summary>
+    public virtual Future<object> AnimateTo(double offset, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+    {
 
-
-        /// <Summary>
-        /// Jumps the scroll position from its current value to the given value,
-        /// without animation, and without checking if the new value is in range.
-        ///
-        /// Any active animation is canceled. If the user is currently scrolling, that
-        /// action is canceled.
-        ///
-        /// If this method changes the scroll position, a sequence of start/update/end
-        /// scroll notifications will be dispatched. No overscroll notifications can
-        /// be generated by this method.
-        ///
-        /// Immediately after the jump, a ballistic activity is started, in case the
-        /// value was out of range.
-        /// </Summary>
-        public virtual void JumpTo(double value) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Register the given position with this controller.
-        ///
-        /// After this function returns, the [animateTo] and [jumpTo] methods on this
-        /// controller will manipulate the given position.
-        /// </Summary>
-        public virtual void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Unregister the given position with this controller.
-        ///
-        /// After this function returns, the [animateTo] and [jumpTo] methods on this
-        /// controller will not manipulate the given position.
-        /// </Summary>
-        public virtual void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Creates a [ScrollPosition] for use by a [Scrollable] widget.
-        ///
-        /// Subclasses can override this function to customize the [ScrollPosition]
-        /// used by the scrollable widgets they control. For example, [PageController]
-        /// overrides this function to return a page-oriented scroll position
-        /// subclass that keeps the same page visible when the scrollable widget
-        /// resizes.
-        ///
-        /// By default, returns a [ScrollPositionWithSingleContext].
-        ///
-        /// The arguments are generally passed to the [ScrollPosition] being created:
-        ///
-        ///  * `physics`: An instance of [ScrollPhysics] that determines how the
-        ///    [ScrollPosition] should react to user interactions, how it should
-        ///    simulate scrolling when released or flung, etc. The value will not be
-        ///    null. It typically comes from the [ScrollView] or other widget that
-        ///    creates the [Scrollable], or, if none was provided, from the ambient
-        ///    [ScrollConfiguration].
-        ///  * `context`: A [ScrollContext] used for communicating with the object
-        ///    that is to own the [ScrollPosition] (typically, this is the
-        ///    [Scrollable] itself).
-        ///  * `oldPosition`: If this is not the first time a [ScrollPosition] has
-        ///    been created for this [Scrollable], this will be the previous instance.
-        ///    This is used when the environment has changed and the [Scrollable]
-        ///    needs to recreate the [ScrollPosition] object. It is null the first
-        ///    time the [ScrollPosition] is created.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition) { throw new NotImplementedException(); }
-
-
-
-        /// <Summary>
-        /// Add additional information to the given description for use by [toString].
-        ///
-        /// This method makes it easier for subclasses to coordinate to provide a
-        /// high-quality [toString] implementation. The [toString] implementation on
-        /// the [ScrollController] base class calls [debugFillDescription] to collect
-        /// useful information from subclasses to incorporate into its return value.
-        ///
-        /// If you override this, make sure to start your method with a call to
-        /// `super.debugFillDescription(description)`.
-        /// </Summary>
-        public virtual void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
-
-        #endregion
+        List<Future<void>> animations = new List<Future<void>>(_Positions.Count);
+        for (int i = 0; i < _Positions.Count; i += 1) animations[i] = _Positions[i].AnimateTo(offset, duration: duration, curve: curve);
+        return Dart:asyncDefaultClass.Future.Wait(animations).Then((List<void> _) => =>null);
     }
+
+
 
 
     /// <Summary>
-    /// A [ScrollController] whose [initialScrollOffset] tracks its most recently
-    /// updated [ScrollPosition].
+    /// Jumps the scroll position from its current value to the given value,
+    /// without animation, and without checking if the new value is in range.
     ///
-    /// This class can be used to synchronize the scroll offset of two or more
-    /// lazily created scroll views that share a single [TrackingScrollController].
-    /// It tracks the most recently updated scroll position and reports it as its
-    /// `initialScrollOffset`.
+    /// Any active animation is canceled. If the user is currently scrolling, that
+    /// action is canceled.
     ///
-    /// {@tool snippet}
+    /// If this method changes the scroll position, a sequence of start/update/end
+    /// scroll notifications will be dispatched. No overscroll notifications can
+    /// be generated by this method.
     ///
-    /// In this example each [PageView] page contains a [ListView] and all three
-    /// [ListView]'s share a [TrackingScrollController]. The scroll offsets of all
-    /// three list views will track each other, to the extent that's possible given
-    /// the different list lengths.
-    ///
-    /// ```dart
-    /// PageView(
-    ///   children: <Widget>[
-    ///     ListView(
-    ///       controller: _trackingScrollController,
-    ///       children: List<Widget>.generate(100, (int i) => Text('page 0 item $i')).toList(),
-    ///     ),
-    ///     ListView(
-    ///       controller: _trackingScrollController,
-    ///       children: List<Widget>.generate(200, (int i) => Text('page 1 item $i')).toList(),
-    ///     ),
-    ///     ListView(
-    ///      controller: _trackingScrollController,
-    ///      children: List<Widget>.generate(300, (int i) => Text('page 2 item $i')).toList(),
-    ///     ),
-    ///   ],
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// In this example the `_trackingController` would have been created by the
-    /// stateful widget that built the widget tree.
+    /// Immediately after the jump, a ballistic activity is started, in case the
+    /// value was out of range.
     /// </Summary>
-    public class TrackingScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+    public virtual void JumpTo(double value)
     {
-        #region constructors
-        public TrackingScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
-        : base(initialScrollOffset: initialScrollOffset, keepScrollOffset: keepScrollOffset, debugLabel: debugLabel)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        internal virtual Dictionary<FlutterSDK.Widgets.Scrollposition.ScrollPosition, object> _PositionToListener { get; set; }
-        internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _LastUpdated { get; set; }
-        internal virtual double _LastUpdatedOffset { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition MostRecentlyUpdatedPosition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
-
-
-        public new void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+        foreach (ScrollPosition position in List<ScrollPosition>.From(_Positions)) position.JumpTo(value);
     }
+
+
+
+
+    /// <Summary>
+    /// Register the given position with this controller.
+    ///
+    /// After this function returns, the [animateTo] and [jumpTo] methods on this
+    /// controller will manipulate the given position.
+    /// </Summary>
+    public virtual void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position)
+    {
+
+        _Positions.Add(position);
+        position.AddListener(NotifyListeners);
+    }
+
+
+
+
+    /// <Summary>
+    /// Unregister the given position with this controller.
+    ///
+    /// After this function returns, the [animateTo] and [jumpTo] methods on this
+    /// controller will not manipulate the given position.
+    /// </Summary>
+    public virtual void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position)
+    {
+
+        position.RemoveListener(NotifyListeners);
+        _Positions.Remove(position);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        foreach (ScrollPosition position in _Positions) position.RemoveListener(NotifyListeners);
+        base.Dispose();
+    }
+
+
+
+
+    /// <Summary>
+    /// Creates a [ScrollPosition] for use by a [Scrollable] widget.
+    ///
+    /// Subclasses can override this function to customize the [ScrollPosition]
+    /// used by the scrollable widgets they control. For example, [PageController]
+    /// overrides this function to return a page-oriented scroll position
+    /// subclass that keeps the same page visible when the scrollable widget
+    /// resizes.
+    ///
+    /// By default, returns a [ScrollPositionWithSingleContext].
+    ///
+    /// The arguments are generally passed to the [ScrollPosition] being created:
+    ///
+    ///  * `physics`: An instance of [ScrollPhysics] that determines how the
+    ///    [ScrollPosition] should react to user interactions, how it should
+    ///    simulate scrolling when released or flung, etc. The value will not be
+    ///    null. It typically comes from the [ScrollView] or other widget that
+    ///    creates the [Scrollable], or, if none was provided, from the ambient
+    ///    [ScrollConfiguration].
+    ///  * `context`: A [ScrollContext] used for communicating with the object
+    ///    that is to own the [ScrollPosition] (typically, this is the
+    ///    [Scrollable] itself).
+    ///  * `oldPosition`: If this is not the first time a [ScrollPosition] has
+    ///    been created for this [Scrollable], this will be the previous instance.
+    ///    This is used when the environment has changed and the [Scrollable]
+    ///    needs to recreate the [ScrollPosition] object. It is null the first
+    ///    time the [ScrollPosition] is created.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition)
+    {
+        return new ScrollPositionWithSingleContext(physics: physics, context: context, initialPixels: InitialScrollOffset, keepScrollOffset: KeepScrollOffset, oldPosition: oldPosition, debugLabel: DebugLabel);
+    }
+
+
+
+
+
+    /// <Summary>
+    /// Add additional information to the given description for use by [toString].
+    ///
+    /// This method makes it easier for subclasses to coordinate to provide a
+    /// high-quality [toString] implementation. The [toString] implementation on
+    /// the [ScrollController] base class calls [debugFillDescription] to collect
+    /// useful information from subclasses to incorporate into its return value.
+    ///
+    /// If you override this, make sure to start your method with a call to
+    /// `super.debugFillDescription(description)`.
+    /// </Summary>
+    public virtual void DebugFillDescription(List<string> description)
+    {
+        if (DebugLabel != null) description.Add(DebugLabel);
+        if (InitialScrollOffset != 0.0) description.Add($"'initialScrollOffset: {InitialScrollOffset.ToStringAsFixed(1)}, '");
+        if (_Positions.IsEmpty())
+        {
+            description.Add("no clients");
+        }
+        else if (_Positions.Count == 1)
+        {
+            description.Add($"'one client, offset {Offset?.ToStringAsFixed(1)}'");
+        }
+        else
+        {
+            description.Add($"'{_Positions.Count} clients'");
+        }
+
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A [ScrollController] whose [initialScrollOffset] tracks its most recently
+/// updated [ScrollPosition].
+///
+/// This class can be used to synchronize the scroll offset of two or more
+/// lazily created scroll views that share a single [TrackingScrollController].
+/// It tracks the most recently updated scroll position and reports it as its
+/// `initialScrollOffset`.
+///
+/// {@tool snippet}
+///
+/// In this example each [PageView] page contains a [ListView] and all three
+/// [ListView]'s share a [TrackingScrollController]. The scroll offsets of all
+/// three list views will track each other, to the extent that's possible given
+/// the different list lengths.
+///
+/// ```dart
+/// PageView(
+///   children: <Widget>[
+///     ListView(
+///       controller: _trackingScrollController,
+///       children: List<Widget>.generate(100, (int i) => Text('page 0 item $i')).toList(),
+///     ),
+///     ListView(
+///       controller: _trackingScrollController,
+///       children: List<Widget>.generate(200, (int i) => Text('page 1 item $i')).toList(),
+///     ),
+///     ListView(
+///      controller: _trackingScrollController,
+///      children: List<Widget>.generate(300, (int i) => Text('page 2 item $i')).toList(),
+///     ),
+///   ],
+/// )
+/// ```
+/// {@end-tool}
+///
+/// In this example the `_trackingController` would have been created by the
+/// stateful widget that built the widget tree.
+/// </Summary>
+public class TrackingScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+{
+    #region constructors
+    public TrackingScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
+    : base(initialScrollOffset: initialScrollOffset, keepScrollOffset: keepScrollOffset, debugLabel: debugLabel)
+
+}
+#endregion
+
+#region fields
+internal virtual Dictionary<FlutterSDK.Widgets.Scrollposition.ScrollPosition, object> _PositionToListener { get; set; }
+internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _LastUpdated { get; set; }
+internal virtual double _LastUpdatedOffset { get; set; }
+public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition MostRecentlyUpdatedPosition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position)
+{
+    base.Attach(position);
+
+    _PositionToListener[position] = () =>
+    {
+        _LastUpdated = position;
+        _LastUpdatedOffset = position.Pixels;
+    }
+    ;
+    position.AddListener(_PositionToListener[position]);
+}
+
+
+
+
+public new void Detach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position)
+{
+    base.Detach(position);
+
+    position.RemoveListener(_PositionToListener[position]);
+    _PositionToListener.Remove(position);
+    if (_LastUpdated == position) _LastUpdated = null;
+    if (_PositionToListener.IsEmpty()) _LastUpdatedOffset = null;
+}
+
+
+
+
+public new void Dispose()
+{
+    foreach (ScrollPosition position in Positions)
+    {
+
+        position.RemoveListener(_PositionToListener[position]);
+    }
+
+    base.Dispose();
+}
+
+
+
+#endregion
+}
 
 }

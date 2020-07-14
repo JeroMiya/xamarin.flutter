@@ -702,76 +702,108 @@ namespace FlutterSDK.Painting.Strutstyle
         #region constructors
         public StrutStyle(string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
         : base()
-        {
-            this.FontSize = fontSize;
-            this.Height = height;
-            this.Leading = leading;
-            this.FontWeight = fontWeight;
-            this.FontStyle = fontStyle;
-            this.ForceStrutHeight = forceStrutHeight;
-            this.DebugLabel = debugLabel; throw new NotImplementedException();
-        }
-        public static StrutStyle FromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
-        {
-            var instance = new StrutStyle(); instance.Leading = leading;
-            instance.ForceStrutHeight = forceStrutHeight; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static StrutStyle FromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle textStyle, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
 
-        #region fields
-        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled { get; set; }
-        public virtual string FontFamily { get; set; }
-        internal virtual List<string> _FontFamilyFallback { get; set; }
-        internal virtual string _Package { get; set; }
-        public virtual double FontSize { get; set; }
-        public virtual double Height { get; set; }
-        public virtual FontWeight FontWeight { get; set; }
-        public virtual FontStyle FontStyle { get; set; }
-        public virtual double Leading { get; set; }
-        public virtual bool ForceStrutHeight { get; set; }
-        public virtual string DebugLabel { get; set; }
-        public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled { get; set; }
+public virtual string FontFamily { get; set; }
+internal virtual List<string> _FontFamilyFallback { get; set; }
+internal virtual string _Package { get; set; }
+public virtual double FontSize { get; set; }
+public virtual double Height { get; set; }
+public virtual FontWeight FontWeight { get; set; }
+public virtual FontStyle FontStyle { get; set; }
+public virtual double Leading { get; set; }
+public virtual bool ForceStrutHeight { get; set; }
+public virtual string DebugLabel { get; set; }
+public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        /// <Summary>
-        /// Describe the difference between this style and another, in terms of how
-        /// much damage it will make to the rendering.
-        ///
-        /// See also:
-        ///
-        ///  * [TextSpan.compareTo], which does the same thing for entire [TextSpan]s.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Strutstyle.StrutStyle other) { throw new NotImplementedException(); }
+#region methods
+
+/// <Summary>
+/// Describe the difference between this style and another, in terms of how
+/// much damage it will make to the rendering.
+///
+/// See also:
+///
+///  * [TextSpan.compareTo], which does the same thing for entire [TextSpan]s.
+/// </Summary>
+public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Strutstyle.StrutStyle other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+    if (FontFamily != other.FontFamily || FontSize != other.FontSize || FontWeight != other.FontWeight || FontStyle != other.FontStyle || Height != other.Height || Leading != other.Leading || ForceStrutHeight != other.ForceStrutHeight || !CollectionsDefaultClass.ListEquals(FontFamilyFallback, other.FontFamilyFallback)) return RenderComparison.Layout;
+    return RenderComparison.Identical;
+}
 
 
-        /// <Summary>
-        /// Returns a new strut style that inherits its null values from
-        /// corresponding properties in the [other] [TextStyle].
-        ///
-        /// The "missing" properties of the this strut style are _filled_ by
-        /// the properties of the provided [TextStyle]. This is possible because
-        /// [StrutStyle] shares many of the same basic properties as [TextStyle].
-        ///
-        /// If the given text style is null, returns this strut style.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle InheritFromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle other) { throw new NotImplementedException(); }
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+/// <Summary>
+/// Returns a new strut style that inherits its null values from
+/// corresponding properties in the [other] [TextStyle].
+///
+/// The "missing" properties of the this strut style are _filled_ by
+/// the properties of the provided [TextStyle]. This is possible because
+/// [StrutStyle] shares many of the same basic properties as [TextStyle].
+///
+/// If the given text style is null, returns this strut style.
+/// </Summary>
+public virtual FlutterSDK.Painting.Strutstyle.StrutStyle InheritFromTextStyle(FlutterSDK.Painting.Textstyle.TextStyle other)
+{
+    if (other == null) return this;
+    return new StrutStyle(fontFamily: FontFamily ?? other.FontFamily, fontFamilyFallback: FontFamilyFallback ?? other.FontFamilyFallback, fontSize: fontSize == default(double) ? other.fontSize : fontSize, height: height == default(double) ? other.height : height, leading: Leading, fontWeight: FontWeight ?? other.FontWeight, fontStyle: FontStyle ?? other.FontStyle, forceStrutHeight: ForceStrutHeight, debugLabel: DebugLabel ?? other.DebugLabel);
+}
 
 
-        public new string ToStringShort() { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Adds all properties prefixing property names with the optional `prefix`.
-        /// </Summary>
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties, string prefix = default(string)) { throw new NotImplementedException(); }
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    return other is StrutStyle && other.FontFamily == FontFamily && other.FontSize == FontSize && other.FontWeight == FontWeight && other.FontStyle == FontStyle && other.Height == Height && other.Leading == Leading && other.ForceStrutHeight == ForceStrutHeight;
+}
 
-        #endregion
+
+
+
+public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "StrutStyle");
+
+
+
+/// <Summary>
+/// Adds all properties prefixing property names with the optional `prefix`.
+/// </Summary>
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties, string prefix = default(string))
+{
+    base.DebugFillProperties(properties);
+    if (DebugLabel != null) properties.Add(new MessageProperty($"'{prefix}debugLabel'", DebugLabel));
+    List<DiagnosticsNode> styles = new List<DiagnosticsNode>() { new StringProperty($"'{prefix}family'", FontFamily, defaultValue: null, quoted: false), new IterableProperty<string>($"'{prefix}familyFallback'", FontFamilyFallback, defaultValue: null), new DoubleProperty($"'{prefix}size'", FontSize, defaultValue: null) };
+    string weightDescription = default(string);
+    if (FontWeight != null)
+    {
+        weightDescription = $"'w{FontWeight.Index + 1}00'";
     }
+
+    styles.Add(new DiagnosticsProperty<FontWeight>($"'{prefix}weight'", FontWeight, description: weightDescription, defaultValue: null));
+    styles.Add(new EnumProperty<FontStyle>($"'{prefix}style'", FontStyle, defaultValue: null));
+    styles.Add(new DoubleProperty($"'{prefix}height'", Height, unit: 'x', defaultValue: null));
+    styles.Add(new FlagProperty($"'{prefix}forceStrutHeight'", value: ForceStrutHeight, defaultValue: null, ifTrue: $"'{prefix}<strut height forced>'", ifFalse: $"'{prefix}<strut height normal>'"));
+    bool styleSpecified = styles.Any((DiagnosticsNode n) => =>!n.IsFiltered(DiagnosticLevel.Info));
+    styles.ForEach(properties.Add);
+    if (!styleSpecified) properties.Add(new FlagProperty("forceStrutHeight", value: ForceStrutHeight, ifTrue: $"'{prefix}<strut height forced>'", ifFalse: $"'{prefix}<strut height normal>'"));
+}
+
+
+
+#endregion
+}
 
 }

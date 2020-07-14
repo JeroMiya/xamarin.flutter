@@ -429,145 +429,361 @@ namespace FlutterSDK.Material.Reorderablelist
         #region constructors
         public ReorderableListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Reorderablelist.ReorderCallback onReorder = default(FlutterSDK.Material.Reorderablelist.ReorderCallback), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool reverse = false)
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+    public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+    public virtual bool Reverse { get; set; }
+    public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Reorderablelist._ReorderableListViewState CreateState() => new _ReorderableListViewState();
+
+
+    #endregion
+}
+
+
+public class _ReorderableListViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Reorderablelist.ReorderableListView>
+{
+    #region constructors
+    public _ReorderableListViewState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _OverlayKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ListOverlayEntry { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _ListOverlayEntry = new OverlayEntry(opaque: true, builder: (BuildContext context) =>
         {
-            this.Header = header;
-            this.Children = children;
-            this.OnReorder = onReorder;
-            this.ScrollController = scrollController;
-            this.ScrollDirection = scrollDirection;
-            this.Padding = padding;
-            this.Reverse = reverse; throw new NotImplementedException();
+            return new _ReorderableListContent(header: Widget.Header, children: Widget.Children, scrollController: Widget.ScrollController, scrollDirection: Widget.ScrollDirection, onReorder: Widget.OnReorder, padding: Widget.Padding, reverse: Widget.Reverse);
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
-        public virtual bool Reverse { get; set; }
-        public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Reorderablelist._ReorderableListViewState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    public class _ReorderableListViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Reorderablelist.ReorderableListView>
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _ReorderableListViewState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _OverlayKey { get; set; }
-        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ListOverlayEntry { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new Overlay(key: _OverlayKey, initialEntries: new List<OverlayEntry>() { _ListOverlayEntry });
     }
 
 
-    public class _ReorderableListContent : FlutterSDK.Widgets.Framework.StatefulWidget
+
+    #endregion
+}
+
+
+public class _ReorderableListContent : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _ReorderableListContent(FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Material.Reorderablelist.ReorderCallback onReorder = default(FlutterSDK.Material.Reorderablelist.ReorderCallback), bool reverse = default(bool))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
+public virtual bool Reverse { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Reorderablelist._ReorderableListContentState CreateState() => new _ReorderableListContentState();
+
+
+#endregion
+}
+
+
+public class _ReorderableListContentState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Reorderablelist._ReorderableListContent>, ITickerProviderStateMixin<FlutterSDK.Material.Reorderablelist._ReorderableListContent>
+{
+    #region constructors
+    public _ReorderableListContentState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual double _DefaultDropAreaExtent { get; set; }
+    internal virtual double _DropAreaMargin { get; set; }
+    internal virtual TimeSpan _ReorderAnimationDuration { get; set; }
+    internal virtual TimeSpan _ScrollAnimationDuration { get; set; }
+    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _EntranceController { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _GhostController { get; set; }
+    internal virtual FlutterSDK.Foundation.Key.Key _Dragging { get; set; }
+    internal virtual Size _DraggingFeedbackSize { get; set; }
+    internal virtual int _DragStartIndex { get; set; }
+    internal virtual int _GhostIndex { get; set; }
+    internal virtual int _CurrentIndex { get; set; }
+    internal virtual int _NextIndex { get; set; }
+    internal virtual bool _Scrolling { get; set; }
+    internal virtual double _DropAreaExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _ReorderableListContent(FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Material.Reorderablelist.ReorderCallback onReorder = default(FlutterSDK.Material.Reorderablelist.ReorderCallback), bool reverse = default(bool))
+        base.InitState();
+        _EntranceController = new AnimationController(vsync: this, duration: _ReorderAnimationDuration);
+        _GhostController = new AnimationController(vsync: this, duration: _ReorderAnimationDuration);
+        _EntranceController.AddStatusListener(_OnEntranceStatusChanged);
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        _ScrollController = Widget.ScrollController ?? PrimaryscrollcontrollerDefaultClass.PrimaryScrollController.Of(Context) ?? new ScrollController();
+        base.DidChangeDependencies();
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _EntranceController.Dispose();
+        _GhostController.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    private void _RequestAnimationToNextIndex()
+    {
+        if (_EntranceController.IsCompleted)
         {
-            this.Header = header;
-            this.Children = children;
-            this.ScrollController = scrollController;
-            this.ScrollDirection = scrollDirection;
-            this.Padding = padding;
-            this.OnReorder = onReorder;
-            this.Reverse = reverse; throw new NotImplementedException();
+            _GhostIndex = _CurrentIndex;
+            if (_NextIndex == _CurrentIndex)
+            {
+                return;
+            }
+
+            _CurrentIndex = _NextIndex;
+            _GhostController.Reverse(from: 1.0);
+            _EntranceController.Forward(from: 0.0);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
-        public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
-        public virtual bool Reverse { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Reorderablelist._ReorderableListContentState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _ReorderableListContentState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Reorderablelist._ReorderableListContent>, ITickerProviderStateMixin<FlutterSDK.Material.Reorderablelist._ReorderableListContent>
+
+
+    private void _OnEntranceStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
     {
-        #region constructors
-        public _ReorderableListContentState()
-        { }
-        #endregion
+        if (status == AnimationStatus.Completed)
+        {
+            SetState(() =>
+            {
+                _RequestAnimationToNextIndex();
+            }
+            );
+        }
 
-        #region fields
-        internal virtual double _DefaultDropAreaExtent { get; set; }
-        internal virtual double _DropAreaMargin { get; set; }
-        internal virtual TimeSpan _ReorderAnimationDuration { get; set; }
-        internal virtual TimeSpan _ScrollAnimationDuration { get; set; }
-        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _EntranceController { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _GhostController { get; set; }
-        internal virtual FlutterSDK.Foundation.Key.Key _Dragging { get; set; }
-        internal virtual Size _DraggingFeedbackSize { get; set; }
-        internal virtual int _DragStartIndex { get; set; }
-        internal virtual int _GhostIndex { get; set; }
-        internal virtual int _CurrentIndex { get; set; }
-        internal virtual int _NextIndex { get; set; }
-        internal virtual bool _Scrolling { get; set; }
-        internal virtual double _DropAreaExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _RequestAnimationToNextIndex() { throw new NotImplementedException(); }
-
-
-        private void _OnEntranceStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
-
-
-        private void _ScrollTo(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildContainerForScrollDirection(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>)) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _Wrap(FlutterSDK.Widgets.Framework.Widget toWrap, int index, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    private void _ScrollTo(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        if (_Scrolling) return;
+        RenderObject contextObject = context.FindRenderObject();
+        RenderAbstractViewport viewport = ViewportDefaultClass.RenderAbstractViewport.Of(contextObject);
+
+        double margin = _DropAreaExtent;
+        double scrollOffset = _ScrollController.Offset;
+        double topOffset = Dart:mathDefaultClass.Max(_ScrollController.Position.MinScrollExtent, viewport.GetOffsetToReveal(contextObject, 0.0).Offset - margin);
+        double bottomOffset = Dart:mathDefaultClass.Min(_ScrollController.Position.MaxScrollExtent, viewport.GetOffsetToReveal(contextObject, 1.0).Offset + margin);
+        bool onScreen = scrollOffset <= topOffset && scrollOffset >= bottomOffset;
+        if (!onScreen)
+        {
+            _Scrolling = true;
+            _ScrollController.Position.AnimateTo(scrollOffset < bottomOffset ? bottomOffset : topOffset, duration: _ScrollAnimationDuration, curve: CurvesDefaultClass.Curves.EaseInOut).Then((void value) =>
+            {
+                SetState(() =>
+                {
+                    _Scrolling = false;
+                }
+                );
+            }
+            );
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildContainerForScrollDirection(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+    {
+        switch (Widget.ScrollDirection) { case Axis.Horizontal: return new Row(children: children); case Axis.Vertical: default: return new Column(children: children); }
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _Wrap(FlutterSDK.Widgets.Framework.Widget toWrap, int index, FlutterSDK.Rendering.Box.BoxConstraints constraints)
+    {
+
+        GlobalObjectKey keyIndexGlobalKey = new GlobalObjectKey(toWrap.Key);
+        void OnDragStarted() => {
+            SetState(() =>
+            {
+                _Dragging = toWrap.Key;
+                _DragStartIndex = index;
+                _GhostIndex = index;
+                _CurrentIndex = index;
+                _EntranceController.Value = 1.0;
+                _DraggingFeedbackSize = keyIndexGlobalKey.CurrentContext.Size;
+            }
+            );
+        }
+
+        void Reorder(int startIndex, int endIndex) => {
+            SetState(() =>
+            {
+                if (startIndex != endIndex) Widget.OnReorder(startIndex, endIndex);
+                _GhostController.Reverse(from: 0.1);
+                _EntranceController.Reverse(from: 0.1);
+                _Dragging = null;
+            }
+            );
+        }
+
+        void OnDragEnded() => {
+            Reorder(_DragStartIndex, _CurrentIndex);
+        }
+
+        Widget WrapWithSemantics() => {
+            Dictionary<CustomSemanticsAction, VoidCallback> semanticsActions = new Dictionary<CustomSemanticsAction, VoidCallback> { };
+            void MoveToStart() => =>Reorder(index, 0);
+            void MoveToEnd() => =>Reorder(index, Widget.Children.Count);
+            void MoveBefore() => =>Reorder(index, index - 1);
+            void MoveAfter() => =>Reorder(index, index + 2);
+            MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+            if (index > 0)
+            {
+                semanticsActions[new CustomSemanticsAction(label: localizations.ReorderItemToStart)] = MoveToStart;
+                string reorderItemBefore = localizations.ReorderItemUp;
+                if (Widget.ScrollDirection == Axis.Horizontal)
+                {
+                    reorderItemBefore = BasicDefaultClass.Directionality.Of(Context) == TextDirection.Ltr ? localizations.ReorderItemLeft : localizations.ReorderItemRight;
+                }
+
+                semanticsActions[new CustomSemanticsAction(label: reorderItemBefore)] = MoveBefore;
+            }
+
+            if (index < Widget.Children.Count - 1)
+            {
+                string reorderItemAfter = localizations.ReorderItemDown;
+                if (Widget.ScrollDirection == Axis.Horizontal)
+                {
+                    reorderItemAfter = BasicDefaultClass.Directionality.Of(Context) == TextDirection.Ltr ? localizations.ReorderItemRight : localizations.ReorderItemLeft;
+                }
+
+                semanticsActions[new CustomSemanticsAction(label: reorderItemAfter)] = MoveAfter;
+                semanticsActions[new CustomSemanticsAction(label: localizations.ReorderItemToEnd)] = MoveToEnd;
+            }
+
+            return new KeyedSubtree(key: keyIndexGlobalKey, child: new MergeSemantics(child: new Semantics(customSemanticsActions: semanticsActions, child: toWrap)));
+        }
+
+        Widget BuildDragTarget(BuildContext context, List<Key> acceptedCandidates, List<object> rejectedCandidates) => {
+            Widget toWrapWithSemantics = WrapWithSemantics();
+            Widget child = new LongPressDraggable<Key>(maxSimultaneousDrags: 1, axis: Widget.ScrollDirection, data: toWrap.Key, ignoringFeedbackSemantics: false, feedback: new Container(alignment: AlignmentDefaultClass.Alignment.TopLeft, constraints: constraints, child: new Material(elevation: 6.0, child: toWrapWithSemantics)), child: _Dragging == toWrap.Key ? new SizedBox() : toWrapWithSemantics, childWhenDragging: new SizedBox(), dragAnchor: DragAnchor.Child, onDragStarted: OnDragStarted, onDragCompleted: OnDragEnded, onDraggableCanceled: (Velocity velocity, Offset offset) =>
+            {
+                OnDragEnded();
+            }
+            );
+            if (index >= Widget.Children.Count)
+            {
+                child = toWrap;
+            }
+
+            Widget spacing = default(Widget);
+            switch (Widget.ScrollDirection) { case Axis.Horizontal: spacing = new SizedBox(width: _DropAreaExtent); break; case Axis.Vertical: default: spacing = new SizedBox(height: _DropAreaExtent); break; }
+            if (_CurrentIndex == index)
+            {
+                return _BuildContainerForScrollDirection(children: new List<Widget>() { new SizeTransition(sizeFactor: _EntranceController, axis: Widget.ScrollDirection, child: spacing), child });
+            }
+
+            if (_GhostIndex == index)
+            {
+                return _BuildContainerForScrollDirection(children: new List<Widget>() { new SizeTransition(sizeFactor: _GhostController, axis: Widget.ScrollDirection, child: spacing), child });
+            }
+
+            return child;
+        }
+
+        return new Builder(builder: (BuildContext context) =>
+        {
+            return new DragTarget<Key>(builder: BuildDragTarget, onWillAccept: (Key toAccept) =>
+            {
+                SetState(() =>
+                {
+                    _NextIndex = index;
+                    _RequestAnimationToNextIndex();
+                }
+                );
+                _ScrollTo(context);
+                return _Dragging == toAccept && toAccept != toWrap.Key;
+            }
+            , onAccept: (Key accepted) =>
+            {
+            }
+            , onLeave: (object leaving) =>
+            {
+            }
+            );
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+        {
+            Key endWidgetKey = new Key("DraggableList - End Widget");
+            Widget finalDropArea = default(Widget);
+            switch (Widget.ScrollDirection) { case Axis.Horizontal: finalDropArea = new SizedBox(key: endWidgetKey, width: _DefaultDropAreaExtent, height: constraints.MaxHeight); break; case Axis.Vertical: default: finalDropArea = new SizedBox(key: endWidgetKey, height: _DefaultDropAreaExtent, width: constraints.MaxWidth); break; }
+            return new SingleChildScrollView(scrollDirection: Widget.ScrollDirection, padding: Widget.Padding, controller: _ScrollController, reverse: Widget.Reverse, child: _BuildContainerForScrollDirection(children: new List<Widget>() { }));
+        }
+        );
+    }
+
+
+
+    #endregion
+}
 
 }

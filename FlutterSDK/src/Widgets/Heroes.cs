@@ -511,230 +511,578 @@ namespace FlutterSDK.Widgets.Heroes
         #region constructors
         public Hero(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), @Object tag = default(@Object), FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween), FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder flightShuttleBuilder = default(FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder), FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder placeholderBuilder = default(FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder), bool transitionOnUserGestures = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Tag = tag;
-            this.CreateRectTween = createRectTween;
-            this.FlightShuttleBuilder = flightShuttleBuilder;
-            this.PlaceholderBuilder = placeholderBuilder;
-            this.TransitionOnUserGestures = transitionOnUserGestures;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual @Object Tag { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder FlightShuttleBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder PlaceholderBuilder { get; set; }
-        public virtual bool TransitionOnUserGestures { get; set; }
-        #endregion
+    #region fields
+    public virtual @Object Tag { get; set; }
+    public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder FlightShuttleBuilder { get; set; }
+    public virtual FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder PlaceholderBuilder { get; set; }
+    public virtual bool TransitionOnUserGestures { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        private Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroState> _AllHeroesFor(FlutterSDK.Widgets.Framework.BuildContext context, bool isUserGestureTransition, FlutterSDK.Widgets.Navigator.NavigatorState navigator) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Heroes._HeroState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _HeroState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Heroes.Hero>
+    private Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroState> _AllHeroesFor(FlutterSDK.Widgets.Framework.BuildContext context, bool isUserGestureTransition, FlutterSDK.Widgets.Navigator.NavigatorState navigator)
     {
-        #region constructors
-        public _HeroState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _Key { get; set; }
-        internal virtual Size _PlaceholderSize { get; set; }
-        internal virtual bool _ShouldIncludeChild { get; set; }
-        #endregion
-
-        #region methods
-
-        public virtual void StartFlight(bool shouldIncludedChildInPlaceholder = false) { throw new NotImplementedException(); }
 
 
-        public virtual void EnsurePlaceholderIsHidden() { throw new NotImplementedException(); }
 
+        Dictionary<object, _HeroState> result = new Dictionary<object, _HeroState> { };
+        void InviteHero(StatefulElement hero, object tag) => {
 
-        public virtual void EndFlight(bool keepPlaceholder = false) { throw new NotImplementedException(); }
+            Hero heroWidget = hero.Widget as Hero;
+            _HeroState heroState = hero.State as _HeroState;
+            if (!isUserGestureTransition || heroWidget.TransitionOnUserGestures)
+            {
+                result[tag] = heroState;
+            }
+            else
+            {
+                heroState.EnsurePlaceholderIsHidden();
+            }
 
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _HeroFlightManifest
-    {
-        #region constructors
-        public _HeroFlightManifest(FlutterSDK.Widgets.Heroes.HeroFlightDirection type = default(FlutterSDK.Widgets.Heroes.HeroFlightDirection), FlutterSDK.Widgets.Overlay.OverlayState overlay = default(FlutterSDK.Widgets.Overlay.OverlayState), FlutterBinding.UI.Rect navigatorRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Pages.PageRoute<object> fromRoute = default(FlutterSDK.Widgets.Pages.PageRoute<object>), FlutterSDK.Widgets.Pages.PageRoute<object> toRoute = default(FlutterSDK.Widgets.Pages.PageRoute<object>), FlutterSDK.Widgets.Heroes._HeroState fromHero = default(FlutterSDK.Widgets.Heroes._HeroState), FlutterSDK.Widgets.Heroes._HeroState toHero = default(FlutterSDK.Widgets.Heroes._HeroState), FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween), FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder shuttleBuilder = default(FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder), bool isUserGestureTransition = default(bool), bool isDiverted = default(bool))
-        : base()
-        {
-            this.Type = type;
-            this.Overlay = overlay;
-            this.NavigatorRect = navigatorRect;
-            this.FromRoute = fromRoute;
-            this.ToRoute = toRoute;
-            this.FromHero = fromHero;
-            this.ToHero = toHero;
-            this.CreateRectTween = createRectTween;
-            this.ShuttleBuilder = shuttleBuilder;
-            this.IsUserGestureTransition = isUserGestureTransition;
-            this.IsDiverted = isDiverted; throw new NotImplementedException();
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Heroes.HeroFlightDirection Type { get; set; }
-        public virtual FlutterSDK.Widgets.Overlay.OverlayState Overlay { get; set; }
-        public virtual FlutterBinding.UI.Rect NavigatorRect { get; set; }
-        public virtual FlutterSDK.Widgets.Pages.PageRoute<object> FromRoute { get; set; }
-        public virtual FlutterSDK.Widgets.Pages.PageRoute<object> ToRoute { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes._HeroState FromHero { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes._HeroState ToHero { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder ShuttleBuilder { get; set; }
-        public virtual bool IsUserGestureTransition { get; set; }
-        public virtual bool IsDiverted { get; set; }
-        public virtual @Object Tag { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+        void Visitor(Element element) => {
+            Widget widget = element.Widget;
+            if (widget is Hero)
+            {
+                StatefulElement hero = element as StatefulElement;
+                object tag = ((Hero)widget).Tag;
 
-        #region methods
+                if (NavigatorDefaultClass.Navigator.Of(hero) == navigator)
+                {
+                    InviteHero(hero, tag);
+                }
+                else
+                {
+                    ModalRoute<object> heroRoute = RoutesDefaultClass.ModalRoute.Of(hero);
+                    if (heroRoute != null && ((PageRoute)heroRoute) is PageRoute && ((PageRoute)heroRoute).IsCurrent)
+                    {
+                        InviteHero(hero, tag);
+                    }
 
-        #endregion
-    }
+                }
 
+            }
 
-    public class _HeroFlight
-    {
-        #region constructors
-        public _HeroFlight(FlutterSDK.Widgets.Heroes._OnFlightEnded onFlightEnded)
-        {
-            this.OnFlightEnded = onFlightEnded; throw new NotImplementedException();
+            element.VisitChildren(Visitor);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Heroes._OnFlightEnded OnFlightEnded { get; set; }
-        public virtual FlutterSDK.Animation.Tween.Tween<Rect> HeroRectTween { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Shuttle { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _HeroOpacity { get; set; }
-        internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _ProxyAnimation { get; set; }
-        public virtual FlutterSDK.Widgets.Heroes._HeroFlightManifest Manifest { get; set; }
-        public virtual FlutterSDK.Widgets.Overlay.OverlayEntry OverlayEntry { get; set; }
-        internal virtual bool _Aborted { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ReverseTween { get; set; }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Animation.Tween.Tween<Rect> _DoCreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildOverlay(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private void _HandleAnimationUpdate(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
-
-
-        public virtual void Start(FlutterSDK.Widgets.Heroes._HeroFlightManifest initialManifest) { throw new NotImplementedException(); }
-
-
-        public virtual void Divert(FlutterSDK.Widgets.Heroes._HeroFlightManifest newManifest) { throw new NotImplementedException(); }
-
-
-        public virtual void Abort() { throw new NotImplementedException(); }
-
-
-        #endregion
+        context.VisitChildElements(Visitor);
+        return result;
     }
 
+
+
+
+    public new FlutterSDK.Widgets.Heroes._HeroState CreateState() => new _HeroState();
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<object>("tag", Tag));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _HeroState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Heroes.Hero>
+{
+    #region constructors
+    public _HeroState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _Key { get; set; }
+    internal virtual Size _PlaceholderSize { get; set; }
+    internal virtual bool _ShouldIncludeChild { get; set; }
+    #endregion
+
+    #region methods
+
+    public virtual void StartFlight(bool shouldIncludedChildInPlaceholder = false)
+    {
+        _ShouldIncludeChild = shouldIncludedChildInPlaceholder;
+
+        RenderBox box = Context.FindRenderObject() as RenderBox;
+
+        SetState(() =>
+        {
+            _PlaceholderSize = box.Size;
+        }
+        );
+    }
+
+
+
+
+    public virtual void EnsurePlaceholderIsHidden()
+    {
+        if (Mounted)
+        {
+            SetState(() =>
+            {
+                _PlaceholderSize = null;
+            }
+            );
+        }
+
+    }
+
+
+
+
+    public virtual void EndFlight(bool keepPlaceholder = false)
+    {
+        if (!keepPlaceholder)
+        {
+            EnsurePlaceholderIsHidden();
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        bool showPlaceholder = _PlaceholderSize != null;
+        if (showPlaceholder && Widget.PlaceholderBuilder != null)
+        {
+            return Widget.PlaceholderBuilder(context, _PlaceholderSize, Widget.Child);
+        }
+
+        if (showPlaceholder && !_ShouldIncludeChild)
+        {
+            return new SizedBox(width: _PlaceholderSize.Width, height: _PlaceholderSize.Height);
+        }
+
+        return new SizedBox(width: _PlaceholderSize?.Width, height: _PlaceholderSize?.Height, child: new Offstage(offstage: showPlaceholder, child: new TickerMode(enabled: !showPlaceholder, child: new KeyedSubtree(key: _Key, child: Widget.Child))));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _HeroFlightManifest
+{
+    #region constructors
+    public _HeroFlightManifest(FlutterSDK.Widgets.Heroes.HeroFlightDirection type = default(FlutterSDK.Widgets.Heroes.HeroFlightDirection), FlutterSDK.Widgets.Overlay.OverlayState overlay = default(FlutterSDK.Widgets.Overlay.OverlayState), FlutterBinding.UI.Rect navigatorRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Pages.PageRoute<object> fromRoute = default(FlutterSDK.Widgets.Pages.PageRoute<object>), FlutterSDK.Widgets.Pages.PageRoute<object> toRoute = default(FlutterSDK.Widgets.Pages.PageRoute<object>), FlutterSDK.Widgets.Heroes._HeroState fromHero = default(FlutterSDK.Widgets.Heroes._HeroState), FlutterSDK.Widgets.Heroes._HeroState toHero = default(FlutterSDK.Widgets.Heroes._HeroState), FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween), FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder shuttleBuilder = default(FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder), bool isUserGestureTransition = default(bool), bool isDiverted = default(bool))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Heroes.HeroFlightDirection Type { get; set; }
+public virtual FlutterSDK.Widgets.Overlay.OverlayState Overlay { get; set; }
+public virtual FlutterBinding.UI.Rect NavigatorRect { get; set; }
+public virtual FlutterSDK.Widgets.Pages.PageRoute<object> FromRoute { get; set; }
+public virtual FlutterSDK.Widgets.Pages.PageRoute<object> ToRoute { get; set; }
+public virtual FlutterSDK.Widgets.Heroes._HeroState FromHero { get; set; }
+public virtual FlutterSDK.Widgets.Heroes._HeroState ToHero { get; set; }
+public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
+public virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder ShuttleBuilder { get; set; }
+public virtual bool IsUserGestureTransition { get; set; }
+public virtual bool IsDiverted { get; set; }
+public virtual @Object Tag { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+#endregion
+}
+
+
+public class _HeroFlight
+{
+    #region constructors
+    public _HeroFlight(FlutterSDK.Widgets.Heroes._OnFlightEnded onFlightEnded)
+
+_ProxyAnimation=new ProxyAnimation();
+    new ProxyAnimation().AddStatusListener(_HandleAnimationUpdate);
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Heroes._OnFlightEnded OnFlightEnded { get; set; }
+public virtual FlutterSDK.Animation.Tween.Tween<Rect> HeroRectTween { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Shuttle { get; set; }
+internal virtual FlutterSDK.Animation.Animation.Animation<double> _HeroOpacity { get; set; }
+internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _ProxyAnimation { get; set; }
+public virtual FlutterSDK.Widgets.Heroes._HeroFlightManifest Manifest { get; set; }
+public virtual FlutterSDK.Widgets.Overlay.OverlayEntry OverlayEntry { get; set; }
+internal virtual bool _Aborted { get; set; }
+internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ReverseTween { get; set; }
+#endregion
+
+#region methods
+
+private FlutterSDK.Animation.Tween.Tween<Rect> _DoCreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end)
+{
+    CreateRectTween createRectTween = Manifest.ToHero.Widget.CreateRectTween ?? Manifest.CreateRectTween;
+    if (createRectTween != null) return createRectTween(begin, end);
+    return new RectTween(begin: begin, end: end);
+}
+
+
+
+
+private FlutterSDK.Widgets.Framework.Widget _BuildOverlay(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    Shuttle = (Shuttle == null ? Manifest.ShuttleBuilder(context, Manifest.Animation, Manifest.Type, Manifest.FromHero.Context, Manifest.ToHero.Context) : Shuttle);
+
+    return new AnimatedBuilder(animation: _ProxyAnimation, child: Shuttle, builder: (BuildContext context, Widget child) =>
+    {
+        RenderBox toHeroBox = Manifest.ToHero.Context?.FindRenderObject() as RenderBox;
+        if (_Aborted || toHeroBox == null || !toHeroBox.Attached)
+        {
+            if (_HeroOpacity.IsCompleted)
+            {
+                _HeroOpacity = _ProxyAnimation.Drive(_ReverseTween.Chain(new CurveTween(curve: new Interval(_ProxyAnimation.Value, 1.0))));
+            }
+
+        }
+        else if (toHeroBox.HasSize)
+        {
+            RenderBox finalRouteBox = Manifest.ToRoute.SubtreeContext?.FindRenderObject() as RenderBox;
+            Offset toHeroOrigin = toHeroBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero, ancestor: finalRouteBox);
+            if (toHeroOrigin != HeroRectTween.End.TopLeft)
+            {
+                Rect heroRectEnd = toHeroOrigin & HeroRectTween.End.Size;
+                HeroRectTween = _DoCreateRectTween(HeroRectTween.Begin, heroRectEnd);
+            }
+
+        }
+
+        Rect rect = HeroRectTween.Evaluate(_ProxyAnimation);
+        Size size = Manifest.NavigatorRect.Size;
+        RelativeRect offsets = RelativeRect.FromSize(rect, size);
+        return new Positioned(top: offsets.Top, right: offsets.Right, bottom: offsets.Bottom, left: offsets.Left, child: new IgnorePointer(child: new RepaintBoundary(child: new Opacity(opacity: _HeroOpacity.Value, child: child))));
+    }
+    );
+}
+
+
+
+
+private void _HandleAnimationUpdate(FlutterSDK.Animation.Animation.AnimationStatus status)
+{
+    if (status == AnimationStatus.Completed || status == AnimationStatus.Dismissed)
+    {
+        _ProxyAnimation.Parent = null;
+
+        OverlayEntry.Remove();
+        OverlayEntry = null;
+        Manifest.FromHero.EndFlight(keepPlaceholder: status == AnimationStatus.Completed);
+        Manifest.ToHero.EndFlight(keepPlaceholder: status == AnimationStatus.Dismissed);
+        OnFlightEnded(this);
+    }
+
+}
+
+
+
+
+public virtual void Start(FlutterSDK.Widgets.Heroes._HeroFlightManifest initialManifest)
+{
+
+
+    Manifest = initialManifest;
+    if (Manifest.Type == HeroFlightDirection.Pop) _ProxyAnimation.Parent = new ReverseAnimation(Manifest.Animation); else _ProxyAnimation.Parent = Manifest.Animation;
+    Manifest.FromHero.StartFlight(shouldIncludedChildInPlaceholder: Manifest.Type == HeroFlightDirection.Push);
+    Manifest.ToHero.StartFlight();
+    HeroRectTween = _DoCreateRectTween(HeroesDefaultClass._BoundingBoxFor(Manifest.FromHero.Context, Manifest.FromRoute.SubtreeContext), HeroesDefaultClass._BoundingBoxFor(Manifest.ToHero.Context, Manifest.ToRoute.SubtreeContext));
+    OverlayEntry = new OverlayEntry(builder: _BuildOverlay);
+    Manifest.Overlay.Insert(OverlayEntry);
+}
+
+
+
+
+public virtual void Divert(FlutterSDK.Widgets.Heroes._HeroFlightManifest newManifest)
+{
+
+    if (Manifest.Type == HeroFlightDirection.Push && newManifest.Type == HeroFlightDirection.Pop)
+    {
+
+
+
+
+
+        _ProxyAnimation.Parent = new ReverseAnimation(newManifest.Animation);
+        HeroRectTween = new ReverseTween<Rect>(HeroRectTween);
+    }
+    else if (Manifest.Type == HeroFlightDirection.Pop && newManifest.Type == HeroFlightDirection.Push)
+    {
+
+
+
+        _ProxyAnimation.Parent = newManifest.Animation.Drive(new Tween<double>(begin: Manifest.Animation.Value, end: 1.0));
+        if (Manifest.FromHero != newManifest.ToHero)
+        {
+            Manifest.FromHero.EndFlight(keepPlaceholder: true);
+            newManifest.ToHero.StartFlight();
+            HeroRectTween = _DoCreateRectTween(HeroRectTween.End, HeroesDefaultClass._BoundingBoxFor(newManifest.ToHero.Context, newManifest.ToRoute.SubtreeContext));
+        }
+        else
+        {
+            HeroRectTween = _DoCreateRectTween(HeroRectTween.End, HeroRectTween.Begin);
+        }
+
+    }
+    else
+    {
+
+
+        HeroRectTween = _DoCreateRectTween(HeroRectTween.Evaluate(_ProxyAnimation), HeroesDefaultClass._BoundingBoxFor(newManifest.ToHero.Context, newManifest.ToRoute.SubtreeContext));
+        Shuttle = null;
+        if (newManifest.Type == HeroFlightDirection.Pop) _ProxyAnimation.Parent = new ReverseAnimation(newManifest.Animation); else _ProxyAnimation.Parent = newManifest.Animation;
+        Manifest.FromHero.EndFlight(keepPlaceholder: true);
+        Manifest.ToHero.EndFlight(keepPlaceholder: true);
+        newManifest.FromHero.StartFlight(shouldIncludedChildInPlaceholder: newManifest.Type == HeroFlightDirection.Push);
+        newManifest.ToHero.StartFlight();
+        OverlayEntry.MarkNeedsBuild();
+    }
+
+    _Aborted = false;
+    Manifest = newManifest;
+}
+
+
+
+
+public virtual void Abort()
+{
+    _Aborted = true;
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A [Navigator] observer that manages [Hero] transitions.
+///
+/// An instance of [HeroController] should be used in [Navigator.observers].
+/// This is done automatically by [MaterialApp].
+/// </Summary>
+public class HeroController : FlutterSDK.Widgets.Navigator.NavigatorObserver
+{
+    #region constructors
+    public HeroController(FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
+internal virtual Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroFlight> _Flights { get; set; }
+internal virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder _DefaultHeroFlightShuttleBuilder { get; set; }
+#endregion
+
+#region methods
+
+public new void DidPush(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
+{
+
+
+    _MaybeStartHeroTransition(previousRoute, route, HeroFlightDirection.Push, false);
+}
+
+
+
+
+public new void DidPop(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
+{
+
+
+    if (!Navigator.UserGestureInProgress) _MaybeStartHeroTransition(route, previousRoute, HeroFlightDirection.Pop, false);
+}
+
+
+
+
+public new void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> newRoute = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<object> oldRoute = default(FlutterSDK.Widgets.Navigator.Route<object>))
+{
+
+    if (newRoute?.IsCurrent == true)
+    {
+        _MaybeStartHeroTransition(oldRoute, newRoute, HeroFlightDirection.Push, false);
+    }
+
+}
+
+
+
+
+public new void DidStartUserGesture(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
+{
+
+
+    _MaybeStartHeroTransition(route, previousRoute, HeroFlightDirection.Pop, true);
+}
+
+
+
+
+public new void DidStopUserGesture()
+{
+    if (Navigator.UserGestureInProgress) return;
+    bool IsInvalidFlight(_HeroFlight flight) => {
+        return flight.Manifest.IsUserGestureTransition && flight.Manifest.Type == HeroFlightDirection.Pop && flight._ProxyAnimation.IsDismissed;
+    }
+
+    List<_HeroFlight> invalidFlights = _Flights.Values.Where(IsInvalidFlight).ToList(growable: false);
+    foreach (_HeroFlight flight in invalidFlights)
+    {
+        flight._HandleAnimationUpdate(AnimationStatus.Dismissed);
+    }
+
+}
+
+
+
+
+private void _MaybeStartHeroTransition(FlutterSDK.Widgets.Navigator.Route<object> fromRoute, FlutterSDK.Widgets.Navigator.Route<object> toRoute, FlutterSDK.Widgets.Heroes.HeroFlightDirection flightType, bool isUserGestureTransition)
+{
+    if (toRoute != fromRoute && toRoute is PageRoute<object> && fromRoute is PageRoute<object>)
+    {
+        PageRoute<object> from = ((PageRoute<dynamic>)fromRoute);
+        PageRoute<object> to = ((PageRoute<dynamic>)toRoute);
+        Animation<double> animation = (flightType == HeroFlightDirection.Push) ? to.Animation : from.Animation;
+        switch (flightType)
+        {
+            case HeroFlightDirection.Pop:
+                if (animation.Value == 0.0)
+                {
+                    return;
+                }
+                break;
+            case HeroFlightDirection.Push:
+                if (animation.Value == 1.0)
+                {
+                    return;
+                }
+                break;
+        }
+        if (isUserGestureTransition && flightType == HeroFlightDirection.Pop && to.MaintainState)
+        {
+            _StartHeroTransition(from, to, animation, flightType, isUserGestureTransition);
+        }
+        else
+        {
+            to.Offstage = to.Animation.Value == 0.0;
+            BindingDefaultClass.WidgetsBinding.Instance.AddPostFrameCallback((TimeSpan value) =>
+            {
+                _StartHeroTransition(from, to, animation, flightType, isUserGestureTransition);
+            }
+            );
+        }
+
+    }
+
+}
+
+
+
+
+private void _StartHeroTransition(FlutterSDK.Widgets.Pages.PageRoute<object> from, FlutterSDK.Widgets.Pages.PageRoute<object> to, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Widgets.Heroes.HeroFlightDirection flightType, bool isUserGestureTransition)
+{
+    if (Navigator == null || from.SubtreeContext == null || to.SubtreeContext == null)
+    {
+        to.Offstage = false;
+        return;
+    }
+
+    Rect navigatorRect = HeroesDefaultClass._BoundingBoxFor(Navigator.Context);
+    Dictionary<object, _HeroState> fromHeroes = HeroesDefaultClass.Hero._AllHeroesFor(from.SubtreeContext, isUserGestureTransition, Navigator);
+    Dictionary<object, _HeroState> toHeroes = HeroesDefaultClass.Hero._AllHeroesFor(to.SubtreeContext, isUserGestureTransition, Navigator);
+    to.Offstage = false;
+    foreach (object tag in fromHeroes.Keys)
+    {
+        if (toHeroes[tag] != null)
+        {
+            HeroFlightShuttleBuilder fromShuttleBuilder = fromHeroes[tag].Widget.FlightShuttleBuilder;
+            HeroFlightShuttleBuilder toShuttleBuilder = toHeroes[tag].Widget.FlightShuttleBuilder;
+            bool isDiverted = _Flights[tag] != null;
+            _HeroFlightManifest manifest = new _HeroFlightManifest(type: flightType, overlay: Navigator.Overlay, navigatorRect: navigatorRect, fromRoute: from, toRoute: to, fromHero: fromHeroes[tag], toHero: toHeroes[tag], createRectTween: CreateRectTween, shuttleBuilder: toShuttleBuilder ?? fromShuttleBuilder ?? _DefaultHeroFlightShuttleBuilder, isUserGestureTransition: isUserGestureTransition, isDiverted: isDiverted);
+            if (isDiverted) _Flights[tag].Divert(manifest); else _Flights[tag] = new _HeroFlight(_HandleFlightEnded);
+            new _HeroFlight(_HandleFlightEnded).Start(manifest);
+        }
+        else if (_Flights[tag] != null)
+        {
+            _Flights[tag].Abort();
+        }
+
+    }
+
+    foreach (object tag in toHeroes.Keys)
+    {
+        if (fromHeroes[tag] == null) toHeroes[tag].EnsurePlaceholderIsHidden();
+    }
+
+}
+
+
+
+
+private void _HandleFlightEnded(FlutterSDK.Widgets.Heroes._HeroFlight flight)
+{
+    _Flights.Remove(flight.Manifest.Tag);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Direction of the hero's flight based on the navigation operation.
+/// </Summary>
+public enum HeroFlightDirection
+{
 
     /// <Summary>
-    /// A [Navigator] observer that manages [Hero] transitions.
+    /// A flight triggered by a route push.
     ///
-    /// An instance of [HeroController] should be used in [Navigator.observers].
-    /// This is done automatically by [MaterialApp].
+    /// The animation goes from 0 to 1.
+    ///
+    /// If no custom [HeroFlightShuttleBuilder] is supplied, the top route's
+    /// [Hero] child is shown in flight.
     /// </Summary>
-    public class HeroController : FlutterSDK.Widgets.Navigator.NavigatorObserver
-    {
-        #region constructors
-        public HeroController(FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween))
-        {
-            this.CreateRectTween = createRectTween; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
-        internal virtual Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroFlight> _Flights { get; set; }
-        internal virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder _DefaultHeroFlightShuttleBuilder { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void DidPush(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
-
-
-        public new void DidPop(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
-
-
-        public new void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> newRoute = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<object> oldRoute = default(FlutterSDK.Widgets.Navigator.Route<object>)) { throw new NotImplementedException(); }
-
-
-        public new void DidStartUserGesture(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute) { throw new NotImplementedException(); }
-
-
-        public new void DidStopUserGesture() { throw new NotImplementedException(); }
-
-
-        private void _MaybeStartHeroTransition(FlutterSDK.Widgets.Navigator.Route<object> fromRoute, FlutterSDK.Widgets.Navigator.Route<object> toRoute, FlutterSDK.Widgets.Heroes.HeroFlightDirection flightType, bool isUserGestureTransition) { throw new NotImplementedException(); }
-
-
-        private void _StartHeroTransition(FlutterSDK.Widgets.Pages.PageRoute<object> from, FlutterSDK.Widgets.Pages.PageRoute<object> to, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Widgets.Heroes.HeroFlightDirection flightType, bool isUserGestureTransition) { throw new NotImplementedException(); }
-
-
-        private void _HandleFlightEnded(FlutterSDK.Widgets.Heroes._HeroFlight flight) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Push,
     /// <Summary>
-    /// Direction of the hero's flight based on the navigation operation.
+    /// A flight triggered by a route pop.
+    ///
+    /// The animation goes from 1 to 0.
+    ///
+    /// If no custom [HeroFlightShuttleBuilder] is supplied, the bottom route's
+    /// [Hero] child is shown in flight.
     /// </Summary>
-    public enum HeroFlightDirection
-    {
-
-        /// <Summary>
-        /// A flight triggered by a route push.
-        ///
-        /// The animation goes from 0 to 1.
-        ///
-        /// If no custom [HeroFlightShuttleBuilder] is supplied, the top route's
-        /// [Hero] child is shown in flight.
-        /// </Summary>
-        Push,
-        /// <Summary>
-        /// A flight triggered by a route pop.
-        ///
-        /// The animation goes from 1 to 0.
-        ///
-        /// If no custom [HeroFlightShuttleBuilder] is supplied, the bottom route's
-        /// [Hero] child is shown in flight.
-        /// </Summary>
-        Pop,
-    }
+    Pop,
+}
 
 }

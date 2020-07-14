@@ -395,274 +395,271 @@ namespace FlutterSDK.Material.Colors
         #region constructors
         public MaterialColor(int primary, Dictionary<int, Color> swatch)
         : base(primary, swatch)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Shade50 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade100 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade200 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade300 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade400 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade500 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade600 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade700 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade800 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade900 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color Shade50 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade100 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade200 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade300 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade400 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade500 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade600 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade700 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade800 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Shade900 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Defines a single accent color as well a swatch of four shades of the
-    /// accent color.
-    ///
-    /// The color's shades are referred to by index, the colors with smaller
-    /// indices are lighter, larger indices are darker. There are four valid
-    /// indices: 100, 200, 400, and 700. The value of this color should be the
-    /// same as the value of index 200 and [shade200].
-    ///
-    /// See also:
-    ///
-    ///  * [Colors], which defines all of the standard material colors.
-    ///  * <https://material.io/go/design-theming#color-color-schemes>
-    /// </Summary>
-    public class MaterialAccentColor : FlutterSDK.Painting.Colors.ColorSwatch<int>
-    {
-        #region constructors
-        public MaterialAccentColor(int primary, Dictionary<int, Color> swatch)
-        : base(primary, swatch)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Color Shade50 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade100 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade200 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade400 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Shade700 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 
-    /// <Summary>
-    /// [Color] and [ColorSwatch] constants which represent Material design's
-    /// [color palette](https://material.io/design/color/).
-    ///
-    /// Instead of using an absolute color from these palettes, consider using
-    /// [Theme.of] to obtain the local [ThemeData] structure, which exposes the
-    /// colors selected for the current theme, such as [ThemeData.primaryColor] and
-    /// [ThemeData.accentColor] (among many others).
-    ///
-    /// Most swatches have colors from 100 to 900 in increments of one hundred, plus
-    /// the color 50. The smaller the number, the more pale the color. The greater
-    /// the number, the darker the color. The accent swatches (e.g. [redAccent]) only
-    /// have the values 100, 200, 400, and 700.
-    ///
-    /// In addition, a series of blacks and whites with common opacities are
-    /// available. For example, [black54] is a pure black with 54% opacity.
-    ///
-    /// {@tool snippet}
-    ///
-    /// To select a specific color from one of the swatches, index into the swatch
-    /// using an integer for the specific color desired, as follows:
-    ///
-    /// ```dart
-    /// Color selection = Colors.green[400]; // Selects a mid-range green.
-    /// ```
-    /// {@end-tool}
-    /// {@tool snippet}
-    ///
-    /// Each [ColorSwatch] constant is a color and can used directly. For example:
-    ///
-    /// ```dart
-    /// Container(
-    ///   color: Colors.blue, // same as Colors.blue[500] or Colors.blue.shade500
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// ## Color palettes
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.brown.png)
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.grey.png)
-    ///
-    /// ## Blacks and whites
-    ///
-    /// These colors are identified by their transparency. The low transparency
-    /// levels (e.g. [Colors.white12] and [Colors.white10]) are very hard to see and
-    /// should be avoided in general. They are intended for very subtle effects.
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
-    ///
-    /// The [Colors.transparent] color isn't shown here because it is entirely
-    /// invisible!
-    /// </Summary>
-    public class Colors
-    {
-        #region constructors
-        internal Colors()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Defines a single accent color as well a swatch of four shades of the
+/// accent color.
+///
+/// The color's shades are referred to by index, the colors with smaller
+/// indices are lighter, larger indices are darker. There are four valid
+/// indices: 100, 200, 400, and 700. The value of this color should be the
+/// same as the value of index 200 and [shade200].
+///
+/// See also:
+///
+///  * [Colors], which defines all of the standard material colors.
+///  * <https://material.io/go/design-theming#color-color-schemes>
+/// </Summary>
+public class MaterialAccentColor : FlutterSDK.Painting.Colors.ColorSwatch<int>
+{
+    #region constructors
+    public MaterialAccentColor(int primary, Dictionary<int, Color> swatch)
+    : base(primary, swatch)
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Transparent { get; set; }
-        public virtual FlutterBinding.UI.Color Black { get; set; }
-        public virtual FlutterBinding.UI.Color Black87 { get; set; }
-        public virtual FlutterBinding.UI.Color Black54 { get; set; }
-        public virtual FlutterBinding.UI.Color Black45 { get; set; }
-        public virtual FlutterBinding.UI.Color Black38 { get; set; }
-        public virtual FlutterBinding.UI.Color Black26 { get; set; }
-        public virtual FlutterBinding.UI.Color Black12 { get; set; }
-        public virtual FlutterBinding.UI.Color White { get; set; }
-        public virtual FlutterBinding.UI.Color White70 { get; set; }
-        public virtual FlutterBinding.UI.Color White60 { get; set; }
-        public virtual FlutterBinding.UI.Color White54 { get; set; }
-        public virtual FlutterBinding.UI.Color White38 { get; set; }
-        public virtual FlutterBinding.UI.Color White30 { get; set; }
-        public virtual FlutterBinding.UI.Color White24 { get; set; }
-        public virtual FlutterBinding.UI.Color White12 { get; set; }
-        public virtual FlutterBinding.UI.Color White10 { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Red { get; set; }
-        internal virtual int _RedPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor RedAccent { get; set; }
-        internal virtual int _RedAccentValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Pink { get; set; }
-        internal virtual int _PinkPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor PinkAccent { get; set; }
-        internal virtual int _PinkAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Purple { get; set; }
-        internal virtual int _PurplePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor PurpleAccent { get; set; }
-        internal virtual int _PurpleAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor DeepPurple { get; set; }
-        internal virtual int _DeepPurplePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor DeepPurpleAccent { get; set; }
-        internal virtual int _DeepPurpleAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Indigo { get; set; }
-        internal virtual int _IndigoPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor IndigoAccent { get; set; }
-        internal virtual int _IndigoAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Blue { get; set; }
-        internal virtual int _BluePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor BlueAccent { get; set; }
-        internal virtual int _BlueAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor LightBlue { get; set; }
-        internal virtual int _LightBluePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor LightBlueAccent { get; set; }
-        internal virtual int _LightBlueAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Cyan { get; set; }
-        internal virtual int _CyanPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor CyanAccent { get; set; }
-        internal virtual int _CyanAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Teal { get; set; }
-        internal virtual int _TealPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor TealAccent { get; set; }
-        internal virtual int _TealAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Green { get; set; }
-        internal virtual int _GreenPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor GreenAccent { get; set; }
-        internal virtual int _GreenAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor LightGreen { get; set; }
-        internal virtual int _LightGreenPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor LightGreenAccent { get; set; }
-        internal virtual int _LightGreenAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Lime { get; set; }
-        internal virtual int _LimePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor LimeAccent { get; set; }
-        internal virtual int _LimeAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Yellow { get; set; }
-        internal virtual int _YellowPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor YellowAccent { get; set; }
-        internal virtual int _YellowAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Amber { get; set; }
-        internal virtual int _AmberPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor AmberAccent { get; set; }
-        internal virtual int _AmberAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Orange { get; set; }
-        internal virtual int _OrangePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor OrangeAccent { get; set; }
-        internal virtual int _OrangeAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor DeepOrange { get; set; }
-        internal virtual int _DeepOrangePrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialAccentColor DeepOrangeAccent { get; set; }
-        internal virtual int _DeepOrangeAccentPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Brown { get; set; }
-        internal virtual int _BrownPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor Grey { get; set; }
-        internal virtual int _GreyPrimaryValue { get; set; }
-        public virtual FlutterSDK.Material.Colors.MaterialColor BlueGrey { get; set; }
-        internal virtual int _BlueGreyPrimaryValue { get; set; }
-        public virtual List<FlutterSDK.Material.Colors.MaterialColor> Primaries { get; set; }
-        public virtual List<FlutterSDK.Material.Colors.MaterialAccentColor> Accents { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
-        #endregion
-    }
+#region fields
+public virtual FlutterBinding.UI.Color Shade50 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color Shade100 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color Shade200 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color Shade400 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color Shade700 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// [Color] and [ColorSwatch] constants which represent Material design's
+/// [color palette](https://material.io/design/color/).
+///
+/// Instead of using an absolute color from these palettes, consider using
+/// [Theme.of] to obtain the local [ThemeData] structure, which exposes the
+/// colors selected for the current theme, such as [ThemeData.primaryColor] and
+/// [ThemeData.accentColor] (among many others).
+///
+/// Most swatches have colors from 100 to 900 in increments of one hundred, plus
+/// the color 50. The smaller the number, the more pale the color. The greater
+/// the number, the darker the color. The accent swatches (e.g. [redAccent]) only
+/// have the values 100, 200, 400, and 700.
+///
+/// In addition, a series of blacks and whites with common opacities are
+/// available. For example, [black54] is a pure black with 54% opacity.
+///
+/// {@tool snippet}
+///
+/// To select a specific color from one of the swatches, index into the swatch
+/// using an integer for the specific color desired, as follows:
+///
+/// ```dart
+/// Color selection = Colors.green[400]; // Selects a mid-range green.
+/// ```
+/// {@end-tool}
+/// {@tool snippet}
+///
+/// Each [ColorSwatch] constant is a color and can used directly. For example:
+///
+/// ```dart
+/// Container(
+///   color: Colors.blue, // same as Colors.blue[500] or Colors.blue.shade500
+/// )
+/// ```
+/// {@end-tool}
+///
+/// ## Color palettes
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pink.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.pinkAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.red.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.redAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrange.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepOrangeAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orange.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.orangeAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amber.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.amberAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellow.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.yellowAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lime.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.limeAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreen.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightGreenAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.green.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.greenAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.teal.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.tealAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyan.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.cyanAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlue.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.lightBlueAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blue.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigo.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.indigoAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purple.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.purpleAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurple.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.deepPurpleAccent.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blueGrey.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.brown.png)
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.grey.png)
+///
+/// ## Blacks and whites
+///
+/// These colors are identified by their transparency. The low transparency
+/// levels (e.g. [Colors.white12] and [Colors.white10]) are very hard to see and
+/// should be avoided in general. They are intended for very subtle effects.
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.blacks.png)
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/Colors.whites.png)
+///
+/// The [Colors.transparent] color isn't shown here because it is entirely
+/// invisible!
+/// </Summary>
+public class Colors
+{
+    #region constructors
+    internal Colors()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color Transparent { get; set; }
+public virtual FlutterBinding.UI.Color Black { get; set; }
+public virtual FlutterBinding.UI.Color Black87 { get; set; }
+public virtual FlutterBinding.UI.Color Black54 { get; set; }
+public virtual FlutterBinding.UI.Color Black45 { get; set; }
+public virtual FlutterBinding.UI.Color Black38 { get; set; }
+public virtual FlutterBinding.UI.Color Black26 { get; set; }
+public virtual FlutterBinding.UI.Color Black12 { get; set; }
+public virtual FlutterBinding.UI.Color White { get; set; }
+public virtual FlutterBinding.UI.Color White70 { get; set; }
+public virtual FlutterBinding.UI.Color White60 { get; set; }
+public virtual FlutterBinding.UI.Color White54 { get; set; }
+public virtual FlutterBinding.UI.Color White38 { get; set; }
+public virtual FlutterBinding.UI.Color White30 { get; set; }
+public virtual FlutterBinding.UI.Color White24 { get; set; }
+public virtual FlutterBinding.UI.Color White12 { get; set; }
+public virtual FlutterBinding.UI.Color White10 { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Red { get; set; }
+internal virtual int _RedPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor RedAccent { get; set; }
+internal virtual int _RedAccentValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Pink { get; set; }
+internal virtual int _PinkPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor PinkAccent { get; set; }
+internal virtual int _PinkAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Purple { get; set; }
+internal virtual int _PurplePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor PurpleAccent { get; set; }
+internal virtual int _PurpleAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor DeepPurple { get; set; }
+internal virtual int _DeepPurplePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor DeepPurpleAccent { get; set; }
+internal virtual int _DeepPurpleAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Indigo { get; set; }
+internal virtual int _IndigoPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor IndigoAccent { get; set; }
+internal virtual int _IndigoAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Blue { get; set; }
+internal virtual int _BluePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor BlueAccent { get; set; }
+internal virtual int _BlueAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor LightBlue { get; set; }
+internal virtual int _LightBluePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor LightBlueAccent { get; set; }
+internal virtual int _LightBlueAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Cyan { get; set; }
+internal virtual int _CyanPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor CyanAccent { get; set; }
+internal virtual int _CyanAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Teal { get; set; }
+internal virtual int _TealPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor TealAccent { get; set; }
+internal virtual int _TealAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Green { get; set; }
+internal virtual int _GreenPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor GreenAccent { get; set; }
+internal virtual int _GreenAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor LightGreen { get; set; }
+internal virtual int _LightGreenPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor LightGreenAccent { get; set; }
+internal virtual int _LightGreenAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Lime { get; set; }
+internal virtual int _LimePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor LimeAccent { get; set; }
+internal virtual int _LimeAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Yellow { get; set; }
+internal virtual int _YellowPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor YellowAccent { get; set; }
+internal virtual int _YellowAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Amber { get; set; }
+internal virtual int _AmberPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor AmberAccent { get; set; }
+internal virtual int _AmberAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Orange { get; set; }
+internal virtual int _OrangePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor OrangeAccent { get; set; }
+internal virtual int _OrangeAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor DeepOrange { get; set; }
+internal virtual int _DeepOrangePrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialAccentColor DeepOrangeAccent { get; set; }
+internal virtual int _DeepOrangeAccentPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Brown { get; set; }
+internal virtual int _BrownPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor Grey { get; set; }
+internal virtual int _GreyPrimaryValue { get; set; }
+public virtual FlutterSDK.Material.Colors.MaterialColor BlueGrey { get; set; }
+internal virtual int _BlueGreyPrimaryValue { get; set; }
+public virtual List<FlutterSDK.Material.Colors.MaterialColor> Primaries { get; set; }
+public virtual List<FlutterSDK.Material.Colors.MaterialAccentColor> Accents { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
 
 }

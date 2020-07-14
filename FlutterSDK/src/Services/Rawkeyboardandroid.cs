@@ -443,69 +443,102 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
         #region constructors
         public RawKeyEventDataAndroid(int flags = 0, int codePoint = 0, int plainCodePoint = 0, int keyCode = 0, int scanCode = 0, int metaState = 0, int eventSource = 0, int vendorId = 0, int productId = 0, int deviceId = 0, int repeatCount = 0)
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    public virtual int Flags { get; set; }
+    public virtual int CodePoint { get; set; }
+    public virtual int PlainCodePoint { get; set; }
+    public virtual int KeyCode { get; set; }
+    public virtual int ScanCode { get; set; }
+    public virtual int MetaState { get; set; }
+    public virtual int EventSource { get; set; }
+    public virtual int VendorId { get; set; }
+    public virtual int ProductId { get; set; }
+    public virtual int DeviceId { get; set; }
+    public virtual int RepeatCount { get; set; }
+    internal virtual int _SourceJoystick { get; set; }
+    public virtual int ModifierNone { get; set; }
+    public virtual int ModifierAlt { get; set; }
+    public virtual int ModifierLeftAlt { get; set; }
+    public virtual int ModifierRightAlt { get; set; }
+    public virtual int ModifierShift { get; set; }
+    public virtual int ModifierLeftShift { get; set; }
+    public virtual int ModifierRightShift { get; set; }
+    public virtual int ModifierSym { get; set; }
+    public virtual int ModifierFunction { get; set; }
+    public virtual int ModifierControl { get; set; }
+    public virtual int ModifierLeftControl { get; set; }
+    public virtual int ModifierRightControl { get; set; }
+    public virtual int ModifierMeta { get; set; }
+    public virtual int ModifierLeftMeta { get; set; }
+    public virtual int ModifierRightMeta { get; set; }
+    public virtual int ModifierCapsLock { get; set; }
+    public virtual int ModifierNumLock { get; set; }
+    public virtual int ModifierScrollLock { get; set; }
+    public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask)
+    {
+        if (MetaState & anyMask == 0)
         {
-            this.Flags = flags;
-            this.CodePoint = codePoint;
-            this.PlainCodePoint = plainCodePoint;
-            this.KeyCode = keyCode;
-            this.ScanCode = scanCode;
-            this.MetaState = metaState;
-            this.EventSource = eventSource;
-            this.VendorId = vendorId;
-            this.ProductId = productId;
-            this.DeviceId = deviceId;
-            this.RepeatCount = repeatCount; throw new NotImplementedException();
+            return false;
         }
-        #endregion
 
-        #region fields
-        public virtual int Flags { get; set; }
-        public virtual int CodePoint { get; set; }
-        public virtual int PlainCodePoint { get; set; }
-        public virtual int KeyCode { get; set; }
-        public virtual int ScanCode { get; set; }
-        public virtual int MetaState { get; set; }
-        public virtual int EventSource { get; set; }
-        public virtual int VendorId { get; set; }
-        public virtual int ProductId { get; set; }
-        public virtual int DeviceId { get; set; }
-        public virtual int RepeatCount { get; set; }
-        internal virtual int _SourceJoystick { get; set; }
-        public virtual int ModifierNone { get; set; }
-        public virtual int ModifierAlt { get; set; }
-        public virtual int ModifierLeftAlt { get; set; }
-        public virtual int ModifierRightAlt { get; set; }
-        public virtual int ModifierShift { get; set; }
-        public virtual int ModifierLeftShift { get; set; }
-        public virtual int ModifierRightShift { get; set; }
-        public virtual int ModifierSym { get; set; }
-        public virtual int ModifierFunction { get; set; }
-        public virtual int ModifierControl { get; set; }
-        public virtual int ModifierLeftControl { get; set; }
-        public virtual int ModifierRightControl { get; set; }
-        public virtual int ModifierMeta { get; set; }
-        public virtual int ModifierLeftMeta { get; set; }
-        public virtual int ModifierRightMeta { get; set; }
-        public virtual int ModifierCapsLock { get; set; }
-        public virtual int ModifierNumLock { get; set; }
-        public virtual int ModifierScrollLock { get; set; }
-        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask) { throw new NotImplementedException(); }
-
-
-        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
-
-
-        #endregion
+        switch (side) { case KeyboardSide.Any: return true; case KeyboardSide.All: return MetaState & leftMask != 0 && MetaState & rightMask != 0; case KeyboardSide.Left: return MetaState & leftMask != 0; case KeyboardSide.Right: return MetaState & rightMask != 0; }
+        return false;
     }
+
+
+
+
+    public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
+    {
+
+        switch (key) { case ModifierKey.ControlModifier: return _IsLeftRightModifierPressed(side, ModifierControl, ModifierLeftControl, ModifierRightControl); case ModifierKey.ShiftModifier: return _IsLeftRightModifierPressed(side, ModifierShift, ModifierLeftShift, ModifierRightShift); case ModifierKey.AltModifier: return _IsLeftRightModifierPressed(side, ModifierAlt, ModifierLeftAlt, ModifierRightAlt); case ModifierKey.MetaModifier: return _IsLeftRightModifierPressed(side, ModifierMeta, ModifierLeftMeta, ModifierRightMeta); case ModifierKey.CapsLockModifier: return MetaState & ModifierCapsLock != 0; case ModifierKey.NumLockModifier: return MetaState & ModifierNumLock != 0; case ModifierKey.ScrollLockModifier: return MetaState & ModifierScrollLock != 0; case ModifierKey.FunctionModifier: return MetaState & ModifierFunction != 0; case ModifierKey.SymbolModifier: return MetaState & ModifierSym != 0; }
+        return false;
+    }
+
+
+
+
+    public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+    {
+        KeyboardSide FindSide(int leftMask, int rightMask) => {
+            int combinedMask = leftMask | rightMask;
+            int combined = MetaState & combinedMask;
+            if (combined == leftMask)
+            {
+                return KeyboardSide.Left;
+            }
+            else if (combined == rightMask)
+            {
+                return KeyboardSide.Right;
+            }
+            else if (combined == combinedMask)
+            {
+                return KeyboardSide.All;
+            }
+
+            return null;
+        }
+
+        switch (key) { case ModifierKey.ControlModifier: return FindSide(ModifierLeftControl, ModifierRightControl); case ModifierKey.ShiftModifier: return FindSide(ModifierLeftShift, ModifierRightShift); case ModifierKey.AltModifier: return FindSide(ModifierLeftAlt, ModifierRightAlt); case ModifierKey.MetaModifier: return FindSide(ModifierLeftMeta, ModifierRightMeta); case ModifierKey.CapsLockModifier: case ModifierKey.NumLockModifier: case ModifierKey.ScrollLockModifier: case ModifierKey.FunctionModifier: case ModifierKey.SymbolModifier: return KeyboardSide.All; }
+
+        return null;
+    }
+
+
+
+
+    #endregion
+}
 
 }

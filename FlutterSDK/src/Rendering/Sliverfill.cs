@@ -449,149 +449,199 @@ namespace FlutterSDK.Rendering.Sliverfill
         #region constructors
         public RenderSliverFillViewport(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double viewportFraction = 1.0)
         : base(childManager: childManager)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual double _ViewportFraction { get; set; }
-        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double ViewportFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    internal virtual double _ViewportFraction { get; set; }
+    public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double ViewportFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 
-    /// <Summary>
-    /// A sliver that contains a single box child that contains a scrollable and
-    /// fills the viewport.
-    ///
-    /// [RenderSliverFillRemainingWithScrollable] sizes its child to fill the
-    /// viewport in the cross axis and to fill the remaining space in the viewport
-    /// in the main axis.
-    ///
-    /// Typically this will be the last sliver in a viewport, since (by definition)
-    /// there is never any room for anything beyond this sliver.
-    ///
-    /// See also:
-    ///
-    ///  * [NestedScrollView], which uses this sliver for the inner scrollable.
-    ///  * [RenderSliverFillRemaining], which lays out its
-    ///    non-scrollable child slightly different than this widget.
-    ///  * [RenderSliverFillRemainingAndOverscroll], which incorporates the
-    ///    overscroll into the remaining space to fill.
-    ///  * [RenderSliverFillViewport], which sizes its children based on the
-    ///    size of the viewport, regardless of what else is in the scroll view.
-    ///  * [RenderSliverList], which shows a list of variable-sized children in a
-    ///    viewport.
-    /// </Summary>
-    public class RenderSliverFillRemainingWithScrollable : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
+/// <Summary>
+/// A sliver that contains a single box child that contains a scrollable and
+/// fills the viewport.
+///
+/// [RenderSliverFillRemainingWithScrollable] sizes its child to fill the
+/// viewport in the cross axis and to fill the remaining space in the viewport
+/// in the main axis.
+///
+/// Typically this will be the last sliver in a viewport, since (by definition)
+/// there is never any room for anything beyond this sliver.
+///
+/// See also:
+///
+///  * [NestedScrollView], which uses this sliver for the inner scrollable.
+///  * [RenderSliverFillRemaining], which lays out its
+///    non-scrollable child slightly different than this widget.
+///  * [RenderSliverFillRemainingAndOverscroll], which incorporates the
+///    overscroll into the remaining space to fill.
+///  * [RenderSliverFillViewport], which sizes its children based on the
+///    size of the viewport, regardless of what else is in the scroll view.
+///  * [RenderSliverList], which shows a list of variable-sized children in a
+///    viewport.
+/// </Summary>
+public class RenderSliverFillRemainingWithScrollable : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
+{
+    #region constructors
+    public RenderSliverFillRemainingWithScrollable(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    SliverConstraints constraints = this.Constraints;
+    double extent = constraints.RemainingPaintExtent - Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0);
+    if (Child != null) Child.Layout(constraints.AsBoxConstraints(minExtent: extent, maxExtent: extent));
+    double paintedChildSize = CalculatePaintOffset(constraints, from: 0.0, to: extent);
+
+
+    Geometry = new SliverGeometry(scrollExtent: constraints.ViewportMainAxisExtent, paintExtent: paintedChildSize, maxPaintExtent: paintedChildSize, hasVisualOverflow: extent > constraints.RemainingPaintExtent || constraints.ScrollOffset > 0.0);
+    if (Child != null) SetChildParentData(Child, constraints, Geometry);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A sliver that contains a single box child that is non-scrollable and fills
+/// the remaining space in the viewport.
+///
+/// [RenderSliverFillRemaining] sizes its child to fill the
+/// viewport in the cross axis and to fill the remaining space in the viewport
+/// in the main axis.
+///
+/// Typically this will be the last sliver in a viewport, since (by definition)
+/// there is never any room for anything beyond this sliver.
+///
+/// See also:
+///
+///  * [RenderSliverFillRemainingWithScrollable], which lays out its scrollable
+///    child slightly different than this widget.
+///  * [RenderSliverFillRemainingAndOverscroll], which incorporates the
+///    overscroll into the remaining space to fill.
+///  * [RenderSliverFillViewport], which sizes its children based on the
+///    size of the viewport, regardless of what else is in the scroll view.
+///  * [RenderSliverList], which shows a list of variable-sized children in a
+///    viewport.
+/// </Summary>
+public class RenderSliverFillRemaining : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
+{
+    #region constructors
+    public RenderSliverFillRemaining(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    SliverConstraints constraints = this.Constraints;
+    double extent = constraints.ViewportMainAxisExtent - constraints.PrecedingScrollExtent;
+    if (Child != null)
     {
-        #region constructors
-        public RenderSliverFillRemainingWithScrollable(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
+        double childExtent = default(double);
+        switch (constraints.Axis) { case Axis.Horizontal: childExtent = Child.GetMaxIntrinsicWidth(constraints.CrossAxisExtent); break; case Axis.Vertical: childExtent = Child.GetMaxIntrinsicHeight(constraints.CrossAxisExtent); break; }
+        extent = Math.Dart:mathDefaultClass.Max(extent, childExtent);
+        Child.Layout(constraints.AsBoxConstraints(minExtent: extent, maxExtent: extent));
     }
 
 
-    /// <Summary>
-    /// A sliver that contains a single box child that is non-scrollable and fills
-    /// the remaining space in the viewport.
-    ///
-    /// [RenderSliverFillRemaining] sizes its child to fill the
-    /// viewport in the cross axis and to fill the remaining space in the viewport
-    /// in the main axis.
-    ///
-    /// Typically this will be the last sliver in a viewport, since (by definition)
-    /// there is never any room for anything beyond this sliver.
-    ///
-    /// See also:
-    ///
-    ///  * [RenderSliverFillRemainingWithScrollable], which lays out its scrollable
-    ///    child slightly different than this widget.
-    ///  * [RenderSliverFillRemainingAndOverscroll], which incorporates the
-    ///    overscroll into the remaining space to fill.
-    ///  * [RenderSliverFillViewport], which sizes its children based on the
-    ///    size of the viewport, regardless of what else is in the scroll view.
-    ///  * [RenderSliverList], which shows a list of variable-sized children in a
-    ///    viewport.
-    /// </Summary>
-    public class RenderSliverFillRemaining : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
+    double paintedChildSize = CalculatePaintOffset(constraints, from: 0.0, to: extent);
+
+
+    Geometry = new SliverGeometry(scrollExtent: extent, paintExtent: paintedChildSize, maxPaintExtent: paintedChildSize, hasVisualOverflow: extent > constraints.RemainingPaintExtent || constraints.ScrollOffset > 0.0);
+    if (Child != null) SetChildParentData(Child, constraints, Geometry);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A sliver that contains a single box child that is non-scrollable and fills
+/// the remaining space in the viewport including any overscrolled area.
+///
+/// [RenderSliverFillRemainingAndOverscroll] sizes its child to fill the
+/// viewport in the cross axis and to fill the remaining space in the viewport
+/// in the main axis with the overscroll area included.
+///
+/// Typically this will be the last sliver in a viewport, since (by definition)
+/// there is never any room for anything beyond this sliver.
+///
+/// See also:
+///
+///  * [RenderSliverFillRemainingWithScrollable], which lays out its scrollable
+///    child without overscroll.
+///  * [RenderSliverFillRemaining], which lays out its
+///    non-scrollable child without overscroll.
+///  * [RenderSliverFillViewport], which sizes its children based on the
+///    size of the viewport, regardless of what else is in the scroll view.
+///  * [RenderSliverList], which shows a list of variable-sized children in a
+///    viewport.
+/// </Summary>
+public class RenderSliverFillRemainingAndOverscroll : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
+{
+    #region constructors
+    public RenderSliverFillRemainingAndOverscroll(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base(child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    SliverConstraints constraints = this.Constraints;
+    double extent = constraints.ViewportMainAxisExtent - constraints.PrecedingScrollExtent;
+    double maxExtent = constraints.RemainingPaintExtent - Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0);
+    if (Child != null)
     {
-        #region constructors
-        public RenderSliverFillRemaining(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
+        double childExtent = default(double);
+        switch (constraints.Axis) { case Axis.Horizontal: childExtent = Child.GetMaxIntrinsicWidth(constraints.CrossAxisExtent); break; case Axis.Vertical: childExtent = Child.GetMaxIntrinsicHeight(constraints.CrossAxisExtent); break; }
+        extent = Math.Dart:mathDefaultClass.Max(extent, childExtent);
+        maxExtent = Math.Dart:mathDefaultClass.Max(extent, maxExtent);
+        Child.Layout(constraints.AsBoxConstraints(minExtent: extent, maxExtent: maxExtent));
     }
 
 
-    /// <Summary>
-    /// A sliver that contains a single box child that is non-scrollable and fills
-    /// the remaining space in the viewport including any overscrolled area.
-    ///
-    /// [RenderSliverFillRemainingAndOverscroll] sizes its child to fill the
-    /// viewport in the cross axis and to fill the remaining space in the viewport
-    /// in the main axis with the overscroll area included.
-    ///
-    /// Typically this will be the last sliver in a viewport, since (by definition)
-    /// there is never any room for anything beyond this sliver.
-    ///
-    /// See also:
-    ///
-    ///  * [RenderSliverFillRemainingWithScrollable], which lays out its scrollable
-    ///    child without overscroll.
-    ///  * [RenderSliverFillRemaining], which lays out its
-    ///    non-scrollable child without overscroll.
-    ///  * [RenderSliverFillViewport], which sizes its children based on the
-    ///    size of the viewport, regardless of what else is in the scroll view.
-    ///  * [RenderSliverList], which shows a list of variable-sized children in a
-    ///    viewport.
-    /// </Summary>
-    public class RenderSliverFillRemainingAndOverscroll : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
-    {
-        #region constructors
-        public RenderSliverFillRemainingAndOverscroll(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base(child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    double paintedChildSize = CalculatePaintOffset(constraints, from: 0.0, to: extent);
 
-        #region fields
-        #endregion
 
-        #region methods
+    Geometry = new SliverGeometry(scrollExtent: extent, paintExtent: Math.Dart:mathDefaultClass.Min(maxExtent, constraints.RemainingPaintExtent), maxPaintExtent: maxExtent, hasVisualOverflow: extent > constraints.RemainingPaintExtent || constraints.ScrollOffset > 0.0);
+    if (Child != null) SetChildParentData(Child, constraints, Geometry);
+}
 
-        public new void PerformLayout() { throw new NotImplementedException(); }
 
-        #endregion
-    }
+
+#endregion
+}
 
 }

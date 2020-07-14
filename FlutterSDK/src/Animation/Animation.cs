@@ -104,177 +104,199 @@ namespace FlutterSDK.Animation.Animation
     {
         #region constructors
         public Animation()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsDismissed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsCompleted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsDismissed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsCompleted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Calls the listener every time the value of the animation changes.
-        ///
-        /// Listeners can be removed with [removeListener].
-        /// </Summary>
-        public new void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Stop calling the listener every time the value of the animation changes.
-        ///
-        /// If `listener` is not currently registered as a listener, this method does
-        /// nothing.
-        ///
-        /// Listeners can be added with [addListener].
-        /// </Summary>
-        public new void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Calls listener every time the status of the animation changes.
-        ///
-        /// Listeners can be removed with [removeStatusListener].
-        /// </Summary>
-        public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Stops calling the listener every time the status of the animation changes.
-        ///
-        /// If `listener` is not currently registered as a status listener, this
-        /// method does nothing.
-        ///
-        /// Listeners can be added with [addStatusListener].
-        /// </Summary>
-        public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Chains a [Tween] (or [CurveTween]) to this [Animation].
-        ///
-        /// This method is only valid for `Animation<double>` instances (i.e. when `T`
-        /// is `double`). This means, for instance, that it can be called on
-        /// [AnimationController] objects, as well as [CurvedAnimation]s,
-        /// [ProxyAnimation]s, [ReverseAnimation]s, [TrainHoppingAnimation]s, etc.
-        ///
-        /// It returns an [Animation] specialized to the same type, `U`, as the
-        /// argument to the method (`child`), whose value is derived by applying the
-        /// given [Tween] to the value of this [Animation].
-        ///
-        /// {@tool snippet}
-        ///
-        /// Given an [AnimationController] `_controller`, the following code creates
-        /// an `Animation<Alignment>` that swings from top left to top right as the
-        /// controller goes from 0.0 to 1.0:
-        ///
-        /// ```dart
-        /// Animation<Alignment> _alignment1 = _controller.drive(
-        ///   AlignmentTween(
-        ///     begin: Alignment.topLeft,
-        ///     end: Alignment.topRight,
-        ///   ),
-        /// );
-        /// ```
-        /// {@end-tool}
-        /// {@tool snippet}
-        ///
-        /// The `_alignment.value` could then be used in a widget's build method, for
-        /// instance, to position a child using an [Align] widget such that the
-        /// position of the child shifts over time from the top left to the top right.
-        ///
-        /// It is common to ease this kind of curve, e.g. making the transition slower
-        /// at the start and faster at the end. The following snippet shows one way to
-        /// chain the alignment tween in the previous example to an easing curve (in
-        /// this case, [Curves.easeIn]). In this example, the tween is created
-        /// elsewhere as a variable that can be reused, since none of its arguments
-        /// vary.
-        ///
-        /// ```dart
-        /// final Animatable<Alignment> _tween = AlignmentTween(begin: Alignment.topLeft, end: Alignment.topRight)
-        ///   .chain(CurveTween(curve: Curves.easeIn));
-        /// // ...
-        /// Animation<Alignment> _alignment2 = _controller.drive(_tween);
-        /// ```
-        /// {@end-tool}
-        /// {@tool snippet}
-        ///
-        /// The following code is exactly equivalent, and is typically clearer when
-        /// the tweens are created inline, as might be preferred when the tweens have
-        /// values that depend on other variables:
-        ///
-        /// ```dart
-        /// Animation<Alignment> _alignment3 = _controller
-        ///   .drive(CurveTween(curve: Curves.easeIn))
-        ///   .drive(AlignmentTween(
-        ///     begin: Alignment.topLeft,
-        ///     end: Alignment.topRight,
-        ///   ));
-        /// ```
-        /// {@end-tool}
-        ///
-        /// See also:
-        ///
-        ///  * [Animatable.animate], which does the same thing.
-        ///  * [AnimationController], which is usually used to drive animations.
-        ///  * [CurvedAnimation], an alternative to [CurveTween] for applying easing
-        ///    curves, which supports distinct curves in the forward direction and the
-        ///    reverse direction.
-        /// </Summary>
-        public virtual Animation<U> Drive<U>(FlutterSDK.Animation.Tween.Animatable<U> child) { throw new NotImplementedException(); }
-
-
-
-        /// <Summary>
-        /// Provides a string describing the status of this object, but not including
-        /// information about the object itself.
-        ///
-        /// This function is used by [Animation.toString] so that [Animation]
-        /// subclasses can provide additional details while ensuring all [Animation]
-        /// subclasses have a consistent [toString] style.
-        ///
-        /// The result of this function includes an icon describing the status of this
-        /// [Animation] object:
-        ///
-        /// * "&#x25B6;": [AnimationStatus.forward] ([value] increasing)
-        /// * "&#x25C0;": [AnimationStatus.reverse] ([value] decreasing)
-        /// * "&#x23ED;": [AnimationStatus.completed] ([value] == 1.0)
-        /// * "&#x23EE;": [AnimationStatus.dismissed] ([value] == 0.0)
-        /// </Summary>
-        public virtual string ToStringDetails() { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Calls the listener every time the value of the animation changes.
+    ///
+    /// Listeners can be removed with [removeListener].
+    /// </Summary>
+    public new void AddListener(VoidCallback listener)
+    {
     }
 
 
     /// <Summary>
-    /// The status of an animation
+    /// Stop calling the listener every time the value of the animation changes.
+    ///
+    /// If `listener` is not currently registered as a listener, this method does
+    /// nothing.
+    ///
+    /// Listeners can be added with [addListener].
     /// </Summary>
-    public enum AnimationStatus
+    public new void RemoveListener(VoidCallback listener)
+    {
+    }
+
+
+    /// <Summary>
+    /// Calls listener every time the status of the animation changes.
+    ///
+    /// Listeners can be removed with [removeStatusListener].
+    /// </Summary>
+    public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+    {
+    }
+
+
+    /// <Summary>
+    /// Stops calling the listener every time the status of the animation changes.
+    ///
+    /// If `listener` is not currently registered as a status listener, this
+    /// method does nothing.
+    ///
+    /// Listeners can be added with [addStatusListener].
+    /// </Summary>
+    public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+    {
+    }
+
+
+    /// <Summary>
+    /// Chains a [Tween] (or [CurveTween]) to this [Animation].
+    ///
+    /// This method is only valid for `Animation<double>` instances (i.e. when `T`
+    /// is `double`). This means, for instance, that it can be called on
+    /// [AnimationController] objects, as well as [CurvedAnimation]s,
+    /// [ProxyAnimation]s, [ReverseAnimation]s, [TrainHoppingAnimation]s, etc.
+    ///
+    /// It returns an [Animation] specialized to the same type, `U`, as the
+    /// argument to the method (`child`), whose value is derived by applying the
+    /// given [Tween] to the value of this [Animation].
+    ///
+    /// {@tool snippet}
+    ///
+    /// Given an [AnimationController] `_controller`, the following code creates
+    /// an `Animation<Alignment>` that swings from top left to top right as the
+    /// controller goes from 0.0 to 1.0:
+    ///
+    /// ```dart
+    /// Animation<Alignment> _alignment1 = _controller.drive(
+    ///   AlignmentTween(
+    ///     begin: Alignment.topLeft,
+    ///     end: Alignment.topRight,
+    ///   ),
+    /// );
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// The `_alignment.value` could then be used in a widget's build method, for
+    /// instance, to position a child using an [Align] widget such that the
+    /// position of the child shifts over time from the top left to the top right.
+    ///
+    /// It is common to ease this kind of curve, e.g. making the transition slower
+    /// at the start and faster at the end. The following snippet shows one way to
+    /// chain the alignment tween in the previous example to an easing curve (in
+    /// this case, [Curves.easeIn]). In this example, the tween is created
+    /// elsewhere as a variable that can be reused, since none of its arguments
+    /// vary.
+    ///
+    /// ```dart
+    /// final Animatable<Alignment> _tween = AlignmentTween(begin: Alignment.topLeft, end: Alignment.topRight)
+    ///   .chain(CurveTween(curve: Curves.easeIn));
+    /// // ...
+    /// Animation<Alignment> _alignment2 = _controller.drive(_tween);
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// The following code is exactly equivalent, and is typically clearer when
+    /// the tweens are created inline, as might be preferred when the tweens have
+    /// values that depend on other variables:
+    ///
+    /// ```dart
+    /// Animation<Alignment> _alignment3 = _controller
+    ///   .drive(CurveTween(curve: Curves.easeIn))
+    ///   .drive(AlignmentTween(
+    ///     begin: Alignment.topLeft,
+    ///     end: Alignment.topRight,
+    ///   ));
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Animatable.animate], which does the same thing.
+    ///  * [AnimationController], which is usually used to drive animations.
+    ///  * [CurvedAnimation], an alternative to [CurveTween] for applying easing
+    ///    curves, which supports distinct curves in the forward direction and the
+    ///    reverse direction.
+    /// </Summary>
+    public virtual Animation<U> Drive<U>(FlutterSDK.Animation.Tween.Animatable<U> child)
     {
 
-        /// <Summary>
-        /// The animation is stopped at the beginning
-        /// </Summary>
-        Dismissed,
-        /// <Summary>
-        /// The animation is running from beginning to end
-        /// </Summary>
-        Forward,
-        /// <Summary>
-        /// The animation is running backwards, from end to beginning
-        /// </Summary>
-        Reverse,
-        /// <Summary>
-        /// The animation is stopped at the end
-        /// </Summary>
-        Completed,
+        return child.Animate(this as Animation<double>);
     }
+
+
+
+
+
+    /// <Summary>
+    /// Provides a string describing the status of this object, but not including
+    /// information about the object itself.
+    ///
+    /// This function is used by [Animation.toString] so that [Animation]
+    /// subclasses can provide additional details while ensuring all [Animation]
+    /// subclasses have a consistent [toString] style.
+    ///
+    /// The result of this function includes an icon describing the status of this
+    /// [Animation] object:
+    ///
+    /// * "&#x25B6;": [AnimationStatus.forward] ([value] increasing)
+    /// * "&#x25C0;": [AnimationStatus.reverse] ([value] decreasing)
+    /// * "&#x23ED;": [AnimationStatus.completed] ([value] == 1.0)
+    /// * "&#x23EE;": [AnimationStatus.dismissed] ([value] == 0.0)
+    /// </Summary>
+    public virtual string ToStringDetails()
+    {
+
+        string icon = default(string);
+        switch (Status) { case AnimationStatus.Forward: icon = "\u25B6"; break; case AnimationStatus.Reverse: icon = "\u25C0"; break; case AnimationStatus.Completed: icon = "\u23ED"; break; case AnimationStatus.Dismissed: icon = "\u23EE"; break; }
+
+        return icon;
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// The status of an animation
+/// </Summary>
+public enum AnimationStatus
+{
+
+    /// <Summary>
+    /// The animation is stopped at the beginning
+    /// </Summary>
+    Dismissed,
+    /// <Summary>
+    /// The animation is running from beginning to end
+    /// </Summary>
+    Forward,
+    /// <Summary>
+    /// The animation is running backwards, from end to beginning
+    /// </Summary>
+    Reverse,
+    /// <Summary>
+    /// The animation is stopped at the end
+    /// </Summary>
+    Completed,
+}
 
 }

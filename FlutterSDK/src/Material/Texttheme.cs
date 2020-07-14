@@ -520,172 +520,218 @@ namespace FlutterSDK.Material.Texttheme
         #region constructors
         public TextTheme(FlutterSDK.Painting.Textstyle.TextStyle headline1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline5 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline6 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle caption = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle button = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle overline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle title = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subhead = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body1 = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base()
-        {
-            this.Caption = caption;
-            this.Button = button;
-            this.Overline = overline; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline1 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline2 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline3 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline4 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline5 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline6 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle1 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle2 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle BodyText1 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle BodyText2 { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Caption { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Button { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Overline { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Display4 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Display3 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Display2 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Display1 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Title { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Subhead { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Body2 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Body1 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline1 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline2 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline3 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline4 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline5 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline6 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle1 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle2 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle BodyText1 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle BodyText2 { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Caption { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Button { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Overline { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Display4 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Display3 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Display2 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Display1 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Title { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Subhead { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Subtitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Body2 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Body1 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this text theme but with the given fields replaced with
-        /// the new values.
-        ///
-        /// Consider using [Typography.black] or [Typography.white], which implement
-        /// the typography styles in the material design specification, as a starting
-        /// point.
-        ///
-        /// {@tool snippet}
-        ///
-        /// ```dart
-        /// /// A Widget that sets the ambient theme's title text color for its
-        /// /// descendants, while leaving other ambient theme attributes alone.
-        /// class TitleColorThemeCopy extends StatelessWidget {
-        ///   TitleColorThemeCopy({Key key, this.child, this.titleColor}) : super(key: key);
-        ///
-        ///   final Color titleColor;
-        ///   final Widget child;
-        ///
-        ///   @override
-        ///   Widget build(BuildContext context) {
-        ///     final ThemeData theme = Theme.of(context);
-        ///     return Theme(
-        ///       data: theme.copyWith(
-        ///         textTheme: theme.textTheme.copyWith(
-        ///           headline6: theme.textTheme.headline6.copyWith(
-        ///             color: titleColor,
-        ///           ),
-        ///         ),
-        ///       ),
-        ///       child: child,
-        ///     );
-        ///   }
-        /// }
-        /// ```
-        /// {@end-tool}
-        ///
-        /// See also:
-        ///
-        ///  * [merge] is used instead of [copyWith] when you want to merge all
-        ///    of the fields of a TextTheme instead of individual fields.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Texttheme.TextTheme CopyWith(FlutterSDK.Painting.Textstyle.TextStyle headline1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline5 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline6 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle caption = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle button = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle overline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle title = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subhead = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body1 = default(FlutterSDK.Painting.Textstyle.TextStyle)) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Creates a copy of this text theme but with the given fields replaced with
+    /// the new values.
+    ///
+    /// Consider using [Typography.black] or [Typography.white], which implement
+    /// the typography styles in the material design specification, as a starting
+    /// point.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// /// A Widget that sets the ambient theme's title text color for its
+    /// /// descendants, while leaving other ambient theme attributes alone.
+    /// class TitleColorThemeCopy extends StatelessWidget {
+    ///   TitleColorThemeCopy({Key key, this.child, this.titleColor}) : super(key: key);
+    ///
+    ///   final Color titleColor;
+    ///   final Widget child;
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     final ThemeData theme = Theme.of(context);
+    ///     return Theme(
+    ///       data: theme.copyWith(
+    ///         textTheme: theme.textTheme.copyWith(
+    ///           headline6: theme.textTheme.headline6.copyWith(
+    ///             color: titleColor,
+    ///           ),
+    ///         ),
+    ///       ),
+    ///       child: child,
+    ///     );
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [merge] is used instead of [copyWith] when you want to merge all
+    ///    of the fields of a TextTheme instead of individual fields.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Texttheme.TextTheme CopyWith(FlutterSDK.Painting.Textstyle.TextStyle headline1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline5 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline6 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle caption = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle button = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle overline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle title = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subhead = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body1 = default(FlutterSDK.Painting.Textstyle.TextStyle))
+    {
 
-
-        /// <Summary>
-        /// Creates a new [TextTheme] where each text style from this object has been
-        /// merged with the matching text style from the `other` object.
-        ///
-        /// The merging is done by calling [TextStyle.merge] on each respective pair
-        /// of text styles from this and the [other] text themes and is subject to
-        /// the value of [TextStyle.inherit] flag. For more details, see the
-        /// documentation on [TextStyle.merge] and [TextStyle.inherit].
-        ///
-        /// If this theme, or the `other` theme has members that are null, then the
-        /// non-null one (if any) is used. If the `other` theme is itself null, then
-        /// this [TextTheme] is returned unchanged. If values in both are set, then
-        /// the values are merged using [TextStyle.merge].
-        ///
-        /// This is particularly useful if one [TextTheme] defines one set of
-        /// properties and another defines a different set, e.g. having colors
-        /// defined in one text theme and font sizes in another, or when one
-        /// [TextTheme] has only some fields defined, and you want to define the rest
-        /// by merging it with a default theme.
-        ///
-        /// {@tool snippet}
-        ///
-        /// ```dart
-        /// /// A Widget that sets the ambient theme's title text color for its
-        /// /// descendants, while leaving other ambient theme attributes alone.
-        /// class TitleColorTheme extends StatelessWidget {
-        ///   TitleColorTheme({Key key, this.child, this.titleColor}) : super(key: key);
-        ///
-        ///   final Color titleColor;
-        ///   final Widget child;
-        ///
-        ///   @override
-        ///   Widget build(BuildContext context) {
-        ///     ThemeData theme = Theme.of(context);
-        ///     // This partialTheme is incomplete: it only has the title style
-        ///     // defined. Just replacing theme.textTheme with partialTheme would
-        ///     // set the title, but everything else would be null. This isn't very
-        ///     // useful, so merge it with the existing theme to keep all of the
-        ///     // preexisting definitions for the other styles.
-        ///     TextTheme partialTheme = TextTheme(headline6: TextStyle(color: titleColor));
-        ///     theme = theme.copyWith(textTheme: theme.textTheme.merge(partialTheme));
-        ///     return Theme(data: theme, child: child);
-        ///   }
-        /// }
-        /// ```
-        /// {@end-tool}
-        ///
-        /// See also:
-        ///
-        ///  * [copyWith] is used instead of [merge] when you wish to override
-        ///    individual fields in the [TextTheme] instead of merging all of the
-        ///    fields of two [TextTheme]s.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Texttheme.TextTheme Merge(FlutterSDK.Material.Texttheme.TextTheme other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Creates a copy of this text theme but with the given field replaced in
-        /// each of the individual text styles.
-        ///
-        /// The `displayColor` is applied to [headline4], [headline3], [headline2],
-        /// [headline1], and [caption]. The `bodyColor` is applied to the remaining
-        /// text styles.
-        ///
-        /// Consider using [Typography.black] or [Typography.white], which implement
-        /// the typography styles in the material design specification, as a starting
-        /// point.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Texttheme.TextTheme Apply(string fontFamily = default(string), double fontSizeFactor = 1.0, double fontSizeDelta = 0.0, FlutterBinding.UI.Color displayColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bodyColor = default(FlutterBinding.UI.Color), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two text themes.
-        ///
-        /// {@macro flutter.material.themeData.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Texttheme.TextTheme Lerp(FlutterSDK.Material.Texttheme.TextTheme a, FlutterSDK.Material.Texttheme.TextTheme b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return new TextTheme(headline1: headline1 ?? display4 ?? this.Headline1, headline2: headline2 ?? display3 ?? this.Headline2, headline3: headline3 ?? display2 ?? this.Headline3, headline4: headline4 ?? display1 ?? this.Headline4, headline5: headline5 ?? headline ?? this.Headline5, headline6: headline6 ?? title ?? this.Headline6, subtitle1: subtitle1 ?? subhead ?? this.Subtitle1, subtitle2: subtitle2 ?? subtitle ?? this.Subtitle2, bodyText1: bodyText1 ?? body2 ?? this.BodyText1, bodyText2: bodyText2 ?? body1 ?? this.BodyText2, caption: caption ?? this.Caption, button: button ?? this.Button, overline: overline ?? this.Overline);
     }
+
+
+
+
+    /// <Summary>
+    /// Creates a new [TextTheme] where each text style from this object has been
+    /// merged with the matching text style from the `other` object.
+    ///
+    /// The merging is done by calling [TextStyle.merge] on each respective pair
+    /// of text styles from this and the [other] text themes and is subject to
+    /// the value of [TextStyle.inherit] flag. For more details, see the
+    /// documentation on [TextStyle.merge] and [TextStyle.inherit].
+    ///
+    /// If this theme, or the `other` theme has members that are null, then the
+    /// non-null one (if any) is used. If the `other` theme is itself null, then
+    /// this [TextTheme] is returned unchanged. If values in both are set, then
+    /// the values are merged using [TextStyle.merge].
+    ///
+    /// This is particularly useful if one [TextTheme] defines one set of
+    /// properties and another defines a different set, e.g. having colors
+    /// defined in one text theme and font sizes in another, or when one
+    /// [TextTheme] has only some fields defined, and you want to define the rest
+    /// by merging it with a default theme.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// /// A Widget that sets the ambient theme's title text color for its
+    /// /// descendants, while leaving other ambient theme attributes alone.
+    /// class TitleColorTheme extends StatelessWidget {
+    ///   TitleColorTheme({Key key, this.child, this.titleColor}) : super(key: key);
+    ///
+    ///   final Color titleColor;
+    ///   final Widget child;
+    ///
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     ThemeData theme = Theme.of(context);
+    ///     // This partialTheme is incomplete: it only has the title style
+    ///     // defined. Just replacing theme.textTheme with partialTheme would
+    ///     // set the title, but everything else would be null. This isn't very
+    ///     // useful, so merge it with the existing theme to keep all of the
+    ///     // preexisting definitions for the other styles.
+    ///     TextTheme partialTheme = TextTheme(headline6: TextStyle(color: titleColor));
+    ///     theme = theme.copyWith(textTheme: theme.textTheme.merge(partialTheme));
+    ///     return Theme(data: theme, child: child);
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [copyWith] is used instead of [merge] when you wish to override
+    ///    individual fields in the [TextTheme] instead of merging all of the
+    ///    fields of two [TextTheme]s.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Texttheme.TextTheme Merge(FlutterSDK.Material.Texttheme.TextTheme other)
+    {
+        if (other == null) return this;
+        return CopyWith(headline1: Headline1?.Merge(other.Headline1) ?? other.Headline1, headline2: Headline2?.Merge(other.Headline2) ?? other.Headline2, headline3: Headline3?.Merge(other.Headline3) ?? other.Headline3, headline4: Headline4?.Merge(other.Headline4) ?? other.Headline4, headline5: Headline5?.Merge(other.Headline5) ?? other.Headline5, headline6: Headline6?.Merge(other.Headline6) ?? other.Headline6, subtitle1: Subtitle1?.Merge(other.Subtitle1) ?? other.Subtitle1, subtitle2: Subtitle2?.Merge(other.Subtitle2) ?? other.Subtitle2, bodyText1: BodyText1?.Merge(other.BodyText1) ?? other.BodyText1, bodyText2: BodyText2?.Merge(other.BodyText2) ?? other.BodyText2, caption: Caption?.Merge(other.Caption) ?? other.Caption, button: Button?.Merge(other.Button) ?? other.Button, overline: Overline?.Merge(other.Overline) ?? other.Overline);
+    }
+
+
+
+
+    /// <Summary>
+    /// Creates a copy of this text theme but with the given field replaced in
+    /// each of the individual text styles.
+    ///
+    /// The `displayColor` is applied to [headline4], [headline3], [headline2],
+    /// [headline1], and [caption]. The `bodyColor` is applied to the remaining
+    /// text styles.
+    ///
+    /// Consider using [Typography.black] or [Typography.white], which implement
+    /// the typography styles in the material design specification, as a starting
+    /// point.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Texttheme.TextTheme Apply(string fontFamily = default(string), double fontSizeFactor = 1.0, double fontSizeDelta = 0.0, FlutterBinding.UI.Color displayColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bodyColor = default(FlutterBinding.UI.Color), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle))
+    {
+        return new TextTheme(headline1: Headline1?.Apply(color: displayColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), headline2: Headline2?.Apply(color: displayColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), headline3: Headline3?.Apply(color: displayColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), headline4: Headline4?.Apply(color: displayColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), headline5: Headline5?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), headline6: Headline6?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), subtitle1: Subtitle1?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), subtitle2: Subtitle2?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), bodyText1: BodyText1?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), bodyText2: BodyText2?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), caption: Caption?.Apply(color: displayColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), button: Button?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta), overline: Overline?.Apply(color: bodyColor, decoration: decoration, decorationColor: decorationColor, decorationStyle: decorationStyle, fontFamily: fontFamily, fontSizeFactor: fontSizeFactor, fontSizeDelta: fontSizeDelta));
+    }
+
+
+
+
+    /// <Summary>
+    /// Linearly interpolate between two text themes.
+    ///
+    /// {@macro flutter.material.themeData.lerp}
+    /// </Summary>
+    public virtual FlutterSDK.Material.Texttheme.TextTheme Lerp(FlutterSDK.Material.Texttheme.TextTheme a, FlutterSDK.Material.Texttheme.TextTheme b, double t)
+    {
+
+        return new TextTheme(headline1: TextstyleDefaultClass.TextStyle.Lerp(a?.Headline1, b?.Headline1, t), headline2: TextstyleDefaultClass.TextStyle.Lerp(a?.Headline2, b?.Headline2, t), headline3: TextstyleDefaultClass.TextStyle.Lerp(a?.Headline3, b?.Headline3, t), headline4: TextstyleDefaultClass.TextStyle.Lerp(a?.Headline4, b?.Headline4, t), headline5: TextstyleDefaultClass.TextStyle.Lerp(a?.Headline5, b?.Headline5, t), headline6: TextstyleDefaultClass.TextStyle.Lerp(a?.Headline6, b?.Headline6, t), subtitle1: TextstyleDefaultClass.TextStyle.Lerp(a?.Subtitle1, b?.Subtitle1, t), subtitle2: TextstyleDefaultClass.TextStyle.Lerp(a?.Subtitle2, b?.Subtitle2, t), bodyText1: TextstyleDefaultClass.TextStyle.Lerp(a?.BodyText1, b?.BodyText1, t), bodyText2: TextstyleDefaultClass.TextStyle.Lerp(a?.BodyText2, b?.BodyText2, t), caption: TextstyleDefaultClass.TextStyle.Lerp(a?.Caption, b?.Caption, t), button: TextstyleDefaultClass.TextStyle.Lerp(a?.Button, b?.Button, t), overline: TextstyleDefaultClass.TextStyle.Lerp(a?.Overline, b?.Overline, t));
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is TextTheme && Headline1 == other.Headline1 && Headline2 == other.Headline2 && Headline3 == other.Headline3 && Headline4 == other.Headline4 && Headline5 == other.Headline5 && Headline6 == other.Headline6 && Subtitle1 == other.Subtitle1 && Subtitle2 == other.Subtitle2 && BodyText1 == other.BodyText1 && BodyText2 == other.BodyText2 && Caption == other.Caption && Button == other.Button && Overline == other.Overline;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        TextTheme defaultTheme = Typography.Material2018(platform: PlatformDefaultClass.DefaultTargetPlatform).Black;
+        properties.Add(new DiagnosticsProperty<TextStyle>("headline1", Headline1, defaultValue: defaultTheme.Headline1));
+        properties.Add(new DiagnosticsProperty<TextStyle>("headline2", Headline2, defaultValue: defaultTheme.Headline2));
+        properties.Add(new DiagnosticsProperty<TextStyle>("headline3", Headline3, defaultValue: defaultTheme.Headline3));
+        properties.Add(new DiagnosticsProperty<TextStyle>("headline4", Headline4, defaultValue: defaultTheme.Headline4));
+        properties.Add(new DiagnosticsProperty<TextStyle>("headline5", Headline5, defaultValue: defaultTheme.Headline5));
+        properties.Add(new DiagnosticsProperty<TextStyle>("headline6", Headline6, defaultValue: defaultTheme.Headline6));
+        properties.Add(new DiagnosticsProperty<TextStyle>("subtitle1", Subtitle1, defaultValue: defaultTheme.Subtitle1));
+        properties.Add(new DiagnosticsProperty<TextStyle>("subtitle2", Subtitle2, defaultValue: defaultTheme.Subtitle2));
+        properties.Add(new DiagnosticsProperty<TextStyle>("bodyText1", BodyText1, defaultValue: defaultTheme.BodyText1));
+        properties.Add(new DiagnosticsProperty<TextStyle>("bodyText2", BodyText2, defaultValue: defaultTheme.BodyText2));
+        properties.Add(new DiagnosticsProperty<TextStyle>("caption", Caption, defaultValue: defaultTheme.Caption));
+        properties.Add(new DiagnosticsProperty<TextStyle>("button", Button, defaultValue: defaultTheme.Button));
+        properties.Add(new DiagnosticsProperty<TextStyle>("overline", Overline, defaultValue: defaultTheme.Overline));
+    }
+
+
+
+    #endregion
+}
 
 }

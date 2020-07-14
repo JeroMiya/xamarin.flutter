@@ -312,26 +312,40 @@ namespace FlutterSDK.Gestures.Eager
         #region constructors
         public EagerGestureRecognizer(PointerDeviceKind kind = default(PointerDeviceKind))
         : base(kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void DidStopTrackingLastPointer(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
+    public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+    {
+        StartTrackingPointer(@event.Pointer, @event.Transform);
+        Resolve(GestureDisposition.Accepted);
+        StopTrackingPointer(@event.Pointer);
     }
+
+
+
+
+    public new void DidStopTrackingLastPointer(int pointer)
+    {
+    }
+
+
+
+
+    public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+    {
+    }
+
+
+
+    #endregion
+}
 
 }

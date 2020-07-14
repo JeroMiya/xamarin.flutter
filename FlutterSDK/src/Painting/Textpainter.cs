@@ -448,327 +448,569 @@ namespace FlutterSDK.Painting.Textpainter
         #region constructors
         public PlaceholderDimensions(Size size = default(Size), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), double baselineOffset = default(double))
         : base()
-        {
-            this.Size = size;
-            this.Alignment = alignment;
-            this.Baseline = baseline;
-            this.BaselineOffset = baselineOffset; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual Size Size { get; set; }
-        public virtual PlaceholderAlignment Alignment { get; set; }
-        public virtual double BaselineOffset { get; set; }
-        public virtual TextBaseline Baseline { get; set; }
-        #endregion
+    #region fields
+    public virtual Size Size { get; set; }
+    public virtual PlaceholderAlignment Alignment { get; set; }
+    public virtual double BaselineOffset { get; set; }
+    public virtual TextBaseline Baseline { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
+    #endregion
+}
+
+
+/// <Summary>
+/// This is used to cache and pass the computed metrics regarding the
+/// caret's size and position. This is preferred due to the expensive
+/// nature of the calculation.
+/// </Summary>
+public class _CaretMetrics
+{
+    #region constructors
+    public _CaretMetrics(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double fullHeight = default(double))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Offset Offset { get; set; }
+public virtual double FullHeight { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+/// <Summary>
+/// An object that paints a [TextSpan] tree into a [Canvas].
+///
+/// To use a [TextPainter], follow these steps:
+///
+/// 1. Create a [TextSpan] tree and pass it to the [TextPainter]
+///    constructor.
+///
+/// 2. Call [layout] to prepare the paragraph.
+///
+/// 3. Call [paint] as often as desired to paint the paragraph.
+///
+/// If the width of the area into which the text is being painted
+/// changes, return to step 2. If the text to be painted changes,
+/// return to step 1.
+///
+/// The default text style is white. To change the color of the text,
+/// pass a [TextStyle] object to the [TextSpan] in `text`.
+/// </Summary>
+public class TextPainter
+{
+    #region constructors
+    public TextPainter(FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, int maxLines = default(int), string ellipsis = default(string), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
+internal virtual bool _NeedsLayout { get; set; }
+internal virtual FlutterSDK.Painting.Inlinespan.InlineSpan _Text { get; set; }
+internal virtual TextAlign _TextAlign { get; set; }
+internal virtual TextDirection _TextDirection { get; set; }
+internal virtual double _TextScaleFactor { get; set; }
+internal virtual string _Ellipsis { get; set; }
+internal virtual Locale _Locale { get; set; }
+internal virtual int _MaxLines { get; set; }
+internal virtual FlutterSDK.Painting.Strutstyle.StrutStyle _StrutStyle { get; set; }
+internal virtual FlutterSDK.Painting.Textpainter.TextWidthBasis _TextWidthBasis { get; set; }
+internal virtual TextHeightBehavior _TextHeightBehavior { get; set; }
+internal virtual FlutterBinding.UI.Paragraph _LayoutTemplate { get; set; }
+internal virtual List<TextBox> _InlinePlaceholderBoxes { get; set; }
+internal virtual List<double> _InlinePlaceholderScales { get; set; }
+internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
+internal virtual double _LastMinWidth { get; set; }
+internal virtual double _LastMaxWidth { get; set; }
+internal virtual int _ZwjUtf16 { get; set; }
+internal virtual FlutterSDK.Painting.Textpainter._CaretMetrics _CaretMetrics { get; set; }
+internal virtual TextPosition _PreviousCaretPosition { get; set; }
+internal virtual FlutterBinding.UI.Rect _PreviousCaretPrototype { get; set; }
+public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual string Ellipsis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextHeightBehavior TextHeightBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual List<TextBox> InlinePlaceholderBoxes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual List<double> InlinePlaceholderScales { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double PreferredLineHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double MinIntrinsicWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double MaxIntrinsicWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double Height { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool DidExceedMaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual FlutterBinding.UI.Offset _EmptyOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Marks this text painter's layout information as dirty and removes cached
+/// information.
+///
+/// Uses this method to notify text painter to relayout in the case of
+/// layout changes in engine. In most cases, updating text painter properties
+/// in framework will automatically invoke this method.
+/// </Summary>
+public virtual void MarkNeedsLayout()
+{
+    _Paragraph = null;
+    _NeedsLayout = true;
+    _PreviousCaretPosition = null;
+    _PreviousCaretPrototype = null;
+}
+
+
+
+
+/// <Summary>
+/// Sets the dimensions of each placeholder in [text].
+///
+/// The number of [PlaceholderDimensions] provided should be the same as the
+/// number of [PlaceholderSpan]s in text. Passing in an empty or null `value`
+/// will do nothing.
+///
+/// If [layout] is attempted without setting the placeholder dimensions, the
+/// placeholders will be ignored in the text layout and no valid
+/// [inlinePlaceholderBoxes] will be returned.
+/// </Summary>
+public virtual void SetPlaceholderDimensions(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> value)
+{
+    if (value == null || value.IsEmpty() || CollectionsDefaultClass.ListEquals(value, _PlaceholderDimensions))
+    {
+        return;
     }
 
+
+    _PlaceholderDimensions = value;
+    MarkNeedsLayout();
+}
+
+
+
+
+private ParagraphStyle _CreateParagraphStyle(TextDirection defaultTextDirection = default(TextDirection))
+{
+
+
+    return _Text.Style?.GetParagraphStyle(textAlign: TextAlign, textDirection: TextDirection ?? defaultTextDirection, textScaleFactor: TextScaleFactor, maxLines: _MaxLines, textHeightBehavior: _TextHeightBehavior, ellipsis: _Ellipsis, locale: _Locale, strutStyle: _StrutStyle) ?? new Ui.ParagraphStyle(textAlign: TextAlign, textDirection: TextDirection ?? defaultTextDirection, maxLines: MaxLines, textHeightBehavior: _TextHeightBehavior, ellipsis: Ellipsis, locale: Locale);
+}
+
+
+
+
+private double _ApplyFloatingPointHack(double layoutValue)
+{
+    return layoutValue.CeilToDouble();
+}
+
+
+
+
+/// <Summary>
+/// Returns the distance from the top of the text to the first baseline of the
+/// given type.
+///
+/// Valid only after [layout] has been called.
+/// </Summary>
+public virtual double ComputeDistanceToActualBaseline(TextBaseline baseline)
+{
+
+
+    switch (baseline) { case TextBaseline.Alphabetic: return _Paragraph.AlphabeticBaseline; case TextBaseline.Ideographic: return _Paragraph.IdeographicBaseline; }
+    return null;
+}
+
+
+
+
+/// <Summary>
+/// Computes the visual position of the glyphs for painting the text.
+///
+/// The text will layout with a width that's as close to its max intrinsic
+/// width as possible while still being greater than or equal to `minWidth` and
+/// less than or equal to `maxWidth`.
+///
+/// The [text] and [textDirection] properties must be non-null before this is
+/// called.
+/// </Summary>
+public virtual void Layout(double minWidth = 0.0, double maxWidth = default(double))
+{
+
+
+    if (!_NeedsLayout && minWidth == _LastMinWidth && maxWidth == _LastMaxWidth) return;
+    _NeedsLayout = false;
+    if (_Paragraph == null)
+    {
+        Ui.Dart:uiDefaultClass.ParagraphBuilder builder = new Ui.ParagraphBuilder(_CreateParagraphStyle());
+        _Text.Build(builder, textScaleFactor: TextScaleFactor, dimensions: _PlaceholderDimensions);
+        _InlinePlaceholderScales = builder.PlaceholderScales;
+        _Paragraph = builder.Build();
+    }
+
+    _LastMinWidth = minWidth;
+    _LastMaxWidth = maxWidth;
+    _Paragraph.Layout(new Ui.ParagraphConstraints(width: maxWidth));
+    if (minWidth != maxWidth)
+    {
+        double newWidth = MaxIntrinsicWidth.Clamp(minWidth, maxWidth) as double;
+        if (newWidth != Width)
+        {
+            _Paragraph.Layout(new Ui.ParagraphConstraints(width: newWidth));
+        }
+
+    }
+
+    _InlinePlaceholderBoxes = _Paragraph.GetBoxesForPlaceholders();
+}
+
+
+
+
+/// <Summary>
+/// Paints the text onto the given canvas at the given offset.
+///
+/// Valid only after [layout] has been called.
+///
+/// If you cannot see the text being painted, check that your text color does
+/// not conflict with the background on which you are drawing. The default
+/// text color is white (to contrast with the default black background color),
+/// so if you are writing an application with a white background, the text
+/// will not be visible by default.
+///
+/// To set the text style, specify a [TextStyle] when creating the [TextSpan]
+/// that you pass to the [TextPainter] constructor or to the [text] property.
+/// </Summary>
+public virtual void Paint(Canvas canvas, FlutterBinding.UI.Offset offset)
+{
+
+    canvas.DrawParagraph(_Paragraph, offset);
+}
+
+
+
+
+private bool _IsUtf16Surrogate(int value)
+{
+    return value & 0xF800 == 0xD800;
+}
+
+
+
+
+private bool _IsUnicodeDirectionality(int value)
+{
+    return value == 0x200F || value == 0x200E;
+}
+
+
+
+
+/// <Summary>
+/// Returns the closest offset after `offset` at which the input cursor can be
+/// positioned.
+/// </Summary>
+public virtual int GetOffsetAfter(int offset)
+{
+    int nextCodeUnit = _Text.CodeUnitAt(offset);
+    if (nextCodeUnit == null) return null;
+    return _IsUtf16Surrogate(nextCodeUnit) ? offset + 2 : offset + 1;
+}
+
+
+
+
+/// <Summary>
+/// Returns the closest offset before `offset` at which the input cursor can
+/// be positioned.
+/// </Summary>
+public virtual int GetOffsetBefore(int offset)
+{
+    int prevCodeUnit = _Text.CodeUnitAt(offset - 1);
+    if (prevCodeUnit == null) return null;
+    return _IsUtf16Surrogate(prevCodeUnit) ? offset - 2 : offset - 1;
+}
+
+
+
+
+private Rect _GetRectFromUpstream(int offset, FlutterBinding.UI.Rect caretPrototype)
+{
+    string flattenedText = _Text.ToPlainText(includePlaceholders: false);
+    int prevCodeUnit = _Text.CodeUnitAt(Dart: mathDefaultClass.Max(0, offset - 1));
+    if (prevCodeUnit == null) return null;
+    bool needsSearch = _IsUtf16Surrogate(prevCodeUnit) || _Text.CodeUnitAt(offset) == _ZwjUtf16 || _IsUnicodeDirectionality(prevCodeUnit);
+    int graphemeClusterLength = needsSearch ? 2 : 1;
+    List<TextBox> boxes = new List<TextBox>() { };
+    while (boxes.IsEmpty() && flattenedText != null)
+    {
+        int prevRuneOffset = offset - graphemeClusterLength;
+        boxes = _Paragraph.GetBoxesForRange(prevRuneOffset, offset, boxHeightStyle: Ui.BoxHeightStyle.Strut);
+        if (boxes.IsEmpty())
+        {
+            if (!needsSearch)
+            {
+                break;
+            }
+
+            if (prevRuneOffset < -flattenedText.Length)
+            {
+                break;
+            }
+
+            graphemeClusterLength *= 2;
+            continue;
+        }
+
+        TextBox box = boxes.First;
+        int NEWLINE_CODE_UNIT = 10;
+        if (prevCodeUnit == NEWLINE_CODE_UNIT)
+        {
+            return Rect.FromLTRB(_EmptyOffset.Dx, box.Bottom, _EmptyOffset.Dx, box.Bottom + box.Bottom - box.Top);
+        }
+
+        double caretEnd = box.End;
+        double dx = box.Direction == TextDirection.Rtl ? caretEnd - caretPrototype.Width : caretEnd;
+        return Rect.FromLTRB(Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
+    }
+
+    return null;
+}
+
+
+
+
+private Rect _GetRectFromDownstream(int offset, FlutterBinding.UI.Rect caretPrototype)
+{
+    string flattenedText = _Text.ToPlainText(includePlaceholders: false);
+    int nextCodeUnit = _Text.CodeUnitAt(Dart: mathDefaultClass.Min(offset, flattenedText == null ? 0 : flattenedText.Length - 1));
+    if (nextCodeUnit == null) return null;
+    bool needsSearch = _IsUtf16Surrogate(nextCodeUnit) || nextCodeUnit == _ZwjUtf16 || _IsUnicodeDirectionality(nextCodeUnit);
+    int graphemeClusterLength = needsSearch ? 2 : 1;
+    List<TextBox> boxes = new List<TextBox>() { };
+    while (boxes.IsEmpty() && flattenedText != null)
+    {
+        int nextRuneOffset = offset + graphemeClusterLength;
+        boxes = _Paragraph.GetBoxesForRange(offset, nextRuneOffset, boxHeightStyle: Ui.BoxHeightStyle.Strut);
+        if (boxes.IsEmpty())
+        {
+            if (!needsSearch)
+            {
+                break;
+            }
+
+            if (nextRuneOffset >= flattenedText.Length << 1)
+            {
+                break;
+            }
+
+            graphemeClusterLength *= 2;
+            continue;
+        }
+
+        TextBox box = boxes.Last();
+        double caretStart = box.Start;
+        double dx = box.Direction == TextDirection.Rtl ? caretStart - caretPrototype.Width : caretStart;
+        return Rect.FromLTRB(Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
+    }
+
+    return null;
+}
+
+
+
+
+/// <Summary>
+/// Returns the offset at which to paint the caret.
+///
+/// Valid only after [layout] has been called.
+/// </Summary>
+public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype)
+{
+    _ComputeCaretMetrics(position, caretPrototype);
+    return _CaretMetrics.Offset;
+}
+
+
+
+
+/// <Summary>
+/// Returns the tight bounded height of the glyph at the given [position].
+///
+/// Valid only after [layout] has been called.
+/// </Summary>
+public virtual double GetFullHeightForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype)
+{
+    _ComputeCaretMetrics(position, caretPrototype);
+    return _CaretMetrics.FullHeight;
+}
+
+
+
+
+private void _ComputeCaretMetrics(TextPosition position, FlutterBinding.UI.Rect caretPrototype)
+{
+
+    if (position == _PreviousCaretPosition && caretPrototype == _PreviousCaretPrototype) return;
+    int offset = position.Offset;
+
+    Rect rect = default(Rect);
+    switch (position.Affinity)
+    {
+        case TextAffinity.Upstream:
+            {
+                rect = _GetRectFromUpstream(offset, caretPrototype) ?? _GetRectFromDownstream(offset, caretPrototype);
+                break;
+            }
+        case TextAffinity.Downstream:
+            {
+                rect = _GetRectFromDownstream(offset, caretPrototype) ?? _GetRectFromUpstream(offset, caretPrototype);
+                break;
+            }
+    }
+    _CaretMetrics = new _CaretMetrics(offset: rect != null ? new Offset(rect.Left, rect.Top) : _EmptyOffset, fullHeight: rect != null ? rect.Bottom - rect.Top : null);
+    _PreviousCaretPosition = position;
+    _PreviousCaretPrototype = caretPrototype;
+}
+
+
+
+
+/// <Summary>
+/// Returns a list of rects that bound the given selection.
+///
+/// The [boxHeightStyle] and [boxWidthStyle] arguments may be used to select
+/// the shape of the [TextBox]s. These properties default to
+/// [ui.BoxHeightStyle.tight] and [ui.BoxWidthStyle.tight] respectively and
+/// must not be null.
+///
+/// A given selection might have more than one rect if this text painter
+/// contains bidirectional text because logically contiguous text might not be
+/// visually contiguous.
+/// </Summary>
+public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection, BoxHeightStyle boxHeightStyle = default(BoxHeightStyle), BoxWidthStyle boxWidthStyle = default(BoxWidthStyle))
+{
+
+
+
+    return _Paragraph.GetBoxesForRange(selection.Start, selection.End, boxHeightStyle: boxHeightStyle, boxWidthStyle: boxWidthStyle);
+}
+
+
+
+
+/// <Summary>
+/// Returns the position within the text for the given pixel offset.
+/// </Summary>
+public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset)
+{
+
+    return _Paragraph.GetPositionForOffset(offset);
+}
+
+
+
+
+/// <Summary>
+/// Returns the text range of the word at the given offset. Characters not
+/// part of a word, such as spaces, symbols, and punctuation, have word breaks
+/// on both sides. In such cases, this method will return a text range that
+/// contains the given text position.
+///
+/// Word boundaries are defined more precisely in Unicode Standard Annex #29
+/// <http://www.unicode.org/reports/tr29/#Word_Boundaries>.
+/// </Summary>
+public virtual TextRange GetWordBoundary(TextPosition position)
+{
+
+    return _Paragraph.GetWordBoundary(position);
+}
+
+
+
+
+/// <Summary>
+/// Returns the text range of the line at the given offset.
+///
+/// The newline, if any, is included in the range.
+/// </Summary>
+public virtual TextRange GetLineBoundary(TextPosition position)
+{
+
+    return _Paragraph.GetLineBoundary(position);
+}
+
+
+
+
+/// <Summary>
+/// Returns the full list of [LineMetrics] that describe in detail the various
+/// metrics of each laid out line.
+///
+/// The [LineMetrics] list is presented in the order of the lines they represent.
+/// For example, the first line is in the zeroth index.
+///
+/// [LineMetrics] contains measurements such as ascent, descent, baseline, and
+/// width for the line as a whole, and may be useful for aligning additional
+/// widgets to a particular line.
+///
+/// Valid only after [layout] has been called.
+///
+/// This can potentially return a large amount of data, so it is not recommended
+/// to repeatedly call this. Instead, cache the results. The cached results
+/// should be invalidated upon the next successful [layout].
+/// </Summary>
+public virtual List<LineMetrics> ComputeLineMetrics()
+{
+
+    return _Paragraph.ComputeLineMetrics();
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The different ways of measuring the width of one or more lines of text.
+///
+/// See [Text.textWidthBasis], for example.
+/// </Summary>
+public enum TextWidthBasis
+{
 
     /// <Summary>
-    /// This is used to cache and pass the computed metrics regarding the
-    /// caret's size and position. This is preferred due to the expensive
-    /// nature of the calculation.
+    /// multiline text will take up the full width given by the parent. For single
+    /// line text, only the minimum amount of width needed to contain the text
+    /// will be used. A common use case for this is a standard series of
+    /// paragraphs.
     /// </Summary>
-    public class _CaretMetrics
-    {
-        #region constructors
-        public _CaretMetrics(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double fullHeight = default(double))
-        {
-            this.Offset = offset;
-            this.FullHeight = fullHeight; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Offset Offset { get; set; }
-        public virtual double FullHeight { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
-    }
-
-
+    Parent,
     /// <Summary>
-    /// An object that paints a [TextSpan] tree into a [Canvas].
-    ///
-    /// To use a [TextPainter], follow these steps:
-    ///
-    /// 1. Create a [TextSpan] tree and pass it to the [TextPainter]
-    ///    constructor.
-    ///
-    /// 2. Call [layout] to prepare the paragraph.
-    ///
-    /// 3. Call [paint] as often as desired to paint the paragraph.
-    ///
-    /// If the width of the area into which the text is being painted
-    /// changes, return to step 2. If the text to be painted changes,
-    /// return to step 1.
-    ///
-    /// The default text style is white. To change the color of the text,
-    /// pass a [TextStyle] object to the [TextSpan] in `text`.
+    /// The width will be exactly enough to contain the longest line and no
+    /// longer. A common use case for this is chat bubbles.
     /// </Summary>
-    public class TextPainter
-    {
-        #region constructors
-        public TextPainter(FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, int maxLines = default(int), string ellipsis = default(string), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
-        internal virtual bool _NeedsLayout { get; set; }
-        internal virtual FlutterSDK.Painting.Inlinespan.InlineSpan _Text { get; set; }
-        internal virtual TextAlign _TextAlign { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        internal virtual double _TextScaleFactor { get; set; }
-        internal virtual string _Ellipsis { get; set; }
-        internal virtual Locale _Locale { get; set; }
-        internal virtual int _MaxLines { get; set; }
-        internal virtual FlutterSDK.Painting.Strutstyle.StrutStyle _StrutStyle { get; set; }
-        internal virtual FlutterSDK.Painting.Textpainter.TextWidthBasis _TextWidthBasis { get; set; }
-        internal virtual TextHeightBehavior _TextHeightBehavior { get; set; }
-        internal virtual FlutterBinding.UI.Paragraph _LayoutTemplate { get; set; }
-        internal virtual List<TextBox> _InlinePlaceholderBoxes { get; set; }
-        internal virtual List<double> _InlinePlaceholderScales { get; set; }
-        internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
-        internal virtual double _LastMinWidth { get; set; }
-        internal virtual double _LastMaxWidth { get; set; }
-        internal virtual int _ZwjUtf16 { get; set; }
-        internal virtual FlutterSDK.Painting.Textpainter._CaretMetrics _CaretMetrics { get; set; }
-        internal virtual TextPosition _PreviousCaretPosition { get; set; }
-        internal virtual FlutterBinding.UI.Rect _PreviousCaretPrototype { get; set; }
-        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string Ellipsis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextHeightBehavior TextHeightBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual List<TextBox> InlinePlaceholderBoxes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual List<double> InlinePlaceholderScales { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double PreferredLineHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double MinIntrinsicWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double MaxIntrinsicWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Height { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool DidExceedMaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual FlutterBinding.UI.Offset _EmptyOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Marks this text painter's layout information as dirty and removes cached
-        /// information.
-        ///
-        /// Uses this method to notify text painter to relayout in the case of
-        /// layout changes in engine. In most cases, updating text painter properties
-        /// in framework will automatically invoke this method.
-        /// </Summary>
-        public virtual void MarkNeedsLayout() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Sets the dimensions of each placeholder in [text].
-        ///
-        /// The number of [PlaceholderDimensions] provided should be the same as the
-        /// number of [PlaceholderSpan]s in text. Passing in an empty or null `value`
-        /// will do nothing.
-        ///
-        /// If [layout] is attempted without setting the placeholder dimensions, the
-        /// placeholders will be ignored in the text layout and no valid
-        /// [inlinePlaceholderBoxes] will be returned.
-        /// </Summary>
-        public virtual void SetPlaceholderDimensions(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> value) { throw new NotImplementedException(); }
-
-
-        private ParagraphStyle _CreateParagraphStyle(TextDirection defaultTextDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        private double _ApplyFloatingPointHack(double layoutValue) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the distance from the top of the text to the first baseline of the
-        /// given type.
-        ///
-        /// Valid only after [layout] has been called.
-        /// </Summary>
-        public virtual double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Computes the visual position of the glyphs for painting the text.
-        ///
-        /// The text will layout with a width that's as close to its max intrinsic
-        /// width as possible while still being greater than or equal to `minWidth` and
-        /// less than or equal to `maxWidth`.
-        ///
-        /// The [text] and [textDirection] properties must be non-null before this is
-        /// called.
-        /// </Summary>
-        public virtual void Layout(double minWidth = 0.0, double maxWidth = default(double)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Paints the text onto the given canvas at the given offset.
-        ///
-        /// Valid only after [layout] has been called.
-        ///
-        /// If you cannot see the text being painted, check that your text color does
-        /// not conflict with the background on which you are drawing. The default
-        /// text color is white (to contrast with the default black background color),
-        /// so if you are writing an application with a white background, the text
-        /// will not be visible by default.
-        ///
-        /// To set the text style, specify a [TextStyle] when creating the [TextSpan]
-        /// that you pass to the [TextPainter] constructor or to the [text] property.
-        /// </Summary>
-        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        private bool _IsUtf16Surrogate(int value) { throw new NotImplementedException(); }
-
-
-        private bool _IsUnicodeDirectionality(int value) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the closest offset after `offset` at which the input cursor can be
-        /// positioned.
-        /// </Summary>
-        public virtual int GetOffsetAfter(int offset) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the closest offset before `offset` at which the input cursor can
-        /// be positioned.
-        /// </Summary>
-        public virtual int GetOffsetBefore(int offset) { throw new NotImplementedException(); }
-
-
-        private Rect _GetRectFromUpstream(int offset, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
-
-
-        private Rect _GetRectFromDownstream(int offset, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the offset at which to paint the caret.
-        ///
-        /// Valid only after [layout] has been called.
-        /// </Summary>
-        public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the tight bounded height of the glyph at the given [position].
-        ///
-        /// Valid only after [layout] has been called.
-        /// </Summary>
-        public virtual double GetFullHeightForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
-
-
-        private void _ComputeCaretMetrics(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a list of rects that bound the given selection.
-        ///
-        /// The [boxHeightStyle] and [boxWidthStyle] arguments may be used to select
-        /// the shape of the [TextBox]s. These properties default to
-        /// [ui.BoxHeightStyle.tight] and [ui.BoxWidthStyle.tight] respectively and
-        /// must not be null.
-        ///
-        /// A given selection might have more than one rect if this text painter
-        /// contains bidirectional text because logically contiguous text might not be
-        /// visually contiguous.
-        /// </Summary>
-        public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection, BoxHeightStyle boxHeightStyle = default(BoxHeightStyle), BoxWidthStyle boxWidthStyle = default(BoxWidthStyle)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the position within the text for the given pixel offset.
-        /// </Summary>
-        public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the text range of the word at the given offset. Characters not
-        /// part of a word, such as spaces, symbols, and punctuation, have word breaks
-        /// on both sides. In such cases, this method will return a text range that
-        /// contains the given text position.
-        ///
-        /// Word boundaries are defined more precisely in Unicode Standard Annex #29
-        /// <http://www.unicode.org/reports/tr29/#Word_Boundaries>.
-        /// </Summary>
-        public virtual TextRange GetWordBoundary(TextPosition position) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the text range of the line at the given offset.
-        ///
-        /// The newline, if any, is included in the range.
-        /// </Summary>
-        public virtual TextRange GetLineBoundary(TextPosition position) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the full list of [LineMetrics] that describe in detail the various
-        /// metrics of each laid out line.
-        ///
-        /// The [LineMetrics] list is presented in the order of the lines they represent.
-        /// For example, the first line is in the zeroth index.
-        ///
-        /// [LineMetrics] contains measurements such as ascent, descent, baseline, and
-        /// width for the line as a whole, and may be useful for aligning additional
-        /// widgets to a particular line.
-        ///
-        /// Valid only after [layout] has been called.
-        ///
-        /// This can potentially return a large amount of data, so it is not recommended
-        /// to repeatedly call this. Instead, cache the results. The cached results
-        /// should be invalidated upon the next successful [layout].
-        /// </Summary>
-        public virtual List<LineMetrics> ComputeLineMetrics() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// The different ways of measuring the width of one or more lines of text.
-    ///
-    /// See [Text.textWidthBasis], for example.
-    /// </Summary>
-    public enum TextWidthBasis
-    {
-
-        /// <Summary>
-        /// multiline text will take up the full width given by the parent. For single
-        /// line text, only the minimum amount of width needed to contain the text
-        /// will be used. A common use case for this is a standard series of
-        /// paragraphs.
-        /// </Summary>
-        Parent,
-        /// <Summary>
-        /// The width will be exactly enough to contain the longest line and no
-        /// longer. A common use case for this is chat bubbles.
-        /// </Summary>
-        LongestLine,
-    }
+    LongestLine,
+}
 
 }

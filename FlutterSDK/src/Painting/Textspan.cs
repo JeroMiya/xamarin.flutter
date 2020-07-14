@@ -480,102 +480,319 @@ namespace FlutterSDK.Painting.Textspan
         #region constructors
         public TextSpan(string text = default(string), List<FlutterSDK.Painting.Inlinespan.InlineSpan> children = default(List<FlutterSDK.Painting.Inlinespan.InlineSpan>), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer), string semanticsLabel = default(string))
         : base(style: style)
+    
+}
+    #endregion
+
+    #region fields
+    public new string Text { get; set; }
+    public new List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get; set; }
+    public new FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
+    public virtual string SemanticsLabel { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Apply the [style], [text], and [children] of this object to the
+    /// given [ParagraphBuilder], from which a [Paragraph] can be obtained.
+    /// [Paragraph] objects can be drawn on [Canvas] objects.
+    ///
+    /// Rather than using this directly, it's simpler to use the
+    /// [TextPainter] class to paint [TextSpan] objects onto [Canvas]
+    /// objects.
+    /// </Summary>
+    public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>))
+    {
+
+        bool hasStyle = Style != null;
+        if (hasStyle) builder.PushStyle(Style.GetTextStyle(textScaleFactor: textScaleFactor));
+        if (Text != null) builder.AddText(Text);
+        if (Children != null)
         {
-            this.Text = text;
-            this.Children = children;
-            this.Recognizer = recognizer;
-            this.SemanticsLabel = semanticsLabel; throw new NotImplementedException();
+            foreach (InlineSpan child in Children)
+            {
+
+                child.Build(builder, textScaleFactor: textScaleFactor, dimensions: dimensions);
+            }
+
         }
-        #endregion
 
-        #region fields
-        public new string Text { get; set; }
-        public new List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get; set; }
-        public new FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
-        public virtual string SemanticsLabel { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Apply the [style], [text], and [children] of this object to the
-        /// given [ParagraphBuilder], from which a [Paragraph] can be obtained.
-        /// [Paragraph] objects can be drawn on [Canvas] objects.
-        ///
-        /// Rather than using this directly, it's simpler to use the
-        /// [TextPainter] class to paint [TextSpan] objects onto [Canvas]
-        /// objects.
-        /// </Summary>
-        public new void Build(ParagraphBuilder builder, double textScaleFactor = 1.0, List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> dimensions = default(List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions>)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Walks this [TextSpan] and its descendants in pre-order and calls [visitor]
-        /// for each span that has text.
-        ///
-        /// When `visitor` returns true, the walk will continue. When `visitor`
-        /// returns false, then the walk will end.
-        /// </Summary>
-        public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Walks this [TextSpan] and any descendants in pre-order and calls `visitor`
-        /// for each span that has content.
-        ///
-        /// When `visitor` returns true, the walk will continue. When `visitor`
-        /// returns false, then the walk will end.
-        /// </Summary>
-        public new bool VisitTextSpan(Func<bool, TextSpan> visitor) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the text span that contains the given position in the text.
-        /// </Summary>
-        public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
-
-
-        public new void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true) { throw new NotImplementedException(); }
-
-
-        public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector) { throw new NotImplementedException(); }
-
-
-        public new int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset) { throw new NotImplementedException(); }
-
-
-        public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// In checked mode, throws an exception if the object is not in a valid
-        /// configuration. Otherwise, returns true.
-        ///
-        /// This is intended to be used as follows:
-        ///
-        /// ```dart
-        /// assert(myTextSpan.debugAssertIsValid());
-        /// ```
-        /// </Summary>
-        public new bool DebugAssertIsValid() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new string ToStringShort() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-
-        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
-
-        #endregion
+        if (hasStyle) builder.Pop();
     }
+
+
+
+
+    /// <Summary>
+    /// Walks this [TextSpan] and its descendants in pre-order and calls [visitor]
+    /// for each span that has text.
+    ///
+    /// When `visitor` returns true, the walk will continue. When `visitor`
+    /// returns false, then the walk will end.
+    /// </Summary>
+    public new bool VisitChildren(FlutterSDK.Painting.Inlinespan.InlineSpanVisitor visitor)
+    {
+        if (Text != null)
+        {
+            if (!visitor(this)) return false;
+        }
+
+        if (Children != null)
+        {
+            foreach (InlineSpan child in Children)
+            {
+                if (!child.VisitChildren(visitor)) return false;
+            }
+
+        }
+
+        return true;
+    }
+
+
+
+
+    /// <Summary>
+    /// Walks this [TextSpan] and any descendants in pre-order and calls `visitor`
+    /// for each span that has content.
+    ///
+    /// When `visitor` returns true, the walk will continue. When `visitor`
+    /// returns false, then the walk will end.
+    /// </Summary>
+    public new bool VisitTextSpan(Func<bool, TextSpan> visitor)
+    {
+        if (Text != null)
+        {
+            if (!visitor(this)) return false;
+        }
+
+        if (Children != null)
+        {
+            foreach (InlineSpan child in Children)
+            {
+
+                TextSpan textSpanChild = child as TextSpan;
+                if (!textSpanChild.VisitTextSpan(visitor)) return false;
+            }
+
+        }
+
+        return true;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the text span that contains the given position in the text.
+    /// </Summary>
+    public new FlutterSDK.Painting.Inlinespan.InlineSpan GetSpanForPositionVisitor(TextPosition position, FlutterSDK.Painting.Inlinespan.Accumulator offset)
+    {
+        if (Text == null)
+        {
+            return null;
+        }
+
+        TextAffinity affinity = position.Affinity;
+        int targetOffset = position.Offset;
+        int endOffset = offset.Value + Text.Length;
+        if (offset.Value == targetOffset && affinity == TextAffinity.Downstream || offset.Value < targetOffset && targetOffset < endOffset || endOffset == targetOffset && affinity == TextAffinity.Upstream)
+        {
+            return this;
+        }
+
+        offset.Increment(Text.Length);
+        return null;
+    }
+
+
+
+
+    public new void ComputeToPlainText(StringBuffer buffer, bool includeSemanticsLabels = true, bool includePlaceholders = true)
+    {
+
+        if (SemanticsLabel != null && includeSemanticsLabels)
+        {
+            buffer.Write(SemanticsLabel);
+        }
+        else if (Text != null)
+        {
+            buffer.Write(Text);
+        }
+
+        if (Children != null)
+        {
+            foreach (InlineSpan child in Children)
+            {
+                child.ComputeToPlainText(buffer, includeSemanticsLabels: includeSemanticsLabels, includePlaceholders: includePlaceholders);
+            }
+
+        }
+
+    }
+
+
+
+
+    public new void ComputeSemanticsInformation(List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> collector)
+    {
+
+        if (Text != null || SemanticsLabel != null)
+        {
+            collector.Add(new InlineSpanSemanticsInformation(Text, semanticsLabel: SemanticsLabel, recognizer: Recognizer));
+        }
+
+        if (Children != null)
+        {
+            foreach (InlineSpan child in Children)
+            {
+                child.ComputeSemanticsInformation(collector);
+            }
+
+        }
+
+    }
+
+
+
+
+    public new int CodeUnitAtVisitor(int index, FlutterSDK.Painting.Inlinespan.Accumulator offset)
+    {
+        if (Text == null)
+        {
+            return null;
+        }
+
+        if (index - offset.Value < Text.Length)
+        {
+            return Text.CodeUnitAt(index - offset.Value);
+        }
+
+        offset.Increment(Text.Length);
+        return null;
+    }
+
+
+
+
+    public new void DescribeSemantics(FlutterSDK.Painting.Inlinespan.Accumulator offset, List<int> semanticsOffsets, List<object> semanticsElements)
+    {
+        if (Recognizer != null && (Recognizer is TapGestureRecognizer || Recognizer is LongPressGestureRecognizer))
+        {
+            int length = SemanticsLabel?.Length ?? Text.Length;
+            semanticsOffsets.Add(offset.Value);
+            semanticsOffsets.Add(offset.Value + length);
+            semanticsElements.Add(((TapGestureRecognizer)Recognizer));
+        }
+
+        offset.Increment(Text != null ? Text.Length : 0);
+    }
+
+
+
+
+    /// <Summary>
+    /// In checked mode, throws an exception if the object is not in a valid
+    /// configuration. Otherwise, returns true.
+    ///
+    /// This is intended to be used as follows:
+    ///
+    /// ```dart
+    /// assert(myTextSpan.debugAssertIsValid());
+    /// ```
+    /// </Summary>
+    public new bool DebugAssertIsValid()
+    {
+
+        return base.DebugAssertIsValid();
+    }
+
+
+
+
+    public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+        if (other.GetType() != GetType()) return RenderComparison.Layout;
+        TextSpan textSpan = other as TextSpan;
+        if (textSpan.Text != Text || Children?.Count != textSpan.Children?.Count || (Style == null) != (textSpan.Style == null)) return RenderComparison.Layout;
+        RenderComparison result = Recognizer == textSpan.Recognizer ? RenderComparison.Identical : RenderComparison.Metadata;
+        if (Style != null)
+        {
+            RenderComparison candidate = Style.CompareTo(textSpan.Style);
+            if (candidate.Index > result.Index) result = candidate;
+            if (result == RenderComparison.Layout) return result;
+        }
+
+        if (Children != null)
+        {
+            for (int index = 0; index < Children.Count; index += 1)
+            {
+                RenderComparison candidate = Children[index].CompareTo(textSpan.Children[index]);
+                if (candidate.Index > result.Index) result = candidate;
+                if (result == RenderComparison.Layout) return result;
+            }
+
+        }
+
+        return result;
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        if (base != other) return false;
+        return other is TextSpan && other.Text == Text && other.Recognizer == Recognizer && other.SemanticsLabel == SemanticsLabel && CollectionsDefaultClass.ListEquals(other.Children, Children);
+    }
+
+
+
+
+    public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "TextSpan");
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new StringProperty("text", Text, showName: false, defaultValue: null));
+        if (Style == null && Text == null && Children == null) properties.Add(DiagnosticsNode.Message("(empty)"));
+        properties.Add(new DiagnosticsProperty<GestureRecognizer>("recognizer", Recognizer, description: Recognizer?.GetType()?.ToString(), defaultValue: null));
+        if (SemanticsLabel != null)
+        {
+            properties.Add(new StringProperty("semanticsLabel", SemanticsLabel));
+        }
+
+    }
+
+
+
+
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+    {
+        if (Children == null) return new List, < DiagnosticsNode > (};
+return Children.Map((InlineSpan child) => {
+if (child!=null ){
+return child.ToDiagnosticsNode();
+}
+else
+{
+    return DiagnosticsNode.Message("<null child>");
+}
+
+}
+).ToList();
+}
+
+
+
+#endregion
+}
 
 }

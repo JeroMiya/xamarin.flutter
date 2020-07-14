@@ -319,57 +319,74 @@ namespace FlutterSDK.Cupertino.Interfacelevel
         #region constructors
         public CupertinoUserInterfaceLevel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData data = default(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData _Data { get; set; }
-        #endregion
+    #region fields
+    internal virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData _Data { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevel oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
+    public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevel oldWidget) => oldWidget._Data != _Data;
 
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => oldWidget._Data != _Data;
 
-        /// <Summary>
-        /// The data from the closest instance of this class that encloses the given
-        /// context.
-        ///
-        /// You can use this function to query the user interface elevation level within
-        /// the given [BuildContext]. When that information changes, your widget will
-        /// be scheduled to be rebuilt, keeping your widget up-to-date.
-        /// </Summary>
-        public virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
     /// <Summary>
-    /// Indicates the visual level for a piece of content. Equivalent to `UIUserInterfaceLevel`
-    /// from `UIKit`.
+    /// The data from the closest instance of this class that encloses the given
+    /// context.
     ///
-    /// See also:
-    ///
-    ///  * `UIUserInterfaceLevel`, the UIKit equivalent: https://developer.apple.com/documentation/uikit/uiuserinterfacelevel.
+    /// You can use this function to query the user interface elevation level within
+    /// the given [BuildContext]. When that information changes, your widget will
+    /// be scheduled to be rebuilt, keeping your widget up-to-date.
     /// </Summary>
-    public enum CupertinoUserInterfaceLevelData
+    public virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData Of(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false)
     {
 
-        /// <Summary>
-        /// The level for your window's main content.
-        /// </Summary>
-        @Base,
-        /// <Summary>
-        /// The level for content visually above [base].
-        /// </Summary>
-        Elevated,
+
+        CupertinoUserInterfaceLevel query = context.DependOnInheritedWidgetOfExactType();
+        if (query != null) return query._Data;
+        if (nullOk) return null;
+        throw new FlutterError("CupertinoUserInterfaceLevel.of() called with a context that does not contain a CupertinoUserInterfaceLevel.\n" + "No CupertinoUserInterfaceLevel ancestor could be found starting from the context that was passed " + "to CupertinoUserInterfaceLevel.of(). This can happen because you do not have a WidgetsApp or " + "MaterialApp widget (those widgets introduce a CupertinoUserInterfaceLevel), or it can happen " + "if the context you use comes from a widget above those widgets.\n" + "The context used was:\n" + $"'  {context}'");
     }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<CupertinoUserInterfaceLevelData>("user interface level", _Data));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Indicates the visual level for a piece of content. Equivalent to `UIUserInterfaceLevel`
+/// from `UIKit`.
+///
+/// See also:
+///
+///  * `UIUserInterfaceLevel`, the UIKit equivalent: https://developer.apple.com/documentation/uikit/uiuserinterfacelevel.
+/// </Summary>
+public enum CupertinoUserInterfaceLevelData
+{
+
+    /// <Summary>
+    /// The level for your window's main content.
+    /// </Summary>
+    @Base,
+    /// <Summary>
+    /// The level for content visually above [base].
+    /// </Summary>
+    Elevated,
+}
 
 }

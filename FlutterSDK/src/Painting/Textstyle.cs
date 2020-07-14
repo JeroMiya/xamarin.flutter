@@ -806,195 +806,308 @@ namespace FlutterSDK.Painting.Textstyle
         #region constructors
         public TextStyle(bool inherit = true, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), string package = default(string))
         : base()
-        {
-            this.Inherit = inherit;
-            this.Color = color;
-            this.BackgroundColor = backgroundColor;
-            this.FontSize = fontSize;
-            this.FontWeight = fontWeight;
-            this.FontStyle = fontStyle;
-            this.LetterSpacing = letterSpacing;
-            this.WordSpacing = wordSpacing;
-            this.TextBaseline = textBaseline;
-            this.Height = height;
-            this.Locale = locale;
-            this.Foreground = foreground;
-            this.Background = background;
-            this.Shadows = shadows;
-            this.FontFeatures = fontFeatures;
-            this.Decoration = decoration;
-            this.DecorationColor = decorationColor;
-            this.DecorationStyle = decorationStyle;
-            this.DecorationThickness = decorationThickness;
-            this.DebugLabel = debugLabel; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool Inherit { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual string FontFamily { get; set; }
-        internal virtual List<string> _FontFamilyFallback { get; set; }
-        internal virtual string _Package { get; set; }
-        public virtual double FontSize { get; set; }
-        internal virtual double _DefaultFontSize { get; set; }
-        public virtual FontWeight FontWeight { get; set; }
-        public virtual FontStyle FontStyle { get; set; }
-        public virtual double LetterSpacing { get; set; }
-        public virtual double WordSpacing { get; set; }
-        public virtual TextBaseline TextBaseline { get; set; }
-        public virtual double Height { get; set; }
-        public virtual Locale Locale { get; set; }
-        public virtual SKPaint Foreground { get; set; }
-        public virtual SKPaint Background { get; set; }
-        public virtual TextDecoration Decoration { get; set; }
-        public virtual FlutterBinding.UI.Color DecorationColor { get; set; }
-        public virtual TextDecorationStyle DecorationStyle { get; set; }
-        public virtual double DecorationThickness { get; set; }
-        public virtual string DebugLabel { get; set; }
-        public virtual List<Shadow> Shadows { get; set; }
-        public virtual List<FontFeature> FontFeatures { get; set; }
-        public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual bool Inherit { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual string FontFamily { get; set; }
+    internal virtual List<string> _FontFamilyFallback { get; set; }
+    internal virtual string _Package { get; set; }
+    public virtual double FontSize { get; set; }
+    internal virtual double _DefaultFontSize { get; set; }
+    public virtual FontWeight FontWeight { get; set; }
+    public virtual FontStyle FontStyle { get; set; }
+    public virtual double LetterSpacing { get; set; }
+    public virtual double WordSpacing { get; set; }
+    public virtual TextBaseline TextBaseline { get; set; }
+    public virtual double Height { get; set; }
+    public virtual Locale Locale { get; set; }
+    public virtual SKPaint Foreground { get; set; }
+    public virtual SKPaint Background { get; set; }
+    public virtual TextDecoration Decoration { get; set; }
+    public virtual FlutterBinding.UI.Color DecorationColor { get; set; }
+    public virtual TextDecorationStyle DecorationStyle { get; set; }
+    public virtual double DecorationThickness { get; set; }
+    public virtual string DebugLabel { get; set; }
+    public virtual List<Shadow> Shadows { get; set; }
+    public virtual List<FontFeature> FontFeatures { get; set; }
+    public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this text style but with the given fields replaced with
-        /// the new values.
-        ///
-        /// One of [color] or [foreground] must be null, and if this has [foreground]
-        /// specified it will be given preference over any color parameter.
-        ///
-        /// One of [backgroundColor] or [background] must be null, and if this has
-        /// [background] specified it will be given preference over any
-        /// backgroundColor parameter.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle CopyWith(bool inherit = default(bool), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string)) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Creates a copy of this text style but with the given fields replaced with
+    /// the new values.
+    ///
+    /// One of [color] or [foreground] must be null, and if this has [foreground]
+    /// specified it will be given preference over any color parameter.
+    ///
+    /// One of [backgroundColor] or [background] must be null, and if this has
+    /// [background] specified it will be given preference over any
+    /// backgroundColor parameter.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle CopyWith(bool inherit = default(bool), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string))
+    {
 
 
-        /// <Summary>
-        /// Creates a copy of this text style replacing or altering the specified
-        /// properties.
-        ///
-        /// The non-numeric properties [color], [fontFamily], [decoration],
-        /// [decorationColor] and [decorationStyle] are replaced with the new values.
-        ///
-        /// [foreground] will be given preference over [color] if it is not null and
-        /// [background] will be given preference over [backgroundColor] if it is not
-        /// null.
-        ///
-        /// The numeric properties are multiplied by the given factors and then
-        /// incremented by the given deltas.
-        ///
-        /// For example, `style.apply(fontSizeFactor: 2.0, fontSizeDelta: 1.0)` would
-        /// return a [TextStyle] whose [fontSize] is `style.fontSize * 2.0 + 1.0`.
-        ///
-        /// For the [fontWeight], the delta is applied to the [FontWeight] enum index
-        /// values, so that for instance `style.apply(fontWeightDelta: -2)` when
-        /// applied to a `style` whose [fontWeight] is [FontWeight.w500] will return a
-        /// [TextStyle] with a [FontWeight.w300].
-        ///
-        /// The numeric arguments must not be null.
-        ///
-        /// If the underlying values are null, then the corresponding factors and/or
-        /// deltas must not be specified.
-        ///
-        /// If [foreground] is specified on this object, then applying [color] here
-        /// will have no effect and if [background] is specified on this object, then
-        /// applying [backgroundColor] here will have no effect either.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Apply(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThicknessFactor = 1.0, double decorationThicknessDelta = 0.0, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSizeFactor = 1.0, double fontSizeDelta = 0.0, int fontWeightDelta = 0, double letterSpacingFactor = 1.0, double letterSpacingDelta = 0.0, double wordSpacingFactor = 1.0, double wordSpacingDelta = 0.0, double heightFactor = 1.0, double heightDelta = 0.0) { throw new NotImplementedException(); }
+        string newDebugLabel = default(string);
 
-
-        /// <Summary>
-        /// Returns a new text style that is a combination of this style and the given
-        /// [other] style.
-        ///
-        /// If the given [other] text style has its [TextStyle.inherit] set to true,
-        /// its null properties are replaced with the non-null properties of this text
-        /// style. The [other] style _inherits_ the properties of this style. Another
-        /// way to think of it is that the "missing" properties of the [other] style
-        /// are _filled_ by the properties of this style.
-        ///
-        /// If the given [other] text style has its [TextStyle.inherit] set to false,
-        /// returns the given [other] style unchanged. The [other] style does not
-        /// inherit properties of this style.
-        ///
-        /// If the given text style is null, returns this text style.
-        ///
-        /// One of [color] or [foreground] must be null, and if this or `other` has
-        /// [foreground] specified it will be given preference over any color parameter.
-        ///
-        /// Similarly, One of [backgroundColor] or [background] must be null, and if
-        /// this or `other` has [background] specified it will be given preference
-        /// over any backgroundColor parameter.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Merge(FlutterSDK.Painting.Textstyle.TextStyle other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Interpolate between two text styles.
-        ///
-        /// This will not work well if the styles don't set the same fields.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        ///
-        /// If [foreground] is specified on either of `a` or `b`, both will be treated
-        /// as if they have a [foreground] paint (creating a new [Paint] if necessary
-        /// based on the [color] property).
-        ///
-        /// If [background] is specified on either of `a` or `b`, both will be treated
-        /// as if they have a [background] paint (creating a new [Paint] if necessary
-        /// based on the [backgroundColor] property).
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Lerp(FlutterSDK.Painting.Textstyle.TextStyle a, FlutterSDK.Painting.Textstyle.TextStyle b, double t) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The style information for text runs, encoded for use by `dart:ui`.
-        /// </Summary>
-        public virtual TextStyle GetTextStyle(double textScaleFactor = 1.0) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The style information for paragraphs, encoded for use by `dart:ui`.
-        ///
-        /// The `textScaleFactor` argument must not be null. If omitted, it defaults
-        /// to 1.0. The other arguments may be null. The `maxLines` argument, if
-        /// specified and non-null, must be greater than zero.
-        ///
-        /// If the font size on this style isn't set, it will default to 14 logical
-        /// pixels.
-        /// </Summary>
-        public virtual ParagraphStyle GetParagraphStyle(TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, string ellipsis = default(string), int maxLines = default(int), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), Locale locale = default(Locale), string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double height = default(double), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Describe the difference between this style and another, in terms of how
-        /// much damage it will make to the rendering.
-        ///
-        /// See also:
-        ///
-        ///  * [TextSpan.compareTo], which does the same thing for entire [TextSpan]s.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Textstyle.TextStyle other) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new string ToStringShort() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Adds all properties prefixing property names with the optional `prefix`.
-        /// </Summary>
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties, string prefix = default(string)) { throw new NotImplementedException(); }
-
-        #endregion
+        return new TextStyle(inherit: inherit ?? this.Inherit, color: this.Foreground == null && foreground == null ? color ?? this.Color : null, backgroundColor: this.Background == null && background == null ? backgroundColor ?? this.BackgroundColor : null, fontFamily: fontFamily ?? this.FontFamily, fontFamilyFallback: fontFamilyFallback ?? this.FontFamilyFallback, fontSize: fontSize == default(double) ? this.fontSize : fontSize, fontWeight: fontWeight ?? this.FontWeight, fontStyle: fontStyle ?? this.FontStyle, letterSpacing: letterSpacing == default(double) ? this.letterSpacing : letterSpacing, wordSpacing: wordSpacing == default(double) ? this.wordSpacing : wordSpacing, textBaseline: textBaseline ?? this.TextBaseline, height: height == default(double) ? this.height : height, locale: locale ?? this.Locale, foreground: foreground ?? this.Foreground, background: background ?? this.Background, shadows: shadows ?? this.Shadows, fontFeatures: fontFeatures ?? this.FontFeatures, decoration: decoration ?? this.Decoration, decorationColor: decorationColor ?? this.DecorationColor, decorationStyle: decorationStyle ?? this.DecorationStyle, decorationThickness: decorationThickness == default(double) ? this.decorationThickness : decorationThickness, debugLabel: newDebugLabel);
     }
+
+
+
+
+    /// <Summary>
+    /// Creates a copy of this text style replacing or altering the specified
+    /// properties.
+    ///
+    /// The non-numeric properties [color], [fontFamily], [decoration],
+    /// [decorationColor] and [decorationStyle] are replaced with the new values.
+    ///
+    /// [foreground] will be given preference over [color] if it is not null and
+    /// [background] will be given preference over [backgroundColor] if it is not
+    /// null.
+    ///
+    /// The numeric properties are multiplied by the given factors and then
+    /// incremented by the given deltas.
+    ///
+    /// For example, `style.apply(fontSizeFactor: 2.0, fontSizeDelta: 1.0)` would
+    /// return a [TextStyle] whose [fontSize] is `style.fontSize * 2.0 + 1.0`.
+    ///
+    /// For the [fontWeight], the delta is applied to the [FontWeight] enum index
+    /// values, so that for instance `style.apply(fontWeightDelta: -2)` when
+    /// applied to a `style` whose [fontWeight] is [FontWeight.w500] will return a
+    /// [TextStyle] with a [FontWeight.w300].
+    ///
+    /// The numeric arguments must not be null.
+    ///
+    /// If the underlying values are null, then the corresponding factors and/or
+    /// deltas must not be specified.
+    ///
+    /// If [foreground] is specified on this object, then applying [color] here
+    /// will have no effect and if [background] is specified on this object, then
+    /// applying [backgroundColor] here will have no effect either.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Apply(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThicknessFactor = 1.0, double decorationThicknessDelta = 0.0, string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSizeFactor = 1.0, double fontSizeDelta = 0.0, int fontWeightDelta = 0, double letterSpacingFactor = 1.0, double letterSpacingDelta = 0.0, double wordSpacingFactor = 1.0, double wordSpacingDelta = 0.0, double heightFactor = 1.0, double heightDelta = 0.0)
+    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        string modifiedDebugLabel = default(string);
+
+        return new TextStyle(inherit: Inherit, color: Foreground == null ? color ?? this.Color : null, backgroundColor: Background == null ? backgroundColor ?? this.BackgroundColor : null, fontFamily: fontFamily ?? this.FontFamily, fontFamilyFallback: fontFamilyFallback ?? this.FontFamilyFallback, fontSize: FontSize == null ? null : FontSize * fontSizeFactor + fontSizeDelta, fontWeight: FontWeight == null ? null : Dart:uiDefaultClass.FontWeight.Values[(FontWeight.Index + fontWeightDelta).Clamp(0, Dart: uiDefaultClass.FontWeight.Values.Count - 1) as int], fontStyle: FontStyle, letterSpacing: LetterSpacing == null ? null : LetterSpacing * letterSpacingFactor + letterSpacingDelta, wordSpacing: WordSpacing == null ? null : WordSpacing * wordSpacingFactor + wordSpacingDelta, textBaseline: TextBaseline, height: Height == null ? null : Height * heightFactor + heightDelta, locale: Locale, foreground: Foreground, background: Background, shadows: Shadows, fontFeatures: FontFeatures, decoration: decoration ?? this.Decoration, decorationColor: decorationColor ?? this.DecorationColor, decorationStyle: decorationStyle ?? this.DecorationStyle, decorationThickness: DecorationThickness == null ? null : DecorationThickness * decorationThicknessFactor + decorationThicknessDelta, debugLabel: modifiedDebugLabel);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a new text style that is a combination of this style and the given
+    /// [other] style.
+    ///
+    /// If the given [other] text style has its [TextStyle.inherit] set to true,
+    /// its null properties are replaced with the non-null properties of this text
+    /// style. The [other] style _inherits_ the properties of this style. Another
+    /// way to think of it is that the "missing" properties of the [other] style
+    /// are _filled_ by the properties of this style.
+    ///
+    /// If the given [other] text style has its [TextStyle.inherit] set to false,
+    /// returns the given [other] style unchanged. The [other] style does not
+    /// inherit properties of this style.
+    ///
+    /// If the given text style is null, returns this text style.
+    ///
+    /// One of [color] or [foreground] must be null, and if this or `other` has
+    /// [foreground] specified it will be given preference over any color parameter.
+    ///
+    /// Similarly, One of [backgroundColor] or [background] must be null, and if
+    /// this or `other` has [background] specified it will be given preference
+    /// over any backgroundColor parameter.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Merge(FlutterSDK.Painting.Textstyle.TextStyle other)
+    {
+        if (other == null) return this;
+        if (!other.Inherit) return other;
+        string mergedDebugLabel = default(string);
+
+        return CopyWith(color: other.Color, backgroundColor: other.BackgroundColor, fontFamily: other.FontFamily, fontFamilyFallback: other.FontFamilyFallback, fontSize: other.FontSize, fontWeight: other.FontWeight, fontStyle: other.FontStyle, letterSpacing: other.LetterSpacing, wordSpacing: other.WordSpacing, textBaseline: other.TextBaseline, height: other.Height, locale: other.Locale, foreground: other.Foreground, background: other.Background, shadows: other.Shadows, fontFeatures: other.FontFeatures, decoration: other.Decoration, decorationColor: other.DecorationColor, decorationStyle: other.DecorationStyle, decorationThickness: other.DecorationThickness, debugLabel: mergedDebugLabel);
+    }
+
+
+
+
+    /// <Summary>
+    /// Interpolate between two text styles.
+    ///
+    /// This will not work well if the styles don't set the same fields.
+    ///
+    /// {@macro dart.ui.shadow.lerp}
+    ///
+    /// If [foreground] is specified on either of `a` or `b`, both will be treated
+    /// as if they have a [foreground] paint (creating a new [Paint] if necessary
+    /// based on the [color] property).
+    ///
+    /// If [background] is specified on either of `a` or `b`, both will be treated
+    /// as if they have a [background] paint (creating a new [Paint] if necessary
+    /// based on the [backgroundColor] property).
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle Lerp(FlutterSDK.Painting.Textstyle.TextStyle a, FlutterSDK.Painting.Textstyle.TextStyle b, double t)
+    {
+
+
+        if (a == null && b == null)
+        {
+            return null;
+        }
+
+        string lerpDebugLabel = default(string);
+
+        if (a == null)
+        {
+            return new TextStyle(inherit: b.Inherit, color: Dart:uiDefaultClass.Color.Lerp(null, b.Color, t), backgroundColor: Dart:uiDefaultClass.Color.Lerp(null, b.BackgroundColor, t), fontFamily: t < 0.5 ? null : b.FontFamily, fontFamilyFallback: t < 0.5 ? null : b.FontFamilyFallback, fontSize: t < 0.5 ? null : b.FontSize, fontWeight: Dart:uiDefaultClass.FontWeight.Lerp(null, b.FontWeight, t), fontStyle: t < 0.5 ? null : b.FontStyle, letterSpacing: t < 0.5 ? null : b.LetterSpacing, wordSpacing: t < 0.5 ? null : b.WordSpacing, textBaseline: t < 0.5 ? null : b.TextBaseline, height: t < 0.5 ? null : b.Height, locale: t < 0.5 ? null : b.Locale, foreground: t < 0.5 ? null : b.Foreground, background: t < 0.5 ? null : b.Background, decoration: t < 0.5 ? null : b.Decoration, shadows: t < 0.5 ? null : b.Shadows, fontFeatures: t < 0.5 ? null : b.FontFeatures, decorationColor: Dart:uiDefaultClass.Color.Lerp(null, b.DecorationColor, t), decorationStyle: t < 0.5 ? null : b.DecorationStyle, decorationThickness: t < 0.5 ? null : b.DecorationThickness, debugLabel: lerpDebugLabel);
+        }
+
+        if (b == null)
+        {
+            return new TextStyle(inherit: a.Inherit, color: Dart:uiDefaultClass.Color.Lerp(a.Color, null, t), backgroundColor: Dart:uiDefaultClass.Color.Lerp(null, a.BackgroundColor, t), fontFamily: t < 0.5 ? a.FontFamily : null, fontFamilyFallback: t < 0.5 ? a.FontFamilyFallback : null, fontSize: t < 0.5 ? a.FontSize : null, fontWeight: Dart:uiDefaultClass.FontWeight.Lerp(a.FontWeight, null, t), fontStyle: t < 0.5 ? a.FontStyle : null, letterSpacing: t < 0.5 ? a.LetterSpacing : null, wordSpacing: t < 0.5 ? a.WordSpacing : null, textBaseline: t < 0.5 ? a.TextBaseline : null, height: t < 0.5 ? a.Height : null, locale: t < 0.5 ? a.Locale : null, foreground: t < 0.5 ? a.Foreground : null, background: t < 0.5 ? a.Background : null, shadows: t < 0.5 ? a.Shadows : null, fontFeatures: t < 0.5 ? a.FontFeatures : null, decoration: t < 0.5 ? a.Decoration : null, decorationColor: Dart:uiDefaultClass.Color.Lerp(a.DecorationColor, null, t), decorationStyle: t < 0.5 ? a.DecorationStyle : null, decorationThickness: t < 0.5 ? a.DecorationThickness : null, debugLabel: lerpDebugLabel);
+        }
+
+        return new TextStyle(inherit: b.Inherit, color: a.Foreground == null && b.Foreground == null ? Dart : uiDefaultClass.Color.Lerp(a.Color, b.Color, t):null, backgroundColor: a.Background == null && b.Background == null ? Dart : uiDefaultClass.Color.Lerp(a.BackgroundColor, b.BackgroundColor, t):null, fontFamily: t < 0.5 ? a.FontFamily : b.FontFamily, fontFamilyFallback: t < 0.5 ? a.FontFamilyFallback : b.FontFamilyFallback, fontSize: Ui.Dart:uiDefaultClass.LerpDouble(a.FontSize ?? b.FontSize, b.FontSize ?? a.FontSize, t), fontWeight: Dart:uiDefaultClass.FontWeight.Lerp(a.FontWeight, b.FontWeight, t), fontStyle: t < 0.5 ? a.FontStyle : b.FontStyle, letterSpacing: Ui.Dart:uiDefaultClass.LerpDouble(a.LetterSpacing ?? b.LetterSpacing, b.LetterSpacing ?? a.LetterSpacing, t), wordSpacing: Ui.Dart:uiDefaultClass.LerpDouble(a.WordSpacing ?? b.WordSpacing, b.WordSpacing ?? a.WordSpacing, t), textBaseline: t < 0.5 ? a.TextBaseline : b.TextBaseline, height: Ui.Dart:uiDefaultClass.LerpDouble(a.Height ?? b.Height, b.Height ?? a.Height, t), locale: t < 0.5 ? a.Locale : b.Locale, foreground: (a.Foreground != null || b.Foreground != null) ? t < 0.5 ? a.Foreground ?? (new Paint()..Color = a.Color) : b.Foreground ?? (new Paint()..Color = b.Color) : null, background: (a.Background != null || b.Background != null) ? t < 0.5 ? a.Background ?? (new Paint()..Color = a.BackgroundColor) : b.Background ?? (new Paint()..Color = b.BackgroundColor) : null, shadows: t < 0.5 ? a.Shadows : b.Shadows, fontFeatures: t < 0.5 ? a.FontFeatures : b.FontFeatures, decoration: t < 0.5 ? a.Decoration : b.Decoration, decorationColor: Dart:uiDefaultClass.Color.Lerp(a.DecorationColor, b.DecorationColor, t), decorationStyle: t < 0.5 ? a.DecorationStyle : b.DecorationStyle, decorationThickness: Ui.Dart:uiDefaultClass.LerpDouble(a.DecorationThickness ?? b.DecorationThickness, b.DecorationThickness ?? a.DecorationThickness, t), debugLabel: lerpDebugLabel);
+    }
+
+
+
+
+    /// <Summary>
+    /// The style information for text runs, encoded for use by `dart:ui`.
+    /// </Summary>
+    public virtual TextStyle GetTextStyle(double textScaleFactor = 1.0)
+    {
+        return new Ui.TextStyle(color: Color, decoration: Decoration, decorationColor: DecorationColor, decorationStyle: DecorationStyle, decorationThickness: DecorationThickness, fontWeight: FontWeight, fontStyle: FontStyle, textBaseline: TextBaseline, fontFamily: FontFamily, fontFamilyFallback: FontFamilyFallback, fontSize: FontSize == null ? null : FontSize * textScaleFactor, letterSpacing: LetterSpacing, wordSpacing: WordSpacing, height: Height, locale: Locale, foreground: Foreground, background: Background ?? (BackgroundColor != null ? (new Paint()..Color = BackgroundColor) : null), shadows: Shadows, fontFeatures: FontFeatures);
+    }
+
+
+
+
+    /// <Summary>
+    /// The style information for paragraphs, encoded for use by `dart:ui`.
+    ///
+    /// The `textScaleFactor` argument must not be null. If omitted, it defaults
+    /// to 1.0. The other arguments may be null. The `maxLines` argument, if
+    /// specified and non-null, must be greater than zero.
+    ///
+    /// If the font size on this style isn't set, it will default to 14 logical
+    /// pixels.
+    /// </Summary>
+    public virtual ParagraphStyle GetParagraphStyle(TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, string ellipsis = default(string), int maxLines = default(int), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), Locale locale = default(Locale), string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double height = default(double), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle))
+    {
+
+
+        return new Ui.ParagraphStyle(textAlign: textAlign, textDirection: textDirection, fontWeight: fontWeight ?? this.FontWeight, fontStyle: fontStyle ?? this.FontStyle, fontFamily: fontFamily ?? this.FontFamily, fontSize: (fontSize == default(double) ? this.fontSize : fontSize ?? _DefaultFontSize) * textScaleFactor, height: height == default(double) ? this.height : height, textHeightBehavior: textHeightBehavior, strutStyle: strutStyle == null ? null : new Ui.StrutStyle(fontFamily: strutStyle.FontFamily, fontFamilyFallback: strutStyle.FontFamilyFallback, fontSize: strutStyle.FontSize == null ? null : strutStyle.FontSize * textScaleFactor, height: strutStyle.Height, leading: strutStyle.Leading, fontWeight: strutStyle.FontWeight, fontStyle: strutStyle.FontStyle, forceStrutHeight: strutStyle.ForceStrutHeight), maxLines: maxLines, ellipsis: ellipsis, locale: locale);
+    }
+
+
+
+
+    /// <Summary>
+    /// Describe the difference between this style and another, in terms of how
+    /// much damage it will make to the rendering.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSpan.compareTo], which does the same thing for entire [TextSpan]s.
+    /// </Summary>
+    public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Textstyle.TextStyle other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+        if (Inherit != other.Inherit || FontFamily != other.FontFamily || FontSize != other.FontSize || FontWeight != other.FontWeight || FontStyle != other.FontStyle || LetterSpacing != other.LetterSpacing || WordSpacing != other.WordSpacing || TextBaseline != other.TextBaseline || Height != other.Height || Locale != other.Locale || Foreground != other.Foreground || Background != other.Background || !CollectionsDefaultClass.ListEquals(Shadows, other.Shadows) || !CollectionsDefaultClass.ListEquals(FontFeatures, other.FontFeatures) || !CollectionsDefaultClass.ListEquals(FontFamilyFallback, other.FontFamilyFallback)) return RenderComparison.Layout;
+        if (Color != other.Color || BackgroundColor != other.BackgroundColor || Decoration != other.Decoration || DecorationColor != other.DecorationColor || DecorationStyle != other.DecorationStyle || DecorationThickness != other.DecorationThickness) return RenderComparison.Paint;
+        return RenderComparison.Identical;
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is TextStyle && other.Inherit == Inherit && other.Color == Color && other.BackgroundColor == BackgroundColor && other.FontFamily == FontFamily && other.FontSize == FontSize && other.FontWeight == FontWeight && other.FontStyle == FontStyle && other.LetterSpacing == LetterSpacing && other.WordSpacing == WordSpacing && other.TextBaseline == TextBaseline && other.Height == Height && other.Locale == Locale && other.Foreground == Foreground && other.Background == Background && other.Decoration == Decoration && other.DecorationColor == DecorationColor && other.DecorationStyle == DecorationStyle && other.DecorationThickness == DecorationThickness && CollectionsDefaultClass.ListEquals(other.Shadows, Shadows) && CollectionsDefaultClass.ListEquals(other.FontFeatures, FontFeatures) && CollectionsDefaultClass.ListEquals(other.FontFamilyFallback, FontFamilyFallback);
+    }
+
+
+
+
+    public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "TextStyle");
+
+
+
+    /// <Summary>
+    /// Adds all properties prefixing property names with the optional `prefix`.
+    /// </Summary>
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties, string prefix = default(string))
+    {
+        base.DebugFillProperties(properties);
+        if (DebugLabel != null) properties.Add(new MessageProperty($"'{prefix}debugLabel'", DebugLabel));
+        List<DiagnosticsNode> styles = new List<DiagnosticsNode>() { new ColorProperty($"'{prefix}color'", Color, defaultValue: null), new ColorProperty($"'{prefix}backgroundColor'", BackgroundColor, defaultValue: null), new StringProperty($"'{prefix}family'", FontFamily, defaultValue: null, quoted: false), new IterableProperty<string>($"'{prefix}familyFallback'", FontFamilyFallback, defaultValue: null), new DoubleProperty($"'{prefix}size'", FontSize, defaultValue: null) };
+        string weightDescription = default(string);
+        if (FontWeight != null)
+        {
+            weightDescription = $"'{FontWeight.Index + 1}00'";
+        }
+
+        styles.Add(new DiagnosticsProperty<FontWeight>($"'{prefix}weight'", FontWeight, description: weightDescription, defaultValue: null));
+        styles.Add(new EnumProperty<FontStyle>($"'{prefix}style'", FontStyle, defaultValue: null));
+        styles.Add(new DoubleProperty($"'{prefix}letterSpacing'", LetterSpacing, defaultValue: null));
+        styles.Add(new DoubleProperty($"'{prefix}wordSpacing'", WordSpacing, defaultValue: null));
+        styles.Add(new EnumProperty<TextBaseline>($"'{prefix}baseline'", TextBaseline, defaultValue: null));
+        styles.Add(new DoubleProperty($"'{prefix}height'", Height, unit: 'x', defaultValue: null));
+        styles.Add(new DiagnosticsProperty<Locale>($"'{prefix}locale'", Locale, defaultValue: null));
+        styles.Add(new DiagnosticsProperty<Paint>($"'{prefix}foreground'", Foreground, defaultValue: null));
+        styles.Add(new DiagnosticsProperty<Paint>($"'{prefix}background'", Background, defaultValue: null));
+        if (Decoration != null || DecorationColor != null || DecorationStyle != null || DecorationThickness != null)
+        {
+            List<string> decorationDescription = new List<string>() { };
+            if (DecorationStyle != null) decorationDescription.Add(DiagnosticsDefaultClass.DescribeEnum(DecorationStyle));
+            styles.Add(new ColorProperty($"'{prefix}decorationColor'", DecorationColor, defaultValue: null, level: DiagnosticLevel.Fine));
+            if (DecorationColor != null) decorationDescription.Add($"'{DecorationColor}'");
+            styles.Add(new DiagnosticsProperty<TextDecoration>($"'{prefix}decoration'", Decoration, defaultValue: null, level: DiagnosticLevel.Hidden));
+            if (Decoration != null) decorationDescription.Add($"'{Decoration}'");
+
+            styles.Add(new MessageProperty($"'{prefix}decoration'", decorationDescription.Join(' ')));
+            styles.Add(new DoubleProperty($"'{prefix}decorationThickness'", DecorationThickness, unit: 'x', defaultValue: null));
+        }
+
+        bool styleSpecified = styles.Any((DiagnosticsNode n) => =>!n.IsFiltered(DiagnosticLevel.Info));
+        properties.Add(new DiagnosticsProperty<bool>($"'{prefix}inherit'", Inherit, level: (!styleSpecified && Inherit) ? DiagnosticLevel.Fine : DiagnosticLevel.Info));
+        styles.ForEach(properties.Add);
+        if (!styleSpecified) properties.Add(new FlagProperty("inherit", value: Inherit, ifTrue: $"'{prefix}<all styles inherited>'", ifFalse: $"'{prefix}<no style specified>'"));
+    }
+
+
+
+    #endregion
+}
 
 }

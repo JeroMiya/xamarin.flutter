@@ -518,230 +518,302 @@ namespace FlutterSDK.Widgets.Container
         #region constructors
         public DecoratedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-        {
-            this.Decoration = decoration;
-            this.Position = position; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+    public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Rendering.Proxybox.RenderDecoratedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderDecoratedBox renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A convenience widget that combines common painting, positioning, and sizing
-    /// widgets.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=c1xLMaTUWCY}
-    ///
-    /// A container first surrounds the child with [padding] (inflated by any
-    /// borders present in the [decoration]) and then applies additional
-    /// [constraints] to the padded extent (incorporating the `width` and `height`
-    /// as constraints, if either is non-null). The container is then surrounded by
-    /// additional empty space described from the [margin].
-    ///
-    /// During painting, the container first applies the given [transform], then
-    /// paints the [decoration] to fill the padded extent, then it paints the child,
-    /// and finally paints the [foregroundDecoration], also filling the padded
-    /// extent.
-    ///
-    /// Containers with no children try to be as big as possible unless the incoming
-    /// constraints are unbounded, in which case they try to be as small as
-    /// possible. Containers with children size themselves to their children. The
-    /// `width`, `height`, and [constraints] arguments to the constructor override
-    /// this.
-    ///
-    /// ## Layout behavior
-    ///
-    /// _See [BoxConstraints] for an introduction to box layout models._
-    ///
-    /// Since [Container] combines a number of other widgets each with their own
-    /// layout behavior, [Container]'s layout behavior is somewhat complicated.
-    ///
-    /// Summary: [Container] tries, in order: to honor [alignment], to size itself
-    /// to the [child], to honor the `width`, `height`, and [constraints], to expand
-    /// to fit the parent, to be as small as possible.
-    ///
-    /// More specifically:
-    ///
-    /// If the widget has no child, no `height`, no `width`, no [constraints],
-    /// and the parent provides unbounded constraints, then [Container] tries to
-    /// size as small as possible.
-    ///
-    /// If the widget has no child and no [alignment], but a `height`, `width`, or
-    /// [constraints] are provided, then the [Container] tries to be as small as
-    /// possible given the combination of those constraints and the parent's
-    /// constraints.
-    ///
-    /// If the widget has no child, no `height`, no `width`, no [constraints], and
-    /// no [alignment], but the parent provides bounded constraints, then
-    /// [Container] expands to fit the constraints provided by the parent.
-    ///
-    /// If the widget has an [alignment], and the parent provides unbounded
-    /// constraints, then the [Container] tries to size itself around the child.
-    ///
-    /// If the widget has an [alignment], and the parent provides bounded
-    /// constraints, then the [Container] tries to expand to fit the parent, and
-    /// then positions the child within itself as per the [alignment].
-    ///
-    /// Otherwise, the widget has a [child] but no `height`, no `width`, no
-    /// [constraints], and no [alignment], and the [Container] passes the
-    /// constraints from the parent to the child and sizes itself to match the
-    /// child.
-    ///
-    /// The [margin] and [padding] properties also affect the layout, as described
-    /// in the documentation for those properties. (Their effects merely augment the
-    /// rules described above.) The [decoration] can implicitly increase the
-    /// [padding] (e.g. borders in a [BoxDecoration] contribute to the [padding]);
-    /// see [Decoration.padding].
-    ///
-    /// ## Example
-    ///
-    /// {@tool snippet}
-    /// This example shows a 48x48 amber square (placed inside a [Center] widget in
-    /// case the parent widget has its own opinions regarding the size that the
-    /// [Container] should take), with a margin so that it stays away from
-    /// neighboring widgets:
-    ///
-    /// ![An amber colored container with the dimensions of 48 square pixels.](https://flutter.github.io/assets-for-api-docs/assets/widgets/container_a.png)
-    ///
-    /// ```dart
-    /// Center(
-    ///   child: Container(
-    ///     margin: const EdgeInsets.all(10.0),
-    ///     color: Colors.amber[600],
-    ///     width: 48.0,
-    ///     height: 48.0,
-    ///   ),
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// {@tool snippet}
-    ///
-    /// This example shows how to use many of the features of [Container] at once.
-    /// The [constraints] are set to fit the font size plus ample headroom
-    /// vertically, while expanding horizontally to fit the parent. The [padding] is
-    /// used to make sure there is space between the contents and the text. The
-    /// [color] makes the box blue. The [alignment] causes the [child] to be
-    /// centered in the box. Finally, the [transform] applies a slight rotation to the
-    /// entire contraption to complete the effect.
-    ///
-    /// ![A blue rectangular container with 'Hello World' in the center, rotated
-    /// slightly in the z axis.](https://flutter.github.io/assets-for-api-docs/assets/widgets/container_b.png)
-    ///
-    /// ```dart
-    /// Container(
-    ///   constraints: BoxConstraints.expand(
-    ///     height: Theme.of(context).textTheme.headline4.fontSize * 1.1 + 200.0,
-    ///   ),
-    ///   padding: const EdgeInsets.all(8.0),
-    ///   color: Colors.blue[600],
-    ///   alignment: Alignment.center,
-    ///   child: Text('Hello World',
-    ///     style: Theme.of(context)
-    ///         .textTheme
-    ///         .headline4
-    ///         .copyWith(color: Colors.white)),
-    ///   transform: Matrix4.rotationZ(0.1),
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedContainer], a variant that smoothly animates the properties when
-    ///    they change.
-    ///  * [Border], which has a sample which uses [Container] heavily.
-    ///  * [Ink], which paints a [Decoration] on a [Material], allowing
-    ///    [InkResponse] and [InkWell] splashes to paint over them.
-    ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-    /// </Summary>
-    public class Container : FlutterSDK.Widgets.Framework.StatelessWidget
+    public new FlutterSDK.Rendering.Proxybox.RenderDecoratedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public Container(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
-        : base(key: key)
-        {
-            this.Alignment = alignment;
-            this.Padding = padding;
-            this.Color = color;
-            this.Decoration = decoration;
-            this.ForegroundDecoration = foregroundDecoration;
-            this.Margin = margin;
-            this.Transform = transform;
-            this.Child = child;
-            this.ClipBehavior = clipBehavior; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration ForegroundDecoration { get; set; }
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-        public virtual Matrix4 Transform { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return new RenderDecoratedBox(decoration: Decoration, position: Position, configuration: ImageDefaultClass.CreateLocalImageConfiguration(context));
     }
 
 
-    /// <Summary>
-    /// A clipper that uses [Decoration.getClipPath] to clip.
-    /// </Summary>
-    public class _DecorationClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderDecoratedBox renderObject)
     {
-        #region constructors
-        public _DecorationClipper(TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration))
-        : base()
-        {
-            this.Decoration = decoration; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual TextDirection TextDirection { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        #endregion
-
-        #region methods
-
-        public new Path GetClip(Size size) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldReclip(FlutterSDK.Widgets.Container._DecorationClipper oldClipper) { throw new NotImplementedException(); }
-
-        #endregion
+        ..Decoration = Decoration..Configuration = ImageDefaultClass.CreateLocalImageConfiguration(context)..Position = Position;
     }
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+    {
+        ..Decoration = Decoration..Configuration = ImageDefaultClass.CreateLocalImageConfiguration(context)..Position = Position;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        string label = default(string);
+        if (Position != null)
+        {
+            switch (Position) { case DecorationPosition.Background: label = "bg"; break; case DecorationPosition.Foreground: label = "fg"; break; }
+        }
+        else
+        {
+            label = "decoration";
+        }
+
+        properties.Add(new EnumProperty<DecorationPosition>("position", Position, level: Position != null ? DiagnosticLevel.Hidden : DiagnosticLevel.Info));
+        properties.Add(new DiagnosticsProperty<Decoration>(label, Decoration, ifNull: "no decoration", showName: Decoration != null));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A convenience widget that combines common painting, positioning, and sizing
+/// widgets.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=c1xLMaTUWCY}
+///
+/// A container first surrounds the child with [padding] (inflated by any
+/// borders present in the [decoration]) and then applies additional
+/// [constraints] to the padded extent (incorporating the `width` and `height`
+/// as constraints, if either is non-null). The container is then surrounded by
+/// additional empty space described from the [margin].
+///
+/// During painting, the container first applies the given [transform], then
+/// paints the [decoration] to fill the padded extent, then it paints the child,
+/// and finally paints the [foregroundDecoration], also filling the padded
+/// extent.
+///
+/// Containers with no children try to be as big as possible unless the incoming
+/// constraints are unbounded, in which case they try to be as small as
+/// possible. Containers with children size themselves to their children. The
+/// `width`, `height`, and [constraints] arguments to the constructor override
+/// this.
+///
+/// ## Layout behavior
+///
+/// _See [BoxConstraints] for an introduction to box layout models._
+///
+/// Since [Container] combines a number of other widgets each with their own
+/// layout behavior, [Container]'s layout behavior is somewhat complicated.
+///
+/// Summary: [Container] tries, in order: to honor [alignment], to size itself
+/// to the [child], to honor the `width`, `height`, and [constraints], to expand
+/// to fit the parent, to be as small as possible.
+///
+/// More specifically:
+///
+/// If the widget has no child, no `height`, no `width`, no [constraints],
+/// and the parent provides unbounded constraints, then [Container] tries to
+/// size as small as possible.
+///
+/// If the widget has no child and no [alignment], but a `height`, `width`, or
+/// [constraints] are provided, then the [Container] tries to be as small as
+/// possible given the combination of those constraints and the parent's
+/// constraints.
+///
+/// If the widget has no child, no `height`, no `width`, no [constraints], and
+/// no [alignment], but the parent provides bounded constraints, then
+/// [Container] expands to fit the constraints provided by the parent.
+///
+/// If the widget has an [alignment], and the parent provides unbounded
+/// constraints, then the [Container] tries to size itself around the child.
+///
+/// If the widget has an [alignment], and the parent provides bounded
+/// constraints, then the [Container] tries to expand to fit the parent, and
+/// then positions the child within itself as per the [alignment].
+///
+/// Otherwise, the widget has a [child] but no `height`, no `width`, no
+/// [constraints], and no [alignment], and the [Container] passes the
+/// constraints from the parent to the child and sizes itself to match the
+/// child.
+///
+/// The [margin] and [padding] properties also affect the layout, as described
+/// in the documentation for those properties. (Their effects merely augment the
+/// rules described above.) The [decoration] can implicitly increase the
+/// [padding] (e.g. borders in a [BoxDecoration] contribute to the [padding]);
+/// see [Decoration.padding].
+///
+/// ## Example
+///
+/// {@tool snippet}
+/// This example shows a 48x48 amber square (placed inside a [Center] widget in
+/// case the parent widget has its own opinions regarding the size that the
+/// [Container] should take), with a margin so that it stays away from
+/// neighboring widgets:
+///
+/// ![An amber colored container with the dimensions of 48 square pixels.](https://flutter.github.io/assets-for-api-docs/assets/widgets/container_a.png)
+///
+/// ```dart
+/// Center(
+///   child: Container(
+///     margin: const EdgeInsets.all(10.0),
+///     color: Colors.amber[600],
+///     width: 48.0,
+///     height: 48.0,
+///   ),
+/// )
+/// ```
+/// {@end-tool}
+///
+/// {@tool snippet}
+///
+/// This example shows how to use many of the features of [Container] at once.
+/// The [constraints] are set to fit the font size plus ample headroom
+/// vertically, while expanding horizontally to fit the parent. The [padding] is
+/// used to make sure there is space between the contents and the text. The
+/// [color] makes the box blue. The [alignment] causes the [child] to be
+/// centered in the box. Finally, the [transform] applies a slight rotation to the
+/// entire contraption to complete the effect.
+///
+/// ![A blue rectangular container with 'Hello World' in the center, rotated
+/// slightly in the z axis.](https://flutter.github.io/assets-for-api-docs/assets/widgets/container_b.png)
+///
+/// ```dart
+/// Container(
+///   constraints: BoxConstraints.expand(
+///     height: Theme.of(context).textTheme.headline4.fontSize * 1.1 + 200.0,
+///   ),
+///   padding: const EdgeInsets.all(8.0),
+///   color: Colors.blue[600],
+///   alignment: Alignment.center,
+///   child: Text('Hello World',
+///     style: Theme.of(context)
+///         .textTheme
+///         .headline4
+///         .copyWith(color: Colors.white)),
+///   transform: Matrix4.rotationZ(0.1),
+/// )
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [AnimatedContainer], a variant that smoothly animates the properties when
+///    they change.
+///  * [Border], which has a sample which uses [Container] heavily.
+///  * [Ink], which paints a [Decoration] on a [Material], allowing
+///    [InkResponse] and [InkWell] splashes to paint over them.
+///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
+/// </Summary>
+public class Container : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public Container(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration ForegroundDecoration { get; set; }
+public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+public virtual Matrix4 Transform { get; set; }
+public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Widget current = Child;
+    if (Child == null && (Constraints == null || !Constraints.IsTight))
+    {
+        current = new LimitedBox(maxWidth: 0.0, maxHeight: 0.0, child: new ConstrainedBox(constraints: BoxConstraints.Expand()));
+    }
+
+    if (Alignment != null) current = new Align(alignment: Alignment, child: current);
+    EdgeInsetsGeometry effectivePadding = _PaddingIncludingDecoration;
+    if (effectivePadding != null) current = new Padding(padding: effectivePadding, child: current);
+    if (Color != null) current = new ColoredBox(color: Color, child: current);
+    if (Decoration != null) current = new DecoratedBox(decoration: Decoration, child: current);
+    if (ForegroundDecoration != null)
+    {
+        current = new DecoratedBox(decoration: ForegroundDecoration, position: DecorationPosition.Foreground, child: current);
+    }
+
+    if (Constraints != null) current = new ConstrainedBox(constraints: Constraints, child: current);
+    if (Margin != null) current = new Padding(padding: Margin, child: current);
+    if (Transform != null) current = new Transform(transform: Transform, child: current);
+    if (ClipBehavior != Clip.None)
+    {
+        current = new ClipPath(clipper: new _DecorationClipper(textDirection: BasicDefaultClass.Directionality.Of(context), decoration: Decoration), clipBehavior: ClipBehavior, child: current);
+    }
+
+    return current;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, showName: false, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior, defaultValue: Clip.None));
+    if (Color != null) properties.Add(new DiagnosticsProperty<Color>("bg", Color)); else properties.Add(new DiagnosticsProperty<Decoration>("bg", Decoration, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<Decoration>("fg", ForegroundDecoration, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<BoxConstraints>("constraints", Constraints, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("margin", Margin, defaultValue: null));
+    properties.Add(ObjectFlagProperty<Matrix4>.Has("transform", Transform));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A clipper that uses [Decoration.getClipPath] to clip.
+/// </Summary>
+public class _DecorationClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
+{
+    #region constructors
+    public _DecorationClipper(TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual TextDirection TextDirection { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+#endregion
+
+#region methods
+
+public new Path GetClip(Size size)
+{
+    return Decoration.GetClipPath(Dart: uiDefaultClass.Offset.Zero & size, TextDirection);
+}
+
+
+
+
+public new bool ShouldReclip(FlutterSDK.Widgets.Container._DecorationClipper oldClipper)
+{
+    return oldClipper.Decoration != Decoration || oldClipper.TextDirection != TextDirection;
+}
+
+
+
+#endregion
+}
 
 }

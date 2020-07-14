@@ -552,1410 +552,1739 @@ namespace FlutterSDK.Widgets.Implicitanimations
         #region constructors
         public BoxConstraintsTween(FlutterSDK.Rendering.Box.BoxConstraints begin = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Rendering.Box.BoxConstraints end = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Rendering.Box.BoxConstraints Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// An interpolation between two [Decoration]s.
-    ///
-    /// This class specializes the interpolation of [Tween<BoxConstraints>] to use
-    /// [Decoration.lerp].
-    ///
-    /// For [ShapeDecoration]s which know how to [ShapeDecoration.lerpTo] or
-    /// [ShapeDecoration.lerpFrom] each other, this will produce a smooth
-    /// interpolation between decorations.
-    ///
-    /// See also:
-    ///
-    ///  * [Tween] for a discussion on how to use interpolation objects.
-    ///  * [ShapeDecoration], [RoundedRectangleBorder], [CircleBorder], and
-    ///    [StadiumBorder] for examples of shape borders that can be smoothly
-    ///    interpolated.
-    ///  * [BoxBorder] for a border that can only be smoothly interpolated between other
-    ///    [BoxBorder]s.
+    /// Returns the value this variable has at the given animation clock value.
     /// </Summary>
-    public class DecorationTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Decoration.Decoration>
+    public new FlutterSDK.Rendering.Box.BoxConstraints Lerp(double t) => BoxDefaultClass.BoxConstraints.Lerp(Begin, End, t);
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [Decoration]s.
+///
+/// This class specializes the interpolation of [Tween<BoxConstraints>] to use
+/// [Decoration.lerp].
+///
+/// For [ShapeDecoration]s which know how to [ShapeDecoration.lerpTo] or
+/// [ShapeDecoration.lerpFrom] each other, this will produce a smooth
+/// interpolation between decorations.
+///
+/// See also:
+///
+///  * [Tween] for a discussion on how to use interpolation objects.
+///  * [ShapeDecoration], [RoundedRectangleBorder], [CircleBorder], and
+///    [StadiumBorder] for examples of shape borders that can be smoothly
+///    interpolated.
+///  * [BoxBorder] for a border that can only be smoothly interpolated between other
+///    [BoxBorder]s.
+/// </Summary>
+public class DecorationTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Decoration.Decoration>
+{
+    #region constructors
+    public DecorationTween(FlutterSDK.Painting.Decoration.Decoration begin = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration end = default(FlutterSDK.Painting.Decoration.Decoration))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Painting.Decoration.Decoration Lerp(double t) => DecorationDefaultClass.Decoration.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [EdgeInsets]s.
+///
+/// This class specializes the interpolation of [Tween<EdgeInsets>] to use
+/// [EdgeInsets.lerp].
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+///
+/// See also:
+///
+///  * [EdgeInsetsGeometryTween], which interpolates between two
+///    [EdgeInsetsGeometry] objects.
+/// </Summary>
+public class EdgeInsetsTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsets>
+{
+    #region constructors
+    public EdgeInsetsTween(FlutterSDK.Painting.Edgeinsets.EdgeInsets begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(double t) => EdgeinsetsDefaultClass.EdgeInsets.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [EdgeInsetsGeometry]s.
+///
+/// This class specializes the interpolation of [Tween<EdgeInsetsGeometry>] to
+/// use [EdgeInsetsGeometry.lerp].
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+///
+/// See also:
+///
+///  * [EdgeInsetsTween], which interpolates between two [EdgeInsets] objects.
+/// </Summary>
+public class EdgeInsetsGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry>
+{
+    #region constructors
+    public EdgeInsetsGeometryTween(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(double t) => EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [BorderRadius]s.
+///
+/// This class specializes the interpolation of [Tween<BorderRadius>] to use
+/// [BorderRadius.lerp].
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+/// </Summary>
+public class BorderRadiusTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borderradius.BorderRadius>
+{
+    #region constructors
+    public BorderRadiusTween(FlutterSDK.Painting.Borderradius.BorderRadius begin = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius end = default(FlutterSDK.Painting.Borderradius.BorderRadius))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Painting.Borderradius.BorderRadius Lerp(double t) => BorderradiusDefaultClass.BorderRadius.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [Border]s.
+///
+/// This class specializes the interpolation of [Tween<Border>] to use
+/// [Border.lerp].
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+/// </Summary>
+public class BorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Boxborder.Border>
+{
+    #region constructors
+    public BorderTween(FlutterSDK.Painting.Boxborder.Border begin = default(FlutterSDK.Painting.Boxborder.Border), FlutterSDK.Painting.Boxborder.Border end = default(FlutterSDK.Painting.Boxborder.Border))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Painting.Boxborder.Border Lerp(double t) => BoxborderDefaultClass.Border.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [Matrix4]s.
+///
+/// This class specializes the interpolation of [Tween<Matrix4>] to be
+/// appropriate for transformation matrices.
+///
+/// Currently this class works only for translations.
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+/// </Summary>
+public class Matrix4Tween : FlutterSDK.Animation.Tween.Tween<object>
+{
+    #region constructors
+    public Matrix4Tween(Matrix4 begin = default(Matrix4), Matrix4 end = default(Matrix4))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new Matrix4 Lerp(double t)
+{
+
+
+    Vector3 beginTranslation = Vector3.Zero();
+    Vector3 endTranslation = Vector3.Zero();
+    Quaternion beginRotation = Quaternion.Identity();
+    Quaternion endRotation = Quaternion.Identity();
+    Vector3 beginScale = Vector3.Zero();
+    Vector3 endScale = Vector3.Zero();
+    Begin.Decompose(beginTranslation, beginRotation, beginScale);
+    End.Decompose(endTranslation, endRotation, endScale);
+    Vector3 lerpTranslation = beginTranslation * (1.0 - t) + endTranslation * t;
+    Quaternion lerpRotation = (beginRotation.Scaled(1.0 - t) + endRotation.Scaled(t)).Normalized();
+    Vector3 lerpScale = beginScale * (1.0 - t) + endScale * t;
+    return Matrix4.Compose(lerpTranslation, lerpRotation, lerpScale);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two [TextStyle]s.
+///
+/// This class specializes the interpolation of [Tween<TextStyle>] to use
+/// [TextStyle.lerp].
+///
+/// This will not work well if the styles don't set the same fields.
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+/// </Summary>
+public class TextStyleTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Textstyle.TextStyle>
+{
+    #region constructors
+    public TextStyleTween(FlutterSDK.Painting.Textstyle.TextStyle begin = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle end = default(FlutterSDK.Painting.Textstyle.TextStyle))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Painting.Textstyle.TextStyle Lerp(double t) => TextstyleDefaultClass.TextStyle.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An abstract class for building widgets that animate changes to their
+/// properties.
+///
+/// Widgets of this type will not animate when they are first added to the
+/// widget tree. Rather, when they are rebuilt with different values, they will
+/// respond to those _changes_ by animating the changes over a specified
+/// [duration].
+///
+/// Which properties are animated is left up to the subclass. Subclasses' [State]s
+/// must extend [ImplicitlyAnimatedWidgetState] and provide a way to visit the
+/// relevant fields to animate.
+///
+/// ## Relationship to [AnimatedWidget]s
+///
+/// [ImplicitlyAnimatedWidget]s (and their subclasses) automatically animate
+/// changes in their properties whenever they change. For this,
+/// they create and manage their own internal [AnimationController]s to power
+/// the animation. While these widgets are simple to use and don't require you
+/// to manually manage the lifecycle of an [AnimationController], they
+/// are also somewhat limited: Besides the target value for the animated
+/// property, developers can only chose a [duration] and [curve] for the
+/// animation. If you require more control over the animation (e.g. you want
+/// to stop it somewhere in the middle), consider using a
+/// [AnimatedWidget] or one of its subclasses. These widget take an [Animation]
+/// as an argument to power the animation. This gives the developer full control
+/// over the animation at the cost of requiring you to manually manage the
+/// underlying [AnimationController].
+///
+/// ## Common implicitly animated widgets
+///
+/// A number of implicitly animated widgets ship with the framework. They are
+/// usually named `AnimatedFoo`, where `Foo` is the name of the non-animated
+/// version of that widget. Commonly used implicitly animated widgets include:
+///
+///  * [TweenAnimationBuilder], which animates any property expressed by
+///    a [Tween] to a specified target value.
+///  * [AnimatedAlign], which is an implicitly animated version of [Align].
+///  * [AnimatedContainer], which is an implicitly animated version of
+///    [Container].
+///  * [AnimatedDefaultTextStyle], which is an implicitly animated version of
+///    [DefaultTextStyle].
+///  * [AnimatedOpacity], which is an implicitly animated version of [Opacity].
+///  * [AnimatedPadding], which is an implicitly animated version of [Padding].
+///  * [AnimatedPhysicalModel], which is an implicitly animated version of
+///    [PhysicalModel].
+///  * [AnimatedPositioned], which is an implicitly animated version of
+///    [Positioned].
+///  * [AnimatedPositionedDirectional], which is an implicitly animated version
+///    of [PositionedDirectional].
+///  * [AnimatedTheme], which is an implicitly animated version of [Theme].
+///  * [AnimatedCrossFade], which cross-fades between two given children and
+///    animates itself between their sizes.
+///  * [AnimatedSize], which automatically transitions its size over a given
+///    duration.
+///  * [AnimatedSwitcher], which fades from one widget to another.
+/// </Summary>
+public class ImplicitlyAnimatedWidget : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public ImplicitlyAnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+public virtual TimeSpan Duration { get; set; }
+public virtual VoidCallback OnEnd { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
+{
+    return default(ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget>);
+}
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new IntProperty("duration", Duration.InMilliseconds, unit: "ms"));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A base class for the `State` of widgets with implicit animations.
+///
+/// [ImplicitlyAnimatedWidgetState] requires that subclasses respond to the
+/// animation themselves. If you would like `setState()` to be called
+/// automatically as the animation changes, use [AnimatedWidgetBaseState].
+///
+/// Properties that subclasses choose to animate are represented by [Tween]
+/// instances. Subclasses must implement the [forEachTween] method to allow
+/// [ImplicitlyAnimatedWidgetState] to iterate through the widget's fields and
+/// animate them.
+/// </Summary>
+public class ImplicitlyAnimatedWidgetState<T> : FlutterSDK.Widgets.Framework.State<T>, ISingleTickerProviderStateMixin<T>
+{
+    #region constructors
+    public ImplicitlyAnimatedWidgetState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public DecorationTween(FlutterSDK.Painting.Decoration.Decoration begin = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration end = default(FlutterSDK.Painting.Decoration.Decoration))
-        : base(begin: begin, end: end)
+        base.InitState();
+        _Controller = new AnimationController(duration: Widget.Duration, debugLabel: ConstantsDefaultClass.KDebugMode ? Widget.ToStringShort() : null, vsync: this);
+        _Controller.AddStatusListener((AnimationStatus status) =>
         {
-            throw new NotImplementedException();
+            switch (status) { case AnimationStatus.Completed: if (Widget.OnEnd != null) Widget.OnEnd(); break; case AnimationStatus.Dismissed: case AnimationStatus.Forward: case AnimationStatus.Reverse: }
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Painting.Decoration.Decoration Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
+        );
+        _UpdateCurve();
+        _ConstructTweens();
+        DidUpdateTweens();
     }
 
 
-    /// <Summary>
-    /// An interpolation between two [EdgeInsets]s.
-    ///
-    /// This class specializes the interpolation of [Tween<EdgeInsets>] to use
-    /// [EdgeInsets.lerp].
-    ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    ///
-    /// See also:
-    ///
-    ///  * [EdgeInsetsGeometryTween], which interpolates between two
-    ///    [EdgeInsetsGeometry] objects.
-    /// </Summary>
-    public class EdgeInsetsTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsets>
+
+
+    public new void DidUpdateWidget(T oldWidget)
     {
-        #region constructors
-        public EdgeInsetsTween(FlutterSDK.Painting.Edgeinsets.EdgeInsets begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
-        : base(begin: begin, end: end)
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Curve != oldWidget.Curve) _UpdateCurve();
+        _Controller.Duration = Widget.Duration;
+        if (_ConstructTweens())
         {
-            throw new NotImplementedException();
+            ForEachTween((Tween<object> tween, object targetValue, TweenConstructor<object> constructor) =>
+            {
+                _UpdateTween(tween, targetValue);
+                return tween;
+            }
+            );
+            ..Value = 0.0;
+            _Controller.Forward();
+            DidUpdateTweens();
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// An interpolation between two [EdgeInsetsGeometry]s.
-    ///
-    /// This class specializes the interpolation of [Tween<EdgeInsetsGeometry>] to
-    /// use [EdgeInsetsGeometry.lerp].
-    ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    ///
-    /// See also:
-    ///
-    ///  * [EdgeInsetsTween], which interpolates between two [EdgeInsets] objects.
-    /// </Summary>
-    public class EdgeInsetsGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry>
+
+
+    private void _UpdateCurve()
     {
-        #region constructors
-        public EdgeInsetsGeometryTween(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
-        : base(begin: begin, end: end)
+        if (Widget.Curve != null) _Animation = new CurvedAnimation(parent: _Controller, curve: Widget.Curve); else _Animation = _Controller;
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    private bool _ShouldAnimateTween(FlutterSDK.Animation.Tween.Tween<object> tween, object targetValue)
+    {
+        return targetValue != (tween.End ?? tween.Begin);
+    }
+
+
+
+
+    private void _UpdateTween(FlutterSDK.Animation.Tween.Tween<object> tween, object targetValue)
+    {
+        if (tween == null) return;
+        ..Begin = tween.Evaluate(_Animation)..End = targetValue;
+    }
+
+
+
+
+    private bool _ConstructTweens()
+    {
+        bool shouldStartAnimation = false;
+        ForEachTween((Tween<object> tween, object targetValue, TweenConstructor<object> constructor) =>
         {
-            throw new NotImplementedException();
+            if (targetValue != null)
+            {
+                tween = (tween == null ? constructor(targetValue) : tween);
+                if (_ShouldAnimateTween(tween, targetValue)) shouldStartAnimation = true;
+            }
+            else
+            {
+                tween = null;
+            }
+
+            return tween;
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
+        );
+        return shouldStartAnimation;
     }
+
+
 
 
     /// <Summary>
-    /// An interpolation between two [BorderRadius]s.
+    /// Visits each tween controlled by this state with the specified `visitor`
+    /// function.
     ///
-    /// This class specializes the interpolation of [Tween<BorderRadius>] to use
-    /// [BorderRadius.lerp].
+    /// ### Subclass responsibility
     ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    /// </Summary>
-    public class BorderRadiusTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borderradius.BorderRadius>
-    {
-        #region constructors
-        public BorderRadiusTween(FlutterSDK.Painting.Borderradius.BorderRadius begin = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius end = default(FlutterSDK.Painting.Borderradius.BorderRadius))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Painting.Borderradius.BorderRadius Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An interpolation between two [Border]s.
+    /// Properties to be animated are represented by [Tween] member variables in
+    /// the state. For each such tween, [forEachTween] implementations are
+    /// expected to call `visitor` with the appropriate arguments and store the
+    /// result back into the member variable. The arguments to `visitor` are as
+    /// follows:
     ///
-    /// This class specializes the interpolation of [Tween<Border>] to use
-    /// [Border.lerp].
+    /// {@macro flutter.widgets.implicit_animations.tweenVisitorArguments}
     ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    /// </Summary>
-    public class BorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Boxborder.Border>
-    {
-        #region constructors
-        public BorderTween(FlutterSDK.Painting.Boxborder.Border begin = default(FlutterSDK.Painting.Boxborder.Border), FlutterSDK.Painting.Boxborder.Border end = default(FlutterSDK.Painting.Boxborder.Border))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Painting.Boxborder.Border Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An interpolation between two [Matrix4]s.
+    /// ### When this method will be called
     ///
-    /// This class specializes the interpolation of [Tween<Matrix4>] to be
-    /// appropriate for transformation matrices.
+    /// [forEachTween] is initially called during [initState]. It is expected that
+    /// the visitor's `tween` argument will be set to null, causing the visitor to
+    /// call its `constructor` argument to construct the tween for the first time.
+    /// The resulting tween will have its `begin` value set to the target value
+    /// and will have its `end` value set to null. The animation will not be
+    /// started.
     ///
-    /// Currently this class works only for translations.
+    /// When this state's [widget] is updated (thus triggering the
+    /// [didUpdateWidget] method to be called), [forEachTween] will be called
+    /// again to check if the target value has changed. If the target value has
+    /// changed, signaling that the [animation] should start, then the visitor
+    /// will update the tween's `start` and `end` values accordingly, and the
+    /// animation will be started.
     ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    /// </Summary>
-    public class Matrix4Tween : FlutterSDK.Animation.Tween.Tween<object>
-    {
-        #region constructors
-        public Matrix4Tween(Matrix4 begin = default(Matrix4), Matrix4 end = default(Matrix4))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new Matrix4 Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An interpolation between two [TextStyle]s.
+    /// ### Other member variables
     ///
-    /// This class specializes the interpolation of [Tween<TextStyle>] to use
-    /// [TextStyle.lerp].
-    ///
-    /// This will not work well if the styles don't set the same fields.
-    ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    /// </Summary>
-    public class TextStyleTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Textstyle.TextStyle>
-    {
-        #region constructors
-        public TextStyleTween(FlutterSDK.Painting.Textstyle.TextStyle begin = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle end = default(FlutterSDK.Painting.Textstyle.TextStyle))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Painting.Textstyle.TextStyle Lerp(double t) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An abstract class for building widgets that animate changes to their
-    /// properties.
-    ///
-    /// Widgets of this type will not animate when they are first added to the
-    /// widget tree. Rather, when they are rebuilt with different values, they will
-    /// respond to those _changes_ by animating the changes over a specified
-    /// [duration].
-    ///
-    /// Which properties are animated is left up to the subclass. Subclasses' [State]s
-    /// must extend [ImplicitlyAnimatedWidgetState] and provide a way to visit the
-    /// relevant fields to animate.
-    ///
-    /// ## Relationship to [AnimatedWidget]s
-    ///
-    /// [ImplicitlyAnimatedWidget]s (and their subclasses) automatically animate
-    /// changes in their properties whenever they change. For this,
-    /// they create and manage their own internal [AnimationController]s to power
-    /// the animation. While these widgets are simple to use and don't require you
-    /// to manually manage the lifecycle of an [AnimationController], they
-    /// are also somewhat limited: Besides the target value for the animated
-    /// property, developers can only chose a [duration] and [curve] for the
-    /// animation. If you require more control over the animation (e.g. you want
-    /// to stop it somewhere in the middle), consider using a
-    /// [AnimatedWidget] or one of its subclasses. These widget take an [Animation]
-    /// as an argument to power the animation. This gives the developer full control
-    /// over the animation at the cost of requiring you to manually manage the
-    /// underlying [AnimationController].
-    ///
-    /// ## Common implicitly animated widgets
-    ///
-    /// A number of implicitly animated widgets ship with the framework. They are
-    /// usually named `AnimatedFoo`, where `Foo` is the name of the non-animated
-    /// version of that widget. Commonly used implicitly animated widgets include:
-    ///
-    ///  * [TweenAnimationBuilder], which animates any property expressed by
-    ///    a [Tween] to a specified target value.
-    ///  * [AnimatedAlign], which is an implicitly animated version of [Align].
-    ///  * [AnimatedContainer], which is an implicitly animated version of
-    ///    [Container].
-    ///  * [AnimatedDefaultTextStyle], which is an implicitly animated version of
-    ///    [DefaultTextStyle].
-    ///  * [AnimatedOpacity], which is an implicitly animated version of [Opacity].
-    ///  * [AnimatedPadding], which is an implicitly animated version of [Padding].
-    ///  * [AnimatedPhysicalModel], which is an implicitly animated version of
-    ///    [PhysicalModel].
-    ///  * [AnimatedPositioned], which is an implicitly animated version of
-    ///    [Positioned].
-    ///  * [AnimatedPositionedDirectional], which is an implicitly animated version
-    ///    of [PositionedDirectional].
-    ///  * [AnimatedTheme], which is an implicitly animated version of [Theme].
-    ///  * [AnimatedCrossFade], which cross-fades between two given children and
-    ///    animates itself between their sizes.
-    ///  * [AnimatedSize], which automatically transitions its size over a given
-    ///    duration.
-    ///  * [AnimatedSwitcher], which fades from one widget to another.
-    /// </Summary>
-    public class ImplicitlyAnimatedWidget : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public ImplicitlyAnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key)
-        {
-            this.Curve = curve;
-            this.Duration = duration;
-            this.OnEnd = onEnd; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual VoidCallback OnEnd { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A base class for the `State` of widgets with implicit animations.
-    ///
-    /// [ImplicitlyAnimatedWidgetState] requires that subclasses respond to the
-    /// animation themselves. If you would like `setState()` to be called
-    /// automatically as the animation changes, use [AnimatedWidgetBaseState].
-    ///
-    /// Properties that subclasses choose to animate are represented by [Tween]
-    /// instances. Subclasses must implement the [forEachTween] method to allow
-    /// [ImplicitlyAnimatedWidgetState] to iterate through the widget's fields and
-    /// animate them.
-    /// </Summary>
-    public class ImplicitlyAnimatedWidgetState<T> : FlutterSDK.Widgets.Framework.State<T>, ISingleTickerProviderStateMixin<T>
-    {
-        #region constructors
-        public ImplicitlyAnimatedWidgetState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
-        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(T oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _UpdateCurve() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private bool _ShouldAnimateTween(FlutterSDK.Animation.Tween.Tween<object> tween, object targetValue) { throw new NotImplementedException(); }
-
-
-        private void _UpdateTween(FlutterSDK.Animation.Tween.Tween<object> tween, object targetValue) { throw new NotImplementedException(); }
-
-
-        private bool _ConstructTweens() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Visits each tween controlled by this state with the specified `visitor`
-        /// function.
-        ///
-        /// ### Subclass responsibility
-        ///
-        /// Properties to be animated are represented by [Tween] member variables in
-        /// the state. For each such tween, [forEachTween] implementations are
-        /// expected to call `visitor` with the appropriate arguments and store the
-        /// result back into the member variable. The arguments to `visitor` are as
-        /// follows:
-        ///
-        /// {@macro flutter.widgets.implicit_animations.tweenVisitorArguments}
-        ///
-        /// ### When this method will be called
-        ///
-        /// [forEachTween] is initially called during [initState]. It is expected that
-        /// the visitor's `tween` argument will be set to null, causing the visitor to
-        /// call its `constructor` argument to construct the tween for the first time.
-        /// The resulting tween will have its `begin` value set to the target value
-        /// and will have its `end` value set to null. The animation will not be
-        /// started.
-        ///
-        /// When this state's [widget] is updated (thus triggering the
-        /// [didUpdateWidget] method to be called), [forEachTween] will be called
-        /// again to check if the target value has changed. If the target value has
-        /// changed, signaling that the [animation] should start, then the visitor
-        /// will update the tween's `start` and `end` values accordingly, and the
-        /// animation will be started.
-        ///
-        /// ### Other member variables
-        ///
-        /// Subclasses that contain properties based on tweens created by
-        /// [forEachTween] should override [didUpdateTweens] to update those
-        /// properties. Dependent properties should not be updated within
-        /// [forEachTween].
-        ///
-        /// {@tool snippet}
-        ///
-        /// This sample implements an implicitly animated widget's `State`.
-        /// The widget animates between colors whenever `widget.targetColor`
-        /// changes.
-        ///
-        /// ```dart
-        /// class MyWidgetState extends AnimatedWidgetBaseState<MyWidget> {
-        ///   ColorTween _colorTween;
-        ///
-        ///   @override
-        ///   Widget build(BuildContext context) {
-        ///     return Text(
-        ///       'Hello World',
-        ///       // Computes the value of the text color at any given time.
-        ///       style: TextStyle(color: _colorTween.evaluate(animation)),
-        ///     );
-        ///   }
-        ///
-        ///   @override
-        ///   void forEachTween(TweenVisitor<dynamic> visitor) {
-        ///     // Update the tween using the provided visitor function.
-        ///     _colorTween = visitor(
-        ///       // The latest tween value. Can be `null`.
-        ///       _colorTween,
-        ///       // The color value toward which we are animating.
-        ///       widget.targetColor,
-        ///       // A function that takes a color value and returns a tween
-        ///       // beginning at that value.
-        ///       (value) => ColorTween(begin: value),
-        ///     );
-        ///
-        ///     // We could have more tweens than one by using the visitor
-        ///     // multiple times.
-        ///   }
-        /// }
-        /// ```
-        /// {@end-tool}
-        /// </Summary>
-        public virtual void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Optional hook for subclasses that runs after all tweens have been updated
-        /// via [forEachTween].
-        ///
-        /// Any properties that depend upon tweens created by [forEachTween] should be
-        /// updated within [didUpdateTweens], not within [forEachTween].
-        ///
-        /// This method will be called both:
-        ///
-        ///  1. After the tweens are _initially_ constructed (by
-        ///     the `constructor` argument to the [TweenVisitor] that's passed to
-        ///     [forEachTween]). In this case, the tweens are likely to contain only
-        ///     a [Tween.begin] value and not a [Tween.end].
-        ///
-        ///  2. When the state's [widget] is updated, and one or more of the tweens
-        ///     visited by [forEachTween] specifies a target value that's different
-        ///     than the widget's current value, thus signaling that the [animation]
-        ///     should run. In this case, the [Tween.begin] value for each tween will
-        ///     an evaluation of the tween against the current [animation], and the
-        ///     [Tween.end] value for each tween will be the target value.
-        /// </Summary>
-        public virtual void DidUpdateTweens() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A base class for widgets with implicit animations that need to rebuild their
-    /// widget tree as the animation runs.
-    ///
-    /// This class calls [build] each frame that the animation tickets. For a
-    /// variant that does not rebuild each frame, consider subclassing
-    /// [ImplicitlyAnimatedWidgetState] directly.
-    ///
-    /// Subclasses must implement the [forEachTween] method to allow
-    /// [AnimatedWidgetBaseState] to iterate through the subclasses' widget's fields
-    /// and animate them.
-    /// </Summary>
-    public class AnimatedWidgetBaseState<T> : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<T>
-    {
-        #region constructors
-        public AnimatedWidgetBaseState()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private void _HandleAnimationChanged() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Container] that gradually changes its values over a period of time.
-    ///
-    /// The [AnimatedContainer] will automatically animate between the old and
-    /// new values of properties when they change using the provided curve and
-    /// duration. Properties that are null are not animated. Its child and
-    /// descendants are not animated.
-    ///
-    /// This class is useful for generating simple implicit transitions between
-    /// different parameters to [Container] with its internal [AnimationController].
-    /// For more complex animations, you'll likely want to use a subclass of
-    /// [AnimatedWidget] such as the [DecoratedBoxTransition] or use your own
-    /// [AnimationController].
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=yI-8QHpGIP4}
-    ///
-    /// {@tool dartpad --template=stateful_widget_scaffold}
-    ///
-    /// The following example (depicted above) transitions an AnimatedContainer
-    /// between two states. It adjusts the [height], [width], [color], and
-    /// [alignment] properties when tapped.
-    ///
-    /// ```dart
-    /// bool selected = false;
-    ///
-    /// @override
-    /// Widget build(BuildContext context) {
-    ///   return GestureDetector(
-    ///     onTap: () {
-    ///       setState(() {
-    ///         selected = !selected;
-    ///       });
-    ///     },
-    ///     child: Center(
-    ///       child: AnimatedContainer(
-    ///         width: selected ? 200.0 : 100.0,
-    ///         height: selected ? 100.0 : 200.0,
-    ///         color: selected ? Colors.red : Colors.blue,
-    ///         alignment: selected ? Alignment.center : AlignmentDirectional.topCenter,
-    ///         duration: Duration(seconds: 2),
-    ///         curve: Curves.fastOutSlowIn,
-    ///         child: FlutterLogo(size: 75),
-    ///       ),
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedPadding], which is a subset of this widget that only
-    ///    supports animating the [padding].
-    ///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
-    ///  * [AnimatedPositioned], which, as a child of a [Stack], automatically
-    ///    transitions its child's position over a given duration whenever the given
-    ///    position changes.
-    ///  * [AnimatedAlign], which automatically transitions its child's
-    ///    position over a given duration whenever the given [alignment] changes.
-    ///  * [AnimatedSwitcher], which switches out a child for a new one with a customizable transition.
-    ///  * [AnimatedCrossFade], which fades between two children and interpolates their sizes.
-    /// </Summary>
-    public class AnimatedContainer : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
-    {
-        #region constructors
-        public AnimatedContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Alignment = alignment;
-            this.Padding = padding;
-            this.ForegroundDecoration = foregroundDecoration;
-            this.Margin = margin;
-            this.Transform = transform;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual FlutterSDK.Painting.Decoration.Decoration ForegroundDecoration { get; set; }
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-        public virtual Matrix4 Transform { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedContainerState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedContainerState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedContainer>
-    {
-        #region constructors
-        public _AnimatedContainerState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Tweens.AlignmentGeometryTween _Alignment { get; set; }
-        internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Padding { get; set; }
-        internal virtual FlutterSDK.Widgets.Implicitanimations.DecorationTween _Decoration { get; set; }
-        internal virtual FlutterSDK.Widgets.Implicitanimations.DecorationTween _ForegroundDecoration { get; set; }
-        internal virtual FlutterSDK.Widgets.Implicitanimations.BoxConstraintsTween _Constraints { get; set; }
-        internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Margin { get; set; }
-        internal virtual FlutterSDK.Widgets.Implicitanimations.Matrix4Tween _Transform { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Padding] which automatically transitions the
-    /// indentation over a given duration whenever the given inset changes.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=PY2m0fhGNz4}
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.fastOutSlowIn].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_padding.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedContainer], which can transition more values at once.
-    ///  * [AnimatedAlign], which automatically transitions its child's
-    ///    position over a given duration whenever the given [alignment] changes.
-    /// </Summary>
-    public class AnimatedPadding : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
-    {
-        #region constructors
-        public AnimatedPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Padding = padding;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedPaddingState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedPaddingState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPadding>
-    {
-        #region constructors
-        public _AnimatedPaddingState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Padding { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Align] which automatically transitions the child's
-    /// position over a given duration whenever the given [alignment] changes.
-    ///
-    /// Here's an illustration of what this can look like, using a [curve] of
-    /// [Curves.fastOutSlowIn].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_align.mp4}
-    ///
-    /// For the animation, you can chose a [curve] as well as a [duration] and the
-    /// widget will automatically animate to the new target [alignment]. If you require
-    /// more control over the animation (e.g. if you want to stop it mid-animation),
-    /// consider using an [AlignTransition] instead, which takes a provided
-    /// [Animation] as argument. While that allows you to fine-tune the animation,
-    /// it also requires more development overhead as you have to manually manage
-    /// the lifecycle of the underlying [AnimationController].
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedContainer], which can transition more values at once.
-    ///  * [AnimatedPadding], which can animate the padding instead of the
-    ///    alignment.
-    ///  * [AnimatedPositioned], which, as a child of a [Stack], automatically
-    ///    transitions its child's position over a given duration whenever the given
-    ///    position changes.
-    /// </Summary>
-    public class AnimatedAlign : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
-    {
-        #region constructors
-        public AnimatedAlign(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Alignment = alignment;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedAlignState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedAlignState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedAlign>
-    {
-        #region constructors
-        public _AnimatedAlignState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Tweens.AlignmentGeometryTween _Alignment { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Positioned] which automatically transitions the child's
-    /// position over a given duration whenever the given position changes.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=hC3s2YdtWt8}
-    ///
-    /// Only works if it's the child of a [Stack].
-    ///
-    /// This widget is a good choice if the _size_ of the child would end up
-    /// changing as a result of this animation. If the size is intended to remain
-    /// the same, with only the _position_ changing over time, then consider
-    /// [SlideTransition] instead. [SlideTransition] only triggers a repaint each
-    /// frame of the animation, whereas [AnimatedPositioned] will trigger a relayout
-    /// as well.
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.fastOutSlowIn].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_positioned.mp4}
-    ///
-    /// For the animation, you can chose a [curve] as well as a [duration] and the
-    /// widget will automatically animate to the new target position. If you require
-    /// more control over the animation (e.g. if you want to stop it mid-animation),
-    /// consider using an [PositionedTransition] instead, which takes a provided
-    /// [Animation] as argument. While that allows you to fine-tune the animation,
-    /// it also requires more development overhead as you have to manually manage
-    /// the lifecycle of the underlying [AnimationController].
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedPositionedDirectional], which adapts to the ambient
-    ///    [Directionality] (the same as this widget, but for animating
-    ///    [PositionedDirectional]).
-    /// </Summary>
-    public class AnimatedPositioned : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
-    {
-        #region constructors
-        public AnimatedPositioned(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double left = default(double), double top = default(double), double right = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Child = child;
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
-            this.Width = width;
-            this.Height = height; throw new NotImplementedException();
-        }
-        public static AnimatedPositioned FromRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        {
-            var instance = new AnimatedPositioned(key: key, curve: curve, duration: duration, onEnd: onEnd); instance.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual double Left { get; set; }
-        public virtual double Top { get; set; }
-        public virtual double Right { get; set; }
-        public virtual double Bottom { get; set; }
-        public virtual double Width { get; set; }
-        public virtual double Height { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedPositionedState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPositioned>
-    {
-        #region constructors
-        public _AnimatedPositionedState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Left { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Top { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Right { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Bottom { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Width { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Height { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [PositionedDirectional] which automatically transitions
-    /// the child's position over a given duration whenever the given position
-    /// changes.
-    ///
-    /// The ambient [Directionality] is used to determine whether [start] is to the
-    /// left or to the right.
-    ///
-    /// Only works if it's the child of a [Stack].
-    ///
-    /// This widget is a good choice if the _size_ of the child would end up
-    /// changing as a result of this animation. If the size is intended to remain
-    /// the same, with only the _position_ changing over time, then consider
-    /// [SlideTransition] instead. [SlideTransition] only triggers a repaint each
-    /// frame of the animation, whereas [AnimatedPositionedDirectional] will trigger
-    /// a relayout as well. ([SlideTransition] is also text-direction-aware.)
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.fastOutSlowIn].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_positioned_directional.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedPositioned], which specifies the widget's position visually (the
-    ///    same as this widget, but for animating [Positioned]).
-    /// </Summary>
-    public class AnimatedPositionedDirectional : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
-    {
-        #region constructors
-        public AnimatedPositionedDirectional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Child = child;
-            this.Start = start;
-            this.Top = top;
-            this.End = end;
-            this.Bottom = bottom;
-            this.Width = width;
-            this.Height = height; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual double Start { get; set; }
-        public virtual double Top { get; set; }
-        public virtual double End { get; set; }
-        public virtual double Bottom { get; set; }
-        public virtual double Width { get; set; }
-        public virtual double Height { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedDirectionalState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedPositionedDirectionalState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPositionedDirectional>
-    {
-        #region constructors
-        public _AnimatedPositionedDirectionalState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Start { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Top { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _End { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Bottom { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Width { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Height { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Opacity] which automatically transitions the child's
-    /// opacity over a given duration whenever the given opacity changes.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=QZAvjqOqiLY}
-    ///
-    /// Animating an opacity is relatively expensive because it requires painting
-    /// the child into an intermediate buffer.
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.fastOutSlowIn].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_opacity.mp4}
+    /// Subclasses that contain properties based on tweens created by
+    /// [forEachTween] should override [didUpdateTweens] to update those
+    /// properties. Dependent properties should not be updated within
+    /// [forEachTween].
     ///
     /// {@tool snippet}
     ///
+    /// This sample implements an implicitly animated widget's `State`.
+    /// The widget animates between colors whenever `widget.targetColor`
+    /// changes.
+    ///
     /// ```dart
-    /// class LogoFade extends StatefulWidget {
-    ///   @override
-    ///   createState() => LogoFadeState();
-    /// }
-    ///
-    /// class LogoFadeState extends State<LogoFade> {
-    ///   double opacityLevel = 1.0;
-    ///
-    ///   void _changeOpacity() {
-    ///     setState(() => opacityLevel = opacityLevel == 0 ? 1.0 : 0.0);
-    ///   }
+    /// class MyWidgetState extends AnimatedWidgetBaseState<MyWidget> {
+    ///   ColorTween _colorTween;
     ///
     ///   @override
     ///   Widget build(BuildContext context) {
-    ///     return Column(
-    ///       mainAxisAlignment: MainAxisAlignment.center,
-    ///       children: [
-    ///         AnimatedOpacity(
-    ///           opacity: opacityLevel,
-    ///           duration: Duration(seconds: 3),
-    ///           child: FlutterLogo(),
-    ///         ),
-    ///         RaisedButton(
-    ///           child: Text('Fade Logo'),
-    ///           onPressed: _changeOpacity,
-    ///         ),
-    ///       ],
+    ///     return Text(
+    ///       'Hello World',
+    ///       // Computes the value of the text color at any given time.
+    ///       style: TextStyle(color: _colorTween.evaluate(animation)),
     ///     );
+    ///   }
+    ///
+    ///   @override
+    ///   void forEachTween(TweenVisitor<dynamic> visitor) {
+    ///     // Update the tween using the provided visitor function.
+    ///     _colorTween = visitor(
+    ///       // The latest tween value. Can be `null`.
+    ///       _colorTween,
+    ///       // The color value toward which we are animating.
+    ///       widget.targetColor,
+    ///       // A function that takes a color value and returns a tween
+    ///       // beginning at that value.
+    ///       (value) => ColorTween(begin: value),
+    ///     );
+    ///
+    ///     // We could have more tweens than one by using the visitor
+    ///     // multiple times.
     ///   }
     /// }
     /// ```
     /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedCrossFade], for fading between two children.
-    ///  * [AnimatedSwitcher], for fading between many children in sequence.
-    ///  * [FadeTransition], an explicitly animated version of this widget, where
-    ///    an [Animation] is provided by the caller instead of being built in.
-    ///  * [SliverAnimatedOpacity], for automatically transitioning a sliver's
-    ///    opacity over a given duration whenever the given opacity changes.
     /// </Summary>
-    public class AnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+    public virtual void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
     {
-        #region constructors
-        public AnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Child = child;
-            this.Opacity = opacity;
-            this.AlwaysIncludeSemantics = alwaysIncludeSemantics; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual double Opacity { get; set; }
-        public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedOpacityState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedOpacityState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.AnimatedOpacity>
-    {
-        #region constructors
-        public _AnimatedOpacityState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Opacity { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateTweens() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
     /// <Summary>
-    /// Animated version of [SliverOpacity] which automatically transitions the
-    /// sliver child's opacity over a given duration whenever the given opacity
-    /// changes.
+    /// Optional hook for subclasses that runs after all tweens have been updated
+    /// via [forEachTween].
     ///
-    /// Animating an opacity is relatively expensive because it requires painting
-    /// the sliver child into an intermediate buffer.
+    /// Any properties that depend upon tweens created by [forEachTween] should be
+    /// updated within [didUpdateTweens], not within [forEachTween].
     ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.fastOutSlowIn].
+    /// This method will be called both:
     ///
-    /// {@tool dartpad --template=stateful_widget_scaffold_center_freeform_state}
-    /// Creates a [CustomScrollView] with a [SliverFixedExtentList] and a
-    /// [FloatingActionButton]. Pressing the button animates the lists' opacity.
+    ///  1. After the tweens are _initially_ constructed (by
+    ///     the `constructor` argument to the [TweenVisitor] that's passed to
+    ///     [forEachTween]). In this case, the tweens are likely to contain only
+    ///     a [Tween.begin] value and not a [Tween.end].
     ///
-    /// ```dart
-    /// class _MyStatefulWidgetState extends State<MyStatefulWidget> with SingleTickerProviderStateMixin {
-    ///   bool _visible = true;
-    ///
-    ///   Widget build(BuildContext context) {
-    ///     return CustomScrollView(
-    ///       slivers: <Widget>[
-    ///         SliverAnimatedOpacity(
-    ///           opacity: _visible ? 1.0 : 0.0,
-    ///           duration: Duration(milliseconds: 500),
-    ///           sliver: SliverFixedExtentList(
-    ///             itemExtent: 100.0,
-    ///             delegate: SliverChildBuilderDelegate(
-    ///               (BuildContext context, int index) {
-    ///                 return Container(
-    ///                   color: index % 2 == 0
-    ///                     ? Colors.indigo[200]
-    ///                     : Colors.orange[200],
-    ///                 );
-    ///               },
-    ///               childCount: 5,
-    ///             ),
-    ///           ),
-    ///         ),
-    ///         SliverToBoxAdapter(
-    ///           child: FloatingActionButton(
-    ///             onPressed: () {
-    ///               setState(() {
-    ///                 _visible = !_visible;
-    ///               });
-    ///             },
-    ///             tooltip: 'Toggle opacity',
-    ///             child: Icon(Icons.flip),
-    ///           )
-    ///         ),
-    ///       ]
-    ///     );
-    ///   }
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [SliverFadeTransition], an explicitly animated version of this widget, where
-    ///    an [Animation] is provided by the caller instead of being built in.
-    ///  * [AnimatedOpacity], for automatically transitioning a box child's
-    ///    opacity over a given duration whenever the given opacity changes.
+    ///  2. When the state's [widget] is updated, and one or more of the tweens
+    ///     visited by [forEachTween] specifies a target value that's different
+    ///     than the widget's current value, thus signaling that the [animation]
+    ///     should run. In this case, the [Tween.begin] value for each tween will
+    ///     an evaluation of the tween against the current [animation], and the
+    ///     [Tween.end] value for each tween will be the target value.
     /// </Summary>
-    public class SliverAnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+    public virtual void DidUpdateTweens()
     {
-        #region constructors
-        public SliverAnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A base class for widgets with implicit animations that need to rebuild their
+/// widget tree as the animation runs.
+///
+/// This class calls [build] each frame that the animation tickets. For a
+/// variant that does not rebuild each frame, consider subclassing
+/// [ImplicitlyAnimatedWidgetState] directly.
+///
+/// Subclasses must implement the [forEachTween] method to allow
+/// [AnimatedWidgetBaseState] to iterate through the subclasses' widget's fields
+/// and animate them.
+/// </Summary>
+public class AnimatedWidgetBaseState<T> : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<T>
+{
+    #region constructors
+    public AnimatedWidgetBaseState()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        Controller.AddListener(_HandleAnimationChanged);
+    }
+
+
+
+
+    private void _HandleAnimationChanged()
+    {
+        SetState(() =>
         {
-            this.Sliver = sliver;
-            this.Opacity = opacity;
-            this.AlwaysIncludeSemantics = alwaysIncludeSemantics; throw new NotImplementedException();
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
-        public virtual double Opacity { get; set; }
-        public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._SliverAnimatedOpacityState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    public class _SliverAnimatedOpacityState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.SliverAnimatedOpacity>
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Container] that gradually changes its values over a period of time.
+///
+/// The [AnimatedContainer] will automatically animate between the old and
+/// new values of properties when they change using the provided curve and
+/// duration. Properties that are null are not animated. Its child and
+/// descendants are not animated.
+///
+/// This class is useful for generating simple implicit transitions between
+/// different parameters to [Container] with its internal [AnimationController].
+/// For more complex animations, you'll likely want to use a subclass of
+/// [AnimatedWidget] such as the [DecoratedBoxTransition] or use your own
+/// [AnimationController].
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=yI-8QHpGIP4}
+///
+/// {@tool dartpad --template=stateful_widget_scaffold}
+///
+/// The following example (depicted above) transitions an AnimatedContainer
+/// between two states. It adjusts the [height], [width], [color], and
+/// [alignment] properties when tapped.
+///
+/// ```dart
+/// bool selected = false;
+///
+/// @override
+/// Widget build(BuildContext context) {
+///   return GestureDetector(
+///     onTap: () {
+///       setState(() {
+///         selected = !selected;
+///       });
+///     },
+///     child: Center(
+///       child: AnimatedContainer(
+///         width: selected ? 200.0 : 100.0,
+///         height: selected ? 100.0 : 200.0,
+///         color: selected ? Colors.red : Colors.blue,
+///         alignment: selected ? Alignment.center : AlignmentDirectional.topCenter,
+///         duration: Duration(seconds: 2),
+///         curve: Curves.fastOutSlowIn,
+///         child: FlutterLogo(size: 75),
+///       ),
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [AnimatedPadding], which is a subset of this widget that only
+///    supports animating the [padding].
+///  * The [catalog of layout widgets](https://flutter.dev/widgets/layout/).
+///  * [AnimatedPositioned], which, as a child of a [Stack], automatically
+///    transitions its child's position over a given duration whenever the given
+///    position changes.
+///  * [AnimatedAlign], which automatically transitions its child's
+///    position over a given duration whenever the given [alignment] changes.
+///  * [AnimatedSwitcher], which switches out a child for a new one with a customizable transition.
+///  * [AnimatedCrossFade], which fades between two children and interpolates their sizes.
+/// </Summary>
+public class AnimatedContainer : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+public virtual FlutterSDK.Painting.Decoration.Decoration ForegroundDecoration { get; set; }
+public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+public virtual Matrix4 Transform { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedContainerState CreateState() => new _AnimatedContainerState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, showName: false, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<Decoration>("bg", Decoration, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<Decoration>("fg", ForegroundDecoration, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<BoxConstraints>("constraints", Constraints, defaultValue: null, showName: false));
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("margin", Margin, defaultValue: null));
+    properties.Add(ObjectFlagProperty<Matrix4>.Has("transform", Transform));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedContainerState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedContainer>
+{
+    #region constructors
+    public _AnimatedContainerState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Rendering.Tweens.AlignmentGeometryTween _Alignment { get; set; }
+    internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Padding { get; set; }
+    internal virtual FlutterSDK.Widgets.Implicitanimations.DecorationTween _Decoration { get; set; }
+    internal virtual FlutterSDK.Widgets.Implicitanimations.DecorationTween _ForegroundDecoration { get; set; }
+    internal virtual FlutterSDK.Widgets.Implicitanimations.BoxConstraintsTween _Constraints { get; set; }
+    internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Margin { get; set; }
+    internal virtual FlutterSDK.Widgets.Implicitanimations.Matrix4Tween _Transform { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
     {
-        #region constructors
-        public _SliverAnimatedOpacityState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Opacity { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateTweens() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        _Alignment = visitor(_Alignment, Widget.Alignment, (object value) => =>new AlignmentGeometryTween(begin: value as AlignmentGeometry)) as AlignmentGeometryTween;
+        _Padding = visitor(_Padding, Widget.Padding, (object value) => =>new EdgeInsetsGeometryTween(begin: value as EdgeInsetsGeometry)) as EdgeInsetsGeometryTween;
+        _Decoration = visitor(_Decoration, Widget.Decoration, (object value) => =>new DecorationTween(begin: value as Decoration)) as DecorationTween;
+        _ForegroundDecoration = visitor(_ForegroundDecoration, Widget.ForegroundDecoration, (object value) => =>new DecorationTween(begin: value as Decoration)) as DecorationTween;
+        _Constraints = visitor(_Constraints, Widget.Constraints, (object value) => =>new BoxConstraintsTween(begin: value as BoxConstraints)) as BoxConstraintsTween;
+        _Margin = visitor(_Margin, Widget.Margin, (object value) => =>new EdgeInsetsGeometryTween(begin: value as EdgeInsetsGeometry)) as EdgeInsetsGeometryTween;
+        _Transform = visitor(_Transform, Widget.Transform, (object value) => =>new Matrix4Tween(begin: value as Matrix4)) as Matrix4Tween;
     }
 
 
-    /// <Summary>
-    /// Animated version of [DefaultTextStyle] which automatically transitions the
-    /// default text style (the text style to apply to descendant [Text] widgets
-    /// without explicit style) over a given duration whenever the given style
-    /// changes.
-    ///
-    /// The [textAlign], [softWrap], [textOverflow], [maxLines], [textWidthBasis]
-    /// and [textHeightBehavior] properties are not animated and take effect
-    /// immediately when changed.
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.elasticInOut].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_default_text_style.mp4}
-    ///
-    /// For the animation, you can chose a [curve] as well as a [duration] and the
-    /// widget will automatically animate to the new default text style. If you require
-    /// more control over the animation (e.g. if you want to stop it mid-animation),
-    /// consider using an [DefaultTextStyleTransition] instead, which takes a provided
-    /// [Animation] as argument. While that allows you to fine-tune the animation,
-    /// it also requires more development overhead as you have to manually manage
-    /// the lifecycle of the underlying [AnimationController].
-    /// </Summary>
-    public class AnimatedDefaultTextStyle : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public AnimatedDefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Child = child;
-            this.Style = style;
-            this.TextAlign = textAlign;
-            this.SoftWrap = softWrap;
-            this.Overflow = overflow;
-            this.MaxLines = maxLines;
-            this.TextWidthBasis = textWidthBasis;
-            this.TextHeightBehavior = textHeightBehavior; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
-        public virtual TextAlign TextAlign { get; set; }
-        public virtual bool SoftWrap { get; set; }
-        public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
-        public virtual int MaxLines { get; set; }
-        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
-        public virtual TextHeightBehavior TextHeightBehavior { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedDefaultTextStyleState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return new Container(child: Widget.Child, alignment: _Alignment?.Evaluate(Animation), padding: _Padding?.Evaluate(Animation), decoration: _Decoration?.Evaluate(Animation), foregroundDecoration: _ForegroundDecoration?.Evaluate(Animation), constraints: _Constraints?.Evaluate(Animation), margin: _Margin?.Evaluate(Animation), transform: _Transform?.Evaluate(Animation));
     }
 
 
-    public class _AnimatedDefaultTextStyleState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedDefaultTextStyle>
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
     {
-        #region constructors
-        public _AnimatedDefaultTextStyleState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Implicitanimations.TextStyleTween _Style { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.DebugFillProperties(description);
+        description.Add(new DiagnosticsProperty<AlignmentGeometryTween>("alignment", _Alignment, showName: false, defaultValue: null));
+        description.Add(new DiagnosticsProperty<EdgeInsetsGeometryTween>("padding", _Padding, defaultValue: null));
+        description.Add(new DiagnosticsProperty<DecorationTween>("bg", _Decoration, defaultValue: null));
+        description.Add(new DiagnosticsProperty<DecorationTween>("fg", _ForegroundDecoration, defaultValue: null));
+        description.Add(new DiagnosticsProperty<BoxConstraintsTween>("constraints", _Constraints, showName: false, defaultValue: null));
+        description.Add(new DiagnosticsProperty<EdgeInsetsGeometryTween>("margin", _Margin, defaultValue: null));
+        description.Add(ObjectFlagProperty<Matrix4Tween>.Has("transform", _Transform));
     }
 
 
-    /// <Summary>
-    /// Animated version of [PhysicalModel].
-    ///
-    /// The [borderRadius] and [elevation] are animated.
-    ///
-    /// The [color] is animated if the [animateColor] property is set; otherwise,
-    /// the color changes immediately at the start of the animation for the other
-    /// two properties. This allows the color to be animated independently (e.g.
-    /// because it is being driven by an [AnimatedTheme]).
-    ///
-    /// The [shape] is not animated.
-    ///
-    /// Here's an illustration of what using this widget looks like, using a [curve]
-    /// of [Curves.fastOutSlowIn].
-    /// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_physical_model.mp4}
-    /// </Summary>
-    public class AnimatedPhysicalModel : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Padding] which automatically transitions the
+/// indentation over a given duration whenever the given inset changes.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=PY2m0fhGNz4}
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.fastOutSlowIn].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_padding.mp4}
+///
+/// See also:
+///
+///  * [AnimatedContainer], which can transition more values at once.
+///  * [AnimatedAlign], which automatically transitions its child's
+///    position over a given duration whenever the given [alignment] changes.
+/// </Summary>
+public class AnimatedPadding : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedPaddingState CreateState() => new _AnimatedPaddingState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedPaddingState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPadding>
+{
+    #region constructors
+    public _AnimatedPaddingState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Padding { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
     {
-        #region constructors
-        public AnimatedPhysicalModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool animateColor = true, FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), bool animateShadowColor = true, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
-        : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
-        {
-            this.Child = child;
-            this.Shape = shape;
-            this.ClipBehavior = clipBehavior;
-            this.BorderRadius = borderRadius;
-            this.Elevation = elevation;
-            this.Color = color;
-            this.AnimateColor = animateColor;
-            this.ShadowColor = shadowColor;
-            this.AnimateShadowColor = animateShadowColor; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual bool AnimateColor { get; set; }
-        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-        public virtual bool AnimateShadowColor { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Implicitanimations._AnimatedPhysicalModelState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        _Padding = visitor(_Padding, Widget.Padding, (object value) => =>new EdgeInsetsGeometryTween(begin: value as EdgeInsetsGeometry)) as EdgeInsetsGeometryTween;
     }
 
 
-    public class _AnimatedPhysicalModelState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPhysicalModel>
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _AnimatedPhysicalModelState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Implicitanimations.BorderRadiusTween _BorderRadius { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Elevation { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.ColorTween _Color { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.ColorTween _ShadowColor { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new Padding(padding: _Padding.Evaluate(Animation).Clamp(EdgeinsetsDefaultClass.EdgeInsets.Zero, EdgeinsetsDefaultClass.EdgeInsetsGeometry.Infinity), child: Widget.Child);
     }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new DiagnosticsProperty<EdgeInsetsGeometryTween>("padding", _Padding, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Align] which automatically transitions the child's
+/// position over a given duration whenever the given [alignment] changes.
+///
+/// Here's an illustration of what this can look like, using a [curve] of
+/// [Curves.fastOutSlowIn].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_align.mp4}
+///
+/// For the animation, you can chose a [curve] as well as a [duration] and the
+/// widget will automatically animate to the new target [alignment]. If you require
+/// more control over the animation (e.g. if you want to stop it mid-animation),
+/// consider using an [AlignTransition] instead, which takes a provided
+/// [Animation] as argument. While that allows you to fine-tune the animation,
+/// it also requires more development overhead as you have to manually manage
+/// the lifecycle of the underlying [AnimationController].
+///
+/// See also:
+///
+///  * [AnimatedContainer], which can transition more values at once.
+///  * [AnimatedPadding], which can animate the padding instead of the
+///    alignment.
+///  * [AnimatedPositioned], which, as a child of a [Stack], automatically
+///    transitions its child's position over a given duration whenever the given
+///    position changes.
+/// </Summary>
+public class AnimatedAlign : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedAlign(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedAlignState CreateState() => new _AnimatedAlignState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedAlignState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedAlign>
+{
+    #region constructors
+    public _AnimatedAlignState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Rendering.Tweens.AlignmentGeometryTween _Alignment { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Alignment = visitor(_Alignment, Widget.Alignment, (object value) => =>new AlignmentGeometryTween(begin: value as AlignmentGeometry)) as AlignmentGeometryTween;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Align(alignment: _Alignment.Evaluate(Animation), child: Widget.Child);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new DiagnosticsProperty<AlignmentGeometryTween>("alignment", _Alignment, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Positioned] which automatically transitions the child's
+/// position over a given duration whenever the given position changes.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=hC3s2YdtWt8}
+///
+/// Only works if it's the child of a [Stack].
+///
+/// This widget is a good choice if the _size_ of the child would end up
+/// changing as a result of this animation. If the size is intended to remain
+/// the same, with only the _position_ changing over time, then consider
+/// [SlideTransition] instead. [SlideTransition] only triggers a repaint each
+/// frame of the animation, whereas [AnimatedPositioned] will trigger a relayout
+/// as well.
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.fastOutSlowIn].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_positioned.mp4}
+///
+/// For the animation, you can chose a [curve] as well as a [duration] and the
+/// widget will automatically animate to the new target position. If you require
+/// more control over the animation (e.g. if you want to stop it mid-animation),
+/// consider using an [PositionedTransition] instead, which takes a provided
+/// [Animation] as argument. While that allows you to fine-tune the animation,
+/// it also requires more development overhead as you have to manually manage
+/// the lifecycle of the underlying [AnimationController].
+///
+/// See also:
+///
+///  * [AnimatedPositionedDirectional], which adapts to the ambient
+///    [Directionality] (the same as this widget, but for animating
+///    [PositionedDirectional]).
+/// </Summary>
+public class AnimatedPositioned : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedPositioned(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double left = default(double), double top = default(double), double right = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+public static AnimatedPositioned FromRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual double Left { get; set; }
+public virtual double Top { get; set; }
+public virtual double Right { get; set; }
+public virtual double Bottom { get; set; }
+public virtual double Width { get; set; }
+public virtual double Height { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedState CreateState() => new _AnimatedPositionedState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("left", Left, defaultValue: null));
+    properties.Add(new DoubleProperty("top", Top, defaultValue: null));
+    properties.Add(new DoubleProperty("right", Right, defaultValue: null));
+    properties.Add(new DoubleProperty("bottom", Bottom, defaultValue: null));
+    properties.Add(new DoubleProperty("width", Width, defaultValue: null));
+    properties.Add(new DoubleProperty("height", Height, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedPositionedState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPositioned>
+{
+    #region constructors
+    public _AnimatedPositionedState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Left { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Top { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Right { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Bottom { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Width { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Height { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Left = visitor(_Left, Widget.Left, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Top = visitor(_Top, Widget.Top, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Right = visitor(_Right, Widget.Right, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Bottom = visitor(_Bottom, Widget.Bottom, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Width = visitor(_Width, Widget.Width, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Height = visitor(_Height, Widget.Height, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Positioned(child: Widget.Child, left: _Left?.Evaluate(Animation), top: _Top?.Evaluate(Animation), right: _Right?.Evaluate(Animation), bottom: _Bottom?.Evaluate(Animation), width: _Width?.Evaluate(Animation), height: _Height?.Evaluate(Animation));
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("left", _Left));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("top", _Top));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("right", _Right));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("bottom", _Bottom));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("width", _Width));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("height", _Height));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [PositionedDirectional] which automatically transitions
+/// the child's position over a given duration whenever the given position
+/// changes.
+///
+/// The ambient [Directionality] is used to determine whether [start] is to the
+/// left or to the right.
+///
+/// Only works if it's the child of a [Stack].
+///
+/// This widget is a good choice if the _size_ of the child would end up
+/// changing as a result of this animation. If the size is intended to remain
+/// the same, with only the _position_ changing over time, then consider
+/// [SlideTransition] instead. [SlideTransition] only triggers a repaint each
+/// frame of the animation, whereas [AnimatedPositionedDirectional] will trigger
+/// a relayout as well. ([SlideTransition] is also text-direction-aware.)
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.fastOutSlowIn].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_positioned_directional.mp4}
+///
+/// See also:
+///
+///  * [AnimatedPositioned], which specifies the widget's position visually (the
+///    same as this widget, but for animating [Positioned]).
+/// </Summary>
+public class AnimatedPositionedDirectional : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedPositionedDirectional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual double Start { get; set; }
+public virtual double Top { get; set; }
+public virtual double End { get; set; }
+public virtual double Bottom { get; set; }
+public virtual double Width { get; set; }
+public virtual double Height { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedDirectionalState CreateState() => new _AnimatedPositionedDirectionalState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("start", Start, defaultValue: null));
+    properties.Add(new DoubleProperty("top", Top, defaultValue: null));
+    properties.Add(new DoubleProperty("end", End, defaultValue: null));
+    properties.Add(new DoubleProperty("bottom", Bottom, defaultValue: null));
+    properties.Add(new DoubleProperty("width", Width, defaultValue: null));
+    properties.Add(new DoubleProperty("height", Height, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedPositionedDirectionalState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPositionedDirectional>
+{
+    #region constructors
+    public _AnimatedPositionedDirectionalState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Start { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Top { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _End { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Bottom { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Width { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Height { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Start = visitor(_Start, Widget.Start, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Top = visitor(_Top, Widget.Top, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _End = visitor(_End, Widget.End, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Bottom = visitor(_Bottom, Widget.Bottom, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Width = visitor(_Width, Widget.Width, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Height = visitor(_Height, Widget.Height, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        return Positioned.Directional(textDirection: BasicDefaultClass.Directionality.Of(context), child: Widget.Child, start: _Start?.Evaluate(Animation), top: _Top?.Evaluate(Animation), end: _End?.Evaluate(Animation), bottom: _Bottom?.Evaluate(Animation), width: _Width?.Evaluate(Animation), height: _Height?.Evaluate(Animation));
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("start", _Start));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("top", _Top));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("end", _End));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("bottom", _Bottom));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("width", _Width));
+        description.Add(ObjectFlagProperty<Tween<double>>.Has("height", _Height));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Opacity] which automatically transitions the child's
+/// opacity over a given duration whenever the given opacity changes.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=QZAvjqOqiLY}
+///
+/// Animating an opacity is relatively expensive because it requires painting
+/// the child into an intermediate buffer.
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.fastOutSlowIn].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_opacity.mp4}
+///
+/// {@tool snippet}
+///
+/// ```dart
+/// class LogoFade extends StatefulWidget {
+///   @override
+///   createState() => LogoFadeState();
+/// }
+///
+/// class LogoFadeState extends State<LogoFade> {
+///   double opacityLevel = 1.0;
+///
+///   void _changeOpacity() {
+///     setState(() => opacityLevel = opacityLevel == 0 ? 1.0 : 0.0);
+///   }
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return Column(
+///       mainAxisAlignment: MainAxisAlignment.center,
+///       children: [
+///         AnimatedOpacity(
+///           opacity: opacityLevel,
+///           duration: Duration(seconds: 3),
+///           child: FlutterLogo(),
+///         ),
+///         RaisedButton(
+///           child: Text('Fade Logo'),
+///           onPressed: _changeOpacity,
+///         ),
+///       ],
+///     );
+///   }
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [AnimatedCrossFade], for fading between two children.
+///  * [AnimatedSwitcher], for fading between many children in sequence.
+///  * [FadeTransition], an explicitly animated version of this widget, where
+///    an [Animation] is provided by the caller instead of being built in.
+///  * [SliverAnimatedOpacity], for automatically transitioning a sliver's
+///    opacity over a given duration whenever the given opacity changes.
+/// </Summary>
+public class AnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual double Opacity { get; set; }
+public virtual bool AlwaysIncludeSemantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedOpacityState CreateState() => new _AnimatedOpacityState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("opacity", Opacity));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedOpacityState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.AnimatedOpacity>
+{
+    #region constructors
+    public _AnimatedOpacityState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Opacity { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Opacity = visitor(_Opacity, Widget.Opacity, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+    }
+
+
+
+
+    public new void DidUpdateTweens()
+    {
+        _OpacityAnimation = Animation.Drive(_Opacity);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new FadeTransition(opacity: _OpacityAnimation, child: Widget.Child, alwaysIncludeSemantics: Widget.AlwaysIncludeSemantics);
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [SliverOpacity] which automatically transitions the
+/// sliver child's opacity over a given duration whenever the given opacity
+/// changes.
+///
+/// Animating an opacity is relatively expensive because it requires painting
+/// the sliver child into an intermediate buffer.
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.fastOutSlowIn].
+///
+/// {@tool dartpad --template=stateful_widget_scaffold_center_freeform_state}
+/// Creates a [CustomScrollView] with a [SliverFixedExtentList] and a
+/// [FloatingActionButton]. Pressing the button animates the lists' opacity.
+///
+/// ```dart
+/// class _MyStatefulWidgetState extends State<MyStatefulWidget> with SingleTickerProviderStateMixin {
+///   bool _visible = true;
+///
+///   Widget build(BuildContext context) {
+///     return CustomScrollView(
+///       slivers: <Widget>[
+///         SliverAnimatedOpacity(
+///           opacity: _visible ? 1.0 : 0.0,
+///           duration: Duration(milliseconds: 500),
+///           sliver: SliverFixedExtentList(
+///             itemExtent: 100.0,
+///             delegate: SliverChildBuilderDelegate(
+///               (BuildContext context, int index) {
+///                 return Container(
+///                   color: index % 2 == 0
+///                     ? Colors.indigo[200]
+///                     : Colors.orange[200],
+///                 );
+///               },
+///               childCount: 5,
+///             ),
+///           ),
+///         ),
+///         SliverToBoxAdapter(
+///           child: FloatingActionButton(
+///             onPressed: () {
+///               setState(() {
+///                 _visible = !_visible;
+///               });
+///             },
+///             tooltip: 'Toggle opacity',
+///             child: Icon(Icons.flip),
+///           )
+///         ),
+///       ]
+///     );
+///   }
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [SliverFadeTransition], an explicitly animated version of this widget, where
+///    an [Animation] is provided by the caller instead of being built in.
+///  * [AnimatedOpacity], for automatically transitioning a box child's
+///    opacity over a given duration whenever the given opacity changes.
+/// </Summary>
+public class SliverAnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public SliverAnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+public virtual double Opacity { get; set; }
+public virtual bool AlwaysIncludeSemantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._SliverAnimatedOpacityState CreateState() => new _SliverAnimatedOpacityState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DoubleProperty("opacity", Opacity));
+}
+
+
+
+#endregion
+}
+
+
+public class _SliverAnimatedOpacityState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.SliverAnimatedOpacity>
+{
+    #region constructors
+    public _SliverAnimatedOpacityState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Opacity { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Opacity = visitor(_Opacity, Widget.Opacity, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+    }
+
+
+
+
+    public new void DidUpdateTweens()
+    {
+        _OpacityAnimation = Animation.Drive(_Opacity);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new SliverFadeTransition(opacity: _OpacityAnimation, sliver: Widget.Sliver, alwaysIncludeSemantics: Widget.AlwaysIncludeSemantics);
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [DefaultTextStyle] which automatically transitions the
+/// default text style (the text style to apply to descendant [Text] widgets
+/// without explicit style) over a given duration whenever the given style
+/// changes.
+///
+/// The [textAlign], [softWrap], [textOverflow], [maxLines], [textWidthBasis]
+/// and [textHeightBehavior] properties are not animated and take effect
+/// immediately when changed.
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.elasticInOut].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_default_text_style.mp4}
+///
+/// For the animation, you can chose a [curve] as well as a [duration] and the
+/// widget will automatically animate to the new default text style. If you require
+/// more control over the animation (e.g. if you want to stop it mid-animation),
+/// consider using an [DefaultTextStyleTransition] instead, which takes a provided
+/// [Animation] as argument. While that allows you to fine-tune the animation,
+/// it also requires more development overhead as you have to manually manage
+/// the lifecycle of the underlying [AnimationController].
+/// </Summary>
+public class AnimatedDefaultTextStyle : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedDefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+public virtual TextAlign TextAlign { get; set; }
+public virtual bool SoftWrap { get; set; }
+public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+public virtual int MaxLines { get; set; }
+public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+public virtual TextHeightBehavior TextHeightBehavior { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedDefaultTextStyleState CreateState() => new _AnimatedDefaultTextStyleState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    Style?.DebugFillProperties(properties);
+    properties.Add(new EnumProperty<TextAlign>("textAlign", TextAlign, defaultValue: null));
+    properties.Add(new FlagProperty("softWrap", value: SoftWrap, ifTrue: "wrapping at box width", ifFalse: "no wrapping except at line break characters", showName: true));
+    properties.Add(new EnumProperty<TextOverflow>("overflow", Overflow, defaultValue: null));
+    properties.Add(new IntProperty("maxLines", MaxLines, defaultValue: null));
+    properties.Add(new EnumProperty<TextWidthBasis>("textWidthBasis", TextWidthBasis, defaultValue: TextWidthBasis.Parent));
+    properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedDefaultTextStyleState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedDefaultTextStyle>
+{
+    #region constructors
+    public _AnimatedDefaultTextStyleState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Implicitanimations.TextStyleTween _Style { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _Style = visitor(_Style, Widget.Style, (object value) => =>new TextStyleTween(begin: value as TextStyle)) as TextStyleTween;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new DefaultTextStyle(style: _Style.Evaluate(Animation), textAlign: Widget.TextAlign, softWrap: Widget.SoftWrap, overflow: Widget.Overflow, maxLines: Widget.MaxLines, textWidthBasis: Widget.TextWidthBasis, textHeightBehavior: Widget.TextHeightBehavior, child: Widget.Child);
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Animated version of [PhysicalModel].
+///
+/// The [borderRadius] and [elevation] are animated.
+///
+/// The [color] is animated if the [animateColor] property is set; otherwise,
+/// the color changes immediately at the start of the animation for the other
+/// two properties. This allows the color to be animated independently (e.g.
+/// because it is being driven by an [AnimatedTheme]).
+///
+/// The [shape] is not animated.
+///
+/// Here's an illustration of what using this widget looks like, using a [curve]
+/// of [Curves.fastOutSlowIn].
+/// {@animation 250 266 https://flutter.github.io/assets-for-api-docs/assets/widgets/animated_physical_model.mp4}
+/// </Summary>
+public class AnimatedPhysicalModel : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+{
+    #region constructors
+    public AnimatedPhysicalModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool animateColor = true, FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), bool animateShadowColor = true, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
+    : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
+public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+public virtual double Elevation { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual bool AnimateColor { get; set; }
+public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+public virtual bool AnimateShadowColor { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Implicitanimations._AnimatedPhysicalModelState CreateState() => new _AnimatedPhysicalModelState();
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new EnumProperty<BoxShape>("shape", Shape));
+    properties.Add(new DiagnosticsProperty<BorderRadius>("borderRadius", BorderRadius));
+    properties.Add(new DoubleProperty("elevation", Elevation));
+    properties.Add(new ColorProperty("color", Color));
+    properties.Add(new DiagnosticsProperty<bool>("animateColor", AnimateColor));
+    properties.Add(new ColorProperty("shadowColor", ShadowColor));
+    properties.Add(new DiagnosticsProperty<bool>("animateShadowColor", AnimateShadowColor));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedPhysicalModelState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPhysicalModel>
+{
+    #region constructors
+    public _AnimatedPhysicalModelState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Implicitanimations.BorderRadiusTween _BorderRadius { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Elevation { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.ColorTween _Color { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.ColorTween _ShadowColor { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    {
+        _BorderRadius = visitor(_BorderRadius, Widget.BorderRadius, (object value) => =>new BorderRadiusTween(begin: value as BorderRadius)) as BorderRadiusTween;
+        _Elevation = visitor(_Elevation, Widget.Elevation, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+        _Color = visitor(_Color, Widget.Color, (object value) => =>new ColorTween(begin: value as Color)) as ColorTween;
+        _ShadowColor = visitor(_ShadowColor, Widget.ShadowColor, (object value) => =>new ColorTween(begin: value as Color)) as ColorTween;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new PhysicalModel(child: Widget.Child, shape: Widget.Shape, clipBehavior: Widget.ClipBehavior, borderRadius: _BorderRadius.Evaluate(Animation), elevation: _Elevation.Evaluate(Animation), color: Widget.AnimateColor ? _Color.Evaluate(Animation) : Widget.Color, shadowColor: Widget.AnimateShadowColor ? _ShadowColor.Evaluate(Animation) : Widget.ShadowColor);
+    }
+
+
+
+    #endregion
+}
 
 }

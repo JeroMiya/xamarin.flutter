@@ -541,44 +541,129 @@ namespace FlutterSDK.Painting.Imageresolution
         #region constructors
         public AssetImage(string assetName, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    public virtual string AssetName { get; set; }
+    public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
+    public virtual string Package { get; set; }
+    internal virtual double _NaturalResolution { get; set; }
+    internal virtual RegExp _ExtractRatioRegExp { get; set; }
+    public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+    {
+        AssetBundle chosenBundle = Bundle ?? configuration.Bundle ?? AssetbundleDefaultClass.RootBundle;
+        Completer<AssetBundleImageKey> completer = default(Completer<AssetBundleImageKey>);
+        Future<AssetBundleImageKey> result = default(Future<AssetBundleImageKey>);
+        chosenBundle.LoadStructuredData(ImageresolutionDefaultClass._KAssetManifestFileName, _ManifestParser).Then((Dictionary<string, List<string>> manifest) =>
         {
-            this.AssetName = assetName;
-            this.Bundle = bundle;
-            this.Package = package; throw new NotImplementedException();
+            string chosenName = _ChooseVariant(KeyName, configuration, manifest == null ? null : manifest[KeyName]);
+            double chosenScale = _ParseScale(chosenName);
+            AssetBundleImageKey key = new AssetBundleImageKey(bundle: chosenBundle, name: chosenName, scale: chosenScale);
+            if (completer != null)
+            {
+                completer.Complete(key);
+            }
+            else
+            {
+                result = new SynchronousFuture<AssetBundleImageKey>(key);
+            }
+
         }
-        #endregion
-
-        #region fields
-        public virtual string AssetName { get; set; }
-        public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
-        public virtual string Package { get; set; }
-        internal virtual double _NaturalResolution { get; set; }
-        internal virtual RegExp _ExtractRatioRegExp { get; set; }
-        public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
+        ).CatchError((object error, StackTrace stack) =>
+        {
 
 
-        private Future<Dictionary<string, List<string>>> _ManifestParser(string jsonData) { throw new NotImplementedException(); }
+            completer.CompleteError(error, stack);
+        }
+        );
+        if (result != null)
+        {
+            return result;
+        }
 
-
-        private string _ChooseVariant(string main, FlutterSDK.Painting.Imageprovider.ImageConfiguration config, List<string> candidates) { throw new NotImplementedException(); }
-
-
-        private string _FindNearest(SplayTreeMap<double, string> candidates, double value) { throw new NotImplementedException(); }
-
-
-        private double _ParseScale(string key) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
+        completer = new Completer<AssetBundleImageKey>();
+        return completer.Future;
     }
+
+
+
+
+    private Future<Dictionary<string, List<string>>> _ManifestParser(string jsonData)
+    {
+        if (jsonData == null) return new SynchronousFuture<Dictionary<string, List<string>>>(null);
+        Dictionary<string, object> parsedJson = Dart:convertDefaultClass.Json.Decode(jsonData) as Dictionary<string, object>;
+        Iterable<string> keys = parsedJson.Keys;
+        Dictionary<string, List<string>> parsedManifest = Dictionary<string, List<string>>.FromIterables(keys, keys.Map((string key) => =>List<string>.From(parsedJson[key] as List<object>)));
+        return new SynchronousFuture<Dictionary<string, List<string>>>(parsedManifest);
+    }
+
+
+
+
+    private string _ChooseVariant(string main, FlutterSDK.Painting.Imageprovider.ImageConfiguration config, List<string> candidates)
+    {
+        if (config.DevicePixelRatio == null || candidates == null || candidates.IsEmpty()) return main;
+        SplayTreeMap<double, string> mapping = new SplayTreeMap<double, string>();
+        foreach (string candidate in candidates) mapping[_ParseScale(candidate)] = candidate;
+        return _FindNearest(mapping, config.DevicePixelRatio);
+    }
+
+
+
+
+    private string _FindNearest(SplayTreeMap<double, string> candidates, double value)
+    {
+        if (candidates.ContainsKey(value)) return candidates[value];
+        double lower = candidates.LastKeyBefore(value);
+        double upper = candidates.FirstKeyAfter(value);
+        if (lower == null) return candidates[upper];
+        if (upper == null) return candidates[lower];
+        if (value > (lower + upper) / 2) return candidates[upper]; else return candidates[lower];
+    }
+
+
+
+
+    private double _ParseScale(string key)
+    {
+        if (key == AssetName)
+        {
+            return _NaturalResolution;
+        }
+
+        Uri assetUri = Dart:coreDefaultClass.Uri.Parse(key);
+        string directoryPath = "";
+        if (assetUri.PathSegments.Count > 1)
+        {
+            directoryPath = assetUri.PathSegments[assetUri.PathSegments.Count - 2];
+        }
+
+        Match match = _ExtractRatioRegExp.FirstMatch(directoryPath);
+        if (match != null && match.GroupCount > 0) return Dart:coreDefaultClass.Double.Parse(match.Group(1));
+        return _NaturalResolution;
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is AssetImage && other.KeyName == KeyName && other.Bundle == Bundle;
+    }
+
+
+
+
+    #endregion
+}
 
 }

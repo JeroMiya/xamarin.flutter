@@ -513,201 +513,311 @@ namespace FlutterSDK.Widgets.Image
         #region constructors
         public Image(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality))
         : base(key: key)
-        {
-            this.ImageValue = image;
-            this.FrameBuilder = frameBuilder;
-            this.LoadingBuilder = loadingBuilder;
-            this.ErrorBuilder = errorBuilder;
-            this.SemanticLabel = semanticLabel;
-            this.ExcludeFromSemantics = excludeFromSemantics;
-            this.Width = width;
-            this.Height = height;
-            this.Color = color;
-            this.ColorBlendMode = colorBlendMode;
-            this.Fit = fit;
-            this.Alignment = alignment;
-            this.Repeat = repeat;
-            this.CenterSlice = centerSlice;
-            this.MatchTextDirection = matchTextDirection;
-            this.GaplessPlayback = gaplessPlayback;
-            this.FilterQuality = filterQuality; throw new NotImplementedException();
-        }
-        public static Image Network(string src, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), Dictionary<string, string> headers = default(Dictionary<string, string>), int cacheWidth = default(int), int cacheHeight = default(int))
-        {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.LoadingBuilder = loadingBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality; throw new NotImplementedException();
-        }
-        public static Image File(File file, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
-        {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality; throw new NotImplementedException();
-        }
-        public static Image Asset(string name, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double scale = default(double), double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, string package = default(string), FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
-        {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality; throw new NotImplementedException();
-        }
-        public static Image Memory(Uint8List bytes, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
-        {
-            var instance = new Image(key: key); instance.FrameBuilder = frameBuilder;
-            instance.ErrorBuilder = errorBuilder;
-            instance.SemanticLabel = semanticLabel;
-            instance.ExcludeFromSemantics = excludeFromSemantics;
-            instance.Width = width;
-            instance.Height = height;
-            instance.Color = color;
-            instance.ColorBlendMode = colorBlendMode;
-            instance.Fit = fit;
-            instance.Alignment = alignment;
-            instance.Repeat = repeat;
-            instance.CenterSlice = centerSlice;
-            instance.MatchTextDirection = matchTextDirection;
-            instance.GaplessPlayback = gaplessPlayback;
-            instance.FilterQuality = filterQuality; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static Image Network(string src, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), Dictionary<string, string> headers = default(Dictionary<string, string>), int cacheWidth = default(int), int cacheHeight = default(int))
 
-        #region fields
-        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageValue { get; set; }
-        public virtual FlutterSDK.Widgets.Image.ImageFrameBuilder FrameBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Image.ImageLoadingBuilder LoadingBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder ErrorBuilder { get; set; }
-        public virtual double Width { get; set; }
-        public virtual double Height { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FilterQuality FilterQuality { get; set; }
-        public virtual FlutterBinding.UI.BlendMode ColorBlendMode { get; set; }
-        public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
-        public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
-        public virtual bool MatchTextDirection { get; set; }
-        public virtual bool GaplessPlayback { get; set; }
-        public virtual string SemanticLabel { get; set; }
-        public virtual bool ExcludeFromSemantics { get; set; }
-        #endregion
+}
+public static Image File(File file, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
 
-        #region methods
+}
+public static Image Asset(string name, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double scale = default(double), double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, string package = default(string), FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
 
-        public new FlutterSDK.Widgets.Image._ImageState CreateState() { throw new NotImplementedException(); }
+}
+public static Image Memory(Uint8List bytes, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double scale = 1.0, FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality), int cacheWidth = default(int), int cacheHeight = default(int))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageValue { get; set; }
+public virtual FlutterSDK.Widgets.Image.ImageFrameBuilder FrameBuilder { get; set; }
+public virtual FlutterSDK.Widgets.Image.ImageLoadingBuilder LoadingBuilder { get; set; }
+public virtual FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder ErrorBuilder { get; set; }
+public virtual double Width { get; set; }
+public virtual double Height { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FilterQuality FilterQuality { get; set; }
+public virtual FlutterBinding.UI.BlendMode ColorBlendMode { get; set; }
+public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
+public virtual bool MatchTextDirection { get; set; }
+public virtual bool GaplessPlayback { get; set; }
+public virtual string SemanticLabel { get; set; }
+public virtual bool ExcludeFromSemantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Image._ImageState CreateState() => new _ImageState();
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<ImageProvider>("image", Image));
+    properties.Add(new DiagnosticsProperty<Function>("frameBuilder", FrameBuilder));
+    properties.Add(new DiagnosticsProperty<Function>("loadingBuilder", LoadingBuilder));
+    properties.Add(new DoubleProperty("width", Width, defaultValue: null));
+    properties.Add(new DoubleProperty("height", Height, defaultValue: null));
+    properties.Add(new ColorProperty("color", Color, defaultValue: null));
+    properties.Add(new EnumProperty<BlendMode>("colorBlendMode", ColorBlendMode, defaultValue: null));
+    properties.Add(new EnumProperty<BoxFit>("fit", Fit, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, defaultValue: null));
+    properties.Add(new EnumProperty<ImageRepeat>("repeat", Repeat, defaultValue: ImageRepeat.NoRepeat));
+    properties.Add(new DiagnosticsProperty<Rect>("centerSlice", CenterSlice, defaultValue: null));
+    properties.Add(new FlagProperty("matchTextDirection", value: MatchTextDirection, ifTrue: "match text direction"));
+    properties.Add(new StringProperty("semanticLabel", SemanticLabel, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<bool>("this.excludeFromSemantics", ExcludeFromSemantics));
+    properties.Add(new EnumProperty<FilterQuality>("filterQuality", FilterQuality));
+}
 
 
-    public class _ImageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Image.Image>, IWidgetsBindingObserver
+
+#endregion
+}
+
+
+public class _ImageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Image.Image>, IWidgetsBindingObserver
+{
+    #region constructors
+    public _ImageState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
+    internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _ImageInfo { get; set; }
+    internal virtual FlutterSDK.Painting.Imagestream.ImageChunkEvent _LoadingProgress { get; set; }
+    internal virtual bool _IsListeningToStream { get; set; }
+    internal virtual bool _InvertColors { get; set; }
+    internal virtual int _FrameNumber { get; set; }
+    internal virtual bool _WasSynchronouslyLoaded { get; set; }
+    internal virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Image.Image>> _ScrollAwareContext { get; set; }
+    internal virtual @Object _LastException { get; set; }
+    internal virtual StackTrace _LastStack { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _ImageState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
-        internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _ImageInfo { get; set; }
-        internal virtual FlutterSDK.Painting.Imagestream.ImageChunkEvent _LoadingProgress { get; set; }
-        internal virtual bool _IsListeningToStream { get; set; }
-        internal virtual bool _InvertColors { get; set; }
-        internal virtual int _FrameNumber { get; set; }
-        internal virtual bool _WasSynchronouslyLoaded { get; set; }
-        internal virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Image.Image>> _ScrollAwareContext { get; set; }
-        internal virtual @Object _LastException { get; set; }
-        internal virtual StackTrace _LastStack { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Image.Image oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void DidChangeAccessibilityFeatures() { throw new NotImplementedException(); }
-
-
-        public new void Reassemble() { throw new NotImplementedException(); }
-
-
-        private void _UpdateInvertColors() { throw new NotImplementedException(); }
-
-
-        private void _ResolveImage() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Painting.Imagestream.ImageStreamListener _GetListener(FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder)) { throw new NotImplementedException(); }
-
-
-        private void _HandleImageFrame(FlutterSDK.Painting.Imagestream.ImageInfo imageInfo, bool synchronousCall) { throw new NotImplementedException(); }
-
-
-        private void _HandleImageChunk(FlutterSDK.Painting.Imagestream.ImageChunkEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _UpdateSourceStream(FlutterSDK.Painting.Imagestream.ImageStream newStream) { throw new NotImplementedException(); }
-
-
-        private void _ListenToStream() { throw new NotImplementedException(); }
-
-
-        private void _StopListeningToStream() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
+        _ScrollAwareContext = new DisposableBuildContext<State<Image>>(this);
     }
+
+
+
+
+    public new void Dispose()
+    {
+
+        BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+        _StopListeningToStream();
+        _ScrollAwareContext.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        _UpdateInvertColors();
+        _ResolveImage();
+        if (TickerproviderDefaultClass.TickerMode.Of(Context)) _ListenToStream(); else _StopListeningToStream();
+        base.DidChangeDependencies();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Image.Image oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (_IsListeningToStream && (Widget.LoadingBuilder == null) != (oldWidget.LoadingBuilder == null))
+        {
+            _ImageStream.RemoveListener(_GetListener(oldWidget.LoadingBuilder));
+            _ImageStream.AddListener(_GetListener());
+        }
+
+        if (Widget.Image != oldWidget.Image) _ResolveImage();
+    }
+
+
+
+
+    public new void DidChangeAccessibilityFeatures()
+    {
+        base.DidChangeAccessibilityFeatures();
+        SetState(() =>
+        {
+            _UpdateInvertColors();
+        }
+        );
+    }
+
+
+
+
+    public new void Reassemble()
+    {
+        _ResolveImage();
+        base.Reassemble();
+    }
+
+
+
+
+    private void _UpdateInvertColors()
+    {
+        _InvertColors = MediaqueryDefaultClass.MediaQuery.Of(Context, nullOk: true)?.InvertColors ?? BindingDefaultClass.SemanticsBinding.Instance.AccessibilityFeatures.InvertColors;
+    }
+
+
+
+
+    private void _ResolveImage()
+    {
+        ScrollAwareImageProvider provider = new ScrollAwareImageProvider<object>(context: _ScrollAwareContext, imageProvider: Widget.Image);
+        ImageStream newStream = provider.Resolve(ImageDefaultClass.CreateLocalImageConfiguration(Context, size: Widget.Width != null && Widget.Height != null ? new Size(Widget.Width, Widget.Height) : null));
+
+        _UpdateSourceStream(newStream);
+    }
+
+
+
+
+    private FlutterSDK.Painting.Imagestream.ImageStreamListener _GetListener(FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder))
+    {
+        loadingBuilder = (loadingBuilder == null ? Widget.LoadingBuilder : loadingBuilder);
+        _LastException = null;
+        _LastStack = null;
+        return new ImageStreamListener(_HandleImageFrame, onChunk: loadingBuilder == null ? null : _HandleImageChunk, onError: Widget.ErrorBuilder != null ? (object error, StackTrace stackTrace) =>
+        {
+            SetState(() =>
+            {
+                _LastException = error;
+                _LastStack = stackTrace;
+            }
+            );
+        }
+        : null);
+    }
+
+
+
+
+    private void _HandleImageFrame(FlutterSDK.Painting.Imagestream.ImageInfo imageInfo, bool synchronousCall)
+    {
+        SetState(() =>
+        {
+            _ImageInfo = imageInfo;
+            _LoadingProgress = null;
+            _FrameNumber = _FrameNumber == null ? 0 : _FrameNumber + 1;
+            _WasSynchronouslyLoaded |= synchronousCall;
+        }
+        );
+    }
+
+
+
+
+    private void _HandleImageChunk(FlutterSDK.Painting.Imagestream.ImageChunkEvent @event)
+    {
+
+        SetState(() =>
+        {
+            _LoadingProgress = @event;
+        }
+        );
+    }
+
+
+
+
+    private void _UpdateSourceStream(FlutterSDK.Painting.Imagestream.ImageStream newStream)
+    {
+        if (_ImageStream?.Key == newStream?.Key) return;
+        if (_IsListeningToStream) _ImageStream.RemoveListener(_GetListener());
+        if (!Widget.GaplessPlayback) SetState(() =>
+        {
+            _ImageInfo = null;
+        }
+         );
+        SetState(() =>
+        {
+            _LoadingProgress = null;
+            _FrameNumber = null;
+            _WasSynchronouslyLoaded = false;
+        }
+        );
+        _ImageStream = newStream;
+        if (_IsListeningToStream) _ImageStream.AddListener(_GetListener());
+    }
+
+
+
+
+    private void _ListenToStream()
+    {
+        if (_IsListeningToStream) return;
+        _ImageStream.AddListener(_GetListener());
+        _IsListeningToStream = true;
+    }
+
+
+
+
+    private void _StopListeningToStream()
+    {
+        if (!_IsListeningToStream) return;
+        _ImageStream.RemoveListener(_GetListener());
+        _IsListeningToStream = false;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        if (_LastException != null)
+        {
+
+            return Widget.ErrorBuilder(context, _LastException, _LastStack);
+        }
+
+        Widget result = new RawImage(image: _ImageInfo?.Image, width: Widget.Width, height: Widget.Height, scale: _ImageInfo?.Scale ?? 1.0, color: Widget.Color, colorBlendMode: Widget.ColorBlendMode, fit: Widget.Fit, alignment: Widget.Alignment, repeat: Widget.Repeat, centerSlice: Widget.CenterSlice, matchTextDirection: Widget.MatchTextDirection, invertColors: _InvertColors, filterQuality: Widget.FilterQuality);
+        if (!Widget.ExcludeFromSemantics)
+        {
+            result = new Semantics(container: Widget.SemanticLabel != null, image: true, label: Widget.SemanticLabel ?? "", child: result);
+        }
+
+        if (Widget.FrameBuilder != null) result = Widget.FrameBuilder(context, result, _FrameNumber, _WasSynchronouslyLoaded);
+        if (Widget.LoadingBuilder != null) result = Widget.LoadingBuilder(context, result, _LoadingProgress);
+        return result;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new DiagnosticsProperty<ImageStream>("stream", _ImageStream));
+        description.Add(new DiagnosticsProperty<ImageInfo>("pixels", _ImageInfo));
+        description.Add(new DiagnosticsProperty<ImageChunkEvent>("loadingProgress", _LoadingProgress));
+        description.Add(new DiagnosticsProperty<int>("frameNumber", _FrameNumber));
+        description.Add(new DiagnosticsProperty<bool>("wasSynchronouslyLoaded", _WasSynchronouslyLoaded));
+    }
+
+
+
+    #endregion
+}
 
 }

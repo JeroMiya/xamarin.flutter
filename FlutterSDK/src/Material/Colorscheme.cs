@@ -392,102 +392,108 @@ namespace FlutterSDK.Material.Colorscheme
         #region constructors
         public ColorScheme(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         : base()
-        {
-            this.Primary = primary;
-            this.PrimaryVariant = primaryVariant;
-            this.Secondary = secondary;
-            this.SecondaryVariant = secondaryVariant;
-            this.Surface = surface;
-            this.Background = background;
-            this.Error = error;
-            this.OnPrimary = onPrimary;
-            this.OnSecondary = onSecondary;
-            this.OnSurface = onSurface;
-            this.OnBackground = onBackground;
-            this.OnError = onError;
-            this.Brightness = brightness; throw new NotImplementedException();
-        }
-        public static ColorScheme Light(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
-        {
-            var instance = new ColorScheme(); instance.Primary = primary;
-            instance.PrimaryVariant = primaryVariant;
-            instance.Secondary = secondary;
-            instance.SecondaryVariant = secondaryVariant;
-            instance.Surface = surface;
-            instance.Background = background;
-            instance.Error = error;
-            instance.OnPrimary = onPrimary;
-            instance.OnSecondary = onSecondary;
-            instance.OnSurface = onSurface;
-            instance.OnBackground = onBackground;
-            instance.OnError = onError;
-            instance.Brightness = brightness; throw new NotImplementedException();
-        }
-        public static ColorScheme Dark(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
-        {
-            var instance = new ColorScheme(); instance.Primary = primary;
-            instance.PrimaryVariant = primaryVariant;
-            instance.Secondary = secondary;
-            instance.SecondaryVariant = secondaryVariant;
-            instance.Surface = surface;
-            instance.Background = background;
-            instance.Error = error;
-            instance.OnPrimary = onPrimary;
-            instance.OnSecondary = onSecondary;
-            instance.OnSurface = onSurface;
-            instance.OnBackground = onBackground;
-            instance.OnError = onError;
-            instance.Brightness = brightness; throw new NotImplementedException();
-        }
-        public static ColorScheme FromSwatch(FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
-        {
-            var instance = new ColorScheme(); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static ColorScheme Light(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Primary { get; set; }
-        public virtual FlutterBinding.UI.Color PrimaryVariant { get; set; }
-        public virtual FlutterBinding.UI.Color Secondary { get; set; }
-        public virtual FlutterBinding.UI.Color SecondaryVariant { get; set; }
-        public virtual FlutterBinding.UI.Color Surface { get; set; }
-        public virtual FlutterBinding.UI.Color Background { get; set; }
-        public virtual FlutterBinding.UI.Color Error { get; set; }
-        public virtual FlutterBinding.UI.Color OnPrimary { get; set; }
-        public virtual FlutterBinding.UI.Color OnSecondary { get; set; }
-        public virtual FlutterBinding.UI.Color OnSurface { get; set; }
-        public virtual FlutterBinding.UI.Color OnBackground { get; set; }
-        public virtual FlutterBinding.UI.Color OnError { get; set; }
-        public virtual Brightness Brightness { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+public static ColorScheme Dark(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
 
-        #region methods
-
-        private Brightness _BrightnessFor(FlutterBinding.UI.Color color) { throw new NotImplementedException(); }
+}
+public static ColorScheme FromSwatch(FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
 
 
-        /// <Summary>
-        /// Creates a copy of this color scheme with the given fields
-        /// replaced by the non-null parameter values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Colorscheme.ColorScheme CopyWith(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness)) { throw new NotImplementedException(); }
+
+bool isDark = brightness == Brightness.Dark;
+bool primaryIsDark = _BrightnessFor(primarySwatch) == Brightness.Dark;
+Color secondary = accentColor ?? (isDark ? ColorsDefaultClass.Colors.TealAccent[200] : primarySwatch);
+bool secondaryIsDark = _BrightnessFor(secondary) == Brightness.Dark;
+return new ColorScheme(primary: primarySwatch, primaryVariant: primaryColorDark ?? (isDark ? ColorsDefaultClass.Colors.Black : primarySwatch[700]), secondary: secondary, secondaryVariant: isDark ? ColorsDefaultClass.Colors.TealAccent[700] : primarySwatch[700], surface: cardColor ?? (isDark ? ColorsDefaultClass.Colors.Grey[800] : ColorsDefaultClass.Colors.White), background: backgroundColor ?? (isDark ? ColorsDefaultClass.Colors.Grey[700] : primarySwatch[200]), error: errorColor ?? ColorsDefaultClass.Colors.Red[700], onPrimary: primaryIsDark ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.Black, onSecondary: secondaryIsDark ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.Black, onSurface: isDark ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.Black, onBackground: primaryIsDark ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.Black, onError: isDark ? ColorsDefaultClass.Colors.Black : ColorsDefaultClass.Colors.White, brightness: brightness);
+}
 
 
-        /// <Summary>
-        /// Linearly interpolate between two [ColorScheme] objects.
-        ///
-        /// {@macro flutter.material.themeData.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Material.Colorscheme.ColorScheme Lerp(FlutterSDK.Material.Colorscheme.ColorScheme a, FlutterSDK.Material.Colorscheme.ColorScheme b, double t) { throw new NotImplementedException(); }
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color Primary { get; set; }
+public virtual FlutterBinding.UI.Color PrimaryVariant { get; set; }
+public virtual FlutterBinding.UI.Color Secondary { get; set; }
+public virtual FlutterBinding.UI.Color SecondaryVariant { get; set; }
+public virtual FlutterBinding.UI.Color Surface { get; set; }
+public virtual FlutterBinding.UI.Color Background { get; set; }
+public virtual FlutterBinding.UI.Color Error { get; set; }
+public virtual FlutterBinding.UI.Color OnPrimary { get; set; }
+public virtual FlutterBinding.UI.Color OnSecondary { get; set; }
+public virtual FlutterBinding.UI.Color OnSurface { get; set; }
+public virtual FlutterBinding.UI.Color OnBackground { get; set; }
+public virtual FlutterBinding.UI.Color OnError { get; set; }
+public virtual Brightness Brightness { get; set; }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private Brightness _BrightnessFor(FlutterBinding.UI.Color color) => ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(color);
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+/// <Summary>
+/// Creates a copy of this color scheme with the given fields
+/// replaced by the non-null parameter values.
+/// </Summary>
+public virtual FlutterSDK.Material.Colorscheme.ColorScheme CopyWith(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
+{
+    return new ColorScheme(primary: primary ?? this.Primary, primaryVariant: primaryVariant ?? this.PrimaryVariant, secondary: secondary ?? this.Secondary, secondaryVariant: secondaryVariant ?? this.SecondaryVariant, surface: surface ?? this.Surface, background: background ?? this.Background, error: error ?? this.Error, onPrimary: onPrimary ?? this.OnPrimary, onSecondary: onSecondary ?? this.OnSecondary, onSurface: onSurface ?? this.OnSurface, onBackground: onBackground ?? this.OnBackground, onError: onError ?? this.OnError, brightness: brightness ?? this.Brightness);
+}
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+
+/// <Summary>
+/// Linearly interpolate between two [ColorScheme] objects.
+///
+/// {@macro flutter.material.themeData.lerp}
+/// </Summary>
+public virtual FlutterSDK.Material.Colorscheme.ColorScheme Lerp(FlutterSDK.Material.Colorscheme.ColorScheme a, FlutterSDK.Material.Colorscheme.ColorScheme b, double t)
+{
+    return new ColorScheme(primary: Dart:uiDefaultClass.Color.Lerp(a.Primary, b.Primary, t), primaryVariant: Dart:uiDefaultClass.Color.Lerp(a.PrimaryVariant, b.PrimaryVariant, t), secondary: Dart:uiDefaultClass.Color.Lerp(a.Secondary, b.Secondary, t), secondaryVariant: Dart:uiDefaultClass.Color.Lerp(a.SecondaryVariant, b.SecondaryVariant, t), surface: Dart:uiDefaultClass.Color.Lerp(a.Surface, b.Surface, t), background: Dart:uiDefaultClass.Color.Lerp(a.Background, b.Background, t), error: Dart:uiDefaultClass.Color.Lerp(a.Error, b.Error, t), onPrimary: Dart:uiDefaultClass.Color.Lerp(a.OnPrimary, b.OnPrimary, t), onSecondary: Dart:uiDefaultClass.Color.Lerp(a.OnSecondary, b.OnSecondary, t), onSurface: Dart:uiDefaultClass.Color.Lerp(a.OnSurface, b.OnSurface, t), onBackground: Dart:uiDefaultClass.Color.Lerp(a.OnBackground, b.OnBackground, t), onError: Dart:uiDefaultClass.Color.Lerp(a.OnError, b.OnError, t), brightness: t < 0.5 ? a.Brightness : b.Brightness);
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    return other is ColorScheme && other.Primary == Primary && other.PrimaryVariant == PrimaryVariant && other.Secondary == Secondary && other.SecondaryVariant == SecondaryVariant && other.Surface == Surface && other.Background == Background && other.Error == Error && other.OnPrimary == OnPrimary && other.OnSecondary == OnSecondary && other.OnSurface == OnSurface && other.OnBackground == OnBackground && other.OnError == OnError && other.Brightness == Brightness;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    ColorScheme defaultScheme = ColorScheme.Light();
+    properties.Add(new ColorProperty("primary", Primary, defaultValue: defaultScheme.Primary));
+    properties.Add(new ColorProperty("primaryVariant", PrimaryVariant, defaultValue: defaultScheme.PrimaryVariant));
+    properties.Add(new ColorProperty("secondary", Secondary, defaultValue: defaultScheme.Secondary));
+    properties.Add(new ColorProperty("secondaryVariant", SecondaryVariant, defaultValue: defaultScheme.SecondaryVariant));
+    properties.Add(new ColorProperty("surface", Surface, defaultValue: defaultScheme.Surface));
+    properties.Add(new ColorProperty("background", Background, defaultValue: defaultScheme.Background));
+    properties.Add(new ColorProperty("error", Error, defaultValue: defaultScheme.Error));
+    properties.Add(new ColorProperty("onPrimary", OnPrimary, defaultValue: defaultScheme.OnPrimary));
+    properties.Add(new ColorProperty("onSecondary", OnSecondary, defaultValue: defaultScheme.OnSecondary));
+    properties.Add(new ColorProperty("onSurface", OnSurface, defaultValue: defaultScheme.OnSurface));
+    properties.Add(new ColorProperty("onBackground", OnBackground, defaultValue: defaultScheme.OnBackground));
+    properties.Add(new ColorProperty("onError", OnError, defaultValue: defaultScheme.OnError));
+    properties.Add(new DiagnosticsProperty<Brightness>("brightness", Brightness, defaultValue: defaultScheme.Brightness));
+}
+
+
+
+#endregion
+}
 
 }

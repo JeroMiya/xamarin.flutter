@@ -441,412 +441,782 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
         #region constructors
         public CalendarDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialCalendarMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
-        {
-            this.OnDateChanged = onDateChanged;
-            this.OnDisplayedMonthChanged = onDisplayedMonthChanged;
-            this.InitialCalendarMode = initialCalendarMode;
-            this.SelectableDayPredicate = selectableDayPredicate; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual DateTime InitialDate { get; set; }
-        public virtual DateTime FirstDate { get; set; }
-        public virtual DateTime LastDate { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateChanged { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Pickers.Calendardatepicker._CalendarDatePickerState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    
 
 
-    public class _CalendarDatePickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker.CalendarDatePicker>
+
+
+}
+
+
+    #endregion
+
+    #region fields
+    public virtual DateTime InitialDate { get; set; }
+    public virtual DateTime FirstDate { get; set; }
+    public virtual DateTime LastDate { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateChanged { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
+    public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
+    public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Pickers.Calendardatepicker._CalendarDatePickerState CreateState() => new _CalendarDatePickerState();
+
+
+    #endregion
+}
+
+
+public class _CalendarDatePickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker.CalendarDatePicker>
+{
+    #region constructors
+    public _CalendarDatePickerState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _AnnouncedInitialDate { get; set; }
+    internal virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode _Mode { get; set; }
+    internal virtual DateTime _CurrentDisplayedMonthDate { get; set; }
+    internal virtual DateTime _SelectedDate { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _MonthPickerKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _YearPickerKey { get; set; }
+    internal virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations _Localizations { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _CalendarDatePickerState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual bool _AnnouncedInitialDate { get; set; }
-        internal virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode _Mode { get; set; }
-        internal virtual DateTime _CurrentDisplayedMonthDate { get; set; }
-        internal virtual DateTime _SelectedDate { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _MonthPickerKey { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _YearPickerKey { get; set; }
-        internal virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations _Localizations { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        private void _Vibrate() { throw new NotImplementedException(); }
-
-
-        private void _HandleModeChanged(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode mode) { throw new NotImplementedException(); }
-
-
-        private void _HandleMonthChanged(DateTime date) { throw new NotImplementedException(); }
-
-
-        private void _HandleYearChanged(DateTime value) { throw new NotImplementedException(); }
-
-
-        private void _HandleDayChanged(DateTime value) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildPicker() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _Mode = Widget.InitialCalendarMode;
+        _CurrentDisplayedMonthDate = new DateTime(Widget.InitialDate.Year, Widget.InitialDate.Month);
+        _SelectedDate = Widget.InitialDate;
     }
 
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        _Localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+        _TextDirection = BasicDefaultClass.Directionality.Of(Context);
+        if (!_AnnouncedInitialDate)
+        {
+            _AnnouncedInitialDate = true;
+            SemanticsserviceDefaultClass.SemanticsService.Announce(_Localizations.FormatFullDate(_SelectedDate), _TextDirection);
+        }
+
+    }
+
+
+
+
+    private void _Vibrate()
+    {
+        switch (ThemeDefaultClass.Theme.Of(Context).Platform) { case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: HapticfeedbackDefaultClass.HapticFeedback.Vibrate(); break; case TargetPlatform.IOS: case TargetPlatform.MacOS: break; }
+    }
+
+
+
+
+    private void _HandleModeChanged(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode mode)
+    {
+        _Vibrate();
+        SetState(() =>
+        {
+            _Mode = mode;
+            if (_Mode == DatePickerMode.Day)
+            {
+                SemanticsserviceDefaultClass.SemanticsService.Announce(_Localizations.FormatMonthYear(_SelectedDate), _TextDirection);
+            }
+            else
+            {
+                SemanticsserviceDefaultClass.SemanticsService.Announce(_Localizations.FormatYear(_SelectedDate), _TextDirection);
+            }
+
+        }
+        );
+    }
+
+
+
+
+    private void _HandleMonthChanged(DateTime date)
+    {
+        SetState(() =>
+        {
+            if (_CurrentDisplayedMonthDate.Year != date.Year || _CurrentDisplayedMonthDate.Month != date.Month)
+            {
+                _CurrentDisplayedMonthDate = new DateTime(date.Year, date.Month);
+                Widget.OnDisplayedMonthChanged?.Call(_CurrentDisplayedMonthDate);
+            }
+
+        }
+        );
+    }
+
+
+
+
+    private void _HandleYearChanged(DateTime value)
+    {
+        _Vibrate();
+        if (value.IsBefore(Widget.FirstDate))
+        {
+            value = Widget.FirstDate;
+        }
+        else if (value.IsAfter(Widget.LastDate))
+        {
+            value = Widget.LastDate;
+        }
+
+        SetState(() =>
+        {
+            _Mode = DatePickerMode.Day;
+            _HandleMonthChanged(value);
+        }
+        );
+    }
+
+
+
+
+    private void _HandleDayChanged(DateTime value)
+    {
+        _Vibrate();
+        SetState(() =>
+        {
+            _SelectedDate = value;
+            Widget.OnDateChanged?.Call(_SelectedDate);
+        }
+        );
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildPicker()
+    {
+
+        switch (_Mode) { case DatePickerMode.Day: return new _MonthPicker(key: _MonthPickerKey, initialMonth: _CurrentDisplayedMonthDate, currentDate: DateTime.Now(), firstDate: Widget.FirstDate, lastDate: Widget.LastDate, selectedDate: _SelectedDate, onChanged: _HandleDayChanged, onDisplayedMonthChanged: _HandleMonthChanged, selectableDayPredicate: Widget.SelectableDayPredicate); case DatePickerMode.Year: return new Padding(padding: EdgeInsets.Only(top: CalendardatepickerDefaultClass._SubHeaderHeight), child: new _YearPicker(key: _YearPickerKey, currentDate: DateTime.Now(), firstDate: Widget.FirstDate, lastDate: Widget.LastDate, initialDate: _CurrentDisplayedMonthDate, selectedDate: _SelectedDate, onChanged: _HandleYearChanged)); }
+        return null;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Stack(children: new List<Widget>(){new SingleChildScrollView(child:new SizedBox(height:CalendardatepickerDefaultClass._MaxDayPickerHeight, child:_BuildPicker())), new _DatePickerModeToggleButton(mode:_Mode, title:_Localizations.FormatMonthYear(_CurrentDisplayedMonthDate), onTitlePressed:() => {
+_HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.Day);
+}
+)});
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A button that used to toggle the [DatePickerMode] for a date picker.
+///
+/// This appears above the calendar grid and allows the user to toggle the
+/// [DatePickerMode] to display either the calendar view or the year list.
+/// </Summary>
+public class _DatePickerModeToggleButton : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _DatePickerModeToggleButton(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode mode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string title = default(string), VoidCallback onTitlePressed = default(VoidCallback))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode Mode { get; set; }
+public virtual string Title { get; set; }
+public virtual VoidCallback OnTitlePressed { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButtonState CreateState() => new _DatePickerModeToggleButtonState();
+
+
+#endregion
+}
+
+
+public class _DatePickerModeToggleButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _DatePickerModeToggleButtonState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Controller = new AnimationController(value: Widget.Mode == DatePickerMode.Year ? 0.5 : 0, upperBound: 0.5, duration: new TimeSpan(milliseconds: 200), vsync: this);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButton oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (oldWidget.Mode == Widget.Mode)
+        {
+            return;
+        }
+
+        if (Widget.Mode == DatePickerMode.Year)
+        {
+            _Controller.Forward();
+        }
+        else
+        {
+            _Controller.Reverse();
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        ColorScheme colorScheme = ThemeDefaultClass.Theme.Of(context).ColorScheme;
+        TextTheme textTheme = ThemeDefaultClass.Theme.Of(context).TextTheme;
+        Color controlColor = colorScheme.OnSurface.WithOpacity(0.60);
+        return new Container(padding: EdgeInsetsDirectional.Only(start: 16, end: 4), height: CalendardatepickerDefaultClass._SubHeaderHeight, child: new Row(children: new List<Widget>() { new Flexible(child: new Semantics(label: "Select year", excludeSemantics: true, button: true, child: new Container(height: CalendardatepickerDefaultClass._SubHeaderHeight, child: new InkWell(onTap: Widget.OnTitlePressed, child: new Padding(padding: EdgeInsets.Symmetric(horizontal: 8), child: new Row(children: new List<Widget>() { new Flexible(child: new Text(Widget.Title, overflow: TextOverflow.Ellipsis, style: textTheme.Subtitle2?.CopyWith(color: controlColor))), new RotationTransition(turns: _Controller, child: new Icon(IconsDefaultClass.Icons.Arrow_drop_down, color: controlColor)) })))))), }));
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+    #endregion
+}
+
+
+public class _MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _MonthPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialMonth = default(DateTime), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual DateTime InitialMonth { get; set; }
+public virtual DateTime CurrentDate { get; set; }
+public virtual DateTime FirstDate { get; set; }
+public virtual DateTime LastDate { get; set; }
+public virtual DateTime SelectedDate { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
+public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _MonthPickerState();
+
+
+#endregion
+}
+
+
+public class _MonthPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._MonthPicker>
+{
+    #region constructors
+    public _MonthPickerState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual DateTime _CurrentMonth { get; set; }
+    internal virtual DateTime _NextMonthDate { get; set; }
+    internal virtual DateTime _PreviousMonthDate { get; set; }
+    internal virtual FlutterSDK.Widgets.Pageview.PageController _PageController { get; set; }
+    internal virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations _Localizations { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    internal virtual bool _IsDisplayingFirstMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _IsDisplayingLastMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _CurrentMonth = Widget.InitialMonth;
+        _PreviousMonthDate = Utils.DateutilsDefaultClass.AddMonthsToMonthDate(_CurrentMonth, -1);
+        _NextMonthDate = Utils.DateutilsDefaultClass.AddMonthsToMonthDate(_CurrentMonth, 1);
+        _PageController = new PageController(initialPage: Utils.DateutilsDefaultClass.MonthDelta(Widget.FirstDate, _CurrentMonth));
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        _Localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+        _TextDirection = BasicDefaultClass.Directionality.Of(Context);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _PageController?.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    private void _HandleMonthPageChanged(int monthPage)
+    {
+        DateTime monthDate = Utils.DateutilsDefaultClass.AddMonthsToMonthDate(Widget.FirstDate, monthPage);
+        if (_CurrentMonth.Year != monthDate.Year || _CurrentMonth.Month != monthDate.Month)
+        {
+            _CurrentMonth = new DateTime(monthDate.Year, monthDate.Month);
+            _PreviousMonthDate = Utils.DateutilsDefaultClass.AddMonthsToMonthDate(_CurrentMonth, -1);
+            _NextMonthDate = Utils.DateutilsDefaultClass.AddMonthsToMonthDate(_CurrentMonth, 1);
+            Widget.OnDisplayedMonthChanged?.Call(_CurrentMonth);
+        }
+
+    }
+
+
+
+
+    private void _HandleNextMonth()
+    {
+        if (!_IsDisplayingLastMonth)
+        {
+            SemanticsserviceDefaultClass.SemanticsService.Announce(_Localizations.FormatMonthYear(_NextMonthDate), _TextDirection);
+            _PageController.NextPage(duration: CalendardatepickerDefaultClass._MonthScrollDuration, curve: CurvesDefaultClass.Curves.Ease);
+        }
+
+    }
+
+
+
+
+    private void _HandlePreviousMonth()
+    {
+        if (!_IsDisplayingFirstMonth)
+        {
+            SemanticsserviceDefaultClass.SemanticsService.Announce(_Localizations.FormatMonthYear(_PreviousMonthDate), _TextDirection);
+            _PageController.PreviousPage(duration: CalendardatepickerDefaultClass._MonthScrollDuration, curve: CurvesDefaultClass.Curves.Ease);
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildItems(FlutterSDK.Widgets.Framework.BuildContext context, int index)
+    {
+        DateTime month = Utils.DateutilsDefaultClass.AddMonthsToMonthDate(Widget.FirstDate, index);
+        return new _DayPicker(key: new ValueKey<DateTime>(month), selectedDate: Widget.SelectedDate, currentDate: Widget.CurrentDate, onChanged: Widget.OnChanged, firstDate: Widget.FirstDate, lastDate: Widget.LastDate, displayedMonth: month, selectableDayPredicate: Widget.SelectableDayPredicate);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        string previousTooltipText = $"'{_Localizations.PreviousMonthTooltip} {_Localizations.FormatMonthYear(_PreviousMonthDate)}'";
+        string nextTooltipText = $"'{_Localizations.NextMonthTooltip} {_Localizations.FormatMonthYear(_NextMonthDate)}'";
+        Color controlColor = ThemeDefaultClass.Theme.Of(context).ColorScheme.OnSurface.WithOpacity(0.60);
+        return new Semantics(child: new Column(children: new List<Widget>() { new Container(padding: EdgeInsetsDirectional.Only(start: 16, end: 4), height: CalendardatepickerDefaultClass._SubHeaderHeight, child: new Row(children: new List<Widget>() { new Spacer(), new IconButton(icon: new Icon(IconsDefaultClass.Icons.Chevron_left), color: controlColor, tooltip: _IsDisplayingFirstMonth ? null : previousTooltipText, onPressed: _IsDisplayingFirstMonth ? null : _HandlePreviousMonth), new IconButton(icon: new Icon(IconsDefaultClass.Icons.Chevron_right), color: controlColor, tooltip: _IsDisplayingLastMonth ? null : nextTooltipText, onPressed: _IsDisplayingLastMonth ? null : _HandleNextMonth) })), new _DayHeaders(), new Expanded(child: PageView.Builder(controller: _PageController, itemBuilder: _BuildItems, itemCount: Utils.DateutilsDefaultClass.MonthDelta(Widget.FirstDate, Widget.LastDate) + 1, scrollDirection: Axis.Horizontal, onPageChanged: _HandleMonthPageChanged)) }));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Displays the days of a given month and allows choosing a day.
+///
+/// The days are arranged in a rectangular grid with one column for each day of
+/// the week.
+/// </Summary>
+public class _DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public _DayPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime displayedMonth = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual DateTime SelectedDate { get; set; }
+public virtual DateTime CurrentDate { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+public virtual DateTime FirstDate { get; set; }
+public virtual DateTime LastDate { get; set; }
+public virtual DateTime DisplayedMonth { get; set; }
+public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ColorScheme colorScheme = ThemeDefaultClass.Theme.Of(context).ColorScheme;
+    MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+    TextTheme textTheme = ThemeDefaultClass.Theme.Of(context).TextTheme;
+    TextStyle dayStyle = textTheme.Caption;
+    Color enabledDayColor = colorScheme.OnSurface.WithOpacity(0.87);
+    Color disabledDayColor = colorScheme.OnSurface.WithOpacity(0.38);
+    Color selectedDayColor = colorScheme.OnPrimary;
+    Color selectedDayBackground = colorScheme.Primary;
+    Color todayColor = colorScheme.Primary;
+    int year = DisplayedMonth.Year;
+    int month = DisplayedMonth.Month;
+    int daysInMonth = Utils.DateutilsDefaultClass.GetDaysInMonth(year, month);
+    int dayOffset = Utils.DateutilsDefaultClass.FirstDayOffset(year, month, localizations);
+    List<Widget> dayItems = new List<Widget>() { };
+    int day = -dayOffset;
+    while (day < daysInMonth)
+    {
+        day++;
+        if (day < 1)
+        {
+            dayItems.Add(new Container());
+        }
+        else
+        {
+            DateTime dayToBuild = new DateTime(year, month, day);
+            bool isDisabled = dayToBuild.IsAfter(LastDate) || dayToBuild.IsBefore(FirstDate) || (SelectableDayPredicate != null && !SelectableDayPredicate(dayToBuild));
+            BoxDecoration decoration = default(BoxDecoration);
+            Color dayColor = enabledDayColor;
+            bool isSelectedDay = Utils.DateutilsDefaultClass.IsSameDay(SelectedDate, dayToBuild);
+            if (isSelectedDay)
+            {
+                dayColor = selectedDayColor;
+                decoration = new BoxDecoration(color: selectedDayBackground, shape: BoxShape.Circle);
+            }
+            else if (isDisabled)
+            {
+                dayColor = disabledDayColor;
+            }
+            else if (Utils.DateutilsDefaultClass.IsSameDay(CurrentDate, dayToBuild))
+            {
+                dayColor = todayColor;
+                decoration = new BoxDecoration(border: Border.All(color: todayColor, width: 1), shape: BoxShape.Circle);
+            }
+
+            Widget dayWidget = new Container(decoration: decoration, child: new Center(child: new Text(localizations.FormatDecimal(day), style: dayStyle.Apply(color: dayColor))));
+            if (isDisabled)
+            {
+                dayWidget = new ExcludeSemantics(child: dayWidget);
+            }
+            else
+            {
+                dayWidget = new GestureDetector(behavior: HitTestBehavior.Opaque, onTap: () => =>OnChanged(dayToBuild), child: new Semantics(label: $"'{localizations.FormatDecimal(day)}, {localizations.FormatFullDate(dayToBuild)}'", selected: isSelectedDay, excludeSemantics: true, child: dayWidget));
+            }
+
+            dayItems.Add(dayWidget);
+        }
+
+    }
+
+    return new Padding(padding: EdgeInsets.Symmetric(horizontal: CalendardatepickerDefaultClass._MonthPickerHorizontalPadding), child: GridView.Custom(physics: new ClampingScrollPhysics(), gridDelegate: CalendardatepickerDefaultClass._DayPickerGridDelegate, childrenDelegate: new SliverChildListDelegate(dayItems, addRepaintBoundaries: false)));
+}
+
+
+
+#endregion
+}
+
+
+public class _DayPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+{
+    #region constructors
+    public _DayPickerGridDelegate()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+{
+    int columnCount = Dart:coreDefaultClass.DateTime.DaysPerWeek;
+    double tileWidth = constraints.CrossAxisExtent / columnCount;
+    double tileHeight = Math.Dart:mathDefaultClass.Min(CalendardatepickerDefaultClass._DayPickerRowHeight, constraints.ViewportMainAxisExtent / CalendardatepickerDefaultClass._MaxDayPickerRowCount);
+    return new SliverGridRegularTileLayout(childCrossAxisExtent: tileWidth, childMainAxisExtent: tileHeight, crossAxisCount: columnCount, crossAxisStride: tileWidth, mainAxisStride: tileHeight, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
+}
+
+
+
+
+public new bool ShouldRelayout(FlutterSDK.Material.Pickers.Calendardatepicker._DayPickerGridDelegate oldDelegate) => false;
+
+public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) => false;
+
+
+#endregion
+}
+
+
+public class _DayHeaders : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public _DayHeaders()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
 
     /// <Summary>
-    /// A button that used to toggle the [DatePickerMode] for a date picker.
+    /// Builds widgets showing abbreviated days of week. The first widget in the
+    /// returned list corresponds to the first day of week for the current locale.
     ///
-    /// This appears above the calendar grid and allows the user to toggle the
-    /// [DatePickerMode] to display either the calendar view or the year list.
-    /// </Summary>
-    public class _DatePickerModeToggleButton : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public _DatePickerModeToggleButton(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode mode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string title = default(string), VoidCallback onTitlePressed = default(VoidCallback))
-        {
-            this.Mode = mode;
-            this.Title = title;
-            this.OnTitlePressed = onTitlePressed; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode Mode { get; set; }
-        public virtual string Title { get; set; }
-        public virtual VoidCallback OnTitlePressed { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButtonState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _DatePickerModeToggleButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-    {
-        #region constructors
-        public _DatePickerModeToggleButtonState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButton oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public _MonthPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialMonth = default(DateTime), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
-        : base(key: key)
-        {
-            this.InitialMonth = initialMonth;
-            this.CurrentDate = currentDate;
-            this.FirstDate = firstDate;
-            this.LastDate = lastDate;
-            this.SelectedDate = selectedDate;
-            this.OnChanged = onChanged;
-            this.OnDisplayedMonthChanged = onDisplayedMonthChanged;
-            this.SelectableDayPredicate = selectableDayPredicate; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual DateTime InitialMonth { get; set; }
-        public virtual DateTime CurrentDate { get; set; }
-        public virtual DateTime FirstDate { get; set; }
-        public virtual DateTime LastDate { get; set; }
-        public virtual DateTime SelectedDate { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _MonthPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._MonthPicker>
-    {
-        #region constructors
-        public _MonthPickerState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual DateTime _CurrentMonth { get; set; }
-        internal virtual DateTime _NextMonthDate { get; set; }
-        internal virtual DateTime _PreviousMonthDate { get; set; }
-        internal virtual FlutterSDK.Widgets.Pageview.PageController _PageController { get; set; }
-        internal virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations _Localizations { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        internal virtual bool _IsDisplayingFirstMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _IsDisplayingLastMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _HandleMonthPageChanged(int monthPage) { throw new NotImplementedException(); }
-
-
-        private void _HandleNextMonth() { throw new NotImplementedException(); }
-
-
-        private void _HandlePreviousMonth() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildItems(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Displays the days of a given month and allows choosing a day.
+    /// Examples:
     ///
-    /// The days are arranged in a rectangular grid with one column for each day of
-    /// the week.
+    /// ```
+    /// ┌ Sunday is the first day of week in the US (en_US)
+    /// |
+    /// S M T W T F S  <-- the returned list contains these widgets
+    /// _ _ _ _ _ 1 2
+    /// 3 4 5 6 7 8 9
+    ///
+    /// ┌ But it's Monday in the UK (en_GB)
+    /// |
+    /// M T W T F S S  <-- the returned list contains these widgets
+    /// _ _ _ _ 1 2 3
+    /// 4 5 6 7 8 9 10
+    /// ```
     /// </Summary>
-    public class _DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
+    private List<FlutterSDK.Widgets.Framework.Widget> _GetDayHeaders(FlutterSDK.Painting.Textstyle.TextStyle headerStyle, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations)
     {
-        #region constructors
-        public _DayPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime displayedMonth = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
-        : base(key: key)
+        List<Widget> result = new List<Widget>() { };
+        for (int i = localizations.FirstDayOfWeekIndex; true; i = (i + 1) % 7)
         {
-            this.CurrentDate = currentDate;
-            this.DisplayedMonth = displayedMonth;
-            this.FirstDate = firstDate;
-            this.LastDate = lastDate;
-            this.SelectedDate = selectedDate;
-            this.OnChanged = onChanged;
-            this.SelectableDayPredicate = selectableDayPredicate; throw new NotImplementedException();
+            string weekday = localizations.NarrowWeekdays[i];
+            result.Add(new ExcludeSemantics(child: new Center(child: new Text(weekday, style: headerStyle))));
+            if (i == (localizations.FirstDayOfWeekIndex - 1) % 7) break;
         }
-        #endregion
 
-        #region fields
-        public virtual DateTime SelectedDate { get; set; }
-        public virtual DateTime CurrentDate { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
-        public virtual DateTime FirstDate { get; set; }
-        public virtual DateTime LastDate { get; set; }
-        public virtual DateTime DisplayedMonth { get; set; }
-        public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return result;
     }
 
 
-    public class _DayPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _DayPickerGridDelegate()
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        ColorScheme colorScheme = theme.ColorScheme;
+        TextStyle dayHeaderStyle = theme.TextTheme.Caption?.Apply(color: colorScheme.OnSurface.WithOpacity(0.60));
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        List<Widget> labels = _GetDayHeaders(dayHeaderStyle, localizations);
+        return new Padding(padding: EdgeInsets.Symmetric(horizontal: CalendardatepickerDefaultClass._MonthPickerHorizontalPadding), child: GridView.Custom(shrinkWrap: true, gridDelegate: CalendardatepickerDefaultClass._DayPickerGridDelegate, childrenDelegate: new SliverChildListDelegate(labels, addRepaintBoundaries: false)));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A scrollable list of years to allow picking a year.
+/// </Summary>
+public class _YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _YearPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime initialDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual DateTime CurrentDate { get; set; }
+public virtual DateTime FirstDate { get; set; }
+public virtual DateTime LastDate { get; set; }
+public virtual DateTime InitialDate { get; set; }
+public virtual DateTime SelectedDate { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerState CreateState() => new _YearPickerState();
+
+
+#endregion
+}
+
+
+public class _YearPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._YearPicker>
+{
+    #region constructors
+    public _YearPickerState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+    public virtual int MinYears { get; set; }
+    internal virtual int _ItemCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        int initialYearIndex = Widget.SelectedDate.Year - Widget.FirstDate.Year;
+        int initialYearRow = initialYearIndex~/ CalendardatepickerDefaultClass._YearPickerColumnCount;
+        int centeredYearRow = initialYearRow - 2;
+        double scrollOffset = _ItemCount < MinYears ? 0 : centeredYearRow * CalendardatepickerDefaultClass._YearPickerRowHeight;
+        ScrollController = new ScrollController(initialScrollOffset: scrollOffset);
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildYearItem(FlutterSDK.Widgets.Framework.BuildContext context, int index)
+    {
+        ColorScheme colorScheme = ThemeDefaultClass.Theme.Of(context).ColorScheme;
+        TextTheme textTheme = ThemeDefaultClass.Theme.Of(context).TextTheme;
+        int offset = _ItemCount < MinYears ? (MinYears - _ItemCount)~/ 2:0;
+        int year = Widget.FirstDate.Year + index - offset;
+        bool isSelected = year == Widget.SelectedDate.Year;
+        bool isCurrentYear = year == Widget.CurrentDate.Year;
+        bool isDisabled = year < Widget.FirstDate.Year || year > Widget.LastDate.Year;
+        double decorationHeight = 36.0;
+        double decorationWidth = 72.0;
+        Color textColor = default(Color);
+        if (isSelected)
         {
-            throw new NotImplementedException();
+            textColor = colorScheme.OnPrimary;
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRelayout(FlutterSDK.Material.Pickers.Calendardatepicker._DayPickerGridDelegate oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _DayHeaders : FlutterSDK.Widgets.Framework.StatelessWidget
-    {
-        #region constructors
-        public _DayHeaders()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Builds widgets showing abbreviated days of week. The first widget in the
-        /// returned list corresponds to the first day of week for the current locale.
-        ///
-        /// Examples:
-        ///
-        /// ```
-        /// ┌ Sunday is the first day of week in the US (en_US)
-        /// |
-        /// S M T W T F S  <-- the returned list contains these widgets
-        /// _ _ _ _ _ 1 2
-        /// 3 4 5 6 7 8 9
-        ///
-        /// ┌ But it's Monday in the UK (en_GB)
-        /// |
-        /// M T W T F S S  <-- the returned list contains these widgets
-        /// _ _ _ _ 1 2 3
-        /// 4 5 6 7 8 9 10
-        /// ```
-        /// </Summary>
-        private List<FlutterSDK.Widgets.Framework.Widget> _GetDayHeaders(FlutterSDK.Painting.Textstyle.TextStyle headerStyle, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A scrollable list of years to allow picking a year.
-    /// </Summary>
-    public class _YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public _YearPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime initialDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>))
-        : base(key: key)
+        else if (isDisabled)
         {
-            this.CurrentDate = currentDate;
-            this.FirstDate = firstDate;
-            this.LastDate = lastDate;
-            this.InitialDate = initialDate;
-            this.SelectedDate = selectedDate;
-            this.OnChanged = onChanged; throw new NotImplementedException();
+            textColor = colorScheme.OnSurface.WithOpacity(0.38);
         }
-        #endregion
-
-        #region fields
-        public virtual DateTime CurrentDate { get; set; }
-        public virtual DateTime FirstDate { get; set; }
-        public virtual DateTime LastDate { get; set; }
-        public virtual DateTime InitialDate { get; set; }
-        public virtual DateTime SelectedDate { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _YearPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._YearPicker>
-    {
-        #region constructors
-        public _YearPickerState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        public virtual int MinYears { get; set; }
-        internal virtual int _ItemCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildYearItem(FlutterSDK.Widgets.Framework.BuildContext context, int index) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _YearPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
-    {
-        #region constructors
-        public _YearPickerGridDelegate()
+        else if (isCurrentYear)
         {
-            throw new NotImplementedException();
+            textColor = colorScheme.Primary;
         }
-        #endregion
+        else
+        {
+            textColor = colorScheme.OnSurface.WithOpacity(0.87);
+        }
 
-        #region fields
-        #endregion
+        TextStyle itemStyle = textTheme.BodyText1?.Apply(color: textColor);
+        BoxDecoration decoration = default(BoxDecoration);
+        if (isSelected)
+        {
+            decoration = new BoxDecoration(color: colorScheme.Primary, borderRadius: BorderRadius.Circular(decorationHeight / 2), shape: BoxShape.Rectangle);
+        }
+        else if (isCurrentYear && !isDisabled)
+        {
+            decoration = new BoxDecoration(border: Border.All(color: colorScheme.Primary, width: 1), borderRadius: BorderRadius.Circular(decorationHeight / 2), shape: BoxShape.Rectangle);
+        }
 
-        #region methods
+        Widget yearItem = new Center(child: new Container(decoration: decoration, height: decorationHeight, width: decorationWidth, child: new Center(child: new Semantics(selected: isSelected, child: new Text(year.ToString(), style: itemStyle)))));
+        if (isDisabled)
+        {
+            yearItem = new ExcludeSemantics(child: yearItem);
+        }
+        else
+        {
+            yearItem = new InkWell(key: new ValueKey<int>(year), onTap: () =>
+            {
+                Widget.OnChanged(new DateTime(year, Widget.InitialDate.Month, Widget.InitialDate.Day));
+            }
+            , child: yearItem);
+        }
 
-        public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRelayout(FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerGridDelegate oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        return yearItem;
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Column(children: new List<Widget>() { new Divider(), new Expanded(child: GridView.Builder(controller: ScrollController, gridDelegate: CalendardatepickerDefaultClass._YearPickerGridDelegate, itemBuilder: _BuildYearItem, itemCount: Math.Dart:mathDefaultClass.Max(_ItemCount, MinYears), padding: EdgeInsets.Symmetric(horizontal: CalendardatepickerDefaultClass._YearPickerPadding))), new Divider() });
+    }
+
+
+
+    #endregion
+}
+
+
+public class _YearPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+{
+    #region constructors
+    public _YearPickerGridDelegate()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+{
+    double tileWidth = (constraints.CrossAxisExtent - (CalendardatepickerDefaultClass._YearPickerColumnCount - 1) * CalendardatepickerDefaultClass._YearPickerRowSpacing) / CalendardatepickerDefaultClass._YearPickerColumnCount;
+    return new SliverGridRegularTileLayout(childCrossAxisExtent: tileWidth, childMainAxisExtent: CalendardatepickerDefaultClass._YearPickerRowHeight, crossAxisCount: CalendardatepickerDefaultClass._YearPickerColumnCount, crossAxisStride: tileWidth + CalendardatepickerDefaultClass._YearPickerRowSpacing, mainAxisStride: CalendardatepickerDefaultClass._YearPickerRowHeight, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
+}
+
+
+
+
+public new bool ShouldRelayout(FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerGridDelegate oldDelegate) => false;
+
+public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) => false;
+
+
+#endregion
+}
 
 }

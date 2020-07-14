@@ -434,210 +434,333 @@ namespace FlutterSDK.Widgets.Animatedswitcher
         #region constructors
         public _ChildEntry(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget transition = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget widgetChild = default(FlutterSDK.Widgets.Framework.Widget))
         : base()
-        {
-            this.Controller = controller;
-            this.Animation = animation;
-            this.Transition = transition;
-            this.WidgetChild = widgetChild; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Transition { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget WidgetChild { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Transition { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget WidgetChild { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
+    #endregion
+}
 
 
-    /// <Summary>
-    /// A widget that by default does a cross-fade between a new widget and the
-    /// widget previously set on the [AnimatedSwitcher] as a child.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=2W7POjFb88g}
-    ///
-    /// If they are swapped fast enough (i.e. before [duration] elapses), more than
-    /// one previous child can exist and be transitioning out while the newest one
-    /// is transitioning in.
-    ///
-    /// If the "new" child is the same widget type and key as the "old" child, but
-    /// with different parameters, then [AnimatedSwitcher] will *not* do a
-    /// transition between them, since as far as the framework is concerned, they
-    /// are the same widget and the existing widget can be updated with the new
-    /// parameters. To force the transition to occur, set a [Key] on each child
-    /// widget that you wish to be considered unique (typically a [ValueKey] on the
-    /// widget data that distinguishes this child from the others).
-    ///
-    /// The same key can be used for a new child as was used for an already-outgoing
-    /// child; the two will not be considered related. (For example, if a progress
-    /// indicator with key A is first shown, then an image with key B, then another
-    /// progress indicator with key A again, all in rapid succession, then the old
-    /// progress indicator and the image will be fading out while a new progress
-    /// indicator is fading in.)
-    ///
-    /// The type of transition can be changed from a cross-fade to a custom
-    /// transition by setting the [transitionBuilder].
-    ///
-    /// {@tool dartpad --template=stateful_widget_material}
-    /// This sample shows a counter that animates the scale of a text widget
-    /// whenever the value changes.
-    ///
-    /// ```dart
-    /// int _count = 0;
-    ///
-    /// @override
-    /// Widget build(BuildContext context) {
-    ///   return Container(
-    ///     color: Colors.white,
-    ///     child: Column(
-    ///       mainAxisAlignment: MainAxisAlignment.center,
-    ///       children: <Widget>[
-    ///         AnimatedSwitcher(
-    ///           duration: const Duration(milliseconds: 500),
-    ///           transitionBuilder: (Widget child, Animation<double> animation) {
-    ///             return ScaleTransition(child: child, scale: animation);
-    ///           },
-    ///           child: Text(
-    ///             '$_count',
-    ///             // This key causes the AnimatedSwitcher to interpret this as a "new"
-    ///             // child each time the count changes, so that it will begin its animation
-    ///             // when the count changes.
-    ///             key: ValueKey<int>(_count),
-    ///             style: Theme.of(context).textTheme.headline4,
-    ///           ),
-    ///         ),
-    ///         RaisedButton(
-    ///           child: const Text('Increment'),
-    ///           onPressed: () {
-    ///             setState(() {
-    ///               _count += 1;
-    ///             });
-    ///           },
-    ///         ),
-    ///       ],
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedCrossFade], which only fades between two children, but also
-    ///    interpolates their sizes, and is reversible.
-    ///  * [AnimatedOpacity], which can be used to switch between nothingness and
-    ///    a given child by fading the child in and out.
-    ///  * [FadeTransition], which [AnimatedSwitcher] uses to perform the transition.
-    /// </Summary>
-    public class AnimatedSwitcher : FlutterSDK.Widgets.Framework.StatefulWidget
+/// <Summary>
+/// A widget that by default does a cross-fade between a new widget and the
+/// widget previously set on the [AnimatedSwitcher] as a child.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=2W7POjFb88g}
+///
+/// If they are swapped fast enough (i.e. before [duration] elapses), more than
+/// one previous child can exist and be transitioning out while the newest one
+/// is transitioning in.
+///
+/// If the "new" child is the same widget type and key as the "old" child, but
+/// with different parameters, then [AnimatedSwitcher] will *not* do a
+/// transition between them, since as far as the framework is concerned, they
+/// are the same widget and the existing widget can be updated with the new
+/// parameters. To force the transition to occur, set a [Key] on each child
+/// widget that you wish to be considered unique (typically a [ValueKey] on the
+/// widget data that distinguishes this child from the others).
+///
+/// The same key can be used for a new child as was used for an already-outgoing
+/// child; the two will not be considered related. (For example, if a progress
+/// indicator with key A is first shown, then an image with key B, then another
+/// progress indicator with key A again, all in rapid succession, then the old
+/// progress indicator and the image will be fading out while a new progress
+/// indicator is fading in.)
+///
+/// The type of transition can be changed from a cross-fade to a custom
+/// transition by setting the [transitionBuilder].
+///
+/// {@tool dartpad --template=stateful_widget_material}
+/// This sample shows a counter that animates the scale of a text widget
+/// whenever the value changes.
+///
+/// ```dart
+/// int _count = 0;
+///
+/// @override
+/// Widget build(BuildContext context) {
+///   return Container(
+///     color: Colors.white,
+///     child: Column(
+///       mainAxisAlignment: MainAxisAlignment.center,
+///       children: <Widget>[
+///         AnimatedSwitcher(
+///           duration: const Duration(milliseconds: 500),
+///           transitionBuilder: (Widget child, Animation<double> animation) {
+///             return ScaleTransition(child: child, scale: animation);
+///           },
+///           child: Text(
+///             '$_count',
+///             // This key causes the AnimatedSwitcher to interpret this as a "new"
+///             // child each time the count changes, so that it will begin its animation
+///             // when the count changes.
+///             key: ValueKey<int>(_count),
+///             style: Theme.of(context).textTheme.headline4,
+///           ),
+///         ),
+///         RaisedButton(
+///           child: const Text('Increment'),
+///           onPressed: () {
+///             setState(() {
+///               _count += 1;
+///             });
+///           },
+///         ),
+///       ],
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [AnimatedCrossFade], which only fades between two children, but also
+///    interpolates their sizes, and is reversible.
+///  * [AnimatedOpacity], which can be used to switch between nothingness and
+///    a given child by fading the child in and out.
+///  * [FadeTransition], which [AnimatedSwitcher] uses to perform the transition.
+/// </Summary>
+public class AnimatedSwitcher : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public AnimatedSwitcher(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve switchInCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve switchOutCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder transitionBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual TimeSpan Duration { get; set; }
+public virtual TimeSpan ReverseDuration { get; set; }
+public virtual FlutterSDK.Animation.Curves.Curve SwitchInCurve { get; set; }
+public virtual FlutterSDK.Animation.Curves.Curve SwitchOutCurve { get; set; }
+public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder TransitionBuilder { get; set; }
+public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder LayoutBuilder { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Animatedswitcher._AnimatedSwitcherState CreateState() => new _AnimatedSwitcherState();
+
+
+
+/// <Summary>
+/// The transition builder used as the default value of [transitionBuilder].
+///
+/// The new child is given a [FadeTransition] which increases opacity as
+/// the animation goes from 0.0 to 1.0, and decreases when the animation is
+/// reversed.
+///
+/// This is an [AnimatedSwitcherTransitionBuilder] function.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Framework.Widget DefaultTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Animation.Animation.Animation<double> animation)
+{
+    return new FadeTransition(opacity: animation, child: child);
+}
+
+
+
+
+/// <Summary>
+/// The layout builder used as the default value of [layoutBuilder].
+///
+/// The new child is placed in a [Stack] that sizes itself to match the
+/// largest of the child or a previous child. The children are centered on
+/// each other.
+///
+/// This is an [AnimatedSwitcherLayoutBuilder] function.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild, List<FlutterSDK.Widgets.Framework.Widget> previousChildren)
+{
+    return new Stack(children: new List<Widget>() {, previousChildren, }, alignment: AlignmentDefaultClass.Alignment.Center);
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new IntProperty("duration", Duration.InMilliseconds, unit: "ms"));
+    properties.Add(new IntProperty("reverseDuration", ReverseDuration?.InMilliseconds, unit: "ms", defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+public class _AnimatedSwitcherState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _AnimatedSwitcherState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Animatedswitcher._ChildEntry _CurrentEntry { get; set; }
+    internal virtual HashSet<FlutterSDK.Widgets.Animatedswitcher._ChildEntry> _OutgoingEntries { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Framework.Widget> _OutgoingWidgets { get; set; }
+    internal virtual int _ChildNumber { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public AnimatedSwitcher(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve switchInCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve switchOutCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder transitionBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder))
-        : base(key: key)
-        {
-            this.Child = child;
-            this.Duration = duration;
-            this.ReverseDuration = reverseDuration;
-            this.SwitchInCurve = switchInCurve;
-            this.SwitchOutCurve = switchOutCurve;
-            this.TransitionBuilder = transitionBuilder;
-            this.LayoutBuilder = layoutBuilder; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual TimeSpan ReverseDuration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve SwitchInCurve { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve SwitchOutCurve { get; set; }
-        public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder TransitionBuilder { get; set; }
-        public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder LayoutBuilder { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Animatedswitcher._AnimatedSwitcherState CreateState() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The transition builder used as the default value of [transitionBuilder].
-        ///
-        /// The new child is given a [FadeTransition] which increases opacity as
-        /// the animation goes from 0.0 to 1.0, and decreases when the animation is
-        /// reversed.
-        ///
-        /// This is an [AnimatedSwitcherTransitionBuilder] function.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget DefaultTransitionBuilder(FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Animation.Animation.Animation<double> animation) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The layout builder used as the default value of [layoutBuilder].
-        ///
-        /// The new child is placed in a [Stack] that sizes itself to match the
-        /// largest of the child or a previous child. The children are centered on
-        /// each other.
-        ///
-        /// This is an [AnimatedSwitcherLayoutBuilder] function.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild, List<FlutterSDK.Widgets.Framework.Widget> previousChildren) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _AddEntryForNewChild(animate: false);
     }
 
 
-    public class _AnimatedSwitcherState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher oldWidget)
     {
-        #region constructors
-        public _AnimatedSwitcherState()
-        { }
-        #endregion
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.TransitionBuilder != oldWidget.TransitionBuilder)
+        {
+            _OutgoingEntries.ForEach(_UpdateTransitionForEntry);
+            if (_CurrentEntry != null) _UpdateTransitionForEntry(_CurrentEntry);
+            _MarkChildWidgetCacheAsDirty();
+        }
 
-        #region fields
-        internal virtual FlutterSDK.Widgets.Animatedswitcher._ChildEntry _CurrentEntry { get; set; }
-        internal virtual HashSet<FlutterSDK.Widgets.Animatedswitcher._ChildEntry> _OutgoingEntries { get; set; }
-        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _OutgoingWidgets { get; set; }
-        internal virtual int _ChildNumber { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _AddEntryForNewChild(bool animate = default(bool)) { throw new NotImplementedException(); }
+        bool hasNewChild = Widget.Child != null;
+        bool hasOldChild = _CurrentEntry != null;
+        if (hasNewChild != hasOldChild || hasNewChild && !FrameworkDefaultClass.Widget.CanUpdate(Widget.Child, _CurrentEntry.WidgetChild))
+        {
+            _ChildNumber += 1;
+            _AddEntryForNewChild(animate: true);
+        }
+        else if (_CurrentEntry != null)
+        {
 
 
-        private FlutterSDK.Widgets.Animatedswitcher._ChildEntry _NewEntry(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder builder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>)) { throw new NotImplementedException(); }
+            _CurrentEntry.WidgetChild = Widget.Child;
+            _UpdateTransitionForEntry(_CurrentEntry);
+            _MarkChildWidgetCacheAsDirty();
+        }
 
-
-        private void _MarkChildWidgetCacheAsDirty() { throw new NotImplementedException(); }
-
-
-        private void _UpdateTransitionForEntry(FlutterSDK.Widgets.Animatedswitcher._ChildEntry entry) { throw new NotImplementedException(); }
-
-
-        private void _RebuildOutgoingWidgetsIfNeeded() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    private void _AddEntryForNewChild(bool animate = default(bool))
+    {
+
+        if (_CurrentEntry != null)
+        {
+
+
+            _OutgoingEntries.Add(_CurrentEntry);
+            _CurrentEntry.Controller.Reverse();
+            _MarkChildWidgetCacheAsDirty();
+            _CurrentEntry = null;
+        }
+
+        if (Widget.Child == null) return;
+        AnimationController controller = new AnimationController(duration: Widget.Duration, reverseDuration: Widget.ReverseDuration, vsync: this);
+        Animation<double> animation = new CurvedAnimation(parent: controller, curve: Widget.SwitchInCurve, reverseCurve: Widget.SwitchOutCurve);
+        _CurrentEntry = _NewEntry(child: Widget.Child, controller: controller, animation: animation, builder: Widget.TransitionBuilder);
+        if (animate)
+        {
+            controller.Forward();
+        }
+        else
+        {
+
+            controller.Value = 1.0;
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Animatedswitcher._ChildEntry _NewEntry(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder builder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
+    {
+        _ChildEntry entry = new _ChildEntry(widgetChild: child, transition: KeyedSubtree.Wrap(builder(child, animation), _ChildNumber), animation: animation, controller: controller);
+        animation.AddStatusListener((AnimationStatus status) =>
+        {
+            if (status == AnimationStatus.Dismissed)
+            {
+                SetState(() =>
+                {
+
+
+                    _OutgoingEntries.Remove(entry);
+                    _MarkChildWidgetCacheAsDirty();
+                }
+                );
+                controller.Dispose();
+            }
+
+        }
+        );
+        return entry;
+    }
+
+
+
+
+    private void _MarkChildWidgetCacheAsDirty()
+    {
+        _OutgoingWidgets = null;
+    }
+
+
+
+
+    private void _UpdateTransitionForEntry(FlutterSDK.Widgets.Animatedswitcher._ChildEntry entry)
+    {
+        entry.Transition = new KeyedSubtree(key: entry.Transition.Key, child: Widget.TransitionBuilder(entry.WidgetChild, entry.Animation));
+    }
+
+
+
+
+    private void _RebuildOutgoingWidgetsIfNeeded()
+    {
+        _OutgoingWidgets = (_OutgoingWidgets == null ? List<Widget>.Unmodifiable(_OutgoingEntries.Map((_ChildEntry entry) => =>entry.Transition)) : _OutgoingWidgets);
+
+
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        if (_CurrentEntry != null) _CurrentEntry.Controller.Dispose();
+        foreach (_ChildEntry entry in _OutgoingEntries) entry.Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        _RebuildOutgoingWidgetsIfNeeded();
+        return Widget.LayoutBuilder(_CurrentEntry?.Transition, _OutgoingWidgets);
+    }
+
+
+
+    #endregion
+}
 
 }

@@ -308,29 +308,42 @@ namespace FlutterSDK.Foundation._Bitfieldweb
     {
         #region constructors
         public BitField(int length)
-        {
-            throw new NotImplementedException();
-        }
-        public static BitField<T> Filled(int length, bool value)
-        {
-            var instance = new BitField<T>(); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static BitField<T> Filled(int length, bool value)
 
-        #region fields
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+#endregion
 
-        public new bool IndexOfOperator(T index) { throw new NotImplementedException(); }
+#region methods
 
-
-        public new void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
+public new bool IndexOfOperator(T index)
+{
+    throw new UnsupportedError("Not supported when compiling to JavaScript");
+}
 
 
-        public new void Reset(bool value = false) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+
+public new void InsertAtOperator(T index, bool value)
+{
+    throw new UnsupportedError("Not supported when compiling to JavaScript");
+}
+
+
+
+
+public new void Reset(bool value = false)
+{
+    throw new UnsupportedError("Not supported when compiling to JavaScript");
+}
+
+
+
+#endregion
+}
 
 }

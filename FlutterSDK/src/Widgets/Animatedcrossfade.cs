@@ -481,113 +481,205 @@ namespace FlutterSDK.Widgets.Animatedcrossfade
         #region constructors
         public AnimatedCrossFade(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget firstChild = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget secondChild = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve firstCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve secondCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve sizeCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState crossFadeState = default(FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder))
         : base(key: key)
-        {
-            this.FirstChild = firstChild;
-            this.SecondChild = secondChild;
-            this.FirstCurve = firstCurve;
-            this.SecondCurve = secondCurve;
-            this.SizeCurve = sizeCurve;
-            this.Alignment = alignment;
-            this.CrossFadeState = crossFadeState;
-            this.Duration = duration;
-            this.ReverseDuration = reverseDuration;
-            this.LayoutBuilder = layoutBuilder; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget FirstChild { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget SecondChild { get; set; }
-        public virtual FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState CrossFadeState { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual TimeSpan ReverseDuration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve FirstCurve { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve SecondCurve { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve SizeCurve { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder LayoutBuilder { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget FirstChild { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget SecondChild { get; set; }
+    public virtual FlutterSDK.Widgets.Animatedcrossfade.CrossFadeState CrossFadeState { get; set; }
+    public virtual TimeSpan Duration { get; set; }
+    public virtual TimeSpan ReverseDuration { get; set; }
+    public virtual FlutterSDK.Animation.Curves.Curve FirstCurve { get; set; }
+    public virtual FlutterSDK.Animation.Curves.Curve SecondCurve { get; set; }
+    public virtual FlutterSDK.Animation.Curves.Curve SizeCurve { get; set; }
+    public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+    public virtual FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFadeBuilder LayoutBuilder { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// The default layout algorithm used by [AnimatedCrossFade].
-        ///
-        /// The top child is placed in a stack that sizes itself to match the top
-        /// child. The bottom child is positioned at the top of the same stack, sized
-        /// to fit its width but without forcing the height. The stack is then
-        /// clipped.
-        ///
-        /// This is the default value for [layoutBuilder]. It implements
-        /// [AnimatedCrossFadeBuilder].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget topChild, FlutterSDK.Foundation.Key.Key topChildKey, FlutterSDK.Widgets.Framework.Widget bottomChild, FlutterSDK.Foundation.Key.Key bottomChildKey) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Animatedcrossfade._AnimatedCrossFadeState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedCrossFadeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-    {
-        #region constructors
-        public _AnimatedCrossFadeState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FirstAnimation { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _SecondAnimation { get; set; }
-        internal virtual bool _IsTransitioning { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Animation.Animation.Animation<double> _InitAnimation(FlutterSDK.Animation.Curves.Curve curve, bool inverted) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Specifies which of two children to show. See [AnimatedCrossFade].
+    /// The default layout algorithm used by [AnimatedCrossFade].
     ///
-    /// The child that is shown will fade in, while the other will fade out.
+    /// The top child is placed in a stack that sizes itself to match the top
+    /// child. The bottom child is positioned at the top of the same stack, sized
+    /// to fit its width but without forcing the height. The stack is then
+    /// clipped.
+    ///
+    /// This is the default value for [layoutBuilder]. It implements
+    /// [AnimatedCrossFadeBuilder].
     /// </Summary>
-    public enum CrossFadeState
+    public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget topChild, FlutterSDK.Foundation.Key.Key topChildKey, FlutterSDK.Widgets.Framework.Widget bottomChild, FlutterSDK.Foundation.Key.Key bottomChildKey)
     {
-
-        /// <Summary>
-        /// Show the first child ([AnimatedCrossFade.firstChild]) and hide the second
-        /// ([AnimatedCrossFade.secondChild]]).
-        /// </Summary>
-        ShowFirst,
-        /// <Summary>
-        /// Show the second child ([AnimatedCrossFade.secondChild]) and hide the first
-        /// ([AnimatedCrossFade.firstChild]).
-        /// </Summary>
-        ShowSecond,
+        return new Stack(overflow: Overflow.Visible, children: new List<Widget>() { new Positioned(key: bottomChildKey, left: 0.0, top: 0.0, right: 0.0, child: bottomChild), new Positioned(key: topChildKey, child: topChild) });
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Animatedcrossfade._AnimatedCrossFadeState CreateState() => new _AnimatedCrossFadeState();
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<CrossFadeState>("crossFadeState", CrossFadeState));
+        properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, defaultValue: AlignmentDefaultClass.Alignment.TopCenter));
+        properties.Add(new IntProperty("duration", Duration.InMilliseconds, unit: "ms"));
+        properties.Add(new IntProperty("reverseDuration", ReverseDuration?.InMilliseconds, unit: "ms", defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _AnimatedCrossFadeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _AnimatedCrossFadeState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _FirstAnimation { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _SecondAnimation { get; set; }
+    internal virtual bool _IsTransitioning { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Controller = new AnimationController(duration: Widget.Duration, reverseDuration: Widget.ReverseDuration, vsync: this);
+        if (Widget.CrossFadeState == CrossFadeState.ShowSecond) _Controller.Value = 1.0;
+        _FirstAnimation = _InitAnimation(Widget.FirstCurve, true);
+        _SecondAnimation = _InitAnimation(Widget.SecondCurve, false);
+        _Controller.AddStatusListener((AnimationStatus status) =>
+        {
+            SetState(() =>
+            {
+            }
+            );
+        }
+        );
+    }
+
+
+
+
+    private FlutterSDK.Animation.Animation.Animation<double> _InitAnimation(FlutterSDK.Animation.Curves.Curve curve, bool inverted)
+    {
+        Animation<double> result = _Controller.Drive(new CurveTween(curve: curve));
+        if (inverted) result = result.Drive(new Tween<double>(begin: 1.0, end: 0.0));
+        return result;
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Animatedcrossfade.AnimatedCrossFade oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Duration != oldWidget.Duration) _Controller.Duration = Widget.Duration;
+        if (Widget.ReverseDuration != oldWidget.ReverseDuration) _Controller.ReverseDuration = Widget.ReverseDuration;
+        if (Widget.FirstCurve != oldWidget.FirstCurve) _FirstAnimation = _InitAnimation(Widget.FirstCurve, true);
+        if (Widget.SecondCurve != oldWidget.SecondCurve) _SecondAnimation = _InitAnimation(Widget.SecondCurve, false);
+        if (Widget.CrossFadeState != oldWidget.CrossFadeState)
+        {
+            switch (Widget.CrossFadeState) { case CrossFadeState.ShowFirst: _Controller.Reverse(); break; case CrossFadeState.ShowSecond: _Controller.Forward(); break; }
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Key kFirstChildKey = new ValueKey<CrossFadeState>(CrossFadeState.ShowFirst);
+        Key kSecondChildKey = new ValueKey<CrossFadeState>(CrossFadeState.ShowSecond);
+        bool transitioningForwards = _Controller.Status == AnimationStatus.Completed || _Controller.Status == AnimationStatus.Forward;
+        Key topKey = default(Key);
+        Widget topChild = default(Widget);
+        Animation<double> topAnimation = default(Animation<double>);
+        Key bottomKey = default(Key);
+        Widget bottomChild = default(Widget);
+        Animation<double> bottomAnimation = default(Animation<double>);
+        if (transitioningForwards)
+        {
+            topKey = kSecondChildKey;
+            topChild = Widget.SecondChild;
+            topAnimation = _SecondAnimation;
+            bottomKey = kFirstChildKey;
+            bottomChild = Widget.FirstChild;
+            bottomAnimation = _FirstAnimation;
+        }
+        else
+        {
+            topKey = kFirstChildKey;
+            topChild = Widget.FirstChild;
+            topAnimation = _FirstAnimation;
+            bottomKey = kSecondChildKey;
+            bottomChild = Widget.SecondChild;
+            bottomAnimation = _SecondAnimation;
+        }
+
+        bottomChild = new TickerMode(key: bottomKey, enabled: _IsTransitioning, child: new ExcludeSemantics(excluding: true, child: new FadeTransition(opacity: bottomAnimation, child: bottomChild)));
+        topChild = new TickerMode(key: topKey, enabled: true, child: new ExcludeSemantics(excluding: false, child: new FadeTransition(opacity: topAnimation, child: topChild)));
+        return new ClipRect(child: new AnimatedSize(alignment: Widget.Alignment, duration: Widget.Duration, reverseDuration: Widget.ReverseDuration, curve: Widget.SizeCurve, vsync: this, child: Widget.LayoutBuilder(topChild, topKey, bottomChild, bottomKey)));
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new EnumProperty<CrossFadeState>("crossFadeState", Widget.CrossFadeState));
+        description.Add(new DiagnosticsProperty<AnimationController>("controller", _Controller, showName: false));
+        description.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Widget.Alignment, defaultValue: AlignmentDefaultClass.Alignment.TopCenter));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Specifies which of two children to show. See [AnimatedCrossFade].
+///
+/// The child that is shown will fade in, while the other will fade out.
+/// </Summary>
+public enum CrossFadeState
+{
+
+    /// <Summary>
+    /// Show the first child ([AnimatedCrossFade.firstChild]) and hide the second
+    /// ([AnimatedCrossFade.secondChild]]).
+    /// </Summary>
+    ShowFirst,
+    /// <Summary>
+    /// Show the second child ([AnimatedCrossFade.secondChild]) and hide the first
+    /// ([AnimatedCrossFade.firstChild]).
+    /// </Summary>
+    ShowSecond,
+}
 
 }

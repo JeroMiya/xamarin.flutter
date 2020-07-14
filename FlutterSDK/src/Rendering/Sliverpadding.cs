@@ -493,33 +493,158 @@ namespace FlutterSDK.Rendering.Sliverpadding
 
         #region methods
 
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            if (!(child.ParentData is SliverPhysicalParentData)) child.ParentData = new SliverPhysicalParentData();
+        }
 
 
-        public new void PerformLayout() { throw new NotImplementedException(); }
 
 
-        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
+        public new void PerformLayout()
+        {
+            SliverConstraints constraints = this.Constraints;
+
+            double beforePadding = this.BeforePadding;
+            double afterPadding = this.AfterPadding;
+            double mainAxisPadding = this.MainAxisPadding;
+            double crossAxisPadding = this.CrossAxisPadding;
+            if (Child == null)
+            {
+                Geometry = new SliverGeometry(scrollExtent: mainAxisPadding, paintExtent: Math.Dart:mathDefaultClass.Min(mainAxisPadding, constraints.RemainingPaintExtent), maxPaintExtent: mainAxisPadding);
+                return;
+            }
+
+            Child.Layout(constraints.CopyWith(scrollOffset: Math.Dart:mathDefaultClass.Max(0.0, constraints.ScrollOffset - beforePadding), cacheOrigin: Math.Dart:mathDefaultClass.Min(0.0, constraints.CacheOrigin + beforePadding), overlap: 0.0, remainingPaintExtent: constraints.RemainingPaintExtent - CalculatePaintOffset(constraints, from: 0.0, to: beforePadding), remainingCacheExtent: constraints.RemainingCacheExtent - CalculateCacheOffset(constraints, from: 0.0, to: beforePadding), crossAxisExtent: Math.Dart:mathDefaultClass.Max(0.0, constraints.CrossAxisExtent - crossAxisPadding), precedingScrollExtent: beforePadding + constraints.PrecedingScrollExtent), parentUsesSize: true);
+            SliverGeometry childLayoutGeometry = Child.Geometry;
+            if (childLayoutGeometry.ScrollOffsetCorrection != null)
+            {
+                Geometry = new SliverGeometry(scrollOffsetCorrection: childLayoutGeometry.ScrollOffsetCorrection);
+                return;
+            }
+
+            double beforePaddingPaintExtent = CalculatePaintOffset(constraints, from: 0.0, to: beforePadding);
+            double afterPaddingPaintExtent = CalculatePaintOffset(constraints, from: beforePadding + childLayoutGeometry.ScrollExtent, to: mainAxisPadding + childLayoutGeometry.ScrollExtent);
+            double mainAxisPaddingPaintExtent = beforePaddingPaintExtent + afterPaddingPaintExtent;
+            double beforePaddingCacheExtent = CalculateCacheOffset(constraints, from: 0.0, to: beforePadding);
+            double afterPaddingCacheExtent = CalculateCacheOffset(constraints, from: beforePadding + childLayoutGeometry.ScrollExtent, to: mainAxisPadding + childLayoutGeometry.ScrollExtent);
+            double mainAxisPaddingCacheExtent = afterPaddingCacheExtent + beforePaddingCacheExtent;
+            double paintExtent = Math.Dart:mathDefaultClass.Min(beforePaddingPaintExtent + Math.Dart:mathDefaultClass.Max(childLayoutGeometry.PaintExtent, childLayoutGeometry.LayoutExtent + afterPaddingPaintExtent), constraints.RemainingPaintExtent);
+            Geometry = new SliverGeometry(scrollExtent: mainAxisPadding + childLayoutGeometry.ScrollExtent, paintExtent: paintExtent, layoutExtent: Math.Dart:mathDefaultClass.Min(mainAxisPaddingPaintExtent + childLayoutGeometry.LayoutExtent, paintExtent), cacheExtent: Math.Dart:mathDefaultClass.Min(mainAxisPaddingCacheExtent + childLayoutGeometry.CacheExtent, constraints.RemainingCacheExtent), maxPaintExtent: mainAxisPadding + childLayoutGeometry.MaxPaintExtent, hitTestExtent: Math.Dart:mathDefaultClass.Max(mainAxisPaddingPaintExtent + childLayoutGeometry.PaintExtent, beforePaddingPaintExtent + childLayoutGeometry.HitTestExtent), hasVisualOverflow: childLayoutGeometry.HasVisualOverflow);
+            SliverPhysicalParentData childParentData = Child.ParentData as SliverPhysicalParentData;
 
 
-        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
-        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+            switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(constraints.AxisDirection, constraints.GrowthDirection)) { case AxisDirection.Up: childParentData.PaintOffset = new Offset(ResolvedPadding.Left, CalculatePaintOffset(constraints, from: ResolvedPadding.Bottom + childLayoutGeometry.ScrollExtent, to: ResolvedPadding.Bottom + childLayoutGeometry.ScrollExtent + ResolvedPadding.Top)); break; case AxisDirection.Right: childParentData.PaintOffset = new Offset(CalculatePaintOffset(constraints, from: 0.0, to: ResolvedPadding.Left), ResolvedPadding.Top); break; case AxisDirection.Down: childParentData.PaintOffset = new Offset(ResolvedPadding.Left, CalculatePaintOffset(constraints, from: 0.0, to: ResolvedPadding.Top)); break; case AxisDirection.Left: childParentData.PaintOffset = new Offset(CalculatePaintOffset(constraints, from: ResolvedPadding.Right + childLayoutGeometry.ScrollExtent, to: ResolvedPadding.Right + childLayoutGeometry.ScrollExtent + ResolvedPadding.Left), ResolvedPadding.Top); break; }
 
 
-        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child) { throw new NotImplementedException(); }
-        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
 
 
-        public new double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+
+        }
 
 
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
 
 
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+            if (Child != null && Child.Geometry.HitTestExtent > 0.0)
+            {
+                SliverPhysicalParentData childParentData = Child.ParentData as SliverPhysicalParentData;
+                result.AddWithAxisOffset(mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition, mainAxisOffset: ChildMainAxisPosition(Child), crossAxisOffset: ChildCrossAxisPosition(Child), paintOffset: childParentData.PaintOffset, hitTest: Child.HitTest);
+            }
+
+            return false;
+        }
 
 
-        public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child)
+        {
+
+
+            return CalculatePaintOffset(Constraints, from: 0.0, to: BeforePadding);
+        }
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+
+            return CalculatePaintOffset(Constraints, from: 0.0, to: BeforePadding);
+        }
+
+
+
+
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child)
+        {
+
+
+
+
+
+
+            switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(Constraints.AxisDirection, Constraints.GrowthDirection)) { case AxisDirection.Up: case AxisDirection.Down: return ResolvedPadding.Left; case AxisDirection.Left: case AxisDirection.Right: return ResolvedPadding.Top; }
+            return null;
+        }
+
+
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+
+
+
+
+
+            switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(Constraints.AxisDirection, Constraints.GrowthDirection)) { case AxisDirection.Up: case AxisDirection.Down: return ResolvedPadding.Left; case AxisDirection.Left: case AxisDirection.Right: return ResolvedPadding.Top; }
+            return null;
+        }
+
+
+
+
+        public new double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+            return BeforePadding;
+        }
+
+
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+        {
+
+
+            SliverPhysicalParentData childParentData = child.ParentData as SliverPhysicalParentData;
+            childParentData.ApplyPaintTransform(transform);
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Child != null && Child.Geometry.Visible)
+            {
+                SliverPhysicalParentData childParentData = Child.ParentData as SliverPhysicalParentData;
+                context.PaintChild(Child, offset + childParentData.PaintOffset);
+            }
+
+        }
+
+
+
+
+        public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            base.DebugPaint(context, offset);
+
+        }
+
+
 
         #endregion
     }
@@ -539,34 +664,62 @@ namespace FlutterSDK.Rendering.Sliverpadding
         #region constructors
         public RenderSliverPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
-        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Resolve() { throw new NotImplementedException(); }
+    
+this .Child=child;
+}
 
 
-        private void _MarkNeedsResolution() { throw new NotImplementedException(); }
+    #endregion
 
+    #region fields
+    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
+    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        public new void PerformLayout() { throw new NotImplementedException(); }
+    #region methods
 
+    private void _Resolve()
+    {
+        if (ResolvedPadding != null) return;
+        _ResolvedPadding = Padding.Resolve(TextDirection);
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    private void _MarkNeedsResolution()
+    {
+        _ResolvedPadding = null;
+        MarkNeedsLayout();
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        _Resolve();
+        base.PerformLayout();
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding));
+        properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

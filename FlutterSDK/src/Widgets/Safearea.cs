@@ -458,92 +458,113 @@ namespace FlutterSDK.Widgets.Safearea
         #region constructors
         public SafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool maintainBottomViewPadding = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
-            this.Minimum = minimum;
-            this.MaintainBottomViewPadding = maintainBottomViewPadding;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool Left { get; set; }
-        public virtual bool Top { get; set; }
-        public virtual bool Right { get; set; }
-        public virtual bool Bottom { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
-        public virtual bool MaintainBottomViewPadding { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual bool Left { get; set; }
+    public virtual bool Top { get; set; }
+    public virtual bool Right { get; set; }
+    public virtual bool Bottom { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
+    public virtual bool MaintainBottomViewPadding { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A sliver that insets another sliver by sufficient padding to avoid
-    /// intrusions by the operating system.
-    ///
-    /// For example, this will indent the sliver by enough to avoid the status bar
-    /// at the top of the screen.
-    ///
-    /// It will also indent the sliver by the amount necessary to avoid The Notch
-    /// on the iPhone X, or other similar creative physical features of the
-    /// display.
-    ///
-    /// When a [minimum] padding is specified, the greater of the minimum padding
-    /// or the safe area padding will be applied.
-    ///
-    /// See also:
-    ///
-    ///  * [SafeArea], for insetting widgets to avoid operating system intrusions.
-    ///  * [SliverPadding], for insetting slivers in general.
-    ///  * [MediaQuery], from which the window padding is obtained.
-    ///  * [dart:ui.Window.padding], which reports the padding from the operating
-    ///    system.
-    /// </Summary>
-    public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
-        {
-            this.Left = left;
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
-            this.Minimum = minimum;
-            this.Sliver = sliver; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual bool Left { get; set; }
-        public virtual bool Top { get; set; }
-        public virtual bool Right { get; set; }
-        public virtual bool Bottom { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        MediaQueryData data = MediaqueryDefaultClass.MediaQuery.Of(context);
+        EdgeInsets padding = data.Padding;
+        if (data.Padding.Bottom == 0.0 && data.ViewInsets.Bottom != 0.0 && MaintainBottomViewPadding) padding = padding.CopyWith(bottom: data.ViewPadding.Bottom);
+        return new Padding(padding: EdgeInsets.Only(left: Math.Dart:mathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Math.Dart:mathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Math.Dart:mathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Math.Dart:mathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), child: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Child));
     }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new FlagProperty("left", value: Left, ifTrue: "avoid left padding"));
+        properties.Add(new FlagProperty("top", value: Left, ifTrue: "avoid top padding"));
+        properties.Add(new FlagProperty("right", value: Left, ifTrue: "avoid right padding"));
+        properties.Add(new FlagProperty("bottom", value: Left, ifTrue: "avoid bottom padding"));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A sliver that insets another sliver by sufficient padding to avoid
+/// intrusions by the operating system.
+///
+/// For example, this will indent the sliver by enough to avoid the status bar
+/// at the top of the screen.
+///
+/// It will also indent the sliver by the amount necessary to avoid The Notch
+/// on the iPhone X, or other similar creative physical features of the
+/// display.
+///
+/// When a [minimum] padding is specified, the greater of the minimum padding
+/// or the safe area padding will be applied.
+///
+/// See also:
+///
+///  * [SafeArea], for insetting widgets to avoid operating system intrusions.
+///  * [SliverPadding], for insetting slivers in general.
+///  * [MediaQuery], from which the window padding is obtained.
+///  * [dart:ui.Window.padding], which reports the padding from the operating
+///    system.
+/// </Summary>
+public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual bool Left { get; set; }
+public virtual bool Top { get; set; }
+public virtual bool Right { get; set; }
+public virtual bool Bottom { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    EdgeInsets padding = MediaqueryDefaultClass.MediaQuery.Of(context).Padding;
+    return new SliverPadding(padding: EdgeInsets.Only(left: Math.Dart:mathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Math.Dart:mathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Math.Dart:mathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Math.Dart:mathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), sliver: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Sliver));
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new FlagProperty("left", value: Left, ifTrue: "avoid left padding"));
+    properties.Add(new FlagProperty("top", value: Left, ifTrue: "avoid top padding"));
+    properties.Add(new FlagProperty("right", value: Left, ifTrue: "avoid right padding"));
+    properties.Add(new FlagProperty("bottom", value: Left, ifTrue: "avoid bottom padding"));
+}
+
+
+
+#endregion
+}
 
 }

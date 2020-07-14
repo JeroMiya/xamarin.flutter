@@ -479,183 +479,345 @@ namespace FlutterSDK.Material.Drawer
         #region constructors
         public Drawer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double elevation = 16.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string semanticLabel = default(string))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual double Elevation { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual string SemanticLabel { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        string label = SemanticLabel;
+        switch (ThemeDefaultClass.Theme.Of(context).Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: label = SemanticLabel; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: label = SemanticLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.DrawerLabel; }
+        return new Semantics(scopesRoute: true, namesRoute: true, explicitChildNodes: true, label: label, child: new ConstrainedBox(constraints: BoxConstraints.Expand(width: DrawerDefaultClass._KWidth), child: new Material(elevation: Elevation, child: Child)));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Provides interactive behavior for [Drawer] widgets.
+///
+/// Rarely used directly. Drawer controllers are typically created automatically
+/// by [Scaffold] widgets.
+///
+/// The draw controller provides the ability to open and close a drawer, either
+/// via an animation or via user interaction. When closed, the drawer collapses
+/// to a translucent gesture detector that can be used to listen for edge
+/// swipes.
+///
+/// See also:
+///
+///  * [Drawer], a container with the default width of a drawer.
+///  * [Scaffold.drawer], the [Scaffold] slot for showing a drawer.
+/// </Summary>
+public class DrawerController : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public DrawerController(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Drawer.DrawerAlignment alignment = default(FlutterSDK.Material.Drawer.DrawerAlignment), FlutterSDK.Material.Drawer.DrawerCallback drawerCallback = default(FlutterSDK.Material.Drawer.DrawerCallback), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color scrimColor = default(FlutterBinding.UI.Color), double edgeDragWidth = default(double), bool enableOpenDragGesture = true)
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Material.Drawer.DrawerAlignment Alignment { get; set; }
+public virtual FlutterSDK.Material.Drawer.DrawerCallback DrawerCallback { get; set; }
+public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+public virtual FlutterBinding.UI.Color ScrimColor { get; set; }
+public virtual bool EnableOpenDragGesture { get; set; }
+public virtual double EdgeDragWidth { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Drawer.DrawerControllerState CreateState() => new DrawerControllerState();
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// State for a [DrawerController].
+///
+/// Typically used by a [Scaffold] to [open] and [close] the drawer.
+/// </Summary>
+public class DrawerControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Drawer.DrawerController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public DrawerControllerState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Routes.LocalHistoryEntry _HistoryEntry { get; set; }
+    internal virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode _FocusScopeNode { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _DrawerKey { get; set; }
+    internal virtual bool _PreviouslyOpened { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.ColorTween _ScrimColorTween { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GestureDetectorKey { get; set; }
+    internal virtual double _Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual FlutterSDK.Painting.Alignment.AlignmentDirectional _DrawerOuterAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual FlutterSDK.Painting.Alignment.AlignmentDirectional _DrawerInnerAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _ScrimColorTween = _BuildScrimColorTween();
+        _Controller = new AnimationController(duration: DrawerDefaultClass._KBaseSettleDuration, vsync: this);
+        new AnimationController(duration: DrawerDefaultClass._KBaseSettleDuration, vsync: this).AddListener(_AnimationChanged);
+        new AnimationController(duration: DrawerDefaultClass._KBaseSettleDuration, vsync: this).AddStatusListener(_AnimationStatusChanged);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _HistoryEntry?.Remove();
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Drawer.DrawerController oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.ScrimColor != oldWidget.ScrimColor) _ScrimColorTween = _BuildScrimColorTween();
+    }
+
+
+
+
+    private void _AnimationChanged()
+    {
+        SetState(() =>
         {
-            this.Elevation = elevation;
-            this.Child = child;
-            this.SemanticLabel = semanticLabel; throw new NotImplementedException();
         }
-        #endregion
-
-        #region fields
-        public virtual double Elevation { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual string SemanticLabel { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    /// <Summary>
-    /// Provides interactive behavior for [Drawer] widgets.
-    ///
-    /// Rarely used directly. Drawer controllers are typically created automatically
-    /// by [Scaffold] widgets.
-    ///
-    /// The draw controller provides the ability to open and close a drawer, either
-    /// via an animation or via user interaction. When closed, the drawer collapses
-    /// to a translucent gesture detector that can be used to listen for edge
-    /// swipes.
-    ///
-    /// See also:
-    ///
-    ///  * [Drawer], a container with the default width of a drawer.
-    ///  * [Scaffold.drawer], the [Scaffold] slot for showing a drawer.
-    /// </Summary>
-    public class DrawerController : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    private void _EnsureHistoryEntry()
     {
-        #region constructors
-        public DrawerController(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Drawer.DrawerAlignment alignment = default(FlutterSDK.Material.Drawer.DrawerAlignment), FlutterSDK.Material.Drawer.DrawerCallback drawerCallback = default(FlutterSDK.Material.Drawer.DrawerCallback), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color scrimColor = default(FlutterBinding.UI.Color), double edgeDragWidth = default(double), bool enableOpenDragGesture = true)
-        : base(key: key)
+        if (_HistoryEntry == null)
         {
-            this.Child = child;
-            this.Alignment = alignment;
-            this.DrawerCallback = drawerCallback;
-            this.DragStartBehavior = dragStartBehavior;
-            this.ScrimColor = scrimColor;
-            this.EdgeDragWidth = edgeDragWidth;
-            this.EnableOpenDragGesture = enableOpenDragGesture; throw new NotImplementedException();
+            ModalRoute<object> route = RoutesDefaultClass.ModalRoute.Of(Context);
+            if (route != null)
+            {
+                _HistoryEntry = new LocalHistoryEntry(onRemove: _HandleHistoryEntryRemoved);
+                route.AddLocalHistoryEntry(_HistoryEntry);
+                FocusscopeDefaultClass.FocusScope.Of(Context).SetFirstFocus(_FocusScopeNode);
+            }
+
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Material.Drawer.DrawerAlignment Alignment { get; set; }
-        public virtual FlutterSDK.Material.Drawer.DrawerCallback DrawerCallback { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        public virtual FlutterBinding.UI.Color ScrimColor { get; set; }
-        public virtual bool EnableOpenDragGesture { get; set; }
-        public virtual double EdgeDragWidth { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Drawer.DrawerControllerState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
+
+
+    private void _AnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+    {
+        switch (status) { case AnimationStatus.Forward: _EnsureHistoryEntry(); break; case AnimationStatus.Reverse: _HistoryEntry?.Remove(); _HistoryEntry = null; break; case AnimationStatus.Dismissed: break; case AnimationStatus.Completed: break; }
+    }
+
+
+
+
+    private void _HandleHistoryEntryRemoved()
+    {
+        _HistoryEntry = null;
+        Close();
+    }
+
+
+
+
+    private void _HandleDragDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails details)
+    {
+        _Controller.Stop();
+        _EnsureHistoryEntry();
+    }
+
+
+
+
+    private void _HandleDragCancel()
+    {
+        if (_Controller.IsDismissed || _Controller.IsAnimating) return;
+        if (_Controller.Value < 0.5)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
+
+    }
+
+
+
+
+    private void _Move(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+    {
+        double delta = details.PrimaryDelta / _Width;
+        switch (Widget.Alignment) { case DrawerAlignment.Start: break; case DrawerAlignment.End: delta = -delta; break; }
+        switch (BasicDefaultClass.Directionality.Of(Context)) { case TextDirection.Rtl: _Controller.Value -= delta; break; case TextDirection.Ltr: _Controller.Value += delta; break; }
+        bool opened = _Controller.Value > 0.5;
+        if (opened != _PreviouslyOpened && Widget.DrawerCallback != null) Widget.DrawerCallback(opened);
+        _PreviouslyOpened = opened;
+    }
+
+
+
+
+    private void _Settle(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+    {
+        if (_Controller.IsDismissed) return;
+        if (details.Velocity.PixelsPerSecond.Dx.Abs() >= DrawerDefaultClass._KMinFlingVelocity)
+        {
+            double visualVelocity = details.Velocity.PixelsPerSecond.Dx / _Width;
+            switch (Widget.Alignment) { case DrawerAlignment.Start: break; case DrawerAlignment.End: visualVelocity = -visualVelocity; break; }
+            switch (BasicDefaultClass.Directionality.Of(Context)) { case TextDirection.Rtl: _Controller.Fling(velocity: -visualVelocity); if (Widget.DrawerCallback != null) Widget.DrawerCallback(visualVelocity < 0.0); break; case TextDirection.Ltr: _Controller.Fling(velocity: visualVelocity); if (Widget.DrawerCallback != null) Widget.DrawerCallback(visualVelocity > 0.0); break; }
+        }
+        else if (_Controller.Value < 0.5)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
+
+    }
+
+
+
+
     /// <Summary>
-    /// State for a [DrawerController].
+    /// Starts an animation to open the drawer.
     ///
-    /// Typically used by a [Scaffold] to [open] and [close] the drawer.
+    /// Typically called by [ScaffoldState.openDrawer].
     /// </Summary>
-    public class DrawerControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Drawer.DrawerController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    public virtual void Open()
     {
-        #region constructors
-        public DrawerControllerState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Routes.LocalHistoryEntry _HistoryEntry { get; set; }
-        internal virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode _FocusScopeNode { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _DrawerKey { get; set; }
-        internal virtual bool _PreviouslyOpened { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.ColorTween _ScrimColorTween { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GestureDetectorKey { get; set; }
-        internal virtual double _Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual FlutterSDK.Painting.Alignment.AlignmentDirectional _DrawerOuterAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual FlutterSDK.Painting.Alignment.AlignmentDirectional _DrawerInnerAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Drawer.DrawerController oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _AnimationChanged() { throw new NotImplementedException(); }
-
-
-        private void _EnsureHistoryEntry() { throw new NotImplementedException(); }
-
-
-        private void _AnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
-
-
-        private void _HandleHistoryEntryRemoved() { throw new NotImplementedException(); }
-
-
-        private void _HandleDragDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails details) { throw new NotImplementedException(); }
-
-
-        private void _HandleDragCancel() { throw new NotImplementedException(); }
-
-
-        private void _Move(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
-
-
-        private void _Settle(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Starts an animation to open the drawer.
-        ///
-        /// Typically called by [ScaffoldState.openDrawer].
-        /// </Summary>
-        public virtual void Open() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Starts an animation to close the drawer.
-        /// </Summary>
-        public virtual void Close() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Animation.Tween.ColorTween _BuildScrimColorTween() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildDrawer(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        _Controller.Fling(velocity: 1.0);
+        if (Widget.DrawerCallback != null) Widget.DrawerCallback(true);
     }
+
+
 
 
     /// <Summary>
-    /// The possible alignments of a [Drawer].
+    /// Starts an animation to close the drawer.
     /// </Summary>
-    public enum DrawerAlignment
+    public virtual void Close()
+    {
+        _Controller.Fling(velocity: -1.0);
+        if (Widget.DrawerCallback != null) Widget.DrawerCallback(false);
+    }
+
+
+
+
+    private FlutterSDK.Animation.Tween.ColorTween _BuildScrimColorTween()
+    {
+        return new ColorTween(begin: ColorsDefaultClass.Colors.Transparent, end: Widget.ScrimColor ?? ColorsDefaultClass.Colors.Black54);
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildDrawer(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        bool drawerIsStart = Widget.Alignment == DrawerAlignment.Start;
+        EdgeInsets padding = MediaqueryDefaultClass.MediaQuery.Of(context).Padding;
+        TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
+        double dragAreaWidth = Widget.EdgeDragWidth;
+        if (Widget.EdgeDragWidth == null)
+        {
+            switch (textDirection) { case TextDirection.Ltr: dragAreaWidth = DrawerDefaultClass._KEdgeDragWidth + (drawerIsStart ? padding.Left : padding.Right); break; case TextDirection.Rtl: dragAreaWidth = DrawerDefaultClass._KEdgeDragWidth + (drawerIsStart ? padding.Right : padding.Left); break; }
+        }
+
+        if (_Controller.Status == AnimationStatus.Dismissed)
+        {
+            if (Widget.EnableOpenDragGesture)
+            {
+                return new Align(alignment: _DrawerOuterAlignment, child: new GestureDetector(key: _GestureDetectorKey, onHorizontalDragUpdate: _Move, onHorizontalDragEnd: _Settle, behavior: HitTestBehavior.Translucent, excludeFromSemantics: true, dragStartBehavior: Widget.DragStartBehavior, child: new Container(width: dragAreaWidth)));
+            }
+            else
+            {
+                return SizedBox.Shrink();
+            }
+
+        }
+        else
+        {
+            bool platformHasBackButton = default(bool);
+            switch (ThemeDefaultClass.Theme.Of(context).Platform) { case TargetPlatform.Android: platformHasBackButton = true; break; case TargetPlatform.IOS: case TargetPlatform.MacOS: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: platformHasBackButton = false; break; }
+
+            return new GestureDetector(key: _GestureDetectorKey, onHorizontalDragDown: _HandleDragDown, onHorizontalDragUpdate: _Move, onHorizontalDragEnd: _Settle, onHorizontalDragCancel: _HandleDragCancel, excludeFromSemantics: true, dragStartBehavior: Widget.DragStartBehavior, child: new RepaintBoundary(child: new Stack(children: new List<Widget>() { new BlockSemantics(child: new ExcludeSemantics(excluding: platformHasBackButton, child: new GestureDetector(onTap: Close, child: new Semantics(label: MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.ModalBarrierDismissLabel, child: new MouseRegion(opaque: true, child: new Container(color: _ScrimColorTween.Evaluate(_Controller))))))), new Align(alignment: _DrawerOuterAlignment, child: new Align(alignment: _DrawerInnerAlignment, widthFactor: _Controller.Value, child: new RepaintBoundary(child: new FocusScope(key: _DrawerKey, node: _FocusScopeNode, child: Widget.Child)))) })));
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
 
-        /// <Summary>
-        /// Denotes that the [Drawer] is at the start side of the [Scaffold].
-        ///
-        /// This corresponds to the left side when the text direction is left-to-right
-        /// and the right side when the text direction is right-to-left.
-        /// </Summary>
-        Start,
-        /// <Summary>
-        /// Denotes that the [Drawer] is at the end side of the [Scaffold].
-        ///
-        /// This corresponds to the right side when the text direction is left-to-right
-        /// and the left side when the text direction is right-to-left.
-        /// </Summary>
-        End,
+        return new ListTileTheme(style: ListTileStyle.Drawer, child: _BuildDrawer(context));
     }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// The possible alignments of a [Drawer].
+/// </Summary>
+public enum DrawerAlignment
+{
+
+    /// <Summary>
+    /// Denotes that the [Drawer] is at the start side of the [Scaffold].
+    ///
+    /// This corresponds to the left side when the text direction is left-to-right
+    /// and the right side when the text direction is right-to-left.
+    /// </Summary>
+    Start,
+    /// <Summary>
+    /// Denotes that the [Drawer] is at the end side of the [Scaffold].
+    ///
+    /// This corresponds to the right side when the text direction is left-to-right
+    /// and the left side when the text direction is right-to-left.
+    /// </Summary>
+    End,
+}
 
 }

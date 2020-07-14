@@ -441,92 +441,180 @@ namespace FlutterSDK.Rendering.Image
         #region constructors
         public RenderImage(SKImage image = default(SKImage), double width = default(double), double height = default(double), double scale = 1.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, TextDirection textDirection = default(TextDirection), bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
-        internal virtual bool _FlipHorizontally { get; set; }
-        internal virtual SKImage _Image { get; set; }
-        internal virtual double _Width { get; set; }
-        internal virtual double _Height { get; set; }
-        internal virtual double _Scale { get; set; }
-        internal virtual ColorFilter _ColorFilter { get; set; }
-        internal virtual FlutterBinding.UI.Color _Color { get; set; }
-        internal virtual FilterQuality _FilterQuality { get; set; }
-        internal virtual FlutterBinding.UI.BlendMode _ColorBlendMode { get; set; }
-        internal virtual FlutterSDK.Painting.Boxfit.BoxFit _Fit { get; set; }
-        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
-        internal virtual FlutterSDK.Painting.Decorationimage.ImageRepeat _Repeat { get; set; }
-        internal virtual FlutterBinding.UI.Rect _CenterSlice { get; set; }
-        internal virtual bool _InvertColors { get; set; }
-        internal virtual bool _MatchTextDirection { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        public virtual SKImage Image { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Height { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FilterQuality FilterQuality { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.BlendMode ColorBlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Rect CenterSlice { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool InvertColors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _Resolve() { throw new NotImplementedException(); }
-
-
-        private void _MarkNeedResolution() { throw new NotImplementedException(); }
-
-
-        private void _UpdateColorFilter() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Find a size for the render image within the given constraints.
-        ///
-        ///  - The dimensions of the RenderImage must fit within the constraints.
-        ///  - The aspect ratio of the RenderImage matches the intrinsic aspect
-        ///    ratio of the image.
-        ///  - The RenderImage's dimension are maximal subject to being smaller than
-        ///    the intrinsic size of the image.
-        /// </Summary>
-        private Size _SizeForConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    
+_UpdateColorFilter();
     }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+    internal virtual bool _FlipHorizontally { get; set; }
+    internal virtual SKImage _Image { get; set; }
+    internal virtual double _Width { get; set; }
+    internal virtual double _Height { get; set; }
+    internal virtual double _Scale { get; set; }
+    internal virtual ColorFilter _ColorFilter { get; set; }
+    internal virtual FlutterBinding.UI.Color _Color { get; set; }
+    internal virtual FilterQuality _FilterQuality { get; set; }
+    internal virtual FlutterBinding.UI.BlendMode _ColorBlendMode { get; set; }
+    internal virtual FlutterSDK.Painting.Boxfit.BoxFit _Fit { get; set; }
+    internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+    internal virtual FlutterSDK.Painting.Decorationimage.ImageRepeat _Repeat { get; set; }
+    internal virtual FlutterBinding.UI.Rect _CenterSlice { get; set; }
+    internal virtual bool _InvertColors { get; set; }
+    internal virtual bool _MatchTextDirection { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    public virtual SKImage Image { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Height { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FilterQuality FilterQuality { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.BlendMode ColorBlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Rect CenterSlice { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool InvertColors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _Resolve()
+    {
+        if (_ResolvedAlignment != null) return;
+        _ResolvedAlignment = Alignment.Resolve(TextDirection);
+        _FlipHorizontally = MatchTextDirection && TextDirection == TextDirection.Rtl;
+    }
+
+
+
+
+    private void _MarkNeedResolution()
+    {
+        _ResolvedAlignment = null;
+        _FlipHorizontally = null;
+        MarkNeedsPaint();
+    }
+
+
+
+
+    private void _UpdateColorFilter()
+    {
+        if (_Color == null) _ColorFilter = null; else _ColorFilter = ColorFilter.Mode(_Color, _ColorBlendMode ?? BlendMode.SrcIn);
+    }
+
+
+
+
+    /// <Summary>
+    /// Find a size for the render image within the given constraints.
+    ///
+    ///  - The dimensions of the RenderImage must fit within the constraints.
+    ///  - The aspect ratio of the RenderImage matches the intrinsic aspect
+    ///    ratio of the image.
+    ///  - The RenderImage's dimension are maximal subject to being smaller than
+    ///    the intrinsic size of the image.
+    /// </Summary>
+    private Size _SizeForConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+    {
+        constraints = BoxConstraints.TightFor(width: _Width, height: _Height).Enforce(constraints);
+        if (_Image == null) return constraints.Smallest;
+        return constraints.ConstrainSizeAndAttemptToPreserveAspectRatio(new Size(_Image.Width.ToDouble() / _Scale, _Image.Height.ToDouble() / _Scale));
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicWidth(double height)
+    {
+
+        if (_Width == null && _Height == null) return 0.0;
+        return _SizeForConstraints(BoxConstraints.TightForFinite(height: height)).Width;
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
+    {
+
+        return _SizeForConstraints(BoxConstraints.TightForFinite(height: height)).Width;
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
+    {
+
+        if (_Width == null && _Height == null) return 0.0;
+        return _SizeForConstraints(BoxConstraints.TightForFinite(width: width)).Height;
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
+    {
+
+        return _SizeForConstraints(BoxConstraints.TightForFinite(width: width)).Height;
+    }
+
+
+
+
+    public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+    public new void PerformLayout()
+    {
+        Size = _SizeForConstraints(Constraints);
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (_Image == null) return;
+        _Resolve();
+
+
+        DecorationimageDefaultClass.PaintImage(canvas: context.Canvas, rect: offset & Size, image: _Image, scale: _Scale, colorFilter: _ColorFilter, fit: _Fit, alignment: _ResolvedAlignment, centerSlice: _CenterSlice, repeat: _Repeat, flipHorizontally: _FlipHorizontally, invertColors: InvertColors, filterQuality: _FilterQuality);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.Image>("image", Image));
+        properties.Add(new DoubleProperty("width", Width, defaultValue: null));
+        properties.Add(new DoubleProperty("height", Height, defaultValue: null));
+        properties.Add(new DoubleProperty("scale", Scale, defaultValue: 1.0));
+        properties.Add(new ColorProperty("color", Color, defaultValue: null));
+        properties.Add(new EnumProperty<BlendMode>("colorBlendMode", ColorBlendMode, defaultValue: null));
+        properties.Add(new EnumProperty<BoxFit>("fit", Fit, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, defaultValue: null));
+        properties.Add(new EnumProperty<ImageRepeat>("repeat", Repeat, defaultValue: ImageRepeat.NoRepeat));
+        properties.Add(new DiagnosticsProperty<Rect>("centerSlice", CenterSlice, defaultValue: null));
+        properties.Add(new FlagProperty("matchTextDirection", value: MatchTextDirection, ifTrue: "match text direction"));
+        properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<bool>("invertColors", InvertColors));
+        properties.Add(new EnumProperty<FilterQuality>("filterQuality", FilterQuality));
+    }
+
+
+
+    #endregion
+}
 
 }

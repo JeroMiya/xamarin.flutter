@@ -396,247 +396,301 @@ namespace FlutterSDK.Material.Floatingactionbutton
     {
         #region constructors
         public _DefaultHeroTag()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
+    #endregion
+}
 
 
-    /// <Summary>
-    /// A material design floating action button.
-    ///
-    /// A floating action button is a circular icon button that hovers over content
-    /// to promote a primary action in the application. Floating action buttons are
-    /// most commonly used in the [Scaffold.floatingActionButton] field.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=2uaoEDOgk_I}
-    ///
-    /// Use at most a single floating action button per screen. Floating action
-    /// buttons should be used for positive actions such as "create", "share", or
-    /// "navigate". (If more than one floating action button is used within a
-    /// [Route], then make sure that each button has a unique [heroTag], otherwise
-    /// an exception will be thrown.)
-    ///
-    /// If the [onPressed] callback is null, then the button will be disabled and
-    /// will not react to touch. It is highly discouraged to disable a floating
-    /// action button as there is no indication to the user that the button is
-    /// disabled. Consider changing the [backgroundColor] if disabling the floating
-    /// action button.
-    ///
-    /// {@tool dartpad --template=stateless_widget_material}
-    /// This example shows how to display a [FloatingActionButton] in a
-    /// [Scaffold], with a pink [backgroundColor] and a thumbs up [Icon].
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/floating_action_button.png)
-    ///
-    /// ```dart
-    /// Widget build(BuildContext context) {
-    ///   return Scaffold(
-    ///     appBar: AppBar(
-    ///       title: const Text('Floating Action Button'),
-    ///     ),
-    ///     body: Center(
-    ///       child: const Text('Press the button below!')
-    ///     ),
-    ///     floatingActionButton: FloatingActionButton(
-    ///       onPressed: () {
-    ///         // Add your onPressed code here!
-    ///       },
-    ///       child: Icon(Icons.navigation),
-    ///       backgroundColor: Colors.green,
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// {@tool dartpad --template=stateless_widget_material}
-    /// This example shows how to make an extended [FloatingActionButton] in a
-    /// [Scaffold], with a  pink [backgroundColor], a thumbs up [Icon] and a
-    /// [Text] label that reads "Approve".
-    ///
-    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/floating_action_button_label.png)
-    ///
-    /// ```dart
-    /// Widget build(BuildContext context) {
-    ///   return Scaffold(
-    ///     appBar: AppBar(
-    ///       title: const Text('Floating Action Button Label'),
-    ///     ),
-    ///     body: Center(
-    ///       child: const Text('Press the button with a label below!'),
-    ///     ),
-    ///     floatingActionButton: FloatingActionButton.extended(
-    ///       onPressed: () {
-    ///         // Add your onPressed code here!
-    ///       },
-    ///       label: Text('Approve'),
-    ///       icon: Icon(Icons.thumb_up),
-    ///       backgroundColor: Colors.pink,
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [Scaffold], in which floating action buttons typically live.
-    ///  * [RaisedButton], another kind of button that appears to float above the
-    ///    content.
-    ///  * <https://material.io/design/components/buttons-floating-action-button.html>
-    /// </Summary>
-    public class FloatingActionButton : FlutterSDK.Widgets.Framework.StatelessWidget
+/// <Summary>
+/// A material design floating action button.
+///
+/// A floating action button is a circular icon button that hovers over content
+/// to promote a primary action in the application. Floating action buttons are
+/// most commonly used in the [Scaffold.floatingActionButton] field.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=2uaoEDOgk_I}
+///
+/// Use at most a single floating action button per screen. Floating action
+/// buttons should be used for positive actions such as "create", "share", or
+/// "navigate". (If more than one floating action button is used within a
+/// [Route], then make sure that each button has a unique [heroTag], otherwise
+/// an exception will be thrown.)
+///
+/// If the [onPressed] callback is null, then the button will be disabled and
+/// will not react to touch. It is highly discouraged to disable a floating
+/// action button as there is no indication to the user that the button is
+/// disabled. Consider changing the [backgroundColor] if disabling the floating
+/// action button.
+///
+/// {@tool dartpad --template=stateless_widget_material}
+/// This example shows how to display a [FloatingActionButton] in a
+/// [Scaffold], with a pink [backgroundColor] and a thumbs up [Icon].
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/floating_action_button.png)
+///
+/// ```dart
+/// Widget build(BuildContext context) {
+///   return Scaffold(
+///     appBar: AppBar(
+///       title: const Text('Floating Action Button'),
+///     ),
+///     body: Center(
+///       child: const Text('Press the button below!')
+///     ),
+///     floatingActionButton: FloatingActionButton(
+///       onPressed: () {
+///         // Add your onPressed code here!
+///       },
+///       child: Icon(Icons.navigation),
+///       backgroundColor: Colors.green,
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// {@tool dartpad --template=stateless_widget_material}
+/// This example shows how to make an extended [FloatingActionButton] in a
+/// [Scaffold], with a  pink [backgroundColor], a thumbs up [Icon] and a
+/// [Text] label that reads "Approve".
+///
+/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/floating_action_button_label.png)
+///
+/// ```dart
+/// Widget build(BuildContext context) {
+///   return Scaffold(
+///     appBar: AppBar(
+///       title: const Text('Floating Action Button Label'),
+///     ),
+///     body: Center(
+///       child: const Text('Press the button with a label below!'),
+///     ),
+///     floatingActionButton: FloatingActionButton.extended(
+///       onPressed: () {
+///         // Add your onPressed code here!
+///       },
+///       label: Text('Approve'),
+///       icon: Icon(Icons.thumb_up),
+///       backgroundColor: Colors.pink,
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [Scaffold], in which floating action buttons typically live.
+///  * [RaisedButton], another kind of button that appears to float above the
+///    content.
+///  * <https://material.io/design/components/buttons-floating-action-button.html>
+/// </Summary>
+public class FloatingActionButton : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public FloatingActionButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), bool mini = false, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool isExtended = false)
+    : base(key: key)
+
+}
+public static FloatingActionButton Extended(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool isExtended = true, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual string Tooltip { get; set; }
+public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
+public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+public virtual @Object HeroTag { get; set; }
+public virtual VoidCallback OnPressed { get; set; }
+public virtual double Elevation { get; set; }
+public virtual double FocusElevation { get; set; }
+public virtual double HoverElevation { get; set; }
+public virtual double HighlightElevation { get; set; }
+public virtual double DisabledElevation { get; set; }
+public virtual bool Mini { get; set; }
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+public virtual bool IsExtended { get; set; }
+public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+public virtual bool Autofocus { get; set; }
+public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
+internal virtual FlutterSDK.Rendering.Box.BoxConstraints _SizeConstraints { get; set; }
+internal virtual double _DefaultElevation { get; set; }
+internal virtual double _DefaultFocusElevation { get; set; }
+internal virtual double _DefaultHoverElevation { get; set; }
+internal virtual double _DefaultHighlightElevation { get; set; }
+internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultShape { get; set; }
+internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultExtendedShape { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+    FloatingActionButtonThemeData floatingActionButtonTheme = theme.FloatingActionButtonTheme;
+    if (this.ForegroundColor == null && floatingActionButtonTheme.ForegroundColor == null)
     {
-        #region constructors
-        public FloatingActionButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), bool mini = false, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool isExtended = false)
-        : base(key: key)
+        bool accentIsDark = theme.AccentColorBrightness == Brightness.Dark;
+        Color defaultAccentIconThemeColor = accentIsDark ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.Black;
+        if (theme.AccentIconTheme.Color != defaultAccentIconThemeColor)
         {
-            this.Child = child;
-            this.Tooltip = tooltip;
-            this.ForegroundColor = foregroundColor;
-            this.BackgroundColor = backgroundColor;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.SplashColor = splashColor;
-            this.HeroTag = heroTag;
-            this.Elevation = elevation;
-            this.FocusElevation = focusElevation;
-            this.HoverElevation = hoverElevation;
-            this.HighlightElevation = highlightElevation;
-            this.DisabledElevation = disabledElevation;
-            this.OnPressed = onPressed;
-            this.Mini = mini;
-            this.Shape = shape;
-            this.ClipBehavior = clipBehavior;
-            this.FocusNode = focusNode;
-            this.Autofocus = autofocus;
-            this.MaterialTapTargetSize = materialTapTargetSize;
-            this.IsExtended = isExtended; throw new NotImplementedException();
+            PrintDefaultClass.DebugPrint("Warning: " + "The support for configuring the foreground color of " + "FloatingActionButtons using ThemeData.accentIconTheme " + "has been deprecated. Please use ThemeData.floatingActionButtonTheme " + "instead. See " + "https://flutter.dev/go/remove-fab-accent-theme-dependency. " + "This feature was deprecated after v1.13.2.");
         }
-        public static FloatingActionButton Extended(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool isExtended = true, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
-        {
-            var instance = new FloatingActionButton(key: key); instance.Tooltip = tooltip;
-            instance.ForegroundColor = foregroundColor;
-            instance.BackgroundColor = backgroundColor;
-            instance.FocusColor = focusColor;
-            instance.HoverColor = hoverColor;
-            instance.HeroTag = heroTag;
-            instance.Elevation = elevation;
-            instance.FocusElevation = focusElevation;
-            instance.HoverElevation = hoverElevation;
-            instance.SplashColor = splashColor;
-            instance.HighlightElevation = highlightElevation;
-            instance.DisabledElevation = disabledElevation;
-            instance.OnPressed = onPressed;
-            instance.Shape = shape;
-            instance.IsExtended = isExtended;
-            instance.MaterialTapTargetSize = materialTapTargetSize;
-            instance.ClipBehavior = clipBehavior;
-            instance.FocusNode = focusNode;
-            instance.Autofocus = autofocus; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual string Tooltip { get; set; }
-        public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
-        public virtual @Object HeroTag { get; set; }
-        public virtual VoidCallback OnPressed { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual double FocusElevation { get; set; }
-        public virtual double HoverElevation { get; set; }
-        public virtual double HighlightElevation { get; set; }
-        public virtual double DisabledElevation { get; set; }
-        public virtual bool Mini { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        public virtual bool IsExtended { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        public virtual bool Autofocus { get; set; }
-        public virtual FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
-        internal virtual FlutterSDK.Rendering.Box.BoxConstraints _SizeConstraints { get; set; }
-        internal virtual double _DefaultElevation { get; set; }
-        internal virtual double _DefaultFocusElevation { get; set; }
-        internal virtual double _DefaultHoverElevation { get; set; }
-        internal virtual double _DefaultHighlightElevation { get; set; }
-        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultShape { get; set; }
-        internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultExtendedShape { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
-
-    public class _ChildOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    Color foregroundColor = this.ForegroundColor ?? floatingActionButtonTheme.ForegroundColor ?? theme.ColorScheme.OnSecondary;
+    Color backgroundColor = this.BackgroundColor ?? floatingActionButtonTheme.BackgroundColor ?? theme.ColorScheme.Secondary;
+    Color focusColor = this.FocusColor ?? floatingActionButtonTheme.FocusColor ?? theme.FocusColor;
+    Color hoverColor = this.HoverColor ?? floatingActionButtonTheme.HoverColor ?? theme.HoverColor;
+    Color splashColor = this.SplashColor ?? floatingActionButtonTheme.SplashColor ?? theme.SplashColor;
+    double elevation = this.Elevation ?? floatingActionButtonTheme.Elevation ?? _DefaultElevation;
+    double focusElevation = this.FocusElevation ?? floatingActionButtonTheme.FocusElevation ?? _DefaultFocusElevation;
+    double hoverElevation = this.HoverElevation ?? floatingActionButtonTheme.HoverElevation ?? _DefaultHoverElevation;
+    double disabledElevation = this.DisabledElevation ?? floatingActionButtonTheme.DisabledElevation ?? elevation;
+    double highlightElevation = this.HighlightElevation ?? floatingActionButtonTheme.HighlightElevation ?? _DefaultHighlightElevation;
+    MaterialTapTargetSize materialTapTargetSize = this.MaterialTapTargetSize ?? theme.MaterialTapTargetSize;
+    TextStyle textStyle = theme.TextTheme.Button.CopyWith(color: foregroundColor, letterSpacing: 1.2);
+    ShapeBorder shape = this.Shape ?? floatingActionButtonTheme.Shape ?? (IsExtended ? _DefaultExtendedShape : _DefaultShape);
+    Widget result = new RawMaterialButton(onPressed: OnPressed, elevation: elevation, focusElevation: focusElevation, hoverElevation: hoverElevation, highlightElevation: highlightElevation, disabledElevation: disabledElevation, constraints: _SizeConstraints, materialTapTargetSize: materialTapTargetSize, fillColor: backgroundColor, focusColor: focusColor, hoverColor: hoverColor, splashColor: splashColor, textStyle: textStyle, shape: shape, clipBehavior: ClipBehavior, focusNode: FocusNode, autofocus: Autofocus, child: Child);
+    if (Tooltip != null)
     {
-        #region constructors
-        public _ChildOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        result = new Tooltip(message: Tooltip, child: result);
     }
 
-
-    public class _RenderChildOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+    if (HeroTag != null)
     {
-        #region constructors
-        public _RenderChildOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection))
-        : base(child: child, alignment: AlignmentDefaultClass.Alignment.Center, textDirection: textDirection)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
+        result = new Hero(tag: HeroTag, child: result);
     }
+
+    return new MergeSemantics(child: result);
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new ObjectFlagProperty<VoidCallback>("onPressed", OnPressed, ifNull: "disabled"));
+    properties.Add(new StringProperty("tooltip", Tooltip, defaultValue: null));
+    properties.Add(new ColorProperty("foregroundColor", ForegroundColor, defaultValue: null));
+    properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: null));
+    properties.Add(new ColorProperty("focusColor", FocusColor, defaultValue: null));
+    properties.Add(new ColorProperty("hoverColor", HoverColor, defaultValue: null));
+    properties.Add(new ColorProperty("splashColor", SplashColor, defaultValue: null));
+    properties.Add(new ObjectFlagProperty<object>("heroTag", HeroTag, ifPresent: "hero"));
+    properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: null));
+    properties.Add(new DoubleProperty("focusElevation", FocusElevation, defaultValue: null));
+    properties.Add(new DoubleProperty("hoverElevation", HoverElevation, defaultValue: null));
+    properties.Add(new DoubleProperty("highlightElevation", HighlightElevation, defaultValue: null));
+    properties.Add(new DoubleProperty("disabledElevation", DisabledElevation, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<FocusNode>("focusNode", FocusNode, defaultValue: null));
+    properties.Add(new FlagProperty("isExtended", value: IsExtended, ifTrue: "extended"));
+    properties.Add(new DiagnosticsProperty<MaterialTapTargetSize>("materialTapTargetSize", MaterialTapTargetSize, defaultValue: null));
+}
+
+
+
+#endregion
+}
+
+
+public class _ChildOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _ChildOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _RenderChildOverflowBox(textDirection: BasicDefaultClass.Directionality.Of(context));
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox renderObject)
+{
+    renderObject.TextDirection = BasicDefaultClass.Directionality.Of(context);
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    renderObject.TextDirection = BasicDefaultClass.Directionality.Of(context);
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderChildOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
+{
+    #region constructors
+    public _RenderChildOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection))
+    : base(child: child, alignment: AlignmentDefaultClass.Alignment.Center, textDirection: textDirection)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new double ComputeMinIntrinsicWidth(double height) => 0.0;
+
+
+
+public new double ComputeMinIntrinsicHeight(double width) => 0.0;
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    if (Child != null)
+    {
+        Child.Layout(new BoxConstraints(), parentUsesSize: true);
+        Size = new Size(Math.Dart:mathDefaultClass.Max(constraints.MinWidth, Math.Dart:mathDefaultClass.Min(constraints.MaxWidth, Child.Size.Width)), Math.Dart:mathDefaultClass.Max(constraints.MinHeight, Math.Dart:mathDefaultClass.Min(constraints.MaxHeight, Child.Size.Height)));
+        AlignChild();
+    }
+    else
+    {
+        Size = constraints.Biggest;
+    }
+
+}
+
+
+
+#endregion
+}
 
 }

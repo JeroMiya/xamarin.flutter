@@ -306,32 +306,48 @@ namespace FlutterSDK.Cupertino.Iconthemedata
         #region constructors
         public CupertinoIconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base(color: color, opacity: opacity, size: size)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Called by [IconTheme.of] to resolve [color] against the given [BuildContext].
-        /// </Summary>
-        public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Creates a copy of this icon theme but with the given fields replaced with
-        /// the new values.
-        /// </Summary>
-        public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double)) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Called by [IconTheme.of] to resolve [color] against the given [BuildContext].
+    /// </Summary>
+    public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Color resolvedColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Color, context);
+        return resolvedColor == Color ? this : CopyWith(color: resolvedColor);
     }
+
+
+
+
+    /// <Summary>
+    /// Creates a copy of this icon theme but with the given fields replaced with
+    /// the new values.
+    /// </Summary>
+    public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
+    {
+        return new CupertinoIconThemeData(color: color ?? this.Color, opacity: opacity == default(double) ? this.opacity : opacity, size: size == default(double) ? this.size : size);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("color", Color, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

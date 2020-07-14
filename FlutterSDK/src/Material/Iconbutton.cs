@@ -500,55 +500,72 @@ namespace FlutterSDK.Material.Iconbutton
         #region constructors
         public IconButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double iconSize = 24.0, FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, string tooltip = default(string), bool enableFeedback = true, FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual double IconSize { get; set; }
+    public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+    public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+    public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+    public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+    public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+    public virtual VoidCallback OnPressed { get; set; }
+    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+    public virtual bool Autofocus { get; set; }
+    public virtual string Tooltip { get; set; }
+    public virtual bool EnableFeedback { get; set; }
+    public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        Color currentColor = default(Color);
+        if (OnPressed != null) currentColor = Color; else currentColor = DisabledColor ?? theme.DisabledColor;
+        VisualDensity effectiveVisualDensity = VisualDensity ?? theme.VisualDensity;
+        BoxConstraints unadjustedConstraints = Constraints ?? new BoxConstraints(minWidth: IconbuttonDefaultClass._KMinButtonSize, minHeight: IconbuttonDefaultClass._KMinButtonSize);
+        BoxConstraints adjustedConstraints = effectiveVisualDensity.EffectiveConstraints(unadjustedConstraints);
+        Widget result = new ConstrainedBox(constraints: adjustedConstraints, child: new Padding(padding: Padding, child: new SizedBox(height: IconSize, width: IconSize, child: new Align(alignment: Alignment, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: IconSize, color: currentColor), child: Icon)))));
+        if (Tooltip != null)
         {
-            this.IconSize = iconSize;
-            this.VisualDensity = visualDensity;
-            this.Padding = padding;
-            this.Alignment = alignment;
-            this.Icon = icon;
-            this.Color = color;
-            this.FocusColor = focusColor;
-            this.HoverColor = hoverColor;
-            this.HighlightColor = highlightColor;
-            this.SplashColor = splashColor;
-            this.DisabledColor = disabledColor;
-            this.OnPressed = onPressed;
-            this.FocusNode = focusNode;
-            this.Autofocus = autofocus;
-            this.Tooltip = tooltip;
-            this.EnableFeedback = enableFeedback;
-            this.Constraints = constraints; throw new NotImplementedException();
+            result = new Tooltip(message: Tooltip, child: result);
         }
-        #endregion
 
-        #region fields
-        public virtual double IconSize { get; set; }
-        public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
-        public virtual VoidCallback OnPressed { get; set; }
-        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        public virtual bool Autofocus { get; set; }
-        public virtual string Tooltip { get; set; }
-        public virtual bool EnableFeedback { get; set; }
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        return new Semantics(button: true, enabled: OnPressed != null, child: new InkResponse(focusNode: FocusNode, autofocus: Autofocus, canRequestFocus: OnPressed != null, onTap: OnPressed, enableFeedback: EnableFeedback, child: result, focusColor: FocusColor ?? ThemeDefaultClass.Theme.Of(context).FocusColor, hoverColor: HoverColor ?? ThemeDefaultClass.Theme.Of(context).HoverColor, highlightColor: HighlightColor ?? ThemeDefaultClass.Theme.Of(context).HighlightColor, splashColor: SplashColor ?? ThemeDefaultClass.Theme.Of(context).SplashColor, radius: Math.Dart:mathDefaultClass.Max(MaterialDefaultClass.Material.DefaultSplashRadius, (IconSize + Math.Dart:mathDefaultClass.Min(Padding.Horizontal, Padding.Vertical)) * 0.7)));
     }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Widget>("icon", Icon, showName: false));
+        properties.Add(new StringProperty("tooltip", Tooltip, defaultValue: null, quoted: false));
+        properties.Add(new ObjectFlagProperty<VoidCallback>("onPressed", OnPressed, ifNull: "disabled"));
+        properties.Add(new ColorProperty("color", Color, defaultValue: null));
+        properties.Add(new ColorProperty("disabledColor", DisabledColor, defaultValue: null));
+        properties.Add(new ColorProperty("focusColor", FocusColor, defaultValue: null));
+        properties.Add(new ColorProperty("hoverColor", HoverColor, defaultValue: null));
+        properties.Add(new ColorProperty("highlightColor", HighlightColor, defaultValue: null));
+        properties.Add(new ColorProperty("splashColor", SplashColor, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<FocusNode>("focusNode", FocusNode, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
 
 }

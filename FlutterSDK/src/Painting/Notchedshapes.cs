@@ -461,98 +461,145 @@ namespace FlutterSDK.Painting.Notchedshapes
     {
         #region constructors
         public NotchedShape()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Creates a [Path] that describes the outline of the shape.
-        ///
-        /// The `host` is the bounding rectangle of the shape.
-        ///
-        /// The `guest` is the bounding rectangle of the shape for which a notch will
-        /// be made. It is null when there is no guest.
-        /// </Summary>
-        public virtual Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// A rectangle with a smooth circular notch.
+    /// Creates a [Path] that describes the outline of the shape.
     ///
-    /// See also:
+    /// The `host` is the bounding rectangle of the shape.
     ///
-    ///  * [CircleBorder], a [ShapeBorder] that describes a circle.
+    /// The `guest` is the bounding rectangle of the shape for which a notch will
+    /// be made. It is null when there is no guest.
     /// </Summary>
-    public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
+    public virtual Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest)
     {
-        #region constructors
-        public CircularNotchedRectangle()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Creates a [Path] that describes a rectangle with a smooth circular notch.
-        ///
-        /// `host` is the bounding box for the returned shape. Conceptually this is
-        /// the rectangle to which the notch will be applied.
-        ///
-        /// `guest` is the bounding box of a circle that the notch accommodates. All
-        /// points in the circle bounded by `guest` will be outside of the returned
-        /// path.
-        ///
-        /// The notch is curve that smoothly connects the host's top edge and
-        /// the guest circle.
-        /// </Summary>
-        public new Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(Path);
     }
 
+    #endregion
+}
 
-    /// <Summary>
-    /// A [NotchedShape] created from [ShapeBorder]s.
-    ///
-    /// Two shapes can be provided. The [host] is the shape of the widget that
-    /// uses the [NotchedShape] (typically a [BottomAppBar]). The [guest] is
-    /// subtracted from the [host] to create the notch (typically to make room
-    /// for a [FloatingActionButton]).
-    /// </Summary>
-    public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
+
+/// <Summary>
+/// A rectangle with a smooth circular notch.
+///
+/// See also:
+///
+///  * [CircleBorder], a [ShapeBorder] that describes a circle.
+/// </Summary>
+public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
+{
+    #region constructors
+    public CircularNotchedRectangle()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Creates a [Path] that describes a rectangle with a smooth circular notch.
+///
+/// `host` is the bounding box for the returned shape. Conceptually this is
+/// the rectangle to which the notch will be applied.
+///
+/// `guest` is the bounding box of a circle that the notch accommodates. All
+/// points in the circle bounded by `guest` will be outside of the returned
+/// path.
+///
+/// The notch is curve that smoothly connects the host's top edge and
+/// the guest circle.
+/// </Summary>
+public new Path GetOuterPath(FlutterBinding.UI.Rect host, FlutterBinding.UI.Rect guest)
+{
+    if (guest == null || !host.Overlaps(guest)) return new Path();
+    new Path().AddRect(host);
+    double notchRadius = guest.Width / 2.0;
+    double s1 = 15.0;
+    double s2 = 1.0;
+    double r = notchRadius;
+    double a = -1.0 * r - s2;
+    double b = host.Top - guest.Center.Dy;
+    double n2 = Math.Dart:mathDefaultClass.Sqrt(b * b * r * r * (a * a + b * b - r * r));
+    double p2xA = ((a * r * r) - n2) / (a * a + b * b);
+    double p2xB = ((a * r * r) + n2) / (a * a + b * b);
+    double p2yA = Math.Dart:mathDefaultClass.Sqrt(r * r - p2xA * p2xA);
+    double p2yB = Math.Dart:mathDefaultClass.Sqrt(r * r - p2xB * p2xB);
+    List<Offset> p = new List<Offset>(6);
+    p[0] = new Offset(a - s1, b);
+    p[1] = new Offset(a, b);
+    double cmp = b < 0 ? -1.0 : 1.0;
+    p[2] = cmp * p2yA > cmp * p2yB ? new Offset(p2xA, p2yA) : new Offset(p2xB, p2yB);
+    p[3] = new Offset(-1.0 * p[2].Dx, p[2].Dy);
+    p[4] = new Offset(-1.0 * p[1].Dx, p[1].Dy);
+    p[5] = new Offset(-1.0 * p[0].Dx, p[0].Dy);
+    for (int i = 0; i < p.Count; i += 1) p[i] += guest.Center;
+    return new Path();
+    new Path().MoveTo(host.Left, host.Top);
+    new Path().LineTo(p[0].Dx, p[0].Dy);
+    new Path().QuadraticBezierTo(p[1].Dx, p[1].Dy, p[2].Dx, p[2].Dy);
+    new Path().ArcToPoint(p[3], radius: Radius.Circular(notchRadius), clockwise: false);
+    new Path().QuadraticBezierTo(p[4].Dx, p[4].Dy, p[5].Dx, p[5].Dy);
+    new Path().LineTo(host.Right, host.Top);
+    new Path().LineTo(host.Right, host.Bottom);
+    new Path().LineTo(host.Left, host.Bottom);
+    new Path().Close();
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A [NotchedShape] created from [ShapeBorder]s.
+///
+/// Two shapes can be provided. The [host] is the shape of the widget that
+/// uses the [NotchedShape] (typically a [BottomAppBar]). The [guest] is
+/// subtracted from the [host] to create the notch (typically to make room
+/// for a [FloatingActionButton]).
+/// </Summary>
+public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
+{
+    #region constructors
+    public AutomaticNotchedShape(FlutterSDK.Painting.Borders.ShapeBorder host, FlutterSDK.Painting.Borders.ShapeBorder guest = default(FlutterSDK.Painting.Borders.ShapeBorder))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Host { get; set; }
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Guest { get; set; }
+#endregion
+
+#region methods
+
+public new Path GetOuterPath(FlutterBinding.UI.Rect hostRect, FlutterBinding.UI.Rect guestRect)
+{
+    Path hostPath = Host.GetOuterPath(hostRect);
+    if (Guest != null && guestRect != null)
     {
-        #region constructors
-        public AutomaticNotchedShape(FlutterSDK.Painting.Borders.ShapeBorder host, FlutterSDK.Painting.Borders.ShapeBorder guest = default(FlutterSDK.Painting.Borders.ShapeBorder))
-        {
-            this.Host = host;
-            this.Guest = guest; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Host { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Guest { get; set; }
-        #endregion
-
-        #region methods
-
-        public new Path GetOuterPath(FlutterBinding.UI.Rect hostRect, FlutterBinding.UI.Rect guestRect) { throw new NotImplementedException(); }
-
-        #endregion
+        Path guestPath = Guest.GetOuterPath(guestRect);
+        return Dart:uiDefaultClass.Path.Combine(PathOperation.Difference, hostPath, guestPath);
     }
+
+    return hostPath;
+}
+
+
+
+#endregion
+}
 
 }

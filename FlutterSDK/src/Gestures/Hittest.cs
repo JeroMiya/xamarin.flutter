@@ -311,7 +311,9 @@ namespace FlutterSDK.Gestures.Hittest
         /// If this given position hits this object, consider adding a [HitTestEntry]
         /// to the given hit test result.
         /// </Summary>
-        public virtual void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+        public virtual void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position)
+        {
+        }
 
     }
     public static class HitTestableMixin
@@ -338,7 +340,9 @@ namespace FlutterSDK.Gestures.Hittest
         /// <Summary>
         /// Override this method to dispatch events.
         /// </Summary>
-        public virtual void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult result) { throw new NotImplementedException(); }
+        public virtual void DispatchEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestResult result)
+        {
+        }
 
     }
     public static class HitTestDispatcherMixin
@@ -365,7 +369,9 @@ namespace FlutterSDK.Gestures.Hittest
         /// <Summary>
         /// Override this method to receive events.
         /// </Summary>
-        public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
+        public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+        {
+        }
 
     }
     public static class HitTestTargetMixin
@@ -394,110 +400,134 @@ namespace FlutterSDK.Gestures.Hittest
     {
         #region constructors
         public HitTestEntry(FlutterSDK.Gestures.Hittest.HitTestTarget target)
-        {
-            this.Target = target; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Gestures.Hittest.HitTestTarget Target { get; set; }
-        internal virtual Matrix4 _Transform { get; set; }
-        public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Gestures.Hittest.HitTestTarget Target { get; set; }
+    internal virtual Matrix4 _Transform { get; set; }
+    public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// The result of performing a hit test.
-    /// </Summary>
-    public class HitTestResult
-    {
-        #region constructors
-        public HitTestResult()
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        public static HitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
-        {
-            var instance = new HitTestResult(); throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual List<FlutterSDK.Gestures.Hittest.HitTestEntry> _Path { get; set; }
-        internal virtual Queue<object> _Transforms { get; set; }
-        public virtual Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> Path { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Add a [HitTestEntry] to the path.
-        ///
-        /// The new entry is added at the end of the path, which means entries should
-        /// be added in order from most specific to least specific, typically during an
-        /// upward walk of the tree being hit tested.
-        /// </Summary>
-        public virtual void Add(FlutterSDK.Gestures.Hittest.HitTestEntry entry) { throw new NotImplementedException(); }
+    #endregion
+}
 
 
-        /// <Summary>
-        /// Pushes a new transform matrix that is to be applied to all future
-        /// [HitTestEntry]s added via [add] until it is removed via [popTransform].
-        ///
-        /// This method is only to be used by subclasses, which must provide
-        /// coordinate space specific public wrappers around this function for their
-        /// users (see [BoxHitTestResult.addWithPaintTransform] for such an example).
-        ///
-        /// The provided `transform` matrix should describe how to transform
-        /// [PointerEvent]s from the coordinate space of the method caller to the
-        /// coordinate space of its children. In most cases `transform` is derived
-        /// from running the inverted result of [RenderObject.applyPaintTransform]
-        /// through [PointerEvent.removePerspectiveTransform] to remove
-        /// the perspective component.
-        ///
-        /// [HitTestable]s need to call this method indirectly through a convenience
-        /// method defined on a subclass before hit testing a child that does not
-        /// have the same origin as the parent. After hit testing the child,
-        /// [popTransform] has to be called to remove the child-specific `transform`.
-        ///
-        /// See also:
-        ///
-        ///  * [BoxHitTestResult.addWithPaintTransform], which is a public wrapper
-        ///    around this function for hit testing on [RenderBox]s.
-        ///  * [SliverHitTestResult.addWithAxisOffset], which is a public wrapper
-        ///    around this function for hit testing on [RenderSliver]s.
-        /// </Summary>
-        public virtual void PushTransform(Matrix4 transform) { throw new NotImplementedException(); }
+/// <Summary>
+/// The result of performing a hit test.
+/// </Summary>
+public class HitTestResult
+{
+    #region constructors
+    public HitTestResult()
+    : base()
+
+}
+public static HitTestResult Wrap(FlutterSDK.Gestures.Hittest.HitTestResult result)
+
+}
+#endregion
+
+#region fields
+internal virtual List<FlutterSDK.Gestures.Hittest.HitTestEntry> _Path { get; set; }
+internal virtual Queue<object> _Transforms { get; set; }
+public virtual Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> Path { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Add a [HitTestEntry] to the path.
+///
+/// The new entry is added at the end of the path, which means entries should
+/// be added in order from most specific to least specific, typically during an
+/// upward walk of the tree being hit tested.
+/// </Summary>
+public virtual void Add(FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+{
+
+    entry._Transform = _Transforms.IsEmpty() ? null : _Transforms.Last();
+    _Path.Add(entry);
+}
 
 
-        /// <Summary>
-        /// Removes the last transform added via [pushTransform].
-        ///
-        /// This method is only to be used by subclasses, which must provide
-        /// coordinate space specific public wrappers around this function for their
-        /// users (see [BoxHitTestResult.addWithPaintTransform] for such an example).
-        ///
-        /// This method must be called after hit testing is done on a child that
-        /// required a call to [pushTransform].
-        ///
-        /// See also:
-        ///
-        ///  * [pushTransform], which describes the use case of this function pair in
-        ///    more details.
-        /// </Summary>
-        public virtual void PopTransform() { throw new NotImplementedException(); }
 
 
-        private bool _DebugVectorMoreOrLessEquals(Vector4 a, Vector4 b, double epsilon = default(double)) { throw new NotImplementedException(); }
+/// <Summary>
+/// Pushes a new transform matrix that is to be applied to all future
+/// [HitTestEntry]s added via [add] until it is removed via [popTransform].
+///
+/// This method is only to be used by subclasses, which must provide
+/// coordinate space specific public wrappers around this function for their
+/// users (see [BoxHitTestResult.addWithPaintTransform] for such an example).
+///
+/// The provided `transform` matrix should describe how to transform
+/// [PointerEvent]s from the coordinate space of the method caller to the
+/// coordinate space of its children. In most cases `transform` is derived
+/// from running the inverted result of [RenderObject.applyPaintTransform]
+/// through [PointerEvent.removePerspectiveTransform] to remove
+/// the perspective component.
+///
+/// [HitTestable]s need to call this method indirectly through a convenience
+/// method defined on a subclass before hit testing a child that does not
+/// have the same origin as the parent. After hit testing the child,
+/// [popTransform] has to be called to remove the child-specific `transform`.
+///
+/// See also:
+///
+///  * [BoxHitTestResult.addWithPaintTransform], which is a public wrapper
+///    around this function for hit testing on [RenderBox]s.
+///  * [SliverHitTestResult.addWithAxisOffset], which is a public wrapper
+///    around this function for hit testing on [RenderSliver]s.
+/// </Summary>
+public virtual void PushTransform(Matrix4 transform)
+{
 
 
-        #endregion
-    }
+    _Transforms.Add(_Transforms.IsEmpty() ? transform : (transform * _Transforms.Last() as Matrix4));
+}
+
+
+
+
+/// <Summary>
+/// Removes the last transform added via [pushTransform].
+///
+/// This method is only to be used by subclasses, which must provide
+/// coordinate space specific public wrappers around this function for their
+/// users (see [BoxHitTestResult.addWithPaintTransform] for such an example).
+///
+/// This method must be called after hit testing is done on a child that
+/// required a call to [pushTransform].
+///
+/// See also:
+///
+///  * [pushTransform], which describes the use case of this function pair in
+///    more details.
+/// </Summary>
+public virtual void PopTransform()
+{
+
+    _Transforms.RemoveLast();
+}
+
+
+
+
+private bool _DebugVectorMoreOrLessEquals(Vector4 a, Vector4 b, double epsilon = default(double))
+{
+    bool result = true;
+
+    return result;
+}
+
+
+
+
+#endregion
+}
 
 }

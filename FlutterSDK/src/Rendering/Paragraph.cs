@@ -456,197 +456,757 @@ namespace FlutterSDK.Rendering.Paragraph
         #region constructors
         public RenderParagraph(FlutterSDK.Painting.Inlinespan.InlineSpan text, TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = 1.0, int maxLines = default(int), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
-        internal virtual List<FlutterSDK.Painting.Placeholderspan.PlaceholderSpan> _PlaceholderSpans { get; set; }
-        internal virtual bool _SoftWrap { get; set; }
-        internal virtual FlutterSDK.Rendering.Paragraph.TextOverflow _Overflow { get; set; }
-        internal virtual bool _NeedsClipping { get; set; }
-        internal virtual SKShader _OverflowShader { get; set; }
-        internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
-        internal virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _SemanticsInfo { get; set; }
-        internal virtual Queue<FlutterSDK.Semantics.Semantics.SemanticsNode> _CachedChildNodes { get; set; }
-        public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool SoftWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextHeightBehavior TextHeightBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool DebugHasOverflowShader { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual Size TextSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        private void _ExtractPlaceholderSpans(FlutterSDK.Painting.Inlinespan.InlineSpan span) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        private double _ComputeIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        private bool _CanComputeIntrinsics() { throw new NotImplementedException(); }
-
-
-        private void _ComputeChildrenWidthWithMaxIntrinsics(double height) { throw new NotImplementedException(); }
-
-
-        private void _ComputeChildrenWidthWithMinIntrinsics(double height) { throw new NotImplementedException(); }
-
-
-        private void _ComputeChildrenHeightWithMinIntrinsics(double width) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry) { throw new NotImplementedException(); }
-
-
-        private void _LayoutText(double minWidth = 0.0, double maxWidth = default(double)) { throw new NotImplementedException(); }
-
-
-        public new void SystemFontsDidChange() { throw new NotImplementedException(); }
-
-
-        private void _LayoutTextWithConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        private void _LayoutChildren(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        private void _SetParentData() { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the offset at which to paint the caret.
-        ///
-        /// Valid only after [layout].
-        /// </Summary>
-        public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a list of rects that bound the given selection.
-        ///
-        /// A given selection might have more than one rect if this text painter
-        /// contains bidirectional text because logically contiguous text might not be
-        /// visually contiguous.
-        ///
-        /// Valid only after [layout].
-        /// </Summary>
-        public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the position within the text for the given pixel offset.
-        ///
-        /// Valid only after [layout].
-        /// </Summary>
-        public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the text range of the word at the given offset. Characters not
-        /// part of a word, such as spaces, symbols, and punctuation, have word breaks
-        /// on both sides. In such cases, this method will return a text range that
-        /// contains the given text position.
-        ///
-        /// Word boundaries are defined more precisely in Unicode Standard Annex #29
-        /// <http://www.unicode.org/reports/tr29/#Word_Boundaries>.
-        ///
-        /// Valid only after [layout].
-        /// </Summary>
-        public virtual TextRange GetWordBoundary(TextPosition position) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Combines _semanticsInfo entries where permissible, determined by
-        /// [InlineSpanSemanticsInformation.requiresOwnNode].
-        /// </Summary>
-        private List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _CombineSemanticsInfo() { throw new NotImplementedException(); }
-
-
-        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config) { throw new NotImplementedException(); }
-
-
-        public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children) { throw new NotImplementedException(); }
-
-
-        public new void ClearSemantics() { throw new NotImplementedException(); }
-
-
-        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    
+AddAll(children);
+        _ExtractPlaceholderSpans(text);
     }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+    internal virtual List<FlutterSDK.Painting.Placeholderspan.PlaceholderSpan> _PlaceholderSpans { get; set; }
+    internal virtual bool _SoftWrap { get; set; }
+    internal virtual FlutterSDK.Rendering.Paragraph.TextOverflow _Overflow { get; set; }
+    internal virtual bool _NeedsClipping { get; set; }
+    internal virtual SKShader _OverflowShader { get; set; }
+    internal virtual List<FlutterSDK.Painting.Textpainter.PlaceholderDimensions> _PlaceholderDimensions { get; set; }
+    internal virtual List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _SemanticsInfo { get; set; }
+    internal virtual Queue<FlutterSDK.Semantics.Semantics.SemanticsNode> _CachedChildNodes { get; set; }
+    public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextAlign TextAlign { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool SoftWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int MaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextHeightBehavior TextHeightBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool DebugHasOverflowShader { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual Size TextSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        if (!(child.ParentData is TextParentData)) child.ParentData = new TextParentData();
+    }
+
+
+    public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+        if (!(child.ParentData is TextParentData)) child.ParentData = new TextParentData();
+    }
+
+
+
+
+    private void _ExtractPlaceholderSpans(FlutterSDK.Painting.Inlinespan.InlineSpan span)
+    {
+        _PlaceholderSpans = new List<PlaceholderSpan>() { };
+        span.VisitChildren((InlineSpan span) =>
+        {
+            if (span is PlaceholderSpan)
+            {
+                PlaceholderSpan placeholderSpan = ((PlaceholderSpan)span);
+                _PlaceholderSpans.Add(placeholderSpan);
+            }
+
+            return true;
+        }
+        );
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicWidth(double height)
+    {
+        if (!_CanComputeIntrinsics())
+        {
+            return 0.0;
+        }
+
+        _ComputeChildrenWidthWithMinIntrinsics(height);
+        _LayoutText();
+        return _TextPainter.MinIntrinsicWidth;
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
+    {
+        if (!_CanComputeIntrinsics())
+        {
+            return 0.0;
+        }
+
+        _ComputeChildrenWidthWithMaxIntrinsics(height);
+        _LayoutText();
+        return _TextPainter.MaxIntrinsicWidth;
+    }
+
+
+
+
+    private double _ComputeIntrinsicHeight(double width)
+    {
+        if (!_CanComputeIntrinsics())
+        {
+            return 0.0;
+        }
+
+        _ComputeChildrenHeightWithMinIntrinsics(width);
+        _LayoutText(minWidth: width, maxWidth: width);
+        return _TextPainter.Height;
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
+    {
+        return _ComputeIntrinsicHeight(width);
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
+    {
+        return _ComputeIntrinsicHeight(width);
+    }
+
+
+
+
+    public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+    {
+
+
+
+        _LayoutTextWithConstraints(Constraints);
+        return _TextPainter.ComputeDistanceToActualBaseline(TextBaseline.Alphabetic);
+    }
+
+
+
+
+    private bool _CanComputeIntrinsics()
+    {
+        foreach (PlaceholderSpan span in _PlaceholderSpans)
+        {
+            switch (span.Alignment)
+            {
+                case Ui.PlaceholderAlignment.Baseline:
+                case Ui.PlaceholderAlignment.AboveBaseline:
+                case Ui.PlaceholderAlignment.BelowBaseline:
+                    {
+
+                        return false;
+                    }
+                case Ui.PlaceholderAlignment.Top:
+                case Ui.PlaceholderAlignment.Middle:
+                case Ui.PlaceholderAlignment.Bottom:
+                    {
+                        continue;
+                    }
+            }
+        }
+
+        return true;
+    }
+
+
+
+
+    private void _ComputeChildrenWidthWithMaxIntrinsics(double height)
+    {
+        RenderBox child = FirstChild;
+        List<PlaceholderDimensions> placeholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+        int childIndex = 0;
+        while (child != null)
+        {
+            placeholderDimensions[childIndex] = new PlaceholderDimensions(size: new Size(child.GetMaxIntrinsicWidth(height), height), alignment: _PlaceholderSpans[childIndex].Alignment, baseline: _PlaceholderSpans[childIndex].Baseline);
+            child = ChildAfter(child);
+            childIndex += 1;
+        }
+
+        _TextPainter.SetPlaceholderDimensions(placeholderDimensions);
+    }
+
+
+
+
+    private void _ComputeChildrenWidthWithMinIntrinsics(double height)
+    {
+        RenderBox child = FirstChild;
+        List<PlaceholderDimensions> placeholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+        int childIndex = 0;
+        while (child != null)
+        {
+            double intrinsicWidth = child.GetMinIntrinsicWidth(height);
+            double intrinsicHeight = child.GetMinIntrinsicHeight(intrinsicWidth);
+            placeholderDimensions[childIndex] = new PlaceholderDimensions(size: new Size(intrinsicWidth, intrinsicHeight), alignment: _PlaceholderSpans[childIndex].Alignment, baseline: _PlaceholderSpans[childIndex].Baseline);
+            child = ChildAfter(child);
+            childIndex += 1;
+        }
+
+        _TextPainter.SetPlaceholderDimensions(placeholderDimensions);
+    }
+
+
+
+
+    private void _ComputeChildrenHeightWithMinIntrinsics(double width)
+    {
+        RenderBox child = FirstChild;
+        List<PlaceholderDimensions> placeholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+        int childIndex = 0;
+        while (child != null)
+        {
+            double intrinsicHeight = child.GetMinIntrinsicHeight(width);
+            double intrinsicWidth = child.GetMinIntrinsicWidth(intrinsicHeight);
+            placeholderDimensions[childIndex] = new PlaceholderDimensions(size: new Size(intrinsicWidth, intrinsicHeight), alignment: _PlaceholderSpans[childIndex].Alignment, baseline: _PlaceholderSpans[childIndex].Baseline);
+            child = ChildAfter(child);
+            childIndex += 1;
+        }
+
+        _TextPainter.SetPlaceholderDimensions(placeholderDimensions);
+    }
+
+
+
+
+    public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+    {
+        RenderBox child = FirstChild;
+        while (child != null)
+        {
+            TextParentData textParentData = child.ParentData as TextParentData;
+            Matrix4 transform = Matrix4.TranslationValues(textParentData.Offset.Dx, textParentData.Offset.Dy, 0.0);
+            Matrix4.TranslationValues(textParentData.Offset.Dx, textParentData.Offset.Dy, 0.0).Scale(textParentData.Scale, textParentData.Scale, textParentData.Scale);
+            bool isHit = result.AddWithPaintTransform(transform: transform, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+            {
+
+                return child.HitTest(result, position: transformed);
+            }
+            );
+            if (isHit)
+            {
+                return true;
+            }
+
+            child = ChildAfter(child);
+        }
+
+        return false;
+    }
+
+
+
+
+    public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry)
+    {
+
+        if (!(@event is PointerDownEvent)) return;
+        _LayoutTextWithConstraints(Constraints);
+        Offset offset = entry.LocalPosition;
+        TextPosition position = _TextPainter.GetPositionForOffset(offset);
+        InlineSpan span = _TextPainter.Text.GetSpanForPosition(position);
+        if (span == null)
+        {
+            return;
+        }
+
+        if (span is TextSpan)
+        {
+            TextSpan textSpan = ((TextSpan)span);
+            textSpan.Recognizer?.AddPointer(@event as PointerDownEvent);
+        }
+
+    }
+
+
+
+
+    private void _LayoutText(double minWidth = 0.0, double maxWidth = default(double))
+    {
+        bool widthMatters = SoftWrap || Overflow == TextOverflow.Ellipsis;
+        _TextPainter.Layout(minWidth: minWidth, maxWidth: widthMatters ? maxWidth : Dart:coreDefaultClass.Double.Infinity);
+    }
+
+
+
+
+    public new void SystemFontsDidChange()
+    {
+        base.SystemFontsDidChange();
+        _TextPainter.MarkNeedsLayout();
+    }
+
+
+
+
+    private void _LayoutTextWithConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+    {
+        _TextPainter.SetPlaceholderDimensions(_PlaceholderDimensions);
+        _LayoutText(minWidth: constraints.MinWidth, maxWidth: constraints.MaxWidth);
+    }
+
+
+
+
+    private void _LayoutChildren(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+    {
+        if (ChildCount == 0)
+        {
+            return;
+        }
+
+        RenderBox child = FirstChild;
+        _PlaceholderDimensions = new List<PlaceholderDimensions>(ChildCount);
+        int childIndex = 0;
+        while (child != null)
+        {
+            child.Layout(new BoxConstraints(maxWidth: constraints.MaxWidth), parentUsesSize: true);
+            double baselineOffset = default(double);
+            switch (_PlaceholderSpans[childIndex].Alignment)
+            {
+                case Ui.PlaceholderAlignment.Baseline:
+                    {
+                        baselineOffset = child.GetDistanceToBaseline(_PlaceholderSpans[childIndex].Baseline);
+                        break;
+                    }
+                default:
+                    {
+                        baselineOffset = null;
+                        break;
+                    }
+            }
+            _PlaceholderDimensions[childIndex] = new PlaceholderDimensions(size: child.Size, alignment: _PlaceholderSpans[childIndex].Alignment, baseline: _PlaceholderSpans[childIndex].Baseline, baselineOffset: baselineOffset);
+            child = ChildAfter(child);
+            childIndex += 1;
+        }
+
+    }
+
+
+
+
+    private void _SetParentData()
+    {
+        RenderBox child = FirstChild;
+        int childIndex = 0;
+        while (child != null && childIndex < _TextPainter.InlinePlaceholderBoxes.Count)
+        {
+            TextParentData textParentData = child.ParentData as TextParentData;
+            textParentData.Offset = new Offset(_TextPainter.InlinePlaceholderBoxes[childIndex].Left, _TextPainter.InlinePlaceholderBoxes[childIndex].Top);
+            textParentData.Scale = _TextPainter.InlinePlaceholderScales[childIndex];
+            child = ChildAfter(child);
+            childIndex += 1;
+        }
+
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        BoxConstraints constraints = this.Constraints;
+        _LayoutChildren(constraints);
+        _LayoutTextWithConstraints(constraints);
+        _SetParentData();
+        Size textSize = _TextPainter.Size;
+        bool textDidExceedMaxLines = _TextPainter.DidExceedMaxLines;
+        Size = constraints.Constrain(textSize);
+        bool didOverflowHeight = Size.Height < textSize.Height || textDidExceedMaxLines;
+        bool didOverflowWidth = Size.Width < textSize.Width;
+        bool hasVisualOverflow = didOverflowWidth || didOverflowHeight;
+        if (hasVisualOverflow)
+        {
+            switch (_Overflow)
+            {
+                case TextOverflow.Visible: _NeedsClipping = false; _OverflowShader = null; break;
+                case TextOverflow.Clip: case TextOverflow.Ellipsis: _NeedsClipping = true; _OverflowShader = null; break;
+                case TextOverflow.Fade:
+                    _NeedsClipping = true; TextPainter fadeSizePainter = new TextPainter(text: new TextSpan(style: _TextPainter.Text.Style, text: "\u2026"), textDirection: TextDirection, textScaleFactor: TextScaleFactor, locale: Locale);
+                    new TextPainter(text: new TextSpan(style: _TextPainter.Text.Style, text: "\u2026"), textDirection: TextDirection, textScaleFactor: TextScaleFactor, locale: Locale).Layout(); if (didOverflowWidth)
+                    {
+                        double fadeEnd fadeStart = default(double);
+                        switch (TextDirection) { case TextDirection.Rtl: fadeEnd = 0.0; fadeStart = fadeSizePainter.Width; break; case TextDirection.Ltr: fadeEnd = Size.Width; fadeStart = fadeEnd - fadeSizePainter.Width; break; }
+                        _OverflowShader = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(fadeStart, 0.0), new Offset(fadeEnd, 0.0), new List<Color>() { new Color(0xFFFFFFFF), new Color(0x00FFFFFF) });
+                    }
+                    else
+                    {
+                        double fadeEnd = Size.Height;
+                        double fadeStart = fadeEnd - fadeSizePainter.Height / 2.0;
+                        _OverflowShader = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(0.0, fadeStart), new Offset(0.0, fadeEnd), new List<Color>() { new Color(0xFFFFFFFF), new Color(0x00FFFFFF) });
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            _NeedsClipping = false;
+            _OverflowShader = null;
+        }
+
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        _LayoutTextWithConstraints(Constraints);
+
+        if (_NeedsClipping)
+        {
+            Rect bounds = offset & Size;
+            if (_OverflowShader != null)
+            {
+                context.Canvas.SaveLayer(bounds, new Paint());
+            }
+            else
+            {
+                context.Canvas.Save();
+            }
+
+            context.Canvas.ClipRect(bounds);
+        }
+
+        _TextPainter.Paint(context.Canvas, offset);
+        RenderBox child = FirstChild;
+        int childIndex = 0;
+        while (child != null && childIndex < _TextPainter.InlinePlaceholderBoxes.Count)
+        {
+            TextParentData textParentData = child.ParentData as TextParentData;
+            double scale = textParentData.Scale;
+            context.PushTransform(NeedsCompositing, offset + textParentData.Offset, Matrix4.Diagonal3Values(scale, scale, scale), (PaintingContext context, Offset offset) =>
+            {
+                context.PaintChild(child, offset);
+            }
+            );
+            child = ChildAfter(child);
+            childIndex += 1;
+        }
+
+        if (_NeedsClipping)
+        {
+            if (_OverflowShader != null)
+            {
+                context.Canvas.Translate(offset.Dx, offset.Dy);
+                Paint paint = new Paint()..BlendMode = BlendMode.Modulate..Shader = _OverflowShader;
+                context.Canvas.DrawRect(Dart: uiDefaultClass.Offset.Zero & Size, paint);
+            }
+
+            context.Canvas.Restore();
+        }
+
+    }
+
+
 
 
     /// <Summary>
-    /// How overflowing text should be handled.
+    /// Returns the offset at which to paint the caret.
     ///
-    /// A [TextOverflow] can be passed to [Text] and [RichText] via their
-    /// [Text.overflow] and [RichText.overflow] properties respectively.
+    /// Valid only after [layout].
     /// </Summary>
-    public enum TextOverflow
+    public virtual Offset GetOffsetForCaret(TextPosition position, FlutterBinding.UI.Rect caretPrototype)
     {
 
-        /// <Summary>
-        /// Clip the overflowing text to fix its container.
-        /// </Summary>
-        Clip,
-        /// <Summary>
-        /// Fade the overflowing text to transparent.
-        /// </Summary>
-        Fade,
-        /// <Summary>
-        /// Use an ellipsis to indicate that the text has overflowed.
-        /// </Summary>
-        Ellipsis,
-        /// <Summary>
-        /// Render overflowing text outside of its container.
-        /// </Summary>
-        Visible,
+        _LayoutTextWithConstraints(Constraints);
+        return _TextPainter.GetOffsetForCaret(position, caretPrototype);
     }
+
+
+
+
+    /// <Summary>
+    /// Returns a list of rects that bound the given selection.
+    ///
+    /// A given selection might have more than one rect if this text painter
+    /// contains bidirectional text because logically contiguous text might not be
+    /// visually contiguous.
+    ///
+    /// Valid only after [layout].
+    /// </Summary>
+    public virtual List<TextBox> GetBoxesForSelection(FlutterSDK.Services.Textediting.TextSelection selection)
+    {
+
+        _LayoutTextWithConstraints(Constraints);
+        return _TextPainter.GetBoxesForSelection(selection);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the position within the text for the given pixel offset.
+    ///
+    /// Valid only after [layout].
+    /// </Summary>
+    public virtual TextPosition GetPositionForOffset(FlutterBinding.UI.Offset offset)
+    {
+
+        _LayoutTextWithConstraints(Constraints);
+        return _TextPainter.GetPositionForOffset(offset);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the text range of the word at the given offset. Characters not
+    /// part of a word, such as spaces, symbols, and punctuation, have word breaks
+    /// on both sides. In such cases, this method will return a text range that
+    /// contains the given text position.
+    ///
+    /// Word boundaries are defined more precisely in Unicode Standard Annex #29
+    /// <http://www.unicode.org/reports/tr29/#Word_Boundaries>.
+    ///
+    /// Valid only after [layout].
+    /// </Summary>
+    public virtual TextRange GetWordBoundary(TextPosition position)
+    {
+
+        _LayoutTextWithConstraints(Constraints);
+        return _TextPainter.GetWordBoundary(position);
+    }
+
+
+
+
+    /// <Summary>
+    /// Combines _semanticsInfo entries where permissible, determined by
+    /// [InlineSpanSemanticsInformation.requiresOwnNode].
+    /// </Summary>
+    private List<FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation> _CombineSemanticsInfo()
+    {
+
+        List<InlineSpanSemanticsInformation> combined = new List<InlineSpanSemanticsInformation>() { };
+        string workingText = "";
+        string workingLabel = default(string);
+        foreach (InlineSpanSemanticsInformation info in _SemanticsInfo)
+        {
+            if (info.RequiresOwnNode)
+            {
+                if (workingText != null)
+                {
+                    combined.Add(new InlineSpanSemanticsInformation(workingText, semanticsLabel: workingLabel ?? workingText));
+                    workingText = "";
+                    workingLabel = null;
+                }
+
+                combined.Add(info);
+            }
+            else
+            {
+                workingText += info.Text;
+                workingLabel = (workingLabel == null ? "" : workingLabel);
+                if (info.SemanticsLabel != null)
+                {
+                    workingLabel += info.SemanticsLabel;
+                }
+                else
+                {
+                    workingLabel += info.Text;
+                }
+
+            }
+
+        }
+
+        if (workingText != null)
+        {
+            combined.Add(new InlineSpanSemanticsInformation(workingText, semanticsLabel: workingLabel));
+        }
+        else
+        {
+
+        }
+
+        return combined;
+    }
+
+
+
+
+    public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+    {
+        base.DescribeSemanticsConfiguration(config);
+        _SemanticsInfo = Text.GetSemanticsInformation();
+        if (_SemanticsInfo.Any((InlineSpanSemanticsInformation info) => =>info.Recognizer != null))
+        {
+            config.ExplicitChildNodes = true;
+            config.IsSemanticBoundary = true;
+        }
+        else
+        {
+            StringBuffer buffer = new StringBuffer();
+            foreach (InlineSpanSemanticsInformation info in _SemanticsInfo)
+            {
+                buffer.Write(info.SemanticsLabel ?? info.Text);
+            }
+
+            config.Label = buffer.ToString();
+            config.TextDirection = TextDirection;
+        }
+
+    }
+
+
+
+
+    public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
+    {
+
+        List<SemanticsNode> newChildren = new List<SemanticsNode>() { };
+        TextDirection currentDirection = TextDirection;
+        Rect currentRect = default(Rect);
+        double ordinal = 0.0;
+        int start = 0;
+        int placeholderIndex = 0;
+        RenderBox child = FirstChild;
+        Queue<SemanticsNode> newChildCache = new Queue<SemanticsNode>();
+        foreach (InlineSpanSemanticsInformation info in _CombineSemanticsInfo())
+        {
+            TextDirection initialDirection = currentDirection;
+            TextSelection selection = new TextSelection(baseOffset: start, extentOffset: start + info.Text.Length);
+            List < Ui.Dart:uiDefaultClass.TextBox > rects = GetBoxesForSelection(selection);
+            if (rects.IsEmpty())
+            {
+                continue;
+            }
+
+            Rect rect = rects.First.ToRect();
+            currentDirection = rects.First.Direction;
+            foreach (Ui.Dart:uiDefaultClass.TextBox textBox  in rects.Skip(1)){
+                rect = rect.ExpandToInclude(textBox.ToRect());
+                currentDirection = textBox.Direction;
+            }
+
+            rect = Rect.FromLTWH(Math.Dart:mathDefaultClass.Max(0.0, rect.Left), Math.Dart:mathDefaultClass.Max(0.0, rect.Top), Math.Dart:mathDefaultClass.Min(rect.Width, Constraints.MaxWidth), Math.Dart:mathDefaultClass.Min(rect.Height, Constraints.MaxHeight));
+            currentRect = Rect.FromLTRB(rect.Left.FloorToDouble() - 4.0, rect.Top.FloorToDouble() - 4.0, rect.Right.CeilToDouble() + 4.0, rect.Bottom.CeilToDouble() + 4.0);
+            if (info.IsPlaceholder)
+            {
+                SemanticsNode childNode = children.ElementAt(placeholderIndex++);
+                TextParentData parentData = child.ParentData as TextParentData;
+                childNode.Rect = Rect.FromLTWH(childNode.Rect.Left, childNode.Rect.Top, childNode.Rect.Width * parentData.Scale, childNode.Rect.Height * parentData.Scale);
+                newChildren.Add(childNode);
+                child = ChildAfter(child);
+            }
+            else
+            {
+                SemanticsConfiguration configuration = new SemanticsConfiguration()..SortKey = new OrdinalSortKey(ordinal++)..TextDirection = initialDirection..Label = info.SemanticsLabel ?? info.Text;
+                GestureRecognizer recognizer = info.Recognizer;
+                if (recognizer != null)
+                {
+                    if (((TapGestureRecognizer)recognizer) is TapGestureRecognizer)
+                    {
+                        configuration.OnTap = ((TapGestureRecognizer)recognizer).OnTap;
+                        configuration.IsLink = true;
+                    }
+                    else if (recognizer is LongPressGestureRecognizer)
+                    {
+                        configuration.OnLongPress = ((LongPressGestureRecognizer)recognizer).OnLongPress;
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+
+                SemanticsNode newChild = (_CachedChildNodes?.IsNotEmpty == true) ? _CachedChildNodes.RemoveFirst() : new SemanticsNode();
+                ;
+                newChild.UpdateWith(config: configuration)..Rect = currentRect;
+                newChildCache.AddLast(newChild);
+                newChildren.Add(newChild);
+            }
+
+            start += info.Text.Length;
+        }
+
+        _CachedChildNodes = newChildCache;
+        node.UpdateWith(config: config, childrenInInversePaintOrder: newChildren);
+    }
+
+
+
+
+    public new void ClearSemantics()
+    {
+        base.ClearSemantics();
+        _CachedChildNodes = null;
+    }
+
+
+
+
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+    {
+        return new List<DiagnosticsNode>() { Text.ToDiagnosticsNode(name: "text", style: DiagnosticsTreeStyle.Transition) };
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new EnumProperty<TextAlign>("textAlign", TextAlign));
+        properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection));
+        properties.Add(new FlagProperty("softWrap", value: SoftWrap, ifTrue: "wrapping at box width", ifFalse: "no wrapping except at line break characters", showName: true));
+        properties.Add(new EnumProperty<TextOverflow>("overflow", Overflow));
+        properties.Add(new DoubleProperty("textScaleFactor", TextScaleFactor, defaultValue: 1.0));
+        properties.Add(new DiagnosticsProperty<Locale>("locale", Locale, defaultValue: null));
+        properties.Add(new IntProperty("maxLines", MaxLines, ifNull: "unlimited"));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// How overflowing text should be handled.
+///
+/// A [TextOverflow] can be passed to [Text] and [RichText] via their
+/// [Text.overflow] and [RichText.overflow] properties respectively.
+/// </Summary>
+public enum TextOverflow
+{
+
+    /// <Summary>
+    /// Clip the overflowing text to fix its container.
+    /// </Summary>
+    Clip,
+    /// <Summary>
+    /// Fade the overflowing text to transparent.
+    /// </Summary>
+    Fade,
+    /// <Summary>
+    /// Use an ellipsis to indicate that the text has overflowed.
+    /// </Summary>
+    Ellipsis,
+    /// <Summary>
+    /// Render overflowing text outside of its container.
+    /// </Summary>
+    Visible,
+}
 
 }

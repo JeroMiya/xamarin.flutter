@@ -660,156 +660,293 @@ namespace FlutterSDK.Rendering.Customlayout
         #region constructors
         public MultiChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
+    internal virtual Dictionary<@Object, FlutterSDK.Rendering.Box.RenderBox> _IdToChild { get; set; }
+    internal virtual HashSet<FlutterSDK.Rendering.Box.RenderBox> _DebugChildrenNeedingLayout { get; set; }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// True if a non-null LayoutChild was provided for the specified id.
+    ///
+    /// Call this from the [performLayout] or [getSize] methods to
+    /// determine which children are available, if the child list might
+    /// vary.
+    /// </Summary>
+    public virtual bool HasChild(@Object childId) => _IdToChild[childId] != null;
+
+
+
+    /// <Summary>
+    /// Ask the child to update its layout within the limits specified by
+    /// the constraints parameter. The child's size is returned.
+    ///
+    /// Call this from your [performLayout] function to lay out each
+    /// child. Every child must be laid out using this function exactly
+    /// once each time the [performLayout] function is called.
+    /// </Summary>
+    public virtual Size LayoutChild(@Object childId, FlutterSDK.Rendering.Box.BoxConstraints constraints)
+    {
+        RenderBox child = _IdToChild[childId];
+
+        child.Layout(constraints, parentUsesSize: true);
+        return child.Size;
+    }
+
+
+
+
+    /// <Summary>
+    /// Specify the child's origin relative to this origin.
+    ///
+    /// Call this from your [performLayout] function to position each
+    /// child. If you do not call this for a child, its position will
+    /// remain unchanged. Children initially have their position set to
+    /// (0,0), i.e. the top left of the [RenderCustomMultiChildLayoutBox].
+    /// </Summary>
+    public virtual void PositionChild(@Object childId, FlutterBinding.UI.Offset offset)
+    {
+        RenderBox child = _IdToChild[childId];
+
+        MultiChildLayoutParentData childParentData = child.ParentData as MultiChildLayoutParentData;
+        childParentData.Offset = offset;
+    }
+
+
+
+
+    private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _DebugDescribeChild(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        MultiChildLayoutParentData childParentData = child.ParentData as MultiChildLayoutParentData;
+        return new DiagnosticsProperty<RenderBox>($"'{childParentData.Id}'", child);
+    }
+
+
+
+
+    private void _CallPerformLayout(Size size, FlutterSDK.Rendering.Box.RenderBox firstChild)
+    {
+        Dictionary<object, RenderBox> previousIdToChild = _IdToChild;
+        HashSet<RenderBox> debugPreviousChildrenNeedingLayout = default(HashSet<RenderBox>);
+
+        try
         {
-            throw new NotImplementedException();
+            _IdToChild = new Dictionary<object, RenderBox> { };
+            RenderBox child = firstChild;
+            while (child != null)
+            {
+                MultiChildLayoutParentData childParentData = child.ParentData as MultiChildLayoutParentData;
+
+                _IdToChild[childParentData.Id] = child;
+
+                child = childParentData.NextSibling;
+            }
+
+            PerformLayout(size);
+
         }
-        #endregion
+        finally
+        {
+            _IdToChild = previousIdToChild;
 
-        #region fields
-        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
-        internal virtual Dictionary<@Object, FlutterSDK.Rendering.Box.RenderBox> _IdToChild { get; set; }
-        internal virtual HashSet<FlutterSDK.Rendering.Box.RenderBox> _DebugChildrenNeedingLayout { get; set; }
-        #endregion
+        }
 
-        #region methods
-
-        /// <Summary>
-        /// True if a non-null LayoutChild was provided for the specified id.
-        ///
-        /// Call this from the [performLayout] or [getSize] methods to
-        /// determine which children are available, if the child list might
-        /// vary.
-        /// </Summary>
-        public virtual bool HasChild(@Object childId) { throw new NotImplementedException(); }
+    }
 
 
-        /// <Summary>
-        /// Ask the child to update its layout within the limits specified by
-        /// the constraints parameter. The child's size is returned.
-        ///
-        /// Call this from your [performLayout] function to lay out each
-        /// child. Every child must be laid out using this function exactly
-        /// once each time the [performLayout] function is called.
-        /// </Summary>
-        public virtual Size LayoutChild(@Object childId, FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Specify the child's origin relative to this origin.
-        ///
-        /// Call this from your [performLayout] function to position each
-        /// child. If you do not call this for a child, its position will
-        /// remain unchanged. Children initially have their position set to
-        /// (0,0), i.e. the top left of the [RenderCustomMultiChildLayoutBox].
-        /// </Summary>
-        public virtual void PositionChild(@Object childId, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Override this method to return the size of this object given the
+    /// incoming constraints.
+    ///
+    /// The size cannot reflect the sizes of the children. If this layout has a
+    /// fixed width or height the returned size can reflect that; the size will be
+    /// constrained to the given constraints.
+    ///
+    /// By default, attempts to size the box to the biggest size
+    /// possible given the constraints.
+    /// </Summary>
+    public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Biggest;
 
 
-        private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _DebugDescribeChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
 
-
-        private void _CallPerformLayout(Size size, FlutterSDK.Rendering.Box.RenderBox firstChild) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override this method to return the size of this object given the
-        /// incoming constraints.
-        ///
-        /// The size cannot reflect the sizes of the children. If this layout has a
-        /// fixed width or height the returned size can reflect that; the size will be
-        /// constrained to the given constraints.
-        ///
-        /// By default, attempts to size the box to the biggest size
-        /// possible given the constraints.
-        /// </Summary>
-        public virtual Size GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override this method to lay out and position all children given this
-        /// widget's size.
-        ///
-        /// This method must call [layoutChild] for each child. It should also specify
-        /// the final position of each child with [positionChild].
-        /// </Summary>
-        public virtual void PerformLayout(Size size) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override this method to return true when the children need to be
-        /// laid out.
-        ///
-        /// This should compare the fields of the current delegate and the given
-        /// `oldDelegate` and return true if the fields are such that the layout would
-        /// be different.
-        /// </Summary>
-        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
-
-
-        #endregion
+    /// <Summary>
+    /// Override this method to lay out and position all children given this
+    /// widget's size.
+    ///
+    /// This method must call [layoutChild] for each child. It should also specify
+    /// the final position of each child with [positionChild].
+    /// </Summary>
+    public virtual void PerformLayout(Size size)
+    {
     }
 
 
     /// <Summary>
-    /// Defers the layout of multiple children to a delegate.
+    /// Override this method to return true when the children need to be
+    /// laid out.
     ///
-    /// The delegate can determine the layout constraints for each child and can
-    /// decide where to position each child. The delegate can also determine the
-    /// size of the parent, but the size of the parent cannot depend on the sizes of
-    /// the children.
+    /// This should compare the fields of the current delegate and the given
+    /// `oldDelegate` and return true if the fields are such that the layout would
+    /// be different.
     /// </Summary>
-    public class RenderCustomMultiChildLayoutBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
+    public virtual bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate)
     {
-        #region constructors
-        public RenderCustomMultiChildLayoutBox(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate _Delegate { get; set; }
-        public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(bool);
     }
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Defers the layout of multiple children to a delegate.
+///
+/// The delegate can determine the layout constraints for each child and can
+/// decide where to position each child. The delegate can also determine the
+/// size of the parent, but the size of the parent cannot depend on the sizes of
+/// the children.
+/// </Summary>
+public class RenderCustomMultiChildLayoutBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
+{
+    #region constructors
+    public RenderCustomMultiChildLayoutBox(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate))
+    : base()
+
+AddAll(children);
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate _Delegate { get; set; }
+public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (!(child.ParentData is MultiChildLayoutParentData)) child.ParentData = new MultiChildLayoutParentData();
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is MultiChildLayoutParentData)) child.ParentData = new MultiChildLayoutParentData();
+}
+
+
+
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    _Delegate?._Relayout?.AddListener(MarkNeedsLayout);
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    _Delegate?._Relayout?.AddListener(MarkNeedsLayout);
+}
+
+
+
+
+public new void Detach()
+{
+    _Delegate?._Relayout?.RemoveListener(MarkNeedsLayout);
+    base.Detach();
+}
+
+
+
+
+private Size _GetSize(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+
+    return constraints.Constrain(_Delegate.GetSize(constraints));
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    double width = _GetSize(BoxConstraints.TightForFinite(height: height)).Width;
+    if (width.IsFinite()) return width;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    double width = _GetSize(BoxConstraints.TightForFinite(height: height)).Width;
+    if (width.IsFinite()) return width;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    double height = _GetSize(BoxConstraints.TightForFinite(width: width)).Height;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    double height = _GetSize(BoxConstraints.TightForFinite(width: width)).Height;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    Size = _GetSize(Constraints);
+    Delegate._CallPerformLayout(Size, FirstChild);
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    DefaultPaint(context, offset);
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    return DefaultHitTestChildren(result, position: position);
+}
+
+
+
+#endregion
+}
 
 }

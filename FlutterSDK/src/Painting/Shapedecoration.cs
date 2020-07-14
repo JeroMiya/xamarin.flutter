@@ -474,125 +474,291 @@ namespace FlutterSDK.Painting.Shapedecoration
         #region constructors
         public ShapeDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
-        {
-            this.Color = color;
-            this.Image = image;
-            this.Gradient = gradient;
-            this.Shadows = shadows;
-            this.Shape = shape; throw new NotImplementedException();
-        }
-        public static ShapeDecoration FromBoxDecoration(FlutterSDK.Painting.Boxdecoration.BoxDecoration source)
-        {
-            var instance = new ShapeDecoration(); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static ShapeDecoration FromBoxDecoration(FlutterSDK.Painting.Boxdecoration.BoxDecoration source)
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
-        public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
-        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+ShapeBorder shape = default(ShapeBorder);
 
-        #region methods
+switch (source.Shape){case BoxShape.Circle:if (source.Border!=null ){
 
-        public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
+shape=new CircleBorder(side:source.Border.Top);
+}
+else
+{
+    shape = new CircleBorder();
+}
+break;case BoxShape.Rectangle:if (source.BorderRadius != null)
+{
 
-
-        public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t) { throw new NotImplementedException(); }
+    shape = new RoundedRectangleBorder(side: source.Border?.Top ?? BordersDefaultClass.BorderSide.None, borderRadius: source.BorderRadius);
+}
+else
+{
+    shape = source.Border ?? new Border();
+}
+break;}
+return new ShapeDecoration(color: source.Color, image: source.Image, gradient: source.Gradient, shadows: source.BoxShadow, shape: shape);
+}
 
 
-        public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
+public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
+public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection)
+{
+    return Shape.GetOuterPath(rect, textDirection: textDirection);
+}
 
 
-        /// <Summary>
-        /// Linearly interpolate between two shapes.
-        ///
-        /// Interpolates each parameter of the decoration separately.
-        ///
-        /// If both values are null, this returns null. Otherwise, it returns a
-        /// non-null value, with null arguments treated like a [ShapeDecoration] whose
-        /// fields are all null (including the [shape], which cannot normally be
-        /// null).
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        ///
-        /// See also:
-        ///
-        ///  * [Decoration.lerp], which can interpolate between any two types of
-        ///    [Decoration]s, not just [ShapeDecoration]s.
-        ///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
-        ///    and which use [ShapeDecoration.lerp] when interpolating two
-        ///    [ShapeDecoration]s or a [ShapeDecoration] to or from null.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration Lerp(FlutterSDK.Painting.Shapedecoration.ShapeDecoration a, FlutterSDK.Painting.Shapedecoration.ShapeDecoration b, double t) { throw new NotImplementedException(); }
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-
-        public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Shapedecoration._ShapeDecorationPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An object that paints a [ShapeDecoration] into a canvas.
-    /// </Summary>
-    public class _ShapeDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
+public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t)
+{
+    if (a is BoxDecoration)
     {
-        #region constructors
-        public _ShapeDecorationPainter(FlutterSDK.Painting.Shapedecoration.ShapeDecoration _decoration, VoidCallback onChanged)
-        : base(onChanged)
-        {
-            this._Decoration = _decoration; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration _Decoration { get; set; }
-        internal virtual FlutterBinding.UI.Rect _LastRect { get; set; }
-        internal virtual TextDirection _LastTextDirection { get; set; }
-        internal virtual Path _OuterPath { get; set; }
-        internal virtual Path _InnerPath { get; set; }
-        internal virtual SKPaint _InteriorPaint { get; set; }
-        internal virtual int _ShadowCount { get; set; }
-        internal virtual List<Path> _ShadowPaths { get; set; }
-        internal virtual List<Paint> _ShadowPaints { get; set; }
-        internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _Precache(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
-
-
-        private void _PaintShadows(Canvas canvas) { throw new NotImplementedException(); }
-
-
-        private void _PaintInterior(Canvas canvas) { throw new NotImplementedException(); }
-
-
-        private void _PaintImage(Canvas canvas, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-        #endregion
+        return ShapedecorationDefaultClass.ShapeDecoration.Lerp(ShapeDecoration.FromBoxDecoration(((BoxDecoration)a)), this, t);
     }
+    else if (a == null || a is ShapeDecoration)
+    {
+        return ShapedecorationDefaultClass.ShapeDecoration.Lerp(((ShapeDecoration)a) as ShapeDecoration, this, t);
+    }
+
+    return base.LerpFrom(a, t) as ShapeDecoration;
+}
+
+
+
+
+public new FlutterSDK.Painting.Shapedecoration.ShapeDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t)
+{
+    if (b is BoxDecoration)
+    {
+        return ShapedecorationDefaultClass.ShapeDecoration.Lerp(this, ShapeDecoration.FromBoxDecoration(((BoxDecoration)b)), t);
+    }
+    else if (b == null || b is ShapeDecoration)
+    {
+        return ShapedecorationDefaultClass.ShapeDecoration.Lerp(this, ((ShapeDecoration)b) as ShapeDecoration, t);
+    }
+
+    return base.LerpTo(b, t) as ShapeDecoration;
+}
+
+
+
+
+/// <Summary>
+/// Linearly interpolate between two shapes.
+///
+/// Interpolates each parameter of the decoration separately.
+///
+/// If both values are null, this returns null. Otherwise, it returns a
+/// non-null value, with null arguments treated like a [ShapeDecoration] whose
+/// fields are all null (including the [shape], which cannot normally be
+/// null).
+///
+/// {@macro dart.ui.shadow.lerp}
+///
+/// See also:
+///
+///  * [Decoration.lerp], which can interpolate between any two types of
+///    [Decoration]s, not just [ShapeDecoration]s.
+///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
+///    and which use [ShapeDecoration.lerp] when interpolating two
+///    [ShapeDecoration]s or a [ShapeDecoration] to or from null.
+/// </Summary>
+public virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration Lerp(FlutterSDK.Painting.Shapedecoration.ShapeDecoration a, FlutterSDK.Painting.Shapedecoration.ShapeDecoration b, double t)
+{
+
+    if (a == null && b == null) return null;
+    if (a != null && b != null)
+    {
+        if (t == 0.0) return a;
+        if (t == 1.0) return b;
+    }
+
+    return new ShapeDecoration(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), gradient: GradientDefaultClass.Gradient.Lerp(a?.Gradient, b?.Gradient, t), image: t < 0.5 ? a.Image : b.Image, shadows: BoxshadowDefaultClass.BoxShadow.LerpList(a?.Shadows, b?.Shadows, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    return other is ShapeDecoration && other.Color == Color && other.Gradient == Gradient && other.Image == Image && other.Shadows == Shadows && other.Shape == Shape;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.DefaultDiagnosticsTreeStyle = DiagnosticsTreeStyle.Whitespace;
+    properties.Add(new ColorProperty("color", Color, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<Gradient>("gradient", Gradient, defaultValue: null));
+    properties.Add(new DiagnosticsProperty<DecorationImage>("image", Image, defaultValue: null));
+    properties.Add(new IterableProperty<BoxShadow>("shadows", Shadows, defaultValue: null, style: DiagnosticsTreeStyle.Whitespace));
+    properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape));
+}
+
+
+
+
+public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection))
+{
+    return Shape.GetOuterPath(Dart: uiDefaultClass.Offset.Zero & size, textDirection: textDirection).Contains(position);
+}
+
+
+
+
+public new FlutterSDK.Painting.Shapedecoration._ShapeDecorationPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback))
+{
+
+    return new _ShapeDecorationPainter(this, onChanged);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An object that paints a [ShapeDecoration] into a canvas.
+/// </Summary>
+public class _ShapeDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
+{
+    #region constructors
+    public _ShapeDecorationPainter(FlutterSDK.Painting.Shapedecoration.ShapeDecoration _decoration, VoidCallback onChanged)
+    : base(onChanged)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration _Decoration { get; set; }
+internal virtual FlutterBinding.UI.Rect _LastRect { get; set; }
+internal virtual TextDirection _LastTextDirection { get; set; }
+internal virtual Path _OuterPath { get; set; }
+internal virtual Path _InnerPath { get; set; }
+internal virtual SKPaint _InteriorPaint { get; set; }
+internal virtual int _ShadowCount { get; set; }
+internal virtual List<Path> _ShadowPaths { get; set; }
+internal virtual List<Paint> _ShadowPaints { get; set; }
+internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
+#endregion
+
+#region methods
+
+private void _Precache(FlutterBinding.UI.Rect rect, TextDirection textDirection)
+{
+
+    if (rect == _LastRect && textDirection == _LastTextDirection) return;
+    if (_InteriorPaint == null && (_Decoration.Color != null || _Decoration.Gradient != null))
+    {
+        _InteriorPaint = new Paint();
+        if (_Decoration.Color != null) _InteriorPaint.Color = _Decoration.Color;
+    }
+
+    if (_Decoration.Gradient != null) _InteriorPaint.Shader = _Decoration.Gradient.CreateShader(rect);
+    if (_Decoration.Shadows != null)
+    {
+        if (_ShadowCount == null)
+        {
+            _ShadowCount = _Decoration.Shadows.Count;
+            _ShadowPaths = new List<Path>(_ShadowCount);
+            _ShadowPaints = new List<Paint>(_ShadowCount);
+            for (int index = 0; index < _ShadowCount; index += 1) _ShadowPaints[index] = _Decoration.Shadows[index].ToPaint();
+        }
+
+        for (int index = 0; index < _ShadowCount; index += 1)
+        {
+            BoxShadow shadow = _Decoration.Shadows[index];
+            _ShadowPaths[index] = _Decoration.Shape.GetOuterPath(rect.Shift(shadow.Offset).Inflate(shadow.SpreadRadius), textDirection: textDirection);
+        }
+
+    }
+
+    if (_InteriorPaint != null || _ShadowCount != null) _OuterPath = _Decoration.Shape.GetOuterPath(rect, textDirection: textDirection);
+    if (_Decoration.Image != null) _InnerPath = _Decoration.Shape.GetInnerPath(rect, textDirection: textDirection);
+    _LastRect = rect;
+    _LastTextDirection = textDirection;
+}
+
+
+
+
+private void _PaintShadows(Canvas canvas)
+{
+    if (_ShadowCount != null)
+    {
+        for (int index = 0; index < _ShadowCount; index += 1) canvas.DrawPath(_ShadowPaths[index], _ShadowPaints[index]);
+    }
+
+}
+
+
+
+
+private void _PaintInterior(Canvas canvas)
+{
+    if (_InteriorPaint != null) canvas.DrawPath(_OuterPath, _InteriorPaint);
+}
+
+
+
+
+private void _PaintImage(Canvas canvas, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+    if (_Decoration.Image == null) return;
+    _ImagePainter = (_ImagePainter == null ? _Decoration.Image.CreatePainter(OnChanged) : _ImagePainter);
+    _ImagePainter.Paint(canvas, _LastRect, _InnerPath, configuration);
+}
+
+
+
+
+public new void Dispose()
+{
+    _ImagePainter?.Dispose();
+    base.Dispose();
+}
+
+
+
+
+public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+
+
+    Rect rect = offset & configuration.Size;
+    TextDirection textDirection = configuration.TextDirection;
+    _Precache(rect, textDirection);
+    _PaintShadows(canvas);
+    _PaintInterior(canvas);
+    _PaintImage(canvas, configuration);
+    _Decoration.Shape.Paint(canvas, rect, textDirection: textDirection);
+}
+
+
+
+#endregion
+}
 
 }

@@ -3,9 +3,9 @@ import 'dart:io';
 class Config {
 
   static const dartSdkEnvVariableName = "DART_SDK";
-  static bool includeMethodImplementations = false;
-  static bool includeConstructorImplementations = false;
-  static bool includeFieldImplementations = false;
+  static bool includeMethodImplementations = true;
+  static bool includeConstructorImplementations = true;
+  static bool includeFieldImplementations = true;
   static bool isTestbed = false;
 
   static String sourcePath = Config.isTestbed ? _testbedFlutterSourcePath : _flutterSourcePath;

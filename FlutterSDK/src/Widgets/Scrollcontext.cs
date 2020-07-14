@@ -451,19 +451,25 @@ namespace FlutterSDK.Widgets.Scrollcontext
         /// widget as it animates. The user will still be able to touch the widget,
         /// potentially stopping the animation.
         /// </Summary>
-        public virtual void SetIgnorePointer(bool value) { throw new NotImplementedException(); }
+        public virtual void SetIgnorePointer(bool value)
+        {
+        }
 
 
         /// <Summary>
         /// Whether the user can drag the widget, for example to initiate a scroll.
         /// </Summary>
-        public virtual void SetCanDrag(bool value) { throw new NotImplementedException(); }
+        public virtual void SetCanDrag(bool value)
+        {
+        }
 
 
         /// <Summary>
         /// Set the [SemanticsAction]s that should be expose to the semantics tree.
         /// </Summary>
-        public virtual void SetSemanticsActions(HashSet<SemanticsAction> actions) { throw new NotImplementedException(); }
+        public virtual void SetSemanticsActions(HashSet<SemanticsAction> actions)
+        {
+        }
 
     }
     public static class ScrollContextMixin

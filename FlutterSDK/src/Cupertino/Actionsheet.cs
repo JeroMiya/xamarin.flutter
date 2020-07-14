@@ -346,528 +346,1137 @@ namespace FlutterSDK.Cupertino.Actionsheet
         #region constructors
         public CupertinoActionSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget message = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController messageScrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollcontroller.ScrollController actionScrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget cancelButton = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Message { get; set; }
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController MessageScrollController { get; set; }
+    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ActionScrollController { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget CancelButton { get; set; }
+    #endregion
+
+    #region methods
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildContent(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        List<Widget> content = new List<Widget>() { };
+        if (Title != null || Message != null)
         {
-            this.Title = title;
-            this.Message = message;
-            this.Actions = actions;
-            this.MessageScrollController = messageScrollController;
-            this.ActionScrollController = actionScrollController;
-            this.CancelButton = cancelButton; throw new NotImplementedException();
+            Widget titleSection = new _CupertinoAlertContentSection(title: Title, message: Message, scrollController: MessageScrollController);
+            content.Add(new Flexible(child: titleSection));
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Message { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController MessageScrollController { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ActionScrollController { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget CancelButton { get; set; }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildContent(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildActions() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildCancelButton() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new Container(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KBackgroundColor, context), child: new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: content));
     }
 
 
-    /// <Summary>
-    /// A button typically used in a [CupertinoActionSheet].
-    ///
-    /// See also:
-    ///
-    ///  * [CupertinoActionSheet], an alert that presents the user with a set of two or
-    ///    more choices related to the current context.
-    /// </Summary>
-    public class CupertinoActionSheetAction : FlutterSDK.Widgets.Framework.StatelessWidget
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildActions()
     {
-        #region constructors
-        public CupertinoActionSheetAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), bool isDefaultAction = false, bool isDestructiveAction = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        if (Actions == null || Actions.IsEmpty())
         {
-            this.OnPressed = onPressed;
-            this.IsDefaultAction = isDefaultAction;
-            this.IsDestructiveAction = isDestructiveAction;
-            this.Child = child; throw new NotImplementedException();
+            return new Container(height: 0.0);
         }
-        #endregion
 
-        #region fields
-        public virtual VoidCallback OnPressed { get; set; }
-        public virtual bool IsDefaultAction { get; set; }
-        public virtual bool IsDestructiveAction { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new Container(child: new _CupertinoAlertActionSection(children: Actions, scrollController: ActionScrollController, hasCancelButton: CancelButton != null));
     }
 
 
-    public class _CupertinoActionSheetCancelButton : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildCancelButton()
     {
-        #region constructors
-        public _CupertinoActionSheetCancelButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        double cancelPadding = (Actions != null || Message != null || Title != null) ? ActionsheetDefaultClass._KCancelButtonPadding : 0.0;
+        return new Padding(padding: EdgeInsets.Only(top: cancelPadding), child: new _CupertinoActionSheetCancelButton(child: CancelButton));
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        List<Widget> children = new List<Widget>() { new Flexible(child: new ClipRRect(borderRadius: BorderRadius.Circular(12.0), child: new BackdropFilter(filter: ImageFilter.Blur(sigmaX: ActionsheetDefaultClass._KBlurAmount, sigmaY: ActionsheetDefaultClass._KBlurAmount), child: new _CupertinoAlertRenderWidget(contentSection: new Builder(builder: _BuildContent), actionsSection: _BuildActions())))), };
+        Orientation orientation = MediaqueryDefaultClass.MediaQuery.Of(context).Orientation;
+        double actionSheetWidth = default(double);
+        if (orientation == Orientation.Portrait)
         {
-            this.Child = child; throw new NotImplementedException();
+            actionSheetWidth = MediaqueryDefaultClass.MediaQuery.Of(context).Size.Width - (ActionsheetDefaultClass._KEdgeHorizontalPadding * 2);
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Cupertino.Actionsheet._CupertinoActionSheetCancelButtonState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CupertinoActionSheetCancelButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Actionsheet._CupertinoActionSheetCancelButton>
-    {
-        #region constructors
-        public _CupertinoActionSheetCancelButtonState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual bool IsBeingPressed { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails @event) { throw new NotImplementedException(); }
-
-
-        private void _OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails @event) { throw new NotImplementedException(); }
-
-
-        private void _OnTapCancel() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CupertinoAlertRenderWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
-    {
-        #region constructors
-        public _CupertinoAlertRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget contentSection = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget actionsSection = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        else
         {
-            this.ContentSection = contentSection;
-            this.ActionsSection = actionsSection; throw new NotImplementedException();
+            actionSheetWidth = MediaqueryDefaultClass.MediaQuery.Of(context).Size.Height - (ActionsheetDefaultClass._KEdgeHorizontalPadding * 2);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget ContentSection { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget ActionsSection { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Actionsheet._RenderCupertinoAlert renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.RenderObjectElement CreateElement() { throw new NotImplementedException(); }
-
-        #endregion
+        return new SafeArea(child: new Semantics(namesRoute: true, scopesRoute: true, explicitChildNodes: true, label: "Alert", child: new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Elevated, child: new Container(width: actionSheetWidth, margin: EdgeInsets.Symmetric(horizontal: ActionsheetDefaultClass._KEdgeHorizontalPadding, vertical: ActionsheetDefaultClass._KEdgeVerticalPadding), child: new Column(children: children, mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch)))));
     }
 
 
-    public class _CupertinoAlertRenderElement : FlutterSDK.Widgets.Framework.RenderObjectElement
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A button typically used in a [CupertinoActionSheet].
+///
+/// See also:
+///
+///  * [CupertinoActionSheet], an alert that presents the user with a set of two or
+///    more choices related to the current context.
+/// </Summary>
+public class CupertinoActionSheetAction : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public CupertinoActionSheetAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), bool isDefaultAction = false, bool isDestructiveAction = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual VoidCallback OnPressed { get; set; }
+public virtual bool IsDefaultAction { get; set; }
+public virtual bool IsDestructiveAction { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    TextStyle style = ActionsheetDefaultClass._KActionSheetActionStyle.CopyWith(color: IsDestructiveAction ? ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemRed, context) : ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor);
+    if (IsDefaultAction)
     {
-        #region constructors
-        public _CupertinoAlertRenderElement(FlutterSDK.Cupertino.Actionsheet._CupertinoAlertRenderWidget widget)
-        : base(widget)
+        style = style.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600);
+    }
+
+    return new GestureDetector(onTap: OnPressed, behavior: HitTestBehavior.Opaque, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: ActionsheetDefaultClass._KButtonHeight), child: new Semantics(button: true, child: new Container(alignment: AlignmentDefaultClass.Alignment.Center, padding: EdgeInsets.Symmetric(vertical: 16.0, horizontal: 10.0), child: new DefaultTextStyle(style: style, child: Child, textAlign: TextAlign.Center)))));
+}
+
+
+
+#endregion
+}
+
+
+public class _CupertinoActionSheetCancelButton : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _CupertinoActionSheetCancelButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Cupertino.Actionsheet._CupertinoActionSheetCancelButtonState CreateState() => new _CupertinoActionSheetCancelButtonState();
+
+
+#endregion
+}
+
+
+public class _CupertinoActionSheetCancelButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Actionsheet._CupertinoActionSheetCancelButton>
+{
+    #region constructors
+    public _CupertinoActionSheetCancelButtonState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual bool IsBeingPressed { get; set; }
+    #endregion
+
+    #region methods
+
+    private void _OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails @event)
+    {
+        SetState(() =>
         {
-            throw new NotImplementedException();
+            IsBeingPressed = true;
         }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Framework.Element _ContentElement { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.Element _ActionsElement { get; set; }
-        public virtual FlutterSDK.Cupertino.Actionsheet._CupertinoAlertRenderWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Cupertino.Actionsheet._RenderCupertinoAlert RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
-
-
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Cupertino.Actionsheet._AlertSections slot) { throw new NotImplementedException(); }
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Cupertino.Actionsheet._AlertSections slot) { throw new NotImplementedException(); }
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void Update(FlutterSDK.Widgets.Framework.RenderObjectWidget newWidget) { throw new NotImplementedException(); }
-        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
-
-
-        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
-
-
-        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        private void _PlaceChildInSlot(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Cupertino.Actionsheet._AlertSections slot) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    public class _RenderCupertinoAlert : FlutterSDK.Rendering.Box.RenderBox
+
+
+    private void _OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails @event)
     {
-        #region constructors
-        public _RenderCupertinoAlert(FlutterSDK.Rendering.Box.RenderBox contentSection = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Box.RenderBox actionsSection = default(FlutterSDK.Rendering.Box.RenderBox), double dividerThickness = 0.0, FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color))
-        : base()
+        SetState(() =>
         {
-            throw new NotImplementedException();
+            IsBeingPressed = false;
         }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.Box.RenderBox _ContentSection { get; set; }
-        internal virtual FlutterSDK.Rendering.Box.RenderBox _ActionsSection { get; set; }
-        internal virtual double _DividerThickness { get; set; }
-        internal virtual SKPaint _DividerPaint { get; set; }
-        public virtual FlutterSDK.Rendering.Box.RenderBox ContentSection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Box.RenderBox ActionsSection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color DividerColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        public new void RedepthChildren() { throw new NotImplementedException(); }
-
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        private void _PaintDividerBetweenContentAndActions(Canvas canvas, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    public class _CupertinoAlertContentSection : FlutterSDK.Widgets.Framework.StatelessWidget
+
+
+    private void _OnTapCancel()
     {
-        #region constructors
-        public _CupertinoAlertContentSection(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget message = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController))
-        : base(key: key)
+        SetState(() =>
         {
-            this.Title = title;
-            this.Message = message;
-            this.ScrollController = scrollController; throw new NotImplementedException();
+            IsBeingPressed = false;
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Message { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    public class _CupertinoAlertActionSection : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _CupertinoAlertActionSection(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool hasCancelButton = default(bool))
-        : base(key: key)
+        Color backgroundColor = IsBeingPressed ? ActionsheetDefaultClass._KCancelPressedColor : ColorsDefaultClass.CupertinoColors.SecondarySystemGroupedBackground;
+        return new GestureDetector(excludeFromSemantics: true, onTapDown: _OnTapDown, onTapUp: _OnTapUp, onTapCancel: _OnTapCancel, child: new Container(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(backgroundColor, context), borderRadius: BorderRadius.Circular(ActionsheetDefaultClass._KCornerRadius)), child: Widget.Child));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _CupertinoAlertRenderWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
+{
+    #region constructors
+    public _CupertinoAlertRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget contentSection = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget actionsSection = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget ContentSection { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget ActionsSection { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _RenderCupertinoAlert(dividerThickness: ActionsheetDefaultClass._KDividerThickness / MediaqueryDefaultClass.MediaQuery.Of(context).DevicePixelRatio, dividerColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KButtonDividerColor, context));
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Actionsheet._RenderCupertinoAlert renderObject)
+{
+    base.UpdateRenderObject(context, renderObject);
+    renderObject.DividerColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KButtonDividerColor, context);
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    base.UpdateRenderObject(context, renderObject);
+    renderObject.DividerColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KButtonDividerColor, context);
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.RenderObjectElement CreateElement()
+{
+    return new _CupertinoAlertRenderElement(this);
+}
+
+
+
+#endregion
+}
+
+
+public class _CupertinoAlertRenderElement : FlutterSDK.Widgets.Framework.RenderObjectElement
+{
+    #region constructors
+    public _CupertinoAlertRenderElement(FlutterSDK.Cupertino.Actionsheet._CupertinoAlertRenderWidget widget)
+    : base(widget)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Widgets.Framework.Element _ContentElement { get; set; }
+internal virtual FlutterSDK.Widgets.Framework.Element _ActionsElement { get; set; }
+public virtual FlutterSDK.Cupertino.Actionsheet._CupertinoAlertRenderWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Cupertino.Actionsheet._RenderCupertinoAlert RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+{
+    if (_ContentElement != null)
+    {
+        visitor(_ContentElement);
+    }
+
+    if (_ActionsElement != null)
+    {
+        visitor(_ActionsElement);
+    }
+
+}
+
+
+
+
+public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+{
+    base.Mount(parent, newSlot);
+    _ContentElement = UpdateChild(_ContentElement, Widget.ContentSection, _AlertSections.ContentSection);
+    _ActionsElement = UpdateChild(_ActionsElement, Widget.ActionsSection, _AlertSections.ActionsSection);
+}
+
+
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Cupertino.Actionsheet._AlertSections slot)
+{
+    _PlaceChildInSlot(child, slot);
+}
+
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    _PlaceChildInSlot(child, slot);
+}
+
+
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Cupertino.Actionsheet._AlertSections slot)
+{
+    _PlaceChildInSlot(child, slot);
+}
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    _PlaceChildInSlot(child, slot);
+}
+
+
+
+
+public new void Update(FlutterSDK.Widgets.Framework.RenderObjectWidget newWidget)
+{
+    base.Update(newWidget);
+    _ContentElement = UpdateChild(_ContentElement, Widget.ContentSection, _AlertSections.ContentSection);
+    _ActionsElement = UpdateChild(_ActionsElement, Widget.ActionsSection, _AlertSections.ActionsSection);
+}
+
+
+public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+{
+    base.Update(newWidget);
+    _ContentElement = UpdateChild(_ContentElement, Widget.ContentSection, _AlertSections.ContentSection);
+    _ActionsElement = UpdateChild(_ActionsElement, Widget.ActionsSection, _AlertSections.ActionsSection);
+}
+
+
+
+
+public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+{
+
+    if (_ContentElement == child)
+    {
+        _ContentElement = null;
+    }
+    else if (_ActionsElement == child)
+    {
+        _ActionsElement = null;
+    }
+
+    base.ForgetChild(child);
+}
+
+
+
+
+public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+{
+
+    if (RenderObject.ContentSection == child)
+    {
+        RenderObject.ContentSection = null;
+    }
+    else if (RenderObject.ActionsSection == child)
+    {
+        RenderObject.ActionsSection = null;
+    }
+
+}
+
+
+
+
+private void _PlaceChildInSlot(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Cupertino.Actionsheet._AlertSections slot)
+{
+
+    switch (slot) { case _AlertSections.ContentSection: RenderObject.ContentSection = child as RenderBox; break; case _AlertSections.ActionsSection: RenderObject.ActionsSection = child as RenderBox; break; }
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderCupertinoAlert : FlutterSDK.Rendering.Box.RenderBox
+{
+    #region constructors
+    public _RenderCupertinoAlert(FlutterSDK.Rendering.Box.RenderBox contentSection = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Box.RenderBox actionsSection = default(FlutterSDK.Rendering.Box.RenderBox), double dividerThickness = 0.0, FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color))
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Box.RenderBox _ContentSection { get; set; }
+internal virtual FlutterSDK.Rendering.Box.RenderBox _ActionsSection { get; set; }
+internal virtual double _DividerThickness { get; set; }
+internal virtual SKPaint _DividerPaint { get; set; }
+public virtual FlutterSDK.Rendering.Box.RenderBox ContentSection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Rendering.Box.RenderBox ActionsSection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color DividerColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    if (null != ContentSection)
+    {
+        ContentSection.Attach(owner);
+    }
+
+    if (null != ActionsSection)
+    {
+        ActionsSection.Attach(owner);
+    }
+
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    if (null != ContentSection)
+    {
+        ContentSection.Attach(owner);
+    }
+
+    if (null != ActionsSection)
+    {
+        ActionsSection.Attach(owner);
+    }
+
+}
+
+
+
+
+public new void Detach()
+{
+    base.Detach();
+    if (null != ContentSection)
+    {
+        ContentSection.Detach();
+    }
+
+    if (null != ActionsSection)
+    {
+        ActionsSection.Detach();
+    }
+
+}
+
+
+
+
+public new void RedepthChildren()
+{
+    if (null != ContentSection)
+    {
+        RedepthChild(ContentSection);
+    }
+
+    if (null != ActionsSection)
+    {
+        RedepthChild(ActionsSection);
+    }
+
+}
+
+
+
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (!(child.ParentData is MultiChildLayoutParentData))
+    {
+        ((MultiChildLayoutParentData)child.ParentData) = new MultiChildLayoutParentData();
+    }
+
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is MultiChildLayoutParentData))
+    {
+        ((MultiChildLayoutParentData)child.ParentData) = new MultiChildLayoutParentData();
+    }
+
+}
+
+
+
+
+public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+{
+    if (ContentSection != null)
+    {
+        visitor(ContentSection);
+    }
+
+    if (ActionsSection != null)
+    {
+        visitor(ActionsSection);
+    }
+
+}
+
+
+
+
+public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+{
+    List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
+    if (ContentSection != null)
+    {
+        value.Add(ContentSection.ToDiagnosticsNode(name: "content"));
+    }
+
+    if (ActionsSection != null)
+    {
+        value.Add(ActionsSection.ToDiagnosticsNode(name: "actions"));
+    }
+
+    return value;
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    return Constraints.MinWidth;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    return Constraints.MaxWidth;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    double contentHeight = ContentSection.GetMinIntrinsicHeight(width);
+    double actionsHeight = ActionsSection.GetMinIntrinsicHeight(width);
+    bool hasDivider = contentHeight > 0.0 && actionsHeight > 0.0;
+    double height = contentHeight + (hasDivider ? _DividerThickness : 0.0) + actionsHeight;
+    if (actionsHeight > 0 || contentHeight > 0) height -= 2 * ActionsheetDefaultClass._KEdgeVerticalPadding;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    double contentHeight = ContentSection.GetMaxIntrinsicHeight(width);
+    double actionsHeight = ActionsSection.GetMaxIntrinsicHeight(width);
+    bool hasDivider = contentHeight > 0.0 && actionsHeight > 0.0;
+    double height = contentHeight + (hasDivider ? _DividerThickness : 0.0) + actionsHeight;
+    if (actionsHeight > 0 || contentHeight > 0) height -= 2 * ActionsheetDefaultClass._KEdgeVerticalPadding;
+    if (height.IsFinite()) return height;
+    return 0.0;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    bool hasDivider = ContentSection.GetMaxIntrinsicHeight(constraints.MaxWidth) > 0.0 && ActionsSection.GetMaxIntrinsicHeight(constraints.MaxWidth) > 0.0;
+    double dividerThickness = hasDivider ? _DividerThickness : 0.0;
+    double minActionsHeight = ActionsSection.GetMinIntrinsicHeight(constraints.MaxWidth);
+    ContentSection.Layout(constraints.Deflate(EdgeInsets.Only(bottom: minActionsHeight + dividerThickness)), parentUsesSize: true);
+    Size contentSize = ContentSection.Size;
+    ActionsSection.Layout(constraints.Deflate(EdgeInsets.Only(top: contentSize.Height + dividerThickness)), parentUsesSize: true);
+    Size actionsSize = ActionsSection.Size;
+    double actionSheetHeight = contentSize.Height + dividerThickness + actionsSize.Height;
+    Size = new Size(constraints.MaxWidth, actionSheetHeight);
+
+    MultiChildLayoutParentData actionParentData = ActionsSection.ParentData as MultiChildLayoutParentData;
+    actionParentData.Offset = new Offset(0.0, contentSize.Height + dividerThickness);
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    MultiChildLayoutParentData contentParentData = ContentSection.ParentData as MultiChildLayoutParentData;
+    ContentSection.Paint(context, offset + contentParentData.Offset);
+    bool hasDivider = ContentSection.Size.Height > 0.0 && ActionsSection.Size.Height > 0.0;
+    if (hasDivider)
+    {
+        _PaintDividerBetweenContentAndActions(context.Canvas, offset);
+    }
+
+    MultiChildLayoutParentData actionsParentData = ActionsSection.ParentData as MultiChildLayoutParentData;
+    ActionsSection.Paint(context, offset + actionsParentData.Offset);
+}
+
+
+
+
+private void _PaintDividerBetweenContentAndActions(Canvas canvas, FlutterBinding.UI.Offset offset)
+{
+    canvas.DrawRect(Rect.FromLTWH(offset.Dx, offset.Dy + ContentSection.Size.Height, Size.Width, _DividerThickness), _DividerPaint);
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    MultiChildLayoutParentData contentSectionParentData = ContentSection.ParentData as MultiChildLayoutParentData;
+    MultiChildLayoutParentData actionsSectionParentData = ActionsSection.ParentData as MultiChildLayoutParentData;
+    return result.AddWithPaintOffset(offset: contentSectionParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+    {
+
+        return ContentSection.HitTest(result, position: transformed);
+    }
+    ) || result.AddWithPaintOffset(offset: actionsSectionParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+    {
+
+        return ActionsSection.HitTest(result, position: transformed);
+    }
+    );
+}
+
+
+
+#endregion
+}
+
+
+public class _CupertinoAlertContentSection : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public _CupertinoAlertContentSection(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget message = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Message { get; set; }
+public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    List<Widget> titleContentGroup = new List<Widget>() { };
+    if (Title != null)
+    {
+        titleContentGroup.Add(new Padding(padding: EdgeInsets.Only(left: ActionsheetDefaultClass._KContentHorizontalPadding, right: ActionsheetDefaultClass._KContentHorizontalPadding, bottom: ActionsheetDefaultClass._KContentVerticalPadding, top: ActionsheetDefaultClass._KContentVerticalPadding), child: new DefaultTextStyle(style: Message == null ? ActionsheetDefaultClass._KActionSheetContentStyle : ActionsheetDefaultClass._KActionSheetContentStyle.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600), textAlign: TextAlign.Center, child: Title)));
+    }
+
+    if (Message != null)
+    {
+        titleContentGroup.Add(new Padding(padding: EdgeInsets.Only(left: ActionsheetDefaultClass._KContentHorizontalPadding, right: ActionsheetDefaultClass._KContentHorizontalPadding, bottom: Title == null ? ActionsheetDefaultClass._KContentVerticalPadding : 22.0, top: Title == null ? ActionsheetDefaultClass._KContentVerticalPadding : 0.0), child: new DefaultTextStyle(style: Title == null ? ActionsheetDefaultClass._KActionSheetContentStyle.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600) : ActionsheetDefaultClass._KActionSheetContentStyle, textAlign: TextAlign.Center, child: Message)));
+    }
+
+    if (titleContentGroup.IsEmpty())
+    {
+        return new SingleChildScrollView(controller: ScrollController, child: new Container(width: 0.0, height: 0.0));
+    }
+
+    if (titleContentGroup.Count > 1)
+    {
+        titleContentGroup.Insert(1, new Padding(padding: EdgeInsets.Only(top: 8.0)));
+    }
+
+    return new CupertinoScrollbar(child: new SingleChildScrollView(controller: ScrollController, child: new Column(mainAxisSize: MainAxisSize.Max, crossAxisAlignment: CrossAxisAlignment.Stretch, children: titleContentGroup)));
+}
+
+
+
+#endregion
+}
+
+
+public class _CupertinoAlertActionSection : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _CupertinoAlertActionSection(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool hasCancelButton = default(bool))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+public virtual bool HasCancelButton { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Cupertino.Actionsheet._CupertinoAlertActionSectionState CreateState() => new _CupertinoAlertActionSectionState();
+
+
+#endregion
+}
+
+
+public class _CupertinoAlertActionSectionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Actionsheet._CupertinoAlertActionSection>
+{
+    #region constructors
+    public _CupertinoAlertActionSectionState()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        double devicePixelRatio = MediaqueryDefaultClass.MediaQuery.Of(context).DevicePixelRatio;
+        List<Widget> interactiveButtons = new List<Widget>() { };
+        for (int i = 0; i < Widget.Children.Count; i += 1)
         {
-            this.Children = children;
-            this.ScrollController = scrollController;
-            this.HasCancelButton = hasCancelButton; throw new NotImplementedException();
+            interactiveButtons.Add(new _PressableActionButton(child: Widget.Children[i]));
         }
-        #endregion
 
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        public virtual bool HasCancelButton { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Cupertino.Actionsheet._CupertinoAlertActionSectionState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        return new CupertinoScrollbar(child: new SingleChildScrollView(controller: Widget.ScrollController, child: new _CupertinoAlertActionsRenderWidget(actionButtons: interactiveButtons, dividerThickness: ActionsheetDefaultClass._KDividerThickness / devicePixelRatio, hasCancelButton: Widget.HasCancelButton)));
     }
 
 
-    public class _CupertinoAlertActionSectionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Actionsheet._CupertinoAlertActionSection>
+
+    #endregion
+}
+
+
+public class _PressableActionButton : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _PressableActionButton(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Cupertino.Actionsheet._PressableActionButtonState CreateState() => new _PressableActionButtonState();
+
+
+#endregion
+}
+
+
+public class _PressableActionButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Actionsheet._PressableActionButton>
+{
+    #region constructors
+    public _PressableActionButtonState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _IsPressed { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _CupertinoAlertActionSectionState()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new _ActionButtonParentDataWidget(isPressed: _IsPressed, child: new GestureDetector(excludeFromSemantics: true, behavior: HitTestBehavior.Opaque, onTapDown: (TapDownDetails details) => =>SetState(() => =>_IsPressed = true), onTapUp: (TapUpDetails details) => =>SetState(() => =>_IsPressed = false), onTapCancel: () => =>SetState(() => =>_IsPressed = false), child: Widget.Child));
     }
 
 
-    public class _PressableActionButton : FlutterSDK.Widgets.Framework.StatefulWidget
+
+    #endregion
+}
+
+
+public class _ActionButtonParentDataWidget : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Cupertino.Actionsheet._ActionButtonParentData>
+{
+    #region constructors
+    public _ActionButtonParentDataWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isPressed = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual bool IsPressed { get; set; }
+public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+
+    _ActionButtonParentData parentData = renderObject.ParentData as _ActionButtonParentData;
+    if (parentData.IsPressed != IsPressed)
     {
-        #region constructors
-        public _PressableActionButton(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        parentData.IsPressed = IsPressed;
+        AbstractNode targetParent = renderObject.Parent;
+        if (((RenderObject)targetParent) is RenderObject) ((RenderObject)targetParent).MarkNeedsPaint();
+    }
+
+}
+
+
+
+#endregion
+}
+
+
+public class _ActionButtonParentData : FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData
+{
+    #region constructors
+    public _ActionButtonParentData(bool isPressed = false)
+
+}
+#endregion
+
+#region fields
+public virtual bool IsPressed { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+public class _CupertinoAlertActionsRenderWidget : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+{
+    #region constructors
+    public _CupertinoAlertActionsRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actionButtons = default(List<FlutterSDK.Widgets.Framework.Widget>), double dividerThickness = 0.0, bool hasCancelButton = false)
+    : base(key: key, children: actionButtons)
+
+}
+#endregion
+
+#region fields
+internal virtual double _DividerThickness { get; set; }
+internal virtual bool _HasCancelButton { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _RenderCupertinoAlertActions(dividerThickness: _DividerThickness, dividerColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KButtonDividerColor, context), hasCancelButton: _HasCancelButton, backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KBackgroundColor, context), pressedColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KPressedColor, context));
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Actionsheet._RenderCupertinoAlertActions renderObject)
+{
+    ..DividerThickness = _DividerThickness..DividerColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KButtonDividerColor, context)..HasCancelButton = _HasCancelButton..BackgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KBackgroundColor, context)..PressedColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KPressedColor, context);
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..DividerThickness = _DividerThickness..DividerColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KButtonDividerColor, context)..HasCancelButton = _HasCancelButton..BackgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KBackgroundColor, context)..PressedColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActionsheetDefaultClass._KPressedColor, context);
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderCupertinoAlertActions : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
+{
+    #region constructors
+    public _RenderCupertinoAlertActions(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), double dividerThickness = 0.0, FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), bool hasCancelButton = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color pressedColor = default(FlutterBinding.UI.Color))
+    : base()
+
+AddAll(children);
+}
+
+
+#endregion
+
+#region fields
+internal virtual double _DividerThickness { get; set; }
+internal virtual bool _HasCancelButton { get; set; }
+internal virtual SKPaint _ButtonBackgroundPaint { get; set; }
+internal virtual SKPaint _PressedButtonBackgroundPaint { get; set; }
+internal virtual SKPaint _DividerPaint { get; set; }
+public virtual double DividerThickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color BackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color PressedColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterBinding.UI.Color DividerColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool HasCancelButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (!(child.ParentData is _ActionButtonParentData)) child.ParentData = new _ActionButtonParentData();
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is _ActionButtonParentData)) child.ParentData = new _ActionButtonParentData();
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    return Constraints.MinWidth;
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    return Constraints.MaxWidth;
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    if (ChildCount == 0) return 0.0;
+    if (ChildCount == 1) return FirstChild.ComputeMaxIntrinsicHeight(width) + DividerThickness;
+    if (HasCancelButton && ChildCount < 4) return _ComputeMinIntrinsicHeightWithCancel(width);
+    return _ComputeMinIntrinsicHeightWithoutCancel(width);
+}
+
+
+
+
+private double _ComputeMinIntrinsicHeightWithCancel(double width)
+{
+
+    if (ChildCount == 2)
+    {
+        return FirstChild.GetMinIntrinsicHeight(width) + ChildAfter(FirstChild).GetMinIntrinsicHeight(width) + DividerThickness;
+    }
+
+    return FirstChild.GetMinIntrinsicHeight(width) + ChildAfter(FirstChild).GetMinIntrinsicHeight(width) + ChildAfter(ChildAfter(FirstChild)).GetMinIntrinsicHeight(width) + (DividerThickness * 2);
+}
+
+
+
+
+private double _ComputeMinIntrinsicHeightWithoutCancel(double width)
+{
+
+    return FirstChild.GetMinIntrinsicHeight(width) + DividerThickness + (0.5 * ChildAfter(FirstChild).GetMinIntrinsicHeight(width));
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    if (ChildCount == 0) return 0.0;
+    if (ChildCount == 1) return FirstChild.ComputeMaxIntrinsicHeight(width) + DividerThickness;
+    return _ComputeMaxIntrinsicHeightStacked(width);
+}
+
+
+
+
+private double _ComputeMaxIntrinsicHeightStacked(double width)
+{
+
+    double allDividersHeight = (ChildCount - 1) * DividerThickness;
+    double heightAccumulation = allDividersHeight;
+    RenderBox button = FirstChild;
+    while (button != null)
+    {
+        heightAccumulation += button.GetMaxIntrinsicHeight(width);
+        button = ChildAfter(button);
+    }
+
+    return heightAccumulation;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints perButtonConstraints = Constraints.CopyWith(minHeight: 0.0, maxHeight: Dart:coreDefaultClass.Double.Infinity);
+    RenderBox child = FirstChild;
+    int index = 0;
+    double verticalOffset = 0.0;
+    while (child != null)
+    {
+        child.Layout(perButtonConstraints, parentUsesSize: true);
+
+        MultiChildLayoutParentData parentData = child.ParentData as MultiChildLayoutParentData;
+        parentData.Offset = new Offset(0.0, verticalOffset);
+        verticalOffset += child.Size.Height;
+        if (index < ChildCount - 1)
         {
-            this.Child = child; throw new NotImplementedException();
+            verticalOffset += DividerThickness;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Cupertino.Actionsheet._PressableActionButtonState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        index += 1;
+        child = ChildAfter(child);
     }
 
+    Size = Constraints.Constrain(new Size(Constraints.MaxWidth, verticalOffset));
+}
 
-    public class _PressableActionButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Actionsheet._PressableActionButton>
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    Canvas canvas = context.Canvas;
+    _DrawButtonBackgroundsAndDividersStacked(canvas, offset);
+    _DrawButtons(context, offset);
+}
+
+
+
+
+private void _DrawButtonBackgroundsAndDividersStacked(Canvas canvas, FlutterBinding.UI.Offset offset)
+{
+    Offset dividerOffset = new Offset(0.0, DividerThickness);
+    Path backgroundFillPath = new Path()..FillType = PathFillType.EvenOdd;
+    new Path().AddRect(Rect.FromLTWH(0.0, 0.0, Size.Width, Size.Height));
+    Path pressedBackgroundFillPath = new Path();
+    Path dividersPath = new Path();
+    Offset accumulatingOffset = offset;
+    RenderBox child = FirstChild;
+    RenderBox prevChild = default(RenderBox);
+    while (child != null)
     {
-        #region constructors
-        public _PressableActionButtonState()
-        { }
-        #endregion
 
-        #region fields
-        internal virtual bool _IsPressed { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _ActionButtonParentDataWidget : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Cupertino.Actionsheet._ActionButtonParentData>
-    {
-        #region constructors
-        public _ActionButtonParentDataWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isPressed = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
+        _ActionButtonParentData currentButtonParentData = child.ParentData as _ActionButtonParentData;
+        bool isButtonPressed = currentButtonParentData.IsPressed;
+        bool isPrevButtonPressed = false;
+        if (prevChild != null)
         {
-            this.IsPressed = isPressed; throw new NotImplementedException();
+
+            _ActionButtonParentData previousButtonParentData = prevChild.ParentData as _ActionButtonParentData;
+            isPrevButtonPressed = previousButtonParentData.IsPressed;
         }
-        #endregion
 
-        #region fields
-        public virtual bool IsPressed { get; set; }
-        public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _ActionButtonParentData : FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData
-    {
-        #region constructors
-        public _ActionButtonParentData(bool isPressed = false)
+        bool isDividerPresent = child != FirstChild;
+        bool isDividerPainted = isDividerPresent && !(isButtonPressed || isPrevButtonPressed);
+        Rect dividerRect = Rect.FromLTWH(accumulatingOffset.Dx, accumulatingOffset.Dy, Size.Width, _DividerThickness);
+        Rect buttonBackgroundRect = Rect.FromLTWH(accumulatingOffset.Dx, accumulatingOffset.Dy + (isDividerPresent ? DividerThickness : 0.0), Size.Width, child.Size.Height);
+        if (isButtonPressed)
         {
-            this.IsPressed = isPressed; throw new NotImplementedException();
+            backgroundFillPath.AddRect(buttonBackgroundRect);
+            pressedBackgroundFillPath.AddRect(buttonBackgroundRect);
         }
-        #endregion
 
-        #region fields
-        public virtual bool IsPressed { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
-    }
-
-
-    public class _CupertinoAlertActionsRenderWidget : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-    {
-        #region constructors
-        public _CupertinoAlertActionsRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actionButtons = default(List<FlutterSDK.Widgets.Framework.Widget>), double dividerThickness = 0.0, bool hasCancelButton = false)
-        : base(key: key, children: actionButtons)
+        if (isDividerPainted)
         {
-            throw new NotImplementedException();
+            backgroundFillPath.AddRect(dividerRect);
+            dividersPath.AddRect(dividerRect);
         }
-        #endregion
 
-        #region fields
-        internal virtual double _DividerThickness { get; set; }
-        internal virtual bool _HasCancelButton { get; set; }
-        #endregion
+        accumulatingOffset += (isDividerPresent ? dividerOffset : Dart:uiDefaultClass.Offset.Zero)+new Offset(0.0, child.Size.Height);
+prevChild = child;
+child = ChildAfter(child);
+}
 
-        #region methods
-
-        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Actionsheet._RenderCupertinoAlertActions renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+canvas.DrawPath(backgroundFillPath, _ButtonBackgroundPaint);
+canvas.DrawPath(pressedBackgroundFillPath, _PressedButtonBackgroundPaint);
+canvas.DrawPath(dividersPath, _DividerPaint);
+}
 
 
-    public class _RenderCupertinoAlertActions : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
+
+
+private void _DrawButtons(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    RenderBox child = FirstChild;
+    while (child != null)
     {
-        #region constructors
-        public _RenderCupertinoAlertActions(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), double dividerThickness = 0.0, FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), bool hasCancelButton = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color pressedColor = default(FlutterBinding.UI.Color))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual double _DividerThickness { get; set; }
-        internal virtual bool _HasCancelButton { get; set; }
-        internal virtual SKPaint _ButtonBackgroundPaint { get; set; }
-        internal virtual SKPaint _PressedButtonBackgroundPaint { get; set; }
-        internal virtual SKPaint _DividerPaint { get; set; }
-        public virtual double DividerThickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color PressedColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color DividerColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool HasCancelButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        private double _ComputeMinIntrinsicHeightWithCancel(double width) { throw new NotImplementedException(); }
-
-
-        private double _ComputeMinIntrinsicHeightWithoutCancel(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        private double _ComputeMaxIntrinsicHeightStacked(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        private void _DrawButtonBackgroundsAndDividersStacked(Canvas canvas, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        private void _DrawButtons(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
+        MultiChildLayoutParentData childParentData = child.ParentData as MultiChildLayoutParentData;
+        context.PaintChild(child, childParentData.Offset + offset);
+        child = ChildAfter(child);
     }
 
+}
 
-    public enum _AlertSections
-    {
 
-        ContentSection,
-        ActionsSection,
-    }
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    return DefaultHitTestChildren(result, position: position);
+}
+
+
+
+#endregion
+}
+
+
+public enum _AlertSections
+{
+
+    ContentSection,
+    ActionsSection,
+}
 
 }

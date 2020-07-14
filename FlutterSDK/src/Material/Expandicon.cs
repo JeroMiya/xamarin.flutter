@@ -406,66 +406,110 @@ namespace FlutterSDK.Material.Expandicon
         #region constructors
         public ExpandIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isExpanded = false, double size = 24.0, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onPressed = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color expandedColor = default(FlutterBinding.UI.Color))
         : base(key: key)
-        {
-            this.IsExpanded = isExpanded;
-            this.Size = size;
-            this.OnPressed = onPressed;
-            this.Padding = padding;
-            this.Color = color;
-            this.DisabledColor = disabledColor;
-            this.ExpandedColor = expandedColor; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool IsExpanded { get; set; }
-        public virtual double Size { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnPressed { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
-        public virtual FlutterBinding.UI.Color ExpandedColor { get; set; }
-        #endregion
+    #region fields
+    public virtual bool IsExpanded { get; set; }
+    public virtual double Size { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnPressed { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+    public virtual FlutterBinding.UI.Color ExpandedColor { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Material.Expandicon._ExpandIconState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Material.Expandicon._ExpandIconState CreateState() => new _ExpandIconState();
 
 
-    public class _ExpandIconState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expandicon.ExpandIcon>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    #endregion
+}
+
+
+public class _ExpandIconState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expandicon.ExpandIcon>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _ExpandIconState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _IconTurnTween { get; set; }
+    internal virtual FlutterBinding.UI.Color _IconColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _ExpandIconState()
-        { }
-        #endregion
+        base.InitState();
+        _Controller = new AnimationController(duration: ThemeDefaultClass.KThemeAnimationDuration, vsync: this);
+        _IconTurns = _Controller.Drive(_IconTurnTween);
+        if (Widget.IsExpanded)
+        {
+            _Controller.Value = Math.Dart:mathDefaultClass.Pi;
+        }
 
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _IconTurnTween { get; set; }
-        internal virtual FlutterBinding.UI.Color _IconColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Expandicon.ExpandIcon oldWidget) { throw new NotImplementedException(); }
-
-
-        private void _HandlePressed() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    public new void Dispose()
+    {
+        _Controller.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Expandicon.ExpandIcon oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.IsExpanded != oldWidget.IsExpanded)
+        {
+            if (Widget.IsExpanded)
+            {
+                _Controller.Forward();
+            }
+            else
+            {
+                _Controller.Reverse();
+            }
+
+        }
+
+    }
+
+
+
+
+    private void _HandlePressed()
+    {
+        if (Widget.OnPressed != null) Widget.OnPressed(Widget.IsExpanded);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        string onTapHint = Widget.IsExpanded ? localizations.ExpandedIconTapHint : localizations.CollapsedIconTapHint;
+        return new Semantics(onTapHint: Widget.OnPressed == null ? null : onTapHint, child: new IconButton(padding: Widget.Padding, iconSize: Widget.Size, color: _IconColor, disabledColor: Widget.DisabledColor, onPressed: Widget.OnPressed == null ? null : _HandlePressed, icon: new RotationTransition(turns: _IconTurns, child: new Icon(IconsDefaultClass.Icons.Expand_more))));
+    }
+
+
+
+    #endregion
+}
 
 }

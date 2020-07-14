@@ -451,7 +451,10 @@ namespace FlutterSDK.Material.Datatablesource
         /// Data returned from this method must be consistent for the lifetime of the
         /// object. If the row count changes, then a new delegate must be provided.
         /// </Summary>
-        public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Material.Datatable.DataRow GetRow(int index)
+        {
+            return default(DataRow);
+        }
 
         #endregion
     }

@@ -432,32 +432,48 @@ namespace FlutterSDK.Material.Page
         #region constructors
         public MaterialPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
-        {
-            this.Builder = builder;
-            this.MaintainState = maintainState; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
-        public new bool MaintainState { get; set; }
-        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+    public new bool MaintainState { get; set; }
+    public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-        #endregion
+    public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute)
+    {
+        return (nextRoute is MaterialPageRoute && !nextRoute.FullscreenDialog) || (nextRoute is CupertinoPageRoute && !nextRoute.FullscreenDialog);
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+    {
+        Widget result = Builder(context);
+
+        return new Semantics(scopesRoute: true, explicitChildNodes: true, child: result);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+    {
+        PageTransitionsTheme theme = ThemeDefaultClass.Theme.Of(context).PageTransitionsTheme;
+        return theme.BuildTransitions(this, context, animation, secondaryAnimation, child);
+    }
+
+
+
+    #endregion
+}
 
 }

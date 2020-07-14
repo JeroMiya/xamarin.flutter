@@ -455,7 +455,12 @@ namespace FlutterSDK.Widgets.Scrollmetrics
         /// is useful to examine hypothetical situations, for example "would applying
         /// this delta unmodified take the position [outOfRange]?".
         /// </Summary>
-        public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection)) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
+        {
+            return new FixedScrollMetrics(minScrollExtent: minScrollExtent == default(double) ? this.minScrollExtent : minScrollExtent, maxScrollExtent: maxScrollExtent == default(double) ? this.maxScrollExtent : maxScrollExtent, pixels: pixels == default(double) ? this.pixels : pixels, viewportDimension: viewportDimension == default(double) ? this.viewportDimension : viewportDimension, axisDirection: axisDirection ?? this.AxisDirection);
+        }
+
+
 
     }
     public static class ScrollMetricsMixin
@@ -494,26 +499,21 @@ namespace FlutterSDK.Widgets.Scrollmetrics
     {
         #region constructors
         public FixedScrollMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
-        {
-            this.MinScrollExtent = minScrollExtent;
-            this.MaxScrollExtent = maxScrollExtent;
-            this.Pixels = pixels;
-            this.ViewportDimension = viewportDimension;
-            this.AxisDirection = axisDirection; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public new double MinScrollExtent { get; set; }
-        public new double MaxScrollExtent { get; set; }
-        public new double Pixels { get; set; }
-        public new double ViewportDimension { get; set; }
-        public new FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-        #endregion
+    #region fields
+    public new double MinScrollExtent { get; set; }
+    public new double MaxScrollExtent { get; set; }
+    public new double Pixels { get; set; }
+    public new double ViewportDimension { get; set; }
+    public new FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        #endregion
-    }
+    #endregion
+}
 
 }

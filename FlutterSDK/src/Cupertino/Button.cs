@@ -313,97 +313,168 @@ namespace FlutterSDK.Cupertino.Button
         #region constructors
         public CupertinoButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
-        {
-            this.Child = child;
-            this.Padding = padding;
-            this.Color = color;
-            this.DisabledColor = disabledColor;
-            this.MinSize = minSize;
-            this.PressedOpacity = pressedOpacity;
-            this.BorderRadius = borderRadius;
-            this.OnPressed = onPressed; throw new NotImplementedException();
-        }
-        public static CupertinoButton Filled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
-        {
-            var instance = new CupertinoButton(key: key); instance.Child = child;
-            instance.Padding = padding;
-            instance.DisabledColor = disabledColor;
-            instance.MinSize = minSize;
-            instance.PressedOpacity = pressedOpacity;
-            instance.BorderRadius = borderRadius;
-            instance.OnPressed = onPressed; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static CupertinoButton Filled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
-        public virtual VoidCallback OnPressed { get; set; }
-        public virtual double MinSize { get; set; }
-        public virtual double PressedOpacity { get; set; }
-        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-        internal virtual bool _Filled { get; set; }
-        public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+public virtual VoidCallback OnPressed { get; set; }
+public virtual double MinSize { get; set; }
+public virtual double PressedOpacity { get; set; }
+public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+internal virtual bool _Filled { get; set; }
+public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        public new FlutterSDK.Cupertino.Button._CupertinoButtonState CreateState() { throw new NotImplementedException(); }
+#region methods
+
+public new FlutterSDK.Cupertino.Button._CupertinoButtonState CreateState() => new _CupertinoButtonState();
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new FlagProperty("enabled", value: Enabled, ifFalse: "disabled"));
+}
 
 
-    public class _CupertinoButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Button.CupertinoButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+
+#endregion
+}
+
+
+public class _CupertinoButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Button.CupertinoButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _CupertinoButtonState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual TimeSpan KFadeOutDuration { get; set; }
+    public virtual TimeSpan KFadeInDuration { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+    internal virtual bool _ButtonHeldDown { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _CupertinoButtonState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual TimeSpan KFadeOutDuration { get; set; }
-        public virtual TimeSpan KFadeInDuration { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-        internal virtual bool _ButtonHeldDown { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Cupertino.Button.CupertinoButton old) { throw new NotImplementedException(); }
-
-
-        private void _SetTween() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails @event) { throw new NotImplementedException(); }
-
-
-        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails @event) { throw new NotImplementedException(); }
-
-
-        private void _HandleTapCancel() { throw new NotImplementedException(); }
-
-
-        private void _Animate() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _AnimationController = new AnimationController(duration: new TimeSpan(milliseconds: 200), value: 0.0, vsync: this);
+        _OpacityAnimation = _AnimationController.Drive(new CurveTween(curve: CurvesDefaultClass.Curves.Decelerate)).Drive(_OpacityTween);
+        _SetTween();
     }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Cupertino.Button.CupertinoButton old)
+    {
+        base.DidUpdateWidget(old);
+        _SetTween();
+    }
+
+
+
+
+    private void _SetTween()
+    {
+        _OpacityTween.End = Widget.PressedOpacity ?? 1.0;
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _AnimationController.Dispose();
+        _AnimationController = null;
+        base.Dispose();
+    }
+
+
+
+
+    private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails @event)
+    {
+        if (!_ButtonHeldDown)
+        {
+            _ButtonHeldDown = true;
+            _Animate();
+        }
+
+    }
+
+
+
+
+    private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails @event)
+    {
+        if (_ButtonHeldDown)
+        {
+            _ButtonHeldDown = false;
+            _Animate();
+        }
+
+    }
+
+
+
+
+    private void _HandleTapCancel()
+    {
+        if (_ButtonHeldDown)
+        {
+            _ButtonHeldDown = false;
+            _Animate();
+        }
+
+    }
+
+
+
+
+    private void _Animate()
+    {
+        if (_AnimationController.IsAnimating) return;
+        bool wasHeldDown = _ButtonHeldDown;
+        TickerFuture ticker = _ButtonHeldDown ? _AnimationController.AnimateTo(1.0, duration: KFadeOutDuration) : _AnimationController.AnimateTo(0.0, duration: KFadeInDuration);
+        ticker.Then((void value) =>
+        {
+            if (Mounted && wasHeldDown != _ButtonHeldDown) _Animate();
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        bool enabled = Widget.Enabled;
+        CupertinoThemeData themeData = ThemeDefaultClass.CupertinoTheme.Of(context);
+        Color primaryColor = themeData.PrimaryColor;
+        Color backgroundColor = Widget.Color == null ? (Widget._Filled ? primaryColor : null) : ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.Color, context);
+        Color foregroundColor = backgroundColor != null ? themeData.PrimaryContrastingColor : enabled ? primaryColor : ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.PlaceholderText, context);
+        TextStyle textStyle = themeData.TextTheme.TextStyle.CopyWith(color: foregroundColor);
+        return new GestureDetector(behavior: HitTestBehavior.Opaque, onTapDown: enabled ? _HandleTapDown : null, onTapUp: enabled ? _HandleTapUp : null, onTapCancel: enabled ? _HandleTapCancel : null, onTap: Widget.OnPressed, child: new Semantics(button: true, child: new ConstrainedBox(constraints: Widget.MinSize == null ? new BoxConstraints() : new BoxConstraints(minWidth: Widget.MinSize, minHeight: Widget.MinSize), child: new FadeTransition(opacity: _OpacityAnimation, child: new DecoratedBox(decoration: new BoxDecoration(borderRadius: Widget.BorderRadius, color: backgroundColor != null && !enabled ? ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.DisabledColor, context) : backgroundColor), child: new Padding(padding: Widget.Padding ?? (backgroundColor != null ? ButtonDefaultClass._KBackgroundButtonPadding : ButtonDefaultClass._KButtonPadding), child: new Center(widthFactor: 1.0, heightFactor: 1.0, child: new DefaultTextStyle(style: textStyle, child: new IconTheme(data: new IconThemeData(color: foregroundColor), child: Widget.Child)))))))));
+    }
+
+
+
+    #endregion
+}
 
 }

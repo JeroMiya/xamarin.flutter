@@ -461,30 +461,41 @@ namespace FlutterSDK.Rendering.Texture
         #region constructors
         public TextureBox(int textureId = default(int))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual int _TextureId { get; set; }
-        public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    internal virtual int _TextureId { get; set; }
+    public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new void PerformResize() { throw new NotImplementedException(); }
-
-
-        public new bool HitTestSelf(FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-        #endregion
+    public new void PerformResize()
+    {
+        Size = Constraints.Biggest;
     }
+
+
+
+
+    public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (_TextureId == null) return;
+        context.AddLayer(new TextureLayer(rect: Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, Size.Height), textureId: _TextureId));
+    }
+
+
+
+    #endregion
+}
 
 }

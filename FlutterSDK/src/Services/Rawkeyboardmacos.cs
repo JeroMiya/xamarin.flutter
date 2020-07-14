@@ -442,67 +442,121 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
         #region constructors
         public RawKeyEventDataMacOs(string characters = default(string), string charactersIgnoringModifiers = default(string), int keyCode = 0, int modifiers = 0)
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    public virtual string Characters { get; set; }
+    public virtual string CharactersIgnoringModifiers { get; set; }
+    public virtual int KeyCode { get; set; }
+    public virtual int Modifiers { get; set; }
+    public virtual int ModifierCapsLock { get; set; }
+    public virtual int ModifierShift { get; set; }
+    public virtual int ModifierLeftShift { get; set; }
+    public virtual int ModifierRightShift { get; set; }
+    public virtual int ModifierControl { get; set; }
+    public virtual int ModifierLeftControl { get; set; }
+    public virtual int ModifierRightControl { get; set; }
+    public virtual int ModifierOption { get; set; }
+    public virtual int ModifierLeftOption { get; set; }
+    public virtual int ModifierRightOption { get; set; }
+    public virtual int ModifierCommand { get; set; }
+    public virtual int ModifierLeftCommand { get; set; }
+    public virtual int ModifierRightCommand { get; set; }
+    public virtual int ModifierNumericPad { get; set; }
+    public virtual int ModifierHelp { get; set; }
+    public virtual int ModifierFunction { get; set; }
+    public virtual int DeviceIndependentMask { get; set; }
+    public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask)
+    {
+        if (Modifiers & anyMask == 0)
         {
-            this.Characters = characters;
-            this.CharactersIgnoringModifiers = charactersIgnoringModifiers;
-            this.KeyCode = keyCode;
-            this.Modifiers = modifiers; throw new NotImplementedException();
+            return false;
         }
-        #endregion
 
-        #region fields
-        public virtual string Characters { get; set; }
-        public virtual string CharactersIgnoringModifiers { get; set; }
-        public virtual int KeyCode { get; set; }
-        public virtual int Modifiers { get; set; }
-        public virtual int ModifierCapsLock { get; set; }
-        public virtual int ModifierShift { get; set; }
-        public virtual int ModifierLeftShift { get; set; }
-        public virtual int ModifierRightShift { get; set; }
-        public virtual int ModifierControl { get; set; }
-        public virtual int ModifierLeftControl { get; set; }
-        public virtual int ModifierRightControl { get; set; }
-        public virtual int ModifierOption { get; set; }
-        public virtual int ModifierLeftOption { get; set; }
-        public virtual int ModifierRightOption { get; set; }
-        public virtual int ModifierCommand { get; set; }
-        public virtual int ModifierLeftCommand { get; set; }
-        public virtual int ModifierRightCommand { get; set; }
-        public virtual int ModifierNumericPad { get; set; }
-        public virtual int ModifierHelp { get; set; }
-        public virtual int ModifierFunction { get; set; }
-        public virtual int DeviceIndependentMask { get; set; }
-        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask) { throw new NotImplementedException(); }
-
-
-        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns true if the given label represents an unprintable key.
-        ///
-        /// Examples of unprintable keys are "NSUpArrowFunctionKey = 0xF700"
-        /// or "NSHomeFunctionKey = 0xF729".
-        ///
-        /// See <https://developer.apple.com/documentation/appkit/1535851-function-key_unicodes?language=objc> for more
-        /// information.
-        ///
-        /// Used by [RawKeyEvent] subclasses to help construct IDs.
-        /// </Summary>
-        private bool _IsUnprintableKey(string label) { throw new NotImplementedException(); }
-
-
-        #endregion
+        bool anyOnly = Modifiers & (leftMask | rightMask | anyMask) == anyMask;
+        switch (side) { case KeyboardSide.Any: return true; case KeyboardSide.All: return Modifiers & leftMask != 0 && Modifiers & rightMask != 0 || anyOnly; case KeyboardSide.Left: return Modifiers & leftMask != 0 || anyOnly; case KeyboardSide.Right: return Modifiers & rightMask != 0 || anyOnly; }
+        return false;
     }
+
+
+
+
+    public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
+    {
+        int independentModifier = Modifiers & DeviceIndependentMask;
+        bool result = default(bool);
+        switch (key) { case ModifierKey.ControlModifier: result = _IsLeftRightModifierPressed(side, independentModifier & ModifierControl, ModifierLeftControl, ModifierRightControl); break; case ModifierKey.ShiftModifier: result = _IsLeftRightModifierPressed(side, independentModifier & ModifierShift, ModifierLeftShift, ModifierRightShift); break; case ModifierKey.AltModifier: result = _IsLeftRightModifierPressed(side, independentModifier & ModifierOption, ModifierLeftOption, ModifierRightOption); break; case ModifierKey.MetaModifier: result = _IsLeftRightModifierPressed(side, independentModifier & ModifierCommand, ModifierLeftCommand, ModifierRightCommand); break; case ModifierKey.CapsLockModifier: result = independentModifier & ModifierCapsLock != 0; break; case ModifierKey.FunctionModifier: case ModifierKey.NumLockModifier: case ModifierKey.SymbolModifier: case ModifierKey.ScrollLockModifier: result = false; break; }
+
+        return result;
+    }
+
+
+
+
+    public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+    {
+        KeyboardSide FindSide(int leftMask, int rightMask, int anyMask) => {
+            int combinedMask = leftMask | rightMask;
+            int combined = Modifiers & combinedMask;
+            if (combined == leftMask)
+            {
+                return KeyboardSide.Left;
+            }
+            else if (combined == rightMask)
+            {
+                return KeyboardSide.Right;
+            }
+            else if (combined == combinedMask || Modifiers & (combinedMask | anyMask) == anyMask)
+            {
+                return KeyboardSide.All;
+            }
+
+            return null;
+        }
+
+        switch (key) { case ModifierKey.ControlModifier: return FindSide(ModifierLeftControl, ModifierRightControl, ModifierControl); case ModifierKey.ShiftModifier: return FindSide(ModifierLeftShift, ModifierRightShift, ModifierShift); case ModifierKey.AltModifier: return FindSide(ModifierLeftOption, ModifierRightOption, ModifierOption); case ModifierKey.MetaModifier: return FindSide(ModifierLeftCommand, ModifierRightCommand, ModifierCommand); case ModifierKey.CapsLockModifier: case ModifierKey.NumLockModifier: case ModifierKey.ScrollLockModifier: case ModifierKey.FunctionModifier: case ModifierKey.SymbolModifier: return KeyboardSide.All; }
+
+        return null;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns true if the given label represents an unprintable key.
+    ///
+    /// Examples of unprintable keys are "NSUpArrowFunctionKey = 0xF700"
+    /// or "NSHomeFunctionKey = 0xF729".
+    ///
+    /// See <https://developer.apple.com/documentation/appkit/1535851-function-key_unicodes?language=objc> for more
+    /// information.
+    ///
+    /// Used by [RawKeyEvent] subclasses to help construct IDs.
+    /// </Summary>
+    private bool _IsUnprintableKey(string label)
+    {
+        if (label.Length > 1)
+        {
+            return false;
+        }
+
+        int codeUnit = label.CodeUnitAt(0);
+        return codeUnit >= 0xF700 && codeUnit <= 0xF8FF;
+    }
+
+
+
+
+    #endregion
+}
 
 }

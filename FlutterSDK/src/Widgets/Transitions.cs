@@ -647,804 +647,919 @@ namespace FlutterSDK.Widgets.Transitions
         #region constructors
         public AnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable listenable = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base(key: key)
-        {
-            this.Listenable = listenable; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Foundation.Changenotifier.Listenable Listenable { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Foundation.Changenotifier.Listenable Listenable { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Override this method to build widgets that depend on the state of the
-        /// listenable (e.g., the current value of the animation).
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Subclasses typically do not override this method.
-        /// </Summary>
-        public new FlutterSDK.Widgets.Transitions._AnimatedState CreateState() { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Transitions.AnimatedWidget>
+    /// <Summary>
+    /// Override this method to build widgets that depend on the state of the
+    /// listenable (e.g., the current value of the animation).
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _AnimatedState()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Transitions.AnimatedWidget oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _HandleChange() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(Widget);
     }
 
 
     /// <Summary>
-    /// Animates the position of a widget relative to its normal position.
-    ///
-    /// The translation is expressed as an [Offset] scaled to the child's size. For
-    /// example, an [Offset] with a `dx` of 0.25 will result in a horizontal
-    /// translation of one quarter the width of the child.
-    ///
-    /// By default, the offsets are applied in the coordinate system of the canvas
-    /// (so positive x offsets move the child towards the right). If a
-    /// [textDirection] is provided, then the offsets are applied in the reading
-    /// direction, so in right-to-left text, positive x offsets move towards the
-    /// left, and in left-to-right text, positive x offsets move towards the right.
-    ///
-    /// Here's an illustration of the [SlideTransition] widget, with its [position]
-    /// animated by a [CurvedAnimation] set to [Curves.elasticIn]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/slide_transition.mp4}
-    ///
-    /// {@tool dartpad --template=stateful_widget_scaffold_center_freeform_state}
-    /// The following code implements the [SlideTransition] as seen in the video
-    /// above:
-    ///
-    /// ```dart
-    /// class _MyStatefulWidgetState extends State<MyStatefulWidget> with SingleTickerProviderStateMixin {
-    ///   AnimationController _controller;
-    ///   Animation<Offset> _offsetAnimation;
-    ///
-    ///   @override
-    ///   void initState() {
-    ///     super.initState();
-    ///     _controller = AnimationController(
-    ///       duration: const Duration(seconds: 2),
-    ///       vsync: this,
-    ///     )..repeat(reverse: true);
-    ///     _offsetAnimation = Tween<Offset>(
-    ///       begin: Offset.zero,
-    ///       end: const Offset(1.5, 0.0),
-    ///     ).animate(CurvedAnimation(
-    ///       parent: _controller,
-    ///       curve: Curves.elasticIn,
-    ///     ));
-    ///   }
-    ///
-    ///   @override
-    ///   void dispose() {
-    ///     super.dispose();
-    ///     _controller.dispose();
-    ///   }
-    ///
-    ///   @override
-    ///   Widget build(BuildContext context) {
-    ///     return SlideTransition(
-    ///       position: _offsetAnimation,
-    ///       child: const Padding(
-    ///         padding: EdgeInsets.all(8.0),
-    ///         child: FlutterLogo(size: 150.0),
-    ///       ),
-    ///     );
-    ///   }
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [AlignTransition], an animated version of an [Align] that animates its
-    ///    [Align.alignment] property.
-    ///  * [PositionedTransition], a widget that animates its child from a start
-    ///    position to an end position over the lifetime of the animation.
-    ///  * [RelativePositionedTransition], a widget that transitions its child's
-    ///    position based on the value of a rectangle relative to a bounding box.
+    /// Subclasses typically do not override this method.
     /// </Summary>
-    public class SlideTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+    public new FlutterSDK.Widgets.Transitions._AnimatedState CreateState() => new _AnimatedState();
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        #region constructors
-        public SlideTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Offset> position = default(FlutterSDK.Animation.Animation.Animation<Offset>), bool transformHitTests = true, TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: position)
-        {
-            this.TransformHitTests = transformHitTests;
-            this.TextDirection = textDirection;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual TextDirection TextDirection { get; set; }
-        public virtual bool TransformHitTests { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<Offset> Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Listenable>("animation", Listenable));
     }
 
 
-    /// <Summary>
-    /// Animates the scale of a transformed widget.
-    ///
-    /// Here's an illustration of the [ScaleTransition] widget, with it's [alignment]
-    /// animated by a [CurvedAnimation] set to [Curves.fastOutSlowIn]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/scale_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [PositionedTransition], a widget that animates its child from a start
-    ///    position to an end position over the lifetime of the animation.
-    ///  * [RelativePositionedTransition], a widget that transitions its child's
-    ///    position based on the value of a rectangle relative to a bounding box.
-    ///  * [SizeTransition], a widget that animates its own size and clips and
-    ///    aligns its child.
-    /// </Summary>
-    public class ScaleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+
+    #endregion
+}
+
+
+public class _AnimatedState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Transitions.AnimatedWidget>
+{
+    #region constructors
+    public _AnimatedState()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public ScaleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> scale = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: scale)
-        {
-            this.Alignment = alignment;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        Widget.Listenable.AddListener(_HandleChange);
     }
 
 
-    /// <Summary>
-    /// Animates the rotation of a widget.
-    ///
-    /// Here's an illustration of the [RotationTransition] widget, with it's [turns]
-    /// animated by a [CurvedAnimation] set to [Curves.elasticOut]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/rotation_transition.mp4}
-    /// See also:
-    ///
-    ///  * [ScaleTransition], a widget that animates the scale of a transformed
-    ///    widget.
-    ///  * [SizeTransition], a widget that animates its own size and clips and
-    ///    aligns its child.
-    /// </Summary>
-    public class RotationTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Transitions.AnimatedWidget oldWidget)
     {
-        #region constructors
-        public RotationTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> turns = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: turns)
+        base.DidUpdateWidget(oldWidget);
+        if (Widget.Listenable != oldWidget.Listenable)
         {
-            this.Alignment = alignment;
-            this.Child = child; throw new NotImplementedException();
+            oldWidget.Listenable.RemoveListener(_HandleChange);
+            Widget.Listenable.AddListener(_HandleChange);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Turns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// Animates its own size and clips and aligns its child.
-    ///
-    /// [SizeTransition] acts as a [ClipRect] that animates either its width or its
-    /// height, depending upon the value of [axis]. The alignment of the child along
-    /// the [axis] is specified by the [axisAlignment].
-    ///
-    /// Like most widgets, [SizeTransition] will conform to the constraints it is
-    /// given, so be sure to put it in a context where it can change size. For
-    /// instance, if you place it into a [Container] with a fixed size, then the
-    /// [SizeTransition] will not be able to change size, and will appear to do
-    /// nothing.
-    ///
-    /// Here's an illustration of the [SizeTransition] widget, with it's [sizeFactor]
-    /// animated by a [CurvedAnimation] set to [Curves.fastOutSlowIn]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/size_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedCrossFade], for a widget that automatically animates between
-    ///    the sizes of two children, fading between them.
-    ///  * [ScaleTransition], a widget that scales the size of the child instead of
-    ///    clipping it.
-    ///  * [PositionedTransition], a widget that animates its child from a start
-    ///    position to an end position over the lifetime of the animation.
-    ///  * [RelativePositionedTransition], a widget that transitions its child's
-    ///    position based on the value of a rectangle relative to a bounding box.
-    /// </Summary>
-    public class SizeTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+
+
+    public new void Dispose()
     {
-        #region constructors
-        public SizeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Animation.Animation.Animation<double> sizeFactor = default(FlutterSDK.Animation.Animation.Animation<double>), double axisAlignment = 0.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: sizeFactor)
-        {
-            this.Axis = axis;
-            this.AxisAlignment = axisAlignment;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
-        public virtual double AxisAlignment { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> SizeFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        Widget.Listenable.RemoveListener(_HandleChange);
+        base.Dispose();
     }
 
 
-    /// <Summary>
-    /// Animates the opacity of a widget.
-    ///
-    /// For a widget that automatically animates between the sizes of two children,
-    /// fading between them, see [AnimatedCrossFade].
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=rLwWVbv3xDQ}
-    ///
-    /// Here's an illustration of the [FadeTransition] widget, with it's [opacity]
-    /// animated by a [CurvedAnimation] set to [Curves.fastOutSlowIn]:
-    ///
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/fade_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [Opacity], which does not animate changes in opacity.
-    ///  * [AnimatedOpacity], which animates changes in opacity without taking an
-    ///    explicit [Animation] argument.
-    /// </Summary>
-    public class FadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+
+
+    private void _HandleChange()
     {
-        #region constructors
-        public FadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
+        SetState(() =>
         {
-            this.Opacity = opacity;
-            this.AlwaysIncludeSemantics = alwaysIncludeSemantics; throw new NotImplementedException();
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
-        public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Proxybox.RenderAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderAnimatedOpacity renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    /// <Summary>
-    /// Animates the opacity of a sliver widget.
-    ///
-    /// {@tool dartpad --template=stateful_widget_scaffold_center_freeform_state}
-    /// Creates a [CustomScrollView] with a [SliverFixedExtentList] that uses a
-    /// [SliverFadeTransition] to fade the list in and out.
-    ///
-    /// ```dart
-    /// class _MyStatefulWidgetState extends State<MyStatefulWidget> with SingleTickerProviderStateMixin {
-    ///   AnimationController controller;
-    ///   Animation<double> animation;
-    ///
-    ///   initState() {
-    ///     super.initState();
-    ///     controller = AnimationController(
-    ///         duration: const Duration(milliseconds: 1000), vsync: this);
-    ///     animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
-    ///
-    ///     animation.addStatusListener((status) {
-    ///       if (status == AnimationStatus.completed) {
-    ///         controller.reverse();
-    ///       } else if (status == AnimationStatus.dismissed) {
-    ///         controller.forward();
-    ///       }
-    ///     });
-    ///     controller.forward();
-    ///   }
-    ///
-    ///   Widget build(BuildContext context) {
-    ///     return CustomScrollView(
-    ///       slivers: <Widget>[
-    ///         SliverFadeTransition(
-    ///           opacity: animation,
-    ///           sliver: SliverFixedExtentList(
-    ///             itemExtent: 100.0,
-    ///             delegate: SliverChildBuilderDelegate(
-    ///               (BuildContext context, int index) {
-    ///                 return Container(
-    ///                   color: index % 2 == 0
-    ///                     ? Colors.indigo[200]
-    ///                     : Colors.orange[200],
-    ///                 );
-    ///               },
-    ///               childCount: 5,
-    ///             ),
-    ///           ),
-    ///         )
-    ///       ]
-    ///     );
-    ///   }
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// Here's an illustration of the [FadeTransition] widget, the [RenderBox]
-    /// equivalent widget, with it's [opacity] animated by a [CurvedAnimation] set
-    /// to [Curves.fastOutSlowIn]:
-    ///
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/fade_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [SliverOpacity], which does not animate changes in opacity.
-    /// </Summary>
-    public class SliverFadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public SliverFadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: sliver)
-        {
-            this.Opacity = opacity;
-            this.AlwaysIncludeSemantics = alwaysIncludeSemantics; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
-        public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Proxysliver.RenderSliverAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxysliver.RenderSliverAnimatedOpacity renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Build(context);
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    #endregion
+}
 
 
-    /// <Summary>
-    /// An interpolation between two relative rects.
-    ///
-    /// This class specializes the interpolation of [Tween<RelativeRect>] to
-    /// use [RelativeRect.lerp].
-    ///
-    /// See [Tween] for a discussion on how to use interpolation objects.
-    /// </Summary>
-    public class RelativeRectTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Rendering.Stack.RelativeRect>
-    {
-        #region constructors
-        public RelativeRectTween(FlutterSDK.Rendering.Stack.RelativeRect begin = default(FlutterSDK.Rendering.Stack.RelativeRect), FlutterSDK.Rendering.Stack.RelativeRect end = default(FlutterSDK.Rendering.Stack.RelativeRect))
-        : base(begin: begin, end: end)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Animates the position of a widget relative to its normal position.
+///
+/// The translation is expressed as an [Offset] scaled to the child's size. For
+/// example, an [Offset] with a `dx` of 0.25 will result in a horizontal
+/// translation of one quarter the width of the child.
+///
+/// By default, the offsets are applied in the coordinate system of the canvas
+/// (so positive x offsets move the child towards the right). If a
+/// [textDirection] is provided, then the offsets are applied in the reading
+/// direction, so in right-to-left text, positive x offsets move towards the
+/// left, and in left-to-right text, positive x offsets move towards the right.
+///
+/// Here's an illustration of the [SlideTransition] widget, with its [position]
+/// animated by a [CurvedAnimation] set to [Curves.elasticIn]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/slide_transition.mp4}
+///
+/// {@tool dartpad --template=stateful_widget_scaffold_center_freeform_state}
+/// The following code implements the [SlideTransition] as seen in the video
+/// above:
+///
+/// ```dart
+/// class _MyStatefulWidgetState extends State<MyStatefulWidget> with SingleTickerProviderStateMixin {
+///   AnimationController _controller;
+///   Animation<Offset> _offsetAnimation;
+///
+///   @override
+///   void initState() {
+///     super.initState();
+///     _controller = AnimationController(
+///       duration: const Duration(seconds: 2),
+///       vsync: this,
+///     )..repeat(reverse: true);
+///     _offsetAnimation = Tween<Offset>(
+///       begin: Offset.zero,
+///       end: const Offset(1.5, 0.0),
+///     ).animate(CurvedAnimation(
+///       parent: _controller,
+///       curve: Curves.elasticIn,
+///     ));
+///   }
+///
+///   @override
+///   void dispose() {
+///     super.dispose();
+///     _controller.dispose();
+///   }
+///
+///   @override
+///   Widget build(BuildContext context) {
+///     return SlideTransition(
+///       position: _offsetAnimation,
+///       child: const Padding(
+///         padding: EdgeInsets.all(8.0),
+///         child: FlutterLogo(size: 150.0),
+///       ),
+///     );
+///   }
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [AlignTransition], an animated version of an [Align] that animates its
+///    [Align.alignment] property.
+///  * [PositionedTransition], a widget that animates its child from a start
+///    position to an end position over the lifetime of the animation.
+///  * [RelativePositionedTransition], a widget that transitions its child's
+///    position based on the value of a rectangle relative to a bounding box.
+/// </Summary>
+public class SlideTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public SlideTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Offset> position = default(FlutterSDK.Animation.Animation.Animation<Offset>), bool transformHitTests = true, TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: position)
 
-        #region fields
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual TextDirection TextDirection { get; set; }
+public virtual bool TransformHitTests { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<Offset> Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        /// <Summary>
-        /// Returns the value this variable has at the given animation clock value.
-        /// </Summary>
-        public new FlutterSDK.Rendering.Stack.RelativeRect Lerp(double t) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Positioned] which takes a specific
-    /// [Animation<RelativeRect>] to transition the child's position from a start
-    /// position to an end position over the lifetime of the animation.
-    ///
-    /// Only works if it's the child of a [Stack].
-    ///
-    /// Here's an illustration of the [PositionedTransition] widget, with it's [rect]
-    /// animated by a [CurvedAnimation] set to [Curves.elasticInOut]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/positioned_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedPositioned], which transitions a child's position without
-    ///    taking an explicit [Animation] argument.
-    ///  * [RelativePositionedTransition], a widget that transitions its child's
-    ///    position based on the value of a rectangle relative to a bounding box.
-    ///  * [SlideTransition], a widget that animates the position of a widget
-    ///    relative to its normal position.
-    ///  * [AlignTransition], an animated version of an [Align] that animates its
-    ///    [Align.alignment] property.
-    ///  * [ScaleTransition], a widget that animates the scale of a transformed
-    ///    widget.
-    ///  * [SizeTransition], a widget that animates its own size and clips and
-    ///    aligns its child.
-    /// </Summary>
-    public class PositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
-    {
-        #region constructors
-        public PositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> rect = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: rect)
-        {
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Animated version of [Positioned] which transitions the child's position
-    /// based on the value of [rect] relative to a bounding box with the
-    /// specified [size].
-    ///
-    /// Only works if it's the child of a [Stack].
-    ///
-    /// Here's an illustration of the [RelativePositionedTransition] widget, with it's [rect]
-    /// animated by a [CurvedAnimation] set to [Curves.elasticInOut]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/relative_positioned_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [PositionedTransition], a widget that animates its child from a start
-    ///    position to an end position over the lifetime of the animation.
-    ///  * [AlignTransition], an animated version of an [Align] that animates its
-    ///    [Align.alignment] property.
-    ///  * [ScaleTransition], a widget that animates the scale of a transformed
-    ///    widget.
-    ///  * [SizeTransition], a widget that animates its own size and clips and
-    ///    aligns its child.
-    ///  * [SlideTransition], a widget that animates the position of a widget
-    ///    relative to its normal position.
-    /// </Summary>
-    public class RelativePositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
-    {
-        #region constructors
-        public RelativePositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Rect> rect = default(FlutterSDK.Animation.Animation.Animation<Rect>), Size size = default(Size), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: rect)
-        {
-            this.Size = size;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual Size Size { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<Rect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Offset offset = Position.Value;
+    if (TextDirection == TextDirection.Rtl) offset = new Offset(-offset.Dx, offset.Dy);
+    return new FractionalTranslation(translation: offset, transformHitTests: TransformHitTests, child: Child);
+}
 
 
-    /// <Summary>
-    /// Animated version of a [DecoratedBox] that animates the different properties
-    /// of its [Decoration].
-    ///
-    /// Here's an illustration of the [DecoratedBoxTransition] widget, with it's
-    /// [decoration] animated by a [CurvedAnimation] set to [Curves.decelerate]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/decorated_box_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [DecoratedBox], which also draws a [Decoration] but is not animated.
-    ///  * [AnimatedContainer], a more full-featured container that also animates on
-    ///    decoration using an internal animation.
-    /// </Summary>
-    public class DecoratedBoxTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
-    {
-        #region constructors
-        public DecoratedBoxTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> decoration = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: decoration)
-        {
-            this.Decoration = decoration;
-            this.Position = position;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> Decoration { get; set; }
-        public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+#endregion
+}
 
 
-    /// <Summary>
-    /// Animated version of an [Align] that animates its [Align.alignment] property.
-    ///
-    /// Here's an illustration of the [DecoratedBoxTransition] widget, with it's
-    /// [decoration] animated by a [CurvedAnimation] set to [Curves.decelerate]:
-    /// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/align_transition.mp4}
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedAlign], which animates changes to the [alignment] without
-    ///    taking an explicit [Animation] argument.
-    ///  * [PositionedTransition], a widget that animates its child from a start
-    ///    position to an end position over the lifetime of the animation.
-    ///  * [RelativePositionedTransition], a widget that transitions its child's
-    ///    position based on the value of a rectangle relative to a bounding box.
-    ///  * [SizeTransition], a widget that animates its own size and clips and
-    ///    aligns its child.
-    ///  * [SlideTransition], a widget that animates the position of a widget
-    ///    relative to its normal position.
-    /// </Summary>
-    public class AlignTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
-    {
-        #region constructors
-        public AlignTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> alignment = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double widthFactor = default(double), double heightFactor = default(double))
-        : base(key: key, listenable: alignment)
-        {
-            this.Child = child;
-            this.WidthFactor = widthFactor;
-            this.HeightFactor = heightFactor; throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Animates the scale of a transformed widget.
+///
+/// Here's an illustration of the [ScaleTransition] widget, with it's [alignment]
+/// animated by a [CurvedAnimation] set to [Curves.fastOutSlowIn]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/scale_transition.mp4}
+///
+/// See also:
+///
+///  * [PositionedTransition], a widget that animates its child from a start
+///    position to an end position over the lifetime of the animation.
+///  * [RelativePositionedTransition], a widget that transitions its child's
+///    position based on the value of a rectangle relative to a bounding box.
+///  * [SizeTransition], a widget that animates its own size and clips and
+///    aligns its child.
+/// </Summary>
+public class ScaleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public ScaleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> scale = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: scale)
 
-        #region fields
-        public virtual double WidthFactor { get; set; }
-        public virtual double HeightFactor { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    double scaleValue = Scale.Value;
+    Matrix4 transform = Matrix4.Identity();
+    Matrix4.Identity().Scale(scaleValue, scaleValue, 1.0);
+    return new Transform(transform: transform, alignment: Alignment, child: Child);
+}
 
 
-    /// <Summary>
-    /// Animated version of a [DefaultTextStyle] that animates the different properties
-    /// of its [TextStyle].
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedDefaultTextStyle], which animates changes in text style without
-    ///    taking an explicit [Animation] argument.
-    ///  * [DefaultTextStyle], which also defines a [TextStyle] for its descendants
-    ///    but is not animated.
-    /// </Summary>
-    public class DefaultTextStyleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
-    {
-        #region constructors
-        public DefaultTextStyleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> style = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int))
-        : base(key: key, listenable: style)
-        {
-            this.Child = child;
-            this.TextAlign = textAlign;
-            this.SoftWrap = softWrap;
-            this.Overflow = overflow;
-            this.MaxLines = maxLines; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual TextAlign TextAlign { get; set; }
-        public virtual bool SoftWrap { get; set; }
-        public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
-        public virtual int MaxLines { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+#endregion
+}
 
 
-    /// <Summary>
-    /// A general-purpose widget for building animations.
-    ///
-    /// AnimatedBuilder is useful for more complex widgets that wish to include
-    /// an animation as part of a larger build function. To use AnimatedBuilder,
-    /// simply construct the widget and pass it a builder function.
-    ///
-    /// For simple cases without additional state, consider using
-    /// [AnimatedWidget].
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=N-RiyZlv8v8}
-    ///
-    /// ## Performance optimizations
-    ///
-    /// If your [builder] function contains a subtree that does not depend on the
-    /// animation, it's more efficient to build that subtree once instead of
-    /// rebuilding it on every animation tick.
-    ///
-    /// If you pass the pre-built subtree as the [child] parameter, the
-    /// AnimatedBuilder will pass it back to your builder function so that you
-    /// can incorporate it into your build.
-    ///
-    /// Using this pre-built child is entirely optional, but can improve
-    /// performance significantly in some cases and is therefore a good practice.
-    ///
-    /// {@tool dartpad --template=stateful_widget_material_ticker}
-    ///
-    /// This code defines a widget that spins a green square continually. It is
-    /// built with an [AnimatedBuilder] and makes use of the [child] feature to
-    /// avoid having to rebuild the [Container] each time.
-    ///
-    /// ```dart imports
-    /// import 'dart:math' as math;
-    /// ```
-    ///
-    /// ```dart
-    /// AnimationController _controller;
-    ///
-    /// @override
-    /// void initState() {
-    ///   super.initState();
-    ///   _controller = AnimationController(
-    ///     duration: const Duration(seconds: 10),
-    ///     vsync: this,
-    ///   )..repeat();
-    /// }
-    ///
-    /// @override
-    /// void dispose() {
-    ///   _controller.dispose();
-    ///   super.dispose();
-    /// }
-    ///
-    /// @override
-    /// Widget build(BuildContext context) {
-    ///   return AnimatedBuilder(
-    ///     animation: _controller,
-    ///     child: Container(
-    ///       width: 200.0,
-    ///       height: 200.0,
-    ///       color: Colors.green,
-    ///       child: const Center(
-    ///         child: Text('Whee!'),
-    ///       ),
-    ///     ),
-    ///     builder: (BuildContext context, Widget child) {
-    ///       return Transform.rotate(
-    ///         angle: _controller.value * 2.0 * math.pi,
-    ///         child: child,
-    ///       );
-    ///     },
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [TweenAnimationBuilder], which animates a property to a target value
-    ///    without requiring manual management of an [AnimationController].
-    /// </Summary>
-    public class AnimatedBuilder : FlutterSDK.Widgets.Transitions.AnimatedWidget
-    {
-        #region constructors
-        public AnimatedBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable animation = default(FlutterSDK.Foundation.Changenotifier.Listenable), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, listenable: animation)
-        {
-            this.Builder = builder;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Animates the rotation of a widget.
+///
+/// Here's an illustration of the [RotationTransition] widget, with it's [turns]
+/// animated by a [CurvedAnimation] set to [Curves.elasticOut]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/rotation_transition.mp4}
+/// See also:
+///
+///  * [ScaleTransition], a widget that animates the scale of a transformed
+///    widget.
+///  * [SizeTransition], a widget that animates its own size and clips and
+///    aligns its child.
+/// </Summary>
+public class RotationTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public RotationTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> turns = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: turns)
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Turns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    double turnsValue = Turns.Value;
+    Matrix4 transform = Matrix4.RotationZ(turnsValue * Math.Dart:mathDefaultClass.Pi * 2.0);
+    return new Transform(transform: transform, alignment: Alignment, child: Child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animates its own size and clips and aligns its child.
+///
+/// [SizeTransition] acts as a [ClipRect] that animates either its width or its
+/// height, depending upon the value of [axis]. The alignment of the child along
+/// the [axis] is specified by the [axisAlignment].
+///
+/// Like most widgets, [SizeTransition] will conform to the constraints it is
+/// given, so be sure to put it in a context where it can change size. For
+/// instance, if you place it into a [Container] with a fixed size, then the
+/// [SizeTransition] will not be able to change size, and will appear to do
+/// nothing.
+///
+/// Here's an illustration of the [SizeTransition] widget, with it's [sizeFactor]
+/// animated by a [CurvedAnimation] set to [Curves.fastOutSlowIn]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/size_transition.mp4}
+///
+/// See also:
+///
+///  * [AnimatedCrossFade], for a widget that automatically animates between
+///    the sizes of two children, fading between them.
+///  * [ScaleTransition], a widget that scales the size of the child instead of
+///    clipping it.
+///  * [PositionedTransition], a widget that animates its child from a start
+///    position to an end position over the lifetime of the animation.
+///  * [RelativePositionedTransition], a widget that transitions its child's
+///    position based on the value of a rectangle relative to a bounding box.
+/// </Summary>
+public class SizeTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public SizeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Animation.Animation.Animation<double> sizeFactor = default(FlutterSDK.Animation.Animation.Animation<double>), double axisAlignment = 0.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: sizeFactor)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
+public virtual double AxisAlignment { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> SizeFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    AlignmentDirectional alignment = default(AlignmentDirectional);
+    if (Axis == Axis.Vertical) alignment = new AlignmentDirectional(-1.0, AxisAlignment); else alignment = new AlignmentDirectional(AxisAlignment, -1.0);
+    return new ClipRect(child: new Align(alignment: alignment, heightFactor: Axis == Axis.Vertical ? Math.Dart : mathDefaultClass.Max(SizeFactor.Value, 0.0):null, widthFactor: Axis == Axis.Horizontal ? Math.Dart : mathDefaultClass.Max(SizeFactor.Value, 0.0):null, child: Child));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animates the opacity of a widget.
+///
+/// For a widget that automatically animates between the sizes of two children,
+/// fading between them, see [AnimatedCrossFade].
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=rLwWVbv3xDQ}
+///
+/// Here's an illustration of the [FadeTransition] widget, with it's [opacity]
+/// animated by a [CurvedAnimation] set to [Curves.fastOutSlowIn]:
+///
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/fade_transition.mp4}
+///
+/// See also:
+///
+///  * [Opacity], which does not animate changes in opacity.
+///  * [AnimatedOpacity], which animates changes in opacity without taking an
+///    explicit [Animation] argument.
+/// </Summary>
+public class FadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public FadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
+public virtual bool AlwaysIncludeSemantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Proxybox.RenderAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new RenderAnimatedOpacity(opacity: Opacity, alwaysIncludeSemantics: AlwaysIncludeSemantics);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderAnimatedOpacity renderObject)
+{
+    ..Opacity = Opacity..AlwaysIncludeSemantics = AlwaysIncludeSemantics;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..Opacity = Opacity..AlwaysIncludeSemantics = AlwaysIncludeSemantics;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<Animation<double>>("opacity", Opacity));
+    properties.Add(new FlagProperty("alwaysIncludeSemantics", value: AlwaysIncludeSemantics, ifTrue: "alwaysIncludeSemantics"));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animates the opacity of a sliver widget.
+///
+/// {@tool dartpad --template=stateful_widget_scaffold_center_freeform_state}
+/// Creates a [CustomScrollView] with a [SliverFixedExtentList] that uses a
+/// [SliverFadeTransition] to fade the list in and out.
+///
+/// ```dart
+/// class _MyStatefulWidgetState extends State<MyStatefulWidget> with SingleTickerProviderStateMixin {
+///   AnimationController controller;
+///   Animation<double> animation;
+///
+///   initState() {
+///     super.initState();
+///     controller = AnimationController(
+///         duration: const Duration(milliseconds: 1000), vsync: this);
+///     animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+///
+///     animation.addStatusListener((status) {
+///       if (status == AnimationStatus.completed) {
+///         controller.reverse();
+///       } else if (status == AnimationStatus.dismissed) {
+///         controller.forward();
+///       }
+///     });
+///     controller.forward();
+///   }
+///
+///   Widget build(BuildContext context) {
+///     return CustomScrollView(
+///       slivers: <Widget>[
+///         SliverFadeTransition(
+///           opacity: animation,
+///           sliver: SliverFixedExtentList(
+///             itemExtent: 100.0,
+///             delegate: SliverChildBuilderDelegate(
+///               (BuildContext context, int index) {
+///                 return Container(
+///                   color: index % 2 == 0
+///                     ? Colors.indigo[200]
+///                     : Colors.orange[200],
+///                 );
+///               },
+///               childCount: 5,
+///             ),
+///           ),
+///         )
+///       ]
+///     );
+///   }
+/// }
+/// ```
+/// {@end-tool}
+///
+/// Here's an illustration of the [FadeTransition] widget, the [RenderBox]
+/// equivalent widget, with it's [opacity] animated by a [CurvedAnimation] set
+/// to [Curves.fastOutSlowIn]:
+///
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/fade_transition.mp4}
+///
+/// See also:
+///
+///  * [SliverOpacity], which does not animate changes in opacity.
+/// </Summary>
+public class SliverFadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public SliverFadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: sliver)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
+public virtual bool AlwaysIncludeSemantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Proxysliver.RenderSliverAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new RenderSliverAnimatedOpacity(opacity: Opacity, alwaysIncludeSemantics: AlwaysIncludeSemantics);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxysliver.RenderSliverAnimatedOpacity renderObject)
+{
+    ..Opacity = Opacity..AlwaysIncludeSemantics = AlwaysIncludeSemantics;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..Opacity = Opacity..AlwaysIncludeSemantics = AlwaysIncludeSemantics;
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<Animation<double>>("opacity", Opacity));
+    properties.Add(new FlagProperty("alwaysIncludeSemantics", value: AlwaysIncludeSemantics, ifTrue: "alwaysIncludeSemantics"));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// An interpolation between two relative rects.
+///
+/// This class specializes the interpolation of [Tween<RelativeRect>] to
+/// use [RelativeRect.lerp].
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+/// </Summary>
+public class RelativeRectTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Rendering.Stack.RelativeRect>
+{
+    #region constructors
+    public RelativeRectTween(FlutterSDK.Rendering.Stack.RelativeRect begin = default(FlutterSDK.Rendering.Stack.RelativeRect), FlutterSDK.Rendering.Stack.RelativeRect end = default(FlutterSDK.Rendering.Stack.RelativeRect))
+    : base(begin: begin, end: end)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns the value this variable has at the given animation clock value.
+/// </Summary>
+public new FlutterSDK.Rendering.Stack.RelativeRect Lerp(double t) => StackDefaultClass.RelativeRect.Lerp(Begin, End, t);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Positioned] which takes a specific
+/// [Animation<RelativeRect>] to transition the child's position from a start
+/// position to an end position over the lifetime of the animation.
+///
+/// Only works if it's the child of a [Stack].
+///
+/// Here's an illustration of the [PositionedTransition] widget, with it's [rect]
+/// animated by a [CurvedAnimation] set to [Curves.elasticInOut]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/positioned_transition.mp4}
+///
+/// See also:
+///
+///  * [AnimatedPositioned], which transitions a child's position without
+///    taking an explicit [Animation] argument.
+///  * [RelativePositionedTransition], a widget that transitions its child's
+///    position based on the value of a rectangle relative to a bounding box.
+///  * [SlideTransition], a widget that animates the position of a widget
+///    relative to its normal position.
+///  * [AlignTransition], an animated version of an [Align] that animates its
+///    [Align.alignment] property.
+///  * [ScaleTransition], a widget that animates the scale of a transformed
+///    widget.
+///  * [SizeTransition], a widget that animates its own size and clips and
+///    aligns its child.
+/// </Summary>
+public class PositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public PositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> rect = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: rect)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return Positioned.FromRelativeRect(rect: Rect.Value, child: Child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animated version of [Positioned] which transitions the child's position
+/// based on the value of [rect] relative to a bounding box with the
+/// specified [size].
+///
+/// Only works if it's the child of a [Stack].
+///
+/// Here's an illustration of the [RelativePositionedTransition] widget, with it's [rect]
+/// animated by a [CurvedAnimation] set to [Curves.elasticInOut]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/relative_positioned_transition.mp4}
+///
+/// See also:
+///
+///  * [PositionedTransition], a widget that animates its child from a start
+///    position to an end position over the lifetime of the animation.
+///  * [AlignTransition], an animated version of an [Align] that animates its
+///    [Align.alignment] property.
+///  * [ScaleTransition], a widget that animates the scale of a transformed
+///    widget.
+///  * [SizeTransition], a widget that animates its own size and clips and
+///    aligns its child.
+///  * [SlideTransition], a widget that animates the position of a widget
+///    relative to its normal position.
+/// </Summary>
+public class RelativePositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public RelativePositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Rect> rect = default(FlutterSDK.Animation.Animation.Animation<Rect>), Size size = default(Size), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: rect)
+
+}
+#endregion
+
+#region fields
+public virtual Size Size { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<Rect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    RelativeRect offsets = RelativeRect.FromSize(Rect.Value, Size);
+    return new Positioned(top: offsets.Top, right: offsets.Right, bottom: offsets.Bottom, left: offsets.Left, child: Child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animated version of a [DecoratedBox] that animates the different properties
+/// of its [Decoration].
+///
+/// Here's an illustration of the [DecoratedBoxTransition] widget, with it's
+/// [decoration] animated by a [CurvedAnimation] set to [Curves.decelerate]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/decorated_box_transition.mp4}
+///
+/// See also:
+///
+///  * [DecoratedBox], which also draws a [Decoration] but is not animated.
+///  * [AnimatedContainer], a more full-featured container that also animates on
+///    decoration using an internal animation.
+/// </Summary>
+public class DecoratedBoxTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public DecoratedBoxTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> decoration = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: decoration)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> Decoration { get; set; }
+public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new DecoratedBox(decoration: Decoration.Value, position: Position, child: Child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animated version of an [Align] that animates its [Align.alignment] property.
+///
+/// Here's an illustration of the [DecoratedBoxTransition] widget, with it's
+/// [decoration] animated by a [CurvedAnimation] set to [Curves.decelerate]:
+/// {@animation 300 378 https://flutter.github.io/assets-for-api-docs/assets/widgets/align_transition.mp4}
+///
+/// See also:
+///
+///  * [AnimatedAlign], which animates changes to the [alignment] without
+///    taking an explicit [Animation] argument.
+///  * [PositionedTransition], a widget that animates its child from a start
+///    position to an end position over the lifetime of the animation.
+///  * [RelativePositionedTransition], a widget that transitions its child's
+///    position based on the value of a rectangle relative to a bounding box.
+///  * [SizeTransition], a widget that animates its own size and clips and
+///    aligns its child.
+///  * [SlideTransition], a widget that animates the position of a widget
+///    relative to its normal position.
+/// </Summary>
+public class AlignTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public AlignTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> alignment = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double widthFactor = default(double), double heightFactor = default(double))
+    : base(key: key, listenable: alignment)
+
+}
+#endregion
+
+#region fields
+public virtual double WidthFactor { get; set; }
+public virtual double HeightFactor { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new Align(alignment: Alignment.Value, widthFactor: WidthFactor, heightFactor: HeightFactor, child: Child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Animated version of a [DefaultTextStyle] that animates the different properties
+/// of its [TextStyle].
+///
+/// See also:
+///
+///  * [AnimatedDefaultTextStyle], which animates changes in text style without
+///    taking an explicit [Animation] argument.
+///  * [DefaultTextStyle], which also defines a [TextStyle] for its descendants
+///    but is not animated.
+/// </Summary>
+public class DefaultTextStyleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public DefaultTextStyleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> style = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int))
+    : base(key: key, listenable: style)
+
+}
+#endregion
+
+#region fields
+public virtual TextAlign TextAlign { get; set; }
+public virtual bool SoftWrap { get; set; }
+public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
+public virtual int MaxLines { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new DefaultTextStyle(style: Style.Value, textAlign: TextAlign, softWrap: SoftWrap, overflow: Overflow, maxLines: MaxLines, child: Child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A general-purpose widget for building animations.
+///
+/// AnimatedBuilder is useful for more complex widgets that wish to include
+/// an animation as part of a larger build function. To use AnimatedBuilder,
+/// simply construct the widget and pass it a builder function.
+///
+/// For simple cases without additional state, consider using
+/// [AnimatedWidget].
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=N-RiyZlv8v8}
+///
+/// ## Performance optimizations
+///
+/// If your [builder] function contains a subtree that does not depend on the
+/// animation, it's more efficient to build that subtree once instead of
+/// rebuilding it on every animation tick.
+///
+/// If you pass the pre-built subtree as the [child] parameter, the
+/// AnimatedBuilder will pass it back to your builder function so that you
+/// can incorporate it into your build.
+///
+/// Using this pre-built child is entirely optional, but can improve
+/// performance significantly in some cases and is therefore a good practice.
+///
+/// {@tool dartpad --template=stateful_widget_material_ticker}
+///
+/// This code defines a widget that spins a green square continually. It is
+/// built with an [AnimatedBuilder] and makes use of the [child] feature to
+/// avoid having to rebuild the [Container] each time.
+///
+/// ```dart imports
+/// import 'dart:math' as math;
+/// ```
+///
+/// ```dart
+/// AnimationController _controller;
+///
+/// @override
+/// void initState() {
+///   super.initState();
+///   _controller = AnimationController(
+///     duration: const Duration(seconds: 10),
+///     vsync: this,
+///   )..repeat();
+/// }
+///
+/// @override
+/// void dispose() {
+///   _controller.dispose();
+///   super.dispose();
+/// }
+///
+/// @override
+/// Widget build(BuildContext context) {
+///   return AnimatedBuilder(
+///     animation: _controller,
+///     child: Container(
+///       width: 200.0,
+///       height: 200.0,
+///       color: Colors.green,
+///       child: const Center(
+///         child: Text('Whee!'),
+///       ),
+///     ),
+///     builder: (BuildContext context, Widget child) {
+///       return Transform.rotate(
+///         angle: _controller.value * 2.0 * math.pi,
+///         child: child,
+///       );
+///     },
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [TweenAnimationBuilder], which animates a property to a target value
+///    without requiring manual management of an [AnimationController].
+/// </Summary>
+public class AnimatedBuilder : FlutterSDK.Widgets.Transitions.AnimatedWidget
+{
+    #region constructors
+    public AnimatedBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable animation = default(FlutterSDK.Foundation.Changenotifier.Listenable), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, listenable: animation)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return Builder(context, Child);
+}
+
+
+
+#endregion
+}
 
 }

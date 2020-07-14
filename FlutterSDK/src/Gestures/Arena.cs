@@ -320,13 +320,17 @@ namespace FlutterSDK.Gestures.Arena
         /// <Summary>
         /// Called when this member wins the arena for the given pointer id.
         /// </Summary>
-        public virtual void AcceptGesture(int pointer) { throw new NotImplementedException(); }
+        public virtual void AcceptGesture(int pointer)
+        {
+        }
 
 
         /// <Summary>
         /// Called when this member loses the arena for the given pointer id.
         /// </Summary>
-        public virtual void RejectGesture(int pointer) { throw new NotImplementedException(); }
+        public virtual void RejectGesture(int pointer)
+        {
+        }
 
     }
     public static class GestureArenaMemberMixin
@@ -356,7 +360,13 @@ namespace FlutterSDK.Gestures.Arena
         public virtual bool HasPendingSweep { get; set; }
         public virtual FlutterSDK.Gestures.Arena.GestureArenaMember EagerWinner { get; set; }
 
-        public virtual void Add(FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
+        public virtual void Add(FlutterSDK.Gestures.Arena.GestureArenaMember member)
+        {
+
+            Members.Add(member);
+        }
+
+
 
 
     }
@@ -391,7 +401,20 @@ namespace FlutterSDK.Gestures.Arena
         /// <Summary>
         /// Adds a new member (e.g., gesture recognizer) to the arena.
         /// </Summary>
-        public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Add(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member)
+        {
+            _GestureArena state = _Arenas.PutIfAbsent(pointer, () =>
+            {
+
+                return new _GestureArena();
+            }
+            );
+            state.Add(member);
+
+            return GestureArenaEntry._(this, pointer, member);
+        }
+
+
 
 
         /// <Summary>
@@ -399,7 +422,16 @@ namespace FlutterSDK.Gestures.Arena
         ///
         /// Called after the framework has finished dispatching the pointer down event.
         /// </Summary>
-        public virtual void Close(int pointer) { throw new NotImplementedException(); }
+        public virtual void Close(int pointer)
+        {
+            _GestureArena state = _Arenas[pointer];
+            if (state == null) return;
+            state.IsOpen = false;
+
+            _TryToResolveArena(pointer, state);
+        }
+
+
 
 
         /// <Summary>
@@ -417,7 +449,30 @@ namespace FlutterSDK.Gestures.Arena
         ///  * [hold]
         ///  * [release]
         /// </Summary>
-        public virtual void Sweep(int pointer) { throw new NotImplementedException(); }
+        public virtual void Sweep(int pointer)
+        {
+            _GestureArena state = _Arenas[pointer];
+            if (state == null) return;
+
+            if (state.IsHeld)
+            {
+                state.HasPendingSweep = true;
+
+                return;
+            }
+
+
+            _Arenas.Remove(pointer);
+            if (state.Members.IsNotEmpty)
+            {
+
+                state.Members.First.AcceptGesture(pointer);
+                for (int i = 1; i < state.Members.Count; i++) state.Members[i].RejectGesture(pointer);
+            }
+
+        }
+
+
 
 
         /// <Summary>
@@ -434,7 +489,15 @@ namespace FlutterSDK.Gestures.Arena
         ///  * [sweep]
         ///  * [release]
         /// </Summary>
-        public virtual void Hold(int pointer) { throw new NotImplementedException(); }
+        public virtual void Hold(int pointer)
+        {
+            _GestureArena state = _Arenas[pointer];
+            if (state == null) return;
+            state.IsHeld = true;
+
+        }
+
+
 
 
         /// <Summary>
@@ -448,7 +511,16 @@ namespace FlutterSDK.Gestures.Arena
         ///  * [sweep]
         ///  * [hold]
         /// </Summary>
-        public virtual void Release(int pointer) { throw new NotImplementedException(); }
+        public virtual void Release(int pointer)
+        {
+            _GestureArena state = _Arenas[pointer];
+            if (state == null) return;
+            state.IsHeld = false;
+
+            if (state.HasPendingSweep) Sweep(pointer);
+        }
+
+
 
 
         /// <Summary>
@@ -456,19 +528,102 @@ namespace FlutterSDK.Gestures.Arena
         ///
         /// This is called by calling [GestureArenaEntry.resolve] on the object returned from [add].
         /// </Summary>
-        private void _Resolve(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member, FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
+        private void _Resolve(int pointer, FlutterSDK.Gestures.Arena.GestureArenaMember member, FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+        {
+            _GestureArena state = _Arenas[pointer];
+            if (state == null) return;
 
 
-        private void _TryToResolveArena(int pointer, FlutterSDK.Gestures.Arena._GestureArena state) { throw new NotImplementedException(); }
+            if (disposition == GestureDisposition.Rejected)
+            {
+                state.Members.Remove(member);
+                member.RejectGesture(pointer);
+                if (!state.IsOpen) _TryToResolveArena(pointer, state);
+            }
+            else
+            {
+
+                if (state.IsOpen)
+                {
+                    state.EagerWinner = (state.EagerWinner == null ? member : state.EagerWinner);
+                }
+                else
+                {
+
+                    _ResolveInFavorOf(pointer, state, member);
+                }
+
+            }
+
+        }
 
 
-        private void _ResolveByDefault(int pointer, FlutterSDK.Gestures.Arena._GestureArena state) { throw new NotImplementedException(); }
 
 
-        private void _ResolveInFavorOf(int pointer, FlutterSDK.Gestures.Arena._GestureArena state, FlutterSDK.Gestures.Arena.GestureArenaMember member) { throw new NotImplementedException(); }
+        private void _TryToResolveArena(int pointer, FlutterSDK.Gestures.Arena._GestureArena state)
+        {
 
 
-        private bool _DebugLogDiagnostic(int pointer, string message, FlutterSDK.Gestures.Arena._GestureArena state = default(FlutterSDK.Gestures.Arena._GestureArena)) { throw new NotImplementedException(); }
+            if (state.Members.Count == 1)
+            {
+            Dart: asyncDefaultClass.ScheduleMicrotask(() => =>_ResolveByDefault(pointer, state));
+            }
+            else if (state.Members.IsEmpty())
+            {
+                _Arenas.Remove(pointer);
+
+            }
+            else if (state.EagerWinner != null)
+            {
+
+                _ResolveInFavorOf(pointer, state, state.EagerWinner);
+            }
+
+        }
+
+
+
+
+        private void _ResolveByDefault(int pointer, FlutterSDK.Gestures.Arena._GestureArena state)
+        {
+            if (!_Arenas.ContainsKey(pointer)) return;
+
+
+            List<GestureArenaMember> members = state.Members;
+
+            _Arenas.Remove(pointer);
+
+            state.Members.First.AcceptGesture(pointer);
+        }
+
+
+
+
+        private void _ResolveInFavorOf(int pointer, FlutterSDK.Gestures.Arena._GestureArena state, FlutterSDK.Gestures.Arena.GestureArenaMember member)
+        {
+
+
+
+
+            _Arenas.Remove(pointer);
+            foreach (GestureArenaMember rejectedMember in state.Members)
+            {
+                if (rejectedMember != member) rejectedMember.RejectGesture(pointer);
+            }
+
+            member.AcceptGesture(pointer);
+        }
+
+
+
+
+        private bool _DebugLogDiagnostic(int pointer, string message, FlutterSDK.Gestures.Arena._GestureArena state = default(FlutterSDK.Gestures.Arena._GestureArena))
+        {
+
+            return true;
+        }
+
+
 
     }
     public static class GestureArenaManagerMixin
@@ -501,47 +656,49 @@ namespace FlutterSDK.Gestures.Arena
     {
         #region constructors
         internal GestureArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaManager _arena, int _pointer, FlutterSDK.Gestures.Arena.GestureArenaMember _member)
-        {
-            this._Arena = _arena;
-            this._Pointer = _pointer;
-            this._Member = _member; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Gestures.Arena.GestureArenaManager _Arena { get; set; }
-        internal virtual int _Pointer { get; set; }
-        internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
-        #endregion
+    #region fields
+    internal virtual FlutterSDK.Gestures.Arena.GestureArenaManager _Arena { get; set; }
+    internal virtual int _Pointer { get; set; }
+    internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Call this member to claim victory (with accepted) or admit defeat (with rejected).
-        ///
-        /// It's fine to attempt to resolve a gesture recognizer for an arena that is
-        /// already resolved.
-        /// </Summary>
-        public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Whether the gesture was accepted or rejected.
+    /// Call this member to claim victory (with accepted) or admit defeat (with rejected).
+    ///
+    /// It's fine to attempt to resolve a gesture recognizer for an arena that is
+    /// already resolved.
     /// </Summary>
-    public enum GestureDisposition
+    public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
     {
-
-        /// <Summary>
-        /// This gesture was accepted as the interpretation of the user's input.
-        /// </Summary>
-        Accepted,
-        /// <Summary>
-        /// This gesture was rejected as the interpretation of the user's input.
-        /// </Summary>
-        Rejected,
+        _Arena._Resolve(_Pointer, _Member, disposition);
     }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Whether the gesture was accepted or rejected.
+/// </Summary>
+public enum GestureDisposition
+{
+
+    /// <Summary>
+    /// This gesture was accepted as the interpretation of the user's input.
+    /// </Summary>
+    Accepted,
+    /// <Summary>
+    /// This gesture was rejected as the interpretation of the user's input.
+    /// </Summary>
+    Rejected,
+}
 
 }

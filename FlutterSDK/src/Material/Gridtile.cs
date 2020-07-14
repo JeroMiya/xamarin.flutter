@@ -408,24 +408,27 @@ namespace FlutterSDK.Material.Gridtile
         #region constructors
         public GridTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget footer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Header = header;
-            this.Footer = footer;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Footer { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Footer { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        if (Header == null && Footer == null) return Child;
+        return new Stack(children: new List<Widget>() { Positioned.Fill(child: Child), });
     }
+
+
+
+    #endregion
+}
 
 }

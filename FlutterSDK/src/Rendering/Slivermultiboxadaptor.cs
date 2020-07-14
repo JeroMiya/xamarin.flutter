@@ -496,7 +496,11 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// <Summary>
         /// Called when the RenderObject is removed from the tree.
         /// </Summary>
-        public virtual void Detach() { throw new NotImplementedException(); }
+        public virtual void Detach()
+        {
+        }
+
+
 
 
     }
@@ -526,7 +530,12 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// Alerts the developer that the child's parentData needs to be of type
         /// [KeepAliveParentDataMixin].
         /// </Summary>
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+        }
+
+
 
         internal virtual FlutterSDK.Rendering.Sliver.SliverGeometry _Geometry { get; set; }
         public virtual FlutterSDK.Rendering.Sliver.SliverConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -535,13 +544,28 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double CenterOffsetAdjustment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        public new void DebugResetSize() { throw new NotImplementedException(); }
+        public new void DebugResetSize()
+        {
+        }
 
 
-        public new void DebugAssertDoesMeetConstraints() { throw new NotImplementedException(); }
 
 
-        public new void PerformResize() { throw new NotImplementedException(); }
+        public new void DebugAssertDoesMeetConstraints()
+        {
+
+
+        }
+
+
+
+
+        public new void PerformResize()
+        {
+
+        }
+
+
 
 
         /// <Summary>
@@ -584,7 +608,22 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// render object is to override its [hitTestSelf] and [hitTestChildren]
         /// methods.
         /// </Summary>
-        public virtual bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
+        public virtual bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+            if (mainAxisPosition >= 0.0 && mainAxisPosition < Geometry.HitTestExtent && crossAxisPosition >= 0.0 && crossAxisPosition < Constraints.CrossAxisExtent)
+            {
+                if (HitTestChildren(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition) || HitTestSelf(mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition))
+                {
+                    result.Add(new SliverHitTestEntry(this, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition));
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
+
+
 
 
         /// <Summary>
@@ -596,7 +635,8 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         ///
         /// For a discussion of the semantics of the arguments, see [hitTest].
         /// </Summary>
-        public virtual bool HitTestSelf(double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
+        public virtual bool HitTestSelf(double mainAxisPosition = default(double), double crossAxisPosition = default(double)) => false;
+
 
 
         /// <Summary>
@@ -612,7 +652,8 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         ///
         /// For a discussion of the semantics of the arguments, see [hitTest].
         /// </Summary>
-        public virtual bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
+        public virtual bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) => false;
+
 
 
         /// <Summary>
@@ -632,7 +673,15 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// that is proportional to the [SliverConstraints.scrollOffset], then this
         /// function's results will not be consistent.
         /// </Summary>
-        public virtual double CalculatePaintOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double from = default(double), double to = default(double)) { throw new NotImplementedException(); }
+        public virtual double CalculatePaintOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double from = default(double), double to = default(double))
+        {
+
+            double a = constraints.ScrollOffset;
+            double b = constraints.ScrollOffset + constraints.RemainingPaintExtent;
+            return (to.Clamp(a, b) - from.Clamp(a, b)).Clamp(0.0, constraints.RemainingPaintExtent) as double;
+        }
+
+
 
 
         /// <Summary>
@@ -645,7 +694,15 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// This method is not useful if there is not a 1:1 relationship between
         /// consumed scroll offset and consumed cache extent.
         /// </Summary>
-        public virtual double CalculateCacheOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double from = default(double), double to = default(double)) { throw new NotImplementedException(); }
+        public virtual double CalculateCacheOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double from = default(double), double to = default(double))
+        {
+
+            double a = constraints.ScrollOffset + constraints.CacheOrigin;
+            double b = constraints.ScrollOffset + constraints.RemainingCacheExtent;
+            return (to.Clamp(a, b) - from.Clamp(a, b)).Clamp(0.0, constraints.RemainingCacheExtent) as double;
+        }
+
+
 
 
         /// <Summary>
@@ -676,7 +733,13 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         ///
         /// Calling this for a child that is not visible is not valid.
         /// </Summary>
-        public virtual double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+        public virtual double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+            return 0.0;
+        }
+
+
 
 
         /// <Summary>
@@ -694,7 +757,8 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         ///
         /// Calling this for a child that is not visible is not valid.
         /// </Summary>
-        public virtual double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+        public virtual double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) => 0.0;
+
 
 
         /// <Summary>
@@ -707,10 +771,21 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// of the sliver whereas [childScrollOffset] gives the distance from sliver's
         /// zero scroll offset.
         /// </Summary>
-        public virtual double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+        public virtual double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+            return 0.0;
+        }
 
 
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+        {
+
+        }
+
+
 
 
         /// <Summary>
@@ -724,7 +799,15 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         ///
         ///  * [getAbsoluteSize], which returns absolute size.
         /// </Summary>
-        public virtual Size GetAbsoluteSizeRelativeToOrigin() { throw new NotImplementedException(); }
+        public virtual Size GetAbsoluteSizeRelativeToOrigin()
+        {
+
+
+            switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(Constraints.AxisDirection, Constraints.GrowthDirection)) { case AxisDirection.Up: return new Size(Constraints.CrossAxisExtent, -Geometry.PaintExtent); case AxisDirection.Right: return new Size(Geometry.PaintExtent, Constraints.CrossAxisExtent); case AxisDirection.Down: return new Size(Constraints.CrossAxisExtent, Geometry.PaintExtent); case AxisDirection.Left: return new Size(-Geometry.PaintExtent, Constraints.CrossAxisExtent); }
+            return null;
+        }
+
+
 
 
         /// <Summary>
@@ -738,19 +821,47 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         ///  * [getAbsoluteSizeRelativeToOrigin], which returns the size relative to
         ///    the leading edge of the sliver.
         /// </Summary>
-        public virtual Size GetAbsoluteSize() { throw new NotImplementedException(); }
+        public virtual Size GetAbsoluteSize()
+        {
 
 
-        private void _DebugDrawArrow(Canvas canvas, SKPaint paint, FlutterBinding.UI.Offset p0, FlutterBinding.UI.Offset p1, FlutterSDK.Rendering.Sliver.GrowthDirection direction) { throw new NotImplementedException(); }
+            switch (Constraints.AxisDirection) { case AxisDirection.Up: case AxisDirection.Down: return new Size(Constraints.CrossAxisExtent, Geometry.PaintExtent); case AxisDirection.Right: case AxisDirection.Left: return new Size(Geometry.PaintExtent, Constraints.CrossAxisExtent); }
+            return null;
+        }
 
 
-        public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
 
 
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Sliver.SliverHitTestEntry entry) { throw new NotImplementedException(); }
+        private void _DebugDrawArrow(Canvas canvas, SKPaint paint, FlutterBinding.UI.Offset p0, FlutterBinding.UI.Offset p1, FlutterSDK.Rendering.Sliver.GrowthDirection direction)
+        {
+
+        }
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+
+
+        public new void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+
+        }
+
+
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Sliver.SliverHitTestEntry entry)
+        {
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<SliverGeometry>("geometry", Geometry));
+        }
+
+
 
     }
     public static class RenderSliverWithKeepAliveMixinMixin
@@ -806,7 +917,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// equal to zero, then [computeMaxScrollOffset] must be able to return a
         /// precise value.
         /// </Summary>
-        public virtual void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
+        public virtual void CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
+        {
+        }
 
 
         /// <Summary>
@@ -820,7 +933,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// [SliverMultiBoxAdaptorParentData.index] field of the child's
         /// [RenderObject.parentData].
         /// </Summary>
-        public virtual void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public virtual void RemoveChild(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+        }
 
 
         /// <Summary>
@@ -830,7 +945,10 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// earliest possible index to the end of the child with the last possible
         /// index.
         /// </Summary>
-        public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double)) { throw new NotImplementedException(); }
+        public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double))
+        {
+            return default(double);
+        }
 
 
         /// <Summary>
@@ -841,7 +959,9 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// field of the child's [RenderObject.parentData] accurately reflects the
         /// child's index in the child list after this function returns.
         /// </Summary>
-        public virtual void DidAdoptChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
+        public virtual void DidAdoptChild(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+        }
 
 
         /// <Summary>
@@ -857,20 +977,30 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// Useful for subclasses to determine whether newly added children could
         /// affect the visible contents of the [RenderSliverMultiBoxAdaptor].
         /// </Summary>
-        public virtual void SetDidUnderflow(bool value) { throw new NotImplementedException(); }
+        public virtual void SetDidUnderflow(bool value)
+        {
+        }
 
 
         /// <Summary>
         /// Called at the beginning of layout to indicate that layout is about to
         /// occur.
         /// </Summary>
-        public virtual void DidStartLayout() { throw new NotImplementedException(); }
+        public virtual void DidStartLayout()
+        {
+        }
+
+
 
 
         /// <Summary>
         /// Called at the end of layout to indicate that layout is now complete.
         /// </Summary>
-        public virtual void DidFinishLayout() { throw new NotImplementedException(); }
+        public virtual void DidFinishLayout()
+        {
+        }
+
+
 
 
         /// <Summary>
@@ -883,7 +1013,8 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         /// to the [RenderSliverMultiBoxAdaptor]'s child list and can simply return
         /// true without making any assertions.
         /// </Summary>
-        public virtual bool DebugAssertChildListLocked() { throw new NotImplementedException(); }
+        public virtual bool DebugAssertChildListLocked() => true;
+
 
     }
     public static class RenderSliverBoxChildManagerMixin
@@ -964,189 +1095,557 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         #region constructors
         public RenderSliverMultiBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
 
-        #region fields
-        internal virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager _ChildManager { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Rendering.Box.RenderBox> _KeepAliveBucket { get; set; }
-        internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _DebugDanglingKeepAlives { get; set; }
-        internal virtual bool _DebugChildIntegrityEnabled { get; set; }
-        public virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager ChildManager { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool DebugChildIntegrityEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+}
 
 
-        public new void AdoptChild(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-        public new void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child) { throw new NotImplementedException(); }
+    #endregion
 
+    #region fields
+    internal virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager _ChildManager { get; set; }
+    internal virtual Dictionary<int, FlutterSDK.Rendering.Box.RenderBox> _KeepAliveBucket { get; set; }
+    internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _DebugDanglingKeepAlives { get; set; }
+    internal virtual bool _DebugChildIntegrityEnabled { get; set; }
+    public virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager ChildManager { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool DebugChildIntegrityEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        private bool _DebugAssertChildListLocked() { throw new NotImplementedException(); }
+    #region methods
 
-
-        /// <Summary>
-        /// Verify that the child list index is in strictly increasing order.
-        ///
-        /// This has no effect in release builds.
-        /// </Summary>
-        private bool _DebugVerifyChildOrder() { throw new NotImplementedException(); }
-
-
-        public new void Insert(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
-
-
-        public new void Move(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
-
-
-        public new void Remove(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        public new void RemoveAll() { throw new NotImplementedException(); }
-
-
-        private void _CreateOrObtainChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox)) { throw new NotImplementedException(); }
-
-
-        private void _DestroyOrCacheChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        public new void RedepthChildren() { throw new NotImplementedException(); }
-
-
-        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called during layout to create and add the child with the given index and
-        /// scroll offset.
-        ///
-        /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
-        /// the child if necessary. The child may instead be obtained from a cache;
-        /// see [SliverMultiBoxAdaptorParentData.keepAlive].
-        ///
-        /// Returns false if there was no cached child and `createChild` did not add
-        /// any child, otherwise returns true.
-        ///
-        /// Does not layout the new child.
-        ///
-        /// When this is called, there are no visible children, so no children can be
-        /// removed during the call to `createChild`. No child should be added during
-        /// that call either, except for the one that is created and returned by
-        /// `createChild`.
-        /// </Summary>
-        public virtual bool AddInitialChild(int index = 0, double layoutOffset = 0.0) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called during layout to create, add, and layout the child before
-        /// [firstChild].
-        ///
-        /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
-        /// the child if necessary. The child may instead be obtained from a cache;
-        /// see [SliverMultiBoxAdaptorParentData.keepAlive].
-        ///
-        /// Returns the new child or null if no child was obtained.
-        ///
-        /// The child that was previously the first child, as well as any subsequent
-        /// children, may be removed by this call if they have not yet been laid out
-        /// during this layout pass. No child should be added during that call except
-        /// for the one that is created and returned by `createChild`.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Box.RenderBox InsertAndLayoutLeadingChild(FlutterSDK.Rendering.Box.BoxConstraints childConstraints, bool parentUsesSize = false) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called during layout to create, add, and layout the child after
-        /// the given child.
-        ///
-        /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
-        /// the child if necessary. The child may instead be obtained from a cache;
-        /// see [SliverMultiBoxAdaptorParentData.keepAlive].
-        ///
-        /// Returns the new child. It is the responsibility of the caller to configure
-        /// the child's scroll offset.
-        ///
-        /// Children after the `after` child may be removed in the process. Only the
-        /// new child may be added.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Box.RenderBox InsertAndLayoutChild(FlutterSDK.Rendering.Box.BoxConstraints childConstraints, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox), bool parentUsesSize = false) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called after layout with the number of children that can be garbage
-        /// collected at the head and tail of the child list.
-        ///
-        /// Children whose [SliverMultiBoxAdaptorParentData.keepAlive] property is
-        /// set to true will be removed to a cache instead of being dropped.
-        ///
-        /// This method also collects any children that were previously kept alive but
-        /// are now no longer necessary. As such, it should be called every time
-        /// [performLayout] is run, even if the arguments are both zero.
-        /// </Summary>
-        public virtual void CollectGarbage(int leadingGarbage, int trailingGarbage) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the index of the given child, as given by the
-        /// [SliverMultiBoxAdaptorParentData.index] field of the child's [parentData].
-        /// </Summary>
-        public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns the dimension of the given child in the main axis, as given by the
-        /// child's [RenderBox.size] property. This is only valid after layout.
-        /// </Summary>
-        public virtual double PaintExtentOf(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double)) { throw new NotImplementedException(); }
-
-
-        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Asserts that the reified child list is not empty and has a contiguous
-        /// sequence of indices.
-        ///
-        /// Always returns true.
-        /// </Summary>
-        public virtual bool DebugAssertChildListIsNonEmptyAndContiguous() { throw new NotImplementedException(); }
-
-
-        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() { throw new NotImplementedException(); }
-
-        #endregion
+    public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+        if (!(child.ParentData is SliverMultiBoxAdaptorParentData)) child.ParentData = new SliverMultiBoxAdaptorParentData();
     }
+
+
+
+
+    public new void AdoptChild(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+        base.AdoptChild(child);
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+        if (!childParentData._KeptAlive) ChildManager.DidAdoptChild(child as RenderBox);
+    }
+
+
+    public new void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child)
+    {
+        base.AdoptChild(child);
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+        if (!childParentData._KeptAlive) ChildManager.DidAdoptChild(child as RenderBox);
+    }
+
+
+
+
+    private bool _DebugAssertChildListLocked() => ChildManager.DebugAssertChildListLocked();
+
+
+
+    /// <Summary>
+    /// Verify that the child list index is in strictly increasing order.
+    ///
+    /// This has no effect in release builds.
+    /// </Summary>
+    private bool _DebugVerifyChildOrder()
+    {
+        if (_DebugChildIntegrityEnabled)
+        {
+            RenderBox child = FirstChild;
+            int index = default(int);
+            while (child != null)
+            {
+                index = IndexOf(child);
+                child = ChildAfter(child);
+
+            }
+
+        }
+
+        return true;
+    }
+
+
+
+
+    public new void Insert(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
+    {
+
+        base.Insert(child, after: after);
+
+
+    }
+
+
+
+
+    public new void Move(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
+    {
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+        if (!childParentData.KeptAlive)
+        {
+            base.Move(child, after: after);
+            ChildManager.DidAdoptChild(child);
+            MarkNeedsLayout();
+        }
+        else
+        {
+            if (_KeepAliveBucket[childParentData.Index] == child)
+            {
+                _KeepAliveBucket.Remove(childParentData.Index);
+            }
+
+
+            ChildManager.DidAdoptChild(child);
+
+            _KeepAliveBucket[childParentData.Index] = child;
+        }
+
+    }
+
+
+
+
+    public new void Remove(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+        if (!childParentData._KeptAlive)
+        {
+            base.Remove(child);
+            return;
+        }
+
+
+
+        _KeepAliveBucket.Remove(childParentData.Index);
+        DropChild(child);
+    }
+
+
+
+
+    public new void RemoveAll()
+    {
+        base.RemoveAll();
+        _KeepAliveBucket.Values.ForEach(DropChild);
+        _KeepAliveBucket.Clear();
+    }
+
+
+
+
+    private void _CreateOrObtainChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
+    {
+        InvokeLayoutCallback((SliverConstraints constraints) =>
+        {
+
+            if (_KeepAliveBucket.ContainsKey(index))
+            {
+                RenderBox child = _KeepAliveBucket.Remove(index);
+                SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+
+                DropChild(child);
+                child.ParentData = childParentData;
+                Insert(child, after: after);
+                childParentData._KeptAlive = false;
+            }
+            else
+            {
+                _ChildManager.CreateChild(index, after: after);
+            }
+
+        }
+        );
+    }
+
+
+
+
+    private void _DestroyOrCacheChild(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+        if (childParentData.KeepAlive)
+        {
+
+            Remove(child);
+            _KeepAliveBucket[childParentData.Index] = child;
+            child.ParentData = childParentData;
+            base.AdoptChild(child);
+            childParentData._KeptAlive = true;
+        }
+        else
+        {
+
+            _ChildManager.RemoveChild(child);
+
+        }
+
+    }
+
+
+
+
+    public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+    {
+        base.Attach(owner);
+        foreach (RenderBox child in _KeepAliveBucket.Values) child.Attach(owner);
+    }
+
+
+    public new void Attach(@Object owner)
+    {
+        base.Attach(owner);
+        foreach (RenderBox child in _KeepAliveBucket.Values) child.Attach(owner);
+    }
+
+
+
+
+    public new void Detach()
+    {
+        base.Detach();
+        foreach (RenderBox child in _KeepAliveBucket.Values) child.Detach();
+    }
+
+
+
+
+    public new void RedepthChildren()
+    {
+        base.RedepthChildren();
+        _KeepAliveBucket.Values.ForEach(RedepthChild);
+    }
+
+
+
+
+    public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+    {
+        base.VisitChildren(visitor);
+        _KeepAliveBucket.Values.ForEach(visitor);
+    }
+
+
+
+
+    public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+    {
+        base.VisitChildren(visitor);
+    }
+
+
+
+
+    /// <Summary>
+    /// Called during layout to create and add the child with the given index and
+    /// scroll offset.
+    ///
+    /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
+    /// the child if necessary. The child may instead be obtained from a cache;
+    /// see [SliverMultiBoxAdaptorParentData.keepAlive].
+    ///
+    /// Returns false if there was no cached child and `createChild` did not add
+    /// any child, otherwise returns true.
+    ///
+    /// Does not layout the new child.
+    ///
+    /// When this is called, there are no visible children, so no children can be
+    /// removed during the call to `createChild`. No child should be added during
+    /// that call either, except for the one that is created and returned by
+    /// `createChild`.
+    /// </Summary>
+    public virtual bool AddInitialChild(int index = 0, double layoutOffset = 0.0)
+    {
+
+
+        _CreateOrObtainChild(index, after: null);
+        if (FirstChild != null)
+        {
+
+
+            SliverMultiBoxAdaptorParentData firstChildParentData = FirstChild.ParentData as SliverMultiBoxAdaptorParentData;
+            firstChildParentData.LayoutOffset = layoutOffset;
+            return true;
+        }
+
+        ChildManager.SetDidUnderflow(true);
+        return false;
+    }
+
+
+
+
+    /// <Summary>
+    /// Called during layout to create, add, and layout the child before
+    /// [firstChild].
+    ///
+    /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
+    /// the child if necessary. The child may instead be obtained from a cache;
+    /// see [SliverMultiBoxAdaptorParentData.keepAlive].
+    ///
+    /// Returns the new child or null if no child was obtained.
+    ///
+    /// The child that was previously the first child, as well as any subsequent
+    /// children, may be removed by this call if they have not yet been laid out
+    /// during this layout pass. No child should be added during that call except
+    /// for the one that is created and returned by `createChild`.
+    /// </Summary>
+    public virtual FlutterSDK.Rendering.Box.RenderBox InsertAndLayoutLeadingChild(FlutterSDK.Rendering.Box.BoxConstraints childConstraints, bool parentUsesSize = false)
+    {
+
+        int index = IndexOf(FirstChild) - 1;
+        _CreateOrObtainChild(index, after: null);
+        if (IndexOf(FirstChild) == index)
+        {
+            FirstChild.Layout(childConstraints, parentUsesSize: parentUsesSize);
+            return FirstChild;
+        }
+
+        ChildManager.SetDidUnderflow(true);
+        return null;
+    }
+
+
+
+
+    /// <Summary>
+    /// Called during layout to create, add, and layout the child after
+    /// the given child.
+    ///
+    /// Calls [RenderSliverBoxChildManager.createChild] to actually create and add
+    /// the child if necessary. The child may instead be obtained from a cache;
+    /// see [SliverMultiBoxAdaptorParentData.keepAlive].
+    ///
+    /// Returns the new child. It is the responsibility of the caller to configure
+    /// the child's scroll offset.
+    ///
+    /// Children after the `after` child may be removed in the process. Only the
+    /// new child may be added.
+    /// </Summary>
+    public virtual FlutterSDK.Rendering.Box.RenderBox InsertAndLayoutChild(FlutterSDK.Rendering.Box.BoxConstraints childConstraints, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox), bool parentUsesSize = false)
+    {
+
+
+        int index = IndexOf(after) + 1;
+        _CreateOrObtainChild(index, after: after);
+        RenderBox child = ChildAfter(after);
+        if (child != null && IndexOf(child) == index)
+        {
+            child.Layout(childConstraints, parentUsesSize: parentUsesSize);
+            return child;
+        }
+
+        ChildManager.SetDidUnderflow(true);
+        return null;
+    }
+
+
+
+
+    /// <Summary>
+    /// Called after layout with the number of children that can be garbage
+    /// collected at the head and tail of the child list.
+    ///
+    /// Children whose [SliverMultiBoxAdaptorParentData.keepAlive] property is
+    /// set to true will be removed to a cache instead of being dropped.
+    ///
+    /// This method also collects any children that were previously kept alive but
+    /// are now no longer necessary. As such, it should be called every time
+    /// [performLayout] is run, even if the arguments are both zero.
+    /// </Summary>
+    public virtual void CollectGarbage(int leadingGarbage, int trailingGarbage)
+    {
+
+
+        InvokeLayoutCallback((SliverConstraints constraints) =>
+        {
+            while (leadingGarbage > 0)
+            {
+                _DestroyOrCacheChild(FirstChild);
+                leadingGarbage -= 1;
+            }
+
+            while (trailingGarbage > 0)
+            {
+                _DestroyOrCacheChild(LastChild);
+                trailingGarbage -= 1;
+            }
+
+            _KeepAliveBucket.Values.Where((RenderBox child) =>
+            {
+                SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+                return !childParentData.KeepAlive;
+            }
+            ).ToList().ForEach(_ChildManager.RemoveChild);
+
+        }
+        );
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the index of the given child, as given by the
+    /// [SliverMultiBoxAdaptorParentData.index] field of the child's [parentData].
+    /// </Summary>
+    public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+
+        return childParentData.Index;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the dimension of the given child in the main axis, as given by the
+    /// child's [RenderBox.size] property. This is only valid after layout.
+    /// </Summary>
+    public virtual double PaintExtentOf(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+
+
+        switch (Constraints.Axis) { case Axis.Horizontal: return child.Size.Width; case Axis.Vertical: return child.Size.Height; }
+        return null;
+    }
+
+
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+    {
+        RenderBox child = LastChild;
+        BoxHitTestResult boxResult = BoxHitTestResult.Wrap(result);
+        while (child != null)
+        {
+            if (HitTestBoxChild(boxResult, child, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition)) return true;
+            child = ChildBefore(child);
+        }
+
+        return false;
+    }
+
+
+
+
+    public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
+    {
+        return ChildScrollOffset(child) - Constraints.ScrollOffset;
+    }
+
+
+    public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+        return ChildScrollOffset(child) - Constraints.ScrollOffset;
+    }
+
+
+
+
+    public new double ChildScrollOffset(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+
+
+        SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+        return childParentData.LayoutOffset;
+    }
+
+
+
+
+    public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+    {
+        ApplyPaintTransformForBoxChild(child as RenderBox, transform);
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (FirstChild == null) return;
+        Offset mainAxisUnit crossAxisUnit originOffset = default(Offset);
+        bool addExtent = default(bool);
+        switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(Constraints.AxisDirection, Constraints.GrowthDirection)) { case AxisDirection.Up: mainAxisUnit = new Offset(0.0, -1.0); crossAxisUnit = new Offset(1.0, 0.0); originOffset = offset + new Offset(0.0, Geometry.PaintExtent); addExtent = true; break; case AxisDirection.Right: mainAxisUnit = new Offset(1.0, 0.0); crossAxisUnit = new Offset(0.0, 1.0); originOffset = offset; addExtent = false; break; case AxisDirection.Down: mainAxisUnit = new Offset(0.0, 1.0); crossAxisUnit = new Offset(1.0, 0.0); originOffset = offset; addExtent = false; break; case AxisDirection.Left: mainAxisUnit = new Offset(-1.0, 0.0); crossAxisUnit = new Offset(0.0, 1.0); originOffset = offset + new Offset(Geometry.PaintExtent, 0.0); addExtent = true; break; }
+
+
+        RenderBox child = FirstChild;
+        while (child != null)
+        {
+            double mainAxisDelta = ChildMainAxisPosition(child);
+            double crossAxisDelta = ChildCrossAxisPosition(child);
+            Offset childOffset = new Offset(originOffset.Dx + mainAxisUnit.Dx * mainAxisDelta + crossAxisUnit.Dx * crossAxisDelta, originOffset.Dy + mainAxisUnit.Dy * mainAxisDelta + crossAxisUnit.Dy * crossAxisDelta);
+            if (addExtent) childOffset += mainAxisUnit * PaintExtentOf(child);
+            if (mainAxisDelta < Constraints.RemainingPaintExtent && mainAxisDelta + PaintExtentOf(child) > 0) context.PaintChild(child, childOffset);
+            child = ChildAfter(child);
+        }
+
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(DiagnosticsNode.Message(FirstChild != null ? $"'currently live children: {IndexOf(FirstChild)} to {IndexOf(LastChild)}'" : "no children current live"));
+    }
+
+
+
+
+    /// <Summary>
+    /// Asserts that the reified child list is not empty and has a contiguous
+    /// sequence of indices.
+    ///
+    /// Always returns true.
+    /// </Summary>
+    public virtual bool DebugAssertChildListIsNonEmptyAndContiguous()
+    {
+
+        return true;
+    }
+
+
+
+
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+    {
+        List<DiagnosticsNode> children = new List<DiagnosticsNode>() { };
+        if (FirstChild != null)
+        {
+            RenderBox child = FirstChild;
+            while (true)
+            {
+                SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+                children.Add(child.ToDiagnosticsNode(name: $"'child with index {childParentData.Index}'"));
+                if (child == LastChild) break;
+                child = childParentData.NextSibling;
+            }
+
+        }
+
+        if (_KeepAliveBucket.IsNotEmpty)
+        {
+            List<int> indices = _KeepAliveBucket.Keys.ToList();
+            _KeepAliveBucket.Keys.ToList().Sort();
+            foreach (int index in indices)
+            {
+                children.Add(_KeepAliveBucket[index].ToDiagnosticsNode(name: $"'child with index {index} (kept alive but not laid out)'", style: DiagnosticsTreeStyle.Offstage));
+            }
+
+        }
+
+        return children;
+    }
+
+
+
+    #endregion
+}
 
 }

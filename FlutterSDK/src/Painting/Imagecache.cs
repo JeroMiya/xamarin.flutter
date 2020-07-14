@@ -460,7 +460,19 @@ namespace FlutterSDK.Painting.Imagecache
         ///
         /// To clear live references, use [clearLiveImages].
         /// </Summary>
-        public virtual void Clear() { throw new NotImplementedException(); }
+        public virtual void Clear()
+        {
+            if (!ConstantsDefaultClass.KReleaseMode)
+            {
+            Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.clear", arguments: new Dictionary<string, object> { { "pendingImages", _PendingImages.Length }{ "keepAliveImages", _Cache.Length }{ "liveImages", _LiveImages.Length }{ "currentSizeInBytes", _CurrentSizeBytes } });
+            }
+
+            _Cache.Clear();
+            _PendingImages.Clear();
+            _CurrentSizeBytes = 0;
+        }
+
+
 
 
         /// <Summary>
@@ -502,7 +514,48 @@ namespace FlutterSDK.Painting.Imagecache
         ///
         ///  * [ImageProvider], for providing images to the [Image] widget.
         /// </Summary>
-        public virtual bool Evict(@Object key, bool includeLive = true) { throw new NotImplementedException(); }
+        public virtual bool Evict(@Object key, bool includeLive = true)
+        {
+
+            if (includeLive)
+            {
+                _LiveImage image = _LiveImages.Remove(key);
+                image?.RemoveListener();
+            }
+
+            _PendingImage pendingImage = _PendingImages.Remove(key);
+            if (pendingImage != null)
+            {
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "pending" } });
+                }
+
+                pendingImage.RemoveListener();
+                return true;
+            }
+
+            _CachedImage image = _Cache.Remove(key);
+            if (image != null)
+            {
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "keepAlive" }{ "sizeiInBytes", image.SizeBytes } });
+                }
+
+                _CurrentSizeBytes -= image.SizeBytes;
+                return true;
+            }
+
+            if (!ConstantsDefaultClass.KReleaseMode)
+            {
+            Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "miss" } });
+            }
+
+            return false;
+        }
+
+
 
 
         /// <Summary>
@@ -512,10 +565,45 @@ namespace FlutterSDK.Painting.Imagecache
         /// Resizes the cache as appropriate to maintain the constraints of
         /// [maximumSize] and [maximumSizeBytes].
         /// </Summary>
-        private void _Touch(@Object key, FlutterSDK.Painting.Imagecache._CachedImage image, TimelineTask timelineTask) { throw new NotImplementedException(); }
+        private void _Touch(@Object key, FlutterSDK.Painting.Imagecache._CachedImage image, TimelineTask timelineTask)
+        {
+
+            if (image.SizeBytes != null && image.SizeBytes <= MaximumSizeBytes)
+            {
+                _CurrentSizeBytes += image.SizeBytes;
+                _Cache[key] = image;
+                _CheckCacheSize(timelineTask);
+            }
+
+        }
 
 
-        private void _TrackLiveImage(@Object key, FlutterSDK.Painting.Imagecache._LiveImage image, bool debugPutOk = true) { throw new NotImplementedException(); }
+
+
+        private void _TrackLiveImage(@Object key, FlutterSDK.Painting.Imagecache._LiveImage image, bool debugPutOk = true)
+        {
+            _LiveImages.PutIfAbsent(key, () =>
+            {
+
+                image.Completer.AddOnLastListenerRemovedCallback(image.HandleRemove);
+                return image;
+            }
+            ).SizeBytes = (_LiveImages.PutIfAbsent(key, () =>
+            {
+
+                image.Completer.AddOnLastListenerRemovedCallback(image.HandleRemove);
+                return image;
+            }
+            ).SizeBytes == null ? image.SizeBytes : _LiveImages.PutIfAbsent(key, () =>
+            {
+
+                image.Completer.AddOnLastListenerRemovedCallback(image.HandleRemove);
+                return image;
+            }
+            ).SizeBytes);
+        }
+
+
 
 
         /// <Summary>
@@ -530,19 +618,146 @@ namespace FlutterSDK.Painting.Imagecache
         /// no completers are cached and `null` is returned instead of a new
         /// completer.
         /// </Summary>
-        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(@Object key, Func<ImageStreamCompleter> loader, FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener)) { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter PutIfAbsent(@Object key, Func<ImageStreamCompleter> loader, FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
+        {
 
 
-        /// <Summary>
-        /// The [ImageCacheStatus] information for the given `key`.
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(@Object key) { throw new NotImplementedException(); }
+            TimelineTask timelineTask = default(TimelineTask);
+            TimelineTask listenerTask = default(TimelineTask);
+            if (!ConstantsDefaultClass.KReleaseMode)
+            {
+                timelineTask = new TimelineTask();
+                new TimelineTask().Start("ImageCache.putIfAbsent", arguments: new Dictionary<string, object> { { "key", key.ToString() } });
+            }
+
+            ImageStreamCompleter result = _PendingImages[key]?.Completer;
+            if (result != null)
+            {
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                    timelineTask.Finish(arguments: new Dictionary<string, object> { { "result", "pending" } });
+                }
+
+                return result;
+            }
+
+            _CachedImage image = _Cache.Remove(key);
+            if (image != null)
+            {
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                    timelineTask.Finish(arguments: new Dictionary<string, object> { { "result", "keepAlive" } });
+                }
+
+                _TrackLiveImage(key, new _LiveImage(image.Completer, image.SizeBytes, () => =>_LiveImages.Remove(key)));
+                _Cache[key] = image;
+                return image.Completer;
+            }
+
+            _CachedImage liveImage = _LiveImages[key];
+            if (liveImage != null)
+            {
+                _Touch(key, liveImage, timelineTask);
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                    timelineTask.Finish(arguments: new Dictionary<string, object> { { "result", "keepAlive" } });
+                }
+
+                return liveImage.Completer;
+            }
+
+            try
+            {
+                result = loader();
+                _TrackLiveImage(key, new _LiveImage(result, null, () => =>_LiveImages.Remove(key)));
+            }
+            catch (error,stackTrace){
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                    timelineTask.Finish(arguments: new Dictionary<string, object> { { "result", "error" }{ "error", error.ToString() }{ "stackTrace", stackTrace.ToString() } });
+                }
+
+                if (onError != null)
+                {
+                    onError(error, stackTrace);
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+
+            }
+
+            if (!ConstantsDefaultClass.KReleaseMode)
+            {
+                listenerTask = new TimelineTask(parent: timelineTask);
+                new TimelineTask(parent: timelineTask).Start("listener");
+            }
+
+            bool listenedOnce = false;
+            _PendingImage untrackedPendingImage = default(_PendingImage);
+            void Listener(ImageInfo info, bool syncCall) => {
+                int imageSize = info?.Image == null ? 0 : info.Image.Height * info.Image.Width * 4;
+                _CachedImage image = new _CachedImage(result, imageSize);
+                _TrackLiveImage(key, new _LiveImage(result, imageSize, () => =>_LiveImages.Remove(key)), debugPutOk: syncCall);
+                _PendingImage pendingImage = untrackedPendingImage ?? _PendingImages.Remove(key);
+                if (pendingImage != null)
+                {
+                    pendingImage.RemoveListener();
+                }
+
+                if (untrackedPendingImage == null)
+                {
+                    _Touch(key, image, listenerTask);
+                }
+
+                if (!ConstantsDefaultClass.KReleaseMode && !listenedOnce)
+                {
+                    listenerTask.Finish(arguments: new Dictionary<string, object> { { "syncCall", syncCall }{ "sizeInBytes", imageSize } });
+                    timelineTask.Finish(arguments: new Dictionary<string, object> { { "currentSizeBytes", CurrentSizeBytes }{ "currentSize", CurrentSize } });
+                }
+
+                listenedOnce = true;
+            }
+
+            ImageStreamListener streamListener = new ImageStreamListener(Listener);
+            if (MaximumSize > 0 && MaximumSizeBytes > 0)
+            {
+                _PendingImages[key] = new _PendingImage(result, streamListener);
+            }
+            else
+            {
+                untrackedPendingImage = new _PendingImage(result, streamListener);
+            }
+
+            result.AddListener(streamListener);
+            return result;
+            }
+
+
+
+
+/// <Summary>
+/// The [ImageCacheStatus] information for the given `key`.
+/// </Summary>
+        public virtual FlutterSDK.Painting.Imagecache.ImageCacheStatus StatusForKey(@Object key)
+        {
+            return ImageCacheStatus._(pending: _PendingImages.ContainsKey(key), keepAlive: _Cache.ContainsKey(key), live: _LiveImages.ContainsKey(key));
+        }
+
+
 
 
         /// <Summary>
         /// Returns whether this `key` has been previously added by [putIfAbsent].
         /// </Summary>
-        public virtual bool ContainsKey(@Object key) { throw new NotImplementedException(); }
+        public virtual bool ContainsKey(@Object key)
+        {
+            return _PendingImages[key] != null || _Cache[key] != null;
+        }
+
+
 
 
         /// <Summary>
@@ -558,10 +773,58 @@ namespace FlutterSDK.Painting.Imagecache
         /// memory pressure, since the live image caching only tracks image instances
         /// that are also being held by at least one other object.
         /// </Summary>
-        public virtual void ClearLiveImages() { throw new NotImplementedException(); }
+        public virtual void ClearLiveImages()
+        {
+            foreach (_LiveImage image in _LiveImages.Values)
+            {
+                image.RemoveListener();
+            }
+
+            _LiveImages.Clear();
+        }
 
 
-        private void _CheckCacheSize(TimelineTask timelineTask) { throw new NotImplementedException(); }
+
+
+        private void _CheckCacheSize(TimelineTask timelineTask)
+        {
+            Dictionary<string, object> finishArgs = new Dictionary<string, object> { };
+            TimelineTask checkCacheTask = default(TimelineTask);
+            if (!ConstantsDefaultClass.KReleaseMode)
+            {
+                checkCacheTask = new TimelineTask(parent: timelineTask);
+                new TimelineTask(parent: timelineTask).Start("checkCacheSize");
+                finishArgs["evictedKeys"] = new List<string>() { };
+                finishArgs["currentSize"] = CurrentSize;
+                finishArgs["currentSizeBytes"] = CurrentSizeBytes;
+            }
+
+            while (_CurrentSizeBytes > _MaximumSizeBytes || _Cache.Length > _MaximumSize)
+            {
+                object key = _Cache.Keys.First;
+                _CachedImage image = _Cache[key];
+                _CurrentSizeBytes -= image.SizeBytes;
+                _Cache.Remove(key);
+                if (!ConstantsDefaultClass.KReleaseMode)
+                {
+                    finishArgs["evictedKeys"].Add(key.ToString());
+                }
+
+            }
+
+            if (!ConstantsDefaultClass.KReleaseMode)
+            {
+                finishArgs["endSize"] = CurrentSize;
+                finishArgs["endSizeBytes"] = CurrentSizeBytes;
+                checkCacheTask.Finish(arguments: finishArgs);
+            }
+
+
+
+
+        }
+
+
 
     }
     public static class ImageCacheMixin
@@ -615,93 +878,105 @@ namespace FlutterSDK.Painting.Imagecache
         #region constructors
         internal ImageCacheStatus(bool pending = false, bool keepAlive = false, bool live = false)
         : base()
-        {
-            this.Pending = pending;
-            this.KeepAlive = keepAlive;
-            this.Live = live; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual bool Pending { get; set; }
-        public virtual bool KeepAlive { get; set; }
-        public virtual bool Live { get; set; }
-        public virtual bool Tracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool Untracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual bool Pending { get; set; }
+    public virtual bool KeepAlive { get; set; }
+    public virtual bool Live { get; set; }
+    public virtual bool Tracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool Untracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
-
-
-    public class _CachedImage
+    public new bool Equals(@Object other)
     {
-        #region constructors
-        public _CachedImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes)
+        if (other.GetType() != GetType())
         {
-            this.Completer = completer;
-            this.SizeBytes = sizeBytes; throw new NotImplementedException();
+            return false;
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
-        public virtual int SizeBytes { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
+        return other is ImageCacheStatus && other.Pending == Pending && other.KeepAlive == KeepAlive && other.Live == Live;
     }
 
 
-    public class _LiveImage : FlutterSDK.Painting.Imagecache._CachedImage
-    {
-        #region constructors
-        public _LiveImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes, VoidCallback handleRemove)
-        : base(completer, sizeBytes)
-        {
-            this.HandleRemove = handleRemove; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual VoidCallback HandleRemove { get; set; }
-        #endregion
-
-        #region methods
-
-        public virtual void RemoveListener() { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
-    public class _PendingImage
-    {
-        #region constructors
-        public _PendingImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
-        {
-            this.Completer = completer;
-            this.Listener = listener; throw new NotImplementedException();
-        }
-        #endregion
+    #endregion
+}
 
-        #region fields
-        public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
-        public virtual FlutterSDK.Painting.Imagestream.ImageStreamListener Listener { get; set; }
-        #endregion
 
-        #region methods
+public class _CachedImage
+{
+    #region constructors
+    public _CachedImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes)
 
-        public virtual void RemoveListener() { throw new NotImplementedException(); }
+}
+#endregion
 
-        #endregion
-    }
+#region fields
+public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
+public virtual int SizeBytes { get; set; }
+#endregion
+
+#region methods
+#endregion
+}
+
+
+public class _LiveImage : FlutterSDK.Painting.Imagecache._CachedImage
+{
+    #region constructors
+    public _LiveImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes, VoidCallback handleRemove)
+    : base(completer, sizeBytes)
+
+}
+#endregion
+
+#region fields
+public virtual VoidCallback HandleRemove { get; set; }
+#endregion
+
+#region methods
+
+public virtual void RemoveListener()
+{
+    Completer.RemoveOnLastListenerRemovedCallback(HandleRemove);
+}
+
+
+
+#endregion
+}
+
+
+public class _PendingImage
+{
+    #region constructors
+    public _PendingImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
+public virtual FlutterSDK.Painting.Imagestream.ImageStreamListener Listener { get; set; }
+#endregion
+
+#region methods
+
+public virtual void RemoveListener()
+{
+    Completer.RemoveListener(Listener);
+}
+
+
+
+#endregion
+}
 
 }

@@ -496,146 +496,326 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
         #region constructors
         public RenderSliverFixedExtentBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// The layout offset for the child with the given index.
-        ///
-        /// This function is given the [itemExtent] as an argument to avoid
-        /// recomputing [itemExtent] repeatedly during layout.
-        ///
-        /// By default, places the children in order, without gaps, starting from
-        /// layout offset zero.
-        /// </Summary>
-        public virtual double IndexToLayoutOffset(double itemExtent, int index) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// The layout offset for the child with the given index.
+    ///
+    /// This function is given the [itemExtent] as an argument to avoid
+    /// recomputing [itemExtent] repeatedly during layout.
+    ///
+    /// By default, places the children in order, without gaps, starting from
+    /// layout offset zero.
+    /// </Summary>
+    public virtual double IndexToLayoutOffset(double itemExtent, int index) => itemExtent * index;
 
-
-        /// <Summary>
-        /// The minimum child index that is visible at the given scroll offset.
-        ///
-        /// This function is given the [itemExtent] as an argument to avoid
-        /// recomputing [itemExtent] repeatedly during layout.
-        ///
-        /// By default, returns a value consistent with the children being placed in
-        /// order, without gaps, starting from layout offset zero.
-        /// </Summary>
-        public virtual int GetMinChildIndexForScrollOffset(double scrollOffset, double itemExtent) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The maximum child index that is visible at the given scroll offset.
-        ///
-        /// This function is given the [itemExtent] as an argument to avoid
-        /// recomputing [itemExtent] repeatedly during layout.
-        ///
-        /// By default, returns a value consistent with the children being placed in
-        /// order, without gaps, starting from layout offset zero.
-        /// </Summary>
-        public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called to estimate the total scrollable extents of this object.
-        ///
-        /// Must return the total distance from the start of the child with the
-        /// earliest possible index to the end of the child with the last possible
-        /// index.
-        ///
-        /// By default, defers to [RenderSliverBoxChildManager.estimateMaxScrollOffset].
-        ///
-        /// See also:
-        ///
-        ///  * [computeMaxScrollOffset], which is similar but must provide a precise
-        ///    value.
-        /// </Summary>
-        public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called to obtain a precise measure of the total scrollable extents of this
-        /// object.
-        ///
-        /// Must return the precise total distance from the start of the child with
-        /// the earliest possible index to the end of the child with the last possible
-        /// index.
-        ///
-        /// This is used when no child is available for the index corresponding to the
-        /// current scroll offset, to determine the precise dimensions of the sliver.
-        /// It must return a precise value. It will not be called if the
-        /// [childManager] returns an infinite number of children for positive
-        /// indices.
-        ///
-        /// By default, multiplies the [itemExtent] by the number of children reported
-        /// by [RenderSliverBoxChildManager.childCount].
-        ///
-        /// See also:
-        ///
-        ///  * [estimateMaxScrollOffset], which is similar but may provide inaccurate
-        ///    values.
-        /// </Summary>
-        public virtual double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double itemExtent) { throw new NotImplementedException(); }
-
-
-        private int _CalculateLeadingGarbage(int firstIndex) { throw new NotImplementedException(); }
-
-
-        private int _CalculateTrailingGarbage(int targetLastIndex) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
     /// <Summary>
-    /// A sliver that places multiple box children with the same main axis extent in
-    /// a linear array.
+    /// The minimum child index that is visible at the given scroll offset.
     ///
-    /// [RenderSliverFixedExtentList] places its children in a linear array along
-    /// the main axis starting at offset zero and without gaps. Each child is forced
-    /// to have the [itemExtent] in the main axis and the
-    /// [SliverConstraints.crossAxisExtent] in the cross axis.
+    /// This function is given the [itemExtent] as an argument to avoid
+    /// recomputing [itemExtent] repeatedly during layout.
     ///
-    /// [RenderSliverFixedExtentList] is more efficient than [RenderSliverList]
-    /// because [RenderSliverFixedExtentList] does not need to perform layout on its
-    /// children to obtain their extent in the main axis.
+    /// By default, returns a value consistent with the children being placed in
+    /// order, without gaps, starting from layout offset zero.
+    /// </Summary>
+    public virtual int GetMinChildIndexForScrollOffset(double scrollOffset, double itemExtent)
+    {
+        if (itemExtent > 0.0)
+        {
+            double actual = scrollOffset / itemExtent;
+            int round = actual.Round();
+            if ((actual - round).Abs() < ConstantsDefaultClass.PrecisionErrorTolerance)
+            {
+                return round;
+            }
+
+            return actual.Floor();
+        }
+
+        return 0;
+    }
+
+
+
+
+    /// <Summary>
+    /// The maximum child index that is visible at the given scroll offset.
+    ///
+    /// This function is given the [itemExtent] as an argument to avoid
+    /// recomputing [itemExtent] repeatedly during layout.
+    ///
+    /// By default, returns a value consistent with the children being placed in
+    /// order, without gaps, starting from layout offset zero.
+    /// </Summary>
+    public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent)
+    {
+        return itemExtent > 0.0 ? Math.Dart : mathDefaultClass.Max(0, (scrollOffset / itemExtent).Ceil() - 1):0;
+    }
+
+
+
+
+    /// <Summary>
+    /// Called to estimate the total scrollable extents of this object.
+    ///
+    /// Must return the total distance from the start of the child with the
+    /// earliest possible index to the end of the child with the last possible
+    /// index.
+    ///
+    /// By default, defers to [RenderSliverBoxChildManager.estimateMaxScrollOffset].
     ///
     /// See also:
     ///
-    ///  * [RenderSliverList], which does not require its children to have the same
-    ///    extent in the main axis.
-    ///  * [RenderSliverFillViewport], which determines the [itemExtent] based on
-    ///    [SliverConstraints.viewportMainAxisExtent].
-    ///  * [RenderSliverFillRemaining], which determines the [itemExtent] based on
-    ///    [SliverConstraints.remainingPaintExtent].
+    ///  * [computeMaxScrollOffset], which is similar but must provide a precise
+    ///    value.
     /// </Summary>
-    public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
+    public virtual double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double))
     {
-        #region constructors
-        public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double itemExtent = default(double))
-        : base(childManager: childManager)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual double _ItemExtent { get; set; }
-        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
+        return ChildManager.EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset);
     }
+
+
+
+
+    /// <Summary>
+    /// Called to obtain a precise measure of the total scrollable extents of this
+    /// object.
+    ///
+    /// Must return the precise total distance from the start of the child with
+    /// the earliest possible index to the end of the child with the last possible
+    /// index.
+    ///
+    /// This is used when no child is available for the index corresponding to the
+    /// current scroll offset, to determine the precise dimensions of the sliver.
+    /// It must return a precise value. It will not be called if the
+    /// [childManager] returns an infinite number of children for positive
+    /// indices.
+    ///
+    /// By default, multiplies the [itemExtent] by the number of children reported
+    /// by [RenderSliverBoxChildManager.childCount].
+    ///
+    /// See also:
+    ///
+    ///  * [estimateMaxScrollOffset], which is similar but may provide inaccurate
+    ///    values.
+    /// </Summary>
+    public virtual double ComputeMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, double itemExtent)
+    {
+        return ChildManager.ChildCount * itemExtent;
+    }
+
+
+
+
+    private int _CalculateLeadingGarbage(int firstIndex)
+    {
+        RenderBox walker = FirstChild;
+        int leadingGarbage = 0;
+        while (walker != null && IndexOf(walker) < firstIndex)
+        {
+            leadingGarbage += 1;
+            walker = ChildAfter(walker);
+        }
+
+        return leadingGarbage;
+    }
+
+
+
+
+    private int _CalculateTrailingGarbage(int targetLastIndex)
+    {
+        RenderBox walker = LastChild;
+        int trailingGarbage = 0;
+        while (walker != null && IndexOf(walker) > targetLastIndex)
+        {
+            trailingGarbage += 1;
+            walker = ChildBefore(walker);
+        }
+
+        return trailingGarbage;
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        SliverConstraints constraints = this.Constraints;
+        ChildManager.DidStartLayout();
+        ChildManager.SetDidUnderflow(false);
+        double itemExtent = this.ItemExtent;
+        double scrollOffset = constraints.ScrollOffset + constraints.CacheOrigin;
+
+        double remainingExtent = constraints.RemainingCacheExtent;
+
+        double targetEndScrollOffset = scrollOffset + remainingExtent;
+        BoxConstraints childConstraints = constraints.AsBoxConstraints(minExtent: itemExtent, maxExtent: itemExtent);
+        int firstIndex = GetMinChildIndexForScrollOffset(scrollOffset, itemExtent);
+        int targetLastIndex = targetEndScrollOffset.IsFinite() ? GetMaxChildIndexForScrollOffset(targetEndScrollOffset, itemExtent) : null;
+        if (FirstChild != null)
+        {
+            int leadingGarbage = _CalculateLeadingGarbage(firstIndex);
+            int trailingGarbage = _CalculateTrailingGarbage(targetLastIndex);
+            CollectGarbage(leadingGarbage, trailingGarbage);
+        }
+        else
+        {
+            CollectGarbage(0, 0);
+        }
+
+        if (FirstChild == null)
+        {
+            if (!AddInitialChild(index: firstIndex, layoutOffset: IndexToLayoutOffset(itemExtent, firstIndex)))
+            {
+                double max = default(double);
+                if (ChildManager.ChildCount != null)
+                {
+                    max = ComputeMaxScrollOffset(constraints, itemExtent);
+                }
+                else if (firstIndex <= 0)
+                {
+                    max = 0.0;
+                }
+                else
+                {
+                    int possibleFirstIndex = firstIndex - 1;
+                    while (possibleFirstIndex > 0 && !AddInitialChild(index: possibleFirstIndex, layoutOffset: IndexToLayoutOffset(itemExtent, possibleFirstIndex)))
+                    {
+                        possibleFirstIndex -= 1;
+                    }
+
+                    max = possibleFirstIndex * itemExtent;
+                }
+
+                Geometry = new SliverGeometry(scrollExtent: max, maxPaintExtent: max);
+                ChildManager.DidFinishLayout();
+                return;
+            }
+
+        }
+
+        RenderBox trailingChildWithLayout = default(RenderBox);
+        for (int index = IndexOf(FirstChild) - 1; index >= firstIndex; --index)
+        {
+            RenderBox child = InsertAndLayoutLeadingChild(childConstraints);
+            if (child == null)
+            {
+                Geometry = new SliverGeometry(scrollOffsetCorrection: index * itemExtent);
+                return;
+            }
+
+            SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+            childParentData.LayoutOffset = IndexToLayoutOffset(itemExtent, index);
+
+            trailingChildWithLayout = (trailingChildWithLayout == null ? child : trailingChildWithLayout);
+        }
+
+        if (trailingChildWithLayout == null)
+        {
+            FirstChild.Layout(childConstraints);
+            SliverMultiBoxAdaptorParentData childParentData = FirstChild.ParentData as SliverMultiBoxAdaptorParentData;
+            childParentData.LayoutOffset = IndexToLayoutOffset(itemExtent, firstIndex);
+            trailingChildWithLayout = FirstChild;
+        }
+
+        double estimatedMaxScrollOffset = Dart:coreDefaultClass.Double.Infinity;
+        for (int index = IndexOf(trailingChildWithLayout) + 1; targetLastIndex == null || index <= targetLastIndex; ++index)
+        {
+            RenderBox child = ChildAfter(trailingChildWithLayout);
+            if (child == null || IndexOf(child) != index)
+            {
+                child = InsertAndLayoutChild(childConstraints, after: trailingChildWithLayout);
+                if (child == null)
+                {
+                    estimatedMaxScrollOffset = index * itemExtent;
+                    break;
+                }
+
+            }
+            else
+            {
+                child.Layout(childConstraints);
+            }
+
+            trailingChildWithLayout = child;
+
+            SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+
+            childParentData.LayoutOffset = IndexToLayoutOffset(itemExtent, childParentData.Index);
+        }
+
+        int lastIndex = IndexOf(LastChild);
+        double leadingScrollOffset = IndexToLayoutOffset(itemExtent, firstIndex);
+        double trailingScrollOffset = IndexToLayoutOffset(itemExtent, lastIndex + 1);
+
+
+
+
+        estimatedMaxScrollOffset = Math.Dart:mathDefaultClass.Min(estimatedMaxScrollOffset, EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset));
+        double paintExtent = CalculatePaintOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
+        double cacheExtent = CalculateCacheOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
+        double targetEndScrollOffsetForPaint = constraints.ScrollOffset + constraints.RemainingPaintExtent;
+        int targetLastIndexForPaint = targetEndScrollOffsetForPaint.IsFinite() ? GetMaxChildIndexForScrollOffset(targetEndScrollOffsetForPaint, itemExtent) : null;
+        Geometry = new SliverGeometry(scrollExtent: estimatedMaxScrollOffset, paintExtent: paintExtent, cacheExtent: cacheExtent, maxPaintExtent: estimatedMaxScrollOffset, hasVisualOverflow: (targetLastIndexForPaint != null && lastIndex >= targetLastIndexForPaint) || constraints.ScrollOffset > 0.0);
+        if (estimatedMaxScrollOffset == trailingScrollOffset) ChildManager.SetDidUnderflow(true);
+        ChildManager.DidFinishLayout();
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A sliver that places multiple box children with the same main axis extent in
+/// a linear array.
+///
+/// [RenderSliverFixedExtentList] places its children in a linear array along
+/// the main axis starting at offset zero and without gaps. Each child is forced
+/// to have the [itemExtent] in the main axis and the
+/// [SliverConstraints.crossAxisExtent] in the cross axis.
+///
+/// [RenderSliverFixedExtentList] is more efficient than [RenderSliverList]
+/// because [RenderSliverFixedExtentList] does not need to perform layout on its
+/// children to obtain their extent in the main axis.
+///
+/// See also:
+///
+///  * [RenderSliverList], which does not require its children to have the same
+///    extent in the main axis.
+///  * [RenderSliverFillViewport], which determines the [itemExtent] based on
+///    [SliverConstraints.viewportMainAxisExtent].
+///  * [RenderSliverFillRemaining], which determines the [itemExtent] based on
+///    [SliverConstraints.remainingPaintExtent].
+/// </Summary>
+public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
+{
+    #region constructors
+    public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double itemExtent = default(double))
+    : base(childManager: childManager)
+
+}
+#endregion
+
+#region fields
+internal virtual double _ItemExtent { get; set; }
+public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+#endregion
+}
 
 }

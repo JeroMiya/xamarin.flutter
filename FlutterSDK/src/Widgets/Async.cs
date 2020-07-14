@@ -511,624 +511,794 @@ namespace FlutterSDK.Widgets.Async
         #region constructors
         public StreamBuilderBase(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Stream<T> stream = default(Stream<T>))
         : base(key: key)
-        {
-            this.Stream = stream; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual Stream<T> Stream { get; set; }
-        #endregion
+    #region fields
+    public virtual Stream<T> Stream { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Returns the initial summary of stream interaction, typically representing
-        /// the fact that no interaction has happened at all.
-        ///
-        /// Sub-classes must override this method to provide the initial value for
-        /// the fold computation.
-        /// </Summary>
-        public virtual S Initial() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns an updated version of the [current] summary reflecting that we
-        /// are now connected to a stream.
-        ///
-        /// The default implementation returns [current] as is.
-        /// </Summary>
-        public virtual S AfterConnected(S current) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns an updated version of the [current] summary following a data event.
-        ///
-        /// Sub-classes must override this method to specify how the current summary
-        /// is combined with the new data item in the fold computation.
-        /// </Summary>
-        public virtual S AfterData(S current, T data) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns an updated version of the [current] summary following an error.
-        ///
-        /// The default implementation returns [current] as is.
-        /// </Summary>
-        public virtual S AfterError(S current, @Object error) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns an updated version of the [current] summary following stream
-        /// termination.
-        ///
-        /// The default implementation returns [current] as is.
-        /// </Summary>
-        public virtual S AfterDone(S current) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns an updated version of the [current] summary reflecting that we
-        /// are no longer connected to a stream.
-        ///
-        /// The default implementation returns [current] as is.
-        /// </Summary>
-        public virtual S AfterDisconnected(S current) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a Widget based on the [currentSummary].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, S currentSummary) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Returns the initial summary of stream interaction, typically representing
+    /// the fact that no interaction has happened at all.
+    ///
+    /// Sub-classes must override this method to provide the initial value for
+    /// the fold computation.
+    /// </Summary>
+    public virtual S Initial()
+    {
+        return default(S);
     }
 
 
     /// <Summary>
-    /// State for [StreamBuilderBase].
+    /// Returns an updated version of the [current] summary reflecting that we
+    /// are now connected to a stream.
+    ///
+    /// The default implementation returns [current] as is.
     /// </Summary>
-    public class _StreamBuilderBaseState<T, S> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>>
+    public virtual S AfterConnected(S current) => current;
+
+
+
+    /// <Summary>
+    /// Returns an updated version of the [current] summary following a data event.
+    ///
+    /// Sub-classes must override this method to specify how the current summary
+    /// is combined with the new data item in the fold computation.
+    /// </Summary>
+    public virtual S AfterData(S current, T data)
     {
-        #region constructors
-        public _StreamBuilderBaseState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual StreamSubscription<T> _Subscription { get; set; }
-        internal virtual S _Summary { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Async.StreamBuilderBase<T, S> oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _Subscribe() { throw new NotImplementedException(); }
-
-
-        private void _Unsubscribe() { throw new NotImplementedException(); }
-
-        #endregion
+        return default(S);
     }
 
 
     /// <Summary>
-    /// Immutable representation of the most recent interaction with an asynchronous
-    /// computation.
+    /// Returns an updated version of the [current] summary following an error.
     ///
-    /// See also:
-    ///
-    ///  * [StreamBuilder], which builds itself based on a snapshot from interacting
-    ///    with a [Stream].
-    ///  * [FutureBuilder], which builds itself based on a snapshot from interacting
-    ///    with a [Future].
+    /// The default implementation returns [current] as is.
     /// </Summary>
-    public class AsyncSnapshot<T>
-    {
-        #region constructors
-        internal AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState connectionState, T data, @Object error)
-        : base()
-        {
-            this.ConnectionState = connectionState;
-            this.Data = data;
-            this.Error = error; throw new NotImplementedException();
-        }
-        public static AsyncSnapshot<T> Nothing()
-        {
-            var instance = new AsyncSnapshot<T>(); throw new NotImplementedException();
-        }
-        public static AsyncSnapshot<T> WithData(FlutterSDK.Widgets.Async.ConnectionState state, T data)
-        {
-            var instance = new AsyncSnapshot<T>(); throw new NotImplementedException();
-        }
-        public static AsyncSnapshot<T> WithError(FlutterSDK.Widgets.Async.ConnectionState state, @Object error)
-        {
-            var instance = new AsyncSnapshot<T>(); throw new NotImplementedException();
-        }
-        #endregion
+    public virtual S AfterError(S current, @Object error) => current;
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Async.ConnectionState ConnectionState { get; set; }
-        public virtual T Data { get; set; }
-        public virtual @Object Error { get; set; }
-        public virtual T RequireData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool HasData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns a snapshot like this one, but in the specified [state].
-        ///
-        /// The [data] and [error] fields persist unmodified, even if the new state is
-        /// [ConnectionState.none].
-        /// </Summary>
-        public virtual AsyncSnapshot<T> InState(FlutterSDK.Widgets.Async.ConnectionState state) { throw new NotImplementedException(); }
-
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
     /// <Summary>
-    /// Widget that builds itself based on the latest snapshot of interaction with
-    /// a [Stream].
+    /// Returns an updated version of the [current] summary following stream
+    /// termination.
     ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=MkKEWHfy99Y}
-    ///
-    /// Widget rebuilding is scheduled by each interaction, using [State.setState],
-    /// but is otherwise decoupled from the timing of the stream. The [builder]
-    /// is called at the discretion of the Flutter pipeline, and will thus receive a
-    /// timing-dependent sub-sequence of the snapshots that represent the
-    /// interaction with the stream.
-    ///
-    /// As an example, when interacting with a stream producing the integers
-    /// 0 through 9, the [builder] may be called with any ordered sub-sequence
-    /// of the following snapshots that includes the last one (the one with
-    /// ConnectionState.done):
-    ///
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.waiting, null)`
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.active, 0)`
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.active, 1)`
-    /// * ...
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.active, 9)`
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.done, 9)`
-    ///
-    /// The actual sequence of invocations of the [builder] depends on the relative
-    /// timing of events produced by the stream and the build rate of the Flutter
-    /// pipeline.
-    ///
-    /// Changing the [StreamBuilder] configuration to another stream during event
-    /// generation introduces snapshot pairs of the form:
-    ///
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.none, 5)`
-    /// * `new AsyncSnapshot<int>.withData(ConnectionState.waiting, 5)`
-    ///
-    /// The latter will be produced only when the new stream is non-null, and the
-    /// former only when the old stream is non-null.
-    ///
-    /// The stream may produce errors, resulting in snapshots of the form:
-    ///
-    /// * `new AsyncSnapshot<int>.withError(ConnectionState.active, 'some error')`
-    ///
-    /// The data and error fields of snapshots produced are only changed when the
-    /// state is `ConnectionState.active`.
-    ///
-    /// The initial snapshot data can be controlled by specifying [initialData].
-    /// This should be used to ensure that the first frame has the expected value,
-    /// as the builder will always be called before the stream listener has a chance
-    /// to be processed.
-    ///
-    /// {@tool dartpad --template=stateful_widget_material}
-    ///
-    /// This sample shows a [StreamBuilder] that listens to a Stream that emits bids
-    /// for an auction. Every time the StreamBuilder receives a bid from the Stream,
-    /// it will display the price of the bid below an icon. If the Stream emits an
-    /// error, the error is displayed below an error icon. When the Stream finishes
-    /// emitting bids, the final price is displayed.
-    ///
-    /// ```dart
-    /// Stream<int> _bids = (() async* {
-    ///   await Future<void>.delayed(Duration(seconds: 1));
-    ///   yield 1;
-    ///   await Future<void>.delayed(Duration(seconds: 1));
-    /// })();
-    ///
-    /// Widget build(BuildContext context) {
-    ///   return DefaultTextStyle(
-    ///     style: Theme.of(context).textTheme.headline2,
-    ///     textAlign: TextAlign.center,
-    ///     child: Container(
-    ///       alignment: FractionalOffset.center,
-    ///       color: Colors.white,
-    ///       child: StreamBuilder<int>(
-    ///         stream: _bids,
-    ///         builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-    ///           List<Widget> children;
-    ///           if (snapshot.hasError) {
-    ///             children = <Widget>[
-    ///               Icon(
-    ///                 Icons.error_outline,
-    ///                 color: Colors.red,
-    ///                 size: 60,
-    ///               ),
-    ///               Padding(
-    ///                 padding: const EdgeInsets.only(top: 16),
-    ///                 child: Text('Error: ${snapshot.error}'),
-    ///               )
-    ///             ];
-    ///           } else {
-    ///             switch (snapshot.connectionState) {
-    ///               case ConnectionState.none:
-    ///                 children = <Widget>[
-    ///                   Icon(
-    ///                     Icons.info,
-    ///                     color: Colors.blue,
-    ///                     size: 60,
-    ///                   ),
-    ///                   const Padding(
-    ///                     padding: EdgeInsets.only(top: 16),
-    ///                     child: Text('Select a lot'),
-    ///                   )
-    ///                 ];
-    ///                 break;
-    ///               case ConnectionState.waiting:
-    ///                 children = <Widget>[
-    ///                   SizedBox(
-    ///                     child: const CircularProgressIndicator(),
-    ///                     width: 60,
-    ///                     height: 60,
-    ///                   ),
-    ///                   const Padding(
-    ///                     padding: EdgeInsets.only(top: 16),
-    ///                     child: Text('Awaiting bids...'),
-    ///                   )
-    ///                 ];
-    ///                 break;
-    ///               case ConnectionState.active:
-    ///                 children = <Widget>[
-    ///                   Icon(
-    ///                     Icons.check_circle_outline,
-    ///                     color: Colors.green,
-    ///                     size: 60,
-    ///                   ),
-    ///                   Padding(
-    ///                     padding: const EdgeInsets.only(top: 16),
-    ///                     child: Text('\$${snapshot.data}'),
-    ///                   )
-    ///                 ];
-    ///                 break;
-    ///               case ConnectionState.done:
-    ///                 children = <Widget>[
-    ///                   Icon(
-    ///                     Icons.info,
-    ///                     color: Colors.blue,
-    ///                     size: 60,
-    ///                   ),
-    ///                   Padding(
-    ///                     padding: const EdgeInsets.only(top: 16),
-    ///                     child: Text('\$${snapshot.data} (closed)'),
-    ///                   )
-    ///                 ];
-    ///                 break;
-    ///             }
-    ///           }
-    ///
-    ///           return Column(
-    ///             mainAxisAlignment: MainAxisAlignment.center,
-    ///             crossAxisAlignment: CrossAxisAlignment.center,
-    ///             children: children,
-    ///           );
-    ///         },
-    ///       ),
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [ValueListenableBuilder], which wraps a [ValueListenable] instead of a
-    ///    [Stream].
-    ///  * [StreamBuilderBase], which supports widget building based on a computation
-    ///    that spans all interactions made with the stream.
+    /// The default implementation returns [current] as is.
     /// </Summary>
-    public class StreamBuilder<T> : FlutterSDK.Widgets.Async.StreamBuilderBase<T, FlutterSDK.Widgets.Async.AsyncSnapshot<T>>
+    public virtual S AfterDone(S current) => current;
+
+
+
+    /// <Summary>
+    /// Returns an updated version of the [current] summary reflecting that we
+    /// are no longer connected to a stream.
+    ///
+    /// The default implementation returns [current] as is.
+    /// </Summary>
+    public virtual S AfterDisconnected(S current) => current;
+
+
+
+    /// <Summary>
+    /// Returns a Widget based on the [currentSummary].
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, S currentSummary)
     {
-        #region constructors
-        public StreamBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T initialData = default(T), Stream<T> stream = default(Stream<T>), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
-        : base(key: key, stream: stream)
+        return default(Widget);
+    }
+
+
+    public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>> CreateState() => new _StreamBuilderBaseState<T, S>();
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// State for [StreamBuilderBase].
+/// </Summary>
+public class _StreamBuilderBaseState<T, S> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>>
+{
+    #region constructors
+    public _StreamBuilderBaseState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual StreamSubscription<T> _Subscription { get; set; }
+    internal virtual S _Summary { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Summary = Widget.Initial();
+        _Subscribe();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Async.StreamBuilderBase<T, S> oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (oldWidget.Stream != Widget.Stream)
         {
-            this.InitialData = initialData;
-            this.Builder = builder; throw new NotImplementedException();
+            if (_Subscription != null)
+            {
+                _Unsubscribe();
+                _Summary = Widget.AfterDisconnected(_Summary);
+            }
+
+            _Subscribe();
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
-        public virtual T InitialData { get; set; }
-        #endregion
-
-        #region methods
-
-        public new AsyncSnapshot<T> Initial() { throw new NotImplementedException(); }
-
-
-        public new AsyncSnapshot<T> AfterConnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) { throw new NotImplementedException(); }
-
-
-        public new AsyncSnapshot<T> AfterData(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current, T data) { throw new NotImplementedException(); }
-
-
-        public new AsyncSnapshot<T> AfterError(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current, @Object error) { throw new NotImplementedException(); }
-
-
-        public new AsyncSnapshot<T> AfterDone(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) { throw new NotImplementedException(); }
-
-
-        public new AsyncSnapshot<T> AfterDisconnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Async.AsyncSnapshot<T> currentSummary) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// Widget that builds itself based on the latest snapshot of interaction with
-    /// a [Future].
-    ///
-    /// The [future] must have been obtained earlier, e.g. during [State.initState],
-    /// [State.didUpdateConfig], or [State.didChangeDependencies]. It must not be
-    /// created during the [State.build] or [StatelessWidget.build] method call when
-    /// constructing the [FutureBuilder]. If the [future] is created at the same
-    /// time as the [FutureBuilder], then every time the [FutureBuilder]'s parent is
-    /// rebuilt, the asynchronous task will be restarted.
-    ///
-    /// A general guideline is to assume that every `build` method could get called
-    /// every frame, and to treat omitted calls as an optimization.
-    ///
-    /// {@youtube 560 315 https://www.youtube.com/watch?v=ek8ZPdWj4Qo}
-    ///
-    /// ## Timing
-    ///
-    /// Widget rebuilding is scheduled by the completion of the future, using
-    /// [State.setState], but is otherwise decoupled from the timing of the future.
-    /// The [builder] callback is called at the discretion of the Flutter pipeline, and
-    /// will thus receive a timing-dependent sub-sequence of the snapshots that
-    /// represent the interaction with the future.
-    ///
-    /// A side-effect of this is that providing a new but already-completed future
-    /// to a [FutureBuilder] will result in a single frame in the
-    /// [ConnectionState.waiting] state. This is because there is no way to
-    /// synchronously determine that a [Future] has already completed.
-    ///
-    /// ## Builder contract
-    ///
-    /// For a future that completes successfully with data, assuming [initialData]
-    /// is null, the [builder] will be called with either both or only the latter of
-    /// the following snapshots:
-    ///
-    /// * `new AsyncSnapshot<String>.withData(ConnectionState.waiting, null)`
-    /// * `new AsyncSnapshot<String>.withData(ConnectionState.done, 'some data')`
-    ///
-    /// If that same future instead completed with an error, the [builder] would be
-    /// called with either both or only the latter of:
-    ///
-    /// * `new AsyncSnapshot<String>.withData(ConnectionState.waiting, null)`
-    /// * `new AsyncSnapshot<String>.withError(ConnectionState.done, 'some error')`
-    ///
-    /// The initial snapshot data can be controlled by specifying [initialData]. You
-    /// would use this facility to ensure that if the [builder] is invoked before
-    /// the future completes, the snapshot carries data of your choice rather than
-    /// the default null value.
-    ///
-    /// The data and error fields of the snapshot change only as the connection
-    /// state field transitions from `waiting` to `done`, and they will be retained
-    /// when changing the [FutureBuilder] configuration to another future. If the
-    /// old future has already completed successfully with data as above, changing
-    /// configuration to a new future results in snapshot pairs of the form:
-    ///
-    /// * `new AsyncSnapshot<String>.withData(ConnectionState.none, 'data of first future')`
-    /// * `new AsyncSnapshot<String>.withData(ConnectionState.waiting, 'data of second future')`
-    ///
-    /// In general, the latter will be produced only when the new future is
-    /// non-null, and the former only when the old future is non-null.
-    ///
-    /// A [FutureBuilder] behaves identically to a [StreamBuilder] configured with
-    /// `future?.asStream()`, except that snapshots with `ConnectionState.active`
-    /// may appear for the latter, depending on how the stream is implemented.
-    ///
-    /// {@tool dartpad --template=stateful_widget_material}
-    ///
-    /// This sample shows a [FutureBuilder] that displays a loading spinner while it
-    /// loads data. It displays a success icon and text if the [Future] completes
-    /// with a result, or an error icon and text if the [Future] completes with an
-    /// error. Assume the `_calculation` field is set by pressing a button elsewhere
-    /// in the UI.
-    ///
-    /// ```dart
-    /// Future<String> _calculation = Future<String>.delayed(
-    ///   Duration(seconds: 2),
-    ///   () => 'Data Loaded',
-    /// );
-    ///
-    /// Widget build(BuildContext context) {
-    ///   return DefaultTextStyle(
-    ///     style: Theme.of(context).textTheme.headline2,
-    ///     textAlign: TextAlign.center,
-    ///     child: FutureBuilder<String>(
-    ///       future: _calculation, // a previously-obtained Future<String> or null
-    ///       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-    ///         List<Widget> children;
-    ///         if (snapshot.hasData) {
-    ///           children = <Widget>[
-    ///             Icon(
-    ///               Icons.check_circle_outline,
-    ///               color: Colors.green,
-    ///               size: 60,
-    ///             ),
-    ///             Padding(
-    ///               padding: const EdgeInsets.only(top: 16),
-    ///               child: Text('Result: ${snapshot.data}'),
-    ///             )
-    ///           ];
-    ///         } else if (snapshot.hasError) {
-    ///           children = <Widget>[
-    ///             Icon(
-    ///               Icons.error_outline,
-    ///               color: Colors.red,
-    ///               size: 60,
-    ///             ),
-    ///             Padding(
-    ///               padding: const EdgeInsets.only(top: 16),
-    ///               child: Text('Error: ${snapshot.error}'),
-    ///             )
-    ///           ];
-    ///         } else {
-    ///           children = <Widget>[
-    ///             SizedBox(
-    ///               child: CircularProgressIndicator(),
-    ///               width: 60,
-    ///               height: 60,
-    ///             ),
-    ///             const Padding(
-    ///               padding: EdgeInsets.only(top: 16),
-    ///               child: Text('Awaiting result...'),
-    ///             )
-    ///           ];
-    ///         }
-    ///         return Center(
-    ///           child: Column(
-    ///             mainAxisAlignment: MainAxisAlignment.center,
-    ///             crossAxisAlignment: CrossAxisAlignment.center,
-    ///             children: children,
-    ///           ),
-    ///         );
-    ///       },
-    ///     ),
-    ///   );
-    /// }
-    /// ```
-    /// {@end-tool}
-    /// </Summary>
-    public class FutureBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Build(context, _Summary);
+
+
+
+    public new void Dispose()
     {
-        #region constructors
-        public FutureBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Future<T> future = default(Future<T>), T initialData = default(T), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
-        : base(key: key)
+        _Unsubscribe();
+        base.Dispose();
+    }
+
+
+
+
+    private void _Subscribe()
+    {
+        if (Widget.Stream != null)
         {
-            this.Future = future;
-            this.InitialData = initialData;
-            this.Builder = builder; throw new NotImplementedException();
+            _Subscription = Widget.Stream.Listen((T data) =>
+            {
+                SetState(() =>
+                {
+                    _Summary = Widget.AfterData(_Summary, data);
+                }
+                );
+            }
+            , onError: (object error) =>
+            {
+                SetState(() =>
+                {
+                    _Summary = Widget.AfterError(_Summary, error);
+                }
+    );
+            }
+            , onDone: () =>
+            {
+                SetState(() =>
+                {
+                    _Summary = Widget.AfterDone(_Summary);
+                }
+    );
+            }
+            );
+            _Summary = Widget.AfterConnected(_Summary);
         }
-        #endregion
 
-        #region fields
-        public virtual Future<T> Future { get; set; }
-        public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
-        public virtual T InitialData { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
     }
 
+
+
+
+    private void _Unsubscribe()
+    {
+        if (_Subscription != null)
+        {
+            _Subscription.Cancel();
+            _Subscription = null;
+        }
+
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Immutable representation of the most recent interaction with an asynchronous
+/// computation.
+///
+/// See also:
+///
+///  * [StreamBuilder], which builds itself based on a snapshot from interacting
+///    with a [Stream].
+///  * [FutureBuilder], which builds itself based on a snapshot from interacting
+///    with a [Future].
+/// </Summary>
+public class AsyncSnapshot<T>
+{
+    #region constructors
+    internal AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState connectionState, T data, @Object error)
+    : base()
+
+}
+public static AsyncSnapshot<T> Nothing()
+
+}
+public static AsyncSnapshot<T> WithData(FlutterSDK.Widgets.Async.ConnectionState state, T data)
+
+}
+public static AsyncSnapshot<T> WithError(FlutterSDK.Widgets.Async.ConnectionState state, @Object error)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Async.ConnectionState ConnectionState { get; set; }
+public virtual T Data { get; set; }
+public virtual @Object Error { get; set; }
+public virtual T RequireData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool HasData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns a snapshot like this one, but in the specified [state].
+///
+/// The [data] and [error] fields persist unmodified, even if the new state is
+/// [ConnectionState.none].
+/// </Summary>
+public virtual AsyncSnapshot<T> InState(FlutterSDK.Widgets.Async.ConnectionState state) => AsyncSnapshot<T>._(state, Data, Error);
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    return other is AsyncSnapshot<T> && other.ConnectionState == ConnectionState && other.Data == Data && other.Error == Error;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Widget that builds itself based on the latest snapshot of interaction with
+/// a [Stream].
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=MkKEWHfy99Y}
+///
+/// Widget rebuilding is scheduled by each interaction, using [State.setState],
+/// but is otherwise decoupled from the timing of the stream. The [builder]
+/// is called at the discretion of the Flutter pipeline, and will thus receive a
+/// timing-dependent sub-sequence of the snapshots that represent the
+/// interaction with the stream.
+///
+/// As an example, when interacting with a stream producing the integers
+/// 0 through 9, the [builder] may be called with any ordered sub-sequence
+/// of the following snapshots that includes the last one (the one with
+/// ConnectionState.done):
+///
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.waiting, null)`
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.active, 0)`
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.active, 1)`
+/// * ...
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.active, 9)`
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.done, 9)`
+///
+/// The actual sequence of invocations of the [builder] depends on the relative
+/// timing of events produced by the stream and the build rate of the Flutter
+/// pipeline.
+///
+/// Changing the [StreamBuilder] configuration to another stream during event
+/// generation introduces snapshot pairs of the form:
+///
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.none, 5)`
+/// * `new AsyncSnapshot<int>.withData(ConnectionState.waiting, 5)`
+///
+/// The latter will be produced only when the new stream is non-null, and the
+/// former only when the old stream is non-null.
+///
+/// The stream may produce errors, resulting in snapshots of the form:
+///
+/// * `new AsyncSnapshot<int>.withError(ConnectionState.active, 'some error')`
+///
+/// The data and error fields of snapshots produced are only changed when the
+/// state is `ConnectionState.active`.
+///
+/// The initial snapshot data can be controlled by specifying [initialData].
+/// This should be used to ensure that the first frame has the expected value,
+/// as the builder will always be called before the stream listener has a chance
+/// to be processed.
+///
+/// {@tool dartpad --template=stateful_widget_material}
+///
+/// This sample shows a [StreamBuilder] that listens to a Stream that emits bids
+/// for an auction. Every time the StreamBuilder receives a bid from the Stream,
+/// it will display the price of the bid below an icon. If the Stream emits an
+/// error, the error is displayed below an error icon. When the Stream finishes
+/// emitting bids, the final price is displayed.
+///
+/// ```dart
+/// Stream<int> _bids = (() async* {
+///   await Future<void>.delayed(Duration(seconds: 1));
+///   yield 1;
+///   await Future<void>.delayed(Duration(seconds: 1));
+/// })();
+///
+/// Widget build(BuildContext context) {
+///   return DefaultTextStyle(
+///     style: Theme.of(context).textTheme.headline2,
+///     textAlign: TextAlign.center,
+///     child: Container(
+///       alignment: FractionalOffset.center,
+///       color: Colors.white,
+///       child: StreamBuilder<int>(
+///         stream: _bids,
+///         builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+///           List<Widget> children;
+///           if (snapshot.hasError) {
+///             children = <Widget>[
+///               Icon(
+///                 Icons.error_outline,
+///                 color: Colors.red,
+///                 size: 60,
+///               ),
+///               Padding(
+///                 padding: const EdgeInsets.only(top: 16),
+///                 child: Text('Error: ${snapshot.error}'),
+///               )
+///             ];
+///           } else {
+///             switch (snapshot.connectionState) {
+///               case ConnectionState.none:
+///                 children = <Widget>[
+///                   Icon(
+///                     Icons.info,
+///                     color: Colors.blue,
+///                     size: 60,
+///                   ),
+///                   const Padding(
+///                     padding: EdgeInsets.only(top: 16),
+///                     child: Text('Select a lot'),
+///                   )
+///                 ];
+///                 break;
+///               case ConnectionState.waiting:
+///                 children = <Widget>[
+///                   SizedBox(
+///                     child: const CircularProgressIndicator(),
+///                     width: 60,
+///                     height: 60,
+///                   ),
+///                   const Padding(
+///                     padding: EdgeInsets.only(top: 16),
+///                     child: Text('Awaiting bids...'),
+///                   )
+///                 ];
+///                 break;
+///               case ConnectionState.active:
+///                 children = <Widget>[
+///                   Icon(
+///                     Icons.check_circle_outline,
+///                     color: Colors.green,
+///                     size: 60,
+///                   ),
+///                   Padding(
+///                     padding: const EdgeInsets.only(top: 16),
+///                     child: Text('\$${snapshot.data}'),
+///                   )
+///                 ];
+///                 break;
+///               case ConnectionState.done:
+///                 children = <Widget>[
+///                   Icon(
+///                     Icons.info,
+///                     color: Colors.blue,
+///                     size: 60,
+///                   ),
+///                   Padding(
+///                     padding: const EdgeInsets.only(top: 16),
+///                     child: Text('\$${snapshot.data} (closed)'),
+///                   )
+///                 ];
+///                 break;
+///             }
+///           }
+///
+///           return Column(
+///             mainAxisAlignment: MainAxisAlignment.center,
+///             crossAxisAlignment: CrossAxisAlignment.center,
+///             children: children,
+///           );
+///         },
+///       ),
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [ValueListenableBuilder], which wraps a [ValueListenable] instead of a
+///    [Stream].
+///  * [StreamBuilderBase], which supports widget building based on a computation
+///    that spans all interactions made with the stream.
+/// </Summary>
+public class StreamBuilder<T> : FlutterSDK.Widgets.Async.StreamBuilderBase<T, FlutterSDK.Widgets.Async.AsyncSnapshot<T>>
+{
+    #region constructors
+    public StreamBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T initialData = default(T), Stream<T> stream = default(Stream<T>), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
+    : base(key: key, stream: stream)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
+public virtual T InitialData { get; set; }
+#endregion
+
+#region methods
+
+public new AsyncSnapshot<T> Initial() => AsyncSnapshot<T>.WithData(ConnectionState.None, InitialData);
+
+
+
+public new AsyncSnapshot<T> AfterConnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) => current.InState(ConnectionState.Waiting);
+
+
+
+public new AsyncSnapshot<T> AfterData(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current, T data)
+{
+    return AsyncSnapshot<T>.WithData(ConnectionState.Active, data);
+}
+
+
+
+
+public new AsyncSnapshot<T> AfterError(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current, @Object error)
+{
+    return AsyncSnapshot<T>.WithError(ConnectionState.Active, error);
+}
+
+
+
+
+public new AsyncSnapshot<T> AfterDone(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) => current.InState(ConnectionState.Done);
+
+
+
+public new AsyncSnapshot<T> AfterDisconnected(FlutterSDK.Widgets.Async.AsyncSnapshot<T> current) => current.InState(ConnectionState.None);
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Async.AsyncSnapshot<T> currentSummary) => Builder(context, currentSummary);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Widget that builds itself based on the latest snapshot of interaction with
+/// a [Future].
+///
+/// The [future] must have been obtained earlier, e.g. during [State.initState],
+/// [State.didUpdateConfig], or [State.didChangeDependencies]. It must not be
+/// created during the [State.build] or [StatelessWidget.build] method call when
+/// constructing the [FutureBuilder]. If the [future] is created at the same
+/// time as the [FutureBuilder], then every time the [FutureBuilder]'s parent is
+/// rebuilt, the asynchronous task will be restarted.
+///
+/// A general guideline is to assume that every `build` method could get called
+/// every frame, and to treat omitted calls as an optimization.
+///
+/// {@youtube 560 315 https://www.youtube.com/watch?v=ek8ZPdWj4Qo}
+///
+/// ## Timing
+///
+/// Widget rebuilding is scheduled by the completion of the future, using
+/// [State.setState], but is otherwise decoupled from the timing of the future.
+/// The [builder] callback is called at the discretion of the Flutter pipeline, and
+/// will thus receive a timing-dependent sub-sequence of the snapshots that
+/// represent the interaction with the future.
+///
+/// A side-effect of this is that providing a new but already-completed future
+/// to a [FutureBuilder] will result in a single frame in the
+/// [ConnectionState.waiting] state. This is because there is no way to
+/// synchronously determine that a [Future] has already completed.
+///
+/// ## Builder contract
+///
+/// For a future that completes successfully with data, assuming [initialData]
+/// is null, the [builder] will be called with either both or only the latter of
+/// the following snapshots:
+///
+/// * `new AsyncSnapshot<String>.withData(ConnectionState.waiting, null)`
+/// * `new AsyncSnapshot<String>.withData(ConnectionState.done, 'some data')`
+///
+/// If that same future instead completed with an error, the [builder] would be
+/// called with either both or only the latter of:
+///
+/// * `new AsyncSnapshot<String>.withData(ConnectionState.waiting, null)`
+/// * `new AsyncSnapshot<String>.withError(ConnectionState.done, 'some error')`
+///
+/// The initial snapshot data can be controlled by specifying [initialData]. You
+/// would use this facility to ensure that if the [builder] is invoked before
+/// the future completes, the snapshot carries data of your choice rather than
+/// the default null value.
+///
+/// The data and error fields of the snapshot change only as the connection
+/// state field transitions from `waiting` to `done`, and they will be retained
+/// when changing the [FutureBuilder] configuration to another future. If the
+/// old future has already completed successfully with data as above, changing
+/// configuration to a new future results in snapshot pairs of the form:
+///
+/// * `new AsyncSnapshot<String>.withData(ConnectionState.none, 'data of first future')`
+/// * `new AsyncSnapshot<String>.withData(ConnectionState.waiting, 'data of second future')`
+///
+/// In general, the latter will be produced only when the new future is
+/// non-null, and the former only when the old future is non-null.
+///
+/// A [FutureBuilder] behaves identically to a [StreamBuilder] configured with
+/// `future?.asStream()`, except that snapshots with `ConnectionState.active`
+/// may appear for the latter, depending on how the stream is implemented.
+///
+/// {@tool dartpad --template=stateful_widget_material}
+///
+/// This sample shows a [FutureBuilder] that displays a loading spinner while it
+/// loads data. It displays a success icon and text if the [Future] completes
+/// with a result, or an error icon and text if the [Future] completes with an
+/// error. Assume the `_calculation` field is set by pressing a button elsewhere
+/// in the UI.
+///
+/// ```dart
+/// Future<String> _calculation = Future<String>.delayed(
+///   Duration(seconds: 2),
+///   () => 'Data Loaded',
+/// );
+///
+/// Widget build(BuildContext context) {
+///   return DefaultTextStyle(
+///     style: Theme.of(context).textTheme.headline2,
+///     textAlign: TextAlign.center,
+///     child: FutureBuilder<String>(
+///       future: _calculation, // a previously-obtained Future<String> or null
+///       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+///         List<Widget> children;
+///         if (snapshot.hasData) {
+///           children = <Widget>[
+///             Icon(
+///               Icons.check_circle_outline,
+///               color: Colors.green,
+///               size: 60,
+///             ),
+///             Padding(
+///               padding: const EdgeInsets.only(top: 16),
+///               child: Text('Result: ${snapshot.data}'),
+///             )
+///           ];
+///         } else if (snapshot.hasError) {
+///           children = <Widget>[
+///             Icon(
+///               Icons.error_outline,
+///               color: Colors.red,
+///               size: 60,
+///             ),
+///             Padding(
+///               padding: const EdgeInsets.only(top: 16),
+///               child: Text('Error: ${snapshot.error}'),
+///             )
+///           ];
+///         } else {
+///           children = <Widget>[
+///             SizedBox(
+///               child: CircularProgressIndicator(),
+///               width: 60,
+///               height: 60,
+///             ),
+///             const Padding(
+///               padding: EdgeInsets.only(top: 16),
+///               child: Text('Awaiting result...'),
+///             )
+///           ];
+///         }
+///         return Center(
+///           child: Column(
+///             mainAxisAlignment: MainAxisAlignment.center,
+///             crossAxisAlignment: CrossAxisAlignment.center,
+///             children: children,
+///           ),
+///         );
+///       },
+///     ),
+///   );
+/// }
+/// ```
+/// {@end-tool}
+/// </Summary>
+public class FutureBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public FutureBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Future<T> future = default(Future<T>), T initialData = default(T), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual Future<T> Future { get; set; }
+public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
+public virtual T InitialData { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>> CreateState() => new _FutureBuilderState<T>();
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// State for [FutureBuilder].
+/// </Summary>
+public class _FutureBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>>
+{
+    #region constructors
+    public _FutureBuilderState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual @Object _ActiveCallbackIdentity { get; set; }
+    internal virtual FlutterSDK.Widgets.Async.AsyncSnapshot<T> _Snapshot { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Snapshot = AsyncSnapshot<T>.WithData(ConnectionState.None, Widget.InitialData);
+        _Subscribe();
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Async.FutureBuilder<T> oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (oldWidget.Future != Widget.Future)
+        {
+            if (_ActiveCallbackIdentity != null)
+            {
+                _Unsubscribe();
+                _Snapshot = _Snapshot.InState(ConnectionState.None);
+            }
+
+            _Subscribe();
+        }
+
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Builder(context, _Snapshot);
+
+
+
+    public new void Dispose()
+    {
+        _Unsubscribe();
+        base.Dispose();
+    }
+
+
+
+
+    private void _Subscribe()
+    {
+        if (Widget.Future != null)
+        {
+            object callbackIdentity = new object();
+            _ActiveCallbackIdentity = callbackIdentity;
+            Widget.Future.Then((T data) =>
+            {
+                if (_ActiveCallbackIdentity == callbackIdentity)
+                {
+                    SetState(() =>
+                    {
+                        _Snapshot = AsyncSnapshot<T>.WithData(ConnectionState.Done, data);
+                    }
+                    );
+                }
+
+            }
+            , onError: (object error) =>
+            {
+                if (_ActiveCallbackIdentity == callbackIdentity)
+                {
+                    SetState(() =>
+                    {
+                        _Snapshot = AsyncSnapshot<T>.WithError(ConnectionState.Done, error);
+                    }
+        );
+                }
+
+            }
+            );
+            _Snapshot = _Snapshot.InState(ConnectionState.Waiting);
+        }
+
+    }
+
+
+
+
+    private void _Unsubscribe()
+    {
+        _ActiveCallbackIdentity = null;
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// The state of connection to an asynchronous computation.
+///
+/// See also:
+///
+///  * [AsyncSnapshot], which augments a connection state with information
+///    received from the asynchronous computation.
+/// </Summary>
+public enum ConnectionState
+{
 
     /// <Summary>
-    /// State for [FutureBuilder].
+    /// Not currently connected to any asynchronous computation.
+    ///
+    /// For example, a [FutureBuilder] whose [FutureBuilder.future] is null.
     /// </Summary>
-    public class _FutureBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>>
-    {
-        #region constructors
-        public _FutureBuilderState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual @Object _ActiveCallbackIdentity { get; set; }
-        internal virtual FlutterSDK.Widgets.Async.AsyncSnapshot<T> _Snapshot { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Async.FutureBuilder<T> oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _Subscribe() { throw new NotImplementedException(); }
-
-
-        private void _Unsubscribe() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    None,
     /// <Summary>
-    /// The state of connection to an asynchronous computation.
-    ///
-    /// See also:
-    ///
-    ///  * [AsyncSnapshot], which augments a connection state with information
-    ///    received from the asynchronous computation.
+    /// Connected to an asynchronous computation and awaiting interaction.
     /// </Summary>
-    public enum ConnectionState
-    {
-
-        /// <Summary>
-        /// Not currently connected to any asynchronous computation.
-        ///
-        /// For example, a [FutureBuilder] whose [FutureBuilder.future] is null.
-        /// </Summary>
-        None,
-        /// <Summary>
-        /// Connected to an asynchronous computation and awaiting interaction.
-        /// </Summary>
-        Waiting,
-        /// <Summary>
-        /// Connected to an active asynchronous computation.
-        ///
-        /// For example, a [Stream] that has returned at least one value, but is not
-        /// yet done.
-        /// </Summary>
-        Active,
-        /// <Summary>
-        /// Connected to a terminated asynchronous computation.
-        /// </Summary>
-        Done,
-    }
+    Waiting,
+    /// <Summary>
+    /// Connected to an active asynchronous computation.
+    ///
+    /// For example, a [Stream] that has returned at least one value, but is not
+    /// yet done.
+    /// </Summary>
+    Active,
+    /// <Summary>
+    /// Connected to a terminated asynchronous computation.
+    /// </Summary>
+    Done,
+}
 
 }

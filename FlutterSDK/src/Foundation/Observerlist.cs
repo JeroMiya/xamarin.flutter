@@ -342,7 +342,13 @@ namespace FlutterSDK.Foundation.Observerlist
         ///
         /// This operation has constant time complexity.
         /// </Summary>
-        public virtual void Add(T item) { throw new NotImplementedException(); }
+        public virtual void Add(T item)
+        {
+            _IsDirty = true;
+            _List.Add(item);
+        }
+
+
 
 
         /// <Summary>
@@ -352,10 +358,37 @@ namespace FlutterSDK.Foundation.Observerlist
         ///
         /// Returns whether the item was present in the list.
         /// </Summary>
-        public virtual bool Remove(T item) { throw new NotImplementedException(); }
+        public virtual bool Remove(T item)
+        {
+            _IsDirty = true;
+            _Set?.Clear();
+            return _List.Remove(item);
+        }
 
 
-        public new bool Contains(@Object element) { throw new NotImplementedException(); }
+
+
+        public new bool Contains(@Object element)
+        {
+            if (_List.Count < 3) return _List.Contains(element);
+            if (_IsDirty)
+            {
+                if (_Set == null)
+                {
+                    _Set = HashSet<T>.From(_List);
+                }
+                else
+                {
+                    _Set.AddAll(_List);
+                }
+
+                _IsDirty = false;
+            }
+
+            return _Set.Contains(element);
+        }
+
+
 
         #endregion
     }
@@ -398,7 +431,12 @@ namespace FlutterSDK.Foundation.Observerlist
         ///
         /// This has constant time complexity.
         /// </Summary>
-        public virtual void Add(T item) { throw new NotImplementedException(); }
+        public virtual void Add(T item)
+        {
+            _Map[item] = (_Map[item] ?? 0) + 1;
+        }
+
+
 
 
         /// <Summary>
@@ -408,10 +446,31 @@ namespace FlutterSDK.Foundation.Observerlist
         ///
         /// Returns whether the item was present in the list.
         /// </Summary>
-        public virtual bool Remove(T item) { throw new NotImplementedException(); }
+        public virtual bool Remove(T item)
+        {
+            int value = _Map[item];
+            if (value == null)
+            {
+                return false;
+            }
+
+            if (value == 1)
+            {
+                _Map.Remove(item);
+            }
+            else
+            {
+                _Map[item] = value - 1;
+            }
+
+            return true;
+        }
 
 
-        public new bool Contains(@Object element) { throw new NotImplementedException(); }
+
+
+        public new bool Contains(@Object element) => _Map.ContainsKey(element);
+
 
         #endregion
     }

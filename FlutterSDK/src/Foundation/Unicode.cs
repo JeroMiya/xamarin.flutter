@@ -314,28 +314,27 @@ namespace FlutterSDK.Foundation.Unicode
     {
         #region constructors
         internal Unicode()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual string LRE { get; set; }
-        public virtual string RLE { get; set; }
-        public virtual string PDF { get; set; }
-        public virtual string LRO { get; set; }
-        public virtual string RLO { get; set; }
-        public virtual string LRI { get; set; }
-        public virtual string RLI { get; set; }
-        public virtual string FSI { get; set; }
-        public virtual string PDI { get; set; }
-        public virtual string LRM { get; set; }
-        public virtual string RLM { get; set; }
-        public virtual string ALM { get; set; }
-        #endregion
+    #region fields
+    public virtual string LRE { get; set; }
+    public virtual string RLE { get; set; }
+    public virtual string PDF { get; set; }
+    public virtual string LRO { get; set; }
+    public virtual string RLO { get; set; }
+    public virtual string LRI { get; set; }
+    public virtual string RLI { get; set; }
+    public virtual string FSI { get; set; }
+    public virtual string PDI { get; set; }
+    public virtual string LRM { get; set; }
+    public virtual string RLM { get; set; }
+    public virtual string ALM { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 }

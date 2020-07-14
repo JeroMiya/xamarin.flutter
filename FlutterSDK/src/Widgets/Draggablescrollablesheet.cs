@@ -498,351 +498,513 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
         #region constructors
         public DraggableScrollableSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double initialChildSize = 0.5, double minChildSize = 0.25, double maxChildSize = 1.0, bool expand = true, FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder builder = default(FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder))
         : base(key: key)
-        {
-            this.InitialChildSize = initialChildSize;
-            this.MinChildSize = minChildSize;
-            this.MaxChildSize = maxChildSize;
-            this.Expand = expand;
-            this.Builder = builder; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double InitialChildSize { get; set; }
-        public virtual double MinChildSize { get; set; }
-        public virtual double MaxChildSize { get; set; }
-        public virtual bool Expand { get; set; }
-        public virtual FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder Builder { get; set; }
-        #endregion
+    #region fields
+    public virtual double InitialChildSize { get; set; }
+    public virtual double MinChildSize { get; set; }
+    public virtual double MaxChildSize { get; set; }
+    public virtual bool Expand { get; set; }
+    public virtual FlutterSDK.Widgets.Draggablescrollablesheet.ScrollableWidgetBuilder Builder { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetState CreateState() { throw new NotImplementedException(); }
+    public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetState CreateState() => new _DraggableScrollableSheetState();
 
-        #endregion
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A [Notification] related to the extent, which is the size, and scroll
+/// offset, which is the position of the child list, of the
+/// [DraggableScrollableSheet].
+///
+/// [DraggableScrollableSheet] widgets notify their ancestors when the size of
+/// the sheet changes. When the extent of the sheet changes via a drag,
+/// this notification bubbles up through the tree, which means a given
+/// [NotificationListener] will receive notifications for all descendant
+/// [DraggableScrollableSheet] widgets. To focus on notifications from the
+/// nearest [DraggableScorllableSheet] descendant, check that the [depth]
+/// property of the notification is zero.
+///
+/// When an extent notification is received by a [NotificationListener], the
+/// listener will already have completed build and layout, and it is therefore
+/// too late for that widget to call [State.setState]. Any attempt to adjust the
+/// build or layout based on an extent notification would result in a layout
+/// that lagged one frame behind, which is a poor user experience. Extent
+/// notifications are used primarily to drive animations. The [Scaffold] widget
+/// listens for extent notifications and responds by driving animations for the
+/// [FloatingActionButton] as the bottom sheet scrolls up.
+/// </Summary>
+public class DraggableScrollableNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
+{
+    #region constructors
+    public DraggableScrollableNotification(double extent = default(double), double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual double Extent { get; set; }
+public virtual double MinExtent { get; set; }
+public virtual double MaxExtent { get; set; }
+public virtual double InitialExtent { get; set; }
+public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+#endregion
+
+#region methods
+
+public new void DebugFillDescription(List<string> description)
+{
+    base.DebugFillDescription(description);
+    description.Add($"'minExtent: {MinExtent}, extent: {Extent}, maxExtent: {MaxExtent}, initialExtent: {InitialExtent}'");
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Manages state between [_DraggableScrollableSheetState],
+/// [_DraggableScrollableSheetScrollController], and
+/// [_DraggableScrollableSheetScrollPosition].
+///
+/// The State knows the pixels available along the axis the widget wants to
+/// scroll, but expects to get a fraction of those pixels to render the sheet.
+///
+/// The ScrollPosition knows the number of pixels a user wants to move the sheet.
+///
+/// The [currentExtent] will never be null.
+/// The [availablePixels] will never be null, but may be `double.infinity`.
+/// </Summary>
+public class _DraggableSheetExtent
+{
+    #region constructors
+    public _DraggableSheetExtent(double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), VoidCallback listener = default(VoidCallback))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual double MinExtent { get; set; }
+public virtual double MaxExtent { get; set; }
+public virtual double InitialExtent { get; set; }
+internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<double> _CurrentExtent { get; set; }
+public virtual double AvailablePixels { get; set; }
+public virtual bool IsAtMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsAtMax { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double CurrentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double AdditionalMinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double AdditionalMaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// The scroll position gets inputs in terms of pixels, but the extent is
+/// expected to be expressed as a number between 0..1.
+/// </Summary>
+public virtual void AddPixelDelta(double delta, FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    if (AvailablePixels == 0)
+    {
+        return;
     }
 
+    CurrentExtent += delta / AvailablePixels * MaxExtent;
+    new DraggableScrollableNotification(minExtent: MinExtent, maxExtent: MaxExtent, extent: CurrentExtent, initialExtent: InitialExtent, context: context).Dispatch(context);
+}
+
+
+
+#endregion
+}
+
+
+public class _DraggableScrollableSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableSheet>
+{
+    #region constructors
+    public _DraggableScrollableSheetState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollController _ScrollController { get; set; }
+    internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent _Extent { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Extent = new _DraggableSheetExtent(minExtent: Widget.MinChildSize, maxExtent: Widget.MaxChildSize, initialExtent: Widget.InitialChildSize, listener: _SetExtent);
+        _ScrollController = new _DraggableScrollableSheetScrollController(extent: _Extent);
+    }
+
+
+
+
+    public new void DidChangeDependencies()
+    {
+        base.DidChangeDependencies();
+        if (DraggablescrollablesheetDefaultClass._InheritedResetNotifier.ShouldReset(Context))
+        {
+            if (_ScrollController.Offset != 0.0)
+            {
+                _ScrollController.AnimateTo(0.0, duration: new TimeSpan(milliseconds: 1), curve: CurvesDefaultClass.Curves.Linear);
+            }
+
+            _Extent._CurrentExtent.Value = _Extent.InitialExtent;
+        }
+
+    }
+
+
+
+
+    private void _SetExtent()
+    {
+        SetState(() =>
+        {
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+        {
+            _Extent.AvailablePixels = Widget.MaxChildSize * constraints.Biggest.Height;
+            Widget sheet = new FractionallySizedBox(heightFactor: _Extent.CurrentExtent, child: Widget.Builder(context, _ScrollController), alignment: AlignmentDefaultClass.Alignment.BottomCenter);
+            return Widget.Expand ? SizedBox.Expand(child: sheet) : sheet;
+        }
+        );
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        _ScrollController.Dispose();
+        base.Dispose();
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A [ScrollController] suitable for use in a [ScrollableWidgetBuilder] created
+/// by a [DraggableScrollableSheet].
+///
+/// If a [DraggableScrollableSheet] contains content that is exceeds the height
+/// of its container, this controller will allow the sheet to both be dragged to
+/// fill the container and then scroll the child content.
+///
+/// See also:
+///
+///  * [_DraggableScrollableSheetScrollPosition], which manages the positioning logic for
+///    this controller.
+///  * [PrimaryScrollController], which can be used to establish a
+///    [_DraggableScrollableSheetScrollController] as the primary controller for
+///    descendants.
+/// </Summary>
+public class _DraggableScrollableSheetScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
+{
+    #region constructors
+    public _DraggableScrollableSheetScrollController(double initialScrollOffset = 0.0, string debugLabel = default(string), FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
+    : base(debugLabel: debugLabel, initialScrollOffset: initialScrollOffset)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition)
+{
+    return new _DraggableScrollableSheetScrollPosition(physics: physics, context: context, oldPosition: oldPosition, extent: Extent);
+}
+
+
+
+
+public new void DebugFillDescription(List<string> description)
+{
+    base.DebugFillDescription(description);
+    description.Add($"'extent: {Extent}'");
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A scroll position that manages scroll activities for
+/// [_DraggableScrollableSheetScrollController].
+///
+/// This class is a concrete subclass of [ScrollPosition] logic that handles a
+/// single [ScrollContext], such as a [Scrollable]. An instance of this class
+/// manages [ScrollActivity] instances, which changes the
+/// [_DraggableSheetExtent.currentExtent] or visible content offset in the
+/// [Scrollable]'s [Viewport]
+///
+/// See also:
+///
+///  * [_DraggableScrollableSheetScrollController], which uses this as its [ScrollPosition].
+/// </Summary>
+public class _DraggableScrollableSheetScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
+{
+    #region constructors
+    public _DraggableScrollableSheetScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string), FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
+    : base(physics: physics, context: context, initialPixels: initialPixels, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
+
+}
+#endregion
+
+#region fields
+internal virtual VoidCallback _DragCancelCallback { get; set; }
+public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent { get; set; }
+public virtual bool ListShouldScroll { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent)
+{
+    return base.ApplyContentDimensions(minScrollExtent - Extent.AdditionalMinExtent, maxScrollExtent + Extent.AdditionalMaxExtent);
+}
+
+
+
+
+public new void ApplyUserOffset(double delta)
+{
+    if (!ListShouldScroll && (!(Extent.IsAtMin || Extent.IsAtMax) || (Extent.IsAtMin && delta < 0) || (Extent.IsAtMax && delta > 0)))
+    {
+        Extent.AddPixelDelta(-delta, Context.NotificationContext);
+    }
+    else
+    {
+        base.ApplyUserOffset(delta);
+    }
+
+}
+
+
+
+
+public new void GoBallistic(double velocity)
+{
+    if (velocity == 0.0 || (velocity < 0.0 && ListShouldScroll) || (velocity > 0.0 && Extent.IsAtMax))
+    {
+        base.GoBallistic(velocity);
+        return;
+    }
+
+    _DragCancelCallback?._DragCancelCallback();
+    _DragCancelCallback = null;
+    Simulation simulation = new ClampingScrollSimulation(position: Extent.CurrentExtent, velocity: velocity, tolerance: Physics.Tolerance);
+    AnimationController ballisticController = AnimationController.Unbounded(debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "_DraggableScrollableSheetPosition"), vsync: Context.Vsync);
+    double lastDelta = 0;
+    void _Tick() => {
+        double delta = ballisticController.Value - lastDelta;
+        lastDelta = ballisticController.Value;
+        Extent.AddPixelDelta(delta, Context.NotificationContext);
+        if ((velocity > 0 && Extent.IsAtMax) || (velocity < 0 && Extent.IsAtMin))
+        {
+            velocity = ballisticController.Velocity + (Physics.Tolerance.Velocity * ballisticController.Velocity.Sign);
+            base.GoBallistic(velocity);
+            ballisticController.Stop();
+        }
+        else if (ballisticController.IsCompleted)
+        {
+            base.GoBallistic(0);
+        }
+
+    }
+
+;
+    ballisticController.AddListener(_Tick);
+    ballisticController.AnimateWith(simulation).WhenCompleteOrCancel(ballisticController.Dispose);
+}
+
+
+
+
+public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback)
+{
+    _DragCancelCallback = dragCancelCallback;
+    return base.Drag(details, dragCancelCallback);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A widget that can notify a descendent [DraggableScrollableSheet] that it
+/// should reset its position to the initial state.
+///
+/// The [Scaffold] uses this widget to notify a persistent bottom sheet that
+/// the user has tapped back if the sheet has started to cover more of the body
+/// than when at its initial position. This is important for users of assistive
+/// technology, where dragging may be difficult to communicate.
+/// </Summary>
+public class DraggableScrollableActuator : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public DraggableScrollableActuator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier _Notifier { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Notifies any descendant [DraggableScrollableSheet] that it should reset
+/// to its initial position.
+///
+/// Returns `true` if a [DraggableScrollableActuator] is available and
+/// some [DraggableScrollableSheet] is listening for updates, `false`
+/// otherwise.
+/// </Summary>
+public virtual bool Reset(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    _InheritedResetNotifier notifier = context.DependOnInheritedWidgetOfExactType();
+    if (notifier == null)
+    {
+        return false;
+    }
+
+    return notifier._SendReset();
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _InheritedResetNotifier(child: Child, notifier: _Notifier);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A [ChangeNotifier] to use with [InheritedResetNotifer] to notify
+/// descendants that they should reset to initial state.
+/// </Summary>
+public class _ResetNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+{
+    #region constructors
+    public _ResetNotifier()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _WasCalled { get; set; }
+    #endregion
+
+    #region methods
 
     /// <Summary>
-    /// A [Notification] related to the extent, which is the size, and scroll
-    /// offset, which is the position of the child list, of the
-    /// [DraggableScrollableSheet].
+    /// Fires a reset notification to descendants.
     ///
-    /// [DraggableScrollableSheet] widgets notify their ancestors when the size of
-    /// the sheet changes. When the extent of the sheet changes via a drag,
-    /// this notification bubbles up through the tree, which means a given
-    /// [NotificationListener] will receive notifications for all descendant
-    /// [DraggableScrollableSheet] widgets. To focus on notifications from the
-    /// nearest [DraggableScorllableSheet] descendant, check that the [depth]
-    /// property of the notification is zero.
-    ///
-    /// When an extent notification is received by a [NotificationListener], the
-    /// listener will already have completed build and layout, and it is therefore
-    /// too late for that widget to call [State.setState]. Any attempt to adjust the
-    /// build or layout based on an extent notification would result in a layout
-    /// that lagged one frame behind, which is a poor user experience. Extent
-    /// notifications are used primarily to drive animations. The [Scaffold] widget
-    /// listens for extent notifications and responds by driving animations for the
-    /// [FloatingActionButton] as the bottom sheet scrolls up.
+    /// Returns false if there are no listeners.
     /// </Summary>
-    public class DraggableScrollableNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
+    public virtual bool SendReset()
     {
-        #region constructors
-        public DraggableScrollableNotification(double extent = default(double), double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
-        : base()
+        if (!HasListeners)
         {
-            this.Extent = extent;
-            this.MinExtent = minExtent;
-            this.MaxExtent = maxExtent;
-            this.InitialExtent = initialExtent;
-            this.Context = context; throw new NotImplementedException();
+            return false;
         }
-        #endregion
 
-        #region fields
-        public virtual double Extent { get; set; }
-        public virtual double MinExtent { get; set; }
-        public virtual double MaxExtent { get; set; }
-        public virtual double InitialExtent { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
-
-        #endregion
+        _WasCalled = true;
+        NotifyListeners();
+        return true;
     }
 
 
-    /// <Summary>
-    /// Manages state between [_DraggableScrollableSheetState],
-    /// [_DraggableScrollableSheetScrollController], and
-    /// [_DraggableScrollableSheetScrollPosition].
-    ///
-    /// The State knows the pixels available along the axis the widget wants to
-    /// scroll, but expects to get a fraction of those pixels to render the sheet.
-    ///
-    /// The ScrollPosition knows the number of pixels a user wants to move the sheet.
-    ///
-    /// The [currentExtent] will never be null.
-    /// The [availablePixels] will never be null, but may be `double.infinity`.
-    /// </Summary>
-    public class _DraggableSheetExtent
+
+    #endregion
+}
+
+
+public class _InheritedResetNotifier : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier>
+{
+    #region constructors
+    public _InheritedResetNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier notifier = default(FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier))
+    : base(key: key, child: child, notifier: notifier)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+private bool _SendReset() => Notifier.SendReset();
+
+
+
+/// <Summary>
+/// Specifies whether the [DraggableScrollableSheet] should reset to its
+/// initial position.
+///
+/// Returns true if the notifier requested a reset, false otherwise.
+/// </Summary>
+public virtual bool ShouldReset(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    InheritedWidget widget = context.DependOnInheritedWidgetOfExactType();
+    if (widget == null)
     {
-        #region constructors
-        public _DraggableSheetExtent(double minExtent = default(double), double maxExtent = default(double), double initialExtent = default(double), VoidCallback listener = default(VoidCallback))
-        : base()
-        {
-            this.MinExtent = minExtent;
-            this.MaxExtent = maxExtent;
-            this.InitialExtent = initialExtent; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double MinExtent { get; set; }
-        public virtual double MaxExtent { get; set; }
-        public virtual double InitialExtent { get; set; }
-        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<double> _CurrentExtent { get; set; }
-        public virtual double AvailablePixels { get; set; }
-        public virtual bool IsAtMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsAtMax { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double CurrentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double AdditionalMinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double AdditionalMaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// The scroll position gets inputs in terms of pixels, but the extent is
-        /// expected to be expressed as a number between 0..1.
-        /// </Summary>
-        public virtual void AddPixelDelta(double delta, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return false;
     }
 
 
-    public class _DraggableScrollableSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableSheet>
-    {
-        #region constructors
-        public _DraggableScrollableSheetState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollController _ScrollController { get; set; }
-        internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent _Extent { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
+    _InheritedResetNotifier inheritedNotifier = widget as _InheritedResetNotifier;
+    bool wasCalled = inheritedNotifier.Notifier._WasCalled;
+    inheritedNotifier.Notifier._WasCalled = false;
+    return wasCalled;
+}
 
 
-        public new void DidChangeDependencies() { throw new NotImplementedException(); }
 
-
-        private void _SetExtent() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A [ScrollController] suitable for use in a [ScrollableWidgetBuilder] created
-    /// by a [DraggableScrollableSheet].
-    ///
-    /// If a [DraggableScrollableSheet] contains content that is exceeds the height
-    /// of its container, this controller will allow the sheet to both be dragged to
-    /// fill the container and then scroll the child content.
-    ///
-    /// See also:
-    ///
-    ///  * [_DraggableScrollableSheetScrollPosition], which manages the positioning logic for
-    ///    this controller.
-    ///  * [PrimaryScrollController], which can be used to establish a
-    ///    [_DraggableScrollableSheetScrollController] as the primary controller for
-    ///    descendants.
-    /// </Summary>
-    public class _DraggableScrollableSheetScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
-    {
-        #region constructors
-        public _DraggableScrollableSheetScrollController(double initialScrollOffset = 0.0, string debugLabel = default(string), FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
-        : base(debugLabel: debugLabel, initialScrollOffset: initialScrollOffset)
-        {
-            this.Extent = extent; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Draggablescrollablesheet._DraggableScrollableSheetScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillDescription(List<string> description) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A scroll position that manages scroll activities for
-    /// [_DraggableScrollableSheetScrollController].
-    ///
-    /// This class is a concrete subclass of [ScrollPosition] logic that handles a
-    /// single [ScrollContext], such as a [Scrollable]. An instance of this class
-    /// manages [ScrollActivity] instances, which changes the
-    /// [_DraggableSheetExtent.currentExtent] or visible content offset in the
-    /// [Scrollable]'s [Viewport]
-    ///
-    /// See also:
-    ///
-    ///  * [_DraggableScrollableSheetScrollController], which uses this as its [ScrollPosition].
-    /// </Summary>
-    public class _DraggableScrollableSheetScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
-    {
-        #region constructors
-        public _DraggableScrollableSheetScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string), FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent extent = default(FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent))
-        : base(physics: physics, context: context, initialPixels: initialPixels, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
-        {
-            this.Extent = extent; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual VoidCallback _DragCancelCallback { get; set; }
-        public virtual FlutterSDK.Widgets.Draggablescrollablesheet._DraggableSheetExtent Extent { get; set; }
-        public virtual bool ListShouldScroll { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent) { throw new NotImplementedException(); }
-
-
-        public new void ApplyUserOffset(double delta) { throw new NotImplementedException(); }
-
-
-        public new void GoBallistic(double velocity) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Gestures.Drag.Drag Drag(FlutterSDK.Gestures.Dragdetails.DragStartDetails details, VoidCallback dragCancelCallback) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A widget that can notify a descendent [DraggableScrollableSheet] that it
-    /// should reset its position to the initial state.
-    ///
-    /// The [Scaffold] uses this widget to notify a persistent bottom sheet that
-    /// the user has tapped back if the sheet has started to cover more of the body
-    /// than when at its initial position. This is important for users of assistive
-    /// technology, where dragging may be difficult to communicate.
-    /// </Summary>
-    public class DraggableScrollableActuator : FlutterSDK.Widgets.Framework.StatelessWidget
-    {
-        #region constructors
-        public DraggableScrollableActuator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
-        {
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        internal virtual FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier _Notifier { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Notifies any descendant [DraggableScrollableSheet] that it should reset
-        /// to its initial position.
-        ///
-        /// Returns `true` if a [DraggableScrollableActuator] is available and
-        /// some [DraggableScrollableSheet] is listening for updates, `false`
-        /// otherwise.
-        /// </Summary>
-        public virtual bool Reset(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A [ChangeNotifier] to use with [InheritedResetNotifer] to notify
-    /// descendants that they should reset to initial state.
-    /// </Summary>
-    public class _ResetNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
-    {
-        #region constructors
-        public _ResetNotifier()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual bool _WasCalled { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Fires a reset notification to descendants.
-        ///
-        /// Returns false if there are no listeners.
-        /// </Summary>
-        public virtual bool SendReset() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _InheritedResetNotifier : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier>
-    {
-        #region constructors
-        public _InheritedResetNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier notifier = default(FlutterSDK.Widgets.Draggablescrollablesheet._ResetNotifier))
-        : base(key: key, child: child, notifier: notifier)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        private bool _SendReset() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Specifies whether the [DraggableScrollableSheet] should reset to its
-        /// initial position.
-        ///
-        /// Returns true if the notifier requested a reset, false otherwise.
-        /// </Summary>
-        public virtual bool ShouldReset(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+#endregion
+}
 
 }

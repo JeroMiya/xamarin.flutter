@@ -432,7 +432,21 @@ namespace FlutterSDK.Painting.Clip
     {
         public virtual Canvas Canvas { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        private void _ClipAndPaint(Action<bool> canvasClipCall, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+        private void _ClipAndPaint(Action<bool> canvasClipCall, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter)
+        {
+
+            Canvas.Save();
+            switch (clipBehavior) { case Clip.None: break; case Clip.HardEdge: canvasClipCall(false); break; case Clip.AntiAlias: canvasClipCall(true); break; case Clip.AntiAliasWithSaveLayer: canvasClipCall(true); Canvas.SaveLayer(bounds, new Paint()); break; }
+            painter();
+            if (clipBehavior == Clip.AntiAliasWithSaveLayer)
+            {
+                Canvas.Restore();
+            }
+
+            Canvas.Restore();
+        }
+
+
 
 
         /// <Summary>
@@ -441,7 +455,12 @@ namespace FlutterSDK.Painting.Clip
         ///
         /// `bounds` is the saveLayer bounds used for [Clip.antiAliasWithSaveLayer].
         /// </Summary>
-        public virtual void ClipPathAndPaint(Path path, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+        public virtual void ClipPathAndPaint(Path path, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter)
+        {
+            _ClipAndPaint((bool doAntiAias) => =>Canvas.ClipPath(path, doAntiAlias: doAntiAias), clipBehavior, bounds, painter);
+        }
+
+
 
 
         /// <Summary>
@@ -450,7 +469,12 @@ namespace FlutterSDK.Painting.Clip
         ///
         /// `bounds` is the saveLayer bounds used for [Clip.antiAliasWithSaveLayer].
         /// </Summary>
-        public virtual void ClipRRectAndPaint(FlutterBinding.UI.RRect rrect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+        public virtual void ClipRRectAndPaint(FlutterBinding.UI.RRect rrect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter)
+        {
+            _ClipAndPaint((bool doAntiAias) => =>Canvas.ClipRRect(rrect, doAntiAlias: doAntiAias), clipBehavior, bounds, painter);
+        }
+
+
 
 
         /// <Summary>
@@ -459,7 +483,12 @@ namespace FlutterSDK.Painting.Clip
         ///
         /// `bounds` is the saveLayer bounds used for [Clip.antiAliasWithSaveLayer].
         /// </Summary>
-        public virtual void ClipRectAndPaint(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter) { throw new NotImplementedException(); }
+        public virtual void ClipRectAndPaint(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Clip clipBehavior, FlutterBinding.UI.Rect bounds, Action painter)
+        {
+            _ClipAndPaint((bool doAntiAias) => =>Canvas.ClipRect(rect, doAntiAlias: doAntiAias), clipBehavior, bounds, painter);
+        }
+
+
 
     }
     public static class ClipContextMixin

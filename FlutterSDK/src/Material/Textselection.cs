@@ -436,345 +436,734 @@ namespace FlutterSDK.Material.Textselection
         #region constructors
         public _TextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback handleCut = default(VoidCallback), VoidCallback handleCopy = default(VoidCallback), VoidCallback handlePaste = default(VoidCallback), VoidCallback handleSelectAll = default(VoidCallback), bool isAbove = default(bool))
         : base(key: key)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual VoidCallback HandleCut { get; set; }
+    public virtual VoidCallback HandleCopy { get; set; }
+    public virtual VoidCallback HandlePaste { get; set; }
+    public virtual VoidCallback HandleSelectAll { get; set; }
+    public virtual bool IsAbove { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Textselection._TextSelectionToolbarState CreateState() => new _TextSelectionToolbarState();
+
+
+    #endregion
+}
+
+
+public class _TextSelectionToolbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Textselection._TextSelectionToolbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _TextSelectionToolbarState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _OverflowOpen { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.UniqueKey _ContainerKey { get; set; }
+    #endregion
+
+    #region methods
+
+    private FlutterSDK.Material.Flatbutton.FlatButton _GetItem(VoidCallback onPressed, string label)
+    {
+
+        return new FlatButton(child: new Text(label), onPressed: onPressed);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Textselection._TextSelectionToolbar oldWidget)
+    {
+        if (((Widget.HandleCut == null) != (oldWidget.HandleCut == null)) || ((Widget.HandleCopy == null) != (oldWidget.HandleCopy == null)) || ((Widget.HandlePaste == null) != (oldWidget.HandlePaste == null)) || ((Widget.HandleSelectAll == null) != (oldWidget.HandleSelectAll == null)))
         {
-            this.HandleCut = handleCut;
-            this.HandleCopy = handleCopy;
-            this.HandlePaste = handlePaste;
-            this.HandleSelectAll = handleSelectAll;
-            this.IsAbove = isAbove; throw new NotImplementedException();
+            _ContainerKey = new UniqueKey();
+            _OverflowOpen = false;
         }
-        #endregion
 
-        #region fields
-        public virtual VoidCallback HandleCut { get; set; }
-        public virtual VoidCallback HandleCopy { get; set; }
-        public virtual VoidCallback HandlePaste { get; set; }
-        public virtual VoidCallback HandleSelectAll { get; set; }
-        public virtual bool IsAbove { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Textselection._TextSelectionToolbarState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
+        base.DidUpdateWidget(oldWidget);
     }
 
 
-    public class _TextSelectionToolbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Textselection._TextSelectionToolbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _TextSelectionToolbarState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual bool _OverflowOpen { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.UniqueKey _ContainerKey { get; set; }
-        #endregion
-
-        #region methods
-
-        private FlutterSDK.Material.Flatbutton.FlatButton _GetItem(VoidCallback onPressed, string label) { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Textselection._TextSelectionToolbar oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TextSelectionToolbarContainer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public _TextSelectionToolbarContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool overflowOpen = default(bool))
-        : base(key: key, child: child)
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+        List<Widget> items = new List<Widget>() { };
+        if (items.IsEmpty())
         {
-            this.OverflowOpen = overflowOpen; throw new NotImplementedException();
+            return new Container(width: 0.0, height: 0.0);
         }
-        #endregion
 
-        #region fields
-        public virtual bool OverflowOpen { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+        return new _TextSelectionToolbarContainer(key: _ContainerKey, overflowOpen: _OverflowOpen, child: new AnimatedSize(vsync: this, duration: new TimeSpan(milliseconds: 140), child: new Material(elevation: 1.0, child: new _TextSelectionToolbarItems(isAbove: Widget.IsAbove, overflowOpen: _OverflowOpen, children: new List<Widget>(){new Material(child:new IconButton(icon:new Icon(_OverflowOpen?IconsDefaultClass.Icons.Arrow_back:IconsDefaultClass.Icons.More_vert), onPressed:() => {
+SetState(() => {
+_OverflowOpen=!_OverflowOpen;
+}
+);
+}
+, tooltip:_OverflowOpen?localizations.BackButtonTooltip:localizations.MoreButtonTooltip)), , items}))));
     }
 
 
-    public class _TextSelectionToolbarContainerRenderBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+
+    #endregion
+}
+
+
+public class _TextSelectionToolbarContainer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _TextSelectionToolbarContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool overflowOpen = default(bool))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual bool OverflowOpen { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _TextSelectionToolbarContainerRenderBox(overflowOpen: OverflowOpen);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox renderObject)
+{
+    renderObject.OverflowOpen = OverflowOpen;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    renderObject.OverflowOpen = OverflowOpen;
+}
+
+
+
+#endregion
+}
+
+
+public class _TextSelectionToolbarContainerRenderBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+{
+    #region constructors
+    public _TextSelectionToolbarContainerRenderBox(bool overflowOpen = default(bool))
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual double _ClosedWidth { get; set; }
+internal virtual bool _OverflowOpen { get; set; }
+public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    Child.Layout(Constraints.Loosen(), parentUsesSize: true);
+    if (!OverflowOpen && _ClosedWidth == null)
     {
-        #region constructors
-        public _TextSelectionToolbarContainerRenderBox(bool overflowOpen = default(bool))
-        : base()
+        _ClosedWidth = Child.Size.Width;
+    }
+
+    Size = Constraints.Constrain(new Size(_ClosedWidth == null || Child.Size.Width > _ClosedWidth ? Child.Size.Width : _ClosedWidth, Child.Size.Height));
+    _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
+    childParentData.Offset = new Offset(Size.Width - Child.Size.Width, 0.0);
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
+    context.PaintChild(Child, childParentData.Offset + offset);
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
+    return result.AddWithPaintOffset(offset: childParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+    {
+
+        return Child.HitTest(result, position: transformed);
+    }
+    );
+}
+
+
+
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (!(child.ParentData is _ToolbarParentData))
+    {
+        ((_ToolbarParentData)child.ParentData) = new _ToolbarParentData();
+    }
+
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is _ToolbarParentData))
+    {
+        ((_ToolbarParentData)child.ParentData) = new _ToolbarParentData();
+    }
+
+}
+
+
+
+
+public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+{
+    _ToolbarParentData childParentData = child.ParentData as _ToolbarParentData;
+    transform.Translate(childParentData.Offset.Dx, childParentData.Offset.Dy);
+    base.ApplyPaintTransform(child, transform);
+}
+
+
+
+#endregion
+}
+
+
+public class _TextSelectionToolbarItems : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+{
+    #region constructors
+    public _TextSelectionToolbarItems(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isAbove = default(bool), bool overflowOpen = default(bool), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+    : base(key: key, children: children)
+
+}
+#endregion
+
+#region fields
+public virtual bool IsAbove { get; set; }
+public virtual bool OverflowOpen { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new _TextSelectionToolbarItemsRenderBox(isAbove: IsAbove, overflowOpen: OverflowOpen);
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox renderObject)
+{
+    ..IsAbove = IsAbove..OverflowOpen = OverflowOpen;
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    ..IsAbove = IsAbove..OverflowOpen = OverflowOpen;
+}
+
+
+
+
+public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsElement CreateElement() => new _TextSelectionToolbarItemsElement(this);
+
+
+#endregion
+}
+
+
+public class _ToolbarParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+{
+    #region constructors
+    public _ToolbarParentData()
+    { }
+    #endregion
+
+    #region fields
+    public virtual bool ShouldPaint { get; set; }
+    #endregion
+
+    #region methods
+
+    #endregion
+}
+
+
+public class _TextSelectionToolbarItemsElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
+{
+    #region constructors
+    public _TextSelectionToolbarItemsElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
+    : base(widget)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+private bool _ShouldPaint(FlutterSDK.Widgets.Framework.Element child)
+{
+    return (child.RenderObject.ParentData as _ToolbarParentData).ShouldPaint;
+}
+
+
+
+
+public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+{
+    Children.Where(_ShouldPaint).ForEach(visitor);
+}
+
+
+
+#endregion
+}
+
+
+public class _TextSelectionToolbarItemsRenderBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Textselection._ToolbarParentData>
+{
+    #region constructors
+    public _TextSelectionToolbarItemsRenderBox(bool isAbove = default(bool), bool overflowOpen = default(bool))
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual int _LastIndexThatFits { get; set; }
+internal virtual bool _IsAbove { get; set; }
+internal virtual bool _OverflowOpen { get; set; }
+public virtual bool IsAbove { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private void _LayoutChildren()
+{
+    BoxConstraints sizedConstraints = _OverflowOpen ? Constraints : BoxConstraints.Loose(new Size(Constraints.MaxWidth, TextselectionDefaultClass._KToolbarHeight));
+    int i = -1;
+    double width = 0.0;
+    VisitChildren((RenderObject renderObjectChild) =>
+    {
+        i++;
+        if (_LastIndexThatFits != -1 && !OverflowOpen)
         {
-            throw new NotImplementedException();
+            return;
         }
-        #endregion
 
-        #region fields
-        internal virtual double _ClosedWidth { get; set; }
-        internal virtual bool _OverflowOpen { get; set; }
-        public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TextSelectionToolbarItems : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-    {
-        #region constructors
-        public _TextSelectionToolbarItems(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isAbove = default(bool), bool overflowOpen = default(bool), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-        : base(key: key, children: children)
+        RenderBox child = renderObjectChild as RenderBox;
+        child.Layout(sizedConstraints.Loosen(), parentUsesSize: true);
+        width += child.Size.Width;
+        if (width > sizedConstraints.MaxWidth && _LastIndexThatFits == -1)
         {
-            this.IsAbove = isAbove;
-            this.OverflowOpen = overflowOpen; throw new NotImplementedException();
+            _LastIndexThatFits = i - 1;
         }
-        #endregion
 
-        #region fields
-        public virtual bool IsAbove { get; set; }
-        public virtual bool OverflowOpen { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsElement CreateElement() { throw new NotImplementedException(); }
-
-        #endregion
+    }
+    );
+    RenderBox navButton = FirstChild;
+    if (_LastIndexThatFits != -1 && _LastIndexThatFits == ChildCount - 2 && width - navButton.Size.Width <= sizedConstraints.MaxWidth)
+    {
+        _LastIndexThatFits = -1;
     }
 
+}
 
-    public class _ToolbarParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+
+
+
+private bool _ShouldPaintChild(FlutterSDK.Rendering.@object.RenderObject renderObjectChild, int index)
+{
+    if (renderObjectChild == FirstChild)
     {
-        #region constructors
-        public _ToolbarParentData()
-        { }
-        #endregion
-
-        #region fields
-        public virtual bool ShouldPaint { get; set; }
-        #endregion
-
-        #region methods
-
-        #endregion
+        return _LastIndexThatFits != -1;
     }
 
-
-    public class _TextSelectionToolbarItemsElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
+    if (_LastIndexThatFits == -1)
     {
-        #region constructors
-        public _TextSelectionToolbarItemsElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
-        : base(widget)
+        return true;
+    }
+
+    return (index > _LastIndexThatFits) == OverflowOpen;
+}
+
+
+
+
+private void _PlaceChildren()
+{
+    int i = -1;
+    Size nextSize = new Size(0.0, 0.0);
+    double fitWidth = 0.0;
+    RenderBox navButton = FirstChild;
+    double overflowHeight = OverflowOpen && !IsAbove ? navButton.Size.Height : 0.0;
+    VisitChildren((RenderObject renderObjectChild) =>
+    {
+    i++;
+    RenderBox child = renderObjectChild as RenderBox;
+    _ToolbarParentData childParentData = child.ParentData as _ToolbarParentData;
+    if (renderObjectChild == navButton)
+    {
+        return;
+    }
+
+    if (!_ShouldPaintChild(renderObjectChild, i))
+    {
+        childParentData.ShouldPaint = false;
+        return;
+    }
+
+    childParentData.ShouldPaint = true;
+    if (!OverflowOpen)
+    {
+        childParentData.Offset = new Offset(fitWidth, 0.0);
+        fitWidth += child.Size.Width;
+        nextSize = new Size(fitWidth, Math.Dart:mathDefaultClass.Max(child.Size.Height, nextSize.Height));
+}
+else
+{
+    childParentData.Offset = new Offset(0.0, overflowHeight);
+    overflowHeight += child.Size.Height;
+    nextSize = new Size(Math.Dart:mathDefaultClass.Max(child.Size.Width, nextSize.Width), overflowHeight);
+}
+
+}
+);
+_ToolbarParentData navButtonParentData = navButton.ParentData as _ToolbarParentData;
+if (_ShouldPaintChild(FirstChild, 0))
+{
+    navButtonParentData.ShouldPaint = true;
+    if (OverflowOpen)
+    {
+        navButtonParentData.Offset = IsAbove ? new Offset(0.0, overflowHeight) : Dart:uiDefaultClass.Offset.Zero;
+        nextSize = new Size(nextSize.Width, IsAbove ? nextSize.Height + navButton.Size.Height : nextSize.Height);
+    }
+    else
+    {
+        navButtonParentData.Offset = new Offset(fitWidth, 0.0);
+        nextSize = new Size(nextSize.Width + navButton.Size.Width, nextSize.Height);
+    }
+
+}
+else
+{
+    navButtonParentData.ShouldPaint = false;
+}
+
+Size = nextSize;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    _LastIndexThatFits = -1;
+    if (FirstChild == null)
+    {
+        PerformResize();
+        return;
+    }
+
+    _LayoutChildren();
+    _PlaceChildren();
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    VisitChildren((RenderObject renderObjectChild) =>
+    {
+        RenderBox child = renderObjectChild as RenderBox;
+        _ToolbarParentData childParentData = child.ParentData as _ToolbarParentData;
+        if (!childParentData.ShouldPaint)
         {
-            throw new NotImplementedException();
+            return;
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        private bool _ShouldPaint(FlutterSDK.Widgets.Framework.Element child) { throw new NotImplementedException(); }
-
-
-        public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
-
-        #endregion
+        context.PaintChild(child, childParentData.Offset + offset);
     }
+    );
+}
 
 
-    public class _TextSelectionToolbarItemsRenderBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Textselection._ToolbarParentData>
+
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (!(child.ParentData is _ToolbarParentData))
     {
-        #region constructors
-        public _TextSelectionToolbarItemsRenderBox(bool isAbove = default(bool), bool overflowOpen = default(bool))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual int _LastIndexThatFits { get; set; }
-        internal virtual bool _IsAbove { get; set; }
-        internal virtual bool _OverflowOpen { get; set; }
-        public virtual bool IsAbove { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private void _LayoutChildren() { throw new NotImplementedException(); }
-
-
-        private bool _ShouldPaintChild(FlutterSDK.Rendering.@object.RenderObject renderObjectChild, int index) { throw new NotImplementedException(); }
-
-
-        private void _PlaceChildren() { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-        #endregion
+        ((_ToolbarParentData)child.ParentData) = new _ToolbarParentData();
     }
+
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is _ToolbarParentData))
+    {
+        ((_ToolbarParentData)child.ParentData) = new _ToolbarParentData();
+    }
+
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    RenderBox child = LastChild;
+    while (child != null)
+    {
+        _ToolbarParentData childParentData = child.ParentData as _ToolbarParentData;
+        if (!childParentData.ShouldPaint)
+        {
+            child = childParentData.PreviousSibling;
+            continue;
+        }
+
+        bool isHit = result.AddWithPaintOffset(offset: childParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+        {
+
+            return child.HitTest(result, position: transformed);
+        }
+        );
+        if (isHit) return true;
+        child = childParentData.PreviousSibling;
+    }
+
+    return false;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Centers the toolbar around the given anchor, ensuring that it remains on
+/// screen.
+/// </Summary>
+public class _TextSelectionToolbarLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
+{
+    #region constructors
+    public _TextSelectionToolbarLayout(FlutterBinding.UI.Offset anchor, double upperBounds, bool fitsAbove)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Offset Anchor { get; set; }
+public virtual double UpperBounds { get; set; }
+public virtual bool FitsAbove { get; set; }
+#endregion
+
+#region methods
+
+private double _CenterOn(double position, double width, double min, double max)
+{
+    if (position - width / 2.0 < min)
+    {
+        return min;
+    }
+
+    if (position + width / 2.0 > max)
+    {
+        return max - width;
+    }
+
+    return position - width / 2.0;
+}
+
+
+
+
+public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+{
+    return constraints.Loosen();
+}
+
+
+
+
+public new Offset GetPositionForChild(Size size, Size childSize)
+{
+    return new Offset(_CenterOn(Anchor.Dx, childSize.Width, TextselectionDefaultClass._KToolbarScreenPadding, size.Width - TextselectionDefaultClass._KToolbarScreenPadding), FitsAbove ? Math.Dart : mathDefaultClass.Max(UpperBounds, Anchor.Dy - childSize.Height):Anchor.Dy);
+}
+
+
+
+
+public new bool ShouldRelayout(FlutterSDK.Material.Textselection._TextSelectionToolbarLayout oldDelegate)
+{
+    return Anchor != oldDelegate.Anchor;
+}
+
+
+public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
+{
+    return Anchor != oldDelegate.Anchor;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Draws a single text selection handle which points up and to the left.
+/// </Summary>
+public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+{
+    #region constructors
+    public _TextSelectionHandlePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color Color { get; set; }
+#endregion
+
+#region methods
+
+public new void Paint(Canvas canvas, Size size)
+{
+    Paint paint = new Paint()..Color = Color;
+    double radius = size.Width / 2.0;
+    Rect circle = Rect.FromCircle(center: new Offset(radius, radius), radius: radius);
+    Rect point = Rect.FromLTWH(0.0, 0.0, radius, radius);
+    Path path = new Path();
+    new Path().AddOval(circle);
+    new Path().AddRect(point);
+    canvas.DrawPath(path, paint);
+}
+
+
+
+
+public new bool ShouldRepaint(FlutterSDK.Material.Textselection._TextSelectionHandlePainter oldPainter)
+{
+    return Color != oldPainter.Color;
+}
+
+
+public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+{
+    return Color != oldPainter.Color;
+}
+
+
+
+#endregion
+}
+
+
+public class _MaterialTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
+{
+    #region constructors
+    public _MaterialTextSelectionControls()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Returns the size of the Material handle.
+    /// </Summary>
+    public new Size GetHandleSize(double textLineHeight) => new Size(TextselectionDefaultClass._KHandleSize, TextselectionDefaultClass._KHandleSize);
+
 
 
     /// <Summary>
-    /// Centers the toolbar around the given anchor, ensuring that it remains on
-    /// screen.
+    /// Builder for material-style copy/paste text selection toolbar.
     /// </Summary>
-    public class _TextSelectionToolbarLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
+    public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset selectionMidpoint, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate)
     {
-        #region constructors
-        public _TextSelectionToolbarLayout(FlutterBinding.UI.Offset anchor, double upperBounds, bool fitsAbove)
-        {
-            this.Anchor = anchor;
-            this.UpperBounds = upperBounds;
-            this.FitsAbove = fitsAbove; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Offset Anchor { get; set; }
-        public virtual double UpperBounds { get; set; }
-        public virtual bool FitsAbove { get; set; }
-        #endregion
-
-        #region methods
-
-        private double _CenterOn(double position, double width, double min, double max) { throw new NotImplementedException(); }
 
 
-        public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) { throw new NotImplementedException(); }
-
-
-        public new Offset GetPositionForChild(Size size, Size childSize) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRelayout(FlutterSDK.Material.Textselection._TextSelectionToolbarLayout oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        TextSelectionPoint startTextSelectionPoint = endpoints[0];
+        TextSelectionPoint endTextSelectionPoint = endpoints.Count > 1 ? endpoints[1] : endpoints[0];
+        double closedToolbarHeightNeeded = TextselectionDefaultClass._KToolbarScreenPadding + TextselectionDefaultClass._KToolbarHeight + TextselectionDefaultClass._KToolbarContentDistance;
+        double paddingTop = MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top;
+        double availableHeight = globalEditableRegion.Top + startTextSelectionPoint.Point.Dy - textLineHeight - paddingTop;
+        bool fitsAbove = closedToolbarHeightNeeded <= availableHeight;
+        Offset anchor = new Offset(globalEditableRegion.Left + selectionMidpoint.Dx, fitsAbove ? globalEditableRegion.Top + startTextSelectionPoint.Point.Dy - textLineHeight - TextselectionDefaultClass._KToolbarContentDistance : globalEditableRegion.Top + endTextSelectionPoint.Point.Dy + TextselectionDefaultClass._KToolbarContentDistanceBelow);
+        return new Stack(children: new List<Widget>() { new CustomSingleChildLayout(@delegate: new _TextSelectionToolbarLayout(anchor, TextselectionDefaultClass._KToolbarScreenPadding + paddingTop, fitsAbove), child: new _TextSelectionToolbar(handleCut: CanCut(delegate) ? () => =>HandleCut(delegate):null, handleCopy: CanCopy(delegate) ? () => =>HandleCopy(delegate):null, handlePaste: CanPaste(delegate) ? () => =>HandlePaste(delegate):null, handleSelectAll: CanSelectAll(delegate) ? () => =>HandleSelectAll(delegate):null, isAbove: fitsAbove)) });
     }
+
+
 
 
     /// <Summary>
-    /// Draws a single text selection handle which points up and to the left.
+    /// Builder for material-style text selection handles.
     /// </Summary>
-    public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textHeight)
     {
-        #region constructors
-        public _TextSelectionHandlePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-        {
-            this.Color = color; throw new NotImplementedException();
-        }
-        #endregion
+        Widget handle = new SizedBox(width: TextselectionDefaultClass._KHandleSize, height: TextselectionDefaultClass._KHandleSize, child: new CustomPaint(painter: new _TextSelectionHandlePainter(color: ThemeDefaultClass.Theme.Of(context).TextSelectionHandleColor)));
+        switch (type) { case TextSelectionHandleType.Left: return Transform.Rotate(angle: Math.Dart:mathDefaultClass.Pi / 2.0, child: handle); case TextSelectionHandleType.Right: return handle; case TextSelectionHandleType.Collapsed: return Transform.Rotate(angle: Math.Dart:mathDefaultClass.Pi / 4.0, child: handle); }
 
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRepaint(FlutterSDK.Material.Textselection._TextSelectionHandlePainter oldPainter) { throw new NotImplementedException(); }
-        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        return null;
     }
 
 
-    public class _MaterialTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
+
+
+    /// <Summary>
+    /// Gets anchor for material-style text selection handles.
+    ///
+    /// See [TextSelectionControls.getHandleAnchor].
+    /// </Summary>
+    public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight)
     {
-        #region constructors
-        public _MaterialTextSelectionControls()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns the size of the Material handle.
-        /// </Summary>
-        public new Size GetHandleSize(double textLineHeight) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Builder for material-style copy/paste text selection toolbar.
-        /// </Summary>
-        public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset selectionMidpoint, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Builder for material-style text selection handles.
-        /// </Summary>
-        public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textHeight) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Gets anchor for material-style text selection handles.
-        ///
-        /// See [TextSelectionControls.getHandleAnchor].
-        /// </Summary>
-        public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight) { throw new NotImplementedException(); }
-
-
-        public new bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate) { throw new NotImplementedException(); }
-
-        #endregion
+        switch (type) { case TextSelectionHandleType.Left: return new Offset(TextselectionDefaultClass._KHandleSize, 0); case TextSelectionHandleType.Right: return Dart:uiDefaultClass.Offset.Zero; default: return new Offset(TextselectionDefaultClass._KHandleSize / 2, -4); }
     }
+
+
+
+
+    public new bool CanSelectAll(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate)
+    {
+        TextEditingValue value = delegate.TextEditingValue;
+        return delegate.SelectAllEnabled && value.Text.IsNotEmpty && !(value.Selection.Start == 0 && value.Selection.End == value.Text.Length);
+    }
+
+
+
+    #endregion
+}
 
 }

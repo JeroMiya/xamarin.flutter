@@ -307,7 +307,10 @@ namespace FlutterSDK.Foundation.Bitfield
         /// <Summary>
         /// Returns whether the bit with the given index is set to one.
         /// </Summary>
-        public virtual bool IndexOfOperator(T index) { throw new NotImplementedException(); }
+        public virtual bool IndexOfOperator(T index)
+        {
+            return default(bool);
+        }
 
 
         /// <Summary>
@@ -316,7 +319,9 @@ namespace FlutterSDK.Foundation.Bitfield
         /// If value is true, the bit with the given index is set to one. Otherwise,
         /// the bit is set to zero.
         /// </Summary>
-        public virtual void InsertAtOperator(T index, bool value) { throw new NotImplementedException(); }
+        public virtual void InsertAtOperator(T index, bool value)
+        {
+        }
 
 
         /// <Summary>
@@ -325,7 +330,9 @@ namespace FlutterSDK.Foundation.Bitfield
         /// If the value is true, the bits are all set to one. Otherwise, the bits are
         /// all set to zero. Defaults to setting all the bits to zero.
         /// </Summary>
-        public virtual void Reset(bool value = false) { throw new NotImplementedException(); }
+        public virtual void Reset(bool value = false)
+        {
+        }
 
     }
     public static class BitFieldMixin

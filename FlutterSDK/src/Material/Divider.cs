@@ -449,107 +449,129 @@ namespace FlutterSDK.Material.Divider
         #region constructors
         public Divider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double height = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         : base(key: key)
-        {
-            this.Height = height;
-            this.Thickness = thickness;
-            this.Indent = indent;
-            this.EndIndent = endIndent;
-            this.Color = color; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double Height { get; set; }
-        public virtual double Thickness { get; set; }
-        public virtual double Indent { get; set; }
-        public virtual double EndIndent { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
+    #region fields
+    public virtual double Height { get; set; }
+    public virtual double Thickness { get; set; }
+    public virtual double Indent { get; set; }
+    public virtual double EndIndent { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Computes the [BorderSide] that represents a divider..
-        ///
-        /// If [color] is null, then [DividerThemeData.color] is used. If that is also
-        /// null, then [ThemeData.dividerColor] is used.
-        ///
-        /// If [width] is null, then [DividerThemeData.thickness] is used. If that is
-        /// also null, then this defaults to 0.0 (a hairline border).
-        ///
-        /// If [context] is null, the default color of [BorderSide] is used and the
-        /// default width of 0.0 is used.
-        ///
-        /// {@tool snippet}
-        ///
-        /// This example uses this method to create a box that has a divider above and
-        /// below it. This is sometimes useful with lists, for instance, to separate a
-        /// scrollable section from the rest of the interface.
-        ///
-        /// ```dart
-        /// DecoratedBox(
-        ///   decoration: BoxDecoration(
-        ///     border: Border(
-        ///       top: Divider.createBorderSide(context),
-        ///       bottom: Divider.createBorderSide(context),
-        ///     ),
-        ///   ),
-        ///   // child: ...
-        /// )
-        /// ```
-        /// {@end-tool}
-        /// </Summary>
-        public virtual FlutterSDK.Painting.Borders.BorderSide CreateBorderSide(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = default(double)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// A thin vertical line, with padding on either side.
+    /// Computes the [BorderSide] that represents a divider..
     ///
-    /// In the material design language, this represents a divider. Vertical
-    /// dividers can be used in horizontally scrolling lists, such as a
-    /// [ListView] with [ListView.scrollDirection] set to [Axis.horizontal].
+    /// If [color] is null, then [DividerThemeData.color] is used. If that is also
+    /// null, then [ThemeData.dividerColor] is used.
     ///
-    /// The box's total width is controlled by [width]. The appropriate
-    /// padding is automatically computed from the width.
+    /// If [width] is null, then [DividerThemeData.thickness] is used. If that is
+    /// also null, then this defaults to 0.0 (a hairline border).
     ///
-    /// See also:
+    /// If [context] is null, the default color of [BorderSide] is used and the
+    /// default width of 0.0 is used.
     ///
-    ///  * [ListView.separated], which can be used to generate vertical dividers.
-    ///  * <https://material.io/design/components/dividers.html>
+    /// {@tool snippet}
+    ///
+    /// This example uses this method to create a box that has a divider above and
+    /// below it. This is sometimes useful with lists, for instance, to separate a
+    /// scrollable section from the rest of the interface.
+    ///
+    /// ```dart
+    /// DecoratedBox(
+    ///   decoration: BoxDecoration(
+    ///     border: Border(
+    ///       top: Divider.createBorderSide(context),
+    ///       bottom: Divider.createBorderSide(context),
+    ///     ),
+    ///   ),
+    ///   // child: ...
+    /// )
+    /// ```
+    /// {@end-tool}
     /// </Summary>
-    public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
+    public virtual FlutterSDK.Painting.Borders.BorderSide CreateBorderSide(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = default(double))
     {
-        #region constructors
-        public VerticalDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-        : base(key: key)
+        Color effectiveColor = color ?? (context != null ? (DividerthemeDefaultClass.DividerTheme.Of(context).Color ?? ThemeDefaultClass.Theme.Of(context).DividerColor) : null);
+        double effectiveWidth = width == default(double) ? (context != null ? DividerTheme.of(context).thickness : null) : width ?? 0.0;
+        if (effectiveColor == null)
         {
-            this.Width = width;
-            this.Thickness = thickness;
-            this.Indent = indent;
-            this.EndIndent = endIndent;
-            this.Color = color; throw new NotImplementedException();
+            return new BorderSide(width: effectiveWidth);
         }
-        #endregion
 
-        #region fields
-        public virtual double Width { get; set; }
-        public virtual double Thickness { get; set; }
-        public virtual double Indent { get; set; }
-        public virtual double EndIndent { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new BorderSide(color: effectiveColor, width: effectiveWidth);
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        DividerThemeData dividerTheme = DividerthemeDefaultClass.DividerTheme.Of(context);
+        double height = this.Height ?? dividerTheme.Space ?? 16.0;
+        double thickness = this.Thickness ?? dividerTheme.Thickness ?? 0.0;
+        double indent = this.Indent ?? dividerTheme.Indent ?? 0.0;
+        double endIndent = this.EndIndent ?? dividerTheme.EndIndent ?? 0.0;
+        return new SizedBox(height: height, child: new Center(child: new Container(height: thickness, margin: EdgeInsetsDirectional.Only(start: indent, end: endIndent), decoration: new BoxDecoration(border: new Border(bottom: CreateBorderSide(context, color: Color, width: thickness))))));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A thin vertical line, with padding on either side.
+///
+/// In the material design language, this represents a divider. Vertical
+/// dividers can be used in horizontally scrolling lists, such as a
+/// [ListView] with [ListView.scrollDirection] set to [Axis.horizontal].
+///
+/// The box's total width is controlled by [width]. The appropriate
+/// padding is automatically computed from the width.
+///
+/// See also:
+///
+///  * [ListView.separated], which can be used to generate vertical dividers.
+///  * <https://material.io/design/components/dividers.html>
+/// </Summary>
+public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public VerticalDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual double Width { get; set; }
+public virtual double Thickness { get; set; }
+public virtual double Indent { get; set; }
+public virtual double EndIndent { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    DividerThemeData dividerTheme = DividerthemeDefaultClass.DividerTheme.Of(context);
+    double width = this.Width ?? dividerTheme.Space ?? 16.0;
+    double thickness = this.Thickness ?? dividerTheme.Thickness ?? 0.0;
+    double indent = this.Indent ?? dividerTheme.Indent ?? 0.0;
+    double endIndent = this.EndIndent ?? dividerTheme.EndIndent ?? 0.0;
+    return new SizedBox(width: width, child: new Center(child: new Container(width: thickness, margin: EdgeInsetsDirectional.Only(top: indent, bottom: endIndent), decoration: new BoxDecoration(border: new Border(left: DividerDefaultClass.Divider.CreateBorderSide(context, color: Color, width: thickness))))));
+}
+
+
+
+#endregion
+}
 
 }

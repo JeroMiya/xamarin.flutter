@@ -356,215 +356,262 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
         #region constructors
         public AnimatedIcon(Key key = default(Key), AnimatedIconData icon = default(AnimatedIconData), Animation<double> progress = default(Animation<double>), Color color = default(Color), double size = default(double), string semanticLabel = default(string), TextDirection textDirection = default(TextDirection))
         : base(Key: key)
-        {
-            this.Icon = icon;
-            this.Progress = progress;
-            this.Color = color;
-            this.Size = size;
-            this.SemanticLabel = semanticLabel;
-            this.TextDirection = textDirection; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual object Progress { get; set; }
-        public virtual Color Color { get; set; }
-        public virtual double Size { get; set; }
-        public virtual AnimatedIconData Icon { get; set; }
-        public virtual string SemanticLabel { get; set; }
-        public virtual TextDirection TextDirection { get; set; }
-        internal virtual FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory _PathFactory { get; set; }
-        #endregion
+    #region fields
+    public virtual object Progress { get; set; }
+    public virtual Color Color { get; set; }
+    public virtual double Size { get; set; }
+    public virtual AnimatedIconData Icon { get; set; }
+    public virtual string SemanticLabel { get; set; }
+    public virtual TextDirection TextDirection { get; set; }
+    internal virtual FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory _PathFactory { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public Widget Build(BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _AnimatedIconPainter
+    public Widget Build(BuildContext context)
     {
-        #region constructors
-        public _AnimatedIconPainter(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathFrames> paths = default(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathFrames>), Animation<double> progress = default(Animation<double>), Color color = default(Color), double scale = default(double), bool shouldMirror = default(bool), FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory uiPathFactory = default(FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory))
-        : base(Repaint: progress)
-        {
-            this.Paths = paths;
-            this.Progress = progress;
-            this.Color = color;
-            this.Scale = scale;
-            this.ShouldMirror = shouldMirror;
-            this.UiPathFactory = uiPathFactory; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<FlutterSDK.Material.Animatedicons.Animatedicons._PathFrames> Paths { get; set; }
-        public virtual object Progress { get; set; }
-        public virtual Color Color { get; set; }
-        public virtual double Scale { get; set; }
-        public virtual bool ShouldMirror { get; set; }
-        public virtual FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory UiPathFactory { get; set; }
-        public virtual object SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
-
-
-        public bool ShouldRepaint(FlutterSDK.Material.Animatedicons.Animatedicons._AnimatedIconPainter oldDelegate) { throw new NotImplementedException(); }
-
-
-        public bool HitTest(Offset position) { throw new NotImplementedException(); }
-
-
-        public bool ShouldRebuildSemantics(CustomPainter oldDelegate) { throw new NotImplementedException(); }
-
-        #endregion
+        _AnimatedIconData iconData = Icon as _AnimatedIconData;
+        IconThemeData iconTheme = IconTheme.Of(context);
+        double iconSize = size == default(double) ? iconTheme.size : size;
+        TextDirection textDirection = this.TextDirection ?? Directionality.Of(context);
+        double iconOpacity = iconTheme.Opacity;
+        Color iconColor = Color ?? iconTheme.Color;
+        if (iconOpacity != 1.0) iconColor = iconColor.WithOpacity(iconColor.Opacity * iconOpacity);
+        return Semantics(Label: SemanticLabel, Child: CustomPaint(Size: Size(iconSize, iconSize), Painter: new _AnimatedIconPainter(paths: iconData.Paths, progress: Progress, color: iconColor, scale: iconSize / iconData.Size.Width, shouldMirror: textDirection == TextDirection.Rtl && iconData.MatchTextDirection, uiPathFactory: _PathFactory)));
     }
 
 
-    public class _PathFrames
+
+    #endregion
+}
+
+
+public class _AnimatedIconPainter
+{
+    #region constructors
+    public _AnimatedIconPainter(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathFrames> paths = default(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathFrames>), Animation<double> progress = default(Animation<double>), Color color = default(Color), double scale = default(double), bool shouldMirror = default(bool), FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory uiPathFactory = default(FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory))
+    : base(Repaint: progress)
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Material.Animatedicons.Animatedicons._PathFrames> Paths { get; set; }
+public virtual object Progress { get; set; }
+public virtual Color Color { get; set; }
+public virtual double Scale { get; set; }
+public virtual bool ShouldMirror { get; set; }
+public virtual FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory UiPathFactory { get; set; }
+public virtual object SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public void Paint(Canvas canvas, Size size)
+{
+    canvas.Scale(Scale, Scale);
+    if (ShouldMirror)
     {
-        #region constructors
-        public _PathFrames(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand> commands = default(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand>), List<double> opacities = default(List<double>))
-        {
-            this.Commands = commands;
-            this.Opacities = opacities; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand> Commands { get; set; }
-        public virtual List<double> Opacities { get; set; }
-        #endregion
-
-        #region methods
-
-        public virtual void Paint(Canvas canvas, Color color, FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory uiPathFactory, double progress) { throw new NotImplementedException(); }
-
-        #endregion
+        canvas.Rotate(Math.Pi);
+        canvas.Translate(-size.Width, -size.Height);
     }
 
-
-    /// <Summary>
-    /// Paths are being built by a set of commands e.g moveTo, lineTo, etc...
-    ///
-    /// _PathCommand instances represents such a command, and can apply it to
-    /// a given Path.
-    /// </Summary>
-    public class _PathCommand
-    {
-        #region constructors
-        public _PathCommand()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Applies the path command to [path].
-        ///
-        /// For example if the object is a [_PathMoveTo] command it will invoke
-        /// [Path.moveTo] on [path].
-        /// </Summary>
-        public virtual void Apply(Path path, double progress) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    double clampedProgress = Progress.Value.Clamp(0.0, 1.0) as double;
+    foreach (_PathFrames path in Paths) path.Paint(canvas, Color, UiPathFactory, clampedProgress);
+}
 
 
-    public class _PathMoveTo : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
-    {
-        #region constructors
-        public _PathMoveTo(List<object> points)
-        {
-            this.Points = points; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<object> Points { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Apply(Path path, double progress) { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
-    public class _PathCubicTo : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
-    {
-        #region constructors
-        public _PathCubicTo(List<object> controlPoints1, List<object> controlPoints2, List<object> targetPoints)
-        {
-            this.ControlPoints1 = controlPoints1;
-            this.ControlPoints2 = controlPoints2;
-            this.TargetPoints = targetPoints; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<object> ControlPoints2 { get; set; }
-        public virtual List<object> ControlPoints1 { get; set; }
-        public virtual List<object> TargetPoints { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Apply(Path path, double progress) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+public bool ShouldRepaint(FlutterSDK.Material.Animatedicons.Animatedicons._AnimatedIconPainter oldDelegate)
+{
+    return oldDelegate.Progress.Value != Progress.Value || oldDelegate.Color != Color || oldDelegate.Paths != Paths || oldDelegate.Scale != Scale || oldDelegate.UiPathFactory != UiPathFactory;
+}
 
 
-    public class _PathLineTo : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
-    {
-        #region constructors
-        public _PathLineTo(List<object> points)
-        {
-            this.Points = points; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<object> Points { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Apply(Path path, double progress) { throw new NotImplementedException(); }
-
-        #endregion
-    }
 
 
-    public class _PathClose : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
-    {
-        #region constructors
-        public _PathClose()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+public bool HitTest(Offset position) => null;
 
-        #region fields
-        #endregion
 
-        #region methods
 
-        public new void Apply(Path path, double progress) { throw new NotImplementedException(); }
+public bool ShouldRebuildSemantics(CustomPainter oldDelegate) => false;
 
-        #endregion
-    }
+
+#endregion
+}
+
+
+public class _PathFrames
+{
+    #region constructors
+    public _PathFrames(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand> commands = default(List<FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand>), List<double> opacities = default(List<double>))
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand> Commands { get; set; }
+public virtual List<double> Opacities { get; set; }
+#endregion
+
+#region methods
+
+public virtual void Paint(Canvas canvas, Color color, FlutterSDK.Material.Animatedicons.Animatedicons._UiPathFactory uiPathFactory, double progress)
+{
+    double opacity = AnimatediconsDefaultClass._Interpolate(Opacities, progress, LerpDouble);
+    Ui.Paint paint = Ui.Paint()..Style = PaintingStyle.Fill..Color = color.WithOpacity(color.Opacity * opacity);
+    Ui.Path path = uiPathFactory();
+    foreach (_PathCommand command in Commands) command.Apply(path, progress);
+    canvas.DrawPath(path, paint);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Paths are being built by a set of commands e.g moveTo, lineTo, etc...
+///
+/// _PathCommand instances represents such a command, and can apply it to
+/// a given Path.
+/// </Summary>
+public class _PathCommand
+{
+    #region constructors
+    public _PathCommand()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Applies the path command to [path].
+///
+/// For example if the object is a [_PathMoveTo] command it will invoke
+/// [Path.moveTo] on [path].
+/// </Summary>
+public virtual void Apply(Path path, double progress)
+{
+}
+
+#endregion
+}
+
+
+public class _PathMoveTo : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
+{
+    #region constructors
+    public _PathMoveTo(List<object> points)
+
+}
+#endregion
+
+#region fields
+public virtual List<object> Points { get; set; }
+#endregion
+
+#region methods
+
+public new void Apply(Path path, double progress)
+{
+    Offset offset = AnimatediconsDefaultClass._Interpolate(Points, progress, Offset.Lerp);
+    path.MoveTo(offset.Dx, offset.Dy);
+}
+
+
+
+#endregion
+}
+
+
+public class _PathCubicTo : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
+{
+    #region constructors
+    public _PathCubicTo(List<object> controlPoints1, List<object> controlPoints2, List<object> targetPoints)
+
+}
+#endregion
+
+#region fields
+public virtual List<object> ControlPoints2 { get; set; }
+public virtual List<object> ControlPoints1 { get; set; }
+public virtual List<object> TargetPoints { get; set; }
+#endregion
+
+#region methods
+
+public new void Apply(Path path, double progress)
+{
+    Offset controlPoint1 = AnimatediconsDefaultClass._Interpolate(ControlPoints1, progress, Offset.Lerp);
+    Offset controlPoint2 = AnimatediconsDefaultClass._Interpolate(ControlPoints2, progress, Offset.Lerp);
+    Offset targetPoint = AnimatediconsDefaultClass._Interpolate(TargetPoints, progress, Offset.Lerp);
+    path.CubicTo(controlPoint1.Dx, controlPoint1.Dy, controlPoint2.Dx, controlPoint2.Dy, targetPoint.Dx, targetPoint.Dy);
+}
+
+
+
+#endregion
+}
+
+
+public class _PathLineTo : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
+{
+    #region constructors
+    public _PathLineTo(List<object> points)
+
+}
+#endregion
+
+#region fields
+public virtual List<object> Points { get; set; }
+#endregion
+
+#region methods
+
+public new void Apply(Path path, double progress)
+{
+    Offset point = AnimatediconsDefaultClass._Interpolate(Points, progress, Offset.Lerp);
+    path.LineTo(point.Dx, point.Dy);
+}
+
+
+
+#endregion
+}
+
+
+public class _PathClose : FlutterSDK.Material.Animatedicons.Animatedicons._PathCommand
+{
+    #region constructors
+    public _PathClose()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void Apply(Path path, double progress)
+{
+    path.Close();
+}
+
+
+
+#endregion
+}
 
 }

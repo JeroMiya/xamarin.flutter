@@ -77,7 +77,14 @@ namespace FlutterSDK.Animation.Listenerhelpers
         ///    become empty again, and in turn cause this method to call
         ///    [didStartListening] again.
         /// </Summary>
-        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
+        public virtual void DidRegisterListener()
+        {
+
+            if (_ListenerCounter == 0) DidStartListening();
+            _ListenerCounter += 1;
+        }
+
+
 
 
         /// <Summary>
@@ -88,19 +95,30 @@ namespace FlutterSDK.Animation.Listenerhelpers
         ///
         ///  * [didRegisterListener], which causes the listener list to become non-empty.
         /// </Summary>
-        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
+        public virtual void DidUnregisterListener()
+        {
+
+            _ListenerCounter -= 1;
+            if (_ListenerCounter == 0) DidStopListening();
+        }
+
+
 
 
         /// <Summary>
         /// Called when the number of listeners changes from zero to one.
         /// </Summary>
-        public virtual void DidStartListening() { throw new NotImplementedException(); }
+        public virtual void DidStartListening()
+        {
+        }
 
 
         /// <Summary>
         /// Called when the number of listeners changes from one to zero.
         /// </Summary>
-        public virtual void DidStopListening() { throw new NotImplementedException(); }
+        public virtual void DidStopListening()
+        {
+        }
 
     }
     public static class AnimationLazyListenerMixinMixin
@@ -131,20 +149,32 @@ namespace FlutterSDK.Animation.Listenerhelpers
         /// <Summary>
         /// This implementation ignores listener registrations.
         /// </Summary>
-        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
+        public virtual void DidRegisterListener()
+        {
+        }
+
+
 
 
         /// <Summary>
         /// This implementation ignores listener registrations.
         /// </Summary>
-        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
+        public virtual void DidUnregisterListener()
+        {
+        }
+
+
 
 
         /// <Summary>
         /// Release the resources used by this object. The object is no longer usable
         /// after this method is called.
         /// </Summary>
-        public virtual void Dispose() { throw new NotImplementedException(); }
+        public virtual void Dispose()
+        {
+        }
+
+
 
     }
     public static class AnimationEagerListenerMixinMixin
@@ -177,7 +207,9 @@ namespace FlutterSDK.Animation.Listenerhelpers
         /// At the time this method is called the registered listener is not yet
         /// notified by [notifyListeners].
         /// </Summary>
-        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
+        public virtual void DidRegisterListener()
+        {
+        }
 
 
         /// <Summary>
@@ -186,7 +218,9 @@ namespace FlutterSDK.Animation.Listenerhelpers
         /// At the time this method is called the removed listener is no longer
         /// notified by [notifyListeners].
         /// </Summary>
-        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
+        public virtual void DidUnregisterListener()
+        {
+        }
 
 
         /// <Summary>
@@ -194,7 +228,13 @@ namespace FlutterSDK.Animation.Listenerhelpers
         ///
         /// Listeners can be removed with [removeListener].
         /// </Summary>
-        public virtual void AddListener(VoidCallback listener) { throw new NotImplementedException(); }
+        public virtual void AddListener(VoidCallback listener)
+        {
+            DidRegisterListener();
+            _Listeners.Add(listener);
+        }
+
+
 
 
         /// <Summary>
@@ -202,7 +242,17 @@ namespace FlutterSDK.Animation.Listenerhelpers
         ///
         /// Listeners can be added with [addListener].
         /// </Summary>
-        public virtual void RemoveListener(VoidCallback listener) { throw new NotImplementedException(); }
+        public virtual void RemoveListener(VoidCallback listener)
+        {
+            bool removed = _Listeners.Remove(listener);
+            if (removed)
+            {
+                DidUnregisterListener();
+            }
+
+        }
+
+
 
 
         /// <Summary>
@@ -211,95 +261,153 @@ namespace FlutterSDK.Animation.Listenerhelpers
         /// If listeners are added or removed during this function, the modifications
         /// will not change which listeners are called during this iteration.
         /// </Summary>
-        public virtual void NotifyListeners() { throw new NotImplementedException(); }
-
-    }
-    public static class AnimationLocalListenersMixinMixin
-    {
-        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin>();
-        static AnimationLocalListenersMixin GetOrCreate(IAnimationLocalListenersMixin instance)
+        public virtual void NotifyListeners()
         {
-            if (!_table.TryGetValue(instance, out var value))
+            List<VoidCallback> localListeners = List<VoidCallback>.From(_Listeners);
+            foreach (VoidCallback listener in localListeners)
             {
-                value = new AnimationLocalListenersMixin();
-                _table.Add(instance, value);
+                InformationCollector collector = default(InformationCollector);
+
+                try
+                {
+                    if (_Listeners.Contains(listener)) listener();
+                }
+                catch (exception,stack){
+                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "animation library", context: new ErrorDescription($"'while notifying listeners for {GetType()}'"), informationCollector: collector));
+                }
+
+                }
+
             }
-            return (AnimationLocalListenersMixin)value;
+
+
+
         }
-        public static void DidRegisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
-        public static void DidUnregisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
-        public static void AddListener(this IAnimationLocalListenersMixin instance, VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
-        public static void RemoveListener(this IAnimationLocalListenersMixin instance, VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
-        public static void NotifyListeners(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).NotifyListeners();
-    }
-
-
-    public interface IAnimationLocalStatusListenersMixin { }
-
-    public class AnimationLocalStatusListenersMixin
-    {
-        internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _StatusListeners { get; set; }
-
-        /// <Summary>
-        /// Called immediately before a status listener is added via [addStatusListener].
-        ///
-        /// At the time this method is called the registered listener is not yet
-        /// notified by [notifyStatusListeners].
-        /// </Summary>
-        public virtual void DidRegisterListener() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called immediately after a status listener is removed via [removeStatusListener].
-        ///
-        /// At the time this method is called the removed listener is no longer
-        /// notified by [notifyStatusListeners].
-        /// </Summary>
-        public virtual void DidUnregisterListener() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Calls listener every time the status of the animation changes.
-        ///
-        /// Listeners can be removed with [removeStatusListener].
-        /// </Summary>
-        public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Stops calling the listener every time the status of the animation changes.
-        ///
-        /// Listeners can be added with [addStatusListener].
-        /// </Summary>
-        public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Calls all the status listeners.
-        ///
-        /// If listeners are added or removed during this function, the modifications
-        /// will not change which listeners are called during this iteration.
-        /// </Summary>
-        public virtual void NotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus status) { throw new NotImplementedException(); }
-
-    }
-    public static class AnimationLocalStatusListenersMixinMixin
-    {
-        static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin>();
-        static AnimationLocalStatusListenersMixin GetOrCreate(IAnimationLocalStatusListenersMixin instance)
+        public static class AnimationLocalListenersMixinMixin
         {
-            if (!_table.TryGetValue(instance, out var value))
+            static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalListenersMixin, AnimationLocalListenersMixin>();
+            static AnimationLocalListenersMixin GetOrCreate(IAnimationLocalListenersMixin instance)
             {
-                value = new AnimationLocalStatusListenersMixin();
-                _table.Add(instance, value);
+                if (!_table.TryGetValue(instance, out var value))
+                {
+                    value = new AnimationLocalListenersMixin();
+                    _table.Add(instance, value);
+                }
+                return (AnimationLocalListenersMixin)value;
             }
-            return (AnimationLocalStatusListenersMixin)value;
+            public static void DidRegisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
+            public static void DidUnregisterListener(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
+            public static void AddListener(this IAnimationLocalListenersMixin instance, VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
+            public static void RemoveListener(this IAnimationLocalListenersMixin instance, VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
+            public static void NotifyListeners(this IAnimationLocalListenersMixin instance) => GetOrCreate(instance).NotifyListeners();
         }
-        public static void DidRegisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
-        public static void DidUnregisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
-        public static void AddStatusListener(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).AddStatusListener(listener);
-        public static void RemoveStatusListener(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).RemoveStatusListener(listener);
-        public static void NotifyStatusListeners(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatus status) => GetOrCreate(instance).NotifyStatusListeners(status);
-    }
 
-}
+
+        public interface IAnimationLocalStatusListenersMixin { }
+
+        public class AnimationLocalStatusListenersMixin
+        {
+            internal virtual FlutterSDK.Foundation.Observerlist.ObserverList<object> _StatusListeners { get; set; }
+
+            /// <Summary>
+            /// Called immediately before a status listener is added via [addStatusListener].
+            ///
+            /// At the time this method is called the registered listener is not yet
+            /// notified by [notifyStatusListeners].
+            /// </Summary>
+            public virtual void DidRegisterListener()
+            {
+            }
+
+
+            /// <Summary>
+            /// Called immediately after a status listener is removed via [removeStatusListener].
+            ///
+            /// At the time this method is called the removed listener is no longer
+            /// notified by [notifyStatusListeners].
+            /// </Summary>
+            public virtual void DidUnregisterListener()
+            {
+            }
+
+
+            /// <Summary>
+            /// Calls listener every time the status of the animation changes.
+            ///
+            /// Listeners can be removed with [removeStatusListener].
+            /// </Summary>
+            public virtual void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+            {
+                DidRegisterListener();
+                _StatusListeners.Add(listener);
+            }
+
+
+
+
+            /// <Summary>
+            /// Stops calling the listener every time the status of the animation changes.
+            ///
+            /// Listeners can be added with [addStatusListener].
+            /// </Summary>
+            public virtual void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+            {
+                bool removed = _StatusListeners.Remove(listener);
+                if (removed)
+                {
+                    DidUnregisterListener();
+                }
+
+            }
+
+
+
+
+            /// <Summary>
+            /// Calls all the status listeners.
+            ///
+            /// If listeners are added or removed during this function, the modifications
+            /// will not change which listeners are called during this iteration.
+            /// </Summary>
+            public virtual void NotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus status)
+            {
+                List<AnimationStatusListener> localListeners = List<AnimationStatusListener>.From(_StatusListeners);
+                foreach (AnimationStatusListener listener in localListeners)
+                {
+                    try
+                    {
+                        if (_StatusListeners.Contains(listener)) listener(status);
+                    }
+                    catch (exception,stack){
+                        InformationCollector collector = default(InformationCollector);
+
+                        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "animation library", context: new ErrorDescription($"'while notifying status listeners for {GetType()}'"), informationCollector: collector));
+                    }
+
+                    }
+
+                }
+
+
+
+            }
+            public static class AnimationLocalStatusListenersMixinMixin
+            {
+                static System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAnimationLocalStatusListenersMixin, AnimationLocalStatusListenersMixin>();
+                static AnimationLocalStatusListenersMixin GetOrCreate(IAnimationLocalStatusListenersMixin instance)
+                {
+                    if (!_table.TryGetValue(instance, out var value))
+                    {
+                        value = new AnimationLocalStatusListenersMixin();
+                        _table.Add(instance, value);
+                    }
+                    return (AnimationLocalStatusListenersMixin)value;
+                }
+                public static void DidRegisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidRegisterListener();
+                public static void DidUnregisterListener(this IAnimationLocalStatusListenersMixin instance) => GetOrCreate(instance).DidUnregisterListener();
+                public static void AddStatusListener(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).AddStatusListener(listener);
+                public static void RemoveStatusListener(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatusListener listener) => GetOrCreate(instance).RemoveStatusListener(listener);
+                public static void NotifyStatusListeners(this IAnimationLocalStatusListenersMixin instance, FlutterSDK.Animation.Animation.AnimationStatus status) => GetOrCreate(instance).NotifyStatusListeners(status);
+            }
+
+        }

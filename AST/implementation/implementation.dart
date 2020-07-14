@@ -6,6 +6,7 @@ import 'package:analyzer/src/dart/element/element.dart';
 import 'package:front_end/src/scanner/token.dart';
 import '../naming.dart';
 import '../config.dart';
+import '../types.dart';
 import 'loops.dart';
 import 'exceptions.dart';
 import 'literals.dart';
@@ -223,9 +224,90 @@ class Implementation {
       return Literals.processMapLiteralEntry(entity);
     } else if (entity is Annotation) {
       return ''; // Just ignoring these, because properties in the element determine these annotations, I don't need to parse them.
+    } else if (entity is DefaultFormalParameter) {
+      return processDefaultFormalParameter(entity);
+    } else if (entity is GenericFunctionType) {
+      return processGenericFunctionType(entity);
+    } else if (entity is RethrowExpression) {
+      return processRethrowExpression(entity);
     } else {
       throw new AssertionError('Unknown entity');
     }
+  }
+
+  static String processGenericFunctionType(GenericFunctionType entity) {
+    // HACK: this implementation only works for a limited set of cases
+    // as seen in the current Flutter framework:
+    // Func<R>
+    // Func<T, R>
+    // Action
+    // Action<T>
+    // Where R and T are simple types where .toString() produces the right
+    // C# type annotations. We're missing some function overloads for the
+    // element types involved here.
+    // TODO: Move this to Types
+    String ret = '';
+    String returnType = entity.returnType.toString();
+    if (returnType.contains('void')) {
+      if (entity.parameters.parameterElements.length == 0) {
+        ret = 'Action';
+      } else if (entity.parameters.parameterElements.length == 1) {
+        String paramType = entity.parameters.parameterElements[0].toString();
+        ret = 'Action<${paramType}>';
+      } else {
+        throw new AssertionError(
+            'Currently only Actions with 0 or 1 arguments are supported');
+      }
+    } else {
+      if (entity.parameters.parameterElements.length == 0) {
+        ret = 'Func<${returnType}>';
+      } else if (entity.parameters.parameterElements.length == 1) {
+        String paramType = entity.parameters.parameterElements[0].toString();
+        ret = 'Func<${paramType}, ${returnType}>';
+      } else {
+        throw new AssertionError(
+            'Currently only Funcs with 0 or 1 arguments are supported');
+      }
+    }
+
+    // Since this is a HACK that only works for the instances I encountered
+    // when I wrote it, check that the output is one of the expected outputs
+    // and warn the user if it isn't.
+    switch (ret) {
+      case 'Func<TextSelectionDelegate , bool>':
+      case 'Action<TextSelectionDelegate >':
+      case 'Func<String>':
+        break;
+      default:
+        print(
+            "HACK WARNING: processGenericFunctionType is returning $ret which might not be correct.");
+    }
+    return ret;
+  }
+
+  static String processRethrowExpression(RethrowExpression entity) {
+    return "throw";
+  }
+
+  static String processDefaultFormalParameter(DefaultFormalParameter entity) {
+    // HACK: This only works for types where .toString() produces the correct
+    // C# type annotation.
+    // TODO: implement this properly
+    String ret = entity.toString();
+
+    // Since this is a HACK that only works for the instances I encountered
+    // when I wrote it, check that the output is one of the expected outputs
+    // and warn the user if it isn't.
+    switch (ret) {
+      case 'bool forceSubdivide = false':
+      case 'int cacheWidth':
+      case 'int cacheHeight':
+        break;
+      default:
+        print(
+            "HACK WARNING: processDefaultFormalParamater is returning $ret which might not be correct.");
+    }
+    return ret;
   }
 
   static String processPropertyAccess(PropertyAccess access) {
@@ -328,8 +410,8 @@ class Implementation {
     var csharp = "";
     for (var entity in label.childEntities) {
       if (entity is SimpleIdentifier)
-csharp += Naming.escapeFixedWords(processEntity(entity));
-      else 
+        csharp += Naming.escapeFixedWords(processEntity(entity));
+      else
         csharp += processEntity(entity);
     }
     return csharp;
@@ -522,10 +604,10 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
     for (var entity in expression.childEntities) {
       csharp += processEntity(entity);
     }
-    
+
     // TODO: No such thing as named constructors in C#
     // Will need to look at Static Method calls without the new.
-    if (!csharp.startsWith('new ') && !isNamedConstructor) 
+    if (!csharp.startsWith('new ') && !isNamedConstructor)
       csharp = 'new ' + csharp;
     return csharp;
   }
@@ -545,7 +627,8 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
         expression.childEntities.elementAt(1).toString() == '??') {
       var first = expression.childEntities.elementAt(0);
       var second = expression.childEntities.elementAt(2);
-      if (first is SimpleIdentifier && first.staticType != null &&
+      if (first is SimpleIdentifier &&
+          first.staticType != null &&
           first.staticType.displayName ==
               'double') //TODO: Should cover all non-nullable value types
         return '$first == default(${first.staticType.displayName}) ? $second : $first';
@@ -573,12 +656,11 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
 
       while (parentEntity != null &&
           (parentEntity is! VariableDeclaration &&
-              parentEntity is! AssignmentExpression 
-              && parentEntity is! CascadeExpression))
+              parentEntity is! AssignmentExpression &&
+              parentEntity is! CascadeExpression))
         parentEntity = parentEntity.parent;
 
-      if (parentEntity == null)
-      parentEntity.toString();
+      if (parentEntity == null) parentEntity.toString();
 
       String processedEntity =
           processEntity(parentEntity.childEntities.toList()[0]);
@@ -604,9 +686,12 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
     var csharp = '';
 
     // Check if this is directly inside the namespace and was mapped inside the namespace default class
-    if(identifier.staticElement != null && identifier.staticElement.enclosingElement is CompilationUnitElement && !(identifier.staticElement is EnumElementImpl)) {
+    if (identifier.staticElement != null &&
+        identifier.staticElement.enclosingElement is CompilationUnitElement &&
+        !(identifier.staticElement is EnumElementImpl)) {
       // add the default class to the call
-      var defaultClass = Naming.DefaultClassName(identifier.staticElement.enclosingElement);
+      var defaultClass =
+          Naming.DefaultClassName(identifier.staticElement.enclosingElement);
       csharp += defaultClass + ".";
     }
 
@@ -784,8 +869,7 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
 
   static String processTypeName(TypeName name) {
     var csharp = '';
-    if (name.toString().toLowerCase().contains('valuechanged'))
-    name = name;
+    if (name.toString().toLowerCase().contains('valuechanged')) name = name;
     for (var entity in name.childEntities) csharp += processEntity(entity);
     return csharp;
   }
@@ -793,7 +877,7 @@ csharp += Naming.escapeFixedWords(processEntity(entity));
   static String fieldBody(PropertyAccessorElement element) {
     if (Config.includeFieldImplementations && element != null) {
       // TODO: this is all messed up anyway
-     
+
       var body = element.computeNode();
       var bodyLines = Naming.tokenToText(body.beginToken, false).split("\n");
       var rawBody = bodyLines.map((l) => "${l}\n").join();

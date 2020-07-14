@@ -459,106 +459,211 @@ namespace FlutterSDK.Widgets.Sliverprototypeextentlist
         #region constructors
         public SliverPrototypeExtentList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), FlutterSDK.Widgets.Framework.Widget prototypeItem = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, @delegate: @delegate)
-        {
-            this.PrototypeItem = prototypeItem; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget PrototypeItem { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget PrototypeItem { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement CreateElement() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SliverPrototypeExtentListElement : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorElement
+    public new FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _SliverPrototypeExtentListElement(FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList widget)
-        : base(widget)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Framework.Element _Prototype { get; set; }
-        internal virtual @Object _PrototypeSlot { get; set; }
-        public virtual FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void DidAdoptChild(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-
-
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.Box.RenderBox child, object slot) { throw new NotImplementedException(); }
-        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot) { throw new NotImplementedException(); }
-
-
-        public new void RemoveChildRenderObject(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor) { throw new NotImplementedException(); }
-
-
-        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot) { throw new NotImplementedException(); }
-
-
-        public new void Update(FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList newWidget) { throw new NotImplementedException(); }
-        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
-
-        #endregion
+        _SliverPrototypeExtentListElement element = context as _SliverPrototypeExtentListElement;
+        return new _RenderSliverPrototypeExtentList(childManager: element);
     }
 
 
-    public class _RenderSliverPrototypeExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
+
+
+    public new FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement CreateElement() => new _SliverPrototypeExtentListElement(this);
+
+
+    #endregion
+}
+
+
+public class _SliverPrototypeExtentListElement : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorElement
+{
+    #region constructors
+    public _SliverPrototypeExtentListElement(FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList widget)
+    : base(widget)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Widgets.Framework.Element _Prototype { get; set; }
+internal virtual @Object _PrototypeSlot { get; set; }
+public virtual FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    if (slot == _PrototypeSlot)
     {
-        #region constructors
-        public _RenderSliverPrototypeExtentList(FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement childManager = default(FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement))
-        : base(childManager: childManager)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Rendering.Box.RenderBox _Child { get; set; }
-        public virtual FlutterSDK.Rendering.Box.RenderBox Child { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner) { throw new NotImplementedException(); }
-        public new void Attach(@Object owner) { throw new NotImplementedException(); }
-
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        public new void RedepthChildren() { throw new NotImplementedException(); }
-
-
-        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
-
-        #endregion
+        RenderObject.Child = child as RenderBox;
     }
+    else
+    {
+        base.InsertChildRenderObject(child, slot as int);
+    }
+
+}
+
+
+
+
+public new void DidAdoptChild(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (child != RenderObject.Child) base.DidAdoptChild(child);
+}
+
+
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.Box.RenderBox child, object slot)
+{
+    if (slot == _PrototypeSlot)else base.MoveChildRenderObject(child, slot as int);
+}
+
+
+public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+{
+    if (slot == _PrototypeSlot)else base.MoveChildRenderObject(child, slot as int);
+}
+
+
+
+
+public new void RemoveChildRenderObject(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (RenderObject.Child == child) RenderObject.Child = null; else base.RemoveChildRenderObject(child);
+}
+
+
+public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (RenderObject.Child == child) RenderObject.Child = null; else base.RemoveChildRenderObject(child);
+}
+
+
+
+
+public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+{
+    if (_Prototype != null) visitor(_Prototype);
+    base.VisitChildren(visitor);
+}
+
+
+
+
+public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+{
+    base.Mount(parent, newSlot);
+    _Prototype = UpdateChild(_Prototype, Widget.PrototypeItem, _PrototypeSlot);
+}
+
+
+
+
+public new void Update(FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList newWidget)
+{
+    base.Update(newWidget);
+
+    _Prototype = UpdateChild(_Prototype, Widget.PrototypeItem, _PrototypeSlot);
+}
+
+
+public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+{
+    base.Update(newWidget);
+
+    _Prototype = UpdateChild(_Prototype, Widget.PrototypeItem, _PrototypeSlot);
+}
+
+
+
+#endregion
+}
+
+
+public class _RenderSliverPrototypeExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
+{
+    #region constructors
+    public _RenderSliverPrototypeExtentList(FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement childManager = default(FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement))
+    : base(childManager: childManager)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.Box.RenderBox _Child { get; set; }
+public virtual FlutterSDK.Rendering.Box.RenderBox Child { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    Child.Layout(Constraints.AsBoxConstraints(), parentUsesSize: true);
+    base.PerformLayout();
+}
+
+
+
+
+public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+{
+    base.Attach(owner);
+    if (_Child != null) _Child.Attach(owner);
+}
+
+
+public new void Attach(@Object owner)
+{
+    base.Attach(owner);
+    if (_Child != null) _Child.Attach(owner);
+}
+
+
+
+
+public new void Detach()
+{
+    base.Detach();
+    if (_Child != null) _Child.Detach();
+}
+
+
+
+
+public new void RedepthChildren()
+{
+    if (_Child != null) RedepthChild(_Child);
+    base.RedepthChildren();
+}
+
+
+
+
+public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+{
+    if (_Child != null) visitor(_Child);
+    base.VisitChildren(visitor);
+}
+
+
+
+#endregion
+}
 
 }

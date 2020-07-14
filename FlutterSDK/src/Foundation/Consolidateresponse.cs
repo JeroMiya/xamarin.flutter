@@ -320,10 +320,35 @@ namespace FlutterSDK.Foundation.Consolidateresponse
 
         #region methods
 
-        public new void Add(List<int> chunk) { throw new NotImplementedException(); }
+        public new void Add(List<int> chunk)
+        {
+
+            _Chunks.Add(chunk);
+            _ContentLength += chunk.Count;
+        }
 
 
-        public new void Close() { throw new NotImplementedException(); }
+
+
+        public new void Close()
+        {
+            if (_Bytes != null)
+            {
+                return;
+            }
+
+            _Bytes = new Uint8List(_ContentLength);
+            int offset = 0;
+            foreach (List<int> chunk in _Chunks)
+            {
+                _Bytes.SetRange(offset, offset + chunk.Count, chunk);
+                offset += chunk.Count;
+            }
+
+            _Chunks = null;
+        }
+
+
 
         #endregion
     }

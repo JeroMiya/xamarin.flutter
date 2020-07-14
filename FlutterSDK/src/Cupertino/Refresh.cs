@@ -304,219 +304,408 @@ namespace FlutterSDK.Cupertino.Refresh
         #region constructors
         public _CupertinoSliverRefresh(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double refreshIndicatorLayoutExtent = 0.0, bool hasLayoutExtent = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-        {
-            this.RefreshIndicatorLayoutExtent = refreshIndicatorLayoutExtent;
-            this.HasLayoutExtent = hasLayoutExtent; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual double RefreshIndicatorLayoutExtent { get; set; }
-        public virtual bool HasLayoutExtent { get; set; }
-        #endregion
+    #region fields
+    public virtual double RefreshIndicatorLayoutExtent { get; set; }
+    public virtual bool HasLayoutExtent { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Cupertino.Refresh._RenderCupertinoSliverRefresh CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh._RenderCupertinoSliverRefresh renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _RenderCupertinoSliverRefresh : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+    public new FlutterSDK.Cupertino.Refresh._RenderCupertinoSliverRefresh CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _RenderCupertinoSliverRefresh(double refreshIndicatorExtent = default(double), bool hasLayoutExtent = default(bool), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual double _RefreshIndicatorExtent { get; set; }
-        internal virtual bool _HasLayoutExtent { get; set; }
-        public virtual double LayoutExtentOffsetCompensation { get; set; }
-        public virtual double RefreshIndicatorLayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool HasLayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext paintContext, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
-
-        #endregion
+        return new _RenderCupertinoSliverRefresh(refreshIndicatorExtent: RefreshIndicatorLayoutExtent, hasLayoutExtent: HasLayoutExtent);
     }
 
+
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh._RenderCupertinoSliverRefresh renderObject)
+    {
+        ..RefreshIndicatorLayoutExtent = RefreshIndicatorLayoutExtent..HasLayoutExtent = HasLayoutExtent;
+    }
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+    {
+        ..RefreshIndicatorLayoutExtent = RefreshIndicatorLayoutExtent..HasLayoutExtent = HasLayoutExtent;
+    }
+
+
+
+    #endregion
+}
+
+
+public class _RenderCupertinoSliverRefresh : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
+{
+    #region constructors
+    public _RenderCupertinoSliverRefresh(double refreshIndicatorExtent = default(double), bool hasLayoutExtent = default(bool), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+    : base()
+
+this .Child=child;
+}
+
+
+#endregion
+
+#region fields
+internal virtual double _RefreshIndicatorExtent { get; set; }
+internal virtual bool _HasLayoutExtent { get; set; }
+public virtual double LayoutExtentOffsetCompensation { get; set; }
+public virtual double RefreshIndicatorLayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool HasLayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void PerformLayout()
+{
+    SliverConstraints constraints = this.Constraints;
+
+
+    double layoutExtent = (_HasLayoutExtent ? 1.0 : 0.0) * _RefreshIndicatorExtent;
+    if (layoutExtent != LayoutExtentOffsetCompensation)
+    {
+        Geometry = new SliverGeometry(scrollOffsetCorrection: layoutExtent - LayoutExtentOffsetCompensation);
+        LayoutExtentOffsetCompensation = layoutExtent;
+        return;
+    }
+
+    bool active = constraints.Overlap < 0.0 || layoutExtent > 0.0;
+    double overscrolledExtent = constraints.Overlap < 0.0 ? constraints.Overlap.Abs() : 0.0;
+    Child.Layout(constraints.AsBoxConstraints(maxExtent: layoutExtent + overscrolledExtent), parentUsesSize: true);
+    if (active)
+    {
+        Geometry = new SliverGeometry(scrollExtent: layoutExtent, paintOrigin: -overscrolledExtent - constraints.ScrollOffset, paintExtent: Dart:mathDefaultClass.Max(Dart: mathDefaultClass.Max(Child.Size.Height, layoutExtent) - constraints.ScrollOffset, 0.0), maxPaintExtent: Dart:mathDefaultClass.Max(Dart: mathDefaultClass.Max(Child.Size.Height, layoutExtent) - constraints.ScrollOffset, 0.0), layoutExtent: Dart:mathDefaultClass.Max(layoutExtent - constraints.ScrollOffset, 0.0));
+    }
+    else
+    {
+        Geometry = SliverDefaultClass.SliverGeometry.Zero;
+    }
+
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext paintContext, FlutterBinding.UI.Offset offset)
+{
+    if (Constraints.Overlap < 0.0 || Constraints.ScrollOffset + Child.Size.Height > 0)
+    {
+        paintContext.PaintChild(Child, offset);
+    }
+
+}
+
+
+
+
+public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+{
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A sliver widget implementing the iOS-style pull to refresh content control.
+///
+/// When inserted as the first sliver in a scroll view or behind other slivers
+/// that still lets the scrollable overscroll in front of this sliver (such as
+/// the [CupertinoSliverNavigationBar], this widget will:
+///
+///  * Let the user draw inside the overscrolled area via the passed in [builder].
+///  * Trigger the provided [onRefresh] function when overscrolled far enough to
+///    pass [refreshTriggerPullDistance].
+///  * Continue to hold [refreshIndicatorExtent] amount of space for the [builder]
+///    to keep drawing inside of as the [Future] returned by [onRefresh] processes.
+///  * Scroll away once the [onRefresh] [Future] completes.
+///
+/// The [builder] function will be informed of the current [RefreshIndicatorMode]
+/// when invoking it, except in the [RefreshIndicatorMode.inactive] state when
+/// no space is available and nothing needs to be built. The [builder] function
+/// will otherwise be continuously invoked as the amount of space available
+/// changes from overscroll, as the sliver scrolls away after the [onRefresh]
+/// task is done, etc.
+///
+/// Only one refresh can be triggered until the previous refresh has completed
+/// and the indicator sliver has retracted at least 90% of the way back.
+///
+/// Can only be used in downward-scrolling vertical lists that overscrolls. In
+/// other words, refreshes can't be triggered with [Scrollable]s using
+/// [ClampingScrollPhysics] which is the default on Android. To allow overscroll
+/// on Android, use an overscrolling physics such as [BouncingScrollPhysics].
+/// This can be done via:
+///
+///  * Providing a [BouncingScrollPhysics] (possibly in combination with a
+///    [AlwaysScrollableScrollPhysics]) while constructing the scrollable.
+///  * By inserting a [ScrollConfiguration] with [BouncingScrollPhysics] above
+///    the scrollable.
+///  * By using [CupertinoApp], which always uses a [ScrollConfiguration]
+///    with [BouncingScrollPhysics] regardless of platform.
+///
+/// In a typical application, this sliver should be inserted between the app bar
+/// sliver such as [CupertinoSliverNavigationBar] and your main scrollable
+/// content's sliver.
+///
+/// See also:
+///
+///  * [CustomScrollView], a typical sliver holding scroll view this control
+///    should go into.
+///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/refresh-content-controls/>
+///  * [RefreshIndicator], a Material Design version of the pull-to-refresh
+///    paradigm. This widget works differently than [RefreshIndicator] because
+///    instead of being an overlay on top of the scrollable, the
+///    [CupertinoSliverRefreshControl] is part of the scrollable and actively occupies
+///    scrollable space.
+/// </Summary>
+public class CupertinoSliverRefreshControl : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public CupertinoSliverRefreshControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double refreshTriggerPullDistance = default(double), double refreshIndicatorExtent = default(double), FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder builder = default(FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder), FlutterSDK.Cupertino.Refresh.RefreshCallback onRefresh = default(FlutterSDK.Cupertino.Refresh.RefreshCallback))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual double RefreshTriggerPullDistance { get; set; }
+public virtual double RefreshIndicatorExtent { get; set; }
+public virtual FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder Builder { get; set; }
+public virtual FlutterSDK.Cupertino.Refresh.RefreshCallback OnRefresh { get; set; }
+internal virtual double _DefaultRefreshTriggerPullDistance { get; set; }
+internal virtual double _DefaultRefreshIndicatorExtent { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Retrieve the current state of the CupertinoSliverRefreshControl. The same as the
+/// state that gets passed into the [builder] function. Used for testing.
+/// </Summary>
+public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode State(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    _CupertinoSliverRefreshControlState state = context.FindAncestorStateOfType();
+    return state.RefreshState;
+}
+
+
+
+
+/// <Summary>
+/// Builds a simple refresh indicator that fades in a bottom aligned down
+/// arrow before the refresh is triggered, a [CupertinoActivityIndicator]
+/// during the refresh and fades the [CupertinoActivityIndicator] away when
+/// the refresh is done.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Framework.Widget BuildSimpleRefreshIndicator(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode refreshState, double pulledExtent, double refreshTriggerPullDistance, double refreshIndicatorExtent)
+{
+    Curve opacityCurve = new Interval(0.4, 0.8, curve: CurvesDefaultClass.Curves.EaseInOut);
+    return new Align(alignment: AlignmentDefaultClass.Alignment.BottomCenter, child: new Padding(padding: EdgeInsets.Only(bottom: 16.0), child: refreshState == RefreshIndicatorMode.Drag ? new Opacity(opacity: opacityCurve.Transform(Dart: mathDefaultClass.Min(pulledExtent / refreshTriggerPullDistance, 1.0)), child: new Icon(IconsDefaultClass.CupertinoIcons.Down_arrow, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.InactiveGray, context), size: 36.0)) : new Opacity(opacity: opacityCurve.Transform(Dart: mathDefaultClass.Min(pulledExtent / refreshIndicatorExtent, 1.0)), child: new CupertinoActivityIndicator(radius: 14.0))));
+}
+
+
+
+
+public new FlutterSDK.Cupertino.Refresh._CupertinoSliverRefreshControlState CreateState() => new _CupertinoSliverRefreshControlState();
+
+
+#endregion
+}
+
+
+public class _CupertinoSliverRefreshControlState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Refresh.CupertinoSliverRefreshControl>
+{
+    #region constructors
+    public _CupertinoSliverRefreshControlState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual double _InactiveResetOverscrollFraction { get; set; }
+    public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode RefreshState { get; set; }
+    public virtual Future<object> RefreshTask { get; set; }
+    public virtual double LatestIndicatorBoxExtent { get; set; }
+    public virtual bool HasSliverLayoutExtent { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        RefreshState = RefreshIndicatorMode.Inactive;
+    }
+
+
+
+
+    public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode TransitionNextState()
+    {
+        RefreshIndicatorMode nextState = default(RefreshIndicatorMode);
+        void GoToDone() => {
+            nextState = RefreshIndicatorMode.Done;
+            if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.Idle)
+            {
+                SetState(() => =>HasSliverLayoutExtent = false);
+            }
+            else
+            {
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timestamp) =>
+                {
+                    SetState(() => =>HasSliverLayoutExtent = false);
+                }
+                );
+            }
+
+        }
+
+        switch (RefreshState)
+        {
+            case RefreshIndicatorMode.Inactive:
+                if (LatestIndicatorBoxExtent <= 0)
+                {
+                    return RefreshIndicatorMode.Inactive;
+                }
+                else
+                {
+                    nextState = RefreshIndicatorMode.Drag;
+                }
+                continue Drag; Drag:case RefreshIndicatorMode.Drag:
+                if (LatestIndicatorBoxExtent == 0)
+                {
+                    return RefreshIndicatorMode.Inactive;
+                }
+                else if (LatestIndicatorBoxExtent < Widget.RefreshTriggerPullDistance)
+                {
+                    return RefreshIndicatorMode.Drag;
+                }
+                else
+                {
+                    if (Widget.OnRefresh != null)
+                    {
+                        HapticfeedbackDefaultClass.HapticFeedback.MediumImpact();
+                        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timestamp) =>
+                        {
+                            RefreshTask = Widget.OnRefresh();
+                            Widget.OnRefresh().WhenComplete(() =>
+                            {
+                                if (Mounted)
+                                {
+                                    SetState(() => =>RefreshTask = null);
+                                    RefreshState = TransitionNextState();
+                                }
+
+                            }
+                            );
+                            SetState(() => =>HasSliverLayoutExtent = true);
+                        }
+                        );
+                    }
+
+                    return RefreshIndicatorMode.Armed;
+                }
+                break;
+            case RefreshIndicatorMode.Armed:
+                if (RefreshState == RefreshIndicatorMode.Armed && RefreshTask == null)
+                {
+                    GoToDone();
+                    continue Done;
+                }
+                if (LatestIndicatorBoxExtent > Widget.RefreshIndicatorExtent)
+                {
+                    return RefreshIndicatorMode.Armed;
+                }
+                else
+                {
+                    nextState = RefreshIndicatorMode.Refresh;
+                }
+                continue Refresh; Refresh:case RefreshIndicatorMode.Refresh:
+                if (RefreshTask != null)
+                {
+                    return RefreshIndicatorMode.Refresh;
+                }
+                else
+                {
+                    GoToDone();
+                }
+                continue Done; Done:case RefreshIndicatorMode.Done:
+                if (LatestIndicatorBoxExtent > Widget.RefreshTriggerPullDistance * _InactiveResetOverscrollFraction)
+                {
+                    return RefreshIndicatorMode.Done;
+                }
+                else
+                {
+                    nextState = RefreshIndicatorMode.Inactive;
+                }
+                break;
+        }
+        return nextState;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new _CupertinoSliverRefresh(refreshIndicatorLayoutExtent: Widget.RefreshIndicatorExtent, hasLayoutExtent: HasSliverLayoutExtent, child: new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+        {
+            LatestIndicatorBoxExtent = constraints.MaxHeight;
+            RefreshState = TransitionNextState();
+            if (Widget.Builder != null && LatestIndicatorBoxExtent > 0)
+            {
+                return Widget.Builder(context, RefreshState, LatestIndicatorBoxExtent, Widget.RefreshTriggerPullDistance, Widget.RefreshIndicatorExtent);
+            }
+
+            return new Container();
+        }
+        ));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// The current state of the refresh control.
+///
+/// Passed into the [RefreshControlIndicatorBuilder] builder function so
+/// users can show different UI in different modes.
+/// </Summary>
+public enum RefreshIndicatorMode
+{
 
     /// <Summary>
-    /// A sliver widget implementing the iOS-style pull to refresh content control.
-    ///
-    /// When inserted as the first sliver in a scroll view or behind other slivers
-    /// that still lets the scrollable overscroll in front of this sliver (such as
-    /// the [CupertinoSliverNavigationBar], this widget will:
-    ///
-    ///  * Let the user draw inside the overscrolled area via the passed in [builder].
-    ///  * Trigger the provided [onRefresh] function when overscrolled far enough to
-    ///    pass [refreshTriggerPullDistance].
-    ///  * Continue to hold [refreshIndicatorExtent] amount of space for the [builder]
-    ///    to keep drawing inside of as the [Future] returned by [onRefresh] processes.
-    ///  * Scroll away once the [onRefresh] [Future] completes.
-    ///
-    /// The [builder] function will be informed of the current [RefreshIndicatorMode]
-    /// when invoking it, except in the [RefreshIndicatorMode.inactive] state when
-    /// no space is available and nothing needs to be built. The [builder] function
-    /// will otherwise be continuously invoked as the amount of space available
-    /// changes from overscroll, as the sliver scrolls away after the [onRefresh]
-    /// task is done, etc.
-    ///
-    /// Only one refresh can be triggered until the previous refresh has completed
-    /// and the indicator sliver has retracted at least 90% of the way back.
-    ///
-    /// Can only be used in downward-scrolling vertical lists that overscrolls. In
-    /// other words, refreshes can't be triggered with [Scrollable]s using
-    /// [ClampingScrollPhysics] which is the default on Android. To allow overscroll
-    /// on Android, use an overscrolling physics such as [BouncingScrollPhysics].
-    /// This can be done via:
-    ///
-    ///  * Providing a [BouncingScrollPhysics] (possibly in combination with a
-    ///    [AlwaysScrollableScrollPhysics]) while constructing the scrollable.
-    ///  * By inserting a [ScrollConfiguration] with [BouncingScrollPhysics] above
-    ///    the scrollable.
-    ///  * By using [CupertinoApp], which always uses a [ScrollConfiguration]
-    ///    with [BouncingScrollPhysics] regardless of platform.
-    ///
-    /// In a typical application, this sliver should be inserted between the app bar
-    /// sliver such as [CupertinoSliverNavigationBar] and your main scrollable
-    /// content's sliver.
-    ///
-    /// See also:
-    ///
-    ///  * [CustomScrollView], a typical sliver holding scroll view this control
-    ///    should go into.
-    ///  * <https://developer.apple.com/ios/human-interface-guidelines/controls/refresh-content-controls/>
-    ///  * [RefreshIndicator], a Material Design version of the pull-to-refresh
-    ///    paradigm. This widget works differently than [RefreshIndicator] because
-    ///    instead of being an overlay on top of the scrollable, the
-    ///    [CupertinoSliverRefreshControl] is part of the scrollable and actively occupies
-    ///    scrollable space.
+    /// Initial state, when not being overscrolled into, or after the overscroll
+    /// is canceled or after done and the sliver retracted away.
     /// </Summary>
-    public class CupertinoSliverRefreshControl : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public CupertinoSliverRefreshControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double refreshTriggerPullDistance = default(double), double refreshIndicatorExtent = default(double), FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder builder = default(FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder), FlutterSDK.Cupertino.Refresh.RefreshCallback onRefresh = default(FlutterSDK.Cupertino.Refresh.RefreshCallback))
-        : base(key: key)
-        {
-            this.RefreshTriggerPullDistance = refreshTriggerPullDistance;
-            this.RefreshIndicatorExtent = refreshIndicatorExtent;
-            this.Builder = builder;
-            this.OnRefresh = onRefresh; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual double RefreshTriggerPullDistance { get; set; }
-        public virtual double RefreshIndicatorExtent { get; set; }
-        public virtual FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder Builder { get; set; }
-        public virtual FlutterSDK.Cupertino.Refresh.RefreshCallback OnRefresh { get; set; }
-        internal virtual double _DefaultRefreshTriggerPullDistance { get; set; }
-        internal virtual double _DefaultRefreshIndicatorExtent { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Retrieve the current state of the CupertinoSliverRefreshControl. The same as the
-        /// state that gets passed into the [builder] function. Used for testing.
-        /// </Summary>
-        public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode State(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Builds a simple refresh indicator that fades in a bottom aligned down
-        /// arrow before the refresh is triggered, a [CupertinoActivityIndicator]
-        /// during the refresh and fades the [CupertinoActivityIndicator] away when
-        /// the refresh is done.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildSimpleRefreshIndicator(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode refreshState, double pulledExtent, double refreshTriggerPullDistance, double refreshIndicatorExtent) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Cupertino.Refresh._CupertinoSliverRefreshControlState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CupertinoSliverRefreshControlState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Refresh.CupertinoSliverRefreshControl>
-    {
-        #region constructors
-        public _CupertinoSliverRefreshControlState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual double _InactiveResetOverscrollFraction { get; set; }
-        public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode RefreshState { get; set; }
-        public virtual Future<object> RefreshTask { get; set; }
-        public virtual double LatestIndicatorBoxExtent { get; set; }
-        public virtual bool HasSliverLayoutExtent { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode TransitionNextState() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Inactive,
     /// <Summary>
-    /// The current state of the refresh control.
-    ///
-    /// Passed into the [RefreshControlIndicatorBuilder] builder function so
-    /// users can show different UI in different modes.
+    /// While being overscrolled but not far enough yet to trigger the refresh.
     /// </Summary>
-    public enum RefreshIndicatorMode
-    {
-
-        /// <Summary>
-        /// Initial state, when not being overscrolled into, or after the overscroll
-        /// is canceled or after done and the sliver retracted away.
-        /// </Summary>
-        Inactive,
-        /// <Summary>
-        /// While being overscrolled but not far enough yet to trigger the refresh.
-        /// </Summary>
-        Drag,
-        /// <Summary>
-        /// Dragged far enough that the onRefresh callback will run and the dragged
-        /// displacement is not yet at the final refresh resting state.
-        /// </Summary>
-        Armed,
-        /// <Summary>
-        /// While the onRefresh task is running.
-        /// </Summary>
-        Refresh,
-        /// <Summary>
-        /// While the indicator is animating away after refreshing.
-        /// </Summary>
-        Done,
-    }
+    Drag,
+    /// <Summary>
+    /// Dragged far enough that the onRefresh callback will run and the dragged
+    /// displacement is not yet at the final refresh resting state.
+    /// </Summary>
+    Armed,
+    /// <Summary>
+    /// While the onRefresh task is running.
+    /// </Summary>
+    Refresh,
+    /// <Summary>
+    /// While the indicator is animating away after refreshing.
+    /// </Summary>
+    Done,
+}
 
 }

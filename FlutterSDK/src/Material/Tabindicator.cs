@@ -437,55 +437,96 @@ namespace FlutterSDK.Material.Tabindicator
         #region constructors
         public UnderlineTabIndicator(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry insets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base()
-        {
-            this.BorderSide = borderSide;
-            this.Insets = insets; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Painting.Decoration.Decoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Material.Tabindicator._UnderlinePainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback)) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _UnderlinePainter : FlutterSDK.Painting.Decoration.BoxPainter
+    public new FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t)
     {
-        #region constructors
-        public _UnderlinePainter(FlutterSDK.Material.Tabindicator.UnderlineTabIndicator decoration, VoidCallback onChanged)
-        : base(onChanged)
+        if (a is UnderlineTabIndicator)
         {
-            this.Decoration = decoration; throw new NotImplementedException();
+            return new UnderlineTabIndicator(borderSide: BordersDefaultClass.BorderSide.Lerp(((UnderlineTabIndicator)a).BorderSide, BorderSide, t), insets: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(((UnderlineTabIndicator)a).Insets, Insets, t));
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Material.Tabindicator.UnderlineTabIndicator Decoration { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        private Rect _IndicatorRectFor(FlutterBinding.UI.Rect rect, TextDirection textDirection) { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) { throw new NotImplementedException(); }
-
-        #endregion
+        return base.LerpFrom(a, t);
     }
+
+
+
+
+    public new FlutterSDK.Painting.Decoration.Decoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t)
+    {
+        if (b is UnderlineTabIndicator)
+        {
+            return new UnderlineTabIndicator(borderSide: BordersDefaultClass.BorderSide.Lerp(BorderSide, ((UnderlineTabIndicator)b).BorderSide, t), insets: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(Insets, ((UnderlineTabIndicator)b).Insets, t));
+        }
+
+        return base.LerpTo(b, t);
+    }
+
+
+
+
+    public new FlutterSDK.Material.Tabindicator._UnderlinePainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback))
+    {
+        return new _UnderlinePainter(this, onChanged);
+    }
+
+
+
+    #endregion
+}
+
+
+public class _UnderlinePainter : FlutterSDK.Painting.Decoration.BoxPainter
+{
+    #region constructors
+    public _UnderlinePainter(FlutterSDK.Material.Tabindicator.UnderlineTabIndicator decoration, VoidCallback onChanged)
+    : base(onChanged)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Tabindicator.UnderlineTabIndicator Decoration { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+private Rect _IndicatorRectFor(FlutterBinding.UI.Rect rect, TextDirection textDirection)
+{
+
+
+    Rect indicator = Insets.Resolve(textDirection).DeflateRect(rect);
+    return Rect.FromLTWH(indicator.Left, indicator.Bottom - BorderSide.Width, indicator.Width, BorderSide.Width);
+}
+
+
+
+
+public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+{
+
+
+    Rect rect = offset & configuration.Size;
+    TextDirection textDirection = configuration.TextDirection;
+    Rect indicator = _IndicatorRectFor(rect, textDirection).Deflate(BorderSide.Width / 2.0);
+    Paint paint = BorderSide.ToPaint()..StrokeCap = StrokeCap.Square;
+    canvas.DrawLine(indicator.BottomLeft, indicator.BottomRight, paint);
+}
+
+
+
+#endregion
+}
 
 }

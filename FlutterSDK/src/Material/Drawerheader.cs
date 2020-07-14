@@ -405,30 +405,33 @@ namespace FlutterSDK.Material.Drawerheader
         #region constructors
         public DrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Decoration = decoration;
-            this.Margin = margin;
-            this.Padding = padding;
-            this.Duration = duration;
-            this.Curve = curve;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+    public virtual TimeSpan Duration { get; set; }
+    public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
 
-        #endregion
+
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        double statusBarHeight = MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top;
+        return new Container(height: statusBarHeight + DrawerheaderDefaultClass._KDrawerHeaderHeight, margin: Margin, decoration: new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context))), child: new AnimatedContainer(padding: Padding.Add(EdgeInsets.Only(top: statusBarHeight)), decoration: Decoration, duration: Duration, curve: Curve, child: Child == null ? null : new DefaultTextStyle(style: theme.TextTheme.BodyText1, child: MediaQuery.RemovePadding(context: context, removeTop: true, child: Child))));
     }
+
+
+
+    #endregion
+}
 
 }

@@ -461,77 +461,116 @@ namespace FlutterSDK.Material.Feedback
     {
         #region constructors
         internal Feedback()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Provides platform-specific feedback for a tap.
-        ///
-        /// On Android the click system sound is played. On iOS this is a no-op.
-        ///
-        /// See also:
-        ///
-        ///  * [wrapForTap] to trigger platform-specific feedback before executing a
-        ///    [GestureTapCallback].
-        /// </Summary>
-        public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Provides platform-specific feedback for a tap.
+    ///
+    /// On Android the click system sound is played. On iOS this is a no-op.
+    ///
+    /// See also:
+    ///
+    ///  * [wrapForTap] to trigger platform-specific feedback before executing a
+    ///    [GestureTapCallback].
+    /// </Summary>
+    public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context)
+async
+{
+context.FindRenderObject().SendSemanticsEvent(new TapSemanticEvent());
+switch (_Platform(context)){case TargetPlatform.Android:case TargetPlatform.Fuchsia:return SystemsoundDefaultClass.SystemSound.Play(SystemSoundType.Click);case TargetPlatform.IOS:case TargetPlatform.Linux:case TargetPlatform.MacOS:case TargetPlatform.Windows:return Future<void>.Value();break;}
 
-
-        /// <Summary>
-        /// Wraps a [GestureTapCallback] to provide platform specific feedback for a
-        /// tap before the provided callback is executed.
-        ///
-        /// On Android the platform-typical click system sound is played. On iOS this
-        /// is a no-op as that platform usually doesn't provide feedback for a tap.
-        ///
-        /// See also:
-        ///
-        ///  * [forTap] to just trigger the platform-specific feedback without wrapping
-        ///    a [GestureTapCallback].
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback WrapForTap(FlutterSDK.Gestures.Tap.GestureTapCallback callback, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+return Future<void>.Value();
+}
 
 
-        /// <Summary>
-        /// Provides platform-specific feedback for a long press.
-        ///
-        /// On Android the platform-typical vibration is triggered. On iOS this is a
-        /// no-op as that platform usually doesn't provide feedback for long presses.
-        ///
-        /// See also:
-        ///
-        ///  * [wrapForLongPress] to trigger platform-specific feedback before
-        ///    executing a [GestureLongPressCallback].
-        /// </Summary>
-        public virtual Future<object> ForLongPress(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Wraps a [GestureLongPressCallback] to provide platform specific feedback
-        /// for a long press before the provided callback is executed.
-        ///
-        /// On Android the platform-typical vibration is triggered. On iOS this
-        /// is a no-op as that platform usually doesn't provide feedback for a long
-        /// press.
-        ///
-        /// See also:
-        ///
-        ///  * [forLongPress] to just trigger the platform-specific feedback without
-        ///    wrapping a [GestureLongPressCallback].
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback WrapForLongPress(FlutterSDK.Gestures.Longpress.GestureLongPressCallback callback, FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Foundation.Platform.TargetPlatform _Platform(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+/// <Summary>
+/// Wraps a [GestureTapCallback] to provide platform specific feedback for a
+/// tap before the provided callback is executed.
+///
+/// On Android the platform-typical click system sound is played. On iOS this
+/// is a no-op as that platform usually doesn't provide feedback for a tap.
+///
+/// See also:
+///
+///  * [forTap] to just trigger the platform-specific feedback without wrapping
+///    a [GestureTapCallback].
+/// </Summary>
+public virtual FlutterSDK.Gestures.Tap.GestureTapCallback WrapForTap(FlutterSDK.Gestures.Tap.GestureTapCallback callback, FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    if (callback == null) return null;
+    return () =>
+    {
+        FeedbackDefaultClass.Feedback.ForTap(context);
+        callback();
     }
+    ;
+}
+
+
+
+
+/// <Summary>
+/// Provides platform-specific feedback for a long press.
+///
+/// On Android the platform-typical vibration is triggered. On iOS this is a
+/// no-op as that platform usually doesn't provide feedback for long presses.
+///
+/// See also:
+///
+///  * [wrapForLongPress] to trigger platform-specific feedback before
+///    executing a [GestureLongPressCallback].
+/// </Summary>
+public virtual Future<object> ForLongPress(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    context.FindRenderObject().SendSemanticsEvent(new LongPressSemanticsEvent());
+    switch (_Platform(context)) { case TargetPlatform.Android: case TargetPlatform.Fuchsia: return HapticfeedbackDefaultClass.HapticFeedback.Vibrate(); case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: return Future<void>.Value(); break; }
+
+    return Future<void>.Value();
+}
+
+
+
+
+/// <Summary>
+/// Wraps a [GestureLongPressCallback] to provide platform specific feedback
+/// for a long press before the provided callback is executed.
+///
+/// On Android the platform-typical vibration is triggered. On iOS this
+/// is a no-op as that platform usually doesn't provide feedback for a long
+/// press.
+///
+/// See also:
+///
+///  * [forLongPress] to just trigger the platform-specific feedback without
+///    wrapping a [GestureLongPressCallback].
+/// </Summary>
+public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback WrapForLongPress(FlutterSDK.Gestures.Longpress.GestureLongPressCallback callback, FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    if (callback == null) return null;
+    return () =>
+    {
+        FeedbackDefaultClass.Feedback.ForLongPress(context);
+        callback();
+    }
+    ;
+}
+
+
+
+
+private FlutterSDK.Foundation.Platform.TargetPlatform _Platform(FlutterSDK.Widgets.Framework.BuildContext context) => ThemeDefaultClass.Theme.Of(context).Platform;
+
+
+#endregion
+}
 
 }

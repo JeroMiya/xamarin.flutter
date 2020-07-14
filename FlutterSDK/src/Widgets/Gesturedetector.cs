@@ -469,477 +469,753 @@ namespace FlutterSDK.Widgets.Gesturedetector
     {
         #region constructors
         public GestureRecognizerFactory()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Must return an instance of T.
-        /// </Summary>
-        public virtual T Constructor() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Must configure the given instance (which will have been created by
-        /// `constructor`).
-        ///
-        /// This normally means setting the callbacks.
-        /// </Summary>
-        public virtual void Initializer(T instance) { throw new NotImplementedException(); }
-
-
-        private bool _DebugAssertTypeMatches(Type type) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Must return an instance of T.
+    /// </Summary>
+    public virtual T Constructor()
+    {
+        return default(T);
     }
 
 
     /// <Summary>
-    /// Factory for creating gesture recognizers that delegates to callbacks.
+    /// Must configure the given instance (which will have been created by
+    /// `constructor`).
     ///
-    /// Used by [RawGestureDetector.gestures].
+    /// This normally means setting the callbacks.
     /// </Summary>
-    public class GestureRecognizerFactoryWithHandlers<T> : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<T>
+    public virtual void Initializer(T instance)
     {
-        #region constructors
-        public GestureRecognizerFactoryWithHandlers(FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _constructor, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _initializer)
-        : base()
-        {
-            this._Constructor = _constructor;
-            this._Initializer = _initializer; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _Constructor { get; set; }
-        internal virtual FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _Initializer { get; set; }
-        #endregion
-
-        #region methods
-
-        public new T Constructor() { throw new NotImplementedException(); }
-
-
-        public new void Initializer(T instance) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+    private bool _DebugAssertTypeMatches(Type type)
+    {
+
+        return true;
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Factory for creating gesture recognizers that delegates to callbacks.
+///
+/// Used by [RawGestureDetector.gestures].
+/// </Summary>
+public class GestureRecognizerFactoryWithHandlers<T> : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<T>
+{
+    #region constructors
+    public GestureRecognizerFactoryWithHandlers(FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _constructor, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _initializer)
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _Constructor { get; set; }
+internal virtual FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _Initializer { get; set; }
+#endregion
+
+#region methods
+
+public new T Constructor() => _Constructor();
+
+
+
+public new void Initializer(T instance) => _Initializer(instance);
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A widget that detects gestures.
+///
+/// Attempts to recognize gestures that correspond to its non-null callbacks.
+///
+/// If this widget has a child, it defers to that child for its sizing behavior.
+/// If it does not have a child, it grows to fit the parent instead.
+///
+/// By default a GestureDetector with an invisible child ignores touches;
+/// this behavior can be controlled with [behavior].
+///
+/// GestureDetector also listens for accessibility events and maps
+/// them to the callbacks. To ignore accessibility events, set
+/// [excludeFromSemantics] to true.
+///
+/// See <http://flutter.dev/gestures/> for additional information.
+///
+/// Material design applications typically react to touches with ink splash
+/// effects. The [InkWell] class implements this effect and can be used in place
+/// of a [GestureDetector] for handling taps.
+///
+/// {@animation 200 150 https://flutter.github.io/assets-for-api-docs/assets/widgets/gesture_detector.mp4}
+///
+/// {@tool snippet}
+///
+/// This example turns the light bulb yellow when the "turn lights on" button is
+/// tapped by setting the `_lights` field:
+///
+/// ```dart
+/// Container(
+///   alignment: FractionalOffset.center,
+///   color: Colors.white,
+///   child: Column(
+///     mainAxisAlignment: MainAxisAlignment.center,
+///     children: <Widget>[
+///       Padding(
+///         padding: const EdgeInsets.all(8.0),
+///         child: Icon(
+///           Icons.lightbulb_outline,
+///           color: _lights ? Colors.yellow.shade600 : Colors.black,
+///           size: 60,
+///         ),
+///       ),
+///       GestureDetector(
+///         onTap: () {
+///           setState(() {
+///             _lights = true;
+///           });
+///         },
+///         child: Container(
+///           color: Colors.yellow.shade600,
+///           padding: const EdgeInsets.all(8),
+///           child: const Text('TURN LIGHTS ON'),
+///         ),
+///       ),
+///     ],
+///   ),
+/// )
+/// ```
+/// {@end-tool}
+///
+/// ## Debugging
+///
+/// To see how large the hit test box of a [GestureDetector] is for debugging
+/// purposes, set [debugPaintPointersEnabled] to true.
+/// </Summary>
+public class GestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public GestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onSecondaryTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSecondaryTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSecondaryTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onLongPressStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onLongPressMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback onLongPressUp = default(FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onLongPressEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onVerticalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onVerticalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onVerticalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onVerticalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onHorizontalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onHorizontalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onHorizontalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onHorizontalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback onForcePressPeak = default(FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback onForcePressUpdate = default(FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onPanDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onPanStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onPanUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onPanEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onPanCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Scale.GestureScaleStartCallback onScaleStart = default(FlutterSDK.Gestures.Scale.GestureScaleStartCallback), FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback onScaleUpdate = default(FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback), FlutterSDK.Gestures.Scale.GestureScaleEndCallback onScaleEnd = default(FlutterSDK.Gestures.Scale.GestureScaleEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
+public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnDoubleTap { get; set; }
+public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnLongPressStart { get; set; }
+public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnLongPressMoveUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback OnLongPressUp { get; set; }
+public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnVerticalDragDown { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnVerticalDragStart { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnVerticalDragUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnVerticalDragEnd { get; set; }
+public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnVerticalDragCancel { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnHorizontalDragDown { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnHorizontalDragStart { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnHorizontalDragUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnHorizontalDragEnd { get; set; }
+public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnHorizontalDragCancel { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnPanDown { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnPanStart { get; set; }
+public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnPanUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnPanEnd { get; set; }
+public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnPanCancel { get; set; }
+public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnScaleStart { get; set; }
+public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnScaleUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnScaleEnd { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnForcePressPeak { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnForcePressUpdate { get; set; }
+public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
+public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+public virtual bool ExcludeFromSemantics { get; set; }
+public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Dictionary<Type, GestureRecognizerFactory> gestures = new Dictionary<Type, GestureRecognizerFactory> { };
+    if (OnTapDown != null || OnTapUp != null || OnTap != null || OnTapCancel != null || OnSecondaryTapDown != null || OnSecondaryTapUp != null || OnSecondaryTapCancel != null)
+    {
+        gestures[TapDefaultClass.TapGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(() => =>new TapGestureRecognizer(debugOwner: this), (TapGestureRecognizer instance) =>
+        {
+            ..OnTapDown = OnTapDown..OnTapUp = OnTapUp..OnTap = OnTap..OnTapCancel = OnTapCancel..OnSecondaryTapDown = OnSecondaryTapDown..OnSecondaryTapUp = OnSecondaryTapUp..OnSecondaryTapCancel = OnSecondaryTapCancel;
+        }
+        );
+    }
+
+    if (OnDoubleTap != null)
+    {
+        gestures[MultitapDefaultClass.DoubleTapGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<DoubleTapGestureRecognizer>(() => =>new DoubleTapGestureRecognizer(debugOwner: this), (DoubleTapGestureRecognizer instance) =>
+        {
+            instance.OnDoubleTap = OnDoubleTap;
+        }
+        );
+    }
+
+    if (OnLongPress != null || OnLongPressUp != null || OnLongPressStart != null || OnLongPressMoveUpdate != null || OnLongPressEnd != null)
+    {
+        gestures[LongpressDefaultClass.LongPressGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<LongPressGestureRecognizer>(() => =>new LongPressGestureRecognizer(debugOwner: this), (LongPressGestureRecognizer instance) =>
+        {
+            ..OnLongPress = OnLongPress..OnLongPressStart = OnLongPressStart..OnLongPressMoveUpdate = OnLongPressMoveUpdate..OnLongPressEnd = OnLongPressEnd..OnLongPressUp = OnLongPressUp;
+        }
+        );
+    }
+
+    if (OnVerticalDragDown != null || OnVerticalDragStart != null || OnVerticalDragUpdate != null || OnVerticalDragEnd != null || OnVerticalDragCancel != null)
+    {
+        gestures[MonodragDefaultClass.VerticalDragGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<VerticalDragGestureRecognizer>(() => =>new VerticalDragGestureRecognizer(debugOwner: this), (VerticalDragGestureRecognizer instance) =>
+        {
+            ..OnDown = OnVerticalDragDown..OnStart = OnVerticalDragStart..OnUpdate = OnVerticalDragUpdate..OnEnd = OnVerticalDragEnd..OnCancel = OnVerticalDragCancel..DragStartBehavior = DragStartBehavior;
+        }
+        );
+    }
+
+    if (OnHorizontalDragDown != null || OnHorizontalDragStart != null || OnHorizontalDragUpdate != null || OnHorizontalDragEnd != null || OnHorizontalDragCancel != null)
+    {
+        gestures[MonodragDefaultClass.HorizontalDragGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<HorizontalDragGestureRecognizer>(() => =>new HorizontalDragGestureRecognizer(debugOwner: this), (HorizontalDragGestureRecognizer instance) =>
+        {
+            ..OnDown = OnHorizontalDragDown..OnStart = OnHorizontalDragStart..OnUpdate = OnHorizontalDragUpdate..OnEnd = OnHorizontalDragEnd..OnCancel = OnHorizontalDragCancel..DragStartBehavior = DragStartBehavior;
+        }
+        );
+    }
+
+    if (OnPanDown != null || OnPanStart != null || OnPanUpdate != null || OnPanEnd != null || OnPanCancel != null)
+    {
+        gestures[MonodragDefaultClass.PanGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<PanGestureRecognizer>(() => =>new PanGestureRecognizer(debugOwner: this), (PanGestureRecognizer instance) =>
+        {
+            ..OnDown = OnPanDown..OnStart = OnPanStart..OnUpdate = OnPanUpdate..OnEnd = OnPanEnd..OnCancel = OnPanCancel..DragStartBehavior = DragStartBehavior;
+        }
+        );
+    }
+
+    if (OnScaleStart != null || OnScaleUpdate != null || OnScaleEnd != null)
+    {
+        gestures[ScaleDefaultClass.ScaleGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<ScaleGestureRecognizer>(() => =>new ScaleGestureRecognizer(debugOwner: this), (ScaleGestureRecognizer instance) =>
+        {
+            ..OnStart = OnScaleStart..OnUpdate = OnScaleUpdate..OnEnd = OnScaleEnd;
+        }
+        );
+    }
+
+    if (OnForcePressStart != null || OnForcePressPeak != null || OnForcePressUpdate != null || OnForcePressEnd != null)
+    {
+        gestures[ForcepressDefaultClass.ForcePressGestureRecognizer] = new GestureRecognizerFactoryWithHandlers<ForcePressGestureRecognizer>(() => =>new ForcePressGestureRecognizer(debugOwner: this), (ForcePressGestureRecognizer instance) =>
+        {
+            ..OnStart = OnForcePressStart..OnPeak = OnForcePressPeak..OnUpdate = OnForcePressUpdate..OnEnd = OnForcePressEnd;
+        }
+        );
+    }
+
+    return new RawGestureDetector(gestures: gestures, behavior: Behavior, excludeFromSemantics: ExcludeFromSemantics, child: Child);
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new EnumProperty<DragStartBehavior>("startBehavior", DragStartBehavior));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A widget that detects gestures described by the given gesture
+/// factories.
+///
+/// For common gestures, use a [GestureRecognizer].
+/// [RawGestureDetector] is useful primarily when developing your
+/// own gesture recognizers.
+///
+/// Configuring the gesture recognizers requires a carefully constructed map, as
+/// described in [gestures] and as shown in the example below.
+///
+/// {@tool snippet}
+///
+/// This example shows how to hook up a [TapGestureRecognizer]. It assumes that
+/// the code is being used inside a [State] object with a `_last` field that is
+/// then displayed as the child of the gesture detector.
+///
+/// ```dart
+/// RawGestureDetector(
+///   gestures: <Type, GestureRecognizerFactory>{
+///     TapGestureRecognizer: GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
+///       () => TapGestureRecognizer(),
+///       (TapGestureRecognizer instance) {
+///         instance
+///           ..onTapDown = (TapDownDetails details) { setState(() { _last = 'down'; }); }
+///           ..onTapUp = (TapUpDetails details) { setState(() { _last = 'up'; }); }
+///           ..onTap = () { setState(() { _last = 'tap'; }); }
+///           ..onTapCancel = () { setState(() { _last = 'cancel'; }); };
+///       },
+///     ),
+///   },
+///   child: Container(width: 300.0, height: 300.0, color: Colors.yellow, child: Text(_last)),
+/// )
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [GestureDetector], a less flexible but much simpler widget that does the same thing.
+///  * [Listener], a widget that reports raw pointer events.
+///  * [GestureRecognizer], the class that you extend to create a custom gesture recognizer.
+/// </Summary>
+public class RawGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public RawGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures = default(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>>), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate semantics = default(FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+public virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> Gestures { get; set; }
+public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+public virtual bool ExcludeFromSemantics { get; set; }
+public virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate Semantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState CreateState() => new RawGestureDetectorState();
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// State for a [RawGestureDetector].
+/// </Summary>
+public class RawGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Gesturedetector.RawGestureDetector>
+{
+    #region constructors
+    public RawGestureDetectorState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> _Recognizers { get; set; }
+    internal virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate _Semantics { get; set; }
+    internal virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior _DefaultBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Semantics = Widget.Semantics ?? new _DefaultSemanticsGestureDelegate(this);
+        _SyncAll(Widget.Gestures);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Widgets.Gesturedetector.RawGestureDetector oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (!(oldWidget.Semantics == null && Widget.Semantics == null))
+        {
+            _Semantics = Widget.Semantics ?? new _DefaultSemanticsGestureDelegate(this);
+        }
+
+        _SyncAll(Widget.Gestures);
+    }
+
+
 
 
     /// <Summary>
-    /// A widget that detects gestures.
+    /// This method can be called after the build phase, during the
+    /// layout of the nearest descendant [RenderObjectWidget] of the
+    /// gesture detector, to update the list of active gesture
+    /// recognizers.
     ///
-    /// Attempts to recognize gestures that correspond to its non-null callbacks.
+    /// The typical use case is [Scrollable]s, which put their viewport
+    /// in their gesture detector, and then need to know the dimensions
+    /// of the viewport and the viewport's child to determine whether
+    /// the gesture detector should be enabled.
     ///
-    /// If this widget has a child, it defers to that child for its sizing behavior.
-    /// If it does not have a child, it grows to fit the parent instead.
-    ///
-    /// By default a GestureDetector with an invisible child ignores touches;
-    /// this behavior can be controlled with [behavior].
-    ///
-    /// GestureDetector also listens for accessibility events and maps
-    /// them to the callbacks. To ignore accessibility events, set
-    /// [excludeFromSemantics] to true.
-    ///
-    /// See <http://flutter.dev/gestures/> for additional information.
-    ///
-    /// Material design applications typically react to touches with ink splash
-    /// effects. The [InkWell] class implements this effect and can be used in place
-    /// of a [GestureDetector] for handling taps.
-    ///
-    /// {@animation 200 150 https://flutter.github.io/assets-for-api-docs/assets/widgets/gesture_detector.mp4}
-    ///
-    /// {@tool snippet}
-    ///
-    /// This example turns the light bulb yellow when the "turn lights on" button is
-    /// tapped by setting the `_lights` field:
-    ///
-    /// ```dart
-    /// Container(
-    ///   alignment: FractionalOffset.center,
-    ///   color: Colors.white,
-    ///   child: Column(
-    ///     mainAxisAlignment: MainAxisAlignment.center,
-    ///     children: <Widget>[
-    ///       Padding(
-    ///         padding: const EdgeInsets.all(8.0),
-    ///         child: Icon(
-    ///           Icons.lightbulb_outline,
-    ///           color: _lights ? Colors.yellow.shade600 : Colors.black,
-    ///           size: 60,
-    ///         ),
-    ///       ),
-    ///       GestureDetector(
-    ///         onTap: () {
-    ///           setState(() {
-    ///             _lights = true;
-    ///           });
-    ///         },
-    ///         child: Container(
-    ///           color: Colors.yellow.shade600,
-    ///           padding: const EdgeInsets.all(8),
-    ///           child: const Text('TURN LIGHTS ON'),
-    ///         ),
-    ///       ),
-    ///     ],
-    ///   ),
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// ## Debugging
-    ///
-    /// To see how large the hit test box of a [GestureDetector] is for debugging
-    /// purposes, set [debugPaintPointersEnabled] to true.
+    /// The argument should follow the same conventions as
+    /// [RawGestureDetector.gestures]. It acts like a temporary replacement for
+    /// that value until the next build.
     /// </Summary>
-    public class GestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
+    public virtual void ReplaceGestureRecognizers(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures)
     {
-        #region constructors
-        public GestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onSecondaryTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSecondaryTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSecondaryTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onLongPressStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onLongPressMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback onLongPressUp = default(FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onLongPressEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onVerticalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onVerticalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onVerticalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onVerticalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onHorizontalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onHorizontalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onHorizontalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onHorizontalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback onForcePressPeak = default(FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback onForcePressUpdate = default(FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onPanDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onPanStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onPanUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onPanEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onPanCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Scale.GestureScaleStartCallback onScaleStart = default(FlutterSDK.Gestures.Scale.GestureScaleStartCallback), FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback onScaleUpdate = default(FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback), FlutterSDK.Gestures.Scale.GestureScaleEndCallback onScaleEnd = default(FlutterSDK.Gestures.Scale.GestureScaleEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
-        : base(key: key)
+
+        _SyncAll(gestures);
+        if (!Widget.ExcludeFromSemantics)
         {
-            this.Child = child;
-            this.OnTapDown = onTapDown;
-            this.OnTapUp = onTapUp;
-            this.OnTap = onTap;
-            this.OnTapCancel = onTapCancel;
-            this.OnSecondaryTapDown = onSecondaryTapDown;
-            this.OnSecondaryTapUp = onSecondaryTapUp;
-            this.OnSecondaryTapCancel = onSecondaryTapCancel;
-            this.OnDoubleTap = onDoubleTap;
-            this.OnLongPress = onLongPress;
-            this.OnLongPressStart = onLongPressStart;
-            this.OnLongPressMoveUpdate = onLongPressMoveUpdate;
-            this.OnLongPressUp = onLongPressUp;
-            this.OnLongPressEnd = onLongPressEnd;
-            this.OnVerticalDragDown = onVerticalDragDown;
-            this.OnVerticalDragStart = onVerticalDragStart;
-            this.OnVerticalDragUpdate = onVerticalDragUpdate;
-            this.OnVerticalDragEnd = onVerticalDragEnd;
-            this.OnVerticalDragCancel = onVerticalDragCancel;
-            this.OnHorizontalDragDown = onHorizontalDragDown;
-            this.OnHorizontalDragStart = onHorizontalDragStart;
-            this.OnHorizontalDragUpdate = onHorizontalDragUpdate;
-            this.OnHorizontalDragEnd = onHorizontalDragEnd;
-            this.OnHorizontalDragCancel = onHorizontalDragCancel;
-            this.OnForcePressStart = onForcePressStart;
-            this.OnForcePressPeak = onForcePressPeak;
-            this.OnForcePressUpdate = onForcePressUpdate;
-            this.OnForcePressEnd = onForcePressEnd;
-            this.OnPanDown = onPanDown;
-            this.OnPanStart = onPanStart;
-            this.OnPanUpdate = onPanUpdate;
-            this.OnPanEnd = onPanEnd;
-            this.OnPanCancel = onPanCancel;
-            this.OnScaleStart = onScaleStart;
-            this.OnScaleUpdate = onScaleUpdate;
-            this.OnScaleEnd = onScaleEnd;
-            this.Behavior = behavior;
-            this.ExcludeFromSemantics = excludeFromSemantics;
-            this.DragStartBehavior = dragStartBehavior; throw new NotImplementedException();
+            RenderSemanticsGestureHandler semanticsGestureHandler = Context.FindRenderObject() as RenderSemanticsGestureHandler;
+            _UpdateSemanticsForRenderObject(semanticsGestureHandler);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
-        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnDoubleTap { get; set; }
-        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
-        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnLongPressStart { get; set; }
-        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnLongPressMoveUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback OnLongPressUp { get; set; }
-        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnVerticalDragDown { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnVerticalDragStart { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnVerticalDragUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnVerticalDragEnd { get; set; }
-        public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnVerticalDragCancel { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnHorizontalDragDown { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnHorizontalDragStart { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnHorizontalDragUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnHorizontalDragEnd { get; set; }
-        public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnHorizontalDragCancel { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnPanDown { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnPanStart { get; set; }
-        public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnPanUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnPanEnd { get; set; }
-        public virtual FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback OnPanCancel { get; set; }
-        public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnScaleStart { get; set; }
-        public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnScaleUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnScaleEnd { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback OnForcePressPeak { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback OnForcePressUpdate { get; set; }
-        public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
-        public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
-        public virtual bool ExcludeFromSemantics { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
 
 
     /// <Summary>
-    /// A widget that detects gestures described by the given gesture
-    /// factories.
+    /// This method can be called to filter the list of available semantic actions,
+    /// after the render object was created.
     ///
-    /// For common gestures, use a [GestureRecognizer].
-    /// [RawGestureDetector] is useful primarily when developing your
-    /// own gesture recognizers.
+    /// The actual filtering is happening in the next frame and a frame will be
+    /// scheduled if non is pending.
     ///
-    /// Configuring the gesture recognizers requires a carefully constructed map, as
-    /// described in [gestures] and as shown in the example below.
+    /// This is used by [Scrollable] to configure system accessibility tools so
+    /// that they know in which direction a particular list can be scrolled.
     ///
-    /// {@tool snippet}
-    ///
-    /// This example shows how to hook up a [TapGestureRecognizer]. It assumes that
-    /// the code is being used inside a [State] object with a `_last` field that is
-    /// then displayed as the child of the gesture detector.
-    ///
-    /// ```dart
-    /// RawGestureDetector(
-    ///   gestures: <Type, GestureRecognizerFactory>{
-    ///     TapGestureRecognizer: GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
-    ///       () => TapGestureRecognizer(),
-    ///       (TapGestureRecognizer instance) {
-    ///         instance
-    ///           ..onTapDown = (TapDownDetails details) { setState(() { _last = 'down'; }); }
-    ///           ..onTapUp = (TapUpDetails details) { setState(() { _last = 'up'; }); }
-    ///           ..onTap = () { setState(() { _last = 'tap'; }); }
-    ///           ..onTapCancel = () { setState(() { _last = 'cancel'; }); };
-    ///       },
-    ///     ),
-    ///   },
-    ///   child: Container(width: 300.0, height: 300.0, color: Colors.yellow, child: Text(_last)),
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [GestureDetector], a less flexible but much simpler widget that does the same thing.
-    ///  * [Listener], a widget that reports raw pointer events.
-    ///  * [GestureRecognizer], the class that you extend to create a custom gesture recognizer.
+    /// If this is never called, then the actions are not filtered. If the list of
+    /// actions to filter changes, it must be called again.
     /// </Summary>
-    public class RawGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
+    public virtual void ReplaceSemanticsActions(HashSet<SemanticsAction> actions)
     {
-        #region constructors
-        public RawGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures = default(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>>), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate semantics = default(FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate))
-        : base(key: key)
+        if (Widget.ExcludeFromSemantics) return;
+        RenderSemanticsGestureHandler semanticsGestureHandler = Context.FindRenderObject() as RenderSemanticsGestureHandler;
+
+        semanticsGestureHandler.ValidActions = actions;
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        foreach (GestureRecognizer recognizer in _Recognizers.Values) recognizer.Dispose();
+        _Recognizers = null;
+        base.Dispose();
+    }
+
+
+
+
+    private void _SyncAll(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures)
+    {
+
+        Dictionary<Type, GestureRecognizer> oldRecognizers = _Recognizers;
+        _Recognizers = new Dictionary<Type, GestureRecognizer> { };
+        foreach (Type type in gestures.Keys)
         {
-            this.Child = child;
-            this.Gestures = gestures;
-            this.Behavior = behavior;
-            this.ExcludeFromSemantics = excludeFromSemantics;
-            this.Semantics = semantics; throw new NotImplementedException();
+
+
+
+            _Recognizers[type] = oldRecognizers[type] ?? gestures[type].Constructor();
+
+            gestures[type].Initializer(_Recognizers[type]);
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> Gestures { get; set; }
-        public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
-        public virtual bool ExcludeFromSemantics { get; set; }
-        public virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate Semantics { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// State for a [RawGestureDetector].
-    /// </Summary>
-    public class RawGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Gesturedetector.RawGestureDetector>
-    {
-        #region constructors
-        public RawGestureDetectorState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> _Recognizers { get; set; }
-        internal virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate _Semantics { get; set; }
-        internal virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior _DefaultBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Widgets.Gesturedetector.RawGestureDetector oldWidget) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// This method can be called after the build phase, during the
-        /// layout of the nearest descendant [RenderObjectWidget] of the
-        /// gesture detector, to update the list of active gesture
-        /// recognizers.
-        ///
-        /// The typical use case is [Scrollable]s, which put their viewport
-        /// in their gesture detector, and then need to know the dimensions
-        /// of the viewport and the viewport's child to determine whether
-        /// the gesture detector should be enabled.
-        ///
-        /// The argument should follow the same conventions as
-        /// [RawGestureDetector.gestures]. It acts like a temporary replacement for
-        /// that value until the next build.
-        /// </Summary>
-        public virtual void ReplaceGestureRecognizers(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// This method can be called to filter the list of available semantic actions,
-        /// after the render object was created.
-        ///
-        /// The actual filtering is happening in the next frame and a frame will be
-        /// scheduled if non is pending.
-        ///
-        /// This is used by [Scrollable] to configure system accessibility tools so
-        /// that they know in which direction a particular list can be scrolled.
-        ///
-        /// If this is never called, then the actions are not filtered. If the list of
-        /// actions to filter changes, it must be called again.
-        /// </Summary>
-        public virtual void ReplaceSemanticsActions(HashSet<SemanticsAction> actions) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _SyncAll(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures) { throw new NotImplementedException(); }
-
-
-        private void _HandlePointerDown(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _UpdateSemanticsForRenderObject(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _GestureSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-    {
-        #region constructors
-        public _GestureSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Gesturedetector._AssignSemantics assignSemantics = default(FlutterSDK.Widgets.Gesturedetector._AssignSemantics))
-        : base(key: key, child: child)
+        foreach (Type type in oldRecognizers.Keys)
         {
-            this.AssignSemantics = assignSemantics; throw new NotImplementedException();
+            if (!_Recognizers.ContainsKey(type)) oldRecognizers[type].Dispose();
         }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Gesturedetector._AssignSemantics AssignSemantics { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject) { throw new NotImplementedException(); }
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    /// <Summary>
-    /// A base class that describes what semantics notations a [RawGestureDetector]
-    /// should add to the render object [RenderSemanticsGestureHandler].
-    ///
-    /// It is used to allow custom [GestureDetector]s to add semantics notations.
-    /// </Summary>
-    public class SemanticsGestureDelegate
+
+
+    private void _HandlePointerDown(FlutterSDK.Gestures.Events.PointerDownEvent @event)
     {
-        #region constructors
-        public SemanticsGestureDelegate()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Assigns semantics notations to the [RenderSemanticsGestureHandler] render
-        /// object of the gesture detector.
-        ///
-        /// This method is called when the widget is created, updated, or during
-        /// [RawGestureDetector.replaceGestureRecognizers].
-        /// </Summary>
-        public virtual void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject) { throw new NotImplementedException(); }
-
-
-        #endregion
+        foreach (GestureRecognizer recognizer in _Recognizers.Values) recognizer.AddPointer(@event);
     }
 
 
-    public class _DefaultSemanticsGestureDelegate : FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate
+
+
+    private void _UpdateSemanticsForRenderObject(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject)
     {
-        #region constructors
-        public _DefaultSemanticsGestureDelegate(FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState detectorState)
-        {
-            this.DetectorState = detectorState; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState DetectorState { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject) { throw new NotImplementedException(); }
 
 
-        private FlutterSDK.Gestures.Tap.GestureTapCallback _GetTapHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Gestures.Longpress.GestureLongPressCallback _GetLongPressHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _GetHorizontalDragUpdateHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _GetVerticalDragUpdateHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers) { throw new NotImplementedException(); }
-
-        #endregion
+        _Semantics.AssignSemantics(renderObject);
     }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Widget result = new Listener(onPointerDown: _HandlePointerDown, behavior: Widget.Behavior ?? _DefaultBehavior, child: Widget.Child);
+        if (!Widget.ExcludeFromSemantics) result = new _GestureSemantics(child: result, assignSemantics: _UpdateSemanticsForRenderObject);
+        return result;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        if (_Recognizers == null)
+        {
+            properties.Add(DiagnosticsNode.Message("DISPOSED"));
+        }
+        else
+        {
+            List<string> gestures = _Recognizers.Values.Map((GestureRecognizer recognizer) => =>recognizer.DebugDescription).ToList();
+            properties.Add(new IterableProperty<string>("gestures", gestures, ifEmpty: "<none>"));
+            properties.Add(new IterableProperty<GestureRecognizer>("recognizers", _Recognizers.Values, level: DiagnosticLevel.Fine));
+            properties.Add(new DiagnosticsProperty<bool>("excludeFromSemantics", Widget.ExcludeFromSemantics, defaultValue: false));
+            if (!Widget.ExcludeFromSemantics)
+            {
+                properties.Add(new DiagnosticsProperty<SemanticsGestureDelegate>("semantics", Widget.Semantics, defaultValue: null));
+            }
+
+        }
+
+        properties.Add(new EnumProperty<HitTestBehavior>("behavior", Widget.Behavior, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _GestureSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+{
+    #region constructors
+    public _GestureSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Gesturedetector._AssignSemantics assignSemantics = default(FlutterSDK.Widgets.Gesturedetector._AssignSemantics))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Gesturedetector._AssignSemantics AssignSemantics { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    RenderSemanticsGestureHandler renderObject = new RenderSemanticsGestureHandler();
+    AssignSemantics(renderObject);
+    return renderObject;
+}
+
+
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject)
+{
+    AssignSemantics(renderObject);
+}
+
+
+public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+{
+    AssignSemantics(renderObject);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A base class that describes what semantics notations a [RawGestureDetector]
+/// should add to the render object [RenderSemanticsGestureHandler].
+///
+/// It is used to allow custom [GestureDetector]s to add semantics notations.
+/// </Summary>
+public class SemanticsGestureDelegate
+{
+    #region constructors
+    public SemanticsGestureDelegate()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Assigns semantics notations to the [RenderSemanticsGestureHandler] render
+/// object of the gesture detector.
+///
+/// This method is called when the widget is created, updated, or during
+/// [RawGestureDetector.replaceGestureRecognizers].
+/// </Summary>
+public virtual void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject)
+{
+}
+
+
+#endregion
+}
+
+
+public class _DefaultSemanticsGestureDelegate : FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate
+{
+    #region constructors
+    public _DefaultSemanticsGestureDelegate(FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState detectorState)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState DetectorState { get; set; }
+#endregion
+
+#region methods
+
+public new void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject)
+{
+
+    Dictionary<Type, GestureRecognizer> recognizers = DetectorState._Recognizers;
+    ..OnTap = _GetTapHandler(recognizers)..OnLongPress = _GetLongPressHandler(recognizers)..OnHorizontalDragUpdate = _GetHorizontalDragUpdateHandler(recognizers)..OnVerticalDragUpdate = _GetVerticalDragUpdateHandler(recognizers);
+}
+
+
+
+
+private FlutterSDK.Gestures.Tap.GestureTapCallback _GetTapHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers)
+{
+    TapGestureRecognizer tap = recognizers[TapDefaultClass.TapGestureRecognizer] as TapGestureRecognizer;
+    if (tap == null) return null;
+
+    return () =>
+    {
+
+        if (tap.OnTapDown != null) tap.OnTapDown(new TapDownDetails());
+        if (tap.OnTapUp != null) tap.OnTapUp(new TapUpDetails());
+        if (tap.OnTap != null) tap.OnTap();
+    }
+    ;
+}
+
+
+
+
+private FlutterSDK.Gestures.Longpress.GestureLongPressCallback _GetLongPressHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers)
+{
+    LongPressGestureRecognizer longPress = recognizers[LongpressDefaultClass.LongPressGestureRecognizer] as LongPressGestureRecognizer;
+    if (longPress == null) return null;
+    return () =>
+    {
+
+        if (longPress.OnLongPressStart != null) longPress.OnLongPressStart(new LongPressStartDetails());
+        if (longPress.OnLongPress != null) longPress.OnLongPress();
+        if (longPress.OnLongPressEnd != null) longPress.OnLongPressEnd(new LongPressEndDetails());
+        if (longPress.OnLongPressUp != null) longPress.OnLongPressUp();
+    }
+    ;
+}
+
+
+
+
+private FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _GetHorizontalDragUpdateHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers)
+{
+    HorizontalDragGestureRecognizer horizontal = recognizers[MonodragDefaultClass.HorizontalDragGestureRecognizer] as HorizontalDragGestureRecognizer;
+    PanGestureRecognizer pan = recognizers[MonodragDefaultClass.PanGestureRecognizer] as PanGestureRecognizer;
+    GestureDragUpdateCallback horizontalHandler = horizontal == null ? null : (DragUpdateDetails details) =>
+    {
+
+        if (horizontal.OnDown != null) horizontal.OnDown(new DragDownDetails());
+        if (horizontal.OnStart != null) horizontal.OnStart(new DragStartDetails());
+        if (horizontal.OnUpdate != null) horizontal.OnUpdate(details);
+        if (horizontal.OnEnd != null) horizontal.OnEnd(new DragEndDetails(primaryVelocity: 0.0));
+    }
+    ;
+    GestureDragUpdateCallback panHandler = pan == null ? null : (DragUpdateDetails details) =>
+    {
+
+        if (pan.OnDown != null) pan.OnDown(new DragDownDetails());
+        if (pan.OnStart != null) pan.OnStart(new DragStartDetails());
+        if (pan.OnUpdate != null) pan.OnUpdate(details);
+        if (pan.OnEnd != null) pan.OnEnd(new DragEndDetails());
+    }
+    ;
+    if (horizontalHandler == null && panHandler == null) return null;
+    return (DragUpdateDetails details) =>
+    {
+        if (horizontalHandler != null) horizontalHandler(details);
+        if (panHandler != null) panHandler(details);
+    }
+    ;
+}
+
+
+
+
+private FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback _GetVerticalDragUpdateHandler(Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> recognizers)
+{
+    VerticalDragGestureRecognizer vertical = recognizers[MonodragDefaultClass.VerticalDragGestureRecognizer] as VerticalDragGestureRecognizer;
+    PanGestureRecognizer pan = recognizers[MonodragDefaultClass.PanGestureRecognizer] as PanGestureRecognizer;
+    GestureDragUpdateCallback verticalHandler = vertical == null ? null : (DragUpdateDetails details) =>
+    {
+
+        if (vertical.OnDown != null) vertical.OnDown(new DragDownDetails());
+        if (vertical.OnStart != null) vertical.OnStart(new DragStartDetails());
+        if (vertical.OnUpdate != null) vertical.OnUpdate(details);
+        if (vertical.OnEnd != null) vertical.OnEnd(new DragEndDetails(primaryVelocity: 0.0));
+    }
+    ;
+    GestureDragUpdateCallback panHandler = pan == null ? null : (DragUpdateDetails details) =>
+    {
+
+        if (pan.OnDown != null) pan.OnDown(new DragDownDetails());
+        if (pan.OnStart != null) pan.OnStart(new DragStartDetails());
+        if (pan.OnUpdate != null) pan.OnUpdate(details);
+        if (pan.OnEnd != null) pan.OnEnd(new DragEndDetails());
+    }
+    ;
+    if (verticalHandler == null && panHandler == null) return null;
+    return (DragUpdateDetails details) =>
+    {
+        if (verticalHandler != null) verticalHandler(details);
+        if (panHandler != null) panHandler(details);
+    }
+    ;
+}
+
+
+
+#endregion
+}
 
 }

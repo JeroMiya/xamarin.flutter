@@ -438,54 +438,88 @@ namespace FlutterSDK.Widgets.Icontheme
         #region constructors
         public IconTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Data { get; set; }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Creates an icon theme that controls the color, opacity, and size of
+    /// descendant widgets, and merges in the current icon theme, if any.
+    ///
+    /// The [data] and [child] arguments must not be null.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    {
+        return new Builder(builder: (BuildContext context) =>
         {
-            this.Data = data; throw new NotImplementedException();
+            return new IconTheme(key: key, data: _GetInheritedIconThemeData(context).Merge(data), child: child);
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Data { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Creates an icon theme that controls the color, opacity, and size of
-        /// descendant widgets, and merges in the current icon theme, if any.
-        ///
-        /// The [data] and [child] arguments must not be null.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget Merge(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The data from the closest instance of this class that encloses the given
-        /// context.
-        ///
-        /// Defaults to the current [ThemeData.iconTheme].
-        ///
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// IconThemeData theme = IconTheme.of(context);
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Iconthemedata.IconThemeData _GetInheritedIconThemeData(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Icontheme.IconTheme oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
+
+
+
+
+    /// <Summary>
+    /// The data from the closest instance of this class that encloses the given
+    /// context.
+    ///
+    /// Defaults to the current [ThemeData.iconTheme].
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// IconThemeData theme = IconTheme.of(context);
+    /// ```
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        IconThemeData iconThemeData = _GetInheritedIconThemeData(context).Resolve(context);
+        return iconThemeData.IsConcrete ? iconThemeData : iconThemeData.CopyWith(size: iconThemeData.Size ?? IconThemeData.Fallback().Size, color: iconThemeData.Color ?? IconThemeData.Fallback().Color, opacity: iconThemeData.Opacity ?? IconThemeData.Fallback().Opacity);
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Iconthemedata.IconThemeData _GetInheritedIconThemeData(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        IconTheme iconTheme = context.DependOnInheritedWidgetOfExactType();
+        return iconTheme?.Data ?? IconThemeData.Fallback();
+    }
+
+
+
+
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Icontheme.IconTheme oldWidget) => Data != oldWidget.Data;
+
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+    {
+        IconTheme iconTheme = context.FindAncestorWidgetOfExactType();
+        return Dart:coreDefaultClass.Identical(this, iconTheme) ? child : new IconTheme(data: Data, child: child);
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        Data.DebugFillProperties(properties);
+    }
+
+
+
+    #endregion
+}
 
 }

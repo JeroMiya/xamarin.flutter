@@ -310,274 +310,300 @@ namespace FlutterSDK.Cupertino.Colors
     {
         #region constructors
         internal CupertinoColors()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveBlue { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveGreen { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveOrange { get; set; }
-        public virtual FlutterBinding.UI.Color White { get; set; }
-        public virtual FlutterBinding.UI.Color Black { get; set; }
-        public virtual FlutterBinding.UI.Color LightBackgroundGray { get; set; }
-        public virtual FlutterBinding.UI.Color ExtraLightBackgroundGray { get; set; }
-        public virtual FlutterBinding.UI.Color DarkBackgroundGray { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor InactiveGray { get; set; }
-        public virtual FlutterBinding.UI.Color DestructiveRed { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBlue { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGreen { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemIndigo { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemOrange { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPink { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPurple { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemRed { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemTeal { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemYellow { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey2 { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey3 { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey4 { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey5 { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey6 { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Label { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondaryLabel { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiaryLabel { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternaryLabel { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemFill { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemFill { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemFill { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternarySystemFill { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor PlaceholderText { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBackground { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemBackground { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemBackground { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGroupedBackground { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemGroupedBackground { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemGroupedBackground { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Separator { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor OpaqueSeparator { get; set; }
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Link { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveBlue { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveGreen { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveOrange { get; set; }
+    public virtual FlutterBinding.UI.Color White { get; set; }
+    public virtual FlutterBinding.UI.Color Black { get; set; }
+    public virtual FlutterBinding.UI.Color LightBackgroundGray { get; set; }
+    public virtual FlutterBinding.UI.Color ExtraLightBackgroundGray { get; set; }
+    public virtual FlutterBinding.UI.Color DarkBackgroundGray { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor InactiveGray { get; set; }
+    public virtual FlutterBinding.UI.Color DestructiveRed { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBlue { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGreen { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemIndigo { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemOrange { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPink { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemPurple { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemRed { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemTeal { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemYellow { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey2 { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey3 { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey4 { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey5 { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGrey6 { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Label { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondaryLabel { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiaryLabel { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternaryLabel { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemFill { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemFill { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemFill { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor QuaternarySystemFill { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor PlaceholderText { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemBackground { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemBackground { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemBackground { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SystemGroupedBackground { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor SecondarySystemGroupedBackground { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor TertiarySystemGroupedBackground { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Separator { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor OpaqueSeparator { get; set; }
+    public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Link { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A [Color] subclass that represents a family of colors, and the currect effective
-    /// color in the color family.
-    ///
-    /// When used as a regular color, [CupertinoDynamicColor] is equivalent to the
-    /// effective color (i.e. [CupertinoDynamicColor.value] will come from the effective
-    /// color), which is determined by the [BuildContext] it is last resolved against.
-    /// If it has never been resolved, the light, normal contrast, base elevation variant
-    /// [CupertinoDynamicColor.color] will be the default effective color.
-    ///
-    /// Sometimes manually resolving a [CupertinoDynamicColor] is not necessary, because
-    /// the Cupertino Library provides built-in support for it.
-    ///
-    /// ### Using [CupertinoDynamicColor] in a Cupertino widget
-    ///
-    /// When a Cupertino widget is provided with a [CupertinoDynamicColor], either
-    /// directly in its constructor, or from an [InheritedWidget] it depends on (for example,
-    /// [DefaultTextStyle]), the widget will automatically resolve the color using
-    /// [CupertinoDynamicColor.resolve] against its own [BuildContext], on a best-effort
-    /// basis.
-    ///
-    /// {@tool snippet}
-    /// By default a [CupertinoButton] has no background color. The following sample
-    /// code shows how to build a [CupertinoButton] that appears white in light mode,
-    /// and changes automatically to black in dark mode.
-    ///
-    /// ```dart
-    /// CupertinoButton(
-    ///   child: child,
-    ///   // CupertinoDynamicColor works out of box in a CupertinoButton.
-    ///   color: CupertinoDynamicColor.withBrightness(
-    ///     color: CupertinoColors.white,
-    ///     darkColor: CupertinoColors.black,
-    ///   ),
-    ///   onPressed: () { },
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// ### Using a [CupertinoDynamicColor] from a [CupertinoTheme]
-    ///
-    /// When referring to a [CupertinoTheme] color, generally the color will already
-    /// have adapted to the ambient [BuildContext], because [CupertinoTheme.of]
-    /// implicitly resolves all the colors used in the retrieved [CupertinoThemeData],
-    /// before returning it.
-    ///
-    /// {@tool snippet}
-    /// The following code sample creates a [Container] with the `primaryColor` of the
-    /// current theme. If `primaryColor` is a [CupertinoDynamicColor], the container
-    /// will be adaptive, thanks to [CupertinoTheme.of]: it will switch to `primaryColor`'s
-    /// dark variant once dark mode is turned on, and turns to primaryColor`'s high
-    /// contrast variant when [MediaQueryData.highContrast] is requested in the ambient
-    /// [MediaQuery], etc.
-    ///
-    /// ```dart
-    /// Container(
-    ///   // Container is not a Cupertino widget, but CupertinoTheme.of implicitly
-    ///   // resolves colors used in the retrieved CupertinoThemeData.
-    ///   color: CupertinoTheme.of(context).primaryColor,
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// ### Manually Resolving a [CupertinoDynamicColor]
-    ///
-    /// When used to configure a non-Cupertino widget, or wrapped in an object opaque
-    /// to the receiving Cupertino component, a [CupertinoDynamicColor] may need to be
-    /// manually resolved using [CupertinoDynamicColor.resolve], before it can used
-    /// to paint. For example, to use a custom [Border] in a [CupertinoNavigationBar],
-    /// the colors used in the [Border] have to be resolved manually before being passed
-    /// to [CupertinoNavigationBar]'s constructor.
-    ///
-    /// {@tool snippet}
-    ///
-    /// The following code samples demonstrate two cases where you have to manually
-    /// resolve a [CupertinoDynamicColor].
-    ///
-    /// ```dart
-    /// CupertinoNavigationBar(
-    ///   // CupertinoNavigationBar does not know how to resolve colors used in
-    ///   // a Border class.
-    ///   border: Border(
-    ///     bottom: BorderSide(
-    ///       color: CupertinoDynamicColor.resolve(CupertinoColors.systemBlue, context),
-    ///     ),
-    ///   ),
-    /// )
-    /// ```
-    ///
-    /// ```dart
-    /// Container(
-    ///   // Container is not a Cupertino widget.
-    ///   color: CupertinoDynamicColor.resolve(CupertinoColors.systemBlue, context),
-    /// )
-    /// ```
-    /// {@end-tool}
-    ///
-    /// See also:
-    ///
-    ///  * [CupertinoUserInterfaceLevel], an [InheritedWidget] that may affect color
-    ///    resolution of a [CupertinoDynamicColor].
-    ///  * [CupertinoTheme.of], a static method that retrieves the ambient [CupertinoThemeData],
-    ///    and then resolves [CupertinoDynamicColor]s used in the retrieved data.
-    /// </Summary>
-    public class CupertinoDynamicColor : Color, IDiagnosticable
-    {
-        #region constructors
-        public CupertinoDynamicColor(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color elevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastElevatedColor = default(FlutterBinding.UI.Color))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        public static CupertinoDynamicColor WithBrightnessAndContrast(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color))
-        {
-            var instance = new CupertinoDynamicColor(); throw new NotImplementedException();
-        }
-        public static CupertinoDynamicColor WithBrightness(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color))
-        {
-            var instance = new CupertinoDynamicColor(); throw new NotImplementedException();
-        }
-        internal CupertinoDynamicColor(FlutterBinding.UI.Color _effectiveColor, FlutterBinding.UI.Color color, FlutterBinding.UI.Color darkColor, FlutterBinding.UI.Color highContrastColor, FlutterBinding.UI.Color darkHighContrastColor, FlutterBinding.UI.Color elevatedColor, FlutterBinding.UI.Color darkElevatedColor, FlutterBinding.UI.Color highContrastElevatedColor, FlutterBinding.UI.Color darkHighContrastElevatedColor, FlutterSDK.Widgets.Framework.Element _debugResolveContext, string _debugLabel)
-        : base(0)
-        {
-            this._EffectiveColor = _effectiveColor;
-            this.Color = color;
-            this.DarkColor = darkColor;
-            this.HighContrastColor = highContrastColor;
-            this.DarkHighContrastColor = darkHighContrastColor;
-            this.ElevatedColor = elevatedColor;
-            this.DarkElevatedColor = darkElevatedColor;
-            this.HighContrastElevatedColor = highContrastElevatedColor;
-            this.DarkHighContrastElevatedColor = darkHighContrastElevatedColor;
-            this._DebugResolveContext = _debugResolveContext;
-            this._DebugLabel = _debugLabel; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterBinding.UI.Color _EffectiveColor { get; set; }
-        internal virtual string _DebugLabel { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.Element _DebugResolveContext { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color DarkColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighContrastColor { get; set; }
-        public virtual FlutterBinding.UI.Color DarkHighContrastColor { get; set; }
-        public virtual FlutterBinding.UI.Color ElevatedColor { get; set; }
-        public virtual FlutterBinding.UI.Color DarkElevatedColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighContrastElevatedColor { get; set; }
-        public virtual FlutterBinding.UI.Color DarkHighContrastElevatedColor { get; set; }
-        public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _IsPlatformBrightnessDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _IsHighContrastDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _IsInterfaceElevationDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Resolves the given [Color] by calling [resolveFrom].
-        ///
-        /// If the given color is already a concrete [Color], it will be returned as is.
-        /// If the given color is null, returns null.
-        /// If the given color is a [CupertinoDynamicColor], but the given [BuildContext]
-        /// lacks the dependencies required to the color resolution, the default trait
-        /// value will be used ([Brightness.light] platform brightness, normal contrast,
-        /// [CupertinoUserInterfaceLevelData.base] elevation level), unless [nullOk] is
-        /// set to false, in which case an exception will be thrown.
-        /// </Summary>
-        public virtual Color Resolve(FlutterBinding.UI.Color resolvable, FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = true) { throw new NotImplementedException(); }
+    #region methods
+    #endregion
+}
 
 
-        /// <Summary>
-        /// Resolves this [CupertinoDynamicColor] using the provided [BuildContext].
-        ///
-        /// Calling this method will create a new [CupertinoDynamicColor] that is almost
-        /// identical to this [CupertinoDynamicColor], except the effective color is
-        /// changed to adapt to the given [BuildContext].
-        ///
-        /// For example, if the given [BuildContext] indicates the widgets in the subtree
-        /// should be displayed in dark mode (the surrounding [CupertinoTheme]'s [CupertinoThemeData.brightness]
-        /// or [MediaQuery]'s [MediaQueryData.platformBrightness] is [Brightness.dark]),
-        /// with a high accessibility contrast (the surrounding [MediaQuery]'s [MediaQueryData.highContrast]
-        /// is `true`), and an elevated interface elevation (the surrounding [CupertinoUserInterfaceLevel]'s
-        /// `data` is [CupertinoUserInterfaceLevelData.elevated]), the resolved
-        /// [CupertinoDynamicColor] will be the same as this [CupertinoDynamicColor],
-        /// except its effective color will be the `darkHighContrastElevatedColor` variant
-        /// from the original [CupertinoDynamicColor].
-        ///
-        /// Calling this function may create dependencies on the closest instance of some
-        /// [InheritedWidget]s that enclose the given [BuildContext]. E.g., if [darkColor]
-        /// is different from [color], this method will call [CupertinoTheme.of], and
-        /// then [MediaQuery.of] if brightness wasn't specified in the theme data retrieved
-        /// from the previous [CupertinoTheme.of] call, in an effort to determine the
-        /// brightness value.
-        ///
-        /// If any of the required dependencies are missing from the given context, the
-        /// default value of that trait will be used ([Brightness.light] platform
-        /// brightness, normal contrast, [CupertinoUserInterfaceLevelData.base] elevation
-        /// level), unless [nullOk] is set to false, in which case an exception will be
-        /// thrown.
-        /// </Summary>
-        public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = true) { throw new NotImplementedException(); }
+/// <Summary>
+/// A [Color] subclass that represents a family of colors, and the currect effective
+/// color in the color family.
+///
+/// When used as a regular color, [CupertinoDynamicColor] is equivalent to the
+/// effective color (i.e. [CupertinoDynamicColor.value] will come from the effective
+/// color), which is determined by the [BuildContext] it is last resolved against.
+/// If it has never been resolved, the light, normal contrast, base elevation variant
+/// [CupertinoDynamicColor.color] will be the default effective color.
+///
+/// Sometimes manually resolving a [CupertinoDynamicColor] is not necessary, because
+/// the Cupertino Library provides built-in support for it.
+///
+/// ### Using [CupertinoDynamicColor] in a Cupertino widget
+///
+/// When a Cupertino widget is provided with a [CupertinoDynamicColor], either
+/// directly in its constructor, or from an [InheritedWidget] it depends on (for example,
+/// [DefaultTextStyle]), the widget will automatically resolve the color using
+/// [CupertinoDynamicColor.resolve] against its own [BuildContext], on a best-effort
+/// basis.
+///
+/// {@tool snippet}
+/// By default a [CupertinoButton] has no background color. The following sample
+/// code shows how to build a [CupertinoButton] that appears white in light mode,
+/// and changes automatically to black in dark mode.
+///
+/// ```dart
+/// CupertinoButton(
+///   child: child,
+///   // CupertinoDynamicColor works out of box in a CupertinoButton.
+///   color: CupertinoDynamicColor.withBrightness(
+///     color: CupertinoColors.white,
+///     darkColor: CupertinoColors.black,
+///   ),
+///   onPressed: () { },
+/// )
+/// ```
+/// {@end-tool}
+///
+/// ### Using a [CupertinoDynamicColor] from a [CupertinoTheme]
+///
+/// When referring to a [CupertinoTheme] color, generally the color will already
+/// have adapted to the ambient [BuildContext], because [CupertinoTheme.of]
+/// implicitly resolves all the colors used in the retrieved [CupertinoThemeData],
+/// before returning it.
+///
+/// {@tool snippet}
+/// The following code sample creates a [Container] with the `primaryColor` of the
+/// current theme. If `primaryColor` is a [CupertinoDynamicColor], the container
+/// will be adaptive, thanks to [CupertinoTheme.of]: it will switch to `primaryColor`'s
+/// dark variant once dark mode is turned on, and turns to primaryColor`'s high
+/// contrast variant when [MediaQueryData.highContrast] is requested in the ambient
+/// [MediaQuery], etc.
+///
+/// ```dart
+/// Container(
+///   // Container is not a Cupertino widget, but CupertinoTheme.of implicitly
+///   // resolves colors used in the retrieved CupertinoThemeData.
+///   color: CupertinoTheme.of(context).primaryColor,
+/// )
+/// ```
+/// {@end-tool}
+///
+/// ### Manually Resolving a [CupertinoDynamicColor]
+///
+/// When used to configure a non-Cupertino widget, or wrapped in an object opaque
+/// to the receiving Cupertino component, a [CupertinoDynamicColor] may need to be
+/// manually resolved using [CupertinoDynamicColor.resolve], before it can used
+/// to paint. For example, to use a custom [Border] in a [CupertinoNavigationBar],
+/// the colors used in the [Border] have to be resolved manually before being passed
+/// to [CupertinoNavigationBar]'s constructor.
+///
+/// {@tool snippet}
+///
+/// The following code samples demonstrate two cases where you have to manually
+/// resolve a [CupertinoDynamicColor].
+///
+/// ```dart
+/// CupertinoNavigationBar(
+///   // CupertinoNavigationBar does not know how to resolve colors used in
+///   // a Border class.
+///   border: Border(
+///     bottom: BorderSide(
+///       color: CupertinoDynamicColor.resolve(CupertinoColors.systemBlue, context),
+///     ),
+///   ),
+/// )
+/// ```
+///
+/// ```dart
+/// Container(
+///   // Container is not a Cupertino widget.
+///   color: CupertinoDynamicColor.resolve(CupertinoColors.systemBlue, context),
+/// )
+/// ```
+/// {@end-tool}
+///
+/// See also:
+///
+///  * [CupertinoUserInterfaceLevel], an [InheritedWidget] that may affect color
+///    resolution of a [CupertinoDynamicColor].
+///  * [CupertinoTheme.of], a static method that retrieves the ambient [CupertinoThemeData],
+///    and then resolves [CupertinoDynamicColor]s used in the retrieved data.
+/// </Summary>
+public class CupertinoDynamicColor : Color, IDiagnosticable
+{
+    #region constructors
+    public CupertinoDynamicColor(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color elevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastElevatedColor = default(FlutterBinding.UI.Color))
+    : base()
 
+}
+public static CupertinoDynamicColor WithBrightnessAndContrast(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color))
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+}
+public static CupertinoDynamicColor WithBrightness(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color))
+
+}
+internal CupertinoDynamicColor(FlutterBinding.UI.Color _effectiveColor, FlutterBinding.UI.Color color, FlutterBinding.UI.Color darkColor, FlutterBinding.UI.Color highContrastColor, FlutterBinding.UI.Color darkHighContrastColor, FlutterBinding.UI.Color elevatedColor, FlutterBinding.UI.Color darkElevatedColor, FlutterBinding.UI.Color highContrastElevatedColor, FlutterBinding.UI.Color darkHighContrastElevatedColor, FlutterSDK.Widgets.Framework.Element _debugResolveContext, string _debugLabel)
+: base(0)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterBinding.UI.Color _EffectiveColor { get; set; }
+internal virtual string _DebugLabel { get; set; }
+internal virtual FlutterSDK.Widgets.Framework.Element _DebugResolveContext { get; set; }
+public virtual FlutterBinding.UI.Color Color { get; set; }
+public virtual FlutterBinding.UI.Color DarkColor { get; set; }
+public virtual FlutterBinding.UI.Color HighContrastColor { get; set; }
+public virtual FlutterBinding.UI.Color DarkHighContrastColor { get; set; }
+public virtual FlutterBinding.UI.Color ElevatedColor { get; set; }
+public virtual FlutterBinding.UI.Color DarkElevatedColor { get; set; }
+public virtual FlutterBinding.UI.Color HighContrastElevatedColor { get; set; }
+public virtual FlutterBinding.UI.Color DarkHighContrastElevatedColor { get; set; }
+public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual bool _IsPlatformBrightnessDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual bool _IsHighContrastDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+internal virtual bool _IsInterfaceElevationDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Resolves the given [Color] by calling [resolveFrom].
+///
+/// If the given color is already a concrete [Color], it will be returned as is.
+/// If the given color is null, returns null.
+/// If the given color is a [CupertinoDynamicColor], but the given [BuildContext]
+/// lacks the dependencies required to the color resolution, the default trait
+/// value will be used ([Brightness.light] platform brightness, normal contrast,
+/// [CupertinoUserInterfaceLevelData.base] elevation level), unless [nullOk] is
+/// set to false, in which case an exception will be thrown.
+/// </Summary>
+public virtual Color Resolve(FlutterBinding.UI.Color resolvable, FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = true)
+{
+    if (resolvable == null) return null;
+
+    return (resolvable is CupertinoDynamicColor) ? resolvable.ResolveFrom(context, nullOk: nullOk) : resolvable;
+}
 
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+/// <Summary>
+/// Resolves this [CupertinoDynamicColor] using the provided [BuildContext].
+///
+/// Calling this method will create a new [CupertinoDynamicColor] that is almost
+/// identical to this [CupertinoDynamicColor], except the effective color is
+/// changed to adapt to the given [BuildContext].
+///
+/// For example, if the given [BuildContext] indicates the widgets in the subtree
+/// should be displayed in dark mode (the surrounding [CupertinoTheme]'s [CupertinoThemeData.brightness]
+/// or [MediaQuery]'s [MediaQueryData.platformBrightness] is [Brightness.dark]),
+/// with a high accessibility contrast (the surrounding [MediaQuery]'s [MediaQueryData.highContrast]
+/// is `true`), and an elevated interface elevation (the surrounding [CupertinoUserInterfaceLevel]'s
+/// `data` is [CupertinoUserInterfaceLevelData.elevated]), the resolved
+/// [CupertinoDynamicColor] will be the same as this [CupertinoDynamicColor],
+/// except its effective color will be the `darkHighContrastElevatedColor` variant
+/// from the original [CupertinoDynamicColor].
+///
+/// Calling this function may create dependencies on the closest instance of some
+/// [InheritedWidget]s that enclose the given [BuildContext]. E.g., if [darkColor]
+/// is different from [color], this method will call [CupertinoTheme.of], and
+/// then [MediaQuery.of] if brightness wasn't specified in the theme data retrieved
+/// from the previous [CupertinoTheme.of] call, in an effort to determine the
+/// brightness value.
+///
+/// If any of the required dependencies are missing from the given context, the
+/// default value of that trait will be used ([Brightness.light] platform
+/// brightness, normal contrast, [CupertinoUserInterfaceLevelData.base] elevation
+/// level), unless [nullOk] is set to false, in which case an exception will be
+/// thrown.
+/// </Summary>
+public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = true)
+{
+    Brightness brightness = _IsPlatformBrightnessDependent ? ThemeDefaultClass.CupertinoTheme.BrightnessOf(context, nullOk: nullOk) ?? Brightness.Light : Brightness.Light;
+    bool isHighContrastEnabled = _IsHighContrastDependent && (MediaqueryDefaultClass.MediaQuery.Of(context, nullOk: nullOk)?.HighContrast ?? false);
+    CupertinoUserInterfaceLevelData level = _IsInterfaceElevationDependent ? InterfacelevelDefaultClass.CupertinoUserInterfaceLevel.Of(context, nullOk: nullOk) ?? CupertinoUserInterfaceLevelData.Base : CupertinoUserInterfaceLevelData.Base;
+    Color resolved = default(Color);
+    switch (brightness) { case Brightness.Light: switch (level) { case CupertinoUserInterfaceLevelData.Base: resolved = isHighContrastEnabled ? HighContrastColor : Color; break; case CupertinoUserInterfaceLevelData.Elevated: resolved = isHighContrastEnabled ? HighContrastElevatedColor : ElevatedColor; break; } break; case Brightness.Dark: switch (level) { case CupertinoUserInterfaceLevelData.Base: resolved = isHighContrastEnabled ? DarkHighContrastColor : DarkColor; break; case CupertinoUserInterfaceLevelData.Elevated: resolved = isHighContrastEnabled ? DarkHighContrastElevatedColor : DarkElevatedColor; break; } }
+    Element _debugContext = default(Element);
+
+    return CupertinoDynamicColor._(resolved, Color, DarkColor, HighContrastColor, DarkHighContrastColor, ElevatedColor, DarkElevatedColor, HighContrastElevatedColor, DarkHighContrastElevatedColor, _debugContext, _DebugLabel);
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    return other is CupertinoDynamicColor && other.Value == Value && other.Color == Color && other.DarkColor == DarkColor && other.HighContrastColor == HighContrastColor && other.DarkHighContrastColor == DarkHighContrastColor && other.ElevatedColor == ElevatedColor && other.DarkElevatedColor == DarkElevatedColor && other.HighContrastElevatedColor == HighContrastElevatedColor && other.DarkHighContrastElevatedColor == DarkHighContrastElevatedColor;
+}
+
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    if (_DebugLabel != null) properties.Add(new MessageProperty("debugLabel", _DebugLabel));
+    properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("color", Color));
+    if (_IsPlatformBrightnessDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("darkColor", DarkColor));
+    if (_IsHighContrastDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("highContrastColor", HighContrastColor));
+    if (_IsPlatformBrightnessDependent && _IsHighContrastDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("darkHighContrastColor", DarkHighContrastColor));
+    if (_IsInterfaceElevationDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("elevatedColor", ElevatedColor));
+    if (_IsPlatformBrightnessDependent && _IsInterfaceElevationDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("darkElevatedColor", DarkElevatedColor));
+    if (_IsHighContrastDependent && _IsInterfaceElevationDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("highContrastElevatedColor", HighContrastElevatedColor));
+    if (_IsPlatformBrightnessDependent && _IsHighContrastDependent && _IsInterfaceElevationDependent) properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("darkHighContrastElevatedColor", DarkHighContrastElevatedColor));
+    if (_DebugResolveContext != null) properties.Add(new DiagnosticsProperty<Element>("last resolved", _DebugResolveContext));
+}
+
+
+
+#endregion
+}
 
 }

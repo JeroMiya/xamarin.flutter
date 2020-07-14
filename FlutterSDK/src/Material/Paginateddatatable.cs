@@ -420,117 +420,264 @@ namespace FlutterSDK.Material.Paginateddatatable
         #region constructors
         public PaginatedDataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, int initialFirstRowIndex = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int rowsPerPage = default(int), List<int> availableRowsPerPage = default(List<int>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onRowsPerPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Material.Datatablesource.DataTableSource source = default(FlutterSDK.Material.Datatablesource.DataTableSource))
         : base(key: key)
-        {
-            this.Header = header;
-            this.Actions = actions;
-            this.Columns = columns;
-            this.SortColumnIndex = sortColumnIndex;
-            this.SortAscending = sortAscending;
-            this.OnSelectAll = onSelectAll;
-            this.DataRowHeight = dataRowHeight;
-            this.HeadingRowHeight = headingRowHeight;
-            this.HorizontalMargin = horizontalMargin;
-            this.ColumnSpacing = columnSpacing;
-            this.ShowCheckboxColumn = showCheckboxColumn;
-            this.InitialFirstRowIndex = initialFirstRowIndex;
-            this.OnPageChanged = onPageChanged;
-            this.RowsPerPage = rowsPerPage;
-            this.AvailableRowsPerPage = availableRowsPerPage;
-            this.OnRowsPerPageChanged = onRowsPerPageChanged;
-            this.DragStartBehavior = dragStartBehavior;
-            this.Source = source; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
-        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-        public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
-        public virtual int SortColumnIndex { get; set; }
-        public virtual bool SortAscending { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
-        public virtual double DataRowHeight { get; set; }
-        public virtual double HeadingRowHeight { get; set; }
-        public virtual double HorizontalMargin { get; set; }
-        public virtual double ColumnSpacing { get; set; }
-        public virtual bool ShowCheckboxColumn { get; set; }
-        public virtual int InitialFirstRowIndex { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged { get; set; }
-        public virtual int RowsPerPage { get; set; }
-        public virtual int DefaultRowsPerPage { get; set; }
-        public virtual List<int> AvailableRowsPerPage { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged { get; set; }
-        public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source { get; set; }
-        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
+    public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+    public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
+    public virtual int SortColumnIndex { get; set; }
+    public virtual bool SortAscending { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
+    public virtual double DataRowHeight { get; set; }
+    public virtual double HeadingRowHeight { get; set; }
+    public virtual double HorizontalMargin { get; set; }
+    public virtual double ColumnSpacing { get; set; }
+    public virtual bool ShowCheckboxColumn { get; set; }
+    public virtual int InitialFirstRowIndex { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged { get; set; }
+    public virtual int RowsPerPage { get; set; }
+    public virtual int DefaultRowsPerPage { get; set; }
+    public virtual List<int> AvailableRowsPerPage { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged { get; set; }
+    public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source { get; set; }
+    public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState() { throw new NotImplementedException(); }
+    public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState() => new PaginatedDataTableState();
 
-        #endregion
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Holds the state of a [PaginatedDataTable].
+///
+/// The table can be programmatically paged using the [pageTo] method.
+/// </Summary>
+public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
+{
+    #region constructors
+    public PaginatedDataTableState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual int _FirstRowIndex { get; set; }
+    internal virtual int _RowCount { get; set; }
+    internal virtual bool _RowCountApproximate { get; set; }
+    internal virtual int _SelectedRowCount { get; set; }
+    internal virtual Dictionary<int, FlutterSDK.Material.Datatable.DataRow> _Rows { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _TableKey { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _FirstRowIndex = PagestorageDefaultClass.PageStorage.Of(Context)?.ReadState(Context) as int ?? Widget.InitialFirstRowIndex ?? 0;
+        Widget.Source.AddListener(_HandleDataSourceChanged);
+        _HandleDataSourceChanged();
     }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Paginateddatatable.PaginatedDataTable oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+        if (oldWidget.Source != Widget.Source)
+        {
+            oldWidget.Source.RemoveListener(_HandleDataSourceChanged);
+            Widget.Source.AddListener(_HandleDataSourceChanged);
+            _HandleDataSourceChanged();
+        }
+
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        Widget.Source.RemoveListener(_HandleDataSourceChanged);
+        base.Dispose();
+    }
+
+
+
+
+    private void _HandleDataSourceChanged()
+    {
+        SetState(() =>
+        {
+            _RowCount = Widget.Source.RowCount;
+            _RowCountApproximate = Widget.Source.IsRowCountApproximate;
+            _SelectedRowCount = Widget.Source.SelectedRowCount;
+            _Rows.Clear();
+        }
+        );
+    }
+
+
 
 
     /// <Summary>
-    /// Holds the state of a [PaginatedDataTable].
-    ///
-    /// The table can be programmatically paged using the [pageTo] method.
+    /// Ensures that the given row is visible.
     /// </Summary>
-    public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
+    public virtual void PageTo(int rowIndex)
     {
-        #region constructors
-        public PaginatedDataTableState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual int _FirstRowIndex { get; set; }
-        internal virtual int _RowCount { get; set; }
-        internal virtual bool _RowCountApproximate { get; set; }
-        internal virtual int _SelectedRowCount { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Material.Datatable.DataRow> _Rows { get; set; }
-        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _TableKey { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Paginateddatatable.PaginatedDataTable oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _HandleDataSourceChanged() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Ensures that the given row is visible.
-        /// </Summary>
-        public virtual void PageTo(int rowIndex) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Material.Datatable.DataRow _GetBlankRowFor(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Material.Datatable.DataRow _GetProgressIndicatorRowFor(int index) { throw new NotImplementedException(); }
-
-
-        private List<FlutterSDK.Material.Datatable.DataRow> _GetRows(int firstRowIndex, int rowsPerPage) { throw new NotImplementedException(); }
-
-
-        private void _HandlePrevious() { throw new NotImplementedException(); }
-
-
-        private void _HandleNext() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        int oldFirstRowIndex = _FirstRowIndex;
+        SetState(() =>
+        {
+        int rowsPerPage = Widget.RowsPerPage;
+        _FirstRowIndex = (rowIndex~/ rowsPerPage) * rowsPerPage;
     }
+);
+if ((Widget.OnPageChanged!=null )&&(oldFirstRowIndex!=_FirstRowIndex))Widget.OnPageChanged(_FirstRowIndex);
+}
+
+
+
+
+private FlutterSDK.Material.Datatable.DataRow _GetBlankRowFor(int index)
+{
+    return DataRow.ByIndex(index: index, cells: Widget.Columns.Map((DataColumn column) => =>DatatableDefaultClass.DataCell.Empty).ToList());
+}
+
+
+
+
+private FlutterSDK.Material.Datatable.DataRow _GetProgressIndicatorRowFor(int index)
+{
+    bool haveProgressIndicator = false;
+    List<DataCell> cells = Widget.Columns.Map((DataColumn column) =>
+    {
+        if (!column.Numeric)
+        {
+            haveProgressIndicator = true;
+            return new DataCell(new CircularProgressIndicator());
+        }
+
+        return DatatableDefaultClass.DataCell.Empty;
+    }
+    ).ToList();
+    if (!haveProgressIndicator)
+    {
+        haveProgressIndicator = true;
+        cells[0] = new DataCell(new CircularProgressIndicator());
+    }
+
+    return DataRow.ByIndex(index: index, cells: cells);
+}
+
+
+
+
+private List<FlutterSDK.Material.Datatable.DataRow> _GetRows(int firstRowIndex, int rowsPerPage)
+{
+    List<DataRow> result = new List<DataRow>() { };
+    int nextPageFirstRowIndex = firstRowIndex + rowsPerPage;
+    bool haveProgressIndicator = false;
+    for (int index = firstRowIndex; index < nextPageFirstRowIndex; index += 1)
+    {
+        DataRow row = default(DataRow);
+        if (index < _RowCount || _RowCountApproximate)
+        {
+            row = _Rows.PutIfAbsent(index, () => =>Widget.Source.GetRow(index));
+            if (row == null && !haveProgressIndicator)
+            {
+                row = (row == null ? _GetProgressIndicatorRowFor(index) : row);
+                haveProgressIndicator = true;
+            }
+
+        }
+
+        row = (row == null ? _GetBlankRowFor(index) : row);
+        result.Add(row);
+    }
+
+    return result;
+}
+
+
+
+
+private void _HandlePrevious()
+{
+    PageTo(Math.Dart:mathDefaultClass.Max(_FirstRowIndex - Widget.RowsPerPage, 0));
+}
+
+
+
+
+private void _HandleNext()
+{
+    PageTo(_FirstRowIndex + Widget.RowsPerPage);
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+
+    ThemeData themeData = ThemeDefaultClass.Theme.Of(context);
+    MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+    List<Widget> headerWidgets = new List<Widget>() { };
+    double startPadding = 24.0;
+    if (_SelectedRowCount == 0)
+    {
+        headerWidgets.Add(new Expanded(child: Widget.Header));
+        if (((ButtonBar)Widget.Header) is ButtonBar)
+        {
+            startPadding = 12.0;
+        }
+
+    }
+    else
+    {
+        headerWidgets.Add(new Expanded(child: new Text(localizations.SelectedRowCountTitle(_SelectedRowCount))));
+    }
+
+    if (Widget.Actions != null)
+    {
+        headerWidgets.AddAll(Widget.Actions.Map((Widget action) =>
+        {
+            return new Padding(padding: EdgeInsetsDirectional.Only(start: 24.0 - 8.0 * 2.0), child: action);
+        }
+        ).ToList());
+    }
+
+    TextStyle footerTextStyle = themeData.TextTheme.Caption;
+    List<Widget> footerWidgets = new List<Widget>() { };
+    if (Widget.OnRowsPerPageChanged != null)
+    {
+        List<Widget> availableRowsPerPage = Widget.AvailableRowsPerPage.Where((int value) => =>value <= _RowCount || value == Widget.RowsPerPage).Map((int value) =>
+        {
+            return new DropdownMenuItem<int>(value: value, child: new Text($"'{value}'"));
+        }
+        ).ToList();
+        footerWidgets.AddAll(new List<Widget>() { new Container(width: 14.0), new Text(localizations.RowsPerPageTitle), new ConstrainedBox(constraints: new BoxConstraints(minWidth: 64.0), child: new Align(alignment: AlignmentDefaultClass.AlignmentDirectional.CenterEnd, child: new DropdownButtonHideUnderline(child: new DropdownButton<int>(items: availableRowsPerPage.Cast(), value: Widget.RowsPerPage, onChanged: Widget.OnRowsPerPageChanged, style: footerTextStyle, iconSize: 24.0)))) });
+    }
+
+    footerWidgets.AddAll(new List<Widget>() { new Container(width: 32.0), new Text(localizations.PageRowsInfoTitle(_FirstRowIndex + 1, _FirstRowIndex + Widget.RowsPerPage, _RowCount, _RowCountApproximate)), new Container(width: 32.0), new IconButton(icon: new Icon(IconsDefaultClass.Icons.Chevron_left), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, tooltip: localizations.PreviousPageTooltip, onPressed: _FirstRowIndex <= 0 ? null : _HandlePrevious), new Container(width: 24.0), new IconButton(icon: new Icon(IconsDefaultClass.Icons.Chevron_right), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, tooltip: localizations.NextPageTooltip, onPressed: (!_RowCountApproximate && (_FirstRowIndex + Widget.RowsPerPage >= _RowCount)) ? null : _HandleNext), new Container(width: 14.0) });
+    return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+    {
+        return new Card(semanticContainer: false, child: new Column(crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { new Semantics(container: true, child: new DefaultTextStyle(style: _SelectedRowCount > 0 ? themeData.TextTheme.Subtitle1.CopyWith(color: themeData.AccentColor) : themeData.TextTheme.Headline6.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W400), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(opacity: 0.54), child: new Ink(height: 64.0, color: _SelectedRowCount > 0 ? themeData.SecondaryHeaderColor : null, child: new Padding(padding: EdgeInsetsDirectional.Only(start: startPadding, end: 14.0), child: new Row(mainAxisAlignment: MainAxisAlignment.End, children: headerWidgets)))))), new SingleChildScrollView(scrollDirection: Axis.Horizontal, dragStartBehavior: Widget.DragStartBehavior, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: constraints.MinWidth), child: new DataTable(key: _TableKey, columns: Widget.Columns, sortColumnIndex: Widget.SortColumnIndex, sortAscending: Widget.SortAscending, onSelectAll: Widget.OnSelectAll, dataRowHeight: Widget.DataRowHeight, headingRowHeight: Widget.HeadingRowHeight, horizontalMargin: Widget.HorizontalMargin, columnSpacing: Widget.ColumnSpacing, rows: _GetRows(_FirstRowIndex, Widget.RowsPerPage)))), new DefaultTextStyle(style: footerTextStyle, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(opacity: 0.54), child: new Container(height: 56.0, child: new SingleChildScrollView(dragStartBehavior: Widget.DragStartBehavior, scrollDirection: Axis.Horizontal, reverse: true, child: new Row(children: footerWidgets))))) }));
+    }
+    );
+}
+
+
+
+#endregion
+}
 
 }

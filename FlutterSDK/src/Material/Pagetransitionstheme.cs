@@ -427,351 +427,466 @@ namespace FlutterSDK.Material.Pagetransitionstheme
         #region constructors
         public _FadeUpwardsPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> routeAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-        {
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _BottomUpTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FastOutSlowInTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseInTween { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
+    #region fields
+    internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _BottomUpTween { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FastOutSlowInTween { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseInTween { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _OpenUpwardsPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public _OpenUpwardsPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
-        {
-            this.Animation = animation;
-            this.SecondaryAnimation = secondaryAnimation;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _PrimaryTranslationTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _SecondaryTranslationTween { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _ScrimOpacityTween { get; set; }
-        internal virtual FlutterSDK.Animation.Curves.Curve _TransitionCurve { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return new SlideTransition(position: _PositionAnimation, child: new FadeTransition(opacity: _OpacityAnimation, child: Child));
     }
 
 
-    public class _ZoomPageTransition : FlutterSDK.Widgets.Framework.StatefulWidget
+
+    #endregion
+}
+
+
+public class _OpenUpwardsPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public _OpenUpwardsPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _PrimaryTranslationTween { get; set; }
+internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _SecondaryTranslationTween { get; set; }
+internal virtual FlutterSDK.Animation.Tween.Tween<double> _ScrimOpacityTween { get; set; }
+internal virtual FlutterSDK.Animation.Curves.Curve _TransitionCurve { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
     {
-        #region constructors
-        public _ZoomPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
+        Size size = constraints.Biggest;
+        CurvedAnimation primaryAnimation = new CurvedAnimation(parent: Animation, curve: _TransitionCurve, reverseCurve: _TransitionCurve.Flipped);
+        Animation<double> clipAnimation = new Tween<double>(begin: 0.0, end: size.Height).Animate(primaryAnimation);
+        Animation<double> opacityAnimation = _ScrimOpacityTween.Animate(primaryAnimation);
+        Animation<Offset> primaryTranslationAnimation = _PrimaryTranslationTween.Animate(primaryAnimation);
+        Animation<Offset> secondaryTranslationAnimation = _SecondaryTranslationTween.Animate(new CurvedAnimation(parent: SecondaryAnimation, curve: _TransitionCurve, reverseCurve: _TransitionCurve.Flipped));
+        return new AnimatedBuilder(animation: Animation, builder: (BuildContext context, Widget child) =>
         {
-            this.Animation = animation;
-            this.SecondaryAnimation = secondaryAnimation;
-            this.Child = child; throw new NotImplementedException();
+            return new Container(color: ColorsDefaultClass.Colors.Black.WithOpacity(opacityAnimation.Value), alignment: AlignmentDefaultClass.Alignment.BottomLeft, child: new ClipRect(child: new SizedBox(height: clipAnimation.Value, child: new OverflowBox(alignment: AlignmentDefaultClass.Alignment.BottomLeft, maxHeight: size.Height, child: child))));
         }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _ScrimOpacityTween { get; set; }
-        public virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> FastOutExtraSlowInTweenSequenceItems { get; set; }
-        internal virtual FlutterSDK.Animation.Tweensequence.TweenSequence<double> _ScaleCurveSequence { get; set; }
-        internal virtual FlutterSDK.Animation.Tweensequence.FlippedTweenSequence _FlippedScaleCurveSequence { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Pagetransitionstheme._ZoomPageTransitionState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _ZoomPageTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pagetransitionstheme._ZoomPageTransition>
-    {
-        #region constructors
-        public __ZoomPageTransitionState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurrentAnimationStatus { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastAnimationStatus { get; set; }
-        internal virtual bool _TransitionWasInterrupted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// Used by [PageTransitionsTheme] to define a [MaterialPageRoute] page
-    /// transition animation.
-    ///
-    /// Apps can configure the map of builders for [ThemeData.pageTransitionsTheme]
-    /// to customize the default [MaterialPageRoute] page transition animation
-    /// for different platforms.
-    ///
-    /// See also:
-    ///
-    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
-    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
-    ///    that's similar to the one provided by Android P.
-    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
-    ///    to the one provided in Android 10.
-    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
-    ///    transition that matches native iOS page transitions.
-    /// </Summary>
-    public class PageTransitionsBuilder
-    {
-        #region constructors
-        public PageTransitionsBuilder()
+        , child: new AnimatedBuilder(animation: SecondaryAnimation, child: new FractionalTranslation(translation: primaryTranslationAnimation.Value, child: Child), builder: (BuildContext context, Widget child) =>
         {
-            throw new NotImplementedException();
+            return new FractionalTranslation(translation: secondaryTranslationAnimation.Value, child: child);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Wraps the child with one or more transition widgets which define how [route]
-        /// arrives on and leaves the screen.
-        ///
-        /// The [MaterialPageRoute.buildTransitions] method looks up the current
-        /// current [PageTransitionsTheme] with `Theme.of(context).pageTransitionsTheme`
-        /// and delegates to this method with a [PageTransitionsBuilder] based
-        /// on the theme's [ThemeData.platform].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-        #endregion
+        ));
     }
+    );
+}
 
 
-    /// <Summary>
-    /// Used by [PageTransitionsTheme] to define a default [MaterialPageRoute] page
-    /// transition animation.
-    ///
-    /// The default animation fades the new page in while translating it upwards,
-    /// starting from about 25% below the top of the screen.
-    ///
-    /// See also:
-    ///
-    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
-    ///    that's similar to the one provided by Android P.
-    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
-    ///    to the one provided in Android 10.
-    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
-    ///    transition that matches native iOS page transitions.
-    /// </Summary>
-    public class FadeUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
+
+#endregion
+}
+
+
+public class _ZoomPageTransition : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _ZoomPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Animation.Tween.Tween<double> _ScrimOpacityTween { get; set; }
+public virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> FastOutExtraSlowInTweenSequenceItems { get; set; }
+internal virtual FlutterSDK.Animation.Tweensequence.TweenSequence<double> _ScaleCurveSequence { get; set; }
+internal virtual FlutterSDK.Animation.Tweensequence.FlippedTweenSequence _FlippedScaleCurveSequence { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Pagetransitionstheme._ZoomPageTransitionState CreateState() => new _ZoomPageTransitionState();
+
+
+#endregion
+}
+
+
+public class _ZoomPageTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pagetransitionstheme._ZoomPageTransition>
+{
+    #region constructors
+    public __ZoomPageTransitionState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurrentAnimationStatus { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastAnimationStatus { get; set; }
+    internal virtual bool _TransitionWasInterrupted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public FadeUpwardsPageTransitionsBuilder()
+        base.InitState();
+        Widget.Animation.AddStatusListener((AnimationStatus animationStatus) =>
         {
-            throw new NotImplementedException();
+            _LastAnimationStatus = _CurrentAnimationStatus;
+            _CurrentAnimationStatus = animationStatus;
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
 
-    /// <Summary>
-    /// Used by [PageTransitionsTheme] to define a vertical [MaterialPageRoute] page
-    /// transition animation that looks like the default page transition
-    /// used on Android P.
-    ///
-    /// See also:
-    ///
-    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
-    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
-    ///    to the one provided in Android 10.
-    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
-    ///    transition that matches native iOS page transitions.
-    /// </Summary>
-    public class OpenUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        #region constructors
-        public OpenUpwardsPageTransitionsBuilder()
+        Animation<double> _forwardScrimOpacityAnimation = Widget.Animation.Drive(PagetransitionsthemeDefaultClass._ZoomPageTransition._ScrimOpacityTween.Chain(new CurveTween(curve: new Interval(0.2075, 0.4175))));
+        Animation<double> _forwardEndScreenScaleTransition = Widget.Animation.Drive(new Tween<double>(begin: 0.85, end: 1.00).Chain(PagetransitionsthemeDefaultClass._ZoomPageTransition._ScaleCurveSequence));
+        Animation<double> _forwardStartScreenScaleTransition = Widget.SecondaryAnimation.Drive(new Tween<double>(begin: 1.00, end: 1.05).Chain(PagetransitionsthemeDefaultClass._ZoomPageTransition._ScaleCurveSequence));
+        Animation<double> _forwardEndScreenFadeTransition = Widget.Animation.Drive(new Tween<double>(begin: 0.0, end: 1.00).Chain(new CurveTween(curve: new Interval(0.125, 0.250))));
+        Animation<double> _reverseEndScreenScaleTransition = Widget.SecondaryAnimation.Drive(new Tween<double>(begin: 1.00, end: 1.10).Chain(PagetransitionsthemeDefaultClass._ZoomPageTransition._FlippedScaleCurveSequence));
+        Animation<double> _reverseStartScreenScaleTransition = Widget.Animation.Drive(new Tween<double>(begin: 0.9, end: 1.0).Chain(PagetransitionsthemeDefaultClass._ZoomPageTransition._FlippedScaleCurveSequence));
+        Animation<double> _reverseStartScreenFadeTransition = Widget.Animation.Drive(new Tween<double>(begin: 0.0, end: 1.00).Chain(new CurveTween(curve: new Interval(1 - 0.2075, 1 - 0.0825))));
+        return new AnimatedBuilder(animation: Widget.Animation, builder: (BuildContext context, Widget child) =>
         {
-            throw new NotImplementedException();
+            if (Widget.Animation.Status == AnimationStatus.Forward || _TransitionWasInterrupted)
+            {
+                return new Container(color: ColorsDefaultClass.Colors.Black.WithOpacity(_forwardScrimOpacityAnimation.Value), child: new FadeTransition(opacity: _forwardEndScreenFadeTransition, child: new ScaleTransition(scale: _forwardEndScreenScaleTransition, child: child)));
+            }
+            else if (Widget.Animation.Status == AnimationStatus.Reverse)
+            {
+                return new ScaleTransition(scale: _reverseStartScreenScaleTransition, child: new FadeTransition(opacity: _reverseStartScreenFadeTransition, child: child));
+            }
+
+            return child;
         }
-        #endregion
+        , child: new AnimatedBuilder(animation: Widget.SecondaryAnimation, builder: (BuildContext context, Widget child) =>
+        {
+            if (Widget.SecondaryAnimation.Status == AnimationStatus.Forward || _TransitionWasInterrupted)
+            {
+                return new ScaleTransition(scale: _forwardStartScreenScaleTransition, child: child);
+            }
+            else if (Widget.SecondaryAnimation.Status == AnimationStatus.Reverse)
+            {
+                return new ScaleTransition(scale: _reverseEndScreenScaleTransition, child: child);
+            }
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-        #endregion
+            return child;
+        }
+        , child: Widget.Child));
     }
 
 
-    /// <Summary>
-    /// Used by [PageTransitionsTheme] to define a zooming [MaterialPageRoute] page
-    /// transition animation that looks like the default page transition used on
-    /// Android 10.
-    ///
-    /// See also:
-    ///
-    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
-    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
-    ///    similar to the one provided by Android P.
-    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
-    ///    transition that matches native iOS page transitions.
-    /// </Summary>
-    public class ZoomPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
-    {
-        #region constructors
-        public ZoomPageTransitionsBuilder()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    #endregion
+}
 
 
-    /// <Summary>
-    /// Used by [PageTransitionsTheme] to define a horizontal [MaterialPageRoute]
-    /// page transition animation that matches native iOS page transitions.
-    ///
-    /// See also:
-    ///
-    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
-    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
-    ///    that's similar to the one provided by Android P.
-    ///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
-    ///    to the one provided in Android 10.
-    /// </Summary>
-    public class CupertinoPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
-    {
-        #region constructors
-        public CupertinoPageTransitionsBuilder()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+/// <Summary>
+/// Used by [PageTransitionsTheme] to define a [MaterialPageRoute] page
+/// transition animation.
+///
+/// Apps can configure the map of builders for [ThemeData.pageTransitionsTheme]
+/// to customize the default [MaterialPageRoute] page transition animation
+/// for different platforms.
+///
+/// See also:
+///
+///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+///    that's similar to the one provided by Android P.
+///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+///    to the one provided in Android 10.
+///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+///    transition that matches native iOS page transitions.
+/// </Summary>
+public class PageTransitionsBuilder
+{
+    #region constructors
+    public PageTransitionsBuilder()
 
-        #region fields
-        #endregion
+}
+#endregion
 
-        #region methods
+#region fields
+#endregion
 
-        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+#region methods
 
-        #endregion
-    }
+/// <Summary>
+/// Wraps the child with one or more transition widgets which define how [route]
+/// arrives on and leaves the screen.
+///
+/// The [MaterialPageRoute.buildTransitions] method looks up the current
+/// current [PageTransitionsTheme] with `Theme.of(context).pageTransitionsTheme`
+/// and delegates to this method with a [PageTransitionsBuilder] based
+/// on the theme's [ThemeData.platform].
+/// </Summary>
+public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return default(Widget);
+}
 
-
-    /// <Summary>
-    /// Defines the page transition animations used by [MaterialPageRoute]
-    /// for different [TargetPlatform]s.
-    ///
-    /// The [MaterialPageRoute.buildTransitions] method looks up the current
-    /// current [PageTransitionsTheme] with `Theme.of(context).pageTransitionsTheme`
-    /// and delegates to [buildTransitions].
-    ///
-    /// If a builder with a matching platform is not found, then the
-    /// [FadeUpwardsPageTransitionsBuilder] is used.
-    ///
-    /// See also:
-    ///
-    ///  * [ThemeData.pageTransitionsTheme], which defines the default page
-    ///    transitions for the overall theme.
-    ///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
-    ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
-    ///    that's similar to the one provided by Android P.
-    ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
-    ///    transition that matches native iOS page transitions.
-    /// </Summary>
-    public class PageTransitionsTheme : IDiagnosticable
-    {
-        #region constructors
-        public PageTransitionsTheme(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> builders = default(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder>))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _DefaultBuilders { get; set; }
-        internal virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _Builders { get; set; }
-        public virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> Builders { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Delegates to the builder for the current [ThemeData.platform]
-        /// or [FadeUpwardsPageTransitionsBuilder].
-        ///
-        /// [MaterialPageRoute.buildTransitions] delegates to this method.
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
+#endregion
+}
 
 
-        private List<FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _All(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> builders) { throw new NotImplementedException(); }
+/// <Summary>
+/// Used by [PageTransitionsTheme] to define a default [MaterialPageRoute] page
+/// transition animation.
+///
+/// The default animation fades the new page in while translating it upwards,
+/// starting from about 25% below the top of the screen.
+///
+/// See also:
+///
+///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+///    that's similar to the one provided by Android P.
+///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+///    to the one provided in Android 10.
+///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+///    transition that matches native iOS page transitions.
+/// </Summary>
+public class FadeUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
+{
+    #region constructors
+    public FadeUpwardsPageTransitionsBuilder()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return new _FadeUpwardsPageTransition(routeAnimation: animation, child: child);
+}
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+
+#endregion
+}
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
+/// <Summary>
+/// Used by [PageTransitionsTheme] to define a vertical [MaterialPageRoute] page
+/// transition animation that looks like the default page transition
+/// used on Android P.
+///
+/// See also:
+///
+///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+///    to the one provided in Android 10.
+///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+///    transition that matches native iOS page transitions.
+/// </Summary>
+public class OpenUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
+{
+    #region constructors
+    public OpenUpwardsPageTransitionsBuilder()
 
-        #endregion
-    }
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return new _OpenUpwardsPageTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Used by [PageTransitionsTheme] to define a zooming [MaterialPageRoute] page
+/// transition animation that looks like the default page transition used on
+/// Android 10.
+///
+/// See also:
+///
+///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+///    similar to the one provided by Android P.
+///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+///    transition that matches native iOS page transitions.
+/// </Summary>
+public class ZoomPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
+{
+    #region constructors
+    public ZoomPageTransitionsBuilder()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return new _ZoomPageTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Used by [PageTransitionsTheme] to define a horizontal [MaterialPageRoute]
+/// page transition animation that matches native iOS page transitions.
+///
+/// See also:
+///
+///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+///    that's similar to the one provided by Android P.
+///  * [ZoomPageTransitionsBuilder], which defines a page transition similar
+///    to the one provided in Android 10.
+/// </Summary>
+public class CupertinoPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
+{
+    #region constructors
+    public CupertinoPageTransitionsBuilder()
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    return RouteDefaultClass.CupertinoPageRoute.BuildPageTransitions(route, context, animation, secondaryAnimation, child);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Defines the page transition animations used by [MaterialPageRoute]
+/// for different [TargetPlatform]s.
+///
+/// The [MaterialPageRoute.buildTransitions] method looks up the current
+/// current [PageTransitionsTheme] with `Theme.of(context).pageTransitionsTheme`
+/// and delegates to [buildTransitions].
+///
+/// If a builder with a matching platform is not found, then the
+/// [FadeUpwardsPageTransitionsBuilder] is used.
+///
+/// See also:
+///
+///  * [ThemeData.pageTransitionsTheme], which defines the default page
+///    transitions for the overall theme.
+///  * [FadeUpwardsPageTransitionsBuilder], which defines a default page transition.
+///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
+///    that's similar to the one provided by Android P.
+///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
+///    transition that matches native iOS page transitions.
+/// </Summary>
+public class PageTransitionsTheme : IDiagnosticable
+{
+    #region constructors
+    public PageTransitionsTheme(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> builders = default(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder>))
+    : base()
+
+}
+#endregion
+
+#region fields
+internal virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _DefaultBuilders { get; set; }
+internal virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _Builders { get; set; }
+public virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> Builders { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Delegates to the builder for the current [ThemeData.platform]
+/// or [FadeUpwardsPageTransitionsBuilder].
+///
+/// [MaterialPageRoute.buildTransitions] delegates to this method.
+/// </Summary>
+public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+{
+    TargetPlatform platform = ThemeDefaultClass.Theme.Of(context).Platform;
+    if (RouteDefaultClass.CupertinoPageRoute.IsPopGestureInProgress(route)) platform = TargetPlatform.IOS;
+    PageTransitionsBuilder matchingBuilder = Builders[platform] ?? new FadeUpwardsPageTransitionsBuilder();
+    return matchingBuilder.BuildTransitions(route, context, animation, secondaryAnimation, child);
+}
+
+
+
+
+private List<FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _All(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> builders)
+{
+    return TargetPlatform.Values.Map((TargetPlatform platform) => =>builders[platform]).ToList();
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    if (other is PageTransitionsTheme && Dart:coreDefaultClass.Identical(Builders, other.Builders))return true;
+    return other is PageTransitionsTheme && CollectionsDefaultClass.ListEquals(_All(other.Builders), _All(Builders));
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<Dictionary<TargetPlatform, PageTransitionsBuilder>>("builders", Builders, defaultValue: PagetransitionsthemeDefaultClass.PageTransitionsTheme._DefaultBuilders));
+}
+
+
+
+#endregion
+}
 
 }

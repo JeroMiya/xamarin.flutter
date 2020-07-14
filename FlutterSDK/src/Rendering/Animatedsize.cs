@@ -443,129 +443,241 @@ namespace FlutterSDK.Rendering.Animatedsize
         #region constructors
         public RenderAnimatedSize(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child, alignment: alignment, textDirection: textDirection)
-        {
-            throw new NotImplementedException();
+    
+_Controller=new AnimationController(vsync:vsync, duration:duration, reverseDuration:reverseDuration);
+        new AnimationController(vsync:vsync, duration:duration, reverseDuration:reverseDuration).AddListener(() => {
+            if (_Controller.Value != _LastValue) MarkNeedsLayout();
         }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Animation { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.SizeTween _SizeTween { get; set; }
-        internal virtual bool _HasVisualOverflow { get; set; }
-        internal virtual double _LastValue { get; set; }
-        internal virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState _State { get; set; }
-        internal virtual FlutterSDK.Scheduler.Ticker.TickerProvider _Vsync { get; set; }
-        public virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState State { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TimeSpan Duration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TimeSpan ReverseDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Animation.Curves.Curve Curve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsAnimating { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual Size _AnimatedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Detach() { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        private void _RestartAnimation() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Laying out the child for the first time.
-        ///
-        /// We have the initial size to animate from, but we do not have the target
-        /// size to animate to, so we set both ends to child's size.
-        /// </Summary>
-        private void _LayoutStart() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// At this state we're assuming the child size is stable and letting the
-        /// animation run its course.
-        ///
-        /// If during animation the size of the child changes we restart the
-        /// animation.
-        /// </Summary>
-        private void _LayoutStable() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// This state indicates that the size of the child changed once after being
-        /// considered stable.
-        ///
-        /// If the child stabilizes immediately, we go back to stable state. If it
-        /// changes again, we match the child's size, restart animation and go to
-        /// unstable state.
-        /// </Summary>
-        private void _LayoutChanged() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The child's size is not stable.
-        ///
-        /// Continue tracking the child's size until is stabilizes.
-        /// </Summary>
-        private void _LayoutUnstable() { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-        #endregion
+);
+_Animation=new CurvedAnimation(parent:_Controller, curve:curve);
     }
+
+
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Animation { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.SizeTween _SizeTween { get; set; }
+    internal virtual bool _HasVisualOverflow { get; set; }
+    internal virtual double _LastValue { get; set; }
+    internal virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState _State { get; set; }
+    internal virtual FlutterSDK.Scheduler.Ticker.TickerProvider _Vsync { get; set; }
+    public virtual FlutterSDK.Rendering.Animatedsize.RenderAnimatedSizeState State { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TimeSpan Duration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TimeSpan ReverseDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Curves.Curve Curve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsAnimating { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual Size _AnimatedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void Detach()
+    {
+        _Controller.Stop();
+        base.Detach();
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        _LastValue = _Controller.Value;
+        _HasVisualOverflow = false;
+        BoxConstraints constraints = this.Constraints;
+        if (Child == null || constraints.IsTight)
+        {
+            _Controller.Stop();
+            Size = _SizeTween.Begin = _SizeTween.End = constraints.Smallest;
+            _State = RenderAnimatedSizeState.Start;
+            Child?.Layout(constraints);
+            return;
+        }
+
+        Child.Layout(constraints, parentUsesSize: true);
+
+        switch (_State) { case RenderAnimatedSizeState.Start: _LayoutStart(); break; case RenderAnimatedSizeState.Stable: _LayoutStable(); break; case RenderAnimatedSizeState.Changed: _LayoutChanged(); break; case RenderAnimatedSizeState.Unstable: _LayoutUnstable(); break; }
+        Size = constraints.Constrain(_AnimatedSize);
+        AlignChild();
+        if (Size.Width < _SizeTween.End.Width || Size.Height < _SizeTween.End.Height) _HasVisualOverflow = true;
+    }
+
+
+
+
+    private void _RestartAnimation()
+    {
+        _LastValue = 0.0;
+        _Controller.Forward(from: 0.0);
+    }
+
+
 
 
     /// <Summary>
-    /// A [RenderAnimatedSize] can be in exactly one of these states.
+    /// Laying out the child for the first time.
+    ///
+    /// We have the initial size to animate from, but we do not have the target
+    /// size to animate to, so we set both ends to child's size.
     /// </Summary>
-    public enum RenderAnimatedSizeState
+    private void _LayoutStart()
     {
-
-        /// <Summary>
-        /// The initial state, when we do not yet know what the starting and target
-        /// sizes are to animate.
-        ///
-        /// The next state is [stable].
-        /// </Summary>
-        Start,
-        /// <Summary>
-        /// At this state the child's size is assumed to be stable and we are either
-        /// animating, or waiting for the child's size to change.
-        ///
-        /// If the child's size changes, the state will become [changed]. Otherwise,
-        /// it remains [stable].
-        /// </Summary>
-        Stable,
-        /// <Summary>
-        /// At this state we know that the child has changed once after being assumed
-        /// [stable].
-        ///
-        /// The next state will be one of:
-        ///
-        /// * [stable] if the child's size stabilized immediately. This is a signal
-        ///   for the render object to begin animating the size towards the child's new
-        ///   size.
-        ///
-        /// * [unstable] if the child's size continues to change.
-        /// </Summary>
-        Changed,
-        /// <Summary>
-        /// At this state the child's size is assumed to be unstable (changing each
-        /// frame).
-        ///
-        /// Instead of chasing the child's size in this state, the render object
-        /// tightly tracks the child's size until it stabilizes.
-        ///
-        /// The render object remains in this state until a frame where the child's
-        /// size remains the same as the previous frame. At that time, the next state
-        /// is [stable].
-        /// </Summary>
-        Unstable,
+        _SizeTween.Begin = _SizeTween.End = DebugAdoptSize(Child.Size);
+        _State = RenderAnimatedSizeState.Stable;
     }
+
+
+
+
+    /// <Summary>
+    /// At this state we're assuming the child size is stable and letting the
+    /// animation run its course.
+    ///
+    /// If during animation the size of the child changes we restart the
+    /// animation.
+    /// </Summary>
+    private void _LayoutStable()
+    {
+        if (_SizeTween.End != Child.Size)
+        {
+            _SizeTween.Begin = Size;
+            _SizeTween.End = DebugAdoptSize(Child.Size);
+            _RestartAnimation();
+            _State = RenderAnimatedSizeState.Changed;
+        }
+        else if (_Controller.Value == _Controller.UpperBound)
+        {
+            _SizeTween.Begin = _SizeTween.End = DebugAdoptSize(Child.Size);
+        }
+        else if (!_Controller.IsAnimating)
+        {
+            _Controller.Forward();
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// This state indicates that the size of the child changed once after being
+    /// considered stable.
+    ///
+    /// If the child stabilizes immediately, we go back to stable state. If it
+    /// changes again, we match the child's size, restart animation and go to
+    /// unstable state.
+    /// </Summary>
+    private void _LayoutChanged()
+    {
+        if (_SizeTween.End != Child.Size)
+        {
+            _SizeTween.Begin = _SizeTween.End = DebugAdoptSize(Child.Size);
+            _RestartAnimation();
+            _State = RenderAnimatedSizeState.Unstable;
+        }
+        else
+        {
+            _State = RenderAnimatedSizeState.Stable;
+            if (!_Controller.IsAnimating) _Controller.Forward();
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// The child's size is not stable.
+    ///
+    /// Continue tracking the child's size until is stabilizes.
+    /// </Summary>
+    private void _LayoutUnstable()
+    {
+        if (_SizeTween.End != Child.Size)
+        {
+            _SizeTween.Begin = _SizeTween.End = DebugAdoptSize(Child.Size);
+            _RestartAnimation();
+        }
+        else
+        {
+            _Controller.Stop();
+            _State = RenderAnimatedSizeState.Stable;
+        }
+
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (Child != null && _HasVisualOverflow)
+        {
+            Rect rect = Dart:uiDefaultClass.Offset.Zero & Size;
+            context.PushClipRect(NeedsCompositing, offset, rect, base.Paint);
+        }
+        else
+        {
+            base.Paint(context, offset);
+        }
+
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A [RenderAnimatedSize] can be in exactly one of these states.
+/// </Summary>
+public enum RenderAnimatedSizeState
+{
+
+    /// <Summary>
+    /// The initial state, when we do not yet know what the starting and target
+    /// sizes are to animate.
+    ///
+    /// The next state is [stable].
+    /// </Summary>
+    Start,
+    /// <Summary>
+    /// At this state the child's size is assumed to be stable and we are either
+    /// animating, or waiting for the child's size to change.
+    ///
+    /// If the child's size changes, the state will become [changed]. Otherwise,
+    /// it remains [stable].
+    /// </Summary>
+    Stable,
+    /// <Summary>
+    /// At this state we know that the child has changed once after being assumed
+    /// [stable].
+    ///
+    /// The next state will be one of:
+    ///
+    /// * [stable] if the child's size stabilized immediately. This is a signal
+    ///   for the render object to begin animating the size towards the child's new
+    ///   size.
+    ///
+    /// * [unstable] if the child's size continues to change.
+    /// </Summary>
+    Changed,
+    /// <Summary>
+    /// At this state the child's size is assumed to be unstable (changing each
+    /// frame).
+    ///
+    /// Instead of chasing the child's size in this state, the render object
+    /// tightly tracks the child's size until it stabilizes.
+    ///
+    /// The render object remains in this state until a frame where the child's
+    /// size remains the same as the previous frame. At that time, the next state
+    /// is [stable].
+    /// </Summary>
+    Unstable,
+}
 
 }

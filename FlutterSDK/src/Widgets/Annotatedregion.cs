@@ -440,25 +440,33 @@ namespace FlutterSDK.Widgets.Annotatedregion
         #region constructors
         public AnnotatedRegion(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), T value = default(T), bool sized = true)
         : base(key: key, child: child)
-        {
-            this.Value = value;
-            this.Sized = sized; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual T Value { get; set; }
-        public virtual bool Sized { get; set; }
-        #endregion
+    #region fields
+    public virtual T Value { get; set; }
+    public virtual bool Sized { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderAnnotatedRegion<T> renderObject) { throw new NotImplementedException(); }
-
-        #endregion
+    public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new RenderAnnotatedRegion<T>(value: Value, sized: Sized);
     }
+
+
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Proxybox.RenderAnnotatedRegion<T> renderObject)
+    {
+        ..Value = Value..Sized = Sized;
+    }
+
+
+
+    #endregion
+}
 
 }

@@ -445,113 +445,150 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     {
         #region constructors
         public ToggleButtonsThemeData(FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
-        {
-            this.TextStyle = textStyle;
-            this.Constraints = constraints;
-            this.Color = color;
-            this.SelectedColor = selectedColor;
-            this.DisabledColor = disabledColor;
-            this.FillColor = fillColor;
-            this.FocusColor = focusColor;
-            this.HighlightColor = highlightColor;
-            this.HoverColor = hoverColor;
-            this.SplashColor = splashColor;
-            this.BorderColor = borderColor;
-            this.SelectedBorderColor = selectedBorderColor;
-            this.DisabledBorderColor = disabledBorderColor;
-            this.BorderRadius = borderRadius;
-            this.BorderWidth = borderWidth; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
-        public virtual FlutterBinding.UI.Color FillColor { get; set; }
-        public virtual FlutterBinding.UI.Color FocusColor { get; set; }
-        public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
-        public virtual FlutterBinding.UI.Color SplashColor { get; set; }
-        public virtual FlutterBinding.UI.Color HoverColor { get; set; }
-        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
-        public virtual FlutterBinding.UI.Color SelectedBorderColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
-        public virtual double BorderWidth { get; set; }
-        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+    public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+    public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
+    public virtual FlutterBinding.UI.Color FillColor { get; set; }
+    public virtual FlutterBinding.UI.Color FocusColor { get; set; }
+    public virtual FlutterBinding.UI.Color HighlightColor { get; set; }
+    public virtual FlutterBinding.UI.Color SplashColor { get; set; }
+    public virtual FlutterBinding.UI.Color HoverColor { get; set; }
+    public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+    public virtual FlutterBinding.UI.Color SelectedBorderColor { get; set; }
+    public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
+    public virtual double BorderWidth { get; set; }
+    public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Creates a copy of this object but with the given fields replaced with the
-        /// new values.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData CopyWith(FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two toggle buttons themes.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Lerp(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData a, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData b, double t) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Creates a copy of this object but with the given fields replaced with the
+    /// new values.
+    /// </Summary>
+    public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData CopyWith(FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
+    {
+        return new ToggleButtonsThemeData(textStyle: textStyle ?? this.TextStyle, constraints: constraints ?? this.Constraints, color: color ?? this.Color, selectedColor: selectedColor ?? this.SelectedColor, disabledColor: disabledColor ?? this.DisabledColor, fillColor: fillColor ?? this.FillColor, focusColor: focusColor ?? this.FocusColor, highlightColor: highlightColor ?? this.HighlightColor, hoverColor: hoverColor ?? this.HoverColor, splashColor: splashColor ?? this.SplashColor, borderColor: borderColor ?? this.BorderColor, selectedBorderColor: selectedBorderColor ?? this.SelectedBorderColor, disabledBorderColor: disabledBorderColor ?? this.DisabledBorderColor, borderRadius: borderRadius ?? this.BorderRadius, borderWidth: borderWidth == default(double) ? this.borderWidth : borderWidth);
     }
+
+
 
 
     /// <Summary>
-    /// An inherited widget that defines color and border parameters for
-    /// [ToggleButtons] in this widget's subtree.
-    ///
-    /// Values specified here are used for [ToggleButtons] properties that are not
-    /// given an explicit non-null value.
+    /// Linearly interpolate between two toggle buttons themes.
     /// </Summary>
-    public class ToggleButtonsTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+    public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Lerp(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData a, FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData b, double t)
     {
-        #region constructors
-        public ToggleButtonsTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData data = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
-        {
-            this.Data = data; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Data { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// The closest instance of this class that encloses the given context.
-        ///
-        /// If there is no enclosing [ToggleButtonsTheme] widget, then
-        /// [ThemeData.toggleButtonsTheme] is used.
-        ///
-        /// Typical usage is as follows:
-        ///
-        /// ```dart
-        /// ToggleButtonsTheme theme = ToggleButtonsTheme.of(context);
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsTheme oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
+        if (a == null && b == null) return null;
+        return new ToggleButtonsThemeData(textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t), constraints: BoxDefaultClass.BoxConstraints.Lerp(a?.Constraints, b?.Constraints, t), color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), selectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedColor, b?.SelectedColor, t), disabledColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledColor, b?.DisabledColor, t), fillColor: Dart:uiDefaultClass.Color.Lerp(a?.FillColor, b?.FillColor, t), focusColor: Dart:uiDefaultClass.Color.Lerp(a?.FocusColor, b?.FocusColor, t), highlightColor: Dart:uiDefaultClass.Color.Lerp(a?.HighlightColor, b?.HighlightColor, t), hoverColor: Dart:uiDefaultClass.Color.Lerp(a?.HoverColor, b?.HoverColor, t), splashColor: Dart:uiDefaultClass.Color.Lerp(a?.SplashColor, b?.SplashColor, t), borderColor: Dart:uiDefaultClass.Color.Lerp(a?.BorderColor, b?.BorderColor, t), selectedBorderColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedBorderColor, b?.SelectedBorderColor, t), disabledBorderColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledBorderColor, b?.DisabledBorderColor, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(a?.BorderRadius, b?.BorderRadius, t), borderWidth: Dart:uiDefaultClass.LerpDouble(a?.BorderWidth, b?.BorderWidth, t));
     }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (Dart:coreDefaultClass.Identical(this, other))return true;
+        if (other.GetType() != GetType()) return false;
+        return other is ToggleButtonsThemeData && other.TextStyle == TextStyle && other.Constraints == Constraints && other.Color == Color && other.SelectedColor == SelectedColor && other.DisabledColor == DisabledColor && other.FillColor == FillColor && other.FocusColor == FocusColor && other.HighlightColor == HighlightColor && other.HoverColor == HoverColor && other.SplashColor == SplashColor && other.BorderColor == BorderColor && other.SelectedBorderColor == SelectedBorderColor && other.DisabledBorderColor == DisabledBorderColor && other.BorderRadius == BorderRadius && other.BorderWidth == BorderWidth;
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        TextStyle?.DebugFillProperties(properties, prefix: "textStyle.");
+        properties.Add(new DiagnosticsProperty<BoxConstraints>("constraints", Constraints, defaultValue: null));
+        properties.Add(new ColorProperty("color", Color, defaultValue: null));
+        properties.Add(new ColorProperty("selectedColor", SelectedColor, defaultValue: null));
+        properties.Add(new ColorProperty("disabledColor", DisabledColor, defaultValue: null));
+        properties.Add(new ColorProperty("fillColor", FillColor, defaultValue: null));
+        properties.Add(new ColorProperty("focusColor", FocusColor, defaultValue: null));
+        properties.Add(new ColorProperty("highlightColor", HighlightColor, defaultValue: null));
+        properties.Add(new ColorProperty("hoverColor", HoverColor, defaultValue: null));
+        properties.Add(new ColorProperty("splashColor", SplashColor, defaultValue: null));
+        properties.Add(new ColorProperty("borderColor", BorderColor, defaultValue: null));
+        properties.Add(new ColorProperty("selectedBorderColor", SelectedBorderColor, defaultValue: null));
+        properties.Add(new ColorProperty("disabledBorderColor", DisabledBorderColor, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<BorderRadius>("borderRadius", BorderRadius, defaultValue: null));
+        properties.Add(new DoubleProperty("borderWidth", BorderWidth, defaultValue: null));
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// An inherited widget that defines color and border parameters for
+/// [ToggleButtons] in this widget's subtree.
+///
+/// Values specified here are used for [ToggleButtons] properties that are not
+/// given an explicit non-null value.
+/// </Summary>
+public class ToggleButtonsTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
+{
+    #region constructors
+    public ToggleButtonsTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData data = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Data { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// The closest instance of this class that encloses the given context.
+///
+/// If there is no enclosing [ToggleButtonsTheme] widget, then
+/// [ThemeData.toggleButtonsTheme] is used.
+///
+/// Typical usage is as follows:
+///
+/// ```dart
+/// ToggleButtonsTheme theme = ToggleButtonsTheme.of(context);
+/// ```
+/// </Summary>
+public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    ToggleButtonsTheme toggleButtonsTheme = context.DependOnInheritedWidgetOfExactType();
+    return toggleButtonsTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).ToggleButtonsTheme;
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+{
+    ToggleButtonsTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new ToggleButtonsTheme(data: Data, child: child);
+}
+
+
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsTheme oldWidget) => Data != oldWidget.Data;
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+#endregion
+}
 
 }

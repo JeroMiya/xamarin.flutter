@@ -440,48 +440,126 @@ namespace FlutterSDK.Rendering.Rotatedbox
         #region constructors
         public RenderRotatedBox(int quarterTurns = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual int _QuarterTurns { get; set; }
-        internal virtual Matrix4 _PaintTransform { get; set; }
-        public virtual int QuarterTurns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
+    
+this .Child=child;
+}
 
 
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
+    #endregion
 
+    #region fields
+    internal virtual int _QuarterTurns { get; set; }
+    internal virtual Matrix4 _PaintTransform { get; set; }
+    public virtual int QuarterTurns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
+    #region methods
 
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform) { throw new NotImplementedException(); }
-        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform) { throw new NotImplementedException(); }
-
-        #endregion
+    public new double ComputeMinIntrinsicWidth(double height)
+    {
+        if (Child == null) return 0.0;
+        return _IsVertical ? Child.GetMinIntrinsicHeight(height) : Child.GetMinIntrinsicWidth(height);
     }
+
+
+
+
+    public new double ComputeMaxIntrinsicWidth(double height)
+    {
+        if (Child == null) return 0.0;
+        return _IsVertical ? Child.GetMaxIntrinsicHeight(height) : Child.GetMaxIntrinsicWidth(height);
+    }
+
+
+
+
+    public new double ComputeMinIntrinsicHeight(double width)
+    {
+        if (Child == null) return 0.0;
+        return _IsVertical ? Child.GetMinIntrinsicWidth(width) : Child.GetMinIntrinsicHeight(width);
+    }
+
+
+
+
+    public new double ComputeMaxIntrinsicHeight(double width)
+    {
+        if (Child == null) return 0.0;
+        return _IsVertical ? Child.GetMaxIntrinsicWidth(width) : Child.GetMaxIntrinsicHeight(width);
+    }
+
+
+
+
+    public new void PerformLayout()
+    {
+        _PaintTransform = null;
+        if (Child != null)
+        {
+            Child.Layout(_IsVertical ? Constraints.Flipped : Constraints, parentUsesSize: true);
+            Size = _IsVertical ? new Size(Child.Size.Height, Child.Size.Width) : Child.Size;
+            _PaintTransform = Matrix4.Identity();
+            Matrix4.Identity().Translate(Size.Width / 2.0, Size.Height / 2.0);
+            Matrix4.Identity().RotateZ(RotatedboxDefaultClass._KQuarterTurnsInRadians * (QuarterTurns % 4));
+            Matrix4.Identity().Translate(-Child.Size.Width / 2.0, -Child.Size.Height / 2.0);
+        }
+        else
+        {
+            PerformResize();
+        }
+
+    }
+
+
+
+
+    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+    {
+
+        if (Child == null || _PaintTransform == null) return false;
+        return result.AddWithPaintTransform(transform: _PaintTransform, position: position, hitTest: (BoxHitTestResult result, Offset position) =>
+        {
+            return Child.HitTest(result, position: position);
+        }
+        );
+    }
+
+
+
+
+    private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        context.PaintChild(Child, offset);
+    }
+
+
+
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+        if (Child != null) context.PushTransform(NeedsCompositing, offset, _PaintTransform, _PaintChild);
+    }
+
+
+
+
+    public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
+    {
+        if (_PaintTransform != null) transform.Multiply(_PaintTransform);
+        base.ApplyPaintTransform(child, transform);
+    }
+
+
+    public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+    {
+        if (_PaintTransform != null) transform.Multiply(_PaintTransform);
+        base.ApplyPaintTransform(child, transform);
+    }
+
+
+
+    #endregion
+}
 
 }

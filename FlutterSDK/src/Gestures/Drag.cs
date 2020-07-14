@@ -308,7 +308,11 @@ namespace FlutterSDK.Gestures.Drag
         /// <Summary>
         /// The pointer has moved.
         /// </Summary>
-        public virtual void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details) { throw new NotImplementedException(); }
+        public virtual void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+        {
+        }
+
+
 
 
         /// <Summary>
@@ -317,7 +321,11 @@ namespace FlutterSDK.Gestures.Drag
         /// The velocity at which the pointer was moving when it stopped contacting
         /// the screen is available in the `details`.
         /// </Summary>
-        public virtual void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
+        public virtual void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+        {
+        }
+
+
 
 
         /// <Summary>
@@ -326,7 +334,11 @@ namespace FlutterSDK.Gestures.Drag
         /// For example, the user might have been interrupted by a system-modal dialog
         /// in the middle of the drag.
         /// </Summary>
-        public virtual void Cancel() { throw new NotImplementedException(); }
+        public virtual void Cancel()
+        {
+        }
+
+
 
     }
     public static class DragMixin

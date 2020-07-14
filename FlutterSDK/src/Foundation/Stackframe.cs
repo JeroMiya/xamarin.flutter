@@ -318,72 +318,182 @@ namespace FlutterSDK.Foundation.Stackframe
         #region constructors
         public StackFrame(int number = default(int), int column = default(int), int line = default(int), string packageScheme = default(string), string package = default(string), string packagePath = default(string), string className = default(string), string method = default(string), bool isConstructor = false, string source = default(string))
         : base()
-        {
-            this.Number = number;
-            this.Column = column;
-            this.Line = line;
-            this.PackageScheme = packageScheme;
-            this.Package = package;
-            this.PackagePath = packagePath;
-            this.ClassName = className;
-            this.Method = method;
-            this.IsConstructor = isConstructor;
-            this.Source = source; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension { get; set; }
-        public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision { get; set; }
-        internal virtual RegExp _WebNonDebugFramePattern { get; set; }
-        public virtual string Source { get; set; }
-        public virtual int Number { get; set; }
-        public virtual string PackageScheme { get; set; }
-        public virtual string Package { get; set; }
-        public virtual string PackagePath { get; set; }
-        public virtual int Line { get; set; }
-        public virtual int Column { get; set; }
-        public virtual string ClassName { get; set; }
-        public virtual string Method { get; set; }
-        public virtual bool IsConstructor { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension { get; set; }
+    public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision { get; set; }
+    internal virtual RegExp _WebNonDebugFramePattern { get; set; }
+    public virtual string Source { get; set; }
+    public virtual int Number { get; set; }
+    public virtual string PackageScheme { get; set; }
+    public virtual string Package { get; set; }
+    public virtual string PackagePath { get; set; }
+    public virtual int Line { get; set; }
+    public virtual int Column { get; set; }
+    public virtual string ClassName { get; set; }
+    public virtual string Method { get; set; }
+    public virtual bool IsConstructor { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Parses a list of [StackFrame]s from a [StackTrace] object.
-        ///
-        /// This is normally useful with [StackTrace.current].
-        /// </Summary>
-        public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackTrace(StackTrace stack) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Parses a list of [StackFrame]s from a [StackTrace] object.
+    ///
+    /// This is normally useful with [StackTrace.current].
+    /// </Summary>
+    public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackTrace(StackTrace stack)
+    {
 
-
-        /// <Summary>
-        /// Parses a list of [StackFrame]s from the [StackTrace.toString] method.
-        /// </Summary>
-        public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackString(string stack) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebFrame(string line) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebDebugFrame(string line) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebNonDebugFrame(string line) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Parses a single [StackFrame] from a single line of a [StackTrace].
-        /// </Summary>
-        public virtual FlutterSDK.Foundation.Stackframe.StackFrame FromStackTraceLine(string line) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
+        return FromStackString(stack.ToString());
     }
+
+
+
+
+    /// <Summary>
+    /// Parses a list of [StackFrame]s from the [StackTrace.toString] method.
+    /// </Summary>
+    public virtual List<FlutterSDK.Foundation.Stackframe.StackFrame> FromStackString(string stack)
+    {
+
+        return stack.Trim().Split('\n').ToList().Map(FromStackTraceLine).SkipWhile((StackFrame frame) => =>frame == null).ToList();
+    }
+
+
+
+
+    private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebFrame(string line)
+    {
+        if (ConstantsDefaultClass.KDebugMode)
+        {
+            return _ParseWebDebugFrame(line);
+        }
+        else
+        {
+            return _ParseWebNonDebugFrame(line);
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebDebugFrame(string line)
+    {
+        bool hasPackage = line.StartsWith("package");
+        RegExp parser = hasPackage ? new RegExp("'^(package.+) (\d+):(\d+)\s+(.+)$") : new RegExp("'^(.+) (\d+):(\d+)\s+(.+)$");
+        Match match = parser.FirstMatch(line);
+
+        string package = "<unknown>";
+        string packageScheme = "<unknown>";
+        string packagePath = "<unknown>";
+        if (hasPackage)
+        {
+            packageScheme = "package";
+            Uri packageUri = Dart:coreDefaultClass.Uri.Parse(match.Group(1));
+            package = packageUri.PathSegments[0];
+            packagePath = packageUri.Path.ReplaceFirst(packageUri.PathSegments[0] + '/', "");
+        }
+
+        return new StackFrame(number: -1, packageScheme: packageScheme, package: package, packagePath: packagePath, line: Dart:coreDefaultClass.Int.Parse(match.Group(2)), column: Dart:coreDefaultClass.Int.Parse(match.Group(3)), className: "<unknown>", method: match.Group(4), source: line);
+    }
+
+
+
+
+    private FlutterSDK.Foundation.Stackframe.StackFrame _ParseWebNonDebugFrame(string line)
+    {
+        Match match = _WebNonDebugFramePattern.FirstMatch(line);
+        if (match == null)
+        {
+            return null;
+        }
+
+        List<string> classAndMethod = match.Group(1).Split('.').ToList();
+        string className = classAndMethod.Count > 1 ? classAndMethod.First : "<unknown>";
+        string method = classAndMethod.Count > 1 ? classAndMethod.Skip(1).Join('.') : classAndMethod.Single();
+        return new StackFrame(number: -1, packageScheme: "<unknown>", package: "<unknown>", packagePath: "<unknown>", line: -1, column: -1, className: className, method: method, source: line);
+    }
+
+
+
+
+    /// <Summary>
+    /// Parses a single [StackFrame] from a single line of a [StackTrace].
+    /// </Summary>
+    public virtual FlutterSDK.Foundation.Stackframe.StackFrame FromStackTraceLine(string line)
+    {
+
+        if (line == "<asynchronous suspension>")
+        {
+            return AsynchronousSuspension;
+        }
+        else if (line == "...")
+        {
+            return StackOverFlowElision;
+        }
+
+        if (!line.StartsWith('#'))
+        {
+            return _ParseWebFrame(line);
+        }
+
+        RegExp parser = new RegExp("'^#(\d+) +(.+) \((.+?):?(\d+){0,1}:?(\d+){0,1}\)$");
+        Match match = parser.FirstMatch(line);
+
+        bool isConstructor = false;
+        string className = "";
+        string method = match.Group(2).ReplaceAll(".<anonymous closure>", "");
+        if (method.StartsWith("new"))
+        {
+            className = method.Split(' ').ToList()[1];
+            method = "";
+            if (className.Contains('.'))
+            {
+                List<string> parts = className.Split('.').ToList();
+                className = parts[0];
+                method = parts[1];
+            }
+
+            isConstructor = true;
+        }
+        else if (method.Contains('.'))
+        {
+            List<string> parts = method.Split('.').ToList();
+            className = parts[0];
+            method = parts[1];
+        }
+
+        Uri packageUri = Dart:coreDefaultClass.Uri.Parse(match.Group(3));
+        string package = "<unknown>";
+        string packagePath = packageUri.Path;
+        if (packageUri.Scheme == "dart" || packageUri.Scheme == "package")
+        {
+            package = packageUri.PathSegments[0];
+            packagePath = packageUri.Path.ReplaceFirst(packageUri.PathSegments[0] + '/', "");
+        }
+
+        return new StackFrame(number: Dart:coreDefaultClass.Int.Parse(match.Group(1)), className: className, method: method, packageScheme: packageUri.Scheme, package: package, packagePath: packagePath, line: match.Group(4) == null ? -1 : Dart:coreDefaultClass.Int.Parse(match.Group(4)), column: match.Group(5) == null ? -1 : Dart:coreDefaultClass.Int.Parse(match.Group(5)), isConstructor: isConstructor, source: line);
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is StackFrame && other.Number == Number && other.Package == Package && other.Line == Line && other.Column == Column && other.ClassName == ClassName && other.Method == Method && other.Source == Source;
+    }
+
+
+
+
+    #endregion
+}
 
 }

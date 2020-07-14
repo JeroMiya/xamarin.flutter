@@ -434,39 +434,44 @@ namespace FlutterSDK.Services.Systemnavigator
     {
         #region constructors
         internal SystemNavigator()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Removes the topmost Flutter instance, presenting what was before
-        /// it.
-        ///
-        /// On Android, removes this activity from the stack and returns to
-        /// the previous activity.
-        ///
-        /// On iOS, calls `popViewControllerAnimated:` if the root view
-        /// controller is a `UINavigationController`, or
-        /// `dismissViewControllerAnimated:completion:` if the top view
-        /// controller is a `FlutterViewController`.
-        ///
-        /// The optional `animated` parameter is ignored on all platforms
-        /// except iOS where it is an argument to the aforementioned
-        /// methods.
-        ///
-        /// This method should be preferred over calling `dart:io`'s [exit]
-        /// method, as the latter may cause the underlying platform to act
-        /// as if the application had crashed.
-        /// </Summary>
-        public virtual Future<object> Pop(bool animated = default(bool)) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Removes the topmost Flutter instance, presenting what was before
+    /// it.
+    ///
+    /// On Android, removes this activity from the stack and returns to
+    /// the previous activity.
+    ///
+    /// On iOS, calls `popViewControllerAnimated:` if the root view
+    /// controller is a `UINavigationController`, or
+    /// `dismissViewControllerAnimated:completion:` if the top view
+    /// controller is a `FlutterViewController`.
+    ///
+    /// The optional `animated` parameter is ignored on all platforms
+    /// except iOS where it is an argument to the aforementioned
+    /// methods.
+    ///
+    /// This method should be preferred over calling `dart:io`'s [exit]
+    /// method, as the latter may cause the underlying platform to act
+    /// as if the application had crashed.
+    /// </Summary>
+    public virtual Future<object> Pop(bool animated = default(bool))
+async
+{
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemNavigator.pop", animated);
+}
 
-        #endregion
-    }
+
+
+#endregion
+}
 
 }

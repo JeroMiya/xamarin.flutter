@@ -439,104 +439,177 @@ namespace FlutterSDK.Rendering.Tableborder
     {
         #region constructors
         public TableBorder(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalInside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide verticalInside = default(FlutterSDK.Painting.Borders.BorderSide))
+    
+}
+    public static TableBorder All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
+
+BorderSide side = new BorderSide(color: color, width: width, style: style);
+return new TableBorder(top:side, right:side, bottom:side, left:side, horizontalInside:side, verticalInside:side);
+}
+
+
+public static TableBorder Symmetric(FlutterSDK.Painting.Borders.BorderSide inside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide outside = default(FlutterSDK.Painting.Borders.BorderSide))
+
+return new TableBorder(top: outside, right: outside, bottom: outside, left: outside, horizontalInside: inside, verticalInside: inside);
+}
+
+
+#endregion
+
+#region fields
+public virtual FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalInside { get; set; }
+public virtual FlutterSDK.Painting.Borders.BorderSide VerticalInside { get; set; }
+public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Creates a copy of this border but with the widths scaled by the factor `t`.
+///
+/// The `t` argument represents the multiplicand, or the position on the
+/// timeline for an interpolation from nothing to `this`, with 0.0 meaning
+/// that the object returned should be the nil variant of this object, 1.0
+/// meaning that no change should be applied, returning `this` (or something
+/// equivalent to `this`), and other values meaning that the object should be
+/// multiplied by `t`. Negative values are treated like zero.
+///
+/// Values for `t` are usually obtained from an [Animation<double>], such as
+/// an [AnimationController].
+///
+/// See also:
+///
+///  * [BorderSide.scale], which is used to implement this method.
+/// </Summary>
+public virtual FlutterSDK.Rendering.Tableborder.TableBorder Scale(double t)
+{
+    return new TableBorder(top: Top.Scale(t), right: Right.Scale(t), bottom: Bottom.Scale(t), left: Left.Scale(t), horizontalInside: HorizontalInside.Scale(t), verticalInside: VerticalInside.Scale(t));
+}
+
+
+
+
+/// <Summary>
+/// Linearly interpolate between two table borders.
+///
+/// If a border is null, it is treated as having only [BorderSide.none]
+/// borders.
+///
+/// {@macro dart.ui.shadow.lerp}
+/// </Summary>
+public virtual FlutterSDK.Rendering.Tableborder.TableBorder Lerp(FlutterSDK.Rendering.Tableborder.TableBorder a, FlutterSDK.Rendering.Tableborder.TableBorder b, double t)
+{
+
+    if (a == null && b == null) return null;
+    if (a == null) return b.Scale(t);
+    if (b == null) return a.Scale(1.0 - t);
+    return new TableBorder(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), right: BordersDefaultClass.BorderSide.Lerp(a.Right, b.Right, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(a.Left, b.Left, t), horizontalInside: BordersDefaultClass.BorderSide.Lerp(a.HorizontalInside, b.HorizontalInside, t), verticalInside: BordersDefaultClass.BorderSide.Lerp(a.VerticalInside, b.VerticalInside, t));
+}
+
+
+
+
+/// <Summary>
+/// Paints the border around the given [Rect] on the given [Canvas], with the
+/// given rows and columns.
+///
+/// Uniform borders are more efficient to paint than more complex borders.
+///
+/// The `rows` argument specifies the vertical positions between the rows,
+/// relative to the given rectangle. For example, if the table contained two
+/// rows of height 100.0 each, then `rows` would contain a single value,
+/// 100.0, which is the vertical position between the two rows (relative to
+/// the top edge of `rect`).
+///
+/// The `columns` argument specifies the horizontal positions between the
+/// columns, relative to the given rectangle. For example, if the table
+/// contained two columns of height 100.0 each, then `columns` would contain a
+/// single value, 100.0, which is the vertical position between the two
+/// columns (relative to the left edge of `rect`).
+///
+/// The [verticalInside] border is only drawn if there are at least two
+/// columns. The [horizontalInside] border is only drawn if there are at least
+/// two rows. The horizontal borders are drawn after the vertical borders.
+///
+/// The outer borders (in the order [top], [right], [bottom], [left], with
+/// [left] above the others) are painted after the inner borders.
+///
+/// The paint order is particularly notable in the case of
+/// partially-transparent borders.
+/// </Summary>
+public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Iterable<double> rows = default(Iterable<double>), Iterable<double> columns = default(Iterable<double>))
+{
+
+
+
+
+
+
+
+
+
+
+
+
+    if (columns.IsNotEmpty || rows.IsNotEmpty)
+    {
+        Paint paint = new Paint();
+        Path path = new Path();
+        if (columns.IsNotEmpty)
         {
-            this.Top = top;
-            this.Right = right;
-            this.Bottom = bottom;
-            this.Left = left;
-            this.HorizontalInside = horizontalInside;
-            this.VerticalInside = verticalInside; throw new NotImplementedException();
+            switch (VerticalInside.Style)
+            {
+                case BorderStyle.Solid:
+                    ..Color = VerticalInside.Color..StrokeWidth = VerticalInside.Width..Style = PaintingStyle.Stroke; path.Reset(); foreach (double x in columns)
+                    {
+                        path.MoveTo(rect.Left + x, rect.Top);
+                        path.LineTo(rect.Left + x, rect.Bottom);
+                    }
+                    canvas.DrawPath(path, paint); break;
+                case BorderStyle.None: break;
+            }
         }
-        public static TableBorder All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
+
+        if (rows.IsNotEmpty)
         {
-            var instance = new TableBorder(); throw new NotImplementedException();
+            switch (HorizontalInside.Style)
+            {
+                case BorderStyle.Solid:
+                    ..Color = HorizontalInside.Color..StrokeWidth = HorizontalInside.Width..Style = PaintingStyle.Stroke; path.Reset(); foreach (double y in rows)
+                    {
+                        path.MoveTo(rect.Left, rect.Top + y);
+                        path.LineTo(rect.Right, rect.Top + y);
+                    }
+                    canvas.DrawPath(path, paint); break;
+                case BorderStyle.None: break;
+            }
         }
-        public static TableBorder Symmetric(FlutterSDK.Painting.Borders.BorderSide inside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide outside = default(FlutterSDK.Painting.Borders.BorderSide))
-        {
-            var instance = new TableBorder(); throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalInside { get; set; }
-        public virtual FlutterSDK.Painting.Borders.BorderSide VerticalInside { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Creates a copy of this border but with the widths scaled by the factor `t`.
-        ///
-        /// The `t` argument represents the multiplicand, or the position on the
-        /// timeline for an interpolation from nothing to `this`, with 0.0 meaning
-        /// that the object returned should be the nil variant of this object, 1.0
-        /// meaning that no change should be applied, returning `this` (or something
-        /// equivalent to `this`), and other values meaning that the object should be
-        /// multiplied by `t`. Negative values are treated like zero.
-        ///
-        /// Values for `t` are usually obtained from an [Animation<double>], such as
-        /// an [AnimationController].
-        ///
-        /// See also:
-        ///
-        ///  * [BorderSide.scale], which is used to implement this method.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Tableborder.TableBorder Scale(double t) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Linearly interpolate between two table borders.
-        ///
-        /// If a border is null, it is treated as having only [BorderSide.none]
-        /// borders.
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Tableborder.TableBorder Lerp(FlutterSDK.Rendering.Tableborder.TableBorder a, FlutterSDK.Rendering.Tableborder.TableBorder b, double t) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Paints the border around the given [Rect] on the given [Canvas], with the
-        /// given rows and columns.
-        ///
-        /// Uniform borders are more efficient to paint than more complex borders.
-        ///
-        /// The `rows` argument specifies the vertical positions between the rows,
-        /// relative to the given rectangle. For example, if the table contained two
-        /// rows of height 100.0 each, then `rows` would contain a single value,
-        /// 100.0, which is the vertical position between the two rows (relative to
-        /// the top edge of `rect`).
-        ///
-        /// The `columns` argument specifies the horizontal positions between the
-        /// columns, relative to the given rectangle. For example, if the table
-        /// contained two columns of height 100.0 each, then `columns` would contain a
-        /// single value, 100.0, which is the vertical position between the two
-        /// columns (relative to the left edge of `rect`).
-        ///
-        /// The [verticalInside] border is only drawn if there are at least two
-        /// columns. The [horizontalInside] border is only drawn if there are at least
-        /// two rows. The horizontal borders are drawn after the vertical borders.
-        ///
-        /// The outer borders (in the order [top], [right], [bottom], [left], with
-        /// [left] above the others) are painted after the inner borders.
-        ///
-        /// The paint order is particularly notable in the case of
-        /// partially-transparent borders.
-        /// </Summary>
-        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Iterable<double> rows = default(Iterable<double>), Iterable<double> columns = default(Iterable<double>)) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
     }
+
+    BordersDefaultClass.PaintBorder(canvas, rect, top: Top, right: Right, bottom: Bottom, left: Left);
+}
+
+
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    if (other.GetType() != GetType()) return false;
+    return other is TableBorder && other.Top == Top && other.Right == Right && other.Bottom == Bottom && other.Left == Left && other.HorizontalInside == HorizontalInside && other.VerticalInside == VerticalInside;
+}
+
+
+
+
+#endregion
+}
 
 }

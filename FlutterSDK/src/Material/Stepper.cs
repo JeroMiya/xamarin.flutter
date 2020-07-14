@@ -441,236 +441,394 @@ namespace FlutterSDK.Material.Stepper
         #region constructors
         public Step(FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Stepper.StepState state = default(FlutterSDK.Material.Stepper.StepState), bool isActive = false)
         : base()
-        {
-            this.Title = title;
-            this.Subtitle = subtitle;
-            this.Content = content;
-            this.State = state;
-            this.IsActive = isActive; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
-        public virtual FlutterSDK.Material.Stepper.StepState State { get; set; }
-        public virtual bool IsActive { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+    public virtual FlutterSDK.Material.Stepper.StepState State { get; set; }
+    public virtual bool IsActive { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
+    #region methods
+    #endregion
+}
+
+
+/// <Summary>
+/// A material stepper widget that displays progress through a sequence of
+/// steps. Steppers are particularly useful in the case of forms where one step
+/// requires the completion of another one, or where multiple steps need to be
+/// completed in order to submit the whole form.
+///
+/// The widget is a flexible wrapper. A parent class should pass [currentStep]
+/// to this widget based on some logic triggered by the three callbacks that it
+/// provides.
+///
+/// See also:
+///
+///  * [Step]
+///  * <https://material.io/archive/guidelines/components/steppers.html>
+/// </Summary>
+public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public Stepper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Stepper.Step> steps = default(List<FlutterSDK.Material.Stepper.Step>), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Material.Stepper.StepperType type = default(FlutterSDK.Material.Stepper.StepperType), int currentStep = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onStepTapped = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), VoidCallback onStepContinue = default(VoidCallback), VoidCallback onStepCancel = default(VoidCallback), FlutterSDK.Widgets.Framework.ControlsWidgetBuilder controlsBuilder = default(FlutterSDK.Widgets.Framework.ControlsWidgetBuilder))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Material.Stepper.Step> Steps { get; set; }
+public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
+public virtual FlutterSDK.Material.Stepper.StepperType Type { get; set; }
+public virtual int CurrentStep { get; set; }
+public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnStepTapped { get; set; }
+public virtual VoidCallback OnStepContinue { get; set; }
+public virtual VoidCallback OnStepCancel { get; set; }
+public virtual FlutterSDK.Widgets.Framework.ControlsWidgetBuilder ControlsBuilder { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Material.Stepper._StepperState CreateState() => new _StepperState();
+
+
+#endregion
+}
+
+
+public class _StepperState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Stepper.Stepper>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _StepperState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _Keys { get; set; }
+    internal virtual Dictionary<int, FlutterSDK.Material.Stepper.StepState> _OldStates { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _Keys = List<GlobalKey>.Generate(Widget.Steps.Count, (int i) => =>new GlobalKey());
+        for (int i = 0; i < Widget.Steps.Count; i += 1) _OldStates[i] = Widget.Steps[i].State;
     }
 
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Stepper.Stepper oldWidget)
+    {
+        base.DidUpdateWidget(oldWidget);
+
+        for (int i = 0; i < oldWidget.Steps.Count; i += 1) _OldStates[i] = oldWidget.Steps[i].State;
+    }
+
+
+
+
+    private bool _IsFirst(int index)
+    {
+        return index == 0;
+    }
+
+
+
+
+    private bool _IsLast(int index)
+    {
+        return Widget.Steps.Count - 1 == index;
+    }
+
+
+
+
+    private bool _IsCurrent(int index)
+    {
+        return Widget.CurrentStep == index;
+    }
+
+
+
+
+    private bool _IsDark()
+    {
+        return ThemeDefaultClass.Theme.Of(Context).Brightness == Brightness.Dark;
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildLine(bool visible)
+    {
+        return new Container(width: visible ? 1.0 : 0.0, height: 16.0, color: ColorsDefaultClass.Colors.Grey.Shade400);
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildCircleChild(int index, bool oldState)
+    {
+        StepState state = oldState ? _OldStates[index] : Widget.Steps[index].State;
+        bool isDarkActive = _IsDark() && Widget.Steps[index].IsActive;
+
+        switch (state) { case StepState.Indexed: case StepState.Disabled: return new Text($"'{index + 1}'", style: isDarkActive ? StepperDefaultClass._KStepStyle.CopyWith(color: ColorsDefaultClass.Colors.Black87) : StepperDefaultClass._KStepStyle); case StepState.Editing: return new Icon(IconsDefaultClass.Icons.Edit, color: isDarkActive ? StepperDefaultClass._KCircleActiveDark : StepperDefaultClass._KCircleActiveLight, size: 18.0); case StepState.Complete: return new Icon(IconsDefaultClass.Icons.Check, color: isDarkActive ? StepperDefaultClass._KCircleActiveDark : StepperDefaultClass._KCircleActiveLight, size: 18.0); case StepState.Error: return new Text('!', style: StepperDefaultClass._KStepStyle); }
+        return null;
+    }
+
+
+
+
+    private Color _CircleColor(int index)
+    {
+        ThemeData themeData = ThemeDefaultClass.Theme.Of(Context);
+        if (!_IsDark())
+        {
+            return Widget.Steps[index].IsActive ? themeData.PrimaryColor : ColorsDefaultClass.Colors.Black38;
+        }
+        else
+        {
+            return Widget.Steps[index].IsActive ? themeData.AccentColor : themeData.BackgroundColor;
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildCircle(int index, bool oldState)
+    {
+        return new Container(margin: EdgeInsets.Symmetric(vertical: 8.0), width: StepperDefaultClass._KStepSize, height: StepperDefaultClass._KStepSize, child: new AnimatedContainer(curve: CurvesDefaultClass.Curves.FastOutSlowIn, duration: ThemeDefaultClass.KThemeAnimationDuration, decoration: new BoxDecoration(color: _CircleColor(index), shape: BoxShape.Circle), child: new Center(child: _BuildCircleChild(index, oldState && Widget.Steps[index].State == StepState.Error))));
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildTriangle(int index, bool oldState)
+    {
+        return new Container(margin: EdgeInsets.Symmetric(vertical: 8.0), width: StepperDefaultClass._KStepSize, height: StepperDefaultClass._KStepSize, child: new Center(child: new SizedBox(width: StepperDefaultClass._KStepSize, height: StepperDefaultClass._KTriangleHeight, child: new CustomPaint(painter: new _TrianglePainter(color: _IsDark() ? StepperDefaultClass._KErrorDark : StepperDefaultClass._KErrorLight), child: new Align(alignment: new Alignment(0.0, 0.8), child: _BuildCircleChild(index, oldState && Widget.Steps[index].State != StepState.Error))))));
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildIcon(int index)
+    {
+        if (Widget.Steps[index].State != _OldStates[index])
+        {
+            return new AnimatedCrossFade(firstChild: _BuildCircle(index, true), secondChild: _BuildTriangle(index, true), firstCurve: new Interval(0.0, 0.6, curve: CurvesDefaultClass.Curves.FastOutSlowIn), secondCurve: new Interval(0.4, 1.0, curve: CurvesDefaultClass.Curves.FastOutSlowIn), sizeCurve: CurvesDefaultClass.Curves.FastOutSlowIn, crossFadeState: Widget.Steps[index].State == StepState.Error ? CrossFadeState.ShowSecond : CrossFadeState.ShowFirst, duration: ThemeDefaultClass.KThemeAnimationDuration);
+        }
+        else
+        {
+            if (Widget.Steps[index].State != StepState.Error) return _BuildCircle(index, false); else return _BuildTriangle(index, false);
+        }
+
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildVerticalControls()
+    {
+        if (Widget.ControlsBuilder != null) return Widget.ControlsBuilder(Context, onStepContinue: Widget.OnStepContinue, onStepCancel: Widget.OnStepCancel);
+        Color cancelColor = default(Color);
+        switch (ThemeDefaultClass.Theme.Of(Context).Brightness) { case Brightness.Light: cancelColor = ColorsDefaultClass.Colors.Black54; break; case Brightness.Dark: cancelColor = ColorsDefaultClass.Colors.White70; break; }
+
+        ThemeData themeData = ThemeDefaultClass.Theme.Of(Context);
+        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+        return new Container(margin: EdgeInsets.Only(top: 16.0), child: new ConstrainedBox(constraints: BoxConstraints.TightFor(height: 48.0), child: new Row(children: new List<Widget>() { new FlatButton(onPressed: Widget.OnStepContinue, color: _IsDark() ? themeData.BackgroundColor : themeData.PrimaryColor, textColor: ColorsDefaultClass.Colors.White, textTheme: ButtonTextTheme.Normal, child: new Text(localizations.ContinueButtonLabel)), new Container(margin: EdgeInsetsDirectional.Only(start: 8.0), child: new FlatButton(onPressed: Widget.OnStepCancel, textColor: cancelColor, textTheme: ButtonTextTheme.Normal, child: new Text(localizations.CancelButtonLabel))) })));
+    }
+
+
+
+
+    private FlutterSDK.Painting.Textstyle.TextStyle _TitleStyle(int index)
+    {
+        ThemeData themeData = ThemeDefaultClass.Theme.Of(Context);
+        TextTheme textTheme = themeData.TextTheme;
+
+        switch (Widget.Steps[index].State) { case StepState.Indexed: case StepState.Editing: case StepState.Complete: return textTheme.BodyText1; case StepState.Disabled: return textTheme.BodyText1.CopyWith(color: _IsDark() ? StepperDefaultClass._KDisabledDark : StepperDefaultClass._KDisabledLight); case StepState.Error: return textTheme.BodyText1.CopyWith(color: _IsDark() ? StepperDefaultClass._KErrorDark : StepperDefaultClass._KErrorLight); }
+        return null;
+    }
+
+
+
+
+    private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleStyle(int index)
+    {
+        ThemeData themeData = ThemeDefaultClass.Theme.Of(Context);
+        TextTheme textTheme = themeData.TextTheme;
+
+        switch (Widget.Steps[index].State) { case StepState.Indexed: case StepState.Editing: case StepState.Complete: return textTheme.Caption; case StepState.Disabled: return textTheme.Caption.CopyWith(color: _IsDark() ? StepperDefaultClass._KDisabledDark : StepperDefaultClass._KDisabledLight); case StepState.Error: return textTheme.Caption.CopyWith(color: _IsDark() ? StepperDefaultClass._KErrorDark : StepperDefaultClass._KErrorLight); }
+        return null;
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildHeaderText(int index)
+    {
+        return new Column(crossAxisAlignment: CrossAxisAlignment.Start, mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { new AnimatedDefaultTextStyle(style: _TitleStyle(index), duration: ThemeDefaultClass.KThemeAnimationDuration, curve: CurvesDefaultClass.Curves.FastOutSlowIn, child: Widget.Steps[index].Title), });
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildVerticalHeader(int index)
+    {
+        return new Container(margin: EdgeInsets.Symmetric(horizontal: 24.0), child: new Row(children: new List<Widget>() { new Column(children: new List<Widget>() { _BuildLine(!_IsFirst(index)), _BuildIcon(index), _BuildLine(!_IsLast(index)) }), new Container(margin: EdgeInsetsDirectional.Only(start: 12.0), child: _BuildHeaderText(index)) }));
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildVerticalBody(int index)
+    {
+        return new Stack(children: new List<Widget>() { new PositionedDirectional(start: 24.0, top: 0.0, bottom: 0.0, child: new SizedBox(width: 24.0, child: new Center(child: new SizedBox(width: _IsLast(index) ? 0.0 : 1.0, child: new Container(color: ColorsDefaultClass.Colors.Grey.Shade400))))), new AnimatedCrossFade(firstChild: new Container(height: 0.0), secondChild: new Container(margin: EdgeInsetsDirectional.Only(start: 60.0, end: 24.0, bottom: 24.0), child: new Column(children: new List<Widget>() { Widget.Steps[index].Content, _BuildVerticalControls() })), firstCurve: new Interval(0.0, 0.6, curve: CurvesDefaultClass.Curves.FastOutSlowIn), secondCurve: new Interval(0.4, 1.0, curve: CurvesDefaultClass.Curves.FastOutSlowIn), sizeCurve: CurvesDefaultClass.Curves.FastOutSlowIn, crossFadeState: _IsCurrent(index) ? CrossFadeState.ShowSecond : CrossFadeState.ShowFirst, duration: ThemeDefaultClass.KThemeAnimationDuration) });
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildVertical()
+    {
+        return new ListView(shrinkWrap: true, physics: Widget.Physics, children: new List<Widget>() { });
+    }
+
+
+
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildHorizontal()
+    {
+        List<Widget> children = new List<Widget>() { };
+        return new Column(children: new List<Widget>() { new Material(elevation: 2.0, child: new Container(margin: EdgeInsets.Symmetric(horizontal: 24.0), child: new Row(children: children))), new Expanded(child: new ListView(padding: EdgeInsets.All(24.0), children: new List<Widget>() { new AnimatedSize(curve: CurvesDefaultClass.Curves.FastOutSlowIn, duration: ThemeDefaultClass.KThemeAnimationDuration, vsync: this, child: Widget.Steps[Widget.CurrentStep].Content), _BuildVerticalControls() })) });
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+
+
+
+
+        switch (Widget.Type) { case StepperType.Vertical: return _BuildVertical(); case StepperType.Horizontal: return _BuildHorizontal(); }
+        return null;
+    }
+
+
+
+    #endregion
+}
+
+
+public class _TrianglePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+{
+    #region constructors
+    public _TrianglePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Color Color { get; set; }
+#endregion
+
+#region methods
+
+public new bool HitTest(FlutterBinding.UI.Offset point) => true;
+
+
+
+public new bool ShouldRepaint(FlutterSDK.Material.Stepper._TrianglePainter oldPainter)
+{
+    return oldPainter.Color != Color;
+}
+
+
+public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+{
+    return oldPainter.Color != Color;
+}
+
+
+
+
+public new void Paint(Canvas canvas, Size size)
+{
+    double   base = size.Width;
+    double halfBase = size.Width / 2.0;
+    double height = size.Height;
+    List<Offset> points = new List<Offset>() { new Offset(0.0, height), new Offset(base, height), new Offset(halfBase, 0.0) };
+    canvas.DrawPath(new Path();
+    new Path().AddPolygon(points, true), new Paint()..Color = Color);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The state of a [Step] which is used to control the style of the circle and
+/// text.
+///
+/// See also:
+///
+///  * [Step]
+/// </Summary>
+public enum StepState
+{
 
     /// <Summary>
-    /// A material stepper widget that displays progress through a sequence of
-    /// steps. Steppers are particularly useful in the case of forms where one step
-    /// requires the completion of another one, or where multiple steps need to be
-    /// completed in order to submit the whole form.
-    ///
-    /// The widget is a flexible wrapper. A parent class should pass [currentStep]
-    /// to this widget based on some logic triggered by the three callbacks that it
-    /// provides.
-    ///
-    /// See also:
-    ///
-    ///  * [Step]
-    ///  * <https://material.io/archive/guidelines/components/steppers.html>
+    /// A step that displays its index in its circle.
     /// </Summary>
-    public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public Stepper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Stepper.Step> steps = default(List<FlutterSDK.Material.Stepper.Step>), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Material.Stepper.StepperType type = default(FlutterSDK.Material.Stepper.StepperType), int currentStep = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onStepTapped = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), VoidCallback onStepContinue = default(VoidCallback), VoidCallback onStepCancel = default(VoidCallback), FlutterSDK.Widgets.Framework.ControlsWidgetBuilder controlsBuilder = default(FlutterSDK.Widgets.Framework.ControlsWidgetBuilder))
-        : base(key: key)
-        {
-            this.Steps = steps;
-            this.Physics = physics;
-            this.Type = type;
-            this.CurrentStep = currentStep;
-            this.OnStepTapped = onStepTapped;
-            this.OnStepContinue = onStepContinue;
-            this.OnStepCancel = onStepCancel;
-            this.ControlsBuilder = controlsBuilder; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<FlutterSDK.Material.Stepper.Step> Steps { get; set; }
-        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
-        public virtual FlutterSDK.Material.Stepper.StepperType Type { get; set; }
-        public virtual int CurrentStep { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnStepTapped { get; set; }
-        public virtual VoidCallback OnStepContinue { get; set; }
-        public virtual VoidCallback OnStepCancel { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.ControlsWidgetBuilder ControlsBuilder { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Stepper._StepperState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    Indexed,
+    /// <Summary>
+    /// A step that displays a pencil icon in its circle.
+    /// </Summary>
+    Editing,
+    /// <Summary>
+    /// A step that displays a tick icon in its circle.
+    /// </Summary>
+    Complete,
+    /// <Summary>
+    /// A step that is disabled and does not to react to taps.
+    /// </Summary>
+    Disabled,
+    /// <Summary>
+    /// A step that is currently having an error. e.g. the user has submitted wrong
+    /// input.
+    /// </Summary>
+    Error,
+}
 
 
-    public class _StepperState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Stepper.Stepper>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-    {
-        #region constructors
-        public _StepperState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _Keys { get; set; }
-        internal virtual Dictionary<int, FlutterSDK.Material.Stepper.StepState> _OldStates { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Stepper.Stepper oldWidget) { throw new NotImplementedException(); }
-
-
-        private bool _IsFirst(int index) { throw new NotImplementedException(); }
-
-
-        private bool _IsLast(int index) { throw new NotImplementedException(); }
-
-
-        private bool _IsCurrent(int index) { throw new NotImplementedException(); }
-
-
-        private bool _IsDark() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildLine(bool visible) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildCircleChild(int index, bool oldState) { throw new NotImplementedException(); }
-
-
-        private Color _CircleColor(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildCircle(int index, bool oldState) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildTriangle(int index, bool oldState) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildIcon(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildVerticalControls() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Painting.Textstyle.TextStyle _TitleStyle(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleStyle(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildHeaderText(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildVerticalHeader(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildVerticalBody(int index) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildVertical() { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Widgets.Framework.Widget _BuildHorizontal() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _TrianglePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-    {
-        #region constructors
-        public _TrianglePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-        {
-            this.Color = color; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool HitTest(FlutterBinding.UI.Offset point) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRepaint(FlutterSDK.Material.Stepper._TrianglePainter oldPainter) { throw new NotImplementedException(); }
-        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
-
-
-        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+/// <Summary>
+/// Defines the [Stepper]'s main axis.
+/// </Summary>
+public enum StepperType
+{
 
     /// <Summary>
-    /// The state of a [Step] which is used to control the style of the circle and
-    /// text.
-    ///
-    /// See also:
-    ///
-    ///  * [Step]
+    /// A vertical layout of the steps with their content in-between the titles.
     /// </Summary>
-    public enum StepState
-    {
-
-        /// <Summary>
-        /// A step that displays its index in its circle.
-        /// </Summary>
-        Indexed,
-        /// <Summary>
-        /// A step that displays a pencil icon in its circle.
-        /// </Summary>
-        Editing,
-        /// <Summary>
-        /// A step that displays a tick icon in its circle.
-        /// </Summary>
-        Complete,
-        /// <Summary>
-        /// A step that is disabled and does not to react to taps.
-        /// </Summary>
-        Disabled,
-        /// <Summary>
-        /// A step that is currently having an error. e.g. the user has submitted wrong
-        /// input.
-        /// </Summary>
-        Error,
-    }
-
-
+    Vertical,
     /// <Summary>
-    /// Defines the [Stepper]'s main axis.
+    /// A horizontal layout of the steps with their content below the titles.
     /// </Summary>
-    public enum StepperType
-    {
-
-        /// <Summary>
-        /// A vertical layout of the steps with their content in-between the titles.
-        /// </Summary>
-        Vertical,
-        /// <Summary>
-        /// A horizontal layout of the steps with their content below the titles.
-        /// </Summary>
-        Horizontal,
-    }
+    Horizontal,
+}
 
 }

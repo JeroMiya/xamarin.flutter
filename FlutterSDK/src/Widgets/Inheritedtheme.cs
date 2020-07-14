@@ -600,64 +600,97 @@ namespace FlutterSDK.Widgets.Inheritedtheme
         #region constructors
         public InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Return a copy of this inherited theme with the specified [child].
-        ///
-        /// If the identical inherited theme is already visible from [context] then
-        /// just return the [child].
-        ///
-        /// This implementation for [TooltipTheme] is typical:
-        /// ```dart
-        /// Widget wrap(BuildContext context, Widget child) {
-        ///   final TooltipTheme ancestorTheme = context.findAncestorWidgetOfExactType<TooltipTheme>());
-        ///   return identical(this, ancestorTheme) ? child : TooltipTheme(data: data, child: child);
-        /// }
-        /// ```
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Returns a widget that will [wrap] child in all of the inherited themes
-        /// which are visible from [context].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget CaptureAll(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _CaptureAll : FlutterSDK.Widgets.Framework.StatelessWidget
+    /// <Summary>
+    /// Return a copy of this inherited theme with the specified [child].
+    ///
+    /// If the identical inherited theme is already visible from [context] then
+    /// just return the [child].
+    ///
+    /// This implementation for [TooltipTheme] is typical:
+    /// ```dart
+    /// Widget wrap(BuildContext context, Widget child) {
+    ///   final TooltipTheme ancestorTheme = context.findAncestorWidgetOfExactType<TooltipTheme>());
+    ///   return identical(this, ancestorTheme) ? child : TooltipTheme(data: data, child: child);
+    /// }
+    /// ```
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
     {
-        #region constructors
-        public _CaptureAll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> themes = default(List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key)
-        {
-            this.Themes = themes;
-            this.Child = child; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> Themes { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        return default(Widget);
     }
+
+
+    /// <Summary>
+    /// Returns a widget that will [wrap] child in all of the inherited themes
+    /// which are visible from [context].
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget CaptureAll(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+    {
+
+
+        List<InheritedTheme> themes = new List<InheritedTheme>() { };
+        HashSet<Type> themeTypes = new Dictionary<Type> { };
+        context.VisitAncestorElements((Element ancestor) =>
+        {
+            if (ancestor is InheritedElement && ancestor.Widget is InheritedTheme)
+            {
+                InheritedTheme theme = ((InheritedTheme)ancestor.Widget) as InheritedTheme;
+                Type themeType = theme.GetType();
+                if (!themeTypes.Contains(themeType))
+                {
+                    themeTypes.Add(themeType);
+                    themes.Add(theme);
+                }
+
+            }
+
+            return true;
+        }
+        );
+        return new _CaptureAll(themes: themes, child: child);
+    }
+
+
+
+    #endregion
+}
+
+
+public class _CaptureAll : FlutterSDK.Widgets.Framework.StatelessWidget
+{
+    #region constructors
+    public _CaptureAll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> themes = default(List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> Themes { get; set; }
+public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Widget wrappedChild = Child;
+    foreach (InheritedTheme theme in Themes) wrappedChild = theme.Wrap(context, wrappedChild);
+    return wrappedChild;
+}
+
+
+
+#endregion
+}
 
 }

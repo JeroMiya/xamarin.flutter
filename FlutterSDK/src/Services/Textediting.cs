@@ -435,45 +435,50 @@ namespace FlutterSDK.Services.Textediting
         #region constructors
         public TextSelection(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = false)
         : base(start: baseOffset < extentOffset ? baseOffset : extentOffset, end: baseOffset < extentOffset ? extentOffset : baseOffset)
-        {
-            this.BaseOffset = baseOffset;
-            this.ExtentOffset = extentOffset;
-            this.Affinity = affinity;
-            this.IsDirectional = isDirectional; throw new NotImplementedException();
-        }
-        public static TextSelection Collapsed(int offset = default(int), TextAffinity affinity = default(TextAffinity))
-        {
-            var instance = new TextSelection(offset); instance.Affinity = affinity; throw new NotImplementedException();
-        }
-        public static TextSelection FromPosition(TextPosition position)
-        {
-            var instance = new TextSelection(position.Offset); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static TextSelection Collapsed(int offset = default(int), TextAffinity affinity = default(TextAffinity))
 
-        #region fields
-        public virtual int BaseOffset { get; set; }
-        public virtual int ExtentOffset { get; set; }
-        public virtual TextAffinity Affinity { get; set; }
-        public virtual bool IsDirectional { get; set; }
-        public virtual TextPosition @base { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextPosition Extent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+}
+public static TextSelection FromPosition(TextPosition position)
 
-        #region methods
+}
+#endregion
+
+#region fields
+public virtual int BaseOffset { get; set; }
+public virtual int ExtentOffset { get; set; }
+public virtual TextAffinity Affinity { get; set; }
+public virtual bool IsDirectional { get; set; }
+public virtual TextPosition @base { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextPosition Extent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    return other is TextSelection && other.BaseOffset == BaseOffset && other.ExtentOffset == ExtentOffset && other.Affinity == Affinity && other.IsDirectional == IsDirectional;
+}
 
 
-        /// <Summary>
-        /// Creates a new [TextSelection] based on the current selection, with the
-        /// provided parameters overridden.
-        /// </Summary>
-        public virtual FlutterSDK.Services.Textediting.TextSelection CopyWith(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = default(bool)) { throw new NotImplementedException(); }
 
-        #endregion
-    }
+
+/// <Summary>
+/// Creates a new [TextSelection] based on the current selection, with the
+/// provided parameters overridden.
+/// </Summary>
+public virtual FlutterSDK.Services.Textediting.TextSelection CopyWith(int baseOffset = default(int), int extentOffset = default(int), TextAffinity affinity = default(TextAffinity), bool isDirectional = default(bool))
+{
+    return new TextSelection(baseOffset: baseOffset ?? this.BaseOffset, extentOffset: extentOffset ?? this.ExtentOffset, affinity: affinity ?? this.Affinity, isDirectional: isDirectional ?? this.IsDirectional);
+}
+
+
+
+#endregion
+}
 
 }

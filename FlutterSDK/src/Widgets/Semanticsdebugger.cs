@@ -440,141 +440,419 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
         #region constructors
         public SemanticsDebugger(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(key: key)
-        {
-            this.Child = child;
-            this.LabelStyle = labelStyle; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerState CreateState() => new _SemanticsDebuggerState();
 
 
-    public class _SemanticsDebuggerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Semanticsdebugger.SemanticsDebugger>, IWidgetsBindingObserver
+    #endregion
+}
+
+
+public class _SemanticsDebuggerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Semanticsdebugger.SemanticsDebugger>, IWidgetsBindingObserver
+{
+    #region constructors
+    public _SemanticsDebuggerState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Semanticsdebugger._SemanticsClient _Client { get; set; }
+    internal virtual FlutterBinding.UI.Offset _LastPointerDownLocation { get; set; }
+    internal virtual FlutterSDK.Rendering.@object.PipelineOwner _PipelineOwner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
     {
-        #region constructors
-        public _SemanticsDebuggerState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Widgets.Semanticsdebugger._SemanticsClient _Client { get; set; }
-        internal virtual FlutterBinding.UI.Offset _LastPointerDownLocation { get; set; }
-        internal virtual FlutterSDK.Rendering.@object.PipelineOwner _PipelineOwner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        public new void DidChangeMetrics() { throw new NotImplementedException(); }
-
-
-        private void _Update() { throw new NotImplementedException(); }
-
-
-        private void _HandlePointerDown(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-
-        private void _HandleTap() { throw new NotImplementedException(); }
-
-
-        private void _HandleLongPress() { throw new NotImplementedException(); }
-
-
-        private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) { throw new NotImplementedException(); }
-
-
-        private void _PerformAction(FlutterBinding.UI.Offset position, SemanticsAction action) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        base.InitState();
+        _Client = new _SemanticsClient(BindingDefaultClass.WidgetsBinding.Instance.PipelineOwner);
+        new _SemanticsClient(BindingDefaultClass.WidgetsBinding.Instance.PipelineOwner).AddListener(_Update);
+        BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
     }
 
 
-    public class _SemanticsClient : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+
+
+    public new void Dispose()
     {
-        #region constructors
-        public _SemanticsClient(FlutterSDK.Rendering.@object.PipelineOwner pipelineOwner)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual FlutterSDK.Rendering.@object.SemanticsHandle _SemanticsHandle { get; set; }
-        public virtual int Generation { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _DidUpdateSemantics() { throw new NotImplementedException(); }
-
-        #endregion
+        ;
+        _Client.RemoveListener(_Update);
+        _Client.Dispose();
+        BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+        base.Dispose();
     }
 
 
-    public class _SemanticsDebuggerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+
+
+    public new void DidChangeMetrics()
     {
-        #region constructors
-        public _SemanticsDebuggerPainter(FlutterSDK.Rendering.@object.PipelineOwner owner, int generation, FlutterBinding.UI.Offset pointerPosition, double devicePixelRatio, FlutterSDK.Painting.Textstyle.TextStyle labelStyle)
+        SetState(() =>
         {
-            this.Owner = owner;
-            this.Generation = generation;
-            this.PointerPosition = pointerPosition;
-            this.DevicePixelRatio = devicePixelRatio;
-            this.LabelStyle = labelStyle; throw new NotImplementedException();
         }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Rendering.@object.PipelineOwner Owner { get; set; }
-        public virtual int Generation { get; set; }
-        public virtual FlutterBinding.UI.Offset PointerPosition { get; set; }
-        public virtual double DevicePixelRatio { get; set; }
-        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        internal virtual FlutterSDK.Semantics.Semantics.SemanticsNode _RootSemanticsNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Paint(Canvas canvas, Size size) { throw new NotImplementedException(); }
-
-
-        public new bool ShouldRepaint(FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerPainter oldDelegate) { throw new NotImplementedException(); }
-        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) { throw new NotImplementedException(); }
-
-
-        public virtual string GetMessage(FlutterSDK.Semantics.Semantics.SemanticsNode node) { throw new NotImplementedException(); }
-
-
-        private void _PaintMessage(Canvas canvas, FlutterSDK.Semantics.Semantics.SemanticsNode node) { throw new NotImplementedException(); }
-
-
-        private int _FindDepth(FlutterSDK.Semantics.Semantics.SemanticsNode node) { throw new NotImplementedException(); }
-
-
-        private void _Paint(Canvas canvas, FlutterSDK.Semantics.Semantics.SemanticsNode node, int rank) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
+
+
+
+
+    private void _Update()
+    {
+        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timeStamp) =>
+        {
+            if (Mounted)
+            {
+                SetState(() =>
+                {
+                }
+                );
+                BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrame();
+            }
+
+        }
+        );
+    }
+
+
+
+
+    private void _HandlePointerDown(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+    {
+        SetState(() =>
+        {
+            _LastPointerDownLocation = @event.Position * BindingDefaultClass.WidgetsBinding.Instance.Window.DevicePixelRatio;
+        }
+        );
+    }
+
+
+
+
+    private void _HandleTap()
+    {
+
+        _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.Tap);
+        SetState(() =>
+        {
+            _LastPointerDownLocation = null;
+        }
+        );
+    }
+
+
+
+
+    private void _HandleLongPress()
+    {
+
+        _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.LongPress);
+        SetState(() =>
+        {
+            _LastPointerDownLocation = null;
+        }
+        );
+    }
+
+
+
+
+    private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+    {
+        double vx = details.Velocity.PixelsPerSecond.Dx;
+        double vy = details.Velocity.PixelsPerSecond.Dy;
+        if (vx.Abs() == vy.Abs()) return;
+        if (vx.Abs() > vy.Abs())
+        {
+            if (vx.Sign < 0)
+            {
+                _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.Decrease);
+                _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollLeft);
+            }
+            else
+            {
+                _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.Increase);
+                _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollRight);
+            }
+
+        }
+        else
+        {
+            if (vy.Sign < 0) _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollUp); else _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollDown);
+        }
+
+        SetState(() =>
+        {
+            _LastPointerDownLocation = null;
+        }
+        );
+    }
+
+
+
+
+    private void _PerformAction(FlutterBinding.UI.Offset position, SemanticsAction action)
+    {
+        _PipelineOwner.SemanticsOwner?.PerformActionAt(position, action);
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new CustomPaint(foregroundPainter: new _SemanticsDebuggerPainter(_PipelineOwner, _Client.Generation, _LastPointerDownLocation, BindingDefaultClass.WidgetsBinding.Instance.Window.DevicePixelRatio, Widget.LabelStyle), child: new GestureDetector(behavior: HitTestBehavior.Opaque, onTap: _HandleTap, onLongPress: _HandleLongPress, onPanEnd: _HandlePanEnd, excludeFromSemantics: true, child: new Listener(onPointerDown: _HandlePointerDown, behavior: HitTestBehavior.Opaque, child: new IgnorePointer(ignoringSemantics: false, child: Widget.Child))));
+    }
+
+
+
+    #endregion
+}
+
+
+public class _SemanticsClient : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+{
+    #region constructors
+    public _SemanticsClient(FlutterSDK.Rendering.@object.PipelineOwner pipelineOwner)
+
+_SemanticsHandle=pipelineOwner.EnsureSemantics(listener:_DidUpdateSemantics);
+}
+
+
+#endregion
+
+#region fields
+internal virtual FlutterSDK.Rendering.@object.SemanticsHandle _SemanticsHandle { get; set; }
+public virtual int Generation { get; set; }
+#endregion
+
+#region methods
+
+public new void Dispose()
+{
+    _SemanticsHandle.Dispose();
+    _SemanticsHandle = null;
+    base.Dispose();
+}
+
+
+
+
+private void _DidUpdateSemantics()
+{
+    Generation += 1;
+    NotifyListeners();
+}
+
+
+
+#endregion
+}
+
+
+public class _SemanticsDebuggerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+{
+    #region constructors
+    public _SemanticsDebuggerPainter(FlutterSDK.Rendering.@object.PipelineOwner owner, int generation, FlutterBinding.UI.Offset pointerPosition, double devicePixelRatio, FlutterSDK.Painting.Textstyle.TextStyle labelStyle)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Rendering.@object.PipelineOwner Owner { get; set; }
+public virtual int Generation { get; set; }
+public virtual FlutterBinding.UI.Offset PointerPosition { get; set; }
+public virtual double DevicePixelRatio { get; set; }
+public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+internal virtual FlutterSDK.Semantics.Semantics.SemanticsNode _RootSemanticsNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void Paint(Canvas canvas, Size size)
+{
+    SemanticsNode rootNode = _RootSemanticsNode;
+    canvas.Save();
+    canvas.Scale(1.0 / DevicePixelRatio, 1.0 / DevicePixelRatio);
+    if (rootNode != null) _Paint(canvas, rootNode, _FindDepth(rootNode));
+    if (PointerPosition != null)
+    {
+        Paint paint = new Paint();
+        paint.Color = new Color(0x7F0090FF);
+        canvas.DrawCircle(PointerPosition, 10.0 * DevicePixelRatio, paint);
+    }
+
+    canvas.Restore();
+}
+
+
+
+
+public new bool ShouldRepaint(FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerPainter oldDelegate)
+{
+    return Owner != oldDelegate.Owner || Generation != oldDelegate.Generation || PointerPosition != oldDelegate.PointerPosition;
+}
+
+
+public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+{
+    return Owner != oldDelegate.Owner || Generation != oldDelegate.Generation || PointerPosition != oldDelegate.PointerPosition;
+}
+
+
+
+
+public virtual string GetMessage(FlutterSDK.Semantics.Semantics.SemanticsNode node)
+{
+    SemanticsData data = node.GetSemanticsData();
+    List<string> annotations = new List<string>() { };
+    bool wantsTap = false;
+    if (data.HasFlag(Dart: uiDefaultClass.SemanticsFlag.HasCheckedState))
+    {
+        annotations.Add(data.HasFlag(Dart: uiDefaultClass.SemanticsFlag.IsChecked) ? "checked" : "unchecked");
+        wantsTap = true;
+    }
+
+    if (data.HasFlag(Dart: uiDefaultClass.SemanticsFlag.IsTextField))
+    {
+        annotations.Add("textfield");
+        wantsTap = true;
+    }
+
+    if (data.HasAction(Dart: uiDefaultClass.SemanticsAction.Tap))
+    {
+        if (!wantsTap) annotations.Add("button");
+    }
+    else
+    {
+        if (wantsTap) annotations.Add("disabled");
+    }
+
+    if (data.HasAction(Dart: uiDefaultClass.SemanticsAction.LongPress)) annotations.Add("long-pressable");
+    bool isScrollable = data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollLeft) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollRight) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollUp) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollDown);
+    bool isAdjustable = data.HasAction(Dart: uiDefaultClass.SemanticsAction.Increase) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.Decrease);
+    if (isScrollable) annotations.Add("scrollable");
+    if (isAdjustable) annotations.Add("adjustable");
+
+    string message = default(string);
+    if (data.Label.IsEmpty())
+    {
+        message = annotations.Join("; ");
+    }
+    else
+    {
+        string label = default(string);
+        if (data.TextDirection == null)
+        {
+            label = $"'{UnicodeDefaultClass.Unicode.FSI}{data.Label}{UnicodeDefaultClass.Unicode.PDI}'";
+            annotations.Insert(0, "MISSING TEXT DIRECTION");
+        }
+        else
+        {
+            switch (data.TextDirection) { case TextDirection.Rtl: label = $"'{UnicodeDefaultClass.Unicode.RLI}{data.Label}{UnicodeDefaultClass.Unicode.PDF}'"; break; case TextDirection.Ltr: label = data.Label; break; }
+        }
+
+        if (annotations.IsEmpty())
+        {
+            message = label;
+        }
+        else
+        {
+            message = $"'{label} ({annotations.Join("; ")})'";
+        }
+
+    }
+
+    return message.Trim();
+}
+
+
+
+
+private void _PaintMessage(Canvas canvas, FlutterSDK.Semantics.Semantics.SemanticsNode node)
+{
+    string message = GetMessage(node);
+    if (message.IsEmpty()) return;
+    Rect rect = node.Rect;
+    canvas.Save();
+    canvas.ClipRect(rect);
+    TextPainter textPainter = new TextPainter()..Text = new TextSpan(style: LabelStyle, text: message)..TextDirection = TextDirection.Ltr..TextAlign = TextAlign.Center;
+    new TextPainter().Layout(maxWidth: rect.Width);
+    textPainter.Paint(canvas, AlignmentDefaultClass.Alignment.Center.Inscribe(textPainter.Size, rect).TopLeft);
+    canvas.Restore();
+}
+
+
+
+
+private int _FindDepth(FlutterSDK.Semantics.Semantics.SemanticsNode node)
+{
+    if (!node.HasChildren || node.MergeAllDescendantsIntoThisNode) return 1;
+    int childrenDepth = 0;
+    node.VisitChildren((SemanticsNode child) =>
+    {
+    childrenDepth = Math.Dart:mathDefaultClass.Max(childrenDepth, _FindDepth(child));
+return true;
+}
+);
+return childrenDepth + 1;
+}
+
+
+
+
+private void _Paint(Canvas canvas, FlutterSDK.Semantics.Semantics.SemanticsNode node, int rank)
+{
+    canvas.Save();
+    if (node.Transform != null) canvas.Transform(node.Transform.Storage);
+    Rect rect = node.Rect;
+    if (!rect.IsEmpty())
+    {
+        Color lineColor = new Color(0xFF000000 + new Math.Random(node.Id).NextInt(0xFFFFFF));
+        Rect innerRect = rect.Deflate(rank * 1.0);
+        if (innerRect.IsEmpty())
+        {
+            Paint fill = new Paint()..Color = lineColor..Style = PaintingStyle.Fill;
+            canvas.DrawRect(rect, fill);
+        }
+        else
+        {
+            Paint fill = new Paint()..Color = new Color(0xFFFFFFFF)..Style = PaintingStyle.Fill;
+            canvas.DrawRect(rect, fill);
+            Paint line = new Paint()..StrokeWidth = rank * 2.0..Color = lineColor..Style = PaintingStyle.Stroke;
+            canvas.DrawRect(innerRect, line);
+        }
+
+        _PaintMessage(canvas, node);
+    }
+
+    if (!node.MergeAllDescendantsIntoThisNode)
+    {
+        int childRank = rank - 1;
+        node.VisitChildren((SemanticsNode child) =>
+        {
+            _Paint(canvas, child, childRank);
+            return true;
+        }
+        );
+    }
+
+    canvas.Restore();
+}
+
+
+
+#endregion
+}
 
 }

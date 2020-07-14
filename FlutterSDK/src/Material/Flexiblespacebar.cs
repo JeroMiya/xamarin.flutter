@@ -497,157 +497,257 @@ namespace FlutterSDK.Material.Flexiblespacebar
         #region constructors
         public FlexibleSpaceBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget), bool centerTitle = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Flexiblespacebar.CollapseMode collapseMode = default(FlutterSDK.Material.Flexiblespacebar.CollapseMode), List<FlutterSDK.Material.Flexiblespacebar.StretchMode> stretchModes = default(List<FlutterSDK.Material.Flexiblespacebar.StretchMode>))
         : base(key: key)
-        {
-            this.Title = title;
-            this.Background = background;
-            this.CenterTitle = centerTitle;
-            this.TitlePadding = titlePadding;
-            this.CollapseMode = collapseMode;
-            this.StretchModes = stretchModes; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
-        public virtual bool CenterTitle { get; set; }
-        public virtual FlutterSDK.Material.Flexiblespacebar.CollapseMode CollapseMode { get; set; }
-        public virtual List<FlutterSDK.Material.Flexiblespacebar.StretchMode> StretchModes { get; set; }
-        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
+    public virtual bool CenterTitle { get; set; }
+    public virtual FlutterSDK.Material.Flexiblespacebar.CollapseMode CollapseMode { get; set; }
+    public virtual List<FlutterSDK.Material.Flexiblespacebar.StretchMode> StretchModes { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Wraps a widget that contains an [AppBar] to convey sizing information down
-        /// to the [FlexibleSpaceBar].
-        ///
-        /// Used by [Scaffold] and [SliverAppBar].
-        ///
-        /// `toolbarOpacity` affects how transparent the text within the toolbar
-        /// appears. `minExtent` sets the minimum height of the resulting
-        /// [FlexibleSpaceBar] when fully collapsed. `maxExtent` sets the maximum
-        /// height of the resulting [FlexibleSpaceBar] when fully expanded.
-        /// `currentExtent` sets the scale of the [FlexibleSpaceBar.background] and
-        /// [FlexibleSpaceBar.title] widgets of [FlexibleSpaceBar] upon
-        /// initialization.
-        ///
-        /// See also:
-        ///
-        ///  * [FlexibleSpaceBarSettings] which creates a settings object that can be
-        ///    used to specify these settings to a [FlexibleSpaceBar].
-        /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Widget CreateSettings(double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Material.Flexiblespacebar._FlexibleSpaceBarState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _FlexibleSpaceBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBar>
-    {
-        #region constructors
-        public _FlexibleSpaceBarState()
-        { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Painting.Alignment.Alignment _GetTitleAlignment(bool effectiveCenterTitle) { throw new NotImplementedException(); }
-
-
-        private double _GetCollapsePadding(double t, FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings settings) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// Provides sizing and opacity information to a [FlexibleSpaceBar].
+    /// Wraps a widget that contains an [AppBar] to convey sizing information down
+    /// to the [FlexibleSpaceBar].
+    ///
+    /// Used by [Scaffold] and [SliverAppBar].
+    ///
+    /// `toolbarOpacity` affects how transparent the text within the toolbar
+    /// appears. `minExtent` sets the minimum height of the resulting
+    /// [FlexibleSpaceBar] when fully collapsed. `maxExtent` sets the maximum
+    /// height of the resulting [FlexibleSpaceBar] when fully expanded.
+    /// `currentExtent` sets the scale of the [FlexibleSpaceBar.background] and
+    /// [FlexibleSpaceBar.title] widgets of [FlexibleSpaceBar] upon
+    /// initialization.
     ///
     /// See also:
     ///
-    ///  * [FlexibleSpaceBar] which creates a flexible space bar.
+    ///  * [FlexibleSpaceBarSettings] which creates a settings object that can be
+    ///    used to specify these settings to a [FlexibleSpaceBar].
     /// </Summary>
-    public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
+    public virtual FlutterSDK.Widgets.Framework.Widget CreateSettings(double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
     {
-        #region constructors
-        public FlexibleSpaceBarSettings(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-        : base(key: key, child: child)
+
+        return new FlexibleSpaceBarSettings(toolbarOpacity: toolbarOpacity == default(double) ? 1.0 : toolbarOpacity, minExtent: minExtent == default(double) ? currentExtent : minExtent, maxExtent: maxExtent == default(double) ? currentExtent : maxExtent, currentExtent: currentExtent, child: child);
+    }
+
+
+
+
+    public new FlutterSDK.Material.Flexiblespacebar._FlexibleSpaceBarState CreateState() => new _FlexibleSpaceBarState();
+
+
+    #endregion
+}
+
+
+public class _FlexibleSpaceBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBar>
+{
+    #region constructors
+    public _FlexibleSpaceBarState()
+    { }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme)
+    {
+        if (Widget.CenterTitle != null) return Widget.CenterTitle;
+
+        switch (theme.Platform) { case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: return false; case TargetPlatform.IOS: case TargetPlatform.MacOS: return true; }
+        return null;
+    }
+
+
+
+
+    private FlutterSDK.Painting.Alignment.Alignment _GetTitleAlignment(bool effectiveCenterTitle)
+    {
+        if (effectiveCenterTitle) return AlignmentDefaultClass.Alignment.BottomCenter;
+        TextDirection textDirection = BasicDefaultClass.Directionality.Of(Context);
+
+        switch (textDirection) { case TextDirection.Rtl: return AlignmentDefaultClass.Alignment.BottomRight; case TextDirection.Ltr: return AlignmentDefaultClass.Alignment.BottomLeft; }
+        return null;
+    }
+
+
+
+
+    private double _GetCollapsePadding(double t, FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings settings)
+    {
+        switch (Widget.CollapseMode) { case CollapseMode.Pin: return -(settings.MaxExtent - settings.CurrentExtent); case CollapseMode.None: return 0.0; case CollapseMode.Parallax: double deltaExtent = settings.MaxExtent - settings.MinExtent; return -new Tween<double>(begin: 0.0, end: deltaExtent / 4.0).Transform(t); }
+        return null;
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
         {
-            this.ToolbarOpacity = toolbarOpacity;
-            this.MinExtent = minExtent;
-            this.MaxExtent = maxExtent;
-            this.CurrentExtent = currentExtent; throw new NotImplementedException();
+            FlexibleSpaceBarSettings settings = context.DependOnInheritedWidgetOfExactType();
+
+            List<Widget> children = new List<Widget>() { };
+            double deltaExtent = settings.MaxExtent - settings.MinExtent;
+            double t = (1.0 - (settings.CurrentExtent - settings.MinExtent) / deltaExtent).Clamp(0.0, 1.0) as double;
+            if (Widget.Background != null)
+            {
+                double fadeStart = Math.Dart:mathDefaultClass.Max(0.0, 1.0 - ConstantsDefaultClass.KToolbarHeight / deltaExtent);
+                double fadeEnd = 1.0;
+
+                double opacity = 1.0 - new Interval(fadeStart, fadeEnd).Transform(t);
+                if (opacity > 0.0)
+                {
+                    double height = settings.MaxExtent;
+                    if (Widget.StretchModes.Contains(StretchMode.ZoomBackground) && constraints.MaxHeight > height)
+                    {
+                        height = constraints.MaxHeight;
+                    }
+
+                    children.Add(new Positioned(top: _GetCollapsePadding(t, settings), left: 0.0, right: 0.0, height: height, child: new Opacity(opacity: opacity, child: Widget.Background)));
+                    if (Widget.StretchModes.Contains(StretchMode.BlurBackground) && constraints.MaxHeight > settings.MaxExtent)
+                    {
+                        double blurAmount = (constraints.MaxHeight - settings.MaxExtent) / 10;
+                        children.Add(Positioned.Fill(child: new BackdropFilter(child: new Container(color: ColorsDefaultClass.Colors.Transparent), filter: Ui.Dart:uiDefaultClass.ImageFilter.Blur(sigmaX: blurAmount, sigmaY: blurAmount))));
+                    }
+
+                }
+
+            }
+
+            if (Widget.Title != null)
+            {
+                ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+                Widget title = default(Widget);
+                switch (theme.Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: title = Widget.Title; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: title = new Semantics(namesRoute: true, child: Widget.Title); break; }
+                if (Widget.StretchModes.Contains(StretchMode.FadeTitle) && constraints.MaxHeight > settings.MaxExtent)
+                {
+                    double stretchOpacity = 1 - (((constraints.MaxHeight - settings.MaxExtent) / 100).Clamp(0.0, 1.0) as double);
+                    title = new Opacity(opacity: stretchOpacity, child: title);
+                }
+
+                double opacity = settings.ToolbarOpacity;
+                if (opacity > 0.0)
+                {
+                    TextStyle titleStyle = theme.PrimaryTextTheme.Headline6;
+                    titleStyle = titleStyle.CopyWith(color: titleStyle.Color.WithOpacity(opacity));
+                    bool effectiveCenterTitle = _GetEffectiveCenterTitle(theme);
+                    EdgeInsetsGeometry padding = Widget.TitlePadding ?? EdgeInsetsDirectional.Only(start: effectiveCenterTitle ? 0.0 : 72.0, bottom: 16.0);
+                    double scaleValue = new Tween<double>(begin: 1.5, end: 1.0).Transform(t);
+                    Matrix4 scaleTransform = Matrix4.Identity();
+                    Matrix4.Identity().Scale(scaleValue, scaleValue, 1.0);
+                    Alignment titleAlignment = _GetTitleAlignment(effectiveCenterTitle);
+                    children.Add(new Container(padding: padding, child: new Transform(alignment: titleAlignment, transform: scaleTransform, child: new Align(alignment: titleAlignment, child: new DefaultTextStyle(style: titleStyle, child: new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+                    {
+                        return new Container(width: constraints.MaxWidth / scaleValue, alignment: titleAlignment, child: title);
+                    }
+                    ))))));
+                }
+
+            }
+
+            return new ClipRect(child: new Stack(children: children));
         }
-        #endregion
-
-        #region fields
-        public virtual double ToolbarOpacity { get; set; }
-        public virtual double MinExtent { get; set; }
-        public virtual double MaxExtent { get; set; }
-        public virtual double CurrentExtent { get; set; }
-        #endregion
-
-        #region methods
-
-        public new bool UpdateShouldNotify(FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings oldWidget) { throw new NotImplementedException(); }
-        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) { throw new NotImplementedException(); }
-
-        #endregion
+        );
     }
 
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Provides sizing and opacity information to a [FlexibleSpaceBar].
+///
+/// See also:
+///
+///  * [FlexibleSpaceBar] which creates a flexible space bar.
+/// </Summary>
+public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
+{
+    #region constructors
+    public FlexibleSpaceBarSettings(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    : base(key: key, child: child)
+
+}
+#endregion
+
+#region fields
+public virtual double ToolbarOpacity { get; set; }
+public virtual double MinExtent { get; set; }
+public virtual double MaxExtent { get; set; }
+public virtual double CurrentExtent { get; set; }
+#endregion
+
+#region methods
+
+public new bool UpdateShouldNotify(FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings oldWidget)
+{
+    return ToolbarOpacity != oldWidget.ToolbarOpacity || MinExtent != oldWidget.MinExtent || MaxExtent != oldWidget.MaxExtent || CurrentExtent != oldWidget.CurrentExtent;
+}
+
+
+public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
+{
+    return ToolbarOpacity != oldWidget.ToolbarOpacity || MinExtent != oldWidget.MinExtent || MaxExtent != oldWidget.MaxExtent || CurrentExtent != oldWidget.CurrentExtent;
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// The collapsing effect while the space bar collapses from its full size.
+/// </Summary>
+public enum CollapseMode
+{
 
     /// <Summary>
-    /// The collapsing effect while the space bar collapses from its full size.
+    /// The background widget will scroll in a parallax fashion.
     /// </Summary>
-    public enum CollapseMode
-    {
+    Parallax,
+    /// <Summary>
+    /// The background widget pin in place until it reaches the min extent.
+    /// </Summary>
+    Pin,
+    /// <Summary>
+    /// The background widget will act as normal with no collapsing effect.
+    /// </Summary>
+    None,
+}
 
-        /// <Summary>
-        /// The background widget will scroll in a parallax fashion.
-        /// </Summary>
-        Parallax,
-        /// <Summary>
-        /// The background widget pin in place until it reaches the min extent.
-        /// </Summary>
-        Pin,
-        /// <Summary>
-        /// The background widget will act as normal with no collapsing effect.
-        /// </Summary>
-        None,
-    }
 
+/// <Summary>
+/// The stretching effect while the space bar stretches beyond its full size.
+/// </Summary>
+public enum StretchMode
+{
 
     /// <Summary>
-    /// The stretching effect while the space bar stretches beyond its full size.
+    /// The background widget will expand to fill the extra space.
     /// </Summary>
-    public enum StretchMode
-    {
-
-        /// <Summary>
-        /// The background widget will expand to fill the extra space.
-        /// </Summary>
-        ZoomBackground,
-        /// <Summary>
-        /// The background will blur using a [ImageFilter.blur] effect.
-        /// </Summary>
-        BlurBackground,
-        /// <Summary>
-        /// The title will fade away as the user over-scrolls.
-        /// </Summary>
-        FadeTitle,
-    }
+    ZoomBackground,
+    /// <Summary>
+    /// The background will blur using a [ImageFilter.blur] effect.
+    /// </Summary>
+    BlurBackground,
+    /// <Summary>
+    /// The title will fade away as the user over-scrolls.
+    /// </Summary>
+    FadeTitle,
+}
 
 }

@@ -314,7 +314,14 @@ namespace FlutterSDK.Gestures.Velocitytracker
         /// <Summary>
         /// Adds a position as the given time to the tracker.
         /// </Summary>
-        public virtual void AddPosition(TimeSpan time, FlutterBinding.UI.Offset position) { throw new NotImplementedException(); }
+        public virtual void AddPosition(TimeSpan time, FlutterBinding.UI.Offset position)
+        {
+            _Index += 1;
+            if (_Index == _HistorySize) _Index = 0;
+            _Samples[_Index] = new _PointAtTime(position, time);
+        }
+
+
 
 
         /// <Summary>
@@ -325,7 +332,57 @@ namespace FlutterSDK.Gestures.Velocitytracker
         ///
         /// Returns null if there is no data on which to base an estimate.
         /// </Summary>
-        public virtual FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate() { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Velocitytracker.VelocityEstimate GetVelocityEstimate()
+        {
+            List<double> x = new List<double>() { };
+            List<double> y = new List<double>() { };
+            List<double> w = new List<double>() { };
+            List<double> time = new List<double>() { };
+            int sampleCount = 0;
+            int index = _Index;
+            _PointAtTime newestSample = _Samples[index];
+            if (newestSample == null) return null;
+            _PointAtTime previousSample = newestSample;
+            _PointAtTime oldestSample = newestSample;
+            do
+            {
+                _PointAtTime sample = _Samples[index];
+                if (sample == null) break;
+                double age = (newestSample.Time - sample.Time).InMilliseconds.ToDouble();
+                double delta = (sample.Time - previousSample.Time).InMilliseconds.Abs().ToDouble();
+                previousSample = sample;
+                if (age > _HorizonMilliseconds || delta > _AssumePointerMoveStoppedMilliseconds) break;
+                oldestSample = sample;
+                Offset position = sample.Point;
+                x.Add(position.Dx);
+                y.Add(position.Dy);
+                w.Add(1.0);
+                time.Add(-age);
+                index = (index == 0 ? _HistorySize : index) - 1;
+                sampleCount += 1;
+            }
+            while (sampleCount < _HistorySize);
+            if (sampleCount >= _MinSampleSize)
+            {
+                LeastSquaresSolver xSolver = new LeastSquaresSolver(time, x, w);
+                PolynomialFit xFit = xSolver.Solve(2);
+                if (xFit != null)
+                {
+                    LeastSquaresSolver ySolver = new LeastSquaresSolver(time, y, w);
+                    PolynomialFit yFit = ySolver.Solve(2);
+                    if (yFit != null)
+                    {
+                        return new VelocityEstimate(pixelsPerSecond: new Offset(xFit.Coefficients[1] * 1000, yFit.Coefficients[1] * 1000), confidence: xFit.Confidence * yFit.Confidence, duration: newestSample.Time - oldestSample.Time, offset: newestSample.Point - oldestSample.Point);
+                    }
+
+                }
+
+            }
+
+            return new VelocityEstimate(pixelsPerSecond: Dart:uiDefaultClass.Offset.Zero, confidence: 1.0, duration: newestSample.Time - oldestSample.Time, offset: newestSample.Point - oldestSample.Point);
+        }
+
+
 
 
         /// <Summary>
@@ -337,7 +394,14 @@ namespace FlutterSDK.Gestures.Velocitytracker
         /// Returns [Velocity.zero] if there is no data from which to compute an
         /// estimate or if the estimated velocity is zero.
         /// </Summary>
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity() { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity()
+        {
+            VelocityEstimate estimate = GetVelocityEstimate();
+            if (estimate == null || estimate.PixelsPerSecond == Dart:uiDefaultClass.Offset.Zero)return VelocitytrackerDefaultClass.Velocity.Zero;
+            return new Velocity(pixelsPerSecond: estimate.PixelsPerSecond);
+        }
+
+
 
     }
     public static class VelocityTrackerMixin
@@ -366,119 +430,138 @@ namespace FlutterSDK.Gestures.Velocitytracker
         #region constructors
         public Velocity(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset))
         : base()
-        {
-            this.PixelsPerSecond = pixelsPerSecond; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Zero { get; set; }
-        public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Zero { get; set; }
+    public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// Return the negation of a velocity.
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Unary() { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Return the negation of a velocity.
+    /// </Summary>
+    public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Unary() => new Velocity(pixelsPerSecond: -PixelsPerSecond);
 
-
-        /// <Summary>
-        /// Return the difference of two velocities.
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity SubtractOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Return the sum of two velocities.
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity AddOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Return a velocity whose magnitude has been clamped to [minValue]
-        /// and [maxValue].
-        ///
-        /// If the magnitude of this Velocity is less than minValue then return a new
-        /// Velocity with the same direction and with magnitude [minValue]. Similarly,
-        /// if the magnitude of this Velocity is greater than maxValue then return a
-        /// new Velocity with the same direction and magnitude [maxValue].
-        ///
-        /// If the magnitude of this Velocity is within the specified bounds then
-        /// just return this.
-        /// </Summary>
-        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity ClampMagnitude(double minValue, double maxValue) { throw new NotImplementedException(); }
-
-
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
-
-
-        #endregion
-    }
 
 
     /// <Summary>
-    /// A two dimensional velocity estimate.
-    ///
-    /// VelocityEstimates are computed by [VelocityTracker.getVelocityEstimate]. An
-    /// estimate's [confidence] measures how well the velocity tracker's position
-    /// data fit a straight line, [duration] is the time that elapsed between the
-    /// first and last position sample used to compute the velocity, and [offset]
-    /// is similarly the difference between the first and last positions.
-    ///
-    /// See also:
-    ///
-    ///  * [VelocityTracker], which computes [VelocityEstimate]s.
-    ///  * [Velocity], which encapsulates (just) a velocity vector and provides some
-    ///    useful velocity operations.
+    /// Return the difference of two velocities.
     /// </Summary>
-    public class VelocityEstimate
+    public virtual FlutterSDK.Gestures.Velocitytracker.Velocity SubtractOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other)
     {
-        #region constructors
-        public VelocityEstimate(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset), double confidence = default(double), TimeSpan duration = default(TimeSpan), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
-        : base()
-        {
-            this.PixelsPerSecond = pixelsPerSecond;
-            this.Confidence = confidence;
-            this.Duration = duration;
-            this.Offset = offset; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
-        public virtual double Confidence { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual FlutterBinding.UI.Offset Offset { get; set; }
-        #endregion
-
-        #region methods
-
-        #endregion
+        return new Velocity(pixelsPerSecond: PixelsPerSecond - other.PixelsPerSecond);
     }
 
 
-    public class _PointAtTime
+
+
+    /// <Summary>
+    /// Return the sum of two velocities.
+    /// </Summary>
+    public virtual FlutterSDK.Gestures.Velocitytracker.Velocity AddOperator(FlutterSDK.Gestures.Velocitytracker.Velocity other)
     {
-        #region constructors
-        public _PointAtTime(FlutterBinding.UI.Offset point, TimeSpan time)
-        : base()
-        {
-            this.Point = point;
-            this.Time = time; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual TimeSpan Time { get; set; }
-        public virtual FlutterBinding.UI.Offset Point { get; set; }
-        #endregion
-
-        #region methods
-
-        #endregion
+        return new Velocity(pixelsPerSecond: PixelsPerSecond + other.PixelsPerSecond);
     }
+
+
+
+
+    /// <Summary>
+    /// Return a velocity whose magnitude has been clamped to [minValue]
+    /// and [maxValue].
+    ///
+    /// If the magnitude of this Velocity is less than minValue then return a new
+    /// Velocity with the same direction and with magnitude [minValue]. Similarly,
+    /// if the magnitude of this Velocity is greater than maxValue then return a
+    /// new Velocity with the same direction and magnitude [maxValue].
+    ///
+    /// If the magnitude of this Velocity is within the specified bounds then
+    /// just return this.
+    /// </Summary>
+    public virtual FlutterSDK.Gestures.Velocitytracker.Velocity ClampMagnitude(double minValue, double maxValue)
+    {
+
+
+        double valueSquared = PixelsPerSecond.DistanceSquared;
+        if (valueSquared > maxValue * maxValue) return new Velocity(pixelsPerSecond: (PixelsPerSecond / PixelsPerSecond.Distance) * maxValue);
+        if (valueSquared < minValue * minValue) return new Velocity(pixelsPerSecond: (PixelsPerSecond / PixelsPerSecond.Distance) * minValue);
+        return this;
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        return other is Velocity && other.PixelsPerSecond == PixelsPerSecond;
+    }
+
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A two dimensional velocity estimate.
+///
+/// VelocityEstimates are computed by [VelocityTracker.getVelocityEstimate]. An
+/// estimate's [confidence] measures how well the velocity tracker's position
+/// data fit a straight line, [duration] is the time that elapsed between the
+/// first and last position sample used to compute the velocity, and [offset]
+/// is similarly the difference between the first and last positions.
+///
+/// See also:
+///
+///  * [VelocityTracker], which computes [VelocityEstimate]s.
+///  * [Velocity], which encapsulates (just) a velocity vector and provides some
+///    useful velocity operations.
+/// </Summary>
+public class VelocityEstimate
+{
+    #region constructors
+    public VelocityEstimate(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset), double confidence = default(double), TimeSpan duration = default(TimeSpan), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
+public virtual double Confidence { get; set; }
+public virtual TimeSpan Duration { get; set; }
+public virtual FlutterBinding.UI.Offset Offset { get; set; }
+#endregion
+
+#region methods
+
+#endregion
+}
+
+
+public class _PointAtTime
+{
+    #region constructors
+    public _PointAtTime(FlutterBinding.UI.Offset point, TimeSpan time)
+    : base()
+
+}
+#endregion
+
+#region fields
+public virtual TimeSpan Time { get; set; }
+public virtual FlutterBinding.UI.Offset Point { get; set; }
+#endregion
+
+#region methods
+
+#endregion
+}
 
 }

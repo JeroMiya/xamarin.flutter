@@ -438,86 +438,84 @@ namespace FlutterSDK.Painting.Boxfit
     {
         #region constructors
         public FittedSizes(Size source, Size destination)
-        {
-            this.Source = source;
-            this.Destination = destination; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual Size Source { get; set; }
-        public virtual Size Destination { get; set; }
-        #endregion
+    #region fields
+    public virtual Size Source { get; set; }
+    public virtual Size Destination { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
+
+/// <Summary>
+/// How a box should be inscribed into another box.
+///
+/// See also:
+///
+///  * [applyBoxFit], which applies the sizing semantics of these values (though
+///    not the alignment semantics).
+/// </Summary>
+public enum BoxFit
+{
 
     /// <Summary>
-    /// How a box should be inscribed into another box.
+    /// Fill the target box by distorting the source's aspect ratio.
     ///
-    /// See also:
-    ///
-    ///  * [applyBoxFit], which applies the sizing semantics of these values (though
-    ///    not the alignment semantics).
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fill.png)
     /// </Summary>
-    public enum BoxFit
-    {
-
-        /// <Summary>
-        /// Fill the target box by distorting the source's aspect ratio.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fill.png)
-        /// </Summary>
-        Fill,
-        /// <Summary>
-        /// As large as possible while still containing the source entirely within the
-        /// target box.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_contain.png)
-        /// </Summary>
-        Contain,
-        /// <Summary>
-        /// As small as possible while still covering the entire target box.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_cover.png)
-        /// </Summary>
-        Cover,
-        /// <Summary>
-        /// Make sure the full width of the source is shown, regardless of
-        /// whether this means the source overflows the target box vertically.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fitWidth.png)
-        /// </Summary>
-        FitWidth,
-        /// <Summary>
-        /// Make sure the full height of the source is shown, regardless of
-        /// whether this means the source overflows the target box horizontally.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fitHeight.png)
-        /// </Summary>
-        FitHeight,
-        /// <Summary>
-        /// Align the source within the target box (by default, centering) and discard
-        /// any portions of the source that lie outside the box.
-        ///
-        /// The source image is not resized.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_none.png)
-        /// </Summary>
-        None,
-        /// <Summary>
-        /// Align the source within the target box (by default, centering) and, if
-        /// necessary, scale the source down to ensure that the source fits within the
-        /// box.
-        ///
-        /// This is the same as `contain` if that would shrink the image, otherwise it
-        /// is the same as `none`.
-        ///
-        /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_scaleDown.png)
-        /// </Summary>
-        ScaleDown,
-    }
+    Fill,
+    /// <Summary>
+    /// As large as possible while still containing the source entirely within the
+    /// target box.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_contain.png)
+    /// </Summary>
+    Contain,
+    /// <Summary>
+    /// As small as possible while still covering the entire target box.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_cover.png)
+    /// </Summary>
+    Cover,
+    /// <Summary>
+    /// Make sure the full width of the source is shown, regardless of
+    /// whether this means the source overflows the target box vertically.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fitWidth.png)
+    /// </Summary>
+    FitWidth,
+    /// <Summary>
+    /// Make sure the full height of the source is shown, regardless of
+    /// whether this means the source overflows the target box horizontally.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fitHeight.png)
+    /// </Summary>
+    FitHeight,
+    /// <Summary>
+    /// Align the source within the target box (by default, centering) and discard
+    /// any portions of the source that lie outside the box.
+    ///
+    /// The source image is not resized.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_none.png)
+    /// </Summary>
+    None,
+    /// <Summary>
+    /// Align the source within the target box (by default, centering) and, if
+    /// necessary, scale the source down to ensure that the source fits within the
+    /// box.
+    ///
+    /// This is the same as `contain` if that would shrink the image, otherwise it
+    /// is the same as `none`.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_scaleDown.png)
+    /// </Summary>
+    ScaleDown,
+}
 
 }

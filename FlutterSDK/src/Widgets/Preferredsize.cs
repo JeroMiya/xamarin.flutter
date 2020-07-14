@@ -446,19 +446,35 @@ namespace FlutterSDK.Widgets.Preferredsize
         /// widget that is incorporated into the tree multiple times will be inflated
         /// multiple times.
         /// </Summary>
-        public virtual FlutterSDK.Widgets.Framework.Element CreateElement() { throw new NotImplementedException(); }
+        public virtual FlutterSDK.Widgets.Framework.Element CreateElement()
+        {
+            return default(Element);
+        }
 
 
         /// <Summary>
         /// A short, textual description of this widget.
         /// </Summary>
-        public new string ToStringShort() { throw new NotImplementedException(); }
+        public new string ToStringShort()
+        {
+            string type = ObjectDefaultClass.ObjectRuntimeType(this, "Widget");
+            return Key == null ? type : $"'{type}-{Key}'";
+        }
 
 
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.DefaultDiagnosticsTreeStyle = DiagnosticsTreeStyle.Dense;
+        }
+
+
+
+
+        public new bool Equals(@Object other) => base == other;
+
 
 
         /// <Summary>
@@ -473,10 +489,20 @@ namespace FlutterSDK.Widgets.Preferredsize
         /// match if they have the same type, even if their children are completely
         /// different.
         /// </Summary>
-        public virtual bool CanUpdate(FlutterSDK.Widgets.Framework.Widget oldWidget, FlutterSDK.Widgets.Framework.Widget newWidget) { throw new NotImplementedException(); }
+        public virtual bool CanUpdate(FlutterSDK.Widgets.Framework.Widget oldWidget, FlutterSDK.Widgets.Framework.Widget newWidget)
+        {
+            return oldWidget.GetType() == newWidget.GetType() && oldWidget.Key == newWidget.Key;
+        }
 
 
-        private int _DebugConcreteSubtype(FlutterSDK.Widgets.Framework.Widget widget) { throw new NotImplementedException(); }
+
+
+        private int _DebugConcreteSubtype(FlutterSDK.Widgets.Framework.Widget widget)
+        {
+            return widget is StatefulWidget ? 1 : widget is StatelessWidget ? 2 : 0;
+        }
+
+
 
     }
     public static class PreferredSizeWidgetMixin
@@ -514,22 +540,21 @@ namespace FlutterSDK.Widgets.Preferredsize
         #region constructors
         public PreferredSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size preferredSize = default(Size))
         : base(key: key)
-        {
-            this.Child = child;
-            this.PreferredSizeValue = preferredSize; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        public new Size PreferredSizeValue { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public new Size PreferredSizeValue { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
 
-        #endregion
-    }
+
+    #endregion
+}
 
 }

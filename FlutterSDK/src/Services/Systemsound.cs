@@ -435,36 +435,41 @@ namespace FlutterSDK.Services.Systemsound
     {
         #region constructors
         internal SystemSound()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        #endregion
+    #region fields
+    #endregion
 
-        #region methods
-
-        /// <Summary>
-        /// Play the specified system sound. If that sound is not present on the
-        /// system, the call is ignored.
-        /// </Summary>
-        public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+    #region methods
 
     /// <Summary>
-    /// A sound provided by the system.
+    /// Play the specified system sound. If that sound is not present on the
+    /// system, the call is ignored.
     /// </Summary>
-    public enum SystemSoundType
-    {
+    public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type)
+async
+{
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemSound.play", type.ToString());
+}
 
-        /// <Summary>
-        /// A short indication that a button was pressed.
-        /// </Summary>
-        Click,
-    }
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// A sound provided by the system.
+/// </Summary>
+public enum SystemSoundType
+{
+
+    /// <Summary>
+    /// A short indication that a button was pressed.
+    /// </Summary>
+    Click,
+}
 
 }

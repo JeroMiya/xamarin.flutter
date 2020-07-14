@@ -446,22 +446,19 @@ namespace FlutterSDK.Widgets.Bottomnavigationbaritem
         #region constructors
         public BottomNavigationBarItem(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget activeIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
         : base()
-        {
-            this.Icon = icon;
-            this.Title = title;
-            this.BackgroundColor = backgroundColor; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget ActiveIcon { get; set; }
-        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget ActiveIcon { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    #endregion
 
-        #region methods
-        #endregion
-    }
+    #region methods
+    #endregion
+}
 
 }

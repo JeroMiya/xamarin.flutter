@@ -436,33 +436,49 @@ namespace FlutterSDK.Widgets.Routenotificationmessages
     {
         #region constructors
         internal RouteNotificationMessages()
+    
+}
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// When the engine is Web notify the platform for a route change.
+    /// </Summary>
+    public virtual void MaybeNotifyRouteChange(string routeName, string previousRouteName)
+    {
+        if (ConstantsDefaultClass.KIsWeb)
         {
-            throw new NotImplementedException();
+            _NotifyRouteChange(routeName, previousRouteName);
         }
-        #endregion
+        else
+        {
+        }
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// When the engine is Web notify the platform for a route change.
-        /// </Summary>
-        public virtual void MaybeNotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Notifies the platform of a route change.
-        ///
-        /// See also:
-        ///
-        ///  * [SystemChannels.navigation], which handles subsequent navigation
-        ///    requests.
-        /// </Summary>
-        private void _NotifyRouteChange(string routeName, string previousRouteName) { throw new NotImplementedException(); }
-
-        #endregion
     }
+
+
+
+
+    /// <Summary>
+    /// Notifies the platform of a route change.
+    ///
+    /// See also:
+    ///
+    ///  * [SystemChannels.navigation], which handles subsequent navigation
+    ///    requests.
+    /// </Summary>
+    private void _NotifyRouteChange(string routeName, string previousRouteName)
+    {
+        SystemchannelsDefaultClass.SystemChannels.Navigation.InvokeMethod("routeUpdated", new Dictionary<string, object> { { "previousRouteName", previousRouteName }{ "routeName", routeName } });
+    }
+
+
+
+    #endregion
+}
 
 }

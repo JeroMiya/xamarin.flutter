@@ -441,360 +441,666 @@ namespace FlutterSDK.Rendering.Stack
     {
         #region constructors
         public static RelativeRect FromLTRB(double left, double top, double right, double bottom)
-        {
-            var instance = new RelativeRect(); instance.Left = left;
-            instance.Top = top;
-            instance.Right = right;
-            instance.Bottom = bottom; throw new NotImplementedException();
-        }
-        public static RelativeRect FromSize(FlutterBinding.UI.Rect rect, Size container)
-        {
-            var instance = new RelativeRect(); throw new NotImplementedException();
-        }
-        public static RelativeRect FromRect(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Rect container)
-        {
-            var instance = new RelativeRect(); throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    public static RelativeRect FromSize(FlutterBinding.UI.Rect rect, Size container)
 
-        #region fields
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Fill { get; set; }
-        public virtual double Left { get; set; }
-        public virtual double Top { get; set; }
-        public virtual double Right { get; set; }
-        public virtual double Bottom { get; set; }
-        public virtual bool HasInsets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Returns a new rectangle object translated by the given offset.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Shift(FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
+return RelativeRect.FromLTRB(rect.Left, rect.Top, container.Width-rect.Right, container.Height-rect.Bottom);
+}
 
 
-        /// <Summary>
-        /// Returns a new rectangle with edges moved outwards by the given delta.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Inflate(double delta) { throw new NotImplementedException(); }
+public static RelativeRect FromRect(FlutterBinding.UI.Rect rect, FlutterBinding.UI.Rect container)
+
+return RelativeRect.FromLTRB(rect.Left - container.Left, rect.Top - container.Top, container.Right - rect.Right, container.Bottom - rect.Bottom);
+}
 
 
-        /// <Summary>
-        /// Returns a new rectangle with edges moved inwards by the given delta.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Deflate(double delta) { throw new NotImplementedException(); }
+#endregion
+
+#region fields
+public virtual FlutterSDK.Rendering.Stack.RelativeRect Fill { get; set; }
+public virtual double Left { get; set; }
+public virtual double Top { get; set; }
+public virtual double Right { get; set; }
+public virtual double Bottom { get; set; }
+public virtual bool HasInsets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Returns a new rectangle object translated by the given offset.
+/// </Summary>
+public virtual FlutterSDK.Rendering.Stack.RelativeRect Shift(FlutterBinding.UI.Offset offset)
+{
+    return RelativeRect.FromLTRB(Left + offset.Dx, Top + offset.Dy, Right - offset.Dx, Bottom - offset.Dy);
+}
 
 
-        /// <Summary>
-        /// Returns a new rectangle that is the intersection of the given rectangle and this rectangle.
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Intersect(FlutterSDK.Rendering.Stack.RelativeRect other) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Convert this [RelativeRect] to a [Rect], in the coordinate space of the container.
-        ///
-        /// See also:
-        ///
-        ///  * [toSize], which returns the size part of the rect, based on the size of
-        ///    the container.
-        /// </Summary>
-        public virtual Rect ToRect(FlutterBinding.UI.Rect container) { throw new NotImplementedException(); }
+/// <Summary>
+/// Returns a new rectangle with edges moved outwards by the given delta.
+/// </Summary>
+public virtual FlutterSDK.Rendering.Stack.RelativeRect Inflate(double delta)
+{
+    return RelativeRect.FromLTRB(Left - delta, Top - delta, Right - delta, Bottom - delta);
+}
 
 
-        /// <Summary>
-        /// Convert this [RelativeRect] to a [Size], assuming a container with the given size.
-        ///
-        /// See also:
-        ///
-        ///  * [toRect], which also computes the position relative to the container.
-        /// </Summary>
-        public virtual Size ToSize(Size container) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Linearly interpolate between two RelativeRects.
-        ///
-        /// If either rect is null, this function interpolates from [RelativeRect.fill].
-        ///
-        /// {@macro dart.ui.shadow.lerp}
-        /// </Summary>
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Lerp(FlutterSDK.Rendering.Stack.RelativeRect a, FlutterSDK.Rendering.Stack.RelativeRect b, double t) { throw new NotImplementedException(); }
+/// <Summary>
+/// Returns a new rectangle with edges moved inwards by the given delta.
+/// </Summary>
+public virtual FlutterSDK.Rendering.Stack.RelativeRect Deflate(double delta)
+{
+    return Inflate(-delta);
+}
 
 
-        public new bool Equals(@Object other) { throw new NotImplementedException(); }
 
 
-        #endregion
-    }
+/// <Summary>
+/// Returns a new rectangle that is the intersection of the given rectangle and this rectangle.
+/// </Summary>
+public virtual FlutterSDK.Rendering.Stack.RelativeRect Intersect(FlutterSDK.Rendering.Stack.RelativeRect other)
+{
+    return RelativeRect.FromLTRB(Math.Dart:mathDefaultClass.Max(Left, other.Left), Math.Dart:mathDefaultClass.Max(Top, other.Top), Math.Dart:mathDefaultClass.Max(Right, other.Right), Math.Dart:mathDefaultClass.Max(Bottom, other.Bottom));
+}
 
 
-    /// <Summary>
-    /// Parent data for use with [RenderStack].
-    /// </Summary>
-    public class StackParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+
+
+/// <Summary>
+/// Convert this [RelativeRect] to a [Rect], in the coordinate space of the container.
+///
+/// See also:
+///
+///  * [toSize], which returns the size part of the rect, based on the size of
+///    the container.
+/// </Summary>
+public virtual Rect ToRect(FlutterBinding.UI.Rect container)
+{
+    return Rect.FromLTRB(Left, Top, container.Width - Right, container.Height - Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Convert this [RelativeRect] to a [Size], assuming a container with the given size.
+///
+/// See also:
+///
+///  * [toRect], which also computes the position relative to the container.
+/// </Summary>
+public virtual Size ToSize(Size container)
+{
+    return new Size(container.Width - Left - Right, container.Height - Top - Bottom);
+}
+
+
+
+
+/// <Summary>
+/// Linearly interpolate between two RelativeRects.
+///
+/// If either rect is null, this function interpolates from [RelativeRect.fill].
+///
+/// {@macro dart.ui.shadow.lerp}
+/// </Summary>
+public virtual FlutterSDK.Rendering.Stack.RelativeRect Lerp(FlutterSDK.Rendering.Stack.RelativeRect a, FlutterSDK.Rendering.Stack.RelativeRect b, double t)
+{
+
+    if (a == null && b == null) return null;
+    if (a == null) return RelativeRect.FromLTRB(b.Left * t, b.Top * t, b.Right * t, b.Bottom * t);
+    if (b == null)
     {
-        #region constructors
-        public StackParentData()
-        { }
-        #endregion
+        double k = 1.0 - t;
+        return RelativeRect.FromLTRB(b.Left * k, b.Top * k, b.Right * k, b.Bottom * k);
+    }
 
-        #region fields
-        public virtual double Top { get; set; }
-        public virtual double Right { get; set; }
-        public virtual double Bottom { get; set; }
-        public virtual double Left { get; set; }
-        public virtual double Width { get; set; }
-        public virtual double Height { get; set; }
-        public virtual FlutterSDK.Rendering.Stack.RelativeRect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual bool IsPositioned { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+    return RelativeRect.FromLTRB(Dart: uiDefaultClass.LerpDouble(a.Left, b.Left, t), Dart: uiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart: uiDefaultClass.LerpDouble(a.Right, b.Right, t), Dart: uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+}
 
-        #region methods
 
-        #endregion
+
+
+public new bool Equals(@Object other)
+{
+    if (Dart:coreDefaultClass.Identical(this, other))return true;
+    return other is RelativeRect && other.Left == Left && other.Top == Top && other.Right == Right && other.Bottom == Bottom;
+}
+
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Parent data for use with [RenderStack].
+/// </Summary>
+public class StackParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+{
+    #region constructors
+    public StackParentData()
+    { }
+    #endregion
+
+    #region fields
+    public virtual double Top { get; set; }
+    public virtual double Right { get; set; }
+    public virtual double Bottom { get; set; }
+    public virtual double Left { get; set; }
+    public virtual double Width { get; set; }
+    public virtual double Height { get; set; }
+    public virtual FlutterSDK.Rendering.Stack.RelativeRect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsPositioned { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Implements the stack layout algorithm
+///
+/// In a stack layout, the children are positioned on top of each other in the
+/// order in which they appear in the child list. First, the non-positioned
+/// children (those with null values for top, right, bottom, and left) are
+/// laid out and initially placed in the upper-left corner of the stack. The
+/// stack is then sized to enclose all of the non-positioned children. If there
+/// are no non-positioned children, the stack becomes as large as possible.
+///
+/// The final location of non-positioned children is determined by the alignment
+/// parameter. The left of each non-positioned child becomes the
+/// difference between the child's width and the stack's width scaled by
+/// alignment.x. The top of each non-positioned child is computed
+/// similarly and scaled by alignment.y. So if the alignment x and y properties
+/// are 0.0 (the default) then the non-positioned children remain in the
+/// upper-left corner. If the alignment x and y properties are 0.5 then the
+/// non-positioned children are centered within the stack.
+///
+/// Next, the positioned children are laid out. If a child has top and bottom
+/// values that are both non-null, the child is given a fixed height determined
+/// by subtracting the sum of the top and bottom values from the height of the stack.
+/// Similarly, if the child has right and left values that are both non-null,
+/// the child is given a fixed width derived from the stack's width.
+/// Otherwise, the child is given unbounded constraints in the non-fixed dimensions.
+///
+/// Once the child is laid out, the stack positions the child
+/// according to the top, right, bottom, and left properties of their
+/// [StackParentData]. For example, if the bottom value is 10.0, the
+/// bottom edge of the child will be inset 10.0 pixels from the bottom
+/// edge of the stack. If the child extends beyond the bounds of the
+/// stack, the stack will clip the child's painting to the bounds of
+/// the stack.
+///
+/// See also:
+///
+///  * [RenderFlow]
+/// </Summary>
+public class RenderStack : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
+{
+    #region constructors
+    public RenderStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow))
+    : base()
+
+AddAll(children);
+}
+
+
+#endregion
+
+#region fields
+internal virtual bool _HasVisualOverflow { get; set; }
+internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
+internal virtual TextDirection _TextDirection { get; set; }
+internal virtual FlutterSDK.Rendering.Stack.StackFit _Fit { get; set; }
+internal virtual FlutterSDK.Rendering.Stack.Overflow _Overflow { get; set; }
+public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Rendering.Stack.StackFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+public virtual FlutterSDK.Rendering.Stack.Overflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+{
+    if (!(child.ParentData is StackParentData)) child.ParentData = new StackParentData();
+}
+
+
+public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+{
+    if (!(child.ParentData is StackParentData)) child.ParentData = new StackParentData();
+}
+
+
+
+
+private void _Resolve()
+{
+    if (_ResolvedAlignment != null) return;
+    _ResolvedAlignment = Alignment.Resolve(TextDirection);
+}
+
+
+
+
+private void _MarkNeedResolution()
+{
+    _ResolvedAlignment = null;
+    MarkNeedsLayout();
+}
+
+
+
+
+/// <Summary>
+/// Helper function for calculating the intrinsics metrics of a Stack.
+/// </Summary>
+public virtual double GetIntrinsicDimension(FlutterSDK.Rendering.Box.RenderBox firstChild, Func<double, RenderBox> mainChildSizeGetter)
+{
+    double extent = 0.0;
+    RenderBox child = firstChild;
+    while (child != null)
+    {
+        StackParentData childParentData = child.ParentData as StackParentData;
+        if (!childParentData.IsPositioned) extent = Math.Dart:mathDefaultClass.Max(extent, mainChildSizeGetter(child));
+
+        child = childParentData.NextSibling;
+    }
+
+    return extent;
+}
+
+
+
+
+public new double ComputeMinIntrinsicWidth(double height)
+{
+    return GetIntrinsicDimension(FirstChild, (RenderBox child) => =>child.GetMinIntrinsicWidth(height));
+}
+
+
+
+
+public new double ComputeMaxIntrinsicWidth(double height)
+{
+    return GetIntrinsicDimension(FirstChild, (RenderBox child) => =>child.GetMaxIntrinsicWidth(height));
+}
+
+
+
+
+public new double ComputeMinIntrinsicHeight(double width)
+{
+    return GetIntrinsicDimension(FirstChild, (RenderBox child) => =>child.GetMinIntrinsicHeight(width));
+}
+
+
+
+
+public new double ComputeMaxIntrinsicHeight(double width)
+{
+    return GetIntrinsicDimension(FirstChild, (RenderBox child) => =>child.GetMaxIntrinsicHeight(width));
+}
+
+
+
+
+public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+{
+    return DefaultComputeDistanceToHighestActualBaseline(baseline);
+}
+
+
+
+
+/// <Summary>
+/// Lays out the positioned `child` according to `alignment` within a Stack of `size`.
+///
+/// Returns true when the child has visual overflow.
+/// </Summary>
+public virtual bool LayoutPositionedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Stack.StackParentData childParentData, Size size, FlutterSDK.Painting.Alignment.Alignment alignment)
+{
+
+
+    bool hasVisualOverflow = false;
+    BoxConstraints childConstraints = new BoxConstraints();
+    if (childParentData.Left != null && childParentData.Right != null) childConstraints = childConstraints.Tighten(width: size.Width - childParentData.Right - childParentData.Left); else if (childParentData.Width != null) childConstraints = childConstraints.Tighten(width: childParentData.Width);
+    if (childParentData.Top != null && childParentData.Bottom != null) childConstraints = childConstraints.Tighten(height: size.Height - childParentData.Bottom - childParentData.Top); else if (childParentData.Height != null) childConstraints = childConstraints.Tighten(height: childParentData.Height);
+    child.Layout(childConstraints, parentUsesSize: true);
+    double x = default(double);
+    if (childParentData.Left != null)
+    {
+        x = childParentData.Left;
+    }
+    else if (childParentData.Right != null)
+    {
+        x = size.Width - childParentData.Right - child.Size.Width;
+    }
+    else
+    {
+        x = alignment.AlongOffset(size - child.Size as Offset).Dx;
+    }
+
+    if (x < 0.0 || x + child.Size.Width > size.Width) hasVisualOverflow = true;
+    double y = default(double);
+    if (childParentData.Top != null)
+    {
+        y = childParentData.Top;
+    }
+    else if (childParentData.Bottom != null)
+    {
+        y = size.Height - childParentData.Bottom - child.Size.Height;
+    }
+    else
+    {
+        y = alignment.AlongOffset(size - child.Size as Offset).Dy;
+    }
+
+    if (y < 0.0 || y + child.Size.Height > size.Height) hasVisualOverflow = true;
+    childParentData.Offset = new Offset(x, y);
+    return hasVisualOverflow;
+}
+
+
+
+
+public new void PerformLayout()
+{
+    BoxConstraints constraints = this.Constraints;
+    _Resolve();
+
+    _HasVisualOverflow = false;
+    bool hasNonPositionedChildren = false;
+    if (ChildCount == 0)
+    {
+        Size = constraints.Biggest;
+
+        return;
+    }
+
+    double width = constraints.MinWidth;
+    double height = constraints.MinHeight;
+    BoxConstraints nonPositionedConstraints = default(BoxConstraints);
+
+    switch (Fit) { case StackFit.Loose: nonPositionedConstraints = constraints.Loosen(); break; case StackFit.Expand: nonPositionedConstraints = BoxConstraints.Tight(constraints.Biggest); break; case StackFit.Passthrough: nonPositionedConstraints = constraints; break; }
+
+    RenderBox child = FirstChild;
+    while (child != null)
+    {
+        StackParentData childParentData = child.ParentData as StackParentData;
+        if (!childParentData.IsPositioned)
+        {
+            hasNonPositionedChildren = true;
+            child.Layout(nonPositionedConstraints, parentUsesSize: true);
+            Size childSize = child.Size;
+            width = Math.Dart:mathDefaultClass.Max(width, childSize.Width);
+            height = Math.Dart:mathDefaultClass.Max(height, childSize.Height);
+        }
+
+        child = childParentData.NextSibling;
+    }
+
+    if (hasNonPositionedChildren)
+    {
+        Size = new Size(width, height);
+
+
+    }
+    else
+    {
+        Size = constraints.Biggest;
     }
 
 
+    child = FirstChild;
+    while (child != null)
+    {
+        StackParentData childParentData = child.ParentData as StackParentData;
+        if (!childParentData.IsPositioned)
+        {
+            childParentData.Offset = _ResolvedAlignment.AlongOffset(Size - child.Size as Offset);
+        }
+        else
+        {
+            _HasVisualOverflow = LayoutPositionedChild(child, childParentData, Size, _ResolvedAlignment) || _HasVisualOverflow;
+        }
+
+
+        child = childParentData.NextSibling;
+    }
+
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    return DefaultHitTestChildren(result, position: position);
+}
+
+
+
+
+/// <Summary>
+/// Override in subclasses to customize how the stack paints.
+///
+/// By default, the stack uses [defaultPaint]. This function is called by
+/// [paint] after potentially applying a clip to contain visual overflow.
+/// </Summary>
+public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    DefaultPaint(context, offset);
+}
+
+
+
+
+public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    if (_Overflow == Overflow.Clip && _HasVisualOverflow)
+    {
+        context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+    }
+    else
+    {
+        PaintStack(context, offset);
+    }
+
+}
+
+
+
+
+public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null;
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment));
+    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection));
+    properties.Add(new EnumProperty<StackFit>("fit", Fit));
+    properties.Add(new EnumProperty<Overflow>("overflow", Overflow));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Implements the same layout algorithm as RenderStack but only paints the child
+/// specified by index.
+///
+/// Although only one child is displayed, the cost of the layout algorithm is
+/// still O(N), like an ordinary stack.
+/// </Summary>
+public class RenderIndexedStack : FlutterSDK.Rendering.Stack.RenderStack
+{
+    #region constructors
+    public RenderIndexedStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), int index = 0)
+    : base(children: children, alignment: alignment, textDirection: textDirection)
+
+}
+#endregion
+
+#region fields
+internal virtual int _Index { get; set; }
+public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+{
+    if (Index != null && FirstChild != null) visitor(_ChildAtIndex());
+}
+
+
+
+
+private FlutterSDK.Rendering.Box.RenderBox _ChildAtIndex()
+{
+
+    RenderBox child = FirstChild;
+    int i = 0;
+    while (child != null && i < Index)
+    {
+        StackParentData childParentData = child.ParentData as StackParentData;
+        child = childParentData.NextSibling;
+        i += 1;
+    }
+
+
+
+    return child;
+}
+
+
+
+
+public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+{
+    if (FirstChild == null || Index == null) return false;
+
+    RenderBox child = _ChildAtIndex();
+    StackParentData childParentData = child.ParentData as StackParentData;
+    return result.AddWithPaintOffset(offset: childParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+    {
+
+        return child.HitTest(result, position: transformed);
+    }
+    );
+}
+
+
+
+
+public new void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+{
+    if (FirstChild == null || Index == null) return;
+    RenderBox child = _ChildAtIndex();
+    StackParentData childParentData = child.ParentData as StackParentData;
+    context.PaintChild(child, childParentData.Offset + offset);
+}
+
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+{
+    base.DebugFillProperties(properties);
+    properties.Add(new IntProperty("index", Index));
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// How to size the non-positioned children of a [Stack].
+///
+/// This enum is used with [Stack.fit] and [RenderStack.fit] to control
+/// how the [BoxConstraints] passed from the stack's parent to the stack's child
+/// are adjusted.
+///
+/// See also:
+///
+///  * [Stack], the widget that uses this.
+///  * [RenderStack], the render object that implements the stack algorithm.
+/// </Summary>
+public enum StackFit
+{
+
     /// <Summary>
-    /// Implements the stack layout algorithm
+    /// The constraints passed to the stack from its parent are loosened.
     ///
-    /// In a stack layout, the children are positioned on top of each other in the
-    /// order in which they appear in the child list. First, the non-positioned
-    /// children (those with null values for top, right, bottom, and left) are
-    /// laid out and initially placed in the upper-left corner of the stack. The
-    /// stack is then sized to enclose all of the non-positioned children. If there
-    /// are no non-positioned children, the stack becomes as large as possible.
-    ///
-    /// The final location of non-positioned children is determined by the alignment
-    /// parameter. The left of each non-positioned child becomes the
-    /// difference between the child's width and the stack's width scaled by
-    /// alignment.x. The top of each non-positioned child is computed
-    /// similarly and scaled by alignment.y. So if the alignment x and y properties
-    /// are 0.0 (the default) then the non-positioned children remain in the
-    /// upper-left corner. If the alignment x and y properties are 0.5 then the
-    /// non-positioned children are centered within the stack.
-    ///
-    /// Next, the positioned children are laid out. If a child has top and bottom
-    /// values that are both non-null, the child is given a fixed height determined
-    /// by subtracting the sum of the top and bottom values from the height of the stack.
-    /// Similarly, if the child has right and left values that are both non-null,
-    /// the child is given a fixed width derived from the stack's width.
-    /// Otherwise, the child is given unbounded constraints in the non-fixed dimensions.
-    ///
-    /// Once the child is laid out, the stack positions the child
-    /// according to the top, right, bottom, and left properties of their
-    /// [StackParentData]. For example, if the bottom value is 10.0, the
-    /// bottom edge of the child will be inset 10.0 pixels from the bottom
-    /// edge of the stack. If the child extends beyond the bounds of the
-    /// stack, the stack will clip the child's painting to the bounds of
-    /// the stack.
+    /// For example, if the stack has constraints that force it to 350x600, then
+    /// this would allow the non-positioned children of the stack to have any
+    /// width from zero to 350 and any height from zero to 600.
     ///
     /// See also:
     ///
-    ///  * [RenderFlow]
+    ///  * [Center], which loosens the constraints passed to its child and then
+    ///    centers the child in itself.
+    ///  * [BoxConstraints.loosen], which implements the loosening of box
+    ///    constraints.
     /// </Summary>
-    public class RenderStack : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
-    {
-        #region constructors
-        public RenderStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow))
-        : base()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual bool _HasVisualOverflow { get; set; }
-        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
-        internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
-        internal virtual TextDirection _TextDirection { get; set; }
-        internal virtual FlutterSDK.Rendering.Stack.StackFit _Fit { get; set; }
-        internal virtual FlutterSDK.Rendering.Stack.Overflow _Overflow { get; set; }
-        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Stack.StackFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        public virtual FlutterSDK.Rendering.Stack.Overflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child) { throw new NotImplementedException(); }
-        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
+    Loose,
+    /// <Summary>
+    /// The constraints passed to the stack from its parent are tightened to the
+    /// biggest size allowed.
+    ///
+    /// For example, if the stack has loose constraints with a width in the range
+    /// 10 to 100 and a height in the range 0 to 600, then the non-positioned
+    /// children of the stack would all be sized as 100 pixels wide and 600 high.
+    /// </Summary>
+    Expand,
+    /// <Summary>
+    /// The constraints passed to the stack from its parent are passed unmodified
+    /// to the non-positioned children.
+    ///
+    /// For example, if a [Stack] is an [Expanded] child of a [Row], the
+    /// horizontal constraints will be tight and the vertical constraints will be
+    /// loose.
+    /// </Summary>
+    Passthrough,
+}
 
 
-        private void _Resolve() { throw new NotImplementedException(); }
-
-
-        private void _MarkNeedResolution() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Helper function for calculating the intrinsics metrics of a Stack.
-        /// </Summary>
-        public virtual double GetIntrinsicDimension(FlutterSDK.Rendering.Box.RenderBox firstChild, Func<double, RenderBox> mainChildSizeGetter) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicWidth(double height) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMinIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeMaxIntrinsicHeight(double width) { throw new NotImplementedException(); }
-
-
-        public new double ComputeDistanceToActualBaseline(TextBaseline baseline) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Lays out the positioned `child` according to `alignment` within a Stack of `size`.
-        ///
-        /// Returns true when the child has visual overflow.
-        /// </Summary>
-        public virtual bool LayoutPositionedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Stack.StackParentData childParentData, Size size, FlutterSDK.Painting.Alignment.Alignment alignment) { throw new NotImplementedException(); }
-
-
-        public new void PerformLayout() { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Override in subclasses to customize how the stack paints.
-        ///
-        /// By default, the stack uses [defaultPaint]. This function is called by
-        /// [paint] after potentially applying a clip to contain visual overflow.
-        /// </Summary>
-        public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
+/// <Summary>
+/// Whether overflowing children should be clipped, or their overflow be
+/// visible.
+/// </Summary>
+public enum Overflow
+{
 
     /// <Summary>
-    /// Implements the same layout algorithm as RenderStack but only paints the child
-    /// specified by index.
-    ///
-    /// Although only one child is displayed, the cost of the layout algorithm is
-    /// still O(N), like an ordinary stack.
+    /// Overflowing children will be visible.
     /// </Summary>
-    public class RenderIndexedStack : FlutterSDK.Rendering.Stack.RenderStack
-    {
-        #region constructors
-        public RenderIndexedStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), int index = 0)
-        : base(children: children, alignment: alignment, textDirection: textDirection)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual int _Index { get; set; }
-        public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Rendering.Box.RenderBox _ChildAtIndex() { throw new NotImplementedException(); }
-
-
-        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) { throw new NotImplementedException(); }
-
-
-        public new void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset) { throw new NotImplementedException(); }
-
-
-        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Visible,
     /// <Summary>
-    /// How to size the non-positioned children of a [Stack].
-    ///
-    /// This enum is used with [Stack.fit] and [RenderStack.fit] to control
-    /// how the [BoxConstraints] passed from the stack's parent to the stack's child
-    /// are adjusted.
-    ///
-    /// See also:
-    ///
-    ///  * [Stack], the widget that uses this.
-    ///  * [RenderStack], the render object that implements the stack algorithm.
+    /// Overflowing children will be clipped to the bounds of their parent.
     /// </Summary>
-    public enum StackFit
-    {
-
-        /// <Summary>
-        /// The constraints passed to the stack from its parent are loosened.
-        ///
-        /// For example, if the stack has constraints that force it to 350x600, then
-        /// this would allow the non-positioned children of the stack to have any
-        /// width from zero to 350 and any height from zero to 600.
-        ///
-        /// See also:
-        ///
-        ///  * [Center], which loosens the constraints passed to its child and then
-        ///    centers the child in itself.
-        ///  * [BoxConstraints.loosen], which implements the loosening of box
-        ///    constraints.
-        /// </Summary>
-        Loose,
-        /// <Summary>
-        /// The constraints passed to the stack from its parent are tightened to the
-        /// biggest size allowed.
-        ///
-        /// For example, if the stack has loose constraints with a width in the range
-        /// 10 to 100 and a height in the range 0 to 600, then the non-positioned
-        /// children of the stack would all be sized as 100 pixels wide and 600 high.
-        /// </Summary>
-        Expand,
-        /// <Summary>
-        /// The constraints passed to the stack from its parent are passed unmodified
-        /// to the non-positioned children.
-        ///
-        /// For example, if a [Stack] is an [Expanded] child of a [Row], the
-        /// horizontal constraints will be tight and the vertical constraints will be
-        /// loose.
-        /// </Summary>
-        Passthrough,
-    }
-
-
-    /// <Summary>
-    /// Whether overflowing children should be clipped, or their overflow be
-    /// visible.
-    /// </Summary>
-    public enum Overflow
-    {
-
-        /// <Summary>
-        /// Overflowing children will be visible.
-        /// </Summary>
-        Visible,
-        /// <Summary>
-        /// Overflowing children will be clipped to the bounds of their parent.
-        /// </Summary>
-        Clip,
-    }
+    Clip,
+}
 
 }

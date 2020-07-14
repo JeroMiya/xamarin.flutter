@@ -363,413 +363,727 @@ namespace FlutterSDK.Gestures.Multidrag
         #region constructors
         public MultiDragPointerState(FlutterBinding.UI.Offset initialPosition)
         : base()
+    
+}
+    #endregion
+
+    #region fields
+    public virtual FlutterBinding.UI.Offset InitialPosition { get; set; }
+    internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
+    internal virtual FlutterSDK.Gestures.Drag.Drag _Client { get; set; }
+    internal virtual FlutterBinding.UI.Offset _PendingDelta { get; set; }
+    internal virtual TimeSpan _LastPendingEventTimestamp { get; set; }
+    internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _ArenaEntry { get; set; }
+    public virtual FlutterBinding.UI.Offset PendingDelta { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _SetArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaEntry entry)
+    {
+
+
+
+        _ArenaEntry = entry;
+    }
+
+
+
+
+    /// <Summary>
+    /// Resolve this pointer's entry in the [GestureArenaManager] with the given disposition.
+    /// </Summary>
+    public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+    {
+        _ArenaEntry.Resolve(disposition);
+    }
+
+
+
+
+    private void _Move(FlutterSDK.Gestures.Events.PointerMoveEvent @event)
+    {
+
+        if (!@event.Synthesized) _VelocityTracker.AddPosition(@event.TimeStamp, @event.Position);
+        if (_Client != null)
         {
-            this.InitialPosition = initialPosition; throw new NotImplementedException();
+
+            _Client.Update(new DragUpdateDetails(sourceTimeStamp: @event.TimeStamp, delta: @event.Delta, globalPosition: @event.Position));
         }
-        #endregion
+        else
+        {
 
-        #region fields
-        public virtual FlutterBinding.UI.Offset InitialPosition { get; set; }
-        internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
-        internal virtual FlutterSDK.Gestures.Drag.Drag _Client { get; set; }
-        internal virtual FlutterBinding.UI.Offset _PendingDelta { get; set; }
-        internal virtual TimeSpan _LastPendingEventTimestamp { get; set; }
-        internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _ArenaEntry { get; set; }
-        public virtual FlutterBinding.UI.Offset PendingDelta { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
+            _PendingDelta += @event.Delta;
+            _LastPendingEventTimestamp = @event.TimeStamp;
+            CheckForResolutionAfterMove();
+        }
 
-        #region methods
-
-        private void _SetArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaEntry entry) { throw new NotImplementedException(); }
+    }
 
 
-        /// <Summary>
-        /// Resolve this pointer's entry in the [GestureArenaManager] with the given disposition.
-        /// </Summary>
-        public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition) { throw new NotImplementedException(); }
 
 
-        private void _Move(FlutterSDK.Gestures.Events.PointerMoveEvent @event) { throw new NotImplementedException(); }
+    /// <Summary>
+    /// Override this to call resolve() if the drag should be accepted or rejected.
+    /// This is called when a pointer movement is received, but only if the gesture
+    /// has not yet been resolved.
+    /// </Summary>
+    public virtual void CheckForResolutionAfterMove()
+    {
+    }
 
 
-        /// <Summary>
-        /// Override this to call resolve() if the drag should be accepted or rejected.
-        /// This is called when a pointer movement is received, but only if the gesture
-        /// has not yet been resolved.
-        /// </Summary>
-        public virtual void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Called when the gesture was accepted.
-        ///
-        /// Either immediately or at some future point before the gesture is disposed,
-        /// call starter(), passing it initialPosition, to start the drag.
-        /// </Summary>
-        public virtual void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Called when the gesture was rejected.
-        ///
-        /// The [dispose] method will be called immediately following this.
-        /// </Summary>
-        public virtual void Rejected() { throw new NotImplementedException(); }
-
-
-        private void _StartDrag(FlutterSDK.Gestures.Drag.Drag client) { throw new NotImplementedException(); }
-
-
-        private void _Up() { throw new NotImplementedException(); }
-
-
-        private void _Cancel() { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Releases any resources used by the object.
-        /// </Summary>
-        public virtual void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+    /// <Summary>
+    /// Called when the gesture was accepted.
+    ///
+    /// Either immediately or at some future point before the gesture is disposed,
+    /// call starter(), passing it initialPosition, to start the drag.
+    /// </Summary>
+    public virtual void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter)
+    {
     }
 
 
     /// <Summary>
-    /// Recognizes movement on a per-pointer basis.
+    /// Called when the gesture was rejected.
     ///
-    /// In contrast to [DragGestureRecognizer], [MultiDragGestureRecognizer] watches
-    /// each pointer separately, which means multiple drags can be recognized
-    /// concurrently if multiple pointers are in contact with the screen.
-    ///
-    /// [MultiDragGestureRecognizer] is not intended to be used directly. Instead,
-    /// consider using one of its subclasses to recognize specific types for drag
-    /// gestures.
-    ///
-    /// See also:
-    ///
-    ///  * [ImmediateMultiDragGestureRecognizer], the most straight-forward variant
-    ///    of multi-pointer drag gesture recognizer.
-    ///  * [HorizontalMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start horizontally.
-    ///  * [VerticalMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start vertically.
-    ///  * [DelayedMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start after a long-press gesture.
+    /// The [dispose] method will be called immediately following this.
     /// </Summary>
-    public class MultiDragGestureRecognizer<T> : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+    public virtual void Rejected()
     {
-        #region constructors
-        public MultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart { get; set; }
-        internal virtual Dictionary<int, T> _Pointers { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
 
-        /// <Summary>
-        /// Subclasses should override this method to create per-pointer state
-        /// objects to track the pointer associated with the given event.
-        /// </Summary>
-        public virtual T CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
 
-
-        private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event) { throw new NotImplementedException(); }
-
-
-        public new void AcceptGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private FlutterSDK.Gestures.Drag.Drag _StartDrag(FlutterBinding.UI.Offset initialPosition, int pointer) { throw new NotImplementedException(); }
-
-
-        public new void RejectGesture(int pointer) { throw new NotImplementedException(); }
-
-
-        private void _RemoveState(int pointer) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-        #endregion
+        _PendingDelta = null;
+        _LastPendingEventTimestamp = null;
+        _ArenaEntry = null;
     }
 
 
-    public class _ImmediatePointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+
+
+    private void _StartDrag(FlutterSDK.Gestures.Drag.Drag client)
     {
-        #region constructors
-        public _ImmediatePointerState(FlutterBinding.UI.Offset initialPosition)
-        : base(initialPosition)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
 
 
-        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
-        #endregion
+
+        _Client = client;
+        DragUpdateDetails details = new DragUpdateDetails(sourceTimeStamp: _LastPendingEventTimestamp, delta: PendingDelta, globalPosition: InitialPosition);
+        _PendingDelta = null;
+        _LastPendingEventTimestamp = null;
+        _Client.Update(details);
     }
+
+
+
+
+    private void _Up()
+    {
+
+        if (_Client != null)
+        {
+
+            DragEndDetails details = new DragEndDetails(velocity: _VelocityTracker.GetVelocity());
+            Drag client = _Client;
+            _Client = null;
+            client.End(details);
+        }
+        else
+        {
+
+            _PendingDelta = null;
+            _LastPendingEventTimestamp = null;
+        }
+
+    }
+
+
+
+
+    private void _Cancel()
+    {
+
+        if (_Client != null)
+        {
+
+            Drag client = _Client;
+            _Client = null;
+            client.Cancel();
+        }
+        else
+        {
+
+            _PendingDelta = null;
+            _LastPendingEventTimestamp = null;
+        }
+
+    }
+
+
 
 
     /// <Summary>
-    /// Recognizes movement both horizontally and vertically on a per-pointer basis.
-    ///
-    /// In contrast to [PanGestureRecognizer], [ImmediateMultiDragGestureRecognizer]
-    /// watches each pointer separately, which means multiple drags can be
-    /// recognized concurrently if multiple pointers are in contact with the screen.
-    ///
-    /// See also:
-    ///
-    ///  * [PanGestureRecognizer], which recognizes only one drag gesture at a time,
-    ///    regardless of how many fingers are involved.
-    ///  * [HorizontalMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start horizontally.
-    ///  * [VerticalMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start vertically.
-    ///  * [DelayedMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start after a long-press gesture.
+    /// Releases any resources used by the object.
     /// </Summary>
-    public class ImmediateMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._ImmediatePointerState>
+    public virtual void Dispose()
     {
-        #region constructors
-        public ImmediateMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+        _ArenaEntry?.Resolve(GestureDisposition.Rejected);
+        _ArenaEntry = null;
 
-        #region fields
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Gestures.Multidrag._ImmediatePointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
     }
 
 
-    public class _HorizontalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Recognizes movement on a per-pointer basis.
+///
+/// In contrast to [DragGestureRecognizer], [MultiDragGestureRecognizer] watches
+/// each pointer separately, which means multiple drags can be recognized
+/// concurrently if multiple pointers are in contact with the screen.
+///
+/// [MultiDragGestureRecognizer] is not intended to be used directly. Instead,
+/// consider using one of its subclasses to recognize specific types for drag
+/// gestures.
+///
+/// See also:
+///
+///  * [ImmediateMultiDragGestureRecognizer], the most straight-forward variant
+///    of multi-pointer drag gesture recognizer.
+///  * [HorizontalMultiDragGestureRecognizer], which only recognizes drags that
+///    start horizontally.
+///  * [VerticalMultiDragGestureRecognizer], which only recognizes drags that
+///    start vertically.
+///  * [DelayedMultiDragGestureRecognizer], which only recognizes drags that
+///    start after a long-press gesture.
+/// </Summary>
+public class MultiDragGestureRecognizer<T> : FlutterSDK.Gestures.Recognizer.GestureRecognizer
+{
+    #region constructors
+    public MultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart { get; set; }
+internal virtual Dictionary<int, T> _Pointers { get; set; }
+#endregion
+
+#region methods
+
+public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+
+
+
+
+    T state = CreateNewPointerState(@event);
+    _Pointers[@event.Pointer] = state;
+    BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddRoute(@event.Pointer, _HandleEvent);
+    state._SetArenaEntry(BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(@event.Pointer, this));
+}
+
+
+
+
+/// <Summary>
+/// Subclasses should override this method to create per-pointer state
+/// objects to track the pointer associated with the given event.
+/// </Summary>
+public virtual T CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    return default(T);
+}
+
+
+private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+{
+
+
+
+
+
+    T state = _Pointers[@event.Pointer];
+    if (@event is PointerMoveEvent)
     {
-        #region constructors
-        public _HorizontalPointerState(FlutterBinding.UI.Offset initialPosition)
-        : base(initialPosition)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
+        state._Move(((PointerMoveEvent)@event));
+    }
+    else if (@event is PointerUpEvent)
+    {
 
-        #region fields
-        #endregion
+        state._Up();
+        _RemoveState(((PointerUpEvent)@event).Pointer);
+    }
+    else if (@event is PointerCancelEvent)
+    {
 
-        #region methods
+        state._Cancel();
+        _RemoveState(((PointerCancelEvent)@event).Pointer);
+    }
+    else if (!(@event is PointerDownEvent))
+    {
 
-        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
+    }
+
+}
 
 
-        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
 
-        #endregion
+
+public new void AcceptGesture(int pointer)
+{
+
+    T state = _Pointers[pointer];
+    if (state == null) return;
+    state.Accepted((Offset initialPosition) => =>_StartDrag(initialPosition, pointer));
+}
+
+
+
+
+private FlutterSDK.Gestures.Drag.Drag _StartDrag(FlutterBinding.UI.Offset initialPosition, int pointer)
+{
+
+    T state = _Pointers[pointer];
+
+
+    Drag drag = default(Drag);
+    if (OnStart != null) drag = InvokeCallback("onStart", () => =>OnStart(initialPosition));
+    if (drag != null)
+    {
+        state._StartDrag(drag);
+    }
+    else
+    {
+        _RemoveState(pointer);
+    }
+
+    return drag;
+}
+
+
+
+
+public new void RejectGesture(int pointer)
+{
+
+    if (_Pointers.ContainsKey(pointer))
+    {
+        T state = _Pointers[pointer];
+
+        state.Rejected();
+        _RemoveState(pointer);
+    }
+
+}
+
+
+
+
+private void _RemoveState(int pointer)
+{
+    if (_Pointers == null)
+    {
+        return;
     }
 
 
-    /// <Summary>
-    /// Recognizes movement in the horizontal direction on a per-pointer basis.
-    ///
-    /// In contrast to [HorizontalDragGestureRecognizer],
-    /// [HorizontalMultiDragGestureRecognizer] watches each pointer separately,
-    /// which means multiple drags can be recognized concurrently if multiple
-    /// pointers are in contact with the screen.
-    ///
-    /// See also:
-    ///
-    ///  * [HorizontalDragGestureRecognizer], a gesture recognizer that just
-    ///    looks at horizontal movement.
-    ///  * [ImmediateMultiDragGestureRecognizer], a similar recognizer, but without
-    ///    the limitation that the drag must start horizontally.
-    ///  * [VerticalMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start vertically.
-    /// </Summary>
-    public class HorizontalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._HorizontalPointerState>
+    BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveRoute(pointer, _HandleEvent);
+    _Pointers.Remove(pointer).Dispose();
+}
+
+
+
+
+public new void Dispose()
+{
+    _Pointers.Keys.ToList().ForEach(_RemoveState);
+
+    _Pointers = null;
+    base.Dispose();
+}
+
+
+
+#endregion
+}
+
+
+public class _ImmediatePointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+{
+    #region constructors
+    public _ImmediatePointerState(FlutterBinding.UI.Offset initialPosition)
+    : base(initialPosition)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void CheckForResolutionAfterMove()
+{
+
+    if (PendingDelta.Distance > ConstantsDefaultClass.KTouchSlop) Resolve(GestureDisposition.Accepted);
+}
+
+
+
+
+public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter)
+{
+    starter(InitialPosition);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Recognizes movement both horizontally and vertically on a per-pointer basis.
+///
+/// In contrast to [PanGestureRecognizer], [ImmediateMultiDragGestureRecognizer]
+/// watches each pointer separately, which means multiple drags can be
+/// recognized concurrently if multiple pointers are in contact with the screen.
+///
+/// See also:
+///
+///  * [PanGestureRecognizer], which recognizes only one drag gesture at a time,
+///    regardless of how many fingers are involved.
+///  * [HorizontalMultiDragGestureRecognizer], which only recognizes drags that
+///    start horizontally.
+///  * [VerticalMultiDragGestureRecognizer], which only recognizes drags that
+///    start vertically.
+///  * [DelayedMultiDragGestureRecognizer], which only recognizes drags that
+///    start after a long-press gesture.
+/// </Summary>
+public class ImmediateMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._ImmediatePointerState>
+{
+    #region constructors
+    public ImmediateMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Gestures.Multidrag._ImmediatePointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    return new _ImmediatePointerState(@event.Position);
+}
+
+
+
+#endregion
+}
+
+
+public class _HorizontalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+{
+    #region constructors
+    public _HorizontalPointerState(FlutterBinding.UI.Offset initialPosition)
+    : base(initialPosition)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void CheckForResolutionAfterMove()
+{
+
+    if (PendingDelta.Dx.Abs() > ConstantsDefaultClass.KTouchSlop) Resolve(GestureDisposition.Accepted);
+}
+
+
+
+
+public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter)
+{
+    starter(InitialPosition);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Recognizes movement in the horizontal direction on a per-pointer basis.
+///
+/// In contrast to [HorizontalDragGestureRecognizer],
+/// [HorizontalMultiDragGestureRecognizer] watches each pointer separately,
+/// which means multiple drags can be recognized concurrently if multiple
+/// pointers are in contact with the screen.
+///
+/// See also:
+///
+///  * [HorizontalDragGestureRecognizer], a gesture recognizer that just
+///    looks at horizontal movement.
+///  * [ImmediateMultiDragGestureRecognizer], a similar recognizer, but without
+///    the limitation that the drag must start horizontally.
+///  * [VerticalMultiDragGestureRecognizer], which only recognizes drags that
+///    start vertically.
+/// </Summary>
+public class HorizontalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._HorizontalPointerState>
+{
+    #region constructors
+    public HorizontalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Gestures.Multidrag._HorizontalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    return new _HorizontalPointerState(@event.Position);
+}
+
+
+
+#endregion
+}
+
+
+public class _VerticalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+{
+    #region constructors
+    public _VerticalPointerState(FlutterBinding.UI.Offset initialPosition)
+    : base(initialPosition)
+
+}
+#endregion
+
+#region fields
+#endregion
+
+#region methods
+
+public new void CheckForResolutionAfterMove()
+{
+
+    if (PendingDelta.Dy.Abs() > ConstantsDefaultClass.KTouchSlop) Resolve(GestureDisposition.Accepted);
+}
+
+
+
+
+public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter)
+{
+    starter(InitialPosition);
+}
+
+
+
+#endregion
+}
+
+
+/// <Summary>
+/// Recognizes movement in the vertical direction on a per-pointer basis.
+///
+/// In contrast to [VerticalDragGestureRecognizer],
+/// [VerticalMultiDragGestureRecognizer] watches each pointer separately,
+/// which means multiple drags can be recognized concurrently if multiple
+/// pointers are in contact with the screen.
+///
+/// See also:
+///
+///  * [VerticalDragGestureRecognizer], a gesture recognizer that just
+///    looks at vertical movement.
+///  * [ImmediateMultiDragGestureRecognizer], a similar recognizer, but without
+///    the limitation that the drag must start vertically.
+///  * [HorizontalMultiDragGestureRecognizer], which only recognizes drags that
+///    start horizontally.
+/// </Summary>
+public class VerticalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._VerticalPointerState>
+{
+    #region constructors
+    public VerticalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
+
+}
+#endregion
+
+#region fields
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Gestures.Multidrag._VerticalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    return new _VerticalPointerState(@event.Position);
+}
+
+
+
+#endregion
+}
+
+
+public class _DelayedPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+{
+    #region constructors
+    public _DelayedPointerState(FlutterBinding.UI.Offset initialPosition, TimeSpan delay)
+    : base(initialPosition)
+
+_Timer=new Timer(delay, _DelayPassed);
+}
+
+
+#endregion
+
+#region fields
+internal virtual Timer _Timer { get; set; }
+internal virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback _Starter { get; set; }
+#endregion
+
+#region methods
+
+private void _DelayPassed()
+{
+
+
+
+    _Timer = null;
+    if (_Starter != null)
     {
-        #region constructors
-        public HorizontalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Gestures.Multidrag._HorizontalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
+        _Starter(InitialPosition);
+        _Starter = null;
+    }
+    else
+    {
+        Resolve(GestureDisposition.Accepted);
     }
 
 
-    public class _VerticalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
+}
+
+
+
+
+private void _EnsureTimerStopped()
+{
+    _Timer?.Cancel();
+    _Timer = null;
+}
+
+
+
+
+public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter)
+{
+
+    if (_Timer == null) starter(InitialPosition); else _Starter = starter;
+}
+
+
+
+
+public new void CheckForResolutionAfterMove()
+{
+    if (_Timer == null)
     {
-        #region constructors
-        public _VerticalPointerState(FlutterBinding.UI.Offset initialPosition)
-        : base(initialPosition)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
-
-
-        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
-
-        #endregion
+        return;
     }
 
 
-    /// <Summary>
-    /// Recognizes movement in the vertical direction on a per-pointer basis.
-    ///
-    /// In contrast to [VerticalDragGestureRecognizer],
-    /// [VerticalMultiDragGestureRecognizer] watches each pointer separately,
-    /// which means multiple drags can be recognized concurrently if multiple
-    /// pointers are in contact with the screen.
-    ///
-    /// See also:
-    ///
-    ///  * [VerticalDragGestureRecognizer], a gesture recognizer that just
-    ///    looks at vertical movement.
-    ///  * [ImmediateMultiDragGestureRecognizer], a similar recognizer, but without
-    ///    the limitation that the drag must start vertically.
-    ///  * [HorizontalMultiDragGestureRecognizer], which only recognizes drags that
-    ///    start horizontally.
-    /// </Summary>
-    public class VerticalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._VerticalPointerState>
+    if (PendingDelta.Distance > ConstantsDefaultClass.KTouchSlop)
     {
-        #region constructors
-        public VerticalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Gestures.Multidrag._VerticalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
+        Resolve(GestureDisposition.Rejected);
+        _EnsureTimerStopped();
     }
 
-
-    public class _DelayedPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
-    {
-        #region constructors
-        public _DelayedPointerState(FlutterBinding.UI.Offset initialPosition, TimeSpan delay)
-        : base(initialPosition)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        internal virtual Timer _Timer { get; set; }
-        internal virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback _Starter { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _DelayPassed() { throw new NotImplementedException(); }
+}
 
 
-        private void _EnsureTimerStopped() { throw new NotImplementedException(); }
 
 
-        public new void Accepted(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback starter) { throw new NotImplementedException(); }
+public new void Dispose()
+{
+    _EnsureTimerStopped();
+    base.Dispose();
+}
 
 
-        public new void CheckForResolutionAfterMove() { throw new NotImplementedException(); }
+
+#endregion
+}
 
 
-        public new void Dispose() { throw new NotImplementedException(); }
+/// <Summary>
+/// Recognizes movement both horizontally and vertically on a per-pointer basis
+/// after a delay.
+///
+/// In contrast to [ImmediateMultiDragGestureRecognizer],
+/// [DelayedMultiDragGestureRecognizer] waits for a [delay] before recognizing
+/// the drag. If the pointer moves more than [kTouchSlop] before the delay
+/// expires, the gesture is not recognized.
+///
+/// In contrast to [PanGestureRecognizer], [DelayedMultiDragGestureRecognizer]
+/// watches each pointer separately, which means multiple drags can be
+/// recognized concurrently if multiple pointers are in contact with the screen.
+///
+/// See also:
+///
+///  * [ImmediateMultiDragGestureRecognizer], a similar recognizer but without
+///    the delay.
+///  * [PanGestureRecognizer], which recognizes only one drag gesture at a time,
+///    regardless of how many fingers are involved.
+/// </Summary>
+public class DelayedMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._DelayedPointerState>
+{
+    #region constructors
+    public DelayedMultiDragGestureRecognizer(TimeSpan delay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
+    : base(debugOwner: debugOwner, kind: kind)
 
-        #endregion
-    }
+}
+#endregion
+
+#region fields
+public virtual TimeSpan Delay { get; set; }
+public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+#endregion
+
+#region methods
+
+public new FlutterSDK.Gestures.Multidrag._DelayedPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+{
+    return new _DelayedPointerState(@event.Position, Delay);
+}
 
 
-    /// <Summary>
-    /// Recognizes movement both horizontally and vertically on a per-pointer basis
-    /// after a delay.
-    ///
-    /// In contrast to [ImmediateMultiDragGestureRecognizer],
-    /// [DelayedMultiDragGestureRecognizer] waits for a [delay] before recognizing
-    /// the drag. If the pointer moves more than [kTouchSlop] before the delay
-    /// expires, the gesture is not recognized.
-    ///
-    /// In contrast to [PanGestureRecognizer], [DelayedMultiDragGestureRecognizer]
-    /// watches each pointer separately, which means multiple drags can be
-    /// recognized concurrently if multiple pointers are in contact with the screen.
-    ///
-    /// See also:
-    ///
-    ///  * [ImmediateMultiDragGestureRecognizer], a similar recognizer but without
-    ///    the delay.
-    ///  * [PanGestureRecognizer], which recognizes only one drag gesture at a time,
-    ///    regardless of how many fingers are involved.
-    /// </Summary>
-    public class DelayedMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._DelayedPointerState>
-    {
-        #region constructors
-        public DelayedMultiDragGestureRecognizer(TimeSpan delay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
-        : base(debugOwner: debugOwner, kind: kind)
-        {
-            this.Delay = delay; throw new NotImplementedException();
-        }
-        #endregion
 
-        #region fields
-        public virtual TimeSpan Delay { get; set; }
-        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Gestures.Multidrag._DelayedPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event) { throw new NotImplementedException(); }
-
-        #endregion
-    }
+#endregion
+}
 
 }

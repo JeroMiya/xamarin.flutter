@@ -441,206 +441,320 @@ namespace FlutterSDK.Material.Snackbar
         #region constructors
         public SnackBarAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), string label = default(string), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
-        {
-            this.TextColor = textColor;
-            this.DisabledTextColor = disabledTextColor;
-            this.Label = label;
-            this.OnPressed = onPressed; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterBinding.UI.Color TextColor { get; set; }
-        public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
-        public virtual string Label { get; set; }
-        public virtual VoidCallback OnPressed { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterBinding.UI.Color TextColor { get; set; }
+    public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
+    public virtual string Label { get; set; }
+    public virtual VoidCallback OnPressed { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        public new FlutterSDK.Material.Snackbar._SnackBarActionState CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
+    public new FlutterSDK.Material.Snackbar._SnackBarActionState CreateState() => new _SnackBarActionState();
 
 
-    public class _SnackBarActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBarAction>
+    #endregion
+}
+
+
+public class _SnackBarActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBarAction>
+{
+    #region constructors
+    public _SnackBarActionState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _HaveTriggeredAction { get; set; }
+    #endregion
+
+    #region methods
+
+    private void _HandlePressed()
     {
-        #region constructors
-        public _SnackBarActionState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual bool _HaveTriggeredAction { get; set; }
-        #endregion
-
-        #region methods
-
-        private void _HandlePressed() { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
+        if (_HaveTriggeredAction) return;
+        SetState(() =>
+        {
+            _HaveTriggeredAction = true;
+        }
+        );
+        Widget.OnPressed();
+        ScaffoldDefaultClass.Scaffold.Of(Context).HideCurrentSnackBar(reason: SnackBarClosedReason.Action);
     }
 
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        SnackBarThemeData snackBarTheme = ThemeDefaultClass.Theme.Of(context).SnackBarTheme;
+        Color textColor = Widget.TextColor ?? snackBarTheme.ActionTextColor;
+        Color disabledTextColor = Widget.DisabledTextColor ?? snackBarTheme.DisabledActionTextColor;
+        return new FlatButton(onPressed: _HaveTriggeredAction ? null : _HandlePressed, child: new Text(Widget.Label), textColor: textColor, disabledTextColor: disabledTextColor);
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// A lightweight message with an optional action which briefly displays at the
+/// bottom of the screen.
+///
+/// To display a snack bar, call `Scaffold.of(context).showSnackBar()`, passing
+/// an instance of [SnackBar] that describes the message.
+///
+/// To control how long the [SnackBar] remains visible, specify a [duration].
+///
+/// A SnackBar with an action will not time out when TalkBack or VoiceOver are
+/// enabled. This is controlled by [AccessibilityFeatures.accessibleNavigation].
+///
+/// See also:
+///
+///  * [Scaffold.of], to obtain the current [ScaffoldState], which manages the
+///    display and animation of snack bars.
+///  * [ScaffoldState.showSnackBar], which displays a [SnackBar].
+///  * [ScaffoldState.removeCurrentSnackBar], which abruptly hides the currently
+///    displayed snack bar, if any, and allows the next to be displayed.
+///  * [SnackBarAction], which is used to specify an [action] button to show
+///    on the snack bar.
+///  * [SnackBarThemeData], to configure the default property values for
+///    [SnackBar] widgets.
+///  * <https://material.io/design/components/snackbars.html>
+/// </Summary>
+public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public SnackBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior), FlutterSDK.Material.Snackbar.SnackBarAction action = default(FlutterSDK.Material.Snackbar.SnackBarAction), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), VoidCallback onVisible = default(VoidCallback))
+    : base(key: key)
+
+}
+#endregion
+
+#region fields
+public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+public virtual double Elevation { get; set; }
+public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
+public virtual FlutterSDK.Material.Snackbar.SnackBarAction Action { get; set; }
+public virtual TimeSpan Duration { get; set; }
+public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+public virtual VoidCallback OnVisible { get; set; }
+#endregion
+
+#region methods
+
+/// <Summary>
+/// Creates an animation controller useful for driving a snack bar's entrance and exit animation.
+/// </Summary>
+public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+{
+    return new AnimationController(duration: SnackbarDefaultClass._SnackBarTransitionDuration, debugLabel: "SnackBar", vsync: vsync);
+}
+
+
+
+
+/// <Summary>
+/// Creates a copy of this snack bar but with the animation replaced with the given animation.
+///
+/// If the original snack bar lacks a key, the newly created snack bar will
+/// use the given fallback key.
+/// </Summary>
+public virtual FlutterSDK.Material.Snackbar.SnackBar WithAnimation(FlutterSDK.Animation.Animation.Animation<double> newAnimation, FlutterSDK.Foundation.Key.Key fallbackKey = default(FlutterSDK.Foundation.Key.Key))
+{
+    return new SnackBar(key: Key ?? fallbackKey, content: Content, backgroundColor: BackgroundColor, elevation: Elevation, shape: Shape, behavior: Behavior, action: Action, duration: Duration, animation: newAnimation, onVisible: OnVisible);
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar> CreateState() => new _SnackBarState();
+
+
+#endregion
+}
+
+
+public class _SnackBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar>
+{
+    #region constructors
+    public _SnackBarState()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual bool _WasVisible { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        Widget.Animation.AddStatusListener(_OnAnimationStatusChanged);
+    }
+
+
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Snackbar.SnackBar oldWidget)
+    {
+        if (Widget.Animation != oldWidget.Animation)
+        {
+            oldWidget.Animation.RemoveStatusListener(_OnAnimationStatusChanged);
+            Widget.Animation.AddStatusListener(_OnAnimationStatusChanged);
+        }
+
+        base.DidUpdateWidget(oldWidget);
+    }
+
+
+
+
+    public new void Dispose()
+    {
+        Widget.Animation.RemoveStatusListener(_OnAnimationStatusChanged);
+        base.Dispose();
+    }
+
+
+
+
+    private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus animationStatus)
+    {
+        switch (animationStatus)
+        {
+            case AnimationStatus.Dismissed: case AnimationStatus.Forward: case AnimationStatus.Reverse: break;
+            case AnimationStatus.Completed:
+                if (Widget.OnVisible != null && !_WasVisible)
+                {
+                    Widget.OnVisible();
+                }
+                _WasVisible = true;
+        }
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        MediaQueryData mediaQueryData = MediaqueryDefaultClass.MediaQuery.Of(context);
+
+        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+        ColorScheme colorScheme = theme.ColorScheme;
+        SnackBarThemeData snackBarTheme = theme.SnackBarTheme;
+        bool isThemeDark = theme.Brightness == Brightness.Dark;
+        Brightness brightness = isThemeDark ? Brightness.Light : Brightness.Dark;
+        Color themeBackgroundColor = isThemeDark ? colorScheme.OnSurface : Dart:uiDefaultClass.Color.AlphaBlend(colorScheme.OnSurface.WithOpacity(0.80), colorScheme.Surface);
+        ThemeData inverseTheme = new ThemeData(brightness: brightness, backgroundColor: themeBackgroundColor, colorScheme: new ColorScheme(primary: colorScheme.OnPrimary, primaryVariant: colorScheme.OnPrimary, secondary: isThemeDark ? colorScheme.PrimaryVariant : colorScheme.Secondary, secondaryVariant: colorScheme.OnSecondary, surface: colorScheme.OnSurface, background: themeBackgroundColor, error: colorScheme.OnError, onPrimary: colorScheme.Primary, onSecondary: colorScheme.Secondary, onSurface: colorScheme.Surface, onBackground: colorScheme.Background, onError: colorScheme.Error, brightness: brightness), snackBarTheme: snackBarTheme);
+        TextStyle contentTextStyle = snackBarTheme.ContentTextStyle ?? inverseTheme.TextTheme.Subtitle1;
+        SnackBarBehavior snackBarBehavior = Widget.Behavior ?? snackBarTheme.Behavior ?? SnackBarBehavior.Fixed;
+        bool isFloatingSnackBar = snackBarBehavior == SnackBarBehavior.Floating;
+        double snackBarPadding = isFloatingSnackBar ? 16.0 : 24.0;
+        CurvedAnimation heightAnimation = new CurvedAnimation(parent: Widget.Animation, curve: SnackbarDefaultClass._SnackBarHeightCurve);
+        CurvedAnimation fadeInAnimation = new CurvedAnimation(parent: Widget.Animation, curve: SnackbarDefaultClass._SnackBarFadeInCurve);
+        CurvedAnimation fadeOutAnimation = new CurvedAnimation(parent: Widget.Animation, curve: SnackbarDefaultClass._SnackBarFadeOutCurve, reverseCurve: new Threshold(0.0));
+        Widget snackBar = new SafeArea(top: false, bottom: !isFloatingSnackBar, child: new Row(crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { new SizedBox(width: snackBarPadding), new Expanded(child: new Container(padding: EdgeInsets.Symmetric(vertical: SnackbarDefaultClass._SingleLineVerticalPadding), child: new DefaultTextStyle(style: contentTextStyle, child: Widget.Content))), }));
+        double elevation = Widget.Elevation ?? snackBarTheme.Elevation ?? 6.0;
+        Color backgroundColor = Widget.BackgroundColor ?? snackBarTheme.BackgroundColor ?? inverseTheme.BackgroundColor;
+        ShapeBorder shape = Widget.Shape ?? snackBarTheme.Shape ?? (isFloatingSnackBar ? new RoundedRectangleBorder(borderRadius: BorderRadius.Circular(4.0)) : null);
+        snackBar = new Material(shape: shape, elevation: elevation, color: backgroundColor, child: new Theme(data: inverseTheme, child: mediaQueryData.AccessibleNavigation ? snackBar : new FadeTransition(opacity: fadeOutAnimation, child: snackBar)));
+        if (isFloatingSnackBar)
+        {
+            snackBar = new Padding(padding: EdgeInsets.FromLTRB(15.0, 5.0, 15.0, 10.0), child: snackBar);
+        }
+
+        snackBar = new Semantics(container: true, liveRegion: true, onDismiss: () =>
+        {
+            ScaffoldDefaultClass.Scaffold.Of(context).RemoveCurrentSnackBar(reason: SnackBarClosedReason.Dismiss);
+        }
+        , child: new Dismissible(key: new Key("dismissible"), direction: DismissDirection.Down, resizeDuration: null, onDismissed: (DismissDirection direction) =>
+        {
+            ScaffoldDefaultClass.Scaffold.Of(context).RemoveCurrentSnackBar(reason: SnackBarClosedReason.Swipe);
+        }
+        , child: snackBar));
+        Widget snackBarTransition = default(Widget);
+        if (mediaQueryData.AccessibleNavigation)
+        {
+            snackBarTransition = snackBar;
+        }
+        else if (isFloatingSnackBar)
+        {
+            snackBarTransition = new FadeTransition(opacity: fadeInAnimation, child: snackBar);
+        }
+        else
+        {
+            snackBarTransition = new AnimatedBuilder(animation: heightAnimation, builder: (BuildContext context, Widget child) =>
+            {
+                return new Align(alignment: AlignmentDefaultClass.AlignmentDirectional.TopStart, heightFactor: heightAnimation.Value, child: child);
+            }
+            , child: snackBar);
+        }
+
+        return new ClipRect(child: snackBarTransition);
+    }
+
+
+
+    #endregion
+}
+
+
+/// <Summary>
+/// Specify how a [SnackBar] was closed.
+///
+/// The [ScaffoldState.showSnackBar] function returns a
+/// [ScaffoldFeatureController]. The value of the controller's closed property
+/// is a Future that resolves to a SnackBarClosedReason. Applications that need
+/// to know how a snackbar was closed can use this value.
+///
+/// Example:
+///
+/// ```dart
+/// Scaffold.of(context).showSnackBar(
+///   SnackBar( ... )
+/// ).closed.then((SnackBarClosedReason reason) {
+///    ...
+/// });
+/// ```
+/// </Summary>
+public enum SnackBarClosedReason
+{
 
     /// <Summary>
-    /// A lightweight message with an optional action which briefly displays at the
-    /// bottom of the screen.
-    ///
-    /// To display a snack bar, call `Scaffold.of(context).showSnackBar()`, passing
-    /// an instance of [SnackBar] that describes the message.
-    ///
-    /// To control how long the [SnackBar] remains visible, specify a [duration].
-    ///
-    /// A SnackBar with an action will not time out when TalkBack or VoiceOver are
-    /// enabled. This is controlled by [AccessibilityFeatures.accessibleNavigation].
-    ///
-    /// See also:
-    ///
-    ///  * [Scaffold.of], to obtain the current [ScaffoldState], which manages the
-    ///    display and animation of snack bars.
-    ///  * [ScaffoldState.showSnackBar], which displays a [SnackBar].
-    ///  * [ScaffoldState.removeCurrentSnackBar], which abruptly hides the currently
-    ///    displayed snack bar, if any, and allows the next to be displayed.
-    ///  * [SnackBarAction], which is used to specify an [action] button to show
-    ///    on the snack bar.
-    ///  * [SnackBarThemeData], to configure the default property values for
-    ///    [SnackBar] widgets.
-    ///  * <https://material.io/design/components/snackbars.html>
+    /// The snack bar was closed after the user tapped a [SnackBarAction].
     /// </Summary>
-    public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
-    {
-        #region constructors
-        public SnackBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior), FlutterSDK.Material.Snackbar.SnackBarAction action = default(FlutterSDK.Material.Snackbar.SnackBarAction), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), VoidCallback onVisible = default(VoidCallback))
-        : base(key: key)
-        {
-            this.Content = content;
-            this.BackgroundColor = backgroundColor;
-            this.Elevation = elevation;
-            this.Shape = shape;
-            this.Behavior = behavior;
-            this.Action = action;
-            this.Duration = duration;
-            this.Animation = animation;
-            this.OnVisible = onVisible; throw new NotImplementedException();
-        }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
-        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        public virtual double Elevation { get; set; }
-        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
-        public virtual FlutterSDK.Material.Snackbar.SnackBarAction Action { get; set; }
-        public virtual TimeSpan Duration { get; set; }
-        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        public virtual VoidCallback OnVisible { get; set; }
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Creates an animation controller useful for driving a snack bar's entrance and exit animation.
-        /// </Summary>
-        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider)) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Creates a copy of this snack bar but with the animation replaced with the given animation.
-        ///
-        /// If the original snack bar lacks a key, the newly created snack bar will
-        /// use the given fallback key.
-        /// </Summary>
-        public virtual FlutterSDK.Material.Snackbar.SnackBar WithAnimation(FlutterSDK.Animation.Animation.Animation<double> newAnimation, FlutterSDK.Foundation.Key.Key fallbackKey = default(FlutterSDK.Foundation.Key.Key)) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar> CreateState() { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
-    public class _SnackBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar>
-    {
-        #region constructors
-        public _SnackBarState()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual bool _WasVisible { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState() { throw new NotImplementedException(); }
-
-
-        public new void DidUpdateWidget(FlutterSDK.Material.Snackbar.SnackBar oldWidget) { throw new NotImplementedException(); }
-
-
-        public new void Dispose() { throw new NotImplementedException(); }
-
-
-        private void _OnAnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus animationStatus) { throw new NotImplementedException(); }
-
-
-        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) { throw new NotImplementedException(); }
-
-        #endregion
-    }
-
-
+    Action,
     /// <Summary>
-    /// Specify how a [SnackBar] was closed.
-    ///
-    /// The [ScaffoldState.showSnackBar] function returns a
-    /// [ScaffoldFeatureController]. The value of the controller's closed property
-    /// is a Future that resolves to a SnackBarClosedReason. Applications that need
-    /// to know how a snackbar was closed can use this value.
-    ///
-    /// Example:
-    ///
-    /// ```dart
-    /// Scaffold.of(context).showSnackBar(
-    ///   SnackBar( ... )
-    /// ).closed.then((SnackBarClosedReason reason) {
-    ///    ...
-    /// });
-    /// ```
+    /// The snack bar was closed through a [SemanticAction.dismiss].
     /// </Summary>
-    public enum SnackBarClosedReason
-    {
-
-        /// <Summary>
-        /// The snack bar was closed after the user tapped a [SnackBarAction].
-        /// </Summary>
-        Action,
-        /// <Summary>
-        /// The snack bar was closed through a [SemanticAction.dismiss].
-        /// </Summary>
-        Dismiss,
-        /// <Summary>
-        /// The snack bar was closed by a user's swipe.
-        /// </Summary>
-        Swipe,
-        /// <Summary>
-        /// The snack bar was closed by the [ScaffoldFeatureController] close callback
-        /// or by calling [ScaffoldState.hideCurrentSnackBar] directly.
-        /// </Summary>
-        Hide,
-        /// <Summary>
-        /// The snack bar was closed by an call to [ScaffoldState.removeCurrentSnackBar].
-        /// </Summary>
-        Remove,
-        /// <Summary>
-        /// The snack bar was closed because its timer expired.
-        /// </Summary>
-        Timeout,
-    }
+    Dismiss,
+    /// <Summary>
+    /// The snack bar was closed by a user's swipe.
+    /// </Summary>
+    Swipe,
+    /// <Summary>
+    /// The snack bar was closed by the [ScaffoldFeatureController] close callback
+    /// or by calling [ScaffoldState.hideCurrentSnackBar] directly.
+    /// </Summary>
+    Hide,
+    /// <Summary>
+    /// The snack bar was closed by an call to [ScaffoldState.removeCurrentSnackBar].
+    /// </Summary>
+    Remove,
+    /// <Summary>
+    /// The snack bar was closed because its timer expired.
+    /// </Summary>
+    Timeout,
+}
 
 }

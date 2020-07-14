@@ -495,36 +495,44 @@ namespace FlutterSDK.Physics.Simulation
     {
         #region constructors
         public Simulation(FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
-        {
-            this.Tolerance = tolerance; throw new NotImplementedException();
-        }
-        #endregion
+    
+}
+    #endregion
 
-        #region fields
-        public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get; set; }
-        #endregion
+    #region fields
+    public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get; set; }
+    #endregion
 
-        #region methods
+    #region methods
 
-        /// <Summary>
-        /// The position of the object in the simulation at the given time.
-        /// </Summary>
-        public virtual double x(double time) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// The velocity of the object in the simulation at the given time.
-        /// </Summary>
-        public virtual double Dx(double time) { throw new NotImplementedException(); }
-
-
-        /// <Summary>
-        /// Whether the simulation is "done" at the given time.
-        /// </Summary>
-        public virtual bool IsDone(double time) { throw new NotImplementedException(); }
-
-
-        #endregion
+    /// <Summary>
+    /// The position of the object in the simulation at the given time.
+    /// </Summary>
+    public virtual double x(double time)
+    {
+        return default(double);
     }
+
+
+    /// <Summary>
+    /// The velocity of the object in the simulation at the given time.
+    /// </Summary>
+    public virtual double Dx(double time)
+    {
+        return default(double);
+    }
+
+
+    /// <Summary>
+    /// Whether the simulation is "done" at the given time.
+    /// </Summary>
+    public virtual bool IsDone(double time)
+    {
+        return default(bool);
+    }
+
+
+    #endregion
+}
 
 }
