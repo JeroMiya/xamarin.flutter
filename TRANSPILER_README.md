@@ -17,7 +17,9 @@ In the AST folder is `analyzer.dart`, which uses the Dart Analyzer to create a S
 
 5. (optional) Install the `dotnet-format` global tool (see instructions here: https://github.com/dotnet/format)
 
-6. In a terminal window or command prompt (except for git bash, which does not work at this time), navigate to the AST directory and run the `run.bat` script. If you want to skip the dotnet-format tool, run `dart analyzer.dart` directly.
+6. (optional) If you have nodejs installed, run `npm install -g lec` from the command line to install the line-ending-corrector command line utility, used in `run.bat` to convert LF to CRLF line endings. This must be done before checkin if you are on Windows.
+
+7. In a terminal window or command prompt (except for git bash, which does not work at this time), navigate to the AST directory and run the `run.bat` script. If you want to skip the dotnet-format tool, run `dart analyzer.dart` directly.
 
 This will run through the Flutter SDK and create an equivalent *.cs files.
 
