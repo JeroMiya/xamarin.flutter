@@ -270,6 +270,18 @@ class Implementation {
       }
     }
 
+    // Since this is a HACK that only works for the instances I encountered
+    // when I wrote it, check that the output is one of the expected outputs
+    // and warn the user if it isn't.
+    switch (ret) {
+      case 'Func<TextSelectionDelegate , bool>':
+      case 'Action<TextSelectionDelegate >':
+      case 'Func<String>':
+        break;
+      default:
+        print(
+            "HACK WARNING: processGenericFunctionType is returning $ret which might not be correct.");
+    }
     return ret;
   }
 
@@ -278,8 +290,24 @@ class Implementation {
   }
 
   static String processDefaultFormalParameter(DefaultFormalParameter entity) {
+    // HACK: This only works for types where .toString() produces the correct
+    // C# type annotation.
     // TODO: implement this properly
-    return entity.toString();
+    String ret = entity.toString();
+
+    // Since this is a HACK that only works for the instances I encountered
+    // when I wrote it, check that the output is one of the expected outputs
+    // and warn the user if it isn't.
+    switch (ret) {
+      case 'bool forceSubdivide = false':
+      case 'int cacheWidth':
+      case 'int cacheHeight':
+        break;
+      default:
+        print(
+            "HACK WARNING: processDefaultFormalParamater is returning $ret which might not be correct.");
+    }
+    return ret;
   }
 
   static String processPropertyAccess(PropertyAccess access) {
