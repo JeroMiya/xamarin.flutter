@@ -8,9 +8,13 @@ import 'types.dart';
 
 class Naming {
   static List<String> namespacePartsFromIdentifier(String identifier) {
+    String fileReplacement =
+        identifier.contains(Config.sourcePath.replaceAll("\\", "/"))
+            ? "file:///" + Config.sourcePath.replaceAll("\\", "/") + "/"
+            : "file:///" + Config.baseSourcePath.replaceAll("\\", "/") + "/";
+
     var namespacePath = identifier
-        .replaceAll(
-            "file:///" + Config.sourcePath.replaceAll("\\", "/") + "/", "")
+        .replaceAll(fileReplacement, "")
         .replaceAll(".dart", "")
         .replaceAll("package:flutter/src/", "");
 
@@ -35,8 +39,7 @@ class Naming {
     if (isInterface) name = "I" + name;
 
     // TODO: Need to sort this out, so it does it for all, not just this particular one.
-    if (name == 'IObstructingPreferredSizeWidget')
-    {
+    if (name == 'IObstructingPreferredSizeWidget') {
       var namespace = namespaceFromIdentifier(type.element.library.identifier);
       name = namespace + "." + name;
     }
@@ -332,7 +335,7 @@ class Naming {
     return getFormattedName(name, NameStyle.UpperCamelCase);
   }
 
-  static String getTopLevelVariableName(TopLevelVariableElement element){
+  static String getTopLevelVariableName(TopLevelVariableElement element) {
     var name = element.name;
     name = name.replaceAll("\$", "");
     return name;

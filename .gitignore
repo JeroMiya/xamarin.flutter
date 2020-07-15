@@ -15,3 +15,4 @@ flutter/*
 flutter/**
 *.csproj.user
 .dart_tool/
+.idea/

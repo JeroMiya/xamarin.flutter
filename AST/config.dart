@@ -1,14 +1,11 @@
 import 'dart:io';
 
 class Config {
-
   static const dartSdkEnvVariableName = "DART_SDK";
   static bool includeMethodImplementations = true;
   static bool includeConstructorImplementations = true;
   static bool includeFieldImplementations = true;
   static bool isTestbed = false;
-
-  static String sourcePath = Config.isTestbed ? _testbedFlutterSourcePath : _flutterSourcePath;
 
   // Path to the flutter src directory
   static String _flutterSourcePath = Directory('..\\flutter\\lib\\src')
@@ -16,18 +13,28 @@ class Config {
       .path
       .replaceAll('\\AST\\..', '');
 
-  // This is just a quick test bed, if you want to try out specific
-  // Dart related functionality without running it on the whole transpiler  
-  static String _testbedFlutterSourcePath = Directory('..\\testbed')
-      .absolute
-      .path
-      .replaceAll('\\AST\\..', '');
+  static String _flutterBaseSourcePath =
+      Directory('..\\flutter\\lib').absolute.path.replaceAll('\\AST\\..', '');
 
-  static bool IsDartSdkPathAvailable = Platform.environment.containsKey(dartSdkEnvVariableName);
-  
+  // This is just a quick test bed, if you want to try out specific
+  // Dart related functionality without running it on the whole transpiler
+  static String _testbedFlutterSourcePath =
+      Directory('..\\testbed').absolute.path.replaceAll('\\AST\\..', '');
+
+  static String sourcePath =
+      Config.isTestbed ? _testbedFlutterSourcePath : _flutterSourcePath;
+
+  // Path to the flutter base directory, one up from src
+  // used for detecting top level file imports.
+  static String baseSourcePath =
+      Config.isTestbed ? _testbedFlutterSourcePath : _flutterBaseSourcePath;
+
+  static bool IsDartSdkPathAvailable =
+      Platform.environment.containsKey(dartSdkEnvVariableName);
+
   // Absolute path to the dart-sdk directory
   static String DartSdkPath = Platform.environment[dartSdkEnvVariableName];
-  
+
   // Root namespace the transpiled namespaces will start with
   static String rootNamespace = "FlutterSDK";
 
