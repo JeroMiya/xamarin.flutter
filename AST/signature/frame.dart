@@ -126,12 +126,19 @@ class Frame {
 
     // Check if import is within the FlutterSDK library and modify the import to use the correct namespace
     if (import != null &&
-        import.identifier.replaceAll("/", "\\").contains(Config.sourcePath)) {
+        import.identifier
+            .replaceAll("/", "\\")
+            .contains(Config.baseSourcePath)) {
       name = Naming.namespaceFromIdentifier(import.identifier);
     }
 
-    // Add import if it does not already exist
-    if (!allImports.contains(name)) allImports.add(name);
+    if (name.startsWith('file')) {
+      print(
+          'ERROR: AddImport got a bad namespace name: $name. Skipping import for now...');
+    } else {
+      // Add import if it does not already exist
+      if (!allImports.contains(name)) allImports.add(name);
+    }
   }
 
   static String printEnum(ClassElement element) {
