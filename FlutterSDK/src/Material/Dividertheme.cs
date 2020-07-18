@@ -406,132 +406,138 @@ namespace FlutterSDK.Material.Dividertheme
     {
         #region constructors
         public DividerThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double))
-    
-}
-    #endregion
+        {
+            this.Color = color;
+            this.Space = space;
+            this.Thickness = thickness;
+            this.Indent = indent;
+            this.EndIndent = endIndent;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual double Space { get; set; }
-    public virtual double Thickness { get; set; }
-    public virtual double Indent { get; set; }
-    public virtual double EndIndent { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Space { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual double Indent { get; set; }
+        public virtual double EndIndent { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double))
+        {
+            return new DividerThemeData(color: color ?? this.Color, space: space == default(double) ? this.space : space, thickness: thickness == default(double) ? this.thickness : thickness, indent: indent == default(double) ? this.indent : indent, endIndent: endIndent == default(double) ? this.endIndent : endIndent);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two Divider themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a, FlutterSDK.Material.Dividertheme.DividerThemeData b, double t)
+        {
+
+            return new DividerThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), space: Dart:uiDefaultClass.LerpDouble(a?.Space, b?.Space, t), thickness: Dart:uiDefaultClass.LerpDouble(a?.Thickness, b?.Thickness, t), indent: Dart:uiDefaultClass.LerpDouble(a?.Indent, b?.Indent, t), endIndent: Dart:uiDefaultClass.LerpDouble(a?.EndIndent, b?.EndIndent, t));
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is DividerThemeData && other.Color == Color && other.Space == Space && other.Thickness == Thickness && other.Indent == Indent && other.EndIndent == EndIndent;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+            properties.Add(new DoubleProperty("space", Space, defaultValue: null));
+            properties.Add(new DoubleProperty("thickness", Thickness, defaultValue: null));
+            properties.Add(new DoubleProperty("indent", Indent, defaultValue: null));
+            properties.Add(new DoubleProperty("endIndent", EndIndent, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a copy of this object with the given fields replaced with the
-    /// new values.
+    /// An inherited widget that defines the configuration for
+    /// [Divider]s, [VerticalDivider]s, dividers between [ListTile]s, and dividers
+    /// between rows in [DataTable]s in this widget's subtree.
     /// </Summary>
-    public virtual FlutterSDK.Material.Dividertheme.DividerThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double))
+    public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        return new DividerThemeData(color: color ?? this.Color, space: space == default(double) ? this.space : space, thickness: thickness == default(double) ? this.thickness : thickness, indent: indent == default(double) ? this.indent : indent, endIndent: endIndent == default(double) ? this.endIndent : endIndent);
+        #region constructors
+        public DividerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Dividertheme.DividerThemeData data = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The closest instance of this class's [data] value that encloses the given
+        /// context.
+        ///
+        /// If there is no ancestor, it returns [ThemeData.dividerTheme]. Applications
+        /// can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// DividerThemeData theme = DividerTheme.of(context);
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            DividerTheme dividerTheme = context.DependOnInheritedWidgetOfExactType();
+            return dividerTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).DividerTheme;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            DividerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new DividerTheme(data: Data, child: child);
+        }
+
+
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Dividertheme.DividerTheme oldWidget) => Data != oldWidget.Data;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+        #endregion
     }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two Divider themes.
-    ///
-    /// The argument `t` must not be null.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
-    /// </Summary>
-    public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a, FlutterSDK.Material.Dividertheme.DividerThemeData b, double t)
-    {
-
-        return new DividerThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), space: Dart:uiDefaultClass.LerpDouble(a?.Space, b?.Space, t), thickness: Dart:uiDefaultClass.LerpDouble(a?.Thickness, b?.Thickness, t), indent: Dart:uiDefaultClass.LerpDouble(a?.Indent, b?.Indent, t), endIndent: Dart:uiDefaultClass.LerpDouble(a?.EndIndent, b?.EndIndent, t));
-    }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is DividerThemeData && other.Color == Color && other.Space == Space && other.Thickness == Thickness && other.Indent == Indent && other.EndIndent == EndIndent;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-        properties.Add(new DoubleProperty("space", Space, defaultValue: null));
-        properties.Add(new DoubleProperty("thickness", Thickness, defaultValue: null));
-        properties.Add(new DoubleProperty("indent", Indent, defaultValue: null));
-        properties.Add(new DoubleProperty("endIndent", EndIndent, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An inherited widget that defines the configuration for
-/// [Divider]s, [VerticalDivider]s, dividers between [ListTile]s, and dividers
-/// between rows in [DataTable]s in this widget's subtree.
-/// </Summary>
-public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-    #region constructors
-    public DividerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Dividertheme.DividerThemeData data = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Data { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// The closest instance of this class's [data] value that encloses the given
-/// context.
-///
-/// If there is no ancestor, it returns [ThemeData.dividerTheme]. Applications
-/// can assume that the returned value will not be null.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// DividerThemeData theme = DividerTheme.of(context);
-/// ```
-/// </Summary>
-public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    DividerTheme dividerTheme = context.DependOnInheritedWidgetOfExactType();
-    return dividerTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).DividerTheme;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-{
-    DividerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new DividerTheme(data: Data, child: child);
-}
-
-
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Dividertheme.DividerTheme oldWidget) => Data != oldWidget.Data;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
-
-
-#endregion
-}
 
 }

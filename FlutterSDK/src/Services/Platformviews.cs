@@ -490,70 +490,72 @@ namespace FlutterSDK.Services.Platformviews
     {
         #region constructors
         internal static PlatformViewsRegistry _Instance()
-    
-}
-    #endregion
+        {
+            var instance = new PlatformViewsRegistry();
+        }
+        #endregion
 
-    #region fields
-    internal virtual int _NextPlatformViewId { get; set; }
-    #endregion
+        #region fields
+        internal virtual int _NextPlatformViewId { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Allocates a unique identifier for a platform view.
+        ///
+        /// A platform view identifier can refer to a platform view that was never created,
+        /// a platform view that was disposed, or a platform view that is alive.
+        ///
+        /// Typically a platform view identifier is passed to a [PlatformView] widget
+        /// which creates the platform view and manages its lifecycle.
+        /// </Summary>
+        public virtual int GetNextPlatformViewId() => _NextPlatformViewId++;
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Allocates a unique identifier for a platform view.
+    /// Provides access to the platform views service.
     ///
-    /// A platform view identifier can refer to a platform view that was never created,
-    /// a platform view that was disposed, or a platform view that is alive.
-    ///
-    /// Typically a platform view identifier is passed to a [PlatformView] widget
-    /// which creates the platform view and manages its lifecycle.
+    /// This service allows creating and controlling platform-specific views.
     /// </Summary>
-    public virtual int GetNextPlatformViewId() => _NextPlatformViewId++;
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Provides access to the platform views service.
-///
-/// This service allows creating and controlling platform-specific views.
-/// </Summary>
-public class PlatformViewsService
-{
-    #region constructors
-    internal PlatformViewsService()
-
-SystemchannelsDefaultClass.SystemChannels.Platform_views.SetMethodCallHandler(_OnMethodCall);
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _ServiceInstance { get; set; }
-internal virtual Dictionary<int, object> _FocusCallbacks { get; set; }
-internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
-{
-    switch (call.Method)
+    public class PlatformViewsService
     {
-        case "viewFocused":
-            int id = call.Arguments as int; if (_FocusCallbacks.ContainsKey(id))
+        #region constructors
+        internal PlatformViewsService()
+        {
+
+            SystemchannelsDefaultClass.SystemChannels.Platform_views.SetMethodCallHandler(_OnMethodCall);
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _ServiceInstance { get; set; }
+        internal virtual Dictionary<int, object> _FocusCallbacks { get; set; }
+        internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
+        {
+            switch (call.Method)
             {
-                _FocusCallbacks[id]();
+                case "viewFocused":
+                    int id = call.Arguments as int; if (_FocusCallbacks.ContainsKey(id))
+                    {
+                        _FocusCallbacks[id]();
+                    }
+                    break;
+                default:
+                    throw new UnimplementedError($""{ call.Method } was invoked but isn't implemented by PlatformViewsService"");}
+            return null;
             }
-            break;
-        default:
-            throw new UnimplementedError($""{ call.Method } was invoked but isn't implemented by PlatformViewsService"");}
-    return null;
-    }
 
 
 
@@ -584,50 +586,49 @@ private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall
 /// The `id, `viewType, and `layoutDirection` parameters must not be null.
 /// If `creationParams` is non null then `cretaionParamsCodec` must not be null.
 /// </Summary>
-public virtual FlutterSDK.Services.Platformviews.AndroidViewController InitAndroidView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>), VoidCallback onFocus = default(VoidCallback))
+        public virtual FlutterSDK.Services.Platformviews.AndroidViewController InitAndroidView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>), VoidCallback onFocus = default(VoidCallback))
+        {
+
+
+
+
+            AndroidViewController controller = AndroidViewController._(id, viewType, creationParams, creationParamsCodec, layoutDirection);
+            _Instance._FocusCallbacks[id] = onFocus ?? () => {
+            }
+;
+            return controller;
+        }
+
+
+
+
+        /// <Summary>
+        /// This is work in progress, not yet ready to be used, and requires a custom engine build. Creates a controller for a new iOS UIView.
+        ///
+        /// `id` is an unused unique identifier generated with [platformViewsRegistry].
+        ///
+        /// `viewType` is the identifier of the iOS view type to be created, a
+        /// factory for this view type must have been registered on the platform side.
+        /// Platform view factories are typically registered by plugin code.
+        ///
+        /// The `id, `viewType, and `layoutDirection` parameters must not be null.
+        /// If `creationParams` is non null then `creationParamsCodec` must not be null.
+        /// </Summary>
+        public virtual Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>))
+    async
 {
 
 
 
 
-    AndroidViewController controller = AndroidViewController._(id, viewType, creationParams, creationParamsCodec, layoutDirection);
-    _Instance._FocusCallbacks[id] = onFocus ?? () => {
-    }
-;
-    return controller;
+Dictionary<string, object> args = new Dictionary<string, object> { { "id", id }{ "viewType", viewType } };
+if (creationParams!=null ){
+ByteData paramsByteData = creationParamsCodec.EncodeMessage(creationParams);
+        args["params"]=Uint8List.View(paramsByteData.Buffer, 0, paramsByteData.LengthInBytes);
 }
 
-
-
-
-/// <Summary>
-/// This is work in progress, not yet ready to be used, and requires a custom engine build. Creates a controller for a new iOS UIView.
-///
-/// `id` is an unused unique identifier generated with [platformViewsRegistry].
-///
-/// `viewType` is the identifier of the iOS view type to be created, a
-/// factory for this view type must have been registered on the platform side.
-/// Platform view factories are typically registered by plugin code.
-///
-/// The `id, `viewType, and `layoutDirection` parameters must not be null.
-/// If `creationParams` is non null then `creationParamsCodec` must not be null.
-/// </Summary>
-public virtual Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>))
-async
-{
-
-
-
-
-    Dictionary<string, object> args = new Dictionary<string, object> { { "id", id }{ "viewType", viewType } };
-    if (creationParams != null)
-    {
-        ByteData paramsByteData = creationParamsCodec.EncodeMessage(creationParams);
-        args["params"] = Uint8List.View(paramsByteData.Buffer, 0, paramsByteData.LengthInBytes);
-    }
-
     await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("create", args);
-    return UiKitViewController._(id, layoutDirection);
+return UiKitViewController._(id, layoutDirection);
 }
 
 
@@ -646,27 +647,29 @@ public class AndroidPointerProperties
     #region constructors
     public AndroidPointerProperties(int id = default(int), int toolType = default(int))
     : base()
+    {
+        this.Id = id;
+        this.ToolType = toolType;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual int Id { get; set; }
+    public virtual int ToolType { get; set; }
+    public virtual int KToolTypeUnknown { get; set; }
+    public virtual int KToolTypeFinger { get; set; }
+    public virtual int KToolTypeStylus { get; set; }
+    public virtual int KToolTypeMouse { get; set; }
+    public virtual int KToolTypeEraser { get; set; }
+    #endregion
 
-#region fields
-public virtual int Id { get; set; }
-public virtual int ToolType { get; set; }
-public virtual int KToolTypeUnknown { get; set; }
-public virtual int KToolTypeFinger { get; set; }
-public virtual int KToolTypeStylus { get; set; }
-public virtual int KToolTypeMouse { get; set; }
-public virtual int KToolTypeEraser { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-private List<int> _AsList() => new List<int>() { Id, ToolType };
+    private List<int> _AsList() => new List<int>() { Id, ToolType };
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -680,33 +683,42 @@ public class AndroidPointerCoords
     #region constructors
     public AndroidPointerCoords(double orientation = default(double), double pressure = default(double), double size = default(double), double toolMajor = default(double), double toolMinor = default(double), double touchMajor = default(double), double touchMinor = default(double), double x = default(double), double y = default(double))
     : base()
+    {
+        this.Orientation = orientation;
+        this.Pressure = pressure;
+        this.Size = size;
+        this.ToolMajor = toolMajor;
+        this.ToolMinor = toolMinor;
+        this.TouchMajor = touchMajor;
+        this.TouchMinor = touchMinor;
+        this.x = x;
+        this.y = y;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual double Orientation { get; set; }
+    public virtual double Pressure { get; set; }
+    public virtual double Size { get; set; }
+    public virtual double ToolMajor { get; set; }
+    public virtual double ToolMinor { get; set; }
+    public virtual double TouchMajor { get; set; }
+    public virtual double TouchMinor { get; set; }
+    public virtual double x { get; set; }
+    public virtual double y { get; set; }
+    #endregion
 
-#region fields
-public virtual double Orientation { get; set; }
-public virtual double Pressure { get; set; }
-public virtual double Size { get; set; }
-public virtual double ToolMajor { get; set; }
-public virtual double ToolMinor { get; set; }
-public virtual double TouchMajor { get; set; }
-public virtual double TouchMinor { get; set; }
-public virtual double x { get; set; }
-public virtual double y { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-private List<double> _AsList()
-{
-    return new List<double>() { Orientation, Pressure, Size, ToolMajor, ToolMinor, TouchMajor, TouchMinor, x, y };
-}
+    private List<double> _AsList()
+    {
+        return new List<double>() { Orientation, Pressure, Size, ToolMajor, ToolMinor, TouchMajor, TouchMinor, x, y };
+    }
 
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -718,38 +730,52 @@ public class AndroidMotionEvent
     #region constructors
     public AndroidMotionEvent(int downTime = default(int), int eventTime = default(int), int action = default(int), int pointerCount = default(int), List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> pointerProperties = default(List<FlutterSDK.Services.Platformviews.AndroidPointerProperties>), List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> pointerCoords = default(List<FlutterSDK.Services.Platformviews.AndroidPointerCoords>), int metaState = default(int), int buttonState = default(int), double xPrecision = default(double), double yPrecision = default(double), int deviceId = default(int), int edgeFlags = default(int), int source = default(int), int flags = default(int))
     : base()
+    {
+        this.DownTime = downTime;
+        this.EventTime = eventTime;
+        this.Action = action;
+        this.PointerCount = pointerCount;
+        this.PointerProperties = pointerProperties;
+        this.PointerCoords = pointerCoords;
+        this.MetaState = metaState;
+        this.ButtonState = buttonState;
+        this.XPrecision = xPrecision;
+        this.YPrecision = yPrecision;
+        this.DeviceId = deviceId;
+        this.EdgeFlags = edgeFlags;
+        this.Source = source;
+        this.Flags = flags;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual int DownTime { get; set; }
+    public virtual int EventTime { get; set; }
+    public virtual int Action { get; set; }
+    public virtual int PointerCount { get; set; }
+    public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
+    public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerCoords { get; set; }
+    public virtual int MetaState { get; set; }
+    public virtual int ButtonState { get; set; }
+    public virtual double XPrecision { get; set; }
+    public virtual double YPrecision { get; set; }
+    public virtual int DeviceId { get; set; }
+    public virtual int EdgeFlags { get; set; }
+    public virtual int Source { get; set; }
+    public virtual int Flags { get; set; }
+    #endregion
 
-#region fields
-public virtual int DownTime { get; set; }
-public virtual int EventTime { get; set; }
-public virtual int Action { get; set; }
-public virtual int PointerCount { get; set; }
-public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
-public virtual List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerCoords { get; set; }
-public virtual int MetaState { get; set; }
-public virtual int ButtonState { get; set; }
-public virtual double XPrecision { get; set; }
-public virtual double YPrecision { get; set; }
-public virtual int DeviceId { get; set; }
-public virtual int EdgeFlags { get; set; }
-public virtual int Source { get; set; }
-public virtual int Flags { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-private List<object> _AsList(int viewId)
-{
-    return new List<object>() { viewId, DownTime, EventTime, Action, PointerCount, PointerProperties.Map((AndroidPointerProperties p) => =>p._AsList()).ToList(), PointerCoords.Map((AndroidPointerCoords p) => =>p._AsList()).ToList(), MetaState, ButtonState, XPrecision, YPrecision, DeviceId, EdgeFlags, Source, Flags };
-}
+    private List<object> _AsList(int viewId)
+    {
+        return new List<object>() { viewId, DownTime, EventTime, Action, PointerCount, PointerProperties.Map((AndroidPointerProperties p) => =>p._AsList()).ToList(), PointerCoords.Map((AndroidPointerCoords p) => =>p._AsList()).ToList(), MetaState, ButtonState, XPrecision, YPrecision, DeviceId, EdgeFlags, Source, Flags };
+    }
 
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -763,72 +789,73 @@ public class AndroidViewController
     #region constructors
     internal AndroidViewController(int id, string viewType, object creationParams, FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec, TextDirection layoutDirection)
     : base()
+    {
+        this.Id = id;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual int KActionDown { get; set; }
+    public virtual int KActionUp { get; set; }
+    public virtual int KActionMove { get; set; }
+    public virtual int KActionCancel { get; set; }
+    public virtual int KActionPointerDown { get; set; }
+    public virtual int KActionPointerUp { get; set; }
+    public virtual int KAndroidLayoutDirectionLtr { get; set; }
+    public virtual int KAndroidLayoutDirectionRtl { get; set; }
+    public virtual int Id { get; set; }
+    internal virtual string _ViewType { get; set; }
+    internal virtual int _TextureId { get; set; }
+    internal virtual TextDirection _LayoutDirection { get; set; }
+    internal virtual FlutterSDK.Services.Platformviews._AndroidViewState _State { get; set; }
+    internal virtual object _CreationParams { get; set; }
+    internal virtual FlutterSDK.Services.Messagecodec.MessageCodec<object> _CreationParamsCodec { get; set; }
+    internal virtual List<object> _PlatformViewCreatedCallbacks { get; set; }
+    public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsCreated { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual int KActionDown { get; set; }
-public virtual int KActionUp { get; set; }
-public virtual int KActionMove { get; set; }
-public virtual int KActionCancel { get; set; }
-public virtual int KActionPointerDown { get; set; }
-public virtual int KActionPointerUp { get; set; }
-public virtual int KAndroidLayoutDirectionLtr { get; set; }
-public virtual int KAndroidLayoutDirectionRtl { get; set; }
-public virtual int Id { get; set; }
-internal virtual string _ViewType { get; set; }
-internal virtual int _TextureId { get; set; }
-internal virtual TextDirection _LayoutDirection { get; set; }
-internal virtual FlutterSDK.Services.Platformviews._AndroidViewState _State { get; set; }
-internal virtual object _CreationParams { get; set; }
-internal virtual FlutterSDK.Services.Messagecodec.MessageCodec<object> _CreationParamsCodec { get; set; }
-internal virtual List<object> _PlatformViewCreatedCallbacks { get; set; }
-public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsCreated { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Adds a callback that will get invoke after the platform view has been
-/// created.
-/// </Summary>
-public virtual void AddOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener)
-{
-
-
-    _PlatformViewCreatedCallbacks.Add(listener);
-}
+    /// <Summary>
+    /// Adds a callback that will get invoke after the platform view has been
+    /// created.
+    /// </Summary>
+    public virtual void AddOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener)
+    {
 
 
-
-
-/// <Summary>
-/// Removes a callback added with [addOnPlatformViewCreatedListener].
-/// </Summary>
-public virtual void RemoveOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener)
-{
-
-    _PlatformViewCreatedCallbacks.Remove(listener);
-}
+        _PlatformViewCreatedCallbacks.Add(listener);
+    }
 
 
 
 
-/// <Summary>
-/// Disposes the Android view.
-///
-/// The [AndroidViewController] object is unusable after calling this.
-/// The identifier of the platform view cannot be reused after the view is
-/// disposed.
-/// </Summary>
-public virtual Future<object> Dispose()
+    /// <Summary>
+    /// Removes a callback added with [addOnPlatformViewCreatedListener].
+    /// </Summary>
+    public virtual void RemoveOnPlatformViewCreatedListener(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback listener)
+    {
+
+        _PlatformViewCreatedCallbacks.Remove(listener);
+    }
+
+
+
+
+    /// <Summary>
+    /// Disposes the Android view.
+    ///
+    /// The [AndroidViewController] object is unusable after calling this.
+    /// The identifier of the platform view cannot be reused after the view is
+    /// disposed.
+    /// </Summary>
+    public virtual Future<object> Dispose()
 async
 {
-    if (_State == _AndroidViewState.Creating || _State == _AndroidViewState.Created) await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("dispose", Id);
+if (_State==_AndroidViewState.Creating||_State==_AndroidViewState.Created)await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("dispose", Id);
     _PlatformViewCreatedCallbacks.Clear();
-    _State = _AndroidViewState.Disposed;
+_State=_AndroidViewState.Disposed;
 }
 
 
@@ -961,28 +988,29 @@ public class UiKitViewController
     #region constructors
     internal UiKitViewController(int id, TextDirection layoutDirection)
     : base()
+    {
+        this.Id = id;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual int Id { get; set; }
+    internal virtual bool _DebugDisposed { get; set; }
+    internal virtual TextDirection _LayoutDirection { get; set; }
+    #endregion
 
-#region fields
-public virtual int Id { get; set; }
-internal virtual bool _DebugDisposed { get; set; }
-internal virtual TextDirection _LayoutDirection { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Sets the layout direction for the iOS UIView.
-/// </Summary>
-public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection)
+    /// <Summary>
+    /// Sets the layout direction for the iOS UIView.
+    /// </Summary>
+    public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection)
 async
 {
 
-    if (layoutDirection == _LayoutDirection) return;
+if (layoutDirection==_LayoutDirection)return ;
 
-    _LayoutDirection = layoutDirection;
+_LayoutDirection=layoutDirection;
 }
 
 

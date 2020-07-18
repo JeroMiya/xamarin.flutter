@@ -449,405 +449,410 @@ namespace FlutterSDK.Material.Inputborder
         #region constructors
         public InputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
-    
-}
-    #endregion
+        {
+            this.BorderSide = borderSide;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Material.Inputborder.InputBorder None { get; set; }
-    public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
-    public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Material.Inputborder.InputBorder None { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
+        public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Creates a copy of this input border with the specified `borderSide`.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Inputborder.InputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide))
+        /// <Summary>
+        /// Creates a copy of this input border with the specified `borderSide`.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Inputborder.InputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide))
+        {
+            return default(InputBorder);
+        }
+
+
+        /// <Summary>
+        /// Paint this input border on [canvas].
+        ///
+        /// The [rect] parameter bounds the [InputDecorator]'s container.
+        ///
+        /// The additional `gap` parameters reflect the state of the [InputDecorator]'s
+        /// floating label. When an input decorator gains the focus, its label
+        /// animates upwards, to make room for the input child. The [gapStart] and
+        /// [gapExtent] parameters define a floating label width interval, and
+        /// [gapPercentage] defines the animation's progress (0.0 to 1.0).
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
+        {
+        }
+
+        #endregion
+    }
+
+
+    public class _NoInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
-        return default(InputBorder);
+        #region constructors
+        public _NoInputBorder()
+        : base(borderSide: BordersDefaultClass.BorderSide.None)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Inputborder._NoInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide)) => new _NoInputBorder();
+
+
+
+        public new FlutterSDK.Material.Inputborder._NoInputBorder Scale(double t) => new _NoInputBorder();
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRect(rect);
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRect(rect);
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
+        {
+        }
+
+
+
+        #endregion
     }
 
 
     /// <Summary>
-    /// Paint this input border on [canvas].
+    /// Draws a horizontal line at the bottom of an [InputDecorator]'s container and
+    /// defines the container's shape.
     ///
-    /// The [rect] parameter bounds the [InputDecorator]'s container.
+    /// The input decorator's "container" is the optionally filled area above the
+    /// decorator's helper, error, and counter.
     ///
-    /// The additional `gap` parameters reflect the state of the [InputDecorator]'s
-    /// floating label. When an input decorator gains the focus, its label
-    /// animates upwards, to make room for the input child. The [gapStart] and
-    /// [gapExtent] parameters define a floating label width interval, and
-    /// [gapPercentage] defines the animation's progress (0.0 to 1.0).
+    /// See also:
+    ///
+    ///  * [OutlineInputBorder], an [InputDecorator] border which draws a
+    ///    rounded rectangle around the input decorator's container.
+    ///  * [InputDecoration], which is used to configure an [InputDecorator].
     /// </Summary>
-    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
+    public class UnderlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
+        #region constructors
+        public UnderlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
+        : base(borderSide: borderSide)
+        {
+            this.BorderRadius = borderRadius;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Inputborder.UnderlineInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
+        {
+            return new UnderlineInputBorder(borderSide: borderSide ?? this.BorderSide, borderRadius: borderRadius ?? this.BorderRadius);
+        }
+
+
+
+
+        public new FlutterSDK.Material.Inputborder.UnderlineInputBorder Scale(double t)
+        {
+            return new UnderlineInputBorder(borderSide: BorderSide.Scale(t));
+        }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRect(Rect.FromLTWH(rect.Left, rect.Top, rect.Width, Math.Dart:mathDefaultClass.Max(0.0, rect.Height - BorderSide.Width)));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+            if (a is UnderlineInputBorder)
+            {
+                return new UnderlineInputBorder(borderSide: BordersDefaultClass.BorderSide.Lerp(((UnderlineInputBorder)a).BorderSide, BorderSide, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(((UnderlineInputBorder)a).BorderRadius, BorderRadius, t));
+            }
+
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+            if (b is UnderlineInputBorder)
+            {
+                return new UnderlineInputBorder(borderSide: BordersDefaultClass.BorderSide.Lerp(BorderSide, ((UnderlineInputBorder)b).BorderSide, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, ((UnderlineInputBorder)b).BorderRadius, t));
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        /// <Summary>
+        /// Draw a horizontal line at the bottom of [rect].
+        ///
+        /// The [borderSide] defines the line's color and weight. The `textDirection`
+        /// `gap` and `textDirection` parameters are ignored.
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
+        {
+            if (BorderRadius.BottomLeft != Dart:uiDefaultClass.Radius.Zero || BorderRadius.BottomRight != Dart:uiDefaultClass.Radius.Zero)canvas.ClipPath(GetOuterPath(rect, textDirection: textDirection));
+            canvas.DrawLine(rect.BottomLeft, rect.BottomRight, BorderSide.ToPaint());
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is InputBorder && other.BorderSide == BorderSide;
+        }
+
+
+
+        #endregion
     }
 
-    #endregion
-}
 
-
-public class _NoInputBorder : FlutterSDK.Material.Inputborder.InputBorder
-{
-    #region constructors
-    public _NoInputBorder()
-    : base(borderSide: BordersDefaultClass.BorderSide.None)
-
-}
-#endregion
-
-#region fields
-public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Inputborder._NoInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide)) => new _NoInputBorder();
-
-
-
-public new FlutterSDK.Material.Inputborder._NoInputBorder Scale(double t) => new _NoInputBorder();
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRect(rect);
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRect(rect);
-}
-
-
-
-
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
-{
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Draws a horizontal line at the bottom of an [InputDecorator]'s container and
-/// defines the container's shape.
-///
-/// The input decorator's "container" is the optionally filled area above the
-/// decorator's helper, error, and counter.
-///
-/// See also:
-///
-///  * [OutlineInputBorder], an [InputDecorator] border which draws a
-///    rounded rectangle around the input decorator's container.
-///  * [InputDecoration], which is used to configure an [InputDecorator].
-/// </Summary>
-public class UnderlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
-{
-    #region constructors
-    public UnderlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
-    : base(borderSide: borderSide)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Inputborder.UnderlineInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
-{
-    return new UnderlineInputBorder(borderSide: borderSide ?? this.BorderSide, borderRadius: borderRadius ?? this.BorderRadius);
-}
-
-
-
-
-public new FlutterSDK.Material.Inputborder.UnderlineInputBorder Scale(double t)
-{
-    return new UnderlineInputBorder(borderSide: BorderSide.Scale(t));
-}
-
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRect(Rect.FromLTWH(rect.Left, rect.Top, rect.Width, Math.Dart:mathDefaultClass.Max(0.0, rect.Height - BorderSide.Width)));
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect));
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-    if (a is UnderlineInputBorder)
+    /// <Summary>
+    /// Draws a rounded rectangle around an [InputDecorator]'s container.
+    ///
+    /// When the input decorator's label is floating, for example because its
+    /// input child has the focus, the label appears in a gap in the border outline.
+    ///
+    /// The input decorator's "container" is the optionally filled area above the
+    /// decorator's helper, error, and counter.
+    ///
+    /// See also:
+    ///
+    ///  * [UnderlineInputBorder], the default [InputDecorator] border which
+    ///    draws a horizontal line at the bottom of the input decorator's container.
+    ///  * [InputDecoration], which is used to configure an [InputDecorator].
+    /// </Summary>
+    public class OutlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
-        return new UnderlineInputBorder(borderSide: BordersDefaultClass.BorderSide.Lerp(((UnderlineInputBorder)a).BorderSide, BorderSide, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(((UnderlineInputBorder)a).BorderRadius, BorderRadius, t));
+        #region constructors
+        public OutlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double gapPadding = 4.0)
+        : base(borderSide: borderSide)
+        {
+            this.BorderRadius = borderRadius;
+            this.GapPadding = gapPadding;
+        }
+        #endregion
+
+        #region fields
+        public virtual double GapPadding { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private bool _CornersAreCircular(FlutterSDK.Painting.Borderradius.BorderRadius borderRadius)
+        {
+            return borderRadius.TopLeft.x == borderRadius.TopLeft.y && borderRadius.BottomLeft.x == borderRadius.BottomLeft.y && borderRadius.TopRight.x == borderRadius.TopRight.y && borderRadius.BottomRight.x == borderRadius.BottomRight.y;
+        }
+
+
+
+
+        public new FlutterSDK.Material.Inputborder.OutlineInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double gapPadding = default(double))
+        {
+            return new OutlineInputBorder(borderSide: borderSide ?? this.BorderSide, borderRadius: borderRadius ?? this.BorderRadius, gapPadding: gapPadding == default(double) ? this.gapPadding : gapPadding);
+        }
+
+
+
+
+        public new FlutterSDK.Material.Inputborder.OutlineInputBorder Scale(double t)
+        {
+            return new OutlineInputBorder(borderSide: BorderSide.Scale(t), borderRadius: BorderRadius * t, gapPadding: GapPadding * t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+            if (a is OutlineInputBorder)
+            {
+                OutlineInputBorder outline = ((OutlineInputBorder)a);
+                return new OutlineInputBorder(borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(outline.BorderRadius, BorderRadius, t), borderSide: BordersDefaultClass.BorderSide.Lerp(outline.BorderSide, BorderSide, t), gapPadding: outline.GapPadding);
+            }
+
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+            if (b is OutlineInputBorder)
+            {
+                OutlineInputBorder outline = ((OutlineInputBorder)b);
+                return new OutlineInputBorder(borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, outline.BorderRadius, t), borderSide: BordersDefaultClass.BorderSide.Lerp(BorderSide, outline.BorderSide, t), gapPadding: outline.GapPadding);
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(BorderSide.Width));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect));
+        }
+
+
+
+
+        private Path _GapBorderPath(Canvas canvas, FlutterBinding.UI.RRect center, double start, double extent)
+        {
+            RRect scaledRRect = center.ScaleRadii();
+            Rect tlCorner = Rect.FromLTWH(scaledRRect.Left, scaledRRect.Top, scaledRRect.TlRadiusX * 2.0, scaledRRect.TlRadiusY * 2.0);
+            Rect trCorner = Rect.FromLTWH(scaledRRect.Right - scaledRRect.TrRadiusX * 2.0, scaledRRect.Top, scaledRRect.TrRadiusX * 2.0, scaledRRect.TrRadiusY * 2.0);
+            Rect brCorner = Rect.FromLTWH(scaledRRect.Right - scaledRRect.BrRadiusX * 2.0, scaledRRect.Bottom - scaledRRect.BrRadiusY * 2.0, scaledRRect.BrRadiusX * 2.0, scaledRRect.BrRadiusY * 2.0);
+            Rect blCorner = Rect.FromLTWH(scaledRRect.Left, scaledRRect.Bottom - scaledRRect.BlRadiusY * 2.0, scaledRRect.BlRadiusX * 2.0, scaledRRect.BlRadiusX * 2.0);
+            double cornerArcSweep = Math.Dart:mathDefaultClass.Pi / 2.0;
+            double tlCornerArcSweep = start < scaledRRect.TlRadiusX ? Math.Dart : mathDefaultClass.Asin((start / scaledRRect.TlRadiusX).Clamp(-1.0, 1.0)):Math.Dart:mathDefaultClass.Pi / 2.0;
+            Path path = new Path();
+            new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi, tlCornerArcSweep);
+            new Path().MoveTo(scaledRRect.Left + scaledRRect.TlRadiusX, scaledRRect.Top);
+            if (start > scaledRRect.TlRadiusX) path.LineTo(scaledRRect.Left + start, scaledRRect.Top);
+            double trCornerArcStart = (3 * Math.Dart:mathDefaultClass.Pi)/ 2.0;
+            double trCornerArcSweep = cornerArcSweep;
+            if (start + extent < scaledRRect.Width - scaledRRect.TrRadiusX)
+            {
+                ;
+                path.RelativeMoveTo(extent, 0.0);
+                path.LineTo(scaledRRect.Right - scaledRRect.TrRadiusX, scaledRRect.Top);
+                path.AddArc(trCorner, trCornerArcStart, trCornerArcSweep);
+            }
+            else if (start + extent < scaledRRect.Width)
+            {
+                double dx = scaledRRect.Width - (start + extent);
+                double sweep = Math.Dart:mathDefaultClass.Acos(dx / scaledRRect.TrRadiusX);
+                path.AddArc(trCorner, trCornerArcStart + sweep, trCornerArcSweep - sweep);
+            }
+
+            return;
+            path.MoveTo(scaledRRect.Right, scaledRRect.Top + scaledRRect.TrRadiusY);
+            path.LineTo(scaledRRect.Right, scaledRRect.Bottom - scaledRRect.BrRadiusY);
+            path.AddArc(brCorner, 0.0, cornerArcSweep);
+            path.LineTo(scaledRRect.Left + scaledRRect.BlRadiusX, scaledRRect.Bottom);
+            path.AddArc(blCorner, Math.Dart:mathDefaultClass.Pi / 2.0, cornerArcSweep);
+            path.LineTo(scaledRRect.Left, scaledRRect.Top + scaledRRect.TlRadiusY);
+        }
+
+
+
+
+        /// <Summary>
+        /// Draw a rounded rectangle around [rect] using [borderRadius].
+        ///
+        /// The [borderSide] defines the line's color and weight.
+        ///
+        /// The top side of the rounded rectangle may be interrupted by a single gap
+        /// if [gapExtent] is non-null. In that case the gap begins at
+        /// `gapStart - gapPadding` (assuming that the [textDirection] is [TextDirection.ltr]).
+        /// The gap's width is `(gapPadding + gapExtent + gapPadding) * gapPercentage`.
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
+        {
+
+
+
+            Paint paint = BorderSide.ToPaint();
+            RRect outer = BorderRadius.ToRRect(rect);
+            RRect center = outer.Deflate(BorderSide.Width / 2.0);
+            if (gapStart == null || gapExtent <= 0.0 || gapPercentage == 0.0)
+            {
+                canvas.DrawRRect(center, paint);
+            }
+            else
+            {
+                double extent = Dart:uiDefaultClass.LerpDouble(0.0, gapExtent + GapPadding * 2.0, gapPercentage);
+                switch (textDirection) { case TextDirection.Rtl: Path path = _GapBorderPath(canvas, center, Math.Dart:mathDefaultClass.Max(0.0, gapStart + GapPadding - extent), extent); canvas.DrawPath(path, paint); break; case TextDirection.Ltr: Path path = _GapBorderPath(canvas, center, Math.Dart:mathDefaultClass.Max(0.0, gapStart - GapPadding), extent); canvas.DrawPath(path, paint); break; }
+            }
+
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is OutlineInputBorder && other.BorderSide == BorderSide && other.BorderRadius == BorderRadius && other.GapPadding == GapPadding;
+        }
+
+
+
+        #endregion
     }
-
-    return base.LerpFrom(a, t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-    if (b is UnderlineInputBorder)
-    {
-        return new UnderlineInputBorder(borderSide: BordersDefaultClass.BorderSide.Lerp(BorderSide, ((UnderlineInputBorder)b).BorderSide, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, ((UnderlineInputBorder)b).BorderRadius, t));
-    }
-
-    return base.LerpTo(b, t);
-}
-
-
-
-
-/// <Summary>
-/// Draw a horizontal line at the bottom of [rect].
-///
-/// The [borderSide] defines the line's color and weight. The `textDirection`
-/// `gap` and `textDirection` parameters are ignored.
-/// </Summary>
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
-{
-    if (BorderRadius.BottomLeft != Dart:uiDefaultClass.Radius.Zero || BorderRadius.BottomRight != Dart:uiDefaultClass.Radius.Zero)canvas.ClipPath(GetOuterPath(rect, textDirection: textDirection));
-    canvas.DrawLine(rect.BottomLeft, rect.BottomRight, BorderSide.ToPaint());
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (Dart:coreDefaultClass.Identical(this, other))return true;
-    if (other.GetType() != GetType()) return false;
-    return other is InputBorder && other.BorderSide == BorderSide;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Draws a rounded rectangle around an [InputDecorator]'s container.
-///
-/// When the input decorator's label is floating, for example because its
-/// input child has the focus, the label appears in a gap in the border outline.
-///
-/// The input decorator's "container" is the optionally filled area above the
-/// decorator's helper, error, and counter.
-///
-/// See also:
-///
-///  * [UnderlineInputBorder], the default [InputDecorator] border which
-///    draws a horizontal line at the bottom of the input decorator's container.
-///  * [InputDecoration], which is used to configure an [InputDecorator].
-/// </Summary>
-public class OutlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
-{
-    #region constructors
-    public OutlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double gapPadding = 4.0)
-    : base(borderSide: borderSide)
-
-}
-#endregion
-
-#region fields
-public virtual double GapPadding { get; set; }
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private bool _CornersAreCircular(FlutterSDK.Painting.Borderradius.BorderRadius borderRadius)
-{
-    return borderRadius.TopLeft.x == borderRadius.TopLeft.y && borderRadius.BottomLeft.x == borderRadius.BottomLeft.y && borderRadius.TopRight.x == borderRadius.TopRight.y && borderRadius.BottomRight.x == borderRadius.BottomRight.y;
-}
-
-
-
-
-public new FlutterSDK.Material.Inputborder.OutlineInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double gapPadding = default(double))
-{
-    return new OutlineInputBorder(borderSide: borderSide ?? this.BorderSide, borderRadius: borderRadius ?? this.BorderRadius, gapPadding: gapPadding == default(double) ? this.gapPadding : gapPadding);
-}
-
-
-
-
-public new FlutterSDK.Material.Inputborder.OutlineInputBorder Scale(double t)
-{
-    return new OutlineInputBorder(borderSide: BorderSide.Scale(t), borderRadius: BorderRadius * t, gapPadding: GapPadding * t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-    if (a is OutlineInputBorder)
-    {
-        OutlineInputBorder outline = ((OutlineInputBorder)a);
-        return new OutlineInputBorder(borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(outline.BorderRadius, BorderRadius, t), borderSide: BordersDefaultClass.BorderSide.Lerp(outline.BorderSide, BorderSide, t), gapPadding: outline.GapPadding);
-    }
-
-    return base.LerpFrom(a, t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-    if (b is OutlineInputBorder)
-    {
-        OutlineInputBorder outline = ((OutlineInputBorder)b);
-        return new OutlineInputBorder(borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, outline.BorderRadius, t), borderSide: BordersDefaultClass.BorderSide.Lerp(BorderSide, outline.BorderSide, t), gapPadding: outline.GapPadding);
-    }
-
-    return base.LerpTo(b, t);
-}
-
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(BorderSide.Width));
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect));
-}
-
-
-
-
-private Path _GapBorderPath(Canvas canvas, FlutterBinding.UI.RRect center, double start, double extent)
-{
-    RRect scaledRRect = center.ScaleRadii();
-    Rect tlCorner = Rect.FromLTWH(scaledRRect.Left, scaledRRect.Top, scaledRRect.TlRadiusX * 2.0, scaledRRect.TlRadiusY * 2.0);
-    Rect trCorner = Rect.FromLTWH(scaledRRect.Right - scaledRRect.TrRadiusX * 2.0, scaledRRect.Top, scaledRRect.TrRadiusX * 2.0, scaledRRect.TrRadiusY * 2.0);
-    Rect brCorner = Rect.FromLTWH(scaledRRect.Right - scaledRRect.BrRadiusX * 2.0, scaledRRect.Bottom - scaledRRect.BrRadiusY * 2.0, scaledRRect.BrRadiusX * 2.0, scaledRRect.BrRadiusY * 2.0);
-    Rect blCorner = Rect.FromLTWH(scaledRRect.Left, scaledRRect.Bottom - scaledRRect.BlRadiusY * 2.0, scaledRRect.BlRadiusX * 2.0, scaledRRect.BlRadiusX * 2.0);
-    double cornerArcSweep = Math.Dart:mathDefaultClass.Pi / 2.0;
-double tlCornerArcSweep = start < scaledRRect.TlRadiusX ? Math.Dart : mathDefaultClass.Asin((start / scaledRRect.TlRadiusX).Clamp(-1.0, 1.0)):Math.Dart:mathDefaultClass.Pi / 2.0;
-Path path = new Path();
-new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi, tlCornerArcSweep);
-new Path().MoveTo(scaledRRect.Left + scaledRRect.TlRadiusX, scaledRRect.Top);
-if (start > scaledRRect.TlRadiusX) path.LineTo(scaledRRect.Left + start, scaledRRect.Top);
-double trCornerArcStart = (3 * Math.Dart:mathDefaultClass.Pi)/ 2.0;
-double trCornerArcSweep = cornerArcSweep;
-if (start + extent < scaledRRect.Width - scaledRRect.TrRadiusX)
-{
-    ;
-    path.RelativeMoveTo(extent, 0.0);
-    path.LineTo(scaledRRect.Right - scaledRRect.TrRadiusX, scaledRRect.Top);
-    path.AddArc(trCorner, trCornerArcStart, trCornerArcSweep);
-}
-else if (start + extent < scaledRRect.Width)
-{
-    double dx = scaledRRect.Width - (start + extent);
-    double sweep = Math.Dart:mathDefaultClass.Acos(dx / scaledRRect.TrRadiusX);
-    path.AddArc(trCorner, trCornerArcStart + sweep, trCornerArcSweep - sweep);
-}
-
-return;
-path.MoveTo(scaledRRect.Right, scaledRRect.Top + scaledRRect.TrRadiusY);
-path.LineTo(scaledRRect.Right, scaledRRect.Bottom - scaledRRect.BrRadiusY);
-path.AddArc(brCorner, 0.0, cornerArcSweep);
-path.LineTo(scaledRRect.Left + scaledRRect.BlRadiusX, scaledRRect.Bottom);
-path.AddArc(blCorner, Math.Dart:mathDefaultClass.Pi / 2.0, cornerArcSweep);
-path.LineTo(scaledRRect.Left, scaledRRect.Top + scaledRRect.TlRadiusY);
-}
-
-
-
-
-/// <Summary>
-/// Draw a rounded rectangle around [rect] using [borderRadius].
-///
-/// The [borderSide] defines the line's color and weight.
-///
-/// The top side of the rounded rectangle may be interrupted by a single gap
-/// if [gapExtent] is non-null. In that case the gap begins at
-/// `gapStart - gapPadding` (assuming that the [textDirection] is [TextDirection.ltr]).
-/// The gap's width is `(gapPadding + gapExtent + gapPadding) * gapPercentage`.
-/// </Summary>
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
-{
-
-
-
-    Paint paint = BorderSide.ToPaint();
-    RRect outer = BorderRadius.ToRRect(rect);
-    RRect center = outer.Deflate(BorderSide.Width / 2.0);
-    if (gapStart == null || gapExtent <= 0.0 || gapPercentage == 0.0)
-    {
-        canvas.DrawRRect(center, paint);
-    }
-    else
-    {
-        double extent = Dart:uiDefaultClass.LerpDouble(0.0, gapExtent + GapPadding * 2.0, gapPercentage);
-        switch (textDirection) { case TextDirection.Rtl: Path path = _GapBorderPath(canvas, center, Math.Dart:mathDefaultClass.Max(0.0, gapStart + GapPadding - extent), extent); canvas.DrawPath(path, paint); break; case TextDirection.Ltr: Path path = _GapBorderPath(canvas, center, Math.Dart:mathDefaultClass.Max(0.0, gapStart - GapPadding), extent); canvas.DrawPath(path, paint); break; }
-    }
-
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (Dart:coreDefaultClass.Identical(this, other))return true;
-    if (other.GetType() != GetType()) return false;
-    return other is OutlineInputBorder && other.BorderSide == BorderSide && other.BorderRadius == BorderRadius && other.GapPadding == GapPadding;
-}
-
-
-
-#endregion
-}
 
 }

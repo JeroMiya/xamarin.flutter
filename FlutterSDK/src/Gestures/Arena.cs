@@ -656,49 +656,52 @@ namespace FlutterSDK.Gestures.Arena
     {
         #region constructors
         internal GestureArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaManager _arena, int _pointer, FlutterSDK.Gestures.Arena.GestureArenaMember _member)
-    
-}
-    #endregion
+        {
+            this._Arena = _arena;
+            this._Pointer = _pointer;
+            this._Member = _member;
+        }
+        #endregion
 
-    #region fields
-    internal virtual FlutterSDK.Gestures.Arena.GestureArenaManager _Arena { get; set; }
-    internal virtual int _Pointer { get; set; }
-    internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
-    #endregion
+        #region fields
+        internal virtual FlutterSDK.Gestures.Arena.GestureArenaManager _Arena { get; set; }
+        internal virtual int _Pointer { get; set; }
+        internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Call this member to claim victory (with accepted) or admit defeat (with rejected).
-    ///
-    /// It's fine to attempt to resolve a gesture recognizer for an arena that is
-    /// already resolved.
-    /// </Summary>
-    public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
-    {
-        _Arena._Resolve(_Pointer, _Member, disposition);
+        /// <Summary>
+        /// Call this member to claim victory (with accepted) or admit defeat (with rejected).
+        ///
+        /// It's fine to attempt to resolve a gesture recognizer for an arena that is
+        /// already resolved.
+        /// </Summary>
+        public virtual void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+        {
+            _Arena._Resolve(_Pointer, _Member, disposition);
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Whether the gesture was accepted or rejected.
-/// </Summary>
-public enum GestureDisposition
-{
-
     /// <Summary>
-    /// This gesture was accepted as the interpretation of the user's input.
+    /// Whether the gesture was accepted or rejected.
     /// </Summary>
-    Accepted,
-    /// <Summary>
-    /// This gesture was rejected as the interpretation of the user's input.
-    /// </Summary>
-    Rejected,
-}
+    public enum GestureDisposition
+    {
+
+        /// <Summary>
+        /// This gesture was accepted as the interpretation of the user's input.
+        /// </Summary>
+        Accepted,
+        /// <Summary>
+        /// This gesture was rejected as the interpretation of the user's input.
+        /// </Summary>
+        Rejected,
+    }
 
 }

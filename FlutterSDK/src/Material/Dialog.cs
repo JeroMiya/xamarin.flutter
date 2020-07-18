@@ -413,350 +413,387 @@ namespace FlutterSDK.Material.Dialog
         #region constructors
         public Dialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), TimeSpan insetAnimationDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.InsetAnimationDuration = insetAnimationDuration;
+            this.InsetAnimationCurve = insetAnimationCurve;
+            this.InsetPadding = insetPadding;
+            this.ClipBehavior = clipBehavior;
+            this.Shape = shape;
+            this.Child = child;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual TimeSpan InsetAnimationDuration { get; set; }
-    public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
-    public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    internal virtual FlutterSDK.Painting.Roundedrectangleborder.RoundedRectangleBorder _DefaultDialogShape { get; set; }
-    internal virtual double _DefaultElevation { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual TimeSpan InsetAnimationDuration { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        internal virtual FlutterSDK.Painting.Roundedrectangleborder.RoundedRectangleBorder _DefaultDialogShape { get; set; }
+        internal virtual double _DefaultElevation { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        DialogTheme dialogTheme = DialogthemeDefaultClass.DialogTheme.Of(context);
-        EdgeInsets effectivePadding = MediaqueryDefaultClass.MediaQuery.Of(context).ViewInsets + (InsetPadding ?? EdgeInsets.All(0.0));
-        return new AnimatedPadding(padding: effectivePadding, duration: InsetAnimationDuration, curve: InsetAnimationCurve, child: MediaQuery.RemoveViewInsets(removeLeft: true, removeTop: true, removeRight: true, removeBottom: true, context: context, child: new Center(child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: 280.0), child: new Material(color: BackgroundColor ?? dialogTheme.BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).DialogBackgroundColor, elevation: elevation == default(double) ? dialogTheme.elevation : elevation ?? _DefaultElevation, shape: Shape ?? dialogTheme.Shape ?? _DefaultDialogShape, type: MaterialType.Card, clipBehavior: ClipBehavior, child: Child)))));
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            DialogTheme dialogTheme = DialogthemeDefaultClass.DialogTheme.Of(context);
+            EdgeInsets effectivePadding = MediaqueryDefaultClass.MediaQuery.Of(context).ViewInsets + (InsetPadding ?? EdgeInsets.All(0.0));
+            return new AnimatedPadding(padding: effectivePadding, duration: InsetAnimationDuration, curve: InsetAnimationCurve, child: MediaQuery.RemoveViewInsets(removeLeft: true, removeTop: true, removeRight: true, removeBottom: true, context: context, child: new Center(child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: 280.0), child: new Material(color: BackgroundColor ?? dialogTheme.BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).DialogBackgroundColor, elevation: elevation == default(double) ? dialogTheme.elevation : elevation ?? _DefaultElevation, shape: Shape ?? dialogTheme.Shape ?? _DefaultDialogShape, type: MaterialType.Card, clipBehavior: ClipBehavior, child: Child)))));
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A material design alert dialog.
-///
-/// An alert dialog informs the user about situations that require
-/// acknowledgement. An alert dialog has an optional title and an optional list
-/// of actions. The title is displayed above the content and the actions are
-/// displayed below the content.
-///
-/// {@youtube 560 315 https://www.youtube.com/watch?v=75CsnyRXf5I}
-///
-/// If the content is too large to fit on the screen vertically, the dialog will
-/// display the title and the actions and let the content overflow, which is
-/// rarely desired. Consider using a scrolling widget for [content], such as
-/// [SingleChildScrollView], to avoid overflow. (However, be aware that since
-/// [AlertDialog] tries to size itself using the intrinsic dimensions of its
-/// children, widgets such as [ListView], [GridView], and [CustomScrollView],
-/// which use lazy viewports, will not work. If this is a problem, consider
-/// using [Dialog] directly.)
-///
-/// For dialogs that offer the user a choice between several options, consider
-/// using a [SimpleDialog].
-///
-/// Typically passed as the child widget to [showDialog], which displays the
-/// dialog.
-///
-/// {@animation 350 622 https://flutter.github.io/assets-for-api-docs/assets/material/alert_dialog.mp4}
-///
-/// {@tool snippet}
-///
-/// This snippet shows a method in a [State] which, when called, displays a dialog box
-/// and returns a [Future] that completes when the dialog is dismissed.
-///
-/// ```dart
-/// Future<void> _showMyDialog() async {
-///   return showDialog<void>(
-///     context: context,
-///     barrierDismissible: false, // user must tap button!
-///     builder: (BuildContext context) {
-///       return AlertDialog(
-///         title: Text('AlertDialog Title'),
-///         content: SingleChildScrollView(
-///           child: ListBody(
-///             children: <Widget>[
-///               Text('This is a demo alert dialog.'),
-///               Text('Would you like to approve of this message?'),
-///             ],
-///           ),
-///         ),
-///         actions: <Widget>[
-///           FlatButton(
-///             child: Text('Approve'),
-///             onPressed: () {
-///               Navigator.of(context).pop();
-///             },
-///           ),
-///         ],
-///       );
-///     },
-///   );
-/// }
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [SimpleDialog], which handles the scrolling of the contents but has no [actions].
-///  * [Dialog], on which [AlertDialog] and [SimpleDialog] are based.
-///  * [CupertinoAlertDialog], an iOS-styled alert dialog.
-///  * [showDialog], which actually displays the dialog and returns its result.
-///  * <https://material.io/design/components/dialogs.html#alert-dialog>
-/// </Summary>
-public class AlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public AlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry actionsPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Basictypes.VerticalDirection actionsOverflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double actionsOverflowButtonSpacing = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool scrollable = false)
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ActionsPadding { get; set; }
-public virtual FlutterSDK.Painting.Basictypes.VerticalDirection ActionsOverflowDirection { get; set; }
-public virtual double ActionsOverflowButtonSpacing { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual double Elevation { get; set; }
-public virtual string SemanticLabel { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-public virtual bool Scrollable { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-    DialogTheme dialogTheme = DialogthemeDefaultClass.DialogTheme.Of(context);
-    string label = SemanticLabel;
-    if (Title == null)
+    /// <Summary>
+    /// A material design alert dialog.
+    ///
+    /// An alert dialog informs the user about situations that require
+    /// acknowledgement. An alert dialog has an optional title and an optional list
+    /// of actions. The title is displayed above the content and the actions are
+    /// displayed below the content.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=75CsnyRXf5I}
+    ///
+    /// If the content is too large to fit on the screen vertically, the dialog will
+    /// display the title and the actions and let the content overflow, which is
+    /// rarely desired. Consider using a scrolling widget for [content], such as
+    /// [SingleChildScrollView], to avoid overflow. (However, be aware that since
+    /// [AlertDialog] tries to size itself using the intrinsic dimensions of its
+    /// children, widgets such as [ListView], [GridView], and [CustomScrollView],
+    /// which use lazy viewports, will not work. If this is a problem, consider
+    /// using [Dialog] directly.)
+    ///
+    /// For dialogs that offer the user a choice between several options, consider
+    /// using a [SimpleDialog].
+    ///
+    /// Typically passed as the child widget to [showDialog], which displays the
+    /// dialog.
+    ///
+    /// {@animation 350 622 https://flutter.github.io/assets-for-api-docs/assets/material/alert_dialog.mp4}
+    ///
+    /// {@tool snippet}
+    ///
+    /// This snippet shows a method in a [State] which, when called, displays a dialog box
+    /// and returns a [Future] that completes when the dialog is dismissed.
+    ///
+    /// ```dart
+    /// Future<void> _showMyDialog() async {
+    ///   return showDialog<void>(
+    ///     context: context,
+    ///     barrierDismissible: false, // user must tap button!
+    ///     builder: (BuildContext context) {
+    ///       return AlertDialog(
+    ///         title: Text('AlertDialog Title'),
+    ///         content: SingleChildScrollView(
+    ///           child: ListBody(
+    ///             children: <Widget>[
+    ///               Text('This is a demo alert dialog.'),
+    ///               Text('Would you like to approve of this message?'),
+    ///             ],
+    ///           ),
+    ///         ),
+    ///         actions: <Widget>[
+    ///           FlatButton(
+    ///             child: Text('Approve'),
+    ///             onPressed: () {
+    ///               Navigator.of(context).pop();
+    ///             },
+    ///           ),
+    ///         ],
+    ///       );
+    ///     },
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [SimpleDialog], which handles the scrolling of the contents but has no [actions].
+    ///  * [Dialog], on which [AlertDialog] and [SimpleDialog] are based.
+    ///  * [CupertinoAlertDialog], an iOS-styled alert dialog.
+    ///  * [showDialog], which actually displays the dialog and returns its result.
+    ///  * <https://material.io/design/components/dialogs.html#alert-dialog>
+    /// </Summary>
+    public class AlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        switch (theme.Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: label = SemanticLabel; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: label = SemanticLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.AlertDialogLabel; }
+        #region constructors
+        public AlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry actionsPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Basictypes.VerticalDirection actionsOverflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double actionsOverflowButtonSpacing = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool scrollable = false)
+        : base(key: key)
+        {
+            this.Title = title;
+            this.TitlePadding = titlePadding;
+            this.TitleTextStyle = titleTextStyle;
+            this.Content = content;
+            this.ContentPadding = contentPadding;
+            this.ContentTextStyle = contentTextStyle;
+            this.Actions = actions;
+            this.ActionsPadding = actionsPadding;
+            this.ActionsOverflowDirection = actionsOverflowDirection;
+            this.ActionsOverflowButtonSpacing = actionsOverflowButtonSpacing;
+            this.ButtonPadding = buttonPadding;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.SemanticLabel = semanticLabel;
+            this.InsetPadding = insetPadding;
+            this.ClipBehavior = clipBehavior;
+            this.Shape = shape;
+            this.Scrollable = scrollable;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ActionsPadding { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection ActionsOverflowDirection { get; set; }
+        public virtual double ActionsOverflowButtonSpacing { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual string SemanticLabel { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets InsetPadding { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool Scrollable { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            DialogTheme dialogTheme = DialogthemeDefaultClass.DialogTheme.Of(context);
+            string label = SemanticLabel;
+            if (Title == null)
+            {
+                switch (theme.Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: label = SemanticLabel; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: label = SemanticLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.AlertDialogLabel; }
+            }
+
+            Widget titleWidget = default(Widget);
+            Widget contentWidget = default(Widget);
+            Widget actionsWidget = default(Widget);
+            if (Title != null) titleWidget = new Padding(padding: TitlePadding ?? EdgeInsets.FromLTRB(24.0, 24.0, 24.0, Content == null ? 20.0 : 0.0), child: new DefaultTextStyle(style: TitleTextStyle ?? dialogTheme.TitleTextStyle ?? theme.TextTheme.Headline6, child: new Semantics(child: Title, namesRoute: true, container: true)));
+            if (Content != null) contentWidget = new Padding(padding: ContentPadding, child: new DefaultTextStyle(style: ContentTextStyle ?? dialogTheme.ContentTextStyle ?? theme.TextTheme.Subtitle1, child: Content));
+            if (Actions != null) actionsWidget = new Padding(padding: ActionsPadding, child: new ButtonBar(buttonPadding: ButtonPadding, overflowDirection: ActionsOverflowDirection, overflowButtonSpacing: ActionsOverflowButtonSpacing, children: Actions));
+            List<Widget> columnChildren = default(List<Widget>);
+            if (Scrollable)
+            {
+                columnChildren = new List<Widget>() { };
+            }
+            else
+            {
+                columnChildren = new List<Widget>() { };
+            }
+
+            Widget dialogChild = new IntrinsicWidth(child: new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: columnChildren));
+            if (label != null) dialogChild = new Semantics(namesRoute: true, label: label, child: dialogChild);
+            return new Dialog(backgroundColor: BackgroundColor, elevation: Elevation, insetPadding: InsetPadding, clipBehavior: ClipBehavior, shape: Shape, child: dialogChild);
+        }
+
+
+
+        #endregion
     }
 
-    Widget titleWidget = default(Widget);
-    Widget contentWidget = default(Widget);
-    Widget actionsWidget = default(Widget);
-    if (Title != null) titleWidget = new Padding(padding: TitlePadding ?? EdgeInsets.FromLTRB(24.0, 24.0, 24.0, Content == null ? 20.0 : 0.0), child: new DefaultTextStyle(style: TitleTextStyle ?? dialogTheme.TitleTextStyle ?? theme.TextTheme.Headline6, child: new Semantics(child: Title, namesRoute: true, container: true)));
-    if (Content != null) contentWidget = new Padding(padding: ContentPadding, child: new DefaultTextStyle(style: ContentTextStyle ?? dialogTheme.ContentTextStyle ?? theme.TextTheme.Subtitle1, child: Content));
-    if (Actions != null) actionsWidget = new Padding(padding: ActionsPadding, child: new ButtonBar(buttonPadding: ButtonPadding, overflowDirection: ActionsOverflowDirection, overflowButtonSpacing: ActionsOverflowButtonSpacing, children: Actions));
-    List<Widget> columnChildren = default(List<Widget>);
-    if (Scrollable)
+
+    /// <Summary>
+    /// An option used in a [SimpleDialog].
+    ///
+    /// A simple dialog offers the user a choice between several options. This
+    /// widget is commonly used to represent each of the options. If the user
+    /// selects this option, the widget will call the [onPressed] callback, which
+    /// typically uses [Navigator.pop] to close the dialog.
+    ///
+    /// The padding on a [SimpleDialogOption] is configured to combine with the
+    /// default [SimpleDialog.contentPadding] so that each option ends up 8 pixels
+    /// from the other vertically, with 20 pixels of spacing between the dialog's
+    /// title and the first option, and 24 pixels of spacing between the last option
+    /// and the bottom of the dialog.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// SimpleDialogOption(
+    ///   onPressed: () { Navigator.pop(context, Department.treasury); },
+    ///   child: const Text('Treasury department'),
+    /// )
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [SimpleDialog], for a dialog in which to use this widget.
+    ///  * [showDialog], which actually displays the dialog and returns its result.
+    ///  * [FlatButton], which are commonly used as actions in other kinds of
+    ///    dialogs, such as [AlertDialog]s.
+    ///  * <https://material.io/design/components/dialogs.html#simple-dialog>
+    /// </Summary>
+    public class SimpleDialogOption : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        columnChildren = new List<Widget>() { };
-    }
-    else
-    {
-        columnChildren = new List<Widget>() { };
-    }
+        #region constructors
+        public SimpleDialogOption(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.OnPressed = onPressed;
+            this.Padding = padding;
+            this.Child = child;
+        }
+        #endregion
 
-    Widget dialogChild = new IntrinsicWidth(child: new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: columnChildren));
-    if (label != null) dialogChild = new Semantics(namesRoute: true, label: label, child: dialogChild);
-    return new Dialog(backgroundColor: BackgroundColor, elevation: Elevation, insetPadding: InsetPadding, clipBehavior: ClipBehavior, shape: Shape, child: dialogChild);
-}
+        #region fields
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
+        #endregion
 
+        #region methods
 
-
-#endregion
-}
-
-
-/// <Summary>
-/// An option used in a [SimpleDialog].
-///
-/// A simple dialog offers the user a choice between several options. This
-/// widget is commonly used to represent each of the options. If the user
-/// selects this option, the widget will call the [onPressed] callback, which
-/// typically uses [Navigator.pop] to close the dialog.
-///
-/// The padding on a [SimpleDialogOption] is configured to combine with the
-/// default [SimpleDialog.contentPadding] so that each option ends up 8 pixels
-/// from the other vertically, with 20 pixels of spacing between the dialog's
-/// title and the first option, and 24 pixels of spacing between the last option
-/// and the bottom of the dialog.
-///
-/// {@tool snippet}
-///
-/// ```dart
-/// SimpleDialogOption(
-///   onPressed: () { Navigator.pop(context, Department.treasury); },
-///   child: const Text('Treasury department'),
-/// )
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [SimpleDialog], for a dialog in which to use this widget.
-///  * [showDialog], which actually displays the dialog and returns its result.
-///  * [FlatButton], which are commonly used as actions in other kinds of
-///    dialogs, such as [AlertDialog]s.
-///  * <https://material.io/design/components/dialogs.html#simple-dialog>
-/// </Summary>
-public class SimpleDialogOption : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public SimpleDialogOption(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual VoidCallback OnPressed { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new InkWell(onTap: OnPressed, child: new Padding(padding: Padding ?? EdgeInsets.Symmetric(vertical: 8.0, horizontal: 24.0), child: Child));
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new InkWell(onTap: OnPressed, child: new Padding(padding: Padding ?? EdgeInsets.Symmetric(vertical: 8.0, horizontal: 24.0), child: Child));
+        }
 
 
 
-#endregion
-}
-
-
-/// <Summary>
-/// A simple material design dialog.
-///
-/// A simple dialog offers the user a choice between several options. A simple
-/// dialog has an optional title that is displayed above the choices.
-///
-/// Choices are normally represented using [SimpleDialogOption] widgets. If
-/// other widgets are used, see [contentPadding] for notes regarding the
-/// conventions for obtaining the spacing expected by Material Design.
-///
-/// For dialogs that inform the user about a situation, consider using an
-/// [AlertDialog].
-///
-/// Typically passed as the child widget to [showDialog], which displays the
-/// dialog.
-///
-/// {@animation 350 622 https://flutter.github.io/assets-for-api-docs/assets/material/simple_dialog.mp4}
-///
-/// {@tool snippet}
-///
-/// In this example, the user is asked to select between two options. These
-/// options are represented as an enum. The [showDialog] method here returns
-/// a [Future] that completes to a value of that enum. If the user cancels
-/// the dialog (e.g. by hitting the back button on Android, or tapping on the
-/// mask behind the dialog) then the future completes with the null value.
-///
-/// The return value in this example is used as the index for a switch statement.
-/// One advantage of using an enum as the return value and then using that to
-/// drive a switch statement is that the analyzer will flag any switch statement
-/// that doesn't mention every value in the enum.
-///
-/// ```dart
-/// Future<void> _askedToLead() async {
-///   switch (await showDialog<Department>(
-///     context: context,
-///     builder: (BuildContext context) {
-///       return SimpleDialog(
-///         title: const Text('Select assignment'),
-///         children: <Widget>[
-///           SimpleDialogOption(
-///             onPressed: () { Navigator.pop(context, Department.treasury); },
-///             child: const Text('Treasury department'),
-///           ),
-///           SimpleDialogOption(
-///             onPressed: () { Navigator.pop(context, Department.state); },
-///             child: const Text('State department'),
-///           ),
-///         ],
-///       );
-///     }
-///   )) {
-///     case Department.treasury:
-///       // Let's go.
-///       // ...
-///     break;
-///     case Department.state:
-///       // ...
-///     break;
-///   }
-/// }
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [SimpleDialogOption], which are options used in this type of dialog.
-///  * [AlertDialog], for dialogs that have a row of buttons below the body.
-///  * [Dialog], on which [SimpleDialog] and [AlertDialog] are based.
-///  * [showDialog], which actually displays the dialog and returns its result.
-///  * <https://material.io/design/components/dialogs.html#simple-dialog>
-/// </Summary>
-public class SimpleDialog : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public SimpleDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual double Elevation { get; set; }
-public virtual string SemanticLabel { get; set; }
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-    string label = SemanticLabel;
-    if (Title == null)
-    {
-        switch (theme.Platform) { case TargetPlatform.MacOS: case TargetPlatform.IOS: label = SemanticLabel; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: label = SemanticLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.DialogLabel; }
+        #endregion
     }
 
-    Widget dialogChild = new IntrinsicWidth(stepWidth: 56.0, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: 280.0), child: new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { })));
-    if (label != null) dialogChild = new Semantics(namesRoute: true, label: label, child: dialogChild);
-    return new Dialog(backgroundColor: BackgroundColor, elevation: Elevation, shape: Shape, child: dialogChild);
-}
+
+    /// <Summary>
+    /// A simple material design dialog.
+    ///
+    /// A simple dialog offers the user a choice between several options. A simple
+    /// dialog has an optional title that is displayed above the choices.
+    ///
+    /// Choices are normally represented using [SimpleDialogOption] widgets. If
+    /// other widgets are used, see [contentPadding] for notes regarding the
+    /// conventions for obtaining the spacing expected by Material Design.
+    ///
+    /// For dialogs that inform the user about a situation, consider using an
+    /// [AlertDialog].
+    ///
+    /// Typically passed as the child widget to [showDialog], which displays the
+    /// dialog.
+    ///
+    /// {@animation 350 622 https://flutter.github.io/assets-for-api-docs/assets/material/simple_dialog.mp4}
+    ///
+    /// {@tool snippet}
+    ///
+    /// In this example, the user is asked to select between two options. These
+    /// options are represented as an enum. The [showDialog] method here returns
+    /// a [Future] that completes to a value of that enum. If the user cancels
+    /// the dialog (e.g. by hitting the back button on Android, or tapping on the
+    /// mask behind the dialog) then the future completes with the null value.
+    ///
+    /// The return value in this example is used as the index for a switch statement.
+    /// One advantage of using an enum as the return value and then using that to
+    /// drive a switch statement is that the analyzer will flag any switch statement
+    /// that doesn't mention every value in the enum.
+    ///
+    /// ```dart
+    /// Future<void> _askedToLead() async {
+    ///   switch (await showDialog<Department>(
+    ///     context: context,
+    ///     builder: (BuildContext context) {
+    ///       return SimpleDialog(
+    ///         title: const Text('Select assignment'),
+    ///         children: <Widget>[
+    ///           SimpleDialogOption(
+    ///             onPressed: () { Navigator.pop(context, Department.treasury); },
+    ///             child: const Text('Treasury department'),
+    ///           ),
+    ///           SimpleDialogOption(
+    ///             onPressed: () { Navigator.pop(context, Department.state); },
+    ///             child: const Text('State department'),
+    ///           ),
+    ///         ],
+    ///       );
+    ///     }
+    ///   )) {
+    ///     case Department.treasury:
+    ///       // Let's go.
+    ///       // ...
+    ///     break;
+    ///     case Department.state:
+    ///       // ...
+    ///     break;
+    ///   }
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [SimpleDialogOption], which are options used in this type of dialog.
+    ///  * [AlertDialog], for dialogs that have a row of buttons below the body.
+    ///  * [Dialog], on which [SimpleDialog] and [AlertDialog] are based.
+    ///  * [showDialog], which actually displays the dialog and returns its result.
+    ///  * <https://material.io/design/components/dialogs.html#simple-dialog>
+    /// </Summary>
+    public class SimpleDialog : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public SimpleDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base(key: key)
+        {
+            this.Title = title;
+            this.TitlePadding = titlePadding;
+            this.Children = children;
+            this.ContentPadding = contentPadding;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.SemanticLabel = semanticLabel;
+            this.Shape = shape;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual string SemanticLabel { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            string label = SemanticLabel;
+            if (Title == null)
+            {
+                switch (theme.Platform) { case TargetPlatform.MacOS: case TargetPlatform.IOS: label = SemanticLabel; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: label = SemanticLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.DialogLabel; }
+            }
+
+            Widget dialogChild = new IntrinsicWidth(stepWidth: 56.0, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: 280.0), child: new Column(mainAxisSize: MainAxisSize.Min, crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { })));
+            if (label != null) dialogChild = new Semantics(namesRoute: true, label: label, child: dialogChild);
+            return new Dialog(backgroundColor: BackgroundColor, elevation: Elevation, shape: Shape, child: dialogChild);
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

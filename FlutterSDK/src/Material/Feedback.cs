@@ -461,27 +461,28 @@ namespace FlutterSDK.Material.Feedback
     {
         #region constructors
         internal Feedback()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        #endregion
 
-    /// <Summary>
-    /// Provides platform-specific feedback for a tap.
-    ///
-    /// On Android the click system sound is played. On iOS this is a no-op.
-    ///
-    /// See also:
-    ///
-    ///  * [wrapForTap] to trigger platform-specific feedback before executing a
-    ///    [GestureTapCallback].
-    /// </Summary>
-    public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context)
-async
+        #region methods
+
+        /// <Summary>
+        /// Provides platform-specific feedback for a tap.
+        ///
+        /// On Android the click system sound is played. On iOS this is a no-op.
+        ///
+        /// See also:
+        ///
+        ///  * [wrapForTap] to trigger platform-specific feedback before executing a
+        ///    [GestureTapCallback].
+        /// </Summary>
+        public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context)
+    async
 {
 context.FindRenderObject().SendSemanticsEvent(new TapSemanticEvent());
 switch (_Platform(context)){case TargetPlatform.Android:case TargetPlatform.Fuchsia:return SystemsoundDefaultClass.SystemSound.Play(SystemSoundType.Click);case TargetPlatform.IOS:case TargetPlatform.Linux:case TargetPlatform.MacOS:case TargetPlatform.Windows:return Future<void>.Value();break;}

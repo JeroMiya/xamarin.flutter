@@ -565,654 +565,663 @@ namespace FlutterSDK.Widgets.Scrollactivity
     {
         #region constructors
         public ScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _delegate)
-    
-}
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
-    public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Updates the activity's link to the [ScrollActivityDelegate].
-    ///
-    /// This should only be called when an activity is being moved from a defunct
-    /// (or about-to-be defunct) [ScrollActivityDelegate] object to a new one.
-    /// </Summary>
-    public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value)
-    {
-
-        _Delegate = value;
-    }
-
-
-
-
-    /// <Summary>
-    /// Called by the [ScrollActivityDelegate] when it has changed type (for
-    /// example, when changing from an Android-style scroll position to an
-    /// iOS-style scroll position). If this activity can differ between the two
-    /// modes, then it should tell the position to restart that activity
-    /// appropriately.
-    ///
-    /// For example, [BallisticScrollActivity]'s implementation calls
-    /// [ScrollActivityDelegate.goBallistic].
-    /// </Summary>
-    public virtual void ResetActivity()
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Dispatch a [ScrollStartNotification] with the given metrics.
-    /// </Summary>
-    public virtual void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        new ScrollStartNotification(metrics: metrics, context: context).Dispatch(context);
-    }
-
-
-
-
-    /// <Summary>
-    /// Dispatch a [ScrollUpdateNotification] with the given metrics and scroll delta.
-    /// </Summary>
-    public virtual void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta)
-    {
-        new ScrollUpdateNotification(metrics: metrics, context: context, scrollDelta: scrollDelta).Dispatch(context);
-    }
-
-
-
-
-    /// <Summary>
-    /// Dispatch an [OverscrollNotification] with the given metrics and overscroll.
-    /// </Summary>
-    public virtual void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
-    {
-        new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll).Dispatch(context);
-    }
-
-
-
-
-    /// <Summary>
-    /// Dispatch a [ScrollEndNotification] with the given metrics and overscroll.
-    /// </Summary>
-    public virtual void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        new ScrollEndNotification(metrics: metrics, context: context).Dispatch(context);
-    }
-
-
-
-
-    /// <Summary>
-    /// Called when the scroll view that is performing this activity changes its metrics.
-    /// </Summary>
-    public virtual void ApplyNewDimensions()
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Called when the scroll view stops performing this activity.
-    /// </Summary>
-    public virtual void Dispose()
-    {
-        _Delegate = null;
-    }
-
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A scroll activity that does nothing.
-///
-/// When a scroll view is not scrolling, it is performing the idle activity.
-///
-/// If the [Scrollable] changes dimensions, this activity triggers a ballistic
-/// activity to restore the view.
-/// </Summary>
-public class IdleScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-    #region constructors
-    public IdleScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate)
-    : base(@delegate)
-
-}
-#endregion
-
-#region fields
-public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void ApplyNewDimensions()
-{
-    Delegate.GoBallistic(0.0);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A scroll activity that does nothing but can be released to resume
-/// normal idle behavior.
-///
-/// This is used while the user is touching the [Scrollable] but before the
-/// touch has become a [Drag].
-///
-/// For the purposes of [ScrollNotification]s, this activity does not constitute
-/// scrolling, and does not prevent the user from interacting with the contents
-/// of the [Scrollable] (unlike when a drag has begun or there is a scroll
-/// animation underway).
-/// </Summary>
-public class HoldScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity, IScrollHoldController
-{
-    #region constructors
-    public HoldScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), VoidCallback onHoldCanceled = default(VoidCallback))
-    : base(@delegate)
-
-}
-#endregion
-
-#region fields
-public virtual VoidCallback OnHoldCanceled { get; set; }
-public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Cancel()
-{
-    Delegate.GoBallistic(0.0);
-}
-
-
-
-
-public new void Dispose()
-{
-    if (OnHoldCanceled != null) OnHoldCanceled();
-    base.Dispose();
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Scrolls a scroll view as the user drags their finger across the screen.
-///
-/// See also:
-///
-///  * [DragScrollActivity], which is the activity the scroll view performs
-///    while a drag is underway.
-/// </Summary>
-public class ScrollDragController : IDrag
-{
-    #region constructors
-    public ScrollDragController(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), FlutterSDK.Gestures.Dragdetails.DragStartDetails details = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails), VoidCallback onDragCanceled = default(VoidCallback), double carriedVelocity = default(double), double motionStartDistanceThreshold = default(double))
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
-public virtual VoidCallback OnDragCanceled { get; set; }
-public virtual double CarriedVelocity { get; set; }
-public virtual double MotionStartDistanceThreshold { get; set; }
-internal virtual TimeSpan _LastNonStationaryTimestamp { get; set; }
-internal virtual bool _RetainMomentum { get; set; }
-internal virtual double _OffsetSinceLastStop { get; set; }
-public virtual TimeSpan MomentumRetainStationaryDurationThreshold { get; set; }
-public virtual TimeSpan MotionStoppedDurationThreshold { get; set; }
-internal virtual double _BigThresholdBreakDistance { get; set; }
-internal virtual object _LastDetails { get; set; }
-public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual bool _Reversed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual object LastDetails { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Updates the controller's link to the [ScrollActivityDelegate].
-///
-/// This should only be called when a controller is being moved from a defunct
-/// (or about-to-be defunct) [ScrollActivityDelegate] object to a new one.
-/// </Summary>
-public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value)
-{
-
-    _Delegate = value;
-}
-
-
-
-
-/// <Summary>
-/// Determines whether to lose the existing incoming velocity when starting
-/// the drag.
-/// </Summary>
-private void _MaybeLoseMomentum(double offset, TimeSpan timestamp)
-{
-    if (_RetainMomentum && offset == 0.0 && (timestamp == null || timestamp - _LastNonStationaryTimestamp > MomentumRetainStationaryDurationThreshold))
-    {
-        _RetainMomentum = false;
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// If a motion start threshold exists, determine whether the threshold needs
-/// to be broken to scroll. Also possibly apply an offset adjustment when
-/// threshold is first broken.
-///
-/// Returns `0.0` when stationary or within threshold. Returns `offset`
-/// transparently when already in motion.
-/// </Summary>
-private double _AdjustForScrollStartThreshold(double offset, TimeSpan timestamp)
-{
-    if (timestamp == null)
-    {
-        return offset;
-    }
-
-    if (offset == 0.0)
-    {
-        if (MotionStartDistanceThreshold != null && _OffsetSinceLastStop == null && timestamp - _LastNonStationaryTimestamp > MotionStoppedDurationThreshold)
         {
-            _OffsetSinceLastStop = 0.0;
+            this._Delegate = _delegate;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Updates the activity's link to the [ScrollActivityDelegate].
+        ///
+        /// This should only be called when an activity is being moved from a defunct
+        /// (or about-to-be defunct) [ScrollActivityDelegate] object to a new one.
+        /// </Summary>
+        public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value)
+        {
+
+            _Delegate = value;
         }
 
-        return 0.0;
-    }
-    else
-    {
-        if (_OffsetSinceLastStop == null)
+
+
+
+        /// <Summary>
+        /// Called by the [ScrollActivityDelegate] when it has changed type (for
+        /// example, when changing from an Android-style scroll position to an
+        /// iOS-style scroll position). If this activity can differ between the two
+        /// modes, then it should tell the position to restart that activity
+        /// appropriately.
+        ///
+        /// For example, [BallisticScrollActivity]'s implementation calls
+        /// [ScrollActivityDelegate.goBallistic].
+        /// </Summary>
+        public virtual void ResetActivity()
         {
-            return offset;
         }
-        else
+
+
+
+
+        /// <Summary>
+        /// Dispatch a [ScrollStartNotification] with the given metrics.
+        /// </Summary>
+        public virtual void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            _OffsetSinceLastStop += offset;
-            if (_OffsetSinceLastStop.Abs() > MotionStartDistanceThreshold)
+            new ScrollStartNotification(metrics: metrics, context: context).Dispatch(context);
+        }
+
+
+
+
+        /// <Summary>
+        /// Dispatch a [ScrollUpdateNotification] with the given metrics and scroll delta.
+        /// </Summary>
+        public virtual void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta)
+        {
+            new ScrollUpdateNotification(metrics: metrics, context: context, scrollDelta: scrollDelta).Dispatch(context);
+        }
+
+
+
+
+        /// <Summary>
+        /// Dispatch an [OverscrollNotification] with the given metrics and overscroll.
+        /// </Summary>
+        public virtual void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
+        {
+            new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll).Dispatch(context);
+        }
+
+
+
+
+        /// <Summary>
+        /// Dispatch a [ScrollEndNotification] with the given metrics and overscroll.
+        /// </Summary>
+        public virtual void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            new ScrollEndNotification(metrics: metrics, context: context).Dispatch(context);
+        }
+
+
+
+
+        /// <Summary>
+        /// Called when the scroll view that is performing this activity changes its metrics.
+        /// </Summary>
+        public virtual void ApplyNewDimensions()
+        {
+        }
+
+
+
+
+        /// <Summary>
+        /// Called when the scroll view stops performing this activity.
+        /// </Summary>
+        public virtual void Dispose()
+        {
+            _Delegate = null;
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A scroll activity that does nothing.
+    ///
+    /// When a scroll view is not scrolling, it is performing the idle activity.
+    ///
+    /// If the [Scrollable] changes dimensions, this activity triggers a ballistic
+    /// activity to restore the view.
+    /// </Summary>
+    public class IdleScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public IdleScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate)
+        : base(@delegate)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void ApplyNewDimensions()
+        {
+            Delegate.GoBallistic(0.0);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A scroll activity that does nothing but can be released to resume
+    /// normal idle behavior.
+    ///
+    /// This is used while the user is touching the [Scrollable] but before the
+    /// touch has become a [Drag].
+    ///
+    /// For the purposes of [ScrollNotification]s, this activity does not constitute
+    /// scrolling, and does not prevent the user from interacting with the contents
+    /// of the [Scrollable] (unlike when a drag has begun or there is a scroll
+    /// animation underway).
+    /// </Summary>
+    public class HoldScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity, IScrollHoldController
+    {
+        #region constructors
+        public HoldScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), VoidCallback onHoldCanceled = default(VoidCallback))
+        : base(@delegate)
+        {
+            this.OnHoldCanceled = onHoldCanceled;
+        }
+        #endregion
+
+        #region fields
+        public virtual VoidCallback OnHoldCanceled { get; set; }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Cancel()
+        {
+            Delegate.GoBallistic(0.0);
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            if (OnHoldCanceled != null) OnHoldCanceled();
+            base.Dispose();
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Scrolls a scroll view as the user drags their finger across the screen.
+    ///
+    /// See also:
+    ///
+    ///  * [DragScrollActivity], which is the activity the scroll view performs
+    ///    while a drag is underway.
+    /// </Summary>
+    public class ScrollDragController : IDrag
+    {
+        #region constructors
+        public ScrollDragController(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate = default(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate), FlutterSDK.Gestures.Dragdetails.DragStartDetails details = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails), VoidCallback onDragCanceled = default(VoidCallback), double carriedVelocity = default(double), double motionStartDistanceThreshold = default(double))
+        : base()
+        {
+            this.OnDragCanceled = onDragCanceled;
+            this.CarriedVelocity = carriedVelocity;
+            this.MotionStartDistanceThreshold = motionStartDistanceThreshold;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate _Delegate { get; set; }
+        public virtual VoidCallback OnDragCanceled { get; set; }
+        public virtual double CarriedVelocity { get; set; }
+        public virtual double MotionStartDistanceThreshold { get; set; }
+        internal virtual TimeSpan _LastNonStationaryTimestamp { get; set; }
+        internal virtual bool _RetainMomentum { get; set; }
+        internal virtual double _OffsetSinceLastStop { get; set; }
+        public virtual TimeSpan MomentumRetainStationaryDurationThreshold { get; set; }
+        public virtual TimeSpan MotionStoppedDurationThreshold { get; set; }
+        internal virtual double _BigThresholdBreakDistance { get; set; }
+        internal virtual object _LastDetails { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _Reversed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual object LastDetails { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Updates the controller's link to the [ScrollActivityDelegate].
+        ///
+        /// This should only be called when a controller is being moved from a defunct
+        /// (or about-to-be defunct) [ScrollActivityDelegate] object to a new one.
+        /// </Summary>
+        public virtual void UpdateDelegate(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate value)
+        {
+
+            _Delegate = value;
+        }
+
+
+
+
+        /// <Summary>
+        /// Determines whether to lose the existing incoming velocity when starting
+        /// the drag.
+        /// </Summary>
+        private void _MaybeLoseMomentum(double offset, TimeSpan timestamp)
+        {
+            if (_RetainMomentum && offset == 0.0 && (timestamp == null || timestamp - _LastNonStationaryTimestamp > MomentumRetainStationaryDurationThreshold))
             {
-                _OffsetSinceLastStop = null;
-                if (offset.Abs() > _BigThresholdBreakDistance)
+                _RetainMomentum = false;
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// If a motion start threshold exists, determine whether the threshold needs
+        /// to be broken to scroll. Also possibly apply an offset adjustment when
+        /// threshold is first broken.
+        ///
+        /// Returns `0.0` when stationary or within threshold. Returns `offset`
+        /// transparently when already in motion.
+        /// </Summary>
+        private double _AdjustForScrollStartThreshold(double offset, TimeSpan timestamp)
+        {
+            if (timestamp == null)
+            {
+                return offset;
+            }
+
+            if (offset == 0.0)
+            {
+                if (MotionStartDistanceThreshold != null && _OffsetSinceLastStop == null && timestamp - _LastNonStationaryTimestamp > MotionStoppedDurationThreshold)
+                {
+                    _OffsetSinceLastStop = 0.0;
+                }
+
+                return 0.0;
+            }
+            else
+            {
+                if (_OffsetSinceLastStop == null)
                 {
                     return offset;
                 }
                 else
                 {
-                    return Math.Dart:mathDefaultClass.Min(MotionStartDistanceThreshold / 3.0, offset.Abs()) * offset.Sign;
-}
+                    _OffsetSinceLastStop += offset;
+                    if (_OffsetSinceLastStop.Abs() > MotionStartDistanceThreshold)
+                    {
+                        _OffsetSinceLastStop = null;
+                        if (offset.Abs() > _BigThresholdBreakDistance)
+                        {
+                            return offset;
+                        }
+                        else
+                        {
+                            return Math.Dart:mathDefaultClass.Min(MotionStartDistanceThreshold / 3.0, offset.Abs()) * offset.Sign;
+                        }
 
-}
-else
-{
-    return 0.0;
-}
+                    }
+                    else
+                    {
+                        return 0.0;
+                    }
 
-}
+                }
 
-}
+            }
 
-}
-
-
+        }
 
 
-public new void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
-{
 
-    _LastDetails = details;
-    double offset = details.PrimaryDelta;
-    if (offset != 0.0)
-    {
-        _LastNonStationaryTimestamp = details.SourceTimeStamp;
+
+        public new void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+        {
+
+            _LastDetails = details;
+            double offset = details.PrimaryDelta;
+            if (offset != 0.0)
+            {
+                _LastNonStationaryTimestamp = details.SourceTimeStamp;
+            }
+
+            _MaybeLoseMomentum(offset, details.SourceTimeStamp);
+            offset = _AdjustForScrollStartThreshold(offset, details.SourceTimeStamp);
+            if (offset == 0.0)
+            {
+                return;
+            }
+
+            if (_Reversed) offset = -offset;
+            Delegate.ApplyUserOffset(offset);
+        }
+
+
+
+
+        public new void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+        {
+
+            double velocity = -details.PrimaryVelocity;
+            if (_Reversed) velocity = -velocity;
+            _LastDetails = details;
+            if (_RetainMomentum && velocity.Sign == CarriedVelocity.Sign) velocity += CarriedVelocity;
+            Delegate.GoBallistic(velocity);
+        }
+
+
+
+
+        public new void Cancel()
+        {
+            Delegate.GoBallistic(0.0);
+        }
+
+
+
+
+        /// <Summary>
+        /// Called by the delegate when it is no longer sending events to this object.
+        /// </Summary>
+        public virtual void Dispose()
+        {
+            _LastDetails = null;
+            if (OnDragCanceled != null) OnDragCanceled();
+        }
+
+
+
+
+        #endregion
     }
 
-    _MaybeLoseMomentum(offset, details.SourceTimeStamp);
-    offset = _AdjustForScrollStartThreshold(offset, details.SourceTimeStamp);
-    if (offset == 0.0)
+
+    /// <Summary>
+    /// The activity a scroll view performs when a the user drags their finger
+    /// across the screen.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollDragController], which listens to the [Drag] and actually scrolls
+    ///    the scroll view.
+    /// </Summary>
+    public class DragScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
     {
-        return;
+        #region constructors
+        public DragScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Widgets.Scrollactivity.ScrollDragController controller)
+        : base(@delegate)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _Controller { get; set; }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            object lastDetails = _Controller.LastDetails;
+
+            new ScrollStartNotification(metrics: metrics, context: context, dragDetails: lastDetails as DragStartDetails).Dispatch(context);
+        }
+
+
+
+
+        public new void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta)
+        {
+            object lastDetails = _Controller.LastDetails;
+
+            new ScrollUpdateNotification(metrics: metrics, context: context, scrollDelta: scrollDelta, dragDetails: lastDetails as DragUpdateDetails).Dispatch(context);
+        }
+
+
+
+
+        public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
+        {
+            object lastDetails = _Controller.LastDetails;
+
+            new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll, dragDetails: lastDetails as DragUpdateDetails).Dispatch(context);
+        }
+
+
+
+
+        public new void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            object lastDetails = _Controller.LastDetails;
+            new ScrollEndNotification(metrics: metrics, context: context, dragDetails: lastDetails is DragEndDetails ? lastDetails : null).Dispatch(context);
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _Controller = null;
+            base.Dispose();
+        }
+
+
+
+
+        #endregion
     }
 
-    if (_Reversed) offset = -offset;
-    Delegate.ApplyUserOffset(offset);
-}
 
+    /// <Summary>
+    /// An activity that animates a scroll view based on a physics [Simulation].
+    ///
+    /// A [BallisticScrollActivity] is typically used when the user lifts their
+    /// finger off the screen to continue the scrolling gesture with the current velocity.
+    ///
+    /// [BallisticScrollActivity] is also used to restore a scroll view to a valid
+    /// scroll offset when the geometry of the scroll view changes. In these
+    /// situations, the [Simulation] typically starts with a zero velocity.
+    ///
+    /// See also:
+    ///
+    ///  * [DrivenScrollActivity], which animates a scroll view based on a set of
+    ///    animation parameters.
+    /// </Summary>
+    public class BallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public BallisticScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Physics.Simulation.Simulation simulation, FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
+        : base(@delegate)
+        {
 
+            _Controller = AnimationController.Unbounded(debugLabel: ConstantsDefaultClass.KDebugMode ? ObjectDefaultClass.ObjectRuntimeType(this, "BallisticScrollActivity") : null, vsync: vsync);
+            AnimationController.Unbounded(debugLabel: ConstantsDefaultClass.KDebugMode ? ObjectDefaultClass.ObjectRuntimeType(this, "BallisticScrollActivity") : null, vsync: vsync).AddListener(_Tick);
+            AnimationController.Unbounded(debugLabel: ConstantsDefaultClass.KDebugMode ? ObjectDefaultClass.ObjectRuntimeType(this, "BallisticScrollActivity") : null, vsync: vsync).AnimateWith(simulation).WhenComplete(_End);
+        }
 
 
-public new void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-{
+        #endregion
 
-    double velocity = -details.PrimaryVelocity;
-    if (_Reversed) velocity = -velocity;
-    _LastDetails = details;
-    if (_RetainMomentum && velocity.Sign == CarriedVelocity.Sign) velocity += CarriedVelocity;
-    Delegate.GoBallistic(velocity);
-}
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
+        public new void ResetActivity()
+        {
+            Delegate.GoBallistic(Velocity);
+        }
 
 
-public new void Cancel()
-{
-    Delegate.GoBallistic(0.0);
-}
 
 
+        public new void ApplyNewDimensions()
+        {
+            Delegate.GoBallistic(Velocity);
+        }
 
 
-/// <Summary>
-/// Called by the delegate when it is no longer sending events to this object.
-/// </Summary>
-public virtual void Dispose()
-{
-    _LastDetails = null;
-    if (OnDragCanceled != null) OnDragCanceled();
-}
 
 
+        private void _Tick()
+        {
+            if (!ApplyMoveTo(_Controller.Value)) Delegate.GoIdle();
+        }
 
 
-#endregion
-}
 
 
-/// <Summary>
-/// The activity a scroll view performs when a the user drags their finger
-/// across the screen.
-///
-/// See also:
-///
-///  * [ScrollDragController], which listens to the [Drag] and actually scrolls
-///    the scroll view.
-/// </Summary>
-public class DragScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-    #region constructors
-    public DragScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Widgets.Scrollactivity.ScrollDragController controller)
-    : base(@delegate)
+        /// <Summary>
+        /// Move the position to the given location.
+        ///
+        /// If the new position was fully applied, returns true. If there was any
+        /// overflow, returns false.
+        ///
+        /// The default implementation calls [ScrollActivityDelegate.setPixels]
+        /// and returns true if the overflow was zero.
+        /// </Summary>
+        public virtual bool ApplyMoveTo(double value)
+        {
+            return Delegate.SetPixels(value) == 0.0;
+        }
 
-}
-#endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _Controller { get; set; }
-public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
 
-#region methods
 
-public new void DispatchScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    object lastDetails = _Controller.LastDetails;
+        private void _End()
+        {
+            Delegate?.GoBallistic(0.0);
+        }
 
-    new ScrollStartNotification(metrics: metrics, context: context, dragDetails: lastDetails as DragStartDetails).Dispatch(context);
-}
 
 
 
+        public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
+        {
+            new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll, velocity: Velocity).Dispatch(context);
+        }
 
-public new void DispatchScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double scrollDelta)
-{
-    object lastDetails = _Controller.LastDetails;
 
-    new ScrollUpdateNotification(metrics: metrics, context: context, scrollDelta: scrollDelta, dragDetails: lastDetails as DragUpdateDetails).Dispatch(context);
-}
 
 
+        public new void Dispose()
+        {
+            _Controller.Dispose();
+            base.Dispose();
+        }
 
 
-public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
-{
-    object lastDetails = _Controller.LastDetails;
 
-    new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll, dragDetails: lastDetails as DragUpdateDetails).Dispatch(context);
-}
 
+        #endregion
+    }
 
 
+    /// <Summary>
+    /// An activity that animates a scroll view based on animation parameters.
+    ///
+    /// For example, a [DrivenScrollActivity] is used to implement
+    /// [ScrollController.animateTo].
+    ///
+    /// See also:
+    ///
+    ///  * [BallisticScrollActivity], which animates a scroll view based on a
+    ///    physics [Simulation].
+    /// </Summary>
+    public class DrivenScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
+    {
+        #region constructors
+        public DrivenScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, double from = default(double), double to = default(double), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base(@delegate)
+        {
 
-public new void DispatchScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    object lastDetails = _Controller.LastDetails;
-    new ScrollEndNotification(metrics: metrics, context: context, dragDetails: lastDetails is DragEndDetails ? lastDetails : null).Dispatch(context);
-}
+            _Completer = new Completer<void>();
+            _Controller = AnimationController.Unbounded(value: from, debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "DrivenScrollActivity"), vsync: vsync);
+            AnimationController.Unbounded(value: from, debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "DrivenScrollActivity"), vsync: vsync).AddListener(_Tick);
+            AnimationController.Unbounded(value: from, debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "DrivenScrollActivity"), vsync: vsync).AnimateTo(to, duration: duration, curve: curve).WhenComplete(_End);
+        }
 
 
+        #endregion
 
+        #region fields
+        internal virtual Completer<object> _Completer { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        public virtual Future<object> Done { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-public new void Dispose()
-{
-    _Controller = null;
-    base.Dispose();
-}
+        #region methods
 
+        private void _Tick()
+        {
+            if (Delegate.SetPixels(_Controller.Value) != 0.0) Delegate.GoIdle();
+        }
 
 
 
-#endregion
-}
 
+        private void _End()
+        {
+            Delegate?.GoBallistic(Velocity);
+        }
 
-/// <Summary>
-/// An activity that animates a scroll view based on a physics [Simulation].
-///
-/// A [BallisticScrollActivity] is typically used when the user lifts their
-/// finger off the screen to continue the scrolling gesture with the current velocity.
-///
-/// [BallisticScrollActivity] is also used to restore a scroll view to a valid
-/// scroll offset when the geometry of the scroll view changes. In these
-/// situations, the [Simulation] typically starts with a zero velocity.
-///
-/// See also:
-///
-///  * [DrivenScrollActivity], which animates a scroll view based on a set of
-///    animation parameters.
-/// </Summary>
-public class BallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-    #region constructors
-    public BallisticScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, FlutterSDK.Physics.Simulation.Simulation simulation, FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
-    : base(@delegate)
 
-_Controller=AnimationController.Unbounded(debugLabel:ConstantsDefaultClass.KDebugMode? ObjectDefaultClass.ObjectRuntimeType(this , "BallisticScrollActivity"):null , vsync:vsync);
-AnimationController.Unbounded(debugLabel:ConstantsDefaultClass.KDebugMode? ObjectDefaultClass.ObjectRuntimeType(this , "BallisticScrollActivity"):null , vsync:vsync).AddListener(_Tick);
-    AnimationController.Unbounded(debugLabel:ConstantsDefaultClass.KDebugMode? ObjectDefaultClass.ObjectRuntimeType(this , "BallisticScrollActivity"):null , vsync:vsync).AnimateWith(simulation).WhenComplete(_End);
-}
 
 
-#endregion
+        public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
+        {
+            new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll, velocity: Velocity).Dispatch(context);
+        }
 
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
 
-#region methods
 
-public new void ResetActivity()
-{
-    Delegate.GoBallistic(Velocity);
-}
 
+        public new void Dispose()
+        {
+            _Completer.Complete();
+            _Controller.Dispose();
+            base.Dispose();
+        }
 
 
 
-public new void ApplyNewDimensions()
-{
-    Delegate.GoBallistic(Velocity);
-}
 
-
-
-
-private void _Tick()
-{
-    if (!ApplyMoveTo(_Controller.Value)) Delegate.GoIdle();
-}
-
-
-
-
-/// <Summary>
-/// Move the position to the given location.
-///
-/// If the new position was fully applied, returns true. If there was any
-/// overflow, returns false.
-///
-/// The default implementation calls [ScrollActivityDelegate.setPixels]
-/// and returns true if the overflow was zero.
-/// </Summary>
-public virtual bool ApplyMoveTo(double value)
-{
-    return Delegate.SetPixels(value) == 0.0;
-}
-
-
-
-
-private void _End()
-{
-    Delegate?.GoBallistic(0.0);
-}
-
-
-
-
-public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
-{
-    new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll, velocity: Velocity).Dispatch(context);
-}
-
-
-
-
-public new void Dispose()
-{
-    _Controller.Dispose();
-    base.Dispose();
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An activity that animates a scroll view based on animation parameters.
-///
-/// For example, a [DrivenScrollActivity] is used to implement
-/// [ScrollController.animateTo].
-///
-/// See also:
-///
-///  * [BallisticScrollActivity], which animates a scroll view based on a
-///    physics [Simulation].
-/// </Summary>
-public class DrivenScrollActivity : FlutterSDK.Widgets.Scrollactivity.ScrollActivity
-{
-    #region constructors
-    public DrivenScrollActivity(FlutterSDK.Widgets.Scrollactivity.ScrollActivityDelegate @delegate, double from = default(double), double to = default(double), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-    : base(@delegate)
-
-_Completer=new Completer<void>();
-_Controller=AnimationController.Unbounded(value:from, debugLabel:ObjectDefaultClass.ObjectRuntimeType(this , "DrivenScrollActivity"), vsync:vsync);
-    AnimationController.Unbounded(value:from, debugLabel:ObjectDefaultClass.ObjectRuntimeType(this , "DrivenScrollActivity"), vsync:vsync).AddListener(_Tick);
-AnimationController.Unbounded(value:from, debugLabel:ObjectDefaultClass.ObjectRuntimeType(this , "DrivenScrollActivity"), vsync:vsync).AnimateTo(to, duration:duration, curve:curve).WhenComplete(_End);
-}
-
-
-#endregion
-
-#region fields
-internal virtual Completer<object> _Completer { get; set; }
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-public virtual Future<object> Done { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Velocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool ShouldIgnorePointer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _Tick()
-{
-    if (Delegate.SetPixels(_Controller.Value) != 0.0) Delegate.GoIdle();
-}
-
-
-
-
-private void _End()
-{
-    Delegate?.GoBallistic(Velocity);
-}
-
-
-
-
-public new void DispatchOverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Widgets.Framework.BuildContext context, double overscroll)
-{
-    new OverscrollNotification(metrics: metrics, context: context, overscroll: overscroll, velocity: Velocity).Dispatch(context);
-}
-
-
-
-
-public new void Dispose()
-{
-    _Completer.Complete();
-    _Controller.Dispose();
-    base.Dispose();
-}
-
-
-
-
-#endregion
-}
+        #endregion
+    }
 
 }

@@ -435,52 +435,55 @@ namespace FlutterSDK.Painting._Networkimageio
         #region constructors
         public NetworkImage(string url, double scale = 1.0, Dictionary<string, string> headers = default(Dictionary<string, string>))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public new string Url { get; set; }
-    public new double Scale { get; set; }
-    public new Dictionary<string, string> Headers { get; set; }
-    internal virtual HttpClient _SharedHttpClient { get; set; }
-    internal virtual HttpClient _HttpClient { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new Future<FlutterSDK.Painting._Networkimageio.NetworkImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
-    {
-        return new SynchronousFuture<NetworkImage>(this);
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
-    {
-        StreamController<ImageChunkEvent> chunkEvents = new StreamController<ImageChunkEvent>();
-        return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key as NetworkImage, chunkEvents, decode), chunkEvents: chunkEvents.Stream, scale: key.Scale, informationCollector: () =>
         {
-            return new List<DiagnosticsNode>() { new DiagnosticsProperty<Image_provider.ImageproviderDefaultClass.ImageProvider>("Image provider", this), new DiagnosticsProperty<Image_provider.ImageproviderDefaultClass.NetworkImage>("Image key", key) };
+            this.Url = url;
+            this.Scale = scale;
+            this.Headers = headers;
         }
-        );
-    }
+        #endregion
+
+        #region fields
+        public new string Url { get; set; }
+        public new double Scale { get; set; }
+        public new Dictionary<string, string> Headers { get; set; }
+        internal virtual HttpClient _SharedHttpClient { get; set; }
+        internal virtual HttpClient _HttpClient { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new Future<FlutterSDK.Painting._Networkimageio.NetworkImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+        {
+            return new SynchronousFuture<NetworkImage>(this);
+        }
 
 
 
 
-    private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageio.NetworkImage key, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
-async
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+        {
+            StreamController<ImageChunkEvent> chunkEvents = new StreamController<ImageChunkEvent>();
+            return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key as NetworkImage, chunkEvents, decode), chunkEvents: chunkEvents.Stream, scale: key.Scale, informationCollector: () =>
+            {
+                return new List<DiagnosticsNode>() { new DiagnosticsProperty<Image_provider.ImageproviderDefaultClass.ImageProvider>("Image provider", this), new DiagnosticsProperty<Image_provider.ImageproviderDefaultClass.NetworkImage>("Image key", key) };
+            }
+            );
+        }
+
+
+
+
+        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageio.NetworkImage key, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+    async
 {
 try {
 
 Uri resolved = Dart:coreDefaultClass.Uri.Base.Resolve(key.Url);
 HttpClientRequest request = await _HttpClient.GetUrl(resolved);
-    Headers?.ForEach((string name, string value) => {
-        request.Headers.Add(name, value);
-    }
+        Headers?.ForEach((string name, string value) => {
+            request.Headers.Add(name, value);
+        }
 );
 HttpResponseMessage response = await request.Close();
 if (response.StatusCode!=Dart:internalDefaultClass.HttpStatus.Ok){
@@ -488,12 +491,12 @@ BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
 throw new Image_provider.NetworkImageLoadException(statusCode:response.StatusCode, uri:resolved);
 }
 
-Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response, onBytesReceived: (int cumulative, int total) =>
-{
-    chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: cumulative, expectedTotalBytes: total));
-}
-);
-if (bytes.LengthInBytes == 0) throw new Exception($"'NetworkImage is an empty file: {resolved}'");
+    Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response, onBytesReceived: (int cumulative, int total) =>
+    {
+        chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: cumulative, expectedTotalBytes: total));
+    }
+    );
+if (bytes.LengthInBytes==0)throw new Exception($"'NetworkImage is an empty file: {resolved}'");
 return decode(bytes);
 }
 finally

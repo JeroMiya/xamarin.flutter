@@ -445,32 +445,37 @@ namespace FlutterSDK.Physics.Clampedsimulation
         #region constructors
         public ClampedSimulation(FlutterSDK.Physics.Simulation.Simulation simulation, double xMin = default(double), double xMax = default(double), double dxMin = default(double), double dxMax = default(double))
         : base()
-    
-}
-    #endregion
+        {
+            this.Simulation = simulation;
+            this.XMin = xMin;
+            this.XMax = xMax;
+            this.DxMin = dxMin;
+            this.DxMax = dxMax;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Physics.Simulation.Simulation Simulation { get; set; }
-    public virtual double XMin { get; set; }
-    public virtual double XMax { get; set; }
-    public virtual double DxMin { get; set; }
-    public virtual double DxMax { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Physics.Simulation.Simulation Simulation { get; set; }
+        public virtual double XMin { get; set; }
+        public virtual double XMax { get; set; }
+        public virtual double DxMin { get; set; }
+        public virtual double DxMax { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new double x(double time) => Simulation.x(time).Clamp(XMin, XMax) as double;
-
-
-
-    public new double Dx(double time) => Simulation.Dx(time).Clamp(DxMin, DxMax) as double;
-
-
-
-    public new bool IsDone(double time) => Simulation.IsDone(time);
+        public new double x(double time) => Simulation.x(time).Clamp(XMin, XMax) as double;
 
 
-    #endregion
-}
+
+        public new double Dx(double time) => Simulation.Dx(time).Clamp(DxMin, DxMax) as double;
+
+
+
+        public new bool IsDone(double time) => Simulation.IsDone(time);
+
+
+        #endregion
+    }
 
 }

@@ -1331,76 +1331,79 @@ public class RenderObjectToWidgetAdapter<T> : FlutterSDK.Widgets.Framework.Rende
     #region constructors
     public RenderObjectToWidgetAdapter(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> container = default(FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T>), string debugShortDescription = default(string))
     : base(key: new GlobalObjectKey(container))
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> Container { get; set; }
-public virtual string DebugShortDescription { get; set; }
-#endregion
-
-#region methods
-
-public new RenderObjectToWidgetElement<T> CreateElement() => new RenderObjectToWidgetElement<T>(this);
-
-
-
-public new RenderObjectWithChildMixin<T> CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => Container;
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-}
-
-
-
-
-/// <Summary>
-/// Inflate this widget and actually set the resulting [RenderObject] as the
-/// child of [container].
-///
-/// If `element` is null, this function will create a new element. Otherwise,
-/// the given element will have an update scheduled to switch to this widget.
-///
-/// Used by [runApp] to bootstrap applications.
-/// </Summary>
-public virtual RenderObjectToWidgetElement<T> AttachToRenderTree(FlutterSDK.Widgets.Framework.BuildOwner owner, FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T> element = default(FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T>))
-{
-    if (element == null)
     {
-        owner.LockState(() =>
-        {
-            element = CreateElement();
-
-            element.AssignOwner(owner);
-        }
-        );
-        owner.BuildScope(element, () =>
-        {
-            element.Mount(null, null);
-        }
-        );
-        BindingDefaultClass.SchedulerBinding.Instance.EnsureVisualUpdate();
+        this.Child = child;
+        this.Container = container;
+        this.DebugShortDescription = debugShortDescription;
     }
-    else
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> Container { get; set; }
+    public virtual string DebugShortDescription { get; set; }
+    #endregion
+
+    #region methods
+
+    public new RenderObjectToWidgetElement<T> CreateElement() => new RenderObjectToWidgetElement<T>(this);
+
+
+
+    public new RenderObjectWithChildMixin<T> CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => Container;
+
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
     {
-        element._NewWidget = this;
-        element.MarkNeedsBuild();
     }
 
-    return element;
-}
+
+
+
+    /// <Summary>
+    /// Inflate this widget and actually set the resulting [RenderObject] as the
+    /// child of [container].
+    ///
+    /// If `element` is null, this function will create a new element. Otherwise,
+    /// the given element will have an update scheduled to switch to this widget.
+    ///
+    /// Used by [runApp] to bootstrap applications.
+    /// </Summary>
+    public virtual RenderObjectToWidgetElement<T> AttachToRenderTree(FlutterSDK.Widgets.Framework.BuildOwner owner, FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T> element = default(FlutterSDK.Widgets.Binding.RenderObjectToWidgetElement<T>))
+    {
+        if (element == null)
+        {
+            owner.LockState(() =>
+            {
+                element = CreateElement();
+
+                element.AssignOwner(owner);
+            }
+            );
+            owner.BuildScope(element, () =>
+            {
+                element.Mount(null, null);
+            }
+            );
+            BindingDefaultClass.SchedulerBinding.Instance.EnsureVisualUpdate();
+        }
+        else
+        {
+            element._NewWidget = this;
+            element.MarkNeedsBuild();
+        }
+
+        return element;
+    }
 
 
 
 
-public new string ToStringShort() => DebugShortDescription ?? base.ToStringShort();
+    public new string ToStringShort() => DebugShortDescription ?? base.ToStringShort();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1421,120 +1424,121 @@ public class RenderObjectToWidgetElement<T> : FlutterSDK.Widgets.Framework.RootR
     #region constructors
     public RenderObjectToWidgetElement(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> widget)
     : base(widget)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
-internal virtual @Object _RootChildSlot { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.Widget _NewWidget { get; set; }
-public virtual FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
-{
-    if (_Child != null) visitor(_Child);
-}
-
-
-
-
-public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
-{
-
-    _Child = null;
-    base.ForgetChild(child);
-}
-
-
-
-
-public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
-{
-
-    base.Mount(parent, newSlot);
-    _Rebuild();
-}
-
-
-
-
-public new void Update(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> newWidget)
-{
-    base.Update(newWidget);
-
-    _Rebuild();
-}
-
-
-
-
-public new void PerformRebuild()
-{
-    if (_NewWidget != null)
     {
-        Widget newWidget = _NewWidget;
-        _NewWidget = null;
-        Update(newWidget as RenderObjectToWidgetAdapter<T>);
-    }
-
-    base.PerformRebuild();
-
-}
-
-
-
-
-private void _Rebuild()
-{
-    try
-    {
-        _Child = UpdateChild(_Child, Widget.Child, _RootChildSlot);
 
     }
-    catch (exception,stack){
-    FlutterErrorDetails details = new FlutterErrorDetails(exception: exception, stack: stack, library: "widgets library", context: new ErrorDescription("attaching to the render tree"));
-    AssertionsDefaultClass.FlutterError.ReportError(details);
-    Widget error = FrameworkDefaultClass.ErrorWidget.Builder(details);
-    _Child = UpdateChild(null, error, _RootChildSlot);
-}
+    #endregion
 
-}
+    #region fields
+    internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
+    internal virtual @Object _RootChildSlot { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.Widget _NewWidget { get; set; }
+    public virtual FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+    {
+        if (_Child != null) visitor(_Child);
+    }
+
+
+
+
+    public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+    {
+
+        _Child = null;
+        base.ForgetChild(child);
+    }
+
+
+
+
+    public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+    {
+
+        base.Mount(parent, newSlot);
+        _Rebuild();
+    }
+
+
+
+
+    public new void Update(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> newWidget)
+    {
+        base.Update(newWidget);
+
+        _Rebuild();
+    }
+
+
+
+
+    public new void PerformRebuild()
+    {
+        if (_NewWidget != null)
+        {
+            Widget newWidget = _NewWidget;
+            _NewWidget = null;
+            Update(newWidget as RenderObjectToWidgetAdapter<T>);
+        }
+
+        base.PerformRebuild();
+
+    }
+
+
+
+
+    private void _Rebuild()
+    {
+        try
+        {
+            _Child = UpdateChild(_Child, Widget.Child, _RootChildSlot);
+
+        }
+        catch (exception,stack){
+            FlutterErrorDetails details = new FlutterErrorDetails(exception: exception, stack: stack, library: "widgets library", context: new ErrorDescription("attaching to the render tree"));
+            AssertionsDefaultClass.FlutterError.ReportError(details);
+            Widget error = FrameworkDefaultClass.ErrorWidget.Builder(details);
+            _Child = UpdateChild(null, error, _RootChildSlot);
+        }
+
+        }
 
 
 
 
 public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
-{
+    {
 
 
-    RenderObject.Child = child as T;
-}
-
-
-
-
-public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
-{
-
-}
+        RenderObject.Child = child as T;
+    }
 
 
 
 
-public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
-{
+    public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
+    {
 
-    RenderObject.Child = null;
-}
-
+    }
 
 
-#endregion
+
+
+    public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+    {
+
+        RenderObject.Child = null;
+    }
+
+
+
+    #endregion
 }
 
 

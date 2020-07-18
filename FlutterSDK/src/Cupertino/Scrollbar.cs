@@ -339,345 +339,349 @@ namespace FlutterSDK.Cupertino.Scrollbar
         #region constructors
         public CupertinoScrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
-    public virtual bool IsAlwaysShown { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Cupertino.Scrollbar._CupertinoScrollbarState CreateState() => new _CupertinoScrollbarState();
-
-
-    #endregion
-}
-
-
-public class _CupertinoScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _CupertinoScrollbarState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey { get; set; }
-    internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _Painter { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThicknessAnimationController { get; set; }
-    internal virtual Timer _FadeoutTimer { get; set; }
-    internal virtual double _DragScrollbarPositionY { get; set; }
-    internal virtual FlutterSDK.Gestures.Drag.Drag _Drag { get; set; }
-    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _CurrentController { get; set; }
-    internal virtual double _PressStartY { get; set; }
-    internal virtual double _Thickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _Radius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> _Gestures { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _FadeoutAnimationController = new AnimationController(vsync: this, duration: ScrollbarDefaultClass._KScrollbarFadeDuration);
-        _FadeoutOpacityAnimation = new CurvedAnimation(parent: _FadeoutAnimationController, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
-        _ThicknessAnimationController = new AnimationController(vsync: this, duration: ScrollbarDefaultClass._KScrollbarResizeDuration);
-        _ThicknessAnimationController.AddListener(() =>
         {
-            _Painter.UpdateThickness(_Thickness, _Radius);
+            this.Controller = controller;
+            this.IsAlwaysShown = isAlwaysShown;
+            this.Child = child;
         }
-        );
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        public virtual bool IsAlwaysShown { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Scrollbar._CupertinoScrollbarState CreateState() => new _CupertinoScrollbarState();
+
+
+        #endregion
     }
 
 
-
-
-    public new void DidChangeDependencies()
+    public class _CupertinoScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        base.DidChangeDependencies();
-        if (_Painter == null)
-        {
-            _Painter = _BuildCupertinoScrollbarPainter(Context);
-        }
-        else
-        {
-            ..TextDirection = BasicDefaultClass.Directionality.Of(Context)..Color = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ScrollbarDefaultClass._KScrollbarColor, Context)..Padding = MediaqueryDefaultClass.MediaQuery.Of(Context).Padding;
-        }
+        #region constructors
+        public _CupertinoScrollbarState()
+        { }
+        #endregion
 
-        BindingDefaultClass.WidgetsBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _Painter { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThicknessAnimationController { get; set; }
+        internal virtual Timer _FadeoutTimer { get; set; }
+        internal virtual double _DragScrollbarPositionY { get; set; }
+        internal virtual FlutterSDK.Gestures.Drag.Drag _Drag { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _CurrentController { get; set; }
+        internal virtual double _PressStartY { get; set; }
+        internal virtual double _Thickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _Radius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> _Gestures { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            if (Widget.IsAlwaysShown)
+            base.InitState();
+            _FadeoutAnimationController = new AnimationController(vsync: this, duration: ScrollbarDefaultClass._KScrollbarFadeDuration);
+            _FadeoutOpacityAnimation = new CurvedAnimation(parent: _FadeoutAnimationController, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+            _ThicknessAnimationController = new AnimationController(vsync: this, duration: ScrollbarDefaultClass._KScrollbarResizeDuration);
+            _ThicknessAnimationController.AddListener(() =>
             {
-
-                Widget.Controller.Position.DidUpdateScrollPositionBy(0);
+                _Painter.UpdateThickness(_Thickness, _Radius);
             }
-
+            );
         }
-        );
-    }
 
 
 
 
-    public new void DidUpdateWidget(FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.IsAlwaysShown != oldWidget.IsAlwaysShown)
+        public new void DidChangeDependencies()
         {
-            if (Widget.IsAlwaysShown == true)
+            base.DidChangeDependencies();
+            if (_Painter == null)
             {
-
-                _FadeoutAnimationController.AnimateTo(1.0);
+                _Painter = _BuildCupertinoScrollbarPainter(Context);
             }
             else
             {
-                _FadeoutAnimationController.Reverse();
+                ..TextDirection = BasicDefaultClass.Directionality.Of(Context)..Color = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ScrollbarDefaultClass._KScrollbarColor, Context)..Padding = MediaqueryDefaultClass.MediaQuery.Of(Context).Padding;
             }
 
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Returns a [ScrollbarPainter] visually styled like the iOS scrollbar.
-    /// </Summary>
-    private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildCupertinoScrollbarPainter(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new ScrollbarPainter(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ScrollbarDefaultClass._KScrollbarColor, context), textDirection: BasicDefaultClass.Directionality.Of(context), thickness: _Thickness, fadeoutOpacityAnimation: _FadeoutOpacityAnimation, mainAxisMargin: ScrollbarDefaultClass._KScrollbarMainAxisMargin, crossAxisMargin: ScrollbarDefaultClass._KScrollbarCrossAxisMargin, radius: _Radius, padding: MediaqueryDefaultClass.MediaQuery.Of(context).Padding, minLength: ScrollbarDefaultClass._KScrollbarMinLength, minOverscrollLength: ScrollbarDefaultClass._KScrollbarMinOverscrollLength);
-    }
-
-
-
-
-    private void _DragScrollbar(double primaryDelta)
-    {
-
-        double scrollOffsetLocal = _Painter.GetTrackToScroll(primaryDelta);
-        double scrollOffsetGlobal = scrollOffsetLocal + _CurrentController.Position.Pixels;
-        if (_Drag == null)
-        {
-            _Drag = _CurrentController.Position.Drag(new DragStartDetails(globalPosition: new Offset(0.0, scrollOffsetGlobal)), () =>
+            BindingDefaultClass.WidgetsBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
             {
-            }
-            );
-        }
-        else
-        {
-            _Drag.Update(new DragUpdateDetails(globalPosition: new Offset(0.0, scrollOffsetGlobal), delta: new Offset(0.0, -scrollOffsetLocal), primaryDelta: -scrollOffsetLocal));
-        }
+                if (Widget.IsAlwaysShown)
+                {
 
-    }
+                    Widget.Controller.Position.DidUpdateScrollPositionBy(0);
+                }
 
-
-
-
-    private void _StartFadeoutTimer()
-    {
-        if (!Widget.IsAlwaysShown)
-        {
-            _FadeoutTimer?.Cancel();
-            _FadeoutTimer = new Timer(ScrollbarDefaultClass._KScrollbarTimeToFade, () =>
-            {
-                _FadeoutAnimationController.Reverse();
-                _FadeoutTimer = null;
             }
             );
         }
 
-    }
 
 
 
-
-    private bool _CheckVertical()
-    {
-        try
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Scrollbar.CupertinoScrollbar oldWidget)
         {
-            return _CurrentController.Position.Axis == Axis.Vertical;
-        }
-        catch (_)
-        {
-            return false;
-        }
-
-    }
-
-
-
-
-    private void _HandleLongPressStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details)
-    {
-        _CurrentController = _Controller;
-        if (!_CheckVertical())
-        {
-            return;
-        }
-
-        _PressStartY = details.LocalPosition.Dy;
-        _FadeoutTimer?.Cancel();
-        _FadeoutAnimationController.Forward();
-        _DragScrollbar(details.LocalPosition.Dy);
-        _DragScrollbarPositionY = details.LocalPosition.Dy;
-    }
-
-
-
-
-    private void _HandleLongPress()
-    {
-        if (!_CheckVertical())
-        {
-            return;
-        }
-
-        _FadeoutTimer?.Cancel();
-        _ThicknessAnimationController.Forward().Then((_) => =>HapticfeedbackDefaultClass.HapticFeedback.MediumImpact());
-    }
-
-
-
-
-    private void _HandleLongPressMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details)
-    {
-        if (!_CheckVertical())
-        {
-            return;
-        }
-
-        _DragScrollbar(details.LocalPosition.Dy - _DragScrollbarPositionY);
-        _DragScrollbarPositionY = details.LocalPosition.Dy;
-    }
-
-
-
-
-    private void _HandleLongPressEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details)
-    {
-        if (!_CheckVertical())
-        {
-            return;
-        }
-
-        _HandleDragScrollEnd(details.Velocity.PixelsPerSecond.Dy);
-        if (details.Velocity.PixelsPerSecond.Dy.Abs() < 10 && (details.LocalPosition.Dy - _PressStartY).Abs() > 0)
-        {
-            HapticfeedbackDefaultClass.HapticFeedback.MediumImpact();
-        }
-
-        _CurrentController = null;
-    }
-
-
-
-
-    private void _HandleDragScrollEnd(double trackVelocityY)
-    {
-        _StartFadeoutTimer();
-        _ThicknessAnimationController.Reverse();
-        _DragScrollbarPositionY = null;
-        double scrollVelocityY = _Painter.GetTrackToScroll(trackVelocityY);
-        _Drag?.End(new DragEndDetails(primaryVelocity: -scrollVelocityY, velocity: new Velocity(pixelsPerSecond: new Offset(0.0, -scrollVelocityY))));
-        _Drag = null;
-    }
-
-
-
-
-    private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
-    {
-        ScrollMetrics metrics = notification.Metrics;
-        if (metrics.MaxScrollExtent <= metrics.MinScrollExtent)
-        {
-            return false;
-        }
-
-        if (notification is ScrollUpdateNotification || notification is OverscrollNotification)
-        {
-            if (_FadeoutAnimationController.Status != AnimationStatus.Forward)
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.IsAlwaysShown != oldWidget.IsAlwaysShown)
             {
-                _FadeoutAnimationController.Forward();
+                if (Widget.IsAlwaysShown == true)
+                {
+
+                    _FadeoutAnimationController.AnimateTo(1.0);
+                }
+                else
+                {
+                    _FadeoutAnimationController.Reverse();
+                }
+
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns a [ScrollbarPainter] visually styled like the iOS scrollbar.
+        /// </Summary>
+        private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildCupertinoScrollbarPainter(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new ScrollbarPainter(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ScrollbarDefaultClass._KScrollbarColor, context), textDirection: BasicDefaultClass.Directionality.Of(context), thickness: _Thickness, fadeoutOpacityAnimation: _FadeoutOpacityAnimation, mainAxisMargin: ScrollbarDefaultClass._KScrollbarMainAxisMargin, crossAxisMargin: ScrollbarDefaultClass._KScrollbarCrossAxisMargin, radius: _Radius, padding: MediaqueryDefaultClass.MediaQuery.Of(context).Padding, minLength: ScrollbarDefaultClass._KScrollbarMinLength, minOverscrollLength: ScrollbarDefaultClass._KScrollbarMinOverscrollLength);
+        }
+
+
+
+
+        private void _DragScrollbar(double primaryDelta)
+        {
+
+            double scrollOffsetLocal = _Painter.GetTrackToScroll(primaryDelta);
+            double scrollOffsetGlobal = scrollOffsetLocal + _CurrentController.Position.Pixels;
+            if (_Drag == null)
+            {
+                _Drag = _CurrentController.Position.Drag(new DragStartDetails(globalPosition: new Offset(0.0, scrollOffsetGlobal)), () =>
+                {
+                }
+                );
+            }
+            else
+            {
+                _Drag.Update(new DragUpdateDetails(globalPosition: new Offset(0.0, scrollOffsetGlobal), delta: new Offset(0.0, -scrollOffsetLocal), primaryDelta: -scrollOffsetLocal));
+            }
+
+        }
+
+
+
+
+        private void _StartFadeoutTimer()
+        {
+            if (!Widget.IsAlwaysShown)
+            {
+                _FadeoutTimer?.Cancel();
+                _FadeoutTimer = new Timer(ScrollbarDefaultClass._KScrollbarTimeToFade, () =>
+                {
+                    _FadeoutAnimationController.Reverse();
+                    _FadeoutTimer = null;
+                }
+                );
+            }
+
+        }
+
+
+
+
+        private bool _CheckVertical()
+        {
+            try
+            {
+                return _CurrentController.Position.Axis == Axis.Vertical;
+            }
+            catch (_)
+            {
+                return false;
+            }
+
+        }
+
+
+
+
+        private void _HandleLongPressStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details)
+        {
+            _CurrentController = _Controller;
+            if (!_CheckVertical())
+            {
+                return;
+            }
+
+            _PressStartY = details.LocalPosition.Dy;
+            _FadeoutTimer?.Cancel();
+            _FadeoutAnimationController.Forward();
+            _DragScrollbar(details.LocalPosition.Dy);
+            _DragScrollbarPositionY = details.LocalPosition.Dy;
+        }
+
+
+
+
+        private void _HandleLongPress()
+        {
+            if (!_CheckVertical())
+            {
+                return;
             }
 
             _FadeoutTimer?.Cancel();
-            _Painter.Update(notification.Metrics, notification.Metrics.AxisDirection);
+            _ThicknessAnimationController.Forward().Then((_) => =>HapticfeedbackDefaultClass.HapticFeedback.MediumImpact());
         }
-        else if (notification is ScrollEndNotification)
+
+
+
+
+        private void _HandleLongPressMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details)
         {
-            if (_DragScrollbarPositionY == null)
+            if (!_CheckVertical())
             {
-                _StartFadeoutTimer();
+                return;
             }
 
+            _DragScrollbar(details.LocalPosition.Dy - _DragScrollbarPositionY);
+            _DragScrollbarPositionY = details.LocalPosition.Dy;
         }
 
-        return false;
+
+
+
+        private void _HandleLongPressEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details)
+        {
+            if (!_CheckVertical())
+            {
+                return;
+            }
+
+            _HandleDragScrollEnd(details.Velocity.PixelsPerSecond.Dy);
+            if (details.Velocity.PixelsPerSecond.Dy.Abs() < 10 && (details.LocalPosition.Dy - _PressStartY).Abs() > 0)
+            {
+                HapticfeedbackDefaultClass.HapticFeedback.MediumImpact();
+            }
+
+            _CurrentController = null;
+        }
+
+
+
+
+        private void _HandleDragScrollEnd(double trackVelocityY)
+        {
+            _StartFadeoutTimer();
+            _ThicknessAnimationController.Reverse();
+            _DragScrollbarPositionY = null;
+            double scrollVelocityY = _Painter.GetTrackToScroll(trackVelocityY);
+            _Drag?.End(new DragEndDetails(primaryVelocity: -scrollVelocityY, velocity: new Velocity(pixelsPerSecond: new Offset(0.0, -scrollVelocityY))));
+            _Drag = null;
+        }
+
+
+
+
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+        {
+            ScrollMetrics metrics = notification.Metrics;
+            if (metrics.MaxScrollExtent <= metrics.MinScrollExtent)
+            {
+                return false;
+            }
+
+            if (notification is ScrollUpdateNotification || notification is OverscrollNotification)
+            {
+                if (_FadeoutAnimationController.Status != AnimationStatus.Forward)
+                {
+                    _FadeoutAnimationController.Forward();
+                }
+
+                _FadeoutTimer?.Cancel();
+                _Painter.Update(notification.Metrics, notification.Metrics.AxisDirection);
+            }
+            else if (notification is ScrollEndNotification)
+            {
+                if (_DragScrollbarPositionY == null)
+                {
+                    _StartFadeoutTimer();
+                }
+
+            }
+
+            return false;
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _FadeoutAnimationController.Dispose();
+            _ThicknessAnimationController.Dispose();
+            _FadeoutTimer?.Cancel();
+            _Painter.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new RepaintBoundary(child: new RawGestureDetector(gestures: _Gestures, child: new CustomPaint(key: _CustomPaintKey, foregroundPainter: _Painter, child: new RepaintBoundary(child: Widget.Child)))));
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void Dispose()
+    public class _ThumbPressGestureRecognizer : FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer
     {
-        _FadeoutAnimationController.Dispose();
-        _ThicknessAnimationController.Dispose();
-        _FadeoutTimer?.Cancel();
-        _Painter.Dispose();
-        base.Dispose();
+        #region constructors
+        public _ThumbPressGestureRecognizer(double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>))
+        : base(postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner, duration: new TimeSpan(milliseconds: 100))
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+        {
+            if (!ScrollbarDefaultClass._HitTestInteractive(_CustomPaintKey, @event.Position))
+            {
+                return false;
+            }
+
+            return base.IsPointerAllowed(@event);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new RepaintBoundary(child: new RawGestureDetector(gestures: _Gestures, child: new CustomPaint(key: _CustomPaintKey, foregroundPainter: _Painter, child: new RepaintBoundary(child: Widget.Child)))));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ThumbPressGestureRecognizer : FlutterSDK.Gestures.Longpress.LongPressGestureRecognizer
-{
-    #region constructors
-    public _ThumbPressGestureRecognizer(double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>))
-    : base(postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner, duration: new TimeSpan(milliseconds: 100))
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CustomPaintKey { get; set; }
-#endregion
-
-#region methods
-
-public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
-{
-    if (!ScrollbarDefaultClass._HitTestInteractive(_CustomPaintKey, @event.Position))
-    {
-        return false;
-    }
-
-    return base.IsPointerAllowed(@event);
-}
-
-
-
-#endregion
-}
 
 }

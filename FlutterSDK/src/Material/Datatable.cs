@@ -393,272 +393,297 @@ namespace FlutterSDK.Material.Datatable
         #region constructors
         public DataColumn(FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = false, FlutterSDK.Material.Datatable.DataColumnSortCallback onSort = default(FlutterSDK.Material.Datatable.DataColumnSortCallback))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
-    public virtual string Tooltip { get; set; }
-    public virtual bool Numeric { get; set; }
-    public virtual FlutterSDK.Material.Datatable.DataColumnSortCallback OnSort { get; set; }
-    internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// Row configuration and cell data for a [DataTable].
-///
-/// One row configuration must be provided for each row to
-/// display in the table. The list of [DataRow] objects is passed
-/// as the `rows` argument to the [new DataTable] constructor.
-///
-/// The data for this row of the table is provided in the [cells]
-/// property of the [DataRow] object.
-/// </Summary>
-public class DataRow
-{
-    #region constructors
-    public DataRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
-    : base()
-
-}
-public static DataRow ByIndex(int index = default(int), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnSelectChanged { get; set; }
-public virtual bool Selected { get; set; }
-public virtual List<FlutterSDK.Material.Datatable.DataCell> Cells { get; set; }
-internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// The data for a cell of a [DataTable].
-///
-/// One list of [DataCell] objects must be provided for each [DataRow]
-/// in the [DataTable], in the [new DataRow] constructor's `cells`
-/// argument.
-/// </Summary>
-public class DataCell
-{
-    #region constructors
-    public DataCell(FlutterSDK.Widgets.Framework.Widget child, bool placeholder = false, bool showEditIcon = false, VoidCallback onTap = default(VoidCallback))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Datatable.DataCell Empty { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual bool Placeholder { get; set; }
-public virtual bool ShowEditIcon { get; set; }
-public virtual VoidCallback OnTap { get; set; }
-internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// A material design data table.
-///
-/// {@youtube 560 315 https://www.youtube.com/watch?v=ktTajqbhIcY}
-///
-/// Displaying data in a table is expensive, because to lay out the
-/// table all the data must be measured twice, once to negotiate the
-/// dimensions to use for each column, and once to actually lay out
-/// the table given the results of the negotiation.
-///
-/// For this reason, if you have a lot of data (say, more than a dozen
-/// rows with a dozen columns, though the precise limits depend on the
-/// target device), it is suggested that you use a
-/// [PaginatedDataTable] which automatically splits the data into
-/// multiple pages.
-///
-/// {@tool dartpad --template=stateless_widget_scaffold}
-///
-/// This sample shows how to display a [DataTable] with three columns: name, age, and
-/// role. The columns are defined by three [DataColumn] objects. The table
-/// contains three rows of data for three example users, the data for which
-/// is defined by three [DataRow] objects.
-///
-/// ![](https://flutter.github.io/assets-for-api-docs/assets/material/data_table.png)
-///
-/// ```dart
-/// Widget build(BuildContext context) {
-///   return DataTable(
-///     columns: const <DataColumn>[
-///       DataColumn(
-///         label: Text(
-///           'Name',
-///           style: TextStyle(fontStyle: FontStyle.italic),
-///         ),
-///       ),
-///       DataColumn(
-///         label: Text(
-///           'Age',
-///           style: TextStyle(fontStyle: FontStyle.italic),
-///         ),
-///       ),
-///       DataColumn(
-///         label: Text(
-///           'Role',
-///           style: TextStyle(fontStyle: FontStyle.italic),
-///         ),
-///       ),
-///     ],
-///     rows: const <DataRow>[
-///       DataRow(
-///         cells: <DataCell>[
-///           DataCell(Text('Sarah')),
-///           DataCell(Text('19')),
-///           DataCell(Text('Student')),
-///         ],
-///       ),
-///       DataRow(
-///         cells: <DataCell>[
-///           DataCell(Text('Janine')),
-///           DataCell(Text('43')),
-///           DataCell(Text('Professor')),
-///         ],
-///       ),
-///       DataRow(
-///         cells: <DataCell>[
-///           DataCell(Text('William')),
-///           DataCell(Text('27')),
-///           DataCell(Text('Associate Professor')),
-///         ],
-///       ),
-///     ],
-///   );
-/// }
-/// ```
-///
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [DataColumn], which describes a column in the data table.
-///  * [DataRow], which contains the data for a row in the data table.
-///  * [DataCell], which contains the data for a single cell in the data table.
-///  * [PaginatedDataTable], which shows part of the data in a data table and
-///    provides controls for paging through the remainder of the data.
-///  * <https://material.io/design/components/data-tables.html>
-/// </Summary>
-public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public DataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, double dividerThickness = 1.0, List<FlutterSDK.Material.Datatable.DataRow> rows = default(List<FlutterSDK.Material.Datatable.DataRow>))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
-public virtual int SortColumnIndex { get; set; }
-public virtual bool SortAscending { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
-public virtual double DataRowHeight { get; set; }
-public virtual double HeadingRowHeight { get; set; }
-public virtual double HorizontalMargin { get; set; }
-public virtual double ColumnSpacing { get; set; }
-public virtual bool ShowCheckboxColumn { get; set; }
-public virtual List<FlutterSDK.Material.Datatable.DataRow> Rows { get; set; }
-internal virtual int _OnlyTextColumn { get; set; }
-internal virtual FlutterSDK.Foundation.Key.LocalKey _HeadingRowKey { get; set; }
-internal virtual double _SortArrowPadding { get; set; }
-internal virtual double _HeadingFontSize { get; set; }
-internal virtual TimeSpan _SortArrowAnimationDuration { get; set; }
-internal virtual FlutterBinding.UI.Color _Grey100Opacity { get; set; }
-internal virtual FlutterBinding.UI.Color _Grey300Opacity { get; set; }
-public virtual double DividerThickness { get; set; }
-internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private int _InitOnlyTextColumn(List<FlutterSDK.Material.Datatable.DataColumn> columns)
-{
-    int result = default(int);
-    for (int index = 0; index < columns.Count; index += 1)
-    {
-        DataColumn column = columns[index];
-        if (!column.Numeric)
         {
-            if (result != null) return null;
-            result = index;
+            this.Label = label;
+            this.Tooltip = tooltip;
+            this.Numeric = numeric;
+            this.OnSort = onSort;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
+        public virtual string Tooltip { get; set; }
+        public virtual bool Numeric { get; set; }
+        public virtual FlutterSDK.Material.Datatable.DataColumnSortCallback OnSort { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Row configuration and cell data for a [DataTable].
+    ///
+    /// One row configuration must be provided for each row to
+    /// display in the table. The list of [DataRow] objects is passed
+    /// as the `rows` argument to the [new DataTable] constructor.
+    ///
+    /// The data for this row of the table is provided in the [cells]
+    /// property of the [DataRow] object.
+    /// </Summary>
+    public class DataRow
+    {
+        #region constructors
+        public DataRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
+        : base()
+        {
+            this.Key = key;
+            this.Selected = selected;
+            this.OnSelectChanged = onSelectChanged;
+            this.Cells = cells;
+        }
+        public static DataRow ByIndex(int index = default(int), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
+        {
+            var instance = new DataRow(); instance.Selected = selected;
+            instance.OnSelectChanged = onSelectChanged;
+            instance.Cells = cells;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnSelectChanged { get; set; }
+        public virtual bool Selected { get; set; }
+        public virtual List<FlutterSDK.Material.Datatable.DataCell> Cells { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The data for a cell of a [DataTable].
+    ///
+    /// One list of [DataCell] objects must be provided for each [DataRow]
+    /// in the [DataTable], in the [new DataRow] constructor's `cells`
+    /// argument.
+    /// </Summary>
+    public class DataCell
+    {
+        #region constructors
+        public DataCell(FlutterSDK.Widgets.Framework.Widget child, bool placeholder = false, bool showEditIcon = false, VoidCallback onTap = default(VoidCallback))
+        : base()
+        {
+            this.Child = child;
+            this.Placeholder = placeholder;
+            this.ShowEditIcon = showEditIcon;
+            this.OnTap = onTap;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Datatable.DataCell Empty { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual bool Placeholder { get; set; }
+        public virtual bool ShowEditIcon { get; set; }
+        public virtual VoidCallback OnTap { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A material design data table.
+    ///
+    /// {@youtube 560 315 https://www.youtube.com/watch?v=ktTajqbhIcY}
+    ///
+    /// Displaying data in a table is expensive, because to lay out the
+    /// table all the data must be measured twice, once to negotiate the
+    /// dimensions to use for each column, and once to actually lay out
+    /// the table given the results of the negotiation.
+    ///
+    /// For this reason, if you have a lot of data (say, more than a dozen
+    /// rows with a dozen columns, though the precise limits depend on the
+    /// target device), it is suggested that you use a
+    /// [PaginatedDataTable] which automatically splits the data into
+    /// multiple pages.
+    ///
+    /// {@tool dartpad --template=stateless_widget_scaffold}
+    ///
+    /// This sample shows how to display a [DataTable] with three columns: name, age, and
+    /// role. The columns are defined by three [DataColumn] objects. The table
+    /// contains three rows of data for three example users, the data for which
+    /// is defined by three [DataRow] objects.
+    ///
+    /// ![](https://flutter.github.io/assets-for-api-docs/assets/material/data_table.png)
+    ///
+    /// ```dart
+    /// Widget build(BuildContext context) {
+    ///   return DataTable(
+    ///     columns: const <DataColumn>[
+    ///       DataColumn(
+    ///         label: Text(
+    ///           'Name',
+    ///           style: TextStyle(fontStyle: FontStyle.italic),
+    ///         ),
+    ///       ),
+    ///       DataColumn(
+    ///         label: Text(
+    ///           'Age',
+    ///           style: TextStyle(fontStyle: FontStyle.italic),
+    ///         ),
+    ///       ),
+    ///       DataColumn(
+    ///         label: Text(
+    ///           'Role',
+    ///           style: TextStyle(fontStyle: FontStyle.italic),
+    ///         ),
+    ///       ),
+    ///     ],
+    ///     rows: const <DataRow>[
+    ///       DataRow(
+    ///         cells: <DataCell>[
+    ///           DataCell(Text('Sarah')),
+    ///           DataCell(Text('19')),
+    ///           DataCell(Text('Student')),
+    ///         ],
+    ///       ),
+    ///       DataRow(
+    ///         cells: <DataCell>[
+    ///           DataCell(Text('Janine')),
+    ///           DataCell(Text('43')),
+    ///           DataCell(Text('Professor')),
+    ///         ],
+    ///       ),
+    ///       DataRow(
+    ///         cells: <DataCell>[
+    ///           DataCell(Text('William')),
+    ///           DataCell(Text('27')),
+    ///           DataCell(Text('Associate Professor')),
+    ///         ],
+    ///       ),
+    ///     ],
+    ///   );
+    /// }
+    /// ```
+    ///
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [DataColumn], which describes a column in the data table.
+    ///  * [DataRow], which contains the data for a row in the data table.
+    ///  * [DataCell], which contains the data for a single cell in the data table.
+    ///  * [PaginatedDataTable], which shows part of the data in a data table and
+    ///    provides controls for paging through the remainder of the data.
+    ///  * <https://material.io/design/components/data-tables.html>
+    /// </Summary>
+    public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public DataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, double dividerThickness = 1.0, List<FlutterSDK.Material.Datatable.DataRow> rows = default(List<FlutterSDK.Material.Datatable.DataRow>))
+        : base(key: key)
+        {
+            this.Columns = columns;
+            this.SortColumnIndex = sortColumnIndex;
+            this.SortAscending = sortAscending;
+            this.OnSelectAll = onSelectAll;
+            this.DataRowHeight = dataRowHeight;
+            this.HeadingRowHeight = headingRowHeight;
+            this.HorizontalMargin = horizontalMargin;
+            this.ColumnSpacing = columnSpacing;
+            this.ShowCheckboxColumn = showCheckboxColumn;
+            this.DividerThickness = dividerThickness;
+            this.Rows = rows;
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
+        public virtual int SortColumnIndex { get; set; }
+        public virtual bool SortAscending { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueSetter<bool> OnSelectAll { get; set; }
+        public virtual double DataRowHeight { get; set; }
+        public virtual double HeadingRowHeight { get; set; }
+        public virtual double HorizontalMargin { get; set; }
+        public virtual double ColumnSpacing { get; set; }
+        public virtual bool ShowCheckboxColumn { get; set; }
+        public virtual List<FlutterSDK.Material.Datatable.DataRow> Rows { get; set; }
+        internal virtual int _OnlyTextColumn { get; set; }
+        internal virtual FlutterSDK.Foundation.Key.LocalKey _HeadingRowKey { get; set; }
+        internal virtual double _SortArrowPadding { get; set; }
+        internal virtual double _HeadingFontSize { get; set; }
+        internal virtual TimeSpan _SortArrowAnimationDuration { get; set; }
+        internal virtual FlutterBinding.UI.Color _Grey100Opacity { get; set; }
+        internal virtual FlutterBinding.UI.Color _Grey300Opacity { get; set; }
+        public virtual double DividerThickness { get; set; }
+        internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private int _InitOnlyTextColumn(List<FlutterSDK.Material.Datatable.DataColumn> columns)
+        {
+            int result = default(int);
+            for (int index = 0; index < columns.Count; index += 1)
+            {
+                DataColumn column = columns[index];
+                if (!column.Numeric)
+                {
+                    if (result != null) return null;
+                    result = index;
+                }
+
+            }
+
+            return result;
         }
 
-    }
-
-    return result;
-}
 
 
 
-
-private void _HandleSelectAll(bool @checked)
-{
-    if (OnSelectAll != null)
-    {
-        OnSelectAll(checked);
-    }
-    else
-    {
-        foreach (DataRow row in Rows)
+        private void _HandleSelectAll(bool @checked)
         {
-            if ((row.OnSelectChanged != null) && (row.Selected != checked))row.OnSelectChanged(checked);
+            if (OnSelectAll != null)
+            {
+                OnSelectAll(checked);
+            }
+            else
+            {
+                foreach (DataRow row in Rows)
+                {
+                    if ((row.OnSelectChanged != null) && (row.Selected != checked))row.OnSelectChanged(checked);
+                }
+
+            }
+
         }
 
-    }
-
-}
 
 
 
+        private FlutterSDK.Widgets.Framework.Widget _BuildCheckbox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool @checked = default(bool), VoidCallback onRowTap = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onCheckboxChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
+        {
+            Widget contents = new Semantics(container: true, child: new Padding(padding: EdgeInsetsDirectional.Only(start: HorizontalMargin, end: HorizontalMargin / 2.0), child: new Center(child: new Checkbox(activeColor: color, value: @checked, onChanged: onCheckboxChanged))));
+            if (onRowTap != null)
+            {
+                contents = new TableRowInkWell(onTap: onRowTap, child: contents);
+            }
 
-private FlutterSDK.Widgets.Framework.Widget _BuildCheckbox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool @checked = default(bool), VoidCallback onRowTap = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onCheckboxChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
-{
-    Widget contents = new Semantics(container: true, child: new Padding(padding: EdgeInsetsDirectional.Only(start: HorizontalMargin, end: HorizontalMargin / 2.0), child: new Center(child: new Checkbox(activeColor: color, value: @checked, onChanged: onCheckboxChanged))));
-    if (onRowTap != null)
-    {
-        contents = new TableRowInkWell(onTap: onRowTap, child: contents);
-    }
-
-    return new TableCell(verticalAlignment: TableCellVerticalAlignment.Fill, child: contents);
-}
+            return new TableCell(verticalAlignment: TableCellVerticalAlignment.Fill, child: contents);
+        }
 
 
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildHeadingCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = default(bool), VoidCallback onSort = default(VoidCallback), bool sorted = default(bool), bool ascending = default(bool))
-{
-    List<Widget> ArrowWithPadding() => {
-        return onSort == null ? new List, < Widget > (}:new List<Widget>() { new _SortArrow(visible: sorted, down: sorted ? ascending : null, duration: _SortArrowAnimationDuration), new SizedBox(width: _SortArrowPadding) };
-}
- 
-label = new Row(textDirection: numeric ? TextDirection.Rtl : null, children: new List<Widget>() { label, , ArrowWithPadding() });
-label = new Container(padding: padding, height: HeadingRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new AnimatedDefaultTextStyle(style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.W500, fontSize: _HeadingFontSize, height: Math.Dart:mathDefaultClass.Min(1.0, HeadingRowHeight / _HeadingFontSize), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ((onSort != null && sorted) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.Black54) : ((onSort != null && sorted) ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.White70)), softWrap: false, duration: _SortArrowAnimationDuration, child: label));
-if (tooltip != null)
-{
-    label = new Tooltip(message: tooltip, child: label);
+        private FlutterSDK.Widgets.Framework.Widget _BuildHeadingCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = default(bool), VoidCallback onSort = default(VoidCallback), bool sorted = default(bool), bool ascending = default(bool))
+        {
+            List<Widget> ArrowWithPadding() => {
+                return onSort == null ? new List, < Widget > (}:new List<Widget>() { new _SortArrow(visible: sorted, down: sorted ? ascending : null, duration: _SortArrowAnimationDuration), new SizedBox(width: _SortArrowPadding) };
+        }
+
+        label=new Row(textDirection:numeric? TextDirection.Rtl:null , children:new List<Widget>(){label, , ArrowWithPadding()});
+label=new Container(padding:padding, height:HeadingRowHeight, alignment:numeric? AlignmentDefaultClass.Alignment.CenterRight:AlignmentDefaultClass.AlignmentDirectional.CenterStart, child:new AnimatedDefaultTextStyle(style:new TextStyle(fontWeight:Dart:uiDefaultClass.FontWeight.W500, fontSize:_HeadingFontSize, height:Math.Dart:mathDefaultClass.Min(1.0, HeadingRowHeight/_HeadingFontSize), color:(ThemeDefaultClass.Theme.Of(context).Brightness==Brightness.Light)? ((onSort!=null &&sorted)? ColorsDefaultClass.Colors.Black87:ColorsDefaultClass.Colors.Black54):((onSort!=null &&sorted)?ColorsDefaultClass.Colors.White:ColorsDefaultClass.Colors.White70)), softWrap:false , duration:_SortArrowAnimationDuration, child:label));
+if (tooltip!=null ){
+label=new Tooltip(message:tooltip, child:label);
 }
 
 label = new InkWell(onTap: onSort, child: label);
@@ -802,58 +827,59 @@ public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
     #region constructors
     public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
     : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, containedInkWell: true, highlightShape: BoxShape.Rectangle)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox)
-{
-    return () =>
     {
-        RenderObject cell = referenceBox;
-        AbstractNode table = cell.Parent;
-        Matrix4 transform = Matrix4.Identity();
-        while (table is RenderObject && !(table is RenderTable))
-        {
-            RenderObject parentBox = table as RenderObject;
-            parentBox.ApplyPaintTransform(cell, transform);
 
-            cell = parentBox;
-            table = table.Parent;
-        }
-
-        if (table is RenderTable)
-        {
-            TableCellParentData cellParentData = cell.ParentData as TableCellParentData;
-
-            Rect rect = ((RenderObject)table).GetRowBox(cellParentData.y);
-            ((RenderObject)table).ApplyPaintTransform(cell, transform);
-            Offset offset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
-            if (offset != null) return rect.Shift(-offset);
-        }
-
-        return Dart:uiDefaultClass.Rect.Zero;
     }
-    ;
-}
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox)
+    {
+        return () =>
+        {
+            RenderObject cell = referenceBox;
+            AbstractNode table = cell.Parent;
+            Matrix4 transform = Matrix4.Identity();
+            while (table is RenderObject && !(table is RenderTable))
+            {
+                RenderObject parentBox = table as RenderObject;
+                parentBox.ApplyPaintTransform(cell, transform);
+
+                cell = parentBox;
+                table = table.Parent;
+            }
+
+            if (table is RenderTable)
+            {
+                TableCellParentData cellParentData = cell.ParentData as TableCellParentData;
+
+                Rect rect = ((RenderObject)table).GetRowBox(cellParentData.y);
+                ((RenderObject)table).ApplyPaintTransform(cell, transform);
+                Offset offset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
+                if (offset != null) return rect.Shift(-offset);
+            }
+
+            return Dart:uiDefaultClass.Rect.Zero;
+        }
+        ;
+    }
 
 
 
 
-public new bool DebugCheckContext(FlutterSDK.Widgets.Framework.BuildContext context)
-{
+    public new bool DebugCheckContext(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
 
-    return base.DebugCheckContext(context);
-}
+        return base.DebugCheckContext(context);
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -862,22 +888,25 @@ public class _SortArrow : FlutterSDK.Widgets.Framework.StatefulWidget
     #region constructors
     public _SortArrow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool visible = default(bool), bool down = default(bool), TimeSpan duration = default(TimeSpan))
     : base(key: key)
+    {
+        this.Visible = visible;
+        this.Down = down;
+        this.Duration = duration;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual bool Visible { get; set; }
+    public virtual bool Down { get; set; }
+    public virtual TimeSpan Duration { get; set; }
+    #endregion
 
-#region fields
-public virtual bool Visible { get; set; }
-public virtual bool Down { get; set; }
-public virtual TimeSpan Duration { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Material.Datatable._SortArrowState CreateState() => new _SortArrowState();
+    public new FlutterSDK.Material.Datatable._SortArrowState CreateState() => new _SortArrowState();
 
 
-#endregion
+    #endregion
 }
 
 

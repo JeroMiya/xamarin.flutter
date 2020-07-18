@@ -426,43 +426,52 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
         #region constructors
         public DatePickerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string helpText = default(string), string titleText = default(string), string titleSemanticsLabel = default(string), FlutterSDK.Painting.Textstyle.TextStyle titleStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), bool isShort = false, FlutterSDK.Widgets.Icondata.IconData icon = default(FlutterSDK.Widgets.Icondata.IconData), string iconTooltip = default(string), VoidCallback onIconPressed = default(VoidCallback))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.HelpText = helpText;
+            this.TitleText = titleText;
+            this.TitleSemanticsLabel = titleSemanticsLabel;
+            this.TitleStyle = titleStyle;
+            this.Orientation = orientation;
+            this.IsShort = isShort;
+            this.Icon = icon;
+            this.IconTooltip = iconTooltip;
+            this.OnIconPressed = onIconPressed;
+        }
+        #endregion
 
-    #region fields
-    public virtual string HelpText { get; set; }
-    public virtual string TitleText { get; set; }
-    public virtual string TitleSemanticsLabel { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleStyle { get; set; }
-    public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
-    public virtual bool IsShort { get; set; }
-    public virtual FlutterSDK.Widgets.Icondata.IconData Icon { get; set; }
-    public virtual string IconTooltip { get; set; }
-    public virtual VoidCallback OnIconPressed { get; set; }
-    #endregion
+        #region fields
+        public virtual string HelpText { get; set; }
+        public virtual string TitleText { get; set; }
+        public virtual string TitleSemanticsLabel { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleStyle { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        public virtual bool IsShort { get; set; }
+        public virtual FlutterSDK.Widgets.Icondata.IconData Icon { get; set; }
+        public virtual string IconTooltip { get; set; }
+        public virtual VoidCallback OnIconPressed { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-        ColorScheme colorScheme = theme.ColorScheme;
-        TextTheme textTheme = theme.TextTheme;
-        bool isDark = colorScheme.Brightness == Brightness.Dark;
-        Color primarySurfaceColor = isDark ? colorScheme.Surface : colorScheme.Primary;
-        Color onPrimarySurfaceColor = isDark ? colorScheme.OnSurface : colorScheme.OnPrimary;
-        TextStyle helpStyle = textTheme.Overline?.CopyWith(color: onPrimarySurfaceColor);
-        Text help = new Text(HelpText, style: helpStyle, maxLines: 1, overflow: TextOverflow.Ellipsis);
-        Text title = new Text(TitleText, semanticsLabel: TitleSemanticsLabel ?? TitleText, style: TitleStyle, maxLines: (IsShort || Orientation == Orientation.Portrait) ? 1 : 2, overflow: TextOverflow.Ellipsis);
-        IconButton icon = new IconButton(icon: new Icon(this.Icon), color: onPrimarySurfaceColor, tooltip: IconTooltip, onPressed: OnIconPressed);
-        switch (Orientation) { case Orientation.Portrait: return new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new Container(height: DatepickerheaderDefaultClass._DatePickerHeaderPortraitHeight, color: primarySurfaceColor, padding: EdgeInsetsDirectional.Only(start: 24, end: 12), child: new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new SizedBox(height: 16), new Flexible(child: help), new SizedBox(height: 38), new Row(children: new List<Widget>() { new Expanded(child: title), icon }) })) }); case Orientation.Landscape: return new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new Container(width: DatepickerheaderDefaultClass._DatePickerHeaderLandscapeWidth, color: primarySurfaceColor, child: new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new SizedBox(height: 16), new Padding(padding: EdgeInsets.Symmetric(horizontal: DatepickerheaderDefaultClass._HeaderPaddingLandscape), child: help), new SizedBox(height: IsShort ? 16 : 56), new Padding(padding: EdgeInsets.Symmetric(horizontal: DatepickerheaderDefaultClass._HeaderPaddingLandscape), child: title), new Spacer(), new Padding(padding: EdgeInsets.Symmetric(horizontal: 4), child: icon) })) }); }
-        return null;
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            ColorScheme colorScheme = theme.ColorScheme;
+            TextTheme textTheme = theme.TextTheme;
+            bool isDark = colorScheme.Brightness == Brightness.Dark;
+            Color primarySurfaceColor = isDark ? colorScheme.Surface : colorScheme.Primary;
+            Color onPrimarySurfaceColor = isDark ? colorScheme.OnSurface : colorScheme.OnPrimary;
+            TextStyle helpStyle = textTheme.Overline?.CopyWith(color: onPrimarySurfaceColor);
+            Text help = new Text(HelpText, style: helpStyle, maxLines: 1, overflow: TextOverflow.Ellipsis);
+            Text title = new Text(TitleText, semanticsLabel: TitleSemanticsLabel ?? TitleText, style: TitleStyle, maxLines: (IsShort || Orientation == Orientation.Portrait) ? 1 : 2, overflow: TextOverflow.Ellipsis);
+            IconButton icon = new IconButton(icon: new Icon(this.Icon), color: onPrimarySurfaceColor, tooltip: IconTooltip, onPressed: OnIconPressed);
+            switch (Orientation) { case Orientation.Portrait: return new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new Container(height: DatepickerheaderDefaultClass._DatePickerHeaderPortraitHeight, color: primarySurfaceColor, padding: EdgeInsetsDirectional.Only(start: 24, end: 12), child: new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new SizedBox(height: 16), new Flexible(child: help), new SizedBox(height: 38), new Row(children: new List<Widget>() { new Expanded(child: title), icon }) })) }); case Orientation.Landscape: return new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new Container(width: DatepickerheaderDefaultClass._DatePickerHeaderLandscapeWidth, color: primarySurfaceColor, child: new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { new SizedBox(height: 16), new Padding(padding: EdgeInsets.Symmetric(horizontal: DatepickerheaderDefaultClass._HeaderPaddingLandscape), child: help), new SizedBox(height: IsShort ? 16 : 56), new Padding(padding: EdgeInsets.Symmetric(horizontal: DatepickerheaderDefaultClass._HeaderPaddingLandscape), child: title), new Spacer(), new Padding(padding: EdgeInsets.Symmetric(horizontal: 4), child: icon) })) }); }
+            return null;
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

@@ -492,531 +492,542 @@ namespace FlutterSDK.Widgets.Overscrollindicator
         #region constructors
         public GlowingOverscrollIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool showLeading = true, bool showTrailing = true, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual bool ShowLeading { get; set; }
-    public virtual bool ShowTrailing { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Overscrollindicator._GlowingOverscrollIndicatorState CreateState() => new _GlowingOverscrollIndicatorState();
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
-        string showDescription = default(string);
-        if (ShowLeading && ShowTrailing)
         {
-            showDescription = "both sides";
+            this.ShowLeading = showLeading;
+            this.ShowTrailing = showTrailing;
+            this.AxisDirection = axisDirection;
+            this.Color = color;
+            this.NotificationPredicate = notificationPredicate;
+            this.Child = child;
         }
-        else if (ShowLeading)
+        #endregion
+
+        #region fields
+        public virtual bool ShowLeading { get; set; }
+        public virtual bool ShowTrailing { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Overscrollindicator._GlowingOverscrollIndicatorState CreateState() => new _GlowingOverscrollIndicatorState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
-            showDescription = "leading side only";
-        }
-        else if (ShowTrailing)
-        {
-            showDescription = "trailing side only";
-        }
-        else
-        {
-            showDescription = "neither side (!)";
-        }
-
-        properties.Add(new MessageProperty("show", showDescription));
-        properties.Add(new ColorProperty("color", Color, showName: false));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _GlowingOverscrollIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overscrollindicator.GlowingOverscrollIndicator>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _GlowingOverscrollIndicatorState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowController _LeadingController { get; set; }
-    internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowController _TrailingController { get; set; }
-    internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _LeadingAndTrailingListener { get; set; }
-    internal virtual Type _LastNotificationType { get; set; }
-    internal virtual Dictionary<bool, bool> _Accepted { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _LeadingController = new _GlowController(vsync: this, color: Widget.Color, axis: Widget.Axis);
-        _TrailingController = new _GlowController(vsync: this, color: Widget.Color, axis: Widget.Axis);
-        _LeadingAndTrailingListener = Listenable.Merge(new List<Listenable>() { _LeadingController, _TrailingController });
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Overscrollindicator.GlowingOverscrollIndicator oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (oldWidget.Color != Widget.Color || oldWidget.Axis != Widget.Axis)
-        {
-            _LeadingController.Color = Widget.Color;
-            _LeadingController.Axis = Widget.Axis;
-            _TrailingController.Color = Widget.Color;
-            _TrailingController.Axis = Widget.Axis;
-        }
-
-    }
-
-
-
-
-    private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
-    {
-        if (!Widget.NotificationPredicate(notification)) return false;
-        if (notification is OverscrollNotification)
-        {
-            _GlowController controller = default(_GlowController);
-            if (((OverscrollNotification)notification).Overscroll < 0.0)
+            base.DebugFillProperties(properties);
+            properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
+            string showDescription = default(string);
+            if (ShowLeading && ShowTrailing)
             {
-                controller = _LeadingController;
+                showDescription = "both sides";
             }
-            else if (notification.Overscroll > 0.0)
+            else if (ShowLeading)
             {
-                controller = _TrailingController;
+                showDescription = "leading side only";
+            }
+            else if (ShowTrailing)
+            {
+                showDescription = "trailing side only";
             }
             else
             {
-
+                showDescription = "neither side (!)";
             }
 
-            bool isLeading = controller == _LeadingController;
-            if (_LastNotificationType != ScrollnotificationDefaultClass.OverscrollNotification)
+            properties.Add(new MessageProperty("show", showDescription));
+            properties.Add(new ColorProperty("color", Color, showName: false));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _GlowingOverscrollIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overscrollindicator.GlowingOverscrollIndicator>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _GlowingOverscrollIndicatorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowController _LeadingController { get; set; }
+        internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowController _TrailingController { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _LeadingAndTrailingListener { get; set; }
+        internal virtual Type _LastNotificationType { get; set; }
+        internal virtual Dictionary<bool, bool> _Accepted { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _LeadingController = new _GlowController(vsync: this, color: Widget.Color, axis: Widget.Axis);
+            _TrailingController = new _GlowController(vsync: this, color: Widget.Color, axis: Widget.Axis);
+            _LeadingAndTrailingListener = Listenable.Merge(new List<Listenable>() { _LeadingController, _TrailingController });
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Overscrollindicator.GlowingOverscrollIndicator oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (oldWidget.Color != Widget.Color || oldWidget.Axis != Widget.Axis)
             {
-                OverscrollIndicatorNotification confirmationNotification = new OverscrollIndicatorNotification(leading: isLeading);
-                confirmationNotification.Dispatch(Context);
-                _Accepted[isLeading] = confirmationNotification._Accepted;
+                _LeadingController.Color = Widget.Color;
+                _LeadingController.Axis = Widget.Axis;
+                _TrailingController.Color = Widget.Color;
+                _TrailingController.Axis = Widget.Axis;
             }
 
+        }
 
 
-            if (_Accepted[isLeading])
+
+
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+        {
+            if (!Widget.NotificationPredicate(notification)) return false;
+            if (notification is OverscrollNotification)
             {
-                if (notification.Velocity != 0.0)
+                _GlowController controller = default(_GlowController);
+                if (((OverscrollNotification)notification).Overscroll < 0.0)
                 {
-
-                    controller.AbsorbImpact(notification.Velocity.Abs());
+                    controller = _LeadingController;
+                }
+                else if (notification.Overscroll > 0.0)
+                {
+                    controller = _TrailingController;
                 }
                 else
                 {
 
-                    if (notification.DragDetails != null)
+                }
+
+                bool isLeading = controller == _LeadingController;
+                if (_LastNotificationType != ScrollnotificationDefaultClass.OverscrollNotification)
+                {
+                    OverscrollIndicatorNotification confirmationNotification = new OverscrollIndicatorNotification(leading: isLeading);
+                    confirmationNotification.Dispatch(Context);
+                    _Accepted[isLeading] = confirmationNotification._Accepted;
+                }
+
+
+
+                if (_Accepted[isLeading])
+                {
+                    if (notification.Velocity != 0.0)
                     {
 
-                        RenderBox renderer = notification.Context.FindRenderObject() as RenderBox;
+                        controller.AbsorbImpact(notification.Velocity.Abs());
+                    }
+                    else
+                    {
+
+                        if (notification.DragDetails != null)
+                        {
+
+                            RenderBox renderer = notification.Context.FindRenderObject() as RenderBox;
 
 
-                        Size size = renderer.Size;
-                        Offset position = renderer.GlobalToLocal(notification.DragDetails.GlobalPosition);
-                        switch (notification.Metrics.Axis) { case Axis.Horizontal: controller.Pull(notification.Overscroll.Abs(), size.Width, position.Dy.Clamp(0.0, size.Height) as double, size.Height); break; case Axis.Vertical: controller.Pull(notification.Overscroll.Abs(), size.Height, position.Dx.Clamp(0.0, size.Width) as double, size.Width); break; }
+                            Size size = renderer.Size;
+                            Offset position = renderer.GlobalToLocal(notification.DragDetails.GlobalPosition);
+                            switch (notification.Metrics.Axis) { case Axis.Horizontal: controller.Pull(notification.Overscroll.Abs(), size.Width, position.Dy.Clamp(0.0, size.Height) as double, size.Height); break; case Axis.Vertical: controller.Pull(notification.Overscroll.Abs(), size.Height, position.Dx.Clamp(0.0, size.Width) as double, size.Width); break; }
+                        }
+
                     }
 
                 }
 
             }
-
-        }
-        else if (notification is ScrollEndNotification || notification is ScrollUpdateNotification)
-        {
-            if ((((ScrollEndNotification)notification) as object).DragDetails != null)
+            else if (notification is ScrollEndNotification || notification is ScrollUpdateNotification)
             {
-                _LeadingController.ScrollEnd();
-                _TrailingController.ScrollEnd();
+                if ((((ScrollEndNotification)notification) as object).DragDetails != null)
+                {
+                    _LeadingController.ScrollEnd();
+                    _TrailingController.ScrollEnd();
+                }
+
+            }
+
+            _LastNotificationType = notification.GetType();
+            return false;
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _LeadingController.Dispose();
+            _TrailingController.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new RepaintBoundary(child: new CustomPaint(foregroundPainter: new _GlowingOverscrollIndicatorPainter(leadingController: Widget.ShowLeading ? _LeadingController : null, trailingController: Widget.ShowTrailing ? _TrailingController : null, axisDirection: Widget.AxisDirection, repaint: _LeadingAndTrailingListener), child: new RepaintBoundary(child: Widget.Child))));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _GlowController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
+    {
+        #region constructors
+        public _GlowController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis))
+        : base()
+        {
+
+            _GlowController = new AnimationController(vsync: vsync);
+            new AnimationController(vsync: vsync).AddStatusListener(_ChangePhase);
+            Animation<double> decelerator = new CurvedAnimation(parent: _GlowController, curve: CurvesDefaultClass.Curves.Decelerate);
+            new CurvedAnimation(parent: _GlowController, curve: CurvesDefaultClass.Curves.Decelerate).AddListener(NotifyListeners);
+            _GlowOpacity = decelerator.Drive(_GlowOpacityTween);
+            _GlowSize = decelerator.Drive(_GlowSizeTween);
+            _DisplacementTicker = vsync.CreateTicker(_TickDisplacement);
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowState _State { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _GlowControllerValue { get; set; }
+        internal virtual Timer _PullRecedeTimer { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _GlowOpacityTween { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _GlowOpacity { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _GlowSizeTween { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _GlowSize { get; set; }
+        internal virtual FlutterSDK.Scheduler.Ticker.Ticker _DisplacementTicker { get; set; }
+        internal virtual TimeSpan _DisplacementTickerLastElapsed { get; set; }
+        internal virtual double _DisplacementTarget { get; set; }
+        internal virtual double _Displacement { get; set; }
+        internal virtual double _PullDistance { get; set; }
+        internal virtual FlutterBinding.UI.Color _Color { get; set; }
+        internal virtual FlutterSDK.Painting.Basictypes.Axis _Axis { get; set; }
+        internal virtual TimeSpan _RecedeTime { get; set; }
+        internal virtual TimeSpan _PullTime { get; set; }
+        internal virtual TimeSpan _PullHoldTime { get; set; }
+        internal virtual TimeSpan _PullDecayTime { get; set; }
+        internal virtual TimeSpan _CrossAxisHalfTime { get; set; }
+        internal virtual double _MaxOpacity { get; set; }
+        internal virtual double _PullOpacityGlowFactor { get; set; }
+        internal virtual double _VelocityGlowFactor { get; set; }
+        internal virtual double _Sqrt3 { get; set; }
+        internal virtual double _WidthToHeightFactor { get; set; }
+        internal virtual double _MinVelocity { get; set; }
+        internal virtual double _MaxVelocity { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Dispose()
+        {
+            _GlowController.Dispose();
+            _DisplacementTicker.Dispose();
+            _PullRecedeTimer?.Cancel();
+            base.Dispose();
+        }
+
+
+
+
+        /// <Summary>
+        /// Handle a scroll slamming into the edge at a particular velocity.
+        ///
+        /// The velocity must be positive.
+        /// </Summary>
+        public virtual void AbsorbImpact(double velocity)
+        {
+
+            _PullRecedeTimer?.Cancel();
+            _PullRecedeTimer = null;
+            velocity = velocity.Clamp(_MinVelocity, _MaxVelocity) as double;
+            _GlowOpacityTween.Begin = _State == _GlowState.Idle ? 0.3 : _GlowOpacity.Value;
+            _GlowOpacityTween.End = (velocity * _VelocityGlowFactor).Clamp(_GlowOpacityTween.Begin, _MaxOpacity) as double;
+            _GlowSizeTween.Begin = _GlowSize.Value;
+            _GlowSizeTween.End = Math.Dart:mathDefaultClass.Min(0.025 + 7.5e-7 * velocity * velocity, 1.0);
+            _GlowController.Duration = new TimeSpan(milliseconds: (0.15 + velocity * 0.02).Round());
+            _GlowController.Forward(from: 0.0);
+            _Displacement = 0.5;
+            _State = _GlowState.Absorb;
+        }
+
+
+
+
+        /// <Summary>
+        /// Handle a user-driven overscroll.
+        ///
+        /// The `overscroll` argument should be the scroll distance in logical pixels,
+        /// the `extent` argument should be the total dimension of the viewport in the
+        /// main axis in logical pixels, the `crossAxisOffset` argument should be the
+        /// distance from the leading (left or top) edge of the cross axis of the
+        /// viewport, and the `crossExtent` should be the size of the cross axis. For
+        /// example, a pull of 50 pixels up the middle of a 200 pixel high and 100
+        /// pixel wide vertical viewport should result in a call of `pull(50.0, 200.0,
+        /// 50.0, 100.0)`. The `overscroll` value should be positive regardless of the
+        /// direction.
+        /// </Summary>
+        public virtual void Pull(double overscroll, double extent, double crossAxisOffset, double crossExtent)
+        {
+            _PullRecedeTimer?.Cancel();
+            _PullDistance += overscroll / 200.0;
+            _GlowOpacityTween.Begin = _GlowOpacity.Value;
+            _GlowOpacityTween.End = Math.Dart:mathDefaultClass.Min(_GlowOpacity.Value + overscroll / extent * _PullOpacityGlowFactor, _MaxOpacity);
+            double height = Math.Dart:mathDefaultClass.Min(extent, crossExtent * _WidthToHeightFactor);
+            _GlowSizeTween.Begin = _GlowSize.Value;
+            _GlowSizeTween.End = Math.Dart:mathDefaultClass.Max(1.0 - 1.0 / (0.7 * Math.Dart:mathDefaultClass.Sqrt(_PullDistance * height)), _GlowSize.Value);
+            _DisplacementTarget = crossAxisOffset / crossExtent;
+            if (_DisplacementTarget != _Displacement)
+            {
+                if (!_DisplacementTicker.IsTicking)
+                {
+
+                    _DisplacementTicker.Start();
+                }
+
+            }
+            else
+            {
+                _DisplacementTicker.Stop();
+                _DisplacementTickerLastElapsed = null;
+            }
+
+            _GlowController.Duration = _PullTime;
+            if (_State != _GlowState.Pull)
+            {
+                _GlowController.Forward(from: 0.0);
+                _State = _GlowState.Pull;
+            }
+            else
+            {
+                if (!_GlowController.IsAnimating)
+                {
+
+                    NotifyListeners();
+                }
+
+            }
+
+            _PullRecedeTimer = new Timer(_PullHoldTime, () => =>_Recede(_PullDecayTime));
+        }
+
+
+
+
+        public virtual void ScrollEnd()
+        {
+            if (_State == _GlowState.Pull) _Recede(_RecedeTime);
+        }
+
+
+
+
+        private void _ChangePhase(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            if (status != AnimationStatus.Completed) return;
+            switch (_State) { case _GlowState.Absorb: _Recede(_RecedeTime); break; case _GlowState.Recede: _State = _GlowState.Idle; _PullDistance = 0.0; break; case _GlowState.Pull: case _GlowState.Idle: break; }
+        }
+
+
+
+
+        private void _Recede(TimeSpan duration)
+        {
+            if (_State == _GlowState.Recede || _State == _GlowState.Idle) return;
+            _PullRecedeTimer?.Cancel();
+            _PullRecedeTimer = null;
+            _GlowOpacityTween.Begin = _GlowOpacity.Value;
+            _GlowOpacityTween.End = 0.0;
+            _GlowSizeTween.Begin = _GlowSize.Value;
+            _GlowSizeTween.End = 0.0;
+            _GlowController.Duration = duration;
+            _GlowController.Forward(from: 0.0);
+            _State = _GlowState.Recede;
+        }
+
+
+
+
+        private void _TickDisplacement(TimeSpan elapsed)
+        {
+            if (_DisplacementTickerLastElapsed != null)
+            {
+                double t = (elapsed.InMicroseconds() - _DisplacementTickerLastElapsed.InMicroseconds()).ToDouble();
+                _Displacement = _DisplacementTarget - (_DisplacementTarget - _Displacement) * Math.Dart:mathDefaultClass.Pow(2.0, -t / _CrossAxisHalfTime.InMicroseconds());
+                NotifyListeners();
+            }
+
+            if (UtilsDefaultClass.NearEqual(_DisplacementTarget, _Displacement, ToleranceDefaultClass.Tolerance.DefaultTolerance.Distance))
+            {
+                _DisplacementTicker.Stop();
+                _DisplacementTickerLastElapsed = null;
+            }
+            else
+            {
+                _DisplacementTickerLastElapsed = elapsed;
             }
 
         }
 
-        _LastNotificationType = notification.GetType();
-        return false;
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        _LeadingController.Dispose();
-        _TrailingController.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new RepaintBoundary(child: new CustomPaint(foregroundPainter: new _GlowingOverscrollIndicatorPainter(leadingController: Widget.ShowLeading ? _LeadingController : null, trailingController: Widget.ShowTrailing ? _TrailingController : null, axisDirection: Widget.AxisDirection, repaint: _LeadingAndTrailingListener), child: new RepaintBoundary(child: Widget.Child))));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _GlowController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
-{
-    #region constructors
-    public _GlowController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis))
-    : base()
-
-_GlowController=new AnimationController(vsync:vsync);
-    new AnimationController(vsync:vsync).AddStatusListener(_ChangePhase);
-    Animation<double> decelerator = new CurvedAnimation(parent: _GlowController, curve: CurvesDefaultClass.Curves.Decelerate);
-    new CurvedAnimation(parent:_GlowController, curve:CurvesDefaultClass.Curves.Decelerate).AddListener(NotifyListeners);
-    _GlowOpacity=decelerator.Drive(_GlowOpacityTween);
-_GlowSize=decelerator.Drive(_GlowSizeTween);
-_DisplacementTicker=vsync.CreateTicker(_TickDisplacement);
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowState _State { get; set; }
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _GlowControllerValue { get; set; }
-internal virtual Timer _PullRecedeTimer { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _GlowOpacityTween { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _GlowOpacity { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _GlowSizeTween { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _GlowSize { get; set; }
-internal virtual FlutterSDK.Scheduler.Ticker.Ticker _DisplacementTicker { get; set; }
-internal virtual TimeSpan _DisplacementTickerLastElapsed { get; set; }
-internal virtual double _DisplacementTarget { get; set; }
-internal virtual double _Displacement { get; set; }
-internal virtual double _PullDistance { get; set; }
-internal virtual FlutterBinding.UI.Color _Color { get; set; }
-internal virtual FlutterSDK.Painting.Basictypes.Axis _Axis { get; set; }
-internal virtual TimeSpan _RecedeTime { get; set; }
-internal virtual TimeSpan _PullTime { get; set; }
-internal virtual TimeSpan _PullHoldTime { get; set; }
-internal virtual TimeSpan _PullDecayTime { get; set; }
-internal virtual TimeSpan _CrossAxisHalfTime { get; set; }
-internal virtual double _MaxOpacity { get; set; }
-internal virtual double _PullOpacityGlowFactor { get; set; }
-internal virtual double _VelocityGlowFactor { get; set; }
-internal virtual double _Sqrt3 { get; set; }
-internal virtual double _WidthToHeightFactor { get; set; }
-internal virtual double _MinVelocity { get; set; }
-internal virtual double _MaxVelocity { get; set; }
-public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Dispose()
-{
-    _GlowController.Dispose();
-    _DisplacementTicker.Dispose();
-    _PullRecedeTimer?.Cancel();
-    base.Dispose();
-}
-
-
-
-
-/// <Summary>
-/// Handle a scroll slamming into the edge at a particular velocity.
-///
-/// The velocity must be positive.
-/// </Summary>
-public virtual void AbsorbImpact(double velocity)
-{
-
-    _PullRecedeTimer?.Cancel();
-    _PullRecedeTimer = null;
-    velocity = velocity.Clamp(_MinVelocity, _MaxVelocity) as double;
-    _GlowOpacityTween.Begin = _State == _GlowState.Idle ? 0.3 : _GlowOpacity.Value;
-    _GlowOpacityTween.End = (velocity * _VelocityGlowFactor).Clamp(_GlowOpacityTween.Begin, _MaxOpacity) as double;
-    _GlowSizeTween.Begin = _GlowSize.Value;
-    _GlowSizeTween.End = Math.Dart:mathDefaultClass.Min(0.025 + 7.5e-7 * velocity * velocity, 1.0);
-    _GlowController.Duration = new TimeSpan(milliseconds: (0.15 + velocity * 0.02).Round());
-    _GlowController.Forward(from: 0.0);
-    _Displacement = 0.5;
-    _State = _GlowState.Absorb;
-}
-
-
-
-
-/// <Summary>
-/// Handle a user-driven overscroll.
-///
-/// The `overscroll` argument should be the scroll distance in logical pixels,
-/// the `extent` argument should be the total dimension of the viewport in the
-/// main axis in logical pixels, the `crossAxisOffset` argument should be the
-/// distance from the leading (left or top) edge of the cross axis of the
-/// viewport, and the `crossExtent` should be the size of the cross axis. For
-/// example, a pull of 50 pixels up the middle of a 200 pixel high and 100
-/// pixel wide vertical viewport should result in a call of `pull(50.0, 200.0,
-/// 50.0, 100.0)`. The `overscroll` value should be positive regardless of the
-/// direction.
-/// </Summary>
-public virtual void Pull(double overscroll, double extent, double crossAxisOffset, double crossExtent)
-{
-    _PullRecedeTimer?.Cancel();
-    _PullDistance += overscroll / 200.0;
-    _GlowOpacityTween.Begin = _GlowOpacity.Value;
-    _GlowOpacityTween.End = Math.Dart:mathDefaultClass.Min(_GlowOpacity.Value + overscroll / extent * _PullOpacityGlowFactor, _MaxOpacity);
-    double height = Math.Dart:mathDefaultClass.Min(extent, crossExtent * _WidthToHeightFactor);
-    _GlowSizeTween.Begin = _GlowSize.Value;
-    _GlowSizeTween.End = Math.Dart:mathDefaultClass.Max(1.0 - 1.0 / (0.7 * Math.Dart:mathDefaultClass.Sqrt(_PullDistance * height)), _GlowSize.Value);
-    _DisplacementTarget = crossAxisOffset / crossExtent;
-    if (_DisplacementTarget != _Displacement)
-    {
-        if (!_DisplacementTicker.IsTicking)
+        public virtual void Paint(Canvas canvas, Size size)
         {
-
-            _DisplacementTicker.Start();
+            if (_GlowOpacity.Value == 0.0) return;
+            double baseGlowScale = size.Width > size.Height ? size.Height / size.Width : 1.0;
+            double radius = size.Width * 3.0 / 2.0;
+            double height = Math.Dart:mathDefaultClass.Min(size.Height, size.Width * _WidthToHeightFactor);
+            double scaleY = _GlowSize.Value * baseGlowScale;
+            Rect rect = Rect.FromLTWH(0.0, 0.0, size.Width, height);
+            Offset center = new Offset((size.Width / 2.0) * (0.5 + _Displacement), height - radius);
+            Paint paint = new Paint()..Color = Color.WithOpacity(_GlowOpacity.Value);
+            canvas.Save();
+            canvas.Scale(1.0, scaleY);
+            canvas.ClipRect(rect);
+            canvas.DrawCircle(center, radius, paint);
+            canvas.Restore();
         }
 
-    }
-    else
-    {
-        _DisplacementTicker.Stop();
-        _DisplacementTickerLastElapsed = null;
+
+
+        #endregion
     }
 
-    _GlowController.Duration = _PullTime;
-    if (_State != _GlowState.Pull)
+
+    public class _GlowingOverscrollIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        _GlowController.Forward(from: 0.0);
-        _State = _GlowState.Pull;
-    }
-    else
-    {
-        if (!_GlowController.IsAnimating)
+        #region constructors
+        public _GlowingOverscrollIndicatorPainter(FlutterSDK.Widgets.Overscrollindicator._GlowController leadingController = default(FlutterSDK.Widgets.Overscrollindicator._GlowController), FlutterSDK.Widgets.Overscrollindicator._GlowController trailingController = default(FlutterSDK.Widgets.Overscrollindicator._GlowController), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
+        : base(repaint: repaint)
         {
+            this.LeadingController = leadingController;
+            this.TrailingController = trailingController;
+            this.AxisDirection = axisDirection;
+        }
+        #endregion
 
-            NotifyListeners();
+        #region fields
+        public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController LeadingController { get; set; }
+        public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController TrailingController { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        public virtual double PiOver2 { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _PaintSide(Canvas canvas, Size size, FlutterSDK.Widgets.Overscrollindicator._GlowController controller, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
+        {
+            if (controller == null) return;
+            switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(axisDirection, growthDirection)) { case AxisDirection.Up: controller.Paint(canvas, size); break; case AxisDirection.Down: canvas.Save(); canvas.Translate(0.0, size.Height); canvas.Scale(1.0, -1.0); controller.Paint(canvas, size); canvas.Restore(); break; case AxisDirection.Left: canvas.Save(); canvas.Rotate(PiOver2); canvas.Scale(1.0, -1.0); controller.Paint(canvas, new Size(size.Height, size.Width)); canvas.Restore(); break; case AxisDirection.Right: canvas.Save(); canvas.Translate(size.Width, 0.0); canvas.Rotate(PiOver2); controller.Paint(canvas, new Size(size.Height, size.Width)); canvas.Restore(); break; }
         }
 
+
+
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            _PaintSide(canvas, size, LeadingController, AxisDirection, GrowthDirection.Reverse);
+            _PaintSide(canvas, size, TrailingController, AxisDirection, GrowthDirection.Forward);
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Overscrollindicator._GlowingOverscrollIndicatorPainter oldDelegate)
+        {
+            return oldDelegate.LeadingController != LeadingController || oldDelegate.TrailingController != TrailingController;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return oldDelegate.LeadingController != LeadingController || oldDelegate.TrailingController != TrailingController;
+        }
+
+
+
+        #endregion
     }
 
-    _PullRecedeTimer = new Timer(_PullHoldTime, () => =>_Recede(_PullDecayTime));
-}
 
-
-
-
-public virtual void ScrollEnd()
-{
-    if (_State == _GlowState.Pull) _Recede(_RecedeTime);
-}
-
-
-
-
-private void _ChangePhase(FlutterSDK.Animation.Animation.AnimationStatus status)
-{
-    if (status != AnimationStatus.Completed) return;
-    switch (_State) { case _GlowState.Absorb: _Recede(_RecedeTime); break; case _GlowState.Recede: _State = _GlowState.Idle; _PullDistance = 0.0; break; case _GlowState.Pull: case _GlowState.Idle: break; }
-}
-
-
-
-
-private void _Recede(TimeSpan duration)
-{
-    if (_State == _GlowState.Recede || _State == _GlowState.Idle) return;
-    _PullRecedeTimer?.Cancel();
-    _PullRecedeTimer = null;
-    _GlowOpacityTween.Begin = _GlowOpacity.Value;
-    _GlowOpacityTween.End = 0.0;
-    _GlowSizeTween.Begin = _GlowSize.Value;
-    _GlowSizeTween.End = 0.0;
-    _GlowController.Duration = duration;
-    _GlowController.Forward(from: 0.0);
-    _State = _GlowState.Recede;
-}
-
-
-
-
-private void _TickDisplacement(TimeSpan elapsed)
-{
-    if (_DisplacementTickerLastElapsed != null)
+    /// <Summary>
+    /// A notification that an [GlowingOverscrollIndicator] will start showing an
+    /// overscroll indication.
+    ///
+    /// To prevent the indicator from showing the indication, call [disallowGlow] on
+    /// the notification.
+    ///
+    /// See also:
+    ///
+    ///  * [GlowingOverscrollIndicator], which generates this type of notification.
+    /// </Summary>
+    public class OverscrollIndicatorNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
     {
-        double t = (elapsed.InMicroseconds() - _DisplacementTickerLastElapsed.InMicroseconds()).ToDouble();
-        _Displacement = _DisplacementTarget - (_DisplacementTarget - _Displacement) * Math.Dart:mathDefaultClass.Pow(2.0, -t / _CrossAxisHalfTime.InMicroseconds());
-NotifyListeners();
-}
+        #region constructors
+        public OverscrollIndicatorNotification(bool leading = default(bool))
+        {
+            this.Leading = leading;
+        }
+        #endregion
 
-if (UtilsDefaultClass.NearEqual(_DisplacementTarget, _Displacement, ToleranceDefaultClass.Tolerance.DefaultTolerance.Distance))
-{
-    _DisplacementTicker.Stop();
-    _DisplacementTickerLastElapsed = null;
-}
-else
-{
-    _DisplacementTickerLastElapsed = elapsed;
-}
+        #region fields
+        public virtual bool Leading { get; set; }
+        internal virtual bool _Accepted { get; set; }
+        #endregion
 
-}
+        #region methods
 
-
-
-
-public virtual void Paint(Canvas canvas, Size size)
-{
-    if (_GlowOpacity.Value == 0.0) return;
-    double baseGlowScale = size.Width > size.Height ? size.Height / size.Width : 1.0;
-    double radius = size.Width * 3.0 / 2.0;
-    double height = Math.Dart:mathDefaultClass.Min(size.Height, size.Width * _WidthToHeightFactor);
-    double scaleY = _GlowSize.Value * baseGlowScale;
-    Rect rect = Rect.FromLTWH(0.0, 0.0, size.Width, height);
-    Offset center = new Offset((size.Width / 2.0) * (0.5 + _Displacement), height - radius);
-    Paint paint = new Paint()..Color = Color.WithOpacity(_GlowOpacity.Value);
-    canvas.Save();
-    canvas.Scale(1.0, scaleY);
-    canvas.ClipRect(rect);
-    canvas.DrawCircle(center, radius, paint);
-    canvas.Restore();
-}
-
-
-
-#endregion
-}
-
-
-public class _GlowingOverscrollIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-    #region constructors
-    public _GlowingOverscrollIndicatorPainter(FlutterSDK.Widgets.Overscrollindicator._GlowController leadingController = default(FlutterSDK.Widgets.Overscrollindicator._GlowController), FlutterSDK.Widgets.Overscrollindicator._GlowController trailingController = default(FlutterSDK.Widgets.Overscrollindicator._GlowController), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
-    : base(repaint: repaint)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController LeadingController { get; set; }
-public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController TrailingController { get; set; }
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-public virtual double PiOver2 { get; set; }
-#endregion
-
-#region methods
-
-private void _PaintSide(Canvas canvas, Size size, FlutterSDK.Widgets.Overscrollindicator._GlowController controller, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
-{
-    if (controller == null) return;
-    switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(axisDirection, growthDirection)) { case AxisDirection.Up: controller.Paint(canvas, size); break; case AxisDirection.Down: canvas.Save(); canvas.Translate(0.0, size.Height); canvas.Scale(1.0, -1.0); controller.Paint(canvas, size); canvas.Restore(); break; case AxisDirection.Left: canvas.Save(); canvas.Rotate(PiOver2); canvas.Scale(1.0, -1.0); controller.Paint(canvas, new Size(size.Height, size.Width)); canvas.Restore(); break; case AxisDirection.Right: canvas.Save(); canvas.Translate(size.Width, 0.0); canvas.Rotate(PiOver2); controller.Paint(canvas, new Size(size.Height, size.Width)); canvas.Restore(); break; }
-}
+        /// <Summary>
+        /// Call this method if the glow should be prevented.
+        /// </Summary>
+        public virtual void DisallowGlow()
+        {
+            _Accepted = false;
+        }
 
 
 
 
-public new void Paint(Canvas canvas, Size size)
-{
-    _PaintSide(canvas, size, LeadingController, AxisDirection, GrowthDirection.Reverse);
-    _PaintSide(canvas, size, TrailingController, AxisDirection, GrowthDirection.Forward);
-}
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            description.Add($"'side: {Leading ? "leading edge":"trailing edge"}'");
+        }
 
 
 
-
-public new bool ShouldRepaint(FlutterSDK.Widgets.Overscrollindicator._GlowingOverscrollIndicatorPainter oldDelegate)
-{
-    return oldDelegate.LeadingController != LeadingController || oldDelegate.TrailingController != TrailingController;
-}
+        #endregion
+    }
 
 
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-{
-    return oldDelegate.LeadingController != LeadingController || oldDelegate.TrailingController != TrailingController;
-}
+    public enum _GlowState
+    {
 
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A notification that an [GlowingOverscrollIndicator] will start showing an
-/// overscroll indication.
-///
-/// To prevent the indicator from showing the indication, call [disallowGlow] on
-/// the notification.
-///
-/// See also:
-///
-///  * [GlowingOverscrollIndicator], which generates this type of notification.
-/// </Summary>
-public class OverscrollIndicatorNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
-{
-    #region constructors
-    public OverscrollIndicatorNotification(bool leading = default(bool))
-
-}
-#endregion
-
-#region fields
-public virtual bool Leading { get; set; }
-internal virtual bool _Accepted { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Call this method if the glow should be prevented.
-/// </Summary>
-public virtual void DisallowGlow()
-{
-    _Accepted = false;
-}
-
-
-
-
-public new void DebugFillDescription(List<string> description)
-{
-    base.DebugFillDescription(description);
-    description.Add($"'side: {Leading ? "leading edge":"trailing edge"}'");
-}
-
-
-
-#endregion
-}
-
-
-public enum _GlowState
-{
-
-    Idle,
-    Absorb,
-    Pull,
-    Recede,
-}
+        Idle,
+        Absorb,
+        Pull,
+        Recede,
+    }
 
 }

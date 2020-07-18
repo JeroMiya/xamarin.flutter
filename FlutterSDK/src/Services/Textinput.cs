@@ -528,515 +528,533 @@ namespace FlutterSDK.Services.Textinput
         #region constructors
         internal TextInputType(int index)
         : base()
-    
-}
-    public static TextInputType NumberWithOptions(bool signed = false, bool @decimal = false)
-
-}
-#endregion
-
-#region fields
-public virtual int Index { get; set; }
-public virtual bool Signed { get; set; }
-public virtual bool @decimal { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType Text { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType Multiline { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType Number { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType Phone { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType Datetime { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType EmailAddress { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType Url { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType VisiblePassword { get; set; }
-public virtual List<FlutterSDK.Services.Textinput.TextInputType> Values { get; set; }
-internal virtual List<string> _Names { get; set; }
-internal virtual string _Name { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns a representation of this object as a JSON object.
-/// </Summary>
-public virtual Dictionary<string, object> ToJson()
-{
-    return new Dictionary<string, object> { { "name", _Name }{ "signed", Signed }{ "decimal", Decimal } };
-}
-
-
-
-
-
-public new bool Equals(@Object other)
-{
-    return other is TextInputType && other.Index == Index && other.Signed == Signed && other.Decimal == Decimal;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Controls the visual appearance of the text input control.
-///
-/// Many [TextInputAction]s are common between Android and iOS. However, if an
-/// [inputAction] is provided that is not supported by the current
-/// platform in debug mode, an error will be thrown when the corresponding
-/// text input is attached. For example, providing iOS's "emergencyCall"
-/// action when running on an Android device will result in an error when in
-/// debug mode. In release mode, incompatible [TextInputAction]s are replaced
-/// either with "unspecified" on Android, or "default" on iOS. Appropriate
-/// [inputAction]s can be chosen by checking the current platform and then
-/// selecting the appropriate action.
-///
-/// See also:
-///
-///  * [TextInput.attach]
-///  * [TextInputAction]
-/// </Summary>
-public class TextInputConfiguration
-{
-    #region constructors
-    public TextInputConfiguration(FlutterSDK.Services.Textinput.TextInputType inputType = default(FlutterSDK.Services.Textinput.TextInputType), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, string actionLabel = default(string), FlutterSDK.Services.Textinput.TextInputAction inputAction = default(FlutterSDK.Services.Textinput.TextInputAction), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Services.Textinput.TextInputType InputType { get; set; }
-public virtual bool ObscureText { get; set; }
-public virtual bool Autocorrect { get; set; }
-public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
-public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
-public virtual bool EnableSuggestions { get; set; }
-public virtual string ActionLabel { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputAction InputAction { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
-public virtual Brightness KeyboardAppearance { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns a representation of this object as a JSON object.
-/// </Summary>
-public virtual Dictionary<string, object> ToJson()
-{
-    return new Dictionary<string, object> { { "inputType", InputType.ToJson() }{ "obscureText", ObscureText }{ "autocorrect", Autocorrect }{ "smartDashesType", SmartDashesType.Index.ToString() }{ "smartQuotesType", SmartQuotesType.Index.ToString() }{ "enableSuggestions", EnableSuggestions }{ "actionLabel", ActionLabel }{ "inputAction", InputAction.ToString() }{ "textCapitalization", TextCapitalization.ToString() }{ "keyboardAppearance", KeyboardAppearance.ToString() } };
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The current state and position of the floating cursor.
-/// </Summary>
-public class RawFloatingCursorPoint
-{
-    #region constructors
-    public RawFloatingCursorPoint(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Services.Textinput.FloatingCursorDragState state = default(FlutterSDK.Services.Textinput.FloatingCursorDragState))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset Offset { get; set; }
-public virtual FlutterSDK.Services.Textinput.FloatingCursorDragState State { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// The current text, selection, and composing state for editing a run of text.
-/// </Summary>
-public class TextEditingValue
-{
-    #region constructors
-    public TextEditingValue(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
-    : base()
-
-}
-public static TextEditingValue FromJSON(Dictionary<string, object> encoded)
-
-return new TextEditingValue(text: encoded["text"] as string, selection: new TextSelection(baseOffset: encoded["selectionBase"] as int ?? -1, extentOffset: encoded["selectionExtent"] as int ?? -1, affinity: TextinputDefaultClass._ToTextAffinity(encoded["selectionAffinity"] as string) ?? TextAffinity.Downstream, isDirectional: encoded["selectionIsDirectional"] as bool ?? false), composing: new TextRange(start: encoded["composingBase"] as int ?? -1, end: encoded["composingExtent"] as int ?? -1));
-}
-
-
-#endregion
-
-#region fields
-public virtual string Text { get; set; }
-public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
-public virtual TextRange Composing { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Empty { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns a representation of this object as a JSON object.
-/// </Summary>
-public virtual Dictionary<string, object> ToJSON()
-{
-    return new Dictionary<string, object> { { "text", Text }{ "selectionBase", Selection.BaseOffset }{ "selectionExtent", Selection.ExtentOffset }{ "selectionAffinity", Selection.Affinity.ToString() }{ "selectionIsDirectional", Selection.IsDirectional }{ "composingBase", Composing.Start }{ "composingExtent", Composing.End } };
-}
-
-
-
-
-/// <Summary>
-/// Creates a copy of this value but with the given fields replaced with the new values.
-/// </Summary>
-public virtual FlutterSDK.Services.Textinput.TextEditingValue CopyWith(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
-{
-    return new TextEditingValue(text: text ?? this.Text, selection: selection ?? this.Selection, composing: composing ?? this.Composing);
-}
-
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (Dart:coreDefaultClass.Identical(this, other))return true;
-    return other is TextEditingValue && other.Text == Text && other.Selection == Selection && other.Composing == Composing;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An interface to receive information from [TextInput].
-///
-/// See also:
-///
-///  * [TextInput.attach]
-/// </Summary>
-public class TextInputClient
-{
-    #region constructors
-    public TextInputClient()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Requests that this client update its editing state to the given value.
-/// </Summary>
-public virtual void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value)
-{
-}
-
-
-/// <Summary>
-/// Requests that this client perform the given action.
-/// </Summary>
-public virtual void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action)
-{
-}
-
-
-/// <Summary>
-/// Updates the floating cursor position and state.
-/// </Summary>
-public virtual void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point)
-{
-}
-
-
-/// <Summary>
-/// Platform notified framework of closed connection.
-///
-/// [TextInputClient] should cleanup its connection and finalize editing.
-/// </Summary>
-public virtual void ConnectionClosed()
-{
-}
-
-#endregion
-}
-
-
-/// <Summary>
-/// An interface for interacting with a text input control.
-///
-/// See also:
-///
-///  * [TextInput.attach]
-/// </Summary>
-public class TextInputConnection
-{
-    #region constructors
-    internal TextInputConnection(FlutterSDK.Services.Textinput.TextInputClient _client)
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual Size _CachedSize { get; set; }
-internal virtual Matrix4 _CachedTransform { get; set; }
-internal virtual int _NextId { get; set; }
-internal virtual int _Id { get; set; }
-internal virtual FlutterSDK.Services.Textinput.TextInputClient _Client { get; set; }
-public virtual bool Attached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Resets the internal ID counter for testing purposes.
-///
-/// This call has no effect when asserts are disabled. Calling it from
-/// application code will likely break text input for the application.
-/// </Summary>
-public virtual void DebugResetId(int to = 1)
-{
-
-
-}
-
-
-
-
-/// <Summary>
-/// Requests that the text input control become visible.
-/// </Summary>
-public virtual void Show()
-{
-
-    TextinputDefaultClass.TextInput._Instance._Show();
-}
-
-
-
-
-/// <Summary>
-/// Requests that the text input control change its internal state to match the given state.
-/// </Summary>
-public virtual void SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value)
-{
-
-    TextinputDefaultClass.TextInput._Instance._SetEditingState(value);
-}
-
-
-
-
-/// <Summary>
-/// Send the size and transform of the editable text to engine.
-///
-/// The values are sent as platform messages so they can be used on web for
-/// example to correctly position and size the html input field.
-///
-/// 1. [editableBoxSize]: size of the render editable box.
-///
-/// 2. [transform]: a matrix that maps the local paint coordinate system
-///                 to the [PipelineOwner.rootNode].
-/// </Summary>
-public virtual void SetEditableSizeAndTransform(Size editableBoxSize, Matrix4 transform)
-{
-    if (editableBoxSize != _CachedSize || transform != _CachedTransform)
-    {
-        _CachedSize = editableBoxSize;
-        _CachedTransform = transform;
-        TextinputDefaultClass.TextInput._Instance._SetEditableSizeAndTransform(new Dictionary<string, object> { { "width", editableBoxSize.Width }{ "height", editableBoxSize.Height }{ "transform", transform.Storage } });
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// Send text styling information.
-///
-/// This information is used by the Flutter Web Engine to change the style
-/// of the hidden native input's content. Hence, the content size will match
-/// to the size of the editable widget's content.
-/// </Summary>
-public virtual void SetStyle(string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign))
-{
-
-    TextinputDefaultClass.TextInput._Instance._SetStyle(new Dictionary<string, object> { { "fontFamily", fontFamily }{ "fontSize", fontSize }{ "fontWeightIndex", fontWeight?.Index }{ "textAlignIndex", textAlign.Index }{ "textDirectionIndex", textDirection.Index } });
-}
-
-
-
-
-/// <Summary>
-/// Stop interacting with the text input control.
-///
-/// After calling this method, the text input control might disappear if no
-/// other client attaches to it within this animation frame.
-/// </Summary>
-public virtual void Close()
-{
-    if (Attached)
-    {
-        TextinputDefaultClass.TextInput._Instance._ClearClient();
-    }
-
-
-}
-
-
-
-
-/// <Summary>
-/// Platform sent a notification informing the connection is closed.
-///
-/// [TextInputConnection] should clean current client connection.
-/// </Summary>
-public virtual void ConnectionClosedReceived()
-{
-    TextinputDefaultClass.TextInput._Instance._CurrentConnection = null;
-
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An interface to the system's text input control.
-/// </Summary>
-public class TextInput
-{
-    #region constructors
-    internal TextInput()
-
-_Channel=SystemchannelsDefaultClass.SystemChannels.TextInput;
-_Channel.SetMethodCallHandler(_HandleTextInputInvocation);
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Services.Textinput.TextInput _Instance { get; set; }
-internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _AndroidSupportedInputActions { get; set; }
-internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _IOSSupportedInputActions { get; set; }
-internal virtual FlutterSDK.Services.Platformchannel.MethodChannel _Channel { get; set; }
-internal virtual FlutterSDK.Services.Textinput.TextInputConnection _CurrentConnection { get; set; }
-internal virtual FlutterSDK.Services.Textinput.TextInputConfiguration _CurrentConfiguration { get; set; }
-internal virtual bool _HidePending { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Set the [MethodChannel] used to communicate with the system's text input
-/// control.
-///
-/// This is only meant for testing within the Flutter SDK. Changing this
-/// will break the ability to input text. This has no effect if asserts are
-/// disabled.
-/// </Summary>
-public virtual void SetChannel(FlutterSDK.Services.Platformchannel.MethodChannel newChannel)
-{
-
-}
-
-
-
-
-/// <Summary>
-/// Begin interacting with the text input control.
-///
-/// Calling this function helps multiple clients coordinate about which one is
-/// currently interacting with the text input control. The returned
-/// [TextInputConnection] provides an interface for actually interacting with
-/// the text input control.
-///
-/// A client that no longer wishes to interact with the text input control
-/// should call [TextInputConnection.close] on the returned
-/// [TextInputConnection].
-/// </Summary>
-public virtual FlutterSDK.Services.Textinput.TextInputConnection Attach(FlutterSDK.Services.Textinput.TextInputClient client, FlutterSDK.Services.Textinput.TextInputConfiguration configuration)
-{
-
-
-    TextInputConnection connection = TextInputConnection._(client);
-    _Instance._Attach(connection, configuration);
-    return connection;
-}
-
-
-
-
-/// <Summary>
-/// This method actually notifies the embedding of the client. It is utilized
-/// by [attach] and by [_handleTextInputInvocation] for the
-/// `TextInputClient.requestExistingInputState` method.
-/// </Summary>
-private void _Attach(FlutterSDK.Services.Textinput.TextInputConnection connection, FlutterSDK.Services.Textinput.TextInputConfiguration configuration)
-{
-
-
-
-
-    _Channel.InvokeMethod("TextInput.setClient", new List<object>() { connection._Id, configuration.ToJson() });
-    _CurrentConnection = connection;
-    _CurrentConfiguration = configuration;
-}
-
-
-
-
-private bool _DebugEnsureInputActionWorksOnPlatform(FlutterSDK.Services.Textinput.TextInputAction inputAction)
-{
-
-    return true;
-}
-
-
-
-
-private Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
-async
-{
-    if (_CurrentConnection == null) return;
-    string method = methodCall.Method;
-    if (method == "TextInputClient.requestExistingInputState")
-    {
-
-        _Attach(_CurrentConnection, _CurrentConfiguration);
-        TextEditingValue editingValue = _CurrentConnection._Client.CurrentTextEditingValue;
-        if (editingValue != null)
         {
-            _SetEditingState(editingValue);
+            this.Index = index;
+        }
+        public static TextInputType NumberWithOptions(bool signed = false, bool @decimal = false)
+        {
+            var instance = new TextInputType(); instance.Signed = signed;
+            instance.@decimal = @decimal;
+        }
+        #endregion
+
+        #region fields
+        public virtual int Index { get; set; }
+        public virtual bool Signed { get; set; }
+        public virtual bool @decimal { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Text { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Multiline { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Number { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Phone { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Datetime { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType EmailAddress { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType Url { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType VisiblePassword { get; set; }
+        public virtual List<FlutterSDK.Services.Textinput.TextInputType> Values { get; set; }
+        internal virtual List<string> _Names { get; set; }
+        internal virtual string _Name { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns a representation of this object as a JSON object.
+        /// </Summary>
+        public virtual Dictionary<string, object> ToJson()
+        {
+            return new Dictionary<string, object> { { "name", _Name }{ "signed", Signed }{ "decimal", Decimal } };
         }
 
-        return;
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            return other is TextInputType && other.Index == Index && other.Signed == Signed && other.Decimal == Decimal;
+        }
+
+
+
+        #endregion
     }
 
-    List<object> args = methodCall.Arguments as List<object>;
-    int client = args[0] as int;
-    if (client != _CurrentConnection._Id) return;
-    switch (method) { case "TextInputClient.updateEditingState": _CurrentConnection._Client.UpdateEditingValue(TextEditingValue.FromJSON(args[1] as Dictionary<string, object>)); break; case "TextInputClient.performAction": _CurrentConnection._Client.PerformAction(TextinputDefaultClass._ToTextInputAction(args[1] as string)); break; case "TextInputClient.updateFloatingCursor": _CurrentConnection._Client.UpdateFloatingCursor(TextinputDefaultClass._ToTextPoint(TextinputDefaultClass._ToTextCursorAction(args[1] as string), args[2] as Dictionary<string, object>)); break; case "TextInputClient.onConnectionClosed": _CurrentConnection._Client.ConnectionClosed(); break; default: throw new MissingPluginException(); }
+
+    /// <Summary>
+    /// Controls the visual appearance of the text input control.
+    ///
+    /// Many [TextInputAction]s are common between Android and iOS. However, if an
+    /// [inputAction] is provided that is not supported by the current
+    /// platform in debug mode, an error will be thrown when the corresponding
+    /// text input is attached. For example, providing iOS's "emergencyCall"
+    /// action when running on an Android device will result in an error when in
+    /// debug mode. In release mode, incompatible [TextInputAction]s are replaced
+    /// either with "unspecified" on Android, or "default" on iOS. Appropriate
+    /// [inputAction]s can be chosen by checking the current platform and then
+    /// selecting the appropriate action.
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    ///  * [TextInputAction]
+    /// </Summary>
+    public class TextInputConfiguration
+    {
+        #region constructors
+        public TextInputConfiguration(FlutterSDK.Services.Textinput.TextInputType inputType = default(FlutterSDK.Services.Textinput.TextInputType), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, string actionLabel = default(string), FlutterSDK.Services.Textinput.TextInputAction inputAction = default(FlutterSDK.Services.Textinput.TextInputAction), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization))
+        : base()
+        {
+            this.InputType = inputType;
+            this.ObscureText = obscureText;
+            this.Autocorrect = autocorrect;
+            this.EnableSuggestions = enableSuggestions;
+            this.ActionLabel = actionLabel;
+            this.InputAction = inputAction;
+            this.KeyboardAppearance = keyboardAppearance;
+            this.TextCapitalization = textCapitalization;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Textinput.TextInputType InputType { get; set; }
+        public virtual bool ObscureText { get; set; }
+        public virtual bool Autocorrect { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        public virtual bool EnableSuggestions { get; set; }
+        public virtual string ActionLabel { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputAction InputAction { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        public virtual Brightness KeyboardAppearance { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns a representation of this object as a JSON object.
+        /// </Summary>
+        public virtual Dictionary<string, object> ToJson()
+        {
+            return new Dictionary<string, object> { { "inputType", InputType.ToJson() }{ "obscureText", ObscureText }{ "autocorrect", Autocorrect }{ "smartDashesType", SmartDashesType.Index.ToString() }{ "smartQuotesType", SmartQuotesType.Index.ToString() }{ "enableSuggestions", EnableSuggestions }{ "actionLabel", ActionLabel }{ "inputAction", InputAction.ToString() }{ "textCapitalization", TextCapitalization.ToString() }{ "keyboardAppearance", KeyboardAppearance.ToString() } };
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The current state and position of the floating cursor.
+    /// </Summary>
+    public class RawFloatingCursorPoint
+    {
+        #region constructors
+        public RawFloatingCursorPoint(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Services.Textinput.FloatingCursorDragState state = default(FlutterSDK.Services.Textinput.FloatingCursorDragState))
+        : base()
+        {
+            this.Offset = offset;
+            this.State = state;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        public virtual FlutterSDK.Services.Textinput.FloatingCursorDragState State { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The current text, selection, and composing state for editing a run of text.
+    /// </Summary>
+    public class TextEditingValue
+    {
+        #region constructors
+        public TextEditingValue(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
+        : base()
+        {
+            this.Text = text;
+            this.Selection = selection;
+            this.Composing = composing;
+        }
+        public static TextEditingValue FromJSON(Dictionary<string, object> encoded)
+        {
+            var instance = new TextEditingValue();
+            return new TextEditingValue(text: encoded["text"] as string, selection: new TextSelection(baseOffset: encoded["selectionBase"] as int ?? -1, extentOffset: encoded["selectionExtent"] as int ?? -1, affinity: TextinputDefaultClass._ToTextAffinity(encoded["selectionAffinity"] as string) ?? TextAffinity.Downstream, isDirectional: encoded["selectionIsDirectional"] as bool ?? false), composing: new TextRange(start: encoded["composingBase"] as int ?? -1, end: encoded["composingExtent"] as int ?? -1));
+        }
+
+
+        #endregion
+
+        #region fields
+        public virtual string Text { get; set; }
+        public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
+        public virtual TextRange Composing { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue Empty { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns a representation of this object as a JSON object.
+        /// </Summary>
+        public virtual Dictionary<string, object> ToJSON()
+        {
+            return new Dictionary<string, object> { { "text", Text }{ "selectionBase", Selection.BaseOffset }{ "selectionExtent", Selection.ExtentOffset }{ "selectionAffinity", Selection.Affinity.ToString() }{ "selectionIsDirectional", Selection.IsDirectional }{ "composingBase", Composing.Start }{ "composingExtent", Composing.End } };
+        }
+
+
+
+
+        /// <Summary>
+        /// Creates a copy of this value but with the given fields replaced with the new values.
+        /// </Summary>
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue CopyWith(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
+        {
+            return new TextEditingValue(text: text ?? this.Text, selection: selection ?? this.Selection, composing: composing ?? this.Composing);
+        }
+
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            return other is TextEditingValue && other.Text == Text && other.Selection == Selection && other.Composing == Composing;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An interface to receive information from [TextInput].
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    /// </Summary>
+    public class TextInputClient
+    {
+        #region constructors
+        public TextInputClient()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Requests that this client update its editing state to the given value.
+        /// </Summary>
+        public virtual void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value)
+        {
+        }
+
+
+        /// <Summary>
+        /// Requests that this client perform the given action.
+        /// </Summary>
+        public virtual void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action)
+        {
+        }
+
+
+        /// <Summary>
+        /// Updates the floating cursor position and state.
+        /// </Summary>
+        public virtual void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point)
+        {
+        }
+
+
+        /// <Summary>
+        /// Platform notified framework of closed connection.
+        ///
+        /// [TextInputClient] should cleanup its connection and finalize editing.
+        /// </Summary>
+        public virtual void ConnectionClosed()
+        {
+        }
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An interface for interacting with a text input control.
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput.attach]
+    /// </Summary>
+    public class TextInputConnection
+    {
+        #region constructors
+        internal TextInputConnection(FlutterSDK.Services.Textinput.TextInputClient _client)
+        : base()
+        {
+            this._Client = _client;
+        }
+        #endregion
+
+        #region fields
+        internal virtual Size _CachedSize { get; set; }
+        internal virtual Matrix4 _CachedTransform { get; set; }
+        internal virtual int _NextId { get; set; }
+        internal virtual int _Id { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputClient _Client { get; set; }
+        public virtual bool Attached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Resets the internal ID counter for testing purposes.
+        ///
+        /// This call has no effect when asserts are disabled. Calling it from
+        /// application code will likely break text input for the application.
+        /// </Summary>
+        public virtual void DebugResetId(int to = 1)
+        {
+
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Requests that the text input control become visible.
+        /// </Summary>
+        public virtual void Show()
+        {
+
+            TextinputDefaultClass.TextInput._Instance._Show();
+        }
+
+
+
+
+        /// <Summary>
+        /// Requests that the text input control change its internal state to match the given state.
+        /// </Summary>
+        public virtual void SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value)
+        {
+
+            TextinputDefaultClass.TextInput._Instance._SetEditingState(value);
+        }
+
+
+
+
+        /// <Summary>
+        /// Send the size and transform of the editable text to engine.
+        ///
+        /// The values are sent as platform messages so they can be used on web for
+        /// example to correctly position and size the html input field.
+        ///
+        /// 1. [editableBoxSize]: size of the render editable box.
+        ///
+        /// 2. [transform]: a matrix that maps the local paint coordinate system
+        ///                 to the [PipelineOwner.rootNode].
+        /// </Summary>
+        public virtual void SetEditableSizeAndTransform(Size editableBoxSize, Matrix4 transform)
+        {
+            if (editableBoxSize != _CachedSize || transform != _CachedTransform)
+            {
+                _CachedSize = editableBoxSize;
+                _CachedTransform = transform;
+                TextinputDefaultClass.TextInput._Instance._SetEditableSizeAndTransform(new Dictionary<string, object> { { "width", editableBoxSize.Width }{ "height", editableBoxSize.Height }{ "transform", transform.Storage } });
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Send text styling information.
+        ///
+        /// This information is used by the Flutter Web Engine to change the style
+        /// of the hidden native input's content. Hence, the content size will match
+        /// to the size of the editable widget's content.
+        /// </Summary>
+        public virtual void SetStyle(string fontFamily = default(string), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign))
+        {
+
+            TextinputDefaultClass.TextInput._Instance._SetStyle(new Dictionary<string, object> { { "fontFamily", fontFamily }{ "fontSize", fontSize }{ "fontWeightIndex", fontWeight?.Index }{ "textAlignIndex", textAlign.Index }{ "textDirectionIndex", textDirection.Index } });
+        }
+
+
+
+
+        /// <Summary>
+        /// Stop interacting with the text input control.
+        ///
+        /// After calling this method, the text input control might disappear if no
+        /// other client attaches to it within this animation frame.
+        /// </Summary>
+        public virtual void Close()
+        {
+            if (Attached)
+            {
+                TextinputDefaultClass.TextInput._Instance._ClearClient();
+            }
+
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Platform sent a notification informing the connection is closed.
+        ///
+        /// [TextInputConnection] should clean current client connection.
+        /// </Summary>
+        public virtual void ConnectionClosedReceived()
+        {
+            TextinputDefaultClass.TextInput._Instance._CurrentConnection = null;
+
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An interface to the system's text input control.
+    /// </Summary>
+    public class TextInput
+    {
+        #region constructors
+        internal TextInput()
+        {
+
+            _Channel = SystemchannelsDefaultClass.SystemChannels.TextInput;
+            _Channel.SetMethodCallHandler(_HandleTextInputInvocation);
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Services.Textinput.TextInput _Instance { get; set; }
+        internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _AndroidSupportedInputActions { get; set; }
+        internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _IOSSupportedInputActions { get; set; }
+        internal virtual FlutterSDK.Services.Platformchannel.MethodChannel _Channel { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputConnection _CurrentConnection { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputConfiguration _CurrentConfiguration { get; set; }
+        internal virtual bool _HidePending { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Set the [MethodChannel] used to communicate with the system's text input
+        /// control.
+        ///
+        /// This is only meant for testing within the Flutter SDK. Changing this
+        /// will break the ability to input text. This has no effect if asserts are
+        /// disabled.
+        /// </Summary>
+        public virtual void SetChannel(FlutterSDK.Services.Platformchannel.MethodChannel newChannel)
+        {
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Begin interacting with the text input control.
+        ///
+        /// Calling this function helps multiple clients coordinate about which one is
+        /// currently interacting with the text input control. The returned
+        /// [TextInputConnection] provides an interface for actually interacting with
+        /// the text input control.
+        ///
+        /// A client that no longer wishes to interact with the text input control
+        /// should call [TextInputConnection.close] on the returned
+        /// [TextInputConnection].
+        /// </Summary>
+        public virtual FlutterSDK.Services.Textinput.TextInputConnection Attach(FlutterSDK.Services.Textinput.TextInputClient client, FlutterSDK.Services.Textinput.TextInputConfiguration configuration)
+        {
+
+
+            TextInputConnection connection = TextInputConnection._(client);
+            _Instance._Attach(connection, configuration);
+            return connection;
+        }
+
+
+
+
+        /// <Summary>
+        /// This method actually notifies the embedding of the client. It is utilized
+        /// by [attach] and by [_handleTextInputInvocation] for the
+        /// `TextInputClient.requestExistingInputState` method.
+        /// </Summary>
+        private void _Attach(FlutterSDK.Services.Textinput.TextInputConnection connection, FlutterSDK.Services.Textinput.TextInputConfiguration configuration)
+        {
+
+
+
+
+            _Channel.InvokeMethod("TextInput.setClient", new List<object>() { connection._Id, configuration.ToJson() });
+            _CurrentConnection = connection;
+            _CurrentConfiguration = configuration;
+        }
+
+
+
+
+        private bool _DebugEnsureInputActionWorksOnPlatform(FlutterSDK.Services.Textinput.TextInputAction inputAction)
+        {
+
+            return true;
+        }
+
+
+
+
+        private Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
+    async
+{
+if (_CurrentConnection==null )return ;
+string method = methodCall.Method;
+if (method=="TextInputClient.requestExistingInputState"){
+
+_Attach(_CurrentConnection, _CurrentConfiguration);
+        TextEditingValue editingValue = _CurrentConnection._Client.CurrentTextEditingValue;
+if (editingValue!=null ){
+_SetEditingState(editingValue);
+    }
+
+return ;
+}
+
+List<object> args = methodCall.Arguments as List<object>;
+int client = args[0] as int;
+if (client != _CurrentConnection._Id) return;
+switch (method) { case "TextInputClient.updateEditingState": _CurrentConnection._Client.UpdateEditingValue(TextEditingValue.FromJSON(args[1] as Dictionary<string, object>)); break; case "TextInputClient.performAction": _CurrentConnection._Client.PerformAction(TextinputDefaultClass._ToTextInputAction(args[1] as string)); break; case "TextInputClient.updateFloatingCursor": _CurrentConnection._Client.UpdateFloatingCursor(TextinputDefaultClass._ToTextPoint(TextinputDefaultClass._ToTextCursorAction(args[1] as string), args[2] as Dictionary<string, object>)); break; case "TextInputClient.onConnectionClosed": _CurrentConnection._Client.ConnectionClosed(); break; default: throw new MissingPluginException(); }
 }
 
 

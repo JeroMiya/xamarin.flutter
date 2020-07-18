@@ -560,29 +560,30 @@ public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     #region constructors
     public NetworkAssetBundle(Uri baseUrl)
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual Uri _BaseUrl { get; set; }
-internal virtual HttpClient _HttpClient { get; set; }
-#endregion
+    #region fields
+    internal virtual Uri _BaseUrl { get; set; }
+    internal virtual HttpClient _HttpClient { get; set; }
+    #endregion
 
-#region methods
+    #region methods
 
-private Uri _UrlFromKey(string key) => _BaseUrl.Resolve(key);
+    private Uri _UrlFromKey(string key) => _BaseUrl.Resolve(key);
 
 
 
-public new Future<ByteData> Load(string key)
+    public new Future<ByteData> Load(string key)
 async
 {
-    HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
+HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
     HttpResponseMessage response = await request.Close();
-    if (response.StatusCode != Dart:internalDefaultClass.HttpStatus.Ok)throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode) });
-    Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response);
-    return bytes.Buffer.AsByteData();
+if (response.StatusCode!=Dart:internalDefaultClass.HttpStatus.Ok)throw FlutterError.FromParts(new List<DiagnosticsNode>(){new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode)});
+Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response);
+return bytes.Buffer.AsByteData();
 }
 
 

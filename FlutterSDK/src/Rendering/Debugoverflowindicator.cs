@@ -602,20 +602,25 @@ public class _OverflowRegionData
 {
     #region constructors
     public _OverflowRegionData(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), string label = default(string), FlutterBinding.UI.Offset labelOffset = default(FlutterBinding.UI.Offset), double rotation = 0.0, FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide side = default(FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide))
+    {
+        this.Rect = rect;
+        this.Label = label;
+        this.LabelOffset = labelOffset;
+        this.Rotation = rotation;
+        this.Side = side;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterBinding.UI.Rect Rect { get; set; }
+    public virtual string Label { get; set; }
+    public virtual FlutterBinding.UI.Offset LabelOffset { get; set; }
+    public virtual double Rotation { get; set; }
+    public virtual FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide Side { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Rect Rect { get; set; }
-public virtual string Label { get; set; }
-public virtual FlutterBinding.UI.Offset LabelOffset { get; set; }
-public virtual double Rotation { get; set; }
-public virtual FlutterSDK.Rendering.Debugoverflowindicator._OverflowSide Side { get; set; }
-#endregion
-
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 

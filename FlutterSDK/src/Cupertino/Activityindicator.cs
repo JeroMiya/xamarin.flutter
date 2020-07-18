@@ -313,131 +313,135 @@ namespace FlutterSDK.Cupertino.Activityindicator
         #region constructors
         public CupertinoActivityIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool animating = true, double radius = default(double))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Animating = animating;
+            this.Radius = radius;
+        }
+        #endregion
 
-    #region fields
-    public virtual bool Animating { get; set; }
-    public virtual double Radius { get; set; }
-    #endregion
+        #region fields
+        public virtual bool Animating { get; set; }
+        public virtual double Radius { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Cupertino.Activityindicator._CupertinoActivityIndicatorState CreateState() => new _CupertinoActivityIndicatorState();
-
-
-    #endregion
-}
+        public new FlutterSDK.Cupertino.Activityindicator._CupertinoActivityIndicatorState CreateState() => new _CupertinoActivityIndicatorState();
 
 
-public class _CupertinoActivityIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Activityindicator.CupertinoActivityIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _CupertinoActivityIndicatorState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _Controller = new AnimationController(duration: new TimeSpan(seconds: 1), vsync: this);
-        if (Widget.Animating) _Controller.Repeat();
+        #endregion
     }
 
 
-
-
-    public new void DidUpdateWidget(FlutterSDK.Cupertino.Activityindicator.CupertinoActivityIndicator oldWidget)
+    public class _CupertinoActivityIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Activityindicator.CupertinoActivityIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.Animating != oldWidget.Animating)
+        #region constructors
+        public _CupertinoActivityIndicatorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            if (Widget.Animating) _Controller.Repeat(); else _Controller.Stop();
+            base.InitState();
+            _Controller = new AnimationController(duration: new TimeSpan(seconds: 1), vsync: this);
+            if (Widget.Animating) _Controller.Repeat();
         }
 
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Activityindicator.CupertinoActivityIndicator oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.Animating != oldWidget.Animating)
+            {
+                if (Widget.Animating) _Controller.Repeat(); else _Controller.Stop();
+            }
+
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _Controller.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new SizedBox(height: Widget.Radius * 2, width: Widget.Radius * 2, child: new CustomPaint(painter: new _CupertinoActivityIndicatorPainter(position: _Controller, activeColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActivityindicatorDefaultClass._KActiveTickColor, context), radius: Widget.Radius)));
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void Dispose()
+    public class _CupertinoActivityIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        _Controller.Dispose();
-        base.Dispose();
+        #region constructors
+        public _CupertinoActivityIndicatorPainter(FlutterSDK.Animation.Animation.Animation<double> position = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), double radius = default(double))
+        : base(repaint: position)
+        {
+            this.Position = position;
+            this.ActiveColor = activeColor;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Position { get; set; }
+        public virtual FlutterBinding.UI.RRect TickFundamentalRRect { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            Paint paint = new Paint();
+            canvas.Save();
+            canvas.Translate(size.Width / 2.0, size.Height / 2.0);
+            int activeTick = (ActivityindicatorDefaultClass._KTickCount * Position.Value).Floor();
+            for (int i = 0; i < ActivityindicatorDefaultClass._KTickCount; ++i)
+            {
+                int t = (i + activeTick) % ActivityindicatorDefaultClass._KTickCount;
+                paint.Color = ActiveColor.WithAlpha(ActivityindicatorDefaultClass._AlphaValues[t]);
+                canvas.DrawRRect(TickFundamentalRRect, paint);
+                canvas.Rotate(-ActivityindicatorDefaultClass._KTwoPI / ActivityindicatorDefaultClass._KTickCount);
+            }
+
+            canvas.Restore();
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Cupertino.Activityindicator._CupertinoActivityIndicatorPainter oldPainter)
+        {
+            return oldPainter.Position != Position || oldPainter.ActiveColor != ActiveColor;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return oldPainter.Position != Position || oldPainter.ActiveColor != ActiveColor;
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new SizedBox(height: Widget.Radius * 2, width: Widget.Radius * 2, child: new CustomPaint(painter: new _CupertinoActivityIndicatorPainter(position: _Controller, activeColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ActivityindicatorDefaultClass._KActiveTickColor, context), radius: Widget.Radius)));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _CupertinoActivityIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-    #region constructors
-    public _CupertinoActivityIndicatorPainter(FlutterSDK.Animation.Animation.Animation<double> position = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), double radius = default(double))
-    : base(repaint: position)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Animation.Animation<double> Position { get; set; }
-public virtual FlutterBinding.UI.RRect TickFundamentalRRect { get; set; }
-public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-#endregion
-
-#region methods
-
-public new void Paint(Canvas canvas, Size size)
-{
-    Paint paint = new Paint();
-    canvas.Save();
-    canvas.Translate(size.Width / 2.0, size.Height / 2.0);
-    int activeTick = (ActivityindicatorDefaultClass._KTickCount * Position.Value).Floor();
-    for (int i = 0; i < ActivityindicatorDefaultClass._KTickCount; ++i)
-    {
-        int t = (i + activeTick) % ActivityindicatorDefaultClass._KTickCount;
-        paint.Color = ActiveColor.WithAlpha(ActivityindicatorDefaultClass._AlphaValues[t]);
-        canvas.DrawRRect(TickFundamentalRRect, paint);
-        canvas.Rotate(-ActivityindicatorDefaultClass._KTwoPI / ActivityindicatorDefaultClass._KTickCount);
-    }
-
-    canvas.Restore();
-}
-
-
-
-
-public new bool ShouldRepaint(FlutterSDK.Cupertino.Activityindicator._CupertinoActivityIndicatorPainter oldPainter)
-{
-    return oldPainter.Position != Position || oldPainter.ActiveColor != ActiveColor;
-}
-
-
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-{
-    return oldPainter.Position != Position || oldPainter.ActiveColor != ActiveColor;
-}
-
-
-
-#endregion
-}
 
 }

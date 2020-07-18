@@ -706,231 +706,241 @@ public class TextSelectionOverlay
     #region constructors
     public TextSelectionOverlay(FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Layer.LayerLink toolbarLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), bool handlesVisible = false, FlutterSDK.Services.Textinput.TextSelectionDelegate selectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), VoidCallback onSelectionHandleTapped = default(VoidCallback))
     : base()
-
-OverlayState overlay = OverlayDefaultClass.Overlay.Of(Context, rootOverlay: true);
-
-    _ToolbarController=new AnimationController(duration:FadeDuration, vsync:overlay);
-}
-
-
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget DebugRequiredFor { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink ToolbarLayerLink { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
-public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate SelectionDelegate { get; set; }
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-public virtual VoidCallback OnSelectionHandleTapped { get; set; }
-public virtual TimeSpan FadeDuration { get; set; }
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ToolbarController { get; set; }
-internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value { get; set; }
-internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Handles { get; set; }
-internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Toolbar { get; set; }
-internal virtual bool _HandlesVisible { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ToolbarOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual FlutterSDK.Services.Textediting.TextSelection _Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool HandlesVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool HandlesAreVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool ToolbarIsVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Builds the handles by inserting them into the [context]'s overlay.
-/// </Summary>
-public virtual void ShowHandles()
-{
-
-    _Handles = new List<OverlayEntry>() { new OverlayEntry(builder: (BuildContext context) => =>_BuildHandle(context, _TextSelectionHandlePosition.Start)), new OverlayEntry(builder: (BuildContext context) => =>_BuildHandle(context, _TextSelectionHandlePosition.End)) };
-    OverlayDefaultClass.Overlay.Of(Context, rootOverlay: true, debugRequiredFor: DebugRequiredFor).InsertAll(_Handles);
-}
-
-
-
-
-/// <Summary>
-/// Destroys the handles by removing them from overlay.
-/// </Summary>
-public virtual void HideHandles()
-{
-    if (_Handles != null)
     {
-        _Handles[0].Remove();
-        _Handles[1].Remove();
-        _Handles = null;
+        this.Context = context;
+        this.DebugRequiredFor = debugRequiredFor;
+        this.ToolbarLayerLink = toolbarLayerLink;
+        this.StartHandleLayerLink = startHandleLayerLink;
+        this.EndHandleLayerLink = endHandleLayerLink;
+        this.RenderObject = renderObject;
+        this.SelectionControls = selectionControls;
+        this.SelectionDelegate = selectionDelegate;
+        this.DragStartBehavior = dragStartBehavior;
+        this.OnSelectionHandleTapped = onSelectionHandleTapped;
+        OverlayState overlay = OverlayDefaultClass.Overlay.Of(Context, rootOverlay: true);
+
+        _ToolbarController = new AnimationController(duration: FadeDuration, vsync: overlay);
     }
 
-}
 
+    #endregion
 
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget DebugRequiredFor { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink ToolbarLayerLink { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
+    public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
+    public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
+    public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate SelectionDelegate { get; set; }
+    public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+    public virtual VoidCallback OnSelectionHandleTapped { get; set; }
+    public virtual TimeSpan FadeDuration { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ToolbarController { get; set; }
+    internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value { get; set; }
+    internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Handles { get; set; }
+    internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Toolbar { get; set; }
+    internal virtual bool _HandlesVisible { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _ToolbarOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Textinput.TextEditingValue Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual FlutterSDK.Services.Textediting.TextSelection _Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool HandlesVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool HandlesAreVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool ToolbarIsVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
+    #region methods
 
-/// <Summary>
-/// Shows the toolbar by inserting it into the [context]'s overlay.
-/// </Summary>
-public virtual void ShowToolbar()
-{
-
-    _Toolbar = new OverlayEntry(builder: _BuildToolbar);
-    OverlayDefaultClass.Overlay.Of(Context, rootOverlay: true, debugRequiredFor: DebugRequiredFor).Insert(_Toolbar);
-    _ToolbarController.Forward(from: 0.0);
-}
-
-
-
-
-/// <Summary>
-/// Updates the overlay after the selection has changed.
-///
-/// If this method is called while the [SchedulerBinding.schedulerPhase] is
-/// [SchedulerPhase.persistentCallbacks], i.e. during the build, layout, or
-/// paint phases (see [WidgetsBinding.drawFrame]), then the update is delayed
-/// until the post-frame callbacks phase. Otherwise the update is done
-/// synchronously. This means that it is safe to call during builds, but also
-/// that if you do call this during a build, the UI will not update until the
-/// next frame (i.e. many milliseconds later).
-/// </Summary>
-public virtual void Update(FlutterSDK.Services.Textinput.TextEditingValue newValue)
-{
-    if (_Value == newValue) return;
-    _Value = newValue;
-    if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.PersistentCallbacks)
+    /// <Summary>
+    /// Builds the handles by inserting them into the [context]'s overlay.
+    /// </Summary>
+    public virtual void ShowHandles()
     {
-        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback(_MarkNeedsBuild);
+
+        _Handles = new List<OverlayEntry>() { new OverlayEntry(builder: (BuildContext context) => =>_BuildHandle(context, _TextSelectionHandlePosition.Start)), new OverlayEntry(builder: (BuildContext context) => =>_BuildHandle(context, _TextSelectionHandlePosition.End)) };
+        OverlayDefaultClass.Overlay.Of(Context, rootOverlay: true, debugRequiredFor: DebugRequiredFor).InsertAll(_Handles);
     }
-    else
+
+
+
+
+    /// <Summary>
+    /// Destroys the handles by removing them from overlay.
+    /// </Summary>
+    public virtual void HideHandles()
+    {
+        if (_Handles != null)
+        {
+            _Handles[0].Remove();
+            _Handles[1].Remove();
+            _Handles = null;
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Shows the toolbar by inserting it into the [context]'s overlay.
+    /// </Summary>
+    public virtual void ShowToolbar()
+    {
+
+        _Toolbar = new OverlayEntry(builder: _BuildToolbar);
+        OverlayDefaultClass.Overlay.Of(Context, rootOverlay: true, debugRequiredFor: DebugRequiredFor).Insert(_Toolbar);
+        _ToolbarController.Forward(from: 0.0);
+    }
+
+
+
+
+    /// <Summary>
+    /// Updates the overlay after the selection has changed.
+    ///
+    /// If this method is called while the [SchedulerBinding.schedulerPhase] is
+    /// [SchedulerPhase.persistentCallbacks], i.e. during the build, layout, or
+    /// paint phases (see [WidgetsBinding.drawFrame]), then the update is delayed
+    /// until the post-frame callbacks phase. Otherwise the update is done
+    /// synchronously. This means that it is safe to call during builds, but also
+    /// that if you do call this during a build, the UI will not update until the
+    /// next frame (i.e. many milliseconds later).
+    /// </Summary>
+    public virtual void Update(FlutterSDK.Services.Textinput.TextEditingValue newValue)
+    {
+        if (_Value == newValue) return;
+        _Value = newValue;
+        if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.PersistentCallbacks)
+        {
+            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback(_MarkNeedsBuild);
+        }
+        else
+        {
+            _MarkNeedsBuild();
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Causes the overlay to update its rendering.
+    ///
+    /// This is intended to be called when the [renderObject] may have changed its
+    /// text metrics (e.g. because the text was scrolled).
+    /// </Summary>
+    public virtual void UpdateForScroll()
     {
         _MarkNeedsBuild();
     }
 
-}
 
 
 
-
-/// <Summary>
-/// Causes the overlay to update its rendering.
-///
-/// This is intended to be called when the [renderObject] may have changed its
-/// text metrics (e.g. because the text was scrolled).
-/// </Summary>
-public virtual void UpdateForScroll()
-{
-    _MarkNeedsBuild();
-}
-
-
-
-
-private void _MarkNeedsBuild(TimeSpan duration = default(TimeSpan))
-{
-    if (_Handles != null)
+    private void _MarkNeedsBuild(TimeSpan duration = default(TimeSpan))
     {
-        _Handles[0].MarkNeedsBuild();
-        _Handles[1].MarkNeedsBuild();
+        if (_Handles != null)
+        {
+            _Handles[0].MarkNeedsBuild();
+            _Handles[1].MarkNeedsBuild();
+        }
+
+        _Toolbar?.MarkNeedsBuild();
     }
 
-    _Toolbar?.MarkNeedsBuild();
-}
 
 
 
-
-/// <Summary>
-/// Hides the entire overlay including the toolbar and the handles.
-/// </Summary>
-public virtual void Hide()
-{
-    if (_Handles != null)
+    /// <Summary>
+    /// Hides the entire overlay including the toolbar and the handles.
+    /// </Summary>
+    public virtual void Hide()
     {
-        _Handles[0].Remove();
-        _Handles[1].Remove();
-        _Handles = null;
+        if (_Handles != null)
+        {
+            _Handles[0].Remove();
+            _Handles[1].Remove();
+            _Handles = null;
+        }
+
+        if (_Toolbar != null)
+        {
+            HideToolbar();
+        }
+
     }
 
-    if (_Toolbar != null)
+
+
+
+    /// <Summary>
+    /// Hides the toolbar part of the overlay.
+    ///
+    /// To hide the whole overlay, see [hide].
+    /// </Summary>
+    public virtual void HideToolbar()
     {
-        HideToolbar();
+
+        _ToolbarController.Stop();
+        _Toolbar.Remove();
+        _Toolbar = null;
     }
 
-}
 
 
 
-
-/// <Summary>
-/// Hides the toolbar part of the overlay.
-///
-/// To hide the whole overlay, see [hide].
-/// </Summary>
-public virtual void HideToolbar()
-{
-
-    _ToolbarController.Stop();
-    _Toolbar.Remove();
-    _Toolbar = null;
-}
-
-
-
-
-/// <Summary>
-/// Final cleanup.
-/// </Summary>
-public virtual void Dispose()
-{
-    Hide();
-    _ToolbarController.Dispose();
-}
-
-
-
-
-private FlutterSDK.Widgets.Framework.Widget _BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position)
-{
-    if ((_Selection.IsCollapsed && position == _TextSelectionHandlePosition.End) || SelectionControls == null) return new Container();
-    return new Visibility(visible: HandlesVisible, child: new _TextSelectionHandleOverlay(onSelectionHandleChanged: (TextSelection newSelection) =>
+    /// <Summary>
+    /// Final cleanup.
+    /// </Summary>
+    public virtual void Dispose()
     {
-        _HandleSelectionHandleChanged(newSelection, position);
+        Hide();
+        _ToolbarController.Dispose();
     }
-    , onSelectionHandleTapped: OnSelectionHandleTapped, startHandleLayerLink: StartHandleLayerLink, endHandleLayerLink: EndHandleLayerLink, renderObject: RenderObject, selection: _Selection, selectionControls: SelectionControls, position: position, dragStartBehavior: DragStartBehavior));
-}
 
 
 
 
-private FlutterSDK.Widgets.Framework.Widget _BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    if (SelectionControls == null) return new Container();
-    List<TextSelectionPoint> endpoints = RenderObject.GetEndpointsForSelection(_Selection);
-    Rect editingRegion = Rect.FromPoints(RenderObject.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero), RenderObject.LocalToGlobal(RenderObject.Size.BottomRight(Dart: uiDefaultClass.Offset.Zero)));
-    bool isMultiline = endpoints.Last().Point.Dy - endpoints.First.Point.Dy > RenderObject.PreferredLineHeight / 2;
-    double midX = isMultiline ? editingRegion.Width / 2 : (endpoints.First.Point.Dx + endpoints.Last().Point.Dx) / 2;
-    Offset midpoint = new Offset(midX, endpoints[0].Point.Dy - RenderObject.PreferredLineHeight);
-    return new FadeTransition(opacity: _ToolbarOpacity, child: new CompositedTransformFollower(link: ToolbarLayerLink, showWhenUnlinked: false, offset: -editingRegion.TopLeft, child: SelectionControls.BuildToolbar(context, editingRegion, RenderObject.PreferredLineHeight, midpoint, endpoints, SelectionDelegate)));
-}
+    private FlutterSDK.Widgets.Framework.Widget _BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position)
+    {
+        if ((_Selection.IsCollapsed && position == _TextSelectionHandlePosition.End) || SelectionControls == null) return new Container();
+        return new Visibility(visible: HandlesVisible, child: new _TextSelectionHandleOverlay(onSelectionHandleChanged: (TextSelection newSelection) =>
+        {
+            _HandleSelectionHandleChanged(newSelection, position);
+        }
+        , onSelectionHandleTapped: OnSelectionHandleTapped, startHandleLayerLink: StartHandleLayerLink, endHandleLayerLink: EndHandleLayerLink, renderObject: RenderObject, selection: _Selection, selectionControls: SelectionControls, position: position, dragStartBehavior: DragStartBehavior));
+    }
 
 
 
 
-private void _HandleSelectionHandleChanged(FlutterSDK.Services.Textediting.TextSelection newSelection, FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position)
-{
-    TextPosition textPosition = default(TextPosition);
-    switch (position) { case _TextSelectionHandlePosition.Start: textPosition = newSelection.Base; break; case _TextSelectionHandlePosition.End: textPosition = newSelection.Extent; break; }
-    SelectionDelegate.TextEditingValue = _Value.CopyWith(selection: newSelection, composing: Dart:uiDefaultClass.TextRange.Empty);
-SelectionDelegate.BringIntoView(textPosition);
-}
+    private FlutterSDK.Widgets.Framework.Widget _BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        if (SelectionControls == null) return new Container();
+        List<TextSelectionPoint> endpoints = RenderObject.GetEndpointsForSelection(_Selection);
+        Rect editingRegion = Rect.FromPoints(RenderObject.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero), RenderObject.LocalToGlobal(RenderObject.Size.BottomRight(Dart: uiDefaultClass.Offset.Zero)));
+        bool isMultiline = endpoints.Last().Point.Dy - endpoints.First.Point.Dy > RenderObject.PreferredLineHeight / 2;
+        double midX = isMultiline ? editingRegion.Width / 2 : (endpoints.First.Point.Dx + endpoints.Last().Point.Dx) / 2;
+        Offset midpoint = new Offset(midX, endpoints[0].Point.Dy - RenderObject.PreferredLineHeight);
+        return new FadeTransition(opacity: _ToolbarOpacity, child: new CompositedTransformFollower(link: ToolbarLayerLink, showWhenUnlinked: false, offset: -editingRegion.TopLeft, child: SelectionControls.BuildToolbar(context, editingRegion, RenderObject.PreferredLineHeight, midpoint, endpoints, SelectionDelegate)));
+    }
 
 
 
-#endregion
+
+    private void _HandleSelectionHandleChanged(FlutterSDK.Services.Textediting.TextSelection newSelection, FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position)
+    {
+        TextPosition textPosition = default(TextPosition);
+        switch (position) { case _TextSelectionHandlePosition.Start: textPosition = newSelection.Base; break; case _TextSelectionHandlePosition.End: textPosition = newSelection.Extent; break; }
+        SelectionDelegate.TextEditingValue = _Value.CopyWith(selection: newSelection, composing: Dart:uiDefaultClass.TextRange.Empty);
+        SelectionDelegate.BringIntoView(textPosition);
+    }
+
+
+
+    #endregion
 }
 
 
@@ -942,29 +952,38 @@ public class _TextSelectionHandleOverlay : FlutterSDK.Widgets.Framework.Stateful
     #region constructors
     public _TextSelectionHandleOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position = default(FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> onSelectionHandleChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection>), VoidCallback onSelectionHandleTapped = default(VoidCallback), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
     : base(key: key)
+    {
+        this.Selection = selection;
+        this.Position = position;
+        this.StartHandleLayerLink = startHandleLayerLink;
+        this.EndHandleLayerLink = endHandleLayerLink;
+        this.RenderObject = renderObject;
+        this.OnSelectionHandleChanged = onSelectionHandleChanged;
+        this.OnSelectionHandleTapped = onSelectionHandleTapped;
+        this.SelectionControls = selectionControls;
+        this.DragStartBehavior = dragStartBehavior;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
+    public virtual FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition Position { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
+    public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> OnSelectionHandleChanged { get; set; }
+    public virtual VoidCallback OnSelectionHandleTapped { get; set; }
+    public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
+    public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+    internal virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> _Visibility { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
-public virtual FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition Position { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
-public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderObject { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> OnSelectionHandleChanged { get; set; }
-public virtual VoidCallback OnSelectionHandleTapped { get; set; }
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-internal virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> _Visibility { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlayState CreateState() => new _TextSelectionHandleOverlayState();
+    public new FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlayState CreateState() => new _TextSelectionHandleOverlayState();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1122,284 +1141,285 @@ public class TextSelectionGestureDetectorBuilder
     #region constructors
     public TextSelectionGestureDetectorBuilder(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate = default(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate))
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate { get; set; }
-internal virtual bool _ShouldShowSelectionToolbar { get; set; }
-public virtual bool ShouldShowSelectionToolbar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Editabletext.EditableTextState EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onTapDown].
-///
-/// By default, it forwards the tap to [RenderEditable.handleTapDown] and sets
-/// [shouldShowSelectionToolbar] to true if the tap was initiated by a finger or stylus.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onTapDown], which triggers this callback.
-/// </Summary>
-public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
-{
-    RenderEditable.HandleTapDown(details);
-    PointerDeviceKind kind = details.Kind;
-    _ShouldShowSelectionToolbar = kind == null || kind == PointerDeviceKind.Touch || kind == PointerDeviceKind.Stylus;
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onForcePressStart].
-///
-/// By default, it selects the word at the position of the force press,
-/// if selection is enabled.
-///
-/// This callback is only applicable when force press is enabled.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onForcePressStart], which triggers this
-///    callback.
-/// </Summary>
-public virtual void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details)
-{
-
-    _ShouldShowSelectionToolbar = true;
-    if (Delegate.SelectionEnabled)
     {
+        this.@delegate = @delegate;
+    }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate { get; set; }
+    internal virtual bool _ShouldShowSelectionToolbar { get; set; }
+    public virtual bool ShouldShowSelectionToolbar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Editabletext.EditableTextState EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onTapDown].
+    ///
+    /// By default, it forwards the tap to [RenderEditable.handleTapDown] and sets
+    /// [shouldShowSelectionToolbar] to true if the tap was initiated by a finger or stylus.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onTapDown], which triggers this callback.
+    /// </Summary>
+    public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
+    {
+        RenderEditable.HandleTapDown(details);
+        PointerDeviceKind kind = details.Kind;
+        _ShouldShowSelectionToolbar = kind == null || kind == PointerDeviceKind.Touch || kind == PointerDeviceKind.Stylus;
+    }
+
+
+
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onForcePressStart].
+    ///
+    /// By default, it selects the word at the position of the force press,
+    /// if selection is enabled.
+    ///
+    /// This callback is only applicable when force press is enabled.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onForcePressStart], which triggers this
+    ///    callback.
+    /// </Summary>
+    public virtual void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details)
+    {
+
+        _ShouldShowSelectionToolbar = true;
+        if (Delegate.SelectionEnabled)
+        {
+            RenderEditable.SelectWordsInRange(from: details.GlobalPosition, cause: SelectionChangedCause.ForcePress);
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onForcePressEnd].
+    ///
+    /// By default, it selects words in the range specified in [details] and shows
+    /// toolbar if it is necessary.
+    ///
+    /// This callback is only applicable when force press is enabled.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onForcePressEnd], which triggers this
+    ///    callback.
+    /// </Summary>
+    public virtual void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details)
+    {
+
         RenderEditable.SelectWordsInRange(from: details.GlobalPosition, cause: SelectionChangedCause.ForcePress);
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onForcePressEnd].
-///
-/// By default, it selects words in the range specified in [details] and shows
-/// toolbar if it is necessary.
-///
-/// This callback is only applicable when force press is enabled.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onForcePressEnd], which triggers this
-///    callback.
-/// </Summary>
-public virtual void OnForcePressEnd(FlutterSDK.Gestures.Forcepress.ForcePressDetails details)
-{
-
-    RenderEditable.SelectWordsInRange(from: details.GlobalPosition, cause: SelectionChangedCause.ForcePress);
-    if (ShouldShowSelectionToolbar) EditableText.ShowToolbar();
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onSingleTapUp].
-///
-/// By default, it selects word edge if selection is enabled.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onSingleTapUp], which triggers
-///    this callback.
-/// </Summary>
-public virtual void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
-{
-    if (Delegate.SelectionEnabled)
-    {
-        RenderEditable.SelectWordEdge(cause: SelectionChangedCause.Tap);
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onSingleTapCancel].
-///
-/// By default, it services as place holder to enable subclass override.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onSingleTapCancel], which triggers
-///    this callback.
-/// </Summary>
-public virtual void OnSingleTapCancel()
-{
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onSingleLongTapStart].
-///
-/// By default, it selects text position specified in [details] if selection
-/// is enabled.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onSingleLongTapStart], which triggers
-///    this callback.
-/// </Summary>
-public virtual void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details)
-{
-    if (Delegate.SelectionEnabled)
-    {
-        RenderEditable.SelectPositionAt(from: details.GlobalPosition, cause: SelectionChangedCause.LongPress);
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onSingleLongTapMoveUpdate].
-///
-/// By default, it updates the selection location specified in [details] if
-/// selection is enabled.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onSingleLongTapMoveUpdate], which
-///    triggers this callback.
-/// </Summary>
-public virtual void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details)
-{
-    if (Delegate.SelectionEnabled)
-    {
-        RenderEditable.SelectPositionAt(from: details.GlobalPosition, cause: SelectionChangedCause.LongPress);
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onSingleLongTapEnd].
-///
-/// By default, it shows toolbar if necessary.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onSingleLongTapEnd], which triggers this
-///    callback.
-/// </Summary>
-public virtual void OnSingleLongTapEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details)
-{
-    if (ShouldShowSelectionToolbar) EditableText.ShowToolbar();
-}
-
-
-
-
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onDoubleTapDown].
-///
-/// By default, it selects a word through [renderEditable.selectWord] if
-/// selectionEnabled and shows toolbar if necessary.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onDoubleTapDown], which triggers this
-///    callback.
-/// </Summary>
-public virtual void OnDoubleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
-{
-    if (Delegate.SelectionEnabled)
-    {
-        RenderEditable.SelectWord(cause: SelectionChangedCause.Tap);
         if (ShouldShowSelectionToolbar) EditableText.ShowToolbar();
     }
 
-}
+
+
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onSingleTapUp].
+    ///
+    /// By default, it selects word edge if selection is enabled.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onSingleTapUp], which triggers
+    ///    this callback.
+    /// </Summary>
+    public virtual void OnSingleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
+    {
+        if (Delegate.SelectionEnabled)
+        {
+            RenderEditable.SelectWordEdge(cause: SelectionChangedCause.Tap);
+        }
+
+    }
 
 
 
 
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onDragSelectionStart].
-///
-/// By default, it selects a text position specified in [details].
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onDragSelectionStart], which triggers
-///    this callback.
-/// </Summary>
-public virtual void OnDragSelectionStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
-{
-    RenderEditable.SelectPositionAt(from: details.GlobalPosition, cause: SelectionChangedCause.Drag);
-}
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onSingleTapCancel].
+    ///
+    /// By default, it services as place holder to enable subclass override.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onSingleTapCancel], which triggers
+    ///    this callback.
+    /// </Summary>
+    public virtual void OnSingleTapCancel()
+    {
+    }
 
 
 
 
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onDragSelectionUpdate].
-///
-/// By default, it updates the selection location specified in [details].
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onDragSelectionUpdate], which triggers
-///    this callback./lib/src/material/text_field.dart
-/// </Summary>
-public virtual void OnDragSelectionUpdate(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails)
-{
-    RenderEditable.SelectPositionAt(from: startDetails.GlobalPosition, to: updateDetails.GlobalPosition, cause: SelectionChangedCause.Drag);
-}
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onSingleLongTapStart].
+    ///
+    /// By default, it selects text position specified in [details] if selection
+    /// is enabled.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onSingleLongTapStart], which triggers
+    ///    this callback.
+    /// </Summary>
+    public virtual void OnSingleLongTapStart(FlutterSDK.Gestures.Longpress.LongPressStartDetails details)
+    {
+        if (Delegate.SelectionEnabled)
+        {
+            RenderEditable.SelectPositionAt(from: details.GlobalPosition, cause: SelectionChangedCause.LongPress);
+        }
+
+    }
 
 
 
 
-/// <Summary>
-/// Handler for [TextSelectionGestureDetector.onDragSelectionEnd].
-///
-/// By default, it services as place holder to enable subclass override.
-///
-/// See also:
-///
-///  * [TextSelectionGestureDetector.onDragSelectionEnd], which triggers this
-///    callback.
-/// </Summary>
-public virtual void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-{
-}
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onSingleLongTapMoveUpdate].
+    ///
+    /// By default, it updates the selection location specified in [details] if
+    /// selection is enabled.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onSingleLongTapMoveUpdate], which
+    ///    triggers this callback.
+    /// </Summary>
+    public virtual void OnSingleLongTapMoveUpdate(FlutterSDK.Gestures.Longpress.LongPressMoveUpdateDetails details)
+    {
+        if (Delegate.SelectionEnabled)
+        {
+            RenderEditable.SelectPositionAt(from: details.GlobalPosition, cause: SelectionChangedCause.LongPress);
+        }
+
+    }
 
 
 
 
-/// <Summary>
-/// Returns a [TextSelectionGestureDetector] configured with the handlers
-/// provided by this builder.
-///
-/// The [child] or its subtree should contain [EditableText].
-/// </Summary>
-public virtual FlutterSDK.Widgets.Framework.Widget BuildGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-{
-    return new TextSelectionGestureDetector(key: key, onTapDown: OnTapDown, onForcePressStart: Delegate.ForcePressEnabled ? OnForcePressStart : null, onForcePressEnd: Delegate.ForcePressEnabled ? OnForcePressEnd : null, onSingleTapUp: OnSingleTapUp, onSingleTapCancel: OnSingleTapCancel, onSingleLongTapStart: OnSingleLongTapStart, onSingleLongTapMoveUpdate: OnSingleLongTapMoveUpdate, onSingleLongTapEnd: OnSingleLongTapEnd, onDoubleTapDown: OnDoubleTapDown, onDragSelectionStart: OnDragSelectionStart, onDragSelectionUpdate: OnDragSelectionUpdate, onDragSelectionEnd: OnDragSelectionEnd, behavior: behavior, child: child);
-}
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onSingleLongTapEnd].
+    ///
+    /// By default, it shows toolbar if necessary.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onSingleLongTapEnd], which triggers this
+    ///    callback.
+    /// </Summary>
+    public virtual void OnSingleLongTapEnd(FlutterSDK.Gestures.Longpress.LongPressEndDetails details)
+    {
+        if (ShouldShowSelectionToolbar) EditableText.ShowToolbar();
+    }
 
 
 
-#endregion
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onDoubleTapDown].
+    ///
+    /// By default, it selects a word through [renderEditable.selectWord] if
+    /// selectionEnabled and shows toolbar if necessary.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onDoubleTapDown], which triggers this
+    ///    callback.
+    /// </Summary>
+    public virtual void OnDoubleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
+    {
+        if (Delegate.SelectionEnabled)
+        {
+            RenderEditable.SelectWord(cause: SelectionChangedCause.Tap);
+            if (ShouldShowSelectionToolbar) EditableText.ShowToolbar();
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onDragSelectionStart].
+    ///
+    /// By default, it selects a text position specified in [details].
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onDragSelectionStart], which triggers
+    ///    this callback.
+    /// </Summary>
+    public virtual void OnDragSelectionStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
+    {
+        RenderEditable.SelectPositionAt(from: details.GlobalPosition, cause: SelectionChangedCause.Drag);
+    }
+
+
+
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onDragSelectionUpdate].
+    ///
+    /// By default, it updates the selection location specified in [details].
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onDragSelectionUpdate], which triggers
+    ///    this callback./lib/src/material/text_field.dart
+    /// </Summary>
+    public virtual void OnDragSelectionUpdate(FlutterSDK.Gestures.Dragdetails.DragStartDetails startDetails, FlutterSDK.Gestures.Dragdetails.DragUpdateDetails updateDetails)
+    {
+        RenderEditable.SelectPositionAt(from: startDetails.GlobalPosition, to: updateDetails.GlobalPosition, cause: SelectionChangedCause.Drag);
+    }
+
+
+
+
+    /// <Summary>
+    /// Handler for [TextSelectionGestureDetector.onDragSelectionEnd].
+    ///
+    /// By default, it services as place holder to enable subclass override.
+    ///
+    /// See also:
+    ///
+    ///  * [TextSelectionGestureDetector.onDragSelectionEnd], which triggers this
+    ///    callback.
+    /// </Summary>
+    public virtual void OnDragSelectionEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+    {
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a [TextSelectionGestureDetector] configured with the handlers
+    /// provided by this builder.
+    ///
+    /// The [child] or its subtree should contain [EditableText].
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+    {
+        return new TextSelectionGestureDetector(key: key, onTapDown: OnTapDown, onForcePressStart: Delegate.ForcePressEnabled ? OnForcePressStart : null, onForcePressEnd: Delegate.ForcePressEnabled ? OnForcePressEnd : null, onSingleTapUp: OnSingleTapUp, onSingleTapCancel: OnSingleTapCancel, onSingleLongTapStart: OnSingleLongTapStart, onSingleLongTapMoveUpdate: OnSingleLongTapMoveUpdate, onSingleLongTapEnd: OnSingleLongTapEnd, onDoubleTapDown: OnDoubleTapDown, onDragSelectionStart: OnDragSelectionStart, onDragSelectionUpdate: OnDragSelectionUpdate, onDragSelectionEnd: OnDragSelectionEnd, behavior: behavior, child: child);
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1422,33 +1442,47 @@ public class TextSelectionGestureDetector : FlutterSDK.Widgets.Framework.Statefu
     #region constructors
     public TextSelectionGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSingleTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSingleTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onSingleLongTapStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onSingleLongTapMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onSingleLongTapEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onDoubleTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onDragSelectionStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback onDragSelectionUpdate = default(FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onDragSelectionEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
     : base(key: key)
+    {
+        this.OnTapDown = onTapDown;
+        this.OnForcePressStart = onForcePressStart;
+        this.OnForcePressEnd = onForcePressEnd;
+        this.OnSingleTapUp = onSingleTapUp;
+        this.OnSingleTapCancel = onSingleTapCancel;
+        this.OnSingleLongTapStart = onSingleLongTapStart;
+        this.OnSingleLongTapMoveUpdate = onSingleLongTapMoveUpdate;
+        this.OnSingleLongTapEnd = onSingleLongTapEnd;
+        this.OnDoubleTapDown = onDoubleTapDown;
+        this.OnDragSelectionStart = onDragSelectionStart;
+        this.OnDragSelectionUpdate = onDragSelectionUpdate;
+        this.OnDragSelectionEnd = onDragSelectionEnd;
+        this.Behavior = behavior;
+        this.Child = child;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+    public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
+    public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
+    public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSingleTapUp { get; set; }
+    public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSingleTapCancel { get; set; }
+    public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnSingleLongTapStart { get; set; }
+    public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnSingleLongTapMoveUpdate { get; set; }
+    public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnSingleLongTapEnd { get; set; }
+    public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnDoubleTapDown { get; set; }
+    public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnDragSelectionStart { get; set; }
+    public virtual FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback OnDragSelectionUpdate { get; set; }
+    public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnDragSelectionEnd { get; set; }
+    public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
-public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSingleTapUp { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSingleTapCancel { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnSingleLongTapStart { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnSingleLongTapMoveUpdate { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnSingleLongTapEnd { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnDoubleTapDown { get; set; }
-public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnDragSelectionStart { get; set; }
-public virtual FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback OnDragSelectionUpdate { get; set; }
-public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnDragSelectionEnd { get; set; }
-public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _TextSelectionGestureDetectorState();
+    public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _TextSelectionGestureDetectorState();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1732,31 +1766,32 @@ public class _TransparentTapGestureRecognizer : FlutterSDK.Gestures.Tap.TapGestu
     #region constructors
     public _TransparentTapGestureRecognizer(@Object debugOwner = default(@Object))
     : base(debugOwner: debugOwner)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new void RejectGesture(int pointer)
-{
-    if (State == GestureRecognizerState.Ready)
     {
-        AcceptGesture(pointer);
+
     }
-    else
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new void RejectGesture(int pointer)
     {
-        base.RejectGesture(pointer);
+        if (State == GestureRecognizerState.Ready)
+        {
+            AcceptGesture(pointer);
+        }
+        else
+        {
+            base.RejectGesture(pointer);
+        }
+
     }
 
-}
 
 
-
-#endregion
+    #endregion
 }
 
 

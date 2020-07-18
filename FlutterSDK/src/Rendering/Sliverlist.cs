@@ -459,215 +459,216 @@ namespace FlutterSDK.Rendering.Sliverlist
         #region constructors
         public RenderSliverList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
-    
-}
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new void PerformLayout()
-    {
-        SliverConstraints constraints = this.Constraints;
-        ChildManager.DidStartLayout();
-        ChildManager.SetDidUnderflow(false);
-        double scrollOffset = constraints.ScrollOffset + constraints.CacheOrigin;
-
-        double remainingExtent = constraints.RemainingCacheExtent;
-
-        double targetEndScrollOffset = scrollOffset + remainingExtent;
-        BoxConstraints childConstraints = constraints.AsBoxConstraints();
-        int leadingGarbage = 0;
-        int trailingGarbage = 0;
-        bool reachedEnd = false;
-        if (FirstChild == null)
         {
-            if (!AddInitialChild())
-            {
-                Geometry = SliverDefaultClass.SliverGeometry.Zero;
-                ChildManager.DidFinishLayout();
-                return;
-            }
 
         }
+        #endregion
 
-        RenderBox leadingChildWithLayout trailingChildWithLayout = default(RenderBox);
-        RenderBox earliestUsefulChild = FirstChild;
-        if (ChildScrollOffset(FirstChild) == null)
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout()
         {
-            int leadingChildrenWithoutLayoutOffset = 0;
-            while (ChildScrollOffset(earliestUsefulChild) == null)
+            SliverConstraints constraints = this.Constraints;
+            ChildManager.DidStartLayout();
+            ChildManager.SetDidUnderflow(false);
+            double scrollOffset = constraints.ScrollOffset + constraints.CacheOrigin;
+
+            double remainingExtent = constraints.RemainingCacheExtent;
+
+            double targetEndScrollOffset = scrollOffset + remainingExtent;
+            BoxConstraints childConstraints = constraints.AsBoxConstraints();
+            int leadingGarbage = 0;
+            int trailingGarbage = 0;
+            bool reachedEnd = false;
+            if (FirstChild == null)
             {
-                earliestUsefulChild = ChildAfter(FirstChild);
-                leadingChildrenWithoutLayoutOffset += 1;
-            }
-
-            CollectGarbage(leadingChildrenWithoutLayoutOffset, 0);
-
-        }
-
-        earliestUsefulChild = FirstChild;
-        for (double earliestScrollOffset = ChildScrollOffset(earliestUsefulChild); earliestScrollOffset > scrollOffset; earliestScrollOffset = ChildScrollOffset(earliestUsefulChild))
-        {
-            earliestUsefulChild = InsertAndLayoutLeadingChild(childConstraints, parentUsesSize: true);
-            if (earliestUsefulChild == null)
-            {
-                SliverMultiBoxAdaptorParentData childParentData = FirstChild.ParentData as SliverMultiBoxAdaptorParentData;
-                childParentData.LayoutOffset = 0.0;
-                if (scrollOffset == 0.0)
+                if (!AddInitialChild())
                 {
-                    FirstChild.Layout(childConstraints, parentUsesSize: true);
-                    earliestUsefulChild = FirstChild;
-                    leadingChildWithLayout = earliestUsefulChild;
-                    trailingChildWithLayout = (trailingChildWithLayout == null ? earliestUsefulChild : trailingChildWithLayout);
-                    break;
-                }
-                else
-                {
-                    Geometry = new SliverGeometry(scrollOffsetCorrection: -scrollOffset);
+                    Geometry = SliverDefaultClass.SliverGeometry.Zero;
+                    ChildManager.DidFinishLayout();
                     return;
                 }
 
             }
 
-            double firstChildScrollOffset = earliestScrollOffset - PaintExtentOf(FirstChild);
-            if (firstChildScrollOffset < -ConstantsDefaultClass.PrecisionErrorTolerance)
+            RenderBox leadingChildWithLayout trailingChildWithLayout = default(RenderBox);
+            RenderBox earliestUsefulChild = FirstChild;
+            if (ChildScrollOffset(FirstChild) == null)
             {
-                double correction = 0.0;
-                while (earliestUsefulChild != null)
+                int leadingChildrenWithoutLayoutOffset = 0;
+                while (ChildScrollOffset(earliestUsefulChild) == null)
                 {
-
-                    correction += PaintExtentOf(FirstChild);
-                    earliestUsefulChild = InsertAndLayoutLeadingChild(childConstraints, parentUsesSize: true);
+                    earliestUsefulChild = ChildAfter(FirstChild);
+                    leadingChildrenWithoutLayoutOffset += 1;
                 }
 
-                earliestUsefulChild = FirstChild;
-                if ((correction - earliestScrollOffset).Abs() > ConstantsDefaultClass.PrecisionErrorTolerance)
+                CollectGarbage(leadingChildrenWithoutLayoutOffset, 0);
+
+            }
+
+            earliestUsefulChild = FirstChild;
+            for (double earliestScrollOffset = ChildScrollOffset(earliestUsefulChild); earliestScrollOffset > scrollOffset; earliestScrollOffset = ChildScrollOffset(earliestUsefulChild))
+            {
+                earliestUsefulChild = InsertAndLayoutLeadingChild(childConstraints, parentUsesSize: true);
+                if (earliestUsefulChild == null)
                 {
-                    Geometry = new SliverGeometry(scrollOffsetCorrection: correction - earliestScrollOffset);
                     SliverMultiBoxAdaptorParentData childParentData = FirstChild.ParentData as SliverMultiBoxAdaptorParentData;
                     childParentData.LayoutOffset = 0.0;
-                    return;
-                }
-
-            }
-
-            SliverMultiBoxAdaptorParentData childParentData = earliestUsefulChild.ParentData as SliverMultiBoxAdaptorParentData;
-            childParentData.LayoutOffset = firstChildScrollOffset;
-
-            leadingChildWithLayout = earliestUsefulChild;
-            trailingChildWithLayout = (trailingChildWithLayout == null ? earliestUsefulChild : trailingChildWithLayout);
-        }
-
-
-
-        if (leadingChildWithLayout == null)
-        {
-            earliestUsefulChild.Layout(childConstraints, parentUsesSize: true);
-            leadingChildWithLayout = earliestUsefulChild;
-            trailingChildWithLayout = earliestUsefulChild;
-        }
-
-        bool inLayoutRange = true;
-        RenderBox child = earliestUsefulChild;
-        int index = IndexOf(child);
-        double endScrollOffset = ChildScrollOffset(child) + PaintExtentOf(child);
-        bool Advance() => {
-
-            if (child == trailingChildWithLayout) inLayoutRange = false;
-            child = ChildAfter(child);
-            if (child == null) inLayoutRange = false;
-            index += 1;
-            if (!inLayoutRange)
-            {
-                if (child == null || IndexOf(child) != index)
-                {
-                    child = InsertAndLayoutChild(childConstraints, after: trailingChildWithLayout, parentUsesSize: true);
-                    if (child == null)
+                    if (scrollOffset == 0.0)
                     {
-                        return false;
+                        FirstChild.Layout(childConstraints, parentUsesSize: true);
+                        earliestUsefulChild = FirstChild;
+                        leadingChildWithLayout = earliestUsefulChild;
+                        trailingChildWithLayout = (trailingChildWithLayout == null ? earliestUsefulChild : trailingChildWithLayout);
+                        break;
+                    }
+                    else
+                    {
+                        Geometry = new SliverGeometry(scrollOffsetCorrection: -scrollOffset);
+                        return;
                     }
 
                 }
-                else
+
+                double firstChildScrollOffset = earliestScrollOffset - PaintExtentOf(FirstChild);
+                if (firstChildScrollOffset < -ConstantsDefaultClass.PrecisionErrorTolerance)
                 {
-                    child.Layout(childConstraints, parentUsesSize: true);
+                    double correction = 0.0;
+                    while (earliestUsefulChild != null)
+                    {
+
+                        correction += PaintExtentOf(FirstChild);
+                        earliestUsefulChild = InsertAndLayoutLeadingChild(childConstraints, parentUsesSize: true);
+                    }
+
+                    earliestUsefulChild = FirstChild;
+                    if ((correction - earliestScrollOffset).Abs() > ConstantsDefaultClass.PrecisionErrorTolerance)
+                    {
+                        Geometry = new SliverGeometry(scrollOffsetCorrection: correction - earliestScrollOffset);
+                        SliverMultiBoxAdaptorParentData childParentData = FirstChild.ParentData as SliverMultiBoxAdaptorParentData;
+                        childParentData.LayoutOffset = 0.0;
+                        return;
+                    }
+
                 }
 
-                trailingChildWithLayout = child;
+                SliverMultiBoxAdaptorParentData childParentData = earliestUsefulChild.ParentData as SliverMultiBoxAdaptorParentData;
+                childParentData.LayoutOffset = firstChildScrollOffset;
+
+                leadingChildWithLayout = earliestUsefulChild;
+                trailingChildWithLayout = (trailingChildWithLayout == null ? earliestUsefulChild : trailingChildWithLayout);
             }
 
 
-            SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
-            childParentData.LayoutOffset = endScrollOffset;
 
-            endScrollOffset = ChildScrollOffset(child) + PaintExtentOf(child);
-            return true;
-        }
-
-        while (endScrollOffset < scrollOffset)
-        {
-            leadingGarbage += 1;
-            if (!Advance())
+            if (leadingChildWithLayout == null)
             {
-
-
-                CollectGarbage(leadingGarbage - 1, 0);
-
-                double extent = ChildScrollOffset(LastChild) + PaintExtentOf(LastChild);
-                Geometry = new SliverGeometry(scrollExtent: extent, paintExtent: 0.0, maxPaintExtent: extent);
-                return;
+                earliestUsefulChild.Layout(childConstraints, parentUsesSize: true);
+                leadingChildWithLayout = earliestUsefulChild;
+                trailingChildWithLayout = earliestUsefulChild;
             }
 
-        }
+            bool inLayoutRange = true;
+            RenderBox child = earliestUsefulChild;
+            int index = IndexOf(child);
+            double endScrollOffset = ChildScrollOffset(child) + PaintExtentOf(child);
+            bool Advance() => {
 
-        while (endScrollOffset < targetEndScrollOffset)
-        {
-            if (!Advance())
-            {
-                reachedEnd = true;
-                break;
-            }
-
-        }
-
-        if (child != null)
-        {
-            child = ChildAfter(child);
-            while (child != null)
-            {
-                trailingGarbage += 1;
+                if (child == trailingChildWithLayout) inLayoutRange = false;
                 child = ChildAfter(child);
+                if (child == null) inLayoutRange = false;
+                index += 1;
+                if (!inLayoutRange)
+                {
+                    if (child == null || IndexOf(child) != index)
+                    {
+                        child = InsertAndLayoutChild(childConstraints, after: trailingChildWithLayout, parentUsesSize: true);
+                        if (child == null)
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        child.Layout(childConstraints, parentUsesSize: true);
+                    }
+
+                    trailingChildWithLayout = child;
+                }
+
+
+                SliverMultiBoxAdaptorParentData childParentData = child.ParentData as SliverMultiBoxAdaptorParentData;
+                childParentData.LayoutOffset = endScrollOffset;
+
+                endScrollOffset = ChildScrollOffset(child) + PaintExtentOf(child);
+                return true;
             }
 
+            while (endScrollOffset < scrollOffset)
+            {
+                leadingGarbage += 1;
+                if (!Advance())
+                {
+
+
+                    CollectGarbage(leadingGarbage - 1, 0);
+
+                    double extent = ChildScrollOffset(LastChild) + PaintExtentOf(LastChild);
+                    Geometry = new SliverGeometry(scrollExtent: extent, paintExtent: 0.0, maxPaintExtent: extent);
+                    return;
+                }
+
+            }
+
+            while (endScrollOffset < targetEndScrollOffset)
+            {
+                if (!Advance())
+                {
+                    reachedEnd = true;
+                    break;
+                }
+
+            }
+
+            if (child != null)
+            {
+                child = ChildAfter(child);
+                while (child != null)
+                {
+                    trailingGarbage += 1;
+                    child = ChildAfter(child);
+                }
+
+            }
+
+            CollectGarbage(leadingGarbage, trailingGarbage);
+
+            double estimatedMaxScrollOffset = default(double);
+            if (reachedEnd)
+            {
+                estimatedMaxScrollOffset = endScrollOffset;
+            }
+            else
+            {
+                estimatedMaxScrollOffset = ChildManager.EstimateMaxScrollOffset(constraints, firstIndex: IndexOf(FirstChild), lastIndex: IndexOf(LastChild), leadingScrollOffset: ChildScrollOffset(FirstChild), trailingScrollOffset: endScrollOffset);
+
+            }
+
+            double paintExtent = CalculatePaintOffset(constraints, from: ChildScrollOffset(FirstChild), to: endScrollOffset);
+            double cacheExtent = CalculateCacheOffset(constraints, from: ChildScrollOffset(FirstChild), to: endScrollOffset);
+            double targetEndScrollOffsetForPaint = constraints.ScrollOffset + constraints.RemainingPaintExtent;
+            Geometry = new SliverGeometry(scrollExtent: estimatedMaxScrollOffset, paintExtent: paintExtent, cacheExtent: cacheExtent, maxPaintExtent: estimatedMaxScrollOffset, hasVisualOverflow: endScrollOffset > targetEndScrollOffsetForPaint || constraints.ScrollOffset > 0.0);
+            if (estimatedMaxScrollOffset == endScrollOffset) ChildManager.SetDidUnderflow(true);
+            ChildManager.DidFinishLayout();
         }
 
-        CollectGarbage(leadingGarbage, trailingGarbage);
 
-        double estimatedMaxScrollOffset = default(double);
-        if (reachedEnd)
-        {
-            estimatedMaxScrollOffset = endScrollOffset;
-        }
-        else
-        {
-            estimatedMaxScrollOffset = ChildManager.EstimateMaxScrollOffset(constraints, firstIndex: IndexOf(FirstChild), lastIndex: IndexOf(LastChild), leadingScrollOffset: ChildScrollOffset(FirstChild), trailingScrollOffset: endScrollOffset);
 
-        }
-
-        double paintExtent = CalculatePaintOffset(constraints, from: ChildScrollOffset(FirstChild), to: endScrollOffset);
-        double cacheExtent = CalculateCacheOffset(constraints, from: ChildScrollOffset(FirstChild), to: endScrollOffset);
-        double targetEndScrollOffsetForPaint = constraints.ScrollOffset + constraints.RemainingPaintExtent;
-        Geometry = new SliverGeometry(scrollExtent: estimatedMaxScrollOffset, paintExtent: paintExtent, cacheExtent: cacheExtent, maxPaintExtent: estimatedMaxScrollOffset, hasVisualOverflow: endScrollOffset > targetEndScrollOffsetForPaint || constraints.ScrollOffset > 0.0);
-        if (estimatedMaxScrollOffset == endScrollOffset) ChildManager.SetDidUnderflow(true);
-        ChildManager.DidFinishLayout();
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

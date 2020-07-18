@@ -493,56 +493,58 @@ namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
         #region constructors
         public SizeChangedLayoutNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-    
-}
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Sizechangedlayoutnotifier._RenderSizeChangedWithCallback CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new _RenderSizeChangedWithCallback(onLayoutChangedCallback: () =>
         {
-            new SizeChangedLayoutNotification().Dispatch(context);
+
         }
-        );
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Sizechangedlayoutnotifier._RenderSizeChangedWithCallback CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderSizeChangedWithCallback(onLayoutChangedCallback: () =>
+            {
+                new SizeChangedLayoutNotification().Dispatch(context);
+            }
+            );
+        }
+
+
+
+        #endregion
     }
 
 
+    public class _RenderSizeChangedWithCallback : FlutterSDK.Rendering.Proxybox.RenderProxyBox
+    {
+        #region constructors
+        public _RenderSizeChangedWithCallback(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onLayoutChangedCallback = default(VoidCallback))
+        : base(child)
+        {
+            this.OnLayoutChangedCallback = onLayoutChangedCallback;
+        }
+        #endregion
 
-    #endregion
-}
+        #region fields
+        public virtual VoidCallback OnLayoutChangedCallback { get; set; }
+        internal virtual Size _OldSize { get; set; }
+        #endregion
 
+        #region methods
 
-public class _RenderSizeChangedWithCallback : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-    #region constructors
-    public _RenderSizeChangedWithCallback(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onLayoutChangedCallback = default(VoidCallback))
-    : base(child)
-
-}
-#endregion
-
-#region fields
-public virtual VoidCallback OnLayoutChangedCallback { get; set; }
-internal virtual Size _OldSize { get; set; }
-#endregion
-
-#region methods
-
-public new void PerformLayout()
-{
-    base.PerformLayout();
-    if (_OldSize != null && Size != _OldSize) OnLayoutChangedCallback();
-    _OldSize = Size;
-}
+        public new void PerformLayout()
+        {
+            base.PerformLayout();
+            if (_OldSize != null && Size != _OldSize) OnLayoutChangedCallback();
+            _OldSize = Size;
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

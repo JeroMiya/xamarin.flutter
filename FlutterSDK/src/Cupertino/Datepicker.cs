@@ -326,516 +326,527 @@ namespace FlutterSDK.Cupertino.Datepicker
         #region constructors
         public _DatePickerLayoutDelegate(List<double> columnWidths = default(List<double>), int textDirectionFactor = default(int))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual List<double> ColumnWidths { get; set; }
-    public virtual int TextDirectionFactor { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void PerformLayout(Size size)
-    {
-        double remainingWidth = size.Width;
-        for (int i = 0; i < ColumnWidths.Count; i++) remainingWidth -= ColumnWidths[i] + DatepickerDefaultClass._KDatePickerPadSize * 2;
-        double currentHorizontalOffset = 0.0;
-        for (int i = 0; i < ColumnWidths.Count; i++)
         {
-            int index = TextDirectionFactor == 1 ? i : ColumnWidths.Count - i - 1;
-            double childWidth = ColumnWidths[index] + DatepickerDefaultClass._KDatePickerPadSize * 2;
-            if (index == 0 || index == ColumnWidths.Count - 1) childWidth += remainingWidth / 2;
+            this.ColumnWidths = columnWidths;
+            this.TextDirectionFactor = textDirectionFactor;
+        }
+        #endregion
 
-            LayoutChild(index, BoxConstraints.Tight(new Size(Math.Dart:mathDefaultClass.Max(0.0, childWidth), size.Height)));
-            PositionChild(index, new Offset(currentHorizontalOffset, 0.0));
-            currentHorizontalOffset += childWidth;
+        #region fields
+        public virtual List<double> ColumnWidths { get; set; }
+        public virtual int TextDirectionFactor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout(Size size)
+        {
+            double remainingWidth = size.Width;
+            for (int i = 0; i < ColumnWidths.Count; i++) remainingWidth -= ColumnWidths[i] + DatepickerDefaultClass._KDatePickerPadSize * 2;
+            double currentHorizontalOffset = 0.0;
+            for (int i = 0; i < ColumnWidths.Count; i++)
+            {
+                int index = TextDirectionFactor == 1 ? i : ColumnWidths.Count - i - 1;
+                double childWidth = ColumnWidths[index] + DatepickerDefaultClass._KDatePickerPadSize * 2;
+                if (index == 0 || index == ColumnWidths.Count - 1) childWidth += remainingWidth / 2;
+
+                LayoutChild(index, BoxConstraints.Tight(new Size(Math.Dart:mathDefaultClass.Max(0.0, childWidth), size.Height)));
+                PositionChild(index, new Offset(currentHorizontalOffset, 0.0));
+                currentHorizontalOffset += childWidth;
+            }
+
         }
 
-    }
 
 
 
-
-    public new bool ShouldRelayout(FlutterSDK.Cupertino.Datepicker._DatePickerLayoutDelegate oldDelegate)
-    {
-        return ColumnWidths != oldDelegate.ColumnWidths || TextDirectionFactor != oldDelegate.TextDirectionFactor;
-    }
-
-
-    public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate)
-    {
-        return ColumnWidths != oldDelegate.ColumnWidths || TextDirectionFactor != oldDelegate.TextDirectionFactor;
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A date picker widget in iOS style.
-///
-/// There are several modes of the date picker listed in [CupertinoDatePickerMode].
-///
-/// The class will display its children as consecutive columns. Its children
-/// order is based on internationalization.
-///
-/// Example of the picker in date mode:
-///
-///  * US-English: `| July | 13 | 2012 |`
-///  * Vietnamese: `| 13 | Tháng 7 | 2012 |`
-///
-/// Can be used with [showCupertinoModalPopup] to display the picker modally at
-/// the bottom of the screen.
-///
-/// Sizes itself to its parent and may not render correctly if not given the
-/// full screen width. Content texts are shown with
-/// [CupertinoTextThemeData.dateTimePickerTextStyle].
-///
-/// See also:
-///
-///  * [CupertinoTimerPicker], the class that implements the iOS-style timer picker.
-///  * [CupertinoPicker], the class that implements a content agnostic spinner UI.
-/// </Summary>
-public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public CupertinoDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateTimeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime initialDateTime = default(DateTime), DateTime minimumDate = default(DateTime), DateTime maximumDate = default(DateTime), int minimumYear = 1, int maximumYear = default(int), int minuteInterval = 1, bool use24hFormat = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
-    : base(key: key)
-
-
-
-
-
-
-
-
-
-}
-
-
-#endregion
-
-#region fields
-public virtual FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode Mode { get; set; }
-public virtual DateTime InitialDateTime { get; set; }
-public virtual DateTime MinimumDate { get; set; }
-public virtual DateTime MaximumDate { get; set; }
-public virtual int MinimumYear { get; set; }
-public virtual int MaximumYear { get; set; }
-public virtual int MinuteInterval { get; set; }
-public virtual bool Use24hFormat { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateTimeChanged { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState()
-{
-    switch (Mode) { case CupertinoDatePickerMode.Time: case CupertinoDatePickerMode.DateAndTime: return new _CupertinoDatePickerDateTimeState(); case CupertinoDatePickerMode.Date: return new _CupertinoDatePickerDateState(); }
-
-    return new _CupertinoDatePickerDateTimeState();
-}
-
-
-
-
-private double _GetColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType, FlutterSDK.Cupertino.Localizations.CupertinoLocalizations localizations, FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    string longestText = "";
-    switch (columnType)
-    {
-        case _PickerColumnType.Date:
-            for (int i = 1; i <= 12; i++)
-            {
-                string date = localizations.DatePickerMediumDate(new DateTime(2018, i, 25));
-                if (longestText.Length < date.Length) longestText = date;
-            }
-            break;
-        case _PickerColumnType.Hour:
-            for (int i = 0; i < 24; i++)
-            {
-                string hour = localizations.DatePickerHour(i);
-                if (longestText.Length < hour.Length) longestText = hour;
-            }
-            break;
-        case _PickerColumnType.Minute:
-            for (int i = 0; i < 60; i++)
-            {
-                string minute = localizations.DatePickerMinute(i);
-                if (longestText.Length < minute.Length) longestText = minute;
-            }
-            break;
-        case _PickerColumnType.DayPeriod: longestText = localizations.AnteMeridiemAbbreviation.Length > localizations.PostMeridiemAbbreviation.Length ? localizations.AnteMeridiemAbbreviation : localizations.PostMeridiemAbbreviation; break;
-        case _PickerColumnType.DayOfMonth:
-            for (int i = 1; i <= 31; i++)
-            {
-                string dayOfMonth = localizations.DatePickerDayOfMonth(i);
-                if (longestText.Length < dayOfMonth.Length) longestText = dayOfMonth;
-            }
-            break;
-        case _PickerColumnType.Month:
-            for (int i = 1; i <= 12; i++)
-            {
-                string month = localizations.DatePickerMonth(i);
-                if (longestText.Length < month.Length) longestText = month;
-            }
-            break;
-        case _PickerColumnType.Year: longestText = localizations.DatePickerYear(2018); break;
-    }
-
-    TextPainter painter = new TextPainter(text: new TextSpan(style: DatepickerDefaultClass._ThemeTextStyle(context), text: longestText), textDirection: BasicDefaultClass.Directionality.Of(context));
-    painter.Layout();
-    return painter.MaxIntrinsicWidth;
-}
-
-
-
-#endregion
-}
-
-
-public class _CupertinoDatePickerDateTimeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
-{
-    #region constructors
-    public _CupertinoDatePickerDateTimeState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual double _KMaximumOffAxisFraction { get; set; }
-    public virtual int TextDirectionFactor { get; set; }
-    public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
-    public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft { get; set; }
-    public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterRight { get; set; }
-    public virtual DateTime InitialDateTime { get; set; }
-    public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController DateController { get; set; }
-    public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController HourController { get; set; }
-    public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MinuteController { get; set; }
-    public virtual int SelectedAmPm { get; set; }
-    public virtual int MeridiemRegion { get; set; }
-    public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MeridiemController { get; set; }
-    public virtual bool IsDatePickerScrolling { get; set; }
-    public virtual bool IsHourPickerScrolling { get; set; }
-    public virtual bool IsMinutePickerScrolling { get; set; }
-    public virtual bool IsMeridiemPickerScrolling { get; set; }
-    public virtual Dictionary<int, double> EstimatedColumnWidths { get; set; }
-    public virtual int SelectedDayFromInitial { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int SelectedHour { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual int _SelectedHourIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int SelectedMinute { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsHourRegionFlipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual DateTime SelectedDateTime { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    private int _SelectedHour(int selectedAmPm, int selectedHour)
-    {
-        return _IsHourRegionFlipped(selectedAmPm) ? (selectedHour + 12) % 24 : selectedHour;
-    }
-
-
-
-
-    private bool _IsHourRegionFlipped(int selectedAmPm) => selectedAmPm != MeridiemRegion;
-
-
-
-    public new void InitState()
-    {
-        base.InitState();
-        InitialDateTime = Widget.InitialDateTime;
-        SelectedAmPm = InitialDateTime.Hour~/ 12;
-        MeridiemRegion = SelectedAmPm;
-        MeridiemController = new FixedExtentScrollController(initialItem: SelectedAmPm);
-        HourController = new FixedExtentScrollController(initialItem: InitialDateTime.Hour);
-        MinuteController = new FixedExtentScrollController(initialItem: InitialDateTime.Minute~/ Widget.MinuteInterval);
-        DateController = new FixedExtentScrollController(initialItem: 0);
-        BindingDefaultClass.PaintingBinding.Instance.SystemFonts.AddListener(_HandleSystemFontsChange);
-    }
-
-
-
-
-    private void _HandleSystemFontsChange()
-    {
-        SetState(() =>
+        public new bool ShouldRelayout(FlutterSDK.Cupertino.Datepicker._DatePickerLayoutDelegate oldDelegate)
         {
+            return ColumnWidths != oldDelegate.ColumnWidths || TextDirectionFactor != oldDelegate.TextDirectionFactor;
+        }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate)
+        {
+            return ColumnWidths != oldDelegate.ColumnWidths || TextDirectionFactor != oldDelegate.TextDirectionFactor;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A date picker widget in iOS style.
+    ///
+    /// There are several modes of the date picker listed in [CupertinoDatePickerMode].
+    ///
+    /// The class will display its children as consecutive columns. Its children
+    /// order is based on internationalization.
+    ///
+    /// Example of the picker in date mode:
+    ///
+    ///  * US-English: `| July | 13 | 2012 |`
+    ///  * Vietnamese: `| 13 | Tháng 7 | 2012 |`
+    ///
+    /// Can be used with [showCupertinoModalPopup] to display the picker modally at
+    /// the bottom of the screen.
+    ///
+    /// Sizes itself to its parent and may not render correctly if not given the
+    /// full screen width. Content texts are shown with
+    /// [CupertinoTextThemeData.dateTimePickerTextStyle].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoTimerPicker], the class that implements the iOS-style timer picker.
+    ///  * [CupertinoPicker], the class that implements a content agnostic spinner UI.
+    /// </Summary>
+    public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public CupertinoDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateTimeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime initialDateTime = default(DateTime), DateTime minimumDate = default(DateTime), DateTime maximumDate = default(DateTime), int minimumYear = 1, int maximumYear = default(int), int minuteInterval = 1, bool use24hFormat = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Mode = mode;
+            this.OnDateTimeChanged = onDateTimeChanged;
+            this.MinimumDate = minimumDate;
+            this.MaximumDate = maximumDate;
+            this.MinimumYear = minimumYear;
+            this.MaximumYear = maximumYear;
+            this.MinuteInterval = minuteInterval;
+            this.Use24hFormat = use24hFormat;
+            this.BackgroundColor = backgroundColor;
+
+
+
+
+
+
+
+
+        }
+
+
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode Mode { get; set; }
+        public virtual DateTime InitialDateTime { get; set; }
+        public virtual DateTime MinimumDate { get; set; }
+        public virtual DateTime MaximumDate { get; set; }
+        public virtual int MinimumYear { get; set; }
+        public virtual int MaximumYear { get; set; }
+        public virtual int MinuteInterval { get; set; }
+        public virtual bool Use24hFormat { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateTimeChanged { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState()
+        {
+            switch (Mode) { case CupertinoDatePickerMode.Time: case CupertinoDatePickerMode.DateAndTime: return new _CupertinoDatePickerDateTimeState(); case CupertinoDatePickerMode.Date: return new _CupertinoDatePickerDateState(); }
+
+            return new _CupertinoDatePickerDateTimeState();
+        }
+
+
+
+
+        private double _GetColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType, FlutterSDK.Cupertino.Localizations.CupertinoLocalizations localizations, FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            string longestText = "";
+            switch (columnType)
+            {
+                case _PickerColumnType.Date:
+                    for (int i = 1; i <= 12; i++)
+                    {
+                        string date = localizations.DatePickerMediumDate(new DateTime(2018, i, 25));
+                        if (longestText.Length < date.Length) longestText = date;
+                    }
+                    break;
+                case _PickerColumnType.Hour:
+                    for (int i = 0; i < 24; i++)
+                    {
+                        string hour = localizations.DatePickerHour(i);
+                        if (longestText.Length < hour.Length) longestText = hour;
+                    }
+                    break;
+                case _PickerColumnType.Minute:
+                    for (int i = 0; i < 60; i++)
+                    {
+                        string minute = localizations.DatePickerMinute(i);
+                        if (longestText.Length < minute.Length) longestText = minute;
+                    }
+                    break;
+                case _PickerColumnType.DayPeriod: longestText = localizations.AnteMeridiemAbbreviation.Length > localizations.PostMeridiemAbbreviation.Length ? localizations.AnteMeridiemAbbreviation : localizations.PostMeridiemAbbreviation; break;
+                case _PickerColumnType.DayOfMonth:
+                    for (int i = 1; i <= 31; i++)
+                    {
+                        string dayOfMonth = localizations.DatePickerDayOfMonth(i);
+                        if (longestText.Length < dayOfMonth.Length) longestText = dayOfMonth;
+                    }
+                    break;
+                case _PickerColumnType.Month:
+                    for (int i = 1; i <= 12; i++)
+                    {
+                        string month = localizations.DatePickerMonth(i);
+                        if (longestText.Length < month.Length) longestText = month;
+                    }
+                    break;
+                case _PickerColumnType.Year: longestText = localizations.DatePickerYear(2018); break;
+            }
+
+            TextPainter painter = new TextPainter(text: new TextSpan(style: DatepickerDefaultClass._ThemeTextStyle(context), text: longestText), textDirection: BasicDefaultClass.Directionality.Of(context));
+            painter.Layout();
+            return painter.MaxIntrinsicWidth;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _CupertinoDatePickerDateTimeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
+    {
+        #region constructors
+        public _CupertinoDatePickerDateTimeState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual double _KMaximumOffAxisFraction { get; set; }
+        public virtual int TextDirectionFactor { get; set; }
+        public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterRight { get; set; }
+        public virtual DateTime InitialDateTime { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController DateController { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController HourController { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MinuteController { get; set; }
+        public virtual int SelectedAmPm { get; set; }
+        public virtual int MeridiemRegion { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController MeridiemController { get; set; }
+        public virtual bool IsDatePickerScrolling { get; set; }
+        public virtual bool IsHourPickerScrolling { get; set; }
+        public virtual bool IsMinutePickerScrolling { get; set; }
+        public virtual bool IsMeridiemPickerScrolling { get; set; }
+        public virtual Dictionary<int, double> EstimatedColumnWidths { get; set; }
+        public virtual int SelectedDayFromInitial { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SelectedHour { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual int _SelectedHourIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SelectedMinute { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsHourRegionFlipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual DateTime SelectedDateTime { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private int _SelectedHour(int selectedAmPm, int selectedHour)
+        {
+            return _IsHourRegionFlipped(selectedAmPm) ? (selectedHour + 12) % 24 : selectedHour;
+        }
+
+
+
+
+        private bool _IsHourRegionFlipped(int selectedAmPm) => selectedAmPm != MeridiemRegion;
+
+
+
+        public new void InitState()
+        {
+            base.InitState();
+            InitialDateTime = Widget.InitialDateTime;
+            SelectedAmPm = InitialDateTime.Hour~/ 12;
+            MeridiemRegion = SelectedAmPm;
+            MeridiemController = new FixedExtentScrollController(initialItem: SelectedAmPm);
+            HourController = new FixedExtentScrollController(initialItem: InitialDateTime.Hour);
+            MinuteController = new FixedExtentScrollController(initialItem: InitialDateTime.Minute~/ Widget.MinuteInterval);
+            DateController = new FixedExtentScrollController(initialItem: 0);
+            BindingDefaultClass.PaintingBinding.Instance.SystemFonts.AddListener(_HandleSystemFontsChange);
+        }
+
+
+
+
+        private void _HandleSystemFontsChange()
+        {
+            SetState(() =>
+            {
+                EstimatedColumnWidths.Clear();
+            }
+            );
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            DateController.Dispose();
+            HourController.Dispose();
+            MinuteController.Dispose();
+            MeridiemController.Dispose();
+            BindingDefaultClass.PaintingBinding.Instance.SystemFonts.RemoveListener(_HandleSystemFontsChange);
+            base.Dispose();
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+
+            if (!Widget.Use24hFormat && oldWidget.Use24hFormat)
+            {
+                MeridiemController.Dispose();
+                MeridiemController = new FixedExtentScrollController(initialItem: SelectedAmPm);
+            }
+
+        }
+
+
+
+
+        public new void DidChangeDependencies()
+        {
+            base.DidChangeDependencies();
+            TextDirectionFactor = BasicDefaultClass.Directionality.Of(Context) == TextDirection.Ltr ? 1 : -1;
+            Localizations = LocalizationsDefaultClass.CupertinoLocalizations.Of(Context);
+            AlignCenterLeft = TextDirectionFactor == 1 ? AlignmentDefaultClass.Alignment.CenterLeft : AlignmentDefaultClass.Alignment.CenterRight;
+            AlignCenterRight = TextDirectionFactor == 1 ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.Alignment.CenterLeft;
             EstimatedColumnWidths.Clear();
         }
-        );
-    }
 
 
 
 
-    public new void Dispose()
-    {
-        DateController.Dispose();
-        HourController.Dispose();
-        MinuteController.Dispose();
-        MeridiemController.Dispose();
-        BindingDefaultClass.PaintingBinding.Instance.SystemFonts.RemoveListener(_HandleSystemFontsChange);
-        base.Dispose();
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-
-        if (!Widget.Use24hFormat && oldWidget.Use24hFormat)
+        private double _GetEstimatedColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType)
         {
-            MeridiemController.Dispose();
-            MeridiemController = new FixedExtentScrollController(initialItem: SelectedAmPm);
-        }
-
-    }
-
-
-
-
-    public new void DidChangeDependencies()
-    {
-        base.DidChangeDependencies();
-        TextDirectionFactor = BasicDefaultClass.Directionality.Of(Context) == TextDirection.Ltr ? 1 : -1;
-        Localizations = LocalizationsDefaultClass.CupertinoLocalizations.Of(Context);
-        AlignCenterLeft = TextDirectionFactor == 1 ? AlignmentDefaultClass.Alignment.CenterLeft : AlignmentDefaultClass.Alignment.CenterRight;
-        AlignCenterRight = TextDirectionFactor == 1 ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.Alignment.CenterLeft;
-        EstimatedColumnWidths.Clear();
-    }
-
-
-
-
-    private double _GetEstimatedColumnWidth(FlutterSDK.Cupertino.Datepicker._PickerColumnType columnType)
-    {
-        if (EstimatedColumnWidths[columnType.Index] == null)
-        {
-            EstimatedColumnWidths[columnType.Index] = DatepickerDefaultClass.CupertinoDatePicker._GetColumnWidth(columnType, Localizations, Context);
-        }
-
-        return EstimatedColumnWidths[columnType.Index];
-    }
-
-
-
-
-    private void _OnSelectedItemChange(int index)
-    {
-        DateTime selected = SelectedDateTime;
-        bool isDateInvalid = Widget.MinimumDate?.IsAfter(selected) == true || Widget.MaximumDate?.IsBefore(selected) == true;
-        if (isDateInvalid) return;
-        Widget.OnDateTimeChanged(selected);
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildMediumDatePicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
-    {
-        return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
-        {
-            if (notification is ScrollStartNotification)
+            if (EstimatedColumnWidths[columnType.Index] == null)
             {
-                IsDatePickerScrolling = true;
-            }
-            else if (notification is ScrollEndNotification)
-            {
-                IsDatePickerScrolling = false;
-                _PickerDidStopScrolling();
+                EstimatedColumnWidths[columnType.Index] = DatepickerDefaultClass.CupertinoDatePicker._GetColumnWidth(columnType, Localizations, Context);
             }
 
-            return false;
+            return EstimatedColumnWidths[columnType.Index];
         }
-        , child: CupertinoPicker.Builder(scrollController: DateController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: (int index) =>
+
+
+
+
+        private void _OnSelectedItemChange(int index)
         {
-            _OnSelectedItemChange(index);
+            DateTime selected = SelectedDateTime;
+            bool isDateInvalid = Widget.MinimumDate?.IsAfter(selected) == true || Widget.MaximumDate?.IsBefore(selected) == true;
+            if (isDateInvalid) return;
+            Widget.OnDateTimeChanged(selected);
         }
-        , itemBuilder: (BuildContext context, int index) =>
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildMediumDatePicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
         {
-            DateTime rangeStart = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + index);
-            DateTime rangeEnd = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + index + 1);
-            DateTime now = DateTime.Now();
-            if (Widget.MinimumDate?.IsAfter(rangeEnd) == true) return null;
-            if (Widget.MaximumDate?.IsAfter(rangeStart) == false) return null;
-            string dateText = rangeStart == new DateTime(now.Year, now.Month, now.Day) ? Localizations.TodayLabel : Localizations.DatePickerMediumDate(rangeStart);
-            return itemPositioningBuilder(context, new Text(dateText, style: DatepickerDefaultClass._ThemeTextStyle(context)));
-        }
-        ));
-    }
-
-
-
-
-    private bool _IsValidHour(int meridiemIndex, int hourIndex)
-    {
-        DateTime rangeStart = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + SelectedDayFromInitial, _SelectedHour(meridiemIndex, hourIndex), 0);
-        DateTime rangeEnd = rangeStart.Add(new TimeSpan(hours: 1));
-        return (Widget.MinimumDate?.IsBefore(rangeEnd) ?? true) && !(Widget.MaximumDate?.IsBefore(rangeStart) ?? false);
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildHourPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
-    {
-        return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
-        {
-            if (notification is ScrollStartNotification)
+            return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
             {
-                IsHourPickerScrolling = true;
-            }
-            else if (notification is ScrollEndNotification)
-            {
-                IsHourPickerScrolling = false;
-                _PickerDidStopScrolling();
-            }
+                if (notification is ScrollStartNotification)
+                {
+                    IsDatePickerScrolling = true;
+                }
+                else if (notification is ScrollEndNotification)
+                {
+                    IsDatePickerScrolling = false;
+                    _PickerDidStopScrolling();
+                }
 
-            return false;
-        }
-        , child: new CupertinoPicker(scrollController: HourController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: (int index) =>
-        {
-            bool regionChanged = MeridiemRegion != index~/ 12;
-            bool debugIsFlipped = IsHourRegionFlipped;
-            if (regionChanged)
-            {
-                MeridiemRegion = index~/ 12;
-                SelectedAmPm = 1 - SelectedAmPm;
+                return false;
             }
-
-            if (!Widget.Use24hFormat && regionChanged)
-            {
-                MeridiemController.AnimateToItem(SelectedAmPm, duration: new TimeSpan(milliseconds: 300), curve: CurvesDefaultClass.Curves.EaseOut);
-            }
-            else
+            , child: CupertinoPicker.Builder(scrollController: DateController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: (int index) =>
             {
                 _OnSelectedItemChange(index);
             }
-
-
-        }
-        , children: List<Widget>.Generate(24, (int index) =>
-        {
-            int hour = IsHourRegionFlipped ? (index + 12) % 24 : index;
-            int displayHour = Widget.Use24hFormat ? hour : (hour + 11) % 12 + 1;
-            return itemPositioningBuilder(Context, new Text(Localizations.DatePickerHour(displayHour), semanticsLabel: Localizations.DatePickerHourSemanticsLabel(displayHour), style: DatepickerDefaultClass._ThemeTextStyle(Context, isValid: _IsValidHour(SelectedAmPm, index))));
-        }
-        ), looping: true));
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildMinutePicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
-    {
-        return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
-        {
-            if (notification is ScrollStartNotification)
+            , itemBuilder: (BuildContext context, int index) =>
             {
-                IsMinutePickerScrolling = true;
+                DateTime rangeStart = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + index);
+                DateTime rangeEnd = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + index + 1);
+                DateTime now = DateTime.Now();
+                if (Widget.MinimumDate?.IsAfter(rangeEnd) == true) return null;
+                if (Widget.MaximumDate?.IsAfter(rangeStart) == false) return null;
+                string dateText = rangeStart == new DateTime(now.Year, now.Month, now.Day) ? Localizations.TodayLabel : Localizations.DatePickerMediumDate(rangeStart);
+                return itemPositioningBuilder(context, new Text(dateText, style: DatepickerDefaultClass._ThemeTextStyle(context)));
             }
-            else if (notification is ScrollEndNotification)
+            ));
+        }
+
+
+
+
+        private bool _IsValidHour(int meridiemIndex, int hourIndex)
+        {
+            DateTime rangeStart = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + SelectedDayFromInitial, _SelectedHour(meridiemIndex, hourIndex), 0);
+            DateTime rangeEnd = rangeStart.Add(new TimeSpan(hours: 1));
+            return (Widget.MinimumDate?.IsBefore(rangeEnd) ?? true) && !(Widget.MaximumDate?.IsBefore(rangeStart) ?? false);
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildHourPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
+        {
+            return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
             {
-                IsMinutePickerScrolling = false;
-                _PickerDidStopScrolling();
+                if (notification is ScrollStartNotification)
+                {
+                    IsHourPickerScrolling = true;
+                }
+                else if (notification is ScrollEndNotification)
+                {
+                    IsHourPickerScrolling = false;
+                    _PickerDidStopScrolling();
+                }
+
+                return false;
+            }
+            , child: new CupertinoPicker(scrollController: HourController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: (int index) =>
+            {
+                bool regionChanged = MeridiemRegion != index~/ 12;
+                bool debugIsFlipped = IsHourRegionFlipped;
+                if (regionChanged)
+                {
+                    MeridiemRegion = index~/ 12;
+                    SelectedAmPm = 1 - SelectedAmPm;
+                }
+
+                if (!Widget.Use24hFormat && regionChanged)
+                {
+                    MeridiemController.AnimateToItem(SelectedAmPm, duration: new TimeSpan(milliseconds: 300), curve: CurvesDefaultClass.Curves.EaseOut);
+                }
+                else
+                {
+                    _OnSelectedItemChange(index);
+                }
+
+
+            }
+            , children: List<Widget>.Generate(24, (int index) =>
+            {
+                int hour = IsHourRegionFlipped ? (index + 12) % 24 : index;
+                int displayHour = Widget.Use24hFormat ? hour : (hour + 11) % 12 + 1;
+                return itemPositioningBuilder(Context, new Text(Localizations.DatePickerHour(displayHour), semanticsLabel: Localizations.DatePickerHourSemanticsLabel(displayHour), style: DatepickerDefaultClass._ThemeTextStyle(Context, isValid: _IsValidHour(SelectedAmPm, index))));
+            }
+            ), looping: true));
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildMinutePicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
+        {
+            return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
+            {
+                if (notification is ScrollStartNotification)
+                {
+                    IsMinutePickerScrolling = true;
+                }
+                else if (notification is ScrollEndNotification)
+                {
+                    IsMinutePickerScrolling = false;
+                    _PickerDidStopScrolling();
+                }
+
+                return false;
+            }
+            , child: new CupertinoPicker(scrollController: MinuteController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: _OnSelectedItemChange, children: List<Widget>.Generate(60~/ Widget.MinuteInterval, (int index) =>
+            {
+                int minute = index * Widget.MinuteInterval;
+                DateTime date = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + SelectedDayFromInitial, SelectedHour, minute);
+                bool isInvalidMinute = (Widget.MinimumDate?.IsAfter(date) ?? false) || (Widget.MaximumDate?.IsBefore(date) ?? false);
+                return itemPositioningBuilder(Context, new Text(Localizations.DatePickerMinute(minute), semanticsLabel: Localizations.DatePickerMinuteSemanticsLabel(minute), style: DatepickerDefaultClass._ThemeTextStyle(Context, isValid: !isInvalidMinute)));
+            }
+            ), looping: true));
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildAmPmPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
+        {
+            return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
+            {
+                if (notification is ScrollStartNotification)
+                {
+                    IsMeridiemPickerScrolling = true;
+                }
+                else if (notification is ScrollEndNotification)
+                {
+                    IsMeridiemPickerScrolling = false;
+                    _PickerDidStopScrolling();
+                }
+
+                return false;
+            }
+            , child: new CupertinoPicker(scrollController: MeridiemController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: (int index) =>
+            {
+                SelectedAmPm = index;
+
+                _OnSelectedItemChange(index);
+            }
+            , children: List<Widget>.Generate(2, (int index) =>
+            {
+                return itemPositioningBuilder(Context, new Text(index == 0 ? Localizations.AnteMeridiemAbbreviation : Localizations.PostMeridiemAbbreviation, style: DatepickerDefaultClass._ThemeTextStyle(Context, isValid: _IsValidHour(index, _SelectedHourIndex))));
+            }
+            )));
+        }
+
+
+
+
+        private void _PickerDidStopScrolling()
+        {
+            SetState(() =>
+            {
+            }
+            );
+            if (IsScrolling) return;
+            DateTime selectedDate = SelectedDateTime;
+            bool minCheck = Widget.MinimumDate?.IsAfter(selectedDate) ?? false;
+            bool maxCheck = Widget.MaximumDate?.IsBefore(selectedDate) ?? false;
+            if (minCheck || maxCheck)
+            {
+                DateTime targetDate = minCheck ? Widget.MinimumDate : Widget.MaximumDate;
+                _ScrollToDate(targetDate, selectedDate);
             }
 
-            return false;
         }
-        , child: new CupertinoPicker(scrollController: MinuteController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: _OnSelectedItemChange, children: List<Widget>.Generate(60~/ Widget.MinuteInterval, (int index) =>
+
+
+
+
+        private void _ScrollToDate(DateTime newDate, DateTime fromDate)
         {
-            int minute = index * Widget.MinuteInterval;
-            DateTime date = new DateTime(InitialDateTime.Year, InitialDateTime.Month, InitialDateTime.Day + SelectedDayFromInitial, SelectedHour, minute);
-            bool isInvalidMinute = (Widget.MinimumDate?.IsAfter(date) ?? false) || (Widget.MaximumDate?.IsBefore(date) ?? false);
-            return itemPositioningBuilder(Context, new Text(Localizations.DatePickerMinute(minute), semanticsLabel: Localizations.DatePickerMinuteSemanticsLabel(minute), style: DatepickerDefaultClass._ThemeTextStyle(Context, isValid: !isInvalidMinute)));
-        }
-        ), looping: true));
-    }
 
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildAmPmPicker(double offAxisFraction, FlutterSDK.Widgets.Framework.TransitionBuilder itemPositioningBuilder)
-    {
-        return new NotificationListener<ScrollNotification>(onNotification: (ScrollNotification notification) =>
-        {
-            if (notification is ScrollStartNotification)
+            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timestamp) =>
             {
-                IsMeridiemPickerScrolling = true;
-            }
-            else if (notification is ScrollEndNotification)
+            if (fromDate.Year != newDate.Year || fromDate.Month != newDate.Month || fromDate.Day != newDate.Day)
             {
-                IsMeridiemPickerScrolling = false;
-                _PickerDidStopScrolling();
+                DatepickerDefaultClass._AnimateColumnControllerToItem(DateController, SelectedDayFromInitial);
             }
 
-            return false;
-        }
-        , child: new CupertinoPicker(scrollController: MeridiemController, offAxisFraction: offAxisFraction, itemExtent: DatepickerDefaultClass._KItemExtent, useMagnifier: DatepickerDefaultClass._KUseMagnifier, magnification: DatepickerDefaultClass._KMagnification, backgroundColor: Widget.BackgroundColor, squeeze: DatepickerDefaultClass._KSqueeze, onSelectedItemChanged: (int index) =>
-        {
-            SelectedAmPm = index;
-
-            _OnSelectedItemChange(index);
-        }
-        , children: List<Widget>.Generate(2, (int index) =>
-        {
-            return itemPositioningBuilder(Context, new Text(index == 0 ? Localizations.AnteMeridiemAbbreviation : Localizations.PostMeridiemAbbreviation, style: DatepickerDefaultClass._ThemeTextStyle(Context, isValid: _IsValidHour(index, _SelectedHourIndex))));
-        }
-        )));
-    }
-
-
-
-
-    private void _PickerDidStopScrolling()
-    {
-        SetState(() =>
-        {
-        }
-        );
-        if (IsScrolling) return;
-        DateTime selectedDate = SelectedDateTime;
-        bool minCheck = Widget.MinimumDate?.IsAfter(selectedDate) ?? false;
-        bool maxCheck = Widget.MaximumDate?.IsBefore(selectedDate) ?? false;
-        if (minCheck || maxCheck)
-        {
-            DateTime targetDate = minCheck ? Widget.MinimumDate : Widget.MaximumDate;
-            _ScrollToDate(targetDate, selectedDate);
-        }
-
-    }
-
-
-
-
-    private void _ScrollToDate(DateTime newDate, DateTime fromDate)
-    {
-
-        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timestamp) =>
-        {
-        if (fromDate.Year != newDate.Year || fromDate.Month != newDate.Month || fromDate.Day != newDate.Day)
-        {
-            DatepickerDefaultClass._AnimateColumnControllerToItem(DateController, SelectedDayFromInitial);
-        }
-
-        if (fromDate.Hour != newDate.Hour)
-        {
-            bool needsMeridiemChange = !Widget.Use24hFormat && fromDate.Hour~/ 12 != newDate.Hour~/ 12;
-            if (needsMeridiemChange)
+            if (fromDate.Hour != newDate.Hour)
             {
-                DatepickerDefaultClass._AnimateColumnControllerToItem(MeridiemController, 1 - MeridiemController.SelectedItem);
-                int newItem = (HourController.SelectedItem~/ 12) * 12 + (HourController.SelectedItem + newDate.Hour - fromDate.Hour) % 12;
-        DatepickerDefaultClass._AnimateColumnControllerToItem(HourController, newItem);
-    }
+                bool needsMeridiemChange = !Widget.Use24hFormat && fromDate.Hour~/ 12 != newDate.Hour~/ 12;
+                if (needsMeridiemChange)
+                {
+                    DatepickerDefaultClass._AnimateColumnControllerToItem(MeridiemController, 1 - MeridiemController.SelectedItem);
+                    int newItem = (HourController.SelectedItem~/ 12) * 12 + (HourController.SelectedItem + newDate.Hour - fromDate.Hour) % 12;
+            DatepickerDefaultClass._AnimateColumnControllerToItem(HourController, newItem);
+        }
 else {
 DatepickerDefaultClass._AnimateColumnControllerToItem(HourController, HourController.SelectedItem+newDate.Hour-fromDate.Hour);
 }
@@ -1217,26 +1228,33 @@ public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     #region constructors
     public CupertinoTimerPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode), TimeSpan initialTimerDuration = default(TimeSpan), int minuteInterval = 1, int secondInterval = 1, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> onTimerDurationChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan>))
     : base(key: key)
+    {
+        this.Mode = mode;
+        this.InitialTimerDuration = initialTimerDuration;
+        this.MinuteInterval = minuteInterval;
+        this.SecondInterval = secondInterval;
+        this.Alignment = alignment;
+        this.BackgroundColor = backgroundColor;
+        this.OnTimerDurationChanged = onTimerDurationChanged;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode Mode { get; set; }
+    public virtual TimeSpan InitialTimerDuration { get; set; }
+    public virtual int MinuteInterval { get; set; }
+    public virtual int SecondInterval { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> OnTimerDurationChanged { get; set; }
+    public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode Mode { get; set; }
-public virtual TimeSpan InitialTimerDuration { get; set; }
-public virtual int MinuteInterval { get; set; }
-public virtual int SecondInterval { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> OnTimerDurationChanged { get; set; }
-public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoTimerPickerState();
+    public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoTimerPickerState();
 
 
-#endregion
+    #endregion
 }
 
 

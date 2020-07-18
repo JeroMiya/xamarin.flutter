@@ -436,82 +436,84 @@ namespace FlutterSDK.Widgets.Imagefilter
         #region constructors
         public ImageFiltered(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), ImageFilter imageFilter = default(ImageFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-    
-}
-    #endregion
+        {
+            this.ImageFilter = imageFilter;
+        }
+        #endregion
 
-    #region fields
-    public virtual ImageFilter ImageFilter { get; set; }
-    #endregion
+        #region fields
+        public virtual ImageFilter ImageFilter { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ImageFilterRenderObject(ImageFilter);
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ImageFilterRenderObject(ImageFilter);
 
 
 
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Imagefilter._ImageFilterRenderObject renderObject)
-    {
-        renderObject.ImageFilter = ImageFilter;
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Imagefilter._ImageFilterRenderObject renderObject)
+        {
+            renderObject.ImageFilter = ImageFilter;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            renderObject.ImageFilter = ImageFilter;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<ImageFilter>("imageFilter", ImageFilter));
+        }
+
+
+
+        #endregion
     }
 
 
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+    public class _ImageFilterRenderObject : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        renderObject.ImageFilter = ImageFilter;
+        #region constructors
+        public _ImageFilterRenderObject(ImageFilter _imageFilter)
+        {
+            this._ImageFilter = _imageFilter;
+        }
+        #endregion
+
+        #region fields
+        internal virtual ImageFilter _ImageFilter { get; set; }
+        public virtual ImageFilter ImageFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+
+            if (Layer == null)
+            {
+                Layer = new ImageFilterLayer(imageFilter: ImageFilter);
+            }
+            else
+            {
+                ImageFilterLayer filterLayer = Layer as ImageFilterLayer;
+                filterLayer.ImageFilter = ImageFilter;
+            }
+
+            context.PushLayer(Layer, base.Paint, offset);
+
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<ImageFilter>("imageFilter", ImageFilter));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ImageFilterRenderObject : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-    #region constructors
-    public _ImageFilterRenderObject(ImageFilter _imageFilter)
-
-}
-#endregion
-
-#region fields
-internal virtual ImageFilter _ImageFilter { get; set; }
-public virtual ImageFilter ImageFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-
-    if (Layer == null)
-    {
-        Layer = new ImageFilterLayer(imageFilter: ImageFilter);
-    }
-    else
-    {
-        ImageFilterLayer filterLayer = Layer as ImageFilterLayer;
-        filterLayer.ImageFilter = ImageFilter;
-    }
-
-    context.PushLayer(Layer, base.Paint, offset);
-
-}
-
-
-
-#endregion
-}
 
 }

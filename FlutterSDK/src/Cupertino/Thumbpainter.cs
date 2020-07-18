@@ -310,39 +310,42 @@ namespace FlutterSDK.Cupertino.Thumbpainter
         #region constructors
         public CupertinoThumbPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
         : base()
-    
-}
-    public static CupertinoThumbPainter SwitchThumb(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        {
+            this.Color = color;
+            this.Shadows = shadows;
+        }
+        public static CupertinoThumbPainter SwitchThumb(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
+        {
+            var instance = new CupertinoThumbPainter();
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
+        public virtual double Radius { get; set; }
+        public virtual double Extension { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Color Color { get; set; }
-public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
-public virtual double Radius { get; set; }
-public virtual double Extension { get; set; }
-#endregion
+        #region methods
 
-#region methods
-
-/// <Summary>
-/// Paints the thumb onto the given canvas in the given rectangle.
-///
-/// Consider using [radius] and [extension] when deciding how large a
-/// rectangle to use for the thumb.
-/// </Summary>
-public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect)
-{
-    RRect rrect = RRect.FromRectAndRadius(rect, Radius.Circular(rect.ShortestSide / 2.0));
-    foreach (BoxShadow shadow in Shadows) canvas.DrawRRect(rrect.Shift(shadow.Offset), shadow.ToPaint());
-    canvas.DrawRRect(rrect.Inflate(0.5), new Paint()..Color = ThumbpainterDefaultClass._KThumbBorderColor);
-    canvas.DrawRRect(rrect, new Paint()..Color = Color);
-}
+        /// <Summary>
+        /// Paints the thumb onto the given canvas in the given rectangle.
+        ///
+        /// Consider using [radius] and [extension] when deciding how large a
+        /// rectangle to use for the thumb.
+        /// </Summary>
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect)
+        {
+            RRect rrect = RRect.FromRectAndRadius(rect, Radius.Circular(rect.ShortestSide / 2.0));
+            foreach (BoxShadow shadow in Shadows) canvas.DrawRRect(rrect.Shift(shadow.Offset), shadow.ToPaint());
+            canvas.DrawRRect(rrect.Inflate(0.5), new Paint()..Color = ThumbpainterDefaultClass._KThumbBorderColor);
+            canvas.DrawRRect(rrect, new Paint()..Color = Color);
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

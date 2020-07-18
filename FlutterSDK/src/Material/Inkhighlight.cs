@@ -412,13 +412,14 @@ namespace FlutterSDK.Material.Inkhighlight
         #region constructors
         public InkHighlight(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), VoidCallback onRemoved = default(VoidCallback), TimeSpan fadeDuration = default(TimeSpan))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
-    
-_AlphaController=new AnimationController(duration:fadeDuration, vsync:controller.Vsync);
-        new AnimationController(duration:fadeDuration, vsync:controller.Vsync).AddListener(controller.MarkNeedsPaint);
-        new AnimationController(duration:fadeDuration, vsync:controller.Vsync).AddStatusListener(_HandleAlphaStatusChanged);
-        new AnimationController(duration:fadeDuration, vsync:controller.Vsync).Forward();
-        _Alpha=_AlphaController.Drive(new IntTween(begin:0, end:color.Alpha));
-controller.AddInkFeature(this );
+        {
+
+            _AlphaController = new AnimationController(duration: fadeDuration, vsync: controller.Vsync);
+            new AnimationController(duration: fadeDuration, vsync: controller.Vsync).AddListener(controller.MarkNeedsPaint);
+            new AnimationController(duration: fadeDuration, vsync: controller.Vsync).AddStatusListener(_HandleAlphaStatusChanged);
+            new AnimationController(duration: fadeDuration, vsync: controller.Vsync).Forward();
+            _Alpha = _AlphaController.Drive(new IntTween(begin: 0, end: color.Alpha));
+            controller.AddInkFeature(this);
         }
 
 

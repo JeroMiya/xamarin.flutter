@@ -451,27 +451,29 @@ namespace FlutterSDK.Services.Platformchannel
         #region constructors
         public BasicMessageChannel(string name, FlutterSDK.Services.Messagecodec.MessageCodec<T> codec, FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
-    
-}
-    #endregion
+        {
+            this.Name = name;
+            this.Codec = codec;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Name { get; set; }
-    public virtual FlutterSDK.Services.Messagecodec.MessageCodec<T> Codec { get; set; }
-    internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
-    public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual string Name { get; set; }
+        public virtual FlutterSDK.Services.Messagecodec.MessageCodec<T> Codec { get; set; }
+        internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+        public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Sends the specified [message] to the platform plugins on this channel.
-    ///
-    /// Returns a [Future] which completes to the received response, which may
-    /// be null.
-    /// </Summary>
-    public virtual Future<T> Send(T message)
-async
+        /// <Summary>
+        /// Sends the specified [message] to the platform plugins on this channel.
+        ///
+        /// Returns a [Future] which completes to the received response, which may
+        /// be null.
+        /// </Summary>
+        public virtual Future<T> Send(T message)
+    async
 {
 return Codec.DecodeMessage(await BinaryMessenger.Send(Name, Codec.EncodeMessage(message)));
 }
@@ -479,68 +481,68 @@ return Codec.DecodeMessage(await BinaryMessenger.Send(Name, Codec.EncodeMessage(
 
 
 
-/// <Summary>
-/// Sets a callback for receiving messages from the platform plugins on this
-/// channel. Messages may be null.
-///
-/// The given callback will replace the currently registered callback for this
-/// channel, if any. To remove the handler, pass null as the `handler`
-/// argument.
-///
-/// The handler's return value is sent back to the platform plugins as a
-/// message reply. It may be null.
-/// </Summary>
-public virtual void SetMessageHandler(Func<Future<T>, T> handler)
-{
-    if (handler == null)
+    /// <Summary>
+    /// Sets a callback for receiving messages from the platform plugins on this
+    /// channel. Messages may be null.
+    ///
+    /// The given callback will replace the currently registered callback for this
+    /// channel, if any. To remove the handler, pass null as the `handler`
+    /// argument.
+    ///
+    /// The handler's return value is sent back to the platform plugins as a
+    /// message reply. It may be null.
+    /// </Summary>
+    public virtual void SetMessageHandler(Func<Future<T>, T> handler)
     {
-        BinaryMessenger.SetMessageHandler(Name, null);
-    }
-    else
-    {
-        BinaryMessenger.SetMessageHandler(Name, (ByteData message) => async {
-            return Codec.EncodeMessage(await handler(Codec.DecodeMessage(message)));
+        if (handler == null)
+        {
+            BinaryMessenger.SetMessageHandler(Name, null);
         }
+        else
+        {
+            BinaryMessenger.SetMessageHandler(Name, (ByteData message) => async {
+                return Codec.EncodeMessage(await handler(Codec.DecodeMessage(message)));
+            }
 );
-    }
-
-}
-
-
-
-
-/// <Summary>
-/// Sets a mock callback for intercepting messages sent on this channel.
-/// Messages may be null.
-///
-/// The given callback will replace the currently registered mock callback for
-/// this channel, if any. To remove the mock handler, pass null as the
-/// `handler` argument.
-///
-/// The handler's return value is used as a message reply. It may be null.
-///
-/// This is intended for testing. Messages intercepted in this manner are not
-/// sent to platform plugins.
-/// </Summary>
-public virtual void SetMockMessageHandler(Func<Future<T>, T> handler)
-{
-    if (handler == null)
-    {
-        BinaryMessenger.SetMockMessageHandler(Name, null);
-    }
-    else
-    {
-        BinaryMessenger.SetMockMessageHandler(Name, (ByteData message) => async {
-            return Codec.EncodeMessage(await handler(Codec.DecodeMessage(message)));
         }
-);
+
     }
 
-}
 
 
 
-#endregion
+    /// <Summary>
+    /// Sets a mock callback for intercepting messages sent on this channel.
+    /// Messages may be null.
+    ///
+    /// The given callback will replace the currently registered mock callback for
+    /// this channel, if any. To remove the mock handler, pass null as the
+    /// `handler` argument.
+    ///
+    /// The handler's return value is used as a message reply. It may be null.
+    ///
+    /// This is intended for testing. Messages intercepted in this manner are not
+    /// sent to platform plugins.
+    /// </Summary>
+    public virtual void SetMockMessageHandler(Func<Future<T>, T> handler)
+    {
+        if (handler == null)
+        {
+            BinaryMessenger.SetMockMessageHandler(Name, null);
+        }
+        else
+        {
+            BinaryMessenger.SetMockMessageHandler(Name, (ByteData message) => async {
+                return Codec.EncodeMessage(await handler(Codec.DecodeMessage(message)));
+            }
+);
+        }
+
+    }
+
+
+
+    #endregion
 }
 
 
@@ -568,35 +570,35 @@ public class MethodChannel
     #region constructors
     public MethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
     : base()
+    {
+        this.Name = name;
+        this.Codec = codec;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual string Name { get; set; }
+    public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
+    internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+    public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual string Name { get; set; }
-public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-private Future<T> _InvokeMethod<T>(string method, bool missingOk = default(bool), object arguments = default(object))
+    private Future<T> _InvokeMethod<T>(string method, bool missingOk = default(bool), object arguments = default(object))
 async
 {
 
-    ByteData result = await BinaryMessenger.Send(Name, Codec.EncodeMethodCall(new MethodCall(method, arguments)));
-    if (result == null)
-    {
-        if (missingOk)
-        {
-            return null;
-        }
+ByteData result = await BinaryMessenger.Send(Name, Codec.EncodeMethodCall(new MethodCall(method, arguments)));
+if (result==null ){
+if (missingOk){
+return null ;
+}
 
-        throw new MissingPluginException($"'No implementation found for method {method} on channel {Name}'");
-    }
+throw new MissingPluginException($"'No implementation found for method {method} on channel {Name}'");
+}
 
-    return Codec.DecodeEnvelope(result) as T;
+return Codec.DecodeEnvelope(result) as T;
 }
 
 
@@ -913,19 +915,20 @@ public class OptionalMethodChannel : FlutterSDK.Services.Platformchannel.MethodC
     #region constructors
     public OptionalMethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec))
     : base(name, codec)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
+    #region methods
 
-public new Future<T> InvokeMethod<T>(string method, object arguments = default(object))
+    public new Future<T> InvokeMethod<T>(string method, object arguments = default(object))
 async
 {
-    return base._InvokeMethod(method, missingOk: true, arguments: arguments);
+return base._InvokeMethod(method, missingOk:true , arguments:arguments);
 }
 
 
@@ -975,87 +978,89 @@ public class EventChannel
     #region constructors
     public EventChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
     : base()
+    {
+        this.Name = name;
+        this.Codec = codec;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual string Name { get; set; }
+    public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
+    internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
+    public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual string Name { get; set; }
-public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
-internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
-public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Sets up a broadcast stream for receiving events on this channel.
-///
-/// Returns a broadcast [Stream] which emits events to listeners as follows:
-///
-/// * a decoded data event (possibly null) for each successful event
-///   received from the platform plugin;
-/// * an error event containing a [PlatformException] for each error event
-///   received from the platform plugin.
-///
-/// Errors occurring during stream activation or deactivation are reported
-/// through the [FlutterError] facility. Stream activation happens only when
-/// stream listener count changes from 0 to 1. Stream deactivation happens
-/// only when stream listener count changes from 1 to 0.
-/// </Summary>
-public virtual Stream<object> ReceiveBroadcastStream(object arguments = default(object))
-{
-    MethodChannel methodChannel = new MethodChannel(Name, Codec);
-    StreamController<object> controller = default(StreamController<object>);
-    controller = StreamController<object>.Broadcast(onListen: () => async {
-        BinaryMessenger.SetMessageHandler(Name, (ByteData reply) => async {
-            if (reply == null)
-            {
-                controller.Close();
-            }
-            else
-            {
-                try
+    /// <Summary>
+    /// Sets up a broadcast stream for receiving events on this channel.
+    ///
+    /// Returns a broadcast [Stream] which emits events to listeners as follows:
+    ///
+    /// * a decoded data event (possibly null) for each successful event
+    ///   received from the platform plugin;
+    /// * an error event containing a [PlatformException] for each error event
+    ///   received from the platform plugin.
+    ///
+    /// Errors occurring during stream activation or deactivation are reported
+    /// through the [FlutterError] facility. Stream activation happens only when
+    /// stream listener count changes from 0 to 1. Stream deactivation happens
+    /// only when stream listener count changes from 1 to 0.
+    /// </Summary>
+    public virtual Stream<object> ReceiveBroadcastStream(object arguments = default(object))
+    {
+        MethodChannel methodChannel = new MethodChannel(Name, Codec);
+        StreamController<object> controller = default(StreamController<object>);
+        controller = StreamController<object>.Broadcast(onListen: () => async {
+            BinaryMessenger.SetMessageHandler(Name, (ByteData reply) => async {
+                if (reply == null)
                 {
-                    controller.Add(Codec.DecodeEnvelope(reply));
+                    controller.Close();
                 }
+                else
+                {
+                    try
+                    {
+                        controller.Add(Codec.DecodeEnvelope(reply));
+                    }
 on PlatformExceptioncatch(e)
-                {
-                    controller.AddError(e);
+                    {
+                        controller.AddError(e);
+                    }
+
                 }
 
+                return null;
             }
-
-            return null;
-        }
 );
-        try
-        {
-            await methodChannel.InvokeMethod("listen", arguments);
-        }
-        catch (exception,stack){
-            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription($"'while activating platform stream on channel {Name}'")));
-        }
-
-        }
-, onCancel: () => async {
-            BinaryMessenger.SetMessageHandler(Name, null);
             try
             {
-                await methodChannel.InvokeMethod("cancel", arguments);
+                await methodChannel.InvokeMethod("listen", arguments);
             }
             catch (exception,stack){
-                AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription($"'while de-activating platform stream on channel {Name}'")));
+                AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription($"'while activating platform stream on channel {Name}'")));
             }
 
             }
+, onCancel: () => async {
+                BinaryMessenger.SetMessageHandler(Name, null);
+                try
+                {
+                    await methodChannel.InvokeMethod("cancel", arguments);
+                }
+                catch (exception,stack){
+                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription($"'while de-activating platform stream on channel {Name}'")));
+                }
+
+                }
 );
-            return controller.Stream;
+                return controller.Stream;
+            }
+
+
+
+            #endregion
         }
 
-
-
-        #endregion
     }
-
-}

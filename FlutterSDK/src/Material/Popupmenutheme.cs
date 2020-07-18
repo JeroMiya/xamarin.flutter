@@ -435,131 +435,136 @@ namespace FlutterSDK.Material.Popupmenutheme
     {
         #region constructors
         public PopupMenuThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-    
-}
-    #endregion
+        {
+            this.Color = color;
+            this.Shape = shape;
+            this.Elevation = elevation;
+            this.TextStyle = textStyle;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            return new PopupMenuThemeData(color: color ?? this.Color, shape: shape ?? this.Shape, elevation: elevation == default(double) ? this.elevation : elevation, textStyle: textStyle ?? this.TextStyle);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two popup menu themes.
+        ///
+        /// If both arguments are null, then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Lerp(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData a, FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            return new PopupMenuThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is PopupMenuThemeData && other.Elevation == Elevation && other.Color == Color && other.Shape == Shape && other.TextStyle == TextStyle;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
+            properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TextStyle>("text style", TextStyle, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a copy of this object with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-    {
-        return new PopupMenuThemeData(color: color ?? this.Color, shape: shape ?? this.Shape, elevation: elevation == default(double) ? this.elevation : elevation, textStyle: textStyle ?? this.TextStyle);
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two popup menu themes.
+    /// An inherited widget that defines the configuration for
+    /// popup menus in this widget's subtree.
     ///
-    /// If both arguments are null, then null is returned.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
+    /// Values specified here are used for popup menu properties that are not
+    /// given an explicit non-null value.
     /// </Summary>
-    public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Lerp(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData a, FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData b, double t)
+    public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        #region constructors
+        public PopupMenuTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData data = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data;
+        }
+        #endregion
 
-        if (a == null && b == null) return null;
-        return new PopupMenuThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+        #region fields
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The closest instance of this class's [data] value that encloses the given
+        /// context. If there is no ancestor, it returns [ThemeData.popupMenuTheme].
+        /// Applications can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// PopupMenuThemeData theme = PopupMenuTheme.of(context);
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            PopupMenuTheme popupMenuTheme = context.DependOnInheritedWidgetOfExactType();
+            return popupMenuTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).PopupMenuTheme;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            PopupMenuTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new PopupMenuTheme(data: Data, child: child);
+        }
+
+
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Popupmenutheme.PopupMenuTheme oldWidget) => Data != oldWidget.Data;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+        #endregion
     }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is PopupMenuThemeData && other.Elevation == Elevation && other.Color == Color && other.Shape == Shape && other.TextStyle == TextStyle;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
-        properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TextStyle>("text style", TextStyle, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An inherited widget that defines the configuration for
-/// popup menus in this widget's subtree.
-///
-/// Values specified here are used for popup menu properties that are not
-/// given an explicit non-null value.
-/// </Summary>
-public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-    #region constructors
-    public PopupMenuTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData data = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Data { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// The closest instance of this class's [data] value that encloses the given
-/// context. If there is no ancestor, it returns [ThemeData.popupMenuTheme].
-/// Applications can assume that the returned value will not be null.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// PopupMenuThemeData theme = PopupMenuTheme.of(context);
-/// ```
-/// </Summary>
-public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    PopupMenuTheme popupMenuTheme = context.DependOnInheritedWidgetOfExactType();
-    return popupMenuTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).PopupMenuTheme;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-{
-    PopupMenuTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new PopupMenuTheme(data: Data, child: child);
-}
-
-
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Popupmenutheme.PopupMenuTheme oldWidget) => Data != oldWidget.Data;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
-
-
-#endregion
-}
 
 }

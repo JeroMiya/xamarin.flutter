@@ -441,74 +441,81 @@ namespace FlutterSDK.Material.Tabbartheme
     {
         #region constructors
         public TabBarTheme(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-    
-}
-    #endregion
+        {
+            this.Indicator = indicator;
+            this.IndicatorSize = indicatorSize;
+            this.LabelColor = labelColor;
+            this.LabelPadding = labelPadding;
+            this.LabelStyle = labelStyle;
+            this.UnselectedLabelColor = unselectedLabelColor;
+            this.UnselectedLabelStyle = unselectedLabelStyle;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
-    public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
-    public virtual FlutterBinding.UI.Color LabelColor { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-    public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
+        public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
+        public virtual FlutterBinding.UI.Color LabelColor { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LabelPadding { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
+        public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Creates a copy of this object but with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme CopyWith(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-    {
-        return new TabBarTheme(indicator: indicator ?? this.Indicator, indicatorSize: indicatorSize ?? this.IndicatorSize, labelColor: labelColor ?? this.LabelColor, labelPadding: labelPadding ?? this.LabelPadding, labelStyle: labelStyle ?? this.LabelStyle, unselectedLabelColor: unselectedLabelColor ?? this.UnselectedLabelColor, unselectedLabelStyle: unselectedLabelStyle ?? this.UnselectedLabelStyle);
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme CopyWith(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        {
+            return new TabBarTheme(indicator: indicator ?? this.Indicator, indicatorSize: indicatorSize ?? this.IndicatorSize, labelColor: labelColor ?? this.LabelColor, labelPadding: labelPadding ?? this.LabelPadding, labelStyle: labelStyle ?? this.LabelStyle, unselectedLabelColor: unselectedLabelColor ?? this.UnselectedLabelColor, unselectedLabelStyle: unselectedLabelStyle ?? this.UnselectedLabelStyle);
+        }
+
+
+
+
+        /// <Summary>
+        /// The data from the closest [TabBarTheme] instance given the build context.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return ThemeDefaultClass.Theme.Of(context).TabBarTheme;
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two tab bar themes.
+        ///
+        /// The arguments must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme Lerp(FlutterSDK.Material.Tabbartheme.TabBarTheme a, FlutterSDK.Material.Tabbartheme.TabBarTheme b, double t)
+        {
+
+
+
+            return new TabBarTheme(indicator: DecorationDefaultClass.Decoration.Lerp(a.Indicator, b.Indicator, t), indicatorSize: t < 0.5 ? a.IndicatorSize : b.IndicatorSize, labelColor: Dart:uiDefaultClass.Color.Lerp(a.LabelColor, b.LabelColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a.LabelPadding, b.LabelPadding, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.LabelStyle, b.LabelStyle, t), unselectedLabelColor: Dart:uiDefaultClass.Color.Lerp(a.UnselectedLabelColor, b.UnselectedLabelColor, t), unselectedLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.UnselectedLabelStyle, b.UnselectedLabelStyle, t));
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is TabBarTheme && other.Indicator == Indicator && other.IndicatorSize == IndicatorSize && other.LabelColor == LabelColor && other.LabelPadding == LabelPadding && other.LabelStyle == LabelStyle && other.UnselectedLabelColor == UnselectedLabelColor && other.UnselectedLabelStyle == UnselectedLabelStyle;
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    /// <Summary>
-    /// The data from the closest [TabBarTheme] instance given the build context.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return ThemeDefaultClass.Theme.Of(context).TabBarTheme;
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two tab bar themes.
-    ///
-    /// The arguments must not be null.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
-    /// </Summary>
-    public virtual FlutterSDK.Material.Tabbartheme.TabBarTheme Lerp(FlutterSDK.Material.Tabbartheme.TabBarTheme a, FlutterSDK.Material.Tabbartheme.TabBarTheme b, double t)
-    {
-
-
-
-        return new TabBarTheme(indicator: DecorationDefaultClass.Decoration.Lerp(a.Indicator, b.Indicator, t), indicatorSize: t < 0.5 ? a.IndicatorSize : b.IndicatorSize, labelColor: Dart:uiDefaultClass.Color.Lerp(a.LabelColor, b.LabelColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a.LabelPadding, b.LabelPadding, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.LabelStyle, b.LabelStyle, t), unselectedLabelColor: Dart:uiDefaultClass.Color.Lerp(a.UnselectedLabelColor, b.UnselectedLabelColor, t), unselectedLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.UnselectedLabelStyle, b.UnselectedLabelStyle, t));
-    }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is TabBarTheme && other.Indicator == Indicator && other.IndicatorSize == IndicatorSize && other.LabelColor == LabelColor && other.LabelPadding == LabelPadding && other.LabelStyle == LabelStyle && other.UnselectedLabelColor == UnselectedLabelColor && other.UnselectedLabelStyle == UnselectedLabelStyle;
-    }
-
-
-
-    #endregion
-}
 
 }

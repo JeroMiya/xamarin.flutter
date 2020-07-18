@@ -504,64 +504,67 @@ namespace FlutterSDK.Material.Raisedbutton
         #region constructors
         public RaisedButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), Brightness colorBrightness = default(Brightness), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, onPressed: onPressed, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, disabledColor: disabledColor, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, colorBrightness: colorBrightness, elevation: elevation, focusElevation: focusElevation, hoverElevation: hoverElevation, highlightElevation: highlightElevation, disabledElevation: disabledElevation, padding: padding, visualDensity: visualDensity, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, materialTapTargetSize: materialTapTargetSize, animationDuration: animationDuration, child: child)
-    
-}
-    public static RaisedButton Icon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), Brightness colorBrightness = default(Brightness), double elevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+        {
 
-}
-#endregion
+        }
+        public static RaisedButton Icon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), Brightness colorBrightness = default(Brightness), double elevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new RaisedButton();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-    ButtonThemeData buttonTheme = ButtonthemeDefaultClass.ButtonTheme.Of(context);
-    return new RawMaterialButton(onPressed: OnPressed, onLongPress: OnLongPress, onHighlightChanged: OnHighlightChanged, clipBehavior: ClipBehavior, fillColor: buttonTheme.GetFillColor(this), textStyle: theme.TextTheme.Button.CopyWith(color: buttonTheme.GetTextColor(this)), focusColor: buttonTheme.GetFocusColor(this), hoverColor: buttonTheme.GetHoverColor(this), highlightColor: buttonTheme.GetHighlightColor(this), splashColor: buttonTheme.GetSplashColor(this), elevation: buttonTheme.GetElevation(this), focusElevation: buttonTheme.GetFocusElevation(this), hoverElevation: buttonTheme.GetHoverElevation(this), highlightElevation: buttonTheme.GetHighlightElevation(this), disabledElevation: buttonTheme.GetDisabledElevation(this), padding: buttonTheme.GetPadding(this), visualDensity: VisualDensity ?? theme.VisualDensity, constraints: buttonTheme.GetConstraints(this), shape: buttonTheme.GetShape(this), focusNode: FocusNode, autofocus: Autofocus, animationDuration: buttonTheme.GetAnimationDuration(this), materialTapTargetSize: buttonTheme.GetMaterialTapTargetSize(this), child: Child);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<double>("elevation", Elevation, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<double>("focusElevation", FocusElevation, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<double>("hoverElevation", HoverElevation, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<double>("highlightElevation", HighlightElevation, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<double>("disabledElevation", DisabledElevation, defaultValue: null));
-}
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            ButtonThemeData buttonTheme = ButtonthemeDefaultClass.ButtonTheme.Of(context);
+            return new RawMaterialButton(onPressed: OnPressed, onLongPress: OnLongPress, onHighlightChanged: OnHighlightChanged, clipBehavior: ClipBehavior, fillColor: buttonTheme.GetFillColor(this), textStyle: theme.TextTheme.Button.CopyWith(color: buttonTheme.GetTextColor(this)), focusColor: buttonTheme.GetFocusColor(this), hoverColor: buttonTheme.GetHoverColor(this), highlightColor: buttonTheme.GetHighlightColor(this), splashColor: buttonTheme.GetSplashColor(this), elevation: buttonTheme.GetElevation(this), focusElevation: buttonTheme.GetFocusElevation(this), hoverElevation: buttonTheme.GetHoverElevation(this), highlightElevation: buttonTheme.GetHighlightElevation(this), disabledElevation: buttonTheme.GetDisabledElevation(this), padding: buttonTheme.GetPadding(this), visualDensity: VisualDensity ?? theme.VisualDensity, constraints: buttonTheme.GetConstraints(this), shape: buttonTheme.GetShape(this), focusNode: FocusNode, autofocus: Autofocus, animationDuration: buttonTheme.GetAnimationDuration(this), materialTapTargetSize: buttonTheme.GetMaterialTapTargetSize(this), child: Child);
+        }
 
 
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<double>("elevation", Elevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<double>("focusElevation", FocusElevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<double>("hoverElevation", HoverElevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<double>("highlightElevation", HighlightElevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<double>("disabledElevation", DisabledElevation, defaultValue: null));
+        }
 
 
-/// <Summary>
-/// The type of RaisedButtons created with [RaisedButton.icon].
-///
-/// This class only exists to give RaisedButtons created with [RaisedButton.icon]
-/// a distinct class for the sake of [ButtonTheme]. It can not be instantiated.
-/// </Summary>
-public class _RaisedButtonWithIcon : FlutterSDK.Material.Raisedbutton.RaisedButton, IMaterialButtonWithIconMixin
-{
-    #region constructors
-    public _RaisedButtonWithIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), Brightness colorBrightness = default(Brightness), double elevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, onPressed: onPressed, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, disabledColor: disabledColor, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, colorBrightness: colorBrightness, elevation: elevation, highlightElevation: highlightElevation, disabledElevation: disabledElevation, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, padding: padding, materialTapTargetSize: materialTapTargetSize, animationDuration: animationDuration, child: new Row(mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { icon, new SizedBox(width: 8.0), label }))
 
-}
-#endregion
+        #endregion
+    }
 
-#region fields
-#endregion
 
-#region methods
-#endregion
-}
+    /// <Summary>
+    /// The type of RaisedButtons created with [RaisedButton.icon].
+    ///
+    /// This class only exists to give RaisedButtons created with [RaisedButton.icon]
+    /// a distinct class for the sake of [ButtonTheme]. It can not be instantiated.
+    /// </Summary>
+    public class _RaisedButtonWithIcon : FlutterSDK.Material.Raisedbutton.RaisedButton, IMaterialButtonWithIconMixin
+    {
+        #region constructors
+        public _RaisedButtonWithIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), Brightness colorBrightness = default(Brightness), double elevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, onPressed: onPressed, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, textTheme: textTheme, textColor: textColor, disabledTextColor: disabledTextColor, color: color, disabledColor: disabledColor, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, colorBrightness: colorBrightness, elevation: elevation, highlightElevation: highlightElevation, disabledElevation: disabledElevation, shape: shape, clipBehavior: clipBehavior, focusNode: focusNode, autofocus: autofocus, padding: padding, materialTapTargetSize: materialTapTargetSize, animationDuration: animationDuration, child: new Row(mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { icon, new SizedBox(width: 8.0), label }))
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

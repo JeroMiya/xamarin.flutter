@@ -570,212 +570,222 @@ namespace FlutterSDK.Widgets.Scrollnotification
     {
         #region constructors
         public ScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
-    
-}
-    #endregion
+        {
+            this.Metrics = metrics;
+            this.Context = context;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new void DebugFillDescription(List<string> description)
-    {
-        base.DebugFillDescription(description);
-        description.Add($"'{Metrics}'");
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            description.Add($"'{Metrics}'");
+        }
+
+
+
+        #endregion
     }
 
 
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has started scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollEndNotification], which indicates that scrolling has stopped.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
+    public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public ScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragStartDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails))
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails;
+        }
+        #endregion
 
-    #endregion
-}
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails DragDetails { get; set; }
+        #endregion
 
+        #region methods
 
-/// <Summary>
-/// A notification that a [Scrollable] widget has started scrolling.
-///
-/// See also:
-///
-///  * [ScrollEndNotification], which indicates that scrolling has stopped.
-///  * [ScrollNotification], which describes the notification lifecycle.
-/// </Summary>
-public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-    #region constructors
-    public ScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragStartDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails))
-    : base(metrics: metrics, context: context)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails DragDetails { get; set; }
-#endregion
-
-#region methods
-
-public new void DebugFillDescription(List<string> description)
-{
-    base.DebugFillDescription(description);
-    if (DragDetails != null) description.Add($"'{DragDetails}'");
-}
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            if (DragDetails != null) description.Add($"'{DragDetails}'");
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-/// <Summary>
-/// A notification that a [Scrollable] widget has changed its scroll position.
-///
-/// See also:
-///
-///  * [OverscrollNotification], which indicates that a [Scrollable] widget
-///    has not changed its scroll position because the change would have caused
-///    its scroll position to go outside its scroll bounds.
-///  * [ScrollNotification], which describes the notification lifecycle.
-/// </Summary>
-public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-    #region constructors
-    public ScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double scrollDelta = default(double))
-    : base(metrics: metrics, context: context)
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has changed its scroll position.
+    ///
+    /// See also:
+    ///
+    ///  * [OverscrollNotification], which indicates that a [Scrollable] widget
+    ///    has not changed its scroll position because the change would have caused
+    ///    its scroll position to go outside its scroll bounds.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
+    public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public ScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double scrollDelta = default(double))
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails;
+            this.ScrollDelta = scrollDelta;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
+        public virtual double ScrollDelta { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
-public virtual double ScrollDelta { get; set; }
-#endregion
+        #region methods
 
-#region methods
-
-public new void DebugFillDescription(List<string> description)
-{
-    base.DebugFillDescription(description);
-    description.Add($"'scrollDelta: {ScrollDelta}'");
-    if (DragDetails != null) description.Add($"'{DragDetails}'");
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A notification that a [Scrollable] widget has not changed its scroll position
-/// because the change would have caused its scroll position to go outside of
-/// its scroll bounds.
-///
-/// See also:
-///
-///  * [ScrollUpdateNotification], which indicates that a [Scrollable] widget
-///    has changed its scroll position.
-///  * [ScrollNotification], which describes the notification lifecycle.
-/// </Summary>
-public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-    #region constructors
-    public OverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double overscroll = default(double), double velocity = 0.0)
-    : base(metrics: metrics, context: context)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
-public virtual double Overscroll { get; set; }
-public virtual double Velocity { get; set; }
-#endregion
-
-#region methods
-
-public new void DebugFillDescription(List<string> description)
-{
-    base.DebugFillDescription(description);
-    description.Add($"'overscroll: {Overscroll.ToStringAsFixed(1)}'");
-    description.Add($"'velocity: {Velocity.ToStringAsFixed(1)}'");
-    if (DragDetails != null) description.Add($"'{DragDetails}'");
-}
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            description.Add($"'scrollDelta: {ScrollDelta}'");
+            if (DragDetails != null) description.Add($"'{DragDetails}'");
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-/// <Summary>
-/// A notification that a [Scrollable] widget has stopped scrolling.
-///
-/// See also:
-///
-///  * [ScrollStartNotification], which indicates that scrolling has started.
-///  * [ScrollNotification], which describes the notification lifecycle.
-/// </Summary>
-public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-    #region constructors
-    public ScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragEndDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragEndDetails))
-    : base(metrics: metrics, context: context)
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has not changed its scroll position
+    /// because the change would have caused its scroll position to go outside of
+    /// its scroll bounds.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollUpdateNotification], which indicates that a [Scrollable] widget
+    ///    has changed its scroll position.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
+    public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public OverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double overscroll = default(double), double velocity = 0.0)
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails;
+            this.Overscroll = overscroll;
+            this.Velocity = velocity;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
+        public virtual double Overscroll { get; set; }
+        public virtual double Velocity { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Gestures.Dragdetails.DragEndDetails DragDetails { get; set; }
-#endregion
+        #region methods
 
-#region methods
-
-public new void DebugFillDescription(List<string> description)
-{
-    base.DebugFillDescription(description);
-    if (DragDetails != null) description.Add($"'{DragDetails}'");
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A notification that the user has changed the direction in which they are
-/// scrolling.
-///
-/// See also:
-///
-///  * [ScrollNotification], which describes the notification lifecycle.
-/// </Summary>
-public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
-{
-    #region constructors
-    public UserScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection))
-    : base(metrics: metrics, context: context)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection Direction { get; set; }
-#endregion
-
-#region methods
-
-public new void DebugFillDescription(List<string> description)
-{
-    base.DebugFillDescription(description);
-    description.Add($"'direction: {Direction}'");
-}
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            description.Add($"'overscroll: {Overscroll.ToStringAsFixed(1)}'");
+            description.Add($"'velocity: {Velocity.ToStringAsFixed(1)}'");
+            if (DragDetails != null) description.Add($"'{DragDetails}'");
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A notification that a [Scrollable] widget has stopped scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollStartNotification], which indicates that scrolling has started.
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
+    public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public ScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragEndDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragEndDetails))
+        : base(metrics: metrics, context: context)
+        {
+            this.DragDetails = dragDetails;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Dragdetails.DragEndDetails DragDetails { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            if (DragDetails != null) description.Add($"'{DragDetails}'");
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A notification that the user has changed the direction in which they are
+    /// scrolling.
+    ///
+    /// See also:
+    ///
+    ///  * [ScrollNotification], which describes the notification lifecycle.
+    /// </Summary>
+    public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
+    {
+        #region constructors
+        public UserScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection))
+        : base(metrics: metrics, context: context)
+        {
+            this.Direction = direction;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection Direction { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DebugFillDescription(List<string> description)
+        {
+            base.DebugFillDescription(description);
+            description.Add($"'direction: {Direction}'");
+        }
+
+
+
+        #endregion
+    }
 
 }

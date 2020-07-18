@@ -841,57 +841,58 @@ public class OverlayRoute<T> : FlutterSDK.Widgets.Navigator.Route<T>
     #region constructors
     public OverlayRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
     : base(settings: settings)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _OverlayEntries { get; set; }
-public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _OverlayEntries { get; set; }
+    public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-/// <Summary>
-/// Subclasses should override this getter to return the builders for the overlay.
-/// </Summary>
-public virtual Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries()
-{
-    return default(Iterable<OverlayEntry>);
-}
-
-
-public new void Install()
-{
-
-    _OverlayEntries.AddAll(CreateOverlayEntries());
-    base.Install();
-}
+    /// <Summary>
+    /// Subclasses should override this getter to return the builders for the overlay.
+    /// </Summary>
+    public virtual Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries()
+    {
+        return default(Iterable<OverlayEntry>);
+    }
 
 
+    public new void Install()
+    {
 
-
-public new bool DidPop(T result)
-{
-    bool returnValue = base.DidPop(result);
-
-    if (FinishedWhenPopped) Navigator.FinalizeRoute(this);
-    return returnValue;
-}
+        _OverlayEntries.AddAll(CreateOverlayEntries());
+        base.Install();
+    }
 
 
 
 
-public new void Dispose()
-{
-    _OverlayEntries.Clear();
-    base.Dispose();
-}
+    public new bool DidPop(T result)
+    {
+        bool returnValue = base.DidPop(result);
+
+        if (FinishedWhenPopped) Navigator.FinalizeRoute(this);
+        return returnValue;
+    }
 
 
 
-#endregion
+
+    public new void Dispose()
+    {
+        _OverlayEntries.Clear();
+        base.Dispose();
+    }
+
+
+
+    #endregion
 }
 
 
@@ -903,349 +904,350 @@ public class TransitionRoute<T> : FlutterSDK.Widgets.Routes.OverlayRoute<T>
     #region constructors
     public TransitionRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
     : base(settings: settings)
-
-}
-#endregion
-
-#region fields
-internal virtual Completer<T> _TransitionCompleter { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimation { get; set; }
-internal virtual T _Result { get; set; }
-internal virtual VoidCallback _TrainHoppingListenerRemover { get; set; }
-public virtual Future<T> Completed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TimeSpan ReverseTransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Called to create the animation controller that will drive the transitions to
-/// this route from the previous one, and back to the previous route from this
-/// one.
-/// </Summary>
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
-{
-
-    TimeSpan duration = TransitionDuration;
-    TimeSpan reverseDuration = ReverseTransitionDuration;
-
-    return new AnimationController(duration: duration, reverseDuration: reverseDuration, debugLabel: DebugLabel, vsync: Navigator);
-}
-
-
-
-
-/// <Summary>
-/// Called to create the animation that exposes the current progress of
-/// the transition controlled by the animation controller created by
-/// [createAnimationController()].
-/// </Summary>
-public virtual FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
-{
-
-
-    return _Controller.View;
-}
-
-
-
-
-private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
-{
-    switch (status)
     {
-        case AnimationStatus.Completed: if (OverlayEntries.IsNotEmpty) OverlayEntries.First.Opaque = Opaque; break;
-        case AnimationStatus.Forward: case AnimationStatus.Reverse: if (OverlayEntries.IsNotEmpty) OverlayEntries.First.Opaque = false; break;
-        case AnimationStatus.Dismissed:
-            if (!IsActive)
-            {
-                Navigator.FinalizeRoute(this);
 
-            }
-            break;
     }
-    ChangedInternalState();
-}
+    #endregion
 
+    #region fields
+    internal virtual Completer<T> _TransitionCompleter { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+    internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimation { get; set; }
+    internal virtual T _Result { get; set; }
+    internal virtual VoidCallback _TrainHoppingListenerRemover { get; set; }
+    public virtual Future<T> Completed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TimeSpan ReverseTransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
+    #region methods
 
-
-public new void Install()
-{
-
-    _Controller = CreateAnimationController();
-
-    _Animation = CreateAnimation();
-
-    base.Install();
-}
-
-
-
-
-public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
-{
-
-
-    _DidPushOrReplace();
-    base.DidPush();
-    return _Controller.Forward();
-}
-
-
-
-
-public new void DidAdd()
-{
-
-
-    _DidPushOrReplace();
-    base.DidAdd();
-    _Controller.Value = _Controller.UpperBound;
-}
-
-
-
-
-public new void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute)
-{
-
-
-    if (oldRoute is TransitionRoute) _Controller.Value = oldRoute._Controller.Value;
-    _DidPushOrReplace();
-    base.DidReplace(oldRoute);
-}
-
-
-
-
-private void _DidPushOrReplace()
-{
-    _Animation.AddStatusListener(_HandleStatusChanged);
-    if (_Animation.IsCompleted && OverlayEntries.IsNotEmpty)
+    /// <Summary>
+    /// Called to create the animation controller that will drive the transitions to
+    /// this route from the previous one, and back to the previous route from this
+    /// one.
+    /// </Summary>
+    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
     {
-        OverlayEntries.First.Opaque = Opaque;
+
+        TimeSpan duration = TransitionDuration;
+        TimeSpan reverseDuration = ReverseTransitionDuration;
+
+        return new AnimationController(duration: duration, reverseDuration: reverseDuration, debugLabel: DebugLabel, vsync: Navigator);
     }
 
-}
 
 
 
-
-public new bool DidPop(T result)
-{
-
-
-    _Result = result;
-    _Controller.Reverse();
-    return base.DidPop(result);
-}
-
-
-
-
-public new void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
-{
-
-
-    _UpdateSecondaryAnimation(nextRoute);
-    base.DidPopNext(nextRoute);
-}
-
-
-
-
-public new void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
-{
-
-
-    _UpdateSecondaryAnimation(nextRoute);
-    base.DidChangeNext(nextRoute);
-}
-
-
-
-
-private void _UpdateSecondaryAnimation(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
-{
-    VoidCallback previousTrainHoppingListenerRemover = _TrainHoppingListenerRemover;
-    _TrainHoppingListenerRemover = null;
-    if (nextRoute is TransitionRoute<object> && CanTransitionTo(nextRoute) && nextRoute.CanTransitionFrom(this))
+    /// <Summary>
+    /// Called to create the animation that exposes the current progress of
+    /// the transition controlled by the animation controller created by
+    /// [createAnimationController()].
+    /// </Summary>
+    public virtual FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
     {
-        Animation<double> current = _SecondaryAnimation.Parent;
-        if (current != null)
+
+
+        return _Controller.View;
+    }
+
+
+
+
+    private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+    {
+        switch (status)
         {
-            Animation<double> currentTrain = ((TrainHoppingAnimation)current) is TrainHoppingAnimation ? ((TrainHoppingAnimation)current).CurrentTrain : ((TrainHoppingAnimation)current);
-            Animation<double> nextTrain = ((TransitionRoute<dynamic>)nextRoute)._Animation;
-            if (currentTrain.Value == nextTrain.Value || nextTrain.Status == AnimationStatus.Completed || nextTrain.Status == AnimationStatus.Dismissed)
+            case AnimationStatus.Completed: if (OverlayEntries.IsNotEmpty) OverlayEntries.First.Opaque = Opaque; break;
+            case AnimationStatus.Forward: case AnimationStatus.Reverse: if (OverlayEntries.IsNotEmpty) OverlayEntries.First.Opaque = false; break;
+            case AnimationStatus.Dismissed:
+                if (!IsActive)
+                {
+                    Navigator.FinalizeRoute(this);
+
+                }
+                break;
+        }
+        ChangedInternalState();
+    }
+
+
+
+
+    public new void Install()
+    {
+
+        _Controller = CreateAnimationController();
+
+        _Animation = CreateAnimation();
+
+        base.Install();
+    }
+
+
+
+
+    public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
+    {
+
+
+        _DidPushOrReplace();
+        base.DidPush();
+        return _Controller.Forward();
+    }
+
+
+
+
+    public new void DidAdd()
+    {
+
+
+        _DidPushOrReplace();
+        base.DidAdd();
+        _Controller.Value = _Controller.UpperBound;
+    }
+
+
+
+
+    public new void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute)
+    {
+
+
+        if (oldRoute is TransitionRoute) _Controller.Value = oldRoute._Controller.Value;
+        _DidPushOrReplace();
+        base.DidReplace(oldRoute);
+    }
+
+
+
+
+    private void _DidPushOrReplace()
+    {
+        _Animation.AddStatusListener(_HandleStatusChanged);
+        if (_Animation.IsCompleted && OverlayEntries.IsNotEmpty)
+        {
+            OverlayEntries.First.Opaque = Opaque;
+        }
+
+    }
+
+
+
+
+    public new bool DidPop(T result)
+    {
+
+
+        _Result = result;
+        _Controller.Reverse();
+        return base.DidPop(result);
+    }
+
+
+
+
+    public new void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
+    {
+
+
+        _UpdateSecondaryAnimation(nextRoute);
+        base.DidPopNext(nextRoute);
+    }
+
+
+
+
+    public new void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
+    {
+
+
+        _UpdateSecondaryAnimation(nextRoute);
+        base.DidChangeNext(nextRoute);
+    }
+
+
+
+
+    private void _UpdateSecondaryAnimation(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
+    {
+        VoidCallback previousTrainHoppingListenerRemover = _TrainHoppingListenerRemover;
+        _TrainHoppingListenerRemover = null;
+        if (nextRoute is TransitionRoute<object> && CanTransitionTo(nextRoute) && nextRoute.CanTransitionFrom(this))
+        {
+            Animation<double> current = _SecondaryAnimation.Parent;
+            if (current != null)
             {
-                _SetSecondaryAnimation(nextTrain, ((TransitionRoute<dynamic>)nextRoute).Completed);
+                Animation<double> currentTrain = ((TrainHoppingAnimation)current) is TrainHoppingAnimation ? ((TrainHoppingAnimation)current).CurrentTrain : ((TrainHoppingAnimation)current);
+                Animation<double> nextTrain = ((TransitionRoute<dynamic>)nextRoute)._Animation;
+                if (currentTrain.Value == nextTrain.Value || nextTrain.Status == AnimationStatus.Completed || nextTrain.Status == AnimationStatus.Dismissed)
+                {
+                    _SetSecondaryAnimation(nextTrain, ((TransitionRoute<dynamic>)nextRoute).Completed);
+                }
+                else
+                {
+                    TrainHoppingAnimation newAnimation = default(TrainHoppingAnimation);
+                    void _JumpOnAnimationEnd(AnimationStatus status) => {
+                        switch (status)
+                        {
+                            case AnimationStatus.Completed:
+                            case AnimationStatus.Dismissed:
+                                _SetSecondaryAnimation(nextTrain, nextRoute.Completed); if (_TrainHoppingListenerRemover != null)
+                                {
+                                    _TrainHoppingListenerRemover();
+                                    _TrainHoppingListenerRemover = null;
+                                }
+                                break;
+                            case AnimationStatus.Forward: case AnimationStatus.Reverse: break;
+                        }
+                    }
+
+                    _TrainHoppingListenerRemover = () =>
+                    {
+                        nextTrain.RemoveStatusListener(_JumpOnAnimationEnd);
+                        newAnimation?.Dispose();
+                    }
+                    ;
+                    nextTrain.AddStatusListener(_JumpOnAnimationEnd);
+                    newAnimation = new TrainHoppingAnimation(currentTrain, nextTrain, onSwitchedTrain: () =>
+                    {
+
+
+                        _SetSecondaryAnimation(newAnimation.CurrentTrain, nextRoute.Completed);
+                        if (_TrainHoppingListenerRemover != null)
+                        {
+                            _TrainHoppingListenerRemover();
+                            _TrainHoppingListenerRemover = null;
+                        }
+
+                    }
+                    );
+                    _SetSecondaryAnimation(newAnimation, nextRoute.Completed);
+                }
+
             }
             else
             {
-                TrainHoppingAnimation newAnimation = default(TrainHoppingAnimation);
-                void _JumpOnAnimationEnd(AnimationStatus status) => {
-                    switch (status)
-                    {
-                        case AnimationStatus.Completed:
-                        case AnimationStatus.Dismissed:
-                            _SetSecondaryAnimation(nextTrain, nextRoute.Completed); if (_TrainHoppingListenerRemover != null)
-                            {
-                                _TrainHoppingListenerRemover();
-                                _TrainHoppingListenerRemover = null;
-                            }
-                            break;
-                        case AnimationStatus.Forward: case AnimationStatus.Reverse: break;
-                    }
-                }
-
-                _TrainHoppingListenerRemover = () =>
-                {
-                    nextTrain.RemoveStatusListener(_JumpOnAnimationEnd);
-                    newAnimation?.Dispose();
-                }
-                ;
-                nextTrain.AddStatusListener(_JumpOnAnimationEnd);
-                newAnimation = new TrainHoppingAnimation(currentTrain, nextTrain, onSwitchedTrain: () =>
-                {
-
-
-                    _SetSecondaryAnimation(newAnimation.CurrentTrain, nextRoute.Completed);
-                    if (_TrainHoppingListenerRemover != null)
-                    {
-                        _TrainHoppingListenerRemover();
-                        _TrainHoppingListenerRemover = null;
-                    }
-
-                }
-                );
-                _SetSecondaryAnimation(newAnimation, nextRoute.Completed);
+                _SetSecondaryAnimation(nextRoute._Animation, nextRoute.Completed);
             }
 
         }
         else
         {
-            _SetSecondaryAnimation(nextRoute._Animation, nextRoute.Completed);
+            _SetSecondaryAnimation(AnimationsDefaultClass.KAlwaysDismissedAnimation);
+        }
+
+        if (previousTrainHoppingListenerRemover != null)
+        {
+            previousTrainHoppingListenerRemover();
         }
 
     }
-    else
+
+
+
+
+    private void _SetSecondaryAnimation(FlutterSDK.Animation.Animation.Animation<double> animation, Future<object> disposed = default(Future<object>))
     {
-        _SetSecondaryAnimation(AnimationsDefaultClass.KAlwaysDismissedAnimation);
-    }
-
-    if (previousTrainHoppingListenerRemover != null)
-    {
-        previousTrainHoppingListenerRemover();
-    }
-
-}
-
-
-
-
-private void _SetSecondaryAnimation(FlutterSDK.Animation.Animation.Animation<double> animation, Future<object> disposed = default(Future<object>))
-{
-    _SecondaryAnimation.Parent = animation;
-    disposed?.Then((object _) =>
-    {
-        if (_SecondaryAnimation.Parent == animation)
+        _SecondaryAnimation.Parent = animation;
+        disposed?.Then((object _) =>
         {
-            _SecondaryAnimation.Parent = AnimationsDefaultClass.KAlwaysDismissedAnimation;
-            if (((TrainHoppingAnimation)animation) is TrainHoppingAnimation)
+            if (_SecondaryAnimation.Parent == animation)
             {
-                ((TrainHoppingAnimation)animation).Dispose();
+                _SecondaryAnimation.Parent = AnimationsDefaultClass.KAlwaysDismissedAnimation;
+                if (((TrainHoppingAnimation)animation) is TrainHoppingAnimation)
+                {
+                    ((TrainHoppingAnimation)animation).Dispose();
+                }
+
             }
 
         }
-
+        );
     }
-    );
-}
 
 
 
 
-/// <Summary>
-/// Returns true if this route supports a transition animation that runs
-/// when [nextRoute] is pushed on top of it or when [nextRoute] is popped
-/// off of it.
-///
-/// Subclasses can override this method to restrict the set of routes they
-/// need to coordinate transitions with.
-///
-/// If true, and `nextRoute.canTransitionFrom()` is true, then the
-/// [buildTransitions] `secondaryAnimation` will run from 0.0 - 1.0
-/// when [nextRoute] is pushed on top of this one.  Similarly, if
-/// the [nextRoute] is popped off of this route, the
-/// `secondaryAnimation` will run from 1.0 - 0.0.
-///
-/// If false, this route's [buildTransitions] `secondaryAnimation` parameter
-/// value will be [kAlwaysDismissedAnimation]. In other words, this route
-/// will not animate when when [nextRoute] is pushed on top of it or when
-/// [nextRoute] is popped off of it.
-///
-/// Returns true by default.
-///
-/// See also:
-///
-///  * [canTransitionFrom], which must be true for [nextRoute] for the
-///    [buildTransitions] `secondaryAnimation` to run.
-/// </Summary>
-public virtual bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) => true;
+    /// <Summary>
+    /// Returns true if this route supports a transition animation that runs
+    /// when [nextRoute] is pushed on top of it or when [nextRoute] is popped
+    /// off of it.
+    ///
+    /// Subclasses can override this method to restrict the set of routes they
+    /// need to coordinate transitions with.
+    ///
+    /// If true, and `nextRoute.canTransitionFrom()` is true, then the
+    /// [buildTransitions] `secondaryAnimation` will run from 0.0 - 1.0
+    /// when [nextRoute] is pushed on top of this one.  Similarly, if
+    /// the [nextRoute] is popped off of this route, the
+    /// `secondaryAnimation` will run from 1.0 - 0.0.
+    ///
+    /// If false, this route's [buildTransitions] `secondaryAnimation` parameter
+    /// value will be [kAlwaysDismissedAnimation]. In other words, this route
+    /// will not animate when when [nextRoute] is pushed on top of it or when
+    /// [nextRoute] is popped off of it.
+    ///
+    /// Returns true by default.
+    ///
+    /// See also:
+    ///
+    ///  * [canTransitionFrom], which must be true for [nextRoute] for the
+    ///    [buildTransitions] `secondaryAnimation` to run.
+    /// </Summary>
+    public virtual bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) => true;
 
 
 
-/// <Summary>
-/// Returns true if [previousRoute] should animate when this route
-/// is pushed on top of it or when then this route is popped off of it.
-///
-/// Subclasses can override this method to restrict the set of routes they
-/// need to coordinate transitions with.
-///
-/// If true, and `previousRoute.canTransitionTo()` is true, then the
-/// previous route's [buildTransitions] `secondaryAnimation` will
-/// run from 0.0 - 1.0 when this route is pushed on top of
-/// it. Similarly, if this route is popped off of [previousRoute]
-/// the previous route's `secondaryAnimation` will run from 1.0 - 0.0.
-///
-/// If false, then the previous route's [buildTransitions]
-/// `secondaryAnimation` value will be kAlwaysDismissedAnimation. In
-/// other words [previousRoute] will not animate when this route is
-/// pushed on top of it or when then this route is popped off of it.
-///
-/// Returns true by default.
-///
-/// See also:
-///
-///  * [canTransitionTo], which must be true for [previousRoute] for its
-///    [buildTransitions] `secondaryAnimation` to run.
-/// </Summary>
-public virtual bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) => true;
+    /// <Summary>
+    /// Returns true if [previousRoute] should animate when this route
+    /// is pushed on top of it or when then this route is popped off of it.
+    ///
+    /// Subclasses can override this method to restrict the set of routes they
+    /// need to coordinate transitions with.
+    ///
+    /// If true, and `previousRoute.canTransitionTo()` is true, then the
+    /// previous route's [buildTransitions] `secondaryAnimation` will
+    /// run from 0.0 - 1.0 when this route is pushed on top of
+    /// it. Similarly, if this route is popped off of [previousRoute]
+    /// the previous route's `secondaryAnimation` will run from 1.0 - 0.0.
+    ///
+    /// If false, then the previous route's [buildTransitions]
+    /// `secondaryAnimation` value will be kAlwaysDismissedAnimation. In
+    /// other words [previousRoute] will not animate when this route is
+    /// pushed on top of it or when then this route is popped off of it.
+    ///
+    /// Returns true by default.
+    ///
+    /// See also:
+    ///
+    ///  * [canTransitionTo], which must be true for [previousRoute] for its
+    ///    [buildTransitions] `secondaryAnimation` to run.
+    /// </Summary>
+    public virtual bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) => true;
 
 
 
-public new void Dispose()
-{
+    public new void Dispose()
+    {
 
-    _Controller?.Dispose();
-    _TransitionCompleter.Complete(_Result);
-    base.Dispose();
-}
-
-
+        _Controller?.Dispose();
+        _TransitionCompleter.Complete(_Result);
+        base.Dispose();
+    }
 
 
-#endregion
+
+
+    #endregion
 }
 
 
@@ -1256,37 +1258,38 @@ public class LocalHistoryEntry
 {
     #region constructors
     public LocalHistoryEntry(VoidCallback onRemove = default(VoidCallback))
+    {
+        this.OnRemove = onRemove;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual VoidCallback OnRemove { get; set; }
+    internal virtual FlutterSDK.Widgets.Routes.LocalHistoryRoute<object> _Owner { get; set; }
+    #endregion
 
-#region fields
-public virtual VoidCallback OnRemove { get; set; }
-internal virtual FlutterSDK.Widgets.Routes.LocalHistoryRoute<object> _Owner { get; set; }
-#endregion
+    #region methods
 
-#region methods
+    /// <Summary>
+    /// Remove this entry from the history of its associated [LocalHistoryRoute].
+    /// </Summary>
+    public virtual void Remove()
+    {
+        _Owner.RemoveLocalHistoryEntry(this);
 
-/// <Summary>
-/// Remove this entry from the history of its associated [LocalHistoryRoute].
-/// </Summary>
-public virtual void Remove()
-{
-    _Owner.RemoveLocalHistoryEntry(this);
-
-}
-
-
-
-
-private void _NotifyRemoved()
-{
-    if (OnRemove != null) OnRemove();
-}
+    }
 
 
 
-#endregion
+
+    private void _NotifyRemoved()
+    {
+        if (OnRemove != null) OnRemove();
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1295,42 +1298,45 @@ public class _ModalScopeStatus : FlutterSDK.Widgets.Framework.InheritedWidget
     #region constructors
     public _ModalScopeStatus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isCurrent = default(bool), bool canPop = default(bool), FlutterSDK.Widgets.Navigator.Route<object> route = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
     : base(key: key, child: child)
+    {
+        this.IsCurrent = isCurrent;
+        this.CanPop = canPop;
+        this.Route = route;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual bool IsCurrent { get; set; }
+    public virtual bool CanPop { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
+    #endregion
 
-#region fields
-public virtual bool IsCurrent { get; set; }
-public virtual bool CanPop { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Routes._ModalScopeStatus old)
-{
-    return IsCurrent != old.IsCurrent || CanPop != old.CanPop || Route != old.Route;
-}
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
-{
-    return IsCurrent != old.IsCurrent || CanPop != old.CanPop || Route != old.Route;
-}
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Routes._ModalScopeStatus old)
+    {
+        return IsCurrent != old.IsCurrent || CanPop != old.CanPop || Route != old.Route;
+    }
 
 
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
-{
-    base.DebugFillProperties(description);
-    description.Add(new FlagProperty("isCurrent", value: IsCurrent, ifTrue: "active", ifFalse: "inactive"));
-    description.Add(new FlagProperty("canPop", value: CanPop, ifTrue: "can pop"));
-}
+    public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
+    {
+        return IsCurrent != old.IsCurrent || CanPop != old.CanPop || Route != old.Route;
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+    {
+        base.DebugFillProperties(description);
+        description.Add(new FlagProperty("isCurrent", value: IsCurrent, ifTrue: "active", ifFalse: "inactive"));
+        description.Add(new FlagProperty("canPop", value: CanPop, ifTrue: "can pop"));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1339,20 +1345,21 @@ public class _ModalScope<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     #region constructors
     public _ModalScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Routes.ModalRoute<T> route = default(FlutterSDK.Widgets.Routes.ModalRoute<T>))
     : base(key: key)
+    {
+        this.Route = route;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Routes.ModalRoute<T> Route { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Routes.ModalRoute<T> Route { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new _ModalScopeState<T> CreateState() => new _ModalScopeState<T>();
+    public new _ModalScopeState<T> CreateState() => new _ModalScopeState<T>();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1484,330 +1491,330 @@ public class ModalRoute<T> : FlutterSDK.Widgets.Routes.TransitionRoute<T>, ILoca
     #region constructors
     public ModalRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
     : base(settings: settings)
-
-}
-#endregion
-
-#region fields
-internal virtual ImageFilter _Filter { get; set; }
-internal virtual bool _Offstage { get; set; }
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _AnimationProxy { get; set; }
-internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimationProxy { get; set; }
-internal virtual List<object> _WillPopCallbacks { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Routes._ModalScopeState<T>> _ScopeKey { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _SubtreeKey { get; set; }
-internal virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket _StorageBucket { get; set; }
-internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ModalBarrier { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.Widget _ModalScopeCache { get; set; }
-public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Curves.Curve BarrierCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.BuildContext SubtreeContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool HasScopedWillPopCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool CanPop { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns the modal route most closely associated with the given context.
-///
-/// Returns null if the given context is not associated with a modal route.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// ModalRoute route = ModalRoute.of(context);
-/// ```
-///
-/// The given [BuildContext] will be rebuilt if the state of the route changes
-/// (specifically, if [isCurrent] or [canPop] change value).
-/// </Summary>
-public virtual ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    _ModalScopeStatus widget = context.DependOnInheritedWidgetOfExactType();
-    return widget?.Route as ModalRoute<T>;
-}
-
-
-
-
-/// <Summary>
-/// Schedule a call to [buildTransitions].
-///
-/// Whenever you need to change internal state for a [ModalRoute] object, make
-/// the change in a function that you pass to [setState], as in:
-///
-/// ```dart
-/// setState(() { myState = newValue });
-/// ```
-///
-/// If you just change the state directly without calling [setState], then the
-/// route will not be scheduled for rebuilding, meaning that its rendering
-/// will not be updated.
-/// </Summary>
-public virtual void SetState(VoidCallback fn)
-{
-    if (_ScopeKey.CurrentState != null)
     {
-        _ScopeKey.CurrentState._RouteSetState(fn);
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual ImageFilter _Filter { get; set; }
+    internal virtual bool _Offstage { get; set; }
+    internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _AnimationProxy { get; set; }
+    internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _SecondaryAnimationProxy { get; set; }
+    internal virtual List<object> _WillPopCallbacks { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Routes._ModalScopeState<T>> _ScopeKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _SubtreeKey { get; set; }
+    internal virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket _StorageBucket { get; set; }
+    internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ModalBarrier { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.Widget _ModalScopeCache { get; set; }
+    public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Curves.Curve BarrierCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.BuildContext SubtreeContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool HasScopedWillPopCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool CanPop { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Returns the modal route most closely associated with the given context.
+    ///
+    /// Returns null if the given context is not associated with a modal route.
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// ModalRoute route = ModalRoute.of(context);
+    /// ```
+    ///
+    /// The given [BuildContext] will be rebuilt if the state of the route changes
+    /// (specifically, if [isCurrent] or [canPop] change value).
+    /// </Summary>
+    public virtual ModalRoute<T> Of<T>(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        fn();
+        _ModalScopeStatus widget = context.DependOnInheritedWidgetOfExactType();
+        return widget?.Route as ModalRoute<T>;
     }
 
-}
 
 
 
-
-/// <Summary>
-/// Returns a predicate that's true if the route has the specified name and if
-/// popping the route will not yield the same route, i.e. if the route's
-/// [willHandlePopInternally] property is false.
-///
-/// This function is typically used with [Navigator.popUntil()].
-/// </Summary>
-public virtual FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name)
-{
-    return (Route<object> route) =>
+    /// <Summary>
+    /// Schedule a call to [buildTransitions].
+    ///
+    /// Whenever you need to change internal state for a [ModalRoute] object, make
+    /// the change in a function that you pass to [setState], as in:
+    ///
+    /// ```dart
+    /// setState(() { myState = newValue });
+    /// ```
+    ///
+    /// If you just change the state directly without calling [setState], then the
+    /// route will not be scheduled for rebuilding, meaning that its rendering
+    /// will not be updated.
+    /// </Summary>
+    public virtual void SetState(VoidCallback fn)
     {
-        return !route.WillHandlePopInternally && route is ModalRoute && route.Settings.Name == name;
-    }
-    ;
-}
+        if (_ScopeKey.CurrentState != null)
+        {
+            _ScopeKey.CurrentState._RouteSetState(fn);
+        }
+        else
+        {
+            fn();
+        }
 
-
-
-
-/// <Summary>
-/// Override this method to build the primary content of this route.
-///
-/// The arguments have the following meanings:
-///
-///  * `context`: The context in which the route is being built.
-///  * [animation]: The animation for this route's transition. When entering,
-///    the animation runs forward from 0.0 to 1.0. When exiting, this animation
-///    runs backwards from 1.0 to 0.0.
-///  * [secondaryAnimation]: The animation for the route being pushed on top of
-///    this route. This animation lets this route coordinate with the entrance
-///    and exit transition of routes pushed on top of this route.
-///
-/// This method is only called when the route is first built, and rarely
-/// thereafter. In particular, it is not automatically called again when the
-/// route's state changes unless it uses [ModalRoute.of]. For a builder that
-/// is called every time the route's state changes, consider
-/// [buildTransitions]. For widgets that change their behavior when the
-/// route's state changes, consider [ModalRoute.of] to obtain a reference to
-/// the route; this will cause the widget to be rebuilt each time the route
-/// changes state.
-///
-/// In general, [buildPage] should be used to build the page contents, and
-/// [buildTransitions] for the widgets that change as the page is brought in
-/// and out of view. Avoid using [buildTransitions] for content that never
-/// changes; building such content once from [buildPage] is more efficient.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
-{
-    return default(Widget);
-}
-
-
-/// <Summary>
-/// Override this method to wrap the [child] with one or more transition
-/// widgets that define how the route arrives on and leaves the screen.
-///
-/// By default, the child (which contains the widget returned by [buildPage])
-/// is not wrapped in any transition widgets.
-///
-/// The [buildTransitions] method, in contrast to [buildPage], is called each
-/// time the [Route]'s state changes (e.g. the value of [canPop]).
-///
-/// The [buildTransitions] method is typically used to define transitions
-/// that animate the new topmost route's comings and goings. When the
-/// [Navigator] pushes a route on the top of its stack, the new route's
-/// primary [animation] runs from 0.0 to 1.0. When the Navigator pops the
-/// topmost route, e.g. because the use pressed the back button, the
-/// primary animation runs from 1.0 to 0.0.
-///
-/// The following example uses the primary animation to drive a
-/// [SlideTransition] that translates the top of the new route vertically
-/// from the bottom of the screen when it is pushed on the Navigator's
-/// stack. When the route is popped the SlideTransition translates the
-/// route from the top of the screen back to the bottom.
-///
-/// ```dart
-/// PageRouteBuilder(
-///   pageBuilder: (BuildContext context,
-///       Animation<double> animation,
-///       Animation<double> secondaryAnimation,
-///       Widget child,
-///   ) {
-///     return Scaffold(
-///       appBar: AppBar(title: Text('Hello')),
-///       body: Center(
-///         child: Text('Hello World'),
-///       ),
-///     );
-///   },
-///   transitionsBuilder: (
-///       BuildContext context,
-///       Animation<double> animation,
-///       Animation<double> secondaryAnimation,
-///       Widget child,
-///    ) {
-///     return SlideTransition(
-///       position: Tween<Offset>(
-///         begin: const Offset(0.0, 1.0),
-///         end: Offset.zero,
-///       ).animate(animation),
-///       child: child, // child is the value returned by pageBuilder
-///     );
-///   },
-/// );
-/// ```
-///
-/// We've used [PageRouteBuilder] to demonstrate the [buildTransitions] method
-/// here. The body of an override of the [buildTransitions] method would be
-/// defined in the same way.
-///
-/// When the [Navigator] pushes a route on the top of its stack, the
-/// [secondaryAnimation] can be used to define how the route that was on
-/// the top of the stack leaves the screen. Similarly when the topmost route
-/// is popped, the secondaryAnimation can be used to define how the route
-/// below it reappears on the screen. When the Navigator pushes a new route
-/// on the top of its stack, the old topmost route's secondaryAnimation
-/// runs from 0.0 to 1.0. When the Navigator pops the topmost route, the
-/// secondaryAnimation for the route below it runs from 1.0 to 0.0.
-///
-/// The example below adds a transition that's driven by the
-/// [secondaryAnimation]. When this route disappears because a new route has
-/// been pushed on top of it, it translates in the opposite direction of
-/// the new route. Likewise when the route is exposed because the topmost
-/// route has been popped off.
-///
-/// ```dart
-///   transitionsBuilder: (
-///       BuildContext context,
-///       Animation<double> animation,
-///       Animation<double> secondaryAnimation,
-///       Widget child,
-///   ) {
-///     return SlideTransition(
-///       position: AlignmentTween(
-///         begin: const Offset(0.0, 1.0),
-///         end: Offset.zero,
-///       ).animate(animation),
-///       child: SlideTransition(
-///         position: TweenOffset(
-///           begin: Offset.zero,
-///           end: const Offset(0.0, 1.0),
-///         ).animate(secondaryAnimation),
-///         child: child,
-///       ),
-///     );
-///   }
-/// ```
-///
-/// In practice the `secondaryAnimation` is used pretty rarely.
-///
-/// The arguments to this method are as follows:
-///
-///  * `context`: The context in which the route is being built.
-///  * [animation]: When the [Navigator] pushes a route on the top of its stack,
-///    the new route's primary [animation] runs from 0.0 to 1.0. When the [Navigator]
-///    pops the topmost route this animation runs from 1.0 to 0.0.
-///  * [secondaryAnimation]: When the Navigator pushes a new route
-///    on the top of its stack, the old topmost route's [secondaryAnimation]
-///    runs from 0.0 to 1.0. When the [Navigator] pops the topmost route, the
-///    [secondaryAnimation] for the route below it runs from 1.0 to 0.0.
-///  * `child`, the page contents, as returned by [buildPage].
-///
-/// See also:
-///
-///  * [buildPage], which is used to describe the actual contents of the page,
-///    and whose result is passed to the `child` argument of this method.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
-{
-    return child;
-}
-
-
-
-
-public new void Install()
-{
-    base.Install();
-    _AnimationProxy = new ProxyAnimation(base.Animation);
-    _SecondaryAnimationProxy = new ProxyAnimation(base.SecondaryAnimation);
-}
-
-
-
-
-public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
-{
-    if (_ScopeKey.CurrentState != null)
-    {
-        Navigator.FocusScopeNode.SetFirstFocus(_ScopeKey.CurrentState.FocusScopeNode);
     }
 
-    return base.DidPush();
-}
 
 
 
-
-public new void DidAdd()
-{
-    if (_ScopeKey.CurrentState != null)
+    /// <Summary>
+    /// Returns a predicate that's true if the route has the specified name and if
+    /// popping the route will not yield the same route, i.e. if the route's
+    /// [willHandlePopInternally] property is false.
+    ///
+    /// This function is typically used with [Navigator.popUntil()].
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Navigator.RoutePredicate WithName(string name)
     {
-        Navigator.FocusScopeNode.SetFirstFocus(_ScopeKey.CurrentState.FocusScopeNode);
+        return (Route<object> route) =>
+        {
+            return !route.WillHandlePopInternally && route is ModalRoute && route.Settings.Name == name;
+        }
+        ;
     }
 
-    base.DidAdd();
-}
+
+
+
+    /// <Summary>
+    /// Override this method to build the primary content of this route.
+    ///
+    /// The arguments have the following meanings:
+    ///
+    ///  * `context`: The context in which the route is being built.
+    ///  * [animation]: The animation for this route's transition. When entering,
+    ///    the animation runs forward from 0.0 to 1.0. When exiting, this animation
+    ///    runs backwards from 1.0 to 0.0.
+    ///  * [secondaryAnimation]: The animation for the route being pushed on top of
+    ///    this route. This animation lets this route coordinate with the entrance
+    ///    and exit transition of routes pushed on top of this route.
+    ///
+    /// This method is only called when the route is first built, and rarely
+    /// thereafter. In particular, it is not automatically called again when the
+    /// route's state changes unless it uses [ModalRoute.of]. For a builder that
+    /// is called every time the route's state changes, consider
+    /// [buildTransitions]. For widgets that change their behavior when the
+    /// route's state changes, consider [ModalRoute.of] to obtain a reference to
+    /// the route; this will cause the widget to be rebuilt each time the route
+    /// changes state.
+    ///
+    /// In general, [buildPage] should be used to build the page contents, and
+    /// [buildTransitions] for the widgets that change as the page is brought in
+    /// and out of view. Avoid using [buildTransitions] for content that never
+    /// changes; building such content once from [buildPage] is more efficient.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+    {
+        return default(Widget);
+    }
+
+
+    /// <Summary>
+    /// Override this method to wrap the [child] with one or more transition
+    /// widgets that define how the route arrives on and leaves the screen.
+    ///
+    /// By default, the child (which contains the widget returned by [buildPage])
+    /// is not wrapped in any transition widgets.
+    ///
+    /// The [buildTransitions] method, in contrast to [buildPage], is called each
+    /// time the [Route]'s state changes (e.g. the value of [canPop]).
+    ///
+    /// The [buildTransitions] method is typically used to define transitions
+    /// that animate the new topmost route's comings and goings. When the
+    /// [Navigator] pushes a route on the top of its stack, the new route's
+    /// primary [animation] runs from 0.0 to 1.0. When the Navigator pops the
+    /// topmost route, e.g. because the use pressed the back button, the
+    /// primary animation runs from 1.0 to 0.0.
+    ///
+    /// The following example uses the primary animation to drive a
+    /// [SlideTransition] that translates the top of the new route vertically
+    /// from the bottom of the screen when it is pushed on the Navigator's
+    /// stack. When the route is popped the SlideTransition translates the
+    /// route from the top of the screen back to the bottom.
+    ///
+    /// ```dart
+    /// PageRouteBuilder(
+    ///   pageBuilder: (BuildContext context,
+    ///       Animation<double> animation,
+    ///       Animation<double> secondaryAnimation,
+    ///       Widget child,
+    ///   ) {
+    ///     return Scaffold(
+    ///       appBar: AppBar(title: Text('Hello')),
+    ///       body: Center(
+    ///         child: Text('Hello World'),
+    ///       ),
+    ///     );
+    ///   },
+    ///   transitionsBuilder: (
+    ///       BuildContext context,
+    ///       Animation<double> animation,
+    ///       Animation<double> secondaryAnimation,
+    ///       Widget child,
+    ///    ) {
+    ///     return SlideTransition(
+    ///       position: Tween<Offset>(
+    ///         begin: const Offset(0.0, 1.0),
+    ///         end: Offset.zero,
+    ///       ).animate(animation),
+    ///       child: child, // child is the value returned by pageBuilder
+    ///     );
+    ///   },
+    /// );
+    /// ```
+    ///
+    /// We've used [PageRouteBuilder] to demonstrate the [buildTransitions] method
+    /// here. The body of an override of the [buildTransitions] method would be
+    /// defined in the same way.
+    ///
+    /// When the [Navigator] pushes a route on the top of its stack, the
+    /// [secondaryAnimation] can be used to define how the route that was on
+    /// the top of the stack leaves the screen. Similarly when the topmost route
+    /// is popped, the secondaryAnimation can be used to define how the route
+    /// below it reappears on the screen. When the Navigator pushes a new route
+    /// on the top of its stack, the old topmost route's secondaryAnimation
+    /// runs from 0.0 to 1.0. When the Navigator pops the topmost route, the
+    /// secondaryAnimation for the route below it runs from 1.0 to 0.0.
+    ///
+    /// The example below adds a transition that's driven by the
+    /// [secondaryAnimation]. When this route disappears because a new route has
+    /// been pushed on top of it, it translates in the opposite direction of
+    /// the new route. Likewise when the route is exposed because the topmost
+    /// route has been popped off.
+    ///
+    /// ```dart
+    ///   transitionsBuilder: (
+    ///       BuildContext context,
+    ///       Animation<double> animation,
+    ///       Animation<double> secondaryAnimation,
+    ///       Widget child,
+    ///   ) {
+    ///     return SlideTransition(
+    ///       position: AlignmentTween(
+    ///         begin: const Offset(0.0, 1.0),
+    ///         end: Offset.zero,
+    ///       ).animate(animation),
+    ///       child: SlideTransition(
+    ///         position: TweenOffset(
+    ///           begin: Offset.zero,
+    ///           end: const Offset(0.0, 1.0),
+    ///         ).animate(secondaryAnimation),
+    ///         child: child,
+    ///       ),
+    ///     );
+    ///   }
+    /// ```
+    ///
+    /// In practice the `secondaryAnimation` is used pretty rarely.
+    ///
+    /// The arguments to this method are as follows:
+    ///
+    ///  * `context`: The context in which the route is being built.
+    ///  * [animation]: When the [Navigator] pushes a route on the top of its stack,
+    ///    the new route's primary [animation] runs from 0.0 to 1.0. When the [Navigator]
+    ///    pops the topmost route this animation runs from 1.0 to 0.0.
+    ///  * [secondaryAnimation]: When the Navigator pushes a new route
+    ///    on the top of its stack, the old topmost route's [secondaryAnimation]
+    ///    runs from 0.0 to 1.0. When the [Navigator] pops the topmost route, the
+    ///    [secondaryAnimation] for the route below it runs from 1.0 to 0.0.
+    ///  * `child`, the page contents, as returned by [buildPage].
+    ///
+    /// See also:
+    ///
+    ///  * [buildPage], which is used to describe the actual contents of the page,
+    ///    and whose result is passed to the `child` argument of this method.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+    {
+        return child;
+    }
 
 
 
 
-/// <Summary>
-/// Returns the value of the first callback added with
-/// [addScopedWillPopCallback] that returns false. If they all return true,
-/// returns the inherited method's result (see [Route.willPop]).
-///
-/// Typically this method is not overridden because applications usually
-/// don't create modal routes directly, they use higher level primitives
-/// like [showDialog]. The scoped [WillPopCallback] list makes it possible
-/// for ModalRoute descendants to collectively define the value of `willPop`.
-///
-/// See also:
-///
-///  * [Form], which provides an `onWillPop` callback that uses this mechanism.
-///  * [addScopedWillPopCallback], which adds a callback to the list this
-///    method checks.
-///  * [removeScopedWillPopCallback], which removes a callback from the list
-///    this method checks.
-/// </Summary>
-public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
+    public new void Install()
+    {
+        base.Install();
+        _AnimationProxy = new ProxyAnimation(base.Animation);
+        _SecondaryAnimationProxy = new ProxyAnimation(base.SecondaryAnimation);
+    }
+
+
+
+
+    public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
+    {
+        if (_ScopeKey.CurrentState != null)
+        {
+            Navigator.FocusScopeNode.SetFirstFocus(_ScopeKey.CurrentState.FocusScopeNode);
+        }
+
+        return base.DidPush();
+    }
+
+
+
+
+    public new void DidAdd()
+    {
+        if (_ScopeKey.CurrentState != null)
+        {
+            Navigator.FocusScopeNode.SetFirstFocus(_ScopeKey.CurrentState.FocusScopeNode);
+        }
+
+        base.DidAdd();
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the value of the first callback added with
+    /// [addScopedWillPopCallback] that returns false. If they all return true,
+    /// returns the inherited method's result (see [Route.willPop]).
+    ///
+    /// Typically this method is not overridden because applications usually
+    /// don't create modal routes directly, they use higher level primitives
+    /// like [showDialog]. The scoped [WillPopCallback] list makes it possible
+    /// for ModalRoute descendants to collectively define the value of `willPop`.
+    ///
+    /// See also:
+    ///
+    ///  * [Form], which provides an `onWillPop` callback that uses this mechanism.
+    ///  * [addScopedWillPopCallback], which adds a callback to the list this
+    ///    method checks.
+    ///  * [removeScopedWillPopCallback], which removes a callback from the list
+    ///    this method checks.
+    /// </Summary>
+    public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
 async
 {
-    _ModalScopeState<T> scope = _ScopeKey.CurrentState;
+_ModalScopeState<T> scope = _ScopeKey.CurrentState;
 
-    foreach (WillPopCallback callback in List<WillPopCallback>.From(_WillPopCallbacks))
-    {
-        if (!await callback()) return RoutePopDisposition.DoNotPop;
-    }
+foreach(WillPopCallback callback  in List<WillPopCallback>.From(_WillPopCallbacks)){
+if (!await callback())return RoutePopDisposition.DoNotPop;
+}
 
-    return await base.WillPop();
+return await base.WillPop();
 }
 
 
@@ -1989,17 +1996,18 @@ public class PopupRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     #region constructors
     public PopupRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
     : base(filter: filter, settings: settings)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -2193,46 +2201,47 @@ public class _DialogRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
     #region constructors
     public _DialogRoute(FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), bool barrierDismissible = true, string barrierLabel = default(string), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), TimeSpan transitionDuration = default(TimeSpan), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
     : base(settings: settings)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Routes.RoutePageBuilder _PageBuilder { get; set; }
-internal virtual bool _BarrierDismissible { get; set; }
-internal virtual string _BarrierLabel { get; set; }
-internal virtual FlutterBinding.UI.Color _BarrierColor { get; set; }
-internal virtual TimeSpan _TransitionDuration { get; set; }
-internal virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder _TransitionBuilder { get; set; }
-public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
-{
-    return new Semantics(child: _PageBuilder(context, animation, secondaryAnimation), scopesRoute: true, explicitChildNodes: true);
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
-{
-    if (_TransitionBuilder == null)
     {
-        return new FadeTransition(opacity: new CurvedAnimation(parent: animation, curve: CurvesDefaultClass.Curves.Linear), child: child);
+
+    }
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Routes.RoutePageBuilder _PageBuilder { get; set; }
+    internal virtual bool _BarrierDismissible { get; set; }
+    internal virtual string _BarrierLabel { get; set; }
+    internal virtual FlutterBinding.UI.Color _BarrierColor { get; set; }
+    internal virtual TimeSpan _TransitionDuration { get; set; }
+    internal virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder _TransitionBuilder { get; set; }
+    public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+    {
+        return new Semantics(child: _PageBuilder(context, animation, secondaryAnimation), scopesRoute: true, explicitChildNodes: true);
     }
 
-    return _TransitionBuilder(context, animation, secondaryAnimation, child);
-}
 
 
 
-#endregion
+    public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+    {
+        if (_TransitionBuilder == null)
+        {
+            return new FadeTransition(opacity: new CurvedAnimation(parent: animation, curve: CurvesDefaultClass.Curves.Linear), child: child);
+        }
+
+        return _TransitionBuilder(context, animation, secondaryAnimation, child);
+    }
+
+
+
+    #endregion
 }
 
 }

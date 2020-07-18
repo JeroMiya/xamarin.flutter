@@ -417,413 +417,445 @@ namespace FlutterSDK.Material.Bottomsheet
         #region constructors
         public BottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), bool enableDrag = true, FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler onDragStart = default(FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler), FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler onDragEnd = default(FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), VoidCallback onClosing = default(VoidCallback), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController { get; set; }
-    public virtual VoidCallback OnClosing { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
-    public virtual bool EnableDrag { get; set; }
-    public virtual FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler OnDragStart { get; set; }
-    public virtual FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler OnDragEnd { get; set; }
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-    public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Bottomsheet._BottomSheetState CreateState() => new _BottomSheetState();
-
-
-
-    /// <Summary>
-    /// Creates an [AnimationController] suitable for a
-    /// [BottomSheet.animationController].
-    ///
-    /// This API available as a convenience for a Material compliant bottom sheet
-    /// animation. If alternative animation durations are required, a different
-    /// animation controller could be provided.
-    /// </Summary>
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
-    {
-        return new AnimationController(duration: BottomsheetDefaultClass._BottomSheetEnterDuration, reverseDuration: BottomsheetDefaultClass._BottomSheetExitDuration, debugLabel: "BottomSheet", vsync: vsync);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _BottomSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomsheet.BottomSheet>
-{
-    #region constructors
-    public _BottomSheetState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildKey { get; set; }
-    internal virtual double _ChildHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _DismissUnderway { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
-    {
-        if (Widget.OnDragStart != null)
         {
-            Widget.OnDragStart(details);
+            this.AnimationController = animationController;
+            this.EnableDrag = enableDrag;
+            this.OnDragStart = onDragStart;
+            this.OnDragEnd = onDragEnd;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior;
+            this.OnClosing = onClosing;
+            this.Builder = builder;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController { get; set; }
+        public virtual VoidCallback OnClosing { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        public virtual bool EnableDrag { get; set; }
+        public virtual FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler OnDragStart { get; set; }
+        public virtual FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler OnDragEnd { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Bottomsheet._BottomSheetState CreateState() => new _BottomSheetState();
+
+
+
+        /// <Summary>
+        /// Creates an [AnimationController] suitable for a
+        /// [BottomSheet.animationController].
+        ///
+        /// This API available as a convenience for a Material compliant bottom sheet
+        /// animation. If alternative animation durations are required, a different
+        /// animation controller could be provided.
+        /// </Summary>
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
+        {
+            return new AnimationController(duration: BottomsheetDefaultClass._BottomSheetEnterDuration, reverseDuration: BottomsheetDefaultClass._BottomSheetExitDuration, debugLabel: "BottomSheet", vsync: vsync);
         }
 
+
+
+        #endregion
     }
 
 
-
-
-    private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+    public class _BottomSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomsheet.BottomSheet>
     {
+        #region constructors
+        public _BottomSheetState()
+        { }
+        #endregion
 
-        if (_DismissUnderway) return;
-        Widget.AnimationController.Value -= details.PrimaryDelta / (_childHeight == default(double) ? details.primaryDelta : _childHeight);
-    }
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildKey { get; set; }
+        internal virtual double _ChildHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _DismissUnderway { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-
-
-    private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-    {
-
-        if (_DismissUnderway) return;
-        bool isClosing = false;
-        if (details.Velocity.PixelsPerSecond.Dy > BottomsheetDefaultClass._MinFlingVelocity)
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
         {
-            double flingVelocity = -details.Velocity.PixelsPerSecond.Dy / _ChildHeight;
-            if (Widget.AnimationController.Value > 0.0)
+            if (Widget.OnDragStart != null)
             {
-                Widget.AnimationController.Fling(velocity: flingVelocity);
-            }
-
-            if (flingVelocity < 0.0)
-            {
-                isClosing = true;
+                Widget.OnDragStart(details);
             }
 
         }
-        else if (Widget.AnimationController.Value < BottomsheetDefaultClass._CloseProgressThreshold)
-        {
-            if (Widget.AnimationController.Value > 0.0) Widget.AnimationController.Fling(velocity: -1.0);
-            isClosing = true;
-        }
-        else
-        {
-            Widget.AnimationController.Forward();
-        }
 
-        if (Widget.OnDragEnd != null)
+
+
+
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
         {
-            Widget.OnDragEnd(details, isClosing: isClosing);
+
+            if (_DismissUnderway) return;
+            Widget.AnimationController.Value -= details.PrimaryDelta / (_childHeight == default(double) ? details.primaryDelta : _childHeight);
         }
 
-        if (isClosing)
+
+
+
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
         {
-            Widget.OnClosing();
-        }
 
-    }
-
-
-
-
-    public virtual bool ExtentChanged(FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableNotification notification)
-    {
-        if (notification.Extent == notification.MinExtent)
-        {
-            Widget.OnClosing();
-        }
-
-        return false;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        BottomSheetThemeData bottomSheetTheme = ThemeDefaultClass.Theme.Of(context).BottomSheetTheme;
-        Color color = Widget.BackgroundColor ?? bottomSheetTheme.BackgroundColor;
-        double elevation = Widget.Elevation ?? bottomSheetTheme.Elevation ?? 0;
-        ShapeBorder shape = Widget.Shape ?? bottomSheetTheme.Shape;
-        FlutterBinding.UI.Clip clipBehavior = Widget.ClipBehavior ?? bottomSheetTheme.ClipBehavior ?? Clip.None;
-        Widget bottomSheet = new Material(key: _ChildKey, color: color, elevation: elevation, shape: shape, clipBehavior: clipBehavior, child: new NotificationListener<DraggableScrollableNotification>(onNotification: ExtentChanged, child: Widget.Builder(context)));
-        return !Widget.EnableDrag ? bottomSheet : new GestureDetector(onVerticalDragStart: _HandleDragStart, onVerticalDragUpdate: _HandleDragUpdate, onVerticalDragEnd: _HandleDragEnd, child: bottomSheet, excludeFromSemantics: true);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ModalBottomSheetLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
-{
-    #region constructors
-    public _ModalBottomSheetLayout(double progress, bool isScrollControlled)
-
-}
-#endregion
-
-#region fields
-public virtual double Progress { get; set; }
-public virtual bool IsScrollControlled { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
-{
-    return new BoxConstraints(minWidth: constraints.MaxWidth, maxWidth: constraints.MaxWidth, minHeight: 0.0, maxHeight: IsScrollControlled ? constraints.MaxHeight : constraints.MaxHeight * 9.0 / 16.0);
-}
-
-
-
-
-public new Offset GetPositionForChild(Size size, Size childSize)
-{
-    return new Offset(0.0, size.Height - childSize.Height * Progress);
-}
-
-
-
-
-public new bool ShouldRelayout(FlutterSDK.Material.Bottomsheet._ModalBottomSheetLayout oldDelegate)
-{
-    return Progress != oldDelegate.Progress;
-}
-
-
-public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
-{
-    return Progress != oldDelegate.Progress;
-}
-
-
-
-#endregion
-}
-
-
-public class _ModalBottomSheet<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public _ModalBottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T> route = default(FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), bool isScrollControlled = false, bool enableDrag = true)
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T> Route { get; set; }
-public virtual bool IsScrollControlled { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual double Elevation { get; set; }
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-public virtual bool EnableDrag { get; set; }
-#endregion
-
-#region methods
-
-public new _ModalBottomSheetState<T> CreateState() => new _ModalBottomSheetState<T>();
-
-
-#endregion
-}
-
-
-public class _ModalBottomSheetState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomsheet._ModalBottomSheet<T>>
-{
-    #region constructors
-    public _ModalBottomSheetState()
-    { }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Animation.Curves.ParametricCurve<double> AnimationCurve { get; set; }
-    #endregion
-
-    #region methods
-
-    private string _GetRouteLabel(FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations)
-    {
-        switch (ThemeDefaultClass.Theme.Of(Context).Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: return ""; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: return localizations.DialogLabel; }
-        return null;
-    }
-
-
-
-
-    public virtual void HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
-    {
-        AnimationCurve = CurvesDefaultClass.Curves.Linear;
-    }
-
-
-
-
-    public virtual void HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details, bool isClosing = default(bool))
-    {
-        AnimationCurve = new _BottomSheetSuspendedCurve(Widget.Route.Animation.Value, curve: BottomsheetDefaultClass._ModalBottomSheetCurve);
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-
-        MediaQueryData mediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
-        MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
-        string routeLabel = _GetRouteLabel(localizations);
-        return new AnimatedBuilder(animation: Widget.Route.Animation, builder: (BuildContext context, Widget child) =>
-        {
-            double animationValue = AnimationCurve.Transform(mediaQuery.AccessibleNavigation ? 1.0 : Widget.Route.Animation.Value);
-            return new Semantics(scopesRoute: true, namesRoute: true, label: routeLabel, explicitChildNodes: true, child: new ClipRect(child: new CustomSingleChildLayout(@delegate: new _ModalBottomSheetLayout(animationValue, Widget.IsScrollControlled), child: new BottomSheet(animationController: Widget.Route._AnimationController, onClosing: () =>
+            if (_DismissUnderway) return;
+            bool isClosing = false;
+            if (details.Velocity.PixelsPerSecond.Dy > BottomsheetDefaultClass._MinFlingVelocity)
             {
-                if (Widget.Route.IsCurrent)
+                double flingVelocity = -details.Velocity.PixelsPerSecond.Dy / _ChildHeight;
+                if (Widget.AnimationController.Value > 0.0)
                 {
-                    NavigatorDefaultClass.Navigator.Pop(context);
+                    Widget.AnimationController.Fling(velocity: flingVelocity);
+                }
+
+                if (flingVelocity < 0.0)
+                {
+                    isClosing = true;
                 }
 
             }
-            , builder: Widget.Route.Builder, backgroundColor: Widget.BackgroundColor, elevation: Widget.Elevation, shape: Widget.Shape, clipBehavior: Widget.ClipBehavior, enableDrag: Widget.EnableDrag, onDragStart: HandleDragStart, onDragEnd: HandleDragEnd))));
+            else if (Widget.AnimationController.Value < BottomsheetDefaultClass._CloseProgressThreshold)
+            {
+                if (Widget.AnimationController.Value > 0.0) Widget.AnimationController.Fling(velocity: -1.0);
+                isClosing = true;
+            }
+            else
+            {
+                Widget.AnimationController.Forward();
+            }
+
+            if (Widget.OnDragEnd != null)
+            {
+                Widget.OnDragEnd(details, isClosing: isClosing);
+            }
+
+            if (isClosing)
+            {
+                Widget.OnClosing();
+            }
+
         }
-        );
+
+
+
+
+        public virtual bool ExtentChanged(FlutterSDK.Widgets.Draggablescrollablesheet.DraggableScrollableNotification notification)
+        {
+            if (notification.Extent == notification.MinExtent)
+            {
+                Widget.OnClosing();
+            }
+
+            return false;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            BottomSheetThemeData bottomSheetTheme = ThemeDefaultClass.Theme.Of(context).BottomSheetTheme;
+            Color color = Widget.BackgroundColor ?? bottomSheetTheme.BackgroundColor;
+            double elevation = Widget.Elevation ?? bottomSheetTheme.Elevation ?? 0;
+            ShapeBorder shape = Widget.Shape ?? bottomSheetTheme.Shape;
+            FlutterBinding.UI.Clip clipBehavior = Widget.ClipBehavior ?? bottomSheetTheme.ClipBehavior ?? Clip.None;
+            Widget bottomSheet = new Material(key: _ChildKey, color: color, elevation: elevation, shape: shape, clipBehavior: clipBehavior, child: new NotificationListener<DraggableScrollableNotification>(onNotification: ExtentChanged, child: Widget.Builder(context)));
+            return !Widget.EnableDrag ? bottomSheet : new GestureDetector(onVerticalDragStart: _HandleDragStart, onVerticalDragUpdate: _HandleDragUpdate, onVerticalDragEnd: _HandleDragEnd, child: bottomSheet, excludeFromSemantics: true);
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-public class _ModalBottomSheetRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
-{
-    #region constructors
-    public _ModalBottomSheetRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), string barrierLabel = default(string), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color modalBarrierColor = default(FlutterBinding.UI.Color), bool isDismissible = true, bool enableDrag = true, bool isScrollControlled = default(bool), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
-    : base(settings: settings)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
-public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get; set; }
-public virtual bool IsScrollControlled { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual double Elevation { get; set; }
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-public virtual FlutterBinding.UI.Color ModalBarrierColor { get; set; }
-public virtual bool IsDismissible { get; set; }
-public virtual bool EnableDrag { get; set; }
-public new string BarrierLabel { get; set; }
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
-public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TimeSpan ReverseTransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
-{
-
-    _AnimationController = BottomsheetDefaultClass.BottomSheet.CreateAnimationController(Navigator.Overlay);
-    return _AnimationController;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
-{
-    BottomSheetThemeData sheetTheme = Theme?.BottomSheetTheme ?? ThemeDefaultClass.Theme.Of(context).BottomSheetTheme;
-    Widget bottomSheet = MediaQuery.RemovePadding(context: context, removeTop: true, child: new _ModalBottomSheet<T>(route: this, backgroundColor: BackgroundColor ?? sheetTheme?.ModalBackgroundColor ?? sheetTheme?.BackgroundColor, elevation: elevation == default(double) ? sheetTheme?.modalElevation : elevation ?? sheetTheme?.Elevation, shape: Shape, clipBehavior: ClipBehavior, isScrollControlled: IsScrollControlled, enableDrag: EnableDrag));
-    if (Theme != null) bottomSheet = new Theme(data: Theme, child: bottomSheet);
-    return bottomSheet;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A curve that progresses linearly until a specified [startingPoint], at which
-/// point [curve] will begin. Unlike [Interval], [curve] will not start at zero,
-/// but will use [startingPoint] as the Y position.
-///
-/// For example, if [startingPoint] is set to `0.5`, and [curve] is set to
-/// [Curves.easeOut], then the bottom-left quarter of the curve will be a
-/// straight line, and the top-right quarter will contain the entire contents of
-/// [Curves.easeOut].
-///
-/// This is useful in situations where a widget must track the user's finger
-/// (which requires a linear animation), and afterwards can be flung using a
-/// curve specified with the [curve] argument, after the finger is released. In
-/// such a case, the value of [startingPoint] would be the progress of the
-/// animation at the time when the finger was released.
-///
-/// The [startingPoint] and [curve] arguments must not be null.
-/// </Summary>
-public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
-{
-    #region constructors
-    public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual double StartingPoint { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-#endregion
-
-#region methods
-
-public new double Transform(double t)
-{
-
-
-    if (t < StartingPoint)
+    public class _ModalBottomSheetLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        return t;
+        #region constructors
+        public _ModalBottomSheetLayout(double progress, bool isScrollControlled)
+        {
+            this.Progress = progress;
+            this.IsScrollControlled = isScrollControlled;
+        }
+        #endregion
+
+        #region fields
+        public virtual double Progress { get; set; }
+        public virtual bool IsScrollControlled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
+        {
+            return new BoxConstraints(minWidth: constraints.MaxWidth, maxWidth: constraints.MaxWidth, minHeight: 0.0, maxHeight: IsScrollControlled ? constraints.MaxHeight : constraints.MaxHeight * 9.0 / 16.0);
+        }
+
+
+
+
+        public new Offset GetPositionForChild(Size size, Size childSize)
+        {
+            return new Offset(0.0, size.Height - childSize.Height * Progress);
+        }
+
+
+
+
+        public new bool ShouldRelayout(FlutterSDK.Material.Bottomsheet._ModalBottomSheetLayout oldDelegate)
+        {
+            return Progress != oldDelegate.Progress;
+        }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
+        {
+            return Progress != oldDelegate.Progress;
+        }
+
+
+
+        #endregion
     }
 
-    if (t == 1.0)
+
+    public class _ModalBottomSheet<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        return t;
+        #region constructors
+        public _ModalBottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T> route = default(FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), bool isScrollControlled = false, bool enableDrag = true)
+        : base(key: key)
+        {
+            this.Route = route;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior;
+            this.IsScrollControlled = isScrollControlled;
+            this.EnableDrag = enableDrag;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T> Route { get; set; }
+        public virtual bool IsScrollControlled { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual bool EnableDrag { get; set; }
+        #endregion
+
+        #region methods
+
+        public new _ModalBottomSheetState<T> CreateState() => new _ModalBottomSheetState<T>();
+
+
+        #endregion
     }
 
-    double curveProgress = (t - StartingPoint) / (1 - StartingPoint);
-    double transformed = Curve.Transform(curveProgress);
-    return Dart:uiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
-}
+
+    public class _ModalBottomSheetState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomsheet._ModalBottomSheet<T>>
+    {
+        #region constructors
+        public _ModalBottomSheetState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Curves.ParametricCurve<double> AnimationCurve { get; set; }
+        #endregion
+
+        #region methods
+
+        private string _GetRouteLabel(FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations)
+        {
+            switch (ThemeDefaultClass.Theme.Of(Context).Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: return ""; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: return localizations.DialogLabel; }
+            return null;
+        }
 
 
 
 
-#endregion
-}
+        public virtual void HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
+        {
+            AnimationCurve = CurvesDefaultClass.Curves.Linear;
+        }
+
+
+
+
+        public virtual void HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details, bool isClosing = default(bool))
+        {
+            AnimationCurve = new _BottomSheetSuspendedCurve(Widget.Route.Animation.Value, curve: BottomsheetDefaultClass._ModalBottomSheetCurve);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+
+            MediaQueryData mediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
+            MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+            string routeLabel = _GetRouteLabel(localizations);
+            return new AnimatedBuilder(animation: Widget.Route.Animation, builder: (BuildContext context, Widget child) =>
+            {
+                double animationValue = AnimationCurve.Transform(mediaQuery.AccessibleNavigation ? 1.0 : Widget.Route.Animation.Value);
+                return new Semantics(scopesRoute: true, namesRoute: true, label: routeLabel, explicitChildNodes: true, child: new ClipRect(child: new CustomSingleChildLayout(@delegate: new _ModalBottomSheetLayout(animationValue, Widget.IsScrollControlled), child: new BottomSheet(animationController: Widget.Route._AnimationController, onClosing: () =>
+                {
+                    if (Widget.Route.IsCurrent)
+                    {
+                        NavigatorDefaultClass.Navigator.Pop(context);
+                    }
+
+                }
+                , builder: Widget.Route.Builder, backgroundColor: Widget.BackgroundColor, elevation: Widget.Elevation, shape: Widget.Shape, clipBehavior: Widget.ClipBehavior, enableDrag: Widget.EnableDrag, onDragStart: HandleDragStart, onDragEnd: HandleDragEnd))));
+            }
+            );
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ModalBottomSheetRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
+    {
+        #region constructors
+        public _ModalBottomSheetRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), string barrierLabel = default(string), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color modalBarrierColor = default(FlutterBinding.UI.Color), bool isDismissible = true, bool enableDrag = true, bool isScrollControlled = default(bool), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        : base(settings: settings)
+        {
+            this.Builder = builder;
+            this.Theme = theme;
+            this.BarrierLabel = barrierLabel;
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.ClipBehavior = clipBehavior;
+            this.ModalBarrierColor = modalBarrierColor;
+            this.IsDismissible = isDismissible;
+            this.EnableDrag = enableDrag;
+            this.IsScrollControlled = isScrollControlled;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get; set; }
+        public virtual bool IsScrollControlled { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual FlutterBinding.UI.Color ModalBarrierColor { get; set; }
+        public virtual bool IsDismissible { get; set; }
+        public virtual bool EnableDrag { get; set; }
+        public new string BarrierLabel { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan ReverseTransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
+        {
+
+            _AnimationController = BottomsheetDefaultClass.BottomSheet.CreateAnimationController(Navigator.Overlay);
+            return _AnimationController;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+        {
+            BottomSheetThemeData sheetTheme = Theme?.BottomSheetTheme ?? ThemeDefaultClass.Theme.Of(context).BottomSheetTheme;
+            Widget bottomSheet = MediaQuery.RemovePadding(context: context, removeTop: true, child: new _ModalBottomSheet<T>(route: this, backgroundColor: BackgroundColor ?? sheetTheme?.ModalBackgroundColor ?? sheetTheme?.BackgroundColor, elevation: elevation == default(double) ? sheetTheme?.modalElevation : elevation ?? sheetTheme?.Elevation, shape: Shape, clipBehavior: ClipBehavior, isScrollControlled: IsScrollControlled, enableDrag: EnableDrag));
+            if (Theme != null) bottomSheet = new Theme(data: Theme, child: bottomSheet);
+            return bottomSheet;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A curve that progresses linearly until a specified [startingPoint], at which
+    /// point [curve] will begin. Unlike [Interval], [curve] will not start at zero,
+    /// but will use [startingPoint] as the Y position.
+    ///
+    /// For example, if [startingPoint] is set to `0.5`, and [curve] is set to
+    /// [Curves.easeOut], then the bottom-left quarter of the curve will be a
+    /// straight line, and the top-right quarter will contain the entire contents of
+    /// [Curves.easeOut].
+    ///
+    /// This is useful in situations where a widget must track the user's finger
+    /// (which requires a linear animation), and afterwards can be flung using a
+    /// curve specified with the [curve] argument, after the finger is released. In
+    /// such a case, the value of [startingPoint] would be the progress of the
+    /// animation at the time when the finger was released.
+    ///
+    /// The [startingPoint] and [curve] arguments must not be null.
+    /// </Summary>
+    public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
+    {
+        #region constructors
+        public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        : base()
+        {
+            this.StartingPoint = startingPoint;
+            this.Curve = curve;
+        }
+        #endregion
+
+        #region fields
+        public virtual double StartingPoint { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        #endregion
+
+        #region methods
+
+        public new double Transform(double t)
+        {
+
+
+            if (t < StartingPoint)
+            {
+                return t;
+            }
+
+            if (t == 1.0)
+            {
+                return t;
+            }
+
+            double curveProgress = (t - StartingPoint) / (1 - StartingPoint);
+            double transformed = Curve.Transform(curveProgress);
+            return Dart:uiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
+        }
+
+
+
+
+        #endregion
+    }
 
 }

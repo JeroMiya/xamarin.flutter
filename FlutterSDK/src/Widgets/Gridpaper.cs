@@ -432,98 +432,107 @@ namespace FlutterSDK.Widgets.Gridpaper
     {
         #region constructors
         public _GridPaperPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = default(double), int divisions = default(int), int subdivisions = default(int))
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual double Interval { get; set; }
-    public virtual int Divisions { get; set; }
-    public virtual int Subdivisions { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void Paint(Canvas canvas, Size size)
-    {
-        Paint linePaint = new Paint()..Color = Color;
-        double allDivisions = (Divisions * Subdivisions).ToDouble();
-        for (double x = 0.0; x <= size.Width; x += Interval / allDivisions)
         {
-            linePaint.StrokeWidth = (x % Interval == 0.0) ? 1.0 : (x % (Interval / Subdivisions) == 0.0) ? 0.5 : 0.25;
-            canvas.DrawLine(new Offset(x, 0.0), new Offset(x, size.Height), linePaint);
+            this.Color = color;
+            this.Interval = interval;
+            this.Divisions = divisions;
+            this.Subdivisions = subdivisions;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Interval { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual int Subdivisions { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            Paint linePaint = new Paint()..Color = Color;
+            double allDivisions = (Divisions * Subdivisions).ToDouble();
+            for (double x = 0.0; x <= size.Width; x += Interval / allDivisions)
+            {
+                linePaint.StrokeWidth = (x % Interval == 0.0) ? 1.0 : (x % (Interval / Subdivisions) == 0.0) ? 0.5 : 0.25;
+                canvas.DrawLine(new Offset(x, 0.0), new Offset(x, size.Height), linePaint);
+            }
+
+            for (double y = 0.0; y <= size.Height; y += Interval / allDivisions)
+            {
+                linePaint.StrokeWidth = (y % Interval == 0.0) ? 1.0 : (y % (Interval / Subdivisions) == 0.0) ? 0.5 : 0.25;
+                canvas.DrawLine(new Offset(0.0, y), new Offset(size.Width, y), linePaint);
+            }
+
         }
 
-        for (double y = 0.0; y <= size.Height; y += Interval / allDivisions)
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Gridpaper._GridPaperPainter oldPainter)
         {
-            linePaint.StrokeWidth = (y % Interval == 0.0) ? 1.0 : (y % (Interval / Subdivisions) == 0.0) ? 0.5 : 0.25;
-            canvas.DrawLine(new Offset(0.0, y), new Offset(size.Width, y), linePaint);
+            return oldPainter.Color != Color || oldPainter.Interval != Interval || oldPainter.Divisions != Divisions || oldPainter.Subdivisions != Subdivisions;
         }
 
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return oldPainter.Color != Color || oldPainter.Interval != Interval || oldPainter.Divisions != Divisions || oldPainter.Subdivisions != Subdivisions;
+        }
+
+
+
+
+        public new bool HitTest(FlutterBinding.UI.Offset position) => false;
+
+
+        #endregion
     }
 
 
-
-
-    public new bool ShouldRepaint(FlutterSDK.Widgets.Gridpaper._GridPaperPainter oldPainter)
+    /// <Summary>
+    /// A widget that draws a rectilinear grid of lines one pixel wide.
+    ///
+    /// Useful with a [Stack] for visualizing your layout along a grid.
+    ///
+    /// The grid's origin (where the first primary horizontal line and the first
+    /// primary vertical line intersect) is at the top left of the widget.
+    ///
+    /// The grid is drawn over the [child] widget.
+    /// </Summary>
+    public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        return oldPainter.Color != Color || oldPainter.Interval != Interval || oldPainter.Divisions != Divisions || oldPainter.Subdivisions != Subdivisions;
+        #region constructors
+        public GridPaper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = 100.0, int divisions = 2, int subdivisions = 5, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Color = color;
+            this.Interval = interval;
+            this.Divisions = divisions;
+            this.Subdivisions = subdivisions;
+            this.Child = child;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Interval { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual int Subdivisions { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new CustomPaint(foregroundPainter: new _GridPaperPainter(color: Color, interval: Interval, divisions: Divisions, subdivisions: Subdivisions), child: Child);
+        }
+
+
+
+        #endregion
     }
-
-
-    public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-    {
-        return oldPainter.Color != Color || oldPainter.Interval != Interval || oldPainter.Divisions != Divisions || oldPainter.Subdivisions != Subdivisions;
-    }
-
-
-
-
-    public new bool HitTest(FlutterBinding.UI.Offset position) => false;
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A widget that draws a rectilinear grid of lines one pixel wide.
-///
-/// Useful with a [Stack] for visualizing your layout along a grid.
-///
-/// The grid's origin (where the first primary horizontal line and the first
-/// primary vertical line intersect) is at the top left of the widget.
-///
-/// The grid is drawn over the [child] widget.
-/// </Summary>
-public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public GridPaper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = 100.0, int divisions = 2, int subdivisions = 5, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color Color { get; set; }
-public virtual double Interval { get; set; }
-public virtual int Divisions { get; set; }
-public virtual int Subdivisions { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new CustomPaint(foregroundPainter: new _GridPaperPainter(color: Color, interval: Interval, divisions: Divisions, subdivisions: Subdivisions), child: Child);
-}
-
-
-
-#endregion
-}
 
 }

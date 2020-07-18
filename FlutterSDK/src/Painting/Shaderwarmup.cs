@@ -527,55 +527,56 @@ namespace FlutterSDK.Painting.Shaderwarmup
     {
         #region constructors
         public ShaderWarmUp()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    /// <Summary>
-    /// Trigger draw operations on a given canvas to warm up GPU shader
-    /// compilation cache.
-    ///
-    /// To decide which draw operations to be added to your custom warm up
-    /// process, try capture an skp using
-    /// `flutter screenshot --observatory-uri=<uri> --type=skia`
-    /// and analyze it with https://debugger.skia.org.
-    /// Alternatively, one may run the app with `flutter run --trace-skia` and
-    /// then examine the GPU thread in the observatory timeline to see which
-    /// Skia draw operations are commonly used, and which shader compilations
-    /// are causing jank.
-    /// </Summary>
-    public virtual Future<object> WarmUpOnCanvas(Canvas canvas)
-    {
-        return default(Future<void>);
-    }
+        #region methods
+
+        /// <Summary>
+        /// Trigger draw operations on a given canvas to warm up GPU shader
+        /// compilation cache.
+        ///
+        /// To decide which draw operations to be added to your custom warm up
+        /// process, try capture an skp using
+        /// `flutter screenshot --observatory-uri=<uri> --type=skia`
+        /// and analyze it with https://debugger.skia.org.
+        /// Alternatively, one may run the app with `flutter run --trace-skia` and
+        /// then examine the GPU thread in the observatory timeline to see which
+        /// Skia draw operations are commonly used, and which shader compilations
+        /// are causing jank.
+        /// </Summary>
+        public virtual Future<object> WarmUpOnCanvas(Canvas canvas)
+        {
+            return default(Future<void>);
+        }
 
 
-    /// <Summary>
-    /// Construct an offscreen image of [size], and execute [warmUpOnCanvas] on a
-    /// canvas associated with that image.
-    /// </Summary>
-    public virtual Future<object> Execute()
-async
+        /// <Summary>
+        /// Construct an offscreen image of [size], and execute [warmUpOnCanvas] on a
+        /// canvas associated with that image.
+        /// </Summary>
+        public virtual Future<object> Execute()
+    async
 {
 Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
-    Ui.Dart:uiDefaultClass.Canvas canvas = new Ui.Canvas(recorder);
-    await WarmUpOnCanvas(canvas);
-    Ui.Dart:uiDefaultClass.Picture picture = recorder.EndRecording();
-    TimelineTask shaderWarmUpTask = new TimelineTask();
-    shaderWarmUpTask.Start("Warm-up shader");
+        Ui.Dart:uiDefaultClass.Canvas canvas = new Ui.Canvas(recorder);
+        await WarmUpOnCanvas(canvas);
+        Ui.Dart:uiDefaultClass.Picture picture = recorder.EndRecording();
+        TimelineTask shaderWarmUpTask = new TimelineTask();
+        shaderWarmUpTask.Start("Warm-up shader");
 await picture.ToImage(Size.Width.Ceil(), Size.Height.Ceil());
-    shaderWarmUpTask.Finish();
+        shaderWarmUpTask.Finish();
 }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -590,55 +591,56 @@ public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
 {
     #region constructors
     public DefaultShaderWarmUp(double drawCallSpacing = 0.0, Size canvasSize = default(Size))
+    {
+        this.DrawCallSpacing = drawCallSpacing;
+        this.CanvasSize = canvasSize;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual double DrawCallSpacing { get; set; }
+    public virtual Size CanvasSize { get; set; }
+    public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual double DrawCallSpacing { get; set; }
-public virtual Size CanvasSize { get; set; }
-public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Trigger common draw operations on a canvas to warm up GPU shader
-/// compilation cache.
-/// </Summary>
-public new Future<object> WarmUpOnCanvas(Canvas canvas)
+    /// <Summary>
+    /// Trigger common draw operations on a canvas to warm up GPU shader
+    /// compilation cache.
+    /// </Summary>
+    public new Future<object> WarmUpOnCanvas(Canvas canvas)
 async
 {
-    Ui.Dart:uiDefaultClass.RRect rrect = Ui.Dart:uiDefaultClass.RRect.FromLTRBXY(20.0, 20.0, 60.0, 60.0, 10.0, 10.0);
-    Ui.Dart:uiDefaultClass.Path rrectPath = new Ui.Path();
+Ui.Dart:uiDefaultClass.RRect rrect = Ui.Dart:uiDefaultClass.RRect.FromLTRBXY(20.0, 20.0, 60.0, 60.0, 10.0, 10.0);
+Ui.Dart:uiDefaultClass.Path rrectPath = new Ui.Path();
     new Ui.Path().AddRRect(rrect);
     Ui.Dart:uiDefaultClass.Path circlePath = new Ui.Path();
-    new Ui.Path().AddOval(Ui.Dart:uiDefaultClass.Rect.FromCircle(center: new Ui.Dart:uiDefaultClass.Offset(40.0, 40.0), radius: 20.0));
-    Ui.Dart:uiDefaultClass.Path path = new Ui.Path();
+    new Ui.Path().AddOval(Ui.Dart:uiDefaultClass.Rect.FromCircle(center:new Ui.Dart:uiDefaultClass.Offset(40.0, 40.0), radius:20.0));
+Ui.Dart:uiDefaultClass.Path path = new Ui.Path();
     path.MoveTo(20.0, 60.0);
-    path.QuadraticBezierTo(60.0, 20.0, 60.0, 60.0);
-    path.Close();
-    path.MoveTo(60.0, 20.0);
-    path.QuadraticBezierTo(60.0, 60.0, 20.0, 60.0);
-    Ui.Dart:uiDefaultClass.Path convexPath = new Ui.Path();
+path.QuadraticBezierTo(60.0, 20.0, 60.0, 60.0);
+path.Close();
+path.MoveTo(60.0, 20.0);
+path.QuadraticBezierTo(60.0, 60.0, 20.0, 60.0);
+Ui.Dart:uiDefaultClass.Path convexPath = new Ui.Path();
     convexPath.MoveTo(20.0, 30.0);
-    convexPath.LineTo(40.0, 20.0);
-    convexPath.LineTo(60.0, 30.0);
-    convexPath.LineTo(60.0, 60.0);
-    convexPath.LineTo(20.0, 60.0);
-    convexPath.Close();
-    List < Ui.Dart:uiDefaultClass.Path > paths = new List<Ui.Dart:uiDefaultClass.Path>() { rrectPath, circlePath, path, convexPath };
-    List < Ui.Dart:uiDefaultClass.Paint > paints = new List<Ui.Dart:uiDefaultClass.Paint>() { new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = false..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 10, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 0.1 };
-    for (int i = 0; i < paths.Count; i += 1)
-    {
-        canvas.Save();
-        foreach (Ui.Dart:uiDefaultClass.Paint paint  in paints){
-        canvas.DrawPath(paths[i], paint);
-        canvas.Translate(DrawCallSpacing, 0.0);
-    }
+convexPath.LineTo(40.0, 20.0);
+convexPath.LineTo(60.0, 30.0);
+convexPath.LineTo(60.0, 60.0);
+convexPath.LineTo(20.0, 60.0);
+convexPath.Close();
+List<Ui.Dart:uiDefaultClass.Path> paths = new List<Ui.Dart:uiDefaultClass.Path>() { rrectPath, circlePath, path, convexPath };
+    List<Ui.Dart:uiDefaultClass.Paint> paints = new List<Ui.Dart:uiDefaultClass.Paint>() { new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = false..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 10, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 0.1 };
+for (int i=0;i<paths.Count;i+=1){
+canvas.Save();
+foreach(Ui.Dart:uiDefaultClass.Paint paint  in paints){
+canvas.DrawPath(paths[i], paint);
+canvas.Translate(DrawCallSpacing, 0.0);
+}
 
-    canvas.Restore();
-    canvas.Translate(0.0, DrawCallSpacing);
+canvas.Restore();
+canvas.Translate(0.0, DrawCallSpacing);
 }
 
 Ui.Dart:uiDefaultClass.Color black = new Ui.Color(0xFF000000);

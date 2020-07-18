@@ -424,141 +424,150 @@ namespace FlutterSDK.Material.Navigationrailtheme
     {
         #region constructors
         public NavigationRailThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType))
-    
-}
-    #endregion
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Elevation = elevation;
+            this.UnselectedLabelTextStyle = unselectedLabelTextStyle;
+            this.SelectedLabelTextStyle = selectedLabelTextStyle;
+            this.UnselectedIconTheme = unselectedIconTheme;
+            this.SelectedIconTheme = selectedIconTheme;
+            this.GroupAlignment = groupAlignment;
+            this.LabelType = labelType;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelTextStyle { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelTextStyle { get; set; }
-    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
-    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
-    public virtual double GroupAlignment { get; set; }
-    public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelTextStyle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle SelectedLabelTextStyle { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
+        public virtual double GroupAlignment { get; set; }
+        public virtual FlutterSDK.Material.Navigationrail.NavigationRailLabelType LabelType { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType))
+        {
+            return new NavigationRailThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, elevation: elevation == default(double) ? this.elevation : elevation, unselectedLabelTextStyle: unselectedLabelTextStyle ?? this.UnselectedLabelTextStyle, selectedLabelTextStyle: selectedLabelTextStyle ?? this.SelectedLabelTextStyle, unselectedIconTheme: unselectedIconTheme ?? this.UnselectedIconTheme, selectedIconTheme: selectedIconTheme ?? this.SelectedIconTheme, groupAlignment: groupAlignment == default(double) ? this.groupAlignment : groupAlignment, labelType: labelType ?? this.LabelType);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two navigation rail themes.
+        ///
+        /// If both arguments are null then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Lerp(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData a, FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            return new NavigationRailThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), unselectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.UnselectedLabelTextStyle, b?.UnselectedLabelTextStyle, t), selectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SelectedLabelTextStyle, b?.SelectedLabelTextStyle, t), unselectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.UnselectedIconTheme, b?.UnselectedIconTheme, t), selectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.SelectedIconTheme, b?.SelectedIconTheme, t), groupAlignment: Dart:uiDefaultClass.LerpDouble(a?.GroupAlignment, b?.GroupAlignment, t), labelType: t < 0.5 ? a?.LabelType : b?.LabelType);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is NavigationRailThemeData && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.UnselectedLabelTextStyle == UnselectedLabelTextStyle && other.SelectedLabelTextStyle == SelectedLabelTextStyle && other.UnselectedIconTheme == UnselectedIconTheme && other.SelectedIconTheme == SelectedIconTheme && other.GroupAlignment == GroupAlignment && other.LabelType == LabelType;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            NavigationRailThemeData defaultData = new NavigationRailThemeData();
+            properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: defaultData.BackgroundColor));
+            properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: defaultData.Elevation));
+            properties.Add(new DiagnosticsProperty<TextStyle>("unselectedLabelTextStyle", UnselectedLabelTextStyle, defaultValue: defaultData.UnselectedLabelTextStyle));
+            properties.Add(new DiagnosticsProperty<TextStyle>("selectedLabelTextStyle", SelectedLabelTextStyle, defaultValue: defaultData.SelectedLabelTextStyle));
+            properties.Add(new DiagnosticsProperty<IconThemeData>("unselectedIconTheme", UnselectedIconTheme, defaultValue: defaultData.UnselectedIconTheme));
+            properties.Add(new DiagnosticsProperty<IconThemeData>("selectedIconTheme", SelectedIconTheme, defaultValue: defaultData.SelectedIconTheme));
+            properties.Add(new DoubleProperty("groupAlignment", GroupAlignment, defaultValue: defaultData.GroupAlignment));
+            properties.Add(new DiagnosticsProperty<NavigationRailLabelType>("labelType", LabelType, defaultValue: defaultData.LabelType));
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a copy of this object with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double groupAlignment = default(double), FlutterSDK.Material.Navigationrail.NavigationRailLabelType labelType = default(FlutterSDK.Material.Navigationrail.NavigationRailLabelType))
-    {
-        return new NavigationRailThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, elevation: elevation == default(double) ? this.elevation : elevation, unselectedLabelTextStyle: unselectedLabelTextStyle ?? this.UnselectedLabelTextStyle, selectedLabelTextStyle: selectedLabelTextStyle ?? this.SelectedLabelTextStyle, unselectedIconTheme: unselectedIconTheme ?? this.UnselectedIconTheme, selectedIconTheme: selectedIconTheme ?? this.SelectedIconTheme, groupAlignment: groupAlignment == default(double) ? this.groupAlignment : groupAlignment, labelType: labelType ?? this.LabelType);
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two navigation rail themes.
+    /// An inherited widget that defines visual properties for [NavigationRail]s and
+    /// [NavigationRailDestination]s in this widget's subtree.
     ///
-    /// If both arguments are null then null is returned.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
+    /// Values specified here are used for [NavigationRail] properties that are not
+    /// given an explicit non-null value.
     /// </Summary>
-    public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Lerp(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData a, FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData b, double t)
+    public class NavigationRailTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
+        #region constructors
+        public NavigationRailTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData data = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data;
+        }
+        #endregion
 
-        if (a == null && b == null) return null;
-        return new NavigationRailThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), unselectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.UnselectedLabelTextStyle, b?.UnselectedLabelTextStyle, t), selectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SelectedLabelTextStyle, b?.SelectedLabelTextStyle, t), unselectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.UnselectedIconTheme, b?.UnselectedIconTheme, t), selectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.SelectedIconTheme, b?.SelectedIconTheme, t), groupAlignment: Dart:uiDefaultClass.LerpDouble(a?.GroupAlignment, b?.GroupAlignment, t), labelType: t < 0.5 ? a?.LabelType : b?.LabelType);
+        #region fields
+        public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The closest instance of this class that encloses the given context.
+        ///
+        /// If there is no enclosing [NavigationRailTheme] widget, then
+        /// [ThemeData.navigationRailTheme] is used.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// NavigationRailTheme theme = NavigationRailTheme.of(context);
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            NavigationRailTheme navigationRailTheme = context.DependOnInheritedWidgetOfExactType();
+            return navigationRailTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).NavigationRailTheme;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            NavigationRailTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new NavigationRailTheme(data: Data, child: child);
+        }
+
+
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Navigationrailtheme.NavigationRailTheme oldWidget) => Data != oldWidget.Data;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+        #endregion
     }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is NavigationRailThemeData && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.UnselectedLabelTextStyle == UnselectedLabelTextStyle && other.SelectedLabelTextStyle == SelectedLabelTextStyle && other.UnselectedIconTheme == UnselectedIconTheme && other.SelectedIconTheme == SelectedIconTheme && other.GroupAlignment == GroupAlignment && other.LabelType == LabelType;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        NavigationRailThemeData defaultData = new NavigationRailThemeData();
-        properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: defaultData.BackgroundColor));
-        properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: defaultData.Elevation));
-        properties.Add(new DiagnosticsProperty<TextStyle>("unselectedLabelTextStyle", UnselectedLabelTextStyle, defaultValue: defaultData.UnselectedLabelTextStyle));
-        properties.Add(new DiagnosticsProperty<TextStyle>("selectedLabelTextStyle", SelectedLabelTextStyle, defaultValue: defaultData.SelectedLabelTextStyle));
-        properties.Add(new DiagnosticsProperty<IconThemeData>("unselectedIconTheme", UnselectedIconTheme, defaultValue: defaultData.UnselectedIconTheme));
-        properties.Add(new DiagnosticsProperty<IconThemeData>("selectedIconTheme", SelectedIconTheme, defaultValue: defaultData.SelectedIconTheme));
-        properties.Add(new DoubleProperty("groupAlignment", GroupAlignment, defaultValue: defaultData.GroupAlignment));
-        properties.Add(new DiagnosticsProperty<NavigationRailLabelType>("labelType", LabelType, defaultValue: defaultData.LabelType));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An inherited widget that defines visual properties for [NavigationRail]s and
-/// [NavigationRailDestination]s in this widget's subtree.
-///
-/// Values specified here are used for [NavigationRail] properties that are not
-/// given an explicit non-null value.
-/// </Summary>
-public class NavigationRailTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-    #region constructors
-    public NavigationRailTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData data = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Data { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// The closest instance of this class that encloses the given context.
-///
-/// If there is no enclosing [NavigationRailTheme] widget, then
-/// [ThemeData.navigationRailTheme] is used.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// NavigationRailTheme theme = NavigationRailTheme.of(context);
-/// ```
-/// </Summary>
-public virtual FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    NavigationRailTheme navigationRailTheme = context.DependOnInheritedWidgetOfExactType();
-    return navigationRailTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).NavigationRailTheme;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-{
-    NavigationRailTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new NavigationRailTheme(data: Data, child: child);
-}
-
-
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Navigationrailtheme.NavigationRailTheme oldWidget) => Data != oldWidget.Data;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
-
-
-#endregion
-}
 
 }

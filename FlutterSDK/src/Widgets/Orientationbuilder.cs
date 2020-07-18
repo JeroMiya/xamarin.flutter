@@ -449,33 +449,34 @@ namespace FlutterSDK.Widgets.Orientationbuilder
         #region constructors
         public OrientationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder builder = default(FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Builder = builder;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder Builder { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder Builder { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    private FlutterSDK.Widgets.Framework.Widget _BuildWithConstraints(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints)
-    {
-        Orientation orientation = constraints.MaxWidth > constraints.MaxHeight ? Orientation.Landscape : Orientation.Portrait;
-        return Builder(context, orientation);
+        private FlutterSDK.Widgets.Framework.Widget _BuildWithConstraints(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints)
+        {
+            Orientation orientation = constraints.MaxWidth > constraints.MaxHeight ? Orientation.Landscape : Orientation.Portrait;
+            return Builder(context, orientation);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new LayoutBuilder(builder: _BuildWithConstraints);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new LayoutBuilder(builder: _BuildWithConstraints);
-    }
-
-
-
-    #endregion
-}
 
 }

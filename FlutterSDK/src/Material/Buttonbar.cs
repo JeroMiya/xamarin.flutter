@@ -415,170 +415,183 @@ namespace FlutterSDK.Material.Buttonbar
         #region constructors
         public ButtonBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double overflowButtonSpacing = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
-    public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
-    public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
-    public virtual double ButtonMinWidth { get; set; }
-    public virtual double ButtonHeight { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
-    public virtual bool ButtonAlignedDropdown { get; set; }
-    public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
-    public virtual double OverflowButtonSpacing { get; set; }
-    public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        ButtonThemeData parentButtonTheme = ButtonthemeDefaultClass.ButtonTheme.Of(context);
-        ButtonBarThemeData barTheme = ButtonbarthemeDefaultClass.ButtonBarTheme.Of(context);
-        ButtonThemeData buttonTheme = parentButtonTheme.CopyWith(textTheme: ButtonTextTheme ?? barTheme.ButtonTextTheme ?? ButtonTextTheme.Primary, minWidth: buttonMinWidth == default(double) ? barTheme.buttonMinWidth : buttonMinWidth ?? 64.0, height: buttonHeight == default(double) ? barTheme.buttonHeight : buttonHeight ?? 36.0, padding: ButtonPadding ?? barTheme.ButtonPadding ?? EdgeInsets.Symmetric(horizontal: 8.0), alignedDropdown: ButtonAlignedDropdown ?? barTheme.ButtonAlignedDropdown ?? false, layoutBehavior: LayoutBehavior ?? barTheme.LayoutBehavior ?? ButtonBarLayoutBehavior.Padded);
-        double paddingUnit = buttonTheme.Padding.Horizontal / 4.0;
-        Widget child = ButtonTheme.FromButtonThemeData(data: buttonTheme, child: new _ButtonBarRow(mainAxisAlignment: Alignment ?? barTheme.Alignment ?? MainAxisAlignment.End, mainAxisSize: MainAxisSize ?? barTheme.MainAxisSize ?? MainAxisSize.Max, overflowDirection: OverflowDirection ?? barTheme.OverflowDirection ?? VerticalDirection.Down, children: Children.Map((Widget child) =>
         {
-            return new Padding(padding: EdgeInsets.Symmetric(horizontal: paddingUnit), child: child);
+            this.Alignment = alignment;
+            this.MainAxisSize = mainAxisSize;
+            this.ButtonTextTheme = buttonTextTheme;
+            this.ButtonMinWidth = buttonMinWidth;
+            this.ButtonHeight = buttonHeight;
+            this.ButtonPadding = buttonPadding;
+            this.ButtonAlignedDropdown = buttonAlignedDropdown;
+            this.LayoutBehavior = layoutBehavior;
+            this.OverflowDirection = overflowDirection;
+            this.OverflowButtonSpacing = overflowButtonSpacing;
+            this.Children = children;
         }
-        ).ToList(), overflowButtonSpacing: OverflowButtonSpacing));
-        switch (buttonTheme.LayoutBehavior) { case ButtonBarLayoutBehavior.Padded: return new Padding(padding: EdgeInsets.Symmetric(vertical: 2.0 * paddingUnit, horizontal: paddingUnit), child: child); case ButtonBarLayoutBehavior.Constrained: return new Container(padding: EdgeInsets.Symmetric(horizontal: paddingUnit), constraints: new BoxConstraints(minHeight: 52.0), alignment: AlignmentDefaultClass.Alignment.Center, child: child); }
+        #endregion
 
-        return null;
-    }
+        #region fields
+        public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
+        public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
+        public virtual double ButtonMinWidth { get; set; }
+        public virtual double ButtonHeight { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        public virtual bool ButtonAlignedDropdown { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
+        public virtual double OverflowButtonSpacing { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        #endregion
 
+        #region methods
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Attempts to display buttons in a row, but displays them in a column if
-/// there is not enough horizontal space.
-///
-/// It first attempts to lay out its buttons as though there were no
-/// maximum width constraints on the widget. If the button bar's width is
-/// less than the maximum width constraints of the widget, it then lays
-/// out the widget as though it were placed in a [Row].
-///
-/// However, if the button bar's width exceeds the maximum width constraint on
-/// the widget, it then aligns its buttons in a column. The key difference here
-/// is that the [MainAxisAlignment] will then be treated as a
-/// cross-axis/horizontal alignment. For example, if the buttons overflow and
-/// [ButtonBar.alignment] was set to [MainAxisAligment.start], the column of
-/// buttons would align to the horizontal start of the button bar.
-/// </Summary>
-public class _ButtonBarRow : FlutterSDK.Widgets.Basic.Flex
-{
-    #region constructors
-    public _ButtonBarRow(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
-    : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: overflowDirection, textBaseline: textBaseline)
-
-}
-#endregion
-
-#region fields
-public virtual double OverflowButtonSpacing { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Buttonbar._RenderButtonBarRow CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderButtonBarRow(direction: Direction, mainAxisAlignment: MainAxisAlignment, mainAxisSize: MainAxisSize, crossAxisAlignment: CrossAxisAlignment, textDirection: GetEffectiveTextDirection(context), verticalDirection: VerticalDirection, textBaseline: TextBaseline, overflowButtonSpacing: OverflowButtonSpacing);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Buttonbar._RenderButtonBarRow renderObject)
-{
-    ..Direction = Direction..MainAxisAlignment = MainAxisAlignment..MainAxisSize = MainAxisSize..CrossAxisAlignment = CrossAxisAlignment..TextDirection = GetEffectiveTextDirection(context)..VerticalDirection = VerticalDirection..TextBaseline = TextBaseline..OverflowButtonSpacing = OverflowButtonSpacing;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..Direction = Direction..MainAxisAlignment = MainAxisAlignment..MainAxisSize = MainAxisSize..CrossAxisAlignment = CrossAxisAlignment..TextDirection = GetEffectiveTextDirection(context)..VerticalDirection = VerticalDirection..TextBaseline = TextBaseline..OverflowButtonSpacing = OverflowButtonSpacing;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Attempts to display buttons in a row, but displays them in a column if
-/// there is not enough horizontal space.
-///
-/// It first attempts to lay out its buttons as though there were no
-/// maximum width constraints on the widget. If the button bar's width is
-/// less than the maximum width constraints of the widget, it then lays
-/// out the widget as though it were placed in a [Row].
-///
-/// However, if the button bar's width exceeds the maximum width constraint on
-/// the widget, it then aligns its buttons in a column. The key difference here
-/// is that the [MainAxisAlignment] will then be treated as a
-/// cross-axis/horizontal alignment. For example, if the buttons overflow and
-/// [ButtonBar.alignment] was set to [MainAxisAligment.start], the buttons would
-/// align to the horizontal start of the button bar.
-/// </Summary>
-public class _RenderButtonBarRow : FlutterSDK.Rendering.Flex.RenderFlex
-{
-    #region constructors
-    public _RenderButtonBarRow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
-    : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
-
-}
-#endregion
-
-#region fields
-internal virtual bool _HasCheckedLayoutWidth { get; set; }
-public virtual double OverflowButtonSpacing { get; set; }
-public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void PerformLayout()
-{
-    _HasCheckedLayoutWidth = false;
-    base.PerformLayout();
-    _HasCheckedLayoutWidth = true;
-    if (Size.Width <= Constraints.MaxWidth)
-    {
-        base.PerformLayout();
-    }
-    else
-    {
-        BoxConstraints childConstraints = Constraints.CopyWith(minWidth: 0.0);
-        RenderBox child = default(RenderBox);
-        double currentHeight = 0.0;
-        switch (VerticalDirection) { case VerticalDirection.Down: child = FirstChild; break; case VerticalDirection.Up: child = LastChild; break; }
-        while (child != null)
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            FlexParentData childParentData = child.ParentData as FlexParentData;
-            child.Layout(childConstraints, parentUsesSize: true);
-            switch (TextDirection) { case TextDirection.Ltr: switch (MainAxisAlignment) { case MainAxisAlignment.Center: double midpoint = (Constraints.MaxWidth - child.Size.Width) / 2.0; childParentData.Offset = new Offset(midpoint, currentHeight); break; case MainAxisAlignment.End: childParentData.Offset = new Offset(Constraints.MaxWidth - child.Size.Width, currentHeight); break; default: childParentData.Offset = new Offset(0, currentHeight); break; } break; case TextDirection.Rtl: switch (MainAxisAlignment) { case MainAxisAlignment.Center: double midpoint = Constraints.MaxWidth / 2.0 - child.Size.Width / 2.0; childParentData.Offset = new Offset(midpoint, currentHeight); break; case MainAxisAlignment.End: childParentData.Offset = new Offset(0, currentHeight); break; default: childParentData.Offset = new Offset(Constraints.MaxWidth - child.Size.Width, currentHeight); break; } break; }
-            currentHeight += child.Size.Height;
-            switch (VerticalDirection) { case VerticalDirection.Down: child = childParentData.NextSibling; break; case VerticalDirection.Up: child = childParentData.PreviousSibling; break; }
-            if (OverflowButtonSpacing != null && child != null) currentHeight += OverflowButtonSpacing;
+            ButtonThemeData parentButtonTheme = ButtonthemeDefaultClass.ButtonTheme.Of(context);
+            ButtonBarThemeData barTheme = ButtonbarthemeDefaultClass.ButtonBarTheme.Of(context);
+            ButtonThemeData buttonTheme = parentButtonTheme.CopyWith(textTheme: ButtonTextTheme ?? barTheme.ButtonTextTheme ?? ButtonTextTheme.Primary, minWidth: buttonMinWidth == default(double) ? barTheme.buttonMinWidth : buttonMinWidth ?? 64.0, height: buttonHeight == default(double) ? barTheme.buttonHeight : buttonHeight ?? 36.0, padding: ButtonPadding ?? barTheme.ButtonPadding ?? EdgeInsets.Symmetric(horizontal: 8.0), alignedDropdown: ButtonAlignedDropdown ?? barTheme.ButtonAlignedDropdown ?? false, layoutBehavior: LayoutBehavior ?? barTheme.LayoutBehavior ?? ButtonBarLayoutBehavior.Padded);
+            double paddingUnit = buttonTheme.Padding.Horizontal / 4.0;
+            Widget child = ButtonTheme.FromButtonThemeData(data: buttonTheme, child: new _ButtonBarRow(mainAxisAlignment: Alignment ?? barTheme.Alignment ?? MainAxisAlignment.End, mainAxisSize: MainAxisSize ?? barTheme.MainAxisSize ?? MainAxisSize.Max, overflowDirection: OverflowDirection ?? barTheme.OverflowDirection ?? VerticalDirection.Down, children: Children.Map((Widget child) =>
+            {
+                return new Padding(padding: EdgeInsets.Symmetric(horizontal: paddingUnit), child: child);
+            }
+            ).ToList(), overflowButtonSpacing: OverflowButtonSpacing));
+            switch (buttonTheme.LayoutBehavior) { case ButtonBarLayoutBehavior.Padded: return new Padding(padding: EdgeInsets.Symmetric(vertical: 2.0 * paddingUnit, horizontal: paddingUnit), child: child); case ButtonBarLayoutBehavior.Constrained: return new Container(padding: EdgeInsets.Symmetric(horizontal: paddingUnit), constraints: new BoxConstraints(minHeight: 52.0), alignment: AlignmentDefaultClass.Alignment.Center, child: child); }
+
+            return null;
         }
 
-        Size = Constraints.Constrain(new Size(Constraints.MaxWidth, currentHeight));
+
+
+        #endregion
     }
 
-}
+
+    /// <Summary>
+    /// Attempts to display buttons in a row, but displays them in a column if
+    /// there is not enough horizontal space.
+    ///
+    /// It first attempts to lay out its buttons as though there were no
+    /// maximum width constraints on the widget. If the button bar's width is
+    /// less than the maximum width constraints of the widget, it then lays
+    /// out the widget as though it were placed in a [Row].
+    ///
+    /// However, if the button bar's width exceeds the maximum width constraint on
+    /// the widget, it then aligns its buttons in a column. The key difference here
+    /// is that the [MainAxisAlignment] will then be treated as a
+    /// cross-axis/horizontal alignment. For example, if the buttons overflow and
+    /// [ButtonBar.alignment] was set to [MainAxisAligment.start], the column of
+    /// buttons would align to the horizontal start of the button bar.
+    /// </Summary>
+    public class _ButtonBarRow : FlutterSDK.Widgets.Basic.Flex
+    {
+        #region constructors
+        public _ButtonBarRow(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
+        : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: overflowDirection, textBaseline: textBaseline)
+        {
+            this.OverflowButtonSpacing = overflowButtonSpacing;
+        }
+        #endregion
+
+        #region fields
+        public virtual double OverflowButtonSpacing { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Buttonbar._RenderButtonBarRow CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderButtonBarRow(direction: Direction, mainAxisAlignment: MainAxisAlignment, mainAxisSize: MainAxisSize, crossAxisAlignment: CrossAxisAlignment, textDirection: GetEffectiveTextDirection(context), verticalDirection: VerticalDirection, textBaseline: TextBaseline, overflowButtonSpacing: OverflowButtonSpacing);
+        }
 
 
 
-#endregion
-}
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Buttonbar._RenderButtonBarRow renderObject)
+        {
+            ..Direction = Direction..MainAxisAlignment = MainAxisAlignment..MainAxisSize = MainAxisSize..CrossAxisAlignment = CrossAxisAlignment..TextDirection = GetEffectiveTextDirection(context)..VerticalDirection = VerticalDirection..TextBaseline = TextBaseline..OverflowButtonSpacing = OverflowButtonSpacing;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..Direction = Direction..MainAxisAlignment = MainAxisAlignment..MainAxisSize = MainAxisSize..CrossAxisAlignment = CrossAxisAlignment..TextDirection = GetEffectiveTextDirection(context)..VerticalDirection = VerticalDirection..TextBaseline = TextBaseline..OverflowButtonSpacing = OverflowButtonSpacing;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Attempts to display buttons in a row, but displays them in a column if
+    /// there is not enough horizontal space.
+    ///
+    /// It first attempts to lay out its buttons as though there were no
+    /// maximum width constraints on the widget. If the button bar's width is
+    /// less than the maximum width constraints of the widget, it then lays
+    /// out the widget as though it were placed in a [Row].
+    ///
+    /// However, if the button bar's width exceeds the maximum width constraint on
+    /// the widget, it then aligns its buttons in a column. The key difference here
+    /// is that the [MainAxisAlignment] will then be treated as a
+    /// cross-axis/horizontal alignment. For example, if the buttons overflow and
+    /// [ButtonBar.alignment] was set to [MainAxisAligment.start], the buttons would
+    /// align to the horizontal start of the button bar.
+    /// </Summary>
+    public class _RenderButtonBarRow : FlutterSDK.Rendering.Flex.RenderFlex
+    {
+        #region constructors
+        public _RenderButtonBarRow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
+        : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
+        {
+            this.OverflowButtonSpacing = overflowButtonSpacing;
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _HasCheckedLayoutWidth { get; set; }
+        public virtual double OverflowButtonSpacing { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout()
+        {
+            _HasCheckedLayoutWidth = false;
+            base.PerformLayout();
+            _HasCheckedLayoutWidth = true;
+            if (Size.Width <= Constraints.MaxWidth)
+            {
+                base.PerformLayout();
+            }
+            else
+            {
+                BoxConstraints childConstraints = Constraints.CopyWith(minWidth: 0.0);
+                RenderBox child = default(RenderBox);
+                double currentHeight = 0.0;
+                switch (VerticalDirection) { case VerticalDirection.Down: child = FirstChild; break; case VerticalDirection.Up: child = LastChild; break; }
+                while (child != null)
+                {
+                    FlexParentData childParentData = child.ParentData as FlexParentData;
+                    child.Layout(childConstraints, parentUsesSize: true);
+                    switch (TextDirection) { case TextDirection.Ltr: switch (MainAxisAlignment) { case MainAxisAlignment.Center: double midpoint = (Constraints.MaxWidth - child.Size.Width) / 2.0; childParentData.Offset = new Offset(midpoint, currentHeight); break; case MainAxisAlignment.End: childParentData.Offset = new Offset(Constraints.MaxWidth - child.Size.Width, currentHeight); break; default: childParentData.Offset = new Offset(0, currentHeight); break; } break; case TextDirection.Rtl: switch (MainAxisAlignment) { case MainAxisAlignment.Center: double midpoint = Constraints.MaxWidth / 2.0 - child.Size.Width / 2.0; childParentData.Offset = new Offset(midpoint, currentHeight); break; case MainAxisAlignment.End: childParentData.Offset = new Offset(0, currentHeight); break; default: childParentData.Offset = new Offset(Constraints.MaxWidth - child.Size.Width, currentHeight); break; } break; }
+                    currentHeight += child.Size.Height;
+                    switch (VerticalDirection) { case VerticalDirection.Down: child = childParentData.NextSibling; break; case VerticalDirection.Up: child = childParentData.PreviousSibling; break; }
+                    if (OverflowButtonSpacing != null && child != null) currentHeight += OverflowButtonSpacing;
+                }
+
+                Size = Constraints.Constrain(new Size(Constraints.MaxWidth, currentHeight));
+            }
+
+        }
+
+
+
+        #endregion
+    }
 
 }

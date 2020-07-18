@@ -137,700 +137,719 @@ namespace FlutterSDK.Animation.Animations
     {
         #region constructors
         public _AlwaysCompleteAnimation()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void AddListener(VoidCallback listener)
-    {
-    }
-
-
-
-
-    public new void RemoveListener(VoidCallback listener)
-    {
-    }
-
-
-
-
-    public new void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
-    {
-    }
-
-
-
-
-    public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
-    {
-    }
-
-
-
-
-    #endregion
-}
-
-
-public class _AlwaysDismissedAnimation : FlutterSDK.Animation.Animation.Animation<double>
-{
-    #region constructors
-    public _AlwaysDismissedAnimation()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener)
-{
-}
-
-
-
-
-public new void RemoveListener(VoidCallback listener)
-{
-}
-
-
-
-
-public new void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
-{
-}
-
-
-
-
-public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
-{
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An animation that is always stopped at a given value.
-///
-/// The [status] is always [AnimationStatus.forward].
-/// </Summary>
-public class AlwaysStoppedAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>
-{
-    #region constructors
-    public AlwaysStoppedAnimation(T value)
-
-}
-#endregion
-
-#region fields
-public new T Value { get; set; }
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener)
-{
-}
-
-
-
-
-public new void RemoveListener(VoidCallback listener)
-{
-}
-
-
-
-
-public new void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
-{
-}
-
-
-
-
-public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
-{
-}
-
-
-
-
-public new string ToStringDetails()
-{
-    return $"'{base.ToStringDetails()} {Value}; paused'";
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An animation that is a proxy for another animation.
-///
-/// A proxy animation is useful because the parent animation can be mutated. For
-/// example, one object can create a proxy animation, hand the proxy to another
-/// object, and then later change the animation from which the proxy receives
-/// its value.
-/// </Summary>
-public class ProxyAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
-{
-    #region constructors
-    public ProxyAnimation(FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
-
-_Parent=animation;
-if (_Parent==null ){
-_Status=AnimationStatus.Dismissed;
-_Value=0.0;
-}
-
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animation.AnimationStatus _Status { get; set; }
-internal virtual double _Value { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Parent { get; set; }
-public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void DidStartListening()
-{
-    if (_Parent != null)
-    {
-        _Parent.AddListener(NotifyListeners);
-        _Parent.AddStatusListener(NotifyStatusListeners);
-    }
-
-}
-
-
-
-
-public new void DidStopListening()
-{
-    if (_Parent != null)
-    {
-        _Parent.RemoveListener(NotifyListeners);
-        _Parent.RemoveStatusListener(NotifyStatusListeners);
-    }
-
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An animation that is the reverse of another animation.
-///
-/// If the parent animation is running forward from 0.0 to 1.0, this animation
-/// is running in reverse from 1.0 to 0.0.
-///
-/// Using a [ReverseAnimation] is different from simply using a [Tween] with a
-/// begin of 1.0 and an end of 0.0 because the tween does not change the status
-/// or direction of the animation.
-///
-/// See also:
-///
-///  * [Curve.flipped] and [FlippedCurve], which provide a similar effect but on
-///    [Curve]s.
-///  * [CurvedAnimation], which can take separate curves for when the animation
-///    is going forward than for when it is going in reverse.
-/// </Summary>
-public class ReverseAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalStatusListenersMixin
-{
-    #region constructors
-    public ReverseAnimation(FlutterSDK.Animation.Animation.Animation<double> parent)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener)
-{
-    DidRegisterListener();
-    Parent.AddListener(listener);
-}
-
-
-
-
-public new void RemoveListener(VoidCallback listener)
-{
-    Parent.RemoveListener(listener);
-    DidUnregisterListener();
-}
-
-
-
-
-public new void DidStartListening()
-{
-    Parent.AddStatusListener(_StatusChangeHandler);
-}
-
-
-
-
-public new void DidStopListening()
-{
-    Parent.RemoveStatusListener(_StatusChangeHandler);
-}
-
-
-
-
-private void _StatusChangeHandler(FlutterSDK.Animation.Animation.AnimationStatus status)
-{
-    NotifyStatusListeners(_ReverseStatus(status));
-}
-
-
-
-
-private FlutterSDK.Animation.Animation.AnimationStatus _ReverseStatus(FlutterSDK.Animation.Animation.AnimationStatus status)
-{
-
-    switch (status) { case AnimationStatus.Forward: return AnimationStatus.Reverse; case AnimationStatus.Reverse: return AnimationStatus.Forward; case AnimationStatus.Completed: return AnimationStatus.Dismissed; case AnimationStatus.Dismissed: return AnimationStatus.Completed; }
-    return null;
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An animation that applies a curve to another animation.
-///
-/// [CurvedAnimation] is useful when you want to apply a non-linear [Curve] to
-/// an animation object, especially if you want different curves when the
-/// animation is going forward vs when it is going backward.
-///
-/// Depending on the given curve, the output of the [CurvedAnimation] could have
-/// a wider range than its input. For example, elastic curves such as
-/// [Curves.elasticIn] will significantly overshoot or undershoot the default
-/// range of 0.0 to 1.0.
-///
-/// If you want to apply a [Curve] to a [Tween], consider using [CurveTween].
-///
-/// {@tool snippet}
-///
-/// The following code snippet shows how you can apply a curve to a linear
-/// animation produced by an [AnimationController] `controller`.
-///
-/// ```dart
-/// final Animation<double> animation = CurvedAnimation(
-///   parent: controller,
-///   curve: Curves.ease,
-/// );
-/// ```
-/// {@end-tool}
-/// {@tool snippet}
-///
-/// This second code snippet shows how to apply a different curve in the forward
-/// direction than in the reverse direction. This can't be done using a
-/// [CurveTween] (since [Tween]s are not aware of the animation direction when
-/// they are applied).
-///
-/// ```dart
-/// final Animation<double> animation = CurvedAnimation(
-///   parent: controller,
-///   curve: Curves.easeIn,
-///   reverseCurve: Curves.easeOut,
-/// );
-/// ```
-/// {@end-tool}
-///
-/// By default, the [reverseCurve] matches the forward [curve].
-///
-/// See also:
-///
-///  * [CurveTween], for an alternative way of expressing the first sample
-///    above.
-///  * [AnimationController], for examples of creating and disposing of an
-///    [AnimationController].
-///  * [Curve.flipped] and [FlippedCurve], which provide the reverse of a
-///    [Curve].
-/// </Summary>
-public class CurvedAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
-{
-    #region constructors
-    public CurvedAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve reverseCurve = default(FlutterSDK.Animation.Curves.Curve))
-    : base()
-
-_UpdateCurveDirection(Parent.Status);
-    Parent.AddStatusListener(_UpdateCurveDirection);
-}
-
-
-#endregion
-
-#region fields
-public new FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve ReverseCurve { get; set; }
-internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurveDirection { get; set; }
-internal virtual bool _UseForwardCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _UpdateCurveDirection(FlutterSDK.Animation.Animation.AnimationStatus status)
-{
-    switch (status) { case AnimationStatus.Dismissed: case AnimationStatus.Completed: _CurveDirection = null; break; case AnimationStatus.Forward: _CurveDirection = (_CurveDirection == null ? AnimationStatus.Forward : _CurveDirection); break; case AnimationStatus.Reverse: _CurveDirection = (_CurveDirection == null ? AnimationStatus.Reverse : _CurveDirection); break; }
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// This animation starts by proxying one animation, but when the value of that
-/// animation crosses the value of the second (either because the second is
-/// going in the opposite direction, or because the one overtakes the other),
-/// the animation hops over to proxying the second animation.
-///
-/// When the [TrainHoppingAnimation] starts proxying the second animation
-/// instead of the first, the [onSwitchedTrain] callback is called.
-///
-/// If the two animations start at the same value, then the
-/// [TrainHoppingAnimation] immediately hops to the second animation, and the
-/// [onSwitchedTrain] callback is not called. If only one animation is provided
-/// (i.e. if the second is null), then the [TrainHoppingAnimation] just proxies
-/// the first animation.
-///
-/// Since this object must track the two animations even when it has no
-/// listeners of its own, instead of shutting down when all its listeners are
-/// removed, it exposes a [dispose()] method. Call this method to shut this
-/// object down.
-/// </Summary>
-public class TrainHoppingAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
-{
-    #region constructors
-    public TrainHoppingAnimation(FlutterSDK.Animation.Animation.Animation<double> _currentTrain, FlutterSDK.Animation.Animation.Animation<double> _nextTrain, VoidCallback onSwitchedTrain = default(VoidCallback))
-    : base()
-
-if (_NextTrain!=null ){
-if (_CurrentTrain.Value==_NextTrain.Value){
-_CurrentTrain=_NextTrain;
-_NextTrain=null ;
-}
-else if (_CurrentTrain.Value > _NextTrain.Value)
-{
-    _Mode = _TrainHoppingMode.Maximize;
-}
-else
-{
-
-    _Mode = _TrainHoppingMode.Minimize;
-}
-
-}
-
-_CurrentTrain.AddStatusListener(_StatusChangeHandler);
-_CurrentTrain.AddListener(_ValueChangeHandler);
-_NextTrain?.AddListener(_ValueChangeHandler);
-
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentTrain { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _NextTrain { get; set; }
-internal virtual FlutterSDK.Animation.Animations._TrainHoppingMode _Mode { get; set; }
-public virtual VoidCallback OnSwitchedTrain { get; set; }
-internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
-internal virtual double _LastValue { get; set; }
-public virtual FlutterSDK.Animation.Animation.Animation<double> CurrentTrain { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _StatusChangeHandler(FlutterSDK.Animation.Animation.AnimationStatus status)
-{
-
-    if (status != _LastStatus)
-    {
-        NotifyListeners();
-        _LastStatus = status;
-    }
-
-
-}
-
-
-
-
-private void _ValueChangeHandler()
-{
-
-    bool hop = false;
-    if (_NextTrain != null)
-    {
-
-        switch (_Mode) { case _TrainHoppingMode.Minimize: hop = _NextTrain.Value <= _CurrentTrain.Value; break; case _TrainHoppingMode.Maximize: hop = _NextTrain.Value >= _CurrentTrain.Value; break; }
-        if (hop)
         {
-            ;
-            _CurrentTrain.RemoveStatusListener(_StatusChangeHandler);
-            _CurrentTrain.RemoveListener(_ValueChangeHandler);
-            _CurrentTrain = _NextTrain;
-            _NextTrain = null;
-            _CurrentTrain.AddStatusListener(_StatusChangeHandler);
-            _StatusChangeHandler(_CurrentTrain.Status);
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener)
+        {
         }
 
+
+
+
+        public new void RemoveListener(VoidCallback listener)
+        {
+        }
+
+
+
+
+        public new void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+        {
+        }
+
+
+
+
+        public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+        {
+        }
+
+
+
+
+        #endregion
     }
 
-    double newValue = Value;
-    if (newValue != _LastValue)
+
+    public class _AlwaysDismissedAnimation : FlutterSDK.Animation.Animation.Animation<double>
     {
-        NotifyListeners();
-        _LastValue = newValue;
+        #region constructors
+        public _AlwaysDismissedAnimation()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener)
+        {
+        }
+
+
+
+
+        public new void RemoveListener(VoidCallback listener)
+        {
+        }
+
+
+
+
+        public new void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+        {
+        }
+
+
+
+
+        public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+        {
+        }
+
+
+
+
+        #endregion
     }
 
 
-    if (hop && OnSwitchedTrain != null) OnSwitchedTrain();
-}
-
-
-
-
-/// <Summary>
-/// Frees all the resources used by this performance.
-/// After this is called, this object is no longer usable.
-/// </Summary>
-public new void Dispose()
-{
-
-    _CurrentTrain.RemoveStatusListener(_StatusChangeHandler);
-    _CurrentTrain.RemoveListener(_ValueChangeHandler);
-    _CurrentTrain = null;
-    _NextTrain?.RemoveListener(_ValueChangeHandler);
-    _NextTrain = null;
-    base.Dispose();
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An interface for combining multiple Animations. Subclasses need only
-/// implement the `value` getter to control how the child animations are
-/// combined. Can be chained to combine more than 2 animations.
-///
-/// For example, to create an animation that is the sum of two others, subclass
-/// this class and define `T get value = first.value + second.value;`
-///
-/// By default, the [status] of a [CompoundAnimation] is the status of the
-/// [next] animation if [next] is moving, and the status of the [first]
-/// animation otherwise.
-/// </Summary>
-public class CompoundAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
-{
-    #region constructors
-    public CompoundAnimation(FlutterSDK.Animation.Animation.Animation<T> first = default(FlutterSDK.Animation.Animation.Animation<T>), FlutterSDK.Animation.Animation.Animation<T> next = default(FlutterSDK.Animation.Animation.Animation<T>))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Animation.Animation<T> First { get; set; }
-public virtual FlutterSDK.Animation.Animation.Animation<T> Next { get; set; }
-internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
-internal virtual T _LastValue { get; set; }
-public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void DidStartListening()
-{
-    First.AddListener(_MaybeNotifyListeners);
-    First.AddStatusListener(_MaybeNotifyStatusListeners);
-    Next.AddListener(_MaybeNotifyListeners);
-    Next.AddStatusListener(_MaybeNotifyStatusListeners);
-}
-
-
-
-
-public new void DidStopListening()
-{
-    First.RemoveListener(_MaybeNotifyListeners);
-    First.RemoveStatusListener(_MaybeNotifyStatusListeners);
-    Next.RemoveListener(_MaybeNotifyListeners);
-    Next.RemoveStatusListener(_MaybeNotifyStatusListeners);
-}
-
-
-
-
-
-private void _MaybeNotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus _)
-{
-    if (Status != _LastStatus)
+    /// <Summary>
+    /// An animation that is always stopped at a given value.
+    ///
+    /// The [status] is always [AnimationStatus.forward].
+    /// </Summary>
+    public class AlwaysStoppedAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>
     {
-        _LastStatus = Status;
-        NotifyStatusListeners(Status);
+        #region constructors
+        public AlwaysStoppedAnimation(T value)
+        {
+            this.Value = value;
+        }
+        #endregion
+
+        #region fields
+        public new T Value { get; set; }
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener)
+        {
+        }
+
+
+
+
+        public new void RemoveListener(VoidCallback listener)
+        {
+        }
+
+
+
+
+        public new void AddStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+        {
+        }
+
+
+
+
+        public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
+        {
+        }
+
+
+
+
+        public new string ToStringDetails()
+        {
+            return $"'{base.ToStringDetails()} {Value}; paused'";
+        }
+
+
+
+        #endregion
     }
 
-}
 
-
-
-
-private void _MaybeNotifyListeners()
-{
-    if (Value != _LastValue)
+    /// <Summary>
+    /// An animation that is a proxy for another animation.
+    ///
+    /// A proxy animation is useful because the parent animation can be mutated. For
+    /// example, one object can create a proxy animation, hand the proxy to another
+    /// object, and then later change the animation from which the proxy receives
+    /// its value.
+    /// </Summary>
+    public class ProxyAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
-        _LastValue = Value;
-        NotifyListeners();
+        #region constructors
+        public ProxyAnimation(FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
+        {
+
+            _Parent = animation;
+            if (_Parent == null)
+            {
+                _Status = AnimationStatus.Dismissed;
+                _Value = 0.0;
+            }
+
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animation.AnimationStatus _Status { get; set; }
+        internal virtual double _Value { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Parent { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void DidStartListening()
+        {
+            if (_Parent != null)
+            {
+                _Parent.AddListener(NotifyListeners);
+                _Parent.AddStatusListener(NotifyStatusListeners);
+            }
+
+        }
+
+
+
+
+        public new void DidStopListening()
+        {
+            if (_Parent != null)
+            {
+                _Parent.RemoveListener(NotifyListeners);
+                _Parent.RemoveStatusListener(NotifyStatusListeners);
+            }
+
+        }
+
+
+
+
+        #endregion
     }
 
-}
+
+    /// <Summary>
+    /// An animation that is the reverse of another animation.
+    ///
+    /// If the parent animation is running forward from 0.0 to 1.0, this animation
+    /// is running in reverse from 1.0 to 0.0.
+    ///
+    /// Using a [ReverseAnimation] is different from simply using a [Tween] with a
+    /// begin of 1.0 and an end of 0.0 because the tween does not change the status
+    /// or direction of the animation.
+    ///
+    /// See also:
+    ///
+    ///  * [Curve.flipped] and [FlippedCurve], which provide a similar effect but on
+    ///    [Curve]s.
+    ///  * [CurvedAnimation], which can take separate curves for when the animation
+    ///    is going forward than for when it is going in reverse.
+    /// </Summary>
+    public class ReverseAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalStatusListenersMixin
+    {
+        #region constructors
+        public ReverseAnimation(FlutterSDK.Animation.Animation.Animation<double> parent)
+        : base()
+        {
+            this.Parent = parent;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener)
+        {
+            DidRegisterListener();
+            Parent.AddListener(listener);
+        }
 
 
 
-#endregion
-}
+
+        public new void RemoveListener(VoidCallback listener)
+        {
+            Parent.RemoveListener(listener);
+            DidUnregisterListener();
+        }
 
 
-/// <Summary>
-/// An animation of [double]s that tracks the mean of two other animations.
-///
-/// The [status] of this animation is the status of the `right` animation if it is
-/// moving, and the `left` animation otherwise.
-///
-/// The [value] of this animation is the [double] that represents the mean value
-/// of the values of the `left` and `right` animations.
-/// </Summary>
-public class AnimationMean : FlutterSDK.Animation.Animations.CompoundAnimation<double>
-{
-    #region constructors
-    public AnimationMean(FlutterSDK.Animation.Animation.Animation<double> left = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> right = default(FlutterSDK.Animation.Animation.Animation<double>))
-    : base(first: left, next: right)
-
-}
-#endregion
-
-#region fields
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
 
 
-/// <Summary>
-/// An animation that tracks the maximum of two other animations.
-///
-/// The [value] of this animation is the maximum of the values of
-/// [first] and [next].
-/// </Summary>
-public class AnimationMax<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
-{
-    #region constructors
-    public AnimationMax(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
-    : base(first: first, next: next)
-
-}
-#endregion
-
-#region fields
-public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
+        public new void DidStartListening()
+        {
+            Parent.AddStatusListener(_StatusChangeHandler);
+        }
 
 
-/// <Summary>
-/// An animation that tracks the minimum of two other animations.
-///
-/// The [value] of this animation is the maximum of the values of
-/// [first] and [next].
-/// </Summary>
-public class AnimationMin<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
-{
-    #region constructors
-    public AnimationMin(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
-    : base(first: first, next: next)
-
-}
-#endregion
-
-#region fields
-public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
 
 
-public enum _TrainHoppingMode
-{
+        public new void DidStopListening()
+        {
+            Parent.RemoveStatusListener(_StatusChangeHandler);
+        }
 
-    Minimize,
-    Maximize,
-}
+
+
+
+        private void _StatusChangeHandler(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            NotifyStatusListeners(_ReverseStatus(status));
+        }
+
+
+
+
+        private FlutterSDK.Animation.Animation.AnimationStatus _ReverseStatus(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+
+            switch (status) { case AnimationStatus.Forward: return AnimationStatus.Reverse; case AnimationStatus.Reverse: return AnimationStatus.Forward; case AnimationStatus.Completed: return AnimationStatus.Dismissed; case AnimationStatus.Dismissed: return AnimationStatus.Completed; }
+            return null;
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An animation that applies a curve to another animation.
+    ///
+    /// [CurvedAnimation] is useful when you want to apply a non-linear [Curve] to
+    /// an animation object, especially if you want different curves when the
+    /// animation is going forward vs when it is going backward.
+    ///
+    /// Depending on the given curve, the output of the [CurvedAnimation] could have
+    /// a wider range than its input. For example, elastic curves such as
+    /// [Curves.elasticIn] will significantly overshoot or undershoot the default
+    /// range of 0.0 to 1.0.
+    ///
+    /// If you want to apply a [Curve] to a [Tween], consider using [CurveTween].
+    ///
+    /// {@tool snippet}
+    ///
+    /// The following code snippet shows how you can apply a curve to a linear
+    /// animation produced by an [AnimationController] `controller`.
+    ///
+    /// ```dart
+    /// final Animation<double> animation = CurvedAnimation(
+    ///   parent: controller,
+    ///   curve: Curves.ease,
+    /// );
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// This second code snippet shows how to apply a different curve in the forward
+    /// direction than in the reverse direction. This can't be done using a
+    /// [CurveTween] (since [Tween]s are not aware of the animation direction when
+    /// they are applied).
+    ///
+    /// ```dart
+    /// final Animation<double> animation = CurvedAnimation(
+    ///   parent: controller,
+    ///   curve: Curves.easeIn,
+    ///   reverseCurve: Curves.easeOut,
+    /// );
+    /// ```
+    /// {@end-tool}
+    ///
+    /// By default, the [reverseCurve] matches the forward [curve].
+    ///
+    /// See also:
+    ///
+    ///  * [CurveTween], for an alternative way of expressing the first sample
+    ///    above.
+    ///  * [AnimationController], for examples of creating and disposing of an
+    ///    [AnimationController].
+    ///  * [Curve.flipped] and [FlippedCurve], which provide the reverse of a
+    ///    [Curve].
+    /// </Summary>
+    public class CurvedAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
+    {
+        #region constructors
+        public CurvedAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve reverseCurve = default(FlutterSDK.Animation.Curves.Curve))
+        : base()
+        {
+            this.Parent = parent;
+            this.Curve = curve;
+            this.ReverseCurve = reverseCurve;
+            _UpdateCurveDirection(Parent.Status);
+            Parent.AddStatusListener(_UpdateCurveDirection);
+        }
+
+
+        #endregion
+
+        #region fields
+        public new FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve ReverseCurve { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurveDirection { get; set; }
+        internal virtual bool _UseForwardCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _UpdateCurveDirection(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            switch (status) { case AnimationStatus.Dismissed: case AnimationStatus.Completed: _CurveDirection = null; break; case AnimationStatus.Forward: _CurveDirection = (_CurveDirection == null ? AnimationStatus.Forward : _CurveDirection); break; case AnimationStatus.Reverse: _CurveDirection = (_CurveDirection == null ? AnimationStatus.Reverse : _CurveDirection); break; }
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// This animation starts by proxying one animation, but when the value of that
+    /// animation crosses the value of the second (either because the second is
+    /// going in the opposite direction, or because the one overtakes the other),
+    /// the animation hops over to proxying the second animation.
+    ///
+    /// When the [TrainHoppingAnimation] starts proxying the second animation
+    /// instead of the first, the [onSwitchedTrain] callback is called.
+    ///
+    /// If the two animations start at the same value, then the
+    /// [TrainHoppingAnimation] immediately hops to the second animation, and the
+    /// [onSwitchedTrain] callback is not called. If only one animation is provided
+    /// (i.e. if the second is null), then the [TrainHoppingAnimation] just proxies
+    /// the first animation.
+    ///
+    /// Since this object must track the two animations even when it has no
+    /// listeners of its own, instead of shutting down when all its listeners are
+    /// removed, it exposes a [dispose()] method. Call this method to shut this
+    /// object down.
+    /// </Summary>
+    public class TrainHoppingAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
+    {
+        #region constructors
+        public TrainHoppingAnimation(FlutterSDK.Animation.Animation.Animation<double> _currentTrain, FlutterSDK.Animation.Animation.Animation<double> _nextTrain, VoidCallback onSwitchedTrain = default(VoidCallback))
+        : base()
+        {
+            this._CurrentTrain = _currentTrain;
+            this._NextTrain = _nextTrain;
+            this.OnSwitchedTrain = onSwitchedTrain;
+            if (_NextTrain != null)
+            {
+                if (_CurrentTrain.Value == _NextTrain.Value)
+                {
+                    _CurrentTrain = _NextTrain;
+                    _NextTrain = null;
+                }
+                else if (_CurrentTrain.Value > _NextTrain.Value)
+                {
+                    _Mode = _TrainHoppingMode.Maximize;
+                }
+                else
+                {
+
+                    _Mode = _TrainHoppingMode.Minimize;
+                }
+
+            }
+
+            _CurrentTrain.AddStatusListener(_StatusChangeHandler);
+            _CurrentTrain.AddListener(_ValueChangeHandler);
+            _NextTrain?.AddListener(_ValueChangeHandler);
+
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentTrain { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _NextTrain { get; set; }
+        internal virtual FlutterSDK.Animation.Animations._TrainHoppingMode _Mode { get; set; }
+        public virtual VoidCallback OnSwitchedTrain { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
+        internal virtual double _LastValue { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> CurrentTrain { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _StatusChangeHandler(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+
+            if (status != _LastStatus)
+            {
+                NotifyListeners();
+                _LastStatus = status;
+            }
+
+
+        }
+
+
+
+
+        private void _ValueChangeHandler()
+        {
+
+            bool hop = false;
+            if (_NextTrain != null)
+            {
+
+                switch (_Mode) { case _TrainHoppingMode.Minimize: hop = _NextTrain.Value <= _CurrentTrain.Value; break; case _TrainHoppingMode.Maximize: hop = _NextTrain.Value >= _CurrentTrain.Value; break; }
+                if (hop)
+                {
+                    ;
+                    _CurrentTrain.RemoveStatusListener(_StatusChangeHandler);
+                    _CurrentTrain.RemoveListener(_ValueChangeHandler);
+                    _CurrentTrain = _NextTrain;
+                    _NextTrain = null;
+                    _CurrentTrain.AddStatusListener(_StatusChangeHandler);
+                    _StatusChangeHandler(_CurrentTrain.Status);
+                }
+
+            }
+
+            double newValue = Value;
+            if (newValue != _LastValue)
+            {
+                NotifyListeners();
+                _LastValue = newValue;
+            }
+
+
+            if (hop && OnSwitchedTrain != null) OnSwitchedTrain();
+        }
+
+
+
+
+        /// <Summary>
+        /// Frees all the resources used by this performance.
+        /// After this is called, this object is no longer usable.
+        /// </Summary>
+        public new void Dispose()
+        {
+
+            _CurrentTrain.RemoveStatusListener(_StatusChangeHandler);
+            _CurrentTrain.RemoveListener(_ValueChangeHandler);
+            _CurrentTrain = null;
+            _NextTrain?.RemoveListener(_ValueChangeHandler);
+            _NextTrain = null;
+            base.Dispose();
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An interface for combining multiple Animations. Subclasses need only
+    /// implement the `value` getter to control how the child animations are
+    /// combined. Can be chained to combine more than 2 animations.
+    ///
+    /// For example, to create an animation that is the sum of two others, subclass
+    /// this class and define `T get value = first.value + second.value;`
+    ///
+    /// By default, the [status] of a [CompoundAnimation] is the status of the
+    /// [next] animation if [next] is moving, and the status of the [first]
+    /// animation otherwise.
+    /// </Summary>
+    public class CompoundAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
+    {
+        #region constructors
+        public CompoundAnimation(FlutterSDK.Animation.Animation.Animation<T> first = default(FlutterSDK.Animation.Animation.Animation<T>), FlutterSDK.Animation.Animation.Animation<T> next = default(FlutterSDK.Animation.Animation.Animation<T>))
+        : base()
+        {
+            this.First = first;
+            this.Next = next;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.Animation<T> First { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<T> Next { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
+        internal virtual T _LastValue { get; set; }
+        public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void DidStartListening()
+        {
+            First.AddListener(_MaybeNotifyListeners);
+            First.AddStatusListener(_MaybeNotifyStatusListeners);
+            Next.AddListener(_MaybeNotifyListeners);
+            Next.AddStatusListener(_MaybeNotifyStatusListeners);
+        }
+
+
+
+
+        public new void DidStopListening()
+        {
+            First.RemoveListener(_MaybeNotifyListeners);
+            First.RemoveStatusListener(_MaybeNotifyStatusListeners);
+            Next.RemoveListener(_MaybeNotifyListeners);
+            Next.RemoveStatusListener(_MaybeNotifyStatusListeners);
+        }
+
+
+
+
+
+        private void _MaybeNotifyStatusListeners(FlutterSDK.Animation.Animation.AnimationStatus _)
+        {
+            if (Status != _LastStatus)
+            {
+                _LastStatus = Status;
+                NotifyStatusListeners(Status);
+            }
+
+        }
+
+
+
+
+        private void _MaybeNotifyListeners()
+        {
+            if (Value != _LastValue)
+            {
+                _LastValue = Value;
+                NotifyListeners();
+            }
+
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An animation of [double]s that tracks the mean of two other animations.
+    ///
+    /// The [status] of this animation is the status of the `right` animation if it is
+    /// moving, and the `left` animation otherwise.
+    ///
+    /// The [value] of this animation is the [double] that represents the mean value
+    /// of the values of the `left` and `right` animations.
+    /// </Summary>
+    public class AnimationMean : FlutterSDK.Animation.Animations.CompoundAnimation<double>
+    {
+        #region constructors
+        public AnimationMean(FlutterSDK.Animation.Animation.Animation<double> left = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> right = default(FlutterSDK.Animation.Animation.Animation<double>))
+        : base(first: left, next: right)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An animation that tracks the maximum of two other animations.
+    ///
+    /// The [value] of this animation is the maximum of the values of
+    /// [first] and [next].
+    /// </Summary>
+    public class AnimationMax<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
+    {
+        #region constructors
+        public AnimationMax(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
+        : base(first: first, next: next)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An animation that tracks the minimum of two other animations.
+    ///
+    /// The [value] of this animation is the maximum of the values of
+    /// [first] and [next].
+    /// </Summary>
+    public class AnimationMin<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
+    {
+        #region constructors
+        public AnimationMin(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
+        : base(first: first, next: next)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public enum _TrainHoppingMode
+    {
+
+        Minimize,
+        Maximize,
+    }
 
 }

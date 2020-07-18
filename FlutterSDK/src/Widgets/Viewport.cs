@@ -467,245 +467,256 @@ namespace FlutterSDK.Widgets.Viewport
         #region constructors
         public Viewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double anchor = 0.0, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: slivers)
-    
-}
-    #endregion
+        {
+            this.AxisDirection = axisDirection;
+            this.CrossAxisDirection = crossAxisDirection;
+            this.Anchor = anchor;
+            this.Offset = offset;
+            this.Center = center;
+            this.CacheExtent = cacheExtent;
+            this.CacheExtentStyle = cacheExtentStyle;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
-    public virtual double Anchor { get; set; }
-    public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-    public virtual FlutterSDK.Foundation.Key.Key Center { get; set; }
-    public virtual double CacheExtent { get; set; }
-    public virtual FlutterSDK.Rendering.Viewport.CacheExtentStyle CacheExtentStyle { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
+        public virtual double Anchor { get; set; }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
+        public virtual FlutterSDK.Foundation.Key.Key Center { get; set; }
+        public virtual double CacheExtent { get; set; }
+        public virtual FlutterSDK.Rendering.Viewport.CacheExtentStyle CacheExtentStyle { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Given a [BuildContext] and an [AxisDirection], determine the correct cross
+        /// axis direction.
+        ///
+        /// This depends on the [Directionality] if the `axisDirection` is vertical;
+        /// otherwise, the default cross axis direction is downwards.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection GetDefaultCrossAxisDirection(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+        {
+
+            switch (axisDirection) { case AxisDirection.Up: return BasictypesDefaultClass.TextDirectionToAxisDirection(BasicDefaultClass.Directionality.Of(context)); case AxisDirection.Right: return AxisDirection.Down; case AxisDirection.Down: return BasictypesDefaultClass.TextDirectionToAxisDirection(BasicDefaultClass.Directionality.Of(context)); case AxisDirection.Left: return AxisDirection.Down; }
+            return null;
+        }
+
+
+
+
+        public new FlutterSDK.Rendering.Viewport.RenderViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new RenderViewport(axisDirection: AxisDirection, crossAxisDirection: CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection), anchor: Anchor, offset: Offset, cacheExtent: CacheExtent, cacheExtentStyle: CacheExtentStyle);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewport.RenderViewport renderObject)
+        {
+            ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Anchor = Anchor..Offset = Offset..CacheExtent = CacheExtent..CacheExtentStyle = CacheExtentStyle;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Anchor = Anchor..Offset = Offset..CacheExtent = CacheExtent..CacheExtentStyle = CacheExtentStyle;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Viewport._ViewportElement CreateElement() => new _ViewportElement(this);
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
+            properties.Add(new EnumProperty<AxisDirection>("crossAxisDirection", CrossAxisDirection, defaultValue: null));
+            properties.Add(new DoubleProperty("anchor", Anchor));
+            properties.Add(new DiagnosticsProperty<ViewportOffset>("offset", Offset));
+            if (Center != null)
+            {
+                properties.Add(new DiagnosticsProperty<Key>("center", Center));
+            }
+            else if (Children.IsNotEmpty && Children.First.Key != null)
+            {
+                properties.Add(new DiagnosticsProperty<Key>("center", Children.First.Key, tooltip: "implicit"));
+            }
+
+            properties.Add(new DiagnosticsProperty<double>("cacheExtent", CacheExtent));
+            properties.Add(new DiagnosticsProperty<CacheExtentStyle>("cacheExtentStyle", CacheExtentStyle));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ViewportElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
+    {
+        #region constructors
+        public _ViewportElement(FlutterSDK.Widgets.Viewport.Viewport widget)
+        : base(widget)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Viewport.Viewport Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Viewport.RenderViewport RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+        {
+            base.Mount(parent, newSlot);
+            _UpdateCenter();
+        }
+
+
+
+
+        public new void Update(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget newWidget)
+        {
+            base.Update(newWidget);
+            _UpdateCenter();
+        }
+
+
+        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+        {
+            base.Update(newWidget);
+            _UpdateCenter();
+        }
+
+
+
+
+        private void _UpdateCenter()
+        {
+            if (Widget.Center != null)
+            {
+                RenderObject.Center = Children.SingleWhere((Element element) => =>element.Widget.Key == Widget.Center).RenderObject as RenderSliver;
+            }
+            else if (Children.IsNotEmpty)
+            {
+                RenderObject.Center = Children.First.RenderObject as RenderSliver;
+            }
+            else
+            {
+                RenderObject.Center = null;
+            }
+
+        }
+
+
+
+
+        public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+        {
+            Children.Where((Element e) =>
+            {
+                RenderSliver renderSliver = e.RenderObject as RenderSliver;
+                return renderSliver.Geometry.Visible;
+            }
+            ).ForEach(visitor);
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Given a [BuildContext] and an [AxisDirection], determine the correct cross
-    /// axis direction.
+    /// A widget that is bigger on the inside and shrink wraps its children in the
+    /// main axis.
     ///
-    /// This depends on the [Directionality] if the `axisDirection` is vertical;
-    /// otherwise, the default cross axis direction is downwards.
+    /// [ShrinkWrappingViewport] displays a subset of its children according to its
+    /// own dimensions and the given [offset]. As the offset varies, different
+    /// children are visible through the viewport.
+    ///
+    /// [ShrinkWrappingViewport] differs from [Viewport] in that [Viewport] expands
+    /// to fill the main axis whereas [ShrinkWrappingViewport] sizes itself to match
+    /// its children in the main axis. This shrink wrapping behavior is expensive
+    /// because the children, and hence the viewport, could potentially change size
+    /// whenever the [offset] changes (e.g., because of a collapsing header).
+    ///
+    /// [ShrinkWrappingViewport] cannot contain box children directly. Instead, use
+    /// a [SliverList], [SliverFixedExtentList], [SliverGrid], or a
+    /// [SliverToBoxAdapter], for example.
+    ///
+    /// See also:
+    ///
+    ///  * [ListView], [PageView], [GridView], and [CustomScrollView], which combine
+    ///    [Scrollable] and [ShrinkWrappingViewport] into widgets that are easier to
+    ///    use.
+    ///  * [SliverToBoxAdapter], which allows a box widget to be placed inside a
+    ///    sliver context (the opposite of this widget).
+    ///  * [Viewport], a viewport that does not shrink-wrap its contents.
     /// </Summary>
-    public virtual FlutterSDK.Painting.Basictypes.AxisDirection GetDefaultCrossAxisDirection(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+    public class ShrinkWrappingViewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-
-        switch (axisDirection) { case AxisDirection.Up: return BasictypesDefaultClass.TextDirectionToAxisDirection(BasicDefaultClass.Directionality.Of(context)); case AxisDirection.Right: return AxisDirection.Down; case AxisDirection.Down: return BasictypesDefaultClass.TextDirectionToAxisDirection(BasicDefaultClass.Directionality.Of(context)); case AxisDirection.Left: return AxisDirection.Down; }
-        return null;
-    }
-
-
-
-
-    public new FlutterSDK.Rendering.Viewport.RenderViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new RenderViewport(axisDirection: AxisDirection, crossAxisDirection: CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection), anchor: Anchor, offset: Offset, cacheExtent: CacheExtent, cacheExtentStyle: CacheExtentStyle);
-    }
-
-
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewport.RenderViewport renderObject)
-    {
-        ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Anchor = Anchor..Offset = Offset..CacheExtent = CacheExtent..CacheExtentStyle = CacheExtentStyle;
-    }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Anchor = Anchor..Offset = Offset..CacheExtent = CacheExtent..CacheExtentStyle = CacheExtentStyle;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Viewport._ViewportElement CreateElement() => new _ViewportElement(this);
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
-        properties.Add(new EnumProperty<AxisDirection>("crossAxisDirection", CrossAxisDirection, defaultValue: null));
-        properties.Add(new DoubleProperty("anchor", Anchor));
-        properties.Add(new DiagnosticsProperty<ViewportOffset>("offset", Offset));
-        if (Center != null)
+        #region constructors
+        public ShrinkWrappingViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key, children: slivers)
         {
-            properties.Add(new DiagnosticsProperty<Key>("center", Center));
+            this.AxisDirection = axisDirection;
+            this.CrossAxisDirection = crossAxisDirection;
+            this.Offset = offset;
         }
-        else if (Children.IsNotEmpty && Children.First.Key != null)
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.Viewport.RenderShrinkWrappingViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            properties.Add(new DiagnosticsProperty<Key>("center", Children.First.Key, tooltip: "implicit"));
+            return new RenderShrinkWrappingViewport(axisDirection: AxisDirection, crossAxisDirection: CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection), offset: Offset);
         }
 
-        properties.Add(new DiagnosticsProperty<double>("cacheExtent", CacheExtent));
-        properties.Add(new DiagnosticsProperty<CacheExtentStyle>("cacheExtentStyle", CacheExtentStyle));
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewport.RenderShrinkWrappingViewport renderObject)
+        {
+            ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Offset = Offset;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Offset = Offset;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
+            properties.Add(new EnumProperty<AxisDirection>("crossAxisDirection", CrossAxisDirection, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ViewportOffset>("offset", Offset));
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-public class _ViewportElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
-{
-    #region constructors
-    public _ViewportElement(FlutterSDK.Widgets.Viewport.Viewport widget)
-    : base(widget)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Viewport.Viewport Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Rendering.Viewport.RenderViewport RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
-{
-    base.Mount(parent, newSlot);
-    _UpdateCenter();
-}
-
-
-
-
-public new void Update(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget newWidget)
-{
-    base.Update(newWidget);
-    _UpdateCenter();
-}
-
-
-public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
-{
-    base.Update(newWidget);
-    _UpdateCenter();
-}
-
-
-
-
-private void _UpdateCenter()
-{
-    if (Widget.Center != null)
-    {
-        RenderObject.Center = Children.SingleWhere((Element element) => =>element.Widget.Key == Widget.Center).RenderObject as RenderSliver;
-    }
-    else if (Children.IsNotEmpty)
-    {
-        RenderObject.Center = Children.First.RenderObject as RenderSliver;
-    }
-    else
-    {
-        RenderObject.Center = null;
-    }
-
-}
-
-
-
-
-public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
-{
-    Children.Where((Element e) =>
-    {
-        RenderSliver renderSliver = e.RenderObject as RenderSliver;
-        return renderSliver.Geometry.Visible;
-    }
-    ).ForEach(visitor);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A widget that is bigger on the inside and shrink wraps its children in the
-/// main axis.
-///
-/// [ShrinkWrappingViewport] displays a subset of its children according to its
-/// own dimensions and the given [offset]. As the offset varies, different
-/// children are visible through the viewport.
-///
-/// [ShrinkWrappingViewport] differs from [Viewport] in that [Viewport] expands
-/// to fill the main axis whereas [ShrinkWrappingViewport] sizes itself to match
-/// its children in the main axis. This shrink wrapping behavior is expensive
-/// because the children, and hence the viewport, could potentially change size
-/// whenever the [offset] changes (e.g., because of a collapsing header).
-///
-/// [ShrinkWrappingViewport] cannot contain box children directly. Instead, use
-/// a [SliverList], [SliverFixedExtentList], [SliverGrid], or a
-/// [SliverToBoxAdapter], for example.
-///
-/// See also:
-///
-///  * [ListView], [PageView], [GridView], and [CustomScrollView], which combine
-///    [Scrollable] and [ShrinkWrappingViewport] into widgets that are easier to
-///    use.
-///  * [SliverToBoxAdapter], which allows a box widget to be placed inside a
-///    sliver context (the opposite of this widget).
-///  * [Viewport], a viewport that does not shrink-wrap its contents.
-/// </Summary>
-public class ShrinkWrappingViewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-    #region constructors
-    public ShrinkWrappingViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
-    : base(key: key, children: slivers)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
-public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.Viewport.RenderShrinkWrappingViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new RenderShrinkWrappingViewport(axisDirection: AxisDirection, crossAxisDirection: CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection), offset: Offset);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewport.RenderShrinkWrappingViewport renderObject)
-{
-    ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Offset = Offset;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..AxisDirection = AxisDirection..CrossAxisDirection = CrossAxisDirection ?? ViewportDefaultClass.Viewport.GetDefaultCrossAxisDirection(context, AxisDirection)..Offset = Offset;
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new EnumProperty<AxisDirection>("axisDirection", AxisDirection));
-    properties.Add(new EnumProperty<AxisDirection>("crossAxisDirection", CrossAxisDirection, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<ViewportOffset>("offset", Offset));
-}
-
-
-
-#endregion
-}
 
 }

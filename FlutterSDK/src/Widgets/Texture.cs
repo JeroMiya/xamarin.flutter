@@ -463,34 +463,35 @@ namespace FlutterSDK.Widgets.Texture
         #region constructors
         public Texture(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int textureId = default(int))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.TextureId = textureId;
+        }
+        #endregion
 
-    #region fields
-    public virtual int TextureId { get; set; }
-    #endregion
+        #region fields
+        public virtual int TextureId { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Rendering.Texture.TextureBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new TextureBox(textureId: TextureId);
+        public new FlutterSDK.Rendering.Texture.TextureBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new TextureBox(textureId: TextureId);
 
 
 
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Texture.TextureBox renderObject)
-    {
-        renderObject.TextureId = TextureId;
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Texture.TextureBox renderObject)
+        {
+            renderObject.TextureId = TextureId;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            renderObject.TextureId = TextureId;
+        }
+
+
+
+        #endregion
     }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        renderObject.TextureId = TextureId;
-    }
-
-
-
-    #endregion
-}
 
 }

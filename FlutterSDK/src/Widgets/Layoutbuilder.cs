@@ -510,139 +510,140 @@ namespace FlutterSDK.Widgets.Layoutbuilder
         #region constructors
         public ConstrainedLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Func<Widget, BuildContext, ConstraintType> builder = default(Func<Widget, BuildContext, ConstraintType>))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
-    #endregion
-
-    #region methods
-
-    public new _LayoutBuilderElement<ConstraintType> CreateElement() => new _LayoutBuilderElement<ConstraintType>(this);
-
-
-    #endregion
-}
-
-
-public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
-{
-    #region constructors
-    public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
-    : base(widget)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
-public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType, FlutterSDK.Rendering.@object.RenderObject> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
-{
-    if (_Child != null) visitor(_Child);
-}
-
-
-
-
-public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
-{
-
-    _Child = null;
-    base.ForgetChild(child);
-}
-
-
-
-
-public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
-{
-    base.Mount(parent, newSlot);
-    RenderObject.UpdateCallback(_Layout);
-}
-
-
-
-
-public new void Update(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> newWidget)
-{
-
-    base.Update(newWidget);
-
-    RenderObject.UpdateCallback(_Layout);
-    RenderObject.MarkNeedsLayout();
-}
-
-
-public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
-{
-
-    base.Update(newWidget);
-
-    RenderObject.UpdateCallback(_Layout);
-    RenderObject.MarkNeedsLayout();
-}
-
-
-
-
-public new void PerformRebuild()
-{
-    RenderObject.MarkNeedsLayout();
-    base.PerformRebuild();
-}
-
-
-
-
-public new void Unmount()
-{
-    RenderObject.UpdateCallback(null);
-    base.Unmount();
-}
-
-
-
-
-private void _Layout(ConstraintType constraints)
-{
-    Owner.BuildScope(this, () =>
-    {
-    Widget built = default(Widget);
-    if (Widget.Builder != null)
-    {
-        try
         {
-            built = Widget.Builder(this, constraints);
-            DebugDefaultClass.DebugWidgetBuilderValue(Widget, built);
+            this.Builder = builder;
         }
-        catch (e,stack){
-        built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () => sync *{
-            yield new DiagnosticsDebugCreator(new DebugCreator(this));
-        }
-));
-}
+        #endregion
 
-}
+        #region fields
+        public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
+        #endregion
 
-try
-{
-    _Child = UpdateChild(_Child, built, null);
+        #region methods
 
-}
-catch (e,stack){
-    built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () => sync *{
-        yield new DiagnosticsDebugCreator(new DebugCreator(this));
+        public new _LayoutBuilderElement<ConstraintType> CreateElement() => new _LayoutBuilderElement<ConstraintType>(this);
+
+
+        #endregion
     }
+
+
+    public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
+    {
+        #region constructors
+        public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
+        : base(widget)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
+        public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType, FlutterSDK.Rendering.@object.RenderObject> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+        {
+            if (_Child != null) visitor(_Child);
+        }
+
+
+
+
+        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+        {
+
+            _Child = null;
+            base.ForgetChild(child);
+        }
+
+
+
+
+        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+        {
+            base.Mount(parent, newSlot);
+            RenderObject.UpdateCallback(_Layout);
+        }
+
+
+
+
+        public new void Update(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> newWidget)
+        {
+
+            base.Update(newWidget);
+
+            RenderObject.UpdateCallback(_Layout);
+            RenderObject.MarkNeedsLayout();
+        }
+
+
+        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+        {
+
+            base.Update(newWidget);
+
+            RenderObject.UpdateCallback(_Layout);
+            RenderObject.MarkNeedsLayout();
+        }
+
+
+
+
+        public new void PerformRebuild()
+        {
+            RenderObject.MarkNeedsLayout();
+            base.PerformRebuild();
+        }
+
+
+
+
+        public new void Unmount()
+        {
+            RenderObject.UpdateCallback(null);
+            base.Unmount();
+        }
+
+
+
+
+        private void _Layout(ConstraintType constraints)
+        {
+            Owner.BuildScope(this, () =>
+            {
+            Widget built = default(Widget);
+            if (Widget.Builder != null)
+            {
+                try
+                {
+                    built = Widget.Builder(this, constraints);
+                    DebugDefaultClass.DebugWidgetBuilderValue(Widget, built);
+                }
+                catch (e,stack){
+                built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () => sync *{
+                    yield new DiagnosticsDebugCreator(new DebugCreator(this));
+                }
 ));
-    _Child = UpdateChild(null, built, Slot);
+            }
+
+        }
+
+try {
+_Child=UpdateChild(_Child, built, null );
+
+    }
+catch (e, stack){
+built=FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector:() => sync*{
+yield new DiagnosticsDebugCreator(new DebugCreator(this ));
+}
+));
+_Child = UpdateChild(null, built, Slot);
 }
 
 }
@@ -714,20 +715,21 @@ public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutB
     #region constructors
     public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
     : base(key: key, builder: builder)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderLayoutBuilder();
+    public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderLayoutBuilder();
 
 
-#endregion
+    #endregion
 }
 
 

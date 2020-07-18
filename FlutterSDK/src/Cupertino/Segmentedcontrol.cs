@@ -350,604 +350,617 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
         #region constructors
         public CupertinoSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Dictionary<T, FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T, FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), T groupValue = default(T), FlutterBinding.UI.Color unselectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color pressedColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual Dictionary<T, FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-    public virtual T GroupValue { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged { get; set; }
-    public virtual FlutterBinding.UI.Color UnselectedColor { get; set; }
-    public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
-    public virtual FlutterBinding.UI.Color BorderColor { get; set; }
-    public virtual FlutterBinding.UI.Color PressedColor { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-    #endregion
-
-    #region methods
-
-    public new _SegmentedControlState<T> CreateState() => new _SegmentedControlState<T>();
-
-
-    #endregion
-}
-
-
-public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>, ITickerProviderStateMixin<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>
-{
-    #region constructors
-    public _SegmentedControlState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual T _PressedKey { get; set; }
-    internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _SelectionControllers { get; set; }
-    internal virtual List<FlutterSDK.Animation.Tween.ColorTween> _ChildTweens { get; set; }
-    internal virtual FlutterSDK.Animation.Tween.ColorTween _ForwardBackgroundColorTween { get; set; }
-    internal virtual FlutterSDK.Animation.Tween.ColorTween _ReverseBackgroundColorTween { get; set; }
-    internal virtual FlutterSDK.Animation.Tween.ColorTween _TextColorTween { get; set; }
-    internal virtual FlutterBinding.UI.Color _SelectedColor { get; set; }
-    internal virtual FlutterBinding.UI.Color _UnselectedColor { get; set; }
-    internal virtual FlutterBinding.UI.Color _BorderColor { get; set; }
-    internal virtual FlutterBinding.UI.Color _PressedColor { get; set; }
-    #endregion
-
-    #region methods
-
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
-    {
-        return new AnimationController(duration: SegmentedcontrolDefaultClass._KFadeDuration, vsync: this);
-        new AnimationController(duration: SegmentedcontrolDefaultClass._KFadeDuration, vsync: this).AddListener(() =>
         {
-            SetState(() =>
+            this.Children = children;
+            this.OnValueChanged = onValueChanged;
+            this.GroupValue = groupValue;
+            this.UnselectedColor = unselectedColor;
+            this.SelectedColor = selectedColor;
+            this.BorderColor = borderColor;
+            this.PressedColor = pressedColor;
+            this.Padding = padding;
+        }
+        #endregion
+
+        #region fields
+        public virtual Dictionary<T, FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        public virtual T GroupValue { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged { get; set; }
+        public virtual FlutterBinding.UI.Color UnselectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        public virtual FlutterBinding.UI.Color PressedColor { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        #endregion
+
+        #region methods
+
+        public new _SegmentedControlState<T> CreateState() => new _SegmentedControlState<T>();
+
+
+        #endregion
+    }
+
+
+    public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>, ITickerProviderStateMixin<FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T>>
+    {
+        #region constructors
+        public _SegmentedControlState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual T _PressedKey { get; set; }
+        internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _SelectionControllers { get; set; }
+        internal virtual List<FlutterSDK.Animation.Tween.ColorTween> _ChildTweens { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _ForwardBackgroundColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _ReverseBackgroundColorTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _TextColorTween { get; set; }
+        internal virtual FlutterBinding.UI.Color _SelectedColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _UnselectedColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _BorderColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _PressedColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
+        {
+            return new AnimationController(duration: SegmentedcontrolDefaultClass._KFadeDuration, vsync: this);
+            new AnimationController(duration: SegmentedcontrolDefaultClass._KFadeDuration, vsync: this).AddListener(() =>
             {
+                SetState(() =>
+                {
+                }
+                );
             }
             );
         }
-        );
-    }
 
 
 
 
-    private bool _UpdateColors()
-    {
-
-        bool changed = false;
-        Color selectedColor = Widget.SelectedColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryColor;
-        if (_SelectedColor != selectedColor)
+        private bool _UpdateColors()
         {
-            changed = true;
-            _SelectedColor = selectedColor;
-        }
 
-        Color unselectedColor = Widget.UnselectedColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryContrastingColor;
-        if (_UnselectedColor != unselectedColor)
-        {
-            changed = true;
-            _UnselectedColor = unselectedColor;
-        }
-
-        Color borderColor = Widget.BorderColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryColor;
-        if (_BorderColor != borderColor)
-        {
-            changed = true;
-            _BorderColor = borderColor;
-        }
-
-        Color pressedColor = Widget.PressedColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryColor.WithOpacity(0.2);
-        if (_PressedColor != pressedColor)
-        {
-            changed = true;
-            _PressedColor = pressedColor;
-        }
-
-        _ForwardBackgroundColorTween = new ColorTween(begin: _PressedColor, end: _SelectedColor);
-        _ReverseBackgroundColorTween = new ColorTween(begin: _UnselectedColor, end: _SelectedColor);
-        _TextColorTween = new ColorTween(begin: _SelectedColor, end: _UnselectedColor);
-        return changed;
-    }
-
-
-
-
-    private void _UpdateAnimationControllers()
-    {
-
-        foreach (AnimationController controller in _SelectionControllers)
-        {
-            controller.Dispose();
-        }
-
-        _SelectionControllers.Clear();
-        _ChildTweens.Clear();
-        foreach (T key in Widget.Children.Keys)
-        {
-            AnimationController animationController = CreateAnimationController();
-            if (Widget.GroupValue == key)
+            bool changed = false;
+            Color selectedColor = Widget.SelectedColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryColor;
+            if (_SelectedColor != selectedColor)
             {
-                _ChildTweens.Add(_ReverseBackgroundColorTween);
-                animationController.Value = 1.0;
-            }
-            else
-            {
-                _ChildTweens.Add(_ForwardBackgroundColorTween);
+                changed = true;
+                _SelectedColor = selectedColor;
             }
 
-            _SelectionControllers.Add(animationController);
+            Color unselectedColor = Widget.UnselectedColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryContrastingColor;
+            if (_UnselectedColor != unselectedColor)
+            {
+                changed = true;
+                _UnselectedColor = unselectedColor;
+            }
+
+            Color borderColor = Widget.BorderColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryColor;
+            if (_BorderColor != borderColor)
+            {
+                changed = true;
+                _BorderColor = borderColor;
+            }
+
+            Color pressedColor = Widget.PressedColor ?? ThemeDefaultClass.CupertinoTheme.Of(Context).PrimaryColor.WithOpacity(0.2);
+            if (_PressedColor != pressedColor)
+            {
+                changed = true;
+                _PressedColor = pressedColor;
+            }
+
+            _ForwardBackgroundColorTween = new ColorTween(begin: _PressedColor, end: _SelectedColor);
+            _ReverseBackgroundColorTween = new ColorTween(begin: _UnselectedColor, end: _SelectedColor);
+            _TextColorTween = new ColorTween(begin: _SelectedColor, end: _UnselectedColor);
+            return changed;
         }
 
-    }
 
 
 
-
-    public new void DidChangeDependencies()
-    {
-        base.DidChangeDependencies();
-        if (_UpdateColors())
+        private void _UpdateAnimationControllers()
         {
-            _UpdateAnimationControllers();
-        }
 
-    }
+            foreach (AnimationController controller in _SelectionControllers)
+            {
+                controller.Dispose();
+            }
 
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T> oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (_UpdateColors() || oldWidget.Children.Length != Widget.Children.Length)
-        {
-            _UpdateAnimationControllers();
-        }
-
-        if (oldWidget.GroupValue != Widget.GroupValue)
-        {
-            int index = 0;
+            _SelectionControllers.Clear();
+            _ChildTweens.Clear();
             foreach (T key in Widget.Children.Keys)
             {
+                AnimationController animationController = CreateAnimationController();
                 if (Widget.GroupValue == key)
                 {
-                    _ChildTweens[index] = _ForwardBackgroundColorTween;
-                    _SelectionControllers[index].Forward();
+                    _ChildTweens.Add(_ReverseBackgroundColorTween);
+                    animationController.Value = 1.0;
                 }
                 else
                 {
-                    _ChildTweens[index] = _ReverseBackgroundColorTween;
-                    _SelectionControllers[index].Reverse();
+                    _ChildTweens.Add(_ForwardBackgroundColorTween);
                 }
 
+                _SelectionControllers.Add(animationController);
+            }
+
+        }
+
+
+
+
+        public new void DidChangeDependencies()
+        {
+            base.DidChangeDependencies();
+            if (_UpdateColors())
+            {
+                _UpdateAnimationControllers();
+            }
+
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Segmentedcontrol.CupertinoSegmentedControl<T> oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (_UpdateColors() || oldWidget.Children.Length != Widget.Children.Length)
+            {
+                _UpdateAnimationControllers();
+            }
+
+            if (oldWidget.GroupValue != Widget.GroupValue)
+            {
+                int index = 0;
+                foreach (T key in Widget.Children.Keys)
+                {
+                    if (Widget.GroupValue == key)
+                    {
+                        _ChildTweens[index] = _ForwardBackgroundColorTween;
+                        _SelectionControllers[index].Forward();
+                    }
+                    else
+                    {
+                        _ChildTweens[index] = _ReverseBackgroundColorTween;
+                        _SelectionControllers[index].Reverse();
+                    }
+
+                    index += 1;
+                }
+
+            }
+
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            foreach (AnimationController animationController in _SelectionControllers)
+            {
+                animationController.Dispose();
+            }
+
+            base.Dispose();
+        }
+
+
+
+
+        private void _OnTapDown(T currentKey)
+        {
+            if (_PressedKey == null && currentKey != Widget.GroupValue)
+            {
+                SetState(() =>
+                {
+                    _PressedKey = currentKey;
+                }
+                );
+            }
+
+        }
+
+
+
+
+        private void _OnTapCancel()
+        {
+            SetState(() =>
+            {
+                _PressedKey = null;
+            }
+            );
+        }
+
+
+
+
+        private void _OnTap(T currentKey)
+        {
+            if (currentKey != _PressedKey) return;
+            if (currentKey != Widget.GroupValue)
+            {
+                Widget.OnValueChanged(currentKey);
+            }
+
+            _PressedKey = null;
+        }
+
+
+
+
+        public virtual Color GetTextColor(int index, T currentKey)
+        {
+            if (_SelectionControllers[index].IsAnimating) return _TextColorTween.Evaluate(_SelectionControllers[index]);
+            if (Widget.GroupValue == currentKey) return _UnselectedColor;
+            return _SelectedColor;
+        }
+
+
+
+
+        public virtual Color GetBackgroundColor(int index, T currentKey)
+        {
+            if (_SelectionControllers[index].IsAnimating) return _ChildTweens[index].Evaluate(_SelectionControllers[index]);
+            if (Widget.GroupValue == currentKey) return _SelectedColor;
+            if (_PressedKey == currentKey) return _PressedColor;
+            return _UnselectedColor;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            List<Widget> _gestureChildren = new List<Widget>() { };
+            List<Color> _backgroundColors = new List<Color>() { };
+            int index = 0;
+            int selectedIndex = default(int);
+            int pressedIndex = default(int);
+            foreach (T currentKey in Widget.Children.Keys)
+            {
+                selectedIndex = (Widget.GroupValue == currentKey) ? index : selectedIndex;
+                pressedIndex = (_PressedKey == currentKey) ? index : pressedIndex;
+                TextStyle textStyle = TextDefaultClass.DefaultTextStyle.Of(context).Style.CopyWith(color: GetTextColor(index, currentKey));
+                IconThemeData iconTheme = new IconThemeData(color: GetTextColor(index, currentKey));
+                Widget child = new Center(child: Widget.Children[currentKey]);
+                child = new GestureDetector(behavior: HitTestBehavior.Opaque, onTapDown: (TapDownDetails @event) =>
+                {
+                    _OnTapDown(currentKey);
+                }
+                , onTapCancel: _OnTapCancel, onTap: () =>
+                {
+                    _OnTap(currentKey);
+                }
+                , child: new IconTheme(data: iconTheme, child: new DefaultTextStyle(style: textStyle, child: new Semantics(button: true, inMutuallyExclusiveGroup: true, selected: Widget.GroupValue == currentKey, child: child))));
+                _backgroundColors.Add(GetBackgroundColor(index, currentKey));
+                _gestureChildren.Add(child);
+                index += 1;
+            }
+
+            Widget box = new _SegmentedControlRenderWidget<T>(children: _gestureChildren, selectedIndex: selectedIndex, pressedIndex: pressedIndex, backgroundColors: _backgroundColors, borderColor: _BorderColor);
+            return new Padding(padding: Widget.Padding ?? SegmentedcontrolDefaultClass._KHorizontalItemPadding, child: new UnconstrainedBox(constrainedAxis: Axis.Horizontal, child: box));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
+    {
+        #region constructors
+        public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int selectedIndex = default(int), int pressedIndex = default(int), List<Color> backgroundColors = default(List<Color>), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
+        : base(key: key, children: children)
+        {
+            this.SelectedIndex = selectedIndex;
+            this.PressedIndex = pressedIndex;
+            this.BackgroundColors = backgroundColors;
+            this.BorderColor = borderColor;
+        }
+        #endregion
+
+        #region fields
+        public virtual int SelectedIndex { get; set; }
+        public virtual int PressedIndex { get; set; }
+        public virtual List<Color> BackgroundColors { get; set; }
+        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderSegmentedControl<T>(textDirection: BasicDefaultClass.Directionality.Of(context), selectedIndex: SelectedIndex, pressedIndex: PressedIndex, backgroundColors: BackgroundColors, borderColor: BorderColor);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Segmentedcontrol._RenderSegmentedControl<T> renderObject)
+        {
+            ..TextDirection = BasicDefaultClass.Directionality.Of(context)..SelectedIndex = SelectedIndex..PressedIndex = PressedIndex..BackgroundColors = BackgroundColors..BorderColor = BorderColor;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
+    {
+        #region constructors
+        public _SegmentedControlContainerBoxParentData()
+        { }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.RRect SurroundingRect { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
+    {
+        #region constructors
+        public _RenderSegmentedControl(int selectedIndex = default(int), int pressedIndex = default(int), TextDirection textDirection = default(TextDirection), List<Color> backgroundColors = default(List<Color>), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
+        : base()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual int _SelectedIndex { get; set; }
+        internal virtual int _PressedIndex { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual List<Color> _BackgroundColors { get; set; }
+        internal virtual FlutterBinding.UI.Color _BorderColor { get; set; }
+        public virtual int SelectedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int PressedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<Color> BackgroundColors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color BorderColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new double ComputeMinIntrinsicWidth(double height)
+        {
+            RenderBox child = FirstChild;
+            double minWidth = 0.0;
+            while (child != null)
+            {
+                _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+                double childWidth = child.GetMinIntrinsicWidth(height);
+                minWidth = Math.Dart:mathDefaultClass.Max(minWidth, childWidth);
+                child = childParentData.NextSibling;
+            }
+
+            return minWidth * ChildCount;
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicWidth(double height)
+        {
+            RenderBox child = FirstChild;
+            double maxWidth = 0.0;
+            while (child != null)
+            {
+                _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+                double childWidth = child.GetMaxIntrinsicWidth(height);
+                maxWidth = Math.Dart:mathDefaultClass.Max(maxWidth, childWidth);
+                child = childParentData.NextSibling;
+            }
+
+            return maxWidth * ChildCount;
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicHeight(double width)
+        {
+            RenderBox child = FirstChild;
+            double minHeight = 0.0;
+            while (child != null)
+            {
+                _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+                double childHeight = child.GetMinIntrinsicHeight(width);
+                minHeight = Math.Dart:mathDefaultClass.Max(minHeight, childHeight);
+                child = childParentData.NextSibling;
+            }
+
+            return minHeight;
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicHeight(double width)
+        {
+            RenderBox child = FirstChild;
+            double maxHeight = 0.0;
+            while (child != null)
+            {
+                _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+                double childHeight = child.GetMaxIntrinsicHeight(width);
+                maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, childHeight);
+                child = childParentData.NextSibling;
+            }
+
+            return maxHeight;
+        }
+
+
+
+
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+        {
+            return DefaultComputeDistanceToHighestActualBaseline(baseline);
+        }
+
+
+
+
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+            if (!(child.ParentData is _SegmentedControlContainerBoxParentData))
+            {
+                ((_SegmentedControlContainerBoxParentData)child.ParentData) = new _SegmentedControlContainerBoxParentData();
+            }
+
+        }
+
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            if (!(child.ParentData is _SegmentedControlContainerBoxParentData))
+            {
+                ((_SegmentedControlContainerBoxParentData)child.ParentData) = new _SegmentedControlContainerBoxParentData();
+            }
+
+        }
+
+
+
+
+        private void _LayoutRects(FlutterSDK.Cupertino.Segmentedcontrol._NextChild nextChild, FlutterSDK.Rendering.Box.RenderBox leftChild, FlutterSDK.Rendering.Box.RenderBox rightChild)
+        {
+            RenderBox child = leftChild;
+            double start = 0.0;
+            while (child != null)
+            {
+                _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+                Offset childOffset = new Offset(start, 0.0);
+                childParentData.Offset = childOffset;
+                Rect childRect = Rect.FromLTWH(start, 0.0, child.Size.Width, child.Size.Height);
+                RRect rChildRect = default(RRect);
+                if (child == leftChild)
+                {
+                    rChildRect = RRect.FromRectAndCorners(childRect, topLeft: Radius.Circular(3.0), bottomLeft: Radius.Circular(3.0));
+                }
+                else if (child == rightChild)
+                {
+                    rChildRect = RRect.FromRectAndCorners(childRect, topRight: Radius.Circular(3.0), bottomRight: Radius.Circular(3.0));
+                }
+                else
+                {
+                    rChildRect = RRect.FromRectAndCorners(childRect);
+                }
+
+                childParentData.SurroundingRect = rChildRect;
+                start += child.Size.Width;
+                child = nextChild(child);
+            }
+
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            BoxConstraints constraints = this.Constraints;
+            double maxHeight = SegmentedcontrolDefaultClass._KMinSegmentedControlHeight;
+            double childWidth = constraints.MinWidth / ChildCount;
+            foreach (RenderBox child in GetChildrenAsList())
+            {
+                childWidth = Math.Dart:mathDefaultClass.Max(childWidth, child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity));
+            }
+
+            childWidth = Math.Dart:mathDefaultClass.Min(childWidth, constraints.MaxWidth / ChildCount);
+            RenderBox child = FirstChild;
+            while (child != null)
+            {
+                double boxHeight = child.GetMaxIntrinsicHeight(childWidth);
+                maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, boxHeight);
+                child = ChildAfter(child);
+            }
+
+            constraints.ConstrainHeight(maxHeight);
+            BoxConstraints childConstraints = BoxConstraints.TightFor(width: childWidth, height: maxHeight);
+            child = FirstChild;
+            while (child != null)
+            {
+                child.Layout(childConstraints, parentUsesSize: true);
+                child = ChildAfter(child);
+            }
+
+            switch (TextDirection) { case TextDirection.Rtl: _LayoutRects(ChildBefore, LastChild, FirstChild); break; case TextDirection.Ltr: _LayoutRects(ChildAfter, FirstChild, LastChild); break; }
+            Size = constraints.Constrain(new Size(childWidth * ChildCount, maxHeight));
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            RenderBox child = FirstChild;
+            int index = 0;
+            while (child != null)
+            {
+                _PaintChild(context, offset, child, index);
+                child = ChildAfter(child);
                 index += 1;
             }
 
         }
 
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        foreach (AnimationController animationController in _SelectionControllers)
+        private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, int childIndex)
         {
-            animationController.Dispose();
+
+            _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+            context.Canvas.DrawRRect(childParentData.SurroundingRect.Shift(offset), new Paint()..Color = BackgroundColors[childIndex]..Style = PaintingStyle.Fill);
+            context.Canvas.DrawRRect(childParentData.SurroundingRect.Shift(offset), new Paint()..Color = BorderColor..StrokeWidth = 1.0..Style = PaintingStyle.Stroke);
+            context.PaintChild(child, childParentData.Offset + offset);
         }
 
-        base.Dispose();
-    }
 
 
 
-
-    private void _OnTapDown(T currentKey)
-    {
-        if (_PressedKey == null && currentKey != Widget.GroupValue)
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
-            SetState(() =>
+
+            RenderBox child = LastChild;
+            while (child != null)
             {
-                _PressedKey = currentKey;
+                _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
+                if (childParentData.SurroundingRect.Contains(position))
+                {
+                    Offset center = (Dart: uiDefaultClass.Offset.Zero & child.Size).Center;
+                    return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: center, hitTest: (BoxHitTestResult result, Offset position) =>
+                    {
+
+                        return child.HitTest(result, position: center);
+                    }
+                    );
+                }
+
+                child = childParentData.PreviousSibling;
             }
-            );
+
+            return false;
         }
 
+
+
+        #endregion
     }
-
-
-
-
-    private void _OnTapCancel()
-    {
-        SetState(() =>
-        {
-            _PressedKey = null;
-        }
-        );
-    }
-
-
-
-
-    private void _OnTap(T currentKey)
-    {
-        if (currentKey != _PressedKey) return;
-        if (currentKey != Widget.GroupValue)
-        {
-            Widget.OnValueChanged(currentKey);
-        }
-
-        _PressedKey = null;
-    }
-
-
-
-
-    public virtual Color GetTextColor(int index, T currentKey)
-    {
-        if (_SelectionControllers[index].IsAnimating) return _TextColorTween.Evaluate(_SelectionControllers[index]);
-        if (Widget.GroupValue == currentKey) return _UnselectedColor;
-        return _SelectedColor;
-    }
-
-
-
-
-    public virtual Color GetBackgroundColor(int index, T currentKey)
-    {
-        if (_SelectionControllers[index].IsAnimating) return _ChildTweens[index].Evaluate(_SelectionControllers[index]);
-        if (Widget.GroupValue == currentKey) return _SelectedColor;
-        if (_PressedKey == currentKey) return _PressedColor;
-        return _UnselectedColor;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        List<Widget> _gestureChildren = new List<Widget>() { };
-        List<Color> _backgroundColors = new List<Color>() { };
-        int index = 0;
-        int selectedIndex = default(int);
-        int pressedIndex = default(int);
-        foreach (T currentKey in Widget.Children.Keys)
-        {
-            selectedIndex = (Widget.GroupValue == currentKey) ? index : selectedIndex;
-            pressedIndex = (_PressedKey == currentKey) ? index : pressedIndex;
-            TextStyle textStyle = TextDefaultClass.DefaultTextStyle.Of(context).Style.CopyWith(color: GetTextColor(index, currentKey));
-            IconThemeData iconTheme = new IconThemeData(color: GetTextColor(index, currentKey));
-            Widget child = new Center(child: Widget.Children[currentKey]);
-            child = new GestureDetector(behavior: HitTestBehavior.Opaque, onTapDown: (TapDownDetails @event) =>
-            {
-                _OnTapDown(currentKey);
-            }
-            , onTapCancel: _OnTapCancel, onTap: () =>
-            {
-                _OnTap(currentKey);
-            }
-            , child: new IconTheme(data: iconTheme, child: new DefaultTextStyle(style: textStyle, child: new Semantics(button: true, inMutuallyExclusiveGroup: true, selected: Widget.GroupValue == currentKey, child: child))));
-            _backgroundColors.Add(GetBackgroundColor(index, currentKey));
-            _gestureChildren.Add(child);
-            index += 1;
-        }
-
-        Widget box = new _SegmentedControlRenderWidget<T>(children: _gestureChildren, selectedIndex: selectedIndex, pressedIndex: pressedIndex, backgroundColors: _backgroundColors, borderColor: _BorderColor);
-        return new Padding(padding: Widget.Padding ?? SegmentedcontrolDefaultClass._KHorizontalItemPadding, child: new UnconstrainedBox(constrainedAxis: Axis.Horizontal, child: box));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-    #region constructors
-    public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int selectedIndex = default(int), int pressedIndex = default(int), List<Color> backgroundColors = default(List<Color>), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
-    : base(key: key, children: children)
-
-}
-#endregion
-
-#region fields
-public virtual int SelectedIndex { get; set; }
-public virtual int PressedIndex { get; set; }
-public virtual List<Color> BackgroundColors { get; set; }
-public virtual FlutterBinding.UI.Color BorderColor { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderSegmentedControl<T>(textDirection: BasicDefaultClass.Directionality.Of(context), selectedIndex: SelectedIndex, pressedIndex: PressedIndex, backgroundColors: BackgroundColors, borderColor: BorderColor);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Segmentedcontrol._RenderSegmentedControl<T> renderObject)
-{
-    ..TextDirection = BasicDefaultClass.Directionality.Of(context)..SelectedIndex = SelectedIndex..PressedIndex = PressedIndex..BackgroundColors = BackgroundColors..BorderColor = BorderColor;
-}
-
-
-
-#endregion
-}
-
-
-public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
-{
-    #region constructors
-    public _SegmentedControlContainerBoxParentData()
-    { }
-    #endregion
-
-    #region fields
-    public virtual FlutterBinding.UI.RRect SurroundingRect { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
-{
-    #region constructors
-    public _RenderSegmentedControl(int selectedIndex = default(int), int pressedIndex = default(int), TextDirection textDirection = default(TextDirection), List<Color> backgroundColors = default(List<Color>), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color))
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual int _SelectedIndex { get; set; }
-internal virtual int _PressedIndex { get; set; }
-internal virtual TextDirection _TextDirection { get; set; }
-internal virtual List<Color> _BackgroundColors { get; set; }
-internal virtual FlutterBinding.UI.Color _BorderColor { get; set; }
-public virtual int SelectedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int PressedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual List<Color> BackgroundColors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color BorderColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new double ComputeMinIntrinsicWidth(double height)
-{
-    RenderBox child = FirstChild;
-    double minWidth = 0.0;
-    while (child != null)
-    {
-        _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-        double childWidth = child.GetMinIntrinsicWidth(height);
-        minWidth = Math.Dart:mathDefaultClass.Max(minWidth, childWidth);
-        child = childParentData.NextSibling;
-    }
-
-    return minWidth * ChildCount;
-}
-
-
-
-
-public new double ComputeMaxIntrinsicWidth(double height)
-{
-    RenderBox child = FirstChild;
-    double maxWidth = 0.0;
-    while (child != null)
-    {
-        _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-        double childWidth = child.GetMaxIntrinsicWidth(height);
-        maxWidth = Math.Dart:mathDefaultClass.Max(maxWidth, childWidth);
-        child = childParentData.NextSibling;
-    }
-
-    return maxWidth * ChildCount;
-}
-
-
-
-
-public new double ComputeMinIntrinsicHeight(double width)
-{
-    RenderBox child = FirstChild;
-    double minHeight = 0.0;
-    while (child != null)
-    {
-        _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-        double childHeight = child.GetMinIntrinsicHeight(width);
-        minHeight = Math.Dart:mathDefaultClass.Max(minHeight, childHeight);
-        child = childParentData.NextSibling;
-    }
-
-    return minHeight;
-}
-
-
-
-
-public new double ComputeMaxIntrinsicHeight(double width)
-{
-    RenderBox child = FirstChild;
-    double maxHeight = 0.0;
-    while (child != null)
-    {
-        _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-        double childHeight = child.GetMaxIntrinsicHeight(width);
-        maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, childHeight);
-        child = childParentData.NextSibling;
-    }
-
-    return maxHeight;
-}
-
-
-
-
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
-{
-    return DefaultComputeDistanceToHighestActualBaseline(baseline);
-}
-
-
-
-
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
-{
-    if (!(child.ParentData is _SegmentedControlContainerBoxParentData))
-    {
-        ((_SegmentedControlContainerBoxParentData)child.ParentData) = new _SegmentedControlContainerBoxParentData();
-    }
-
-}
-
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
-{
-    if (!(child.ParentData is _SegmentedControlContainerBoxParentData))
-    {
-        ((_SegmentedControlContainerBoxParentData)child.ParentData) = new _SegmentedControlContainerBoxParentData();
-    }
-
-}
-
-
-
-
-private void _LayoutRects(FlutterSDK.Cupertino.Segmentedcontrol._NextChild nextChild, FlutterSDK.Rendering.Box.RenderBox leftChild, FlutterSDK.Rendering.Box.RenderBox rightChild)
-{
-    RenderBox child = leftChild;
-    double start = 0.0;
-    while (child != null)
-    {
-        _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-        Offset childOffset = new Offset(start, 0.0);
-        childParentData.Offset = childOffset;
-        Rect childRect = Rect.FromLTWH(start, 0.0, child.Size.Width, child.Size.Height);
-        RRect rChildRect = default(RRect);
-        if (child == leftChild)
-        {
-            rChildRect = RRect.FromRectAndCorners(childRect, topLeft: Radius.Circular(3.0), bottomLeft: Radius.Circular(3.0));
-        }
-        else if (child == rightChild)
-        {
-            rChildRect = RRect.FromRectAndCorners(childRect, topRight: Radius.Circular(3.0), bottomRight: Radius.Circular(3.0));
-        }
-        else
-        {
-            rChildRect = RRect.FromRectAndCorners(childRect);
-        }
-
-        childParentData.SurroundingRect = rChildRect;
-        start += child.Size.Width;
-        child = nextChild(child);
-    }
-
-}
-
-
-
-
-public new void PerformLayout()
-{
-    BoxConstraints constraints = this.Constraints;
-    double maxHeight = SegmentedcontrolDefaultClass._KMinSegmentedControlHeight;
-    double childWidth = constraints.MinWidth / ChildCount;
-    foreach (RenderBox child in GetChildrenAsList())
-    {
-        childWidth = Math.Dart:mathDefaultClass.Max(childWidth, child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity));
-    }
-
-    childWidth = Math.Dart:mathDefaultClass.Min(childWidth, constraints.MaxWidth / ChildCount);
-    RenderBox child = FirstChild;
-    while (child != null)
-    {
-        double boxHeight = child.GetMaxIntrinsicHeight(childWidth);
-        maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, boxHeight);
-        child = ChildAfter(child);
-    }
-
-    constraints.ConstrainHeight(maxHeight);
-    BoxConstraints childConstraints = BoxConstraints.TightFor(width: childWidth, height: maxHeight);
-    child = FirstChild;
-    while (child != null)
-    {
-        child.Layout(childConstraints, parentUsesSize: true);
-        child = ChildAfter(child);
-    }
-
-    switch (TextDirection) { case TextDirection.Rtl: _LayoutRects(ChildBefore, LastChild, FirstChild); break; case TextDirection.Ltr: _LayoutRects(ChildAfter, FirstChild, LastChild); break; }
-    Size = constraints.Constrain(new Size(childWidth * ChildCount, maxHeight));
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    RenderBox child = FirstChild;
-    int index = 0;
-    while (child != null)
-    {
-        _PaintChild(context, offset, child, index);
-        child = ChildAfter(child);
-        index += 1;
-    }
-
-}
-
-
-
-
-private void _PaintChild(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, int childIndex)
-{
-
-    _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-    context.Canvas.DrawRRect(childParentData.SurroundingRect.Shift(offset), new Paint()..Color = BackgroundColors[childIndex]..Style = PaintingStyle.Fill);
-    context.Canvas.DrawRRect(childParentData.SurroundingRect.Shift(offset), new Paint()..Color = BorderColor..StrokeWidth = 1.0..Style = PaintingStyle.Stroke);
-    context.PaintChild(child, childParentData.Offset + offset);
-}
-
-
-
-
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
-{
-
-    RenderBox child = LastChild;
-    while (child != null)
-    {
-        _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
-        if (childParentData.SurroundingRect.Contains(position))
-        {
-            Offset center = (Dart: uiDefaultClass.Offset.Zero & child.Size).Center;
-            return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: center, hitTest: (BoxHitTestResult result, Offset position) =>
-            {
-
-                return child.HitTest(result, position: center);
-            }
-            );
-        }
-
-        child = childParentData.PreviousSibling;
-    }
-
-    return false;
-}
-
-
-
-#endregion
-}
 
 }

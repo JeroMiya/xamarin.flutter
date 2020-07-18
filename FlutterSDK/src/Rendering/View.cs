@@ -434,272 +434,275 @@ namespace FlutterSDK.Rendering.View
     {
         #region constructors
         public ViewConfiguration(Size size = default(Size), double devicePixelRatio = 1.0)
-    
-}
-    #endregion
+        {
+            this.Size = size;
+            this.DevicePixelRatio = devicePixelRatio;
+        }
+        #endregion
 
-    #region fields
-    public virtual Size Size { get; set; }
-    public virtual double DevicePixelRatio { get; set; }
-    #endregion
+        #region fields
+        public virtual Size Size { get; set; }
+        public virtual double DevicePixelRatio { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a transformation matrix that applies the [devicePixelRatio].
+        /// </Summary>
+        public virtual Matrix4 ToMatrix()
+        {
+            return Matrix4.Diagonal3Values(DevicePixelRatio, DevicePixelRatio, 1.0);
+        }
+
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a transformation matrix that applies the [devicePixelRatio].
+    /// The root of the render tree.
+    ///
+    /// The view represents the total output surface of the render tree and handles
+    /// bootstrapping the rendering pipeline. The view has a unique child
+    /// [RenderBox], which is required to fill the entire output surface.
     /// </Summary>
-    public virtual Matrix4 ToMatrix()
+    public class RenderView : FlutterSDK.Rendering.@object.RenderObject, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        return Matrix4.Diagonal3Values(DevicePixelRatio, DevicePixelRatio, 1.0);
+        #region constructors
+        public RenderView(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.View.ViewConfiguration configuration = default(FlutterSDK.Rendering.View.ViewConfiguration), Window window = default(Window))
+        : base()
+        {
+
+            this.Child = child;
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual Size _Size { get; set; }
+        internal virtual FlutterSDK.Rendering.View.ViewConfiguration _Configuration { get; set; }
+        internal virtual Window _Window { get; set; }
+        public virtual bool AutomaticSystemUiAdjustment { get; set; }
+        internal virtual Matrix4 _RootTransform { get; set; }
+        public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.View.ViewConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Bootstrap the rendering pipeline by scheduling the first frame.
+        ///
+        /// Deprecated. Call [prepareInitialFrame] followed by a call to
+        /// [PipelineOwner.requestVisualUpdate] on [owner] instead.
+        /// </Summary>
+        public virtual void ScheduleInitialFrame()
+        {
+            PrepareInitialFrame();
+            Owner.RequestVisualUpdate();
+        }
+
+
+
+
+        /// <Summary>
+        /// Bootstrap the rendering pipeline by preparing the first frame.
+        ///
+        /// This should only be called once, and must be called before changing
+        /// [configuration]. It is typically called immediately after calling the
+        /// constructor.
+        ///
+        /// This does not actually schedule the first frame. Call
+        /// [PipelineOwner.requestVisualUpdate] on [owner] to do that.
+        /// </Summary>
+        public virtual void PrepareInitialFrame()
+        {
+
+
+            ScheduleInitialLayout();
+            ScheduleInitialPaint(_UpdateMatricesAndCreateNewRootLayer());
+
+        }
+
+
+
+
+        private FlutterSDK.Rendering.Layer.TransformLayer _UpdateMatricesAndCreateNewRootLayer()
+        {
+            _RootTransform = Configuration.ToMatrix();
+            TransformLayer rootLayer = new TransformLayer(transform: _RootTransform);
+            rootLayer.Attach(this);
+
+            return rootLayer;
+        }
+
+
+
+
+        public new void DebugAssertDoesMeetConstraints()
+        {
+
+        }
+
+
+
+
+        public new void PerformResize()
+        {
+
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+
+            _Size = Configuration.Size;
+
+            if (Child != null) Child.Layout(BoxConstraints.Tight(_Size));
+        }
+
+
+
+
+        public new void Rotate(int oldAngle = default(int), int newAngle = default(int), TimeSpan time = default(TimeSpan))
+        {
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Determines the set of render objects located at the given position.
+        ///
+        /// Returns true if the given point is contained in this render object or one
+        /// of its descendants. Adds any render objects that contain the point to the
+        /// given hit test result.
+        ///
+        /// The [position] argument is in the coordinate system of the render view,
+        /// which is to say, in logical pixels. This is not necessarily the same
+        /// coordinate system as that expected by the root [Layer], which will
+        /// normally be in physical (device) pixels.
+        /// </Summary>
+        public virtual bool HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+        {
+            if (Child != null) Child.HitTest(BoxHitTestResult.Wrap(result), position: position);
+            result.Add(new HitTestEntry(this));
+            return true;
+        }
+
+
+
+
+        /// <Summary>
+        /// Determines the set of mouse tracker annotations at the given position.
+        ///
+        /// See also:
+        ///
+        ///  * [Layer.findAllAnnotations], which is used by this method to find all
+        ///    [AnnotatedRegionLayer]s annotated for mouse tracking.
+        /// </Summary>
+        public virtual Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> HitTestMouseTrackers(FlutterBinding.UI.Offset position)
+        {
+            return Layer.FindAllAnnotations(position * Configuration.DevicePixelRatio).Annotations;
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Child != null) context.PaintChild(Child, offset);
+        }
+
+
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
+        {
+
+            transform.Multiply(_RootTransform);
+            base.ApplyPaintTransform(child, transform);
+        }
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+        {
+
+            transform.Multiply(_RootTransform);
+            base.ApplyPaintTransform(child, transform);
+        }
+
+
+
+
+        /// <Summary>
+        /// Uploads the composited layer tree to the engine.
+        ///
+        /// Actually causes the output of the rendering pipeline to appear on screen.
+        /// </Summary>
+        public virtual void CompositeFrame()
+        {
+        Dart: developerDefaultClass.Timeline.StartSync("Compositing", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            try
+            {
+                Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
+                Ui.Dart:uiDefaultClass.Scene scene = Layer.BuildScene(builder);
+                if (AutomaticSystemUiAdjustment) _UpdateSystemChrome();
+                _Window.Render(scene);
+                scene.Dispose();
+
+            }
+            finally
+            {
+            Dart: developerDefaultClass.Timeline.FinishSync();
+            }
+
+        }
+
+
+
+
+        private void _UpdateSystemChrome()
+        {
+            Rect bounds = PaintBounds;
+            Offset top = new Offset(bounds.Center.Dx, _Window.Padding.Top / _Window.DevicePixelRatio);
+            Offset bottom = new Offset(bounds.Center.Dx, bounds.Center.Dy - _Window.Padding.Bottom / _Window.DevicePixelRatio);
+            SystemUiOverlayStyle upperOverlayStyle = Layer.Find(top);
+            SystemUiOverlayStyle lowerOverlayStyle = default(SystemUiOverlayStyle);
+            switch (PlatformDefaultClass.DefaultTargetPlatform) { case TargetPlatform.Android: lowerOverlayStyle = Layer.Find(bottom); break; case TargetPlatform.Fuchsia: case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: break; }
+            if (upperOverlayStyle != null || lowerOverlayStyle != null)
+            {
+                SystemUiOverlayStyle overlayStyle = new SystemUiOverlayStyle(statusBarBrightness: upperOverlayStyle?.StatusBarBrightness, statusBarIconBrightness: upperOverlayStyle?.StatusBarIconBrightness, statusBarColor: upperOverlayStyle?.StatusBarColor, systemNavigationBarColor: lowerOverlayStyle?.SystemNavigationBarColor, systemNavigationBarDividerColor: lowerOverlayStyle?.SystemNavigationBarDividerColor, systemNavigationBarIconBrightness: lowerOverlayStyle?.SystemNavigationBarIconBrightness);
+                SystemchromeDefaultClass.SystemChrome.SetSystemUIOverlayStyle(overlayStyle);
+            }
+
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+
+            properties.Add(new DiagnosticsProperty<Size>("window size", _Window.PhysicalSize, tooltip: "in physical pixels"));
+            properties.Add(new DoubleProperty("device pixel ratio", _Window.DevicePixelRatio, tooltip: "physical pixels per logical pixel"));
+            properties.Add(new DiagnosticsProperty<ViewConfiguration>("configuration", Configuration, tooltip: "in logical pixels"));
+            if (_Window.SemanticsEnabled) properties.Add(DiagnosticsNode.Message("semantics enabled"));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// The root of the render tree.
-///
-/// The view represents the total output surface of the render tree and handles
-/// bootstrapping the rendering pipeline. The view has a unique child
-/// [RenderBox], which is required to fill the entire output surface.
-/// </Summary>
-public class RenderView : FlutterSDK.Rendering.@object.RenderObject, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
-{
-    #region constructors
-    public RenderView(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.View.ViewConfiguration configuration = default(FlutterSDK.Rendering.View.ViewConfiguration), Window window = default(Window))
-    : base()
-
-this .Child=child;
-}
-
-
-#endregion
-
-#region fields
-internal virtual Size _Size { get; set; }
-internal virtual FlutterSDK.Rendering.View.ViewConfiguration _Configuration { get; set; }
-internal virtual Window _Window { get; set; }
-public virtual bool AutomaticSystemUiAdjustment { get; set; }
-internal virtual Matrix4 _RootTransform { get; set; }
-public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Rendering.View.ViewConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Bootstrap the rendering pipeline by scheduling the first frame.
-///
-/// Deprecated. Call [prepareInitialFrame] followed by a call to
-/// [PipelineOwner.requestVisualUpdate] on [owner] instead.
-/// </Summary>
-public virtual void ScheduleInitialFrame()
-{
-    PrepareInitialFrame();
-    Owner.RequestVisualUpdate();
-}
-
-
-
-
-/// <Summary>
-/// Bootstrap the rendering pipeline by preparing the first frame.
-///
-/// This should only be called once, and must be called before changing
-/// [configuration]. It is typically called immediately after calling the
-/// constructor.
-///
-/// This does not actually schedule the first frame. Call
-/// [PipelineOwner.requestVisualUpdate] on [owner] to do that.
-/// </Summary>
-public virtual void PrepareInitialFrame()
-{
-
-
-    ScheduleInitialLayout();
-    ScheduleInitialPaint(_UpdateMatricesAndCreateNewRootLayer());
-
-}
-
-
-
-
-private FlutterSDK.Rendering.Layer.TransformLayer _UpdateMatricesAndCreateNewRootLayer()
-{
-    _RootTransform = Configuration.ToMatrix();
-    TransformLayer rootLayer = new TransformLayer(transform: _RootTransform);
-    rootLayer.Attach(this);
-
-    return rootLayer;
-}
-
-
-
-
-public new void DebugAssertDoesMeetConstraints()
-{
-
-}
-
-
-
-
-public new void PerformResize()
-{
-
-}
-
-
-
-
-public new void PerformLayout()
-{
-
-    _Size = Configuration.Size;
-
-    if (Child != null) Child.Layout(BoxConstraints.Tight(_Size));
-}
-
-
-
-
-public new void Rotate(int oldAngle = default(int), int newAngle = default(int), TimeSpan time = default(TimeSpan))
-{
-
-}
-
-
-
-
-/// <Summary>
-/// Determines the set of render objects located at the given position.
-///
-/// Returns true if the given point is contained in this render object or one
-/// of its descendants. Adds any render objects that contain the point to the
-/// given hit test result.
-///
-/// The [position] argument is in the coordinate system of the render view,
-/// which is to say, in logical pixels. This is not necessarily the same
-/// coordinate system as that expected by the root [Layer], which will
-/// normally be in physical (device) pixels.
-/// </Summary>
-public virtual bool HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
-{
-    if (Child != null) Child.HitTest(BoxHitTestResult.Wrap(result), position: position);
-    result.Add(new HitTestEntry(this));
-    return true;
-}
-
-
-
-
-/// <Summary>
-/// Determines the set of mouse tracker annotations at the given position.
-///
-/// See also:
-///
-///  * [Layer.findAllAnnotations], which is used by this method to find all
-///    [AnnotatedRegionLayer]s annotated for mouse tracking.
-/// </Summary>
-public virtual Iterable<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> HitTestMouseTrackers(FlutterBinding.UI.Offset position)
-{
-    return Layer.FindAllAnnotations(position * Configuration.DevicePixelRatio).Annotations;
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (Child != null) context.PaintChild(Child, offset);
-}
-
-
-
-
-public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
-{
-
-    transform.Multiply(_RootTransform);
-    base.ApplyPaintTransform(child, transform);
-}
-
-
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
-{
-
-    transform.Multiply(_RootTransform);
-    base.ApplyPaintTransform(child, transform);
-}
-
-
-
-
-/// <Summary>
-/// Uploads the composited layer tree to the engine.
-///
-/// Actually causes the output of the rendering pipeline to appear on screen.
-/// </Summary>
-public virtual void CompositeFrame()
-{
-Dart: developerDefaultClass.Timeline.StartSync("Compositing", arguments: DebugDefaultClass.TimelineWhitelistArguments);
-    try
-    {
-        Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
-        Ui.Dart:uiDefaultClass.Scene scene = Layer.BuildScene(builder);
-        if (AutomaticSystemUiAdjustment) _UpdateSystemChrome();
-        _Window.Render(scene);
-        scene.Dispose();
-
-    }
-    finally
-    {
-    Dart: developerDefaultClass.Timeline.FinishSync();
-    }
-
-}
-
-
-
-
-private void _UpdateSystemChrome()
-{
-    Rect bounds = PaintBounds;
-    Offset top = new Offset(bounds.Center.Dx, _Window.Padding.Top / _Window.DevicePixelRatio);
-    Offset bottom = new Offset(bounds.Center.Dx, bounds.Center.Dy - _Window.Padding.Bottom / _Window.DevicePixelRatio);
-    SystemUiOverlayStyle upperOverlayStyle = Layer.Find(top);
-    SystemUiOverlayStyle lowerOverlayStyle = default(SystemUiOverlayStyle);
-    switch (PlatformDefaultClass.DefaultTargetPlatform) { case TargetPlatform.Android: lowerOverlayStyle = Layer.Find(bottom); break; case TargetPlatform.Fuchsia: case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: break; }
-    if (upperOverlayStyle != null || lowerOverlayStyle != null)
-    {
-        SystemUiOverlayStyle overlayStyle = new SystemUiOverlayStyle(statusBarBrightness: upperOverlayStyle?.StatusBarBrightness, statusBarIconBrightness: upperOverlayStyle?.StatusBarIconBrightness, statusBarColor: upperOverlayStyle?.StatusBarColor, systemNavigationBarColor: lowerOverlayStyle?.SystemNavigationBarColor, systemNavigationBarDividerColor: lowerOverlayStyle?.SystemNavigationBarDividerColor, systemNavigationBarIconBrightness: lowerOverlayStyle?.SystemNavigationBarIconBrightness);
-        SystemchromeDefaultClass.SystemChrome.SetSystemUIOverlayStyle(overlayStyle);
-    }
-
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-
-    properties.Add(new DiagnosticsProperty<Size>("window size", _Window.PhysicalSize, tooltip: "in physical pixels"));
-    properties.Add(new DoubleProperty("device pixel ratio", _Window.DevicePixelRatio, tooltip: "physical pixels per logical pixel"));
-    properties.Add(new DiagnosticsProperty<ViewConfiguration>("configuration", Configuration, tooltip: "in logical pixels"));
-    if (_Window.SemanticsEnabled) properties.Add(DiagnosticsNode.Message("semantics enabled"));
-}
-
-
-
-#endregion
-}
 
 }

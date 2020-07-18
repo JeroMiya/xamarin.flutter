@@ -377,97 +377,100 @@ namespace FlutterSDK.Cupertino.Contextmenu
         #region constructors
         public CupertinoContextMenu(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder previewBuilder = default(FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Actions = actions;
+            this.Child = child;
+            this.PreviewBuilder = previewBuilder;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-    public virtual FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder PreviewBuilder { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Cupertino.Contextmenu.ContextMenuPreviewBuilder PreviewBuilder { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Cupertino.Contextmenu._CupertinoContextMenuState CreateState() => new _CupertinoContextMenuState();
-
-
-    #endregion
-}
+        public new FlutterSDK.Cupertino.Contextmenu._CupertinoContextMenuState CreateState() => new _CupertinoContextMenuState();
 
 
-public class _CupertinoContextMenuState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenu.CupertinoContextMenu>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _CupertinoContextMenuState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildGlobalKey { get; set; }
-    internal virtual bool _ChildHidden { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpenController { get; set; }
-    internal virtual FlutterBinding.UI.Rect _DecoyChildEndRect { get; set; }
-    internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _LastOverlayEntry { get; set; }
-    internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuRoute<object> _Route { get; set; }
-    internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation _ContextMenuLocation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _OpenController = new AnimationController(duration: ConstantsDefaultClass.KLongPressTimeout, vsync: this);
-        _OpenController.AddStatusListener(_OnDecoyAnimationStatusChange);
+        #endregion
     }
 
 
-
-
-    private void _OpenContextMenu()
+    public class _CupertinoContextMenuState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenu.CupertinoContextMenu>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        SetState(() =>
+        #region constructors
+        public _CupertinoContextMenuState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildGlobalKey { get; set; }
+        internal virtual bool _ChildHidden { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpenController { get; set; }
+        internal virtual FlutterBinding.UI.Rect _DecoyChildEndRect { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _LastOverlayEntry { get; set; }
+        internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuRoute<object> _Route { get; set; }
+        internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation _ContextMenuLocation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            _ChildHidden = true;
+            base.InitState();
+            _OpenController = new AnimationController(duration: ConstantsDefaultClass.KLongPressTimeout, vsync: this);
+            _OpenController.AddStatusListener(_OnDecoyAnimationStatusChange);
         }
-        );
-        _Route = new _ContextMenuRoute<void>(actions: Widget.Actions, barrierLabel: "Dismiss", filter: Ui.Dart:uiDefaultClass.ImageFilter.Blur(sigmaX: 5.0, sigmaY: 5.0), contextMenuLocation: _ContextMenuLocation, previousChildRect: _DecoyChildEndRect, builder: (BuildContext context, Animation<double> animation) =>
+
+
+
+
+        private void _OpenContextMenu()
         {
-            if (Widget.PreviewBuilder == null)
+            SetState(() =>
             {
-                return Widget.Child;
+                _ChildHidden = true;
             }
-
-            return Widget.PreviewBuilder(context, animation, Widget.Child);
-        }
-        );
-        NavigatorDefaultClass.Navigator.Of(Context, rootNavigator: true).Push(_Route);
-        _Route.Animation.AddStatusListener(_RouteAnimationStatusListener);
-    }
-
-
-
-
-    private void _OnDecoyAnimationStatusChange(FlutterSDK.Animation.Animation.AnimationStatus animationStatus)
-    {
-        switch (animationStatus)
-        {
-            case AnimationStatus.Dismissed:
-                if (_Route == null)
+            );
+            _Route = new _ContextMenuRoute<void>(actions: Widget.Actions, barrierLabel: "Dismiss", filter: Ui.Dart:uiDefaultClass.ImageFilter.Blur(sigmaX: 5.0, sigmaY: 5.0), contextMenuLocation: _ContextMenuLocation, previousChildRect: _DecoyChildEndRect, builder: (BuildContext context, Animation<double> animation) =>
+            {
+                if (Widget.PreviewBuilder == null)
                 {
+                    return Widget.Child;
+                }
+
+                return Widget.PreviewBuilder(context, animation, Widget.Child);
+            }
+            );
+            NavigatorDefaultClass.Navigator.Of(Context, rootNavigator: true).Push(_Route);
+            _Route.Animation.AddStatusListener(_RouteAnimationStatusListener);
+        }
+
+
+
+
+        private void _OnDecoyAnimationStatusChange(FlutterSDK.Animation.Animation.AnimationStatus animationStatus)
+        {
+            switch (animationStatus)
+            {
+                case AnimationStatus.Dismissed:
+                    if (_Route == null)
+                    {
+                        SetState(() =>
+                        {
+                            _ChildHidden = false;
+                        }
+                        );
+                    }
+                    _LastOverlayEntry?.Remove(); _LastOverlayEntry = null; break;
+                case AnimationStatus.Completed:
                     SetState(() =>
                     {
-                        _ChildHidden = false;
+                        _ChildHidden = true;
                     }
-                    );
-                }
-                _LastOverlayEntry?.Remove(); _LastOverlayEntry = null; break;
-            case AnimationStatus.Completed:
-                SetState(() =>
-                {
-                    _ChildHidden = true;
-                }
 ); _OpenContextMenu(); BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) =>
 {
 _LastOverlayEntry?.Remove();
@@ -475,699 +478,713 @@ _LastOverlayEntry = null;
 _OpenController.Reset();
 }
 ); break;
-            default: return;
-        }
-    }
-
-
-
-
-    private void _RouteAnimationStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status)
-    {
-        if (status != AnimationStatus.Dismissed)
-        {
-            return;
-        }
-
-        SetState(() =>
-        {
-            _ChildHidden = false;
-        }
-        );
-        _Route.Animation.RemoveStatusListener(_RouteAnimationStatusListener);
-        _Route = null;
-    }
-
-
-
-
-    private void _OnTap()
-    {
-        if (_OpenController.IsAnimating && _OpenController.Value < 0.5)
-        {
-            _OpenController.Reverse();
-        }
-
-    }
-
-
-
-
-    private void _OnTapCancel()
-    {
-        if (_OpenController.IsAnimating && _OpenController.Value < 0.5)
-        {
-            _OpenController.Reverse();
-        }
-
-    }
-
-
-
-
-    private void _OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
-    {
-        if (_OpenController.IsAnimating && _OpenController.Value < 0.5)
-        {
-            _OpenController.Reverse();
-        }
-
-    }
-
-
-
-
-    private void _OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
-    {
-        SetState(() =>
-        {
-            _ChildHidden = true;
-        }
-        );
-        Rect childRect = ContextmenuDefaultClass._GetRect(_ChildGlobalKey);
-        _DecoyChildEndRect = Rect.FromCenter(center: childRect.Center, width: childRect.Width * ContextmenuDefaultClass._KOpenScale, height: childRect.Height * ContextmenuDefaultClass._KOpenScale);
-        _LastOverlayEntry = new OverlayEntry(opaque: false, builder: (BuildContext context) =>
-        {
-            return new _DecoyChild(beginRect: childRect, child: Widget.Child, controller: _OpenController, endRect: _DecoyChildEndRect);
-        }
-        );
-        OverlayDefaultClass.Overlay.Of(Context).Insert(_LastOverlayEntry);
-        _OpenController.Forward();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new GestureDetector(onTapCancel: _OnTapCancel, onTapDown: _OnTapDown, onTapUp: _OnTapUp, onTap: _OnTap, child: new TickerMode(enabled: !_ChildHidden, child: new Opacity(key: _ChildGlobalKey, opacity: _ChildHidden ? 0.0 : 1.0, child: Widget.Child)));
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _OpenController.Dispose();
-        base.Dispose();
-    }
-
-
-
-    #endregion
-}
-
-
-public class _DecoyChild : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public _DecoyChild(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect beginRect = default(FlutterBinding.UI.Rect), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterBinding.UI.Rect endRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Rect BeginRect { get; set; }
-public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
-public virtual FlutterBinding.UI.Rect EndRect { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Contextmenu._DecoyChildState CreateState() => new _DecoyChildState();
-
-
-#endregion
-}
-
-
-public class _DecoyChildState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenu._DecoyChild>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _DecoyChildState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterBinding.UI.Color _LightModeMaskColor { get; set; }
-    internal virtual FlutterBinding.UI.Color _MasklessColor { get; set; }
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildGlobalKey { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<Color> _Mask { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<Rect> _Rect { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _Mask = new _OnOffAnimation<Color>(controller: Widget.Controller, onValue: _LightModeMaskColor, offValue: _MasklessColor, intervalOn: 0.0, intervalOff: 0.5);
-        Rect midRect = Widget.BeginRect.Deflate(Widget.BeginRect.Width * (ContextmenuDefaultClass._KOpenScale - 1.0) / 2);
-        _Rect = new TweenSequence<Rect>(new List<TweenSequenceItem<Rect>>() { new TweenSequenceItem<Rect>(tween: new RectTween(begin: Widget.BeginRect, end: midRect).Chain(new CurveTween(curve: CurvesDefaultClass.Curves.EaseInOutCubic)), weight: 1.0), new TweenSequenceItem<Rect>(tween: new RectTween(begin: midRect, end: Widget.EndRect).Chain(new CurveTween(curve: CurvesDefaultClass.Curves.EaseOutCubic)), weight: 1.0) }).Animate(Widget.Controller);
-        _Rect.AddListener(_RectListener);
-    }
-
-
-
-
-    private void _RectListener()
-    {
-        if (Widget.Controller.Value < 0.5)
-        {
-            return;
-        }
-
-        HapticfeedbackDefaultClass.HapticFeedback.SelectionClick();
-        _Rect.RemoveListener(_RectListener);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _Rect.RemoveListener(_RectListener);
-        base.Dispose();
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-    {
-        Color color = Widget.Controller.Status == AnimationStatus.Reverse ? _MasklessColor : _Mask.Value;
-        return Positioned.FromRect(rect: _Rect.Value, child: ConstantsDefaultClass.KIsWeb ? new Container(key: _ChildGlobalKey, child: Widget.Child) : new ShaderMask(key: _ChildGlobalKey, shaderCallback: (Rect bounds) =>
-        {
-            return new LinearGradient(begin: AlignmentDefaultClass.Alignment.TopLeft, end: AlignmentDefaultClass.Alignment.BottomRight, colors: new List<Color>() { color, color }).CreateShader(bounds);
-        }
-        , child: Widget.Child));
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Stack(children: new List<Widget>() { new AnimatedBuilder(builder: _BuildAnimation, animation: Widget.Controller) });
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ContextMenuRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
-{
-    #region constructors
-    public _ContextMenuRoute(List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation), string barrierLabel = default(string), FlutterSDK.Cupertino.Contextmenu._ContextMenuPreviewBuilderChildless builder = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuPreviewBuilderChildless), ImageFilter filter = default(ImageFilter), FlutterBinding.UI.Rect previousChildRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
-    : base(filter: filter, settings: settings)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.Color _KModalBarrierColor { get; set; }
-internal virtual TimeSpan _KModalPopupTransitionDuration { get; set; }
-internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Actions { get; set; }
-internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuPreviewBuilderChildless _Builder { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildGlobalKey { get; set; }
-internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation _ContextMenuLocation { get; set; }
-internal virtual bool _ExternalOffstage { get; set; }
-internal virtual bool _InternalOffstage { get; set; }
-internal virtual FlutterSDK.Widgets.Mediaquery.Orientation _LastOrientation { get; set; }
-internal virtual FlutterBinding.UI.Rect _PreviousChildRect { get; set; }
-internal virtual double _Scale { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _SheetGlobalKey { get; set; }
-internal virtual FlutterSDK.Animation.Tween.CurveTween _Curve { get; set; }
-internal virtual FlutterSDK.Animation.Tween.CurveTween _CurveReverse { get; set; }
-internal virtual FlutterSDK.Animation.Tween.RectTween _RectTween { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _RectAnimatable { get; set; }
-internal virtual FlutterSDK.Animation.Tween.RectTween _RectTweenReverse { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _RectAnimatableReverse { get; set; }
-internal virtual FlutterSDK.Animation.Tween.RectTween _SheetRectTween { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _SheetRectAnimatable { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _SheetRectAnimatableReverse { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _SheetScaleTween { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _SheetScaleAnimatable { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Animatable<double> _SheetScaleAnimatableReverse { get; set; }
-internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _SheetOpacity { get; set; }
-public new string BarrierLabel { get; set; }
-public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool Offstage { set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private Rect _GetScaledRect(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> globalKey, double scale)
-{
-    Rect childRect = ContextmenuDefaultClass._GetRect(globalKey);
-    Size sizeScaled = childRect.Size * scale;
-    Offset offsetScaled = new Offset(childRect.Left + (childRect.Size.Width - sizeScaled.Width) / 2, childRect.Top + (childRect.Size.Height - sizeScaled.Height) / 2);
-    return offsetScaled & sizeScaled;
-}
-
-
-
-
-public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional GetSheetAlignment(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation)
-{
-    switch (contextMenuLocation) { case _ContextMenuLocation.Center: return AlignmentDefaultClass.AlignmentDirectional.TopCenter; case _ContextMenuLocation.Right: return AlignmentDefaultClass.AlignmentDirectional.TopEnd; default: return AlignmentDefaultClass.AlignmentDirectional.TopStart; }
-}
-
-
-
-
-private Rect _GetSheetRectBegin(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation, FlutterBinding.UI.Rect childRect, FlutterBinding.UI.Rect sheetRect)
-{
-    switch (contextMenuLocation) { case _ContextMenuLocation.Center: Offset target = orientation == Orientation.Portrait ? childRect.BottomCenter : childRect.TopCenter; Offset centered = target - new Offset(sheetRect.Width / 2, 0.0); return centered & sheetRect.Size; case _ContextMenuLocation.Right: Offset target = orientation == Orientation.Portrait ? childRect.BottomRight : childRect.TopRight; return (target - new Offset(sheetRect.Width, 0.0)) & sheetRect.Size; default: Offset target = orientation == Orientation.Portrait ? childRect.BottomLeft : childRect.TopLeft; return target & sheetRect.Size; }
-}
-
-
-
-
-private void _OnDismiss(FlutterSDK.Widgets.Framework.BuildContext context, double scale, double opacity)
-{
-    _Scale = scale;
-    _OpacityTween.End = opacity;
-    _SheetOpacity = _OpacityTween.Animate(new CurvedAnimation(parent: Animation, curve: new Interval(0.9, 1.0)));
-    NavigatorDefaultClass.Navigator.Of(context).Pop();
-}
-
-
-
-
-private void _UpdateTweenRects()
-{
-    Rect childRect = _Scale == null ? ContextmenuDefaultClass._GetRect(_ChildGlobalKey) : _GetScaledRect(_ChildGlobalKey, _Scale);
-    _RectTween.Begin = _PreviousChildRect;
-    _RectTween.End = childRect;
-    Rect childRectOriginal = Rect.FromCenter(center: _PreviousChildRect.Center, width: _PreviousChildRect.Width / ContextmenuDefaultClass._KOpenScale, height: _PreviousChildRect.Height / ContextmenuDefaultClass._KOpenScale);
-    Rect sheetRect = ContextmenuDefaultClass._GetRect(_SheetGlobalKey);
-    Rect sheetRectBegin = _GetSheetRectBegin(_LastOrientation, _ContextMenuLocation, childRectOriginal, sheetRect);
-    _SheetRectTween.Begin = sheetRectBegin;
-    _SheetRectTween.End = sheetRect;
-    _SheetScaleTween.Begin = 0.0;
-    _SheetScaleTween.End = _Scale;
-    _RectTweenReverse.Begin = childRectOriginal;
-    _RectTweenReverse.End = childRect;
-}
-
-
-
-
-private void _SetOffstageInternally()
-{
-    base.Offstage = _ExternalOffstage || _InternalOffstage;
-    ChangedInternalState();
-}
-
-
-
-
-public new bool DidPop(T result)
-{
-    _UpdateTweenRects();
-    return base.DidPop(result);
-}
-
-
-
-
-public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
-{
-    _InternalOffstage = true;
-    _SetOffstageInternally();
-    BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) =>
-    {
-        _UpdateTweenRects();
-        _InternalOffstage = false;
-        _SetOffstageInternally();
-    }
-    );
-    return base.DidPush();
-}
-
-
-
-
-public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
-{
-    Animation<double> animation = base.CreateAnimation();
-    _SheetOpacity = _OpacityTween.Animate(new CurvedAnimation(parent: animation, curve: CurvesDefaultClass.Curves.Linear));
-    return animation;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
-{
-    return null;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
-{
-    return new OrientationBuilder(builder: (BuildContext context, Orientation orientation) =>
-    {
-        _LastOrientation = orientation;
-        if (!animation.IsCompleted)
-        {
-            bool reverse = animation.Status == AnimationStatus.Reverse;
-            Rect rect = reverse ? _RectAnimatableReverse.Evaluate(animation) : _RectAnimatable.Evaluate(animation);
-            Rect sheetRect = reverse ? _SheetRectAnimatableReverse.Evaluate(animation) : _SheetRectAnimatable.Evaluate(animation);
-            double sheetScale = reverse ? _SheetScaleAnimatableReverse.Evaluate(animation) : _SheetScaleAnimatable.Evaluate(animation);
-            return new Stack(children: new List<Widget>() { Positioned.FromRect(rect: sheetRect, child: new Opacity(opacity: _SheetOpacity.Value, child: Transform.Scale(alignment: GetSheetAlignment(_ContextMenuLocation), scale: sheetScale, child: new _ContextMenuSheet(key: _SheetGlobalKey, actions: _Actions, contextMenuLocation: _ContextMenuLocation, orientation: orientation)))), Positioned.FromRect(key: _ChildGlobalKey, rect: rect, child: _Builder(context, animation)) });
-        }
-
-        return new _ContextMenuRouteStatic(actions: _Actions, child: _Builder(context, animation), childGlobalKey: _ChildGlobalKey, contextMenuLocation: _ContextMenuLocation, onDismiss: _OnDismiss, orientation: orientation, sheetGlobalKey: _SheetGlobalKey);
-    }
-    );
-}
-
-
-
-#endregion
-}
-
-
-public class _ContextMenuRouteStatic : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public _ContextMenuRouteStatic(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> childGlobalKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation), FlutterSDK.Cupertino.Contextmenu._DismissCallback onDismiss = default(FlutterSDK.Cupertino.Contextmenu._DismissCallback), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> sheetGlobalKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> ChildGlobalKey { get; set; }
-public virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation ContextMenuLocation { get; set; }
-public virtual FlutterSDK.Cupertino.Contextmenu._DismissCallback OnDismiss { get; set; }
-public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> SheetGlobalKey { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Contextmenu._ContextMenuRouteStaticState CreateState() => new _ContextMenuRouteStaticState();
-
-
-#endregion
-}
-
-
-public class _ContextMenuRouteStaticState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenu._ContextMenuRouteStatic>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _ContextMenuRouteStaticState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual double _KMinScale { get; set; }
-    internal virtual double _KSheetScaleThreshold { get; set; }
-    internal virtual double _KPadding { get; set; }
-    internal virtual double _KDamping { get; set; }
-    internal virtual TimeSpan _KMoveControllerDuration { get; set; }
-    internal virtual FlutterBinding.UI.Offset _DragOffset { get; set; }
-    internal virtual double _LastScale { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _MoveController { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _SheetController { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _MoveAnimation { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<double> _SheetScaleAnimation { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<double> _SheetOpacityAnimation { get; set; }
-    #endregion
-
-    #region methods
-
-    private double _GetScale(FlutterSDK.Widgets.Mediaquery.Orientation orientation, double maxDragDistance, double dy)
-    {
-        double dyDirectional = dy <= 0.0 ? dy : -dy;
-        return Math.Dart:mathDefaultClass.Max(_KMinScale, (maxDragDistance + dyDirectional) / maxDragDistance);
-    }
-
-
-
-
-    private void _OnPanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
-    {
-        _MoveController.Value = 1.0;
-        _SetDragOffset(Dart: uiDefaultClass.Offset.Zero);
-    }
-
-
-
-
-    private void _OnPanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
-    {
-        _SetDragOffset(_DragOffset + details.Delta);
-    }
-
-
-
-
-    private void _OnPanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-    {
-        if (details.Velocity.PixelsPerSecond.Dy.Abs() >= ConstantsDefaultClass.KMinFlingVelocity)
-        {
-            bool flingIsAway = details.Velocity.PixelsPerSecond.Dy > 0;
-            double finalPosition = flingIsAway ? _MoveAnimation.Value.Dy + 100.0 : 0.0;
-            if (flingIsAway && _SheetController.Status != AnimationStatus.Forward)
-            {
-                _SheetController.Forward();
+                default: return;
             }
-            else if (!flingIsAway && _SheetController.Status != AnimationStatus.Reverse)
+        }
+
+
+
+
+        private void _RouteAnimationStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            if (status != AnimationStatus.Dismissed)
             {
-                _SheetController.Reverse();
+                return;
             }
 
-            _MoveAnimation = new Tween<Offset>(begin: new Offset(0.0, _MoveAnimation.Value.Dy), end: new Offset(0.0, finalPosition)).Animate(_MoveController);
-            _MoveController.Reset();
-            _MoveController.Duration = new TimeSpan(milliseconds: 64);
-            _MoveController.Forward();
-            _MoveController.AddStatusListener(_FlingStatusListener);
-            return;
+            SetState(() =>
+            {
+                _ChildHidden = false;
+            }
+            );
+            _Route.Animation.RemoveStatusListener(_RouteAnimationStatusListener);
+            _Route = null;
         }
 
-        if (_LastScale == _KMinScale)
+
+
+
+        private void _OnTap()
         {
+            if (_OpenController.IsAnimating && _OpenController.Value < 0.5)
+            {
+                _OpenController.Reverse();
+            }
+
+        }
+
+
+
+
+        private void _OnTapCancel()
+        {
+            if (_OpenController.IsAnimating && _OpenController.Value < 0.5)
+            {
+                _OpenController.Reverse();
+            }
+
+        }
+
+
+
+
+        private void _OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
+        {
+            if (_OpenController.IsAnimating && _OpenController.Value < 0.5)
+            {
+                _OpenController.Reverse();
+            }
+
+        }
+
+
+
+
+        private void _OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
+        {
+            SetState(() =>
+            {
+                _ChildHidden = true;
+            }
+            );
+            Rect childRect = ContextmenuDefaultClass._GetRect(_ChildGlobalKey);
+            _DecoyChildEndRect = Rect.FromCenter(center: childRect.Center, width: childRect.Width * ContextmenuDefaultClass._KOpenScale, height: childRect.Height * ContextmenuDefaultClass._KOpenScale);
+            _LastOverlayEntry = new OverlayEntry(opaque: false, builder: (BuildContext context) =>
+            {
+                return new _DecoyChild(beginRect: childRect, child: Widget.Child, controller: _OpenController, endRect: _DecoyChildEndRect);
+            }
+            );
+            OverlayDefaultClass.Overlay.Of(Context).Insert(_LastOverlayEntry);
+            _OpenController.Forward();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new GestureDetector(onTapCancel: _OnTapCancel, onTapDown: _OnTapDown, onTapUp: _OnTapUp, onTap: _OnTap, child: new TickerMode(enabled: !_ChildHidden, child: new Opacity(key: _ChildGlobalKey, opacity: _ChildHidden ? 0.0 : 1.0, child: Widget.Child)));
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _OpenController.Dispose();
+            base.Dispose();
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _DecoyChild : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _DecoyChild(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect beginRect = default(FlutterBinding.UI.Rect), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterBinding.UI.Rect endRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.BeginRect = beginRect;
+            this.Controller = controller;
+            this.EndRect = endRect;
+            this.Child = child;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Rect BeginRect { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
+        public virtual FlutterBinding.UI.Rect EndRect { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Contextmenu._DecoyChildState CreateState() => new _DecoyChildState();
+
+
+        #endregion
+    }
+
+
+    public class _DecoyChildState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenu._DecoyChild>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _DecoyChildState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Color _LightModeMaskColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _MasklessColor { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildGlobalKey { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Color> _Mask { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Rect> _Rect { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _Mask = new _OnOffAnimation<Color>(controller: Widget.Controller, onValue: _LightModeMaskColor, offValue: _MasklessColor, intervalOn: 0.0, intervalOff: 0.5);
+            Rect midRect = Widget.BeginRect.Deflate(Widget.BeginRect.Width * (ContextmenuDefaultClass._KOpenScale - 1.0) / 2);
+            _Rect = new TweenSequence<Rect>(new List<TweenSequenceItem<Rect>>() { new TweenSequenceItem<Rect>(tween: new RectTween(begin: Widget.BeginRect, end: midRect).Chain(new CurveTween(curve: CurvesDefaultClass.Curves.EaseInOutCubic)), weight: 1.0), new TweenSequenceItem<Rect>(tween: new RectTween(begin: midRect, end: Widget.EndRect).Chain(new CurveTween(curve: CurvesDefaultClass.Curves.EaseOutCubic)), weight: 1.0) }).Animate(Widget.Controller);
+            _Rect.AddListener(_RectListener);
+        }
+
+
+
+
+        private void _RectListener()
+        {
+            if (Widget.Controller.Value < 0.5)
+            {
+                return;
+            }
+
+            HapticfeedbackDefaultClass.HapticFeedback.SelectionClick();
+            _Rect.RemoveListener(_RectListener);
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _Rect.RemoveListener(_RectListener);
+            base.Dispose();
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            Color color = Widget.Controller.Status == AnimationStatus.Reverse ? _MasklessColor : _Mask.Value;
+            return Positioned.FromRect(rect: _Rect.Value, child: ConstantsDefaultClass.KIsWeb ? new Container(key: _ChildGlobalKey, child: Widget.Child) : new ShaderMask(key: _ChildGlobalKey, shaderCallback: (Rect bounds) =>
+            {
+                return new LinearGradient(begin: AlignmentDefaultClass.Alignment.TopLeft, end: AlignmentDefaultClass.Alignment.BottomRight, colors: new List<Color>() { color, color }).CreateShader(bounds);
+            }
+            , child: Widget.Child));
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Stack(children: new List<Widget>() { new AnimatedBuilder(builder: _BuildAnimation, animation: Widget.Controller) });
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ContextMenuRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
+    {
+        #region constructors
+        public _ContextMenuRoute(List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation), string barrierLabel = default(string), FlutterSDK.Cupertino.Contextmenu._ContextMenuPreviewBuilderChildless builder = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuPreviewBuilderChildless), ImageFilter filter = default(ImageFilter), FlutterBinding.UI.Rect previousChildRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
+        : base(filter: filter, settings: settings)
+        {
+            this.BarrierLabel = barrierLabel;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Color _KModalBarrierColor { get; set; }
+        internal virtual TimeSpan _KModalPopupTransitionDuration { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Actions { get; set; }
+        internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuPreviewBuilderChildless _Builder { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildGlobalKey { get; set; }
+        internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation _ContextMenuLocation { get; set; }
+        internal virtual bool _ExternalOffstage { get; set; }
+        internal virtual bool _InternalOffstage { get; set; }
+        internal virtual FlutterSDK.Widgets.Mediaquery.Orientation _LastOrientation { get; set; }
+        internal virtual FlutterBinding.UI.Rect _PreviousChildRect { get; set; }
+        internal virtual double _Scale { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _SheetGlobalKey { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.CurveTween _Curve { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.CurveTween _CurveReverse { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.RectTween _RectTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _RectAnimatable { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.RectTween _RectTweenReverse { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _RectAnimatableReverse { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.RectTween _SheetRectTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _SheetRectAnimatable { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<Rect> _SheetRectAnimatableReverse { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _SheetScaleTween { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _SheetScaleAnimatable { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _SheetScaleAnimatableReverse { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _SheetOpacity { get; set; }
+        public new string BarrierLabel { get; set; }
+        public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool Offstage { set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private Rect _GetScaledRect(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> globalKey, double scale)
+        {
+            Rect childRect = ContextmenuDefaultClass._GetRect(globalKey);
+            Size sizeScaled = childRect.Size * scale;
+            Offset offsetScaled = new Offset(childRect.Left + (childRect.Size.Width - sizeScaled.Width) / 2, childRect.Top + (childRect.Size.Height - sizeScaled.Height) / 2);
+            return offsetScaled & sizeScaled;
+        }
+
+
+
+
+        public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional GetSheetAlignment(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation)
+        {
+            switch (contextMenuLocation) { case _ContextMenuLocation.Center: return AlignmentDefaultClass.AlignmentDirectional.TopCenter; case _ContextMenuLocation.Right: return AlignmentDefaultClass.AlignmentDirectional.TopEnd; default: return AlignmentDefaultClass.AlignmentDirectional.TopStart; }
+        }
+
+
+
+
+        private Rect _GetSheetRectBegin(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation, FlutterBinding.UI.Rect childRect, FlutterBinding.UI.Rect sheetRect)
+        {
+            switch (contextMenuLocation) { case _ContextMenuLocation.Center: Offset target = orientation == Orientation.Portrait ? childRect.BottomCenter : childRect.TopCenter; Offset centered = target - new Offset(sheetRect.Width / 2, 0.0); return centered & sheetRect.Size; case _ContextMenuLocation.Right: Offset target = orientation == Orientation.Portrait ? childRect.BottomRight : childRect.TopRight; return (target - new Offset(sheetRect.Width, 0.0)) & sheetRect.Size; default: Offset target = orientation == Orientation.Portrait ? childRect.BottomLeft : childRect.TopLeft; return target & sheetRect.Size; }
+        }
+
+
+
+
+        private void _OnDismiss(FlutterSDK.Widgets.Framework.BuildContext context, double scale, double opacity)
+        {
+            _Scale = scale;
+            _OpacityTween.End = opacity;
+            _SheetOpacity = _OpacityTween.Animate(new CurvedAnimation(parent: Animation, curve: new Interval(0.9, 1.0)));
+            NavigatorDefaultClass.Navigator.Of(context).Pop();
+        }
+
+
+
+
+        private void _UpdateTweenRects()
+        {
+            Rect childRect = _Scale == null ? ContextmenuDefaultClass._GetRect(_ChildGlobalKey) : _GetScaledRect(_ChildGlobalKey, _Scale);
+            _RectTween.Begin = _PreviousChildRect;
+            _RectTween.End = childRect;
+            Rect childRectOriginal = Rect.FromCenter(center: _PreviousChildRect.Center, width: _PreviousChildRect.Width / ContextmenuDefaultClass._KOpenScale, height: _PreviousChildRect.Height / ContextmenuDefaultClass._KOpenScale);
+            Rect sheetRect = ContextmenuDefaultClass._GetRect(_SheetGlobalKey);
+            Rect sheetRectBegin = _GetSheetRectBegin(_LastOrientation, _ContextMenuLocation, childRectOriginal, sheetRect);
+            _SheetRectTween.Begin = sheetRectBegin;
+            _SheetRectTween.End = sheetRect;
+            _SheetScaleTween.Begin = 0.0;
+            _SheetScaleTween.End = _Scale;
+            _RectTweenReverse.Begin = childRectOriginal;
+            _RectTweenReverse.End = childRect;
+        }
+
+
+
+
+        private void _SetOffstageInternally()
+        {
+            base.Offstage = _ExternalOffstage || _InternalOffstage;
+            ChangedInternalState();
+        }
+
+
+
+
+        public new bool DidPop(T result)
+        {
+            _UpdateTweenRects();
+            return base.DidPop(result);
+        }
+
+
+
+
+        public new FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
+        {
+            _InternalOffstage = true;
+            _SetOffstageInternally();
+            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) =>
+            {
+                _UpdateTweenRects();
+                _InternalOffstage = false;
+                _SetOffstageInternally();
+            }
+            );
+            return base.DidPush();
+        }
+
+
+
+
+        public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
+        {
+            Animation<double> animation = base.CreateAnimation();
+            _SheetOpacity = _OpacityTween.Animate(new CurvedAnimation(parent: animation, curve: CurvesDefaultClass.Curves.Linear));
+            return animation;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
+        {
+            return null;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            return new OrientationBuilder(builder: (BuildContext context, Orientation orientation) =>
+            {
+                _LastOrientation = orientation;
+                if (!animation.IsCompleted)
+                {
+                    bool reverse = animation.Status == AnimationStatus.Reverse;
+                    Rect rect = reverse ? _RectAnimatableReverse.Evaluate(animation) : _RectAnimatable.Evaluate(animation);
+                    Rect sheetRect = reverse ? _SheetRectAnimatableReverse.Evaluate(animation) : _SheetRectAnimatable.Evaluate(animation);
+                    double sheetScale = reverse ? _SheetScaleAnimatableReverse.Evaluate(animation) : _SheetScaleAnimatable.Evaluate(animation);
+                    return new Stack(children: new List<Widget>() { Positioned.FromRect(rect: sheetRect, child: new Opacity(opacity: _SheetOpacity.Value, child: Transform.Scale(alignment: GetSheetAlignment(_ContextMenuLocation), scale: sheetScale, child: new _ContextMenuSheet(key: _SheetGlobalKey, actions: _Actions, contextMenuLocation: _ContextMenuLocation, orientation: orientation)))), Positioned.FromRect(key: _ChildGlobalKey, rect: rect, child: _Builder(context, animation)) });
+                }
+
+                return new _ContextMenuRouteStatic(actions: _Actions, child: _Builder(context, animation), childGlobalKey: _ChildGlobalKey, contextMenuLocation: _ContextMenuLocation, onDismiss: _OnDismiss, orientation: orientation, sheetGlobalKey: _SheetGlobalKey);
+            }
+            );
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ContextMenuRouteStatic : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _ContextMenuRouteStatic(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> childGlobalKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation), FlutterSDK.Cupertino.Contextmenu._DismissCallback onDismiss = default(FlutterSDK.Cupertino.Contextmenu._DismissCallback), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> sheetGlobalKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>))
+        : base(key: key)
+        {
+            this.Actions = actions;
+            this.Child = child;
+            this.ChildGlobalKey = childGlobalKey;
+            this.ContextMenuLocation = contextMenuLocation;
+            this.OnDismiss = onDismiss;
+            this.Orientation = orientation;
+            this.SheetGlobalKey = sheetGlobalKey;
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> ChildGlobalKey { get; set; }
+        public virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation ContextMenuLocation { get; set; }
+        public virtual FlutterSDK.Cupertino.Contextmenu._DismissCallback OnDismiss { get; set; }
+        public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> SheetGlobalKey { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Contextmenu._ContextMenuRouteStaticState CreateState() => new _ContextMenuRouteStaticState();
+
+
+        #endregion
+    }
+
+
+    public class _ContextMenuRouteStaticState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenu._ContextMenuRouteStatic>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _ContextMenuRouteStaticState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual double _KMinScale { get; set; }
+        internal virtual double _KSheetScaleThreshold { get; set; }
+        internal virtual double _KPadding { get; set; }
+        internal virtual double _KDamping { get; set; }
+        internal virtual TimeSpan _KMoveControllerDuration { get; set; }
+        internal virtual FlutterBinding.UI.Offset _DragOffset { get; set; }
+        internal virtual double _LastScale { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _MoveController { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _SheetController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _MoveAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _SheetScaleAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _SheetOpacityAnimation { get; set; }
+        #endregion
+
+        #region methods
+
+        private double _GetScale(FlutterSDK.Widgets.Mediaquery.Orientation orientation, double maxDragDistance, double dy)
+        {
+            double dyDirectional = dy <= 0.0 ? dy : -dy;
+            return Math.Dart:mathDefaultClass.Max(_KMinScale, (maxDragDistance + dyDirectional) / maxDragDistance);
+        }
+
+
+
+
+        private void _OnPanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
+        {
+            _MoveController.Value = 1.0;
+            _SetDragOffset(Dart: uiDefaultClass.Offset.Zero);
+        }
+
+
+
+
+        private void _OnPanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+        {
+            _SetDragOffset(_DragOffset + details.Delta);
+        }
+
+
+
+
+        private void _OnPanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+        {
+            if (details.Velocity.PixelsPerSecond.Dy.Abs() >= ConstantsDefaultClass.KMinFlingVelocity)
+            {
+                bool flingIsAway = details.Velocity.PixelsPerSecond.Dy > 0;
+                double finalPosition = flingIsAway ? _MoveAnimation.Value.Dy + 100.0 : 0.0;
+                if (flingIsAway && _SheetController.Status != AnimationStatus.Forward)
+                {
+                    _SheetController.Forward();
+                }
+                else if (!flingIsAway && _SheetController.Status != AnimationStatus.Reverse)
+                {
+                    _SheetController.Reverse();
+                }
+
+                _MoveAnimation = new Tween<Offset>(begin: new Offset(0.0, _MoveAnimation.Value.Dy), end: new Offset(0.0, finalPosition)).Animate(_MoveController);
+                _MoveController.Reset();
+                _MoveController.Duration = new TimeSpan(milliseconds: 64);
+                _MoveController.Forward();
+                _MoveController.AddStatusListener(_FlingStatusListener);
+                return;
+            }
+
+            if (_LastScale == _KMinScale)
+            {
+                Widget.OnDismiss(Context, _LastScale, _SheetOpacityAnimation.Value);
+                return;
+            }
+
+            _MoveController.AddListener(_MoveListener);
+            _MoveController.Reverse();
+        }
+
+
+
+
+        private void _MoveListener()
+        {
+            if (_LastScale > _KSheetScaleThreshold)
+            {
+                _MoveController.RemoveListener(_MoveListener);
+                if (_SheetController.Status != AnimationStatus.Dismissed)
+                {
+                    _SheetController.Reverse();
+                }
+
+            }
+
+        }
+
+
+
+
+        private void _FlingStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            if (status != AnimationStatus.Completed)
+            {
+                return;
+            }
+
+            _MoveController.Duration = _KMoveControllerDuration;
+            _MoveController.RemoveStatusListener(_FlingStatusListener);
+            if (_MoveAnimation.Value.Dy == 0.0)
+            {
+                return;
+            }
+
             Widget.OnDismiss(Context, _LastScale, _SheetOpacityAnimation.Value);
-            return;
         }
 
-        _MoveController.AddListener(_MoveListener);
-        _MoveController.Reverse();
-    }
 
 
 
-
-    private void _MoveListener()
-    {
-        if (_LastScale > _KSheetScaleThreshold)
+        private FlutterSDK.Painting.Alignment.Alignment _GetChildAlignment(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation)
         {
-            _MoveController.RemoveListener(_MoveListener);
-            if (_SheetController.Status != AnimationStatus.Dismissed)
+            switch (contextMenuLocation) { case _ContextMenuLocation.Center: return orientation == Orientation.Portrait ? AlignmentDefaultClass.Alignment.BottomCenter : AlignmentDefaultClass.Alignment.TopRight; case _ContextMenuLocation.Right: return orientation == Orientation.Portrait ? AlignmentDefaultClass.Alignment.BottomCenter : AlignmentDefaultClass.Alignment.TopLeft; default: return orientation == Orientation.Portrait ? AlignmentDefaultClass.Alignment.BottomCenter : AlignmentDefaultClass.Alignment.TopRight; }
+        }
+
+
+
+
+        private void _SetDragOffset(FlutterBinding.UI.Offset dragOffset)
+        {
+            double endX = _KPadding * dragOffset.Dx / _KDamping;
+            double endY = dragOffset.Dy >= 0.0 ? dragOffset.Dy : _KPadding * dragOffset.Dy / _KDamping;
+            SetState(() =>
             {
-                _SheetController.Reverse();
+                _DragOffset = dragOffset;
+                _MoveAnimation = new Tween<Offset>(begin: Dart:uiDefaultClass.Offset.Zero, end: new Offset(endX.Clamp(-_KPadding, _KPadding) as double, endY)).Animate(new CurvedAnimation(parent: _MoveController, curve: CurvesDefaultClass.Curves.ElasticIn));
+                if (_LastScale <= _KSheetScaleThreshold && _SheetController.Status != AnimationStatus.Forward && _SheetScaleAnimation.Value != 0.0)
+                {
+                    _SheetController.Forward();
+                }
+                else if (_LastScale > _KSheetScaleThreshold && _SheetController.Status != AnimationStatus.Reverse && _SheetScaleAnimation.Value != 1.0)
+                {
+                    _SheetController.Reverse();
+                }
+
             }
-
+            );
         }
 
-    }
 
 
 
-
-    private void _FlingStatusListener(FlutterSDK.Animation.Animation.AnimationStatus status)
-    {
-        if (status != AnimationStatus.Completed)
+        private List<FlutterSDK.Widgets.Framework.Widget> _GetChildren(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation)
         {
-            return;
+            Expanded child = new Expanded(child: new Align(alignment: _GetChildAlignment(Widget.Orientation, Widget.ContextMenuLocation), child: new AnimatedBuilder(animation: _MoveController, builder: _BuildChildAnimation, child: Widget.Child)));
+            Container spacer = new Container(width: _KPadding, height: _KPadding);
+            Expanded sheet = new Expanded(child: new AnimatedBuilder(animation: _SheetController, builder: _BuildSheetAnimation, child: new _ContextMenuSheet(key: Widget.SheetGlobalKey, actions: Widget.Actions, contextMenuLocation: Widget.ContextMenuLocation, orientation: Widget.Orientation)));
+            switch (contextMenuLocation) { case _ContextMenuLocation.Center: return new List<Widget>() { child, spacer, sheet }; case _ContextMenuLocation.Right: return orientation == Orientation.Portrait ? new List<Widget>() { child, spacer, sheet } : new List<Widget>() { sheet, spacer, child }; default: return new List<Widget>() { child, spacer, sheet }; }
         }
 
-        _MoveController.Duration = _KMoveControllerDuration;
-        _MoveController.RemoveStatusListener(_FlingStatusListener);
-        if (_MoveAnimation.Value.Dy == 0.0)
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildSheetAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
-            return;
+            return Transform.Scale(alignment: ContextmenuDefaultClass._ContextMenuRoute.GetSheetAlignment(Widget.ContextMenuLocation), scale: _SheetScaleAnimation.Value, child: new Opacity(opacity: _SheetOpacityAnimation.Value, child: child));
         }
 
-        Widget.OnDismiss(Context, _LastScale, _SheetOpacityAnimation.Value);
-    }
 
 
 
-
-    private FlutterSDK.Painting.Alignment.Alignment _GetChildAlignment(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation)
-    {
-        switch (contextMenuLocation) { case _ContextMenuLocation.Center: return orientation == Orientation.Portrait ? AlignmentDefaultClass.Alignment.BottomCenter : AlignmentDefaultClass.Alignment.TopRight; case _ContextMenuLocation.Right: return orientation == Orientation.Portrait ? AlignmentDefaultClass.Alignment.BottomCenter : AlignmentDefaultClass.Alignment.TopLeft; default: return orientation == Orientation.Portrait ? AlignmentDefaultClass.Alignment.BottomCenter : AlignmentDefaultClass.Alignment.TopRight; }
-    }
-
-
-
-
-    private void _SetDragOffset(FlutterBinding.UI.Offset dragOffset)
-    {
-        double endX = _KPadding * dragOffset.Dx / _KDamping;
-        double endY = dragOffset.Dy >= 0.0 ? dragOffset.Dy : _KPadding * dragOffset.Dy / _KDamping;
-        SetState(() =>
+        private FlutterSDK.Widgets.Framework.Widget _BuildChildAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
-            _DragOffset = dragOffset;
-            _MoveAnimation = new Tween<Offset>(begin: Dart:uiDefaultClass.Offset.Zero, end: new Offset(endX.Clamp(-_KPadding, _KPadding) as double, endY)).Animate(new CurvedAnimation(parent: _MoveController, curve: CurvesDefaultClass.Curves.ElasticIn));
-            if (_LastScale <= _KSheetScaleThreshold && _SheetController.Status != AnimationStatus.Forward && _SheetScaleAnimation.Value != 0.0)
-            {
-                _SheetController.Forward();
-            }
-            else if (_LastScale > _KSheetScaleThreshold && _SheetController.Status != AnimationStatus.Reverse && _SheetScaleAnimation.Value != 1.0)
-            {
-                _SheetController.Reverse();
-            }
+            _LastScale = _GetScale(Widget.Orientation, MediaqueryDefaultClass.MediaQuery.Of(context).Size.Height, _MoveAnimation.Value.Dy);
+            return Transform.Scale(key: Widget.ChildGlobalKey, scale: _LastScale, child: child);
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            return Transform.Translate(offset: _MoveAnimation.Value, child: child);
+        }
+
+
+
+
+        public new void InitState()
+        {
+            base.InitState();
+            _MoveController = new AnimationController(duration: _KMoveControllerDuration, value: 1.0, vsync: this);
+            _SheetController = new AnimationController(duration: new TimeSpan(milliseconds: 100), reverseDuration: new TimeSpan(milliseconds: 300), vsync: this);
+            _SheetScaleAnimation = new Tween<double>(begin: 1.0, end: 0.0).Animate(new CurvedAnimation(parent: _SheetController, curve: CurvesDefaultClass.Curves.Linear, reverseCurve: CurvesDefaultClass.Curves.EaseInBack));
+            _SheetOpacityAnimation = new Tween<double>(begin: 1.0, end: 0.0).Animate(_SheetController);
+            _SetDragOffset(Dart: uiDefaultClass.Offset.Zero);
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _MoveController.Dispose();
+            _SheetController.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            List<Widget> children = _GetChildren(Widget.Orientation, Widget.ContextMenuLocation);
+            return new SafeArea(child: new Padding(padding: EdgeInsets.All(_KPadding), child: new Align(alignment: AlignmentDefaultClass.Alignment.TopLeft, child: new GestureDetector(onPanEnd: _OnPanEnd, onPanStart: _OnPanStart, onPanUpdate: _OnPanUpdate, child: new AnimatedBuilder(animation: _MoveController, builder: _BuildAnimation, child: Widget.Orientation == Orientation.Portrait ? new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: children) : new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: children))))));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ContextMenuSheet : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _ContextMenuSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation))
+        : base(key: key)
+        {
+            this.Actions = actions;
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
+        internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation _ContextMenuLocation { get; set; }
+        internal virtual FlutterSDK.Widgets.Mediaquery.Orientation _Orientation { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: Children);
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _OnOffAnimation<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
+    {
+        #region constructors
+        public _OnOffAnimation(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), T onValue = default(T), T offValue = default(T), double intervalOn = default(double), double intervalOff = default(double))
+        : base(first: new Tween<T>(begin: offValue, end: onValue).Animate(new CurvedAnimation(parent: controller, curve: new Interval(intervalOn, intervalOn))), next: new Tween<T>(begin: onValue, end: offValue).Animate(new CurvedAnimation(parent: controller, curve: new Interval(intervalOff, intervalOff))))
+        {
 
         }
-        );
+        #endregion
+
+        #region fields
+        internal virtual T _OffValue { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
 
-
-
-    private List<FlutterSDK.Widgets.Framework.Widget> _GetChildren(FlutterSDK.Widgets.Mediaquery.Orientation orientation, FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation)
+    public enum _ContextMenuLocation
     {
-        Expanded child = new Expanded(child: new Align(alignment: _GetChildAlignment(Widget.Orientation, Widget.ContextMenuLocation), child: new AnimatedBuilder(animation: _MoveController, builder: _BuildChildAnimation, child: Widget.Child)));
-        Container spacer = new Container(width: _KPadding, height: _KPadding);
-        Expanded sheet = new Expanded(child: new AnimatedBuilder(animation: _SheetController, builder: _BuildSheetAnimation, child: new _ContextMenuSheet(key: Widget.SheetGlobalKey, actions: Widget.Actions, contextMenuLocation: Widget.ContextMenuLocation, orientation: Widget.Orientation)));
-        switch (contextMenuLocation) { case _ContextMenuLocation.Center: return new List<Widget>() { child, spacer, sheet }; case _ContextMenuLocation.Right: return orientation == Orientation.Portrait ? new List<Widget>() { child, spacer, sheet } : new List<Widget>() { sheet, spacer, child }; default: return new List<Widget>() { child, spacer, sheet }; }
+
+        Center,
+        Left,
+        Right,
     }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildSheetAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-    {
-        return Transform.Scale(alignment: ContextmenuDefaultClass._ContextMenuRoute.GetSheetAlignment(Widget.ContextMenuLocation), scale: _SheetScaleAnimation.Value, child: new Opacity(opacity: _SheetOpacityAnimation.Value, child: child));
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildChildAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-    {
-        _LastScale = _GetScale(Widget.Orientation, MediaqueryDefaultClass.MediaQuery.Of(context).Size.Height, _MoveAnimation.Value.Dy);
-        return Transform.Scale(key: Widget.ChildGlobalKey, scale: _LastScale, child: child);
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildAnimation(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-    {
-        return Transform.Translate(offset: _MoveAnimation.Value, child: child);
-    }
-
-
-
-
-    public new void InitState()
-    {
-        base.InitState();
-        _MoveController = new AnimationController(duration: _KMoveControllerDuration, value: 1.0, vsync: this);
-        _SheetController = new AnimationController(duration: new TimeSpan(milliseconds: 100), reverseDuration: new TimeSpan(milliseconds: 300), vsync: this);
-        _SheetScaleAnimation = new Tween<double>(begin: 1.0, end: 0.0).Animate(new CurvedAnimation(parent: _SheetController, curve: CurvesDefaultClass.Curves.Linear, reverseCurve: CurvesDefaultClass.Curves.EaseInBack));
-        _SheetOpacityAnimation = new Tween<double>(begin: 1.0, end: 0.0).Animate(_SheetController);
-        _SetDragOffset(Dart: uiDefaultClass.Offset.Zero);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _MoveController.Dispose();
-        _SheetController.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        List<Widget> children = _GetChildren(Widget.Orientation, Widget.ContextMenuLocation);
-        return new SafeArea(child: new Padding(padding: EdgeInsets.All(_KPadding), child: new Align(alignment: AlignmentDefaultClass.Alignment.TopLeft, child: new GestureDetector(onPanEnd: _OnPanEnd, onPanStart: _OnPanStart, onPanUpdate: _OnPanUpdate, child: new AnimatedBuilder(animation: _MoveController, builder: _BuildAnimation, child: Widget.Orientation == Orientation.Portrait ? new Column(crossAxisAlignment: CrossAxisAlignment.Start, children: children) : new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: children))))));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ContextMenuSheet : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public _ContextMenuSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation contextMenuLocation = default(FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
-internal virtual FlutterSDK.Cupertino.Contextmenu._ContextMenuLocation _ContextMenuLocation { get; set; }
-internal virtual FlutterSDK.Widgets.Mediaquery.Orientation _Orientation { get; set; }
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: Children);
-}
-
-
-
-#endregion
-}
-
-
-public class _OnOffAnimation<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
-{
-    #region constructors
-    public _OnOffAnimation(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), T onValue = default(T), T offValue = default(T), double intervalOn = default(double), double intervalOff = default(double))
-    : base(first: new Tween<T>(begin: offValue, end: onValue).Animate(new CurvedAnimation(parent: controller, curve: new Interval(intervalOn, intervalOn))), next: new Tween<T>(begin: onValue, end: offValue).Animate(new CurvedAnimation(parent: controller, curve: new Interval(intervalOff, intervalOff))))
-
-}
-#endregion
-
-#region fields
-internal virtual T _OffValue { get; set; }
-public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public enum _ContextMenuLocation
-{
-
-    Center,
-    Left,
-    Right,
-}
 
 }

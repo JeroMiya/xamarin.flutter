@@ -344,159 +344,162 @@ namespace FlutterSDK.Foundation.Basictypes
     {
         #region constructors
         public CachingIterable(Iterator<E> _prefillIterator)
-    
-}
-    #endregion
-
-    #region fields
-    internal virtual Iterator<E> _PrefillIterator { get; set; }
-    internal virtual List<E> _Results { get; set; }
-    public virtual Iterator<E> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int Length { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new Iterable<T> Map<T>(Func<T, E> f)
-    {
-        return new CachingIterable<T>(base.Map(f).Iterator);
-    }
-
-
-
-
-    public new Iterable<E> Where(Func<bool, E> test)
-    {
-        return new CachingIterable<E>(base.Where(test).Iterator);
-    }
-
-
-
-
-    public new Iterable<T> Expand<T>(Func<Iterable<T>, E> f)
-    {
-        return new CachingIterable<T>(base.Expand(f).Iterator);
-    }
-
-
-
-
-    public new Iterable<E> Take(int count)
-    {
-        return new CachingIterable<E>(base.Take(count).Iterator);
-    }
-
-
-
-
-    public new Iterable<E> TakeWhile(Func<bool, E> test)
-    {
-        return new CachingIterable<E>(base.TakeWhile(test).Iterator);
-    }
-
-
-
-
-    public new Iterable<E> Skip(int count)
-    {
-        return new CachingIterable<E>(base.Skip(count).Iterator);
-    }
-
-
-
-
-    public new Iterable<E> SkipWhile(Func<bool, E> test)
-    {
-        return new CachingIterable<E>(base.SkipWhile(test).Iterator);
-    }
-
-
-
-
-    public new List<E> ToList(bool growable = true)
-    {
-        _PrecacheEntireList();
-        return List<E>.From(_Results, growable: growable);
-    }
-
-
-
-
-    private void _PrecacheEntireList()
-    {
-        while (_FillNext())
         {
+            this._PrefillIterator = _prefillIterator;
+        }
+        #endregion
+
+        #region fields
+        internal virtual Iterator<E> _PrefillIterator { get; set; }
+        internal virtual List<E> _Results { get; set; }
+        public virtual Iterator<E> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Length { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new Iterable<T> Map<T>(Func<T, E> f)
+        {
+            return new CachingIterable<T>(base.Map(f).Iterator);
         }
 
+
+
+
+        public new Iterable<E> Where(Func<bool, E> test)
+        {
+            return new CachingIterable<E>(base.Where(test).Iterator);
+        }
+
+
+
+
+        public new Iterable<T> Expand<T>(Func<Iterable<T>, E> f)
+        {
+            return new CachingIterable<T>(base.Expand(f).Iterator);
+        }
+
+
+
+
+        public new Iterable<E> Take(int count)
+        {
+            return new CachingIterable<E>(base.Take(count).Iterator);
+        }
+
+
+
+
+        public new Iterable<E> TakeWhile(Func<bool, E> test)
+        {
+            return new CachingIterable<E>(base.TakeWhile(test).Iterator);
+        }
+
+
+
+
+        public new Iterable<E> Skip(int count)
+        {
+            return new CachingIterable<E>(base.Skip(count).Iterator);
+        }
+
+
+
+
+        public new Iterable<E> SkipWhile(Func<bool, E> test)
+        {
+            return new CachingIterable<E>(base.SkipWhile(test).Iterator);
+        }
+
+
+
+
+        public new List<E> ToList(bool growable = true)
+        {
+            _PrecacheEntireList();
+            return List<E>.From(_Results, growable: growable);
+        }
+
+
+
+
+        private void _PrecacheEntireList()
+        {
+            while (_FillNext())
+            {
+            }
+
+        }
+
+
+
+
+        private bool _FillNext()
+        {
+            if (!_PrefillIterator.MoveNext()) return false;
+            _Results.Add(_PrefillIterator.Current);
+            return true;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    private bool _FillNext()
+    public class _LazyListIterator<E> : IIterator<E>
     {
-        if (!_PrefillIterator.MoveNext()) return false;
-        _Results.Add(_PrefillIterator.Current);
-        return true;
+        #region constructors
+        public _LazyListIterator(FlutterSDK.Foundation.Basictypes.CachingIterable<E> _owner)
+        : base()
+        {
+            this._Owner = _owner;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Foundation.Basictypes.CachingIterable<E> _Owner { get; set; }
+        internal virtual int _Index { get; set; }
+        public virtual E Current { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool MoveNext()
+        {
+            if (_Index >= _Owner._Results.Count) return false;
+            _Index += 1;
+            if (_Index == _Owner._Results.Count) return _Owner._FillNext();
+            return true;
+        }
+
+
+
+        #endregion
     }
 
 
+    /// <Summary>
+    /// A factory interface that also reports the type of the created objects.
+    /// </Summary>
+    public class Factory<T>
+    {
+        #region constructors
+        public Factory(FlutterSDK.Foundation.Basictypes.ValueGetter<T> constructor)
+        : base()
+        {
+            this.Constructor = constructor;
+        }
+        #endregion
 
-    #endregion
-}
+        #region fields
+        public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<T> Constructor { get; set; }
+        public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-public class _LazyListIterator<E> : IIterator<E>
-{
-    #region constructors
-    public _LazyListIterator(FlutterSDK.Foundation.Basictypes.CachingIterable<E> _owner)
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Foundation.Basictypes.CachingIterable<E> _Owner { get; set; }
-internal virtual int _Index { get; set; }
-public virtual E Current { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool MoveNext()
-{
-    if (_Index >= _Owner._Results.Count) return false;
-    _Index += 1;
-    if (_Index == _Owner._Results.Count) return _Owner._FillNext();
-    return true;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A factory interface that also reports the type of the created objects.
-/// </Summary>
-public class Factory<T>
-{
-    #region constructors
-    public Factory(FlutterSDK.Foundation.Basictypes.ValueGetter<T> constructor)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<T> Constructor { get; set; }
-public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-#endregion
-}
+        #endregion
+    }
 
 }

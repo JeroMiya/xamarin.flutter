@@ -583,557 +583,558 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         #region constructors
         public RenderListWheelViewport(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager childManager = default(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0, bool useMagnifier = false, double magnification = 1, double overAndUnderCenterOpacity = 1, double itemExtent = default(double), double squeeze = 1, bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
         : base()
-    
-AddAll(children);
-    }
-
-
-    #endregion
-
-    #region fields
-    public virtual double DefaultDiameterRatio { get; set; }
-    public virtual double DefaultPerspective { get; set; }
-    public virtual string DiameterRatioZeroMessage { get; set; }
-    public virtual string PerspectiveTooHighMessage { get; set; }
-    public virtual string ClipToSizeAndRenderChildrenOutsideViewportConflict { get; set; }
-    public virtual FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager ChildManager { get; set; }
-    internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
-    internal virtual double _DiameterRatio { get; set; }
-    internal virtual double _Perspective { get; set; }
-    internal virtual double _OffAxisFraction { get; set; }
-    internal virtual bool _UseMagnifier { get; set; }
-    internal virtual double _Magnification { get; set; }
-    internal virtual double _OverAndUnderCenterOpacity { get; set; }
-    internal virtual double _ItemExtent { get; set; }
-    internal virtual double _Squeeze { get; set; }
-    internal virtual bool _ClipToSize { get; set; }
-    internal virtual bool _RenderChildrenOutsideViewport { get; set; }
-    public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double DiameterRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double Perspective { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double OffAxisFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool UseMagnifier { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double Magnification { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double OverAndUnderCenterOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual double Squeeze { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool ClipToSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool RenderChildrenOutsideViewport { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _ViewportExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _MinEstimatedScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _MaxEstimatedScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _TopScrollMarginExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _MaxVisibleRadian { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    private void _HasScrolled()
-    {
-        MarkNeedsLayout();
-        MarkNeedsSemanticsUpdate();
-    }
-
-
-
-
-    public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
-    {
-        if (!(child.ParentData is ListWheelParentData)) child.ParentData = new ListWheelParentData();
-    }
-
-
-
-
-    public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
-    {
-        base.Attach(owner);
-        _Offset.AddListener(_HasScrolled);
-    }
-
-
-    public new void Attach(@Object owner)
-    {
-        base.Attach(owner);
-        _Offset.AddListener(_HasScrolled);
-    }
-
-
-
-
-    public new void Detach()
-    {
-        _Offset.RemoveListener(_HasScrolled);
-        base.Detach();
-    }
-
-
-
-
-    /// <Summary>
-    /// Transforms a **scrollable layout coordinates**' y position to the
-    /// **untransformed plane's viewport painting coordinates**' y position given
-    /// the current scroll offset.
-    /// </Summary>
-    private double _GetUntransformedPaintingCoordinateY(double layoutCoordinateY)
-    {
-        return layoutCoordinateY - _TopScrollMarginExtent - Offset.Pixels;
-    }
-
-
-
-
-    private double _GetIntrinsicCrossAxis(FlutterSDK.Rendering.Listwheelviewport._ChildSizingFunction childSize)
-    {
-        double extent = 0.0;
-        RenderBox child = FirstChild;
-        while (child != null)
         {
-            extent = Math.Dart:mathDefaultClass.Max(extent, childSize(child));
-            child = ChildAfter(child);
+            this.ChildManager = childManager;
+            AddAll(children);
         }
 
-        return extent;
-    }
 
+        #endregion
 
+        #region fields
+        public virtual double DefaultDiameterRatio { get; set; }
+        public virtual double DefaultPerspective { get; set; }
+        public virtual string DiameterRatioZeroMessage { get; set; }
+        public virtual string PerspectiveTooHighMessage { get; set; }
+        public virtual string ClipToSizeAndRenderChildrenOutsideViewportConflict { get; set; }
+        public virtual FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager ChildManager { get; set; }
+        internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
+        internal virtual double _DiameterRatio { get; set; }
+        internal virtual double _Perspective { get; set; }
+        internal virtual double _OffAxisFraction { get; set; }
+        internal virtual bool _UseMagnifier { get; set; }
+        internal virtual double _Magnification { get; set; }
+        internal virtual double _OverAndUnderCenterOpacity { get; set; }
+        internal virtual double _ItemExtent { get; set; }
+        internal virtual double _Squeeze { get; set; }
+        internal virtual bool _ClipToSize { get; set; }
+        internal virtual bool _RenderChildrenOutsideViewport { get; set; }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double DiameterRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Perspective { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double OffAxisFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool UseMagnifier { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Magnification { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double OverAndUnderCenterOpacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Squeeze { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ClipToSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool RenderChildrenOutsideViewport { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _ViewportExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MinEstimatedScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxEstimatedScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TopScrollMarginExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxVisibleRadian { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-    public new double ComputeMinIntrinsicWidth(double height)
-    {
-        return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMinIntrinsicWidth(height));
-    }
-
-
-
-
-    public new double ComputeMaxIntrinsicWidth(double height)
-    {
-        return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMaxIntrinsicWidth(height));
-    }
-
-
-
-
-    public new double ComputeMinIntrinsicHeight(double width)
-    {
-        if (ChildManager.ChildCount == null) return 0.0;
-        return ChildManager.ChildCount * _ItemExtent;
-    }
-
-
-
-
-    public new double ComputeMaxIntrinsicHeight(double width)
-    {
-        if (ChildManager.ChildCount == null) return 0.0;
-        return ChildManager.ChildCount * _ItemExtent;
-    }
-
-
-
-
-    public new void PerformResize()
-    {
-        Size = Constraints.Biggest;
-    }
-
-
-
-
-    /// <Summary>
-    /// Gets the index of a child by looking at its parentData.
-    /// </Summary>
-    public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child)
-    {
-
-        ListWheelParentData childParentData = child.ParentData as ListWheelParentData;
-
-        return childParentData.Index;
-    }
-
-
-
-
-    /// <Summary>
-    /// Returns the index of the child at the given offset.
-    /// </Summary>
-    public virtual int ScrollOffsetToIndex(double scrollOffset) => (scrollOffset / ItemExtent).Floor();
-
-
-
-    /// <Summary>
-    /// Returns the scroll offset of the child with the given index.
-    /// </Summary>
-    public virtual double IndexToScrollOffset(int index) => index * ItemExtent;
-
-
-
-    private void _CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
-    {
-        InvokeLayoutCallback((BoxConstraints constraints) =>
+        private void _HasScrolled()
         {
-
-            ChildManager.CreateChild(index, after: after);
-        }
-        );
-    }
-
-
-
-
-    private void _DestroyChild(FlutterSDK.Rendering.Box.RenderBox child)
-    {
-        InvokeLayoutCallback((BoxConstraints constraints) =>
-        {
-
-            ChildManager.RemoveChild(child);
-        }
-        );
-    }
-
-
-
-
-    private void _LayoutChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.BoxConstraints constraints, int index)
-    {
-        child.Layout(constraints, parentUsesSize: true);
-        ListWheelParentData childParentData = child.ParentData as ListWheelParentData;
-        double crossPosition = Size.Width / 2.0 - child.Size.Width / 2.0;
-        childParentData.Offset = new Offset(crossPosition, IndexToScrollOffset(index));
-    }
-
-
-
-
-    /// <Summary>
-    /// Performs layout based on how [childManager] provides children.
-    ///
-    /// From the current scroll offset, the minimum index and maximum index that
-    /// is visible in the viewport can be calculated. The index range of the
-    /// currently active children can also be acquired by looking directly at
-    /// the current child list. This function has to modify the current index
-    /// range to match the target index range by removing children that are no
-    /// longer visible and creating those that are visible but not yet provided
-    /// by [childManager].
-    /// </Summary>
-    public new void PerformLayout()
-    {
-        BoxConstraints childConstraints = Constraints.CopyWith(minHeight: _ItemExtent, maxHeight: _ItemExtent, minWidth: 0.0);
-        double visibleHeight = Size.Height * _Squeeze;
-        if (RenderChildrenOutsideViewport) visibleHeight *= 2;
-        double firstVisibleOffset = Offset.Pixels + _ItemExtent / 2 - visibleHeight / 2;
-        double lastVisibleOffset = firstVisibleOffset + visibleHeight;
-        int targetFirstIndex = ScrollOffsetToIndex(firstVisibleOffset);
-        int targetLastIndex = ScrollOffsetToIndex(lastVisibleOffset);
-        if (targetLastIndex * _ItemExtent == lastVisibleOffset) targetLastIndex--;
-        while (!ChildManager.ChildExistsAt(targetFirstIndex) && targetFirstIndex <= targetLastIndex) targetFirstIndex++;
-        while (!ChildManager.ChildExistsAt(targetLastIndex) && targetFirstIndex <= targetLastIndex) targetLastIndex--;
-        if (targetFirstIndex > targetLastIndex)
-        {
-            while (FirstChild != null) _DestroyChild(FirstChild);
-            return;
+            MarkNeedsLayout();
+            MarkNeedsSemanticsUpdate();
         }
 
-        if (ChildCount > 0 && (IndexOf(FirstChild) > targetLastIndex || IndexOf(LastChild) < targetFirstIndex))
+
+
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            while (FirstChild != null) _DestroyChild(FirstChild);
+            if (!(child.ParentData is ListWheelParentData)) child.ParentData = new ListWheelParentData();
         }
 
-        if (ChildCount == 0)
+
+
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
         {
-            _CreateChild(targetFirstIndex);
-            _LayoutChild(FirstChild, childConstraints, targetFirstIndex);
+            base.Attach(owner);
+            _Offset.AddListener(_HasScrolled);
         }
 
-        int currentFirstIndex = IndexOf(FirstChild);
-        int currentLastIndex = IndexOf(LastChild);
-        while (currentFirstIndex < targetFirstIndex)
+
+        public new void Attach(@Object owner)
         {
-            _DestroyChild(FirstChild);
-            currentFirstIndex++;
+            base.Attach(owner);
+            _Offset.AddListener(_HasScrolled);
         }
 
-        while (currentLastIndex > targetLastIndex)
+
+
+
+        public new void Detach()
         {
-            _DestroyChild(LastChild);
-            currentLastIndex--;
+            _Offset.RemoveListener(_HasScrolled);
+            base.Detach();
         }
 
-        RenderBox child = FirstChild;
-        while (child != null)
+
+
+
+        /// <Summary>
+        /// Transforms a **scrollable layout coordinates**' y position to the
+        /// **untransformed plane's viewport painting coordinates**' y position given
+        /// the current scroll offset.
+        /// </Summary>
+        private double _GetUntransformedPaintingCoordinateY(double layoutCoordinateY)
         {
-            child.Layout(childConstraints, parentUsesSize: true);
-            child = ChildAfter(child);
+            return layoutCoordinateY - _TopScrollMarginExtent - Offset.Pixels;
         }
 
-        while (currentFirstIndex > targetFirstIndex)
+
+
+
+        private double _GetIntrinsicCrossAxis(FlutterSDK.Rendering.Listwheelviewport._ChildSizingFunction childSize)
         {
-            _CreateChild(currentFirstIndex - 1);
-            _LayoutChild(FirstChild, childConstraints, --currentFirstIndex);
-        }
-
-        while (currentLastIndex < targetLastIndex)
-        {
-            _CreateChild(currentLastIndex + 1, after: LastChild);
-            _LayoutChild(LastChild, childConstraints, ++currentLastIndex);
-        }
-
-        Offset.ApplyViewportDimension(_ViewportExtent);
-        double minScrollExtent = ChildManager.ChildExistsAt(targetFirstIndex - 1) ? _MinEstimatedScrollExtent : IndexToScrollOffset(targetFirstIndex);
-        double maxScrollExtent = ChildManager.ChildExistsAt(targetLastIndex + 1) ? _MaxEstimatedScrollExtent : IndexToScrollOffset(targetLastIndex);
-        Offset.ApplyContentDimensions(minScrollExtent, maxScrollExtent);
-    }
-
-
-
-
-    private bool _ShouldClipAtCurrentOffset()
-    {
-        double highestUntransformedPaintY = _GetUntransformedPaintingCoordinateY(0.0);
-        return highestUntransformedPaintY < 0.0 || Size.Height < highestUntransformedPaintY + _MaxEstimatedScrollExtent + _ItemExtent;
-    }
-
-
-
-
-    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-        if (ChildCount > 0)
-        {
-            if (_ClipToSize && _ShouldClipAtCurrentOffset())
+            double extent = 0.0;
+            RenderBox child = FirstChild;
+            while (child != null)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintVisibleChildren);
+                extent = Math.Dart:mathDefaultClass.Max(extent, childSize(child));
+                child = ChildAfter(child);
+            }
+
+            return extent;
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicWidth(double height)
+        {
+            return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMinIntrinsicWidth(height));
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicWidth(double height)
+        {
+            return _GetIntrinsicCrossAxis((RenderBox child) => =>child.GetMaxIntrinsicWidth(height));
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicHeight(double width)
+        {
+            if (ChildManager.ChildCount == null) return 0.0;
+            return ChildManager.ChildCount * _ItemExtent;
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicHeight(double width)
+        {
+            if (ChildManager.ChildCount == null) return 0.0;
+            return ChildManager.ChildCount * _ItemExtent;
+        }
+
+
+
+
+        public new void PerformResize()
+        {
+            Size = Constraints.Biggest;
+        }
+
+
+
+
+        /// <Summary>
+        /// Gets the index of a child by looking at its parentData.
+        /// </Summary>
+        public virtual int IndexOf(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+
+            ListWheelParentData childParentData = child.ParentData as ListWheelParentData;
+
+            return childParentData.Index;
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the index of the child at the given offset.
+        /// </Summary>
+        public virtual int ScrollOffsetToIndex(double scrollOffset) => (scrollOffset / ItemExtent).Floor();
+
+
+
+        /// <Summary>
+        /// Returns the scroll offset of the child with the given index.
+        /// </Summary>
+        public virtual double IndexToScrollOffset(int index) => index * ItemExtent;
+
+
+
+        private void _CreateChild(int index, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
+        {
+            InvokeLayoutCallback((BoxConstraints constraints) =>
+            {
+
+                ChildManager.CreateChild(index, after: after);
+            }
+            );
+        }
+
+
+
+
+        private void _DestroyChild(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+            InvokeLayoutCallback((BoxConstraints constraints) =>
+            {
+
+                ChildManager.RemoveChild(child);
+            }
+            );
+        }
+
+
+
+
+        private void _LayoutChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.BoxConstraints constraints, int index)
+        {
+            child.Layout(constraints, parentUsesSize: true);
+            ListWheelParentData childParentData = child.ParentData as ListWheelParentData;
+            double crossPosition = Size.Width / 2.0 - child.Size.Width / 2.0;
+            childParentData.Offset = new Offset(crossPosition, IndexToScrollOffset(index));
+        }
+
+
+
+
+        /// <Summary>
+        /// Performs layout based on how [childManager] provides children.
+        ///
+        /// From the current scroll offset, the minimum index and maximum index that
+        /// is visible in the viewport can be calculated. The index range of the
+        /// currently active children can also be acquired by looking directly at
+        /// the current child list. This function has to modify the current index
+        /// range to match the target index range by removing children that are no
+        /// longer visible and creating those that are visible but not yet provided
+        /// by [childManager].
+        /// </Summary>
+        public new void PerformLayout()
+        {
+            BoxConstraints childConstraints = Constraints.CopyWith(minHeight: _ItemExtent, maxHeight: _ItemExtent, minWidth: 0.0);
+            double visibleHeight = Size.Height * _Squeeze;
+            if (RenderChildrenOutsideViewport) visibleHeight *= 2;
+            double firstVisibleOffset = Offset.Pixels + _ItemExtent / 2 - visibleHeight / 2;
+            double lastVisibleOffset = firstVisibleOffset + visibleHeight;
+            int targetFirstIndex = ScrollOffsetToIndex(firstVisibleOffset);
+            int targetLastIndex = ScrollOffsetToIndex(lastVisibleOffset);
+            if (targetLastIndex * _ItemExtent == lastVisibleOffset) targetLastIndex--;
+            while (!ChildManager.ChildExistsAt(targetFirstIndex) && targetFirstIndex <= targetLastIndex) targetFirstIndex++;
+            while (!ChildManager.ChildExistsAt(targetLastIndex) && targetFirstIndex <= targetLastIndex) targetLastIndex--;
+            if (targetFirstIndex > targetLastIndex)
+            {
+                while (FirstChild != null) _DestroyChild(FirstChild);
+                return;
+            }
+
+            if (ChildCount > 0 && (IndexOf(FirstChild) > targetLastIndex || IndexOf(LastChild) < targetFirstIndex))
+            {
+                while (FirstChild != null) _DestroyChild(FirstChild);
+            }
+
+            if (ChildCount == 0)
+            {
+                _CreateChild(targetFirstIndex);
+                _LayoutChild(FirstChild, childConstraints, targetFirstIndex);
+            }
+
+            int currentFirstIndex = IndexOf(FirstChild);
+            int currentLastIndex = IndexOf(LastChild);
+            while (currentFirstIndex < targetFirstIndex)
+            {
+                _DestroyChild(FirstChild);
+                currentFirstIndex++;
+            }
+
+            while (currentLastIndex > targetLastIndex)
+            {
+                _DestroyChild(LastChild);
+                currentLastIndex--;
+            }
+
+            RenderBox child = FirstChild;
+            while (child != null)
+            {
+                child.Layout(childConstraints, parentUsesSize: true);
+                child = ChildAfter(child);
+            }
+
+            while (currentFirstIndex > targetFirstIndex)
+            {
+                _CreateChild(currentFirstIndex - 1);
+                _LayoutChild(FirstChild, childConstraints, --currentFirstIndex);
+            }
+
+            while (currentLastIndex < targetLastIndex)
+            {
+                _CreateChild(currentLastIndex + 1, after: LastChild);
+                _LayoutChild(LastChild, childConstraints, ++currentLastIndex);
+            }
+
+            Offset.ApplyViewportDimension(_ViewportExtent);
+            double minScrollExtent = ChildManager.ChildExistsAt(targetFirstIndex - 1) ? _MinEstimatedScrollExtent : IndexToScrollOffset(targetFirstIndex);
+            double maxScrollExtent = ChildManager.ChildExistsAt(targetLastIndex + 1) ? _MaxEstimatedScrollExtent : IndexToScrollOffset(targetLastIndex);
+            Offset.ApplyContentDimensions(minScrollExtent, maxScrollExtent);
+        }
+
+
+
+
+        private bool _ShouldClipAtCurrentOffset()
+        {
+            double highestUntransformedPaintY = _GetUntransformedPaintingCoordinateY(0.0);
+            return highestUntransformedPaintY < 0.0 || Size.Height < highestUntransformedPaintY + _MaxEstimatedScrollExtent + _ItemExtent;
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (ChildCount > 0)
+            {
+                if (_ClipToSize && _ShouldClipAtCurrentOffset())
+                {
+                    context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintVisibleChildren);
+                }
+                else
+                {
+                    _PaintVisibleChildren(context, offset);
+                }
+
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Paints all children visible in the current viewport.
+        /// </Summary>
+        private void _PaintVisibleChildren(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            RenderBox childToPaint = FirstChild;
+            ListWheelParentData childParentData = childToPaint?.ParentData as ListWheelParentData;
+            while (childParentData != null)
+            {
+                _PaintTransformedChild(childToPaint, context, offset, childParentData.Offset);
+                childToPaint = ChildAfter(childToPaint);
+                childParentData = childToPaint?.ParentData as ListWheelParentData;
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Takes in a child with a **scrollable layout offset** and paints it in the
+        /// **transformed cylindrical space viewport painting coordinates**.
+        /// </Summary>
+        private void _PaintTransformedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset layoutOffset)
+        {
+            Offset untransformedPaintingCoordinates = offset + new Offset(layoutOffset.Dx, _GetUntransformedPaintingCoordinateY(layoutOffset.Dy));
+            double fractionalY = (untransformedPaintingCoordinates.Dy + _ItemExtent / 2.0) / Size.Height;
+            double angle = -(fractionalY - 0.5) * 2.0 * _MaxVisibleRadian / Squeeze;
+            if (angle > Math.Dart:mathDefaultClass.Pi / 2.0 || angle < -Math.Dart:mathDefaultClass.Pi / 2.0)return;
+            Matrix4 transform = MatrixutilsDefaultClass.MatrixUtils.CreateCylindricalProjectionTransform(radius: Size.Height * _DiameterRatio / 2.0, angle: angle, perspective: _Perspective);
+            Offset offsetToCenter = new Offset(untransformedPaintingCoordinates.Dx, -_TopScrollMarginExtent);
+            bool shouldApplyOffCenterDim = OverAndUnderCenterOpacity < 1;
+            if (UseMagnifier || shouldApplyOffCenterDim)
+            {
+                _PaintChildWithMagnifier(context, offset, child, transform, offsetToCenter, untransformedPaintingCoordinates);
             }
             else
             {
-                _PaintVisibleChildren(context, offset);
+                _PaintChildCylindrically(context, offset, child, transform, offsetToCenter);
             }
 
         }
 
-    }
 
 
 
-
-    /// <Summary>
-    /// Paints all children visible in the current viewport.
-    /// </Summary>
-    private void _PaintVisibleChildren(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-        RenderBox childToPaint = FirstChild;
-        ListWheelParentData childParentData = childToPaint?.ParentData as ListWheelParentData;
-        while (childParentData != null)
+        /// <Summary>
+        /// Paint child with the magnifier active - the child will be rendered
+        /// differently if it intersects with the magnifier.
+        /// </Summary>
+        private void _PaintChildWithMagnifier(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter, FlutterBinding.UI.Offset untransformedPaintingCoordinates)
         {
-            _PaintTransformedChild(childToPaint, context, offset, childParentData.Offset);
-            childToPaint = ChildAfter(childToPaint);
-            childParentData = childToPaint?.ParentData as ListWheelParentData;
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Takes in a child with a **scrollable layout offset** and paints it in the
-    /// **transformed cylindrical space viewport painting coordinates**.
-    /// </Summary>
-    private void _PaintTransformedChild(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterBinding.UI.Offset layoutOffset)
-    {
-        Offset untransformedPaintingCoordinates = offset + new Offset(layoutOffset.Dx, _GetUntransformedPaintingCoordinateY(layoutOffset.Dy));
-        double fractionalY = (untransformedPaintingCoordinates.Dy + _ItemExtent / 2.0) / Size.Height;
-        double angle = -(fractionalY - 0.5) * 2.0 * _MaxVisibleRadian / Squeeze;
-        if (angle > Math.Dart:mathDefaultClass.Pi / 2.0 || angle < -Math.Dart:mathDefaultClass.Pi / 2.0)return;
-        Matrix4 transform = MatrixutilsDefaultClass.MatrixUtils.CreateCylindricalProjectionTransform(radius: Size.Height * _DiameterRatio / 2.0, angle: angle, perspective: _Perspective);
-        Offset offsetToCenter = new Offset(untransformedPaintingCoordinates.Dx, -_TopScrollMarginExtent);
-        bool shouldApplyOffCenterDim = OverAndUnderCenterOpacity < 1;
-        if (UseMagnifier || shouldApplyOffCenterDim)
-        {
-            _PaintChildWithMagnifier(context, offset, child, transform, offsetToCenter, untransformedPaintingCoordinates);
-        }
-        else
-        {
-            _PaintChildCylindrically(context, offset, child, transform, offsetToCenter);
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Paint child with the magnifier active - the child will be rendered
-    /// differently if it intersects with the magnifier.
-    /// </Summary>
-    private void _PaintChildWithMagnifier(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter, FlutterBinding.UI.Offset untransformedPaintingCoordinates)
-    {
-        double magnifierTopLinePosition = Size.Height / 2 - _ItemExtent * _Magnification / 2;
-        double magnifierBottomLinePosition = Size.Height / 2 + _ItemExtent * _Magnification / 2;
-        bool isAfterMagnifierTopLine = untransformedPaintingCoordinates.Dy >= magnifierTopLinePosition - _ItemExtent * _Magnification;
-        bool isBeforeMagnifierBottomLine = untransformedPaintingCoordinates.Dy <= magnifierBottomLinePosition;
-        if (isAfterMagnifierTopLine && isBeforeMagnifierBottomLine)
-        {
-            Rect centerRect = Rect.FromLTWH(0.0, magnifierTopLinePosition, Size.Width, _ItemExtent * _Magnification);
-            Rect topHalfRect = Rect.FromLTWH(0.0, 0.0, Size.Width, magnifierTopLinePosition);
-            Rect bottomHalfRect = Rect.FromLTWH(0.0, magnifierBottomLinePosition, Size.Width, magnifierTopLinePosition);
-            context.PushClipRect(NeedsCompositing, offset, centerRect, (PaintingContext context, Offset offset) =>
+            double magnifierTopLinePosition = Size.Height / 2 - _ItemExtent * _Magnification / 2;
+            double magnifierBottomLinePosition = Size.Height / 2 + _ItemExtent * _Magnification / 2;
+            bool isAfterMagnifierTopLine = untransformedPaintingCoordinates.Dy >= magnifierTopLinePosition - _ItemExtent * _Magnification;
+            bool isBeforeMagnifierBottomLine = untransformedPaintingCoordinates.Dy <= magnifierBottomLinePosition;
+            if (isAfterMagnifierTopLine && isBeforeMagnifierBottomLine)
             {
-                context.PushTransform(NeedsCompositing, offset, _MagnifyTransform(), (PaintingContext context, Offset offset) =>
+                Rect centerRect = Rect.FromLTWH(0.0, magnifierTopLinePosition, Size.Width, _ItemExtent * _Magnification);
+                Rect topHalfRect = Rect.FromLTWH(0.0, 0.0, Size.Width, magnifierTopLinePosition);
+                Rect bottomHalfRect = Rect.FromLTWH(0.0, magnifierBottomLinePosition, Size.Width, magnifierTopLinePosition);
+                context.PushClipRect(NeedsCompositing, offset, centerRect, (PaintingContext context, Offset offset) =>
                 {
-                    context.PaintChild(child, offset + untransformedPaintingCoordinates);
+                    context.PushTransform(NeedsCompositing, offset, _MagnifyTransform(), (PaintingContext context, Offset offset) =>
+                    {
+                        context.PaintChild(child, offset + untransformedPaintingCoordinates);
+                    }
+                    );
+                }
+                );
+                context.PushClipRect(NeedsCompositing, offset, untransformedPaintingCoordinates.Dy <= magnifierTopLinePosition ? topHalfRect : bottomHalfRect, (PaintingContext context, Offset offset) =>
+                {
+                    _PaintChildCylindrically(context, offset, child, cylindricalTransform, offsetToCenter);
                 }
                 );
             }
-            );
-            context.PushClipRect(NeedsCompositing, offset, untransformedPaintingCoordinates.Dy <= magnifierTopLinePosition ? topHalfRect : bottomHalfRect, (PaintingContext context, Offset offset) =>
+            else
             {
                 _PaintChildCylindrically(context, offset, child, cylindricalTransform, offsetToCenter);
             }
-            );
-        }
-        else
-        {
-            _PaintChildCylindrically(context, offset, child, cylindricalTransform, offsetToCenter);
+
         }
 
-    }
 
 
 
-
-    private void _PaintChildCylindrically(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter)
-    {
-        PaintingContextCallback painter = (PaintingContext context, Offset offset) =>
+        private void _PaintChildCylindrically(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox child, Matrix4 cylindricalTransform, FlutterBinding.UI.Offset offsetToCenter)
         {
-            context.PaintChild(child, offset + offsetToCenter);
-        }
-        ;
-        PaintingContextCallback opacityPainter = (PaintingContext context, Offset offset) =>
-        {
-            context.PushOpacity(offset, (OverAndUnderCenterOpacity * 255).Round(), painter);
-        }
-        ;
-        context.PushTransform(NeedsCompositing, offset, _CenterOriginTransform(cylindricalTransform), OverAndUnderCenterOpacity == 1 ? painter : opacityPainter);
-    }
-
-
-
-
-    /// <Summary>
-    /// Return the Matrix4 transformation that would zoom in content in the
-    /// magnified area.
-    /// </Summary>
-    private Matrix4 _MagnifyTransform()
-    {
-        Matrix4 magnify = Matrix4.Identity();
-        magnify.Translate(Size.Width * (-_OffAxisFraction + 0.5), Size.Height / 2);
-        magnify.Scale(_Magnification, _Magnification, _Magnification);
-        magnify.Translate(-Size.Width * (-_OffAxisFraction + 0.5), -Size.Height / 2);
-        return magnify;
-    }
-
-
-
-
-    /// <Summary>
-    /// Apply incoming transformation with the transformation's origin at the
-    /// viewport's center or horizontally off to the side based on offAxisFraction.
-    /// </Summary>
-    private Matrix4 _CenterOriginTransform(Matrix4 originalMatrix)
-    {
-        Matrix4 result = Matrix4.Identity();
-        Offset centerOriginTranslation = AlignmentDefaultClass.Alignment.Center.AlongSize(Size);
-        result.Translate(centerOriginTranslation.Dx * (-_OffAxisFraction * 2 + 1), centerOriginTranslation.Dy);
-        result.Multiply(originalMatrix);
-        result.Translate(-centerOriginTranslation.Dx * (-_OffAxisFraction * 2 + 1), -centerOriginTranslation.Dy);
-        return result;
-    }
-
-
-
-
-    /// <Summary>
-    /// This returns the matrices relative to the **untransformed plane's viewport
-    /// painting coordinates** system.
-    /// </Summary>
-    public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
-    {
-        ListWheelParentData parentData = child?.ParentData as ListWheelParentData;
-        transform.Translate(0.0, _GetUntransformedPaintingCoordinateY(parentData.Offset.Dy));
-    }
-
-
-    public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
-    {
-        ListWheelParentData parentData = child?.ParentData as ListWheelParentData;
-        transform.Translate(0.0, _GetUntransformedPaintingCoordinateY(parentData.Offset.Dy));
-    }
-
-
-
-
-    public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
-    {
-        if (child != null && _ShouldClipAtCurrentOffset())
-        {
-            return Dart:uiDefaultClass.Offset.Zero & Size;
-        }
-
-        return null;
-    }
-
-
-
-
-    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) => false;
-
-
-
-    public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect))
-    {
-        rect = (rect == null ? target.PaintBounds : rect);
-        RenderObject child = target;
-        while (child.Parent != this) child = child.Parent as RenderObject;
-        ListWheelParentData parentData = child.ParentData as ListWheelParentData;
-        double targetOffset = parentData.Offset.Dy;
-        Matrix4 transform = target.GetTransformTo(child);
-        Rect bounds = MatrixutilsDefaultClass.MatrixUtils.TransformRect(transform, rect);
-        Rect targetRect = bounds.Translate(0.0, (Size.Height - ItemExtent) / 2);
-        return new RevealedOffset(offset: targetOffset, rect: targetRect);
-    }
-
-
-
-
-    public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-    {
-        if (descendant != null)
-        {
-            RevealedOffset revealedOffset = GetOffsetToReveal(descendant, 0.5, rect: rect);
-            if (duration == Dart:coreDefaultClass.Duration.Zero){
-                Offset.JumpTo(revealedOffset.Offset);
-            }
-else
+            PaintingContextCallback painter = (PaintingContext context, Offset offset) =>
             {
-                Offset.AnimateTo(revealedOffset.Offset, duration: duration, curve: curve);
+                context.PaintChild(child, offset + offsetToCenter);
             }
-
-            rect = revealedOffset.Rect;
+            ;
+            PaintingContextCallback opacityPainter = (PaintingContext context, Offset offset) =>
+            {
+                context.PushOpacity(offset, (OverAndUnderCenterOpacity * 255).Round(), painter);
+            }
+            ;
+            context.PushTransform(NeedsCompositing, offset, _CenterOriginTransform(cylindricalTransform), OverAndUnderCenterOpacity == 1 ? painter : opacityPainter);
         }
 
-        base.ShowOnScreen(rect: rect, duration: duration, curve: curve);
+
+
+
+        /// <Summary>
+        /// Return the Matrix4 transformation that would zoom in content in the
+        /// magnified area.
+        /// </Summary>
+        private Matrix4 _MagnifyTransform()
+        {
+            Matrix4 magnify = Matrix4.Identity();
+            magnify.Translate(Size.Width * (-_OffAxisFraction + 0.5), Size.Height / 2);
+            magnify.Scale(_Magnification, _Magnification, _Magnification);
+            magnify.Translate(-Size.Width * (-_OffAxisFraction + 0.5), -Size.Height / 2);
+            return magnify;
+        }
+
+
+
+
+        /// <Summary>
+        /// Apply incoming transformation with the transformation's origin at the
+        /// viewport's center or horizontally off to the side based on offAxisFraction.
+        /// </Summary>
+        private Matrix4 _CenterOriginTransform(Matrix4 originalMatrix)
+        {
+            Matrix4 result = Matrix4.Identity();
+            Offset centerOriginTranslation = AlignmentDefaultClass.Alignment.Center.AlongSize(Size);
+            result.Translate(centerOriginTranslation.Dx * (-_OffAxisFraction * 2 + 1), centerOriginTranslation.Dy);
+            result.Multiply(originalMatrix);
+            result.Translate(-centerOriginTranslation.Dx * (-_OffAxisFraction * 2 + 1), -centerOriginTranslation.Dy);
+            return result;
+        }
+
+
+
+
+        /// <Summary>
+        /// This returns the matrices relative to the **untransformed plane's viewport
+        /// painting coordinates** system.
+        /// </Summary>
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.Box.RenderBox child, Matrix4 transform)
+        {
+            ListWheelParentData parentData = child?.ParentData as ListWheelParentData;
+            transform.Translate(0.0, _GetUntransformedPaintingCoordinateY(parentData.Offset.Dy));
+        }
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+        {
+            ListWheelParentData parentData = child?.ParentData as ListWheelParentData;
+            transform.Translate(0.0, _GetUntransformedPaintingCoordinateY(parentData.Offset.Dy));
+        }
+
+
+
+
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            if (child != null && _ShouldClipAtCurrentOffset())
+            {
+                return Dart:uiDefaultClass.Offset.Zero & Size;
+            }
+
+            return null;
+        }
+
+
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset)) => false;
+
+
+
+        public new FlutterSDK.Rendering.Viewport.RevealedOffset GetOffsetToReveal(FlutterSDK.Rendering.@object.RenderObject target, double alignment, FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect))
+        {
+            rect = (rect == null ? target.PaintBounds : rect);
+            RenderObject child = target;
+            while (child.Parent != this) child = child.Parent as RenderObject;
+            ListWheelParentData parentData = child.ParentData as ListWheelParentData;
+            double targetOffset = parentData.Offset.Dy;
+            Matrix4 transform = target.GetTransformTo(child);
+            Rect bounds = MatrixutilsDefaultClass.MatrixUtils.TransformRect(transform, rect);
+            Rect targetRect = bounds.Translate(0.0, (Size.Height - ItemExtent) / 2);
+            return new RevealedOffset(offset: targetOffset, rect: targetRect);
+        }
+
+
+
+
+        public new void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        {
+            if (descendant != null)
+            {
+                RevealedOffset revealedOffset = GetOffsetToReveal(descendant, 0.5, rect: rect);
+                if (duration == Dart:coreDefaultClass.Duration.Zero){
+                    Offset.JumpTo(revealedOffset.Offset);
+                }
+else
+                {
+                    Offset.AnimateTo(revealedOffset.Offset, duration: duration, curve: curve);
+                }
+
+                rect = revealedOffset.Rect;
+            }
+
+            base.ShowOnScreen(rect: rect, duration: duration, curve: curve);
+        }
+
+
+
+        #endregion
+        RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
+        public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
+        public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
     }
-
-
-
-    #endregion
-    RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
-    public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
-    public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
-}
 
 }

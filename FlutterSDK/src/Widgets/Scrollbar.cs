@@ -466,214 +466,220 @@ namespace FlutterSDK.Widgets.Scrollbar
         #region constructors
         public ScrollbarPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), double thickness = default(double), FlutterSDK.Animation.Animation.Animation<double> fadeoutOpacityAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double mainAxisMargin = 0.0, double crossAxisMargin = 0.0, Radius radius = default(Radius), double minLength = default(double), double minOverscrollLength = default(double))
         : base()
-    
-FadeoutOpacityAnimation.AddListener(NotifyListeners);
-}
-
-
-    #endregion
-
-    #region fields
-    internal virtual FlutterBinding.UI.Color _Color { get; set; }
-    internal virtual TextDirection _TextDirection { get; set; }
-    public virtual double Thickness { get; set; }
-    public virtual FlutterSDK.Animation.Animation.Animation<double> FadeoutOpacityAnimation { get; set; }
-    public virtual double MainAxisMargin { get; set; }
-    public virtual double CrossAxisMargin { get; set; }
-    public virtual Radius Radius { get; set; }
-    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _Padding { get; set; }
-    public virtual double MinLength { get; set; }
-    public virtual double MinOverscrollLength { get; set; }
-    internal virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics _LastMetrics { get; set; }
-    internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _LastAxisDirection { get; set; }
-    internal virtual FlutterBinding.UI.Rect _ThumbRect { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual SKPaint _Paint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _IsReversed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _BeforeExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _AfterExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _MainAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _TrackExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _TotalContentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Update with new [ScrollMetrics]. The scrollbar will show and redraw itself
-    /// based on these new metrics.
-    ///
-    /// The scrollbar will remain on screen.
-    /// </Summary>
-    public virtual void Update(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
-    {
-        _LastMetrics = metrics;
-        _LastAxisDirection = axisDirection;
-        NotifyListeners();
-    }
-
-
-
-
-    /// <Summary>
-    /// Update and redraw with new scrollbar thickness and radius.
-    /// </Summary>
-    public virtual void UpdateThickness(double nextThickness, Radius nextRadius)
-    {
-        Thickness = nextThickness;
-        Radius = nextRadius;
-        NotifyListeners();
-    }
-
-
-
-
-    private void _PaintThumbCrossAxis(Canvas canvas, Size size, double thumbOffset, double thumbExtent, FlutterSDK.Painting.Basictypes.AxisDirection direction)
-    {
-        double x y = default(double);
-        Size thumbSize = default(Size);
-        switch (direction) { case AxisDirection.Down: thumbSize = new Size(Thickness, thumbExtent); x = TextDirection == TextDirection.Rtl ? CrossAxisMargin + Padding.Left : size.Width - Thickness - CrossAxisMargin - Padding.Right; y = thumbOffset; break; case AxisDirection.Up: thumbSize = new Size(Thickness, thumbExtent); x = TextDirection == TextDirection.Rtl ? CrossAxisMargin + Padding.Left : size.Width - Thickness - CrossAxisMargin - Padding.Right; y = thumbOffset; break; case AxisDirection.Left: thumbSize = new Size(thumbExtent, Thickness); x = thumbOffset; y = size.Height - Thickness - CrossAxisMargin - Padding.Bottom; break; case AxisDirection.Right: thumbSize = new Size(thumbExtent, Thickness); x = thumbOffset; y = size.Height - Thickness - CrossAxisMargin - Padding.Bottom; break; }
-        _ThumbRect = new Offset(x, y) & thumbSize;
-        if (Radius == null) canvas.DrawRect(_ThumbRect, _Paint); else canvas.DrawRRect(RRect.FromRectAndRadius(_ThumbRect, Radius), _Paint);
-    }
-
-
-
-
-    private double _ThumbExtent()
-    {
-        double fractionVisible = ((_LastMetrics.ExtentInside - _MainAxisPadding) / (_TotalContentExtent - _MainAxisPadding)).Clamp(0.0, 1.0) as double;
-        double thumbExtent = Math.Dart:mathDefaultClass.Max(Math.Dart:mathDefaultClass.Min(_TrackExtent, MinOverscrollLength), _TrackExtent * fractionVisible);
-        double fractionOverscrolled = 1.0 - _LastMetrics.ExtentInside / _LastMetrics.ViewportDimension;
-        double safeMinLength = Math.Dart:mathDefaultClass.Min(MinLength, _TrackExtent);
-        double newMinLength = (_BeforeExtent > 0 && _AfterExtent > 0) ? safeMinLength : safeMinLength * (1.0 - fractionOverscrolled.Clamp(0.0, 0.2) / 0.2);
-        return thumbExtent.Clamp(newMinLength, _TrackExtent) as double;
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        FadeoutOpacityAnimation.RemoveListener(NotifyListeners);
-        base.Dispose();
-    }
-
-
-
-
-    /// <Summary>
-    /// Convert between a thumb track position and the corresponding scroll
-    /// position.
-    ///
-    /// thumbOffsetLocal is a position in the thumb track. Cannot be null.
-    /// </Summary>
-    public virtual double GetTrackToScroll(double thumbOffsetLocal)
-    {
-
-        double scrollableExtent = _LastMetrics.MaxScrollExtent - _LastMetrics.MinScrollExtent;
-        double thumbMovableExtent = _TrackExtent - _ThumbExtent();
-        return scrollableExtent * thumbOffsetLocal / thumbMovableExtent;
-    }
-
-
-
-
-    private double _GetScrollToTrack(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, double thumbExtent)
-    {
-        double scrollableExtent = metrics.MaxScrollExtent - metrics.MinScrollExtent;
-        double fractionPast = (scrollableExtent > 0) ? ((metrics.Pixels - metrics.MinScrollExtent) / scrollableExtent).Clamp(0.0, 1.0) as double : 0;
-        return (_IsReversed ? 1 - fractionPast : fractionPast) * (_TrackExtent - thumbExtent);
-    }
-
-
-
-
-    public new void Paint(Canvas canvas, Size size)
-    {
-        if (_LastAxisDirection == null || _LastMetrics == null || FadeoutOpacityAnimation.Value == 0.0) return;
-        if (_LastMetrics.ViewportDimension <= _MainAxisPadding || _TrackExtent <= 0)
         {
-            return;
+            this.Thickness = thickness;
+            this.FadeoutOpacityAnimation = fadeoutOpacityAnimation;
+            this.MainAxisMargin = mainAxisMargin;
+            this.CrossAxisMargin = crossAxisMargin;
+            this.Radius = radius;
+            this.MinLength = minLength;
+            FadeoutOpacityAnimation.AddListener(NotifyListeners);
         }
 
-        double beforePadding = _IsVertical ? Padding.Top : Padding.Left;
-        double thumbExtent = _ThumbExtent();
-        double thumbOffsetLocal = _GetScrollToTrack(_LastMetrics, thumbExtent);
-        double thumbOffset = thumbOffsetLocal + MainAxisMargin + beforePadding;
-        return _PaintThumbCrossAxis(canvas, size, thumbOffset, thumbExtent, _LastAxisDirection);
-    }
 
+        #endregion
 
+        #region fields
+        internal virtual FlutterBinding.UI.Color _Color { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> FadeoutOpacityAnimation { get; set; }
+        public virtual double MainAxisMargin { get; set; }
+        public virtual double CrossAxisMargin { get; set; }
+        public virtual Radius Radius { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _Padding { get; set; }
+        public virtual double MinLength { get; set; }
+        public virtual double MinOverscrollLength { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics _LastMetrics { get; set; }
+        internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _LastAxisDirection { get; set; }
+        internal virtual FlutterBinding.UI.Rect _ThumbRect { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual SKPaint _Paint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsReversed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _BeforeExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _AfterExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MainAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TrackExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TotalContentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-    /// <Summary>
-    /// Same as hitTest, but includes some padding to make sure that the region
-    /// isn't too small to be interacted with by the user.
-    /// </Summary>
-    public virtual bool HitTestInteractive(FlutterBinding.UI.Offset position)
-    {
-        if (_ThumbRect == null)
+        /// <Summary>
+        /// Update with new [ScrollMetrics]. The scrollbar will show and redraw itself
+        /// based on these new metrics.
+        ///
+        /// The scrollbar will remain on screen.
+        /// </Summary>
+        public virtual void Update(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
-            return false;
+            _LastMetrics = metrics;
+            _LastAxisDirection = axisDirection;
+            NotifyListeners();
         }
 
-        if (FadeoutOpacityAnimation.Value == 0.0)
+
+
+
+        /// <Summary>
+        /// Update and redraw with new scrollbar thickness and radius.
+        /// </Summary>
+        public virtual void UpdateThickness(double nextThickness, Radius nextRadius)
         {
-            return false;
+            Thickness = nextThickness;
+            Radius = nextRadius;
+            NotifyListeners();
         }
 
-        Rect interactiveThumbRect = _ThumbRect.ExpandToInclude(Rect.FromCircle(center: _ThumbRect.Center, radius: ScrollbarDefaultClass._KMinInteractiveSize / 2));
-        return interactiveThumbRect.Contains(position);
-    }
 
 
 
-
-    public new bool HitTest(FlutterBinding.UI.Offset position)
-    {
-        if (_ThumbRect == null)
+        private void _PaintThumbCrossAxis(Canvas canvas, Size size, double thumbOffset, double thumbExtent, FlutterSDK.Painting.Basictypes.AxisDirection direction)
         {
-            return null;
+            double x y = default(double);
+            Size thumbSize = default(Size);
+            switch (direction) { case AxisDirection.Down: thumbSize = new Size(Thickness, thumbExtent); x = TextDirection == TextDirection.Rtl ? CrossAxisMargin + Padding.Left : size.Width - Thickness - CrossAxisMargin - Padding.Right; y = thumbOffset; break; case AxisDirection.Up: thumbSize = new Size(Thickness, thumbExtent); x = TextDirection == TextDirection.Rtl ? CrossAxisMargin + Padding.Left : size.Width - Thickness - CrossAxisMargin - Padding.Right; y = thumbOffset; break; case AxisDirection.Left: thumbSize = new Size(thumbExtent, Thickness); x = thumbOffset; y = size.Height - Thickness - CrossAxisMargin - Padding.Bottom; break; case AxisDirection.Right: thumbSize = new Size(thumbExtent, Thickness); x = thumbOffset; y = size.Height - Thickness - CrossAxisMargin - Padding.Bottom; break; }
+            _ThumbRect = new Offset(x, y) & thumbSize;
+            if (Radius == null) canvas.DrawRect(_ThumbRect, _Paint); else canvas.DrawRRect(RRect.FromRectAndRadius(_ThumbRect, Radius), _Paint);
         }
 
-        if (FadeoutOpacityAnimation.Value == 0.0)
+
+
+
+        private double _ThumbExtent()
         {
-            return false;
+            double fractionVisible = ((_LastMetrics.ExtentInside - _MainAxisPadding) / (_TotalContentExtent - _MainAxisPadding)).Clamp(0.0, 1.0) as double;
+            double thumbExtent = Math.Dart:mathDefaultClass.Max(Math.Dart:mathDefaultClass.Min(_TrackExtent, MinOverscrollLength), _TrackExtent * fractionVisible);
+            double fractionOverscrolled = 1.0 - _LastMetrics.ExtentInside / _LastMetrics.ViewportDimension;
+            double safeMinLength = Math.Dart:mathDefaultClass.Min(MinLength, _TrackExtent);
+            double newMinLength = (_BeforeExtent > 0 && _AfterExtent > 0) ? safeMinLength : safeMinLength * (1.0 - fractionOverscrolled.Clamp(0.0, 0.2) / 0.2);
+            return thumbExtent.Clamp(newMinLength, _TrackExtent) as double;
         }
 
-        return _ThumbRect.Contains(position);
+
+
+
+        public new void Dispose()
+        {
+            FadeoutOpacityAnimation.RemoveListener(NotifyListeners);
+            base.Dispose();
+        }
+
+
+
+
+        /// <Summary>
+        /// Convert between a thumb track position and the corresponding scroll
+        /// position.
+        ///
+        /// thumbOffsetLocal is a position in the thumb track. Cannot be null.
+        /// </Summary>
+        public virtual double GetTrackToScroll(double thumbOffsetLocal)
+        {
+
+            double scrollableExtent = _LastMetrics.MaxScrollExtent - _LastMetrics.MinScrollExtent;
+            double thumbMovableExtent = _TrackExtent - _ThumbExtent();
+            return scrollableExtent * thumbOffsetLocal / thumbMovableExtent;
+        }
+
+
+
+
+        private double _GetScrollToTrack(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics, double thumbExtent)
+        {
+            double scrollableExtent = metrics.MaxScrollExtent - metrics.MinScrollExtent;
+            double fractionPast = (scrollableExtent > 0) ? ((metrics.Pixels - metrics.MinScrollExtent) / scrollableExtent).Clamp(0.0, 1.0) as double : 0;
+            return (_IsReversed ? 1 - fractionPast : fractionPast) * (_TrackExtent - thumbExtent);
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            if (_LastAxisDirection == null || _LastMetrics == null || FadeoutOpacityAnimation.Value == 0.0) return;
+            if (_LastMetrics.ViewportDimension <= _MainAxisPadding || _TrackExtent <= 0)
+            {
+                return;
+            }
+
+            double beforePadding = _IsVertical ? Padding.Top : Padding.Left;
+            double thumbExtent = _ThumbExtent();
+            double thumbOffsetLocal = _GetScrollToTrack(_LastMetrics, thumbExtent);
+            double thumbOffset = thumbOffsetLocal + MainAxisMargin + beforePadding;
+            return _PaintThumbCrossAxis(canvas, size, thumbOffset, thumbExtent, _LastAxisDirection);
+        }
+
+
+
+
+        /// <Summary>
+        /// Same as hitTest, but includes some padding to make sure that the region
+        /// isn't too small to be interacted with by the user.
+        /// </Summary>
+        public virtual bool HitTestInteractive(FlutterBinding.UI.Offset position)
+        {
+            if (_ThumbRect == null)
+            {
+                return false;
+            }
+
+            if (FadeoutOpacityAnimation.Value == 0.0)
+            {
+                return false;
+            }
+
+            Rect interactiveThumbRect = _ThumbRect.ExpandToInclude(Rect.FromCircle(center: _ThumbRect.Center, radius: ScrollbarDefaultClass._KMinInteractiveSize / 2));
+            return interactiveThumbRect.Contains(position);
+        }
+
+
+
+
+        public new bool HitTest(FlutterBinding.UI.Offset position)
+        {
+            if (_ThumbRect == null)
+            {
+                return null;
+            }
+
+            if (FadeoutOpacityAnimation.Value == 0.0)
+            {
+                return false;
+            }
+
+            return _ThumbRect.Contains(position);
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Scrollbar.ScrollbarPainter old)
+        {
+            return Color != old.Color || TextDirection != old.TextDirection || Thickness != old.Thickness || FadeoutOpacityAnimation != old.FadeoutOpacityAnimation || MainAxisMargin != old.MainAxisMargin || CrossAxisMargin != old.CrossAxisMargin || Radius != old.Radius || MinLength != old.MinLength || Padding != old.Padding;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return Color != old.Color || TextDirection != old.TextDirection || Thickness != old.Thickness || FadeoutOpacityAnimation != old.FadeoutOpacityAnimation || MainAxisMargin != old.MainAxisMargin || CrossAxisMargin != old.CrossAxisMargin || Radius != old.Radius || MinLength != old.MinLength || Padding != old.Padding;
+        }
+
+
+
+
+        public new bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => false;
+
+
+        #endregion
+        CustomPainter _CustomPainterInstance = new CustomPainter();
+        public void AddListener(VoidCallback listener) => _CustomPainterInstance.AddListener(listener);
+        public void RemoveListener(VoidCallback listener) => _CustomPainterInstance.RemoveListener(listener);
+        public string ToString() => _CustomPainterInstance.ToString();
     }
-
-
-
-
-    public new bool ShouldRepaint(FlutterSDK.Widgets.Scrollbar.ScrollbarPainter old)
-    {
-        return Color != old.Color || TextDirection != old.TextDirection || Thickness != old.Thickness || FadeoutOpacityAnimation != old.FadeoutOpacityAnimation || MainAxisMargin != old.MainAxisMargin || CrossAxisMargin != old.CrossAxisMargin || Radius != old.Radius || MinLength != old.MinLength || Padding != old.Padding;
-    }
-
-
-    public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-    {
-        return Color != old.Color || TextDirection != old.TextDirection || Thickness != old.Thickness || FadeoutOpacityAnimation != old.FadeoutOpacityAnimation || MainAxisMargin != old.MainAxisMargin || CrossAxisMargin != old.CrossAxisMargin || Radius != old.Radius || MinLength != old.MinLength || Padding != old.Padding;
-    }
-
-
-
-
-    public new bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => false;
-
-
-    #endregion
-    CustomPainter _CustomPainterInstance = new CustomPainter();
-    public void AddListener(VoidCallback listener) => _CustomPainterInstance.AddListener(listener);
-    public void RemoveListener(VoidCallback listener) => _CustomPainterInstance.RemoveListener(listener);
-    public string ToString() => _CustomPainterInstance.ToString();
-}
 
 }

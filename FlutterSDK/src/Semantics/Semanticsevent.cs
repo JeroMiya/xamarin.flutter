@@ -454,204 +454,211 @@ namespace FlutterSDK.Semantics.Semanticsevent
     {
         #region constructors
         public SemanticsEvent(string type)
-    
-}
-    #endregion
+        {
+            this.Type = type;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Type { get; set; }
-    #endregion
+        #region fields
+        public virtual string Type { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Converts this event to a Map that can be encoded with
+        /// [StandardMessageCodec].
+        ///
+        /// [nodeId] is the unique identifier of the semantics node associated with
+        /// the event, or null if the event is not associated with a semantics node.
+        /// </Summary>
+        public virtual Dictionary<string, object> ToMap(int nodeId = default(int))
+        {
+            Dictionary<string, object> @event = new Dictionary<string, object> { { "type", Type }{ "data", GetDataMap() } };
+            if (nodeId != null) @event["nodeId"] = nodeId;
+            return @event;
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the event's data object.
+        /// </Summary>
+        public virtual Dictionary<string, object> GetDataMap()
+        {
+            return default(Dictionary<string, object>);
+        }
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Converts this event to a Map that can be encoded with
-    /// [StandardMessageCodec].
+    /// An event for a semantic announcement.
     ///
-    /// [nodeId] is the unique identifier of the semantics node associated with
-    /// the event, or null if the event is not associated with a semantics node.
+    /// This should be used for announcement that are not seamlessly announced by
+    /// the system as a result of a UI state change.
+    ///
+    /// For example a camera application can use this method to make accessibility
+    /// announcements regarding objects in the viewfinder.
+    ///
+    /// When possible, prefer using mechanisms like [Semantics] to implicitly
+    /// trigger announcements over using this event.
     /// </Summary>
-    public virtual Dictionary<string, object> ToMap(int nodeId = default(int))
+    public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        Dictionary<string, object> @event = new Dictionary<string, object> { { "type", Type }{ "data", GetDataMap() } };
-        if (nodeId != null) @event["nodeId"] = nodeId;
-        return @event;
+        #region constructors
+        public AnnounceSemanticsEvent(string message, TextDirection textDirection)
+        : base("announce")
+        {
+            this.Message = message;
+            this.TextDirection = textDirection;
+        }
+        #endregion
+
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, object> GetDataMap()
+        {
+            return new Dictionary<string, object> { { "message", Message }{ "textDirection", TextDirection.Index } };
+        }
+
+
+
+        #endregion
     }
-
-
 
 
     /// <Summary>
-    /// Returns the event's data object.
+    /// An event for a semantic announcement of a tooltip.
+    ///
+    /// This is only used by Android to announce tooltip values.
     /// </Summary>
-    public virtual Dictionary<string, object> GetDataMap()
+    public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        return default(Dictionary<string, object>);
+        #region constructors
+        public TooltipSemanticsEvent(string message)
+        : base("tooltip")
+        {
+            this.Message = message;
+        }
+        #endregion
+
+        #region fields
+        public virtual string Message { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, object> GetDataMap()
+        {
+            return new Dictionary<string, object> { { "message", Message } };
+        }
+
+
+
+        #endregion
     }
 
 
-    #endregion
-}
+    /// <Summary>
+    /// An event which triggers long press semantic feedback.
+    ///
+    /// Currently only honored on Android. Triggers a long-press specific sound
+    /// when TalkBack is enabled.
+    /// </Summary>
+    public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public LongPressSemanticsEvent()
+        : base("longPress")
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
 
 
-/// <Summary>
-/// An event for a semantic announcement.
-///
-/// This should be used for announcement that are not seamlessly announced by
-/// the system as a result of a UI state change.
-///
-/// For example a camera application can use this method to make accessibility
-/// announcements regarding objects in the viewfinder.
-///
-/// When possible, prefer using mechanisms like [Semantics] to implicitly
-/// trigger announcements over using this event.
-/// </Summary>
-public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-    #region constructors
-    public AnnounceSemanticsEvent(string message, TextDirection textDirection)
-    : base("announce")
-
-}
-#endregion
-
-#region fields
-public virtual string Message { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-#endregion
-
-#region methods
-
-public new Dictionary<string, object> GetDataMap()
-{
-    return new Dictionary<string, object> { { "message", Message }{ "textDirection", TextDirection.Index } };
-}
+        #endregion
+    }
 
 
+    /// <Summary>
+    /// An event which triggers tap semantic feedback.
+    ///
+    /// Currently only honored on Android. Triggers a tap specific sound when
+    /// TalkBack is enabled.
+    /// </Summary>
+    public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public TapSemanticEvent()
+        : base("tap")
+        {
 
-#endregion
-}
+        }
+        #endregion
 
+        #region fields
+        #endregion
 
-/// <Summary>
-/// An event for a semantic announcement of a tooltip.
-///
-/// This is only used by Android to announce tooltip values.
-/// </Summary>
-public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-    #region constructors
-    public TooltipSemanticsEvent(string message)
-    : base("tooltip")
+        #region methods
 
-}
-#endregion
-
-#region fields
-public virtual string Message { get; set; }
-#endregion
-
-#region methods
-
-public new Dictionary<string, object> GetDataMap()
-{
-    return new Dictionary<string, object> { { "message", Message } };
-}
+        public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
 
 
-
-#endregion
-}
-
-
-/// <Summary>
-/// An event which triggers long press semantic feedback.
-///
-/// Currently only honored on Android. Triggers a long-press specific sound
-/// when TalkBack is enabled.
-/// </Summary>
-public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-    #region constructors
-    public LongPressSemanticsEvent()
-    : base("longPress")
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
+        #endregion
+    }
 
 
-#endregion
-}
+    /// <Summary>
+    /// An event which triggers a polite announcement of a live region.
+    ///
+    /// This requires that the semantics node has already been marked as a live
+    /// region. On Android, TalkBack will make a verbal announcement, as long as
+    /// the label of the semantics node has changed since the last live region
+    /// update. iOS does not currently support this event.
+    ///
+    /// Deprecated. This message was never implemented, and references to it should
+    /// be removed.
+    ///
+    /// See also:
+    ///
+    ///  * [SemanticsFlag.liveRegion], for a description of live regions.
+    ///
+    /// </Summary>
+    public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
+    {
+        #region constructors
+        public UpdateLiveRegionEvent()
+        : base("updateLiveRegion")
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
 
 
-/// <Summary>
-/// An event which triggers tap semantic feedback.
-///
-/// Currently only honored on Android. Triggers a tap specific sound when
-/// TalkBack is enabled.
-/// </Summary>
-public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-    #region constructors
-    public TapSemanticEvent()
-    : base("tap")
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An event which triggers a polite announcement of a live region.
-///
-/// This requires that the semantics node has already been marked as a live
-/// region. On Android, TalkBack will make a verbal announcement, as long as
-/// the label of the semantics node has changed since the last live region
-/// update. iOS does not currently support this event.
-///
-/// Deprecated. This message was never implemented, and references to it should
-/// be removed.
-///
-/// See also:
-///
-///  * [SemanticsFlag.liveRegion], for a description of live regions.
-///
-/// </Summary>
-public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
-{
-    #region constructors
-    public UpdateLiveRegionEvent()
-    : base("updateLiveRegion")
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
-
-
-#endregion
-}
+        #endregion
+    }
 
 }

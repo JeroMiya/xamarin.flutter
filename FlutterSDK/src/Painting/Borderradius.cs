@@ -467,630 +467,655 @@ namespace FlutterSDK.Painting.Borderradius
     {
         #region constructors
         public BorderRadiusGeometry()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    /// <Summary>
-    /// Returns the difference between two [BorderRadiusGeometry] objects.
-    ///
-    /// If you know you are applying this to two [BorderRadius] or two
-    /// [BorderRadiusDirectional] objects, consider using the binary infix `-`
-    /// operator instead, which always returns an object of the same type as the
-    /// operands, and is typed accordingly.
-    ///
-    /// If [subtract] is applied to two objects of the same type ([BorderRadius] or
-    /// [BorderRadiusDirectional]), an object of that type will be returned (though
-    /// this is not reflected in the type system). Otherwise, an object
-    /// representing a combination of both is returned. That object can be turned
-    /// into a concrete [BorderRadius] using [resolve].
-    ///
-    /// This method returns the same result as [add] applied to the result of
-    /// negating the argument (using the prefix unary `-` operator or multiplying
-    /// the argument by -1.0 using the `*` operator).
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
-    {
-        return new _MixedBorderRadius(_TopLeft - other._TopLeft, _TopRight - other._TopRight, _BottomLeft - other._BottomLeft, _BottomRight - other._BottomRight, _TopStart - other._TopStart, _TopEnd - other._TopEnd, _BottomStart - other._BottomStart, _BottomEnd - other._BottomEnd);
+        #region methods
+
+        /// <Summary>
+        /// Returns the difference between two [BorderRadiusGeometry] objects.
+        ///
+        /// If you know you are applying this to two [BorderRadius] or two
+        /// [BorderRadiusDirectional] objects, consider using the binary infix `-`
+        /// operator instead, which always returns an object of the same type as the
+        /// operands, and is typed accordingly.
+        ///
+        /// If [subtract] is applied to two objects of the same type ([BorderRadius] or
+        /// [BorderRadiusDirectional]), an object of that type will be returned (though
+        /// this is not reflected in the type system). Otherwise, an object
+        /// representing a combination of both is returned. That object can be turned
+        /// into a concrete [BorderRadius] using [resolve].
+        ///
+        /// This method returns the same result as [add] applied to the result of
+        /// negating the argument (using the prefix unary `-` operator or multiplying
+        /// the argument by -1.0 using the `*` operator).
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+        {
+            return new _MixedBorderRadius(_TopLeft - other._TopLeft, _TopRight - other._TopRight, _BottomLeft - other._BottomLeft, _BottomRight - other._BottomRight, _TopStart - other._TopStart, _TopEnd - other._TopEnd, _BottomStart - other._BottomStart, _BottomEnd - other._BottomEnd);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the sum of two [BorderRadiusGeometry] objects.
+        ///
+        /// If you know you are adding two [BorderRadius] or two [BorderRadiusDirectional]
+        /// objects, consider using the `+` operator instead, which always returns an
+        /// object of the same type as the operands, and is typed accordingly.
+        ///
+        /// If [add] is applied to two objects of the same type ([BorderRadius] or
+        /// [BorderRadiusDirectional]), an object of that type will be returned (though
+        /// this is not reflected in the type system). Otherwise, an object
+        /// representing a combination of both is returned. That object can be turned
+        /// into a concrete [BorderRadius] using [resolve].
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+        {
+            return new _MixedBorderRadius(_TopLeft + other._TopLeft, _TopRight + other._TopRight, _BottomLeft + other._BottomLeft, _BottomRight + other._BottomRight, _TopStart + other._TopStart, _TopEnd + other._TopEnd, _BottomStart + other._BottomStart, _BottomEnd + other._BottomEnd);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the [BorderRadiusGeometry] object with each corner radius negated.
+        ///
+        /// This is the same as multiplying the object by -1.0.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Unary()
+        {
+            return default(BorderRadiusGeometry);
+        }
+
+
+        /// <Summary>
+        /// Scales the [BorderRadiusGeometry] object's corners by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry MultiplyOperator(double other)
+        {
+            return default(BorderRadiusGeometry);
+        }
+
+
+        /// <Summary>
+        /// Divides the [BorderRadiusGeometry] object's corners by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideOperator(double other)
+        {
+            return default(BorderRadiusGeometry);
+        }
+
+
+        /// <Summary>
+        /// Integer divides the [BorderRadiusGeometry] object's corners by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        ///
+        /// This operator may have unexpected results when applied to a mixture of
+        /// [BorderRadius] and [BorderRadiusDirectional] objects.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideIntegerResultOperator(double other)
+        {
+            return default(BorderRadiusGeometry);
+        }
+
+
+        /// <Summary>
+        /// Computes the remainder of each corner by the given factor.
+        ///
+        /// This operator returns an object of the same type as the operand.
+        ///
+        /// This operator may have unexpected results when applied to a mixture of
+        /// [BorderRadius] and [BorderRadiusDirectional] objects.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry ModuloOperator(double other)
+        {
+            return default(BorderRadiusGeometry);
+        }
+
+
+        /// <Summary>
+        /// Linearly interpolate between two [BorderRadiusGeometry] objects.
+        ///
+        /// If either is null, this function interpolates from [BorderRadius.zero],
+        /// and the result is an object of the same type as the non-null argument. (If
+        /// both are null, this returns null.)
+        ///
+        /// If [lerp] is applied to two objects of the same type ([BorderRadius] or
+        /// [BorderRadiusDirectional]), an object of that type will be returned (though
+        /// this is not reflected in the type system). Otherwise, an object
+        /// representing a combination of both is returned. That object can be turned
+        /// into a concrete [BorderRadius] using [resolve].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry a, FlutterSDK.Painting.Borderradius.BorderRadiusGeometry b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            a = (a == null ? BorderradiusDefaultClass.BorderRadius.Zero : a);
+            b = (b == null ? BorderradiusDefaultClass.BorderRadius.Zero : b);
+            return a.Add((b.Subtract(a)) * t);
+        }
+
+
+
+
+        /// <Summary>
+        /// Convert this instance into a [BorderRadius], so that the radii are
+        /// expressed for specific physical corners (top-left, top-right, etc) rather
+        /// than in a direction-dependent manner.
+        ///
+        /// See also:
+        ///
+        ///  * [BorderRadius], for which this is a no-op (returns itself).
+        ///  * [BorderRadiusDirectional], which flips the horizontal direction
+        ///    based on the `direction` argument.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction)
+        {
+            return default(BorderRadius);
+        }
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is BorderRadiusGeometry && other._TopLeft == _TopLeft && other._TopRight == _TopRight && other._BottomLeft == _BottomLeft && other._BottomRight == _BottomRight && other._TopStart == _TopStart && other._TopEnd == _TopEnd && other._BottomStart == _BottomStart && other._BottomEnd == _BottomEnd;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
     /// <Summary>
-    /// Returns the sum of two [BorderRadiusGeometry] objects.
+    /// An immutable set of radii for each corner of a rectangle.
     ///
-    /// If you know you are adding two [BorderRadius] or two [BorderRadiusDirectional]
-    /// objects, consider using the `+` operator instead, which always returns an
-    /// object of the same type as the operands, and is typed accordingly.
+    /// Used by [BoxDecoration] when the shape is a [BoxShape.rectangle].
     ///
-    /// If [add] is applied to two objects of the same type ([BorderRadius] or
-    /// [BorderRadiusDirectional]), an object of that type will be returned (though
-    /// this is not reflected in the type system). Otherwise, an object
-    /// representing a combination of both is returned. That object can be turned
-    /// into a concrete [BorderRadius] using [resolve].
+    /// The [BorderRadius] class specifies offsets in terms of visual corners, e.g.
+    /// [topLeft]. These values are not affected by the [TextDirection]. To support
+    /// both left-to-right and right-to-left layouts, consider using
+    /// [BorderRadiusDirectional], which is expressed in terms that are relative to
+    /// a [TextDirection] (typically obtained from the ambient [Directionality]).
     /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+    public class BorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
-        return new _MixedBorderRadius(_TopLeft + other._TopLeft, _TopRight + other._TopRight, _BottomLeft + other._BottomLeft, _BottomRight + other._BottomRight, _TopStart + other._TopStart, _TopEnd + other._TopEnd, _BottomStart + other._BottomStart, _BottomEnd + other._BottomEnd);
+        #region constructors
+        public static BorderRadius All(Radius radius)
+        {
+            var instance = new BorderRadius();
+        }
+        public static BorderRadius Circular(double radius)
+        {
+            var instance = new BorderRadius();
+        }
+        public static BorderRadius Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
+        {
+            var instance = new BorderRadius();
+        }
+        public static BorderRadius Horizontal(Radius left = default(Radius), Radius right = default(Radius))
+        {
+            var instance = new BorderRadius();
+        }
+        public static BorderRadius Only(Radius topLeft = default(Radius), Radius topRight = default(Radius), Radius bottomLeft = default(Radius), Radius bottomRight = default(Radius))
+        {
+            var instance = new BorderRadius(); instance.TopLeft = topLeft;
+            instance.TopRight = topRight;
+            instance.BottomLeft = bottomLeft;
+            instance.BottomRight = bottomRight;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Zero { get; set; }
+        public virtual Radius TopLeft { get; set; }
+        public virtual Radius TopRight { get; set; }
+        public virtual Radius BottomLeft { get; set; }
+        public virtual Radius BottomRight { get; set; }
+        internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Creates an [RRect] from the current border radius and a [Rect].
+        /// </Summary>
+        public virtual RRect ToRRect(FlutterBinding.UI.Rect rect)
+        {
+            return RRect.FromRectAndCorners(rect, topLeft: TopLeft, topRight: TopRight, bottomLeft: BottomLeft, bottomRight: BottomRight);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+        {
+            if (other is BorderRadius) return this - other;
+            return base.Subtract(other);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+        {
+            if (other is BorderRadius) return this + other;
+            return base.Add(other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the difference between two [BorderRadius] objects.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Unary(FlutterSDK.Painting.Borderradius.BorderRadius other)
+        {
+            return BorderRadius.Only(topLeft: TopLeft - other.TopLeft, topRight: TopRight - other.TopRight, bottomLeft: BottomLeft - other.BottomLeft, bottomRight: BottomRight - other.BottomRight);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the sum of two [BorderRadius] objects.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius AddOperator(FlutterSDK.Painting.Borderradius.BorderRadius other)
+        {
+            return BorderRadius.Only(topLeft: TopLeft + other.TopLeft, topRight: TopRight + other.TopRight, bottomLeft: BottomLeft + other.BottomLeft, bottomRight: BottomRight + other.BottomRight);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the [BorderRadius] object with each corner negated.
+        ///
+        /// This is the same as multiplying the object by -1.0.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Unary()
+        {
+            return BorderRadius.Only(topLeft: -TopLeft, topRight: -TopRight, bottomLeft: -BottomLeft, bottomRight: -BottomRight);
+        }
+
+
+
+
+        /// <Summary>
+        /// Scales each corner of the [BorderRadius] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadius MultiplyOperator(double other)
+        {
+            return BorderRadius.Only(topLeft: TopLeft * other, topRight: TopRight * other, bottomLeft: BottomLeft * other, bottomRight: BottomRight * other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Divides each corner of the [BorderRadius] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadius DivideOperator(double other)
+        {
+            return BorderRadius.Only(topLeft: TopLeft / other, topRight: TopRight / other, bottomLeft: BottomLeft / other, bottomRight: BottomRight / other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Integer divides each corner of the [BorderRadius] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadius DivideIntegerResultOperator(double other)
+        {
+            return BorderRadius.Only(topLeft: TopLeft~/ other, topRight: TopRight~/ other, bottomLeft: BottomLeft~/ other, bottomRight: BottomRight~/ other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Computes the remainder of each corner by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadius ModuloOperator(double other)
+        {
+            return BorderRadius.Only(topLeft: TopLeft % other, topRight: TopRight % other, bottomLeft: BottomLeft % other, bottomRight: BottomRight % other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two [BorderRadius] objects.
+        ///
+        /// If either is null, this function interpolates from [BorderRadius.zero].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius Lerp(FlutterSDK.Painting.Borderradius.BorderRadius a, FlutterSDK.Painting.Borderradius.BorderRadius b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            if (a == null) return b * t;
+            if (b == null) return a * (1.0 - t);
+            return BorderRadius.Only(topLeft: Dart:uiDefaultClass.Radius.Lerp(a.TopLeft, b.TopLeft, t), topRight: Dart:uiDefaultClass.Radius.Lerp(a.TopRight, b.TopRight, t), bottomLeft: Dart:uiDefaultClass.Radius.Lerp(a.BottomLeft, b.BottomLeft, t), bottomRight: Dart:uiDefaultClass.Radius.Lerp(a.BottomRight, b.BottomRight, t));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) => this;
+
+
+        #endregion
     }
 
 
-
-
     /// <Summary>
-    /// Returns the [BorderRadiusGeometry] object with each corner radius negated.
+    /// An immutable set of radii for each corner of a rectangle, but with the
+    /// corners specified in a manner dependent on the writing direction.
     ///
-    /// This is the same as multiplying the object by -1.0.
-    ///
-    /// This operator returns an object of the same type as the operand.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Unary()
-    {
-        return default(BorderRadiusGeometry);
-    }
-
-
-    /// <Summary>
-    /// Scales the [BorderRadiusGeometry] object's corners by the given factor.
-    ///
-    /// This operator returns an object of the same type as the operand.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry MultiplyOperator(double other)
-    {
-        return default(BorderRadiusGeometry);
-    }
-
-
-    /// <Summary>
-    /// Divides the [BorderRadiusGeometry] object's corners by the given factor.
-    ///
-    /// This operator returns an object of the same type as the operand.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideOperator(double other)
-    {
-        return default(BorderRadiusGeometry);
-    }
-
-
-    /// <Summary>
-    /// Integer divides the [BorderRadiusGeometry] object's corners by the given factor.
-    ///
-    /// This operator returns an object of the same type as the operand.
-    ///
-    /// This operator may have unexpected results when applied to a mixture of
-    /// [BorderRadius] and [BorderRadiusDirectional] objects.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry DivideIntegerResultOperator(double other)
-    {
-        return default(BorderRadiusGeometry);
-    }
-
-
-    /// <Summary>
-    /// Computes the remainder of each corner by the given factor.
-    ///
-    /// This operator returns an object of the same type as the operand.
-    ///
-    /// This operator may have unexpected results when applied to a mixture of
-    /// [BorderRadius] and [BorderRadiusDirectional] objects.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry ModuloOperator(double other)
-    {
-        return default(BorderRadiusGeometry);
-    }
-
-
-    /// <Summary>
-    /// Linearly interpolate between two [BorderRadiusGeometry] objects.
-    ///
-    /// If either is null, this function interpolates from [BorderRadius.zero],
-    /// and the result is an object of the same type as the non-null argument. (If
-    /// both are null, this returns null.)
-    ///
-    /// If [lerp] is applied to two objects of the same type ([BorderRadius] or
-    /// [BorderRadiusDirectional]), an object of that type will be returned (though
-    /// this is not reflected in the type system). Otherwise, an object
-    /// representing a combination of both is returned. That object can be turned
-    /// into a concrete [BorderRadius] using [resolve].
-    ///
-    /// {@macro dart.ui.shadow.lerp}
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry a, FlutterSDK.Painting.Borderradius.BorderRadiusGeometry b, double t)
-    {
-
-        if (a == null && b == null) return null;
-        a = (a == null ? BorderradiusDefaultClass.BorderRadius.Zero : a);
-        b = (b == null ? BorderradiusDefaultClass.BorderRadius.Zero : b);
-        return a.Add((b.Subtract(a)) * t);
-    }
-
-
-
-
-    /// <Summary>
-    /// Convert this instance into a [BorderRadius], so that the radii are
-    /// expressed for specific physical corners (top-left, top-right, etc) rather
-    /// than in a direction-dependent manner.
+    /// This can be used to specify a corner radius on the leading or trailing edge
+    /// of a box, so that it flips to the other side when the text alignment flips
+    /// (e.g. being on the top right in English text but the top left in Arabic
+    /// text).
     ///
     /// See also:
     ///
-    ///  * [BorderRadius], for which this is a no-op (returns itself).
-    ///  * [BorderRadiusDirectional], which flips the horizontal direction
-    ///    based on the `direction` argument.
+    ///  * [BorderRadius], a variant that uses physical labels (`topLeft` and
+    ///    `topRight` instead of `topStart` and `topEnd`).
     /// </Summary>
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction)
+    public class BorderRadiusDirectional : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
-        return default(BorderRadius);
+        #region constructors
+        public static BorderRadiusDirectional All(Radius radius)
+        {
+            var instance = new BorderRadiusDirectional();
+        }
+        public static BorderRadiusDirectional Circular(double radius)
+        {
+            var instance = new BorderRadiusDirectional();
+        }
+        public static BorderRadiusDirectional Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
+        {
+            var instance = new BorderRadiusDirectional();
+        }
+        public static BorderRadiusDirectional Horizontal(Radius start = default(Radius), Radius end = default(Radius))
+        {
+            var instance = new BorderRadiusDirectional();
+        }
+        public static BorderRadiusDirectional Only(Radius topStart = default(Radius), Radius topEnd = default(Radius), Radius bottomStart = default(Radius), Radius bottomEnd = default(Radius))
+        {
+            var instance = new BorderRadiusDirectional(); instance.TopStart = topStart;
+            instance.TopEnd = topEnd;
+            instance.BottomStart = bottomStart;
+            instance.BottomEnd = bottomEnd;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Zero { get; set; }
+        public virtual Radius TopStart { get; set; }
+        public virtual Radius TopEnd { get; set; }
+        public virtual Radius BottomStart { get; set; }
+        public virtual Radius BottomEnd { get; set; }
+        internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+        {
+            if (other is BorderRadiusDirectional) return this - other;
+            return base.Subtract(other);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
+        {
+            if (other is BorderRadiusDirectional) return this + other;
+            return base.Add(other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the difference between two [BorderRadiusDirectional] objects.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other)
+        {
+            return BorderRadiusDirectional.Only(topStart: TopStart - other.TopStart, topEnd: TopEnd - other.TopEnd, bottomStart: BottomStart - other.BottomStart, bottomEnd: BottomEnd - other.BottomEnd);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the sum of two [BorderRadiusDirectional] objects.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional AddOperator(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other)
+        {
+            return BorderRadiusDirectional.Only(topStart: TopStart + other.TopStart, topEnd: TopEnd + other.TopEnd, bottomStart: BottomStart + other.BottomStart, bottomEnd: BottomEnd + other.BottomEnd);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the [BorderRadiusDirectional] object with each corner negated.
+        ///
+        /// This is the same as multiplying the object by -1.0.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary()
+        {
+            return BorderRadiusDirectional.Only(topStart: -TopStart, topEnd: -TopEnd, bottomStart: -BottomStart, bottomEnd: -BottomEnd);
+        }
+
+
+
+
+        /// <Summary>
+        /// Scales each corner of the [BorderRadiusDirectional] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional MultiplyOperator(double other)
+        {
+            return BorderRadiusDirectional.Only(topStart: TopStart * other, topEnd: TopEnd * other, bottomStart: BottomStart * other, bottomEnd: BottomEnd * other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Divides each corner of the [BorderRadiusDirectional] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideOperator(double other)
+        {
+            return BorderRadiusDirectional.Only(topStart: TopStart / other, topEnd: TopEnd / other, bottomStart: BottomStart / other, bottomEnd: BottomEnd / other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Integer divides each corner of the [BorderRadiusDirectional] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideIntegerResultOperator(double other)
+        {
+            return BorderRadiusDirectional.Only(topStart: TopStart~/ other, topEnd: TopEnd~/ other, bottomStart: BottomStart~/ other, bottomEnd: BottomEnd~/ other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Computes the remainder of each corner by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional ModuloOperator(double other)
+        {
+            return BorderRadiusDirectional.Only(topStart: TopStart % other, topEnd: TopEnd % other, bottomStart: BottomStart % other, bottomEnd: BottomEnd % other);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two [BorderRadiusDirectional] objects.
+        ///
+        /// If either is null, this function interpolates from [BorderRadiusDirectional.zero].
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional a, FlutterSDK.Painting.Borderradius.BorderRadiusDirectional b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            if (a == null) return b * t;
+            if (b == null) return a * (1.0 - t);
+            return BorderRadiusDirectional.Only(topStart: Dart:uiDefaultClass.Radius.Lerp(a.TopStart, b.TopStart, t), topEnd: Dart:uiDefaultClass.Radius.Lerp(a.TopEnd, b.TopEnd, t), bottomStart: Dart:uiDefaultClass.Radius.Lerp(a.BottomStart, b.BottomStart, t), bottomEnd: Dart:uiDefaultClass.Radius.Lerp(a.BottomEnd, b.BottomEnd, t));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction)
+        {
+
+            switch (direction) { case TextDirection.Rtl: return BorderRadius.Only(topLeft: TopEnd, topRight: TopStart, bottomLeft: BottomEnd, bottomRight: BottomStart); case TextDirection.Ltr: return BorderRadius.Only(topLeft: TopStart, topRight: TopEnd, bottomLeft: BottomStart, bottomRight: BottomEnd); }
+            return null;
+        }
+
+
+
+        #endregion
     }
 
 
-
-    public new bool Equals(@Object other)
+    public class _MixedBorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is BorderRadiusGeometry && other._TopLeft == _TopLeft && other._TopRight == _TopRight && other._BottomLeft == _BottomLeft && other._BottomRight == _BottomRight && other._TopStart == _TopStart && other._TopEnd == _TopEnd && other._BottomStart == _BottomStart && other._BottomEnd == _BottomEnd;
+        #region constructors
+        public _MixedBorderRadius(Radius _topLeft, Radius _topRight, Radius _bottomLeft, Radius _bottomRight, Radius _topStart, Radius _topEnd, Radius _bottomStart, Radius _bottomEnd)
+        {
+            this._TopLeft = _topLeft;
+            this._TopRight = _topRight;
+            this._BottomLeft = _bottomLeft;
+            this._BottomRight = _bottomRight;
+            this._TopStart = _topStart;
+            this._TopEnd = _topEnd;
+            this._BottomStart = _bottomStart;
+            this._BottomEnd = _bottomEnd;
+        }
+        #endregion
+
+        #region fields
+        internal new Radius _TopLeft { get; set; }
+        internal new Radius _TopRight { get; set; }
+        internal new Radius _BottomLeft { get; set; }
+        internal new Radius _BottomRight { get; set; }
+        internal new Radius _TopStart { get; set; }
+        internal new Radius _TopEnd { get; set; }
+        internal new Radius _BottomStart { get; set; }
+        internal new Radius _BottomEnd { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius Unary()
+        {
+            return new _MixedBorderRadius(-_TopLeft, -_TopRight, -_BottomLeft, -_BottomRight, -_TopStart, -_TopEnd, -_BottomStart, -_BottomEnd);
+        }
+
+
+
+
+        /// <Summary>
+        /// Scales each corner of the [_MixedBorderRadius] by the given factor.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius MultiplyOperator(double other)
+        {
+            return new _MixedBorderRadius(_TopLeft * other, _TopRight * other, _BottomLeft * other, _BottomRight * other, _TopStart * other, _TopEnd * other, _BottomStart * other, _BottomEnd * other);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideOperator(double other)
+        {
+            return new _MixedBorderRadius(_TopLeft / other, _TopRight / other, _BottomLeft / other, _BottomRight / other, _TopStart / other, _TopEnd / other, _BottomStart / other, _BottomEnd / other);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideIntegerResultOperator(double other)
+        {
+            return new _MixedBorderRadius(_TopLeft~/ other, _TopRight~/ other, _BottomLeft~/ other, _BottomRight~/ other, _TopStart~/ other, _TopEnd~/ other, _BottomStart~/ other, _BottomEnd~/ other);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius._MixedBorderRadius ModuloOperator(double other)
+        {
+            return new _MixedBorderRadius(_TopLeft % other, _TopRight % other, _BottomLeft % other, _BottomRight % other, _TopStart % other, _TopEnd % other, _BottomStart % other, _BottomEnd % other);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction)
+        {
+
+            switch (direction) { case TextDirection.Rtl: return BorderRadius.Only(topLeft: _TopLeft + _TopEnd, topRight: _TopRight + _TopStart, bottomLeft: _BottomLeft + _BottomEnd, bottomRight: _BottomRight + _BottomStart); case TextDirection.Ltr: return BorderRadius.Only(topLeft: _TopLeft + _TopStart, topRight: _TopRight + _TopEnd, bottomLeft: _BottomLeft + _BottomStart, bottomRight: _BottomRight + _BottomEnd); }
+            return null;
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An immutable set of radii for each corner of a rectangle.
-///
-/// Used by [BoxDecoration] when the shape is a [BoxShape.rectangle].
-///
-/// The [BorderRadius] class specifies offsets in terms of visual corners, e.g.
-/// [topLeft]. These values are not affected by the [TextDirection]. To support
-/// both left-to-right and right-to-left layouts, consider using
-/// [BorderRadiusDirectional], which is expressed in terms that are relative to
-/// a [TextDirection] (typically obtained from the ambient [Directionality]).
-/// </Summary>
-public class BorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
-{
-    #region constructors
-    public static BorderRadius All(Radius radius)
-
-}
-public static BorderRadius Circular(double radius)
-
-}
-public static BorderRadius Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
-
-}
-public static BorderRadius Horizontal(Radius left = default(Radius), Radius right = default(Radius))
-
-}
-public static BorderRadius Only(Radius topLeft = default(Radius), Radius topRight = default(Radius), Radius bottomLeft = default(Radius), Radius bottomRight = default(Radius))
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Zero { get; set; }
-public virtual Radius TopLeft { get; set; }
-public virtual Radius TopRight { get; set; }
-public virtual Radius BottomLeft { get; set; }
-public virtual Radius BottomRight { get; set; }
-internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Creates an [RRect] from the current border radius and a [Rect].
-/// </Summary>
-public virtual RRect ToRRect(FlutterBinding.UI.Rect rect)
-{
-    return RRect.FromRectAndCorners(rect, topLeft: TopLeft, topRight: TopRight, bottomLeft: BottomLeft, bottomRight: BottomRight);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
-{
-    if (other is BorderRadius) return this - other;
-    return base.Subtract(other);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
-{
-    if (other is BorderRadius) return this + other;
-    return base.Add(other);
-}
-
-
-
-
-/// <Summary>
-/// Returns the difference between two [BorderRadius] objects.
-/// </Summary>
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Unary(FlutterSDK.Painting.Borderradius.BorderRadius other)
-{
-    return BorderRadius.Only(topLeft: TopLeft - other.TopLeft, topRight: TopRight - other.TopRight, bottomLeft: BottomLeft - other.BottomLeft, bottomRight: BottomRight - other.BottomRight);
-}
-
-
-
-
-/// <Summary>
-/// Returns the sum of two [BorderRadius] objects.
-/// </Summary>
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius AddOperator(FlutterSDK.Painting.Borderradius.BorderRadius other)
-{
-    return BorderRadius.Only(topLeft: TopLeft + other.TopLeft, topRight: TopRight + other.TopRight, bottomLeft: BottomLeft + other.BottomLeft, bottomRight: BottomRight + other.BottomRight);
-}
-
-
-
-
-/// <Summary>
-/// Returns the [BorderRadius] object with each corner negated.
-///
-/// This is the same as multiplying the object by -1.0.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadius Unary()
-{
-    return BorderRadius.Only(topLeft: -TopLeft, topRight: -TopRight, bottomLeft: -BottomLeft, bottomRight: -BottomRight);
-}
-
-
-
-
-/// <Summary>
-/// Scales each corner of the [BorderRadius] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadius MultiplyOperator(double other)
-{
-    return BorderRadius.Only(topLeft: TopLeft * other, topRight: TopRight * other, bottomLeft: BottomLeft * other, bottomRight: BottomRight * other);
-}
-
-
-
-
-/// <Summary>
-/// Divides each corner of the [BorderRadius] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadius DivideOperator(double other)
-{
-    return BorderRadius.Only(topLeft: TopLeft / other, topRight: TopRight / other, bottomLeft: BottomLeft / other, bottomRight: BottomRight / other);
-}
-
-
-
-
-/// <Summary>
-/// Integer divides each corner of the [BorderRadius] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadius DivideIntegerResultOperator(double other)
-{
-    return BorderRadius.Only(topLeft: TopLeft~/ other, topRight: TopRight~/ other, bottomLeft: BottomLeft~/ other, bottomRight: BottomRight~/ other);
-}
-
-
-
-
-/// <Summary>
-/// Computes the remainder of each corner by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadius ModuloOperator(double other)
-{
-    return BorderRadius.Only(topLeft: TopLeft % other, topRight: TopRight % other, bottomLeft: BottomLeft % other, bottomRight: BottomRight % other);
-}
-
-
-
-
-/// <Summary>
-/// Linearly interpolate between two [BorderRadius] objects.
-///
-/// If either is null, this function interpolates from [BorderRadius.zero].
-///
-/// {@macro dart.ui.shadow.lerp}
-/// </Summary>
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius Lerp(FlutterSDK.Painting.Borderradius.BorderRadius a, FlutterSDK.Painting.Borderradius.BorderRadius b, double t)
-{
-
-    if (a == null && b == null) return null;
-    if (a == null) return b * t;
-    if (b == null) return a * (1.0 - t);
-    return BorderRadius.Only(topLeft: Dart:uiDefaultClass.Radius.Lerp(a.TopLeft, b.TopLeft, t), topRight: Dart:uiDefaultClass.Radius.Lerp(a.TopRight, b.TopRight, t), bottomLeft: Dart:uiDefaultClass.Radius.Lerp(a.BottomLeft, b.BottomLeft, t), bottomRight: Dart:uiDefaultClass.Radius.Lerp(a.BottomRight, b.BottomRight, t));
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) => this;
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An immutable set of radii for each corner of a rectangle, but with the
-/// corners specified in a manner dependent on the writing direction.
-///
-/// This can be used to specify a corner radius on the leading or trailing edge
-/// of a box, so that it flips to the other side when the text alignment flips
-/// (e.g. being on the top right in English text but the top left in Arabic
-/// text).
-///
-/// See also:
-///
-///  * [BorderRadius], a variant that uses physical labels (`topLeft` and
-///    `topRight` instead of `topStart` and `topEnd`).
-/// </Summary>
-public class BorderRadiusDirectional : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
-{
-    #region constructors
-    public static BorderRadiusDirectional All(Radius radius)
-
-}
-public static BorderRadiusDirectional Circular(double radius)
-
-}
-public static BorderRadiusDirectional Vertical(Radius top = default(Radius), Radius bottom = default(Radius))
-
-}
-public static BorderRadiusDirectional Horizontal(Radius start = default(Radius), Radius end = default(Radius))
-
-}
-public static BorderRadiusDirectional Only(Radius topStart = default(Radius), Radius topEnd = default(Radius), Radius bottomStart = default(Radius), Radius bottomEnd = default(Radius))
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Zero { get; set; }
-public virtual Radius TopStart { get; set; }
-public virtual Radius TopEnd { get; set; }
-public virtual Radius BottomStart { get; set; }
-public virtual Radius BottomEnd { get; set; }
-internal virtual Radius _TopStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
-{
-    if (other is BorderRadiusDirectional) return this - other;
-    return base.Subtract(other);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Add(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
-{
-    if (other is BorderRadiusDirectional) return this + other;
-    return base.Add(other);
-}
-
-
-
-
-/// <Summary>
-/// Returns the difference between two [BorderRadiusDirectional] objects.
-/// </Summary>
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other)
-{
-    return BorderRadiusDirectional.Only(topStart: TopStart - other.TopStart, topEnd: TopEnd - other.TopEnd, bottomStart: BottomStart - other.BottomStart, bottomEnd: BottomEnd - other.BottomEnd);
-}
-
-
-
-
-/// <Summary>
-/// Returns the sum of two [BorderRadiusDirectional] objects.
-/// </Summary>
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional AddOperator(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional other)
-{
-    return BorderRadiusDirectional.Only(topStart: TopStart + other.TopStart, topEnd: TopEnd + other.TopEnd, bottomStart: BottomStart + other.BottomStart, bottomEnd: BottomEnd + other.BottomEnd);
-}
-
-
-
-
-/// <Summary>
-/// Returns the [BorderRadiusDirectional] object with each corner negated.
-///
-/// This is the same as multiplying the object by -1.0.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Unary()
-{
-    return BorderRadiusDirectional.Only(topStart: -TopStart, topEnd: -TopEnd, bottomStart: -BottomStart, bottomEnd: -BottomEnd);
-}
-
-
-
-
-/// <Summary>
-/// Scales each corner of the [BorderRadiusDirectional] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional MultiplyOperator(double other)
-{
-    return BorderRadiusDirectional.Only(topStart: TopStart * other, topEnd: TopEnd * other, bottomStart: BottomStart * other, bottomEnd: BottomEnd * other);
-}
-
-
-
-
-/// <Summary>
-/// Divides each corner of the [BorderRadiusDirectional] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideOperator(double other)
-{
-    return BorderRadiusDirectional.Only(topStart: TopStart / other, topEnd: TopEnd / other, bottomStart: BottomStart / other, bottomEnd: BottomEnd / other);
-}
-
-
-
-
-/// <Summary>
-/// Integer divides each corner of the [BorderRadiusDirectional] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional DivideIntegerResultOperator(double other)
-{
-    return BorderRadiusDirectional.Only(topStart: TopStart~/ other, topEnd: TopEnd~/ other, bottomStart: BottomStart~/ other, bottomEnd: BottomEnd~/ other);
-}
-
-
-
-
-/// <Summary>
-/// Computes the remainder of each corner by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius.BorderRadiusDirectional ModuloOperator(double other)
-{
-    return BorderRadiusDirectional.Only(topStart: TopStart % other, topEnd: TopEnd % other, bottomStart: BottomStart % other, bottomEnd: BottomEnd % other);
-}
-
-
-
-
-/// <Summary>
-/// Linearly interpolate between two [BorderRadiusDirectional] objects.
-///
-/// If either is null, this function interpolates from [BorderRadiusDirectional.zero].
-///
-/// {@macro dart.ui.shadow.lerp}
-/// </Summary>
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Lerp(FlutterSDK.Painting.Borderradius.BorderRadiusDirectional a, FlutterSDK.Painting.Borderradius.BorderRadiusDirectional b, double t)
-{
-
-    if (a == null && b == null) return null;
-    if (a == null) return b * t;
-    if (b == null) return a * (1.0 - t);
-    return BorderRadiusDirectional.Only(topStart: Dart:uiDefaultClass.Radius.Lerp(a.TopStart, b.TopStart, t), topEnd: Dart:uiDefaultClass.Radius.Lerp(a.TopEnd, b.TopEnd, t), bottomStart: Dart:uiDefaultClass.Radius.Lerp(a.BottomStart, b.BottomStart, t), bottomEnd: Dart:uiDefaultClass.Radius.Lerp(a.BottomEnd, b.BottomEnd, t));
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction)
-{
-
-    switch (direction) { case TextDirection.Rtl: return BorderRadius.Only(topLeft: TopEnd, topRight: TopStart, bottomLeft: BottomEnd, bottomRight: BottomStart); case TextDirection.Ltr: return BorderRadius.Only(topLeft: TopStart, topRight: TopEnd, bottomLeft: BottomStart, bottomRight: BottomEnd); }
-    return null;
-}
-
-
-
-#endregion
-}
-
-
-public class _MixedBorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
-{
-    #region constructors
-    public _MixedBorderRadius(Radius _topLeft, Radius _topRight, Radius _bottomLeft, Radius _bottomRight, Radius _topStart, Radius _topEnd, Radius _bottomStart, Radius _bottomEnd)
-
-}
-#endregion
-
-#region fields
-internal new Radius _TopLeft { get; set; }
-internal new Radius _TopRight { get; set; }
-internal new Radius _BottomLeft { get; set; }
-internal new Radius _BottomRight { get; set; }
-internal new Radius _TopStart { get; set; }
-internal new Radius _TopEnd { get; set; }
-internal new Radius _BottomStart { get; set; }
-internal new Radius _BottomEnd { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius Unary()
-{
-    return new _MixedBorderRadius(-_TopLeft, -_TopRight, -_BottomLeft, -_BottomRight, -_TopStart, -_TopEnd, -_BottomStart, -_BottomEnd);
-}
-
-
-
-
-/// <Summary>
-/// Scales each corner of the [_MixedBorderRadius] by the given factor.
-/// </Summary>
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius MultiplyOperator(double other)
-{
-    return new _MixedBorderRadius(_TopLeft * other, _TopRight * other, _BottomLeft * other, _BottomRight * other, _TopStart * other, _TopEnd * other, _BottomStart * other, _BottomEnd * other);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideOperator(double other)
-{
-    return new _MixedBorderRadius(_TopLeft / other, _TopRight / other, _BottomLeft / other, _BottomRight / other, _TopStart / other, _TopEnd / other, _BottomStart / other, _BottomEnd / other);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius DivideIntegerResultOperator(double other)
-{
-    return new _MixedBorderRadius(_TopLeft~/ other, _TopRight~/ other, _BottomLeft~/ other, _BottomRight~/ other, _TopStart~/ other, _TopEnd~/ other, _BottomStart~/ other, _BottomEnd~/ other);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius._MixedBorderRadius ModuloOperator(double other)
-{
-    return new _MixedBorderRadius(_TopLeft % other, _TopRight % other, _BottomLeft % other, _BottomRight % other, _TopStart % other, _TopEnd % other, _BottomStart % other, _BottomEnd % other);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction)
-{
-
-    switch (direction) { case TextDirection.Rtl: return BorderRadius.Only(topLeft: _TopLeft + _TopEnd, topRight: _TopRight + _TopStart, bottomLeft: _BottomLeft + _BottomEnd, bottomRight: _BottomRight + _BottomStart); case TextDirection.Ltr: return BorderRadius.Only(topLeft: _TopLeft + _TopStart, topRight: _TopRight + _TopEnd, bottomLeft: _BottomLeft + _BottomStart, bottomRight: _BottomRight + _BottomEnd); }
-    return null;
-}
-
-
-
-#endregion
-}
 
 }

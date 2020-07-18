@@ -348,83 +348,87 @@ namespace FlutterSDK.Cupertino.Pagescaffold
         #region constructors
         public CupertinoPageScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget navigationBar = default(FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual bool ResizeToAvoidBottomInset { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() => new _CupertinoPageScaffoldState();
-
-
-    #endregion
-}
-
-
-public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
-{
-    #region constructors
-    public _CupertinoPageScaffoldState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
-    #endregion
-
-    #region methods
-
-    private void _HandleStatusBarTap()
-    {
-        if (_PrimaryScrollController.HasClients)
         {
-            _PrimaryScrollController.AnimateTo(0.0, duration: new TimeSpan(milliseconds: 500), curve: CurvesDefaultClass.Curves.LinearToEaseOut);
+            this.NavigationBar = navigationBar;
+            this.BackgroundColor = backgroundColor;
+            this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
+            this.Child = child;
         }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual bool ResizeToAvoidBottomInset { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() => new _CupertinoPageScaffoldState();
+
+
+        #endregion
     }
 
 
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
     {
-        Widget paddedContent = Widget.Child;
-        MediaQueryData existingMediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
-        if (Widget.NavigationBar != null)
+        #region constructors
+        public _CupertinoPageScaffoldState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _HandleStatusBarTap()
         {
-            double topPadding = Widget.NavigationBar.PreferredSize.Height + existingMediaQuery.Padding.Top;
-            double bottomPadding = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.Bottom : 0.0;
-            EdgeInsets newViewInsets = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.CopyWith(bottom: 0.0) : existingMediaQuery.ViewInsets;
-            bool fullObstruction = Widget.NavigationBar.ShouldFullyObstruct(context);
-            if (fullObstruction)
+            if (_PrimaryScrollController.HasClients)
             {
-                paddedContent = new MediaQuery(data: existingMediaQuery.RemovePadding(removeTop: true).CopyWith(viewInsets: newViewInsets), child: new Padding(padding: EdgeInsets.Only(top: topPadding, bottom: bottomPadding), child: paddedContent));
+                _PrimaryScrollController.AnimateTo(0.0, duration: new TimeSpan(milliseconds: 500), curve: CurvesDefaultClass.Curves.LinearToEaseOut);
+            }
+
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Widget paddedContent = Widget.Child;
+            MediaQueryData existingMediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
+            if (Widget.NavigationBar != null)
+            {
+                double topPadding = Widget.NavigationBar.PreferredSize.Height + existingMediaQuery.Padding.Top;
+                double bottomPadding = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.Bottom : 0.0;
+                EdgeInsets newViewInsets = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.CopyWith(bottom: 0.0) : existingMediaQuery.ViewInsets;
+                bool fullObstruction = Widget.NavigationBar.ShouldFullyObstruct(context);
+                if (fullObstruction)
+                {
+                    paddedContent = new MediaQuery(data: existingMediaQuery.RemovePadding(removeTop: true).CopyWith(viewInsets: newViewInsets), child: new Padding(padding: EdgeInsets.Only(top: topPadding, bottom: bottomPadding), child: paddedContent));
+                }
+                else
+                {
+                    paddedContent = new MediaQuery(data: existingMediaQuery.CopyWith(padding: existingMediaQuery.Padding.CopyWith(top: topPadding), viewInsets: newViewInsets), child: new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent));
+                }
+
             }
             else
             {
-                paddedContent = new MediaQuery(data: existingMediaQuery.CopyWith(padding: existingMediaQuery.Padding.CopyWith(top: topPadding), viewInsets: newViewInsets), child: new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent));
+                double bottomPadding = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.Bottom : 0.0;
+                paddedContent = new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent);
             }
 
-        }
-        else
-        {
-            double bottomPadding = Widget.ResizeToAvoidBottomInset ? existingMediaQuery.ViewInsets.Bottom : 0.0;
-            paddedContent = new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent);
+            return new DecoratedBox(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).ScaffoldBackgroundColor), child: new Stack(children: new List<Widget>() { new PrimaryScrollController(controller: _PrimaryScrollController, child: paddedContent), }));
         }
 
-        return new DecoratedBox(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).ScaffoldBackgroundColor), child: new Stack(children: new List<Widget>() { new PrimaryScrollController(controller: _PrimaryScrollController, child: paddedContent), }));
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

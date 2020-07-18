@@ -391,143 +391,153 @@ namespace FlutterSDK.Material.Buttonbartheme
         #region constructors
         public ButtonBarThemeData(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
         : base()
-    
-}
-    #endregion
+        {
+            this.Alignment = alignment;
+            this.MainAxisSize = mainAxisSize;
+            this.ButtonTextTheme = buttonTextTheme;
+            this.ButtonMinWidth = buttonMinWidth;
+            this.ButtonHeight = buttonHeight;
+            this.ButtonPadding = buttonPadding;
+            this.ButtonAlignedDropdown = buttonAlignedDropdown;
+            this.LayoutBehavior = layoutBehavior;
+            this.OverflowDirection = overflowDirection;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
-    public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
-    public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
-    public virtual double ButtonMinWidth { get; set; }
-    public virtual double ButtonHeight { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
-    public virtual bool ButtonAlignedDropdown { get; set; }
-    public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
+        public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
+        public virtual double ButtonMinWidth { get; set; }
+        public virtual double ButtonHeight { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ButtonPadding { get; set; }
+        public virtual bool ButtonAlignedDropdown { get; set; }
+        public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData CopyWith(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
+        {
+            return new ButtonBarThemeData(alignment: alignment ?? this.Alignment, mainAxisSize: mainAxisSize ?? this.MainAxisSize, buttonTextTheme: buttonTextTheme ?? this.ButtonTextTheme, buttonMinWidth: buttonMinWidth == default(double) ? this.buttonMinWidth : buttonMinWidth, buttonHeight: buttonHeight == default(double) ? this.buttonHeight : buttonHeight, buttonPadding: buttonPadding ?? this.ButtonPadding, buttonAlignedDropdown: buttonAlignedDropdown ?? this.ButtonAlignedDropdown, layoutBehavior: layoutBehavior ?? this.LayoutBehavior, overflowDirection: overflowDirection ?? this.OverflowDirection);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two button bar themes.
+        ///
+        /// If both arguments are null, then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Lerp(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData a, FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            return new ButtonBarThemeData(alignment: t < 0.5 ? a.Alignment : b.Alignment, mainAxisSize: t < 0.5 ? a.MainAxisSize : b.MainAxisSize, buttonTextTheme: t < 0.5 ? a.ButtonTextTheme : b.ButtonTextTheme, buttonMinWidth: Dart:uiDefaultClass.LerpDouble(a?.ButtonMinWidth, b?.ButtonMinWidth, t), buttonHeight: Dart:uiDefaultClass.LerpDouble(a?.ButtonHeight, b?.ButtonHeight, t), buttonPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.ButtonPadding, b?.ButtonPadding, t), buttonAlignedDropdown: t < 0.5 ? a.ButtonAlignedDropdown : b.ButtonAlignedDropdown, layoutBehavior: t < 0.5 ? a.LayoutBehavior : b.LayoutBehavior, overflowDirection: t < 0.5 ? a.OverflowDirection : b.OverflowDirection);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is ButtonBarThemeData && other.Alignment == Alignment && other.MainAxisSize == MainAxisSize && other.ButtonTextTheme == ButtonTextTheme && other.ButtonMinWidth == ButtonMinWidth && other.ButtonHeight == ButtonHeight && other.ButtonPadding == ButtonPadding && other.ButtonAlignedDropdown == ButtonAlignedDropdown && other.LayoutBehavior == LayoutBehavior && other.OverflowDirection == OverflowDirection;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<MainAxisAlignment>("alignment", Alignment, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<MainAxisSize>("mainAxisSize", MainAxisSize, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ButtonTextTheme>("textTheme", ButtonTextTheme, defaultValue: null));
+            properties.Add(new DoubleProperty("minWidth", ButtonMinWidth, defaultValue: null));
+            properties.Add(new DoubleProperty("height", ButtonHeight, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", ButtonPadding, defaultValue: null));
+            properties.Add(new FlagProperty("buttonAlignedDropdown", value: ButtonAlignedDropdown, ifTrue: "dropdown width matches button", defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ButtonBarLayoutBehavior>("layoutBehavior", LayoutBehavior, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<VerticalDirection>("overflowDirection", OverflowDirection, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a copy of this object but with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData CopyWith(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
-    {
-        return new ButtonBarThemeData(alignment: alignment ?? this.Alignment, mainAxisSize: mainAxisSize ?? this.MainAxisSize, buttonTextTheme: buttonTextTheme ?? this.ButtonTextTheme, buttonMinWidth: buttonMinWidth == default(double) ? this.buttonMinWidth : buttonMinWidth, buttonHeight: buttonHeight == default(double) ? this.buttonHeight : buttonHeight, buttonPadding: buttonPadding ?? this.ButtonPadding, buttonAlignedDropdown: buttonAlignedDropdown ?? this.ButtonAlignedDropdown, layoutBehavior: layoutBehavior ?? this.LayoutBehavior, overflowDirection: overflowDirection ?? this.OverflowDirection);
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two button bar themes.
+    /// Applies a button bar theme to descendant [ButtonBar] widgets.
     ///
-    /// If both arguments are null, then null is returned.
+    /// A button bar theme describes the layout and properties for the buttons
+    /// contained in a [ButtonBar].
     ///
-    /// {@macro dart.ui.shadow.lerp}
+    /// Descendant widgets obtain the current theme's [ButtonBarTheme] object using
+    /// [ButtonBarTheme.of]. When a widget uses [ButtonBarTheme.of], it is automatically
+    /// rebuilt if the theme later changes.
+    ///
+    /// A button bar theme can be specified as part of the overall Material theme
+    /// using [ThemeData.buttonBarTheme].
+    ///
+    /// See also:
+    ///
+    ///  * [ButtonBarThemeData], which describes the actual configuration of a button
+    ///    bar theme.
     /// </Summary>
-    public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Lerp(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData a, FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData b, double t)
+    public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
+        #region constructors
+        public ButtonBarTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData data = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data;
+        }
+        #endregion
 
-        if (a == null && b == null) return null;
-        return new ButtonBarThemeData(alignment: t < 0.5 ? a.Alignment : b.Alignment, mainAxisSize: t < 0.5 ? a.MainAxisSize : b.MainAxisSize, buttonTextTheme: t < 0.5 ? a.ButtonTextTheme : b.ButtonTextTheme, buttonMinWidth: Dart:uiDefaultClass.LerpDouble(a?.ButtonMinWidth, b?.ButtonMinWidth, t), buttonHeight: Dart:uiDefaultClass.LerpDouble(a?.ButtonHeight, b?.ButtonHeight, t), buttonPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.ButtonPadding, b?.ButtonPadding, t), buttonAlignedDropdown: t < 0.5 ? a.ButtonAlignedDropdown : b.ButtonAlignedDropdown, layoutBehavior: t < 0.5 ? a.LayoutBehavior : b.LayoutBehavior, overflowDirection: t < 0.5 ? a.OverflowDirection : b.OverflowDirection);
+        #region fields
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns the configuration [data] from the closest [ButtonBarTheme]
+        /// ancestor. If there is no ancestor, it returns [ThemeData.buttonBarTheme].
+        /// Applications can assume that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// ButtonBarThemeData theme = ButtonBarTheme.of(context);
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            ButtonBarTheme buttonBarTheme = context.DependOnInheritedWidgetOfExactType();
+            return buttonBarTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).ButtonBarTheme;
+        }
+
+
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Buttonbartheme.ButtonBarTheme oldWidget) => Data != oldWidget.Data;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+        #endregion
     }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is ButtonBarThemeData && other.Alignment == Alignment && other.MainAxisSize == MainAxisSize && other.ButtonTextTheme == ButtonTextTheme && other.ButtonMinWidth == ButtonMinWidth && other.ButtonHeight == ButtonHeight && other.ButtonPadding == ButtonPadding && other.ButtonAlignedDropdown == ButtonAlignedDropdown && other.LayoutBehavior == LayoutBehavior && other.OverflowDirection == OverflowDirection;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<MainAxisAlignment>("alignment", Alignment, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<MainAxisSize>("mainAxisSize", MainAxisSize, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<ButtonTextTheme>("textTheme", ButtonTextTheme, defaultValue: null));
-        properties.Add(new DoubleProperty("minWidth", ButtonMinWidth, defaultValue: null));
-        properties.Add(new DoubleProperty("height", ButtonHeight, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", ButtonPadding, defaultValue: null));
-        properties.Add(new FlagProperty("buttonAlignedDropdown", value: ButtonAlignedDropdown, ifTrue: "dropdown width matches button", defaultValue: null));
-        properties.Add(new DiagnosticsProperty<ButtonBarLayoutBehavior>("layoutBehavior", LayoutBehavior, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<VerticalDirection>("overflowDirection", OverflowDirection, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Applies a button bar theme to descendant [ButtonBar] widgets.
-///
-/// A button bar theme describes the layout and properties for the buttons
-/// contained in a [ButtonBar].
-///
-/// Descendant widgets obtain the current theme's [ButtonBarTheme] object using
-/// [ButtonBarTheme.of]. When a widget uses [ButtonBarTheme.of], it is automatically
-/// rebuilt if the theme later changes.
-///
-/// A button bar theme can be specified as part of the overall Material theme
-/// using [ThemeData.buttonBarTheme].
-///
-/// See also:
-///
-///  * [ButtonBarThemeData], which describes the actual configuration of a button
-///    bar theme.
-/// </Summary>
-public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-    #region constructors
-    public ButtonBarTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData data = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Data { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns the configuration [data] from the closest [ButtonBarTheme]
-/// ancestor. If there is no ancestor, it returns [ThemeData.buttonBarTheme].
-/// Applications can assume that the returned value will not be null.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// ButtonBarThemeData theme = ButtonBarTheme.of(context);
-/// ```
-/// </Summary>
-public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    ButtonBarTheme buttonBarTheme = context.DependOnInheritedWidgetOfExactType();
-    return buttonBarTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).ButtonBarTheme;
-}
-
-
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Buttonbartheme.ButtonBarTheme oldWidget) => Data != oldWidget.Data;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
-
-
-#endregion
-}
 
 }

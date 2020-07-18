@@ -438,64 +438,69 @@ namespace FlutterSDK.Widgets.Icondata
     {
         #region constructors
         public IconData(int codePoint, string fontFamily = default(string), string fontPackage = default(string), bool matchTextDirection = false)
-    
-}
-    #endregion
+        {
+            this.CodePoint = codePoint;
+            this.FontFamily = fontFamily;
+            this.FontPackage = fontPackage;
+            this.MatchTextDirection = matchTextDirection;
+        }
+        #endregion
 
-    #region fields
-    public virtual int CodePoint { get; set; }
-    public virtual string FontFamily { get; set; }
-    public virtual string FontPackage { get; set; }
-    public virtual bool MatchTextDirection { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual int CodePoint { get; set; }
+        public virtual string FontFamily { get; set; }
+        public virtual string FontPackage { get; set; }
+        public virtual bool MatchTextDirection { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new bool Equals(@Object other)
-    {
-        if (other.GetType() != GetType()) return false;
-        return other is IconData && other.CodePoint == CodePoint && other.FontFamily == FontFamily && other.FontPackage == FontPackage && other.MatchTextDirection == MatchTextDirection;
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is IconData && other.CodePoint == CodePoint && other.FontFamily == FontFamily && other.FontPackage == FontPackage && other.MatchTextDirection == MatchTextDirection;
+        }
+
+
+
+
+        #endregion
     }
 
 
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// [DiagnosticsProperty] that has an [IconData] as value.
-/// </Summary>
-public class IconDataProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<FlutterSDK.Widgets.Icondata.IconData>
-{
-    #region constructors
-    public IconDataProperty(string name, FlutterSDK.Widgets.Icondata.IconData value, string ifNull = default(string), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-    : base(name, value, showName: showName, ifNull: ifNull, style: style, level: level)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    if (Value != null)
+    /// <Summary>
+    /// [DiagnosticsProperty] that has an [IconData] as value.
+    /// </Summary>
+    public class IconDataProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<FlutterSDK.Widgets.Icondata.IconData>
     {
-        json["valueProperties"] = new Dictionary<string, object> { { "codePoint", Value.CodePoint } };
+        #region constructors
+        public IconDataProperty(string name, FlutterSDK.Widgets.Icondata.IconData value, string ifNull = default(string), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        : base(name, value, showName: showName, ifNull: ifNull, style: style, level: level)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+        {
+            Dictionary<string, object> json = base.ToJsonMap(delegate);
+            if (Value != null)
+            {
+                json["valueProperties"] = new Dictionary<string, object> { { "codePoint", Value.CodePoint } };
+            }
+
+            return json;
+        }
+
+
+
+        #endregion
     }
-
-    return json;
-}
-
-
-
-#endregion
-}
 
 }

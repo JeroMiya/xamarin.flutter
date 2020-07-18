@@ -474,167 +474,176 @@ namespace FlutterSDK.Material.Typography
         #region constructors
         public Typography(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         : base()
-    
-}
-    public static Typography Material2014(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+
+        }
+        public static Typography Material2014(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            var instance = new Typography();
+
+            return Typography._WithPlatform(platform, black, white, englishLike ?? EnglishLike2014, dense ?? Dense2014, tall ?? Tall2014);
+        }
 
 
-return Typography._WithPlatform(platform, black, white, englishLike??EnglishLike2014, dense??Dense2014, tall??Tall2014);
-}
+        public static Typography Material2018(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            var instance = new Typography();
+
+            return Typography._WithPlatform(platform, black, white, englishLike ?? EnglishLike2018, dense ?? Dense2018, tall ?? Tall2018);
+        }
 
 
-public static Typography Material2018(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
-
-
-return Typography._WithPlatform(platform, black, white, englishLike ?? EnglishLike2018, dense ?? Dense2018, tall ?? Tall2018);
-}
-
-
-internal static Typography _WithPlatform(FlutterSDK.Foundation.Platform.TargetPlatform platform, FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
-
-
-
-
-
-switch (platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: black = (black == null ? BlackCupertino : black); white = (white == null ? WhiteCupertino : white); break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: black = (black == null ? BlackMountainView : black); white = (white == null ? WhiteMountainView : white); break; case TargetPlatform.Windows: black = (black == null ? BlackRedmond : black); white = (white == null ? WhiteRedmond : white); break; case TargetPlatform.Linux: black = (black == null ? BlackHelsinki : black); white = (white == null ? WhiteHelsinki : white); break; }
-return Typography._(black, white, englishLike, dense, tall);
-}
-
-
-internal Typography(FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
-: base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Texttheme.TextTheme Black { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme White { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme Dense { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme Tall { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackMountainView { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteMountainView { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackRedmond { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteRedmond { get; set; }
-internal virtual List<string> _HelsinkiFontFallbacks { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackHelsinki { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteHelsinki { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme BlackCupertino { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteCupertino { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2014 { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2018 { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2014 { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2018 { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2014 { get; set; }
-public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2018 { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns one of [englishLike], [dense], or [tall].
-/// </Summary>
-public virtual FlutterSDK.Material.Texttheme.TextTheme GeometryThemeFor(FlutterSDK.Material.Typography.ScriptCategory category)
-{
-
-    switch (category) { case ScriptCategory.EnglishLike: return EnglishLike; case ScriptCategory.Dense: return Dense; case ScriptCategory.Tall: return Tall; }
-    return null;
-}
+        internal static Typography _WithPlatform(FlutterSDK.Foundation.Platform.TargetPlatform platform, FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
+        {
+            var instance = new Typography();
 
 
 
 
-/// <Summary>
-/// Creates a copy of this [Typography] with the given fields
-/// replaced by the non-null parameter values.
-/// </Summary>
-public virtual FlutterSDK.Material.Typography.Typography CopyWith(FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
-{
-    return Typography._(black ?? this.Black, white ?? this.White, englishLike ?? this.EnglishLike, dense ?? this.Dense, tall ?? this.Tall);
-}
+            switch (platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: black = (black == null ? BlackCupertino : black); white = (white == null ? WhiteCupertino : white); break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: black = (black == null ? BlackMountainView : black); white = (white == null ? WhiteMountainView : white); break; case TargetPlatform.Windows: black = (black == null ? BlackRedmond : black); white = (white == null ? WhiteRedmond : white); break; case TargetPlatform.Linux: black = (black == null ? BlackHelsinki : black); white = (white == null ? WhiteHelsinki : white); break; }
+            return Typography._(black, white, englishLike, dense, tall);
+        }
+
+
+        internal Typography(FlutterSDK.Material.Texttheme.TextTheme black, FlutterSDK.Material.Texttheme.TextTheme white, FlutterSDK.Material.Texttheme.TextTheme englishLike, FlutterSDK.Material.Texttheme.TextTheme dense, FlutterSDK.Material.Texttheme.TextTheme tall)
+        : base()
+        {
+            this.Black = black;
+            this.White = white;
+            this.EnglishLike = englishLike;
+            this.Dense = dense;
+            this.Tall = tall;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Black { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme White { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Dense { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Tall { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackMountainView { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteMountainView { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackRedmond { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteRedmond { get; set; }
+        internal virtual List<string> _HelsinkiFontFallbacks { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackHelsinki { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteHelsinki { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme BlackCupertino { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme WhiteCupertino { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2014 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike2018 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2014 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Dense2018 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2014 { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2018 { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns one of [englishLike], [dense], or [tall].
+        /// </Summary>
+        public virtual FlutterSDK.Material.Texttheme.TextTheme GeometryThemeFor(FlutterSDK.Material.Typography.ScriptCategory category)
+        {
+
+            switch (category) { case ScriptCategory.EnglishLike: return EnglishLike; case ScriptCategory.Dense: return Dense; case ScriptCategory.Tall: return Tall; }
+            return null;
+        }
 
 
 
 
-/// <Summary>
-/// Linearly interpolate between two [Typography] objects.
-///
-/// {@macro dart.ui.shadow.lerp}
-/// </Summary>
-public virtual FlutterSDK.Material.Typography.Typography Lerp(FlutterSDK.Material.Typography.Typography a, FlutterSDK.Material.Typography.Typography b, double t)
-{
-    return Typography._(TextthemeDefaultClass.TextTheme.Lerp(a.Black, b.Black, t), TextthemeDefaultClass.TextTheme.Lerp(a.White, b.White, t), TextthemeDefaultClass.TextTheme.Lerp(a.EnglishLike, b.EnglishLike, t), TextthemeDefaultClass.TextTheme.Lerp(a.Dense, b.Dense, t), TextthemeDefaultClass.TextTheme.Lerp(a.Tall, b.Tall, t));
-}
+        /// <Summary>
+        /// Creates a copy of this [Typography] with the given fields
+        /// replaced by the non-null parameter values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Typography.Typography CopyWith(FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            return Typography._(black ?? this.Black, white ?? this.White, englishLike ?? this.EnglishLike, dense ?? this.Dense, tall ?? this.Tall);
+        }
 
 
 
 
-public new bool Equals(@Object other)
-{
-    if (Dart:coreDefaultClass.Identical(this, other))return true;
-    if (other.GetType() != GetType()) return false;
-    return other is Typography && other.Black == Black && other.White == White && other.EnglishLike == EnglishLike && other.Dense == Dense && other.Tall == Tall;
-}
+        /// <Summary>
+        /// Linearly interpolate between two [Typography] objects.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Typography.Typography Lerp(FlutterSDK.Material.Typography.Typography a, FlutterSDK.Material.Typography.Typography b, double t)
+        {
+            return Typography._(TextthemeDefaultClass.TextTheme.Lerp(a.Black, b.Black, t), TextthemeDefaultClass.TextTheme.Lerp(a.White, b.White, t), TextthemeDefaultClass.TextTheme.Lerp(a.EnglishLike, b.EnglishLike, t), TextthemeDefaultClass.TextTheme.Lerp(a.Dense, b.Dense, t), TextthemeDefaultClass.TextTheme.Lerp(a.Tall, b.Tall, t));
+        }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    Typography defaultTypography = Typography.Material2014();
-    properties.Add(new DiagnosticsProperty<TextTheme>("black", Black, defaultValue: defaultTypography.Black));
-    properties.Add(new DiagnosticsProperty<TextTheme>("white", White, defaultValue: defaultTypography.White));
-    properties.Add(new DiagnosticsProperty<TextTheme>("englishLike", EnglishLike, defaultValue: defaultTypography.EnglishLike));
-    properties.Add(new DiagnosticsProperty<TextTheme>("dense", Dense, defaultValue: defaultTypography.Dense));
-    properties.Add(new DiagnosticsProperty<TextTheme>("tall", Tall, defaultValue: defaultTypography.Tall));
-}
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is Typography && other.Black == Black && other.White == White && other.EnglishLike == EnglishLike && other.Dense == Dense && other.Tall == Tall;
+        }
 
 
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            Typography defaultTypography = Typography.Material2014();
+            properties.Add(new DiagnosticsProperty<TextTheme>("black", Black, defaultValue: defaultTypography.Black));
+            properties.Add(new DiagnosticsProperty<TextTheme>("white", White, defaultValue: defaultTypography.White));
+            properties.Add(new DiagnosticsProperty<TextTheme>("englishLike", EnglishLike, defaultValue: defaultTypography.EnglishLike));
+            properties.Add(new DiagnosticsProperty<TextTheme>("dense", Dense, defaultValue: defaultTypography.Dense));
+            properties.Add(new DiagnosticsProperty<TextTheme>("tall", Tall, defaultValue: defaultTypography.Tall));
+        }
 
 
-/// <Summary>
-/// A characterization of the of a [TextTheme]'s glyphs that is used to define
-/// its localized [TextStyle] geometry for [ThemeData.textTheme].
-///
-/// The script category defines the overall geometry of a [TextTheme] for
-/// the [Typography.geometryThemeFor] method in terms of the
-/// three language categories defined in <https://material.io/go/design-typography>.
-///
-/// Generally speaking, font sizes for [ScriptCategory.tall] and
-/// [ScriptCategory.dense] scripts - for text styles that are smaller than the
-/// title style - are one unit larger than they are for
-/// [ScriptCategory.englishLike] scripts.
-/// </Summary>
-public enum ScriptCategory
-{
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// The languages of Western, Central, and Eastern Europe and much of
-    /// Africa are typically written in the Latin alphabet. Vietnamese is a
-    /// notable exception in that, while it uses a localized form of the Latin
-    /// writing system, its accented glyphs can be much taller than those
-    /// found in Western European languages. The Greek and Cyrillic writing
-    /// systems are very similar to Latin.
+    /// A characterization of the of a [TextTheme]'s glyphs that is used to define
+    /// its localized [TextStyle] geometry for [ThemeData.textTheme].
+    ///
+    /// The script category defines the overall geometry of a [TextTheme] for
+    /// the [Typography.geometryThemeFor] method in terms of the
+    /// three language categories defined in <https://material.io/go/design-typography>.
+    ///
+    /// Generally speaking, font sizes for [ScriptCategory.tall] and
+    /// [ScriptCategory.dense] scripts - for text styles that are smaller than the
+    /// title style - are one unit larger than they are for
+    /// [ScriptCategory.englishLike] scripts.
     /// </Summary>
-    EnglishLike,
-    /// <Summary>
-    /// Language scripts that require extra line height to accommodate larger
-    /// glyphs, including Chinese, Japanese, and Korean.
-    /// </Summary>
-    Dense,
-    /// <Summary>
-    /// Language scripts that require extra line height to accommodate
-    /// larger glyphs, including South and Southeast Asian and
-    /// Middle-Eastern languages, like Arabic, Hindi, Telugu, Thai, and
-    /// Vietnamese.
-    /// </Summary>
-    Tall,
-}
+    public enum ScriptCategory
+    {
+
+        /// <Summary>
+        /// The languages of Western, Central, and Eastern Europe and much of
+        /// Africa are typically written in the Latin alphabet. Vietnamese is a
+        /// notable exception in that, while it uses a localized form of the Latin
+        /// writing system, its accented glyphs can be much taller than those
+        /// found in Western European languages. The Greek and Cyrillic writing
+        /// systems are very similar to Latin.
+        /// </Summary>
+        EnglishLike,
+        /// <Summary>
+        /// Language scripts that require extra line height to accommodate larger
+        /// glyphs, including Chinese, Japanese, and Korean.
+        /// </Summary>
+        Dense,
+        /// <Summary>
+        /// Language scripts that require extra line height to accommodate
+        /// larger glyphs, including South and Southeast Asian and
+        /// Middle-Eastern languages, like Arabic, Hindi, Telugu, Thai, and
+        /// Vietnamese.
+        /// </Summary>
+        Tall,
+    }
 
 }

@@ -378,89 +378,93 @@ namespace FlutterSDK.Foundation.Key
         #region constructors
         public Key(string value)
         : base()
-    
-}
-    public static Key Empty()
+        {
 
-}
-#endregion
+        }
+        public static Key Empty()
+        {
+            var instance = new Key();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// A key that is not a [GlobalKey].
-///
-/// Keys must be unique amongst the [Element]s with the same parent. By
-/// contrast, [GlobalKey]s must be unique across the entire app.
-///
-/// See also:
-///
-///  * [Widget.key], which discusses how widgets use keys.
-/// </Summary>
-public class LocalKey : FlutterSDK.Foundation.Key.Key
-{
-    #region constructors
-    public LocalKey()
-    : base()
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-/// <Summary>
-/// A key that uses a value of a particular type to identify itself.
-///
-/// A [ValueKey<T>] is equal to another [ValueKey<T>] if, and only if, their
-/// values are [operator==].
-///
-/// This class can be subclassed to create value keys that will not be equal to
-/// other value keys that happen to use the same value. If the subclass is
-/// private, this results in a value key type that cannot collide with keys from
-/// other sources, which could be useful, for example, if the keys are being
-/// used as fallbacks in the same scope as keys supplied from another widget.
-///
-/// See also:
-///
-///  * [Widget.key], which discusses how widgets use keys.
-/// </Summary>
-public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
-{
-    #region constructors
-    public ValueKey(T value)
+    /// <Summary>
+    /// A key that is not a [GlobalKey].
+    ///
+    /// Keys must be unique amongst the [Element]s with the same parent. By
+    /// contrast, [GlobalKey]s must be unique across the entire app.
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
+    public class LocalKey : FlutterSDK.Foundation.Key.Key
+    {
+        #region constructors
+        public LocalKey()
+        : base()
+        {
 
-}
-#endregion
+        }
+        #endregion
 
-#region fields
-public virtual T Value { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+        #region fields
+        #endregion
 
-#region methods
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is ValueKey<T> && other.Value == Value;
-}
+        #region methods
+        #endregion
+    }
 
 
+    /// <Summary>
+    /// A key that uses a value of a particular type to identify itself.
+    ///
+    /// A [ValueKey<T>] is equal to another [ValueKey<T>] if, and only if, their
+    /// values are [operator==].
+    ///
+    /// This class can be subclassed to create value keys that will not be equal to
+    /// other value keys that happen to use the same value. If the subclass is
+    /// private, this results in a value key type that cannot collide with keys from
+    /// other sources, which could be useful, for example, if the keys are being
+    /// used as fallbacks in the same scope as keys supplied from another widget.
+    ///
+    /// See also:
+    ///
+    ///  * [Widget.key], which discusses how widgets use keys.
+    /// </Summary>
+    public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
+    {
+        #region constructors
+        public ValueKey(T value)
+        {
+            this.Value = value;
+        }
+        #endregion
+
+        #region fields
+        public virtual T Value { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is ValueKey<T> && other.Value == Value;
+        }
 
 
-#endregion
-}
+
+
+        #endregion
+    }
 
 }

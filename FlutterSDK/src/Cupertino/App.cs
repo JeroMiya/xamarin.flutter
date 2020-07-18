@@ -345,160 +345,185 @@ namespace FlutterSDK.Cupertino.App
         #region constructors
         public CupertinoApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Cupertino.Theme.CupertinoThemeData theme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), Dictionary<string, object> routes = default(Dictionary<string, object>), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowCheckedModeBanner = true, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
-    public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Theme { get; set; }
-    public virtual Dictionary<string, object> Routes { get; set; }
-    public virtual string InitialRoute { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
-    public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
-    public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
-    public virtual string Title { get; set; }
-    public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual Locale Locale { get; set; }
-    public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
-    public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
-    public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
-    public virtual Iterable<Locale> SupportedLocales { get; set; }
-    public virtual bool ShowPerformanceOverlay { get; set; }
-    public virtual bool CheckerboardRasterCacheImages { get; set; }
-    public virtual bool CheckerboardOffscreenLayers { get; set; }
-    public virtual bool ShowSemanticsDebugger { get; set; }
-    public virtual bool DebugShowCheckedModeBanner { get; set; }
-    public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
-    public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Cupertino.App._CupertinoAppState CreateState() => new _CupertinoAppState();
-
-
-
-    /// <Summary>
-    /// The [HeroController] used for Cupertino page transitions.
-    ///
-    /// Used by [CupertinoTabView] and [CupertinoApp].
-    /// </Summary>
-    public virtual FlutterSDK.Widgets.Heroes.HeroController CreateCupertinoHeroController() => new HeroController();
-
-
-    #endregion
-}
-
-
-public class _AlwaysCupertinoScrollBehavior : FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior
-{
-    #region constructors
-    public _AlwaysCupertinoScrollBehavior()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
-    {
-        return child;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new BouncingScrollPhysics();
-    }
-
-
-
-    #endregion
-}
-
-
-public class _CupertinoAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.App.CupertinoApp>
-{
-    #region constructors
-    public _CupertinoAppState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
-    internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
-    internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _HeroController = AppDefaultClass.CupertinoApp.CreateCupertinoHeroController();
-        _UpdateNavigator();
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Cupertino.App.CupertinoApp oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.NavigatorKey != oldWidget.NavigatorKey)
         {
+            this.NavigatorKey = navigatorKey;
+            this.Home = home;
+            this.Theme = theme;
+            this.Routes = routes;
+            this.InitialRoute = initialRoute;
+            this.OnGenerateRoute = onGenerateRoute;
+            this.OnGenerateInitialRoutes = onGenerateInitialRoutes;
+            this.OnUnknownRoute = onUnknownRoute;
+            this.NavigatorObservers = navigatorObservers;
+            this.Builder = builder;
+            this.Title = title;
+            this.OnGenerateTitle = onGenerateTitle;
+            this.Color = color;
+            this.Locale = locale;
+            this.LocalizationsDelegates = localizationsDelegates;
+            this.LocaleListResolutionCallback = localeListResolutionCallback;
+            this.LocaleResolutionCallback = localeResolutionCallback;
+            this.SupportedLocales = supportedLocales;
+            this.ShowPerformanceOverlay = showPerformanceOverlay;
+            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+            this.ShowSemanticsDebugger = showSemanticsDebugger;
+            this.DebugShowCheckedModeBanner = debugShowCheckedModeBanner;
+            this.Shortcuts = shortcuts;
+            this.Actions = actions;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
+        public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Theme { get; set; }
+        public virtual Dictionary<string, object> Routes { get; set; }
+        public virtual string InitialRoute { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+        public virtual string Title { get; set; }
+        public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
+        public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
+        public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
+        public virtual Iterable<Locale> SupportedLocales { get; set; }
+        public virtual bool ShowPerformanceOverlay { get; set; }
+        public virtual bool CheckerboardRasterCacheImages { get; set; }
+        public virtual bool CheckerboardOffscreenLayers { get; set; }
+        public virtual bool ShowSemanticsDebugger { get; set; }
+        public virtual bool DebugShowCheckedModeBanner { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.App._CupertinoAppState CreateState() => new _CupertinoAppState();
+
+
+
+        /// <Summary>
+        /// The [HeroController] used for Cupertino page transitions.
+        ///
+        /// Used by [CupertinoTabView] and [CupertinoApp].
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Heroes.HeroController CreateCupertinoHeroController() => new HeroController();
+
+
+        #endregion
+    }
+
+
+    public class _AlwaysCupertinoScrollBehavior : FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior
+    {
+        #region constructors
+        public _AlwaysCupertinoScrollBehavior()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+        {
+            return child;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new BouncingScrollPhysics();
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _CupertinoAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.App.CupertinoApp>
+    {
+        #region constructors
+        public _CupertinoAppState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
+        internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
             _HeroController = AppDefaultClass.CupertinoApp.CreateCupertinoHeroController();
+            _UpdateNavigator();
         }
 
-        _UpdateNavigator();
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.App.CupertinoApp oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.NavigatorKey != oldWidget.NavigatorKey)
+            {
+                _HeroController = AppDefaultClass.CupertinoApp.CreateCupertinoHeroController();
+            }
+
+            _UpdateNavigator();
+        }
+
+
+
+
+        private void _UpdateNavigator()
+        {
+            if (Widget.Home != null || Widget.Routes.IsNotEmpty || Widget.OnGenerateRoute != null || Widget.OnUnknownRoute != null)
+            {
+                _NavigatorObservers = List<NavigatorObserver>.From(Widget.NavigatorObservers);
+                List<NavigatorObserver>.From(Widget.NavigatorObservers).Add(_HeroController);
+            }
+            else
+            {
+                _NavigatorObservers = new List, < NavigatorObserver > (};
+        }
+
     }
 
 
 
 
-    private void _UpdateNavigator()
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        if (Widget.Home != null || Widget.Routes.IsNotEmpty || Widget.OnGenerateRoute != null || Widget.OnUnknownRoute != null)
+        CupertinoThemeData effectiveThemeData = Widget.Theme ?? new CupertinoThemeData();
+        return new ScrollConfiguration(behavior: new _AlwaysCupertinoScrollBehavior(), child: new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Base, child: new CupertinoTheme(data: effectiveThemeData, child: new Builder(builder: (BuildContext context) =>
         {
-            _NavigatorObservers = List<NavigatorObserver>.From(Widget.NavigatorObservers);
-            List<NavigatorObserver>.From(Widget.NavigatorObservers).Add(_HeroController);
+            return new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) => =>new CupertinoPageRoute<T>(settings: settings, builder: builder), home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: Widget.Builder, title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.Color ?? effectiveThemeData.PrimaryColor, context), locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
+            {
+                return CupertinoButton.Filled(child: new Icon(IconsDefaultClass.CupertinoIcons.Search, size: 28.0, color: ColorsDefaultClass.CupertinoColors.White), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: onPressed);
+            }
+            , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
         }
-        else
-        {
-            _NavigatorObservers = new List, < NavigatorObserver > (};
+        ))));
     }
 
-}
 
 
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    CupertinoThemeData effectiveThemeData = Widget.Theme ?? new CupertinoThemeData();
-    return new ScrollConfiguration(behavior: new _AlwaysCupertinoScrollBehavior(), child: new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Base, child: new CupertinoTheme(data: effectiveThemeData, child: new Builder(builder: (BuildContext context) =>
-    {
-        return new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) => =>new CupertinoPageRoute<T>(settings: settings, builder: builder), home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: Widget.Builder, title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.Color ?? effectiveThemeData.PrimaryColor, context), locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
-        {
-            return CupertinoButton.Filled(child: new Icon(IconsDefaultClass.CupertinoIcons.Search, size: 28.0, color: ColorsDefaultClass.CupertinoColors.White), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: onPressed);
-        }
-        , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
-    }
-    ))));
-}
-
-
-
-#endregion
+    #endregion
 }
 
 }

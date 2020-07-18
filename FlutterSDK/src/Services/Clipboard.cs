@@ -437,43 +437,47 @@ namespace FlutterSDK.Services.Clipboard
     {
         #region constructors
         public ClipboardData(string text = default(string))
-    
-}
-    #endregion
+        {
+            this.Text = text;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Text { get; set; }
-    #endregion
+        #region fields
+        public virtual string Text { get; set; }
+        #endregion
 
-    #region methods
-    #endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-/// <Summary>
-/// Utility methods for interacting with the system's clipboard.
-/// </Summary>
-public class Clipboard
+    /// <Summary>
+    /// Utility methods for interacting with the system's clipboard.
+    /// </Summary>
+    public class Clipboard
+    {
+        #region constructors
+        internal Clipboard()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual string KTextPlain { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Stores the given clipboard data on the clipboard.
+        /// </Summary>
+        public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data)
+    async
 {
-    #region constructors
-    internal Clipboard()
-
-}
-#endregion
-
-#region fields
-public virtual string KTextPlain { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Stores the given clipboard data on the clipboard.
-/// </Summary>
-public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data)
-async
-{
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.setData", new Dictionary<string, object> { { "text", data.Text } });
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.setData", new Dictionary<string, object>{{"text", data.Text
+    }
+});
 }
 
 

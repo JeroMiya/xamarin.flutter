@@ -546,743 +546,756 @@ namespace FlutterSDK.Rendering.Layer
         #region constructors
         public AnnotationEntry(T annotation = default(T), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual T Annotation { get; set; }
-    public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-    #endregion
-
-    #region methods
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A composited layer.
-///
-/// During painting, the render tree generates a tree of composited layers that
-/// are uploaded into the engine and displayed by the compositor. This class is
-/// the base class for all composited layers.
-///
-/// Most layers can have their properties mutated, and layers can be moved to
-/// different parents. The scene must be explicitly recomposited after such
-/// changes are made; the layer tree does not maintain its own dirty state.
-///
-/// To composite the tree, create a [SceneBuilder] object, pass it to the
-/// root [Layer] object's [addToScene] method, and then call
-/// [SceneBuilder.build] to obtain a [Scene]. A [Scene] can then be painted
-/// using [Window.render].
-///
-/// See also:
-///
-///  * [RenderView.compositeFrame], which implements this recomposition protocol
-///    for painting [RenderObject] trees on the display.
-/// </Summary>
-public class Layer : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
-{
-    #region constructors
-    public Layer()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual bool _NeedsAddToScene { get; set; }
-    internal virtual NativeEngineLayer _EngineLayer { get; set; }
-    internal virtual FlutterSDK.Rendering.Layer.Layer _NextSibling { get; set; }
-    internal virtual FlutterSDK.Rendering.Layer.Layer _PreviousSibling { get; set; }
-    public virtual object DebugCreator { get; set; }
-    public virtual FlutterSDK.Rendering.Layer.ContainerLayer Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool DebugSubtreeNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual NativeEngineLayer EngineLayer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Layer.Layer NextSibling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Layer.Layer PreviousSibling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Mark that this layer has changed and [addToScene] needs to be called.
-    /// </Summary>
-    public virtual void MarkNeedsAddToScene()
-    {
-
-        if (_NeedsAddToScene)
         {
-            return;
+            this.Annotation = annotation;
+            this.LocalPosition = localPosition;
         }
+        #endregion
 
-        _NeedsAddToScene = true;
+        #region fields
+        public virtual T Annotation { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
     }
-
-
 
 
     /// <Summary>
-    /// Mark that this layer is in sync with engine.
+    /// A composited layer.
     ///
-    /// This is for debugging and testing purposes only. In release builds
-    /// this method has no effect.
-    /// </Summary>
-    public virtual void DebugMarkClean()
-    {
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Traverses the layer subtree starting from this layer and determines whether it needs [addToScene].
+    /// During painting, the render tree generates a tree of composited layers that
+    /// are uploaded into the engine and displayed by the compositor. This class is
+    /// the base class for all composited layers.
     ///
-    /// A layer needs [addToScene] if any of the following is true:
+    /// Most layers can have their properties mutated, and layers can be moved to
+    /// different parents. The scene must be explicitly recomposited after such
+    /// changes are made; the layer tree does not maintain its own dirty state.
     ///
-    /// - [alwaysNeedsAddToScene] is true.
-    /// - [markNeedsAddToScene] has been called.
-    /// - Any of its descendants need [addToScene].
-    ///
-    /// [ContainerLayer] overrides this method to recursively call it on its children.
-    /// </Summary>
-    public virtual void UpdateSubtreeNeedsAddToScene()
-    {
-        _NeedsAddToScene = _NeedsAddToScene || AlwaysNeedsAddToScene;
-    }
-
-
-
-
-    public new void DropChild(FlutterSDK.Foundation.Node.AbstractNode child)
-    {
-        if (!AlwaysNeedsAddToScene)
-        {
-            MarkNeedsAddToScene();
-        }
-
-        base.DropChild(child);
-    }
-
-
-
-
-    public new void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child)
-    {
-        if (!AlwaysNeedsAddToScene)
-        {
-            MarkNeedsAddToScene();
-        }
-
-        base.AdoptChild(child);
-    }
-
-
-
-
-    /// <Summary>
-    /// Removes this layer from its parent layer's child list.
-    ///
-    /// This has no effect if the layer's parent is already null.
-    /// </Summary>
-    public virtual void Remove()
-    {
-        Parent?._RemoveChild(this);
-    }
-
-
-
-
-    /// <Summary>
-    /// Search this layer and its subtree for annotations of type `S` at the
-    /// location described by `localPosition`.
-    ///
-    /// This method is called by the default implementation of [find] and
-    /// [findAllAnnotations]. Override this method to customize how the layer
-    /// should search for annotations, or if the layer has its own annotations to
-    /// add.
-    ///
-    /// The default implementation simply returns `false`, which means neither
-    /// the layer nor its children has annotations, and the annotation search
-    /// is not absorbed either (see below for explanation).
-    ///
-    /// ## About layer annotations
-    ///
-    /// {@template flutter.rendering.layer.findAnnotations.aboutAnnotations}
-    /// An annotation is an optional object of any type that can be carried with a
-    /// layer. An annotation can be found at a location as long as the owner layer
-    /// contains the location and is walked to.
-    ///
-    /// The annotations are searched by first visiting each child recursively,
-    /// then this layer, resulting in an order from visually front to back.
-    /// Annotations must meet the given restrictions, such as type and position.
-    ///
-    /// The common way for a value to be found here is by pushing an
-    /// [AnnotatedRegionLayer] into the layer tree, or by adding the desired
-    /// annotation by overriding [findAnnotations].
-    /// {@endtemplate}
-    ///
-    /// ## Parameters and return value
-    ///
-    /// The [result] parameter is where the method outputs the resulting
-    /// annotations. New annotations found during the walk are added to the tail.
-    ///
-    /// The [onlyFirst] parameter indicates that, if true, the search will stop
-    /// when it finds the first qualified annotation; otherwise, it will walk the
-    /// entire subtree.
-    ///
-    /// The return value indicates the opacity of this layer and its subtree at
-    /// this position. If it returns true, then this layer's parent should skip
-    /// the children behind this layer. In other words, it is opaque to this type
-    /// of annotation and has absorbed the search so that its siblings behind it
-    /// are not aware of the search. If the return value is false, then the parent
-    /// might continue with other siblings.
-    ///
-    /// The return value does not affect whether the parent adds its own
-    /// annotations; in other words, if a layer is supposed to add an annotation,
-    /// it will always add it even if its children are opaque to this type of
-    /// annotation. However, the opacity that the parents return might be affected
-    /// by their children, hence making all of its ancestors opaque to this type
-    /// of annotation.
-    /// </Summary>
-    public virtual bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-    {
-        return false;
-    }
-
-
-
-
-    /// <Summary>
-    /// Search this layer and its subtree for the first annotation of type `S`
-    /// under the point described by `localPosition`.
-    ///
-    /// Returns null if no matching annotations are found.
-    ///
-    /// By default this method simply calls [findAnnotations] with `onlyFirst:
-    /// true` and returns the annotation of the first result. Prefer overriding
-    /// [findAnnotations] instead of this method, because during an annotation
-    /// search, only [findAnnotations] is recursively called, while custom
-    /// behavior in this method is ignored.
-    ///
-    /// ## About layer annotations
-    ///
-    /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+    /// To composite the tree, create a [SceneBuilder] object, pass it to the
+    /// root [Layer] object's [addToScene] method, and then call
+    /// [SceneBuilder.build] to obtain a [Scene]. A [Scene] can then be painted
+    /// using [Window.render].
     ///
     /// See also:
     ///
-    ///  * [findAllAnnotations], which is similar but returns all annotations found
-    ///    at the given position.
-    ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+    ///  * [RenderView.compositeFrame], which implements this recomposition protocol
+    ///    for painting [RenderObject] trees on the display.
     /// </Summary>
-    public virtual S Find<S>(FlutterBinding.UI.Offset localPosition)
+    public class Layer : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
     {
-        AnnotationResult<S> result = new AnnotationResult<S>();
-        FindAnnotations(result, localPosition, onlyFirst: true);
-        return result.Entries.IsEmpty() ? null : result.Entries.First.Annotation;
-    }
-
-
-
-
-    /// <Summary>
-    /// Search this layer and its subtree for all annotations of type `S` under
-    /// the point described by `localPosition`.
-    ///
-    /// Returns a result with empty entries if no matching annotations are found.
-    ///
-    /// By default this method simply calls [findAnnotations] with `onlyFirst:
-    /// false` and returns the annotations of its result. Prefer overriding
-    /// [findAnnotations] instead of this method, because during an annotation
-    /// search, only [findAnnotations] is recursively called, while custom
-    /// behavior in this method is ignored.
-    ///
-    /// ## About layer annotations
-    ///
-    /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
-    ///
-    /// See also:
-    ///
-    ///  * [find], which is similar but returns the first annotation found at the
-    ///    given position.
-    ///  * [findAllAnnotations], which is similar but returns an
-    ///    [AnnotationResult], which contains more information, such as the local
-    ///    position of the event related to each annotation, and is equally fast,
-    ///    hence is preferred over [findAll].
-    ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
-    /// </Summary>
-    public virtual Iterable<S> FindAll<S>(FlutterBinding.UI.Offset localPosition)
-    {
-        AnnotationResult<S> result = FindAllAnnotations(localPosition);
-        return result.Entries.Map((AnnotationEntry<S> entry) => =>entry.Annotation);
-    }
-
-
-
-
-    /// <Summary>
-    /// Search this layer and its subtree for all annotations of type `S` under
-    /// the point described by `localPosition`.
-    ///
-    /// Returns a result with empty entries if no matching annotations are found.
-    ///
-    /// By default this method simply calls [findAnnotations] with `onlyFirst:
-    /// false` and returns the annotations of its result. Prefer overriding
-    /// [findAnnotations] instead of this method, because during an annotation
-    /// search, only [findAnnotations] is recursively called, while custom
-    /// behavior in this method is ignored.
-    ///
-    /// ## About layer annotations
-    ///
-    /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
-    ///
-    /// See also:
-    ///
-    ///  * [find], which is similar but returns the first annotation found at the
-    ///    given position.
-    ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
-    /// </Summary>
-    public virtual AnnotationResult<S> FindAllAnnotations<S>(FlutterBinding.UI.Offset localPosition)
-    {
-        AnnotationResult<S> result = new AnnotationResult<S>();
-        FindAnnotations(result, localPosition, onlyFirst: false);
-        return result;
-    }
-
-
-
-
-    /// <Summary>
-    /// Override this method to upload this layer to the engine.
-    ///
-    /// Return the engine layer for retained rendering. When there's no
-    /// corresponding engine layer, null is returned.
-    /// </Summary>
-    public virtual void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-    {
-    }
-
-
-    private void _AddToSceneWithRetainedRendering(SceneBuilder builder)
-    {
-        if (!_NeedsAddToScene && _EngineLayer != null)
-        {
-            builder.AddRetained(_EngineLayer);
-            return;
-        }
-
-        AddToScene(builder);
-        _NeedsAddToScene = false;
-    }
-
-
-
-
-    public new string ToStringShort() => $"'{base.ToStringShort()}{Owner == null ? " DETACHED":""}'";
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<object>("owner", Owner, level: Parent != null ? DiagnosticLevel.Hidden : DiagnosticLevel.Info, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<object>("creator", DebugCreator, defaultValue: null, level: DiagnosticLevel.Debug));
-        properties.Add(new DiagnosticsProperty<string>("engine layer", DiagnosticsDefaultClass.DescribeIdentity(_EngineLayer)));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A composited layer containing a [Picture].
-///
-/// Picture layers are always leaves in the layer tree.
-/// </Summary>
-public class PictureLayer : FlutterSDK.Rendering.Layer.Layer
-{
-    #region constructors
-    public PictureLayer(FlutterBinding.UI.Rect canvasBounds)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Rect CanvasBounds { get; set; }
-internal virtual SKPicture _Picture { get; set; }
-internal virtual bool _IsComplexHint { get; set; }
-internal virtual bool _WillChangeHint { get; set; }
-public virtual SKPicture Picture { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsComplexHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool WillChangeHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-    builder.AddPicture(layerOffset, Picture, isComplexHint: IsComplexHint, willChangeHint: WillChangeHint);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Rect>("paint bounds", CanvasBounds));
-    properties.Add(new DiagnosticsProperty<string>("picture", DiagnosticsDefaultClass.DescribeIdentity(_Picture)));
-    properties.Add(new DiagnosticsProperty<string>("raster cache hints", $"'isComplex = {IsComplexHint}, willChange = {WillChangeHint}'"));
-}
-
-
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return false;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A composited layer that maps a backend texture to a rectangle.
-///
-/// Backend textures are images that can be applied (mapped) to an area of the
-/// Flutter view. They are created, managed, and updated using a
-/// platform-specific texture registry. This is typically done by a plugin
-/// that integrates with host platform video player, camera, or OpenGL APIs,
-/// or similar image sources.
-///
-/// A texture layer refers to its backend texture using an integer ID. Texture
-/// IDs are obtained from the texture registry and are scoped to the Flutter
-/// view. Texture IDs may be reused after deregistration, at the discretion
-/// of the registry. The use of texture IDs currently unknown to the registry
-/// will silently result in a blank rectangle.
-///
-/// Once inserted into the layer tree, texture layers are repainted autonomously
-/// as dictated by the backend (e.g. on arrival of a video frame). Such
-/// repainting generally does not involve executing Dart code.
-///
-/// Texture layers are always leaves in the layer tree.
-///
-/// See also:
-///
-///  * <https://api.flutter.dev/javadoc/io/flutter/view/TextureRegistry.html>
-///    for how to create and manage backend textures on Android.
-///  * <https://api.flutter.dev/objcdoc/Protocols/FlutterTextureRegistry.html>
-///    for how to create and manage backend textures on iOS.
-/// </Summary>
-public class TextureLayer : FlutterSDK.Rendering.Layer.Layer
-{
-    #region constructors
-    public TextureLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int textureId = default(int), bool freeze = false)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Rect Rect { get; set; }
-public virtual int TextureId { get; set; }
-public virtual bool Freeze { get; set; }
-#endregion
-
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-    Rect shiftedRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? Rect:Rect.Shift(layerOffset);
-    builder.AddTexture(TextureId, offset: shiftedRect.TopLeft, width: shiftedRect.Width, height: shiftedRect.Height, freeze: Freeze);
-}
-
-
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return false;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A layer that shows an embedded [UIView](https://developer.apple.com/documentation/uikit/uiview)
-/// on iOS.
-/// </Summary>
-public class PlatformViewLayer : FlutterSDK.Rendering.Layer.Layer
-{
-    #region constructors
-    public PlatformViewLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int viewId = default(int), FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation hoverAnnotation = default(FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Rect Rect { get; set; }
-public virtual int ViewId { get; set; }
-public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation { get; set; }
-#endregion
-
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-    Rect shiftedRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? Rect:Rect.Shift(layerOffset);
-    builder.AddPlatformView(ViewId, offset: shiftedRect.TopLeft, width: shiftedRect.Width, height: shiftedRect.Height);
-}
-
-
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    if (HoverAnnotation == null || !Rect.Contains(localPosition))
-    {
-        return false;
-    }
-
-    if (S == MousetrackingDefaultClass.MouseTrackerAnnotation)
-    {
-        object untypedValue = HoverAnnotation;
-        S typedValue = untypedValue as S;
-        result.Add(new AnnotationEntry<S>(annotation: typedValue, localPosition: localPosition));
-        return true;
-    }
-
-    return false;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A layer that indicates to the compositor that it should display
-/// certain performance statistics within it.
-///
-/// Performance overlay layers are always leaves in the layer tree.
-/// </Summary>
-public class PerformanceOverlayLayer : FlutterSDK.Rendering.Layer.Layer
-{
-    #region constructors
-    public PerformanceOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), int optionsMask = default(int), int rasterizerThreshold = default(int), bool checkerboardRasterCacheImages = default(bool), bool checkerboardOffscreenLayers = default(bool))
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.Rect _OverlayRect { get; set; }
-public virtual int OptionsMask { get; set; }
-public virtual int RasterizerThreshold { get; set; }
-public virtual bool CheckerboardRasterCacheImages { get; set; }
-public virtual bool CheckerboardOffscreenLayers { get; set; }
-public virtual FlutterBinding.UI.Rect OverlayRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-    Rect shiftedOverlayRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? OverlayRect:OverlayRect.Shift(layerOffset);
-    builder.AddPerformanceOverlay(OptionsMask, shiftedOverlayRect);
-    builder.SetRasterizerTracingThreshold(RasterizerThreshold);
-    builder.SetCheckerboardRasterCacheImages(CheckerboardRasterCacheImages);
-    builder.SetCheckerboardOffscreenLayers(CheckerboardOffscreenLayers);
-}
-
-
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return false;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A composited layer that has a list of children.
-///
-/// A [ContainerLayer] instance merely takes a list of children and inserts them
-/// into the composited rendering in order. There are subclasses of
-/// [ContainerLayer] which apply more elaborate effects in the process.
-/// </Summary>
-public class ContainerLayer : FlutterSDK.Rendering.Layer.Layer
-{
-    #region constructors
-    public ContainerLayer()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Rendering.Layer.Layer _FirstChild { get; set; }
-    internal virtual FlutterSDK.Rendering.Layer.Layer _LastChild { get; set; }
-    public virtual FlutterSDK.Rendering.Layer.Layer FirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Layer.Layer LastChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool HasChildren { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Consider this layer as the root and build a scene (a tree of layers)
-    /// in the engine.
-    /// </Summary>
-    public virtual Scene BuildScene(SceneBuilder builder)
-    {
-        List<PictureLayer> temporaryLayers = default(List<PictureLayer>);
-
-        UpdateSubtreeNeedsAddToScene();
-        AddToScene(builder);
-        _NeedsAddToScene = false;
-        Ui.Dart:uiDefaultClass.Scene scene = builder.Build();
-
-        return scene;
-    }
-
-
-
-
-    private bool _DebugUltimatePreviousSiblingOf(FlutterSDK.Rendering.Layer.Layer child, FlutterSDK.Rendering.Layer.Layer equals = default(FlutterSDK.Rendering.Layer.Layer))
-    {
-
-        while (child.PreviousSibling != null)
+        #region constructors
+        public Layer()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual bool _NeedsAddToScene { get; set; }
+        internal virtual NativeEngineLayer _EngineLayer { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.Layer _NextSibling { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.Layer _PreviousSibling { get; set; }
+        public virtual object DebugCreator { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.ContainerLayer Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool DebugSubtreeNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual NativeEngineLayer EngineLayer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Layer.Layer NextSibling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Layer.Layer PreviousSibling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Mark that this layer has changed and [addToScene] needs to be called.
+        /// </Summary>
+        public virtual void MarkNeedsAddToScene()
         {
 
-            child = child.PreviousSibling;
-
-        }
-
-        return child == equals;
-    }
-
-
-
-
-    private bool _DebugUltimateNextSiblingOf(FlutterSDK.Rendering.Layer.Layer child, FlutterSDK.Rendering.Layer.Layer equals = default(FlutterSDK.Rendering.Layer.Layer))
-    {
-
-        while (child._NextSibling != null)
-        {
-
-            child = child._NextSibling;
-
-        }
-
-        return child == equals;
-    }
-
-
-
-
-    private FlutterSDK.Rendering.Layer.PictureLayer _HighlightConflictingLayer(FlutterSDK.Rendering.Layer.PhysicalModelLayer child)
-    {
-        Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
-        Canvas canvas = new Canvas(recorder);
-        canvas.DrawPath(child.ClipPath, new Paint()..Color = new Color(0xFFAA0000)..Style = PaintingStyle.Stroke..StrokeWidth = child.Elevation + 10.0);
-        PictureLayer pictureLayer = new PictureLayer(child.ClipPath.GetBounds())..Picture = recorder.EndRecording()..DebugCreator = child;
-        child.Append(pictureLayer);
-        return pictureLayer;
-    }
-
-
-
-
-    private List<FlutterSDK.Rendering.Layer.PictureLayer> _ProcessConflictingPhysicalLayers(FlutterSDK.Rendering.Layer.PhysicalModelLayer predecessor, FlutterSDK.Rendering.Layer.PhysicalModelLayer child)
-    {
-        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: new FlutterError("Painting order is out of order with respect to elevation.\n" + "See https://api.flutter.dev/flutter/rendering/debugCheckElevationsEnabled.html " + "for more details."), library: "rendering library", context: new ErrorDescription("during compositing"), informationCollector: () =>
-        {
-            return new List<DiagnosticsNode>() { child.ToDiagnosticsNode(name: "Attempted to composite layer", style: DiagnosticsTreeStyle.ErrorProperty), predecessor.ToDiagnosticsNode(name: "after layer", style: DiagnosticsTreeStyle.ErrorProperty), new ErrorDescription("which occupies the same area at a higher elevation.") };
-        }
-        ));
-        return new List<PictureLayer>() { _HighlightConflictingLayer(predecessor), _HighlightConflictingLayer(child) };
-    }
-
-
-
-
-    /// <Summary>
-    /// Checks that no [PhysicalModelLayer] would paint after another overlapping
-    /// [PhysicalModelLayer] that has a higher elevation.
-    ///
-    /// Returns a list of [PictureLayer] objects it added to the tree to highlight
-    /// bad nodes. These layers should be removed from the tree after building the
-    /// [Scene].
-    /// </Summary>
-    private List<FlutterSDK.Rendering.Layer.PictureLayer> _DebugCheckElevations()
-    {
-        List<PhysicalModelLayer> physicalModelLayers = DepthFirstIterateChildren().WhereType().ToList();
-        List<PictureLayer> addedLayers = new List<PictureLayer>() { };
-        for (int i = 0; i < physicalModelLayers.Count; i++)
-        {
-            PhysicalModelLayer physicalModelLayer = physicalModelLayers[i];
-
-            double accumulatedElevation = physicalModelLayer.Elevation;
-            Layer ancestor = physicalModelLayer.Parent;
-            while (ancestor != null)
+            if (_NeedsAddToScene)
             {
-                if (ancestor is PhysicalModelLayer)
-                {
-                    accumulatedElevation += ((PhysicalModelLayer)ancestor).Elevation;
-                }
-
-                ancestor = ancestor.Parent;
+                return;
             }
 
-            for (int j = 0; j <= i; j++)
+            _NeedsAddToScene = true;
+        }
+
+
+
+
+        /// <Summary>
+        /// Mark that this layer is in sync with engine.
+        ///
+        /// This is for debugging and testing purposes only. In release builds
+        /// this method has no effect.
+        /// </Summary>
+        public virtual void DebugMarkClean()
+        {
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Traverses the layer subtree starting from this layer and determines whether it needs [addToScene].
+        ///
+        /// A layer needs [addToScene] if any of the following is true:
+        ///
+        /// - [alwaysNeedsAddToScene] is true.
+        /// - [markNeedsAddToScene] has been called.
+        /// - Any of its descendants need [addToScene].
+        ///
+        /// [ContainerLayer] overrides this method to recursively call it on its children.
+        /// </Summary>
+        public virtual void UpdateSubtreeNeedsAddToScene()
+        {
+            _NeedsAddToScene = _NeedsAddToScene || AlwaysNeedsAddToScene;
+        }
+
+
+
+
+        public new void DropChild(FlutterSDK.Foundation.Node.AbstractNode child)
+        {
+            if (!AlwaysNeedsAddToScene)
             {
-                PhysicalModelLayer predecessor = physicalModelLayers[j];
-                double predecessorAccumulatedElevation = predecessor.Elevation;
-                ancestor = predecessor.Parent;
+                MarkNeedsAddToScene();
+            }
+
+            base.DropChild(child);
+        }
+
+
+
+
+        public new void AdoptChild(FlutterSDK.Foundation.Node.AbstractNode child)
+        {
+            if (!AlwaysNeedsAddToScene)
+            {
+                MarkNeedsAddToScene();
+            }
+
+            base.AdoptChild(child);
+        }
+
+
+
+
+        /// <Summary>
+        /// Removes this layer from its parent layer's child list.
+        ///
+        /// This has no effect if the layer's parent is already null.
+        /// </Summary>
+        public virtual void Remove()
+        {
+            Parent?._RemoveChild(this);
+        }
+
+
+
+
+        /// <Summary>
+        /// Search this layer and its subtree for annotations of type `S` at the
+        /// location described by `localPosition`.
+        ///
+        /// This method is called by the default implementation of [find] and
+        /// [findAllAnnotations]. Override this method to customize how the layer
+        /// should search for annotations, or if the layer has its own annotations to
+        /// add.
+        ///
+        /// The default implementation simply returns `false`, which means neither
+        /// the layer nor its children has annotations, and the annotation search
+        /// is not absorbed either (see below for explanation).
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@template flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        /// An annotation is an optional object of any type that can be carried with a
+        /// layer. An annotation can be found at a location as long as the owner layer
+        /// contains the location and is walked to.
+        ///
+        /// The annotations are searched by first visiting each child recursively,
+        /// then this layer, resulting in an order from visually front to back.
+        /// Annotations must meet the given restrictions, such as type and position.
+        ///
+        /// The common way for a value to be found here is by pushing an
+        /// [AnnotatedRegionLayer] into the layer tree, or by adding the desired
+        /// annotation by overriding [findAnnotations].
+        /// {@endtemplate}
+        ///
+        /// ## Parameters and return value
+        ///
+        /// The [result] parameter is where the method outputs the resulting
+        /// annotations. New annotations found during the walk are added to the tail.
+        ///
+        /// The [onlyFirst] parameter indicates that, if true, the search will stop
+        /// when it finds the first qualified annotation; otherwise, it will walk the
+        /// entire subtree.
+        ///
+        /// The return value indicates the opacity of this layer and its subtree at
+        /// this position. If it returns true, then this layer's parent should skip
+        /// the children behind this layer. In other words, it is opaque to this type
+        /// of annotation and has absorbed the search so that its siblings behind it
+        /// are not aware of the search. If the return value is false, then the parent
+        /// might continue with other siblings.
+        ///
+        /// The return value does not affect whether the parent adds its own
+        /// annotations; in other words, if a layer is supposed to add an annotation,
+        /// it will always add it even if its children are opaque to this type of
+        /// annotation. However, the opacity that the parents return might be affected
+        /// by their children, hence making all of its ancestors opaque to this type
+        /// of annotation.
+        /// </Summary>
+        public virtual bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+        {
+            return false;
+        }
+
+
+
+
+        /// <Summary>
+        /// Search this layer and its subtree for the first annotation of type `S`
+        /// under the point described by `localPosition`.
+        ///
+        /// Returns null if no matching annotations are found.
+        ///
+        /// By default this method simply calls [findAnnotations] with `onlyFirst:
+        /// true` and returns the annotation of the first result. Prefer overriding
+        /// [findAnnotations] instead of this method, because during an annotation
+        /// search, only [findAnnotations] is recursively called, while custom
+        /// behavior in this method is ignored.
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        ///
+        /// See also:
+        ///
+        ///  * [findAllAnnotations], which is similar but returns all annotations found
+        ///    at the given position.
+        ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+        /// </Summary>
+        public virtual S Find<S>(FlutterBinding.UI.Offset localPosition)
+        {
+            AnnotationResult<S> result = new AnnotationResult<S>();
+            FindAnnotations(result, localPosition, onlyFirst: true);
+            return result.Entries.IsEmpty() ? null : result.Entries.First.Annotation;
+        }
+
+
+
+
+        /// <Summary>
+        /// Search this layer and its subtree for all annotations of type `S` under
+        /// the point described by `localPosition`.
+        ///
+        /// Returns a result with empty entries if no matching annotations are found.
+        ///
+        /// By default this method simply calls [findAnnotations] with `onlyFirst:
+        /// false` and returns the annotations of its result. Prefer overriding
+        /// [findAnnotations] instead of this method, because during an annotation
+        /// search, only [findAnnotations] is recursively called, while custom
+        /// behavior in this method is ignored.
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        ///
+        /// See also:
+        ///
+        ///  * [find], which is similar but returns the first annotation found at the
+        ///    given position.
+        ///  * [findAllAnnotations], which is similar but returns an
+        ///    [AnnotationResult], which contains more information, such as the local
+        ///    position of the event related to each annotation, and is equally fast,
+        ///    hence is preferred over [findAll].
+        ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+        /// </Summary>
+        public virtual Iterable<S> FindAll<S>(FlutterBinding.UI.Offset localPosition)
+        {
+            AnnotationResult<S> result = FindAllAnnotations(localPosition);
+            return result.Entries.Map((AnnotationEntry<S> entry) => =>entry.Annotation);
+        }
+
+
+
+
+        /// <Summary>
+        /// Search this layer and its subtree for all annotations of type `S` under
+        /// the point described by `localPosition`.
+        ///
+        /// Returns a result with empty entries if no matching annotations are found.
+        ///
+        /// By default this method simply calls [findAnnotations] with `onlyFirst:
+        /// false` and returns the annotations of its result. Prefer overriding
+        /// [findAnnotations] instead of this method, because during an annotation
+        /// search, only [findAnnotations] is recursively called, while custom
+        /// behavior in this method is ignored.
+        ///
+        /// ## About layer annotations
+        ///
+        /// {@macro flutter.rendering.layer.findAnnotations.aboutAnnotations}
+        ///
+        /// See also:
+        ///
+        ///  * [find], which is similar but returns the first annotation found at the
+        ///    given position.
+        ///  * [AnnotatedRegionLayer], for placing values in the layer tree.
+        /// </Summary>
+        public virtual AnnotationResult<S> FindAllAnnotations<S>(FlutterBinding.UI.Offset localPosition)
+        {
+            AnnotationResult<S> result = new AnnotationResult<S>();
+            FindAnnotations(result, localPosition, onlyFirst: false);
+            return result;
+        }
+
+
+
+
+        /// <Summary>
+        /// Override this method to upload this layer to the engine.
+        ///
+        /// Return the engine layer for retained rendering. When there's no
+        /// corresponding engine layer, null is returned.
+        /// </Summary>
+        public virtual void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+        {
+        }
+
+
+        private void _AddToSceneWithRetainedRendering(SceneBuilder builder)
+        {
+            if (!_NeedsAddToScene && _EngineLayer != null)
+            {
+                builder.AddRetained(_EngineLayer);
+                return;
+            }
+
+            AddToScene(builder);
+            _NeedsAddToScene = false;
+        }
+
+
+
+
+        public new string ToStringShort() => $"'{base.ToStringShort()}{Owner == null ? " DETACHED":""}'";
+
+
+
+public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<object>("owner", Owner, level: Parent != null ? DiagnosticLevel.Hidden : DiagnosticLevel.Info, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<object>("creator", DebugCreator, defaultValue: null, level: DiagnosticLevel.Debug));
+            properties.Add(new DiagnosticsProperty<string>("engine layer", DiagnosticsDefaultClass.DescribeIdentity(_EngineLayer)));
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A composited layer containing a [Picture].
+    ///
+    /// Picture layers are always leaves in the layer tree.
+    /// </Summary>
+    public class PictureLayer : FlutterSDK.Rendering.Layer.Layer
+    {
+        #region constructors
+        public PictureLayer(FlutterBinding.UI.Rect canvasBounds)
+        {
+            this.CanvasBounds = canvasBounds;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Rect CanvasBounds { get; set; }
+        internal virtual SKPicture _Picture { get; set; }
+        internal virtual bool _IsComplexHint { get; set; }
+        internal virtual bool _WillChangeHint { get; set; }
+        public virtual SKPicture Picture { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsComplexHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool WillChangeHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+        {
+            builder.AddPicture(layerOffset, Picture, isComplexHint: IsComplexHint, willChangeHint: WillChangeHint);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<Rect>("paint bounds", CanvasBounds));
+            properties.Add(new DiagnosticsProperty<string>("picture", DiagnosticsDefaultClass.DescribeIdentity(_Picture)));
+            properties.Add(new DiagnosticsProperty<string>("raster cache hints", $"'isComplex = {IsComplexHint}, willChange = {WillChangeHint}'"));
+        }
+
+
+
+
+        public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+        {
+            return false;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A composited layer that maps a backend texture to a rectangle.
+    ///
+    /// Backend textures are images that can be applied (mapped) to an area of the
+    /// Flutter view. They are created, managed, and updated using a
+    /// platform-specific texture registry. This is typically done by a plugin
+    /// that integrates with host platform video player, camera, or OpenGL APIs,
+    /// or similar image sources.
+    ///
+    /// A texture layer refers to its backend texture using an integer ID. Texture
+    /// IDs are obtained from the texture registry and are scoped to the Flutter
+    /// view. Texture IDs may be reused after deregistration, at the discretion
+    /// of the registry. The use of texture IDs currently unknown to the registry
+    /// will silently result in a blank rectangle.
+    ///
+    /// Once inserted into the layer tree, texture layers are repainted autonomously
+    /// as dictated by the backend (e.g. on arrival of a video frame). Such
+    /// repainting generally does not involve executing Dart code.
+    ///
+    /// Texture layers are always leaves in the layer tree.
+    ///
+    /// See also:
+    ///
+    ///  * <https://api.flutter.dev/javadoc/io/flutter/view/TextureRegistry.html>
+    ///    for how to create and manage backend textures on Android.
+    ///  * <https://api.flutter.dev/objcdoc/Protocols/FlutterTextureRegistry.html>
+    ///    for how to create and manage backend textures on iOS.
+    /// </Summary>
+    public class TextureLayer : FlutterSDK.Rendering.Layer.Layer
+    {
+        #region constructors
+        public TextureLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int textureId = default(int), bool freeze = false)
+        : base()
+        {
+            this.Rect = rect;
+            this.TextureId = textureId;
+            this.Freeze = freeze;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual int TextureId { get; set; }
+        public virtual bool Freeze { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+        {
+            Rect shiftedRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? Rect:Rect.Shift(layerOffset);
+            builder.AddTexture(TextureId, offset: shiftedRect.TopLeft, width: shiftedRect.Width, height: shiftedRect.Height, freeze: Freeze);
+        }
+
+
+
+
+        public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+        {
+            return false;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A layer that shows an embedded [UIView](https://developer.apple.com/documentation/uikit/uiview)
+    /// on iOS.
+    /// </Summary>
+    public class PlatformViewLayer : FlutterSDK.Rendering.Layer.Layer
+    {
+        #region constructors
+        public PlatformViewLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int viewId = default(int), FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation hoverAnnotation = default(FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation))
+        : base()
+        {
+            this.Rect = rect;
+            this.ViewId = viewId;
+            this.HoverAnnotation = hoverAnnotation;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual int ViewId { get; set; }
+        public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+        {
+            Rect shiftedRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? Rect:Rect.Shift(layerOffset);
+            builder.AddPlatformView(ViewId, offset: shiftedRect.TopLeft, width: shiftedRect.Width, height: shiftedRect.Height);
+        }
+
+
+
+
+        public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+        {
+            if (HoverAnnotation == null || !Rect.Contains(localPosition))
+            {
+                return false;
+            }
+
+            if (S == MousetrackingDefaultClass.MouseTrackerAnnotation)
+            {
+                object untypedValue = HoverAnnotation;
+                S typedValue = untypedValue as S;
+                result.Add(new AnnotationEntry<S>(annotation: typedValue, localPosition: localPosition));
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A layer that indicates to the compositor that it should display
+    /// certain performance statistics within it.
+    ///
+    /// Performance overlay layers are always leaves in the layer tree.
+    /// </Summary>
+    public class PerformanceOverlayLayer : FlutterSDK.Rendering.Layer.Layer
+    {
+        #region constructors
+        public PerformanceOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), int optionsMask = default(int), int rasterizerThreshold = default(int), bool checkerboardRasterCacheImages = default(bool), bool checkerboardOffscreenLayers = default(bool))
+        : base()
+        {
+            this.OptionsMask = optionsMask;
+            this.RasterizerThreshold = rasterizerThreshold;
+            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Rect _OverlayRect { get; set; }
+        public virtual int OptionsMask { get; set; }
+        public virtual int RasterizerThreshold { get; set; }
+        public virtual bool CheckerboardRasterCacheImages { get; set; }
+        public virtual bool CheckerboardOffscreenLayers { get; set; }
+        public virtual FlutterBinding.UI.Rect OverlayRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+        {
+
+            Rect shiftedOverlayRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? OverlayRect:OverlayRect.Shift(layerOffset);
+            builder.AddPerformanceOverlay(OptionsMask, shiftedOverlayRect);
+            builder.SetRasterizerTracingThreshold(RasterizerThreshold);
+            builder.SetCheckerboardRasterCacheImages(CheckerboardRasterCacheImages);
+            builder.SetCheckerboardOffscreenLayers(CheckerboardOffscreenLayers);
+        }
+
+
+
+
+        public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+        {
+            return false;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A composited layer that has a list of children.
+    ///
+    /// A [ContainerLayer] instance merely takes a list of children and inserts them
+    /// into the composited rendering in order. There are subclasses of
+    /// [ContainerLayer] which apply more elaborate effects in the process.
+    /// </Summary>
+    public class ContainerLayer : FlutterSDK.Rendering.Layer.Layer
+    {
+        #region constructors
+        public ContainerLayer()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Rendering.Layer.Layer _FirstChild { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.Layer _LastChild { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.Layer FirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Layer.Layer LastChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasChildren { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Consider this layer as the root and build a scene (a tree of layers)
+        /// in the engine.
+        /// </Summary>
+        public virtual Scene BuildScene(SceneBuilder builder)
+        {
+            List<PictureLayer> temporaryLayers = default(List<PictureLayer>);
+
+            UpdateSubtreeNeedsAddToScene();
+            AddToScene(builder);
+            _NeedsAddToScene = false;
+            Ui.Dart:uiDefaultClass.Scene scene = builder.Build();
+
+            return scene;
+        }
+
+
+
+
+        private bool _DebugUltimatePreviousSiblingOf(FlutterSDK.Rendering.Layer.Layer child, FlutterSDK.Rendering.Layer.Layer equals = default(FlutterSDK.Rendering.Layer.Layer))
+        {
+
+            while (child.PreviousSibling != null)
+            {
+
+                child = child.PreviousSibling;
+
+            }
+
+            return child == equals;
+        }
+
+
+
+
+        private bool _DebugUltimateNextSiblingOf(FlutterSDK.Rendering.Layer.Layer child, FlutterSDK.Rendering.Layer.Layer equals = default(FlutterSDK.Rendering.Layer.Layer))
+        {
+
+            while (child._NextSibling != null)
+            {
+
+                child = child._NextSibling;
+
+            }
+
+            return child == equals;
+        }
+
+
+
+
+        private FlutterSDK.Rendering.Layer.PictureLayer _HighlightConflictingLayer(FlutterSDK.Rendering.Layer.PhysicalModelLayer child)
+        {
+            Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
+            Canvas canvas = new Canvas(recorder);
+            canvas.DrawPath(child.ClipPath, new Paint()..Color = new Color(0xFFAA0000)..Style = PaintingStyle.Stroke..StrokeWidth = child.Elevation + 10.0);
+            PictureLayer pictureLayer = new PictureLayer(child.ClipPath.GetBounds())..Picture = recorder.EndRecording()..DebugCreator = child;
+            child.Append(pictureLayer);
+            return pictureLayer;
+        }
+
+
+
+
+        private List<FlutterSDK.Rendering.Layer.PictureLayer> _ProcessConflictingPhysicalLayers(FlutterSDK.Rendering.Layer.PhysicalModelLayer predecessor, FlutterSDK.Rendering.Layer.PhysicalModelLayer child)
+        {
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: new FlutterError("Painting order is out of order with respect to elevation.\n" + "See https://api.flutter.dev/flutter/rendering/debugCheckElevationsEnabled.html " + "for more details."), library: "rendering library", context: new ErrorDescription("during compositing"), informationCollector: () =>
+            {
+                return new List<DiagnosticsNode>() { child.ToDiagnosticsNode(name: "Attempted to composite layer", style: DiagnosticsTreeStyle.ErrorProperty), predecessor.ToDiagnosticsNode(name: "after layer", style: DiagnosticsTreeStyle.ErrorProperty), new ErrorDescription("which occupies the same area at a higher elevation.") };
+            }
+            ));
+            return new List<PictureLayer>() { _HighlightConflictingLayer(predecessor), _HighlightConflictingLayer(child) };
+        }
+
+
+
+
+        /// <Summary>
+        /// Checks that no [PhysicalModelLayer] would paint after another overlapping
+        /// [PhysicalModelLayer] that has a higher elevation.
+        ///
+        /// Returns a list of [PictureLayer] objects it added to the tree to highlight
+        /// bad nodes. These layers should be removed from the tree after building the
+        /// [Scene].
+        /// </Summary>
+        private List<FlutterSDK.Rendering.Layer.PictureLayer> _DebugCheckElevations()
+        {
+            List<PhysicalModelLayer> physicalModelLayers = DepthFirstIterateChildren().WhereType().ToList();
+            List<PictureLayer> addedLayers = new List<PictureLayer>() { };
+            for (int i = 0; i < physicalModelLayers.Count; i++)
+            {
+                PhysicalModelLayer physicalModelLayer = physicalModelLayers[i];
+
+                double accumulatedElevation = physicalModelLayer.Elevation;
+                Layer ancestor = physicalModelLayer.Parent;
                 while (ancestor != null)
                 {
-                    if (ancestor == predecessor)
-                    {
-                        continue;
-                    }
-
                     if (ancestor is PhysicalModelLayer)
                     {
-                        predecessorAccumulatedElevation += ((PhysicalModelLayer)ancestor).Elevation;
+                        accumulatedElevation += ((PhysicalModelLayer)ancestor).Elevation;
                     }
 
                     ancestor = ancestor.Parent;
                 }
 
-                if (predecessorAccumulatedElevation <= accumulatedElevation)
+                for (int j = 0; j <= i; j++)
                 {
-                    continue;
-                }
+                    PhysicalModelLayer predecessor = physicalModelLayers[j];
+                    double predecessorAccumulatedElevation = predecessor.Elevation;
+                    ancestor = predecessor.Parent;
+                    while (ancestor != null)
+                    {
+                        if (ancestor == predecessor)
+                        {
+                            continue;
+                        }
 
-                Path intersection = Dart:uiDefaultClass.Path.Combine(PathOperation.Intersect, predecessor._DebugTransformedClipPath, physicalModelLayer._DebugTransformedClipPath);
-                if (intersection != null && intersection.ComputeMetrics().Any((Ui.Dart:uiDefaultClass.PathMetric metric) => =>metric.Length > 0)){
-            addedLayers.AddAll(_ProcessConflictingPhysicalLayers(predecessor, physicalModelLayer));
+                        if (ancestor is PhysicalModelLayer)
+                        {
+                            predecessorAccumulatedElevation += ((PhysicalModelLayer)ancestor).Elevation;
+                        }
+
+                        ancestor = ancestor.Parent;
+                    }
+
+                    if (predecessorAccumulatedElevation <= accumulatedElevation)
+                    {
+                        continue;
+                    }
+
+                    Path intersection = Dart:uiDefaultClass.Path.Combine(PathOperation.Intersect, predecessor._DebugTransformedClipPath, physicalModelLayer._DebugTransformedClipPath);
+                    if (intersection != null && intersection.ComputeMetrics().Any((Ui.Dart:uiDefaultClass.PathMetric metric) => =>metric.Length > 0)){
+                addedLayers.AddAll(_ProcessConflictingPhysicalLayers(predecessor, physicalModelLayer));
+            }
+
         }
 
     }
-
-}
 
 return addedLayers;
 }
@@ -1584,90 +1597,90 @@ public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public OffsetLayer(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
-public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
+    public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return base.FindAnnotations(result, localPosition - Offset, onlyFirst: onlyFirst);
-}
-
-
-
-
-public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
-{
-
-
-    transform.Multiply(Matrix4.TranslationValues(Offset.Dx, Offset.Dy, 0.0));
-}
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+    {
+        return base.FindAnnotations(result, localPosition - Offset, onlyFirst: onlyFirst);
+    }
 
 
 
 
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-    EngineLayer = builder.PushOffset(layerOffset.Dx + Offset.Dx, layerOffset.Dy + Offset.Dy, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.OffsetEngineLayer);
-    AddChildrenToScene(builder);
-    builder.Pop();
-}
+    public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
+    {
+
+
+        transform.Multiply(Matrix4.TranslationValues(Offset.Dx, Offset.Dy, 0.0));
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Offset>("offset", Offset));
-}
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
+        EngineLayer = builder.PushOffset(layerOffset.Dx + Offset.Dx, layerOffset.Dy + Offset.Dy, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.OffsetEngineLayer);
+        AddChildrenToScene(builder);
+        builder.Pop();
+    }
 
 
 
 
-/// <Summary>
-/// Capture an image of the current state of this layer and its children.
-///
-/// The returned [ui.Image] has uncompressed raw RGBA bytes, will be offset
-/// by the top-left corner of [bounds], and have dimensions equal to the size
-/// of [bounds] multiplied by [pixelRatio].
-///
-/// The [pixelRatio] describes the scale between the logical pixels and the
-/// size of the output image. It is independent of the
-/// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
-/// will give you a 1:1 mapping between logical pixels and the output pixels
-/// in the image.
-///
-/// See also:
-///
-///  * [RenderRepaintBoundary.toImage] for a similar API at the render object level.
-///  * [dart:ui.Scene.toImage] for more information about the image returned.
-/// </Summary>
-public virtual Future<SKImage> ToImage(FlutterBinding.UI.Rect bounds, double pixelRatio = 1.0)
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Offset>("offset", Offset));
+    }
+
+
+
+
+    /// <Summary>
+    /// Capture an image of the current state of this layer and its children.
+    ///
+    /// The returned [ui.Image] has uncompressed raw RGBA bytes, will be offset
+    /// by the top-left corner of [bounds], and have dimensions equal to the size
+    /// of [bounds] multiplied by [pixelRatio].
+    ///
+    /// The [pixelRatio] describes the scale between the logical pixels and the
+    /// size of the output image. It is independent of the
+    /// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
+    /// will give you a 1:1 mapping between logical pixels and the output pixels
+    /// in the image.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderRepaintBoundary.toImage] for a similar API at the render object level.
+    ///  * [dart:ui.Scene.toImage] for more information about the image returned.
+    /// </Summary>
+    public virtual Future<SKImage> ToImage(FlutterBinding.UI.Rect bounds, double pixelRatio = 1.0)
 async
 {
 
 
-    Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
+Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
     Matrix4 transform = Matrix4.TranslationValues((-bounds.Left - Offset.Dx) * pixelRatio, (-bounds.Top - Offset.Dy) * pixelRatio, 0.0);
     transform.Scale(pixelRatio, pixelRatio);
-    builder.PushTransform(transform.Storage);
-    Ui.Dart:uiDefaultClass.Scene scene = BuildScene(builder);
-    try
-    {
-        return await scene.ToImage((pixelRatio * bounds.Width).Ceil(), (pixelRatio * bounds.Height).Ceil());
-    }
-    finally
-    {
-        scene.Dispose();
-    }
+builder.PushTransform(transform.Storage);
+Ui.Dart:uiDefaultClass.Scene scene = BuildScene(builder);
+try {
+return await scene.ToImage((pixelRatio* bounds.Width).Ceil(), (pixelRatio* bounds.Height).Ceil());
+}
+finally
+{
+    scene.Dispose();
+}
 
 }
 
@@ -1689,61 +1702,62 @@ public class ClipRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public ClipRectLayer(FlutterBinding.UI.Rect clipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.Rect _ClipRect { get; set; }
-internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
-public virtual FlutterBinding.UI.Rect ClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    if (!ClipRect.Contains(localPosition)) return false;
-    return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
-}
-
-
-
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-
-    bool enabled = true;
-
-    if (enabled)
     {
-        Rect shiftedClipRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? ClipRect:ClipRect.Shift(layerOffset);
-        EngineLayer = builder.PushClipRect(shiftedClipRect, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ClipRectEngineLayer);
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual FlutterBinding.UI.Rect _ClipRect { get; set; }
+    internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
+    public virtual FlutterBinding.UI.Rect ClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
-        EngineLayer = null;
+        if (!ClipRect.Contains(localPosition)) return false;
+        return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
     }
 
-    AddChildrenToScene(builder, layerOffset);
-    if (enabled) builder.Pop();
-}
+
+
+
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
+
+
+        bool enabled = true;
+
+        if (enabled)
+        {
+            Rect shiftedClipRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? ClipRect:ClipRect.Shift(layerOffset);
+            EngineLayer = builder.PushClipRect(shiftedClipRect, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ClipRectEngineLayer);
+        }
+        else
+        {
+            EngineLayer = null;
+        }
+
+        AddChildrenToScene(builder, layerOffset);
+        if (enabled) builder.Pop();
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Rect>("clipRect", ClipRect));
-    properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior));
-}
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Rect>("clipRect", ClipRect));
+        properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior));
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1759,61 +1773,62 @@ public class ClipRRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public ClipRRectLayer(FlutterBinding.UI.RRect clipRRect = default(FlutterBinding.UI.RRect), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.RRect _ClipRRect { get; set; }
-internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
-public virtual FlutterBinding.UI.RRect ClipRRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    if (!ClipRRect.Contains(localPosition)) return false;
-    return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
-}
-
-
-
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-
-    bool enabled = true;
-
-    if (enabled)
     {
-        RRect shiftedClipRRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? ClipRRect:ClipRRect.Shift(layerOffset);
-        EngineLayer = builder.PushClipRRect(shiftedClipRRect, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ClipRRectEngineLayer);
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual FlutterBinding.UI.RRect _ClipRRect { get; set; }
+    internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
+    public virtual FlutterBinding.UI.RRect ClipRRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
-        EngineLayer = null;
+        if (!ClipRRect.Contains(localPosition)) return false;
+        return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
     }
 
-    AddChildrenToScene(builder, layerOffset);
-    if (enabled) builder.Pop();
-}
+
+
+
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
+
+
+        bool enabled = true;
+
+        if (enabled)
+        {
+            RRect shiftedClipRRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? ClipRRect:ClipRRect.Shift(layerOffset);
+            EngineLayer = builder.PushClipRRect(shiftedClipRRect, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ClipRRectEngineLayer);
+        }
+        else
+        {
+            EngineLayer = null;
+        }
+
+        AddChildrenToScene(builder, layerOffset);
+        if (enabled) builder.Pop();
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<RRect>("clipRRect", ClipRRect));
-    properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior));
-}
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<RRect>("clipRRect", ClipRRect));
+        properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior));
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1829,60 +1844,61 @@ public class ClipPathLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public ClipPathLayer(Path clipPath = default(Path), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual Path _ClipPath { get; set; }
-internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
-public virtual Path ClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    if (!ClipPath.Contains(localPosition)) return false;
-    return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
-}
-
-
-
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-
-    bool enabled = true;
-
-    if (enabled)
     {
-        Path shiftedPath = layerOffset == Dart:uiDefaultClass.Offset.Zero? ClipPath:ClipPath.Shift(layerOffset);
-        EngineLayer = builder.PushClipPath(shiftedPath, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ClipPathEngineLayer);
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual Path _ClipPath { get; set; }
+    internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
+    public virtual Path ClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
-        EngineLayer = null;
+        if (!ClipPath.Contains(localPosition)) return false;
+        return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
     }
 
-    AddChildrenToScene(builder, layerOffset);
-    if (enabled) builder.Pop();
-}
+
+
+
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
+
+
+        bool enabled = true;
+
+        if (enabled)
+        {
+            Path shiftedPath = layerOffset == Dart:uiDefaultClass.Offset.Zero? ClipPath:ClipPath.Shift(layerOffset);
+            EngineLayer = builder.PushClipPath(shiftedPath, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ClipPathEngineLayer);
+        }
+        else
+        {
+            EngineLayer = null;
+        }
+
+        AddChildrenToScene(builder, layerOffset);
+        if (enabled) builder.Pop();
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior));
-}
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<FlutterBinding.UI.Clip>("clipBehavior", ClipBehavior));
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1894,37 +1910,38 @@ public class ColorFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public ColorFilterLayer(ColorFilter colorFilter = default(ColorFilter))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual ColorFilter _ColorFilter { get; set; }
-public virtual ColorFilter ColorFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual ColorFilter _ColorFilter { get; set; }
+    public virtual ColorFilter ColorFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
 
-    EngineLayer = builder.PushColorFilter(ColorFilter, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ColorFilterEngineLayer);
-    AddChildrenToScene(builder, layerOffset);
-    builder.Pop();
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<ColorFilter>("colorFilter", ColorFilter));
-}
+        EngineLayer = builder.PushColorFilter(ColorFilter, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ColorFilterEngineLayer);
+        AddChildrenToScene(builder, layerOffset);
+        builder.Pop();
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<ColorFilter>("colorFilter", ColorFilter));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1936,37 +1953,38 @@ public class ImageFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public ImageFilterLayer(ImageFilter imageFilter = default(ImageFilter))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual ImageFilter _ImageFilter { get; set; }
-public virtual ImageFilter ImageFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual ImageFilter _ImageFilter { get; set; }
+    public virtual ImageFilter ImageFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
 
-    EngineLayer = builder.PushImageFilter(ImageFilter, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ImageFilterEngineLayer);
-    AddChildrenToScene(builder, layerOffset);
-    builder.Pop();
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.ImageFilter>("imageFilter", ImageFilter));
-}
+        EngineLayer = builder.PushImageFilter(ImageFilter, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ImageFilterEngineLayer);
+        AddChildrenToScene(builder, layerOffset);
+        builder.Pop();
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.ImageFilter>("imageFilter", ImageFilter));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1982,91 +2000,92 @@ public class TransformLayer : FlutterSDK.Rendering.Layer.OffsetLayer
     #region constructors
     public TransformLayer(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base(offset: offset)
-
-}
-#endregion
-
-#region fields
-internal virtual Matrix4 _Transform { get; set; }
-internal virtual Matrix4 _LastEffectiveTransform { get; set; }
-internal virtual Matrix4 _InvertedTransform { get; set; }
-internal virtual bool _InverseDirty { get; set; }
-public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-    _LastEffectiveTransform = Transform;
-    Offset totalOffset = Offset + layerOffset;
-    if (totalOffset != Dart:uiDefaultClass.Offset.Zero){
-        _LastEffectiveTransform = Matrix4.TranslationValues(totalOffset.Dx, totalOffset.Dy, 0.0);
-        Matrix4.TranslationValues(totalOffset.Dx, totalOffset.Dy, 0.0).Multiply(_LastEffectiveTransform);
-    }
-
-    EngineLayer = builder.PushTransform(_LastEffectiveTransform.Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
-    AddChildrenToScene(builder);
-    builder.Pop();
-}
-
-
-
-
-private Offset _TransformOffset(FlutterBinding.UI.Offset localPosition)
-{
-    if (_InverseDirty)
     {
-        _InvertedTransform = Matrix4.TryInvert(EventsDefaultClass.PointerEvent.RemovePerspectiveTransform(Transform));
-        _InverseDirty = false;
+
     }
+    #endregion
 
-    if (_InvertedTransform == null) return null;
-    return MatrixutilsDefaultClass.MatrixUtils.TransformPoint(_InvertedTransform, localPosition);
-}
+    #region fields
+    internal virtual Matrix4 _Transform { get; set; }
+    internal virtual Matrix4 _LastEffectiveTransform { get; set; }
+    internal virtual Matrix4 _InvertedTransform { get; set; }
+    internal virtual bool _InverseDirty { get; set; }
+    public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
+    #region methods
 
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    Offset transformedOffset = _TransformOffset(localPosition);
-    if (transformedOffset == null) return false;
-    return base.FindAnnotations(result, transformedOffset, onlyFirst: onlyFirst);
-}
-
-
-
-
-public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
-{
-
-
-
-    if (_LastEffectiveTransform == null)
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
-        transform.Multiply(this.Transform);
+
+        _LastEffectiveTransform = Transform;
+        Offset totalOffset = Offset + layerOffset;
+        if (totalOffset != Dart:uiDefaultClass.Offset.Zero){
+            _LastEffectiveTransform = Matrix4.TranslationValues(totalOffset.Dx, totalOffset.Dy, 0.0);
+            Matrix4.TranslationValues(totalOffset.Dx, totalOffset.Dy, 0.0).Multiply(_LastEffectiveTransform);
+        }
+
+        EngineLayer = builder.PushTransform(_LastEffectiveTransform.Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
+        AddChildrenToScene(builder);
+        builder.Pop();
     }
-    else
+
+
+
+
+    private Offset _TransformOffset(FlutterBinding.UI.Offset localPosition)
     {
-        transform.Multiply(_LastEffectiveTransform);
+        if (_InverseDirty)
+        {
+            _InvertedTransform = Matrix4.TryInvert(EventsDefaultClass.PointerEvent.RemovePerspectiveTransform(Transform));
+            _InverseDirty = false;
+        }
+
+        if (_InvertedTransform == null) return null;
+        return MatrixutilsDefaultClass.MatrixUtils.TransformPoint(_InvertedTransform, localPosition);
     }
 
-}
+
+
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+    {
+        Offset transformedOffset = _TransformOffset(localPosition);
+        if (transformedOffset == null) return false;
+        return base.FindAnnotations(result, transformedOffset, onlyFirst: onlyFirst);
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new TransformProperty("transform", Transform));
-}
+    public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
+    {
 
 
 
-#endregion
+        if (_LastEffectiveTransform == null)
+        {
+            transform.Multiply(this.Transform);
+        }
+        else
+        {
+            transform.Multiply(_LastEffectiveTransform);
+        }
+
+    }
+
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new TransformProperty("transform", Transform));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2085,52 +2104,53 @@ public class OpacityLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public OpacityLayer(int alpha = default(int), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual int _Alpha { get; set; }
-internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
-public virtual int Alpha { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual int _Alpha { get; set; }
+    internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
+    public virtual int Alpha { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
-{
-
-
-    transform.Translate(Offset.Dx, Offset.Dy);
-}
+    public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
+    {
 
 
-
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-    bool enabled = FirstChild != null;
-
-    if (enabled) EngineLayer = builder.PushOpacity(Alpha, offset: Offset + layerOffset, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.OpacityEngineLayer); else EngineLayer = null;
-    AddChildrenToScene(builder);
-    if (enabled) builder.Pop();
-}
+        transform.Translate(Offset.Dx, Offset.Dy);
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new IntProperty("alpha", Alpha));
-    properties.Add(new DiagnosticsProperty<Offset>("offset", Offset));
-}
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
+
+        bool enabled = FirstChild != null;
+
+        if (enabled) EngineLayer = builder.PushOpacity(Alpha, offset: Offset + layerOffset, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.OpacityEngineLayer); else EngineLayer = null;
+        AddChildrenToScene(builder);
+        if (enabled) builder.Pop();
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new IntProperty("alpha", Alpha));
+        properties.Add(new DiagnosticsProperty<Offset>("offset", Offset));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2147,47 +2167,48 @@ public class ShaderMaskLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public ShaderMaskLayer(SKShader shader = default(SKShader), FlutterBinding.UI.Rect maskRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual SKShader _Shader { get; set; }
-internal virtual FlutterBinding.UI.Rect _MaskRect { get; set; }
-internal virtual FlutterBinding.UI.BlendMode _BlendMode { get; set; }
-public virtual SKShader Shader { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Rect MaskRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.BlendMode BlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual SKShader _Shader { get; set; }
+    internal virtual FlutterBinding.UI.Rect _MaskRect { get; set; }
+    internal virtual FlutterBinding.UI.BlendMode _BlendMode { get; set; }
+    public virtual SKShader Shader { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Rect MaskRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.BlendMode BlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-
-
-
-    Rect shiftedMaskRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? MaskRect:MaskRect.Shift(layerOffset);
-    EngineLayer = builder.PushShaderMask(Shader, shiftedMaskRect, BlendMode, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ShaderMaskEngineLayer);
-    AddChildrenToScene(builder, layerOffset);
-    builder.Pop();
-}
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<SKShader>("shader", Shader));
-    properties.Add(new DiagnosticsProperty<Rect>("maskRect", MaskRect));
-    properties.Add(new DiagnosticsProperty<BlendMode>("blendMode", BlendMode));
-}
+        Rect shiftedMaskRect = layerOffset == Dart:uiDefaultClass.Offset.Zero? MaskRect:MaskRect.Shift(layerOffset);
+        EngineLayer = builder.PushShaderMask(Shader, shiftedMaskRect, BlendMode, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.ShaderMaskEngineLayer);
+        AddChildrenToScene(builder, layerOffset);
+        builder.Pop();
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<SKShader>("shader", Shader));
+        properties.Add(new DiagnosticsProperty<Rect>("maskRect", MaskRect));
+        properties.Add(new DiagnosticsProperty<BlendMode>("blendMode", BlendMode));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2199,28 +2220,29 @@ public class BackdropFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public BackdropFilterLayer(ImageFilter filter = default(ImageFilter))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual ImageFilter _Filter { get; set; }
-public virtual ImageFilter Filter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual ImageFilter _Filter { get; set; }
+    public virtual ImageFilter Filter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
 
-    EngineLayer = builder.PushBackdropFilter(Filter, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.BackdropFilterEngineLayer);
-    AddChildrenToScene(builder, layerOffset);
-    builder.Pop();
-}
+        EngineLayer = builder.PushBackdropFilter(Filter, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.BackdropFilterEngineLayer);
+        AddChildrenToScene(builder, layerOffset);
+        builder.Pop();
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2240,70 +2262,71 @@ public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public PhysicalModelLayer(Path clipPath = default(Path), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual Path _ClipPath { get; set; }
-internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
-internal virtual double _Elevation { get; set; }
-internal virtual FlutterBinding.UI.Color _Color { get; set; }
-internal virtual FlutterBinding.UI.Color _ShadowColor { get; set; }
-public virtual Path ClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Path _DebugTransformedClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Elevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color ShadowColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    if (!ClipPath.Contains(localPosition)) return false;
-    return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
-}
-
-
-
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-
-
-
-
-    bool enabled = true;
-
-    if (enabled)
     {
-        EngineLayer = builder.PushPhysicalShape(path: layerOffset == Dart:uiDefaultClass.Offset.Zero ? ClipPath : ClipPath.Shift(layerOffset), elevation: Elevation, color: Color, shadowColor: ShadowColor, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.PhysicalShapeEngineLayer);
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual Path _ClipPath { get; set; }
+    internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
+    internal virtual double _Elevation { get; set; }
+    internal virtual FlutterBinding.UI.Color _Color { get; set; }
+    internal virtual FlutterBinding.UI.Color _ShadowColor { get; set; }
+    public virtual Path ClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual Path _DebugTransformedClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Elevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Color ShadowColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
-        EngineLayer = null;
+        if (!ClipPath.Contains(localPosition)) return false;
+        return base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
     }
 
-    AddChildrenToScene(builder, layerOffset);
-    if (enabled) builder.Pop();
-}
+
+
+
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DoubleProperty("elevation", Elevation));
-    properties.Add(new ColorProperty("color", Color));
-}
+
+        bool enabled = true;
+
+        if (enabled)
+        {
+            EngineLayer = builder.PushPhysicalShape(path: layerOffset == Dart:uiDefaultClass.Offset.Zero ? ClipPath : ClipPath.Shift(layerOffset), elevation: Elevation, color: Color, shadowColor: ShadowColor, clipBehavior: ClipBehavior, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.PhysicalShapeEngineLayer);
+        }
+        else
+        {
+            EngineLayer = null;
+        }
+
+        AddChildrenToScene(builder, layerOffset);
+        if (enabled) builder.Pop();
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DoubleProperty("elevation", Elevation));
+        properties.Add(new ColorProperty("color", Color));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2319,90 +2342,91 @@ public class LeaderLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public LeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base()
+    {
+        this.Offset = offset;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
+    public virtual FlutterBinding.UI.Offset Offset { get; set; }
+    internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
-public virtual FlutterBinding.UI.Offset Offset { get; set; }
-internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
+    public new void Attach(@Object owner)
+    {
+        base.Attach(owner);
 
-public new void Attach(@Object owner)
-{
-    base.Attach(owner);
-
-    _LastOffset = null;
-    Link._Leader = this;
-}
-
-
-
-
-public new void Detach()
-{
-
-    Link._Leader = null;
-    _LastOffset = null;
-    base.Detach();
-}
+        _LastOffset = null;
+        Link._Leader = this;
+    }
 
 
 
 
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return base.FindAnnotations(result, localPosition - Offset, onlyFirst: onlyFirst);
-}
+    public new void Detach()
+    {
+
+        Link._Leader = null;
+        _LastOffset = null;
+        base.Detach();
+    }
 
 
 
 
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-    _LastOffset = Offset + layerOffset;
-    if (_LastOffset != Dart:uiDefaultClass.Offset.Zero)EngineLayer = builder.PushTransform(Matrix4.TranslationValues(_LastOffset.Dx, _LastOffset.Dy, 0.0).Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
-    AddChildrenToScene(builder);
-    if (_LastOffset != Dart:uiDefaultClass.Offset.Zero)builder.Pop();
-}
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+    {
+        return base.FindAnnotations(result, localPosition - Offset, onlyFirst: onlyFirst);
+    }
 
 
 
 
-/// <Summary>
-/// Applies the transform that would be applied when compositing the given
-/// child to the given matrix.
-///
-/// See [ContainerLayer.applyTransform] for details.
-///
-/// The `child` argument may be null, as the same transform is applied to all
-/// children.
-/// </Summary>
-public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
-{
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
 
-    if (_LastOffset != Dart:uiDefaultClass.Offset.Zero)transform.Translate(_LastOffset.Dx, _LastOffset.Dy);
-}
+        _LastOffset = Offset + layerOffset;
+        if (_LastOffset != Dart:uiDefaultClass.Offset.Zero)EngineLayer = builder.PushTransform(Matrix4.TranslationValues(_LastOffset.Dx, _LastOffset.Dy, 0.0).Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
+        AddChildrenToScene(builder);
+        if (_LastOffset != Dart:uiDefaultClass.Offset.Zero)builder.Pop();
+    }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Offset>("offset", Offset));
-    properties.Add(new DiagnosticsProperty<LayerLink>("link", Link));
-}
+    /// <Summary>
+    /// Applies the transform that would be applied when compositing the given
+    /// child to the given matrix.
+    ///
+    /// See [ContainerLayer.applyTransform] for details.
+    ///
+    /// The `child` argument may be null, as the same transform is applied to all
+    /// children.
+    /// </Summary>
+    public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
+    {
+
+        if (_LastOffset != Dart:uiDefaultClass.Offset.Zero)transform.Translate(_LastOffset.Dx, _LastOffset.Dy);
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<Offset>("offset", Offset));
+        properties.Add(new DiagnosticsProperty<LayerLink>("link", Link));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2423,218 +2447,221 @@ public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public FollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset unlinkedOffset = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset linkedOffset = default(FlutterBinding.UI.Offset))
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
-public virtual bool ShowWhenUnlinked { get; set; }
-public virtual FlutterBinding.UI.Offset UnlinkedOffset { get; set; }
-public virtual FlutterBinding.UI.Offset LinkedOffset { get; set; }
-internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
-internal virtual Matrix4 _LastTransform { get; set; }
-internal virtual Matrix4 _InvertedTransform { get; set; }
-internal virtual bool _InverseDirty { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private Offset _TransformOffset<S>(FlutterBinding.UI.Offset localPosition)
-{
-    if (_InverseDirty)
     {
-        _InvertedTransform = Matrix4.TryInvert(GetLastTransform());
-        _InverseDirty = false;
+        this.ShowWhenUnlinked = showWhenUnlinked;
+        this.UnlinkedOffset = unlinkedOffset;
+        this.LinkedOffset = linkedOffset;
     }
+    #endregion
 
-    if (_InvertedTransform == null) return null;
-    Vector4 vector = Vector4(localPosition.Dx, localPosition.Dy, 0.0, 1.0);
-    Vector4 result = _InvertedTransform.Transform(vector);
-    return new Offset(result[0] - LinkedOffset.Dx, result[1] - LinkedOffset.Dy);
-}
+    #region fields
+    internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
+    public virtual bool ShowWhenUnlinked { get; set; }
+    public virtual FlutterBinding.UI.Offset UnlinkedOffset { get; set; }
+    public virtual FlutterBinding.UI.Offset LinkedOffset { get; set; }
+    internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
+    internal virtual Matrix4 _LastTransform { get; set; }
+    internal virtual Matrix4 _InvertedTransform { get; set; }
+    internal virtual bool _InverseDirty { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
+    #region methods
 
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    if (Link.Leader == null)
+    private Offset _TransformOffset<S>(FlutterBinding.UI.Offset localPosition)
     {
-        if (ShowWhenUnlinked)
+        if (_InverseDirty)
         {
-            return base.FindAnnotations(result, localPosition - UnlinkedOffset, onlyFirst: onlyFirst);
+            _InvertedTransform = Matrix4.TryInvert(GetLastTransform());
+            _InverseDirty = false;
         }
 
-        return false;
+        if (_InvertedTransform == null) return null;
+        Vector4 vector = Vector4(localPosition.Dx, localPosition.Dy, 0.0, 1.0);
+        Vector4 result = _InvertedTransform.Transform(vector);
+        return new Offset(result[0] - LinkedOffset.Dx, result[1] - LinkedOffset.Dy);
     }
 
-    Offset transformedOffset = _TransformOffset(localPosition);
-    if (transformedOffset == null)
+
+
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
-        return false;
+        if (Link.Leader == null)
+        {
+            if (ShowWhenUnlinked)
+            {
+                return base.FindAnnotations(result, localPosition - UnlinkedOffset, onlyFirst: onlyFirst);
+            }
+
+            return false;
+        }
+
+        Offset transformedOffset = _TransformOffset(localPosition);
+        if (transformedOffset == null)
+        {
+            return false;
+        }
+
+        return base.FindAnnotations(result, transformedOffset, onlyFirst: onlyFirst);
     }
 
-    return base.FindAnnotations(result, transformedOffset, onlyFirst: onlyFirst);
-}
 
 
 
-
-/// <Summary>
-/// The transform that was used during the last composition phase.
-///
-/// If the [link] was not linked to a [LeaderLayer], or if this layer has
-/// a degenerate matrix applied, then this will be null.
-///
-/// This method returns a new [Matrix4] instance each time it is invoked.
-/// </Summary>
-public virtual Matrix4 GetLastTransform()
-{
-    if (_LastTransform == null) return null;
-    Matrix4 result = Matrix4.TranslationValues(-_LastOffset.Dx, -_LastOffset.Dy, 0.0);
-    result.Multiply(_LastTransform);
-    return result;
-}
-
-
-
-
-/// <Summary>
-/// Call [applyTransform] for each layer in the provided list.
-///
-/// The list is in reverse order (deepest first). The first layer will be
-/// treated as the child of the second, and so forth. The first layer in the
-/// list won't have [applyTransform] called on it. The first layer may be
-/// null.
-/// </Summary>
-private Matrix4 _CollectTransformForLayerChain(List<FlutterSDK.Rendering.Layer.ContainerLayer> layers)
-{
-    Matrix4 result = Matrix4.Identity();
-    for (int index = layers.Count - 1; index > 0; index -= 1) layers[index].ApplyTransform(layers[index - 1], result);
-    return result;
-}
-
-
-
-
-/// <Summary>
-/// Populate [_lastTransform] given the current state of the tree.
-/// </Summary>
-private void _EstablishTransform()
-{
-
-    _LastTransform = null;
-    if (Link.Leader == null) return;
-
-
-    HashSet<Layer> ancestors = new HashSet<Layer>();
-    Layer ancestor = Parent;
-    while (ancestor != null)
+    /// <Summary>
+    /// The transform that was used during the last composition phase.
+    ///
+    /// If the [link] was not linked to a [LeaderLayer], or if this layer has
+    /// a degenerate matrix applied, then this will be null.
+    ///
+    /// This method returns a new [Matrix4] instance each time it is invoked.
+    /// </Summary>
+    public virtual Matrix4 GetLastTransform()
     {
-        ancestors.Add(ancestor);
-        ancestor = ancestor.Parent;
+        if (_LastTransform == null) return null;
+        Matrix4 result = Matrix4.TranslationValues(-_LastOffset.Dx, -_LastOffset.Dy, 0.0);
+        result.Multiply(_LastTransform);
+        return result;
     }
 
-    ContainerLayer layer = Link.Leader;
-    List<ContainerLayer> forwardLayers = new List<ContainerLayer>() { null, layer };
-    do
+
+
+
+    /// <Summary>
+    /// Call [applyTransform] for each layer in the provided list.
+    ///
+    /// The list is in reverse order (deepest first). The first layer will be
+    /// treated as the child of the second, and so forth. The first layer in the
+    /// list won't have [applyTransform] called on it. The first layer may be
+    /// null.
+    /// </Summary>
+    private Matrix4 _CollectTransformForLayerChain(List<FlutterSDK.Rendering.Layer.ContainerLayer> layers)
     {
-        layer = layer.Parent;
-        forwardLayers.Add(layer);
-    }
-    while (!ancestors.Contains(layer));
-    ancestor = layer;
-    layer = this;
-    List<ContainerLayer> inverseLayers = new List<ContainerLayer>() { layer };
-    do
-    {
-        layer = layer.Parent;
-        inverseLayers.Add(layer);
-    }
-    while (layer != ancestor);
-    Matrix4 forwardTransform = _CollectTransformForLayerChain(forwardLayers);
-    Matrix4 inverseTransform = _CollectTransformForLayerChain(inverseLayers);
-    if (inverseTransform.Invert() == 0.0)
-    {
-        return;
+        Matrix4 result = Matrix4.Identity();
+        for (int index = layers.Count - 1; index > 0; index -= 1) layers[index].ApplyTransform(layers[index - 1], result);
+        return result;
     }
 
-    inverseTransform.Multiply(forwardTransform);
-    inverseTransform.Translate(LinkedOffset.Dx, LinkedOffset.Dy);
-    _LastTransform = inverseTransform;
-    _InverseDirty = true;
-}
 
 
 
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-
-
-    if (Link.Leader == null && !ShowWhenUnlinked)
+    /// <Summary>
+    /// Populate [_lastTransform] given the current state of the tree.
+    /// </Summary>
+    private void _EstablishTransform()
     {
+
         _LastTransform = null;
-        _LastOffset = null;
+        if (Link.Leader == null) return;
+
+
+        HashSet<Layer> ancestors = new HashSet<Layer>();
+        Layer ancestor = Parent;
+        while (ancestor != null)
+        {
+            ancestors.Add(ancestor);
+            ancestor = ancestor.Parent;
+        }
+
+        ContainerLayer layer = Link.Leader;
+        List<ContainerLayer> forwardLayers = new List<ContainerLayer>() { null, layer };
+        do
+        {
+            layer = layer.Parent;
+            forwardLayers.Add(layer);
+        }
+        while (!ancestors.Contains(layer));
+        ancestor = layer;
+        layer = this;
+        List<ContainerLayer> inverseLayers = new List<ContainerLayer>() { layer };
+        do
+        {
+            layer = layer.Parent;
+            inverseLayers.Add(layer);
+        }
+        while (layer != ancestor);
+        Matrix4 forwardTransform = _CollectTransformForLayerChain(forwardLayers);
+        Matrix4 inverseTransform = _CollectTransformForLayerChain(inverseLayers);
+        if (inverseTransform.Invert() == 0.0)
+        {
+            return;
+        }
+
+        inverseTransform.Multiply(forwardTransform);
+        inverseTransform.Translate(LinkedOffset.Dx, LinkedOffset.Dy);
+        _LastTransform = inverseTransform;
         _InverseDirty = true;
-        EngineLayer = null;
-        return;
     }
 
-    _EstablishTransform();
-    if (_LastTransform != null)
+
+
+
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
-        EngineLayer = builder.PushTransform(_LastTransform.Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
-        AddChildrenToScene(builder);
-        builder.Pop();
-        _LastOffset = UnlinkedOffset + layerOffset;
+
+
+        if (Link.Leader == null && !ShowWhenUnlinked)
+        {
+            _LastTransform = null;
+            _LastOffset = null;
+            _InverseDirty = true;
+            EngineLayer = null;
+            return;
+        }
+
+        _EstablishTransform();
+        if (_LastTransform != null)
+        {
+            EngineLayer = builder.PushTransform(_LastTransform.Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
+            AddChildrenToScene(builder);
+            builder.Pop();
+            _LastOffset = UnlinkedOffset + layerOffset;
+        }
+        else
+        {
+            _LastOffset = null;
+            Matrix4 matrix = Matrix4.TranslationValues(UnlinkedOffset.Dx, UnlinkedOffset.Dy, .0);
+            EngineLayer = builder.PushTransform(matrix.Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
+            AddChildrenToScene(builder);
+            builder.Pop();
+        }
+
+        _InverseDirty = true;
     }
-    else
+
+
+
+
+    public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
     {
-        _LastOffset = null;
-        Matrix4 matrix = Matrix4.TranslationValues(UnlinkedOffset.Dx, UnlinkedOffset.Dy, .0);
-        EngineLayer = builder.PushTransform(matrix.Storage, oldLayer: _EngineLayer as Ui.Dart:uiDefaultClass.TransformEngineLayer);
-        AddChildrenToScene(builder);
-        builder.Pop();
+
+
+        if (_LastTransform != null)
+        {
+            transform.Multiply(_LastTransform);
+        }
+        else
+        {
+            transform.Multiply(Matrix4.TranslationValues(UnlinkedOffset.Dx, UnlinkedOffset.Dy, .0));
+        }
+
     }
 
-    _InverseDirty = true;
-}
 
 
 
-
-public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
-{
-
-
-    if (_LastTransform != null)
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        transform.Multiply(_LastTransform);
-    }
-    else
-    {
-        transform.Multiply(Matrix4.TranslationValues(UnlinkedOffset.Dx, UnlinkedOffset.Dy, .0));
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<LayerLink>("link", Link));
+        properties.Add(new TransformProperty("transform", GetLastTransform(), defaultValue: null));
     }
 
-}
 
 
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<LayerLink>("link", Link));
-    properties.Add(new TransformProperty("transform", GetLastTransform(), defaultValue: null));
-}
-
-
-
-#endregion
+    #endregion
 }
 
 
@@ -2666,76 +2693,79 @@ public class AnnotatedRegionLayer<T> : FlutterSDK.Rendering.Layer.ContainerLayer
     #region constructors
     public AnnotatedRegionLayer(T value, Size size = default(Size), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool opaque = false)
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual T Value { get; set; }
-public virtual Size Size { get; set; }
-public virtual FlutterBinding.UI.Offset Offset { get; set; }
-public virtual bool Opaque { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Searches the subtree for annotations of type `S` at the location
-/// `localPosition`, then adds the annotation [value] if applicable.
-///
-/// This method always searches its children, and if any child returns `true`,
-/// the remaining children are skipped. Regardless of what the children
-/// return, this method then adds this layer's annotation if all of the
-/// following restrictions are met:
-///
-/// {@macro flutter.rendering.annotatedRegionLayer.restrictions}
-///
-/// This search process respects `onlyFirst`, meaning that when `onlyFirst` is
-/// true, the search will stop when it finds the first annotation from the
-/// children, and the layer's own annotation is checked only when none is
-/// given by the children.
-///
-/// The return value is true if any child returns `true`, or if [opaque] is
-/// true and the layer's annotation is added.
-///
-/// For explanation of layer annotations, parameters and return value, refer
-/// to [Layer.findAnnotations].
-/// </Summary>
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    bool isAbsorbed = base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
-    if (result.Entries.IsNotEmpty && onlyFirst) return isAbsorbed;
-    if (Size != null && !(Offset & Size).Contains(localPosition))
     {
+        this.Value = value;
+        this.Size = size;
+        this.Opaque = opaque;
+    }
+    #endregion
+
+    #region fields
+    public virtual T Value { get; set; }
+    public virtual Size Size { get; set; }
+    public virtual FlutterBinding.UI.Offset Offset { get; set; }
+    public virtual bool Opaque { get; set; }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Searches the subtree for annotations of type `S` at the location
+    /// `localPosition`, then adds the annotation [value] if applicable.
+    ///
+    /// This method always searches its children, and if any child returns `true`,
+    /// the remaining children are skipped. Regardless of what the children
+    /// return, this method then adds this layer's annotation if all of the
+    /// following restrictions are met:
+    ///
+    /// {@macro flutter.rendering.annotatedRegionLayer.restrictions}
+    ///
+    /// This search process respects `onlyFirst`, meaning that when `onlyFirst` is
+    /// true, the search will stop when it finds the first annotation from the
+    /// children, and the layer's own annotation is checked only when none is
+    /// given by the children.
+    ///
+    /// The return value is true if any child returns `true`, or if [opaque] is
+    /// true and the layer's annotation is added.
+    ///
+    /// For explanation of layer annotations, parameters and return value, refer
+    /// to [Layer.findAnnotations].
+    /// </Summary>
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+    {
+        bool isAbsorbed = base.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
+        if (result.Entries.IsNotEmpty && onlyFirst) return isAbsorbed;
+        if (Size != null && !(Offset & Size).Contains(localPosition))
+        {
+            return isAbsorbed;
+        }
+
+        if (T == S)
+        {
+            isAbsorbed = isAbsorbed || Opaque;
+            object untypedValue = Value;
+            S typedValue = untypedValue as S;
+            result.Add(new AnnotationEntry<S>(annotation: typedValue, localPosition: localPosition - Offset));
+        }
+
         return isAbsorbed;
     }
 
-    if (T == S)
+
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        isAbsorbed = isAbsorbed || Opaque;
-        object untypedValue = Value;
-        S typedValue = untypedValue as S;
-        result.Add(new AnnotationEntry<S>(annotation: typedValue, localPosition: localPosition - Offset));
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<T>("value", Value));
+        properties.Add(new DiagnosticsProperty<Size>("size", Size, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<Offset>("offset", Offset, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<bool>("opaque", Opaque, defaultValue: false));
     }
 
-    return isAbsorbed;
-}
 
 
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<T>("value", Value));
-    properties.Add(new DiagnosticsProperty<Size>("size", Size, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<Offset>("offset", Offset, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<bool>("opaque", Opaque, defaultValue: false));
-}
-
-
-
-#endregion
+    #endregion
 }
 
 }

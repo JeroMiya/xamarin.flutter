@@ -366,404 +366,409 @@ namespace FlutterSDK.Gestures.Tap
         #region constructors
         public TapDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), PointerDeviceKind kind = default(PointerDeviceKind))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
-    public virtual PointerDeviceKind Kind { get; set; }
-    public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// Details for [GestureTapUpCallback], such as position.
-///
-/// See also:
-///
-///  * [GestureDetector.onTapUp], which receives this information.
-///  * [TapGestureRecognizer], which passes this information to one of its callbacks.
-/// </Summary>
-public class TapUpDetails
-{
-    #region constructors
-    public TapUpDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
-public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// A base class for gesture recognizers that recognize taps.
-///
-/// Gesture recognizers take part in gesture arenas to enable potential gestures
-/// to be disambiguated from each other. This process is managed by a
-/// [GestureArenaManager].
-///
-/// A tap is defined as a sequence of events that starts with a down, followed
-/// by optional moves, then ends with an up. All move events must contain the
-/// same `buttons` as the down event, and must not be too far from the initial
-/// position. The gesture is rejected on any violation, a cancel event, or
-/// if any other recognizers wins the arena. It is accepted only when it is the
-/// last member of the arena.
-///
-/// The [BaseTapGestureRecognizer] considers all the pointers involved in the
-/// pointer event sequence as contributing to one gesture. For this reason,
-/// extra pointer interactions during a tap sequence are not recognized as
-/// additional taps. For example, down-1, down-2, up-1, up-2 produces only one
-/// tap on up-1.
-///
-/// The [BaseTapGestureRecognizer] can not be directly used, since it does not
-/// define which buttons to accept, or what to do when a tap happens. If you
-/// want to build a custom tap recognizer, extend this class by overriding
-/// [isPointerAllowed] and the handler methods.
-///
-/// See also:
-///
-///  * [TapGestureRecognizer], a ready-to-use tap recognizer that recognizes
-///    taps of the primary button and taps of the secondary button.
-///  * [ModalBarrier], a widget that uses a custom tap recognizer that accepts
-///    any buttons.
-/// </Summary>
-public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
-{
-    #region constructors
-    public BaseTapGestureRecognizer(@Object debugOwner = default(@Object))
-    : base(deadline: ConstantsDefaultClass.KPressTimeout, debugOwner: debugOwner)
-
-}
-#endregion
-
-#region fields
-internal virtual bool _SentTapDown { get; set; }
-internal virtual bool _WonArenaForPrimaryPointer { get; set; }
-internal virtual FlutterSDK.Gestures.Events.PointerDownEvent _Down { get; set; }
-internal virtual FlutterSDK.Gestures.Events.PointerUpEvent _Up { get; set; }
-public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// A pointer has contacted the screen, which might be the start of a tap.
-///
-/// This triggers after the down event, once a short timeout ([deadline]) has
-/// elapsed, or once the gesture has won the arena, whichever comes first.
-///
-/// The parameter `down` is the down event of the primary pointer that started
-/// the tap sequence.
-///
-/// If this recognizer doesn't win the arena, [handleTapCancel] is called next.
-/// Otherwise, [handleTapUp] is called next.
-/// </Summary>
-public virtual void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent))
-{
-}
-
-
-/// <Summary>
-/// A pointer has stopped contacting the screen, which is recognized as a tap.
-///
-/// This triggers on the up event, if the recognizer wins the arena with it
-/// or has previously won.
-///
-/// The parameter `down` is the down event of the primary pointer that started
-/// the tap sequence, and `up` is the up event that ended the tap sequence.
-///
-/// If this recognizer doesn't win the arena, [handleTapCancel] is called
-/// instead.
-/// </Summary>
-public virtual void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent))
-{
-}
-
-
-/// <Summary>
-/// A pointer that previously triggered [handleTapDown] will not end up
-/// causing a tap.
-///
-/// This triggers once the gesture loses the arena, if [handleTapDown] has
-/// been previously triggered.
-///
-/// The parameter `down` is the down event of the primary pointer that started
-/// the tap sequence; `cancel` is the cancel event, which might be null;
-/// `reason` is a short description of the cause if `cancel` is null, which
-/// can be "forced" if other gestures won the arena, or "spontaneous"
-/// otherwise.
-///
-/// If this recognizer wins the arena, [handleTapUp] is called instead.
-/// </Summary>
-public virtual void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string))
-{
-}
-
-
-public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
-{
-
-    if (State == GestureRecognizerState.Ready)
-    {
-        _Down = @event;
-    }
-
-    if (_Down != null)
-    {
-        base.AddAllowedPointer(@event);
-    }
-
-}
-
-
-
-
-public new void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4))
-{
-
-    base.StartTrackingPointer(pointer, transform);
-}
-
-
-
-
-public new void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-    if (@event is PointerUpEvent)
-    {
-        _Up = ((PointerUpEvent)@event);
-        _CheckUp();
-    }
-    else if (@event is PointerCancelEvent)
-    {
-        Resolve(GestureDisposition.Rejected);
-        if (_SentTapDown)
         {
-            _CheckCancel(((PointerCancelEvent)@event), "");
+            this.GlobalPosition = globalPosition;
+            this.Kind = kind;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual PointerDeviceKind Kind { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Details for [GestureTapUpCallback], such as position.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTapUp], which receives this information.
+    ///  * [TapGestureRecognizer], which passes this information to one of its callbacks.
+    /// </Summary>
+    public class TapUpDetails
+    {
+        #region constructors
+        public TapUpDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.GlobalPosition = globalPosition;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A base class for gesture recognizers that recognize taps.
+    ///
+    /// Gesture recognizers take part in gesture arenas to enable potential gestures
+    /// to be disambiguated from each other. This process is managed by a
+    /// [GestureArenaManager].
+    ///
+    /// A tap is defined as a sequence of events that starts with a down, followed
+    /// by optional moves, then ends with an up. All move events must contain the
+    /// same `buttons` as the down event, and must not be too far from the initial
+    /// position. The gesture is rejected on any violation, a cancel event, or
+    /// if any other recognizers wins the arena. It is accepted only when it is the
+    /// last member of the arena.
+    ///
+    /// The [BaseTapGestureRecognizer] considers all the pointers involved in the
+    /// pointer event sequence as contributing to one gesture. For this reason,
+    /// extra pointer interactions during a tap sequence are not recognized as
+    /// additional taps. For example, down-1, down-2, up-1, up-2 produces only one
+    /// tap on up-1.
+    ///
+    /// The [BaseTapGestureRecognizer] can not be directly used, since it does not
+    /// define which buttons to accept, or what to do when a tap happens. If you
+    /// want to build a custom tap recognizer, extend this class by overriding
+    /// [isPointerAllowed] and the handler methods.
+    ///
+    /// See also:
+    ///
+    ///  * [TapGestureRecognizer], a ready-to-use tap recognizer that recognizes
+    ///    taps of the primary button and taps of the secondary button.
+    ///  * [ModalBarrier], a widget that uses a custom tap recognizer that accepts
+    ///    any buttons.
+    /// </Summary>
+    public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
+    {
+        #region constructors
+        public BaseTapGestureRecognizer(@Object debugOwner = default(@Object))
+        : base(deadline: ConstantsDefaultClass.KPressTimeout, debugOwner: debugOwner)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _SentTapDown { get; set; }
+        internal virtual bool _WonArenaForPrimaryPointer { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerDownEvent _Down { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerUpEvent _Up { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// A pointer has contacted the screen, which might be the start of a tap.
+        ///
+        /// This triggers after the down event, once a short timeout ([deadline]) has
+        /// elapsed, or once the gesture has won the arena, whichever comes first.
+        ///
+        /// The parameter `down` is the down event of the primary pointer that started
+        /// the tap sequence.
+        ///
+        /// If this recognizer doesn't win the arena, [handleTapCancel] is called next.
+        /// Otherwise, [handleTapUp] is called next.
+        /// </Summary>
+        public virtual void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent))
+        {
         }
 
-        _Reset();
+
+        /// <Summary>
+        /// A pointer has stopped contacting the screen, which is recognized as a tap.
+        ///
+        /// This triggers on the up event, if the recognizer wins the arena with it
+        /// or has previously won.
+        ///
+        /// The parameter `down` is the down event of the primary pointer that started
+        /// the tap sequence, and `up` is the up event that ended the tap sequence.
+        ///
+        /// If this recognizer doesn't win the arena, [handleTapCancel] is called
+        /// instead.
+        /// </Summary>
+        public virtual void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent))
+        {
+        }
+
+
+        /// <Summary>
+        /// A pointer that previously triggered [handleTapDown] will not end up
+        /// causing a tap.
+        ///
+        /// This triggers once the gesture loses the arena, if [handleTapDown] has
+        /// been previously triggered.
+        ///
+        /// The parameter `down` is the down event of the primary pointer that started
+        /// the tap sequence; `cancel` is the cancel event, which might be null;
+        /// `reason` is a short description of the cause if `cancel` is null, which
+        /// can be "forced" if other gestures won the arena, or "spontaneous"
+        /// otherwise.
+        ///
+        /// If this recognizer wins the arena, [handleTapUp] is called instead.
+        /// </Summary>
+        public virtual void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string))
+        {
+        }
+
+
+        public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+        {
+
+            if (State == GestureRecognizerState.Ready)
+            {
+                _Down = @event;
+            }
+
+            if (_Down != null)
+            {
+                base.AddAllowedPointer(@event);
+            }
+
+        }
+
+
+
+
+        public new void StartTrackingPointer(int pointer, Matrix4 transform = default(Matrix4))
+        {
+
+            base.StartTrackingPointer(pointer, transform);
+        }
+
+
+
+
+        public new void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+            if (@event is PointerUpEvent)
+            {
+                _Up = ((PointerUpEvent)@event);
+                _CheckUp();
+            }
+            else if (@event is PointerCancelEvent)
+            {
+                Resolve(GestureDisposition.Rejected);
+                if (_SentTapDown)
+                {
+                    _CheckCancel(((PointerCancelEvent)@event), "");
+                }
+
+                _Reset();
+            }
+            else if (@event.Buttons != _Down.Buttons)
+            {
+                Resolve(GestureDisposition.Rejected);
+                StopTrackingPointer(PrimaryPointer);
+            }
+
+        }
+
+
+
+
+        public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+        {
+            if (_WonArenaForPrimaryPointer && disposition == GestureDisposition.Rejected)
+            {
+
+                _CheckCancel(null, "spontaneous");
+                _Reset();
+            }
+
+            base.Resolve(disposition);
+        }
+
+
+
+
+        public new void DidExceedDeadline()
+        {
+            _CheckDown();
+        }
+
+
+
+
+        public new void AcceptGesture(int pointer)
+        {
+            base.AcceptGesture(pointer);
+            if (pointer == PrimaryPointer)
+            {
+                _CheckDown();
+                _WonArenaForPrimaryPointer = true;
+                _CheckUp();
+            }
+
+        }
+
+
+
+
+        public new void RejectGesture(int pointer)
+        {
+            base.RejectGesture(pointer);
+            if (pointer == PrimaryPointer)
+            {
+
+                if (_SentTapDown) _CheckCancel(null, "forced");
+                _Reset();
+            }
+
+        }
+
+
+
+
+        private void _CheckDown()
+        {
+            if (_SentTapDown)
+            {
+                return;
+            }
+
+            HandleTapDown(down: _Down);
+            _SentTapDown = true;
+        }
+
+
+
+
+        private void _CheckUp()
+        {
+            if (!_WonArenaForPrimaryPointer || _Up == null)
+            {
+                return;
+            }
+
+            HandleTapUp(down: _Down, up: _Up);
+            _Reset();
+        }
+
+
+
+
+        private void _CheckCancel(FlutterSDK.Gestures.Events.PointerCancelEvent @event, string note)
+        {
+            HandleTapCancel(down: _Down, cancel: @event, reason: note);
+        }
+
+
+
+
+        private void _Reset()
+        {
+            _SentTapDown = false;
+            _WonArenaForPrimaryPointer = false;
+            _Up = null;
+            _Down = null;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagProperty("wonArenaForPrimaryPointer", value: _WonArenaForPrimaryPointer, ifTrue: "won arena"));
+            properties.Add(new DiagnosticsProperty<Offset>("finalPosition", _Up?.Position, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Offset>("finalLocalPosition", _Up?.LocalPosition, defaultValue: _Up?.Position));
+            properties.Add(new DiagnosticsProperty<int>("button", _Down?.Buttons, defaultValue: null));
+            properties.Add(new FlagProperty("sentTapDown", value: _SentTapDown, ifTrue: "sent tap down"));
+        }
+
+
+
+        #endregion
     }
-    else if (@event.Buttons != _Down.Buttons)
+
+
+    /// <Summary>
+    /// Recognizes taps.
+    ///
+    /// Gesture recognizers take part in gesture arenas to enable potential gestures
+    /// to be disambiguated from each other. This process is managed by a
+    /// [GestureArenaManager].
+    ///
+    /// [TapGestureRecognizer] considers all the pointers involved in the pointer
+    /// event sequence as contributing to one gesture. For this reason, extra
+    /// pointer interactions during a tap sequence are not recognized as additional
+    /// taps. For example, down-1, down-2, up-1, up-2 produces only one tap on up-1.
+    ///
+    /// [TapGestureRecognizer] competes on pointer events of [kPrimaryButton] only
+    /// when it has at least one non-null `onTap*` callback, and events of
+    /// [kSecondaryButton] only when it has at least one non-null `onSecondaryTap*`
+    /// callback. If it has no callbacks, it is a no-op.
+    ///
+    /// See also:
+    ///
+    ///  * [GestureDetector.onTap], which uses this recognizer.
+    ///  * [MultiTapGestureRecognizer]
+    /// </Summary>
+    public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
     {
-        Resolve(GestureDisposition.Rejected);
-        StopTrackingPointer(PrimaryPointer);
+        #region constructors
+        public TapGestureRecognizer(@Object debugOwner = default(@Object))
+        : base(debugOwner: debugOwner)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
+        public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+        {
+            switch (@event.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapDown == null && OnTap == null && OnTapUp == null && OnTapCancel == null) return false; break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapDown == null && OnSecondaryTapUp == null && OnSecondaryTapCancel == null) return false; break; default: return false; }
+            return base.IsPointerAllowed(@event);
+        }
+
+
+
+
+        public new void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent))
+        {
+            TapDownDetails details = new TapDownDetails(globalPosition: down.Position, localPosition: down.LocalPosition, kind: GetKindForPointer(down.Pointer));
+            switch (down.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapDown != null) InvokeCallback("onTapDown", () => =>OnTapDown(details)); break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapDown != null) InvokeCallback("onSecondaryTapDown", () => =>OnSecondaryTapDown(details)); break; default: }
+        }
+
+
+
+
+        public new void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent))
+        {
+            TapUpDetails details = new TapUpDetails(globalPosition: up.Position, localPosition: up.LocalPosition);
+            switch (down.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapUp != null) InvokeCallback("onTapUp", () => =>OnTapUp(details)); if (OnTap != null) InvokeCallback("onTap", OnTap); break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapUp != null) InvokeCallback("onSecondaryTapUp", () => =>OnSecondaryTapUp(details)); break; default: }
+        }
+
+
+
+
+        public new void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string))
+        {
+            string note = reason == "" ? reason : $"'{reason} '";
+            switch (down.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapCancel != null) InvokeCallback($"'{note}onTapCancel'", OnTapCancel); break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapCancel != null) InvokeCallback($"'{note}onSecondaryTapCancel'", OnSecondaryTapCancel); break; default: }
+        }
+
+
+
+        #endregion
     }
-
-}
-
-
-
-
-public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
-{
-    if (_WonArenaForPrimaryPointer && disposition == GestureDisposition.Rejected)
-    {
-
-        _CheckCancel(null, "spontaneous");
-        _Reset();
-    }
-
-    base.Resolve(disposition);
-}
-
-
-
-
-public new void DidExceedDeadline()
-{
-    _CheckDown();
-}
-
-
-
-
-public new void AcceptGesture(int pointer)
-{
-    base.AcceptGesture(pointer);
-    if (pointer == PrimaryPointer)
-    {
-        _CheckDown();
-        _WonArenaForPrimaryPointer = true;
-        _CheckUp();
-    }
-
-}
-
-
-
-
-public new void RejectGesture(int pointer)
-{
-    base.RejectGesture(pointer);
-    if (pointer == PrimaryPointer)
-    {
-
-        if (_SentTapDown) _CheckCancel(null, "forced");
-        _Reset();
-    }
-
-}
-
-
-
-
-private void _CheckDown()
-{
-    if (_SentTapDown)
-    {
-        return;
-    }
-
-    HandleTapDown(down: _Down);
-    _SentTapDown = true;
-}
-
-
-
-
-private void _CheckUp()
-{
-    if (!_WonArenaForPrimaryPointer || _Up == null)
-    {
-        return;
-    }
-
-    HandleTapUp(down: _Down, up: _Up);
-    _Reset();
-}
-
-
-
-
-private void _CheckCancel(FlutterSDK.Gestures.Events.PointerCancelEvent @event, string note)
-{
-    HandleTapCancel(down: _Down, cancel: @event, reason: note);
-}
-
-
-
-
-private void _Reset()
-{
-    _SentTapDown = false;
-    _WonArenaForPrimaryPointer = false;
-    _Up = null;
-    _Down = null;
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new FlagProperty("wonArenaForPrimaryPointer", value: _WonArenaForPrimaryPointer, ifTrue: "won arena"));
-    properties.Add(new DiagnosticsProperty<Offset>("finalPosition", _Up?.Position, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<Offset>("finalLocalPosition", _Up?.LocalPosition, defaultValue: _Up?.Position));
-    properties.Add(new DiagnosticsProperty<int>("button", _Down?.Buttons, defaultValue: null));
-    properties.Add(new FlagProperty("sentTapDown", value: _SentTapDown, ifTrue: "sent tap down"));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Recognizes taps.
-///
-/// Gesture recognizers take part in gesture arenas to enable potential gestures
-/// to be disambiguated from each other. This process is managed by a
-/// [GestureArenaManager].
-///
-/// [TapGestureRecognizer] considers all the pointers involved in the pointer
-/// event sequence as contributing to one gesture. For this reason, extra
-/// pointer interactions during a tap sequence are not recognized as additional
-/// taps. For example, down-1, down-2, up-1, up-2 produces only one tap on up-1.
-///
-/// [TapGestureRecognizer] competes on pointer events of [kPrimaryButton] only
-/// when it has at least one non-null `onTap*` callback, and events of
-/// [kSecondaryButton] only when it has at least one non-null `onSecondaryTap*`
-/// callback. If it has no callbacks, it is a no-op.
-///
-/// See also:
-///
-///  * [GestureDetector.onTap], which uses this recognizer.
-///  * [MultiTapGestureRecognizer]
-/// </Summary>
-public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
-{
-    #region constructors
-    public TapGestureRecognizer(@Object debugOwner = default(@Object))
-    : base(debugOwner: debugOwner)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnTapCancel { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnSecondaryTapDown { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
-public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
-public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
-{
-    switch (@event.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapDown == null && OnTap == null && OnTapUp == null && OnTapCancel == null) return false; break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapDown == null && OnSecondaryTapUp == null && OnSecondaryTapCancel == null) return false; break; default: return false; }
-    return base.IsPointerAllowed(@event);
-}
-
-
-
-
-public new void HandleTapDown(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent))
-{
-    TapDownDetails details = new TapDownDetails(globalPosition: down.Position, localPosition: down.LocalPosition, kind: GetKindForPointer(down.Pointer));
-    switch (down.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapDown != null) InvokeCallback("onTapDown", () => =>OnTapDown(details)); break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapDown != null) InvokeCallback("onSecondaryTapDown", () => =>OnSecondaryTapDown(details)); break; default: }
-}
-
-
-
-
-public new void HandleTapUp(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerUpEvent up = default(FlutterSDK.Gestures.Events.PointerUpEvent))
-{
-    TapUpDetails details = new TapUpDetails(globalPosition: up.Position, localPosition: up.LocalPosition);
-    switch (down.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapUp != null) InvokeCallback("onTapUp", () => =>OnTapUp(details)); if (OnTap != null) InvokeCallback("onTap", OnTap); break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapUp != null) InvokeCallback("onSecondaryTapUp", () => =>OnSecondaryTapUp(details)); break; default: }
-}
-
-
-
-
-public new void HandleTapCancel(FlutterSDK.Gestures.Events.PointerDownEvent down = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Events.PointerCancelEvent cancel = default(FlutterSDK.Gestures.Events.PointerCancelEvent), string reason = default(string))
-{
-    string note = reason == "" ? reason : $"'{reason} '";
-    switch (down.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnTapCancel != null) InvokeCallback($"'{note}onTapCancel'", OnTapCancel); break; case EventsDefaultClass.KSecondaryButton: if (OnSecondaryTapCancel != null) InvokeCallback($"'{note}onSecondaryTapCancel'", OnSecondaryTapCancel); break; default: }
-}
-
-
-
-#endregion
-}
 
 }
