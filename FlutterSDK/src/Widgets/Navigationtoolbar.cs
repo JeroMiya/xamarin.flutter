@@ -446,122 +446,130 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
         #region constructors
         public NavigationToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool centerMiddle = true, double middleSpacing = default(double))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual double KMiddleSpacing { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-    public virtual bool CenterMiddle { get; set; }
-    public virtual double MiddleSpacing { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
-        return new CustomMultiChildLayout(@delegate: new _ToolbarLayout(centerMiddle: CenterMiddle, middleSpacing: MiddleSpacing, textDirection: textDirection), children: new List<Widget>() { });
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ToolbarLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
-{
-    #region constructors
-    public _ToolbarLayout(bool centerMiddle = default(bool), double middleSpacing = default(double), TextDirection textDirection = default(TextDirection))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual bool CenterMiddle { get; set; }
-public virtual double MiddleSpacing { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-#endregion
-
-#region methods
-
-public new void PerformLayout(Size size)
-{
-    double leadingWidth = 0.0;
-    double trailingWidth = 0.0;
-    if (HasChild(_ToolbarSlot.Leading))
-    {
-        BoxConstraints constraints = new BoxConstraints(minWidth: 0.0, maxWidth: size.Width / 3.0, minHeight: size.Height, maxHeight: size.Height);
-        leadingWidth = LayoutChild(_ToolbarSlot.Leading, constraints).Width;
-        double leadingX = default(double);
-        switch (TextDirection) { case TextDirection.Rtl: leadingX = size.Width - leadingWidth; break; case TextDirection.Ltr: leadingX = 0.0; break; }
-        PositionChild(_ToolbarSlot.Leading, new Offset(leadingX, 0.0));
-    }
-
-    if (HasChild(_ToolbarSlot.Trailing))
-    {
-        BoxConstraints constraints = BoxConstraints.Loose(size);
-        Size trailingSize = LayoutChild(_ToolbarSlot.Trailing, constraints);
-        double trailingX = default(double);
-        switch (TextDirection) { case TextDirection.Rtl: trailingX = 0.0; break; case TextDirection.Ltr: trailingX = size.Width - trailingSize.Width; break; }
-        double trailingY = (size.Height - trailingSize.Height) / 2.0;
-        trailingWidth = trailingSize.Width;
-        PositionChild(_ToolbarSlot.Trailing, new Offset(trailingX, trailingY));
-    }
-
-    if (HasChild(_ToolbarSlot.Middle))
-    {
-        double maxWidth = Math.Dart:mathDefaultClass.Max(size.Width - leadingWidth - trailingWidth - MiddleSpacing * 2.0, 0.0);
-        BoxConstraints constraints = BoxConstraints.Loose(size).CopyWith(maxWidth: maxWidth);
-        Size middleSize = LayoutChild(_ToolbarSlot.Middle, constraints);
-        double middleStartMargin = leadingWidth + MiddleSpacing;
-        double middleStart = middleStartMargin;
-        double middleY = (size.Height - middleSize.Height) / 2.0;
-        if (CenterMiddle)
         {
-            middleStart = (size.Width - middleSize.Width) / 2.0;
-            if (middleStart + middleSize.Width > size.Width - trailingWidth) middleStart = size.Width - trailingWidth - middleSize.Width; else if (middleStart < middleStartMargin) middleStart = middleStartMargin;
+            this.Leading = leading;
+            this.Middle = middle;
+            this.Trailing = trailing;
+            this.CenterMiddle = centerMiddle;
+            this.MiddleSpacing = middleSpacing;
+        }
+        #endregion
+
+        #region fields
+        public virtual double KMiddleSpacing { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual bool CenterMiddle { get; set; }
+        public virtual double MiddleSpacing { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
+            return new CustomMultiChildLayout(@delegate: new _ToolbarLayout(centerMiddle: CenterMiddle, middleSpacing: MiddleSpacing, textDirection: textDirection), children: new List<Widget>() { });
         }
 
-        double middleX = default(double);
-        switch (TextDirection) { case TextDirection.Rtl: middleX = size.Width - middleSize.Width - middleStart; break; case TextDirection.Ltr: middleX = middleStart; break; }
-        PositionChild(_ToolbarSlot.Middle, new Offset(middleX, middleY));
+
+
+        #endregion
     }
 
-}
+
+    public class _ToolbarLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
+    {
+        #region constructors
+        public _ToolbarLayout(bool centerMiddle = default(bool), double middleSpacing = default(double), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.CenterMiddle = centerMiddle;
+            this.MiddleSpacing = middleSpacing;
+            this.TextDirection = textDirection;
+        }
+        #endregion
+
+        #region fields
+        public virtual bool CenterMiddle { get; set; }
+        public virtual double MiddleSpacing { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout(Size size)
+        {
+            double leadingWidth = 0.0;
+            double trailingWidth = 0.0;
+            if (HasChild(_ToolbarSlot.Leading))
+            {
+                BoxConstraints constraints = new BoxConstraints(minWidth: 0.0, maxWidth: size.Width / 3.0, minHeight: size.Height, maxHeight: size.Height);
+                leadingWidth = LayoutChild(_ToolbarSlot.Leading, constraints).Width;
+                double leadingX = default(double);
+                switch (TextDirection) { case TextDirection.Rtl: leadingX = size.Width - leadingWidth; break; case TextDirection.Ltr: leadingX = 0.0; break; }
+                PositionChild(_ToolbarSlot.Leading, new Offset(leadingX, 0.0));
+            }
+
+            if (HasChild(_ToolbarSlot.Trailing))
+            {
+                BoxConstraints constraints = BoxConstraints.Loose(size);
+                Size trailingSize = LayoutChild(_ToolbarSlot.Trailing, constraints);
+                double trailingX = default(double);
+                switch (TextDirection) { case TextDirection.Rtl: trailingX = 0.0; break; case TextDirection.Ltr: trailingX = size.Width - trailingSize.Width; break; }
+                double trailingY = (size.Height - trailingSize.Height) / 2.0;
+                trailingWidth = trailingSize.Width;
+                PositionChild(_ToolbarSlot.Trailing, new Offset(trailingX, trailingY));
+            }
+
+            if (HasChild(_ToolbarSlot.Middle))
+            {
+                double maxWidth = Math.Dart:mathDefaultClass.Max(size.Width - leadingWidth - trailingWidth - MiddleSpacing * 2.0, 0.0);
+                BoxConstraints constraints = BoxConstraints.Loose(size).CopyWith(maxWidth: maxWidth);
+                Size middleSize = LayoutChild(_ToolbarSlot.Middle, constraints);
+                double middleStartMargin = leadingWidth + MiddleSpacing;
+                double middleStart = middleStartMargin;
+                double middleY = (size.Height - middleSize.Height) / 2.0;
+                if (CenterMiddle)
+                {
+                    middleStart = (size.Width - middleSize.Width) / 2.0;
+                    if (middleStart + middleSize.Width > size.Width - trailingWidth) middleStart = size.Width - trailingWidth - middleSize.Width; else if (middleStart < middleStartMargin) middleStart = middleStartMargin;
+                }
+
+                double middleX = default(double);
+                switch (TextDirection) { case TextDirection.Rtl: middleX = size.Width - middleSize.Width - middleStart; break; case TextDirection.Ltr: middleX = middleStart; break; }
+                PositionChild(_ToolbarSlot.Middle, new Offset(middleX, middleY));
+            }
+
+        }
 
 
 
 
-public new bool ShouldRelayout(FlutterSDK.Widgets.Navigationtoolbar._ToolbarLayout oldDelegate)
-{
-    return oldDelegate.CenterMiddle != CenterMiddle || oldDelegate.MiddleSpacing != MiddleSpacing || oldDelegate.TextDirection != TextDirection;
-}
+        public new bool ShouldRelayout(FlutterSDK.Widgets.Navigationtoolbar._ToolbarLayout oldDelegate)
+        {
+            return oldDelegate.CenterMiddle != CenterMiddle || oldDelegate.MiddleSpacing != MiddleSpacing || oldDelegate.TextDirection != TextDirection;
+        }
 
 
-public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate)
-{
-    return oldDelegate.CenterMiddle != CenterMiddle || oldDelegate.MiddleSpacing != MiddleSpacing || oldDelegate.TextDirection != TextDirection;
-}
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate oldDelegate)
+        {
+            return oldDelegate.CenterMiddle != CenterMiddle || oldDelegate.MiddleSpacing != MiddleSpacing || oldDelegate.TextDirection != TextDirection;
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 
-public enum _ToolbarSlot
-{
+    public enum _ToolbarSlot
+    {
 
-    Leading,
-    Middle,
-    Trailing,
-}
+        Leading,
+        Middle,
+        Trailing,
+    }
 
 }

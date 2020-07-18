@@ -448,118 +448,119 @@ namespace FlutterSDK.Rendering.Performanceoverlay
         #region constructors
         public RenderPerformanceOverlay(int optionsMask = 0, int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
         : base()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    internal virtual int _OptionsMask { get; set; }
-    internal virtual int _RasterizerThreshold { get; set; }
-    internal virtual bool _CheckerboardRasterCacheImages { get; set; }
-    internal virtual bool _CheckerboardOffscreenLayers { get; set; }
-    public virtual int OptionsMask { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int RasterizerThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool CheckerboardRasterCacheImages { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool CheckerboardOffscreenLayers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _IntrinsicHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        internal virtual int _OptionsMask { get; set; }
+        internal virtual int _RasterizerThreshold { get; set; }
+        internal virtual bool _CheckerboardRasterCacheImages { get; set; }
+        internal virtual bool _CheckerboardOffscreenLayers { get; set; }
+        public virtual int OptionsMask { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int RasterizerThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CheckerboardRasterCacheImages { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CheckerboardOffscreenLayers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _IntrinsicHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    public new double ComputeMinIntrinsicWidth(double height)
-    {
-        return 0.0;
+        #region methods
+
+        public new double ComputeMinIntrinsicWidth(double height)
+        {
+            return 0.0;
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicWidth(double height)
+        {
+            return 0.0;
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicHeight(double width)
+        {
+            return _IntrinsicHeight;
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicHeight(double width)
+        {
+            return _IntrinsicHeight;
+        }
+
+
+
+
+        public new void PerformResize()
+        {
+            Size = Constraints.Constrain(new Size(Dart: coreDefaultClass.Double.Infinity, _IntrinsicHeight));
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+
+            context.AddLayer(new PerformanceOverlayLayer(overlayRect: Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, Size.Height), optionsMask: OptionsMask, rasterizerThreshold: RasterizerThreshold, checkerboardRasterCacheImages: CheckerboardRasterCacheImages, checkerboardOffscreenLayers: CheckerboardOffscreenLayers));
+        }
+
+
+
+        #endregion
     }
 
-
-
-
-    public new double ComputeMaxIntrinsicWidth(double height)
-    {
-        return 0.0;
-    }
-
-
-
-
-    public new double ComputeMinIntrinsicHeight(double width)
-    {
-        return _IntrinsicHeight;
-    }
-
-
-
-
-    public new double ComputeMaxIntrinsicHeight(double width)
-    {
-        return _IntrinsicHeight;
-    }
-
-
-
-
-    public new void PerformResize()
-    {
-        Size = Constraints.Constrain(new Size(Dart: coreDefaultClass.Double.Infinity, _IntrinsicHeight));
-    }
-
-
-
-
-    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-
-        context.AddLayer(new PerformanceOverlayLayer(overlayRect: Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, Size.Height), optionsMask: OptionsMask, rasterizerThreshold: RasterizerThreshold, checkerboardRasterCacheImages: CheckerboardRasterCacheImages, checkerboardOffscreenLayers: CheckerboardOffscreenLayers));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// The options that control whether the performance overlay displays certain
-/// aspects of the compositor.
-/// </Summary>
-public enum PerformanceOverlayOption
-{
 
     /// <Summary>
-    /// Display the frame time and FPS of the last frame rendered. This field is
-    /// updated every frame.
-    ///
-    /// This is the time spent by the rasterizer as it tries
-    /// to convert the layer tree obtained from the widgets into OpenGL commands
-    /// and tries to flush them onto the screen. When the total time taken by this
-    /// step exceeds the frame slice, a frame is lost.
+    /// The options that control whether the performance overlay displays certain
+    /// aspects of the compositor.
     /// </Summary>
-    DisplayRasterizerStatistics,
-    /// <Summary>
-    /// Display the rasterizer frame times as they change over a set period of
-    /// time in the form of a graph. The y axis of the graph denotes the total
-    /// time spent by the rasterizer as a fraction of the total frame slice. When
-    /// the bar turns red, a frame is lost.
-    /// </Summary>
-    VisualizeRasterizerStatistics,
-    /// <Summary>
-    /// Display the frame time and FPS at which the interface can construct a
-    /// layer tree for the rasterizer (whose behavior is described above) to
-    /// consume.
-    ///
-    /// This involves all layout, animations, etc. When the total time taken by
-    /// this step exceeds the frame slice, a frame is lost.
-    /// </Summary>
-    DisplayEngineStatistics,
-    /// <Summary>
-    /// Display the engine frame times as they change over a set period of time
-    /// in the form of a graph. The y axis of the graph denotes the total time
-    /// spent by the engine as a fraction of the total frame slice. When the bar
-    /// turns red, a frame is lost.
-    /// </Summary>
-    VisualizeEngineStatistics,
-}
+    public enum PerformanceOverlayOption
+    {
+
+        /// <Summary>
+        /// Display the frame time and FPS of the last frame rendered. This field is
+        /// updated every frame.
+        ///
+        /// This is the time spent by the rasterizer as it tries
+        /// to convert the layer tree obtained from the widgets into OpenGL commands
+        /// and tries to flush them onto the screen. When the total time taken by this
+        /// step exceeds the frame slice, a frame is lost.
+        /// </Summary>
+        DisplayRasterizerStatistics,
+        /// <Summary>
+        /// Display the rasterizer frame times as they change over a set period of
+        /// time in the form of a graph. The y axis of the graph denotes the total
+        /// time spent by the rasterizer as a fraction of the total frame slice. When
+        /// the bar turns red, a frame is lost.
+        /// </Summary>
+        VisualizeRasterizerStatistics,
+        /// <Summary>
+        /// Display the frame time and FPS at which the interface can construct a
+        /// layer tree for the rasterizer (whose behavior is described above) to
+        /// consume.
+        ///
+        /// This involves all layout, animations, etc. When the total time taken by
+        /// this step exceeds the frame slice, a frame is lost.
+        /// </Summary>
+        DisplayEngineStatistics,
+        /// <Summary>
+        /// Display the engine frame times as they change over a set period of time
+        /// in the form of a graph. The y axis of the graph denotes the total time
+        /// spent by the engine as a fraction of the total frame slice. When the bar
+        /// turns red, a frame is lost.
+        /// </Summary>
+        VisualizeEngineStatistics,
+    }
 
 }

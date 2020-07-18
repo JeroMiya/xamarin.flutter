@@ -437,37 +437,40 @@ namespace FlutterSDK.Widgets.Title
         #region constructors
         public Title(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string title = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.TitleValue = title;
+            this.Color = color;
+            this.Child = child;
+        }
+        #endregion
 
-    #region fields
-    public virtual string TitleValue { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    #endregion
+        #region fields
+        public virtual string TitleValue { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        SystemchromeDefaultClass.SystemChrome.SetApplicationSwitcherDescription(new ApplicationSwitcherDescription(label: Title, primaryColor: Color.Value));
-        return Child;
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            SystemchromeDefaultClass.SystemChrome.SetApplicationSwitcherDescription(new ApplicationSwitcherDescription(label: Title, primaryColor: Color.Value));
+            return Child;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new StringProperty("title", Title, defaultValue: ""));
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new StringProperty("title", Title, defaultValue: ""));
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
 
 }

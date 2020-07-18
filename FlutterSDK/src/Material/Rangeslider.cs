@@ -482,651 +482,674 @@ namespace FlutterSDK.Material.Rangeslider
         #region constructors
         public RangeSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), double min = 0.0, double max = 1.0, int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
-    public virtual double Min { get; set; }
-    public virtual double Max { get; set; }
-    public virtual int Divisions { get; set; }
-    public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
-    public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-    public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
-    public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
-    internal virtual double _MinTouchTargetWidth { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Rangeslider._RangeSliderState CreateState() => new _RangeSliderState();
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DoubleProperty("valueStart", Values.Start));
-        properties.Add(new DoubleProperty("valueEnd", Values.End));
-        properties.Add(new ObjectFlagProperty<ValueChanged<RangeValues>>("onChanged", OnChanged, ifNull: "disabled"));
-        properties.Add(ObjectFlagProperty<ValueChanged<RangeValues>>.Has("onChangeStart", OnChangeStart));
-        properties.Add(ObjectFlagProperty<ValueChanged<RangeValues>>.Has("onChangeEnd", OnChangeEnd));
-        properties.Add(new DoubleProperty("min", Min));
-        properties.Add(new DoubleProperty("max", Max));
-        properties.Add(new IntProperty("divisions", Divisions));
-        properties.Add(new StringProperty("labelStart", Labels?.Start));
-        properties.Add(new StringProperty("labelEnd", Labels?.End));
-        properties.Add(new ColorProperty("activeColor", ActiveColor));
-        properties.Add(new ColorProperty("inactiveColor", InactiveColor));
-        properties.Add(ObjectFlagProperty<ValueChanged<RangeValues>>.Has("semanticFormatterCallback", SemanticFormatterCallback));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _RangeSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Rangeslider.RangeSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _RangeSliderState()
-    { }
-    #endregion
-
-    #region fields
-    public virtual TimeSpan EnableAnimationDuration { get; set; }
-    public virtual TimeSpan ValueIndicatorAnimationDuration { get; set; }
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController { get; set; }
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ValueIndicatorController { get; set; }
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EnableController { get; set; }
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController StartPositionController { get; set; }
-    public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EndPositionController { get; set; }
-    public virtual Timer InteractionTimer { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector _DefaultRangeThumbSelector { get; set; }
-    internal virtual double _DefaultTrackHeight { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTrackShape _DefaultTrackShape { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape _DefaultTickMarkShape { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultOverlayShape { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.RangeSliderThumbShape _DefaultThumbShape { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape _DefaultValueIndicatorShape { get; set; }
-    internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator { get; set; }
-    internal virtual double _DefaultMinThumbSeparation { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        OverlayController = new AnimationController(duration: ConstantsDefaultClass.KRadialReactionDuration, vsync: this);
-        ValueIndicatorController = new AnimationController(duration: ValueIndicatorAnimationDuration, vsync: this);
-        EnableController = new AnimationController(duration: EnableAnimationDuration, vsync: this, value: Widget.OnChanged != null ? 1.0 : 0.0);
-        StartPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.Start));
-        EndPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.End));
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Material.Rangeslider.RangeSlider oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (oldWidget.OnChanged == Widget.OnChanged) return;
-        bool wasEnabled = oldWidget.OnChanged != null;
-        bool isEnabled = Widget.OnChanged != null;
-        if (wasEnabled != isEnabled)
         {
-            if (isEnabled)
+            this.Values = values;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.Min = min;
+            this.Max = max;
+            this.Divisions = divisions;
+            this.Labels = labels;
+            this.ActiveColor = activeColor;
+            this.InactiveColor = inactiveColor;
+            this.SemanticFormatterCallback = semanticFormatterCallback;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        public virtual double Min { get; set; }
+        public virtual double Max { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
+        internal virtual double _MinTouchTargetWidth { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Rangeslider._RangeSliderState CreateState() => new _RangeSliderState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DoubleProperty("valueStart", Values.Start));
+            properties.Add(new DoubleProperty("valueEnd", Values.End));
+            properties.Add(new ObjectFlagProperty<ValueChanged<RangeValues>>("onChanged", OnChanged, ifNull: "disabled"));
+            properties.Add(ObjectFlagProperty<ValueChanged<RangeValues>>.Has("onChangeStart", OnChangeStart));
+            properties.Add(ObjectFlagProperty<ValueChanged<RangeValues>>.Has("onChangeEnd", OnChangeEnd));
+            properties.Add(new DoubleProperty("min", Min));
+            properties.Add(new DoubleProperty("max", Max));
+            properties.Add(new IntProperty("divisions", Divisions));
+            properties.Add(new StringProperty("labelStart", Labels?.Start));
+            properties.Add(new StringProperty("labelEnd", Labels?.End));
+            properties.Add(new ColorProperty("activeColor", ActiveColor));
+            properties.Add(new ColorProperty("inactiveColor", InactiveColor));
+            properties.Add(ObjectFlagProperty<ValueChanged<RangeValues>>.Has("semanticFormatterCallback", SemanticFormatterCallback));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _RangeSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Rangeslider.RangeSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _RangeSliderState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual TimeSpan EnableAnimationDuration { get; set; }
+        public virtual TimeSpan ValueIndicatorAnimationDuration { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController ValueIndicatorController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EnableController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController StartPositionController { get; set; }
+        public virtual FlutterSDK.Animation.Animationcontroller.AnimationController EndPositionController { get; set; }
+        public virtual Timer InteractionTimer { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector _DefaultRangeThumbSelector { get; set; }
+        internal virtual double _DefaultTrackHeight { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTrackShape _DefaultTrackShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape _DefaultTickMarkShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultOverlayShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderThumbShape _DefaultThumbShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape _DefaultValueIndicatorShape { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator { get; set; }
+        internal virtual double _DefaultMinThumbSeparation { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            OverlayController = new AnimationController(duration: ConstantsDefaultClass.KRadialReactionDuration, vsync: this);
+            ValueIndicatorController = new AnimationController(duration: ValueIndicatorAnimationDuration, vsync: this);
+            EnableController = new AnimationController(duration: EnableAnimationDuration, vsync: this, value: Widget.OnChanged != null ? 1.0 : 0.0);
+            StartPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.Start));
+            EndPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.End));
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Rangeslider.RangeSlider oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (oldWidget.OnChanged == Widget.OnChanged) return;
+            bool wasEnabled = oldWidget.OnChanged != null;
+            bool isEnabled = Widget.OnChanged != null;
+            if (wasEnabled != isEnabled)
             {
-                EnableController.Forward();
-            }
-            else
-            {
-                EnableController.Reverse();
+                if (isEnabled)
+                {
+                    EnableController.Forward();
+                }
+                else
+                {
+                    EnableController.Reverse();
+                }
+
             }
 
         }
 
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        InteractionTimer?.Cancel();
-        OverlayController.Dispose();
-        ValueIndicatorController.Dispose();
-        EnableController.Dispose();
-        StartPositionController.Dispose();
-        EndPositionController.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private void _HandleChanged(FlutterSDK.Material.Slidertheme.RangeValues values)
-    {
-
-        RangeValues lerpValues = _LerpRangeValues(values);
-        if (lerpValues != Widget.Values)
+        public new void Dispose()
         {
-            Widget.OnChanged(lerpValues);
+            InteractionTimer?.Cancel();
+            OverlayController.Dispose();
+            ValueIndicatorController.Dispose();
+            EnableController.Dispose();
+            StartPositionController.Dispose();
+            EndPositionController.Dispose();
+            base.Dispose();
         }
 
-    }
+
+
+
+        private void _HandleChanged(FlutterSDK.Material.Slidertheme.RangeValues values)
+        {
+
+            RangeValues lerpValues = _LerpRangeValues(values);
+            if (lerpValues != Widget.Values)
+            {
+                Widget.OnChanged(lerpValues);
+            }
+
+        }
 
 
 
 
-    private void _HandleDragStart(FlutterSDK.Material.Slidertheme.RangeValues values)
-    {
+        private void _HandleDragStart(FlutterSDK.Material.Slidertheme.RangeValues values)
+        {
 
-        Widget.OnChangeStart(_LerpRangeValues(values));
-    }
-
-
-
-
-    private void _HandleDragEnd(FlutterSDK.Material.Slidertheme.RangeValues values)
-    {
-
-        Widget.OnChangeEnd(_LerpRangeValues(values));
-    }
+            Widget.OnChangeStart(_LerpRangeValues(values));
+        }
 
 
 
 
-    private double _Lerp(double value) => Ui.Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
+        private void _HandleDragEnd(FlutterSDK.Material.Slidertheme.RangeValues values)
+        {
+
+            Widget.OnChangeEnd(_LerpRangeValues(values));
+        }
+
+
+
+
+        private double _Lerp(double value) => Ui.Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
 
 
 
 private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
-    {
-        return new RangeValues(_Lerp(values.Start), _Lerp(values.End));
-    }
-
-
-
-
-    private double _Unlerp(double value)
-    {
-
-
-        return Widget.Max > Widget.Min ? (value - Widget.Min) / (Widget.Max - Widget.Min) : 0.0;
-    }
-
-
-
-
-    private FlutterSDK.Material.Slidertheme.RangeValues _UnlerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
-    {
-        return new RangeValues(_Unlerp(values.Start), _Unlerp(values.End));
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-
-        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-        SliderThemeData sliderTheme = SliderthemeDefaultClass.SliderTheme.Of(context);
-        sliderTheme = sliderTheme.CopyWith(trackHeight: sliderTheme.TrackHeight ?? _DefaultTrackHeight, activeTrackColor: Widget.ActiveColor ?? sliderTheme.ActiveTrackColor ?? theme.ColorScheme.Primary, inactiveTrackColor: Widget.InactiveColor ?? sliderTheme.InactiveTrackColor ?? theme.ColorScheme.Primary.WithOpacity(0.24), disabledActiveTrackColor: sliderTheme.DisabledActiveTrackColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.32), disabledInactiveTrackColor: sliderTheme.DisabledInactiveTrackColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.12), activeTickMarkColor: Widget.InactiveColor ?? sliderTheme.ActiveTickMarkColor ?? theme.ColorScheme.OnPrimary.WithOpacity(0.54), inactiveTickMarkColor: Widget.ActiveColor ?? sliderTheme.InactiveTickMarkColor ?? theme.ColorScheme.Primary.WithOpacity(0.54), disabledActiveTickMarkColor: sliderTheme.DisabledActiveTickMarkColor ?? theme.ColorScheme.OnPrimary.WithOpacity(0.12), disabledInactiveTickMarkColor: sliderTheme.DisabledInactiveTickMarkColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.12), thumbColor: Widget.ActiveColor ?? sliderTheme.ThumbColor ?? theme.ColorScheme.Primary, overlappingShapeStrokeColor: sliderTheme.OverlappingShapeStrokeColor ?? theme.ColorScheme.Surface, disabledThumbColor: sliderTheme.DisabledThumbColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.38), overlayColor: Widget.ActiveColor?.WithOpacity(0.12) ?? sliderTheme.OverlayColor ?? theme.ColorScheme.Primary.WithOpacity(0.12), valueIndicatorColor: Widget.ActiveColor ?? sliderTheme.ValueIndicatorColor ?? theme.ColorScheme.Primary, rangeTrackShape: sliderTheme.RangeTrackShape ?? _DefaultTrackShape, rangeTickMarkShape: sliderTheme.RangeTickMarkShape ?? _DefaultTickMarkShape, rangeThumbShape: sliderTheme.RangeThumbShape ?? _DefaultThumbShape, overlayShape: sliderTheme.OverlayShape ?? _DefaultOverlayShape, rangeValueIndicatorShape: sliderTheme.RangeValueIndicatorShape ?? _DefaultValueIndicatorShape, showValueIndicator: sliderTheme.ShowValueIndicator ?? _DefaultShowValueIndicator, valueIndicatorTextStyle: sliderTheme.ValueIndicatorTextStyle ?? theme.TextTheme.BodyText1.CopyWith(color: theme.ColorScheme.OnPrimary), minThumbSeparation: sliderTheme.MinThumbSeparation ?? _DefaultMinThumbSeparation, thumbSelector: sliderTheme.ThumbSelector ?? _DefaultRangeThumbSelector);
-        return new _RangeSliderRenderObjectWidget(values: _UnlerpRangeValues(Widget.Values), divisions: Widget.Divisions, labels: Widget.Labels, sliderTheme: sliderTheme, textScaleFactor: MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, onChanged: (Widget.OnChanged != null) && (Widget.Max > Widget.Min) ? _HandleChanged : null, onChangeStart: Widget.OnChangeStart != null ? _HandleDragStart : null, onChangeEnd: Widget.OnChangeEnd != null ? _HandleDragEnd : null, state: this, semanticFormatterCallback: Widget.SemanticFormatterCallback);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _RangeSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-    #region constructors
-    public _RangeSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
-public virtual int Divisions { get; set; }
-public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get; set; }
-public virtual double TextScaleFactor { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
-public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
-public virtual FlutterSDK.Material.Rangeslider._RangeSliderState State { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Rangeslider._RenderRangeSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderRangeSlider(values: Values, divisions: Divisions, labels: Labels, sliderTheme: SliderTheme, theme: ThemeDefaultClass.Theme.Of(context), textScaleFactor: TextScaleFactor, onChanged: OnChanged, onChangeStart: OnChangeStart, onChangeEnd: OnChangeEnd, state: State, textDirection: BasicDefaultClass.Directionality.Of(context), semanticFormatterCallback: SemanticFormatterCallback, platform: ThemeDefaultClass.Theme.Of(context).Platform);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Rangeslider._RenderRangeSlider renderObject)
-{
-    ..Values = Values..Divisions = Divisions..Labels = Labels..SliderTheme = SliderTheme..Theme = ThemeDefaultClass.Theme.Of(context)..TextScaleFactor = TextScaleFactor..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context)..SemanticFormatterCallback = SemanticFormatterCallback..Platform = ThemeDefaultClass.Theme.Of(context).Platform;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..Values = Values..Divisions = Divisions..Labels = Labels..SliderTheme = SliderTheme..Theme = ThemeDefaultClass.Theme.Of(context)..TextScaleFactor = TextScaleFactor..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context)..SemanticFormatterCallback = SemanticFormatterCallback..Platform = ThemeDefaultClass.Theme.Of(context).Platform;
-}
-
-
-
-#endregion
-}
-
-
-public class _RenderRangeSlider : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
-{
-    #region constructors
-    public _RenderRangeSlider(FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), TextDirection textDirection = default(TextDirection))
-    : base()
-
-_UpdateLabelPainters();
-    GestureArenaTeam team = new GestureArenaTeam();
-    _Drag=new HorizontalDragGestureRecognizer()..Team=team..OnStart=_HandleDragStart..OnUpdate=_HandleDragUpdate..OnEnd=_HandleDragEnd..OnCancel=_HandleDragCancel;
-_Tap=new TapGestureRecognizer()..Team=team..OnTapDown=_HandleTapDown..OnTapUp=_HandleTapUp..OnTapCancel=_HandleTapCancel;
-_OverlayAnimation=new CurvedAnimation(parent:_State.OverlayController, curve:CurvesDefaultClass.Curves.FastOutSlowIn);
-    _ValueIndicatorAnimation=new CurvedAnimation(parent:_State.ValueIndicatorController, curve:CurvesDefaultClass.Curves.FastOutSlowIn);
-    _EnableAnimation=new CurvedAnimation(parent:_State.EnableController, curve:CurvesDefaultClass.Curves.EaseInOut);
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Material.Slidertheme.Thumb _LastThumbSelection { get; set; }
-internal virtual TimeSpan _PositionAnimationDuration { get; set; }
-internal virtual double _MinPreferredTrackWidth { get; set; }
-internal virtual TimeSpan _MinimumInteractionTime { get; set; }
-internal virtual FlutterSDK.Material.Rangeslider._RangeSliderState _State { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _OverlayAnimation { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _ValueIndicatorAnimation { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _EnableAnimation { get; set; }
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _StartLabelPainter { get; set; }
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _EndLabelPainter { get; set; }
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
-internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
-internal virtual bool _Active { get; set; }
-internal virtual FlutterSDK.Material.Slidertheme.RangeValues _NewValues { get; set; }
-internal virtual FlutterSDK.Material.Slidertheme.RangeValues _Values { get; set; }
-internal virtual FlutterSDK.Foundation.Platform.TargetPlatform _Platform { get; set; }
-internal virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback _SemanticFormatterCallback { get; set; }
-internal virtual int _Divisions { get; set; }
-internal virtual FlutterSDK.Material.Slidertheme.RangeLabels _Labels { get; set; }
-internal virtual FlutterSDK.Material.Slidertheme.SliderThemeData _SliderTheme { get; set; }
-internal virtual FlutterSDK.Material.Themedata.ThemeData _Theme { get; set; }
-internal virtual double _TextScaleFactor { get; set; }
-internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> _OnChanged { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
-internal virtual TextDirection _TextDirection { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseStart { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseStart { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseEnd { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseEnd { get; set; }
-internal virtual double _MaxSliderPartWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _MaxSliderPartHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual List<Size> _SliderPartSizes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _MinPreferredTrackHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual FlutterBinding.UI.Rect _TrackRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsDiscrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int Divisions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool ShowValueIndicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual Size _ThumbSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _AdjustmentUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _UpdateLabelPainters()
-{
-    _UpdateLabelPainter(Thumb.Start);
-    _UpdateLabelPainter(Thumb.End);
-}
-
-
-
-
-private void _UpdateLabelPainter(FlutterSDK.Material.Slidertheme.Thumb thumb)
-{
-    if (Labels == null) return;
-    string text = default(string);
-    TextPainter labelPainter = default(TextPainter);
-    switch (thumb) { case Thumb.Start: text = Labels.Start; labelPainter = _StartLabelPainter; break; case Thumb.End: text = Labels.End; labelPainter = _EndLabelPainter; break; }
-    if (Labels != null)
-    {
-        ..Text = new TextSpan(style: _SliderTheme.ValueIndicatorTextStyle, text: text)..TextDirection = TextDirection..TextScaleFactor = TextScaleFactor;
-        labelPainter.Layout();
-    }
-    else
-    {
-        labelPainter.Text = null;
-    }
-
-    MarkNeedsLayout();
-}
-
-
-
-
-public new void SystemFontsDidChange()
-{
-    base.SystemFontsDidChange();
-    _StartLabelPainter.MarkNeedsLayout();
-    _EndLabelPainter.MarkNeedsLayout();
-    _UpdateLabelPainters();
-}
-
-
-
-
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
-{
-    base.Attach(owner);
-    _OverlayAnimation.AddListener(MarkNeedsPaint);
-    _ValueIndicatorAnimation.AddListener(MarkNeedsPaint);
-    _EnableAnimation.AddListener(MarkNeedsPaint);
-    _State.StartPositionController.AddListener(MarkNeedsPaint);
-    _State.EndPositionController.AddListener(MarkNeedsPaint);
-}
-
-
-public new void Attach(@Object owner)
-{
-    base.Attach(owner);
-    _OverlayAnimation.AddListener(MarkNeedsPaint);
-    _ValueIndicatorAnimation.AddListener(MarkNeedsPaint);
-    _EnableAnimation.AddListener(MarkNeedsPaint);
-    _State.StartPositionController.AddListener(MarkNeedsPaint);
-    _State.EndPositionController.AddListener(MarkNeedsPaint);
-}
-
-
-
-
-public new void Detach()
-{
-    _OverlayAnimation.RemoveListener(MarkNeedsPaint);
-    _ValueIndicatorAnimation.RemoveListener(MarkNeedsPaint);
-    _EnableAnimation.RemoveListener(MarkNeedsPaint);
-    _State.StartPositionController.RemoveListener(MarkNeedsPaint);
-    _State.EndPositionController.RemoveListener(MarkNeedsPaint);
-    base.Detach();
-}
-
-
-
-
-private double _GetValueFromVisualPosition(double visualPosition)
-{
-    switch (TextDirection) { case TextDirection.Rtl: return 1.0 - visualPosition; case TextDirection.Ltr: return visualPosition; }
-    return null;
-}
-
-
-
-
-private double _GetValueFromGlobalPosition(FlutterBinding.UI.Offset globalPosition)
-{
-    double visualPosition = (GlobalToLocal(globalPosition).Dx - _TrackRect.Left) / _TrackRect.Width;
-    return _GetValueFromVisualPosition(visualPosition);
-}
-
-
-
-
-private double _Discretize(double value)
-{
-    double result = value.Clamp(0.0, 1.0) as double;
-    if (IsDiscrete)
-    {
-        result = (result * Divisions).Round() / Divisions;
-    }
-
-    return result;
-}
-
-
-
-
-private FlutterSDK.Material.Slidertheme.RangeValues _DiscretizeRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
-{
-    return new RangeValues(_Discretize(values.Start), _Discretize(values.End));
-}
-
-
-
-
-private void _StartInteraction(FlutterBinding.UI.Offset globalPosition)
-{
-    double tapValue = _GetValueFromGlobalPosition(globalPosition).Clamp(0.0, 1.0) as double;
-    _LastThumbSelection = SliderTheme.ThumbSelector(TextDirection, Values, tapValue, _ThumbSize, Size, 0);
-    if (_LastThumbSelection != null)
-    {
-        _Active = true;
-        RangeValues currentValues = _DiscretizeRangeValues(Values);
-        if (_LastThumbSelection == Thumb.Start)
         {
-            _NewValues = new RangeValues(tapValue, currentValues.End);
-        }
-        else if (_LastThumbSelection == Thumb.End)
-        {
-            _NewValues = new RangeValues(currentValues.Start, tapValue);
+            return new RangeValues(_Lerp(values.Start), _Lerp(values.End));
         }
 
-        _UpdateLabelPainter(_LastThumbSelection);
-        if (OnChangeStart != null)
+
+
+
+        private double _Unlerp(double value)
         {
-            OnChangeStart(currentValues);
+
+
+            return Widget.Max > Widget.Min ? (value - Widget.Min) / (Widget.Max - Widget.Min) : 0.0;
         }
 
-        OnChanged(_DiscretizeRangeValues(_NewValues));
-        _State.OverlayController.Forward();
-        if (ShowValueIndicator)
+
+
+
+        private FlutterSDK.Material.Slidertheme.RangeValues _UnlerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
         {
-            _State.ValueIndicatorController.Forward();
-            _State.InteractionTimer?.Cancel();
-            _State.InteractionTimer = new Timer(_MinimumInteractionTime * BindingDefaultClass.TimeDilation, () =>
+            return new RangeValues(_Unlerp(values.Start), _Unlerp(values.End));
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            SliderThemeData sliderTheme = SliderthemeDefaultClass.SliderTheme.Of(context);
+            sliderTheme = sliderTheme.CopyWith(trackHeight: sliderTheme.TrackHeight ?? _DefaultTrackHeight, activeTrackColor: Widget.ActiveColor ?? sliderTheme.ActiveTrackColor ?? theme.ColorScheme.Primary, inactiveTrackColor: Widget.InactiveColor ?? sliderTheme.InactiveTrackColor ?? theme.ColorScheme.Primary.WithOpacity(0.24), disabledActiveTrackColor: sliderTheme.DisabledActiveTrackColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.32), disabledInactiveTrackColor: sliderTheme.DisabledInactiveTrackColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.12), activeTickMarkColor: Widget.InactiveColor ?? sliderTheme.ActiveTickMarkColor ?? theme.ColorScheme.OnPrimary.WithOpacity(0.54), inactiveTickMarkColor: Widget.ActiveColor ?? sliderTheme.InactiveTickMarkColor ?? theme.ColorScheme.Primary.WithOpacity(0.54), disabledActiveTickMarkColor: sliderTheme.DisabledActiveTickMarkColor ?? theme.ColorScheme.OnPrimary.WithOpacity(0.12), disabledInactiveTickMarkColor: sliderTheme.DisabledInactiveTickMarkColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.12), thumbColor: Widget.ActiveColor ?? sliderTheme.ThumbColor ?? theme.ColorScheme.Primary, overlappingShapeStrokeColor: sliderTheme.OverlappingShapeStrokeColor ?? theme.ColorScheme.Surface, disabledThumbColor: sliderTheme.DisabledThumbColor ?? theme.ColorScheme.OnSurface.WithOpacity(0.38), overlayColor: Widget.ActiveColor?.WithOpacity(0.12) ?? sliderTheme.OverlayColor ?? theme.ColorScheme.Primary.WithOpacity(0.12), valueIndicatorColor: Widget.ActiveColor ?? sliderTheme.ValueIndicatorColor ?? theme.ColorScheme.Primary, rangeTrackShape: sliderTheme.RangeTrackShape ?? _DefaultTrackShape, rangeTickMarkShape: sliderTheme.RangeTickMarkShape ?? _DefaultTickMarkShape, rangeThumbShape: sliderTheme.RangeThumbShape ?? _DefaultThumbShape, overlayShape: sliderTheme.OverlayShape ?? _DefaultOverlayShape, rangeValueIndicatorShape: sliderTheme.RangeValueIndicatorShape ?? _DefaultValueIndicatorShape, showValueIndicator: sliderTheme.ShowValueIndicator ?? _DefaultShowValueIndicator, valueIndicatorTextStyle: sliderTheme.ValueIndicatorTextStyle ?? theme.TextTheme.BodyText1.CopyWith(color: theme.ColorScheme.OnPrimary), minThumbSeparation: sliderTheme.MinThumbSeparation ?? _DefaultMinThumbSeparation, thumbSelector: sliderTheme.ThumbSelector ?? _DefaultRangeThumbSelector);
+            return new _RangeSliderRenderObjectWidget(values: _UnlerpRangeValues(Widget.Values), divisions: Widget.Divisions, labels: Widget.Labels, sliderTheme: sliderTheme, textScaleFactor: MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, onChanged: (Widget.OnChanged != null) && (Widget.Max > Widget.Min) ? _HandleChanged : null, onChangeStart: Widget.OnChangeStart != null ? _HandleDragStart : null, onChangeEnd: Widget.OnChangeEnd != null ? _HandleDragEnd : null, state: this, semanticFormatterCallback: Widget.SemanticFormatterCallback);
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _RangeSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _RangeSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
+        : base(key: key)
+        {
+            this.Values = values;
+            this.Divisions = divisions;
+            this.Labels = labels;
+            this.SliderTheme = sliderTheme;
+            this.TextScaleFactor = textScaleFactor;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.State = state;
+            this.SemanticFormatterCallback = semanticFormatterCallback;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
+        public virtual FlutterSDK.Material.Rangeslider._RangeSliderState State { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Rangeslider._RenderRangeSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderRangeSlider(values: Values, divisions: Divisions, labels: Labels, sliderTheme: SliderTheme, theme: ThemeDefaultClass.Theme.Of(context), textScaleFactor: TextScaleFactor, onChanged: OnChanged, onChangeStart: OnChangeStart, onChangeEnd: OnChangeEnd, state: State, textDirection: BasicDefaultClass.Directionality.Of(context), semanticFormatterCallback: SemanticFormatterCallback, platform: ThemeDefaultClass.Theme.Of(context).Platform);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Rangeslider._RenderRangeSlider renderObject)
+        {
+            ..Values = Values..Divisions = Divisions..Labels = Labels..SliderTheme = SliderTheme..Theme = ThemeDefaultClass.Theme.Of(context)..TextScaleFactor = TextScaleFactor..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context)..SemanticFormatterCallback = SemanticFormatterCallback..Platform = ThemeDefaultClass.Theme.Of(context).Platform;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..Values = Values..Divisions = Divisions..Labels = Labels..SliderTheme = SliderTheme..Theme = ThemeDefaultClass.Theme.Of(context)..TextScaleFactor = TextScaleFactor..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context)..SemanticFormatterCallback = SemanticFormatterCallback..Platform = ThemeDefaultClass.Theme.Of(context).Platform;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _RenderRangeSlider : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
+    {
+        #region constructors
+        public _RenderRangeSlider(FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            _UpdateLabelPainters();
+            GestureArenaTeam team = new GestureArenaTeam();
+            _Drag = new HorizontalDragGestureRecognizer()..Team = team..OnStart = _HandleDragStart..OnUpdate = _HandleDragUpdate..OnEnd = _HandleDragEnd..OnCancel = _HandleDragCancel;
+            _Tap = new TapGestureRecognizer()..Team = team..OnTapDown = _HandleTapDown..OnTapUp = _HandleTapUp..OnTapCancel = _HandleTapCancel;
+            _OverlayAnimation = new CurvedAnimation(parent: _State.OverlayController, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+            _ValueIndicatorAnimation = new CurvedAnimation(parent: _State.ValueIndicatorController, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+            _EnableAnimation = new CurvedAnimation(parent: _State.EnableController, curve: CurvesDefaultClass.Curves.EaseInOut);
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Slidertheme.Thumb _LastThumbSelection { get; set; }
+        internal virtual TimeSpan _PositionAnimationDuration { get; set; }
+        internal virtual double _MinPreferredTrackWidth { get; set; }
+        internal virtual TimeSpan _MinimumInteractionTime { get; set; }
+        internal virtual FlutterSDK.Material.Rangeslider._RangeSliderState _State { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OverlayAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _ValueIndicatorAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _EnableAnimation { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _StartLabelPainter { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _EndLabelPainter { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
+        internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
+        internal virtual bool _Active { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeValues _NewValues { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeValues _Values { get; set; }
+        internal virtual FlutterSDK.Foundation.Platform.TargetPlatform _Platform { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback _SemanticFormatterCallback { get; set; }
+        internal virtual int _Divisions { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.RangeLabels _Labels { get; set; }
+        internal virtual FlutterSDK.Material.Slidertheme.SliderThemeData _SliderTheme { get; set; }
+        internal virtual FlutterSDK.Material.Themedata.ThemeData _Theme { get; set; }
+        internal virtual double _TextScaleFactor { get; set; }
+        internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> _OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseStart { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseStart { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _DecreaseEnd { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction _IncreaseEnd { get; set; }
+        internal virtual double _MaxSliderPartWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MaxSliderPartHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual List<Size> _SliderPartSizes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _MinPreferredTrackHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Rect _TrackRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDiscrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Divisions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Slidertheme.SliderThemeData SliderTheme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double TextScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ShowValueIndicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Size _ThumbSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _AdjustmentUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _UpdateLabelPainters()
+        {
+            _UpdateLabelPainter(Thumb.Start);
+            _UpdateLabelPainter(Thumb.End);
+        }
+
+
+
+
+        private void _UpdateLabelPainter(FlutterSDK.Material.Slidertheme.Thumb thumb)
+        {
+            if (Labels == null) return;
+            string text = default(string);
+            TextPainter labelPainter = default(TextPainter);
+            switch (thumb) { case Thumb.Start: text = Labels.Start; labelPainter = _StartLabelPainter; break; case Thumb.End: text = Labels.End; labelPainter = _EndLabelPainter; break; }
+            if (Labels != null)
             {
-                _State.InteractionTimer = null;
-                if (!_Active && _State.ValueIndicatorController.Status == AnimationStatus.Completed)
+                ..Text = new TextSpan(style: _SliderTheme.ValueIndicatorTextStyle, text: text)..TextDirection = TextDirection..TextScaleFactor = TextScaleFactor;
+                labelPainter.Layout();
+            }
+            else
+            {
+                labelPainter.Text = null;
+            }
+
+            MarkNeedsLayout();
+        }
+
+
+
+
+        public new void SystemFontsDidChange()
+        {
+            base.SystemFontsDidChange();
+            _StartLabelPainter.MarkNeedsLayout();
+            _EndLabelPainter.MarkNeedsLayout();
+            _UpdateLabelPainters();
+        }
+
+
+
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+        {
+            base.Attach(owner);
+            _OverlayAnimation.AddListener(MarkNeedsPaint);
+            _ValueIndicatorAnimation.AddListener(MarkNeedsPaint);
+            _EnableAnimation.AddListener(MarkNeedsPaint);
+            _State.StartPositionController.AddListener(MarkNeedsPaint);
+            _State.EndPositionController.AddListener(MarkNeedsPaint);
+        }
+
+
+        public new void Attach(@Object owner)
+        {
+            base.Attach(owner);
+            _OverlayAnimation.AddListener(MarkNeedsPaint);
+            _ValueIndicatorAnimation.AddListener(MarkNeedsPaint);
+            _EnableAnimation.AddListener(MarkNeedsPaint);
+            _State.StartPositionController.AddListener(MarkNeedsPaint);
+            _State.EndPositionController.AddListener(MarkNeedsPaint);
+        }
+
+
+
+
+        public new void Detach()
+        {
+            _OverlayAnimation.RemoveListener(MarkNeedsPaint);
+            _ValueIndicatorAnimation.RemoveListener(MarkNeedsPaint);
+            _EnableAnimation.RemoveListener(MarkNeedsPaint);
+            _State.StartPositionController.RemoveListener(MarkNeedsPaint);
+            _State.EndPositionController.RemoveListener(MarkNeedsPaint);
+            base.Detach();
+        }
+
+
+
+
+        private double _GetValueFromVisualPosition(double visualPosition)
+        {
+            switch (TextDirection) { case TextDirection.Rtl: return 1.0 - visualPosition; case TextDirection.Ltr: return visualPosition; }
+            return null;
+        }
+
+
+
+
+        private double _GetValueFromGlobalPosition(FlutterBinding.UI.Offset globalPosition)
+        {
+            double visualPosition = (GlobalToLocal(globalPosition).Dx - _TrackRect.Left) / _TrackRect.Width;
+            return _GetValueFromVisualPosition(visualPosition);
+        }
+
+
+
+
+        private double _Discretize(double value)
+        {
+            double result = value.Clamp(0.0, 1.0) as double;
+            if (IsDiscrete)
+            {
+                result = (result * Divisions).Round() / Divisions;
+            }
+
+            return result;
+        }
+
+
+
+
+        private FlutterSDK.Material.Slidertheme.RangeValues _DiscretizeRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
+        {
+            return new RangeValues(_Discretize(values.Start), _Discretize(values.End));
+        }
+
+
+
+
+        private void _StartInteraction(FlutterBinding.UI.Offset globalPosition)
+        {
+            double tapValue = _GetValueFromGlobalPosition(globalPosition).Clamp(0.0, 1.0) as double;
+            _LastThumbSelection = SliderTheme.ThumbSelector(TextDirection, Values, tapValue, _ThumbSize, Size, 0);
+            if (_LastThumbSelection != null)
+            {
+                _Active = true;
+                RangeValues currentValues = _DiscretizeRangeValues(Values);
+                if (_LastThumbSelection == Thumb.Start)
                 {
-                    _State.ValueIndicatorController.Reverse();
+                    _NewValues = new RangeValues(tapValue, currentValues.End);
+                }
+                else if (_LastThumbSelection == Thumb.End)
+                {
+                    _NewValues = new RangeValues(currentValues.Start, tapValue);
+                }
+
+                _UpdateLabelPainter(_LastThumbSelection);
+                if (OnChangeStart != null)
+                {
+                    OnChangeStart(currentValues);
+                }
+
+                OnChanged(_DiscretizeRangeValues(_NewValues));
+                _State.OverlayController.Forward();
+                if (ShowValueIndicator)
+                {
+                    _State.ValueIndicatorController.Forward();
+                    _State.InteractionTimer?.Cancel();
+                    _State.InteractionTimer = new Timer(_MinimumInteractionTime * BindingDefaultClass.TimeDilation, () =>
+                    {
+                        _State.InteractionTimer = null;
+                        if (!_Active && _State.ValueIndicatorController.Status == AnimationStatus.Completed)
+                        {
+                            _State.ValueIndicatorController.Reverse();
+                        }
+
+                    }
+                    );
                 }
 
             }
-            );
+
         }
 
-    }
-
-}
 
 
 
-
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
-{
-    double dragValue = _GetValueFromGlobalPosition(details.GlobalPosition);
-    bool shouldCallOnChangeStart = false;
-    if (_LastThumbSelection == null)
-    {
-        _LastThumbSelection = SliderTheme.ThumbSelector(TextDirection, Values, dragValue, _ThumbSize, Size, details.Delta.Dx);
-        if (_LastThumbSelection != null)
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
         {
-            shouldCallOnChangeStart = true;
-            _Active = true;
-            _State.OverlayController.Forward();
-            if (ShowValueIndicator)
+            double dragValue = _GetValueFromGlobalPosition(details.GlobalPosition);
+            bool shouldCallOnChangeStart = false;
+            if (_LastThumbSelection == null)
             {
-                _State.ValueIndicatorController.Forward();
+                _LastThumbSelection = SliderTheme.ThumbSelector(TextDirection, Values, dragValue, _ThumbSize, Size, details.Delta.Dx);
+                if (_LastThumbSelection != null)
+                {
+                    shouldCallOnChangeStart = true;
+                    _Active = true;
+                    _State.OverlayController.Forward();
+                    if (ShowValueIndicator)
+                    {
+                        _State.ValueIndicatorController.Forward();
+                    }
+
+                }
+
+            }
+
+            if (IsEnabled && _LastThumbSelection != null)
+            {
+                RangeValues currentValues = _DiscretizeRangeValues(Values);
+                if (OnChangeStart != null && shouldCallOnChangeStart)
+                {
+                    OnChangeStart(currentValues);
+                }
+
+                double currentDragValue = _Discretize(dragValue);
+                double minThumbSeparationValue = IsDiscrete ? 0 : SliderTheme.MinThumbSeparation / _TrackRect.Width;
+                if (_LastThumbSelection == Thumb.Start)
+                {
+                    _NewValues = new RangeValues(Math.Dart:mathDefaultClass.Min(currentDragValue, currentValues.End - minThumbSeparationValue), currentValues.End);
+                }
+                else if (_LastThumbSelection == Thumb.End)
+                {
+                    _NewValues = new RangeValues(currentValues.Start, Math.Dart:mathDefaultClass.Max(currentDragValue, currentValues.Start + minThumbSeparationValue));
+                }
+
+                OnChanged(_NewValues);
             }
 
         }
 
-    }
 
-    if (IsEnabled && _LastThumbSelection != null)
-    {
-        RangeValues currentValues = _DiscretizeRangeValues(Values);
-        if (OnChangeStart != null && shouldCallOnChangeStart)
+
+
+        private void _EndInteraction()
         {
-            OnChangeStart(currentValues);
+            _State.OverlayController.Reverse();
+            if (ShowValueIndicator && _State.InteractionTimer == null)
+            {
+                _State.ValueIndicatorController.Reverse();
+            }
+
+            if (_Active && _State.Mounted && _LastThumbSelection != null)
+            {
+                RangeValues discreteValues = _DiscretizeRangeValues(_NewValues);
+                if (OnChangeEnd != null)
+                {
+                    OnChangeEnd(discreteValues);
+                }
+
+                _Active = false;
+            }
+
         }
 
-        double currentDragValue = _Discretize(dragValue);
-        double minThumbSeparationValue = IsDiscrete ? 0 : SliderTheme.MinThumbSeparation / _TrackRect.Width;
-        if (_LastThumbSelection == Thumb.Start)
+
+
+
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
         {
-            _NewValues = new RangeValues(Math.Dart:mathDefaultClass.Min(currentDragValue, currentValues.End - minThumbSeparationValue), currentValues.End);
-}
-else if (_LastThumbSelection == Thumb.End)
-{
-    _NewValues = new RangeValues(currentValues.Start, Math.Dart:mathDefaultClass.Max(currentDragValue, currentValues.Start + minThumbSeparationValue));
-}
-
-OnChanged(_NewValues);
-}
-
-}
-
-
-
-
-private void _EndInteraction()
-{
-    _State.OverlayController.Reverse();
-    if (ShowValueIndicator && _State.InteractionTimer == null)
-    {
-        _State.ValueIndicatorController.Reverse();
-    }
-
-    if (_Active && _State.Mounted && _LastThumbSelection != null)
-    {
-        RangeValues discreteValues = _DiscretizeRangeValues(_NewValues);
-        if (OnChangeEnd != null)
-        {
-            OnChangeEnd(discreteValues);
+            _StartInteraction(details.GlobalPosition);
         }
 
-        _Active = false;
-    }
-
-}
 
 
 
-
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
-{
-    _StartInteraction(details.GlobalPosition);
-}
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+        {
+            _EndInteraction();
+        }
 
 
 
 
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-{
-    _EndInteraction();
-}
+        private void _HandleDragCancel()
+        {
+            _EndInteraction();
+        }
 
 
 
 
-private void _HandleDragCancel()
-{
-    _EndInteraction();
-}
+        private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
+        {
+            _StartInteraction(details.GlobalPosition);
+        }
 
 
 
 
-private void _HandleTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
-{
-    _StartInteraction(details.GlobalPosition);
-}
+        private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
+        {
+            _EndInteraction();
+        }
 
 
 
 
-private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
-{
-    _EndInteraction();
-}
+        private void _HandleTapCancel()
+        {
+            _EndInteraction();
+        }
 
 
 
 
-private void _HandleTapCancel()
-{
-    _EndInteraction();
-}
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+        {
+
+            if (@event is PointerDownEvent && IsEnabled)
+            {
+                _Drag.AddPointer(((PointerDownEvent)@event));
+                _Tap.AddPointer(((PointerDownEvent)@event));
+            }
+
+        }
 
 
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+        public new double ComputeMinIntrinsicWidth(double height) => _MinPreferredTrackWidth + _MaxSliderPartWidth;
 
 
 
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
-{
-
-    if (@event is PointerDownEvent && IsEnabled)
-    {
-        _Drag.AddPointer(((PointerDownEvent)@event));
-        _Tap.AddPointer(((PointerDownEvent)@event));
-    }
-
-}
+        public new double ComputeMaxIntrinsicWidth(double height) => _MinPreferredTrackWidth + _MaxSliderPartWidth;
 
 
 
-
-public new double ComputeMinIntrinsicWidth(double height) => _MinPreferredTrackWidth + _MaxSliderPartWidth;
-
-
-
-public new double ComputeMaxIntrinsicWidth(double height) => _MinPreferredTrackWidth + _MaxSliderPartWidth;
-
-
-
-public new double ComputeMinIntrinsicHeight(double width) => Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMinIntrinsicHeight(double width) => Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
@@ -1135,179 +1158,179 @@ public new double ComputeMaxIntrinsicHeight(double width) => Math.Dart:mathDefau
 
 
 public new void PerformResize()
-{
-    Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    double startValue = _State.StartPositionController.Value;
-    double endValue = _State.EndPositionController.Value;
-    double startVisualPosition = default(double);
-    double endVisualPosition = default(double);
-    switch (TextDirection) { case TextDirection.Rtl: startVisualPosition = 1.0 - startValue; endVisualPosition = 1.0 - endValue; break; case TextDirection.Ltr: startVisualPosition = startValue; endVisualPosition = endValue; break; }
-    Rect trackRect = _SliderTheme.RangeTrackShape.GetPreferredRect(parentBox: this, offset: offset, sliderTheme: _SliderTheme, isDiscrete: IsDiscrete);
-    Offset startThumbCenter = new Offset(trackRect.Left + startVisualPosition * trackRect.Width, trackRect.Center.Dy);
-    Offset endThumbCenter = new Offset(trackRect.Left + endVisualPosition * trackRect.Width, trackRect.Center.Dy);
-    _SliderTheme.RangeTrackShape.Paint(context, offset, parentBox: this, sliderTheme: _SliderTheme, enableAnimation: _EnableAnimation, textDirection: _TextDirection, startThumbCenter: startThumbCenter, endThumbCenter: endThumbCenter, isDiscrete: IsDiscrete, isEnabled: IsEnabled);
-    if (!_OverlayAnimation.IsDismissed)
-    {
-        if (_LastThumbSelection == Thumb.Start)
         {
-            _SliderTheme.OverlayShape.Paint(context, startThumbCenter, activationAnimation: _OverlayAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, labelPainter: _StartLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, value: startValue);
+            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
         }
 
-        if (_LastThumbSelection == Thumb.End)
-        {
-            _SliderTheme.OverlayShape.Paint(context, endThumbCenter, activationAnimation: _OverlayAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, labelPainter: _EndLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, value: endValue);
-        }
 
-    }
 
-    if (IsDiscrete)
-    {
-        double tickMarkWidth = _SliderTheme.RangeTickMarkShape.GetPreferredSize(isEnabled: IsEnabled, sliderTheme: _SliderTheme).Width;
-        double adjustedTrackWidth = trackRect.Width - tickMarkWidth;
-        if (adjustedTrackWidth / Divisions >= 3.0 * tickMarkWidth)
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            double dy = trackRect.Center.Dy;
-            for (int i = 0; i <= Divisions; i++)
+            double startValue = _State.StartPositionController.Value;
+            double endValue = _State.EndPositionController.Value;
+            double startVisualPosition = default(double);
+            double endVisualPosition = default(double);
+            switch (TextDirection) { case TextDirection.Rtl: startVisualPosition = 1.0 - startValue; endVisualPosition = 1.0 - endValue; break; case TextDirection.Ltr: startVisualPosition = startValue; endVisualPosition = endValue; break; }
+            Rect trackRect = _SliderTheme.RangeTrackShape.GetPreferredRect(parentBox: this, offset: offset, sliderTheme: _SliderTheme, isDiscrete: IsDiscrete);
+            Offset startThumbCenter = new Offset(trackRect.Left + startVisualPosition * trackRect.Width, trackRect.Center.Dy);
+            Offset endThumbCenter = new Offset(trackRect.Left + endVisualPosition * trackRect.Width, trackRect.Center.Dy);
+            _SliderTheme.RangeTrackShape.Paint(context, offset, parentBox: this, sliderTheme: _SliderTheme, enableAnimation: _EnableAnimation, textDirection: _TextDirection, startThumbCenter: startThumbCenter, endThumbCenter: endThumbCenter, isDiscrete: IsDiscrete, isEnabled: IsEnabled);
+            if (!_OverlayAnimation.IsDismissed)
             {
-                double value = i / Divisions;
-                double dx = trackRect.Left + value * adjustedTrackWidth + tickMarkWidth / 2;
-                Offset tickMarkOffset = new Offset(dx, dy);
-                _SliderTheme.RangeTickMarkShape.Paint(context, tickMarkOffset, parentBox: this, sliderTheme: _SliderTheme, enableAnimation: _EnableAnimation, textDirection: _TextDirection, startThumbCenter: startThumbCenter, endThumbCenter: endThumbCenter, isEnabled: IsEnabled);
+                if (_LastThumbSelection == Thumb.Start)
+                {
+                    _SliderTheme.OverlayShape.Paint(context, startThumbCenter, activationAnimation: _OverlayAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, labelPainter: _StartLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, value: startValue);
+                }
+
+                if (_LastThumbSelection == Thumb.End)
+                {
+                    _SliderTheme.OverlayShape.Paint(context, endThumbCenter, activationAnimation: _OverlayAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, labelPainter: _EndLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, value: endValue);
+                }
+
+            }
+
+            if (IsDiscrete)
+            {
+                double tickMarkWidth = _SliderTheme.RangeTickMarkShape.GetPreferredSize(isEnabled: IsEnabled, sliderTheme: _SliderTheme).Width;
+                double adjustedTrackWidth = trackRect.Width - tickMarkWidth;
+                if (adjustedTrackWidth / Divisions >= 3.0 * tickMarkWidth)
+                {
+                    double dy = trackRect.Center.Dy;
+                    for (int i = 0; i <= Divisions; i++)
+                    {
+                        double value = i / Divisions;
+                        double dx = trackRect.Left + value * adjustedTrackWidth + tickMarkWidth / 2;
+                        Offset tickMarkOffset = new Offset(dx, dy);
+                        _SliderTheme.RangeTickMarkShape.Paint(context, tickMarkOffset, parentBox: this, sliderTheme: _SliderTheme, enableAnimation: _EnableAnimation, textDirection: _TextDirection, startThumbCenter: startThumbCenter, endThumbCenter: endThumbCenter, isEnabled: IsEnabled);
+                    }
+
+                }
+
+            }
+
+            double thumbDelta = (endThumbCenter.Dx - startThumbCenter.Dx).Abs();
+            bool isLastThumbStart = _LastThumbSelection == Thumb.Start;
+            Thumb bottomThumb = isLastThumbStart ? Thumb.End : Thumb.Start;
+            Thumb topThumb = isLastThumbStart ? Thumb.Start : Thumb.End;
+            Offset bottomThumbCenter = isLastThumbStart ? endThumbCenter : startThumbCenter;
+            Offset topThumbCenter = isLastThumbStart ? startThumbCenter : endThumbCenter;
+            TextPainter bottomLabelPainter = isLastThumbStart ? _EndLabelPainter : _StartLabelPainter;
+            TextPainter topLabelPainter = isLastThumbStart ? _StartLabelPainter : _EndLabelPainter;
+            double bottomValue = isLastThumbStart ? endValue : startValue;
+            double topValue = isLastThumbStart ? startValue : endValue;
+            bool shouldPaintValueIndicators = IsEnabled && Labels != null && !_ValueIndicatorAnimation.IsDismissed && ShowValueIndicator;
+            if (shouldPaintValueIndicators)
+            {
+                _SliderTheme.RangeValueIndicatorShape.Paint(context, bottomThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: false, labelPainter: bottomLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, thumb: bottomThumb, value: bottomValue);
+            }
+
+            _SliderTheme.RangeThumbShape.Paint(context, bottomThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: false, textDirection: TextDirection, sliderTheme: _SliderTheme, thumb: bottomThumb);
+            if (shouldPaintValueIndicators)
+            {
+                double startOffset = SliderTheme.RangeValueIndicatorShape.GetHorizontalShift(parentBox: this, center: startThumbCenter, labelPainter: _StartLabelPainter, activationAnimation: _ValueIndicatorAnimation);
+                double endOffset = SliderTheme.RangeValueIndicatorShape.GetHorizontalShift(parentBox: this, center: endThumbCenter, labelPainter: _EndLabelPainter, activationAnimation: _ValueIndicatorAnimation);
+                double startHalfWidth = SliderTheme.RangeValueIndicatorShape.GetPreferredSize(IsEnabled, IsDiscrete, labelPainter: _StartLabelPainter).Width / 2;
+                double endHalfWidth = SliderTheme.RangeValueIndicatorShape.GetPreferredSize(IsEnabled, IsDiscrete, labelPainter: _EndLabelPainter).Width / 2;
+                double innerOverflow = startHalfWidth + endHalfWidth;
+                switch (TextDirection) { case TextDirection.Ltr: innerOverflow += startOffset; innerOverflow -= endOffset; break; case TextDirection.Rtl: innerOverflow -= startOffset; innerOverflow += endOffset; break; }
+                _SliderTheme.RangeValueIndicatorShape.Paint(context, topThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: thumbDelta < innerOverflow, labelPainter: topLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, thumb: topThumb, value: topValue);
+            }
+
+            _SliderTheme.RangeThumbShape.Paint(context, topThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: thumbDelta < SliderTheme.RangeThumbShape.GetPreferredSize(IsEnabled, IsDiscrete).Width, textDirection: TextDirection, sliderTheme: _SliderTheme, thumb: topThumb);
+        }
+
+
+
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+        {
+            base.DescribeSemanticsConfiguration(config);
+            config.IsSemanticBoundary = IsEnabled;
+            if (IsEnabled)
+            {
+                config.TextDirection = TextDirection;
+                config.CustomSemanticsActions = new Dictionary<CustomSemanticsAction, VoidCallback> { { _DecreaseStart, _DecreaseStartAction }{ _IncreaseStart, _IncreaseStartAction }{ _DecreaseEnd, _DecreaseEndAction }{ _IncreaseEnd, _IncreaseEndAction } };
+                if (SemanticFormatterCallback != null)
+                {
+                    config.Value = SemanticFormatterCallback(_State._LerpRangeValues(Values));
+                }
+                else
+                {
+                    config.Value = Values.ToString();
+                }
+
             }
 
         }
 
-    }
-
-    double thumbDelta = (endThumbCenter.Dx - startThumbCenter.Dx).Abs();
-    bool isLastThumbStart = _LastThumbSelection == Thumb.Start;
-    Thumb bottomThumb = isLastThumbStart ? Thumb.End : Thumb.Start;
-    Thumb topThumb = isLastThumbStart ? Thumb.Start : Thumb.End;
-    Offset bottomThumbCenter = isLastThumbStart ? endThumbCenter : startThumbCenter;
-    Offset topThumbCenter = isLastThumbStart ? startThumbCenter : endThumbCenter;
-    TextPainter bottomLabelPainter = isLastThumbStart ? _EndLabelPainter : _StartLabelPainter;
-    TextPainter topLabelPainter = isLastThumbStart ? _StartLabelPainter : _EndLabelPainter;
-    double bottomValue = isLastThumbStart ? endValue : startValue;
-    double topValue = isLastThumbStart ? startValue : endValue;
-    bool shouldPaintValueIndicators = IsEnabled && Labels != null && !_ValueIndicatorAnimation.IsDismissed && ShowValueIndicator;
-    if (shouldPaintValueIndicators)
-    {
-        _SliderTheme.RangeValueIndicatorShape.Paint(context, bottomThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: false, labelPainter: bottomLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, thumb: bottomThumb, value: bottomValue);
-    }
-
-    _SliderTheme.RangeThumbShape.Paint(context, bottomThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: false, textDirection: TextDirection, sliderTheme: _SliderTheme, thumb: bottomThumb);
-    if (shouldPaintValueIndicators)
-    {
-        double startOffset = SliderTheme.RangeValueIndicatorShape.GetHorizontalShift(parentBox: this, center: startThumbCenter, labelPainter: _StartLabelPainter, activationAnimation: _ValueIndicatorAnimation);
-        double endOffset = SliderTheme.RangeValueIndicatorShape.GetHorizontalShift(parentBox: this, center: endThumbCenter, labelPainter: _EndLabelPainter, activationAnimation: _ValueIndicatorAnimation);
-        double startHalfWidth = SliderTheme.RangeValueIndicatorShape.GetPreferredSize(IsEnabled, IsDiscrete, labelPainter: _StartLabelPainter).Width / 2;
-        double endHalfWidth = SliderTheme.RangeValueIndicatorShape.GetPreferredSize(IsEnabled, IsDiscrete, labelPainter: _EndLabelPainter).Width / 2;
-        double innerOverflow = startHalfWidth + endHalfWidth;
-        switch (TextDirection) { case TextDirection.Ltr: innerOverflow += startOffset; innerOverflow -= endOffset; break; case TextDirection.Rtl: innerOverflow -= startOffset; innerOverflow += endOffset; break; }
-        _SliderTheme.RangeValueIndicatorShape.Paint(context, topThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: thumbDelta < innerOverflow, labelPainter: topLabelPainter, parentBox: this, sliderTheme: _SliderTheme, textDirection: _TextDirection, thumb: topThumb, value: topValue);
-    }
-
-    _SliderTheme.RangeThumbShape.Paint(context, topThumbCenter, activationAnimation: _ValueIndicatorAnimation, enableAnimation: _EnableAnimation, isDiscrete: IsDiscrete, isOnTop: thumbDelta < SliderTheme.RangeThumbShape.GetPreferredSize(IsEnabled, IsDiscrete).Width, textDirection: TextDirection, sliderTheme: _SliderTheme, thumb: topThumb);
-}
 
 
 
-
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-{
-    base.DescribeSemanticsConfiguration(config);
-    config.IsSemanticBoundary = IsEnabled;
-    if (IsEnabled)
-    {
-        config.TextDirection = TextDirection;
-        config.CustomSemanticsActions = new Dictionary<CustomSemanticsAction, VoidCallback> { { _DecreaseStart, _DecreaseStartAction }{ _IncreaseStart, _IncreaseStartAction }{ _DecreaseEnd, _DecreaseEndAction }{ _IncreaseEnd, _IncreaseEndAction } };
-        if (SemanticFormatterCallback != null)
+        private void _IncreaseStartAction()
         {
-            config.Value = SemanticFormatterCallback(_State._LerpRangeValues(Values));
-        }
-        else
-        {
-            config.Value = Values.ToString();
+            if (IsEnabled)
+            {
+                OnChanged(new RangeValues(_IncreaseValue(Values.Start), Values.End));
+            }
+
         }
 
+
+
+
+        private void _DecreaseStartAction()
+        {
+            if (IsEnabled)
+            {
+                OnChanged(new RangeValues(_DecreaseValue(Values.Start), Values.End));
+            }
+
+        }
+
+
+
+
+        private void _IncreaseEndAction()
+        {
+            if (IsEnabled)
+            {
+                OnChanged(new RangeValues(Values.Start, _IncreaseValue(Values.End)));
+            }
+
+        }
+
+
+
+
+        private void _DecreaseEndAction()
+        {
+            if (IsEnabled)
+            {
+                OnChanged(new RangeValues(Values.Start, _DecreaseValue(Values.End)));
+            }
+
+        }
+
+
+
+
+        private double _IncreaseValue(double value)
+        {
+            return (value + _SemanticActionUnit).Clamp(0.0, 1.0) as double;
+        }
+
+
+
+
+        private double _DecreaseValue(double value)
+        {
+            return (value - _SemanticActionUnit).Clamp(0.0, 1.0) as double;
+        }
+
+
+
+        #endregion
     }
-
-}
-
-
-
-
-private void _IncreaseStartAction()
-{
-    if (IsEnabled)
-    {
-        OnChanged(new RangeValues(_IncreaseValue(Values.Start), Values.End));
-    }
-
-}
-
-
-
-
-private void _DecreaseStartAction()
-{
-    if (IsEnabled)
-    {
-        OnChanged(new RangeValues(_DecreaseValue(Values.Start), Values.End));
-    }
-
-}
-
-
-
-
-private void _IncreaseEndAction()
-{
-    if (IsEnabled)
-    {
-        OnChanged(new RangeValues(Values.Start, _IncreaseValue(Values.End)));
-    }
-
-}
-
-
-
-
-private void _DecreaseEndAction()
-{
-    if (IsEnabled)
-    {
-        OnChanged(new RangeValues(Values.Start, _DecreaseValue(Values.End)));
-    }
-
-}
-
-
-
-
-private double _IncreaseValue(double value)
-{
-    return (value + _SemanticActionUnit).Clamp(0.0, 1.0) as double;
-}
-
-
-
-
-private double _DecreaseValue(double value)
-{
-    return (value - _SemanticActionUnit).Clamp(0.0, 1.0) as double;
-}
-
-
-
-#endregion
-}
 
 }

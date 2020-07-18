@@ -911,19 +911,20 @@ public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase
 {
     #region constructors
     public RenderingFlutterBinding(FlutterSDK.Rendering.Box.RenderBox root = default(FlutterSDK.Rendering.Box.RenderBox))
+    {
 
 
-RenderView.Child=root;
-}
+        RenderView.Child = root;
+    }
 
 
-#endregion
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 }

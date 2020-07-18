@@ -616,156 +616,158 @@ namespace FlutterSDK.Widgets.Inheritedmodel
         #region constructors
         public InheritedModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-    
-}
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new InheritedModelElement<T> CreateElement() => new InheritedModelElement<T>(this);
-
-
-
-    /// <Summary>
-    /// Return true if the changes between this model and [oldWidget] match any
-    /// of the [dependencies].
-    /// </Summary>
-    public virtual bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, HashSet<T> dependencies)
-    {
-        return default(bool);
-    }
-
-
-    /// <Summary>
-    /// Returns true if this model supports the given [aspect].
-    ///
-    /// Returns true by default: this model supports all aspects.
-    ///
-    /// Subclasses may override this method to indicate that they do not support
-    /// all model aspects. This is typically done when a model can be used
-    /// to "shadow" some aspects of an ancestor.
-    /// </Summary>
-    public virtual bool IsSupportedAspect(@Object aspect) => true;
-
-
-
-    private void _FindModels<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect, List<FlutterSDK.Widgets.Framework.InheritedElement> results)
-    {
-        InheritedElement model = context.GetElementForInheritedWidgetOfExactType();
-        if (model == null) return;
-        results.Add(model);
-
-        T modelWidget = model.Widget as T;
-        if (modelWidget.IsSupportedAspect(aspect)) return;
-        Element modelParent = default(Element);
-        model.VisitAncestorElements((Element ancestor) =>
         {
-            modelParent = ancestor;
-            return false;
+
         }
-        );
-        if (modelParent == null) return;
-        _FindModels(modelParent, aspect, results);
-    }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new InheritedModelElement<T> CreateElement() => new InheritedModelElement<T>(this);
 
 
 
-
-    /// <Summary>
-    /// Makes [context] dependent on the specified [aspect] of an [InheritedModel]
-    /// of type T.
-    ///
-    /// When the given [aspect] of the model changes, the [context] will be
-    /// rebuilt. The [updateShouldNotifyDependent] method must determine if a
-    /// change in the model widget corresponds to an [aspect] value.
-    ///
-    /// The dependencies created by this method target all [InheritedModel] ancestors
-    /// of type T up to and including the first one for which [isSupportedAspect]
-    /// returns true.
-    ///
-    /// If [aspect] is null this method is the same as
-    /// `context.dependOnInheritedWidgetOfExactType<T>()`.
-    ///
-    /// If no ancestor of type T exists, null is returned.
-    /// </Summary>
-    public virtual T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect = default(@Object))
-    {
-        if (aspect == null) return context.DependOnInheritedWidgetOfExactType();
-        List<InheritedElement> models = new List<InheritedElement>() { };
-        _FindModels(context, aspect, models);
-        if (models.IsEmpty())
+        /// <Summary>
+        /// Return true if the changes between this model and [oldWidget] match any
+        /// of the [dependencies].
+        /// </Summary>
+        public virtual bool UpdateShouldNotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, HashSet<T> dependencies)
         {
+            return default(bool);
+        }
+
+
+        /// <Summary>
+        /// Returns true if this model supports the given [aspect].
+        ///
+        /// Returns true by default: this model supports all aspects.
+        ///
+        /// Subclasses may override this method to indicate that they do not support
+        /// all model aspects. This is typically done when a model can be used
+        /// to "shadow" some aspects of an ancestor.
+        /// </Summary>
+        public virtual bool IsSupportedAspect(@Object aspect) => true;
+
+
+
+        private void _FindModels<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect, List<FlutterSDK.Widgets.Framework.InheritedElement> results)
+        {
+            InheritedElement model = context.GetElementForInheritedWidgetOfExactType();
+            if (model == null) return;
+            results.Add(model);
+
+            T modelWidget = model.Widget as T;
+            if (modelWidget.IsSupportedAspect(aspect)) return;
+            Element modelParent = default(Element);
+            model.VisitAncestorElements((Element ancestor) =>
+            {
+                modelParent = ancestor;
+                return false;
+            }
+            );
+            if (modelParent == null) return;
+            _FindModels(modelParent, aspect, results);
+        }
+
+
+
+
+        /// <Summary>
+        /// Makes [context] dependent on the specified [aspect] of an [InheritedModel]
+        /// of type T.
+        ///
+        /// When the given [aspect] of the model changes, the [context] will be
+        /// rebuilt. The [updateShouldNotifyDependent] method must determine if a
+        /// change in the model widget corresponds to an [aspect] value.
+        ///
+        /// The dependencies created by this method target all [InheritedModel] ancestors
+        /// of type T up to and including the first one for which [isSupportedAspect]
+        /// returns true.
+        ///
+        /// If [aspect] is null this method is the same as
+        /// `context.dependOnInheritedWidgetOfExactType<T>()`.
+        ///
+        /// If no ancestor of type T exists, null is returned.
+        /// </Summary>
+        public virtual T InheritFrom<T>(FlutterSDK.Widgets.Framework.BuildContext context, @Object aspect = default(@Object))
+        {
+            if (aspect == null) return context.DependOnInheritedWidgetOfExactType();
+            List<InheritedElement> models = new List<InheritedElement>() { };
+            _FindModels(context, aspect, models);
+            if (models.IsEmpty())
+            {
+                return null;
+            }
+
+            InheritedElement lastModel = models.Last();
+            foreach (InheritedElement model in models)
+            {
+                T value = context.DependOnInheritedElement(model, aspect: aspect) as T;
+                if (model == lastModel) return value;
+            }
+
+
             return null;
         }
 
-        InheritedElement lastModel = models.Last();
-        foreach (InheritedElement model in models)
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An [Element] that uses a [InheritedModel] as its configuration.
+    /// </Summary>
+    public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
+    {
+        #region constructors
+        public InheritedModelElement(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> widget)
+        : base(widget)
         {
-            T value = context.DependOnInheritedElement(model, aspect: aspect) as T;
-            if (model == lastModel) return value;
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void UpdateDependencies(FlutterSDK.Widgets.Framework.Element dependent, @Object aspect)
+        {
+            HashSet<T> dependencies = GetDependencies(dependent) as HashSet<T>;
+            if (dependencies != null && dependencies.IsEmpty()) return;
+            if (aspect == null)
+            {
+                SetDependencies(dependent, new HashSet<T>());
+            }
+            else
+            {
+
+                SetDependencies(dependent, (dependencies ?? new HashSet<T>());
+                (dependencies ?? new HashSet<T>()).Add(aspect as T));
+            }
+
         }
 
 
-        return null;
+
+
+        public new void NotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, FlutterSDK.Widgets.Framework.Element dependent)
+        {
+            HashSet<T> dependencies = GetDependencies(dependent) as HashSet<T>;
+            if (dependencies == null) return;
+            if (dependencies.IsEmpty() || Widget.UpdateShouldNotifyDependent(oldWidget, dependencies)) dependent.DidChangeDependencies();
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An [Element] that uses a [InheritedModel] as its configuration.
-/// </Summary>
-public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
-{
-    #region constructors
-    public InheritedModelElement(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> widget)
-    : base(widget)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void UpdateDependencies(FlutterSDK.Widgets.Framework.Element dependent, @Object aspect)
-{
-    HashSet<T> dependencies = GetDependencies(dependent) as HashSet<T>;
-    if (dependencies != null && dependencies.IsEmpty()) return;
-    if (aspect == null)
-    {
-        SetDependencies(dependent, new HashSet<T>());
-    }
-    else
-    {
-
-        SetDependencies(dependent, (dependencies ?? new HashSet<T>());
-        (dependencies ?? new HashSet<T>()).Add(aspect as T));
-    }
-
-}
-
-
-
-
-public new void NotifyDependent(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> oldWidget, FlutterSDK.Widgets.Framework.Element dependent)
-{
-    HashSet<T> dependencies = GetDependencies(dependent) as HashSet<T>;
-    if (dependencies == null) return;
-    if (dependencies.IsEmpty() || Widget.UpdateShouldNotifyDependent(oldWidget, dependencies)) dependent.DidChangeDependencies();
-}
-
-
-
-#endregion
-}
 
 }

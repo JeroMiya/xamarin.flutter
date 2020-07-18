@@ -469,24 +469,25 @@ namespace FlutterSDK.Widgets.Spacer
         #region constructors
         public Spacer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1)
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Flex = flex;
+        }
+        #endregion
 
-    #region fields
-    public virtual int Flex { get; set; }
-    #endregion
+        #region fields
+        public virtual int Flex { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Expanded(flex: Flex, child: SizedBox.Shrink());
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Expanded(flex: Flex, child: SizedBox.Shrink());
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

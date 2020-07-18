@@ -440,53 +440,58 @@ namespace FlutterSDK.Widgets.Animatedsize
         #region constructors
         public AnimatedSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(key: key, child: child)
-    
-}
-    #endregion
+        {
+            this.Alignment = alignment;
+            this.Curve = curve;
+            this.Duration = duration;
+            this.ReverseDuration = reverseDuration;
+            this.Vsync = vsync;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-    public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-    public virtual TimeSpan Duration { get; set; }
-    public virtual TimeSpan ReverseDuration { get; set; }
-    public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        public virtual TimeSpan ReverseDuration { get; set; }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new RenderAnimatedSize(alignment: Alignment, duration: Duration, reverseDuration: ReverseDuration, curve: Curve, vsync: Vsync, textDirection: BasicDefaultClass.Directionality.Of(context));
+        public new FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new RenderAnimatedSize(alignment: Alignment, duration: Duration, reverseDuration: ReverseDuration, curve: Curve, vsync: Vsync, textDirection: BasicDefaultClass.Directionality.Of(context));
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize renderObject)
+        {
+            ..Alignment = Alignment..Duration = Duration..ReverseDuration = ReverseDuration..Curve = Curve..Vsync = Vsync..TextDirection = BasicDefaultClass.Directionality.Of(context);
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..Alignment = Alignment..Duration = Duration..ReverseDuration = ReverseDuration..Curve = Curve..Vsync = Vsync..TextDirection = BasicDefaultClass.Directionality.Of(context);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, defaultValue: AlignmentDefaultClass.Alignment.TopCenter));
+            properties.Add(new IntProperty("duration", Duration.InMilliseconds, unit: "ms"));
+            properties.Add(new IntProperty("reverseDuration", ReverseDuration?.InMilliseconds, unit: "ms", defaultValue: null));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize renderObject)
-    {
-        ..Alignment = Alignment..Duration = Duration..ReverseDuration = ReverseDuration..Curve = Curve..Vsync = Vsync..TextDirection = BasicDefaultClass.Directionality.Of(context);
-    }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        ..Alignment = Alignment..Duration = Duration..ReverseDuration = ReverseDuration..Curve = Curve..Vsync = Vsync..TextDirection = BasicDefaultClass.Directionality.Of(context);
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment, defaultValue: AlignmentDefaultClass.Alignment.TopCenter));
-        properties.Add(new IntProperty("duration", Duration.InMilliseconds, unit: "ms"));
-        properties.Add(new IntProperty("reverseDuration", ReverseDuration?.InMilliseconds, unit: "ms", defaultValue: null));
-    }
-
-
-
-    #endregion
-}
 
 }

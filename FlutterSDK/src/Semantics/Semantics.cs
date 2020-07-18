@@ -904,261 +904,289 @@ namespace FlutterSDK.Semantics.Semantics
     {
         #region constructors
         public SemanticsTag(string name)
-    
-}
-    #endregion
+        {
+            this.Name = name;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Name { get; set; }
-    #endregion
+        #region fields
+        public virtual string Name { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    #endregion
-}
-
-
-/// <Summary>
-/// An identifier of a custom semantics action.
-///
-/// Custom semantics actions can be provided to make complex user
-/// interactions more accessible. For instance, if an application has a
-/// drag-and-drop list that requires the user to press and hold an item
-/// to move it, users interacting with the application using a hardware
-/// switch may have difficulty. This can be made accessible by creating custom
-/// actions and pairing them with handlers that move a list item up or down in
-/// the list.
-///
-/// In Android, these actions are presented in the local context menu. In iOS,
-/// these are presented in the radial context menu.
-///
-/// Localization and text direction do not automatically apply to the provided
-/// label or hint.
-///
-/// Instances of this class should either be instantiated with const or
-/// new instances cached in static fields.
-///
-/// See also:
-///
-///  * [SemanticsProperties], where the handler for a custom action is provided.
-/// </Summary>
-public class CustomSemanticsAction
-{
-    #region constructors
-    public CustomSemanticsAction(string label = default(string))
-    : base()
-
-}
-public static CustomSemanticsAction OverridingAction(string hint = default(string), SemanticsAction action = default(SemanticsAction))
-
-}
-#endregion
-
-#region fields
-public virtual string Label { get; set; }
-public virtual string Hint { get; set; }
-public virtual SemanticsAction Action { get; set; }
-internal virtual int _NextId { get; set; }
-internal virtual Dictionary<int, FlutterSDK.Semantics.Semantics.CustomSemanticsAction> _Actions { get; set; }
-internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, int> _Ids { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is CustomSemanticsAction && other.Label == Label && other.Hint == Hint && other.Action == Action;
-}
-
-
-
-
-
-/// <Summary>
-/// Get the identifier for a given `action`.
-/// </Summary>
-public virtual int GetIdentifier(FlutterSDK.Semantics.Semantics.CustomSemanticsAction action)
-{
-    int result = _Ids[action];
-    if (result == null)
-    {
-        result = _NextId++;
-        _Ids[action] = result;
-        _Actions[result] = action;
+        #endregion
     }
 
-    return result;
-}
 
-
-
-
-/// <Summary>
-/// Get the `action` for a given identifier.
-/// </Summary>
-public virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction GetAction(int id)
-{
-    return _Actions[id];
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Summary information about a [SemanticsNode] object.
-///
-/// A semantics node might [SemanticsNode.mergeAllDescendantsIntoThisNode],
-/// which means the individual fields on the semantics node don't fully describe
-/// the semantics at that node. This data structure contains the full semantics
-/// for the node.
-///
-/// Typically obtained from [SemanticsNode.getSemanticsData].
-/// </Summary>
-public class SemanticsData : IDiagnosticable
-{
-    #region constructors
-    public SemanticsData(int flags = default(int), int actions = default(int), string label = default(string), string increasedValue = default(string), string value = default(string), string decreasedValue = default(string), string hint = default(string), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), double elevation = default(double), double thickness = default(double), FlutterSDK.Services.Textediting.TextSelection textSelection = default(FlutterSDK.Services.Textediting.TextSelection), int scrollIndex = default(int), int scrollChildCount = default(int), double scrollPosition = default(double), double scrollExtentMax = default(double), double scrollExtentMin = default(double), int platformViewId = default(int), int maxValueLength = default(int), int currentValueLength = default(int), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>), Matrix4 transform = default(Matrix4), List<int> customSemanticsActionIds = default(List<int>))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual int Flags { get; set; }
-public virtual int Actions { get; set; }
-public virtual string Label { get; set; }
-public virtual string Value { get; set; }
-public virtual string IncreasedValue { get; set; }
-public virtual string DecreasedValue { get; set; }
-public virtual string Hint { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual FlutterSDK.Services.Textediting.TextSelection TextSelection { get; set; }
-public virtual int ScrollChildCount { get; set; }
-public virtual int ScrollIndex { get; set; }
-public virtual double ScrollPosition { get; set; }
-public virtual double ScrollExtentMax { get; set; }
-public virtual double ScrollExtentMin { get; set; }
-public virtual int PlatformViewId { get; set; }
-public virtual int MaxValueLength { get; set; }
-public virtual int CurrentValueLength { get; set; }
-public virtual FlutterBinding.UI.Rect Rect { get; set; }
-public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
-public virtual Matrix4 Transform { get; set; }
-public virtual double Elevation { get; set; }
-public virtual double Thickness { get; set; }
-public virtual List<int> CustomSemanticsActionIds { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Whether [flags] contains the given flag.
-/// </Summary>
-public virtual bool HasFlag(SemanticsFlag flag) => (Flags & flag.Index) != 0;
-
-
-
-/// <Summary>
-/// Whether [actions] contains the given action.
-/// </Summary>
-public virtual bool HasAction(SemanticsAction action) => (Actions & action.Index) != 0;
-
-
-
-public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "SemanticsData");
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Rect>("rect", Rect, showName: false));
-    properties.Add(new TransformProperty("transform", Transform, showName: false, defaultValue: null));
-    properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: 0.0));
-    properties.Add(new DoubleProperty("thickness", Thickness, defaultValue: 0.0));
-    List<string> actionSummary = new List<string>() { };
-    List<string> customSemanticsActionSummary = CustomSemanticsActionIds.Map((int actionId) => =>SemanticsDefaultClass.CustomSemanticsAction.GetAction(actionId).Label).ToList();
-    properties.Add(new IterableProperty<string>("actions", actionSummary, ifEmpty: null));
-    properties.Add(new IterableProperty<string>("customActions", customSemanticsActionSummary, ifEmpty: null));
-    List<string> flagSummary = new List<string>() { };
-    properties.Add(new IterableProperty<string>("flags", flagSummary, ifEmpty: null));
-    properties.Add(new StringProperty("label", Label, defaultValue: ""));
-    properties.Add(new StringProperty("value", Value, defaultValue: ""));
-    properties.Add(new StringProperty("increasedValue", IncreasedValue, defaultValue: ""));
-    properties.Add(new StringProperty("decreasedValue", DecreasedValue, defaultValue: ""));
-    properties.Add(new StringProperty("hint", Hint, defaultValue: ""));
-    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
-    if (TextSelection?.IsValid == true) properties.Add(new MessageProperty("textSelection", $"'[{TextSelection.Start}, {TextSelection.End}]'"));
-    properties.Add(new IntProperty("platformViewId", PlatformViewId, defaultValue: null));
-    properties.Add(new IntProperty("maxValueLength", MaxValueLength, defaultValue: null));
-    properties.Add(new IntProperty("currentValueLength", CurrentValueLength, defaultValue: null));
-    properties.Add(new IntProperty("scrollChildren", ScrollChildCount, defaultValue: null));
-    properties.Add(new IntProperty("scrollIndex", ScrollIndex, defaultValue: null));
-    properties.Add(new DoubleProperty("scrollExtentMin", ScrollExtentMin, defaultValue: null));
-    properties.Add(new DoubleProperty("scrollPosition", ScrollPosition, defaultValue: null));
-    properties.Add(new DoubleProperty("scrollExtentMax", ScrollExtentMax, defaultValue: null));
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    return other is SemanticsData && other.Flags == Flags && other.Actions == Actions && other.Label == Label && other.Value == Value && other.IncreasedValue == IncreasedValue && other.DecreasedValue == DecreasedValue && other.Hint == Hint && other.TextDirection == TextDirection && other.Rect == Rect && CollectionsDefaultClass.SetEquals(other.Tags, Tags) && other.ScrollChildCount == ScrollChildCount && other.ScrollIndex == ScrollIndex && other.TextSelection == TextSelection && other.ScrollPosition == ScrollPosition && other.ScrollExtentMax == ScrollExtentMax && other.ScrollExtentMin == ScrollExtentMin && other.PlatformViewId == PlatformViewId && other.MaxValueLength == MaxValueLength && other.CurrentValueLength == CurrentValueLength && other.Transform == Transform && other.Elevation == Elevation && other.Thickness == Thickness && _SortedListsEqual(other.CustomSemanticsActionIds, CustomSemanticsActionIds);
-}
-
-
-
-
-private bool _SortedListsEqual(List<int> left, List<int> right)
-{
-    if (left == null && right == null) return true;
-    if (left != null && right != null)
+    /// <Summary>
+    /// An identifier of a custom semantics action.
+    ///
+    /// Custom semantics actions can be provided to make complex user
+    /// interactions more accessible. For instance, if an application has a
+    /// drag-and-drop list that requires the user to press and hold an item
+    /// to move it, users interacting with the application using a hardware
+    /// switch may have difficulty. This can be made accessible by creating custom
+    /// actions and pairing them with handlers that move a list item up or down in
+    /// the list.
+    ///
+    /// In Android, these actions are presented in the local context menu. In iOS,
+    /// these are presented in the radial context menu.
+    ///
+    /// Localization and text direction do not automatically apply to the provided
+    /// label or hint.
+    ///
+    /// Instances of this class should either be instantiated with const or
+    /// new instances cached in static fields.
+    ///
+    /// See also:
+    ///
+    ///  * [SemanticsProperties], where the handler for a custom action is provided.
+    /// </Summary>
+    public class CustomSemanticsAction
     {
-        if (left.Count != right.Count) return false;
-        for (int i = 0; i < left.Count; i++) if (left[i] != right[i]) return false;
-        return true;
+        #region constructors
+        public CustomSemanticsAction(string label = default(string))
+        : base()
+        {
+            this.Label = label;
+        }
+        public static CustomSemanticsAction OverridingAction(string hint = default(string), SemanticsAction action = default(SemanticsAction))
+        {
+            var instance = new CustomSemanticsAction(); instance.Hint = hint;
+            instance.Action = action;
+        }
+        #endregion
+
+        #region fields
+        public virtual string Label { get; set; }
+        public virtual string Hint { get; set; }
+        public virtual SemanticsAction Action { get; set; }
+        internal virtual int _NextId { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Semantics.Semantics.CustomSemanticsAction> _Actions { get; set; }
+        internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, int> _Ids { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is CustomSemanticsAction && other.Label == Label && other.Hint == Hint && other.Action == Action;
+        }
+
+
+
+
+
+        /// <Summary>
+        /// Get the identifier for a given `action`.
+        /// </Summary>
+        public virtual int GetIdentifier(FlutterSDK.Semantics.Semantics.CustomSemanticsAction action)
+        {
+            int result = _Ids[action];
+            if (result == null)
+            {
+                result = _NextId++;
+                _Ids[action] = result;
+                _Actions[result] = action;
+            }
+
+            return result;
+        }
+
+
+
+
+        /// <Summary>
+        /// Get the `action` for a given identifier.
+        /// </Summary>
+        public virtual FlutterSDK.Semantics.Semantics.CustomSemanticsAction GetAction(int id)
+        {
+            return _Actions[id];
+        }
+
+
+
+        #endregion
     }
 
-    return false;
-}
+
+    /// <Summary>
+    /// Summary information about a [SemanticsNode] object.
+    ///
+    /// A semantics node might [SemanticsNode.mergeAllDescendantsIntoThisNode],
+    /// which means the individual fields on the semantics node don't fully describe
+    /// the semantics at that node. This data structure contains the full semantics
+    /// for the node.
+    ///
+    /// Typically obtained from [SemanticsNode.getSemanticsData].
+    /// </Summary>
+    public class SemanticsData : IDiagnosticable
+    {
+        #region constructors
+        public SemanticsData(int flags = default(int), int actions = default(int), string label = default(string), string increasedValue = default(string), string value = default(string), string decreasedValue = default(string), string hint = default(string), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), double elevation = default(double), double thickness = default(double), FlutterSDK.Services.Textediting.TextSelection textSelection = default(FlutterSDK.Services.Textediting.TextSelection), int scrollIndex = default(int), int scrollChildCount = default(int), double scrollPosition = default(double), double scrollExtentMax = default(double), double scrollExtentMin = default(double), int platformViewId = default(int), int maxValueLength = default(int), int currentValueLength = default(int), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>), Matrix4 transform = default(Matrix4), List<int> customSemanticsActionIds = default(List<int>))
+        : base()
+        {
+            this.Flags = flags;
+            this.Actions = actions;
+            this.Label = label;
+            this.IncreasedValue = increasedValue;
+            this.Value = value;
+            this.DecreasedValue = decreasedValue;
+            this.Hint = hint;
+            this.TextDirection = textDirection;
+            this.Rect = rect;
+            this.Elevation = elevation;
+            this.Thickness = thickness;
+            this.TextSelection = textSelection;
+            this.ScrollIndex = scrollIndex;
+            this.ScrollChildCount = scrollChildCount;
+            this.ScrollPosition = scrollPosition;
+            this.ScrollExtentMax = scrollExtentMax;
+            this.ScrollExtentMin = scrollExtentMin;
+            this.PlatformViewId = platformViewId;
+            this.MaxValueLength = maxValueLength;
+            this.CurrentValueLength = currentValueLength;
+            this.Tags = tags;
+            this.Transform = transform;
+            this.CustomSemanticsActionIds = customSemanticsActionIds;
+        }
+        #endregion
+
+        #region fields
+        public virtual int Flags { get; set; }
+        public virtual int Actions { get; set; }
+        public virtual string Label { get; set; }
+        public virtual string Value { get; set; }
+        public virtual string IncreasedValue { get; set; }
+        public virtual string DecreasedValue { get; set; }
+        public virtual string Hint { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Services.Textediting.TextSelection TextSelection { get; set; }
+        public virtual int ScrollChildCount { get; set; }
+        public virtual int ScrollIndex { get; set; }
+        public virtual double ScrollPosition { get; set; }
+        public virtual double ScrollExtentMax { get; set; }
+        public virtual double ScrollExtentMin { get; set; }
+        public virtual int PlatformViewId { get; set; }
+        public virtual int MaxValueLength { get; set; }
+        public virtual int CurrentValueLength { get; set; }
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
+        public virtual Matrix4 Transform { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual double Thickness { get; set; }
+        public virtual List<int> CustomSemanticsActionIds { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Whether [flags] contains the given flag.
+        /// </Summary>
+        public virtual bool HasFlag(SemanticsFlag flag) => (Flags & flag.Index) != 0;
 
 
 
-#endregion
-}
-
-
-public class _SemanticsDiagnosticableNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Semantics.Semantics.SemanticsNode>
-{
-    #region constructors
-    public _SemanticsDiagnosticableNode(string name = default(string), FlutterSDK.Semantics.Semantics.SemanticsNode value = default(FlutterSDK.Semantics.Semantics.SemanticsNode), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder = default(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder))
-    : base(name: name, value: value, style: style)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder ChildOrder { get; set; }
-#endregion
-
-#region methods
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
-{
-    if (Value != null) return Value.DebugDescribeChildren(childOrder: ChildOrder);
-    return new List, < DiagnosticsNode > (};
-}
+        /// <Summary>
+        /// Whether [actions] contains the given action.
+        /// </Summary>
+        public virtual bool HasAction(SemanticsAction action) => (Actions & action.Index) != 0;
 
 
 
-#endregion
+        public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "SemanticsData");
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<Rect>("rect", Rect, showName: false));
+            properties.Add(new TransformProperty("transform", Transform, showName: false, defaultValue: null));
+            properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: 0.0));
+            properties.Add(new DoubleProperty("thickness", Thickness, defaultValue: 0.0));
+            List<string> actionSummary = new List<string>() { };
+            List<string> customSemanticsActionSummary = CustomSemanticsActionIds.Map((int actionId) => =>SemanticsDefaultClass.CustomSemanticsAction.GetAction(actionId).Label).ToList();
+            properties.Add(new IterableProperty<string>("actions", actionSummary, ifEmpty: null));
+            properties.Add(new IterableProperty<string>("customActions", customSemanticsActionSummary, ifEmpty: null));
+            List<string> flagSummary = new List<string>() { };
+            properties.Add(new IterableProperty<string>("flags", flagSummary, ifEmpty: null));
+            properties.Add(new StringProperty("label", Label, defaultValue: ""));
+            properties.Add(new StringProperty("value", Value, defaultValue: ""));
+            properties.Add(new StringProperty("increasedValue", IncreasedValue, defaultValue: ""));
+            properties.Add(new StringProperty("decreasedValue", DecreasedValue, defaultValue: ""));
+            properties.Add(new StringProperty("hint", Hint, defaultValue: ""));
+            properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+            if (TextSelection?.IsValid == true) properties.Add(new MessageProperty("textSelection", $"'[{TextSelection.Start}, {TextSelection.End}]'"));
+            properties.Add(new IntProperty("platformViewId", PlatformViewId, defaultValue: null));
+            properties.Add(new IntProperty("maxValueLength", MaxValueLength, defaultValue: null));
+            properties.Add(new IntProperty("currentValueLength", CurrentValueLength, defaultValue: null));
+            properties.Add(new IntProperty("scrollChildren", ScrollChildCount, defaultValue: null));
+            properties.Add(new IntProperty("scrollIndex", ScrollIndex, defaultValue: null));
+            properties.Add(new DoubleProperty("scrollExtentMin", ScrollExtentMin, defaultValue: null));
+            properties.Add(new DoubleProperty("scrollPosition", ScrollPosition, defaultValue: null));
+            properties.Add(new DoubleProperty("scrollExtentMax", ScrollExtentMax, defaultValue: null));
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            return other is SemanticsData && other.Flags == Flags && other.Actions == Actions && other.Label == Label && other.Value == Value && other.IncreasedValue == IncreasedValue && other.DecreasedValue == DecreasedValue && other.Hint == Hint && other.TextDirection == TextDirection && other.Rect == Rect && CollectionsDefaultClass.SetEquals(other.Tags, Tags) && other.ScrollChildCount == ScrollChildCount && other.ScrollIndex == ScrollIndex && other.TextSelection == TextSelection && other.ScrollPosition == ScrollPosition && other.ScrollExtentMax == ScrollExtentMax && other.ScrollExtentMin == ScrollExtentMin && other.PlatformViewId == PlatformViewId && other.MaxValueLength == MaxValueLength && other.CurrentValueLength == CurrentValueLength && other.Transform == Transform && other.Elevation == Elevation && other.Thickness == Thickness && _SortedListsEqual(other.CustomSemanticsActionIds, CustomSemanticsActionIds);
+        }
+
+
+
+
+        private bool _SortedListsEqual(List<int> left, List<int> right)
+        {
+            if (left == null && right == null) return true;
+            if (left != null && right != null)
+            {
+                if (left.Count != right.Count) return false;
+                for (int i = 0; i < left.Count; i++) if (left[i] != right[i]) return false;
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _SemanticsDiagnosticableNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Semantics.Semantics.SemanticsNode>
+    {
+        #region constructors
+        public _SemanticsDiagnosticableNode(string name = default(string), FlutterSDK.Semantics.Semantics.SemanticsNode value = default(FlutterSDK.Semantics.Semantics.SemanticsNode), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder = default(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder))
+        : base(name: name, value: value, style: style)
+        {
+            this.ChildOrder = childOrder;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder ChildOrder { get; set; }
+        #endregion
+
+        #region methods
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
+        {
+            if (Value != null) return Value.DebugDescribeChildren(childOrder: ChildOrder);
+            return new List, < DiagnosticsNode > (};
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1173,38 +1201,40 @@ public class SemanticsHintOverrides : FlutterSDK.Foundation.Diagnostics.Diagnost
     #region constructors
     public SemanticsHintOverrides(string onTapHint = default(string), string onLongPressHint = default(string))
     : base()
+    {
+        this.OnTapHint = onTapHint;
+        this.OnLongPressHint = onLongPressHint;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual string OnTapHint { get; set; }
+    public virtual string OnLongPressHint { get; set; }
+    public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual string OnTapHint { get; set; }
-public virtual string OnLongPressHint { get; set; }
-public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is SemanticsHintOverrides && other.OnTapHint == OnTapHint && other.OnLongPressHint == OnLongPressHint;
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new StringProperty("onTapHint", OnTapHint, defaultValue: null));
-    properties.Add(new StringProperty("onLongPressHint", OnLongPressHint, defaultValue: null));
-}
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is SemanticsHintOverrides && other.OnTapHint == OnTapHint && other.OnLongPressHint == OnLongPressHint;
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new StringProperty("onTapHint", OnTapHint, defaultValue: null));
+        properties.Add(new StringProperty("onLongPressHint", OnLongPressHint, defaultValue: null));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1219,84 +1249,133 @@ public class SemanticsProperties : FlutterSDK.Foundation.Diagnostics.Diagnostica
 {
     #region constructors
     public SemanticsProperties(bool enabled = default(bool), bool @checked = default(bool), bool selected = default(bool), bool toggled = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool hidden = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
+    {
+        this.Enabled = enabled;
+        this.@checked = @checked;
+        this.Selected = selected;
+        this.Toggled = toggled;
+        this.Button = button;
+        this.Link = link;
+        this.Header = header;
+        this.TextField = textField;
+        this.ReadOnly = readOnly;
+        this.Focusable = focusable;
+        this.Focused = focused;
+        this.InMutuallyExclusiveGroup = inMutuallyExclusiveGroup;
+        this.Hidden = hidden;
+        this.Obscured = obscured;
+        this.Multiline = multiline;
+        this.ScopesRoute = scopesRoute;
+        this.NamesRoute = namesRoute;
+        this.Image = image;
+        this.LiveRegion = liveRegion;
+        this.MaxValueLength = maxValueLength;
+        this.CurrentValueLength = currentValueLength;
+        this.Label = label;
+        this.Value = value;
+        this.IncreasedValue = increasedValue;
+        this.DecreasedValue = decreasedValue;
+        this.Hint = hint;
+        this.HintOverrides = hintOverrides;
+        this.TextDirection = textDirection;
+        this.SortKey = sortKey;
+        this.OnTap = onTap;
+        this.OnLongPress = onLongPress;
+        this.OnScrollLeft = onScrollLeft;
+        this.OnScrollRight = onScrollRight;
+        this.OnScrollUp = onScrollUp;
+        this.OnScrollDown = onScrollDown;
+        this.OnIncrease = onIncrease;
+        this.OnDecrease = onDecrease;
+        this.OnCopy = onCopy;
+        this.OnCut = onCut;
+        this.OnPaste = onPaste;
+        this.OnMoveCursorForwardByCharacter = onMoveCursorForwardByCharacter;
+        this.OnMoveCursorBackwardByCharacter = onMoveCursorBackwardByCharacter;
+        this.OnMoveCursorForwardByWord = onMoveCursorForwardByWord;
+        this.OnMoveCursorBackwardByWord = onMoveCursorBackwardByWord;
+        this.OnSetSelection = onSetSelection;
+        this.OnDidGainAccessibilityFocus = onDidGainAccessibilityFocus;
+        this.OnDidLoseAccessibilityFocus = onDidLoseAccessibilityFocus;
+        this.OnDismiss = onDismiss;
+        this.CustomSemanticsActions = customSemanticsActions;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual bool Enabled { get; set; }
+    public virtual bool @checked { get; set; }
+    public virtual bool Toggled { get; set; }
+    public virtual bool Selected { get; set; }
+    public virtual bool Button { get; set; }
+    public virtual bool Link { get; set; }
+    public virtual bool Header { get; set; }
+    public virtual bool TextField { get; set; }
+    public virtual bool ReadOnly { get; set; }
+    public virtual bool Focusable { get; set; }
+    public virtual bool Focused { get; set; }
+    public virtual bool InMutuallyExclusiveGroup { get; set; }
+    public virtual bool Hidden { get; set; }
+    public virtual bool Obscured { get; set; }
+    public virtual bool Multiline { get; set; }
+    public virtual bool ScopesRoute { get; set; }
+    public virtual bool NamesRoute { get; set; }
+    public virtual bool Image { get; set; }
+    public virtual bool LiveRegion { get; set; }
+    public virtual int MaxValueLength { get; set; }
+    public virtual int CurrentValueLength { get; set; }
+    public virtual string Label { get; set; }
+    public virtual string Value { get; set; }
+    public virtual string IncreasedValue { get; set; }
+    public virtual string DecreasedValue { get; set; }
+    public virtual string Hint { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides { get; set; }
+    public virtual TextDirection TextDirection { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
+    public virtual VoidCallback OnTap { get; set; }
+    public virtual VoidCallback OnLongPress { get; set; }
+    public virtual VoidCallback OnScrollLeft { get; set; }
+    public virtual VoidCallback OnScrollRight { get; set; }
+    public virtual VoidCallback OnScrollUp { get; set; }
+    public virtual VoidCallback OnScrollDown { get; set; }
+    public virtual VoidCallback OnIncrease { get; set; }
+    public virtual VoidCallback OnDecrease { get; set; }
+    public virtual VoidCallback OnCopy { get; set; }
+    public virtual VoidCallback OnCut { get; set; }
+    public virtual VoidCallback OnPaste { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByCharacter { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByCharacter { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByWord { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByWord { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler OnSetSelection { get; set; }
+    public virtual VoidCallback OnDidGainAccessibilityFocus { get; set; }
+    public virtual VoidCallback OnDidLoseAccessibilityFocus { get; set; }
+    public virtual VoidCallback OnDismiss { get; set; }
+    public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> CustomSemanticsActions { get; set; }
+    #endregion
 
-#region fields
-public virtual bool Enabled { get; set; }
-public virtual bool @checked { get; set; }
-public virtual bool Toggled { get; set; }
-public virtual bool Selected { get; set; }
-public virtual bool Button { get; set; }
-public virtual bool Link { get; set; }
-public virtual bool Header { get; set; }
-public virtual bool TextField { get; set; }
-public virtual bool ReadOnly { get; set; }
-public virtual bool Focusable { get; set; }
-public virtual bool Focused { get; set; }
-public virtual bool InMutuallyExclusiveGroup { get; set; }
-public virtual bool Hidden { get; set; }
-public virtual bool Obscured { get; set; }
-public virtual bool Multiline { get; set; }
-public virtual bool ScopesRoute { get; set; }
-public virtual bool NamesRoute { get; set; }
-public virtual bool Image { get; set; }
-public virtual bool LiveRegion { get; set; }
-public virtual int MaxValueLength { get; set; }
-public virtual int CurrentValueLength { get; set; }
-public virtual string Label { get; set; }
-public virtual string Value { get; set; }
-public virtual string IncreasedValue { get; set; }
-public virtual string DecreasedValue { get; set; }
-public virtual string Hint { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
-public virtual VoidCallback OnTap { get; set; }
-public virtual VoidCallback OnLongPress { get; set; }
-public virtual VoidCallback OnScrollLeft { get; set; }
-public virtual VoidCallback OnScrollRight { get; set; }
-public virtual VoidCallback OnScrollUp { get; set; }
-public virtual VoidCallback OnScrollDown { get; set; }
-public virtual VoidCallback OnIncrease { get; set; }
-public virtual VoidCallback OnDecrease { get; set; }
-public virtual VoidCallback OnCopy { get; set; }
-public virtual VoidCallback OnCut { get; set; }
-public virtual VoidCallback OnPaste { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByCharacter { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByCharacter { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorForwardByWord { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.MoveCursorHandler OnMoveCursorBackwardByWord { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.SetSelectionHandler OnSetSelection { get; set; }
-public virtual VoidCallback OnDidGainAccessibilityFocus { get; set; }
-public virtual VoidCallback OnDidLoseAccessibilityFocus { get; set; }
-public virtual VoidCallback OnDismiss { get; set; }
-public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> CustomSemanticsActions { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<bool>("checked", Checked, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<bool>("selected", Selected, defaultValue: null));
-    properties.Add(new StringProperty("label", Label, defaultValue: ""));
-    properties.Add(new StringProperty("value", Value));
-    properties.Add(new StringProperty("hint", Hint));
-    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<SemanticsSortKey>("sortKey", SortKey, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<SemanticsHintOverrides>("hintOverrides", HintOverrides));
-}
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DiagnosticsProperty<bool>("checked", Checked, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<bool>("selected", Selected, defaultValue: null));
+        properties.Add(new StringProperty("label", Label, defaultValue: ""));
+        properties.Add(new StringProperty("value", Value));
+        properties.Add(new StringProperty("hint", Hint));
+        properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<SemanticsSortKey>("sortKey", SortKey, defaultValue: null));
+        properties.Add(new DiagnosticsProperty<SemanticsHintOverrides>("hintOverrides", HintOverrides));
+    }
 
 
 
 
-public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "SemanticsProperties");
+    public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "SemanticsProperties");
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1313,392 +1392,394 @@ public class SemanticsNode : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosti
     #region constructors
     public SemanticsNode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback))
     : base()
-
-}
-public static SemanticsNode Root(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback), FlutterSDK.Semantics.Semantics.SemanticsOwner owner = default(FlutterSDK.Semantics.Semantics.SemanticsOwner))
-
-Attach(owner);
-}
-
-
-#endregion
-
-#region fields
-internal virtual int _MaxFrameworkAccessibilityIdentifier { get; set; }
-internal virtual int _LastIdentifier { get; set; }
-public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
-public virtual int Id { get; set; }
-internal virtual VoidCallback _ShowOnScreen { get; set; }
-internal virtual Matrix4 _Transform { get; set; }
-internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
-public virtual FlutterBinding.UI.Rect ParentSemanticsClipRect { get; set; }
-public virtual FlutterBinding.UI.Rect ParentPaintClipRect { get; set; }
-public virtual double ElevationAdjustment { get; set; }
-public virtual int IndexInParent { get; set; }
-internal virtual bool _IsMergedIntoParent { get; set; }
-internal virtual bool _MergeAllDescendantsIntoThisNode { get; set; }
-internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _Children { get; set; }
-internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _DebugPreviousSnapshot { get; set; }
-internal virtual bool _Dead { get; set; }
-internal virtual bool _Dirty { get; set; }
-internal virtual Dictionary<SemanticsAction, object> _Actions { get; set; }
-internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> _CustomSemanticsActions { get; set; }
-internal virtual int _ActionsAsBits { get; set; }
-public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
-internal virtual int _Flags { get; set; }
-internal virtual string _Label { get; set; }
-internal virtual string _Value { get; set; }
-internal virtual string _DecreasedValue { get; set; }
-internal virtual string _IncreasedValue { get; set; }
-internal virtual string _Hint { get; set; }
-internal virtual double _Elevation { get; set; }
-internal virtual double _Thickness { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides _HintOverrides { get; set; }
-internal virtual TextDirection _TextDirection { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey _SortKey { get; set; }
-internal virtual FlutterSDK.Services.Textediting.TextSelection _TextSelection { get; set; }
-internal virtual bool _IsMultiline { get; set; }
-internal virtual int _ScrollChildCount { get; set; }
-internal virtual int _ScrollIndex { get; set; }
-internal virtual double _ScrollPosition { get; set; }
-internal virtual double _ScrollExtentMax { get; set; }
-internal virtual double _ScrollExtentMin { get; set; }
-internal virtual int _PlatformViewId { get; set; }
-internal virtual int _MaxValueLength { get; set; }
-internal virtual int _CurrentValueLength { get; set; }
-internal virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration _KEmptyConfig { get; set; }
-internal virtual List<uint> _KEmptyChildList { get; set; }
-internal virtual List<uint> _KEmptyCustomSemanticsActionsList { get; set; }
-internal virtual List<float> _KIdentityTransform { get; set; }
-public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsInvisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsMergedIntoParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsPartOfNodeMerging { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool MergeAllDescendantsIntoThisNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool HasChildren { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int ChildrenCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsOwner Owner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string Label { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string DecreasedValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string IncreasedValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string Hint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Elevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Thickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Services.Textediting.TextSelection TextSelection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsMultiline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int ScrollChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int ScrollIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double ScrollPosition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double ScrollExtentMax { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double ScrollExtentMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int PlatformViewId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int MaxValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int CurrentValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private int _GenerateNewId()
-{
-    _LastIdentifier = (_LastIdentifier + 1) % _MaxFrameworkAccessibilityIdentifier;
-    return _LastIdentifier;
-}
-
-
-
-
-private void _ReplaceChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> newChildren)
-{
-
-
-
-    if (_Children != null)
     {
-        foreach (SemanticsNode child in _Children) child._Dead = true;
+        this.Key = key;
+    }
+    public static SemanticsNode Root(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback), FlutterSDK.Semantics.Semantics.SemanticsOwner owner = default(FlutterSDK.Semantics.Semantics.SemanticsOwner))
+    {
+        var instance = new SemanticsNode(); instance.Key = key;
+        Attach(owner);
     }
 
-    if (newChildren != null)
-    {
-        foreach (SemanticsNode child in newChildren)
-        {
 
-            child._Dead = false;
+    #endregion
+
+    #region fields
+    internal virtual int _MaxFrameworkAccessibilityIdentifier { get; set; }
+    internal virtual int _LastIdentifier { get; set; }
+    public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
+    public virtual int Id { get; set; }
+    internal virtual VoidCallback _ShowOnScreen { get; set; }
+    internal virtual Matrix4 _Transform { get; set; }
+    internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
+    public virtual FlutterBinding.UI.Rect ParentSemanticsClipRect { get; set; }
+    public virtual FlutterBinding.UI.Rect ParentPaintClipRect { get; set; }
+    public virtual double ElevationAdjustment { get; set; }
+    public virtual int IndexInParent { get; set; }
+    internal virtual bool _IsMergedIntoParent { get; set; }
+    internal virtual bool _MergeAllDescendantsIntoThisNode { get; set; }
+    internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _Children { get; set; }
+    internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _DebugPreviousSnapshot { get; set; }
+    internal virtual bool _Dead { get; set; }
+    internal virtual bool _Dirty { get; set; }
+    internal virtual Dictionary<SemanticsAction, object> _Actions { get; set; }
+    internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> _CustomSemanticsActions { get; set; }
+    internal virtual int _ActionsAsBits { get; set; }
+    public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
+    internal virtual int _Flags { get; set; }
+    internal virtual string _Label { get; set; }
+    internal virtual string _Value { get; set; }
+    internal virtual string _DecreasedValue { get; set; }
+    internal virtual string _IncreasedValue { get; set; }
+    internal virtual string _Hint { get; set; }
+    internal virtual double _Elevation { get; set; }
+    internal virtual double _Thickness { get; set; }
+    internal virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides _HintOverrides { get; set; }
+    internal virtual TextDirection _TextDirection { get; set; }
+    internal virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey _SortKey { get; set; }
+    internal virtual FlutterSDK.Services.Textediting.TextSelection _TextSelection { get; set; }
+    internal virtual bool _IsMultiline { get; set; }
+    internal virtual int _ScrollChildCount { get; set; }
+    internal virtual int _ScrollIndex { get; set; }
+    internal virtual double _ScrollPosition { get; set; }
+    internal virtual double _ScrollExtentMax { get; set; }
+    internal virtual double _ScrollExtentMin { get; set; }
+    internal virtual int _PlatformViewId { get; set; }
+    internal virtual int _MaxValueLength { get; set; }
+    internal virtual int _CurrentValueLength { get; set; }
+    internal virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration _KEmptyConfig { get; set; }
+    internal virtual List<uint> _KEmptyChildList { get; set; }
+    internal virtual List<uint> _KEmptyCustomSemanticsActionsList { get; set; }
+    internal virtual List<float> _KIdentityTransform { get; set; }
+    public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsInvisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsMergedIntoParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsPartOfNodeMerging { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool MergeAllDescendantsIntoThisNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool HasChildren { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int ChildrenCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsOwner Owner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string Label { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string DecreasedValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string IncreasedValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string Hint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Elevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double Thickness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsHintOverrides HintOverrides { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Services.Textediting.TextSelection TextSelection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsMultiline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int ScrollChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int ScrollIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double ScrollPosition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double ScrollExtentMax { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual double ScrollExtentMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int PlatformViewId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int MaxValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual int CurrentValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private int _GenerateNewId()
+    {
+        _LastIdentifier = (_LastIdentifier + 1) % _MaxFrameworkAccessibilityIdentifier;
+        return _LastIdentifier;
+    }
+
+
+
+
+    private void _ReplaceChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> newChildren)
+    {
+
+
+
+        if (_Children != null)
+        {
+            foreach (SemanticsNode child in _Children) child._Dead = true;
         }
 
-    }
-
-    bool sawChange = false;
-    if (_Children != null)
-    {
-        foreach (SemanticsNode child in _Children)
+        if (newChildren != null)
         {
-            if (child._Dead)
+            foreach (SemanticsNode child in newChildren)
             {
-                if (child.Parent == this)
+
+                child._Dead = false;
+            }
+
+        }
+
+        bool sawChange = false;
+        if (_Children != null)
+        {
+            foreach (SemanticsNode child in _Children)
+            {
+                if (child._Dead)
                 {
-                    DropChild(child);
+                    if (child.Parent == this)
+                    {
+                        DropChild(child);
+                    }
+
+                    sawChange = true;
                 }
 
-                sawChange = true;
             }
 
         }
 
-    }
-
-    if (newChildren != null)
-    {
-        foreach (SemanticsNode child in newChildren)
+        if (newChildren != null)
         {
-            if (child.Parent != this)
+            foreach (SemanticsNode child in newChildren)
             {
-                if (child.Parent != null)
+                if (child.Parent != this)
                 {
-                    child.Parent?.DropChild(child);
+                    if (child.Parent != null)
+                    {
+                        child.Parent?.DropChild(child);
+                    }
+
+
+                    AdoptChild(child);
+                    sawChange = true;
                 }
 
-
-                AdoptChild(child);
-                sawChange = true;
             }
 
         }
 
-    }
-
-    if (!sawChange && _Children != null)
-    {
-
-
-        for (int i = 0; i < _Children.Count; i++)
+        if (!sawChange && _Children != null)
         {
-            if (_Children[i].Id != newChildren[i].Id)
+
+
+            for (int i = 0; i < _Children.Count; i++)
             {
-                sawChange = true;
-                break;
+                if (_Children[i].Id != newChildren[i].Id)
+                {
+                    sawChange = true;
+                    break;
+                }
+
+            }
+
+        }
+
+        _Children = newChildren;
+        if (sawChange) _MarkDirty();
+    }
+
+
+
+
+    /// <Summary>
+    /// Visits the immediate children of this node.
+    ///
+    /// This function calls visitor for each immediate child until visitor returns
+    /// false. Returns true if all the visitor calls returned true, otherwise
+    /// returns false.
+    /// </Summary>
+    public virtual void VisitChildren(FlutterSDK.Semantics.Semantics.SemanticsNodeVisitor visitor)
+    {
+        if (_Children != null)
+        {
+            foreach (SemanticsNode child in _Children)
+            {
+                if (!visitor(child)) return;
             }
 
         }
 
     }
 
-    _Children = newChildren;
-    if (sawChange) _MarkDirty();
-}
 
 
 
-
-/// <Summary>
-/// Visits the immediate children of this node.
-///
-/// This function calls visitor for each immediate child until visitor returns
-/// false. Returns true if all the visitor calls returned true, otherwise
-/// returns false.
-/// </Summary>
-public virtual void VisitChildren(FlutterSDK.Semantics.Semantics.SemanticsNodeVisitor visitor)
-{
-    if (_Children != null)
+    /// <Summary>
+    /// Visit all the descendants of this node.
+    ///
+    /// This function calls visitor for each descendant in a pre-order traversal
+    /// until visitor returns false. Returns true if all the visitor calls
+    /// returned true, otherwise returns false.
+    /// </Summary>
+    private bool _VisitDescendants(FlutterSDK.Semantics.Semantics.SemanticsNodeVisitor visitor)
     {
-        foreach (SemanticsNode child in _Children)
+        if (_Children != null)
         {
-            if (!visitor(child)) return;
+            foreach (SemanticsNode child in _Children)
+            {
+                if (!visitor(child) || !child._VisitDescendants(visitor)) return false;
+            }
+
+        }
+
+        return true;
+    }
+
+
+
+
+    public new void RedepthChildren()
+    {
+        _Children?.ForEach(RedepthChild);
+    }
+
+
+
+
+    public new void Attach(FlutterSDK.Semantics.Semantics.SemanticsOwner owner)
+    {
+        base.Attach(owner);
+
+        owner._Nodes[Id] = this;
+        owner._DetachedNodes.Remove(this);
+        if (_Dirty)
+        {
+            _Dirty = false;
+            _MarkDirty();
+        }
+
+        if (_Children != null)
+        {
+            foreach (SemanticsNode child in _Children) child.Attach(owner);
         }
 
     }
 
-}
 
-
-
-
-/// <Summary>
-/// Visit all the descendants of this node.
-///
-/// This function calls visitor for each descendant in a pre-order traversal
-/// until visitor returns false. Returns true if all the visitor calls
-/// returned true, otherwise returns false.
-/// </Summary>
-private bool _VisitDescendants(FlutterSDK.Semantics.Semantics.SemanticsNodeVisitor visitor)
-{
-    if (_Children != null)
+    public new void Attach(@Object owner)
     {
-        foreach (SemanticsNode child in _Children)
+        base.Attach(owner);
+
+        owner._Nodes[Id] = this;
+        owner._DetachedNodes.Remove(this);
+        if (_Dirty)
         {
-            if (!visitor(child) || !child._VisitDescendants(visitor)) return false;
+            _Dirty = false;
+            _MarkDirty();
+        }
+
+        if (_Children != null)
+        {
+            foreach (SemanticsNode child in _Children) child.Attach(owner);
         }
 
     }
 
-    return true;
-}
 
 
 
-
-public new void RedepthChildren()
-{
-    _Children?.ForEach(RedepthChild);
-}
-
-
-
-
-public new void Attach(FlutterSDK.Semantics.Semantics.SemanticsOwner owner)
-{
-    base.Attach(owner);
-
-    owner._Nodes[Id] = this;
-    owner._DetachedNodes.Remove(this);
-    if (_Dirty)
+    public new void Detach()
     {
-        _Dirty = false;
+
+
+        Owner._Nodes.Remove(Id);
+        Owner._DetachedNodes.Add(this);
+        base.Detach();
+
+        if (_Children != null)
+        {
+            foreach (SemanticsNode child in _Children)
+            {
+                if (child.Parent == this) child.Detach();
+            }
+
+        }
+
         _MarkDirty();
     }
 
-    if (_Children != null)
+
+
+
+    private void _MarkDirty()
     {
-        foreach (SemanticsNode child in _Children) child.Attach(owner);
-    }
-
-}
-
-
-public new void Attach(@Object owner)
-{
-    base.Attach(owner);
-
-    owner._Nodes[Id] = this;
-    owner._DetachedNodes.Remove(this);
-    if (_Dirty)
-    {
-        _Dirty = false;
-        _MarkDirty();
-    }
-
-    if (_Children != null)
-    {
-        foreach (SemanticsNode child in _Children) child.Attach(owner);
-    }
-
-}
-
-
-
-
-public new void Detach()
-{
-
-
-    Owner._Nodes.Remove(Id);
-    Owner._DetachedNodes.Add(this);
-    base.Detach();
-
-    if (_Children != null)
-    {
-        foreach (SemanticsNode child in _Children)
+        if (_Dirty) return;
+        _Dirty = true;
+        if (Attached)
         {
-            if (child.Parent == this) child.Detach();
+
+            Owner._DirtyNodes.Add(this);
         }
 
     }
 
-    _MarkDirty();
-}
 
 
 
-
-private void _MarkDirty()
-{
-    if (_Dirty) return;
-    _Dirty = true;
-    if (Attached)
+    private bool _IsDifferentFromCurrentSemanticAnnotation(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
     {
-
-        Owner._DirtyNodes.Add(this);
+        return _Label != config.Label || _Hint != config.Hint || _Elevation != config.Elevation || _Thickness != config.Thickness || _DecreasedValue != config.DecreasedValue || _Value != config.Value || _IncreasedValue != config.IncreasedValue || _Flags != config._Flags || _TextDirection != config.TextDirection || _SortKey != config._SortKey || _TextSelection != config._TextSelection || _ScrollPosition != config._ScrollPosition || _ScrollExtentMax != config._ScrollExtentMax || _ScrollExtentMin != config._ScrollExtentMin || _ActionsAsBits != config._ActionsAsBits || IndexInParent != config.IndexInParent || PlatformViewId != config.PlatformViewId || _MaxValueLength != config._MaxValueLength || _CurrentValueLength != config._CurrentValueLength || _MergeAllDescendantsIntoThisNode != config.IsMergingSemanticsOfDescendants;
     }
 
-}
 
 
 
-
-private bool _IsDifferentFromCurrentSemanticAnnotation(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-{
-    return _Label != config.Label || _Hint != config.Hint || _Elevation != config.Elevation || _Thickness != config.Thickness || _DecreasedValue != config.DecreasedValue || _Value != config.Value || _IncreasedValue != config.IncreasedValue || _Flags != config._Flags || _TextDirection != config.TextDirection || _SortKey != config._SortKey || _TextSelection != config._TextSelection || _ScrollPosition != config._ScrollPosition || _ScrollExtentMax != config._ScrollExtentMax || _ScrollExtentMin != config._ScrollExtentMin || _ActionsAsBits != config._ActionsAsBits || IndexInParent != config.IndexInParent || PlatformViewId != config.PlatformViewId || _MaxValueLength != config._MaxValueLength || _CurrentValueLength != config._CurrentValueLength || _MergeAllDescendantsIntoThisNode != config.IsMergingSemanticsOfDescendants;
-}
-
+    /// <Summary>
+    /// Whether this node is tagged with `tag`.
+    /// </Summary>
+    public virtual bool IsTagged(FlutterSDK.Semantics.Semantics.SemanticsTag tag) => Tags != null && Tags.Contains(tag);
 
 
 
-/// <Summary>
-/// Whether this node is tagged with `tag`.
-/// </Summary>
-public virtual bool IsTagged(FlutterSDK.Semantics.Semantics.SemanticsTag tag) => Tags != null && Tags.Contains(tag);
+    /// <Summary>
+    /// Whether this node currently has a given [SemanticsFlag].
+    /// </Summary>
+    public virtual bool HasFlag(SemanticsFlag flag) => _Flags & flag.Index != 0;
 
 
 
-/// <Summary>
-/// Whether this node currently has a given [SemanticsFlag].
-/// </Summary>
-public virtual bool HasFlag(SemanticsFlag flag) => _Flags & flag.Index != 0;
+    private bool _CanPerformAction(SemanticsAction action) => _Actions.ContainsKey(action);
 
 
 
-private bool _CanPerformAction(SemanticsAction action) => _Actions.ContainsKey(action);
+    /// <Summary>
+    /// Reconfigures the properties of this object to describe the configuration
+    /// provided in the `config` argument and the children listed in the
+    /// `childrenInInversePaintOrder` argument.
+    ///
+    /// The arguments may be null; this represents an empty configuration (all
+    /// values at their defaults, no children).
+    ///
+    /// No reference is kept to the [SemanticsConfiguration] object, but the child
+    /// list is used as-is and should therefore not be changed after this call.
+    /// </Summary>
+    public virtual void UpdateWith(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config = default(FlutterSDK.Semantics.Semantics.SemanticsConfiguration), List<FlutterSDK.Semantics.Semantics.SemanticsNode> childrenInInversePaintOrder = default(List<FlutterSDK.Semantics.Semantics.SemanticsNode>))
+    {
+        config = (config == null ? _KEmptyConfig : config);
+        if (_IsDifferentFromCurrentSemanticAnnotation(config)) _MarkDirty();
 
-
-
-/// <Summary>
-/// Reconfigures the properties of this object to describe the configuration
-/// provided in the `config` argument and the children listed in the
-/// `childrenInInversePaintOrder` argument.
-///
-/// The arguments may be null; this represents an empty configuration (all
-/// values at their defaults, no children).
-///
-/// No reference is kept to the [SemanticsConfiguration] object, but the child
-/// list is used as-is and should therefore not be changed after this call.
-/// </Summary>
-public virtual void UpdateWith(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config = default(FlutterSDK.Semantics.Semantics.SemanticsConfiguration), List<FlutterSDK.Semantics.Semantics.SemanticsNode> childrenInInversePaintOrder = default(List<FlutterSDK.Semantics.Semantics.SemanticsNode>))
-{
-    config = (config == null ? _KEmptyConfig : config);
-    if (_IsDifferentFromCurrentSemanticAnnotation(config)) _MarkDirty();
-
-    _Label = config.Label;
-    _DecreasedValue = config.DecreasedValue;
-    _Value = config.Value;
-    _IncreasedValue = config.IncreasedValue;
-    _Hint = config.Hint;
-    _HintOverrides = config.HintOverrides;
-    _Elevation = config.Elevation;
-    _Thickness = config.Thickness;
-    _Flags = config._Flags;
-    _TextDirection = config.TextDirection;
-    _SortKey = config.SortKey;
-    _Actions = Dictionary<SemanticsAction, _SemanticsActionHandler>.From(config._Actions);
-    _CustomSemanticsActions = Dictionary<CustomSemanticsAction, VoidCallback>.From(config._CustomSemanticsActions);
-    _ActionsAsBits = config._ActionsAsBits;
-    _TextSelection = config._TextSelection;
-    _IsMultiline = config.IsMultiline;
-    _ScrollPosition = config._ScrollPosition;
-    _ScrollExtentMax = config._ScrollExtentMax;
-    _ScrollExtentMin = config._ScrollExtentMin;
-    _MergeAllDescendantsIntoThisNode = config.IsMergingSemanticsOfDescendants;
-    _ScrollChildCount = config.ScrollChildCount;
-    _ScrollIndex = config.ScrollIndex;
-    IndexInParent = config.IndexInParent;
-    _PlatformViewId = config._PlatformViewId;
-    _MaxValueLength = config._MaxValueLength;
-    _CurrentValueLength = config._CurrentValueLength;
-    _ReplaceChildren(childrenInInversePaintOrder ?? new List, < SemanticsNode > (});
+        _Label = config.Label;
+        _DecreasedValue = config.DecreasedValue;
+        _Value = config.Value;
+        _IncreasedValue = config.IncreasedValue;
+        _Hint = config.Hint;
+        _HintOverrides = config.HintOverrides;
+        _Elevation = config.Elevation;
+        _Thickness = config.Thickness;
+        _Flags = config._Flags;
+        _TextDirection = config.TextDirection;
+        _SortKey = config.SortKey;
+        _Actions = Dictionary<SemanticsAction, _SemanticsActionHandler>.From(config._Actions);
+        _CustomSemanticsActions = Dictionary<CustomSemanticsAction, VoidCallback>.From(config._CustomSemanticsActions);
+        _ActionsAsBits = config._ActionsAsBits;
+        _TextSelection = config._TextSelection;
+        _IsMultiline = config.IsMultiline;
+        _ScrollPosition = config._ScrollPosition;
+        _ScrollExtentMax = config._ScrollExtentMax;
+        _ScrollExtentMin = config._ScrollExtentMin;
+        _MergeAllDescendantsIntoThisNode = config.IsMergingSemanticsOfDescendants;
+        _ScrollChildCount = config.ScrollChildCount;
+        _ScrollIndex = config.ScrollIndex;
+        IndexInParent = config.IndexInParent;
+        _PlatformViewId = config._PlatformViewId;
+        _MaxValueLength = config._MaxValueLength;
+        _CurrentValueLength = config._CurrentValueLength;
+        _ReplaceChildren(childrenInInversePaintOrder ?? new List, < SemanticsNode > (});
 
 
 }
@@ -2087,26 +2168,29 @@ public class _BoxEdge : IComparable<FlutterSDK.Semantics.Semantics._BoxEdge>
     #region constructors
     public _BoxEdge(bool isLeadingEdge = default(bool), double offset = default(double), FlutterSDK.Semantics.Semantics.SemanticsNode node = default(FlutterSDK.Semantics.Semantics.SemanticsNode))
     : base()
+    {
+        this.IsLeadingEdge = isLeadingEdge;
+        this.Offset = offset;
+        this.Node = node;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual bool IsLeadingEdge { get; set; }
+    public virtual double Offset { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
+    #endregion
 
-#region fields
-public virtual bool IsLeadingEdge { get; set; }
-public virtual double Offset { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new int CompareTo(FlutterSDK.Semantics.Semantics._BoxEdge other)
-{
-    return (Offset - other.Offset).Sign.ToInt();
-}
+    public new int CompareTo(FlutterSDK.Semantics.Semantics._BoxEdge other)
+    {
+        return (Offset - other.Offset).Sign.ToInt();
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2121,167 +2205,169 @@ public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._Se
     #region constructors
     public _SemanticsSortGroup(double startOffset = default(double), TextDirection textDirection = default(TextDirection))
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual double StartOffset { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> Nodes { get; set; }
-#endregion
-
-#region methods
-
-public new int CompareTo(FlutterSDK.Semantics.Semantics._SemanticsSortGroup other)
-{
-    return (StartOffset - other.StartOffset).Sign.ToInt();
-}
-
-
-
-
-/// <Summary>
-/// Sorts this group assuming that [nodes] belong to the same vertical group.
-///
-/// This method breaks up this group into horizontal [_SemanticsSortGroup]s
-/// then sorts them using [sortedWithinKnot].
-/// </Summary>
-public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> SortedWithinVerticalGroup()
-{
-    List<_BoxEdge> edges = new List<_BoxEdge>() { };
-    foreach (SemanticsNode child in Nodes)
     {
-        Rect childRect = child.Rect.Deflate(0.1);
-        edges.Add(new _BoxEdge(isLeadingEdge: true, offset: SemanticsDefaultClass._PointInParentCoordinates(child, childRect.TopLeft).Dx, node: child));
-        edges.Add(new _BoxEdge(isLeadingEdge: false, offset: SemanticsDefaultClass._PointInParentCoordinates(child, childRect.BottomRight).Dx, node: child));
+        this.StartOffset = startOffset;
+        this.TextDirection = textDirection;
+    }
+    #endregion
+
+    #region fields
+    public virtual double StartOffset { get; set; }
+    public virtual TextDirection TextDirection { get; set; }
+    public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> Nodes { get; set; }
+    #endregion
+
+    #region methods
+
+    public new int CompareTo(FlutterSDK.Semantics.Semantics._SemanticsSortGroup other)
+    {
+        return (StartOffset - other.StartOffset).Sign.ToInt();
     }
 
-    edges.Sort();
-    List<_SemanticsSortGroup> horizontalGroups = new List<_SemanticsSortGroup>() { };
-    _SemanticsSortGroup group = default(_SemanticsSortGroup);
-    int depth = 0;
-    foreach (_BoxEdge edge in edges)
+
+
+
+    /// <Summary>
+    /// Sorts this group assuming that [nodes] belong to the same vertical group.
+    ///
+    /// This method breaks up this group into horizontal [_SemanticsSortGroup]s
+    /// then sorts them using [sortedWithinKnot].
+    /// </Summary>
+    public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> SortedWithinVerticalGroup()
     {
-        if (edge.IsLeadingEdge)
+        List<_BoxEdge> edges = new List<_BoxEdge>() { };
+        foreach (SemanticsNode child in Nodes)
         {
-            depth += 1;
-            group = (group == null ? new _SemanticsSortGroup(startOffset: edge.Offset, textDirection: TextDirection) : group);
-            group.Nodes.Add(edge.Node);
-        }
-        else
-        {
-            depth -= 1;
+            Rect childRect = child.Rect.Deflate(0.1);
+            edges.Add(new _BoxEdge(isLeadingEdge: true, offset: SemanticsDefaultClass._PointInParentCoordinates(child, childRect.TopLeft).Dx, node: child));
+            edges.Add(new _BoxEdge(isLeadingEdge: false, offset: SemanticsDefaultClass._PointInParentCoordinates(child, childRect.BottomRight).Dx, node: child));
         }
 
-        if (depth == 0)
+        edges.Sort();
+        List<_SemanticsSortGroup> horizontalGroups = new List<_SemanticsSortGroup>() { };
+        _SemanticsSortGroup group = default(_SemanticsSortGroup);
+        int depth = 0;
+        foreach (_BoxEdge edge in edges)
         {
-            horizontalGroups.Add(group);
-            group = null;
-        }
-
-    }
-
-    horizontalGroups.Sort();
-    if (TextDirection == TextDirection.Rtl)
-    {
-        horizontalGroups = horizontalGroups.Reversed.ToList();
-    }
-
-    return horizontalGroups.Expand((_SemanticsSortGroup group) => =>group.SortedWithinKnot()).ToList();
-}
-
-
-
-
-/// <Summary>
-/// Sorts [nodes] where nodes intersect both vertically and horizontally.
-///
-/// In the special case when [nodes] contains one or less nodes, this method
-/// returns [nodes] unchanged.
-///
-/// This method constructs a graph, where vertices are [SemanticsNode]s and
-/// edges are "traversed before" relation between pairs of nodes. The sort
-/// order is the topological sorting of the graph, with the original order of
-/// [nodes] used as the tie breaker.
-///
-/// Whether a node is traversed before another node is determined by the
-/// vector that connects the two nodes' centers. If the vector "points to the
-/// right or down", defined as the [Offset.direction] being between `-pi/4`
-/// and `3*pi/4`), then the semantics node whose center is at the end of the
-/// vector is said to be traversed after.
-/// </Summary>
-public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> SortedWithinKnot()
-{
-    if (Nodes.Count <= 1)
-    {
-        return Nodes;
-    }
-
-    Dictionary<int, SemanticsNode> nodeMap = new Dictionary<int, SemanticsNode> { };
-    Dictionary<int, int> edges = new Dictionary<int, int> { };
-    foreach (SemanticsNode node in Nodes)
-    {
-        nodeMap[node.Id] = node;
-        Offset center = SemanticsDefaultClass._PointInParentCoordinates(node, node.Rect.Center);
-        foreach (SemanticsNode nextNode in Nodes)
-        {
-            if (Dart:coreDefaultClass.Identical(node, nextNode) || edges[nextNode.Id] == node.Id){
-                continue;
-            }
-
-            Offset nextCenter = SemanticsDefaultClass._PointInParentCoordinates(nextNode, nextNode.Rect.Center);
-            Offset centerDelta = nextCenter - center;
-            double direction = centerDelta.Direction;
-            bool isLtrAndForward = TextDirection == TextDirection.Ltr && -Math.Dart:mathDefaultClass.Pi / 4 < direction && direction < 3 * Math.Dart:mathDefaultClass.Pi / 4;
-            bool isRtlAndForward = TextDirection == TextDirection.Rtl && (direction < -3 * Math.Dart:mathDefaultClass.Pi / 4 || direction > 3 * Math.Dart:mathDefaultClass.Pi / 4);
-            if (isLtrAndForward || isRtlAndForward)
+            if (edge.IsLeadingEdge)
             {
-                edges[node.Id] = nextNode.Id;
+                depth += 1;
+                group = (group == null ? new _SemanticsSortGroup(startOffset: edge.Offset, textDirection: TextDirection) : group);
+                group.Nodes.Add(edge.Node);
+            }
+            else
+            {
+                depth -= 1;
+            }
+
+            if (depth == 0)
+            {
+                horizontalGroups.Add(group);
+                group = null;
             }
 
         }
 
+        horizontalGroups.Sort();
+        if (TextDirection == TextDirection.Rtl)
+        {
+            horizontalGroups = horizontalGroups.Reversed.ToList();
+        }
+
+        return horizontalGroups.Expand((_SemanticsSortGroup group) => =>group.SortedWithinKnot()).ToList();
     }
 
-    List<int> sortedIds = new List<int>() { };
-    HashSet<int> visitedIds = new Dictionary<int> { };
-    List<SemanticsNode> startNodes = Nodes.ToList();
-    Nodes.ToList().Sort((SemanticsNode a, SemanticsNode b) =>
+
+
+
+    /// <Summary>
+    /// Sorts [nodes] where nodes intersect both vertically and horizontally.
+    ///
+    /// In the special case when [nodes] contains one or less nodes, this method
+    /// returns [nodes] unchanged.
+    ///
+    /// This method constructs a graph, where vertices are [SemanticsNode]s and
+    /// edges are "traversed before" relation between pairs of nodes. The sort
+    /// order is the topological sorting of the graph, with the original order of
+    /// [nodes] used as the tie breaker.
+    ///
+    /// Whether a node is traversed before another node is determined by the
+    /// vector that connects the two nodes' centers. If the vector "points to the
+    /// right or down", defined as the [Offset.direction] being between `-pi/4`
+    /// and `3*pi/4`), then the semantics node whose center is at the end of the
+    /// vector is said to be traversed after.
+    /// </Summary>
+    public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> SortedWithinKnot()
     {
-        Offset aTopLeft = SemanticsDefaultClass._PointInParentCoordinates(a, a.Rect.TopLeft);
-        Offset bTopLeft = SemanticsDefaultClass._PointInParentCoordinates(b, b.Rect.TopLeft);
-        int verticalDiff = aTopLeft.Dy.CompareTo(bTopLeft.Dy);
-        if (verticalDiff != 0)
+        if (Nodes.Count <= 1)
         {
-            return -verticalDiff;
+            return Nodes;
         }
 
-        return -aTopLeft.Dx.CompareTo(bTopLeft.Dx);
+        Dictionary<int, SemanticsNode> nodeMap = new Dictionary<int, SemanticsNode> { };
+        Dictionary<int, int> edges = new Dictionary<int, int> { };
+        foreach (SemanticsNode node in Nodes)
+        {
+            nodeMap[node.Id] = node;
+            Offset center = SemanticsDefaultClass._PointInParentCoordinates(node, node.Rect.Center);
+            foreach (SemanticsNode nextNode in Nodes)
+            {
+                if (Dart:coreDefaultClass.Identical(node, nextNode) || edges[nextNode.Id] == node.Id){
+                    continue;
+                }
+
+                Offset nextCenter = SemanticsDefaultClass._PointInParentCoordinates(nextNode, nextNode.Rect.Center);
+                Offset centerDelta = nextCenter - center;
+                double direction = centerDelta.Direction;
+                bool isLtrAndForward = TextDirection == TextDirection.Ltr && -Math.Dart:mathDefaultClass.Pi / 4 < direction && direction < 3 * Math.Dart:mathDefaultClass.Pi / 4;
+                bool isRtlAndForward = TextDirection == TextDirection.Rtl && (direction < -3 * Math.Dart:mathDefaultClass.Pi / 4 || direction > 3 * Math.Dart:mathDefaultClass.Pi / 4);
+                if (isLtrAndForward || isRtlAndForward)
+                {
+                    edges[node.Id] = nextNode.Id;
+                }
+
+            }
+
+        }
+
+        List<int> sortedIds = new List<int>() { };
+        HashSet<int> visitedIds = new Dictionary<int> { };
+        List<SemanticsNode> startNodes = Nodes.ToList();
+        Nodes.ToList().Sort((SemanticsNode a, SemanticsNode b) =>
+        {
+            Offset aTopLeft = SemanticsDefaultClass._PointInParentCoordinates(a, a.Rect.TopLeft);
+            Offset bTopLeft = SemanticsDefaultClass._PointInParentCoordinates(b, b.Rect.TopLeft);
+            int verticalDiff = aTopLeft.Dy.CompareTo(bTopLeft.Dy);
+            if (verticalDiff != 0)
+            {
+                return -verticalDiff;
+            }
+
+            return -aTopLeft.Dx.CompareTo(bTopLeft.Dx);
+        }
+        );
+        void Search(int id) => {
+            if (visitedIds.Contains(id))
+            {
+                return;
+            }
+
+            visitedIds.Add(id);
+            if (edges.ContainsKey(id))
+            {
+                Search(edges[id]);
+            }
+
+            sortedIds.Add(id);
+        }
+
+        startNodes.Map((SemanticsNode node) => =>node.Id).ForEach(Search);
+        return sortedIds.Map((int id) => =>nodeMap[id]).ToList().Reversed.ToList();
     }
-    );
-    void Search(int id) => {
-        if (visitedIds.Contains(id))
-        {
-            return;
-        }
-
-        visitedIds.Add(id);
-        if (edges.ContainsKey(id))
-        {
-            Search(edges[id]);
-        }
-
-        sortedIds.Add(id);
-    }
-
-    startNodes.Map((SemanticsNode node) => =>node.Id).ForEach(Search);
-    return sortedIds.Map((int id) => =>nodeMap[id]).ToList().Reversed.ToList();
-}
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2299,31 +2385,34 @@ public class _TraversalSortNode : IComparable<FlutterSDK.Semantics.Semantics._Tr
     #region constructors
     public _TraversalSortNode(FlutterSDK.Semantics.Semantics.SemanticsNode node = default(FlutterSDK.Semantics.Semantics.SemanticsNode), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), int position = default(int))
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
-public virtual int Position { get; set; }
-#endregion
-
-#region methods
-
-public new int CompareTo(FlutterSDK.Semantics.Semantics._TraversalSortNode other)
-{
-    if (SortKey == null || other?.SortKey == null)
     {
-        return Position - other.Position;
+        this.Node = node;
+        this.SortKey = sortKey;
+        this.Position = position;
+    }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
+    public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
+    public virtual int Position { get; set; }
+    #endregion
+
+    #region methods
+
+    public new int CompareTo(FlutterSDK.Semantics.Semantics._TraversalSortNode other)
+    {
+        if (SortKey == null || other?.SortKey == null)
+        {
+            return Position - other.Position;
+        }
+
+        return SortKey.CompareTo(other.SortKey);
     }
 
-    return SortKey.CompareTo(other.SortKey);
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -2553,65 +2642,66 @@ public class SemanticsSortKey : IComparable<FlutterSDK.Semantics.Semantics.Seman
 {
     #region constructors
     public SemanticsSortKey(string name = default(string))
-
-}
-#endregion
-
-#region fields
-public virtual string Name { get; set; }
-#endregion
-
-#region methods
-
-public new int CompareTo(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
-{
-
-    if (Name == other.Name)
     {
-        return DoCompare(other);
+        this.Name = name;
+    }
+    #endregion
+
+    #region fields
+    public virtual string Name { get; set; }
+    #endregion
+
+    #region methods
+
+    public new int CompareTo(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
+    {
+
+        if (Name == other.Name)
+        {
+            return DoCompare(other);
+        }
+
+        if (Name == null && other.Name != null)
+        {
+            return -1;
+        }
+        else if (Name != null && other.Name == null)
+        {
+            return 1;
+        }
+
+        return Name.CompareTo(other.Name);
     }
 
-    if (Name == null && other.Name != null)
+
+
+
+    /// <Summary>
+    /// The implementation of [compareTo].
+    ///
+    /// The argument is guaranteed to be of the same type as this object and have
+    /// the same [name].
+    ///
+    /// The method should return a negative number if this object comes earlier in
+    /// the sort order than the argument; and a positive number if it comes later
+    /// in the sort order. Returning zero causes the system to use default sort
+    /// order.
+    /// </Summary>
+    public virtual int DoCompare(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
     {
-        return -1;
+        return default(int);
     }
-    else if (Name != null && other.Name == null)
+
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
     {
-        return 1;
+        base.DebugFillProperties(properties);
+        properties.Add(new StringProperty("name", Name, defaultValue: null));
     }
 
-    return Name.CompareTo(other.Name);
-}
 
 
-
-
-/// <Summary>
-/// The implementation of [compareTo].
-///
-/// The argument is guaranteed to be of the same type as this object and have
-/// the same [name].
-///
-/// The method should return a negative number if this object comes earlier in
-/// the sort order than the argument; and a positive number if it comes later
-/// in the sort order. Returning zero causes the system to use default sort
-/// order.
-/// </Summary>
-public virtual int DoCompare(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
-{
-    return default(int);
-}
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new StringProperty("name", Name, defaultValue: null));
-}
-
-
-
-#endregion
+    #endregion
 }
 
 
@@ -2640,41 +2730,42 @@ public class OrdinalSortKey : FlutterSDK.Semantics.Semantics.SemanticsSortKey
     #region constructors
     public OrdinalSortKey(double order, string name = default(string))
     : base(name: name)
+    {
+        this.Order = order;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual double Order { get; set; }
+    #endregion
 
-#region fields
-public virtual double Order { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new int DoCompare(FlutterSDK.Semantics.Semantics.OrdinalSortKey other)
-{
-    if (other.Order == null || Order == null || other.Order == Order) return 0;
-    return Order.CompareTo(other.Order);
-}
-
-
-public new int DoCompare(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
-{
-    if (other.Order == null || Order == null || other.Order == Order) return 0;
-    return Order.CompareTo(other.Order);
-}
+    public new int DoCompare(FlutterSDK.Semantics.Semantics.OrdinalSortKey other)
+    {
+        if (other.Order == null || Order == null || other.Order == Order) return 0;
+        return Order.CompareTo(other.Order);
+    }
 
 
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DoubleProperty("order", Order, defaultValue: null));
-}
+    public new int DoCompare(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
+    {
+        if (other.Order == null || Order == null || other.Order == Order) return 0;
+        return Order.CompareTo(other.Order);
+    }
 
 
 
-#endregion
+
+    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    {
+        base.DebugFillProperties(properties);
+        properties.Add(new DoubleProperty("order", Order, defaultValue: null));
+    }
+
+
+
+    #endregion
 }
 
 

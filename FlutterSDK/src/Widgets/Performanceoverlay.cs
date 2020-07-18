@@ -450,40 +450,47 @@ namespace FlutterSDK.Widgets.Performanceoverlay
         #region constructors
         public PerformanceOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int optionsMask = 0, int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
         : base(key: key)
-    
-}
-    public static PerformanceOverlay AllEnabled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
+        {
+            this.OptionsMask = optionsMask;
+            this.RasterizerThreshold = rasterizerThreshold;
+            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+        }
+        public static PerformanceOverlay AllEnabled(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
+        {
+            var instance = new PerformanceOverlay(key: key); instance.RasterizerThreshold = rasterizerThreshold;
+            instance.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            instance.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual int OptionsMask { get; set; }
+        public virtual int RasterizerThreshold { get; set; }
+        public virtual bool CheckerboardRasterCacheImages { get; set; }
+        public virtual bool CheckerboardOffscreenLayers { get; set; }
+        #endregion
 
-#region fields
-public virtual int OptionsMask { get; set; }
-public virtual int RasterizerThreshold { get; set; }
-public virtual bool CheckerboardRasterCacheImages { get; set; }
-public virtual bool CheckerboardOffscreenLayers { get; set; }
-#endregion
+        #region methods
 
-#region methods
-
-public new FlutterSDK.Rendering.Performanceoverlay.RenderPerformanceOverlay CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderPerformanceOverlay(optionsMask: OptionsMask, rasterizerThreshold: RasterizerThreshold, checkerboardRasterCacheImages: CheckerboardRasterCacheImages, checkerboardOffscreenLayers: CheckerboardOffscreenLayers);
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Performanceoverlay.RenderPerformanceOverlay renderObject)
-{
-    ..OptionsMask = OptionsMask..RasterizerThreshold = RasterizerThreshold;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..OptionsMask = OptionsMask..RasterizerThreshold = RasterizerThreshold;
-}
+        public new FlutterSDK.Rendering.Performanceoverlay.RenderPerformanceOverlay CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderPerformanceOverlay(optionsMask: OptionsMask, rasterizerThreshold: RasterizerThreshold, checkerboardRasterCacheImages: CheckerboardRasterCacheImages, checkerboardOffscreenLayers: CheckerboardOffscreenLayers);
 
 
 
-#endregion
-}
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Performanceoverlay.RenderPerformanceOverlay renderObject)
+        {
+            ..OptionsMask = OptionsMask..RasterizerThreshold = RasterizerThreshold;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..OptionsMask = OptionsMask..RasterizerThreshold = RasterizerThreshold;
+        }
+
+
+
+        #endregion
+    }
 
 }

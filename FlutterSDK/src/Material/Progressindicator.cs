@@ -454,537 +454,559 @@ namespace FlutterSDK.Material.Progressindicator
         #region constructors
         public ProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual double Value { get; set; }
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual FlutterSDK.Animation.Animation.Animation<Color> ValueColor { get; set; }
-    public virtual string SemanticsLabel { get; set; }
-    public virtual string SemanticsValue { get; set; }
-    #endregion
-
-    #region methods
-
-    private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context) => BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).BackgroundColor;
-
-
-
-    private Color _GetValueColor(FlutterSDK.Widgets.Framework.BuildContext context) => ValueColor?.Value ?? ThemeDefaultClass.Theme.Of(context).AccentColor;
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new PercentProperty("value", Value, showName: false, ifNull: "<indeterminate>"));
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildSemanticsWrapper(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    {
-        string expandedSemanticsValue = SemanticsValue;
-        if (Value != null)
         {
-            expandedSemanticsValue = (expandedSemanticsValue == null ? $"'{(Value * 100).Round()}%'" : expandedSemanticsValue);
+            this.Value = value;
+            this.BackgroundColor = backgroundColor;
+            this.ValueColor = valueColor;
+            this.SemanticsLabel = semanticsLabel;
+            this.SemanticsValue = semanticsValue;
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<Color> ValueColor { get; set; }
+        public virtual string SemanticsLabel { get; set; }
+        public virtual string SemanticsValue { get; set; }
+        #endregion
+
+        #region methods
+
+        private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context) => BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).BackgroundColor;
+
+
+
+        private Color _GetValueColor(FlutterSDK.Widgets.Framework.BuildContext context) => ValueColor?.Value ?? ThemeDefaultClass.Theme.Of(context).AccentColor;
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new PercentProperty("value", Value, showName: false, ifNull: "<indeterminate>"));
         }
 
-        return new Semantics(label: SemanticsLabel, value: expandedSemanticsValue, child: child);
-    }
 
 
 
-    #endregion
-}
-
-
-public class _LinearProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-    #region constructors
-    public _LinearProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double animationValue = default(double), TextDirection textDirection = default(TextDirection))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual FlutterBinding.UI.Color ValueColor { get; set; }
-public virtual double Value { get; set; }
-public virtual double AnimationValue { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Line1Head { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Line1Tail { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Line2Head { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Line2Tail { get; set; }
-#endregion
-
-#region methods
-
-public new void Paint(Canvas canvas, Size size)
-{
-    Paint paint = new Paint()..Color = BackgroundColor..Style = PaintingStyle.Fill;
-    canvas.DrawRect(Dart: uiDefaultClass.Offset.Zero & size, paint);
-    paint.Color = ValueColor;
-    void DrawBar(double x, double width) => {
-        if (width <= 0.0) return;
-        double left = default(double);
-        switch (TextDirection) { case TextDirection.Rtl: left = size.Width - width - x; break; case TextDirection.Ltr: left = x; break; }
-        canvas.DrawRect(new Offset(left, 0.0) & new Size(width, size.Height), paint);
-    }
-
-    if (Value != null)
-    {
-        DrawBar(0.0, Value.Clamp(0.0, 1.0) * size.Width as double);
-    }
-    else
-    {
-        double x1 = size.Width * Line1Tail.Transform(AnimationValue);
-        double width1 = size.Width * Line1Head.Transform(AnimationValue) - x1;
-        double x2 = size.Width * Line2Tail.Transform(AnimationValue);
-        double width2 = size.Width * Line2Head.Transform(AnimationValue) - x2;
-        DrawBar(x1, width1);
-        DrawBar(x2, width2);
-    }
-
-}
-
-
-
-
-public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._LinearProgressIndicatorPainter oldPainter)
-{
-    return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.AnimationValue != AnimationValue || oldPainter.TextDirection != TextDirection;
-}
-
-
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-{
-    return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.AnimationValue != AnimationValue || oldPainter.TextDirection != TextDirection;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A material design linear progress indicator, also known as a progress bar.
-///
-/// A widget that shows progress along a line. There are two kinds of linear
-/// progress indicators:
-///
-///  * _Determinate_. Determinate progress indicators have a specific value at
-///    each point in time, and the value should increase monotonically from 0.0
-///    to 1.0, at which time the indicator is complete. To create a determinate
-///    progress indicator, use a non-null [value] between 0.0 and 1.0.
-///  * _Indeterminate_. Indeterminate progress indicators do not have a specific
-///    value at each point in time and instead indicate that progress is being
-///    made without indicating how much progress remains. To create an
-///    indeterminate progress indicator, use a null [value].
-///
-/// The indicator line is displayed with [valueColor], an animated value. To
-/// specify a constant color value use: `AlwaysStoppedAnimation<Color>(color)`.
-///
-/// See also:
-///
-///  * [CircularProgressIndicator], which shows progress along a circular arc.
-///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
-///    when the underlying vertical scrollable is overscrolled.
-///  * <https://material.io/design/components/progress-indicators.html#linear-progress-indicators>
-/// </Summary>
-public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
-{
-    #region constructors
-    public LinearProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
-    : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Progressindicator._LinearProgressIndicatorState CreateState() => new _LinearProgressIndicatorState();
-
-
-#endregion
-}
-
-
-public class _LinearProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.LinearProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _LinearProgressIndicatorState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _Controller = new AnimationController(duration: new TimeSpan(milliseconds: ProgressindicatorDefaultClass._KIndeterminateLinearDuration), vsync: this);
-        if (Widget.Value == null) _Controller.Repeat();
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.LinearProgressIndicator oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.Value == null && !_Controller.IsAnimating) _Controller.Repeat(); else if (Widget.Value != null && _Controller.IsAnimating) _Controller.Stop();
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _Controller.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double animationValue, TextDirection textDirection)
-    {
-        return Widget._BuildSemanticsWrapper(context: context, child: new Container(constraints: new BoxConstraints(minWidth: Dart:coreDefaultClass.Double.Infinity, minHeight: ProgressindicatorDefaultClass._KLinearProgressIndicatorHeight), child: new CustomPaint(painter: new _LinearProgressIndicatorPainter(backgroundColor: Widget._GetBackgroundColor(context), valueColor: Widget._GetValueColor(context), value: Widget.Value, animationValue: animationValue, textDirection: textDirection))));
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
-        if (Widget.Value != null) return _BuildIndicator(context, _Controller.Value, textDirection);
-        return new AnimatedBuilder(animation: _Controller.View, builder: (BuildContext context, Widget child) =>
+        private FlutterSDK.Widgets.Framework.Widget _BuildSemanticsWrapper(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
-            return _BuildIndicator(context, _Controller.Value, textDirection);
+            string expandedSemanticsValue = SemanticsValue;
+            if (Value != null)
+            {
+                expandedSemanticsValue = (expandedSemanticsValue == null ? $"'{(Value * 100).Round()}%'" : expandedSemanticsValue);
+            }
+
+            return new Semantics(label: SemanticsLabel, value: expandedSemanticsValue, child: child);
         }
-        );
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-public class _CircularProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-    #region constructors
-    public _CircularProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual FlutterBinding.UI.Color ValueColor { get; set; }
-public virtual double Value { get; set; }
-public virtual double HeadValue { get; set; }
-public virtual double TailValue { get; set; }
-public virtual int StepValue { get; set; }
-public virtual double RotationValue { get; set; }
-public virtual double StrokeWidth { get; set; }
-public virtual double ArcStart { get; set; }
-public virtual double ArcSweep { get; set; }
-internal virtual double _TwoPi { get; set; }
-internal virtual double _Epsilon { get; set; }
-internal virtual double _Sweep { get; set; }
-internal virtual double _StartAngle { get; set; }
-#endregion
-
-#region methods
-
-public new void Paint(Canvas canvas, Size size)
-{
-    Paint paint = new Paint()..Color = ValueColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Stroke;
-    if (BackgroundColor != null)
+    public class _LinearProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        Paint backgroundPaint = new Paint()..Color = BackgroundColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Stroke;
-        canvas.DrawArc(Dart: uiDefaultClass.Offset.Zero & size, 0, _Sweep, false, backgroundPaint);
-    }
-
-    if (Value == null) paint.StrokeCap = StrokeCap.Square;
-    canvas.DrawArc(Dart: uiDefaultClass.Offset.Zero & size, ArcStart, ArcSweep, false, paint);
-}
-
-
-
-
-public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter oldPainter)
-{
-    return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.HeadValue != HeadValue || oldPainter.TailValue != TailValue || oldPainter.StepValue != StepValue || oldPainter.RotationValue != RotationValue || oldPainter.StrokeWidth != StrokeWidth;
-}
-
-
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-{
-    return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.HeadValue != HeadValue || oldPainter.TailValue != TailValue || oldPainter.StepValue != StepValue || oldPainter.RotationValue != RotationValue || oldPainter.StrokeWidth != StrokeWidth;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A material design circular progress indicator, which spins to indicate that
-/// the application is busy.
-///
-/// A widget that shows progress along a circle. There are two kinds of circular
-/// progress indicators:
-///
-///  * _Determinate_. Determinate progress indicators have a specific value at
-///    each point in time, and the value should increase monotonically from 0.0
-///    to 1.0, at which time the indicator is complete. To create a determinate
-///    progress indicator, use a non-null [value] between 0.0 and 1.0.
-///  * _Indeterminate_. Indeterminate progress indicators do not have a specific
-///    value at each point in time and instead indicate that progress is being
-///    made without indicating how much progress remains. To create an
-///    indeterminate progress indicator, use a null [value].
-///
-/// The indicator arc is displayed with [valueColor], an animated value. To
-/// specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
-///
-/// See also:
-///
-///  * [LinearProgressIndicator], which displays progress along a line.
-///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
-///    when the underlying vertical scrollable is overscrolled.
-///  * <https://material.io/design/components/progress-indicators.html#circular-progress-indicators>
-/// </Summary>
-public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
-{
-    #region constructors
-    public CircularProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 4.0, string semanticsLabel = default(string), string semanticsValue = default(string))
-    : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
-
-}
-#endregion
-
-#region fields
-public virtual double StrokeWidth { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState CreateState() => new _CircularProgressIndicatorState();
-
-
-#endregion
-}
-
-
-public class _CircularProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.CircularProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _CircularProgressIndicatorState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _Controller = new AnimationController(duration: new TimeSpan(seconds: 5), vsync: this);
-        if (Widget.Value == null) _Controller.Repeat();
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.CircularProgressIndicator oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.Value == null && !_Controller.IsAnimating) _Controller.Repeat(); else if (Widget.Value != null && _Controller.IsAnimating) _Controller.Stop();
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _Controller.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double headValue, double tailValue, int stepValue, double rotationValue)
-    {
-        return Widget._BuildSemanticsWrapper(context: context, child: new Container(constraints: new BoxConstraints(minWidth: ProgressindicatorDefaultClass._KMinCircularProgressIndicatorSize, minHeight: ProgressindicatorDefaultClass._KMinCircularProgressIndicatorSize), child: new CustomPaint(painter: new _CircularProgressIndicatorPainter(backgroundColor: Widget.BackgroundColor, valueColor: Widget._GetValueColor(context), value: Widget.Value, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: Widget.StrokeWidth))));
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildAnimation()
-    {
-        return new AnimatedBuilder(animation: _Controller, builder: (BuildContext context, Widget child) =>
+        #region constructors
+        public _LinearProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double animationValue = default(double), TextDirection textDirection = default(TextDirection))
+        : base()
         {
-            return _BuildIndicator(context, ProgressindicatorDefaultClass._KStrokeHeadTween.Evaluate(_Controller), ProgressindicatorDefaultClass._KStrokeTailTween.Evaluate(_Controller), ProgressindicatorDefaultClass._KStepTween.Evaluate(_Controller), ProgressindicatorDefaultClass._KRotationTween.Evaluate(_Controller));
+            this.BackgroundColor = backgroundColor;
+            this.ValueColor = valueColor;
+            this.Value = value;
+            this.AnimationValue = animationValue;
+            this.TextDirection = textDirection;
         }
-        );
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ValueColor { get; set; }
+        public virtual double Value { get; set; }
+        public virtual double AnimationValue { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line1Head { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line1Tail { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line2Head { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Line2Tail { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            Paint paint = new Paint()..Color = BackgroundColor..Style = PaintingStyle.Fill;
+            canvas.DrawRect(Dart: uiDefaultClass.Offset.Zero & size, paint);
+            paint.Color = ValueColor;
+            void DrawBar(double x, double width) => {
+                if (width <= 0.0) return;
+                double left = default(double);
+                switch (TextDirection) { case TextDirection.Rtl: left = size.Width - width - x; break; case TextDirection.Ltr: left = x; break; }
+                canvas.DrawRect(new Offset(left, 0.0) & new Size(width, size.Height), paint);
+            }
+
+            if (Value != null)
+            {
+                DrawBar(0.0, Value.Clamp(0.0, 1.0) * size.Width as double);
+            }
+            else
+            {
+                double x1 = size.Width * Line1Tail.Transform(AnimationValue);
+                double width1 = size.Width * Line1Head.Transform(AnimationValue) - x1;
+                double x2 = size.Width * Line2Tail.Transform(AnimationValue);
+                double width2 = size.Width * Line2Head.Transform(AnimationValue) - x2;
+                DrawBar(x1, width1);
+                DrawBar(x2, width2);
+            }
+
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._LinearProgressIndicatorPainter oldPainter)
+        {
+            return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.AnimationValue != AnimationValue || oldPainter.TextDirection != TextDirection;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.AnimationValue != AnimationValue || oldPainter.TextDirection != TextDirection;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    /// <Summary>
+    /// A material design linear progress indicator, also known as a progress bar.
+    ///
+    /// A widget that shows progress along a line. There are two kinds of linear
+    /// progress indicators:
+    ///
+    ///  * _Determinate_. Determinate progress indicators have a specific value at
+    ///    each point in time, and the value should increase monotonically from 0.0
+    ///    to 1.0, at which time the indicator is complete. To create a determinate
+    ///    progress indicator, use a non-null [value] between 0.0 and 1.0.
+    ///  * _Indeterminate_. Indeterminate progress indicators do not have a specific
+    ///    value at each point in time and instead indicate that progress is being
+    ///    made without indicating how much progress remains. To create an
+    ///    indeterminate progress indicator, use a null [value].
+    ///
+    /// The indicator line is displayed with [valueColor], an animated value. To
+    /// specify a constant color value use: `AlwaysStoppedAnimation<Color>(color)`.
+    ///
+    /// See also:
+    ///
+    ///  * [CircularProgressIndicator], which shows progress along a circular arc.
+    ///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
+    ///    when the underlying vertical scrollable is overscrolled.
+    ///  * <https://material.io/design/components/progress-indicators.html#linear-progress-indicators>
+    /// </Summary>
+    public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
-        if (Widget.Value != null) return _BuildIndicator(context, 0.0, 0.0, 0, 0.0);
-        return _BuildAnimation();
+        #region constructors
+        public LinearProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Progressindicator._LinearProgressIndicatorState CreateState() => new _LinearProgressIndicatorState();
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-public class _RefreshProgressIndicatorPainter : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter
-{
-    #region constructors
-    public _RefreshProgressIndicatorPainter(FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double), double arrowheadScale = default(double))
-    : base(valueColor: valueColor, value: value, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: strokeWidth)
-
-}
-#endregion
-
-#region fields
-public virtual double ArrowheadScale { get; set; }
-#endregion
-
-#region methods
-
-public virtual void PaintArrowhead(Canvas canvas, Size size)
-{
-    double arcEnd = ArcStart + ArcSweep;
-    double ux = Math.Dart:mathDefaultClass.Cos(arcEnd);
-    double uy = Math.Dart:mathDefaultClass.Sin(arcEnd);
-
-    double radius = size.Width / 2.0;
-    double arrowheadPointX = radius + ux * radius + -uy * StrokeWidth * 2.0 * ArrowheadScale;
-    double arrowheadPointY = radius + uy * radius + ux * StrokeWidth * 2.0 * ArrowheadScale;
-    double arrowheadRadius = StrokeWidth * 1.5 * ArrowheadScale;
-    double innerRadius = radius - arrowheadRadius;
-    double outerRadius = radius + arrowheadRadius;
-    Path path = new Path();
-    new Path().MoveTo(radius + ux * innerRadius, radius + uy * innerRadius);
-    new Path().LineTo(radius + ux * outerRadius, radius + uy * outerRadius);
-    new Path().LineTo(arrowheadPointX, arrowheadPointY);
-    new Path().Close();
-    Paint paint = new Paint()..Color = ValueColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Fill;
-    canvas.DrawPath(path, paint);
-}
-
-
-
-
-public new void Paint(Canvas canvas, Size size)
-{
-    base.Paint(canvas, size);
-    if (ArrowheadScale > 0.0) PaintArrowhead(canvas, size);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An indicator for the progress of refreshing the contents of a widget.
-///
-/// Typically used for swipe-to-refresh interactions. See [RefreshIndicator] for
-/// a complete implementation of swipe-to-refresh driven by a [Scrollable]
-/// widget.
-///
-/// The indicator arc is displayed with [valueColor], an animated value. To
-/// specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
-///
-/// See also:
-///
-///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
-///    when the underlying vertical scrollable is overscrolled.
-/// </Summary>
-public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
-{
-    #region constructors
-    public RefreshProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 2.0, string semanticsLabel = default(string), string semanticsValue = default(string))
-    : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, strokeWidth: strokeWidth, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Progressindicator._RefreshProgressIndicatorState CreateState() => new _RefreshProgressIndicatorState();
-
-
-#endregion
-}
-
-
-public class _RefreshProgressIndicatorState : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState
-{
-    #region constructors
-    public _RefreshProgressIndicatorState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual double _IndicatorSize { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    public class _LinearProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.LinearProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        if (Widget.Value != null) _Controller.Value = Widget.Value / 10.0; else if (!_Controller.IsAnimating) _Controller.Repeat();
-        return _BuildAnimation();
+        #region constructors
+        public _LinearProgressIndicatorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _Controller = new AnimationController(duration: new TimeSpan(milliseconds: ProgressindicatorDefaultClass._KIndeterminateLinearDuration), vsync: this);
+            if (Widget.Value == null) _Controller.Repeat();
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.LinearProgressIndicator oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.Value == null && !_Controller.IsAnimating) _Controller.Repeat(); else if (Widget.Value != null && _Controller.IsAnimating) _Controller.Stop();
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _Controller.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double animationValue, TextDirection textDirection)
+        {
+            return Widget._BuildSemanticsWrapper(context: context, child: new Container(constraints: new BoxConstraints(minWidth: Dart:coreDefaultClass.Double.Infinity, minHeight: ProgressindicatorDefaultClass._KLinearProgressIndicatorHeight), child: new CustomPaint(painter: new _LinearProgressIndicatorPainter(backgroundColor: Widget._GetBackgroundColor(context), valueColor: Widget._GetValueColor(context), value: Widget.Value, animationValue: animationValue, textDirection: textDirection))));
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
+            if (Widget.Value != null) return _BuildIndicator(context, _Controller.Value, textDirection);
+            return new AnimatedBuilder(animation: _Controller.View, builder: (BuildContext context, Widget child) =>
+            {
+                return _BuildIndicator(context, _Controller.Value, textDirection);
+            }
+            );
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    protected new FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double headValue, double tailValue, int stepValue, double rotationValue)
+    public class _CircularProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        double arrowheadScale = Widget.Value == null ? 0.0 : ((Widget.Value * 2.0).Clamp(0.0, 1.0) as double);
-        return Widget._BuildSemanticsWrapper(context: context, child: new Container(width: _IndicatorSize, height: _IndicatorSize, margin: EdgeInsets.All(4.0), child: new Material(type: MaterialType.Circle, color: Widget.BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).CanvasColor, elevation: 2.0, child: new Padding(padding: EdgeInsets.All(12.0), child: new CustomPaint(painter: new _RefreshProgressIndicatorPainter(valueColor: Widget._GetValueColor(context), value: null, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: Widget.StrokeWidth, arrowheadScale: arrowheadScale))))));
+        #region constructors
+        public _CircularProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double))
+        : base()
+        {
+            this.BackgroundColor = backgroundColor;
+            this.ValueColor = valueColor;
+            this.Value = value;
+            this.HeadValue = headValue;
+            this.TailValue = tailValue;
+            this.StepValue = stepValue;
+            this.RotationValue = rotationValue;
+            this.StrokeWidth = strokeWidth;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ValueColor { get; set; }
+        public virtual double Value { get; set; }
+        public virtual double HeadValue { get; set; }
+        public virtual double TailValue { get; set; }
+        public virtual int StepValue { get; set; }
+        public virtual double RotationValue { get; set; }
+        public virtual double StrokeWidth { get; set; }
+        public virtual double ArcStart { get; set; }
+        public virtual double ArcSweep { get; set; }
+        internal virtual double _TwoPi { get; set; }
+        internal virtual double _Epsilon { get; set; }
+        internal virtual double _Sweep { get; set; }
+        internal virtual double _StartAngle { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            Paint paint = new Paint()..Color = ValueColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Stroke;
+            if (BackgroundColor != null)
+            {
+                Paint backgroundPaint = new Paint()..Color = BackgroundColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Stroke;
+                canvas.DrawArc(Dart: uiDefaultClass.Offset.Zero & size, 0, _Sweep, false, backgroundPaint);
+            }
+
+            if (Value == null) paint.StrokeCap = StrokeCap.Square;
+            canvas.DrawArc(Dart: uiDefaultClass.Offset.Zero & size, ArcStart, ArcSweep, false, paint);
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter oldPainter)
+        {
+            return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.HeadValue != HeadValue || oldPainter.TailValue != TailValue || oldPainter.StepValue != StepValue || oldPainter.RotationValue != RotationValue || oldPainter.StrokeWidth != StrokeWidth;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return oldPainter.BackgroundColor != BackgroundColor || oldPainter.ValueColor != ValueColor || oldPainter.Value != Value || oldPainter.HeadValue != HeadValue || oldPainter.TailValue != TailValue || oldPainter.StepValue != StepValue || oldPainter.RotationValue != RotationValue || oldPainter.StrokeWidth != StrokeWidth;
+        }
+
+
+
+        #endregion
     }
 
 
+    /// <Summary>
+    /// A material design circular progress indicator, which spins to indicate that
+    /// the application is busy.
+    ///
+    /// A widget that shows progress along a circle. There are two kinds of circular
+    /// progress indicators:
+    ///
+    ///  * _Determinate_. Determinate progress indicators have a specific value at
+    ///    each point in time, and the value should increase monotonically from 0.0
+    ///    to 1.0, at which time the indicator is complete. To create a determinate
+    ///    progress indicator, use a non-null [value] between 0.0 and 1.0.
+    ///  * _Indeterminate_. Indeterminate progress indicators do not have a specific
+    ///    value at each point in time and instead indicate that progress is being
+    ///    made without indicating how much progress remains. To create an
+    ///    indeterminate progress indicator, use a null [value].
+    ///
+    /// The indicator arc is displayed with [valueColor], an animated value. To
+    /// specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
+    ///
+    /// See also:
+    ///
+    ///  * [LinearProgressIndicator], which displays progress along a line.
+    ///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
+    ///    when the underlying vertical scrollable is overscrolled.
+    ///  * <https://material.io/design/components/progress-indicators.html#circular-progress-indicators>
+    /// </Summary>
+    public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
+    {
+        #region constructors
+        public CircularProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 4.0, string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
+        {
+            this.StrokeWidth = strokeWidth;
+        }
+        #endregion
 
-    #endregion
-}
+        #region fields
+        public virtual double StrokeWidth { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState CreateState() => new _CircularProgressIndicatorState();
+
+
+        #endregion
+    }
+
+
+    public class _CircularProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.CircularProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _CircularProgressIndicatorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _Controller = new AnimationController(duration: new TimeSpan(seconds: 5), vsync: this);
+            if (Widget.Value == null) _Controller.Repeat();
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Progressindicator.CircularProgressIndicator oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.Value == null && !_Controller.IsAnimating) _Controller.Repeat(); else if (Widget.Value != null && _Controller.IsAnimating) _Controller.Stop();
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _Controller.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double headValue, double tailValue, int stepValue, double rotationValue)
+        {
+            return Widget._BuildSemanticsWrapper(context: context, child: new Container(constraints: new BoxConstraints(minWidth: ProgressindicatorDefaultClass._KMinCircularProgressIndicatorSize, minHeight: ProgressindicatorDefaultClass._KMinCircularProgressIndicatorSize), child: new CustomPaint(painter: new _CircularProgressIndicatorPainter(backgroundColor: Widget.BackgroundColor, valueColor: Widget._GetValueColor(context), value: Widget.Value, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: Widget.StrokeWidth))));
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildAnimation()
+        {
+            return new AnimatedBuilder(animation: _Controller, builder: (BuildContext context, Widget child) =>
+            {
+                return _BuildIndicator(context, ProgressindicatorDefaultClass._KStrokeHeadTween.Evaluate(_Controller), ProgressindicatorDefaultClass._KStrokeTailTween.Evaluate(_Controller), ProgressindicatorDefaultClass._KStepTween.Evaluate(_Controller), ProgressindicatorDefaultClass._KRotationTween.Evaluate(_Controller));
+            }
+            );
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (Widget.Value != null) return _BuildIndicator(context, 0.0, 0.0, 0, 0.0);
+            return _BuildAnimation();
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _RefreshProgressIndicatorPainter : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter
+    {
+        #region constructors
+        public _RefreshProgressIndicatorPainter(FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double), double arrowheadScale = default(double))
+        : base(valueColor: valueColor, value: value, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: strokeWidth)
+        {
+            this.ArrowheadScale = arrowheadScale;
+        }
+        #endregion
+
+        #region fields
+        public virtual double ArrowheadScale { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual void PaintArrowhead(Canvas canvas, Size size)
+        {
+            double arcEnd = ArcStart + ArcSweep;
+            double ux = Math.Dart:mathDefaultClass.Cos(arcEnd);
+            double uy = Math.Dart:mathDefaultClass.Sin(arcEnd);
+
+            double radius = size.Width / 2.0;
+            double arrowheadPointX = radius + ux * radius + -uy * StrokeWidth * 2.0 * ArrowheadScale;
+            double arrowheadPointY = radius + uy * radius + ux * StrokeWidth * 2.0 * ArrowheadScale;
+            double arrowheadRadius = StrokeWidth * 1.5 * ArrowheadScale;
+            double innerRadius = radius - arrowheadRadius;
+            double outerRadius = radius + arrowheadRadius;
+            Path path = new Path();
+            new Path().MoveTo(radius + ux * innerRadius, radius + uy * innerRadius);
+            new Path().LineTo(radius + ux * outerRadius, radius + uy * outerRadius);
+            new Path().LineTo(arrowheadPointX, arrowheadPointY);
+            new Path().Close();
+            Paint paint = new Paint()..Color = ValueColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Fill;
+            canvas.DrawPath(path, paint);
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            base.Paint(canvas, size);
+            if (ArrowheadScale > 0.0) PaintArrowhead(canvas, size);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An indicator for the progress of refreshing the contents of a widget.
+    ///
+    /// Typically used for swipe-to-refresh interactions. See [RefreshIndicator] for
+    /// a complete implementation of swipe-to-refresh driven by a [Scrollable]
+    /// widget.
+    ///
+    /// The indicator arc is displayed with [valueColor], an animated value. To
+    /// specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
+    ///
+    /// See also:
+    ///
+    ///  * [RefreshIndicator], which automatically displays a [CircularProgressIndicator]
+    ///    when the underlying vertical scrollable is overscrolled.
+    /// </Summary>
+    public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
+    {
+        #region constructors
+        public RefreshProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 2.0, string semanticsLabel = default(string), string semanticsValue = default(string))
+        : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, strokeWidth: strokeWidth, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Progressindicator._RefreshProgressIndicatorState CreateState() => new _RefreshProgressIndicatorState();
+
+
+        #endregion
+    }
+
+
+    public class _RefreshProgressIndicatorState : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState
+    {
+        #region constructors
+        public _RefreshProgressIndicatorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual double _IndicatorSize { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (Widget.Value != null) _Controller.Value = Widget.Value / 10.0; else if (!_Controller.IsAnimating) _Controller.Repeat();
+            return _BuildAnimation();
+        }
+
+
+
+
+        protected new FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double headValue, double tailValue, int stepValue, double rotationValue)
+        {
+            double arrowheadScale = Widget.Value == null ? 0.0 : ((Widget.Value * 2.0).Clamp(0.0, 1.0) as double);
+            return Widget._BuildSemanticsWrapper(context: context, child: new Container(width: _IndicatorSize, height: _IndicatorSize, margin: EdgeInsets.All(4.0), child: new Material(type: MaterialType.Circle, color: Widget.BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).CanvasColor, elevation: 2.0, child: new Padding(padding: EdgeInsets.All(12.0), child: new CustomPaint(painter: new _RefreshProgressIndicatorPainter(valueColor: Widget._GetValueColor(context), value: null, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: Widget.StrokeWidth, arrowheadScale: arrowheadScale))))));
+        }
+
+
+
+        #endregion
+    }
 
 }

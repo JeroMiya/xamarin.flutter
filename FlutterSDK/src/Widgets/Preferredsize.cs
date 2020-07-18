@@ -540,21 +540,23 @@ namespace FlutterSDK.Widgets.Preferredsize
         #region constructors
         public PreferredSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size preferredSize = default(Size))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Child = child;
+            this.PreferredSizeValue = preferredSize;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public new Size PreferredSizeValue { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public new Size PreferredSizeValue { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
 
 
-    #endregion
-}
+        #endregion
+    }
 
 }

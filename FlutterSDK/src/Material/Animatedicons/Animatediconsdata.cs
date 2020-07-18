@@ -393,35 +393,39 @@ namespace FlutterSDK.Material.Animatedicons.Animatediconsdata
     {
         #region constructors
         public AnimatedIconData()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        }
+        #endregion
 
-    #region methods
-    #endregion
-}
+        #region fields
+        public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public class _AnimatedIconData : FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData
-{
-    #region constructors
-    public _AnimatedIconData(Size size, List<object> paths, bool matchTextDirection = false)
+    public class _AnimatedIconData : FlutterSDK.Material.Animatedicons.Animatediconsdata.AnimatedIconData
+    {
+        #region constructors
+        public _AnimatedIconData(Size size, List<object> paths, bool matchTextDirection = false)
+        {
+            this.Size = size;
+            this.Paths = paths;
+            this.MatchTextDirection = matchTextDirection;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual Size Size { get; set; }
+        public virtual List<object> Paths { get; set; }
+        public new bool MatchTextDirection { get; set; }
+        #endregion
 
-#region fields
-public virtual Size Size { get; set; }
-public virtual List<object> Paths { get; set; }
-public new bool MatchTextDirection { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 }

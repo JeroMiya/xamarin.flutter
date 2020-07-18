@@ -441,233 +441,247 @@ namespace FlutterSDK.Widgets.Banner
         #region constructors
         public BannerPainter(string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(repaint: BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
-    
-}
-    #endregion
+        {
+            this.Message = message;
+            this.TextDirection = textDirection;
+            this.Location = location;
+            this.LayoutDirection = layoutDirection;
+            this.Color = color;
+            this.TextStyle = textStyle;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Message { get; set; }
-    public virtual TextDirection TextDirection { get; set; }
-    public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
-    public virtual TextDirection LayoutDirection { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    internal virtual FlutterSDK.Painting.Boxshadow.BoxShadow _Shadow { get; set; }
-    internal virtual bool _Prepared { get; set; }
-    internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
-    internal virtual SKPaint _PaintShadow { get; set; }
-    internal virtual SKPaint _PaintBanner { get; set; }
-    internal virtual double _Rotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
+        public virtual TextDirection LayoutDirection { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        internal virtual FlutterSDK.Painting.Boxshadow.BoxShadow _Shadow { get; set; }
+        internal virtual bool _Prepared { get; set; }
+        internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+        internal virtual SKPaint _PaintShadow { get; set; }
+        internal virtual SKPaint _PaintBanner { get; set; }
+        internal virtual double _Rotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    private void _Prepare()
-    {
-        _PaintShadow = _Shadow.ToPaint();
-        _PaintBanner = new Paint()..Color = Color;
-        _TextPainter = new TextPainter(text: new TextSpan(style: TextStyle, text: Message), textAlign: TextAlign.Center, textDirection: TextDirection);
-        _Prepared = true;
+        private void _Prepare()
+        {
+            _PaintShadow = _Shadow.ToPaint();
+            _PaintBanner = new Paint()..Color = Color;
+            _TextPainter = new TextPainter(text: new TextSpan(style: TextStyle, text: Message), textAlign: TextAlign.Center, textDirection: TextDirection);
+            _Prepared = true;
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            if (!_Prepared) _Prepare();
+            ;
+            canvas.Translate(_TranslationX(size.Width), _TranslationY(size.Height));
+            canvas.Rotate(_Rotation);
+            canvas.DrawRect(BannerDefaultClass._KRect, _PaintShadow);
+            canvas.DrawRect(BannerDefaultClass._KRect, _PaintBanner);
+            double width = BannerDefaultClass._KOffset * 2.0;
+            _TextPainter.Layout(minWidth: width, maxWidth: width);
+            _TextPainter.Paint(canvas, BannerDefaultClass._KRect.TopLeft + new Offset(0.0, (BannerDefaultClass._KRect.Height - _TextPainter.Height) / 2.0));
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Widgets.Banner.BannerPainter oldDelegate)
+        {
+            return Message != oldDelegate.Message || Location != oldDelegate.Location || Color != oldDelegate.Color || TextStyle != oldDelegate.TextStyle;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return Message != oldDelegate.Message || Location != oldDelegate.Location || Color != oldDelegate.Color || TextStyle != oldDelegate.TextStyle;
+        }
+
+
+
+
+        public new bool HitTest(FlutterBinding.UI.Offset position) => false;
+
+
+
+        private double _TranslationX(double width)
+        {
+
+
+            switch (LayoutDirection) { case TextDirection.Rtl: switch (Location) { case BannerLocation.BottomEnd: return BannerDefaultClass._KBottomOffset; case BannerLocation.TopEnd: return 0.0; case BannerLocation.BottomStart: return width - BannerDefaultClass._KBottomOffset; case BannerLocation.TopStart: return width; } break; case TextDirection.Ltr: switch (Location) { case BannerLocation.BottomEnd: return width - BannerDefaultClass._KBottomOffset; case BannerLocation.TopEnd: return width; case BannerLocation.BottomStart: return BannerDefaultClass._KBottomOffset; case BannerLocation.TopStart: return 0.0; } break; }
+            return null;
+        }
+
+
+
+
+        private double _TranslationY(double height)
+        {
+
+            switch (Location) { case BannerLocation.BottomStart: case BannerLocation.BottomEnd: return height - BannerDefaultClass._KBottomOffset; case BannerLocation.TopStart: case BannerLocation.TopEnd: return 0.0; }
+            return null;
+        }
+
+
+
+        #endregion
     }
 
-
-
-
-    public new void Paint(Canvas canvas, Size size)
-    {
-        if (!_Prepared) _Prepare();
-        ;
-        canvas.Translate(_TranslationX(size.Width), _TranslationY(size.Height));
-        canvas.Rotate(_Rotation);
-        canvas.DrawRect(BannerDefaultClass._KRect, _PaintShadow);
-        canvas.DrawRect(BannerDefaultClass._KRect, _PaintBanner);
-        double width = BannerDefaultClass._KOffset * 2.0;
-        _TextPainter.Layout(minWidth: width, maxWidth: width);
-        _TextPainter.Paint(canvas, BannerDefaultClass._KRect.TopLeft + new Offset(0.0, (BannerDefaultClass._KRect.Height - _TextPainter.Height) / 2.0));
-    }
-
-
-
-
-    public new bool ShouldRepaint(FlutterSDK.Widgets.Banner.BannerPainter oldDelegate)
-    {
-        return Message != oldDelegate.Message || Location != oldDelegate.Location || Color != oldDelegate.Color || TextStyle != oldDelegate.TextStyle;
-    }
-
-
-    public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-    {
-        return Message != oldDelegate.Message || Location != oldDelegate.Location || Color != oldDelegate.Color || TextStyle != oldDelegate.TextStyle;
-    }
-
-
-
-
-    public new bool HitTest(FlutterBinding.UI.Offset position) => false;
-
-
-
-    private double _TranslationX(double width)
-    {
-
-
-        switch (LayoutDirection) { case TextDirection.Rtl: switch (Location) { case BannerLocation.BottomEnd: return BannerDefaultClass._KBottomOffset; case BannerLocation.TopEnd: return 0.0; case BannerLocation.BottomStart: return width - BannerDefaultClass._KBottomOffset; case BannerLocation.TopStart: return width; } break; case TextDirection.Ltr: switch (Location) { case BannerLocation.BottomEnd: return width - BannerDefaultClass._KBottomOffset; case BannerLocation.TopEnd: return width; case BannerLocation.BottomStart: return BannerDefaultClass._KBottomOffset; case BannerLocation.TopStart: return 0.0; } break; }
-        return null;
-    }
-
-
-
-
-    private double _TranslationY(double height)
-    {
-
-        switch (Location) { case BannerLocation.BottomStart: case BannerLocation.BottomEnd: return height - BannerDefaultClass._KBottomOffset; case BannerLocation.TopStart: case BannerLocation.TopEnd: return 0.0; }
-        return null;
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Displays a diagonal message above the corner of another widget.
-///
-/// Useful for showing the execution mode of an app (e.g., that asserts are
-/// enabled.)
-///
-/// See also:
-///
-///  * [CheckedModeBanner], which the [WidgetsApp] widget includes by default in
-///    debug mode, to show a banner that says "DEBUG".
-/// </Summary>
-public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public Banner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual string Message { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
-public virtual TextDirection LayoutDirection { get; set; }
-public virtual FlutterBinding.UI.Color Color { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    return new CustomPaint(foregroundPainter: new BannerPainter(message: Message, textDirection: TextDirection ?? BasicDefaultClass.Directionality.Of(context), location: Location, layoutDirection: LayoutDirection ?? BasicDefaultClass.Directionality.Of(context), color: Color, textStyle: TextStyle), child: Child);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new StringProperty("message", Message, showName: false));
-    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
-    properties.Add(new EnumProperty<BannerLocation>("location", Location));
-    properties.Add(new EnumProperty<TextDirection>("layoutDirection", LayoutDirection, defaultValue: null));
-    properties.Add(new ColorProperty("color", Color, showName: false));
-    TextStyle?.DebugFillProperties(properties, prefix: "text ");
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Displays a [Banner] saying "DEBUG" when running in checked mode.
-/// [MaterialApp] builds one of these by default.
-/// Does nothing in release mode.
-/// </Summary>
-public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public CheckedModeBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    Widget result = Child;
-
-    return result;
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    string message = "disabled";
-
-    properties.Add(DiagnosticsNode.Message(message));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Where to show a [Banner].
-///
-/// The start and end locations are relative to the ambient [Directionality]
-/// (which can be overridden by [Banner.layoutDirection]).
-/// </Summary>
-public enum BannerLocation
-{
 
     /// <Summary>
-    /// Show the banner in the top-right corner when the ambient [Directionality]
-    /// (or [Banner.layoutDirection]) is [TextDirection.rtl] and in the top-left
-    /// corner when the ambient [Directionality] is [TextDirection.ltr].
+    /// Displays a diagonal message above the corner of another widget.
+    ///
+    /// Useful for showing the execution mode of an app (e.g., that asserts are
+    /// enabled.)
+    ///
+    /// See also:
+    ///
+    ///  * [CheckedModeBanner], which the [WidgetsApp] widget includes by default in
+    ///    debug mode, to show a banner that says "DEBUG".
     /// </Summary>
-    TopStart,
+    public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public Banner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
+        : base(key: key)
+        {
+            this.Child = child;
+            this.Message = message;
+            this.TextDirection = textDirection;
+            this.Location = location;
+            this.LayoutDirection = layoutDirection;
+            this.Color = color;
+            this.TextStyle = textStyle;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual string Message { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
+        public virtual TextDirection LayoutDirection { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            return new CustomPaint(foregroundPainter: new BannerPainter(message: Message, textDirection: TextDirection ?? BasicDefaultClass.Directionality.Of(context), location: Location, layoutDirection: LayoutDirection ?? BasicDefaultClass.Directionality.Of(context), color: Color, textStyle: TextStyle), child: Child);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new StringProperty("message", Message, showName: false));
+            properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+            properties.Add(new EnumProperty<BannerLocation>("location", Location));
+            properties.Add(new EnumProperty<TextDirection>("layoutDirection", LayoutDirection, defaultValue: null));
+            properties.Add(new ColorProperty("color", Color, showName: false));
+            TextStyle?.DebugFillProperties(properties, prefix: "text ");
+        }
+
+
+
+        #endregion
+    }
+
+
     /// <Summary>
-    /// Show the banner in the top-left corner when the ambient [Directionality]
-    /// (or [Banner.layoutDirection]) is [TextDirection.rtl] and in the top-right
-    /// corner when the ambient [Directionality] is [TextDirection.ltr].
+    /// Displays a [Banner] saying "DEBUG" when running in checked mode.
+    /// [MaterialApp] builds one of these by default.
+    /// Does nothing in release mode.
     /// </Summary>
-    TopEnd,
+    public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public CheckedModeBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Child = child;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Widget result = Child;
+
+            return result;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            string message = "disabled";
+
+            properties.Add(DiagnosticsNode.Message(message));
+        }
+
+
+
+        #endregion
+    }
+
+
     /// <Summary>
-    /// Show the banner in the bottom-right corner when the ambient
-    /// [Directionality] (or [Banner.layoutDirection]) is [TextDirection.rtl] and
-    /// in the bottom-left corner when the ambient [Directionality] is
-    /// [TextDirection.ltr].
+    /// Where to show a [Banner].
+    ///
+    /// The start and end locations are relative to the ambient [Directionality]
+    /// (which can be overridden by [Banner.layoutDirection]).
     /// </Summary>
-    BottomStart,
-    /// <Summary>
-    /// Show the banner in the bottom-left corner when the ambient
-    /// [Directionality] (or [Banner.layoutDirection]) is [TextDirection.rtl] and
-    /// in the bottom-right corner when the ambient [Directionality] is
-    /// [TextDirection.ltr].
-    /// </Summary>
-    BottomEnd,
-}
+    public enum BannerLocation
+    {
+
+        /// <Summary>
+        /// Show the banner in the top-right corner when the ambient [Directionality]
+        /// (or [Banner.layoutDirection]) is [TextDirection.rtl] and in the top-left
+        /// corner when the ambient [Directionality] is [TextDirection.ltr].
+        /// </Summary>
+        TopStart,
+        /// <Summary>
+        /// Show the banner in the top-left corner when the ambient [Directionality]
+        /// (or [Banner.layoutDirection]) is [TextDirection.rtl] and in the top-right
+        /// corner when the ambient [Directionality] is [TextDirection.ltr].
+        /// </Summary>
+        TopEnd,
+        /// <Summary>
+        /// Show the banner in the bottom-right corner when the ambient
+        /// [Directionality] (or [Banner.layoutDirection]) is [TextDirection.rtl] and
+        /// in the bottom-left corner when the ambient [Directionality] is
+        /// [TextDirection.ltr].
+        /// </Summary>
+        BottomStart,
+        /// <Summary>
+        /// Show the banner in the bottom-left corner when the ambient
+        /// [Directionality] (or [Banner.layoutDirection]) is [TextDirection.rtl] and
+        /// in the bottom-right corner when the ambient [Directionality] is
+        /// [TextDirection.ltr].
+        /// </Summary>
+        BottomEnd,
+    }
 
 }

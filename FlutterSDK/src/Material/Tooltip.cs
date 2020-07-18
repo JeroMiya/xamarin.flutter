@@ -453,409 +453,434 @@ namespace FlutterSDK.Material.Tooltip
         #region constructors
         public Tooltip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual string Message { get; set; }
-    public virtual double Height { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-    public virtual double VerticalOffset { get; set; }
-    public virtual bool PreferBelow { get; set; }
-    public virtual bool ExcludeFromSemantics { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    public virtual TimeSpan WaitDuration { get; set; }
-    public virtual TimeSpan ShowDuration { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Tooltip._TooltipState CreateState() => new _TooltipState();
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new StringProperty("message", Message, showName: false));
-        properties.Add(new DoubleProperty("height", Height, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("margin", Margin, defaultValue: null));
-        properties.Add(new DoubleProperty("vertical offset", VerticalOffset, defaultValue: null));
-        properties.Add(new FlagProperty("position", value: PreferBelow, ifTrue: "below", ifFalse: "above", showName: true, defaultValue: null));
-        properties.Add(new FlagProperty("semantics", value: ExcludeFromSemantics, ifTrue: "excluded", showName: true, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TimeSpan>("wait duration", WaitDuration, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TimeSpan>("show duration", ShowDuration, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _TooltipState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tooltip.Tooltip>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _TooltipState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual double _DefaultTooltipHeight { get; set; }
-    internal virtual double _DefaultVerticalOffset { get; set; }
-    internal virtual bool _DefaultPreferBelow { get; set; }
-    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultPadding { get; set; }
-    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultMargin { get; set; }
-    internal virtual TimeSpan _FadeInDuration { get; set; }
-    internal virtual TimeSpan _FadeOutDuration { get; set; }
-    internal virtual TimeSpan _DefaultShowDuration { get; set; }
-    internal virtual TimeSpan _DefaultWaitDuration { get; set; }
-    internal virtual bool _DefaultExcludeFromSemantics { get; set; }
-    public virtual double Height { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    public virtual double VerticalOffset { get; set; }
-    public virtual bool PreferBelow { get; set; }
-    public virtual bool ExcludeFromSemantics { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-    internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Entry { get; set; }
-    internal virtual Timer _HideTimer { get; set; }
-    internal virtual Timer _ShowTimer { get; set; }
-    public virtual TimeSpan ShowDuration { get; set; }
-    public virtual TimeSpan WaitDuration { get; set; }
-    internal virtual bool _MouseIsConnected { get; set; }
-    internal virtual bool _LongPressActivated { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _MouseIsConnected = BindingDefaultClass.RendererBinding.Instance.MouseTracker.MouseIsConnected;
-        _Controller = new AnimationController(duration: _FadeInDuration, reverseDuration: _FadeOutDuration, vsync: this);
-        new AnimationController(duration: _FadeInDuration, reverseDuration: _FadeOutDuration, vsync: this).AddStatusListener(_HandleStatusChanged);
-        BindingDefaultClass.RendererBinding.Instance.MouseTracker.AddListener(_HandleMouseTrackerChange);
-        BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddGlobalRoute(_HandlePointerEvent);
-    }
-
-
-
-
-    private void _HandleMouseTrackerChange()
-    {
-        if (!Mounted)
         {
-            return;
+            this.Message = message;
+            this.Height = height;
+            this.Padding = padding;
+            this.Margin = margin;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Decoration = decoration;
+            this.TextStyle = textStyle;
+            this.WaitDuration = waitDuration;
+            this.ShowDuration = showDuration;
+            this.Child = child;
+        }
+        #endregion
+
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        public virtual bool ExcludeFromSemantics { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual TimeSpan WaitDuration { get; set; }
+        public virtual TimeSpan ShowDuration { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Tooltip._TooltipState CreateState() => new _TooltipState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new StringProperty("message", Message, showName: false));
+            properties.Add(new DoubleProperty("height", Height, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("margin", Margin, defaultValue: null));
+            properties.Add(new DoubleProperty("vertical offset", VerticalOffset, defaultValue: null));
+            properties.Add(new FlagProperty("position", value: PreferBelow, ifTrue: "below", ifFalse: "above", showName: true, defaultValue: null));
+            properties.Add(new FlagProperty("semantics", value: ExcludeFromSemantics, ifTrue: "excluded", showName: true, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TimeSpan>("wait duration", WaitDuration, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TimeSpan>("show duration", ShowDuration, defaultValue: null));
         }
 
-        bool mouseIsConnected = BindingDefaultClass.RendererBinding.Instance.MouseTracker.MouseIsConnected;
-        if (mouseIsConnected != _MouseIsConnected)
+
+
+        #endregion
+    }
+
+
+    public class _TooltipState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tooltip.Tooltip>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _TooltipState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual double _DefaultTooltipHeight { get; set; }
+        internal virtual double _DefaultVerticalOffset { get; set; }
+        internal virtual bool _DefaultPreferBelow { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultPadding { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _DefaultMargin { get; set; }
+        internal virtual TimeSpan _FadeInDuration { get; set; }
+        internal virtual TimeSpan _FadeOutDuration { get; set; }
+        internal virtual TimeSpan _DefaultShowDuration { get; set; }
+        internal virtual TimeSpan _DefaultWaitDuration { get; set; }
+        internal virtual bool _DefaultExcludeFromSemantics { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        public virtual bool ExcludeFromSemantics { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Entry { get; set; }
+        internal virtual Timer _HideTimer { get; set; }
+        internal virtual Timer _ShowTimer { get; set; }
+        public virtual TimeSpan ShowDuration { get; set; }
+        public virtual TimeSpan WaitDuration { get; set; }
+        internal virtual bool _MouseIsConnected { get; set; }
+        internal virtual bool _LongPressActivated { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            SetState(() =>
+            base.InitState();
+            _MouseIsConnected = BindingDefaultClass.RendererBinding.Instance.MouseTracker.MouseIsConnected;
+            _Controller = new AnimationController(duration: _FadeInDuration, reverseDuration: _FadeOutDuration, vsync: this);
+            new AnimationController(duration: _FadeInDuration, reverseDuration: _FadeOutDuration, vsync: this).AddStatusListener(_HandleStatusChanged);
+            BindingDefaultClass.RendererBinding.Instance.MouseTracker.AddListener(_HandleMouseTrackerChange);
+            BindingDefaultClass.GestureBinding.Instance.PointerRouter.AddGlobalRoute(_HandlePointerEvent);
+        }
+
+
+
+
+        private void _HandleMouseTrackerChange()
+        {
+            if (!Mounted)
             {
-                _MouseIsConnected = mouseIsConnected;
+                return;
             }
-            );
+
+            bool mouseIsConnected = BindingDefaultClass.RendererBinding.Instance.MouseTracker.MouseIsConnected;
+            if (mouseIsConnected != _MouseIsConnected)
+            {
+                SetState(() =>
+                {
+                    _MouseIsConnected = mouseIsConnected;
+                }
+                );
+            }
+
         }
 
-    }
 
 
 
-
-    private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
-    {
-        if (status == AnimationStatus.Dismissed)
+        private void _HandleStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
         {
-            _HideTooltip(immediately: true);
+            if (status == AnimationStatus.Dismissed)
+            {
+                _HideTooltip(immediately: true);
+            }
+
         }
 
-    }
 
 
 
-
-    private void _HideTooltip(bool immediately = false)
-    {
-        _ShowTimer?.Cancel();
-        _ShowTimer = null;
-        if (immediately)
+        private void _HideTooltip(bool immediately = false)
         {
-            _RemoveEntry();
-            return;
+            _ShowTimer?.Cancel();
+            _ShowTimer = null;
+            if (immediately)
+            {
+                _RemoveEntry();
+                return;
+            }
+
+            if (_LongPressActivated)
+            {
+                _HideTimer = (_HideTimer == null ? new Timer(ShowDuration, _Controller.Reverse) : _HideTimer);
+            }
+            else
+            {
+                _Controller.Reverse();
+            }
+
+            _LongPressActivated = false;
         }
 
-        if (_LongPressActivated)
-        {
-            _HideTimer = (_HideTimer == null ? new Timer(ShowDuration, _Controller.Reverse) : _HideTimer);
-        }
-        else
-        {
-            _Controller.Reverse();
-        }
-
-        _LongPressActivated = false;
-    }
 
 
 
-
-    private void _ShowTooltip(bool immediately = false)
-    {
-        _HideTimer?.Cancel();
-        _HideTimer = null;
-        if (immediately)
-        {
-            EnsureTooltipVisible();
-            return;
-        }
-
-        _ShowTimer = (_ShowTimer == null ? new Timer(WaitDuration, EnsureTooltipVisible) : _ShowTimer);
-    }
-
-
-
-
-    /// <Summary>
-    /// Shows the tooltip if it is not already visible.
-    ///
-    /// Returns `false` when the tooltip was already visible.
-    /// </Summary>
-    public virtual bool EnsureTooltipVisible()
-    {
-        _ShowTimer?.Cancel();
-        _ShowTimer = null;
-        if (_Entry != null)
+        private void _ShowTooltip(bool immediately = false)
         {
             _HideTimer?.Cancel();
             _HideTimer = null;
+            if (immediately)
+            {
+                EnsureTooltipVisible();
+                return;
+            }
+
+            _ShowTimer = (_ShowTimer == null ? new Timer(WaitDuration, EnsureTooltipVisible) : _ShowTimer);
+        }
+
+
+
+
+        /// <Summary>
+        /// Shows the tooltip if it is not already visible.
+        ///
+        /// Returns `false` when the tooltip was already visible.
+        /// </Summary>
+        public virtual bool EnsureTooltipVisible()
+        {
+            _ShowTimer?.Cancel();
+            _ShowTimer = null;
+            if (_Entry != null)
+            {
+                _HideTimer?.Cancel();
+                _HideTimer = null;
+                _Controller.Forward();
+                return false;
+            }
+
+            _CreateNewEntry();
             _Controller.Forward();
-            return false;
+            return true;
         }
 
-        _CreateNewEntry();
-        _Controller.Forward();
-        return true;
-    }
 
 
 
-
-    private void _CreateNewEntry()
-    {
-        RenderBox box = Context.FindRenderObject() as RenderBox;
-        Offset target = box.LocalToGlobal(box.Size.Center(Dart: uiDefaultClass.Offset.Zero));
-        Widget overlay = new Directionality(textDirection: BasicDefaultClass.Directionality.Of(Context), child: new _TooltipOverlay(message: Widget.Message, height: Height, padding: Padding, margin: Margin, decoration: Decoration, textStyle: TextStyle, animation: new CurvedAnimation(parent: _Controller, curve: CurvesDefaultClass.Curves.FastOutSlowIn), target: target, verticalOffset: VerticalOffset, preferBelow: PreferBelow));
-        _Entry = new OverlayEntry(builder: (BuildContext context) => =>overlay);
-        OverlayDefaultClass.Overlay.Of(Context, debugRequiredFor: Widget).Insert(_Entry);
-        SemanticsserviceDefaultClass.SemanticsService.Tooltip(Widget.Message);
-    }
-
-
-
-
-    private void _RemoveEntry()
-    {
-        _HideTimer?.Cancel();
-        _HideTimer = null;
-        _ShowTimer?.Cancel();
-        _ShowTimer = null;
-        _Entry?.Remove();
-        _Entry = null;
-    }
-
-
-
-
-    private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
-    {
-        if (_Entry == null)
+        private void _CreateNewEntry()
         {
-            return;
+            RenderBox box = Context.FindRenderObject() as RenderBox;
+            Offset target = box.LocalToGlobal(box.Size.Center(Dart: uiDefaultClass.Offset.Zero));
+            Widget overlay = new Directionality(textDirection: BasicDefaultClass.Directionality.Of(Context), child: new _TooltipOverlay(message: Widget.Message, height: Height, padding: Padding, margin: Margin, decoration: Decoration, textStyle: TextStyle, animation: new CurvedAnimation(parent: _Controller, curve: CurvesDefaultClass.Curves.FastOutSlowIn), target: target, verticalOffset: VerticalOffset, preferBelow: PreferBelow));
+            _Entry = new OverlayEntry(builder: (BuildContext context) => =>overlay);
+            OverlayDefaultClass.Overlay.Of(Context, debugRequiredFor: Widget).Insert(_Entry);
+            SemanticsserviceDefaultClass.SemanticsService.Tooltip(Widget.Message);
         }
 
-        if (@event is PointerUpEvent || @event is PointerCancelEvent)
+
+
+
+        private void _RemoveEntry()
         {
-            _HideTooltip();
-        }
-        else if (@event is PointerDownEvent)
-        {
-            _HideTooltip(immediately: true);
+            _HideTimer?.Cancel();
+            _HideTimer = null;
+            _ShowTimer?.Cancel();
+            _ShowTimer = null;
+            _Entry?.Remove();
+            _Entry = null;
         }
 
+
+
+
+        private void _HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+            if (_Entry == null)
+            {
+                return;
+            }
+
+            if (@event is PointerUpEvent || @event is PointerCancelEvent)
+            {
+                _HideTooltip();
+            }
+            else if (@event is PointerDownEvent)
+            {
+                _HideTooltip(immediately: true);
+            }
+
+        }
+
+
+
+
+        public new void Deactivate()
+        {
+            if (_Entry != null)
+            {
+                _HideTooltip(immediately: true);
+            }
+
+            base.Deactivate();
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveGlobalRoute(_HandlePointerEvent);
+            BindingDefaultClass.RendererBinding.Instance.MouseTracker.RemoveListener(_HandleMouseTrackerChange);
+            if (_Entry != null) _RemoveEntry();
+            _Controller.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        private void _HandleLongPress()
+        {
+            _LongPressActivated = true;
+            bool tooltipCreated = EnsureTooltipVisible();
+            if (tooltipCreated) FeedbackDefaultClass.Feedback.ForLongPress(Context);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            TooltipThemeData tooltipTheme = TooltipthemeDefaultClass.TooltipTheme.Of(context);
+            TextStyle defaultTextStyle = default(TextStyle);
+            BoxDecoration defaultDecoration = default(BoxDecoration);
+            if (theme.Brightness == Brightness.Dark)
+            {
+                defaultTextStyle = theme.TextTheme.BodyText2.CopyWith(color: ColorsDefaultClass.Colors.Black);
+                defaultDecoration = new BoxDecoration(color: ColorsDefaultClass.Colors.White.WithOpacity(0.9), borderRadius: BorderRadius.All(Radius.Circular(4)));
+            }
+            else
+            {
+                defaultTextStyle = theme.TextTheme.BodyText2.CopyWith(color: ColorsDefaultClass.Colors.White);
+                defaultDecoration = new BoxDecoration(color: ColorsDefaultClass.Colors.Grey[700].WithOpacity(0.9), borderRadius: BorderRadius.All(Radius.Circular(4)));
+            }
+
+            Height = Widget.Height ?? tooltipTheme.Height ?? _DefaultTooltipHeight;
+            Padding = Widget.Padding ?? tooltipTheme.Padding ?? _DefaultPadding;
+            Margin = Widget.Margin ?? tooltipTheme.Margin ?? _DefaultMargin;
+            VerticalOffset = Widget.VerticalOffset ?? tooltipTheme.VerticalOffset ?? _DefaultVerticalOffset;
+            PreferBelow = Widget.PreferBelow ?? tooltipTheme.PreferBelow ?? _DefaultPreferBelow;
+            ExcludeFromSemantics = Widget.ExcludeFromSemantics ?? tooltipTheme.ExcludeFromSemantics ?? _DefaultExcludeFromSemantics;
+            Decoration = Widget.Decoration ?? tooltipTheme.Decoration ?? defaultDecoration;
+            TextStyle = Widget.TextStyle ?? tooltipTheme.TextStyle ?? defaultTextStyle;
+            WaitDuration = Widget.WaitDuration ?? tooltipTheme.WaitDuration ?? _DefaultWaitDuration;
+            ShowDuration = Widget.ShowDuration ?? tooltipTheme.ShowDuration ?? _DefaultShowDuration;
+            Widget result = new GestureDetector(behavior: HitTestBehavior.Opaque, onLongPress: _HandleLongPress, excludeFromSemantics: true, child: new Semantics(label: ExcludeFromSemantics ? null : Widget.Message, child: Widget.Child));
+            if (_MouseIsConnected)
+            {
+                result = new MouseRegion(onEnter: (PointerEnterEvent @event) => =>_ShowTooltip(), onExit: (PointerExitEvent @event) => =>_HideTooltip(), child: result);
+            }
+
+            return result;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void Deactivate()
+    /// <Summary>
+    /// A delegate for computing the layout of a tooltip to be displayed above or
+    /// bellow a target specified in the global coordinate system.
+    /// </Summary>
+    public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        if (_Entry != null)
+        #region constructors
+        public _TooltipPositionDelegate(FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
+        : base()
         {
-            _HideTooltip(immediately: true);
+            this.Target = target;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset Target { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Loosen();
+
+
+
+        public new Offset GetPositionForChild(Size size, Size childSize)
+        {
+            return GeometryDefaultClass.PositionDependentBox(size: size, childSize: childSize, target: Target, verticalOffset: VerticalOffset, preferBelow: PreferBelow);
         }
 
-        base.Deactivate();
+
+
+
+        public new bool ShouldRelayout(FlutterSDK.Material.Tooltip._TooltipPositionDelegate oldDelegate)
+        {
+            return Target != oldDelegate.Target || VerticalOffset != oldDelegate.VerticalOffset || PreferBelow != oldDelegate.PreferBelow;
+        }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
+        {
+            return Target != oldDelegate.Target || VerticalOffset != oldDelegate.VerticalOffset || PreferBelow != oldDelegate.PreferBelow;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void Dispose()
+    public class _TooltipOverlay : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        BindingDefaultClass.GestureBinding.Instance.PointerRouter.RemoveGlobalRoute(_HandlePointerEvent);
-        BindingDefaultClass.RendererBinding.Instance.MouseTracker.RemoveListener(_HandleMouseTrackerChange);
-        if (_Entry != null) _RemoveEntry();
-        _Controller.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private void _HandleLongPress()
-    {
-        _LongPressActivated = true;
-        bool tooltipCreated = EnsureTooltipVisible();
-        if (tooltipCreated) FeedbackDefaultClass.Feedback.ForLongPress(Context);
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-        TooltipThemeData tooltipTheme = TooltipthemeDefaultClass.TooltipTheme.Of(context);
-        TextStyle defaultTextStyle = default(TextStyle);
-        BoxDecoration defaultDecoration = default(BoxDecoration);
-        if (theme.Brightness == Brightness.Dark)
+        #region constructors
+        public _TooltipOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
+        : base(key: key)
         {
-            defaultTextStyle = theme.TextTheme.BodyText2.CopyWith(color: ColorsDefaultClass.Colors.Black);
-            defaultDecoration = new BoxDecoration(color: ColorsDefaultClass.Colors.White.WithOpacity(0.9), borderRadius: BorderRadius.All(Radius.Circular(4)));
+            this.Message = message;
+            this.Height = height;
+            this.Padding = padding;
+            this.Margin = margin;
+            this.Decoration = decoration;
+            this.TextStyle = textStyle;
+            this.Animation = animation;
+            this.Target = target;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow;
         }
-        else
-        {
-            defaultTextStyle = theme.TextTheme.BodyText2.CopyWith(color: ColorsDefaultClass.Colors.White);
-            defaultDecoration = new BoxDecoration(color: ColorsDefaultClass.Colors.Grey[700].WithOpacity(0.9), borderRadius: BorderRadius.All(Radius.Circular(4)));
-        }
+        #endregion
 
-        Height = Widget.Height ?? tooltipTheme.Height ?? _DefaultTooltipHeight;
-        Padding = Widget.Padding ?? tooltipTheme.Padding ?? _DefaultPadding;
-        Margin = Widget.Margin ?? tooltipTheme.Margin ?? _DefaultMargin;
-        VerticalOffset = Widget.VerticalOffset ?? tooltipTheme.VerticalOffset ?? _DefaultVerticalOffset;
-        PreferBelow = Widget.PreferBelow ?? tooltipTheme.PreferBelow ?? _DefaultPreferBelow;
-        ExcludeFromSemantics = Widget.ExcludeFromSemantics ?? tooltipTheme.ExcludeFromSemantics ?? _DefaultExcludeFromSemantics;
-        Decoration = Widget.Decoration ?? tooltipTheme.Decoration ?? defaultDecoration;
-        TextStyle = Widget.TextStyle ?? tooltipTheme.TextStyle ?? defaultTextStyle;
-        WaitDuration = Widget.WaitDuration ?? tooltipTheme.WaitDuration ?? _DefaultWaitDuration;
-        ShowDuration = Widget.ShowDuration ?? tooltipTheme.ShowDuration ?? _DefaultShowDuration;
-        Widget result = new GestureDetector(behavior: HitTestBehavior.Opaque, onLongPress: _HandleLongPress, excludeFromSemantics: true, child: new Semantics(label: ExcludeFromSemantics ? null : Widget.Message, child: Widget.Child));
-        if (_MouseIsConnected)
+        #region fields
+        public virtual string Message { get; set; }
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        public virtual FlutterBinding.UI.Offset Target { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            result = new MouseRegion(onEnter: (PointerEnterEvent @event) => =>_ShowTooltip(), onExit: (PointerExitEvent @event) => =>_HideTooltip(), child: result);
+            return Positioned.Fill(child: new IgnorePointer(child: new CustomSingleChildLayout(@delegate: new _TooltipPositionDelegate(target: Target, verticalOffset: VerticalOffset, preferBelow: PreferBelow), child: new FadeTransition(opacity: Animation, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: Height), child: new DefaultTextStyle(style: ThemeDefaultClass.Theme.Of(context).TextTheme.BodyText2, child: new Container(decoration: Decoration, padding: Padding, margin: Margin, child: new Center(widthFactor: 1.0, heightFactor: 1.0, child: new Text(Message, style: TextStyle)))))))));
         }
 
-        return result;
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A delegate for computing the layout of a tooltip to be displayed above or
-/// bellow a target specified in the global coordinate system.
-/// </Summary>
-public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
-{
-    #region constructors
-    public _TooltipPositionDelegate(FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset Target { get; set; }
-public virtual double VerticalOffset { get; set; }
-public virtual bool PreferBelow { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Loosen();
-
-
-
-public new Offset GetPositionForChild(Size size, Size childSize)
-{
-    return GeometryDefaultClass.PositionDependentBox(size: size, childSize: childSize, target: Target, verticalOffset: VerticalOffset, preferBelow: PreferBelow);
-}
-
-
-
-
-public new bool ShouldRelayout(FlutterSDK.Material.Tooltip._TooltipPositionDelegate oldDelegate)
-{
-    return Target != oldDelegate.Target || VerticalOffset != oldDelegate.VerticalOffset || PreferBelow != oldDelegate.PreferBelow;
-}
-
-
-public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
-{
-    return Target != oldDelegate.Target || VerticalOffset != oldDelegate.VerticalOffset || PreferBelow != oldDelegate.PreferBelow;
-}
-
-
-
-#endregion
-}
-
-
-public class _TooltipOverlay : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public _TooltipOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual string Message { get; set; }
-public virtual double Height { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-public virtual FlutterBinding.UI.Offset Target { get; set; }
-public virtual double VerticalOffset { get; set; }
-public virtual bool PreferBelow { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return Positioned.Fill(child: new IgnorePointer(child: new CustomSingleChildLayout(@delegate: new _TooltipPositionDelegate(target: Target, verticalOffset: VerticalOffset, preferBelow: PreferBelow), child: new FadeTransition(opacity: Animation, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: Height), child: new DefaultTextStyle(style: ThemeDefaultClass.Theme.Of(context).TextTheme.BodyText2, child: new Container(decoration: Decoration, padding: Padding, margin: Margin, child: new Center(widthFactor: 1.0, heightFactor: 1.0, child: new Text(Message, style: TextStyle)))))))));
-}
-
-
-
-#endregion
-}
 
 }

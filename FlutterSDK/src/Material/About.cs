@@ -425,161 +425,178 @@ namespace FlutterSDK.Material.About
         #region constructors
         public AboutListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> aboutBoxChildren = default(List<FlutterSDK.Widgets.Framework.Widget>), bool dense = default(bool))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual string ApplicationName { get; set; }
-    public virtual string ApplicationVersion { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
-    public virtual string ApplicationLegalese { get; set; }
-    public virtual List<FlutterSDK.Widgets.Framework.Widget> AboutBoxChildren { get; set; }
-    public virtual bool Dense { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-
-        return new ListTile(leading: Icon, title: Child ?? new Text(MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).AboutListTileTitle(ApplicationName ?? AboutDefaultClass._DefaultApplicationName(context))), dense: Dense, onTap: () =>
         {
-            AboutDefaultClass.ShowAboutDialog(context: context, applicationName: ApplicationName, applicationVersion: ApplicationVersion, applicationIcon: ApplicationIcon, applicationLegalese: ApplicationLegalese, children: AboutBoxChildren);
+            this.Icon = icon;
+            this.Child = child;
+            this.ApplicationName = applicationName;
+            this.ApplicationVersion = applicationVersion;
+            this.ApplicationIcon = applicationIcon;
+            this.ApplicationLegalese = applicationLegalese;
+            this.AboutBoxChildren = aboutBoxChildren;
+            this.Dense = dense;
         }
-        );
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual string ApplicationName { get; set; }
+        public virtual string ApplicationVersion { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        public virtual string ApplicationLegalese { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> AboutBoxChildren { get; set; }
+        public virtual bool Dense { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+
+            return new ListTile(leading: Icon, title: Child ?? new Text(MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).AboutListTileTitle(ApplicationName ?? AboutDefaultClass._DefaultApplicationName(context))), dense: Dense, onTap: () =>
+            {
+                AboutDefaultClass.ShowAboutDialog(context: context, applicationName: ApplicationName, applicationVersion: ApplicationVersion, applicationIcon: ApplicationIcon, applicationLegalese: ApplicationLegalese, children: AboutBoxChildren);
+            }
+            );
+        }
+
+
+
+        #endregion
     }
 
 
+    /// <Summary>
+    /// An about box. This is a dialog box with the application's icon, name,
+    /// version number, and copyright, plus a button to show licenses for software
+    /// used by the application.
+    ///
+    /// To show an [AboutDialog], use [showAboutDialog].
+    ///
+    /// If the application has a [Drawer], the [AboutListTile] widget can make the
+    /// process of showing an about dialog simpler.
+    ///
+    /// The [AboutDialog] shown by [showAboutDialog] includes a button that calls
+    /// [showLicensePage].
+    ///
+    /// The licenses shown on the [LicensePage] are those returned by the
+    /// [LicenseRegistry] API, which can be used to add more licenses to the list.
+    /// </Summary>
+    public class AboutDialog : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public AboutDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key)
+        {
+            this.ApplicationName = applicationName;
+            this.ApplicationVersion = applicationVersion;
+            this.ApplicationIcon = applicationIcon;
+            this.ApplicationLegalese = applicationLegalese;
+            this.Children = children;
+        }
+        #endregion
 
-    #endregion
-}
+        #region fields
+        public virtual string ApplicationName { get; set; }
+        public virtual string ApplicationVersion { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        public virtual string ApplicationLegalese { get; set; }
+        public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
+        #endregion
 
+        #region methods
 
-/// <Summary>
-/// An about box. This is a dialog box with the application's icon, name,
-/// version number, and copyright, plus a button to show licenses for software
-/// used by the application.
-///
-/// To show an [AboutDialog], use [showAboutDialog].
-///
-/// If the application has a [Drawer], the [AboutListTile] widget can make the
-/// process of showing an about dialog simpler.
-///
-/// The [AboutDialog] shown by [showAboutDialog] includes a button that calls
-/// [showLicensePage].
-///
-/// The licenses shown on the [LicensePage] are those returned by the
-/// [LicenseRegistry] API, which can be used to add more licenses to the list.
-/// </Summary>
-public class AboutDialog : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public AboutDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-    : base(key: key)
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
 
-}
-#endregion
-
-#region fields
-public virtual string ApplicationName { get; set; }
-public virtual string ApplicationVersion { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
-public virtual string ApplicationLegalese { get; set; }
-public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    string name = ApplicationName ?? AboutDefaultClass._DefaultApplicationName(context);
-    string version = ApplicationVersion ?? AboutDefaultClass._DefaultApplicationVersion(context);
-    Widget icon = ApplicationIcon ?? AboutDefaultClass._DefaultApplicationIcon(context);
-    return new AlertDialog(content: new ListBody(children: new List<Widget>() { new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { }), ? Children :}), actions: new List<Widget>(){new FlatButton(child:new Text(MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).ViewLicensesButtonLabel), onPressed:() => {
+            string name = ApplicationName ?? AboutDefaultClass._DefaultApplicationName(context);
+            string version = ApplicationVersion ?? AboutDefaultClass._DefaultApplicationVersion(context);
+            Widget icon = ApplicationIcon ?? AboutDefaultClass._DefaultApplicationIcon(context);
+            return new AlertDialog(content: new ListBody(children: new List<Widget>() { new Row(crossAxisAlignment: CrossAxisAlignment.Start, children: new List<Widget>() { }), ? Children :}), actions: new List<Widget>(){new FlatButton(child:new Text(MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).ViewLicensesButtonLabel), onPressed:() => {
 AboutDefaultClass.ShowLicensePage(context:context, applicationName:ApplicationName, applicationVersion:ApplicationVersion, applicationIcon:ApplicationIcon, applicationLegalese:ApplicationLegalese);
 }
 ), new FlatButton(child:new Text(MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).CloseButtonLabel), onPressed:() => {
 NavigatorDefaultClass.Navigator.Pop(context);
 }
 )}, scrollable: true);
-}
+        }
 
 
 
-#endregion
-}
-
-
-/// <Summary>
-/// A page that shows licenses for software used by the application.
-///
-/// To show a [LicensePage], use [showLicensePage].
-///
-/// The [AboutDialog] shown by [showAboutDialog] and [AboutListTile] includes
-/// a button that calls [showLicensePage].
-///
-/// The licenses shown on the [LicensePage] are those returned by the
-/// [LicenseRegistry] API, which can be used to add more licenses to the list.
-/// </Summary>
-public class LicensePage : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public LicensePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual string ApplicationName { get; set; }
-public virtual string ApplicationVersion { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
-public virtual string ApplicationLegalese { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.About._LicensePageState CreateState() => new _LicensePageState();
-
-
-#endregion
-}
-
-
-public class _LicensePageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.About.LicensePage>
-{
-    #region constructors
-    public _LicensePageState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Licenses { get; set; }
-    internal virtual bool _Loaded { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _InitLicenses();
+        #endregion
     }
 
 
+    /// <Summary>
+    /// A page that shows licenses for software used by the application.
+    ///
+    /// To show a [LicensePage], use [showLicensePage].
+    ///
+    /// The [AboutDialog] shown by [showAboutDialog] and [AboutListTile] includes
+    /// a button that calls [showLicensePage].
+    ///
+    /// The licenses shown on the [LicensePage] are those returned by the
+    /// [LicenseRegistry] API, which can be used to add more licenses to the list.
+    /// </Summary>
+    public class LicensePage : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public LicensePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string))
+        : base(key: key)
+        {
+            this.ApplicationName = applicationName;
+            this.ApplicationVersion = applicationVersion;
+            this.ApplicationIcon = applicationIcon;
+            this.ApplicationLegalese = applicationLegalese;
+        }
+        #endregion
+
+        #region fields
+        public virtual string ApplicationName { get; set; }
+        public virtual string ApplicationVersion { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
+        public virtual string ApplicationLegalese { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.About._LicensePageState CreateState() => new _LicensePageState();
 
 
-    private Future<object> _InitLicenses()
-async
+        #endregion
+    }
+
+
+    public class _LicensePageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.About.LicensePage>
+    {
+        #region constructors
+        public _LicensePageState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Licenses { get; set; }
+        internal virtual bool _Loaded { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _InitLicenses();
+        }
+
+
+
+
+        private Future<object> _InitLicenses()
+    async
 {
 int debugFlowId = -1;
 
-    await foreach(LicenseEntry license  in LicensesDefaultClass.LicenseRegistry.Licenses){
+        await foreach(LicenseEntry license  in LicensesDefaultClass.LicenseRegistry.Licenses){
 if (!Mounted){
 return ;
 }
@@ -591,30 +608,29 @@ return ;
 }
 
 SetState(() => {
-        _Licenses.Add(new Padding(padding: EdgeInsets.Symmetric(vertical: 18.0), child: new Text("🍀‬", textAlign: TextAlign.Center)));
-        _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
-        foreach (LicenseParagraph paragraph in paragraphs)
-        {
-            if (paragraph.Indent == LicensesDefaultClass.LicenseParagraph.CenteredIndent)
+            _Licenses.Add(new Padding(padding: EdgeInsets.Symmetric(vertical: 18.0), child: new Text("🍀‬", textAlign: TextAlign.Center)));
+            _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+            foreach (LicenseParagraph paragraph in paragraphs)
             {
-                _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
-            }
-            else
-            {
+                if (paragraph.Indent == LicensesDefaultClass.LicenseParagraph.CenteredIndent)
+                {
+                    _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                }
+                else
+                {
 
-                _Licenses.Add(new Padding(padding: EdgeInsetsDirectional.Only(top: 8.0, start: 16.0 * paragraph.Indent), child: new Text(paragraph.Text)));
+                    _Licenses.Add(new Padding(padding: EdgeInsetsDirectional.Only(top: 8.0, start: 16.0 * paragraph.Indent), child: new Text(paragraph.Text)));
+                }
+
             }
 
         }
-
-    }
 );
 }
 
-SetState(() =>
-{
-    _Loaded = true;
-}
+    SetState(() => {
+        _Loaded = true;
+    }
 );
 
 }

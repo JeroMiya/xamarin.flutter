@@ -332,267 +332,287 @@ namespace FlutterSDK.Cupertino.Picker
         #region constructors
         public CupertinoPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), bool looping = false)
         : base(key: key)
-    
-}
-    public static CupertinoPicker Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int childCount = default(int))
-
-}
-#endregion
-
-#region fields
-public virtual double DiameterRatio { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual double OffAxisFraction { get; set; }
-public virtual bool UseMagnifier { get; set; }
-public virtual double Magnification { get; set; }
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController ScrollController { get; set; }
-public virtual double ItemExtent { get; set; }
-public virtual double Squeeze { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnSelectedItemChanged { get; set; }
-public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoPickerState();
-
-
-#endregion
-}
-
-
-public class _CupertinoPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Picker.CupertinoPicker>
-{
-    #region constructors
-    public _CupertinoPickerState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual int _LastHapticIndex { get; set; }
-    internal virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController _Controller { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        if (Widget.ScrollController == null)
         {
-            _Controller = new FixedExtentScrollController();
+            this.DiameterRatio = diameterRatio;
+            this.BackgroundColor = backgroundColor;
+            this.OffAxisFraction = offAxisFraction;
+            this.UseMagnifier = useMagnifier;
+            this.Magnification = magnification;
+            this.ScrollController = scrollController;
+            this.Squeeze = squeeze;
+            this.ItemExtent = itemExtent;
+            this.OnSelectedItemChanged = onSelectedItemChanged;
+        }
+        public static CupertinoPicker Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Widgets.Framework.IndexedWidgetBuilder itemBuilder = default(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder), int childCount = default(int))
+        {
+            var instance = new CupertinoPicker(key: key); instance.DiameterRatio = diameterRatio;
+            instance.BackgroundColor = backgroundColor;
+            instance.OffAxisFraction = offAxisFraction;
+            instance.UseMagnifier = useMagnifier;
+            instance.Magnification = magnification;
+            instance.ScrollController = scrollController;
+            instance.Squeeze = squeeze;
+            instance.ItemExtent = itemExtent;
+            instance.OnSelectedItemChanged = onSelectedItemChanged;
+        }
+        #endregion
+
+        #region fields
+        public virtual double DiameterRatio { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual double OffAxisFraction { get; set; }
+        public virtual bool UseMagnifier { get; set; }
+        public virtual double Magnification { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController ScrollController { get; set; }
+        public virtual double ItemExtent { get; set; }
+        public virtual double Squeeze { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnSelectedItemChanged { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoPickerState();
+
+
+        #endregion
+    }
+
+
+    public class _CupertinoPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Picker.CupertinoPicker>
+    {
+        #region constructors
+        public _CupertinoPickerState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual int _LastHapticIndex { get; set; }
+        internal virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController _Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            if (Widget.ScrollController == null)
+            {
+                _Controller = new FixedExtentScrollController();
+            }
+
         }
 
-    }
 
 
 
-
-    public new void DidUpdateWidget(FlutterSDK.Cupertino.Picker.CupertinoPicker oldWidget)
-    {
-        if (Widget.ScrollController != null && oldWidget.ScrollController == null)
+        public new void DidUpdateWidget(FlutterSDK.Cupertino.Picker.CupertinoPicker oldWidget)
         {
-            _Controller = null;
-        }
-        else if (Widget.ScrollController == null && oldWidget.ScrollController != null)
-        {
+            if (Widget.ScrollController != null && oldWidget.ScrollController == null)
+            {
+                _Controller = null;
+            }
+            else if (Widget.ScrollController == null && oldWidget.ScrollController != null)
+            {
 
-            _Controller = new FixedExtentScrollController();
-        }
+                _Controller = new FixedExtentScrollController();
+            }
 
-        base.DidUpdateWidget(oldWidget);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _Controller?.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private void _HandleSelectedItemChanged(int index)
-    {
-        bool hasSuitableHapticHardware = default(bool);
-        switch (PlatformDefaultClass.DefaultTargetPlatform) { case TargetPlatform.IOS: hasSuitableHapticHardware = true; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: hasSuitableHapticHardware = false; break; }
-
-        if (hasSuitableHapticHardware && index != _LastHapticIndex)
-        {
-            _LastHapticIndex = index;
-            HapticfeedbackDefaultClass.HapticFeedback.SelectionClick();
+            base.DidUpdateWidget(oldWidget);
         }
 
-        if (Widget.OnSelectedItemChanged != null)
+
+
+
+        public new void Dispose()
         {
-            Widget.OnSelectedItemChanged(index);
+            _Controller?.Dispose();
+            base.Dispose();
         }
 
+
+
+
+        private void _HandleSelectedItemChanged(int index)
+        {
+            bool hasSuitableHapticHardware = default(bool);
+            switch (PlatformDefaultClass.DefaultTargetPlatform) { case TargetPlatform.IOS: hasSuitableHapticHardware = true; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: hasSuitableHapticHardware = false; break; }
+
+            if (hasSuitableHapticHardware && index != _LastHapticIndex)
+            {
+                _LastHapticIndex = index;
+                HapticfeedbackDefaultClass.HapticFeedback.SelectionClick();
+            }
+
+            if (Widget.OnSelectedItemChanged != null)
+            {
+                Widget.OnSelectedItemChanged(index);
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Draws the magnifier borders.
+        /// </Summary>
+        private FlutterSDK.Widgets.Framework.Widget _BuildMagnifierScreen()
+        {
+            Color resolvedBorderColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(PickerDefaultClass._KHighlighterBorder, Context);
+            return new IgnorePointer(child: new Center(child: new Container(decoration: new BoxDecoration(border: new Border(top: new BorderSide(width: 0.0, color: resolvedBorderColor), bottom: new BorderSide(width: 0.0, color: resolvedBorderColor))), constraints: BoxConstraints.Expand(height: Widget.ItemExtent * Widget.Magnification))));
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Color resolvedBackgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context);
+            Widget result = new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.PickerTextStyle, child: new Stack(children: new List<Widget>() { Positioned.Fill(child: new _CupertinoPickerSemantics(scrollController: Widget.ScrollController ?? _Controller, child: ListWheelScrollView.UseDelegate(controller: Widget.ScrollController ?? _Controller, physics: new FixedExtentScrollPhysics(), diameterRatio: Widget.DiameterRatio, perspective: PickerDefaultClass._KDefaultPerspective, offAxisFraction: Widget.OffAxisFraction, useMagnifier: Widget.UseMagnifier, magnification: Widget.Magnification, overAndUnderCenterOpacity: PickerDefaultClass._KOverAndUnderCenterOpacity, itemExtent: Widget.ItemExtent, squeeze: Widget.Squeeze, onSelectedItemChanged: _HandleSelectedItemChanged, childDelegate: Widget.ChildDelegate))), _BuildMagnifierScreen() }));
+            return new DecoratedBox(decoration: new BoxDecoration(color: resolvedBackgroundColor), child: result);
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    /// <Summary>
-    /// Draws the magnifier borders.
-    /// </Summary>
-    private FlutterSDK.Widgets.Framework.Widget _BuildMagnifierScreen()
+    public class _CupertinoPickerSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        Color resolvedBorderColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(PickerDefaultClass._KHighlighterBorder, Context);
-        return new IgnorePointer(child: new Center(child: new Container(decoration: new BoxDecoration(border: new Border(top: new BorderSide(width: 0.0, color: resolvedBorderColor), bottom: new BorderSide(width: 0.0, color: resolvedBorderColor))), constraints: BoxConstraints.Expand(height: Widget.ItemExtent * Widget.Magnification))));
+        #region constructors
+        public _CupertinoPickerSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController))
+        : base(key: key, child: child)
+        {
+            this.ScrollController = scrollController;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController ScrollController { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderCupertinoPickerSemantics(ScrollController, BasicDefaultClass.Directionality.Of(context));
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Picker._RenderCupertinoPickerSemantics renderObject)
+        {
+            ..TextDirection = BasicDefaultClass.Directionality.Of(context)..Controller = ScrollController;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..TextDirection = BasicDefaultClass.Directionality.Of(context)..Controller = ScrollController;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    public class _RenderCupertinoPickerSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        Color resolvedBackgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context);
-        Widget result = new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.PickerTextStyle, child: new Stack(children: new List<Widget>() { Positioned.Fill(child: new _CupertinoPickerSemantics(scrollController: Widget.ScrollController ?? _Controller, child: ListWheelScrollView.UseDelegate(controller: Widget.ScrollController ?? _Controller, physics: new FixedExtentScrollPhysics(), diameterRatio: Widget.DiameterRatio, perspective: PickerDefaultClass._KDefaultPerspective, offAxisFraction: Widget.OffAxisFraction, useMagnifier: Widget.UseMagnifier, magnification: Widget.Magnification, overAndUnderCenterOpacity: PickerDefaultClass._KOverAndUnderCenterOpacity, itemExtent: Widget.ItemExtent, squeeze: Widget.Squeeze, onSelectedItemChanged: _HandleSelectedItemChanged, childDelegate: Widget.ChildDelegate))), _BuildMagnifierScreen() }));
-        return new DecoratedBox(decoration: new BoxDecoration(color: resolvedBackgroundColor), child: result);
+        #region constructors
+        public _RenderCupertinoPickerSemantics(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController controller, TextDirection _textDirection)
+        {
+            this._TextDirection = _textDirection;
+            this.Controller = controller;
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController _Controller { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual int _CurrentIndex { get; set; }
+        public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _HandleIncrease()
+        {
+            Controller.JumpToItem(_CurrentIndex + 1);
+        }
+
+
+
+
+        private void _HandleDecrease()
+        {
+            if (_CurrentIndex == 0) return;
+            Controller.JumpToItem(_CurrentIndex - 1);
+        }
+
+
+
+
+        private void _HandleScrollUpdate()
+        {
+            if (Controller.SelectedItem == _CurrentIndex) return;
+            _CurrentIndex = Controller.SelectedItem;
+            MarkNeedsSemanticsUpdate();
+        }
+
+
+
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+        {
+            base.DescribeSemanticsConfiguration(config);
+            config.IsSemanticBoundary = true;
+            config.TextDirection = TextDirection;
+        }
+
+
+
+
+        public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
+        {
+            if (children.IsEmpty()) return base.AssembleSemanticsNode(node, config, children);
+            SemanticsNode scrollable = children.First;
+            Dictionary<int, SemanticsNode> indexedChildren = new Dictionary<int, SemanticsNode> { };
+            scrollable.VisitChildren((SemanticsNode child) =>
+            {
+
+                indexedChildren[child.IndexInParent] = child;
+                return true;
+            }
+            );
+            if (indexedChildren[_CurrentIndex] == null)
+            {
+                return node.UpdateWith(config: config);
+            }
+
+            config.Value = indexedChildren[_CurrentIndex].Label;
+            SemanticsNode previousChild = indexedChildren[_CurrentIndex - 1];
+            SemanticsNode nextChild = indexedChildren[_CurrentIndex + 1];
+            if (nextChild != null)
+            {
+                config.IncreasedValue = nextChild.Label;
+                config.OnIncrease = _HandleIncrease;
+            }
+
+            if (previousChild != null)
+            {
+                config.DecreasedValue = previousChild.Label;
+                config.OnDecrease = _HandleDecrease;
+            }
+
+            node.UpdateWith(config: config);
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-public class _CupertinoPickerSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-    #region constructors
-    public _CupertinoPickerSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController ScrollController { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderCupertinoPickerSemantics(ScrollController, BasicDefaultClass.Directionality.Of(context));
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Picker._RenderCupertinoPickerSemantics renderObject)
-{
-    ..TextDirection = BasicDefaultClass.Directionality.Of(context)..Controller = ScrollController;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..TextDirection = BasicDefaultClass.Directionality.Of(context)..Controller = ScrollController;
-}
-
-
-
-#endregion
-}
-
-
-public class _RenderCupertinoPickerSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-    #region constructors
-    public _RenderCupertinoPickerSemantics(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController controller, TextDirection _textDirection)
-
-this .Controller=controller;
-}
-
-
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController _Controller { get; set; }
-internal virtual TextDirection _TextDirection { get; set; }
-internal virtual int _CurrentIndex { get; set; }
-public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _HandleIncrease()
-{
-    Controller.JumpToItem(_CurrentIndex + 1);
-}
-
-
-
-
-private void _HandleDecrease()
-{
-    if (_CurrentIndex == 0) return;
-    Controller.JumpToItem(_CurrentIndex - 1);
-}
-
-
-
-
-private void _HandleScrollUpdate()
-{
-    if (Controller.SelectedItem == _CurrentIndex) return;
-    _CurrentIndex = Controller.SelectedItem;
-    MarkNeedsSemanticsUpdate();
-}
-
-
-
-
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-{
-    base.DescribeSemanticsConfiguration(config);
-    config.IsSemanticBoundary = true;
-    config.TextDirection = TextDirection;
-}
-
-
-
-
-public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
-{
-    if (children.IsEmpty()) return base.AssembleSemanticsNode(node, config, children);
-    SemanticsNode scrollable = children.First;
-    Dictionary<int, SemanticsNode> indexedChildren = new Dictionary<int, SemanticsNode> { };
-    scrollable.VisitChildren((SemanticsNode child) =>
-    {
-
-        indexedChildren[child.IndexInParent] = child;
-        return true;
-    }
-    );
-    if (indexedChildren[_CurrentIndex] == null)
-    {
-        return node.UpdateWith(config: config);
-    }
-
-    config.Value = indexedChildren[_CurrentIndex].Label;
-    SemanticsNode previousChild = indexedChildren[_CurrentIndex - 1];
-    SemanticsNode nextChild = indexedChildren[_CurrentIndex + 1];
-    if (nextChild != null)
-    {
-        config.IncreasedValue = nextChild.Label;
-        config.OnIncrease = _HandleIncrease;
-    }
-
-    if (previousChild != null)
-    {
-        config.DecreasedValue = previousChild.Label;
-        config.OnDecrease = _HandleDecrease;
-    }
-
-    node.UpdateWith(config: config);
-}
-
-
-
-#endregion
-}
 
 }

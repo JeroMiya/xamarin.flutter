@@ -465,165 +465,181 @@ namespace FlutterSDK.Widgets.Visibility
         #region constructors
         public Visibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacement = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Replacement { get; set; }
-    public virtual bool Visible { get; set; }
-    public virtual bool MaintainState { get; set; }
-    public virtual bool MaintainAnimation { get; set; }
-    public virtual bool MaintainSize { get; set; }
-    public virtual bool MaintainSemantics { get; set; }
-    public virtual bool MaintainInteractivity { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (MaintainSize)
         {
-            Widget result = Child;
-            if (!MaintainInteractivity)
+            this.Child = child;
+            this.Replacement = replacement;
+            this.Visible = visible;
+            this.MaintainState = maintainState;
+            this.MaintainAnimation = maintainAnimation;
+            this.MaintainSize = maintainSize;
+            this.MaintainSemantics = maintainSemantics;
+            this.MaintainInteractivity = maintainInteractivity;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Replacement { get; set; }
+        public virtual bool Visible { get; set; }
+        public virtual bool MaintainState { get; set; }
+        public virtual bool MaintainAnimation { get; set; }
+        public virtual bool MaintainSize { get; set; }
+        public virtual bool MaintainSemantics { get; set; }
+        public virtual bool MaintainInteractivity { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (MaintainSize)
             {
-                result = new IgnorePointer(child: Child, ignoring: !Visible, ignoringSemantics: !Visible && !MaintainSemantics);
+                Widget result = Child;
+                if (!MaintainInteractivity)
+                {
+                    result = new IgnorePointer(child: Child, ignoring: !Visible, ignoringSemantics: !Visible && !MaintainSemantics);
+                }
+
+                return new Opacity(opacity: Visible ? 1.0 : 0.0, alwaysIncludeSemantics: MaintainSemantics, child: result);
             }
 
-            return new Opacity(opacity: Visible ? 1.0 : 0.0, alwaysIncludeSemantics: MaintainSemantics, child: result);
+
+
+
+            if (MaintainState)
+            {
+                Widget result = Child;
+                if (!MaintainAnimation) result = new TickerMode(child: Child, enabled: Visible);
+                return new Offstage(child: result, offstage: !Visible);
+            }
+
+
+
+            return Visible ? Child : Replacement;
         }
 
 
 
 
-        if (MaintainState)
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
-            Widget result = Child;
-            if (!MaintainAnimation) result = new TickerMode(child: Child, enabled: Visible);
-            return new Offstage(child: result, offstage: !Visible);
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagProperty("visible", value: Visible, ifFalse: "hidden", ifTrue: "visible"));
+            properties.Add(new FlagProperty("maintainState", value: MaintainState, ifFalse: "maintainState"));
+            properties.Add(new FlagProperty("maintainAnimation", value: MaintainAnimation, ifFalse: "maintainAnimation"));
+            properties.Add(new FlagProperty("maintainSize", value: MaintainSize, ifFalse: "maintainSize"));
+            properties.Add(new FlagProperty("maintainSemantics", value: MaintainSemantics, ifFalse: "maintainSemantics"));
+            properties.Add(new FlagProperty("maintainInteractivity", value: MaintainInteractivity, ifFalse: "maintainInteractivity"));
         }
 
 
 
-        return Visible ? Child : Replacement;
+        #endregion
     }
 
 
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    /// <Summary>
+    /// Whether to show or hide a sliver child.
+    ///
+    /// By default, the [visible] property controls whether the [sliver] is included
+    /// in the subtree or not; when it is not [visible], the [replacementSliver] is
+    /// included instead.
+    ///
+    /// A variety of flags can be used to tweak exactly how the sliver is hidden.
+    /// (Changing the flags dynamically is discouraged, as it can cause the [sliver]
+    /// subtree to be rebuilt, with any state in the subtree being discarded.
+    /// Typically, only the [visible] flag is changed dynamically.)
+    ///
+    /// These widgets provide some of the facets of this one:
+    ///
+    ///  * [SliverOpacity], which can stop its sliver child from being painted.
+    ///  * [SliverOffstage], which can stop its sliver child from being laid out or
+    ///    painted.
+    ///  * [TickerMode], which can stop its child from being animated.
+    ///  * [ExcludeSemantics], which can hide the child from accessibility tools.
+    ///  * [SliverIgnorePointer], which can disable touch interactions with the
+    ///    sliver child.
+    ///
+    /// Using this widget is not necessary to hide children. The simplest way to
+    /// hide a child is just to not include it, or, if a child _must_ be given (e.g.
+    /// because the parent is a [StatelessWidget]) then to use a childless
+    /// [SliverToBoxAdapter] instead of the child that would otherwise be included.
+    /// </Summary>
+    public class SliverVisibility : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        base.DebugFillProperties(properties);
-        properties.Add(new FlagProperty("visible", value: Visible, ifFalse: "hidden", ifTrue: "visible"));
-        properties.Add(new FlagProperty("maintainState", value: MaintainState, ifFalse: "maintainState"));
-        properties.Add(new FlagProperty("maintainAnimation", value: MaintainAnimation, ifFalse: "maintainAnimation"));
-        properties.Add(new FlagProperty("maintainSize", value: MaintainSize, ifFalse: "maintainSize"));
-        properties.Add(new FlagProperty("maintainSemantics", value: MaintainSemantics, ifFalse: "maintainSemantics"));
-        properties.Add(new FlagProperty("maintainInteractivity", value: MaintainInteractivity, ifFalse: "maintainInteractivity"));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Whether to show or hide a sliver child.
-///
-/// By default, the [visible] property controls whether the [sliver] is included
-/// in the subtree or not; when it is not [visible], the [replacementSliver] is
-/// included instead.
-///
-/// A variety of flags can be used to tweak exactly how the sliver is hidden.
-/// (Changing the flags dynamically is discouraged, as it can cause the [sliver]
-/// subtree to be rebuilt, with any state in the subtree being discarded.
-/// Typically, only the [visible] flag is changed dynamically.)
-///
-/// These widgets provide some of the facets of this one:
-///
-///  * [SliverOpacity], which can stop its sliver child from being painted.
-///  * [SliverOffstage], which can stop its sliver child from being laid out or
-///    painted.
-///  * [TickerMode], which can stop its child from being animated.
-///  * [ExcludeSemantics], which can hide the child from accessibility tools.
-///  * [SliverIgnorePointer], which can disable touch interactions with the
-///    sliver child.
-///
-/// Using this widget is not necessary to hide children. The simplest way to
-/// hide a child is just to not include it, or, if a child _must_ be given (e.g.
-/// because the parent is a [StatelessWidget]) then to use a childless
-/// [SliverToBoxAdapter] instead of the child that would otherwise be included.
-/// </Summary>
-public class SliverVisibility : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public SliverVisibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacementSliver = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget ReplacementSliver { get; set; }
-public virtual bool Visible { get; set; }
-public virtual bool MaintainState { get; set; }
-public virtual bool MaintainAnimation { get; set; }
-public virtual bool MaintainSize { get; set; }
-public virtual bool MaintainSemantics { get; set; }
-public virtual bool MaintainInteractivity { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    if (MaintainSize)
-    {
-        Widget result = Sliver;
-        if (!MaintainInteractivity)
+        #region constructors
+        public SliverVisibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacementSliver = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
+        : base(key: key)
         {
-            result = new SliverIgnorePointer(sliver: Sliver, ignoring: !Visible, ignoringSemantics: !Visible && !MaintainSemantics);
+            this.Sliver = sliver;
+            this.ReplacementSliver = replacementSliver;
+            this.Visible = visible;
+            this.MaintainState = maintainState;
+            this.MaintainAnimation = maintainAnimation;
+            this.MaintainSize = maintainSize;
+            this.MaintainSemantics = maintainSemantics;
+            this.MaintainInteractivity = maintainInteractivity;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ReplacementSliver { get; set; }
+        public virtual bool Visible { get; set; }
+        public virtual bool MaintainState { get; set; }
+        public virtual bool MaintainAnimation { get; set; }
+        public virtual bool MaintainSize { get; set; }
+        public virtual bool MaintainSemantics { get; set; }
+        public virtual bool MaintainInteractivity { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (MaintainSize)
+            {
+                Widget result = Sliver;
+                if (!MaintainInteractivity)
+                {
+                    result = new SliverIgnorePointer(sliver: Sliver, ignoring: !Visible, ignoringSemantics: !Visible && !MaintainSemantics);
+                }
+
+                return new SliverOpacity(opacity: Visible ? 1.0 : 0.0, alwaysIncludeSemantics: MaintainSemantics, sliver: result);
+            }
+
+
+
+
+            if (MaintainState)
+            {
+                Widget result = Sliver;
+                if (!MaintainAnimation) result = new TickerMode(child: Sliver, enabled: Visible);
+                return new SliverOffstage(sliver: result, offstage: !Visible);
+            }
+
+
+
+            return Visible ? Sliver : ReplacementSliver;
         }
 
-        return new SliverOpacity(opacity: Visible ? 1.0 : 0.0, alwaysIncludeSemantics: MaintainSemantics, sliver: result);
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagProperty("visible", value: Visible, ifFalse: "hidden", ifTrue: "visible"));
+            properties.Add(new FlagProperty("maintainState", value: MaintainState, ifFalse: "maintainState"));
+            properties.Add(new FlagProperty("maintainAnimation", value: MaintainAnimation, ifFalse: "maintainAnimation"));
+            properties.Add(new FlagProperty("maintainSize", value: MaintainSize, ifFalse: "maintainSize"));
+            properties.Add(new FlagProperty("maintainSemantics", value: MaintainSemantics, ifFalse: "maintainSemantics"));
+            properties.Add(new FlagProperty("maintainInteractivity", value: MaintainInteractivity, ifFalse: "maintainInteractivity"));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    if (MaintainState)
-    {
-        Widget result = Sliver;
-        if (!MaintainAnimation) result = new TickerMode(child: Sliver, enabled: Visible);
-        return new SliverOffstage(sliver: result, offstage: !Visible);
-    }
-
-
-
-    return Visible ? Sliver : ReplacementSliver;
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new FlagProperty("visible", value: Visible, ifFalse: "hidden", ifTrue: "visible"));
-    properties.Add(new FlagProperty("maintainState", value: MaintainState, ifFalse: "maintainState"));
-    properties.Add(new FlagProperty("maintainAnimation", value: MaintainAnimation, ifFalse: "maintainAnimation"));
-    properties.Add(new FlagProperty("maintainSize", value: MaintainSize, ifFalse: "maintainSize"));
-    properties.Add(new FlagProperty("maintainSemantics", value: MaintainSemantics, ifFalse: "maintainSemantics"));
-    properties.Add(new FlagProperty("maintainInteractivity", value: MaintainInteractivity, ifFalse: "maintainInteractivity"));
-}
-
-
-
-#endregion
-}
 
 }

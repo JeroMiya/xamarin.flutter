@@ -446,273 +446,278 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
         #region constructors
         public RoundedRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
-    {
-        return new RoundedRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t);
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-    {
-
-        if (a is RoundedRectangleBorder)
         {
-            return new RoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((RoundedRectangleBorder)a).BorderRadius, BorderRadius, t));
+            this.Side = side;
+            this.BorderRadius = borderRadius;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+        {
+            return new RoundedRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t);
         }
 
-        if (a is CircleBorder)
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
         {
-            return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((CircleBorder)a).Side, Side, t), borderRadius: BorderRadius, circleness: 1.0 - t);
-        }
 
-        return base.LerpFrom(a, t);
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-    {
-
-        if (b is RoundedRectangleBorder)
-        {
-            return new RoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((RoundedRectangleBorder)b).BorderRadius, t));
-        }
-
-        if (b is CircleBorder)
-        {
-            return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((CircleBorder)b).Side, t), borderRadius: BorderRadius, circleness: t);
-        }
-
-        return base.LerpTo(b, t);
-    }
-
-
-
-
-    public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-        return new Path();
-        new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(Side.Width));
-    }
-
-
-
-
-    public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-        return new Path();
-        new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect));
-    }
-
-
-
-
-    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-        switch (Side.Style)
-        {
-            case BorderStyle.None: break;
-            case BorderStyle.Solid:
-                double width = Side.Width; if (width == 0.0)
-                {
-                    canvas.DrawRRect(BorderRadius.Resolve(textDirection).ToRRect(rect), Side.ToPaint());
-                }
-                else
-                {
-                    RRect outer = BorderRadius.Resolve(textDirection).ToRRect(rect);
-                    RRect inner = outer.Deflate(width);
-                    Paint paint = new Paint()..Color = Side.Color;
-                    canvas.DrawDRRect(outer, inner, paint);
-                }
-        }
-    }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (other.GetType() != GetType()) return false;
-        return other is RoundedRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius;
-    }
-
-
-
-
-    #endregion
-}
-
-
-public class _RoundedRectangleToCircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
-{
-    #region constructors
-    public _RoundedRectangleToCircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), double circleness = default(double))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
-public virtual double Circleness { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
-{
-    return new _RoundedRectangleToCircleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t, circleness: t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-
-    if (a is RoundedRectangleBorder)
-    {
-        return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((RoundedRectangleBorder)a).BorderRadius, BorderRadius, t), circleness: Circleness * t);
-    }
-
-    if (a is CircleBorder)
-    {
-        return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((CircleBorder)a).Side, Side, t), borderRadius: BorderRadius, circleness: Circleness + (1.0 - Circleness) * (1.0 - t));
-    }
-
-    if (a is _RoundedRectangleToCircleBorder)
-    {
-        return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_RoundedRectangleToCircleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((_RoundedRectangleToCircleBorder)a).BorderRadius, BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_RoundedRectangleToCircleBorder)a).Circleness, Circleness, t));
-    }
-
-    return base.LerpFrom(a, t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-    if (b is RoundedRectangleBorder)
-    {
-        return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((RoundedRectangleBorder)b).BorderRadius, t), circleness: Circleness * (1.0 - t));
-    }
-
-    if (b is CircleBorder)
-    {
-        return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((CircleBorder)b).Side, t), borderRadius: BorderRadius, circleness: Circleness + (1.0 - Circleness) * t);
-    }
-
-    if (b is _RoundedRectangleToCircleBorder)
-    {
-        return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_RoundedRectangleToCircleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((_RoundedRectangleToCircleBorder)b).BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_RoundedRectangleToCircleBorder)b).Circleness, t));
-    }
-
-    return base.LerpTo(b, t);
-}
-
-
-
-
-private Rect _AdjustRect(FlutterBinding.UI.Rect rect)
-{
-    if (Circleness == 0.0 || rect.Width == rect.Height) return rect;
-    if (rect.Width < rect.Height)
-    {
-        double delta = Circleness * (rect.Height - rect.Width) / 2.0;
-        return Rect.FromLTRB(rect.Left, rect.Top + delta, rect.Right, rect.Bottom - delta);
-    }
-    else
-    {
-        double delta = Circleness * (rect.Width - rect.Height) / 2.0;
-        return Rect.FromLTRB(rect.Left + delta, rect.Top, rect.Right - delta, rect.Bottom);
-    }
-
-}
-
-
-
-
-private FlutterSDK.Painting.Borderradius.BorderRadius _AdjustBorderRadius(FlutterBinding.UI.Rect rect, TextDirection textDirection)
-{
-    BorderRadius resolvedRadius = BorderRadius.Resolve(textDirection);
-    if (Circleness == 0.0) return resolvedRadius;
-    return BorderradiusDefaultClass.BorderRadius.Lerp(resolvedRadius, BorderRadius.Circular(rect.ShortestSide / 2.0), Circleness);
-}
-
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(_AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect)).Deflate(Side.Width));
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(_AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect)));
-}
-
-
-
-
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    switch (Side.Style)
-    {
-        case BorderStyle.None: break;
-        case BorderStyle.Solid:
-            double width = Side.Width; if (width == 0.0)
+            if (a is RoundedRectangleBorder)
             {
-                canvas.DrawRRect(_AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect)), Side.ToPaint());
+                return new RoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((RoundedRectangleBorder)a).BorderRadius, BorderRadius, t));
+            }
+
+            if (a is CircleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((CircleBorder)a).Side, Side, t), borderRadius: BorderRadius, circleness: 1.0 - t);
+            }
+
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+
+            if (b is RoundedRectangleBorder)
+            {
+                return new RoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((RoundedRectangleBorder)b).BorderRadius, t));
+            }
+
+            if (b is CircleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((CircleBorder)b).Side, t), borderRadius: BorderRadius, circleness: t);
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(Side.Width));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect));
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            switch (Side.Style)
+            {
+                case BorderStyle.None: break;
+                case BorderStyle.Solid:
+                    double width = Side.Width; if (width == 0.0)
+                    {
+                        canvas.DrawRRect(BorderRadius.Resolve(textDirection).ToRRect(rect), Side.ToPaint());
+                    }
+                    else
+                    {
+                        RRect outer = BorderRadius.Resolve(textDirection).ToRRect(rect);
+                        RRect inner = outer.Deflate(width);
+                        Paint paint = new Paint()..Color = Side.Color;
+                        canvas.DrawDRRect(outer, inner, paint);
+                    }
+            }
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is RoundedRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius;
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    public class _RoundedRectangleToCircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
+    {
+        #region constructors
+        public _RoundedRectangleToCircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), double circleness = default(double))
+        : base()
+        {
+            this.Side = side;
+            this.BorderRadius = borderRadius;
+            this.Circleness = circleness;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        public virtual double Circleness { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+        {
+            return new _RoundedRectangleToCircleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t, circleness: t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+
+            if (a is RoundedRectangleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((RoundedRectangleBorder)a).BorderRadius, BorderRadius, t), circleness: Circleness * t);
+            }
+
+            if (a is CircleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((CircleBorder)a).Side, Side, t), borderRadius: BorderRadius, circleness: Circleness + (1.0 - Circleness) * (1.0 - t));
+            }
+
+            if (a is _RoundedRectangleToCircleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_RoundedRectangleToCircleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((_RoundedRectangleToCircleBorder)a).BorderRadius, BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_RoundedRectangleToCircleBorder)a).Circleness, Circleness, t));
+            }
+
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+            if (b is RoundedRectangleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((RoundedRectangleBorder)b).BorderRadius, t), circleness: Circleness * (1.0 - t));
+            }
+
+            if (b is CircleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((CircleBorder)b).Side, t), borderRadius: BorderRadius, circleness: Circleness + (1.0 - Circleness) * t);
+            }
+
+            if (b is _RoundedRectangleToCircleBorder)
+            {
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_RoundedRectangleToCircleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((_RoundedRectangleToCircleBorder)b).BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_RoundedRectangleToCircleBorder)b).Circleness, t));
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        private Rect _AdjustRect(FlutterBinding.UI.Rect rect)
+        {
+            if (Circleness == 0.0 || rect.Width == rect.Height) return rect;
+            if (rect.Width < rect.Height)
+            {
+                double delta = Circleness * (rect.Height - rect.Width) / 2.0;
+                return Rect.FromLTRB(rect.Left, rect.Top + delta, rect.Right, rect.Bottom - delta);
             }
             else
             {
-                RRect outer = _AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect));
-                RRect inner = outer.Deflate(width);
-                Paint paint = new Paint()..Color = Side.Color;
-                canvas.DrawDRRect(outer, inner, paint);
+                double delta = Circleness * (rect.Width - rect.Height) / 2.0;
+                return Rect.FromLTRB(rect.Left + delta, rect.Top, rect.Right - delta, rect.Bottom);
             }
+
+        }
+
+
+
+
+        private FlutterSDK.Painting.Borderradius.BorderRadius _AdjustBorderRadius(FlutterBinding.UI.Rect rect, TextDirection textDirection)
+        {
+            BorderRadius resolvedRadius = BorderRadius.Resolve(textDirection);
+            if (Circleness == 0.0) return resolvedRadius;
+            return BorderradiusDefaultClass.BorderRadius.Lerp(resolvedRadius, BorderRadius.Circular(rect.ShortestSide / 2.0), Circleness);
+        }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(_AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect)).Deflate(Side.Width));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(_AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect)));
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            switch (Side.Style)
+            {
+                case BorderStyle.None: break;
+                case BorderStyle.Solid:
+                    double width = Side.Width; if (width == 0.0)
+                    {
+                        canvas.DrawRRect(_AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect)), Side.ToPaint());
+                    }
+                    else
+                    {
+                        RRect outer = _AdjustBorderRadius(rect, textDirection).ToRRect(_AdjustRect(rect));
+                        RRect inner = outer.Deflate(width);
+                        Paint paint = new Paint()..Color = Side.Color;
+                        canvas.DrawDRRect(outer, inner, paint);
+                    }
+            }
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is _RoundedRectangleToCircleBorder && other.Side == Side && other.BorderRadius == BorderRadius && other.Circleness == Circleness;
+        }
+
+
+
+
+        #endregion
     }
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is _RoundedRectangleToCircleBorder && other.Side == Side && other.BorderRadius == BorderRadius && other.Circleness == Circleness;
-}
-
-
-
-
-#endregion
-}
 
 }

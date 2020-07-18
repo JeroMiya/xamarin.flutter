@@ -935,41 +935,66 @@ public class TextTreeConfiguration
     #region constructors
     public TextTreeConfiguration(string prefixLineOne = default(string), string prefixOtherLines = default(string), string prefixLastChildLineOne = default(string), string prefixOtherLinesRootNode = default(string), string linkCharacter = default(string), string propertyPrefixIfChildren = default(string), string propertyPrefixNoChildren = default(string), string lineBreak = default(string), bool lineBreakProperties = true, string afterName = default(string), string afterDescriptionIfBody = default(string), string afterDescription = default(string), string beforeProperties = default(string), string afterProperties = default(string), string mandatoryAfterProperties = default(string), string propertySeparator = default(string), string bodyIndent = default(string), string footer = default(string), bool showChildren = true, bool addBlankLineIfNoChildren = true, bool isNameOnOwnLine = false, bool isBlankLineBetweenPropertiesAndChildren = true, string beforeName = default(string), string suffixLineOne = default(string), string mandatoryFooter = default(string))
     : base()
+    {
+        this.PrefixLineOne = prefixLineOne;
+        this.PrefixOtherLines = prefixOtherLines;
+        this.PrefixLastChildLineOne = prefixLastChildLineOne;
+        this.PrefixOtherLinesRootNode = prefixOtherLinesRootNode;
+        this.LinkCharacter = linkCharacter;
+        this.PropertyPrefixIfChildren = propertyPrefixIfChildren;
+        this.PropertyPrefixNoChildren = propertyPrefixNoChildren;
+        this.LineBreak = lineBreak;
+        this.LineBreakProperties = lineBreakProperties;
+        this.AfterName = afterName;
+        this.AfterDescriptionIfBody = afterDescriptionIfBody;
+        this.AfterDescription = afterDescription;
+        this.BeforeProperties = beforeProperties;
+        this.AfterProperties = afterProperties;
+        this.MandatoryAfterProperties = mandatoryAfterProperties;
+        this.PropertySeparator = propertySeparator;
+        this.BodyIndent = bodyIndent;
+        this.Footer = footer;
+        this.ShowChildren = showChildren;
+        this.AddBlankLineIfNoChildren = addBlankLineIfNoChildren;
+        this.IsNameOnOwnLine = isNameOnOwnLine;
+        this.IsBlankLineBetweenPropertiesAndChildren = isBlankLineBetweenPropertiesAndChildren;
+        this.BeforeName = beforeName;
+        this.SuffixLineOne = suffixLineOne;
+        this.MandatoryFooter = mandatoryFooter;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual string PrefixLineOne { get; set; }
+    public virtual string SuffixLineOne { get; set; }
+    public virtual string PrefixOtherLines { get; set; }
+    public virtual string PrefixLastChildLineOne { get; set; }
+    public virtual string PrefixOtherLinesRootNode { get; set; }
+    public virtual string PropertyPrefixIfChildren { get; set; }
+    public virtual string PropertyPrefixNoChildren { get; set; }
+    public virtual string LinkCharacter { get; set; }
+    public virtual string ChildLinkSpace { get; set; }
+    public virtual string LineBreak { get; set; }
+    public virtual bool LineBreakProperties { get; set; }
+    public virtual string BeforeName { get; set; }
+    public virtual string AfterName { get; set; }
+    public virtual string AfterDescriptionIfBody { get; set; }
+    public virtual string AfterDescription { get; set; }
+    public virtual string BeforeProperties { get; set; }
+    public virtual string AfterProperties { get; set; }
+    public virtual string MandatoryAfterProperties { get; set; }
+    public virtual string PropertySeparator { get; set; }
+    public virtual string BodyIndent { get; set; }
+    public virtual bool ShowChildren { get; set; }
+    public virtual bool AddBlankLineIfNoChildren { get; set; }
+    public virtual bool IsNameOnOwnLine { get; set; }
+    public virtual string Footer { get; set; }
+    public virtual string MandatoryFooter { get; set; }
+    public virtual bool IsBlankLineBetweenPropertiesAndChildren { get; set; }
+    #endregion
 
-#region fields
-public virtual string PrefixLineOne { get; set; }
-public virtual string SuffixLineOne { get; set; }
-public virtual string PrefixOtherLines { get; set; }
-public virtual string PrefixLastChildLineOne { get; set; }
-public virtual string PrefixOtherLinesRootNode { get; set; }
-public virtual string PropertyPrefixIfChildren { get; set; }
-public virtual string PropertyPrefixNoChildren { get; set; }
-public virtual string LinkCharacter { get; set; }
-public virtual string ChildLinkSpace { get; set; }
-public virtual string LineBreak { get; set; }
-public virtual bool LineBreakProperties { get; set; }
-public virtual string BeforeName { get; set; }
-public virtual string AfterName { get; set; }
-public virtual string AfterDescriptionIfBody { get; set; }
-public virtual string AfterDescription { get; set; }
-public virtual string BeforeProperties { get; set; }
-public virtual string AfterProperties { get; set; }
-public virtual string MandatoryAfterProperties { get; set; }
-public virtual string PropertySeparator { get; set; }
-public virtual string BodyIndent { get; set; }
-public virtual bool ShowChildren { get; set; }
-public virtual bool AddBlankLineIfNoChildren { get; set; }
-public virtual bool IsNameOnOwnLine { get; set; }
-public virtual string Footer { get; set; }
-public virtual string MandatoryFooter { get; set; }
-public virtual bool IsBlankLineBetweenPropertiesAndChildren { get; set; }
-#endregion
-
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -987,153 +1012,154 @@ public class _PrefixedStringBuilder
     #region constructors
     public _PrefixedStringBuilder(string prefixLineOne = default(string), string prefixOtherLines = default(string), int wrapWidth = default(int))
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual string PrefixLineOne { get; set; }
-internal virtual string _PrefixOtherLines { get; set; }
-internal virtual string _NextPrefixOtherLines { get; set; }
-public virtual int WrapWidth { get; set; }
-internal virtual StringBuffer _Buffer { get; set; }
-internal virtual StringBuffer _CurrentLine { get; set; }
-internal virtual List<int> _WrappableRanges { get; set; }
-internal virtual int _NumLines { get; set; }
-public virtual string PrefixOtherLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool RequiresMultipleLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsCurrentLineEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public virtual void IncrementPrefixOtherLines(string suffix, bool updateCurrentLine = default(bool))
-{
-    if (_CurrentLine.IsEmpty() || updateCurrentLine)
     {
-        _PrefixOtherLines = PrefixOtherLines + suffix;
-        _NextPrefixOtherLines = null;
+        this.PrefixLineOne = prefixLineOne;
+        this.WrapWidth = wrapWidth;
     }
-    else
+    #endregion
+
+    #region fields
+    public virtual string PrefixLineOne { get; set; }
+    internal virtual string _PrefixOtherLines { get; set; }
+    internal virtual string _NextPrefixOtherLines { get; set; }
+    public virtual int WrapWidth { get; set; }
+    internal virtual StringBuffer _Buffer { get; set; }
+    internal virtual StringBuffer _CurrentLine { get; set; }
+    internal virtual List<int> _WrappableRanges { get; set; }
+    internal virtual int _NumLines { get; set; }
+    public virtual string PrefixOtherLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool RequiresMultipleLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsCurrentLineEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public virtual void IncrementPrefixOtherLines(string suffix, bool updateCurrentLine = default(bool))
     {
-        _NextPrefixOtherLines = PrefixOtherLines + suffix;
-    }
+        if (_CurrentLine.IsEmpty() || updateCurrentLine)
+        {
+            _PrefixOtherLines = PrefixOtherLines + suffix;
+            _NextPrefixOtherLines = null;
+        }
+        else
+        {
+            _NextPrefixOtherLines = PrefixOtherLines + suffix;
+        }
 
-}
-
-
-
-
-private void _FinalizeLine(bool addTrailingLineBreak)
-{
-    bool firstLine = _Buffer.IsEmpty();
-    string text = _CurrentLine.ToString();
-    _CurrentLine.Clear();
-    if (_WrappableRanges.IsEmpty())
-    {
-        _WriteLine(text, includeLineBreak: addTrailingLineBreak, firstLine: firstLine);
-        return;
     }
 
-    Iterable<string> lines = _WordWrapLine(text, _WrappableRanges, WrapWidth, startOffset: firstLine ? PrefixLineOne.Length : _PrefixOtherLines.Length, otherLineOffset: firstLine ? _PrefixOtherLines.Length : _PrefixOtherLines.Length);
-    int i = 0;
-    int length = lines.Length;
-    foreach (string line in lines)
+
+
+
+    private void _FinalizeLine(bool addTrailingLineBreak)
     {
-        i++;
-        _WriteLine(line, includeLineBreak: addTrailingLineBreak || i < length, firstLine: firstLine);
+        bool firstLine = _Buffer.IsEmpty();
+        string text = _CurrentLine.ToString();
+        _CurrentLine.Clear();
+        if (_WrappableRanges.IsEmpty())
+        {
+            _WriteLine(text, includeLineBreak: addTrailingLineBreak, firstLine: firstLine);
+            return;
+        }
+
+        Iterable<string> lines = _WordWrapLine(text, _WrappableRanges, WrapWidth, startOffset: firstLine ? PrefixLineOne.Length : _PrefixOtherLines.Length, otherLineOffset: firstLine ? _PrefixOtherLines.Length : _PrefixOtherLines.Length);
+        int i = 0;
+        int length = lines.Length;
+        foreach (string line in lines)
+        {
+            i++;
+            _WriteLine(line, includeLineBreak: addTrailingLineBreak || i < length, firstLine: firstLine);
+        }
+
+        _WrappableRanges.Clear();
     }
 
-    _WrappableRanges.Clear();
-}
 
 
 
-
-/// <Summary>
-/// Wraps the given string at the given width.
-///
-/// Wrapping occurs at space characters (U+0020).
-///
-/// This is not suitable for use with arbitrary Unicode text. For example, it
-/// doesn't implement UAX #14, can't handle ideographic text, doesn't hyphenate,
-/// and so forth. It is only intended for formatting error messages.
-///
-/// This method wraps a sequence of text where only some spans of text can be
-/// used as wrap boundaries.
-/// </Summary>
-private Iterable<string> _WordWrapLine(string message, List<int> wrapRanges, int width, int startOffset = 0, int otherLineOffset = 0)
+    /// <Summary>
+    /// Wraps the given string at the given width.
+    ///
+    /// Wrapping occurs at space characters (U+0020).
+    ///
+    /// This is not suitable for use with arbitrary Unicode text. For example, it
+    /// doesn't implement UAX #14, can't handle ideographic text, doesn't hyphenate,
+    /// and so forth. It is only intended for formatting error messages.
+    ///
+    /// This method wraps a sequence of text where only some spans of text can be
+    /// used as wrap boundaries.
+    /// </Summary>
+    private Iterable<string> _WordWrapLine(string message, List<int> wrapRanges, int width, int startOffset = 0, int otherLineOffset = 0)
 sync
 *
 {
-    if (message.Length + startOffset < width)
-    {
-        yield message;
-        return;
-    }
+if (message.Length+startOffset<width){
+yield message;
+return ;
+}
 
-    int startForLengthCalculations = -startOffset;
-    bool addPrefix = false;
-    int index = 0;
-    _WordWrapParseMode mode = _WordWrapParseMode.InSpace;
-    int lastWordStart = default(int);
-    int lastWordEnd = default(int);
-    int start = 0;
-    int currentChunk = 0;
-    bool NoWrap(int index) => {
-        while (true)
-        {
-            if (currentChunk >= wrapRanges.Count) return true;
-            if (index < wrapRanges[currentChunk + 1]) break;
-            currentChunk += 2;
-        }
-
-        return index < wrapRanges[currentChunk];
-    }
-
+int startForLengthCalculations = -startOffset;
+bool addPrefix = false;
+int index = 0;
+_WordWrapParseMode mode = _WordWrapParseMode.InSpace;
+int lastWordStart = default(int);
+int lastWordEnd = default(int);
+int start = 0;
+int currentChunk = 0;
+bool NoWrap(int index) => {
     while (true)
     {
-        switch (mode)
-        {
-            case _WordWrapParseMode.InSpace: while ((index < message.Length) && (message[index] == ' ')) index += 1; lastWordStart = index; mode = _WordWrapParseMode.InWord; break;
-            case _WordWrapParseMode.InWord: while ((index < message.Length) && (message[index] != ' ' || NoWrap(index))) index += 1; mode = _WordWrapParseMode.AtBreak; break;
-            case _WordWrapParseMode.AtBreak:
-                if ((index - startForLengthCalculations > width) || (index == message.Length))
+        if (currentChunk >= wrapRanges.Count) return true;
+        if (index < wrapRanges[currentChunk + 1]) break;
+        currentChunk += 2;
+    }
+
+    return index < wrapRanges[currentChunk];
+}
+
+while (true)
+{
+    switch (mode)
+    {
+        case _WordWrapParseMode.InSpace: while ((index < message.Length) && (message[index] == ' ')) index += 1; lastWordStart = index; mode = _WordWrapParseMode.InWord; break;
+        case _WordWrapParseMode.InWord: while ((index < message.Length) && (message[index] != ' ' || NoWrap(index))) index += 1; mode = _WordWrapParseMode.AtBreak; break;
+        case _WordWrapParseMode.AtBreak:
+            if ((index - startForLengthCalculations > width) || (index == message.Length))
+            {
+                if ((index - startForLengthCalculations <= width) || (lastWordEnd == null))
                 {
-                    if ((index - startForLengthCalculations <= width) || (lastWordEnd == null))
-                    {
-                        lastWordEnd = index;
-                    }
+                    lastWordEnd = index;
+                }
 
-                    string line = message.Substring(start, lastWordEnd);
-                    yield line;
-                    addPrefix = true;
-                    if (lastWordEnd >= message.Length) return;
-                    if (lastWordEnd == index)
-                    {
-                        while ((index < message.Length) && (message[index] == ' ')) index += 1;
-                        start = index;
-                        mode = _WordWrapParseMode.InWord;
-                    }
-                    else
-                    {
-
-                        start = lastWordStart;
-                        mode = _WordWrapParseMode.AtBreak;
-                    }
-
-                    startForLengthCalculations = start - otherLineOffset;
-
-                    lastWordEnd = null;
+                string line = message.Substring(start, lastWordEnd);
+                yield line;
+                addPrefix = true;
+                if (lastWordEnd >= message.Length) return;
+                if (lastWordEnd == index)
+                {
+                    while ((index < message.Length) && (message[index] == ' ')) index += 1;
+                    start = index;
+                    mode = _WordWrapParseMode.InWord;
                 }
                 else
                 {
-                    lastWordEnd = index;
-                    mode = _WordWrapParseMode.InSpace;
+
+                    start = lastWordStart;
+                    mode = _WordWrapParseMode.AtBreak;
                 }
-                break;
-        }
+
+                startForLengthCalculations = start - otherLineOffset;
+
+                lastWordEnd = null;
+            }
+            else
+            {
+                lastWordEnd = index;
+                mode = _WordWrapParseMode.InSpace;
+            }
+            break;
     }
+}
 
 }
 
@@ -1282,15 +1308,16 @@ public class _NoDefaultValue
 {
     #region constructors
     public _NoDefaultValue()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -1308,318 +1335,319 @@ public class TextTreeRenderer
     #region constructors
     public TextTreeRenderer(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), int wrapWidth = 100, int wrapWidthProperties = 65, int maxDescendentsTruncatableNode = -1)
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual int _WrapWidth { get; set; }
-internal virtual int _WrapWidthProperties { get; set; }
-internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel _MinLevel { get; set; }
-internal virtual int _MaxDescendentsTruncatableNode { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Text configuration to use to connect this node to a `child`.
-///
-/// The singleLine styles are special cased because the connection from the
-/// parent to the child should be consistent with the parent's style as the
-/// single line style does not provide any meaningful style for how children
-/// should be connected to their parents.
-/// </Summary>
-private FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration _ChildTextConfiguration(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode child, FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration textStyle)
-{
-    DiagnosticsTreeStyle childStyle = child?.Style;
-    return (DiagnosticsDefaultClass._IsSingleLine(childStyle) || childStyle == DiagnosticsTreeStyle.ErrorProperty) ? textStyle : child.TextTreeConfiguration;
-}
-
-
-
-
-/// <Summary>
-/// Renders a [node] to a String.
-/// </Summary>
-public virtual string Render(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (ConstantsDefaultClass.KReleaseMode)
     {
-        return "";
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual int _WrapWidth { get; set; }
+    internal virtual int _WrapWidthProperties { get; set; }
+    internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel _MinLevel { get; set; }
+    internal virtual int _MaxDescendentsTruncatableNode { get; set; }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Text configuration to use to connect this node to a `child`.
+    ///
+    /// The singleLine styles are special cased because the connection from the
+    /// parent to the child should be consistent with the parent's style as the
+    /// single line style does not provide any meaningful style for how children
+    /// should be connected to their parents.
+    /// </Summary>
+    private FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration _ChildTextConfiguration(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode child, FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration textStyle)
     {
-        return _DebugRender(node, prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, parentConfiguration: parentConfiguration);
+        DiagnosticsTreeStyle childStyle = child?.Style;
+        return (DiagnosticsDefaultClass._IsSingleLine(childStyle) || childStyle == DiagnosticsTreeStyle.ErrorProperty) ? textStyle : child.TextTreeConfiguration;
     }
 
-}
 
 
 
-
-private string _DebugRender(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    bool isSingleLine = DiagnosticsDefaultClass._IsSingleLine(node.Style) && parentConfiguration?.LineBreakProperties != true;
-    prefixOtherLines = (prefixOtherLines == null ? prefixLineOne : prefixOtherLines);
-    if (node.LinePrefix != null)
+    /// <Summary>
+    /// Renders a [node] to a String.
+    /// </Summary>
+    public virtual string Render(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
     {
-        prefixLineOne += node.LinePrefix;
-        prefixOtherLines += node.LinePrefix;
+        if (ConstantsDefaultClass.KReleaseMode)
+        {
+            return "";
+        }
+        else
+        {
+            return _DebugRender(node, prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, parentConfiguration: parentConfiguration);
+        }
+
     }
 
-    TextTreeConfiguration config = node.TextTreeConfiguration;
-    if (prefixOtherLines.IsEmpty()) prefixOtherLines += config.PrefixOtherLinesRootNode;
-    if (node.Style == DiagnosticsTreeStyle.TruncateChildren)
+
+
+
+    private string _DebugRender(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
     {
-        List<string> descendants = new List<string>() { };
-        int maxDepth = 5;
-        int depth = 0;
-        int maxLines = 25;
-        int lines = 0;
-        void Visitor(DiagnosticsNode node) => {
-            foreach (DiagnosticsNode child in node.GetChildren())
+        bool isSingleLine = DiagnosticsDefaultClass._IsSingleLine(node.Style) && parentConfiguration?.LineBreakProperties != true;
+        prefixOtherLines = (prefixOtherLines == null ? prefixLineOne : prefixOtherLines);
+        if (node.LinePrefix != null)
+        {
+            prefixLineOne += node.LinePrefix;
+            prefixOtherLines += node.LinePrefix;
+        }
+
+        TextTreeConfiguration config = node.TextTreeConfiguration;
+        if (prefixOtherLines.IsEmpty()) prefixOtherLines += config.PrefixOtherLinesRootNode;
+        if (node.Style == DiagnosticsTreeStyle.TruncateChildren)
+        {
+            List<string> descendants = new List<string>() { };
+            int maxDepth = 5;
+            int depth = 0;
+            int maxLines = 25;
+            int lines = 0;
+            void Visitor(DiagnosticsNode node) => {
+                foreach (DiagnosticsNode child in node.GetChildren())
+                {
+                    if (lines < maxLines)
+                    {
+                        depth += 1;
+                        descendants.Add($"'{prefixOtherLines}{"  " * depth}{child}'");
+                        if (depth < maxDepth) Visitor(child);
+                        depth -= 1;
+                    }
+                    else if (lines == maxLines)
+                    {
+                        descendants.Add($"'{prefixOtherLines}  ...(descendants list truncated after {lines} lines)'");
+                    }
+
+                    lines += 1;
+                }
+
+            }
+
+            Visitor(node);
+            StringBuffer information = new StringBuffer(prefixLineOne);
+            if (lines > 1)
             {
-                if (lines < maxLines)
-                {
-                    depth += 1;
-                    descendants.Add($"'{prefixOtherLines}{"  " * depth}{child}'");
-                    if (depth < maxDepth) Visitor(child);
-                    depth -= 1;
-                }
-                else if (lines == maxLines)
-                {
-                    descendants.Add($"'{prefixOtherLines}  ...(descendants list truncated after {lines} lines)'");
-                }
+                information.Writeln($"'This {node.Name} had the following descendants (showing up to depth {maxDepth}):'");
+            }
+            else if (descendants.Count == 1)
+            {
+                information.Writeln($"'This {node.Name} had the following child:'");
+            }
+            else
+            {
+                information.Writeln($"'This {node.Name} has no descendants.'");
+            }
 
-                lines += 1;
+            information.WriteAll(descendants, '\n');
+            return information.ToString();
+        }
+
+        _PrefixedStringBuilder builder = new _PrefixedStringBuilder(prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, wrapWidth: Math.Dart:mathDefaultClass.Max(_WrapWidth, prefixOtherLines.Length + _WrapWidthProperties));
+        List<DiagnosticsNode> children = node.GetChildren();
+        string description = node.ToDescription(parentConfiguration: parentConfiguration);
+        if (config.BeforeName.IsNotEmpty)
+        {
+            builder.Write(config.BeforeName);
+        }
+
+        bool wrapName = !isSingleLine && node.AllowNameWrap;
+        bool wrapDescription = !isSingleLine && node.AllowWrap;
+        bool uppercaseTitle = node.Style == DiagnosticsTreeStyle.Error;
+        string name = node.Name;
+        if (uppercaseTitle)
+        {
+            name = name?.ToUpper();
+        }
+
+        if (description == null || description.IsEmpty())
+        {
+            if (node.ShowName && name != null) builder.Write(name, allowWrap: wrapName);
+        }
+        else
+        {
+            bool includeName = false;
+            if (name != null && name.IsNotEmpty && node.ShowName)
+            {
+                includeName = true;
+                builder.Write(name, allowWrap: wrapName);
+                if (node.ShowSeparator) builder.Write(config.AfterName, allowWrap: wrapName);
+                builder.Write(config.IsNameOnOwnLine || description.Contains('\n') ? '\n' : ' ', allowWrap: wrapName);
+            }
+
+            if (!isSingleLine && builder.RequiresMultipleLines && !builder.IsCurrentLineEmpty)
+            {
+                builder.Write('\n');
+            }
+
+            if (includeName)
+            {
+                builder.IncrementPrefixOtherLines(children.IsEmpty() ? config.PropertyPrefixNoChildren : config.PropertyPrefixIfChildren, updateCurrentLine: true);
+            }
+
+            if (uppercaseTitle)
+            {
+                description = description.ToUpper();
+            }
+
+            builder.Write(description.TrimEnd(), allowWrap: wrapDescription);
+            if (!includeName)
+            {
+                builder.IncrementPrefixOtherLines(children.IsEmpty() ? config.PropertyPrefixNoChildren : config.PropertyPrefixIfChildren, updateCurrentLine: false);
             }
 
         }
 
-        Visitor(node);
-        StringBuffer information = new StringBuffer(prefixLineOne);
-        if (lines > 1)
+        if (config.SuffixLineOne.IsNotEmpty)
         {
-            information.Writeln($"'This {node.Name} had the following descendants (showing up to depth {maxDepth}):'");
-        }
-        else if (descendants.Count == 1)
-        {
-            information.Writeln($"'This {node.Name} had the following child:'");
-        }
-        else
-        {
-            information.Writeln($"'This {node.Name} has no descendants.'");
+            builder.WriteStretched(config.SuffixLineOne, builder.WrapWidth);
         }
 
-        information.WriteAll(descendants, '\n');
-        return information.ToString();
-    }
-
-    _PrefixedStringBuilder builder = new _PrefixedStringBuilder(prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, wrapWidth: Math.Dart:mathDefaultClass.Max(_WrapWidth, prefixOtherLines.Length + _WrapWidthProperties));
-List<DiagnosticsNode> children = node.GetChildren();
-string description = node.ToDescription(parentConfiguration: parentConfiguration);
-if (config.BeforeName.IsNotEmpty)
-{
-    builder.Write(config.BeforeName);
-}
-
-bool wrapName = !isSingleLine && node.AllowNameWrap;
-bool wrapDescription = !isSingleLine && node.AllowWrap;
-bool uppercaseTitle = node.Style == DiagnosticsTreeStyle.Error;
-string name = node.Name;
-if (uppercaseTitle)
-{
-    name = name?.ToUpper();
-}
-
-if (description == null || description.IsEmpty())
-{
-    if (node.ShowName && name != null) builder.Write(name, allowWrap: wrapName);
-}
-else
-{
-    bool includeName = false;
-    if (name != null && name.IsNotEmpty && node.ShowName)
-    {
-        includeName = true;
-        builder.Write(name, allowWrap: wrapName);
-        if (node.ShowSeparator) builder.Write(config.AfterName, allowWrap: wrapName);
-        builder.Write(config.IsNameOnOwnLine || description.Contains('\n') ? '\n' : ' ', allowWrap: wrapName);
-    }
-
-    if (!isSingleLine && builder.RequiresMultipleLines && !builder.IsCurrentLineEmpty)
-    {
-        builder.Write('\n');
-    }
-
-    if (includeName)
-    {
-        builder.IncrementPrefixOtherLines(children.IsEmpty() ? config.PropertyPrefixNoChildren : config.PropertyPrefixIfChildren, updateCurrentLine: true);
-    }
-
-    if (uppercaseTitle)
-    {
-        description = description.ToUpper();
-    }
-
-    builder.Write(description.TrimEnd(), allowWrap: wrapDescription);
-    if (!includeName)
-    {
-        builder.IncrementPrefixOtherLines(children.IsEmpty() ? config.PropertyPrefixNoChildren : config.PropertyPrefixIfChildren, updateCurrentLine: false);
-    }
-
-}
-
-if (config.SuffixLineOne.IsNotEmpty)
-{
-    builder.WriteStretched(config.SuffixLineOne, builder.WrapWidth);
-}
-
-Iterable<DiagnosticsNode> propertiesIterable = node.GetProperties().Where((DiagnosticsNode n) => =>!n.IsFiltered(_MinLevel));
-List<DiagnosticsNode> properties = default(List<DiagnosticsNode>);
-if (_MaxDescendentsTruncatableNode >= 0 && node.AllowTruncate)
-{
-    if (propertiesIterable.Length < _MaxDescendentsTruncatableNode)
-    {
-        properties = propertiesIterable.Take(_MaxDescendentsTruncatableNode).ToList();
-        properties.Add(DiagnosticsNode.Message("..."));
-    }
-    else
-    {
-        properties = propertiesIterable.ToList();
-    }
-
-    if (_MaxDescendentsTruncatableNode < children.Count)
-    {
-        children = children.Take(_MaxDescendentsTruncatableNode).ToList();
-        children.Add(DiagnosticsNode.Message("..."));
-    }
-
-}
-else
-{
-    properties = propertiesIterable.ToList();
-}
-
-if ((properties.IsNotEmpty || children.IsNotEmpty || node.EmptyBodyDescription != null) && (node.ShowSeparator || description?.IsNotEmpty == true))
-{
-    builder.Write(config.AfterDescriptionIfBody);
-}
-
-if (config.LineBreakProperties) builder.Write(config.LineBreak);
-if (properties.IsNotEmpty) builder.Write(config.BeforeProperties);
-builder.IncrementPrefixOtherLines(config.BodyIndent, updateCurrentLine: false);
-if (node.EmptyBodyDescription != null && properties.IsEmpty() && children.IsEmpty() && prefixLineOne.IsNotEmpty)
-{
-    builder.Write(node.EmptyBodyDescription);
-    if (config.LineBreakProperties) builder.Write(config.LineBreak);
-}
-
-for (int i = 0; i < properties.Count; ++i)
-{
-    DiagnosticsNode property = properties[i];
-    if (i > 0) builder.Write(config.PropertySeparator);
-    TextTreeConfiguration propertyStyle = property.TextTreeConfiguration;
-    if (DiagnosticsDefaultClass._IsSingleLine(property.Style))
-    {
-        string propertyRender = Render(property, prefixLineOne: propertyStyle.PrefixLineOne, prefixOtherLines: $"'{propertyStyle.ChildLinkSpace}{propertyStyle.PrefixOtherLines}'", parentConfiguration: config);
-        List<string> propertyLines = propertyRender.Split('\n').ToList();
-        if (propertyLines.Count == 1 && !config.LineBreakProperties)
+        Iterable<DiagnosticsNode> propertiesIterable = node.GetProperties().Where((DiagnosticsNode n) => =>!n.IsFiltered(_MinLevel));
+        List<DiagnosticsNode> properties = default(List<DiagnosticsNode>);
+        if (_MaxDescendentsTruncatableNode >= 0 && node.AllowTruncate)
         {
-            builder.Write(propertyLines.First);
-        }
-        else
-        {
-            builder.Write(propertyRender, allowWrap: false);
-            if (!propertyRender.EndsWith('\n')) builder.Write('\n');
-        }
-
-    }
-    else
-    {
-        string propertyRender = Render(property, prefixLineOne: $"'{builder.PrefixOtherLines}{propertyStyle.PrefixLineOne}'", prefixOtherLines: $"'{builder.PrefixOtherLines}{propertyStyle.ChildLinkSpace}{propertyStyle.PrefixOtherLines}'", parentConfiguration: config);
-        builder.WriteRawLines(propertyRender);
-    }
-
-}
-
-if (properties.IsNotEmpty) builder.Write(config.AfterProperties);
-builder.Write(config.MandatoryAfterProperties);
-if (!config.LineBreakProperties) builder.Write(config.LineBreak);
-string prefixChildren = config.BodyIndent;
-string prefixChildrenRaw = $"'{prefixOtherLines}{prefixChildren}'";
-if (children.IsEmpty() && config.AddBlankLineIfNoChildren && builder.RequiresMultipleLines && builder.PrefixOtherLines.TrimEnd().IsNotEmpty)
-{
-    builder.Write(config.LineBreak);
-}
-
-if (children.IsNotEmpty && config.ShowChildren)
-{
-    if (config.IsBlankLineBetweenPropertiesAndChildren && properties.IsNotEmpty && children.First.TextTreeConfiguration.IsBlankLineBetweenPropertiesAndChildren)
-    {
-        builder.Write(config.LineBreak);
-    }
-
-    builder.PrefixOtherLines = prefixOtherLines;
-    for (int i = 0; i < children.Count; i++)
-    {
-        DiagnosticsNode child = children[i];
-
-        TextTreeConfiguration childConfig = _ChildTextConfiguration(child, config);
-        if (i == children.Count - 1)
-        {
-            string lastChildPrefixLineOne = $"'{prefixChildrenRaw}{childConfig.PrefixLastChildLineOne}'";
-            string childPrefixOtherLines = $"'{prefixChildrenRaw}{childConfig.ChildLinkSpace}{childConfig.PrefixOtherLines}'";
-            builder.WriteRawLines(Render(child, prefixLineOne: lastChildPrefixLineOne, prefixOtherLines: childPrefixOtherLines, parentConfiguration: config));
-            if (childConfig.Footer.IsNotEmpty)
+            if (propertiesIterable.Length < _MaxDescendentsTruncatableNode)
             {
-                builder.PrefixOtherLines = prefixChildrenRaw;
-                builder.Write($"'{childConfig.ChildLinkSpace}{childConfig.Footer}'");
-                if (childConfig.MandatoryFooter.IsNotEmpty)
+                properties = propertiesIterable.Take(_MaxDescendentsTruncatableNode).ToList();
+                properties.Add(DiagnosticsNode.Message("..."));
+            }
+            else
+            {
+                properties = propertiesIterable.ToList();
+            }
+
+            if (_MaxDescendentsTruncatableNode < children.Count)
+            {
+                children = children.Take(_MaxDescendentsTruncatableNode).ToList();
+                children.Add(DiagnosticsNode.Message("..."));
+            }
+
+        }
+        else
+        {
+            properties = propertiesIterable.ToList();
+        }
+
+        if ((properties.IsNotEmpty || children.IsNotEmpty || node.EmptyBodyDescription != null) && (node.ShowSeparator || description?.IsNotEmpty == true))
+        {
+            builder.Write(config.AfterDescriptionIfBody);
+        }
+
+        if (config.LineBreakProperties) builder.Write(config.LineBreak);
+        if (properties.IsNotEmpty) builder.Write(config.BeforeProperties);
+        builder.IncrementPrefixOtherLines(config.BodyIndent, updateCurrentLine: false);
+        if (node.EmptyBodyDescription != null && properties.IsEmpty() && children.IsEmpty() && prefixLineOne.IsNotEmpty)
+        {
+            builder.Write(node.EmptyBodyDescription);
+            if (config.LineBreakProperties) builder.Write(config.LineBreak);
+        }
+
+        for (int i = 0; i < properties.Count; ++i)
+        {
+            DiagnosticsNode property = properties[i];
+            if (i > 0) builder.Write(config.PropertySeparator);
+            TextTreeConfiguration propertyStyle = property.TextTreeConfiguration;
+            if (DiagnosticsDefaultClass._IsSingleLine(property.Style))
+            {
+                string propertyRender = Render(property, prefixLineOne: propertyStyle.PrefixLineOne, prefixOtherLines: $"'{propertyStyle.ChildLinkSpace}{propertyStyle.PrefixOtherLines}'", parentConfiguration: config);
+                List<string> propertyLines = propertyRender.Split('\n').ToList();
+                if (propertyLines.Count == 1 && !config.LineBreakProperties)
                 {
-                    builder.WriteStretched(childConfig.MandatoryFooter, Math.Dart:mathDefaultClass.Max(builder.WrapWidth, _WrapWidthProperties + childPrefixOtherLines.Length));
+                    builder.Write(propertyLines.First);
+                }
+                else
+                {
+                    builder.Write(propertyRender, allowWrap: false);
+                    if (!propertyRender.EndsWith('\n')) builder.Write('\n');
                 }
 
+            }
+            else
+            {
+                string propertyRender = Render(property, prefixLineOne: $"'{builder.PrefixOtherLines}{propertyStyle.PrefixLineOne}'", prefixOtherLines: $"'{builder.PrefixOtherLines}{propertyStyle.ChildLinkSpace}{propertyStyle.PrefixOtherLines}'", parentConfiguration: config);
+                builder.WriteRawLines(propertyRender);
+            }
+
+        }
+
+        if (properties.IsNotEmpty) builder.Write(config.AfterProperties);
+        builder.Write(config.MandatoryAfterProperties);
+        if (!config.LineBreakProperties) builder.Write(config.LineBreak);
+        string prefixChildren = config.BodyIndent;
+        string prefixChildrenRaw = $"'{prefixOtherLines}{prefixChildren}'";
+        if (children.IsEmpty() && config.AddBlankLineIfNoChildren && builder.RequiresMultipleLines && builder.PrefixOtherLines.TrimEnd().IsNotEmpty)
+        {
+            builder.Write(config.LineBreak);
+        }
+
+        if (children.IsNotEmpty && config.ShowChildren)
+        {
+            if (config.IsBlankLineBetweenPropertiesAndChildren && properties.IsNotEmpty && children.First.TextTreeConfiguration.IsBlankLineBetweenPropertiesAndChildren)
+            {
                 builder.Write(config.LineBreak);
             }
 
-        }
-        else
-        {
-            TextTreeConfiguration nextChildStyle = _ChildTextConfiguration(children[i + 1], config);
-            string childPrefixLineOne = $"'{prefixChildrenRaw}{childConfig.PrefixLineOne}'";
-            string childPrefixOtherLines = $"'{prefixChildrenRaw}{nextChildStyle.LinkCharacter}{childConfig.PrefixOtherLines}'";
-            builder.WriteRawLines(Render(child, prefixLineOne: childPrefixLineOne, prefixOtherLines: childPrefixOtherLines, parentConfiguration: config));
-            if (childConfig.Footer.IsNotEmpty)
+            builder.PrefixOtherLines = prefixOtherLines;
+            for (int i = 0; i < children.Count; i++)
             {
-                builder.PrefixOtherLines = prefixChildrenRaw;
-                builder.Write($"'{childConfig.LinkCharacter}{childConfig.Footer}'");
-                if (childConfig.MandatoryFooter.IsNotEmpty)
+                DiagnosticsNode child = children[i];
+
+                TextTreeConfiguration childConfig = _ChildTextConfiguration(child, config);
+                if (i == children.Count - 1)
                 {
-                    builder.WriteStretched(childConfig.MandatoryFooter, Math.Dart:mathDefaultClass.Max(builder.WrapWidth, _WrapWidthProperties + childPrefixOtherLines.Length));
+                    string lastChildPrefixLineOne = $"'{prefixChildrenRaw}{childConfig.PrefixLastChildLineOne}'";
+                    string childPrefixOtherLines = $"'{prefixChildrenRaw}{childConfig.ChildLinkSpace}{childConfig.PrefixOtherLines}'";
+                    builder.WriteRawLines(Render(child, prefixLineOne: lastChildPrefixLineOne, prefixOtherLines: childPrefixOtherLines, parentConfiguration: config));
+                    if (childConfig.Footer.IsNotEmpty)
+                    {
+                        builder.PrefixOtherLines = prefixChildrenRaw;
+                        builder.Write($"'{childConfig.ChildLinkSpace}{childConfig.Footer}'");
+                        if (childConfig.MandatoryFooter.IsNotEmpty)
+                        {
+                            builder.WriteStretched(childConfig.MandatoryFooter, Math.Dart:mathDefaultClass.Max(builder.WrapWidth, _WrapWidthProperties + childPrefixOtherLines.Length));
+                        }
+
+                        builder.Write(config.LineBreak);
+                    }
+
+                }
+                else
+                {
+                    TextTreeConfiguration nextChildStyle = _ChildTextConfiguration(children[i + 1], config);
+                    string childPrefixLineOne = $"'{prefixChildrenRaw}{childConfig.PrefixLineOne}'";
+                    string childPrefixOtherLines = $"'{prefixChildrenRaw}{nextChildStyle.LinkCharacter}{childConfig.PrefixOtherLines}'";
+                    builder.WriteRawLines(Render(child, prefixLineOne: childPrefixLineOne, prefixOtherLines: childPrefixOtherLines, parentConfiguration: config));
+                    if (childConfig.Footer.IsNotEmpty)
+                    {
+                        builder.PrefixOtherLines = prefixChildrenRaw;
+                        builder.Write($"'{childConfig.LinkCharacter}{childConfig.Footer}'");
+                        if (childConfig.MandatoryFooter.IsNotEmpty)
+                        {
+                            builder.WriteStretched(childConfig.MandatoryFooter, Math.Dart:mathDefaultClass.Max(builder.WrapWidth, _WrapWidthProperties + childPrefixOtherLines.Length));
+                        }
+
+                        builder.Write(config.LineBreak);
+                    }
+
                 }
 
-                builder.Write(config.LineBreak);
             }
 
         }
 
+        if (parentConfiguration == null && config.MandatoryFooter.IsNotEmpty)
+        {
+            builder.WriteStretched(config.MandatoryFooter, builder.WrapWidth);
+            builder.Write(config.LineBreak);
+        }
+
+        return builder.Build();
     }
 
-}
-
-if (parentConfiguration == null && config.MandatoryFooter.IsNotEmpty)
-{
-    builder.WriteStretched(config.MandatoryFooter, builder.WrapWidth);
-    builder.Write(config.LineBreak);
-}
-
-return builder.Build();
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -1640,126 +1668,131 @@ public class DiagnosticsNode
     #region constructors
     public DiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, string linePrefix = default(string))
     : base()
-
-}
-public static DiagnosticsNode Message(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowWrap = true)
-
-
-
-return new DiagnosticsProperty<void>("", null, description: message, style: style, showName: false, allowWrap: allowWrap, level: level);
-}
-
-
-#endregion
-
-#region fields
-public virtual string Name { get; set; }
-public virtual bool ShowSeparator { get; set; }
-public virtual bool ShowName { get; set; }
-public virtual string LinePrefix { get; set; }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle Style { get; set; }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string EmptyBodyDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual @Object Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AllowWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AllowNameWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AllowTruncate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual string _Separator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration TextTreeConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns a description with a short summary of the node itself not
-/// including children or properties.
-///
-/// `parentConfiguration` specifies how the parent is rendered as text art.
-/// For example, if the parent does not line break between properties, the
-/// description of a property should also be a single line if possible.
-/// </Summary>
-public virtual string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    return default(string);
-}
+    {
+        this.Name = name;
+        this.Style = style;
+        this.ShowName = showName;
+        this.ShowSeparator = showSeparator;
+        this.LinePrefix = linePrefix;
+    }
+    public static DiagnosticsNode Message(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowWrap = true)
+    {
+        var instance = new DiagnosticsNode();
 
 
-/// <Summary>
-/// Whether the diagnostic should be filtered due to its [level] being lower
-/// than `minLevel`.
-///
-/// If `minLevel` is [DiagnosticLevel.hidden] no diagnostics will be filtered.
-/// If `minLevel` is [DiagnosticLevel.off] all diagnostics will be filtered.
-/// </Summary>
-public virtual bool IsFiltered(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel) => ConstantsDefaultClass.KReleaseMode || Level.Index < minLevel.Index;
+        return new DiagnosticsProperty<void>("", null, description: message, style: style, showName: false, allowWrap: allowWrap, level: level);
+    }
 
 
+    #endregion
 
-/// <Summary>
-/// Properties of this [DiagnosticsNode].
-///
-/// Properties and children are kept distinct even though they are both
-/// [List<DiagnosticsNode>] because they should be grouped differently.
-/// </Summary>
-public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties()
-{
-    return default(List<DiagnosticsNode>);
-}
+    #region fields
+    public virtual string Name { get; set; }
+    public virtual bool ShowSeparator { get; set; }
+    public virtual bool ShowName { get; set; }
+    public virtual string LinePrefix { get; set; }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle Style { get; set; }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string EmptyBodyDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual @Object Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AllowWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AllowNameWrap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AllowTruncate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual string _Separator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration TextTreeConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Returns a description with a short summary of the node itself not
+    /// including children or properties.
+    ///
+    /// `parentConfiguration` specifies how the parent is rendered as text art.
+    /// For example, if the parent does not line break between properties, the
+    /// description of a property should also be a single line if possible.
+    /// </Summary>
+    public virtual string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        return default(string);
+    }
 
 
-/// <Summary>
-/// Children of this [DiagnosticsNode].
-///
-/// See also:
-///
-///  * [getProperties]
-/// </Summary>
-public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
-{
-    return default(List<DiagnosticsNode>);
-}
-
-
-/// <Summary>
-/// Serialize the node to a JSON map according to the configuration provided
-/// in the [DiagnosticsSerializationDelegate].
-///
-/// Subclasses should override if they have additional properties that are
-/// useful for the GUI tools that consume this JSON.
-///
-/// See also:
-///
-///  * [WidgetInspectorService], which forms the bridge between JSON returned
-///    by this method and interactive tree views in the Flutter IntelliJ
-///    plugin.
-/// </Summary>
-public virtual Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> result = new Dictionary<string, object> { };
-
-    return result;
-}
+    /// <Summary>
+    /// Whether the diagnostic should be filtered due to its [level] being lower
+    /// than `minLevel`.
+    ///
+    /// If `minLevel` is [DiagnosticLevel.hidden] no diagnostics will be filtered.
+    /// If `minLevel` is [DiagnosticLevel.off] all diagnostics will be filtered.
+    /// </Summary>
+    public virtual bool IsFiltered(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel) => ConstantsDefaultClass.KReleaseMode || Level.Index < minLevel.Index;
 
 
 
+    /// <Summary>
+    /// Properties of this [DiagnosticsNode].
+    ///
+    /// Properties and children are kept distinct even though they are both
+    /// [List<DiagnosticsNode>] because they should be grouped differently.
+    /// </Summary>
+    public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties()
+    {
+        return default(List<DiagnosticsNode>);
+    }
 
-/// <Summary>
-/// Serializes a [List] of [DiagnosticsNode]s to a JSON list according to
-/// the configuration provided by the [DiagnosticsSerializationDelegate].
-///
-/// The provided `nodes` may be properties or children of the `parent`
-/// [DiagnosticsNode].
-/// </Summary>
-public virtual List<Dictionary<string, @Object>> ToJsonList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent, FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    bool truncated = false;
-    if (nodes == null) return new List, < Dictionary<string, object> > (};
-int originalNodeCount = nodes.Count;
-nodes = delegate.TruncateNodesList(nodes, parent);
-if (nodes.Count != originalNodeCount)
-{
-    nodes.Add(DiagnosticsNode.Message("..."));
-    truncated = true;
+
+    /// <Summary>
+    /// Children of this [DiagnosticsNode].
+    ///
+    /// See also:
+    ///
+    ///  * [getProperties]
+    /// </Summary>
+    public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
+    {
+        return default(List<DiagnosticsNode>);
+    }
+
+
+    /// <Summary>
+    /// Serialize the node to a JSON map according to the configuration provided
+    /// in the [DiagnosticsSerializationDelegate].
+    ///
+    /// Subclasses should override if they have additional properties that are
+    /// useful for the GUI tools that consume this JSON.
+    ///
+    /// See also:
+    ///
+    ///  * [WidgetInspectorService], which forms the bridge between JSON returned
+    ///    by this method and interactive tree views in the Flutter IntelliJ
+    ///    plugin.
+    /// </Summary>
+    public virtual Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+    {
+        Dictionary<string, object> result = new Dictionary<string, object> { };
+
+        return result;
+    }
+
+
+
+
+    /// <Summary>
+    /// Serializes a [List] of [DiagnosticsNode]s to a JSON list according to
+    /// the configuration provided by the [DiagnosticsSerializationDelegate].
+    ///
+    /// The provided `nodes` may be properties or children of the `parent`
+    /// [DiagnosticsNode].
+    /// </Summary>
+    public virtual List<Dictionary<string, @Object>> ToJsonList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent, FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+    {
+        bool truncated = false;
+        if (nodes == null) return new List, < Dictionary<string, object> > (};
+    int originalNodeCount = nodes.Count;
+    nodes=delegate.TruncateNodesList(nodes, parent);
+if (nodes.Count!=originalNodeCount){
+nodes.Add(DiagnosticsNode.Message("..."));
+truncated=true ;
 }
 
 List<Dictionary<string, object>> json = nodes.Map((DiagnosticsNode node) =>
@@ -1843,15 +1876,16 @@ public class MessageProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
     #region constructors
     public MessageProperty(string name, string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, null, description: message, style: style, level: level)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -1868,47 +1902,48 @@ public class StringProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsPrope
     #region constructors
     public StringProperty(string name, string value, string description = default(string), string tooltip = default(string), bool showName = true, @Object defaultValue = default(@Object), bool quoted = true, string ifEmpty = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, description: description, defaultValue: defaultValue, tooltip: tooltip, showName: showName, ifEmpty: ifEmpty, style: style, level: level)
-
-}
-#endregion
-
-#region fields
-public virtual bool Quoted { get; set; }
-#endregion
-
-#region methods
-
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    json["quoted"] = Quoted;
-    return json;
-}
-
-
-
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    string text = _Description ?? Value;
-    if (parentConfiguration != null && !parentConfiguration.LineBreakProperties && text != null)
     {
-        text = text.ReplaceAll('\n', "'\n");
+        this.Quoted = quoted;
+    }
+    #endregion
+
+    #region fields
+    public virtual bool Quoted { get; set; }
+    #endregion
+
+    #region methods
+
+    public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+    {
+        Dictionary<string, object> json = base.ToJsonMap(delegate);
+        json["quoted"] = Quoted;
+        return json;
     }
 
-    if (Quoted && text != null)
+
+
+
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
     {
-        if (IfEmpty != null && text.IsEmpty()) return IfEmpty;
-        return $"'"{ text}
-        "'";
+        string text = _Description ?? Value;
+        if (parentConfiguration != null && !parentConfiguration.LineBreakProperties && text != null)
+        {
+            text = text.ReplaceAll('\n', "'\n");
+        }
+
+        if (Quoted && text != null)
+        {
+            if (IfEmpty != null && text.IsEmpty()) return IfEmpty;
+            return $"'"{ text}
+            "'";
+        }
+
+        return text.ToString();
     }
 
-    return text.ToString();
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -1917,48 +1952,50 @@ public class _NumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
     #region constructors
     public _NumProperty(string name, T value, string ifNull = default(string), string unit = default(string), bool showName = true, @Object defaultValue = default(@Object), string tooltip = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, level: level, style: style)
+    {
+        this.Unit = unit;
+    }
+    public static _NumProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string ifNull = default(string), string unit = default(string), bool showName = true, @Object defaultValue = default(@Object), string tooltip = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+    {
+        var instance = new _NumProperty<T>(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level); instance.Unit = unit;
+    }
+    #endregion
 
-}
-public static _NumProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string ifNull = default(string), string unit = default(string), bool showName = true, @Object defaultValue = default(@Object), string tooltip = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+    #region fields
+    public virtual string Unit { get; set; }
+    #endregion
 
-}
-#endregion
+    #region methods
 
-#region fields
-public virtual string Unit { get; set; }
-#endregion
-
-#region methods
-
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    if (Unit != null) json["unit"] = Unit;
-    json["numberToString"] = NumberToString();
-    return json;
-}
-
-
-
-
-/// <Summary>
-/// String describing just the numeric [value] without a unit suffix.
-/// </Summary>
-public virtual string NumberToString()
-{
-    return default(string);
-}
-
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (Value == null) return Value.ToString();
-    return Unit != null ? $"'{NumberToString()}{Unit}'" : NumberToString();
-}
+    public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+    {
+        Dictionary<string, object> json = base.ToJsonMap(delegate);
+        if (Unit != null) json["unit"] = Unit;
+        json["numberToString"] = NumberToString();
+        return json;
+    }
 
 
 
-#endregion
+
+    /// <Summary>
+    /// String describing just the numeric [value] without a unit suffix.
+    /// </Summary>
+    public virtual string NumberToString()
+    {
+        return default(string);
+    }
+
+
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (Value == null) return Value.ToString();
+        return Unit != null ? $"'{NumberToString()}{Unit}'" : NumberToString();
+    }
+
+
+
+    #endregion
 }
 
 
@@ -1972,22 +2009,24 @@ public class DoubleProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<dou
     #region constructors
     public DoubleProperty(string name, double value, string ifNull = default(string), string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, showName: showName, style: style, level: level)
+    {
 
-}
-public static DoubleProperty Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull = default(string), bool showName = true, string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+    }
+    public static DoubleProperty Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<double> computeValue, string ifNull = default(string), bool showName = true, string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+    {
+        var instance = new DoubleProperty(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level);
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    #endregion
 
-#region fields
-#endregion
+    #region methods
 
-#region methods
-
-public new string NumberToString() => DebugDefaultClass.DebugFormatDouble(Value);
+    public new string NumberToString() => DebugDefaultClass.DebugFormatDouble(Value);
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2001,19 +2040,20 @@ public class IntProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<int>
     #region constructors
     public IntProperty(string name, int value, string ifNull = default(string), bool showName = true, string unit = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, ifNull: ifNull, showName: showName, unit: unit, defaultValue: defaultValue, level: level)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
+    #region methods
 
-public new string NumberToString() => Value.ToString();
+    public new string NumberToString() => Value.ToString();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2026,33 +2066,34 @@ public class PercentProperty : FlutterSDK.Foundation.Diagnostics.DoubleProperty
     #region constructors
     public PercentProperty(string name, double fraction, string ifNull = default(string), bool showName = true, string tooltip = default(string), string unit = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, fraction, ifNull: ifNull, showName: showName, tooltip: tooltip, unit: unit, level: level)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
+    #region methods
 
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (Value == null) return Value.ToString();
-    return Unit != null ? $"'{NumberToString()} {Unit}'" : NumberToString();
-}
-
-
-
-
-public new string NumberToString()
-{
-    if (Value == null) return Value.ToString();
-    return $"'{(Value.Clamp(0.0, 1.0) * 100.0).ToStringAsFixed(1)}%'";
-}
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (Value == null) return Value.ToString();
+        return Unit != null ? $"'{NumberToString()} {Unit}'" : NumberToString();
+    }
 
 
 
-#endregion
+
+    public new string NumberToString()
+    {
+        if (Value == null) return Value.ToString();
+        return $"'{(Value.Clamp(0.0, 1.0) * 100.0).ToStringAsFixed(1)}%'";
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2102,47 +2143,49 @@ public class FlagProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsPropert
     #region constructors
     public FlagProperty(string name, bool value = default(bool), string ifTrue = default(string), string ifFalse = default(string), bool showName = false, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, showName: showName, defaultValue: defaultValue, level: level)
-
-}
-#endregion
-
-#region fields
-public virtual string IfTrue { get; set; }
-public virtual string IfFalse { get; set; }
-public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    if (IfTrue != null) json["ifTrue"] = IfTrue;
-    if (IfFalse != null) json["ifFalse"] = IfFalse;
-    return json;
-}
-
-
-
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (Value == true)
     {
-        if (IfTrue != null) return IfTrue;
+        this.IfTrue = ifTrue;
+        this.IfFalse = ifFalse;
     }
-    else if (Value == false)
+    #endregion
+
+    #region fields
+    public virtual string IfTrue { get; set; }
+    public virtual string IfFalse { get; set; }
+    public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
     {
-        if (IfFalse != null) return IfFalse;
+        Dictionary<string, object> json = base.ToJsonMap(delegate);
+        if (IfTrue != null) json["ifTrue"] = IfTrue;
+        if (IfFalse != null) json["ifFalse"] = IfFalse;
+        return json;
     }
 
-    return base.ValueToString(parentConfiguration: parentConfiguration);
-}
 
 
 
-#endregion
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (Value == true)
+        {
+            if (IfTrue != null) return IfTrue;
+        }
+        else if (Value == false)
+        {
+            if (IfFalse != null) return IfFalse;
+        }
+
+        return base.ValueToString(parentConfiguration: parentConfiguration);
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2159,38 +2202,38 @@ public class IterableProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnostics
     #region constructors
     public IterableProperty(string name, Iterable<T> value, @Object defaultValue = default(@Object), string ifNull = default(string), string ifEmpty = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, defaultValue: defaultValue, ifNull: ifNull, ifEmpty: ifEmpty, style: style, showName: showName, showSeparator: showSeparator, level: level)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (Value == null) return Value.ToString();
-    if (Value.IsEmpty()) return IfEmpty ?? "[]";
-    Iterable<string> formattedValues = Value.Map((T v) =>
     {
-    if (T == Dart:coreDefaultClass.Double && v is double){
-        return DebugDefaultClass.DebugFormatDouble(((Double)v));
+
     }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (Value == null) return Value.ToString();
+        if (Value.IsEmpty()) return IfEmpty ?? "[]";
+        Iterable<string> formattedValues = Value.Map((T v) =>
+        {
+        if (T == Dart:coreDefaultClass.Double && v is double){
+            return DebugDefaultClass.DebugFormatDouble(((Double)v));
+        }
 else
-    {
-        return v.ToString();
+        {
+            return v.ToString();
+        }
+
     }
-
-}
 );
-if (parentConfiguration != null && !parentConfiguration.LineBreakProperties)
-{
-    return $"'[{formattedValues.Join(", ")}]'";
+if (parentConfiguration!=null &&!parentConfiguration.LineBreakProperties){
+return $"'[{formattedValues.Join(", ")}]'";
 }
 
-return formattedValues.Join(DiagnosticsDefaultClass._IsSingleLine(Style) ? ", " : '\n');
+return formattedValues.Join(DiagnosticsDefaultClass._IsSingleLine(Style)?", ":'\n');
 }
 
 
@@ -2229,24 +2272,25 @@ public class EnumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
     #region constructors
     public EnumProperty(string name, T value, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, defaultValue: defaultValue, level: level)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
+    #region methods
 
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (Value == null) return Value.ToString();
-    return DiagnosticsDefaultClass.DescribeEnum(Value);
-}
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (Value == null) return Value.ToString();
+        return DiagnosticsDefaultClass.DescribeEnum(Value);
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2279,48 +2323,50 @@ public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
     #region constructors
     public ObjectFlagProperty(string name, T value, string ifPresent = default(string), string ifNull = default(string), bool showName = false, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, showName: showName, ifNull: ifNull, level: level)
-
-}
-public static ObjectFlagProperty<T> Has(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-
-}
-#endregion
-
-#region fields
-public virtual string IfPresent { get; set; }
-public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (Value != null)
     {
-        if (IfPresent != null) return IfPresent;
+        this.IfPresent = ifPresent;
     }
-    else
+    public static ObjectFlagProperty<T> Has(string name, T value, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     {
-        if (IfNull != null) return IfNull;
+        var instance = new ObjectFlagProperty<T>(name, value, showName: false, level: level);
+    }
+    #endregion
+
+    #region fields
+    public virtual string IfPresent { get; set; }
+    public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (Value != null)
+        {
+            if (IfPresent != null) return IfPresent;
+        }
+        else
+        {
+            if (IfNull != null) return IfNull;
+        }
+
+        return base.ValueToString(parentConfiguration: parentConfiguration);
     }
 
-    return base.ValueToString(parentConfiguration: parentConfiguration);
-}
 
 
 
-
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    if (IfPresent != null) json["ifPresent"] = IfPresent;
-    return json;
-}
-
+    public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+    {
+        Dictionary<string, object> json = base.ToJsonMap(delegate);
+        if (IfPresent != null) json["ifPresent"] = IfPresent;
+        return json;
+    }
 
 
-#endregion
+
+    #endregion
 }
 
 
@@ -2352,58 +2398,57 @@ public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
     #region constructors
     public FlagsSummary(string name, Dictionary<string, T> value, string ifEmpty = default(string), bool showName = true, bool showSeparator = true, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, ifEmpty: ifEmpty, showName: showName, showSeparator: showSeparator, level: level)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-
-    if (!_HasNonNullEntry() && IfEmpty != null) return IfEmpty;
-    Iterable<string> formattedValues = _FormattedValues();
-    if (parentConfiguration != null && !parentConfiguration.LineBreakProperties)
     {
-        return $"'[{formattedValues.Join(", ")}]'";
+
+    }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+
+        if (!_HasNonNullEntry() && IfEmpty != null) return IfEmpty;
+        Iterable<string> formattedValues = _FormattedValues();
+        if (parentConfiguration != null && !parentConfiguration.LineBreakProperties)
+        {
+            return $"'[{formattedValues.Join(", ")}]'";
+        }
+
+        return formattedValues.Join(DiagnosticsDefaultClass._IsSingleLine(Style) ? ", " : '\n');
     }
 
-    return formattedValues.Join(DiagnosticsDefaultClass._IsSingleLine(Style) ? ", " : '\n');
-}
+
+
+
+    public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
+    {
+        Dictionary<string, object> json = base.ToJsonMap(delegate);
+        if (Value.IsNotEmpty) json["values"] = _FormattedValues().ToList();
+        return json;
+    }
 
 
 
 
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    if (Value.IsNotEmpty) json["values"] = _FormattedValues().ToList();
-    return json;
-}
+    private bool _HasNonNullEntry() => Value.Values.Any((object o) => =>o != null);
 
 
 
-
-private bool _HasNonNullEntry() => Value.Values.Any((object o) => =>o != null);
-
-
-
-private Iterable<string> _FormattedValues()
+    private Iterable<string> _FormattedValues()
 sync
 *
 {
-    foreach (DictionaryEntry<string, T> entry in Value.Entries)
-    {
-        if (entry.Value != null)
-        {
-            yield entry.Key;
-        }
+foreach(DictionaryEntry<string, T> entry  in Value.Entries){
+if (entry.Value!=null ){
+yield entry.Key;
+}
 
-    }
+}
 
 }
 
@@ -2427,160 +2472,174 @@ public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnost
     #region constructors
     public DiagnosticsProperty(string name, T value, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, string linePrefix = default(string), bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name: name, showName: showName, showSeparator: showSeparator, style: style, linePrefix: linePrefix)
-
-}
-public static DiagnosticsProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-
-}
-#endregion
-
-#region fields
-internal virtual string _Description { get; set; }
-public virtual bool ExpandableValue { get; set; }
-public new bool AllowWrap { get; set; }
-public new bool AllowNameWrap { get; set; }
-public virtual string IfNull { get; set; }
-public virtual string IfEmpty { get; set; }
-public virtual string Tooltip { get; set; }
-public virtual bool MissingIfNull { get; set; }
-internal virtual T _Value { get; set; }
-internal virtual bool _ValueComputed { get; set; }
-internal virtual @Object _Exception { get; set; }
-public virtual @Object DefaultValue { get; set; }
-internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel _DefaultLevel { get; set; }
-internal virtual FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> _ComputeValue { get; set; }
-public virtual Type PropertyType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual @Object Exception { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
-{
-    T v = Value;
-    List<Dictionary<string, object>> properties = default(List<Dictionary<string, object>>);
-    if (delegate.ExpandPropertyValues && delegate.IncludeProperties && v is Diagnosticable && GetProperties().IsEmpty())
     {
-        delegate= delegate.CopyWith(subtreeDepth: 0, includeProperties: false);
-        properties = DiagnosticsDefaultClass.DiagnosticsNode.ToJsonList(delegate.FilterProperties(((Diagnosticable)v).ToDiagnosticsNode().GetProperties(), this), this, delegate);
+        this.IfEmpty = ifEmpty;
+        this.DefaultValue = defaultValue;
+        this.Tooltip = tooltip;
+        this.MissingIfNull = missingIfNull;
+        this.ExpandableValue = expandableValue;
+        this.AllowWrap = allowWrap;
+        this.AllowNameWrap = allowNameWrap;
     }
-
-    Dictionary<string, object> json = base.ToJsonMap(delegate);
-    if (properties != null)
+    public static DiagnosticsProperty<T> Lazy(string name, FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> computeValue, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     {
-        json["properties"] = properties;
+        var instance = new DiagnosticsProperty<T>(name: name, showName: showName, showSeparator: showSeparator, style: style); instance.IfEmpty = ifEmpty;
+        instance.DefaultValue = defaultValue;
+        instance.Tooltip = tooltip;
+        instance.MissingIfNull = missingIfNull;
+        instance.ExpandableValue = expandableValue;
+        instance.AllowWrap = allowWrap;
+        instance.AllowNameWrap = allowNameWrap;
     }
+    #endregion
 
-    if (DefaultValue != DiagnosticsDefaultClass.KNoDefaultValue) json["defaultValue"] = DefaultValue.ToString();
-    if (IfEmpty != null) json["ifEmpty"] = IfEmpty;
-    if (IfNull != null) json["ifNull"] = IfNull;
-    if (Tooltip != null) json["tooltip"] = Tooltip;
-    json["missingIfNull"] = MissingIfNull;
-    if (Exception != null) json["exception"] = Exception.ToString();
-    json["propertyType"] = PropertyType.ToString();
-    json["defaultLevel"] = DiagnosticsDefaultClass.DescribeEnum(_DefaultLevel);
-    if (Value is Diagnosticable || Value is DiagnosticsNode) json["isDiagnosticableValue"] = true;
-    if (v is Num) json["value"] = v.IsFinite() ? v : v.ToString();
-    if (Value is string || Value is bool || Value == null) json["value"] = Value;
-    return json;
-}
+    #region fields
+    internal virtual string _Description { get; set; }
+    public virtual bool ExpandableValue { get; set; }
+    public new bool AllowWrap { get; set; }
+    public new bool AllowNameWrap { get; set; }
+    public virtual string IfNull { get; set; }
+    public virtual string IfEmpty { get; set; }
+    public virtual string Tooltip { get; set; }
+    public virtual bool MissingIfNull { get; set; }
+    internal virtual T _Value { get; set; }
+    internal virtual bool _ValueComputed { get; set; }
+    internal virtual @Object _Exception { get; set; }
+    public virtual @Object DefaultValue { get; set; }
+    internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel _DefaultLevel { get; set; }
+    internal virtual FlutterSDK.Foundation.Diagnostics.ComputePropertyValueCallback<T> _ComputeValue { get; set; }
+    public virtual Type PropertyType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual @Object Exception { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
+    #region methods
 
-
-
-/// <Summary>
-/// Returns a string representation of the property value.
-///
-/// Subclasses should override this method instead of [toDescription] to
-/// customize how property values are converted to strings.
-///
-/// Overriding this method ensures that behavior controlling how property
-/// values are decorated to generate a nice [toDescription] are consistent
-/// across all implementations. Debugging tools may also choose to use
-/// [valueToString] directly instead of [toDescription].
-///
-/// `parentConfiguration` specifies how the parent is rendered as text art.
-/// For example, if the parent places all properties on one line, the value
-/// of the property should be displayed without line breaks if possible.
-/// </Summary>
-public virtual string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    T v = Value;
-    return (v is DiagnosticableTree ? v.ToStringShort() : v.ToString()) ?? "";
-}
-
-
-
-
-public new string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
-{
-    if (_Description != null) return _AddTooltip(_Description);
-    if (Exception != null) return $"'EXCEPTION ({Exception.GetType()})'";
-    if (IfNull != null && Value == null) return _AddTooltip(IfNull);
-    string result = ValueToString(parentConfiguration: parentConfiguration);
-    if (result.IsEmpty() && IfEmpty != null) result = IfEmpty;
-    return _AddTooltip(result);
-}
-
-
-
-
-/// <Summary>
-/// If a [tooltip] is specified, add the tooltip it to the end of `text`
-/// enclosing it parenthesis to disambiguate the tooltip from the rest of
-/// the text.
-///
-/// `text` must not be null.
-/// </Summary>
-private string _AddTooltip(string text)
-{
-
-    return Tooltip == null ? text : $"'{text} ({Tooltip})'";
-}
-
-
-
-
-private void _MaybeCacheValue()
-{
-    if (_ValueComputed) return;
-    _ValueComputed = true;
-
-    try
+    public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
     {
-        _Value = _ComputeValue();
-    }
-    catch (exception)
-    {
-        _Exception = exception;
-        _Value = null;
-    }
-
-}
-
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties()
-{
-    if (ExpandableValue)
-    {
-        T   object= ((Diagnosticable)Value);
-        if (((DiagnosticsNode)object) is DiagnosticsNode)
+        T v = Value;
+        List<Dictionary<string, object>> properties = default(List<Dictionary<string, object>>);
+        if (delegate.ExpandPropertyValues && delegate.IncludeProperties && v is Diagnosticable && GetProperties().IsEmpty())
         {
-            return ((DiagnosticsNode)object).GetProperties();
+            delegate= delegate.CopyWith(subtreeDepth: 0, includeProperties: false);
+            properties = DiagnosticsDefaultClass.DiagnosticsNode.ToJsonList(delegate.FilterProperties(((Diagnosticable)v).ToDiagnosticsNode().GetProperties(), this), this, delegate);
         }
 
-        if (object is Diagnosticable)
+        Dictionary<string, object> json = base.ToJsonMap(delegate);
+        if (properties != null)
         {
-            return ((Diagnosticable)object).ToDiagnosticsNode(style: Style).GetProperties();
+            json["properties"] = properties;
+        }
+
+        if (DefaultValue != DiagnosticsDefaultClass.KNoDefaultValue) json["defaultValue"] = DefaultValue.ToString();
+        if (IfEmpty != null) json["ifEmpty"] = IfEmpty;
+        if (IfNull != null) json["ifNull"] = IfNull;
+        if (Tooltip != null) json["tooltip"] = Tooltip;
+        json["missingIfNull"] = MissingIfNull;
+        if (Exception != null) json["exception"] = Exception.ToString();
+        json["propertyType"] = PropertyType.ToString();
+        json["defaultLevel"] = DiagnosticsDefaultClass.DescribeEnum(_DefaultLevel);
+        if (Value is Diagnosticable || Value is DiagnosticsNode) json["isDiagnosticableValue"] = true;
+        if (v is Num) json["value"] = v.IsFinite() ? v : v.ToString();
+        if (Value is string || Value is bool || Value == null) json["value"] = Value;
+        return json;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a string representation of the property value.
+    ///
+    /// Subclasses should override this method instead of [toDescription] to
+    /// customize how property values are converted to strings.
+    ///
+    /// Overriding this method ensures that behavior controlling how property
+    /// values are decorated to generate a nice [toDescription] are consistent
+    /// across all implementations. Debugging tools may also choose to use
+    /// [valueToString] directly instead of [toDescription].
+    ///
+    /// `parentConfiguration` specifies how the parent is rendered as text art.
+    /// For example, if the parent places all properties on one line, the value
+    /// of the property should be displayed without line breaks if possible.
+    /// </Summary>
+    public virtual string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        T v = Value;
+        return (v is DiagnosticableTree ? v.ToStringShort() : v.ToString()) ?? "";
+    }
+
+
+
+
+    public new string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
+    {
+        if (_Description != null) return _AddTooltip(_Description);
+        if (Exception != null) return $"'EXCEPTION ({Exception.GetType()})'";
+        if (IfNull != null && Value == null) return _AddTooltip(IfNull);
+        string result = ValueToString(parentConfiguration: parentConfiguration);
+        if (result.IsEmpty() && IfEmpty != null) result = IfEmpty;
+        return _AddTooltip(result);
+    }
+
+
+
+
+    /// <Summary>
+    /// If a [tooltip] is specified, add the tooltip it to the end of `text`
+    /// enclosing it parenthesis to disambiguate the tooltip from the rest of
+    /// the text.
+    ///
+    /// `text` must not be null.
+    /// </Summary>
+    private string _AddTooltip(string text)
+    {
+
+        return Tooltip == null ? text : $"'{text} ({Tooltip})'";
+    }
+
+
+
+
+    private void _MaybeCacheValue()
+    {
+        if (_ValueComputed) return;
+        _ValueComputed = true;
+
+        try
+        {
+            _Value = _ComputeValue();
+        }
+        catch (exception)
+        {
+            _Exception = exception;
+            _Value = null;
         }
 
     }
 
-    return new List, < DiagnosticsNode > (};
+
+
+
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties()
+    {
+        if (ExpandableValue)
+        {
+            T   object= ((Diagnosticable)Value);
+            if (((DiagnosticsNode)object) is DiagnosticsNode)
+            {
+                return ((DiagnosticsNode)object).GetProperties();
+            }
+
+            if (object is Diagnosticable)
+            {
+                return ((Diagnosticable)object).ToDiagnosticsNode(style: Style).GetProperties();
+            }
+
+        }
+
+        return new List, < DiagnosticsNode > (};
 }
 
 
@@ -2621,21 +2680,22 @@ public class DiagnosticableNode<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
     #region constructors
     public DiagnosticableNode(string name = default(string), T value = default(T), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
     : base(name: name, style: style)
+    {
+        this.Value = value;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public new T Value { get; set; }
+    internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder _CachedBuilder { get; set; }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual string EmptyBodyDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public new T Value { get; set; }
-internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder _CachedBuilder { get; set; }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string EmptyBodyDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties() => (ConstantsDefaultClass.KReleaseMode || ConstantsDefaultClass.KProfileMode) ? new List, < DiagnosticsNode > (}:Builder.Properties;
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties() => (ConstantsDefaultClass.KReleaseMode || ConstantsDefaultClass.KProfileMode) ? new List, <DiagnosticsNode>(}:Builder.Properties;
 
 
 
@@ -2668,19 +2728,20 @@ public class DiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.Diagnost
     #region constructors
     public DiagnosticableTreeNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticableTree value = default(FlutterSDK.Foundation.Diagnostics.DiagnosticableTree), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
     : base(name: name, value: value, style: style)
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
+    #region methods
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
-{
-    if (Value != null) return Value.DebugDescribeChildren();
-    return new List, < DiagnosticsNode > (};
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
+    {
+        if (Value != null) return Value.DebugDescribeChildren();
+        return new List, < DiagnosticsNode > (};
 }
 
 
@@ -2698,32 +2759,34 @@ public class DiagnosticPropertiesBuilder
     #region constructors
     public DiagnosticPropertiesBuilder()
     : base()
+    {
 
-}
-public static DiagnosticPropertiesBuilder FromProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
+    }
+    public static DiagnosticPropertiesBuilder FromProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
+    {
+        var instance = new DiagnosticPropertiesBuilder(); instance.Properties = properties;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Properties { get; set; }
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle DefaultDiagnosticsTreeStyle { get; set; }
+    public virtual string EmptyBodyDescription { get; set; }
+    #endregion
 
-#region fields
-public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Properties { get; set; }
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle DefaultDiagnosticsTreeStyle { get; set; }
-public virtual string EmptyBodyDescription { get; set; }
-#endregion
+    #region methods
 
-#region methods
+    /// <Summary>
+    /// Add a property to the list of properties.
+    /// </Summary>
+    public virtual void Add(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode property)
+    {
 
-/// <Summary>
-/// Add a property to the list of properties.
-/// </Summary>
-public virtual void Add(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode property)
-{
-
-}
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2746,109 +2809,110 @@ public class DiagnosticableTree : IDiagnosticable
 {
     #region constructors
     public DiagnosticableTree()
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns a one-line detailed description of the object.
-///
-/// This description is often somewhat long. This includes the same
-/// information given by [toStringDeep], but does not recurse to any children.
-///
-/// `joiner` specifies the string which is place between each part obtained
-/// from [debugFillProperties]. Passing a string such as `'\n '` will result
-/// in a multiline string that indents the properties of the object below its
-/// name (as per [toString]).
-///
-/// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
-/// in the output.
-///
-/// See also:
-///
-///  * [toString], for a brief description of the object.
-///  * [toStringDeep], for a description of the subtree rooted at this object.
-/// </Summary>
-public virtual string ToStringShallow(string joiner = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-{
-    if (ConstantsDefaultClass.KReleaseMode)
     {
-        return ToString();
+
+    }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    /// <Summary>
+    /// Returns a one-line detailed description of the object.
+    ///
+    /// This description is often somewhat long. This includes the same
+    /// information given by [toStringDeep], but does not recurse to any children.
+    ///
+    /// `joiner` specifies the string which is place between each part obtained
+    /// from [debugFillProperties]. Passing a string such as `'\n '` will result
+    /// in a multiline string that indents the properties of the object below its
+    /// name (as per [toString]).
+    ///
+    /// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
+    /// in the output.
+    ///
+    /// See also:
+    ///
+    ///  * [toString], for a brief description of the object.
+    ///  * [toStringDeep], for a description of the subtree rooted at this object.
+    /// </Summary>
+    public virtual string ToStringShallow(string joiner = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+    {
+        if (ConstantsDefaultClass.KReleaseMode)
+        {
+            return ToString();
+        }
+
+        string shallowString = default(string);
+
+        return shallowString;
     }
 
-    string shallowString = default(string);
-
-    return shallowString;
-}
 
 
 
-
-/// <Summary>
-/// Returns a string representation of this node and its descendants.
-///
-/// `prefixLineOne` will be added to the front of the first line of the
-/// output. `prefixOtherLines` will be added to the front of each other line.
-/// If `prefixOtherLines` is null, the `prefixLineOne` is used for every line.
-/// By default, there is no prefix.
-///
-/// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
-/// in the output.
-///
-/// The [toStringDeep] method takes other arguments, but those are intended
-/// for internal use when recursing to the descendants, and so can be ignored.
-///
-/// See also:
-///
-///  * [toString], for a brief description of the object but not its children.
-///  * [toStringShallow], for a detailed description of the object but not its
-///    children.
-/// </Summary>
-public virtual string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-{
-    return ToDiagnosticsNode().ToStringDeep(prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, minLevel: minLevel);
-}
+    /// <Summary>
+    /// Returns a string representation of this node and its descendants.
+    ///
+    /// `prefixLineOne` will be added to the front of the first line of the
+    /// output. `prefixOtherLines` will be added to the front of each other line.
+    /// If `prefixOtherLines` is null, the `prefixLineOne` is used for every line.
+    /// By default, there is no prefix.
+    ///
+    /// `minLevel` specifies the minimum [DiagnosticLevel] for properties included
+    /// in the output.
+    ///
+    /// The [toStringDeep] method takes other arguments, but those are intended
+    /// for internal use when recursing to the descendants, and so can be ignored.
+    ///
+    /// See also:
+    ///
+    ///  * [toString], for a brief description of the object but not its children.
+    ///  * [toStringShallow], for a detailed description of the object but not its
+    ///    children.
+    /// </Summary>
+    public virtual string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+    {
+        return ToDiagnosticsNode().ToStringDeep(prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, minLevel: minLevel);
+    }
 
 
 
 
-public new string ToStringShort() => DiagnosticsDefaultClass.DescribeIdentity(this);
+    public new string ToStringShort() => DiagnosticsDefaultClass.DescribeIdentity(this);
 
 
 
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticsNode ToDiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
-{
-    return new DiagnosticableTreeNode(name: name, value: this, style: style);
-}
+    public new FlutterSDK.Foundation.Diagnostics.DiagnosticsNode ToDiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
+    {
+        return new DiagnosticableTreeNode(name: name, value: this, style: style);
+    }
 
 
 
 
-/// <Summary>
-/// Returns a list of [DiagnosticsNode] objects describing this node's
-/// children.
-///
-/// Children that are offstage should be added with `style` set to
-/// [DiagnosticsTreeStyle.offstage] to indicate that they are offstage.
-///
-/// The list must not contain any null entries. If there are explicit null
-/// children to report, consider [new DiagnosticsNode.message] or
-/// [DiagnosticsProperty<Object>] as possible [DiagnosticsNode] objects to
-/// provide.
-///
-/// Used by [toStringDeep], [toDiagnosticsNode] and [toStringShallow].
-///
-/// See also:
-///
-///  * [RenderTable.debugDescribeChildren], which provides high quality custom
-///    descriptions for its child nodes.
-/// </Summary>
-public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() => new List, < DiagnosticsNode > (};
+    /// <Summary>
+    /// Returns a list of [DiagnosticsNode] objects describing this node's
+    /// children.
+    ///
+    /// Children that are offstage should be added with `style` set to
+    /// [DiagnosticsTreeStyle.offstage] to indicate that they are offstage.
+    ///
+    /// The list must not contain any null entries. If there are explicit null
+    /// children to report, consider [new DiagnosticsNode.message] or
+    /// [DiagnosticsProperty<Object>] as possible [DiagnosticsNode] objects to
+    /// provide.
+    ///
+    /// Used by [toStringDeep], [toDiagnosticsNode] and [toStringShallow].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderTable.debugDescribeChildren], which provides high quality custom
+    ///    descriptions for its child nodes.
+    /// </Summary>
+    public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() => new List, <DiagnosticsNode>(};
 
 
 #endregion
@@ -2866,33 +2930,36 @@ public class DiagnosticsBlock : FlutterSDK.Foundation.Diagnostics.DiagnosticsNod
     #region constructors
     public DiagnosticsBlock(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, string linePrefix = default(string), @Object value = default(@Object), string description = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowTruncate = false, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>), List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>))
     : base(name: name, style: style, showName: showName && name != null, showSeparator: showSeparator, linePrefix: linePrefix)
+    {
+        this.Value = value;
+        this.Level = level;
+        this.AllowTruncate = allowTruncate;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _Children { get; set; }
+    internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _Properties { get; set; }
+    public new FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get; set; }
+    internal virtual string _Description { get; set; }
+    public new @Object Value { get; set; }
+    public new bool AllowTruncate { get; set; }
+    #endregion
 
-#region fields
-internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _Children { get; set; }
-internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _Properties { get; set; }
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get; set; }
-internal virtual string _Description { get; set; }
-public new @Object Value { get; set; }
-public new bool AllowTruncate { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren() => _Children;
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties() => _Properties;
-
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren() => _Children;
 
 
-public new string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) => _Description;
+
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties() => _Properties;
 
 
-#endregion
+
+    public new string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) => _Description;
+
+
+    #endregion
 }
 
 
@@ -2900,66 +2967,68 @@ public class _DefaultDiagnosticsSerializationDelegate : IDiagnosticsSerializatio
 {
     #region constructors
     public _DefaultDiagnosticsSerializationDelegate(bool includeProperties = false, int subtreeDepth = 0)
+    {
+        this.IncludeProperties = includeProperties;
+        this.SubtreeDepth = subtreeDepth;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public new bool IncludeProperties { get; set; }
+    public new int SubtreeDepth { get; set; }
+    public virtual bool ExpandPropertyValues { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public new bool IncludeProperties { get; set; }
-public new int SubtreeDepth { get; set; }
-public virtual bool ExpandPropertyValues { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-public new Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
-{
-    return new Dictionary<string, object> { };
-}
-
-
-
-
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate DelegateForNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
-{
-    return SubtreeDepth > 0 ? CopyWith(subtreeDepth: SubtreeDepth - 1) : this;
-}
+    public new Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
+    {
+        return new Dictionary<string, object> { };
+    }
 
 
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
-{
-    return nodes;
-}
+    public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate DelegateForNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
+    {
+        return SubtreeDepth > 0 ? CopyWith(subtreeDepth: SubtreeDepth - 1) : this;
+    }
 
 
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
-{
-    return nodes;
-}
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
+    {
+        return nodes;
+    }
 
 
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TruncateNodesList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
-{
-    return nodes;
-}
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
+    {
+        return nodes;
+    }
 
 
 
 
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate CopyWith(int subtreeDepth = default(int), bool includeProperties = default(bool))
-{
-    return new _DefaultDiagnosticsSerializationDelegate(subtreeDepth: subtreeDepth ?? this.SubtreeDepth, includeProperties: includeProperties ?? this.IncludeProperties);
-}
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TruncateNodesList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
+    {
+        return nodes;
+    }
 
 
 
-#endregion
+
+    public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate CopyWith(int subtreeDepth = default(int), bool includeProperties = default(bool))
+    {
+        return new _DefaultDiagnosticsSerializationDelegate(subtreeDepth: subtreeDepth ?? this.SubtreeDepth, includeProperties: includeProperties ?? this.IncludeProperties);
+    }
+
+
+
+    #endregion
 }
 
 

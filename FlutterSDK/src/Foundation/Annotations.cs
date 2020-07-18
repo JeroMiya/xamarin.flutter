@@ -336,107 +336,110 @@ namespace FlutterSDK.Foundation.Annotations
         #region constructors
         public Category(List<string> sections)
         : base()
-    
-}
-    #endregion
+        {
+            this.Sections = sections;
+        }
+        #endregion
 
-    #region fields
-    public virtual List<string> Sections { get; set; }
-    #endregion
+        #region fields
+        public virtual List<string> Sections { get; set; }
+        #endregion
 
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// A class annotation to provide a URL to an image that represents the class.
-///
-/// Each class should only have one [DocumentationIcon].
-///
-/// {@tool snippet}
-///
-/// ```dart
-/// /// Utility class for beginning a dream-sharing sequence.
-/// /// ...documentation...
-/// @Category(<String>['Military Technology', 'Experimental'])
-/// @DocumentationIcon('https://docs.example.org/icons/top.png')
-/// class DreamSharing {
-///   // ...code...
-/// }
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [Category], to help place the class in an index.
-///  * [Summary], which is used to provide a one-line description of a
-///    class that overrides the inline documentations' own description.
-/// </Summary>
-public class DocumentationIcon
-{
-    #region constructors
-    public DocumentationIcon(string url)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual string Url { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-/// <Summary>
-/// An annotation that provides a short description of a class for use
-/// in an index.
-///
-/// Usually the first paragraph of the documentation for a class can be used
-/// for this purpose, but on occasion the first paragraph is either too short
-/// or too long for use in isolation, without the remainder of the documentation.
-///
-/// {@tool snippet}
-///
-/// ```dart
-/// /// A famous cat.
-/// ///
-/// /// Instances of this class can hunt small animals.
-/// /// This cat has three legs.
-/// @Category(<String>['Animals', 'Cats'])
-/// @Category(<String>['Cute', 'Pets'])
-/// @DocumentationIcon('https://www.examples.net/docs/images/icons/pillar.jpeg')
-/// @Summary('A famous three-legged cat.')
-/// class Pillar extends Cat {
-///   // ...code...
-/// }
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [Category], to help place the class in an index.
-///  * [DocumentationIcon], which is used to give the URL to an image that
-///    represents the class.
-/// </Summary>
-public class Summary
-{
-    #region constructors
-    public Summary(string text)
-    : base()
+    /// <Summary>
+    /// A class annotation to provide a URL to an image that represents the class.
+    ///
+    /// Each class should only have one [DocumentationIcon].
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// /// Utility class for beginning a dream-sharing sequence.
+    /// /// ...documentation...
+    /// @Category(<String>['Military Technology', 'Experimental'])
+    /// @DocumentationIcon('https://docs.example.org/icons/top.png')
+    /// class DreamSharing {
+    ///   // ...code...
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Category], to help place the class in an index.
+    ///  * [Summary], which is used to provide a one-line description of a
+    ///    class that overrides the inline documentations' own description.
+    /// </Summary>
+    public class DocumentationIcon
+    {
+        #region constructors
+        public DocumentationIcon(string url)
+        : base()
+        {
+            this.Url = url;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual string Url { get; set; }
+        #endregion
 
-#region fields
-public virtual string Text { get; set; }
-#endregion
+        #region methods
+        #endregion
+    }
 
-#region methods
-#endregion
-}
+
+    /// <Summary>
+    /// An annotation that provides a short description of a class for use
+    /// in an index.
+    ///
+    /// Usually the first paragraph of the documentation for a class can be used
+    /// for this purpose, but on occasion the first paragraph is either too short
+    /// or too long for use in isolation, without the remainder of the documentation.
+    ///
+    /// {@tool snippet}
+    ///
+    /// ```dart
+    /// /// A famous cat.
+    /// ///
+    /// /// Instances of this class can hunt small animals.
+    /// /// This cat has three legs.
+    /// @Category(<String>['Animals', 'Cats'])
+    /// @Category(<String>['Cute', 'Pets'])
+    /// @DocumentationIcon('https://www.examples.net/docs/images/icons/pillar.jpeg')
+    /// @Summary('A famous three-legged cat.')
+    /// class Pillar extends Cat {
+    ///   // ...code...
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// See also:
+    ///
+    ///  * [Category], to help place the class in an index.
+    ///  * [DocumentationIcon], which is used to give the URL to an image that
+    ///    represents the class.
+    /// </Summary>
+    public class Summary
+    {
+        #region constructors
+        public Summary(string text)
+        : base()
+        {
+            this.Text = text;
+        }
+        #endregion
+
+        #region fields
+        public virtual string Text { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

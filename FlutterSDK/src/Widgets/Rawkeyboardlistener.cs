@@ -450,125 +450,129 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
         #region constructors
         public RawKeyboardListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> onKey = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-    public virtual bool Autofocus { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> OnKey { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Rawkeyboardlistener._RawKeyboardListenerState CreateState() => new _RawKeyboardListenerState();
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<FocusNode>("focusNode", FocusNode));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _RawKeyboardListenerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener>
-{
-    #region constructors
-    public _RawKeyboardListenerState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual bool _Listening { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        Widget.FocusNode.AddListener(_HandleFocusChanged);
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.FocusNode != oldWidget.FocusNode)
         {
-            oldWidget.FocusNode.RemoveListener(_HandleFocusChanged);
-            ((StatefulWidget)Widget).FocusNode.AddListener(_HandleFocusChanged);
+            this.FocusNode = focusNode;
+            this.Autofocus = autofocus;
+            this.OnKey = onKey;
+            this.Child = child;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> OnKey { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Rawkeyboardlistener._RawKeyboardListenerState CreateState() => new _RawKeyboardListenerState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<FocusNode>("focusNode", FocusNode));
         }
 
+
+
+        #endregion
     }
 
 
-
-
-    public new void Dispose()
+    public class _RawKeyboardListenerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener>
     {
-        Widget.FocusNode.RemoveListener(_HandleFocusChanged);
-        _DetachKeyboardIfAttached();
-        base.Dispose();
+        #region constructors
+        public _RawKeyboardListenerState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual bool _Listening { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            Widget.FocusNode.AddListener(_HandleFocusChanged);
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.FocusNode != oldWidget.FocusNode)
+            {
+                oldWidget.FocusNode.RemoveListener(_HandleFocusChanged);
+                ((StatefulWidget)Widget).FocusNode.AddListener(_HandleFocusChanged);
+            }
+
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            Widget.FocusNode.RemoveListener(_HandleFocusChanged);
+            _DetachKeyboardIfAttached();
+            base.Dispose();
+        }
+
+
+
+
+        private void _HandleFocusChanged()
+        {
+            if (Widget.FocusNode.HasFocus) _AttachKeyboardIfDetached(); else _DetachKeyboardIfAttached();
+        }
+
+
+
+
+        private void _AttachKeyboardIfDetached()
+        {
+            if (_Listening) return;
+            RawkeyboardDefaultClass.RawKeyboard.Instance.AddListener(_HandleRawKeyEvent);
+            _Listening = true;
+        }
+
+
+
+
+        private void _DetachKeyboardIfAttached()
+        {
+            if (!_Listening) return;
+            RawkeyboardDefaultClass.RawKeyboard.Instance.RemoveListener(_HandleRawKeyEvent);
+            _Listening = false;
+        }
+
+
+
+
+        private void _HandleRawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event)
+        {
+            if (Widget.OnKey != null) Widget.OnKey(@event);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Focus(focusNode: Widget.FocusNode, autofocus: Widget.Autofocus, child: Widget.Child);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    private void _HandleFocusChanged()
-    {
-        if (Widget.FocusNode.HasFocus) _AttachKeyboardIfDetached(); else _DetachKeyboardIfAttached();
-    }
-
-
-
-
-    private void _AttachKeyboardIfDetached()
-    {
-        if (_Listening) return;
-        RawkeyboardDefaultClass.RawKeyboard.Instance.AddListener(_HandleRawKeyEvent);
-        _Listening = true;
-    }
-
-
-
-
-    private void _DetachKeyboardIfAttached()
-    {
-        if (!_Listening) return;
-        RawkeyboardDefaultClass.RawKeyboard.Instance.RemoveListener(_HandleRawKeyEvent);
-        _Listening = false;
-    }
-
-
-
-
-    private void _HandleRawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event)
-    {
-        if (Widget.OnKey != null) Widget.OnKey(@event);
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Focus(focusNode: Widget.FocusNode, autofocus: Widget.Autofocus, child: Widget.Child);
-    }
-
-
-
-    #endregion
-}
 
 }

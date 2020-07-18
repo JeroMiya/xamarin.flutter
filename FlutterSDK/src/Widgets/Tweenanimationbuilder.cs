@@ -539,79 +539,82 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
         #region constructors
         public TweenAnimationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.Tween<T> tween = default(FlutterSDK.Animation.Tween.Tween<T>), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, duration: duration, curve: curve, onEnd: onEnd)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Animation.Tween.Tween<T> Tween { get; set; }
-    public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
-    {
-        return new _TweenAnimationBuilderState<T>();
-    }
-
-
-
-    #endregion
-}
-
-
-public class _TweenAnimationBuilderState<T> : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Tweenanimationbuilder.TweenAnimationBuilder<T>>
-{
-    #region constructors
-    public _TweenAnimationBuilderState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Animation.Tween.Tween<T> _CurrentTween { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        _CurrentTween = Widget.Tween;
-        _CurrentTween.Begin = (_CurrentTween.Begin == null ? _CurrentTween.End : _CurrentTween.Begin);
-        base.InitState();
-        if (_CurrentTween.Begin != _CurrentTween.End)
         {
-            Controller.Forward();
+            this.Tween = tween;
+            this.Builder = builder;
+            this.Child = child;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Tween.Tween<T> Tween { get; set; }
+        public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
+        {
+            return new _TweenAnimationBuilderState<T>();
         }
 
+
+
+        #endregion
     }
 
 
-
-
-    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+    public class _TweenAnimationBuilderState<T> : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Tweenanimationbuilder.TweenAnimationBuilder<T>>
     {
+        #region constructors
+        public _TweenAnimationBuilderState()
+        { }
+        #endregion
 
-        _CurrentTween = visitor(_CurrentTween, Widget.Tween.End, (object value) =>
+        #region fields
+        internal virtual FlutterSDK.Animation.Tween.Tween<T> _CurrentTween { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            _CurrentTween = Widget.Tween;
+            _CurrentTween.Begin = (_CurrentTween.Begin == null ? _CurrentTween.End : _CurrentTween.Begin);
+            base.InitState();
+            if (_CurrentTween.Begin != _CurrentTween.End)
+            {
+                Controller.Forward();
+            }
+
+        }
+
+
+
+
+        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
 
-            return null;
+            _CurrentTween = visitor(_CurrentTween, Widget.Tween.End, (object value) =>
+            {
+
+                return null;
+            }
+            ) as Tween<T>;
         }
-        ) as Tween<T>;
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return Widget.Builder(context, _CurrentTween.Evaluate(Animation), Widget.Child);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return Widget.Builder(context, _CurrentTween.Evaluate(Animation), Widget.Child);
-    }
-
-
-
-    #endregion
-}
 
 }

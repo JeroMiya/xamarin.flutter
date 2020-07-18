@@ -520,17 +520,19 @@ yield new DiagnosticsProperty<PointerEvent>("Event", @event, style:DiagnosticsTr
         #region constructors
         public FlutterErrorDetailsForPointerEventDispatcher(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Hittest.HitTestEntry hitTestEntry = default(FlutterSDK.Gestures.Hittest.HitTestEntry), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
-    
-}
-    #endregion
+        {
+            this.@event = @event;
+            this.HitTestEntry = hitTestEntry;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
-    public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
+        public virtual FlutterSDK.Gestures.Hittest.HitTestEntry HitTestEntry { get; set; }
+        #endregion
 
-    #region methods
-    #endregion
-}
+        #region methods
+        #endregion
+    }
 
 }

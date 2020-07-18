@@ -501,506 +501,518 @@ namespace FlutterSDK.Widgets.Localizations
     {
         #region constructors
         public _Pending(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate, Future<object> futureValue)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate { get; set; }
-    public virtual Future<object> FutureValue { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// A factory for a set of localized resources of type `T`, to be loaded by a
-/// [Localizations] widget.
-///
-/// Typical applications have one [Localizations] widget which is created by the
-/// [WidgetsApp] and configured with the app's `localizationsDelegates`
-/// parameter (a list of delegates). The delegate's [type] is used to identify
-/// the object created by an individual delegate's [load] method.
-/// </Summary>
-public class LocalizationsDelegate<T>
-{
-    #region constructors
-    public LocalizationsDelegate()
-
-}
-#endregion
-
-#region fields
-public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Whether resources for the given locale can be loaded by this delegate.
-///
-/// Return true if the instance of `T` loaded by this delegate's [load]
-/// method supports the given `locale`'s language.
-/// </Summary>
-public virtual bool IsSupported(Locale locale)
-{
-    return default(bool);
-}
-
-
-/// <Summary>
-/// Start loading the resources for `locale`. The returned future completes
-/// when the resources have finished loading.
-///
-/// It's assumed that the this method will return an object that contains
-/// a collection of related resources (typically defined with one method per
-/// resource). The object will be retrieved with [Localizations.of].
-/// </Summary>
-public virtual Future<T> Load(Locale locale)
-{
-    return default(Future<T>);
-}
-
-
-/// <Summary>
-/// Returns true if the resources for this delegate should be loaded
-/// again by calling the [load] method.
-///
-/// This method is called whenever its [Localizations] widget is
-/// rebuilt. If it returns true then dependent widgets will be rebuilt
-/// after [load] has completed.
-/// </Summary>
-public virtual bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old)
-{
-    return default(bool);
-}
-
-
-#endregion
-}
-
-
-public class _WidgetsLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations>
-{
-    #region constructors
-    public _WidgetsLocalizationsDelegate()
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new bool IsSupported(Locale locale) => true;
-
-
-
-public new Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale) => LocalizationsDefaultClass.DefaultWidgetsLocalizations.Load(locale);
-
-
-
-public new bool ShouldReload(FlutterSDK.Widgets.Localizations._WidgetsLocalizationsDelegate old) => false;
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// US English localizations for the widgets library.
-///
-/// See also:
-///
-///  * [GlobalWidgetsLocalizations], which provides widgets localizations for
-///    many languages.
-///  * [WidgetsApp.delegates], which automatically includes
-///    [DefaultWidgetsLocalizations.delegate] by default.
-/// </Summary>
-public class DefaultWidgetsLocalizations : IWidgetsLocalizations
-{
-    #region constructors
-    public DefaultWidgetsLocalizations()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> @delegate { get; set; }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Creates an object that provides US English resource values for the
-/// lowest levels of the widgets library.
-///
-/// The [locale] parameter is ignored.
-///
-/// This method is typically used to create a [LocalizationsDelegate].
-/// The [WidgetsApp] does so by default.
-/// </Summary>
-public virtual Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale)
-{
-    return new SynchronousFuture<WidgetsLocalizations>(new DefaultWidgetsLocalizations());
-}
-
-
-
-#endregion
-}
-
-
-public class _LocalizationsScope : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-    #region constructors
-    public _LocalizationsScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), FlutterSDK.Widgets.Localizations._LocalizationsState localizationsState = default(FlutterSDK.Widgets.Localizations._LocalizationsState), Dictionary<Type, object> typeToResources = default(Dictionary<Type, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual Locale Locale { get; set; }
-public virtual FlutterSDK.Widgets.Localizations._LocalizationsState LocalizationsState { get; set; }
-public virtual Dictionary<Type, object> TypeToResources { get; set; }
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Localizations._LocalizationsScope old)
-{
-    return TypeToResources != old.TypeToResources;
-}
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
-{
-    return TypeToResources != old.TypeToResources;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Defines the [Locale] for its `child` and the localized resources that the
-/// child depends on.
-///
-/// Localized resources are loaded by the list of [LocalizationsDelegate]
-/// `delegates`. Each delegate is essentially a factory for a collection
-/// of localized resources. There are multiple delegates because there are
-/// multiple sources for localizations within an app.
-///
-/// Delegates are typically simple subclasses of [LocalizationsDelegate] that
-/// override [LocalizationsDelegate.load]. For example a delegate for the
-/// `MyLocalizations` class defined below would be:
-///
-/// ```dart
-/// class _MyDelegate extends LocalizationsDelegate<MyLocalizations> {
-///   @override
-///   Future<MyLocalizations> load(Locale locale) => MyLocalizations.load(locale);
-///
-///   @override
-///   bool shouldReload(MyLocalizationsDelegate old) => false;
-/// }
-/// ```
-///
-/// Each delegate can be viewed as a factory for objects that encapsulate a
-/// a set of localized resources. These objects are retrieved with
-/// by runtime type with [Localizations.of].
-///
-/// The [WidgetsApp] class creates a `Localizations` widget so most apps
-/// will not need to create one. The widget app's `Localizations` delegates can
-/// be initialized with [WidgetsApp.localizationsDelegates]. The [MaterialApp]
-/// class also provides a `localizationsDelegates` parameter that's just
-/// passed along to the [WidgetsApp].
-///
-/// Apps should retrieve collections of localized resources with
-/// `Localizations.of<MyLocalizations>(context, MyLocalizations)`,
-/// where MyLocalizations is an app specific class defines one function per
-/// resource. This is conventionally done by a static `.of` method on the
-/// MyLocalizations class.
-///
-/// For example, using the `MyLocalizations` class defined below, one would
-/// lookup a localized title string like this:
-/// ```dart
-/// MyLocalizations.of(context).title()
-/// ```
-/// If `Localizations` were to be rebuilt with a new `locale` then
-/// the widget subtree that corresponds to [BuildContext] `context` would
-/// be rebuilt after the corresponding resources had been loaded.
-///
-/// This class is effectively an [InheritedWidget]. If it's rebuilt with
-/// a new `locale` or a different list of delegates or any of its
-/// delegates' [LocalizationsDelegate.shouldReload()] methods returns true,
-/// then widgets that have created a dependency by calling
-/// `Localizations.of(context)` will be rebuilt after the resources
-/// for the new locale have been loaded.
-///
-/// {@tool snippet}
-///
-/// This following class is defined in terms of the
-/// [Dart `intl` package](https://github.com/dart-lang/intl). Using the `intl`
-/// package isn't required.
-///
-/// ```dart
-/// class MyLocalizations {
-///   MyLocalizations(this.locale);
-///
-///   final Locale locale;
-///
-///   static Future<MyLocalizations> load(Locale locale) {
-///     return initializeMessages(locale.toString())
-///       .then((void _) {
-///         return MyLocalizations(locale);
-///       });
-///   }
-///
-///   static MyLocalizations of(BuildContext context) {
-///     return Localizations.of<MyLocalizations>(context, MyLocalizations);
-///   }
-///
-///   String title() => Intl.message('<title>', name: 'title', locale: locale.toString());
-///   // ... more Intl.message() methods like title()
-/// }
-/// ```
-/// {@end-tool}
-/// A class based on the `intl` package imports a generated message catalog that provides
-/// the `initializeMessages()` function and the per-locale backing store for `Intl.message()`.
-/// The message catalog is produced by an `intl` tool that analyzes the source code for
-/// classes that contain `Intl.message()` calls. In this case that would just be the
-/// `MyLocalizations` class.
-///
-/// One could choose another approach for loading localized resources and looking them up while
-/// still conforming to the structure of this example.
-/// </Summary>
-public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public Localizations(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key)
-
-}
-public static Localizations Override(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-
-List<LocalizationsDelegate<object>> mergedDelegates = LocalizationsDefaultClass.Localizations._DelegatesOf(context);
-if (delegates != null) mergedDelegates.InsertAll(0, delegates);
-return new Localizations(key: key, locale: locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context), delegates: mergedDelegates, child: child);
-}
-
-
-#endregion
-
-#region fields
-public virtual Locale Locale { get; set; }
-public virtual List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> Delegates { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// The locale of the Localizations widget for the widget tree that
-/// corresponds to [BuildContext] `context`.
-///
-/// If no [Localizations] widget is in scope then the [Localizations.localeOf]
-/// method will throw an exception, unless the `nullOk` argument is set to
-/// true, in which case it returns null.
-/// </Summary>
-public virtual Locale LocaleOf(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false)
-{
-
-
-    _LocalizationsScope scope = context.DependOnInheritedWidgetOfExactType();
-    if (nullOk && scope == null) return null;
-
-    return scope.LocalizationsState.Locale;
-}
-
-
-
-
-private List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _DelegatesOf(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    _LocalizationsScope scope = context.DependOnInheritedWidgetOfExactType();
-
-    return List<LocalizationsDelegate<object>>.From(scope.LocalizationsState.Widget.Delegates);
-}
-
-
-
-
-/// <Summary>
-/// Returns the localized resources object of the given `type` for the widget
-/// tree that corresponds to the given `context`.
-///
-/// Returns null if no resources object of the given `type` exists within
-/// the given `context`.
-///
-/// This method is typically used by a static factory method on the `type`
-/// class. For example Flutter's MaterialLocalizations class looks up Material
-/// resources with a method defined like this:
-///
-/// ```dart
-/// static MaterialLocalizations of(BuildContext context) {
-///    return Localizations.of<MaterialLocalizations>(context, MaterialLocalizations);
-/// }
-/// ```
-/// </Summary>
-public virtual T Of<T>(FlutterSDK.Widgets.Framework.BuildContext context, Type type)
-{
-
-
-    _LocalizationsScope scope = context.DependOnInheritedWidgetOfExactType();
-    return scope?.LocalizationsState?.ResourcesFor(type);
-}
-
-
-
-
-public new FlutterSDK.Widgets.Localizations._LocalizationsState CreateState() => new _LocalizationsState();
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<Locale>("locale", Locale));
-    properties.Add(new IterableProperty<LocalizationsDelegate<object>>("delegates", Delegates));
-}
-
-
-
-#endregion
-}
-
-
-public class _LocalizationsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Localizations.Localizations>
-{
-    #region constructors
-    public _LocalizationsState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _LocalizedResourcesScopeKey { get; set; }
-    internal virtual Dictionary<Type, object> _TypeToResources { get; set; }
-    internal virtual Locale _Locale { get; set; }
-    public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual TextDirection _TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        Load(Widget.Locale);
+        {
+            this.@delegate = @delegate;
+            this.FutureValue = futureValue;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate { get; set; }
+        public virtual Future<object> FutureValue { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
 
-
-
-    private bool _AnyDelegatesShouldReload(FlutterSDK.Widgets.Localizations.Localizations old)
+    /// <Summary>
+    /// A factory for a set of localized resources of type `T`, to be loaded by a
+    /// [Localizations] widget.
+    ///
+    /// Typical applications have one [Localizations] widget which is created by the
+    /// [WidgetsApp] and configured with the app's `localizationsDelegates`
+    /// parameter (a list of delegates). The delegate's [type] is used to identify
+    /// the object created by an individual delegate's [load] method.
+    /// </Summary>
+    public class LocalizationsDelegate<T>
     {
-        if (Widget.Delegates.Count != old.Delegates.Count) return true;
-        List<LocalizationsDelegate<object>> delegates = Widget.Delegates.ToList();
-        List<LocalizationsDelegate<object>> oldDelegates = old.Delegates.ToList();
-        for (int i = 0; i < delegates.Count; i += 1)
+        #region constructors
+        public LocalizationsDelegate()
         {
-            LocalizationsDelegate<object>   delegate= delegates[i];
-            LocalizationsDelegate<object> oldDelegate = oldDelegates[i];
-            if (delegate.GetType() != oldDelegate.GetType() || delegate.ShouldReload(oldDelegate)) return true;
+
+        }
+        #endregion
+
+        #region fields
+        public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Whether resources for the given locale can be loaded by this delegate.
+        ///
+        /// Return true if the instance of `T` loaded by this delegate's [load]
+        /// method supports the given `locale`'s language.
+        /// </Summary>
+        public virtual bool IsSupported(Locale locale)
+        {
+            return default(bool);
         }
 
-        return false;
+
+        /// <Summary>
+        /// Start loading the resources for `locale`. The returned future completes
+        /// when the resources have finished loading.
+        ///
+        /// It's assumed that the this method will return an object that contains
+        /// a collection of related resources (typically defined with one method per
+        /// resource). The object will be retrieved with [Localizations.of].
+        /// </Summary>
+        public virtual Future<T> Load(Locale locale)
+        {
+            return default(Future<T>);
+        }
+
+
+        /// <Summary>
+        /// Returns true if the resources for this delegate should be loaded
+        /// again by calling the [load] method.
+        ///
+        /// This method is called whenever its [Localizations] widget is
+        /// rebuilt. If it returns true then dependent widgets will be rebuilt
+        /// after [load] has completed.
+        /// </Summary>
+        public virtual bool ShouldReload(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<T> old)
+        {
+            return default(bool);
+        }
+
+
+        #endregion
     }
 
 
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Localizations.Localizations old)
+    public class _WidgetsLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations>
     {
-        base.DidUpdateWidget(old);
-        if (Widget.Locale != old.Locale || (Widget.Delegates == null && old.Delegates != null) || (Widget.Delegates != null && old.Delegates == null) || (Widget.Delegates != null && _AnyDelegatesShouldReload(old))) Load(Widget.Locale);
+        #region constructors
+        public _WidgetsLocalizationsDelegate()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new bool IsSupported(Locale locale) => true;
+
+
+
+        public new Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale) => LocalizationsDefaultClass.DefaultWidgetsLocalizations.Load(locale);
+
+
+
+        public new bool ShouldReload(FlutterSDK.Widgets.Localizations._WidgetsLocalizationsDelegate old) => false;
+
+
+
+        #endregion
     }
 
 
-
-
-    public virtual void Load(Locale locale)
+    /// <Summary>
+    /// US English localizations for the widgets library.
+    ///
+    /// See also:
+    ///
+    ///  * [GlobalWidgetsLocalizations], which provides widgets localizations for
+    ///    many languages.
+    ///  * [WidgetsApp.delegates], which automatically includes
+    ///    [DefaultWidgetsLocalizations.delegate] by default.
+    /// </Summary>
+    public class DefaultWidgetsLocalizations : IWidgetsLocalizations
     {
-        Iterable<LocalizationsDelegate<object>> delegates = Widget.Delegates;
-        if (delegates == null || delegates.IsEmpty())
+        #region constructors
+        public DefaultWidgetsLocalizations()
         {
-            _Locale = locale;
-            return;
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> @delegate { get; set; }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Creates an object that provides US English resource values for the
+        /// lowest levels of the widgets library.
+        ///
+        /// The [locale] parameter is ignored.
+        ///
+        /// This method is typically used to create a [LocalizationsDelegate].
+        /// The [WidgetsApp] does so by default.
+        /// </Summary>
+        public virtual Future<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> Load(Locale locale)
+        {
+            return new SynchronousFuture<WidgetsLocalizations>(new DefaultWidgetsLocalizations());
         }
 
-        Dictionary<Type, object> typeToResources = default(Dictionary<Type, object>);
-        Future<Dictionary<Type, object>> typeToResourcesFuture = LocalizationsDefaultClass._LoadAll(locale, delegates).Then((Dictionary<Type, object> value) =>
+
+
+        #endregion
+    }
+
+
+    public class _LocalizationsScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _LocalizationsScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), FlutterSDK.Widgets.Localizations._LocalizationsState localizationsState = default(FlutterSDK.Widgets.Localizations._LocalizationsState), Dictionary<Type, object> typeToResources = default(Dictionary<Type, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
         {
-            return typeToResources = value;
+            this.Locale = locale;
+            this.LocalizationsState = localizationsState;
+            this.TypeToResources = typeToResources;
         }
-        );
-        if (typeToResources != null)
+        #endregion
+
+        #region fields
+        public virtual Locale Locale { get; set; }
+        public virtual FlutterSDK.Widgets.Localizations._LocalizationsState LocalizationsState { get; set; }
+        public virtual Dictionary<Type, object> TypeToResources { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Localizations._LocalizationsScope old)
         {
-            _TypeToResources = typeToResources;
-            _Locale = locale;
+            return TypeToResources != old.TypeToResources;
         }
-        else
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget)
         {
-            BindingDefaultClass.RendererBinding.Instance.DeferFirstFrame();
-            typeToResourcesFuture.Then((Dictionary<Type, object> value) =>
+            return TypeToResources != old.TypeToResources;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Defines the [Locale] for its `child` and the localized resources that the
+    /// child depends on.
+    ///
+    /// Localized resources are loaded by the list of [LocalizationsDelegate]
+    /// `delegates`. Each delegate is essentially a factory for a collection
+    /// of localized resources. There are multiple delegates because there are
+    /// multiple sources for localizations within an app.
+    ///
+    /// Delegates are typically simple subclasses of [LocalizationsDelegate] that
+    /// override [LocalizationsDelegate.load]. For example a delegate for the
+    /// `MyLocalizations` class defined below would be:
+    ///
+    /// ```dart
+    /// class _MyDelegate extends LocalizationsDelegate<MyLocalizations> {
+    ///   @override
+    ///   Future<MyLocalizations> load(Locale locale) => MyLocalizations.load(locale);
+    ///
+    ///   @override
+    ///   bool shouldReload(MyLocalizationsDelegate old) => false;
+    /// }
+    /// ```
+    ///
+    /// Each delegate can be viewed as a factory for objects that encapsulate a
+    /// a set of localized resources. These objects are retrieved with
+    /// by runtime type with [Localizations.of].
+    ///
+    /// The [WidgetsApp] class creates a `Localizations` widget so most apps
+    /// will not need to create one. The widget app's `Localizations` delegates can
+    /// be initialized with [WidgetsApp.localizationsDelegates]. The [MaterialApp]
+    /// class also provides a `localizationsDelegates` parameter that's just
+    /// passed along to the [WidgetsApp].
+    ///
+    /// Apps should retrieve collections of localized resources with
+    /// `Localizations.of<MyLocalizations>(context, MyLocalizations)`,
+    /// where MyLocalizations is an app specific class defines one function per
+    /// resource. This is conventionally done by a static `.of` method on the
+    /// MyLocalizations class.
+    ///
+    /// For example, using the `MyLocalizations` class defined below, one would
+    /// lookup a localized title string like this:
+    /// ```dart
+    /// MyLocalizations.of(context).title()
+    /// ```
+    /// If `Localizations` were to be rebuilt with a new `locale` then
+    /// the widget subtree that corresponds to [BuildContext] `context` would
+    /// be rebuilt after the corresponding resources had been loaded.
+    ///
+    /// This class is effectively an [InheritedWidget]. If it's rebuilt with
+    /// a new `locale` or a different list of delegates or any of its
+    /// delegates' [LocalizationsDelegate.shouldReload()] methods returns true,
+    /// then widgets that have created a dependency by calling
+    /// `Localizations.of(context)` will be rebuilt after the resources
+    /// for the new locale have been loaded.
+    ///
+    /// {@tool snippet}
+    ///
+    /// This following class is defined in terms of the
+    /// [Dart `intl` package](https://github.com/dart-lang/intl). Using the `intl`
+    /// package isn't required.
+    ///
+    /// ```dart
+    /// class MyLocalizations {
+    ///   MyLocalizations(this.locale);
+    ///
+    ///   final Locale locale;
+    ///
+    ///   static Future<MyLocalizations> load(Locale locale) {
+    ///     return initializeMessages(locale.toString())
+    ///       .then((void _) {
+    ///         return MyLocalizations(locale);
+    ///       });
+    ///   }
+    ///
+    ///   static MyLocalizations of(BuildContext context) {
+    ///     return Localizations.of<MyLocalizations>(context, MyLocalizations);
+    ///   }
+    ///
+    ///   String title() => Intl.message('<title>', name: 'title', locale: locale.toString());
+    ///   // ... more Intl.message() methods like title()
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// A class based on the `intl` package imports a generated message catalog that provides
+    /// the `initializeMessages()` function and the per-locale backing store for `Intl.message()`.
+    /// The message catalog is produced by an `intl` tool that analyzes the source code for
+    /// classes that contain `Intl.message()` calls. In this case that would just be the
+    /// `MyLocalizations` class.
+    ///
+    /// One could choose another approach for loading localized resources and looking them up while
+    /// still conforming to the structure of this example.
+    /// </Summary>
+    public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Localizations(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
+        {
+            this.Locale = locale;
+            this.Delegates = delegates;
+            this.Child = child;
+        }
+        public static Localizations Override(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new Localizations();
+            List<LocalizationsDelegate<object>> mergedDelegates = LocalizationsDefaultClass.Localizations._DelegatesOf(context);
+            if (delegates != null) mergedDelegates.InsertAll(0, delegates);
+            return new Localizations(key: key, locale: locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context), delegates: mergedDelegates, child: child);
+        }
+
+
+        #endregion
+
+        #region fields
+        public virtual Locale Locale { get; set; }
+        public virtual List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> Delegates { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The locale of the Localizations widget for the widget tree that
+        /// corresponds to [BuildContext] `context`.
+        ///
+        /// If no [Localizations] widget is in scope then the [Localizations.localeOf]
+        /// method will throw an exception, unless the `nullOk` argument is set to
+        /// true, in which case it returns null.
+        /// </Summary>
+        public virtual Locale LocaleOf(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false)
+        {
+
+
+            _LocalizationsScope scope = context.DependOnInheritedWidgetOfExactType();
+            if (nullOk && scope == null) return null;
+
+            return scope.LocalizationsState.Locale;
+        }
+
+
+
+
+        private List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _DelegatesOf(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            _LocalizationsScope scope = context.DependOnInheritedWidgetOfExactType();
+
+            return List<LocalizationsDelegate<object>>.From(scope.LocalizationsState.Widget.Delegates);
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the localized resources object of the given `type` for the widget
+        /// tree that corresponds to the given `context`.
+        ///
+        /// Returns null if no resources object of the given `type` exists within
+        /// the given `context`.
+        ///
+        /// This method is typically used by a static factory method on the `type`
+        /// class. For example Flutter's MaterialLocalizations class looks up Material
+        /// resources with a method defined like this:
+        ///
+        /// ```dart
+        /// static MaterialLocalizations of(BuildContext context) {
+        ///    return Localizations.of<MaterialLocalizations>(context, MaterialLocalizations);
+        /// }
+        /// ```
+        /// </Summary>
+        public virtual T Of<T>(FlutterSDK.Widgets.Framework.BuildContext context, Type type)
+        {
+
+
+            _LocalizationsScope scope = context.DependOnInheritedWidgetOfExactType();
+            return scope?.LocalizationsState?.ResourcesFor(type);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Localizations._LocalizationsState CreateState() => new _LocalizationsState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<Locale>("locale", Locale));
+            properties.Add(new IterableProperty<LocalizationsDelegate<object>>("delegates", Delegates));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _LocalizationsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Localizations.Localizations>
+    {
+        #region constructors
+        public _LocalizationsState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _LocalizedResourcesScopeKey { get; set; }
+        internal virtual Dictionary<Type, object> _TypeToResources { get; set; }
+        internal virtual Locale _Locale { get; set; }
+        public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual TextDirection _TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            Load(Widget.Locale);
+        }
+
+
+
+
+        private bool _AnyDelegatesShouldReload(FlutterSDK.Widgets.Localizations.Localizations old)
+        {
+            if (Widget.Delegates.Count != old.Delegates.Count) return true;
+            List<LocalizationsDelegate<object>> delegates = Widget.Delegates.ToList();
+            List<LocalizationsDelegate<object>> oldDelegates = old.Delegates.ToList();
+            for (int i = 0; i < delegates.Count; i += 1)
             {
-                if (Mounted)
-                {
-                    SetState(() =>
-                    {
-                        _TypeToResources = value;
-                        _Locale = locale;
-                    }
-                    );
-                }
+                LocalizationsDelegate<object>   delegate= delegates[i];
+                LocalizationsDelegate<object> oldDelegate = oldDelegates[i];
+                if (delegate.GetType() != oldDelegate.GetType() || delegate.ShouldReload(oldDelegate)) return true;
+            }
 
-                BindingDefaultClass.RendererBinding.Instance.AllowFirstFrame();
+            return false;
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Localizations.Localizations old)
+        {
+            base.DidUpdateWidget(old);
+            if (Widget.Locale != old.Locale || (Widget.Delegates == null && old.Delegates != null) || (Widget.Delegates != null && old.Delegates == null) || (Widget.Delegates != null && _AnyDelegatesShouldReload(old))) Load(Widget.Locale);
+        }
+
+
+
+
+        public virtual void Load(Locale locale)
+        {
+            Iterable<LocalizationsDelegate<object>> delegates = Widget.Delegates;
+            if (delegates == null || delegates.IsEmpty())
+            {
+                _Locale = locale;
+                return;
+            }
+
+            Dictionary<Type, object> typeToResources = default(Dictionary<Type, object>);
+            Future<Dictionary<Type, object>> typeToResourcesFuture = LocalizationsDefaultClass._LoadAll(locale, delegates).Then((Dictionary<Type, object> value) =>
+            {
+                return typeToResources = value;
             }
             );
+            if (typeToResources != null)
+            {
+                _TypeToResources = typeToResources;
+                _Locale = locale;
+            }
+            else
+            {
+                BindingDefaultClass.RendererBinding.Instance.DeferFirstFrame();
+                typeToResourcesFuture.Then((Dictionary<Type, object> value) =>
+                {
+                    if (Mounted)
+                    {
+                        SetState(() =>
+                        {
+                            _TypeToResources = value;
+                            _Locale = locale;
+                        }
+                        );
+                    }
+
+                    BindingDefaultClass.RendererBinding.Instance.AllowFirstFrame();
+                }
+                );
+            }
+
         }
 
+
+
+
+        public virtual T ResourcesFor<T>(Type type)
+        {
+
+            T resources = _TypeToResources[type] as T;
+            return resources;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (_Locale == null) return new Container();
+            return new Semantics(textDirection: _TextDirection, child: new _LocalizationsScope(key: _LocalizedResourcesScopeKey, locale: _Locale, localizationsState: this, typeToResources: _TypeToResources, child: new Directionality(textDirection: _TextDirection, child: Widget.Child)));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public virtual T ResourcesFor<T>(Type type)
-    {
-
-        T resources = _TypeToResources[type] as T;
-        return resources;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (_Locale == null) return new Container();
-        return new Semantics(textDirection: _TextDirection, child: new _LocalizationsScope(key: _LocalizedResourcesScopeKey, locale: _Locale, localizationsState: this, typeToResources: _TypeToResources, child: new Directionality(textDirection: _TextDirection, child: Widget.Child)));
-    }
-
-
-
-    #endregion
-}
 
 }

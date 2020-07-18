@@ -480,342 +480,347 @@ namespace FlutterSDK.Rendering.Proxysliver
     {
         #region constructors
         public RenderProxySliver(FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-    
-this .Child=child;
-}
-
-
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
-    {
-        if (!(child.ParentData is SliverPhysicalParentData)) child.ParentData = new SliverPhysicalParentData();
-    }
-
-
-
-
-    public new void PerformLayout()
-    {
-
-        Child.Layout(Constraints, parentUsesSize: true);
-        Geometry = Child.Geometry;
-    }
-
-
-
-
-    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-        if (Child != null) context.PaintChild(Child, offset);
-    }
-
-
-
-
-    public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
-    {
-        return Child != null && Child.Geometry.HitTestExtent > 0 && Child.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
-    }
-
-
-
-
-    public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child)
-    {
-
-
-        return 0.0;
-    }
-
-
-    public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
-    {
-
-
-        return 0.0;
-    }
-
-
-
-
-    public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
-    {
-
-        SliverPhysicalParentData childParentData = child.ParentData as SliverPhysicalParentData;
-        childParentData.ApplyPaintTransform(transform);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Makes its sliver child partially transparent.
-///
-/// This class paints its sliver child into an intermediate buffer and then
-/// blends the sliver child back into the scene, partially transparent.
-///
-/// For values of opacity other than 0.0 and 1.0, this class is relatively
-/// expensive, because it requires painting the sliver child into an intermediate
-/// buffer. For the value 0.0, the sliver child is simply not painted at all.
-/// For the value 1.0, the sliver child is painted immediately without an
-/// intermediate buffer.
-/// </Summary>
-public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
-{
-    #region constructors
-    public RenderSliverOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-    : base()
-
-Child=sliver;
-}
-
-
-#endregion
-
-#region fields
-internal virtual int _Alpha { get; set; }
-internal virtual double _Opacity { get; set; }
-internal virtual bool _AlwaysIncludeSemantics { get; set; }
-public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (Child != null && Child.Geometry.Visible)
-    {
-        if (_Alpha == 0)
         {
-            Layer = null;
-            return;
+
+            this.Child = child;
         }
 
-        if (_Alpha == 255)
+
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            Layer = null;
+            if (!(child.ParentData is SliverPhysicalParentData)) child.ParentData = new SliverPhysicalParentData();
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+
+            Child.Layout(Constraints, parentUsesSize: true);
+            Geometry = Child.Geometry;
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Child != null) context.PaintChild(Child, offset);
+        }
+
+
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+            return Child != null && Child.Geometry.HitTestExtent > 0 && Child.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
+        }
+
+
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Sliver.RenderSliver child)
+        {
+
+
+            return 0.0;
+        }
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+
+            return 0.0;
+        }
+
+
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+        {
+
+            SliverPhysicalParentData childParentData = child.ParentData as SliverPhysicalParentData;
+            childParentData.ApplyPaintTransform(transform);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Makes its sliver child partially transparent.
+    ///
+    /// This class paints its sliver child into an intermediate buffer and then
+    /// blends the sliver child back into the scene, partially transparent.
+    ///
+    /// For values of opacity other than 0.0 and 1.0, this class is relatively
+    /// expensive, because it requires painting the sliver child into an intermediate
+    /// buffer. For the value 0.0, the sliver child is simply not painted at all.
+    /// For the value 1.0, the sliver child is painted immediately without an
+    /// intermediate buffer.
+    /// </Summary>
+    public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
+    {
+        #region constructors
+        public RenderSliverOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+
+            Child = sliver;
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual int _Alpha { get; set; }
+        internal virtual double _Opacity { get; set; }
+        internal virtual bool _AlwaysIncludeSemantics { get; set; }
+        public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Child != null && Child.Geometry.Visible)
+            {
+                if (_Alpha == 0)
+                {
+                    Layer = null;
+                    return;
+                }
+
+                if (_Alpha == 255)
+                {
+                    Layer = null;
+                    context.PaintChild(Child, offset);
+                    return;
+                }
+
+
+                Layer = context.PushOpacity(offset, _Alpha, base.Paint, oldLayer: Layer as OpacityLayer);
+            }
+
+        }
+
+
+
+
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+        {
+            if (Child != null && (_Alpha != 0 || AlwaysIncludeSemantics)) visitor(Child);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DoubleProperty("opacity", Opacity));
+            properties.Add(new FlagProperty("alwaysIncludeSemantics", value: AlwaysIncludeSemantics, ifTrue: "alwaysIncludeSemantics"));
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A render object that is invisible during hit testing.
+    ///
+    /// When [ignoring] is true, this render object (and its subtree) is invisible
+    /// to hit testing. It still consumes space during layout and paints its sliver
+    /// child as usual. It just cannot be the target of located events, because its
+    /// render object returns false from [hitTest].
+    ///
+    /// When [ignoringSemantics] is true, the subtree will be invisible to the
+    /// semantics layer (and thus e.g. accessibility tools). If [ignoringSemantics]
+    /// is null, it uses the value of [ignoring].
+    /// </Summary>
+    public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
+    {
+        #region constructors
+        public RenderSliverIgnorePointer(FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver), bool ignoring = true, bool ignoringSemantics = default(bool))
+        : base()
+        {
+
+            Child = sliver;
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual bool _Ignoring { get; set; }
+        internal virtual bool _IgnoringSemantics { get; set; }
+        public virtual bool Ignoring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+            return !Ignoring && base.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
+        }
+
+
+
+
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+        {
+            if (Child != null && !_EffectiveIgnoringSemantics) visitor(Child);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<bool>("ignoring", Ignoring));
+            properties.Add(new DiagnosticsProperty<bool>("ignoringSemantics", _EffectiveIgnoringSemantics, description: IgnoringSemantics == null ? $"'implicitly {_EffectiveIgnoringSemantics}'" : null));
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Lays the sliver child out as if it was in the tree, but without painting
+    /// anything, without making the sliver child available for hit testing, and
+    /// without taking any room in the parent.
+    /// </Summary>
+    public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
+    {
+        #region constructors
+        public RenderSliverOffstage(bool offstage = true, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+
+            Child = sliver;
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual bool _Offstage { get; set; }
+        public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout()
+        {
+
+            Child.Layout(Constraints, parentUsesSize: true);
+            if (!Offstage) Geometry = Child.Geometry; else Geometry = new SliverGeometry(scrollExtent: 0.0, visible: false, maxPaintExtent: 0.0);
+        }
+
+
+
+
+        public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+            return !Offstage && base.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
+        }
+
+
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+            return !Offstage && Child != null && Child.Geometry.HitTestExtent > 0 && Child.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Offstage) return;
             context.PaintChild(Child, offset);
-            return;
         }
 
 
-        Layer = context.PushOpacity(offset, _Alpha, base.Paint, oldLayer: Layer as OpacityLayer);
+
+
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+        {
+            if (Offstage) return;
+            base.VisitChildrenForSemantics(visitor);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<bool>("offstage", Offstage));
+        }
+
+
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+        {
+            if (Child == null) return new List<DiagnosticsNode>() { };
+            return new List<DiagnosticsNode>() { Child.ToDiagnosticsNode(name: "child", style: Offstage ? DiagnosticsTreeStyle.Offstage : DiagnosticsTreeStyle.Sparse) };
+        }
+
+
+
+        #endregion
     }
 
-}
 
-
-
-
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
-{
-    if (Child != null && (_Alpha != 0 || AlwaysIncludeSemantics)) visitor(Child);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DoubleProperty("opacity", Opacity));
-    properties.Add(new FlagProperty("alwaysIncludeSemantics", value: AlwaysIncludeSemantics, ifTrue: "alwaysIncludeSemantics"));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A render object that is invisible during hit testing.
-///
-/// When [ignoring] is true, this render object (and its subtree) is invisible
-/// to hit testing. It still consumes space during layout and paints its sliver
-/// child as usual. It just cannot be the target of located events, because its
-/// render object returns false from [hitTest].
-///
-/// When [ignoringSemantics] is true, the subtree will be invisible to the
-/// semantics layer (and thus e.g. accessibility tools). If [ignoringSemantics]
-/// is null, it uses the value of [ignoring].
-/// </Summary>
-public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
-{
-    #region constructors
-    public RenderSliverIgnorePointer(FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver), bool ignoring = true, bool ignoringSemantics = default(bool))
-    : base()
-
-Child=sliver;
-}
-
-
-#endregion
-
-#region fields
-internal virtual bool _Ignoring { get; set; }
-internal virtual bool _IgnoringSemantics { get; set; }
-public virtual bool Ignoring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
-{
-    return !Ignoring && base.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
-}
-
-
-
-
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
-{
-    if (Child != null && !_EffectiveIgnoringSemantics) visitor(Child);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<bool>("ignoring", Ignoring));
-    properties.Add(new DiagnosticsProperty<bool>("ignoringSemantics", _EffectiveIgnoringSemantics, description: IgnoringSemantics == null ? $"'implicitly {_EffectiveIgnoringSemantics}'" : null));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Lays the sliver child out as if it was in the tree, but without painting
-/// anything, without making the sliver child available for hit testing, and
-/// without taking any room in the parent.
-/// </Summary>
-public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
-{
-    #region constructors
-    public RenderSliverOffstage(bool offstage = true, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-    : base()
-
-Child=sliver;
-}
-
-
-#endregion
-
-#region fields
-internal virtual bool _Offstage { get; set; }
-public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void PerformLayout()
-{
-
-    Child.Layout(Constraints, parentUsesSize: true);
-    if (!Offstage) Geometry = Child.Geometry; else Geometry = new SliverGeometry(scrollExtent: 0.0, visible: false, maxPaintExtent: 0.0);
-}
-
-
-
-
-public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
-{
-    return !Offstage && base.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
-}
-
-
-
-
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
-{
-    return !Offstage && Child != null && Child.Geometry.HitTestExtent > 0 && Child.HitTest(result, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (Offstage) return;
-    context.PaintChild(Child, offset);
-}
-
-
-
-
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
-{
-    if (Offstage) return;
-    base.VisitChildrenForSemantics(visitor);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<bool>("offstage", Offstage));
-}
-
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
-{
-    if (Child == null) return new List<DiagnosticsNode>() { };
-    return new List<DiagnosticsNode>() { Child.ToDiagnosticsNode(name: "child", style: Offstage ? DiagnosticsTreeStyle.Offstage : DiagnosticsTreeStyle.Sparse) };
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Makes its sliver child partially transparent, driven from an [Animation].
-///
-/// This is a variant of [RenderSliverOpacity] that uses an [Animation<double>]
-/// rather than a [double] to control the opacity.
-/// </Summary>
-public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
-{
-    #region constructors
-    public RenderSliverAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
-    : base()
-
-this .Opacity=opacity;
-this .AlwaysIncludeSemantics=alwaysIncludeSemantics;
-Child=sliver;
-}
-
-
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-#endregion
-}
+    /// <Summary>
+    /// Makes its sliver child partially transparent, driven from an [Animation].
+    ///
+    /// This is a variant of [RenderSliverOpacity] that uses an [Animation<double>]
+    /// rather than a [double] to control the opacity.
+    /// </Summary>
+    public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
+    {
+        #region constructors
+        public RenderSliverAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
+        : base()
+        {
+
+            this.Opacity = opacity;
+            this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
+            Child = sliver;
+        }
+
+
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

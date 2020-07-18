@@ -487,63 +487,68 @@ namespace FlutterSDK.Widgets.Icon
         #region constructors
         public Icon(FlutterSDK.Widgets.Icondata.IconData icon, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string), TextDirection textDirection = default(TextDirection))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Icondata.IconData IconValue { get; set; }
-    public virtual double Size { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual string SemanticLabel { get; set; }
-    public virtual TextDirection TextDirection { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        TextDirection textDirection = this.TextDirection ?? BasicDefaultClass.Directionality.Of(context);
-        IconThemeData iconTheme = IconthemeDefaultClass.IconTheme.Of(context);
-        double iconSize = size == default(double) ? iconTheme.size : size;
-        if (Icon == null)
         {
-            return new Semantics(label: SemanticLabel, child: new SizedBox(width: iconSize, height: iconSize));
+            this.IconValue = icon;
+            this.Size = size;
+            this.Color = color;
+            this.SemanticLabel = semanticLabel;
+            this.TextDirection = textDirection;
         }
+        #endregion
 
-        double iconOpacity = iconTheme.Opacity;
-        Color iconColor = Color ?? iconTheme.Color;
-        if (iconOpacity != 1.0) iconColor = iconColor.WithOpacity(iconColor.Opacity * iconOpacity);
-        Widget iconWidget = new RichText(overflow: TextOverflow.Visible, textDirection: textDirection, text: new TextSpan(text: string.FromCharCode(Icon.CodePoint), style: new TextStyle(inherit: false, color: iconColor, fontSize: iconSize, fontFamily: Icon.FontFamily, package: Icon.FontPackage)));
-        if (Icon.MatchTextDirection)
+        #region fields
+        public virtual FlutterSDK.Widgets.Icondata.IconData IconValue { get; set; }
+        public virtual double Size { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual string SemanticLabel { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            switch (textDirection)
+
+            TextDirection textDirection = this.TextDirection ?? BasicDefaultClass.Directionality.Of(context);
+            IconThemeData iconTheme = IconthemeDefaultClass.IconTheme.Of(context);
+            double iconSize = size == default(double) ? iconTheme.size : size;
+            if (Icon == null)
             {
-                case TextDirection.Rtl:
-                    iconWidget = new Transform(transform: Matrix4.Identity();
-                    Matrix4.Identity().Scale(-1.0, 1.0, 1.0), alignment: AlignmentDefaultClass.Alignment.Center, transformHitTests: false , child: iconWidget); break;
-                case TextDirection.Ltr: break;
+                return new Semantics(label: SemanticLabel, child: new SizedBox(width: iconSize, height: iconSize));
             }
+
+            double iconOpacity = iconTheme.Opacity;
+            Color iconColor = Color ?? iconTheme.Color;
+            if (iconOpacity != 1.0) iconColor = iconColor.WithOpacity(iconColor.Opacity * iconOpacity);
+            Widget iconWidget = new RichText(overflow: TextOverflow.Visible, textDirection: textDirection, text: new TextSpan(text: string.FromCharCode(Icon.CodePoint), style: new TextStyle(inherit: false, color: iconColor, fontSize: iconSize, fontFamily: Icon.FontFamily, package: Icon.FontPackage)));
+            if (Icon.MatchTextDirection)
+            {
+                switch (textDirection)
+                {
+                    case TextDirection.Rtl:
+                        iconWidget = new Transform(transform: Matrix4.Identity();
+                        Matrix4.Identity().Scale(-1.0, 1.0, 1.0), alignment: AlignmentDefaultClass.Alignment.Center, transformHitTests: false , child: iconWidget); break;
+                    case TextDirection.Ltr: break;
+                }
+            }
+
+            return new Semantics(label: SemanticLabel, child: new ExcludeSemantics(child: new SizedBox(width: iconSize, height: iconSize, child: new Center(child: iconWidget))));
         }
 
-        return new Semantics(label: SemanticLabel, child: new ExcludeSemantics(child: new SizedBox(width: iconSize, height: iconSize, child: new Center(child: iconWidget))));
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new IconDataProperty("icon", Icon, ifNull: "<empty>", showName: false));
+            properties.Add(new DoubleProperty("size", Size, defaultValue: null));
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new IconDataProperty("icon", Icon, ifNull: "<empty>", showName: false));
-        properties.Add(new DoubleProperty("size", Size, defaultValue: null));
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
 
 }

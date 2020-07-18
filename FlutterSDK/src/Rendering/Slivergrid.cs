@@ -501,616 +501,637 @@ namespace FlutterSDK.Rendering.Slivergrid
     {
         #region constructors
         public SliverGridGeometry(double scrollOffset = default(double), double crossAxisOffset = default(double), double mainAxisExtent = default(double), double crossAxisExtent = default(double))
-    
-}
-    #endregion
+        {
+            this.ScrollOffset = scrollOffset;
+            this.CrossAxisOffset = crossAxisOffset;
+            this.MainAxisExtent = mainAxisExtent;
+            this.CrossAxisExtent = crossAxisExtent;
+        }
+        #endregion
 
-    #region fields
-    public virtual double ScrollOffset { get; set; }
-    public virtual double CrossAxisOffset { get; set; }
-    public virtual double MainAxisExtent { get; set; }
-    public virtual double CrossAxisExtent { get; set; }
-    public virtual double TrailingScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual double ScrollOffset { get; set; }
+        public virtual double CrossAxisOffset { get; set; }
+        public virtual double MainAxisExtent { get; set; }
+        public virtual double CrossAxisExtent { get; set; }
+        public virtual double TrailingScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Returns a tight [BoxConstraints] that forces the child to have the
+        /// required size.
+        /// </Summary>
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints GetBoxConstraints(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+        {
+            return constraints.AsBoxConstraints(minExtent: MainAxisExtent, maxExtent: MainAxisExtent, crossAxisExtent: CrossAxisExtent);
+        }
+
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Returns a tight [BoxConstraints] that forces the child to have the
-    /// required size.
+    /// The size and position of all the tiles in a [RenderSliverGrid].
+    ///
+    /// Rather that providing a grid with a [SliverGridLayout] directly, you instead
+    /// provide the grid a [SliverGridDelegate], which can compute a
+    /// [SliverGridLayout] given the current [SliverConstraints].
+    ///
+    /// The tiles can be placed arbitrarily, but it is more efficient to place tiles
+    /// in roughly in order by scroll offset because grids reify a contiguous
+    /// sequence of children.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridRegularTileLayout], which represents a layout that uses
+    ///    equally sized and spaced tiles.
+    ///  * [SliverGridGeometry], which represents the size and position of a single
+    ///    tile in a grid.
+    ///  * [SliverGridDelegate.getLayout], which returns this object to describe the
+    ///    delegate's layout.
+    ///  * [RenderSliverGrid], which uses this class during its
+    ///    [RenderSliverGrid.performLayout] method.
     /// </Summary>
-    public virtual FlutterSDK.Rendering.Box.BoxConstraints GetBoxConstraints(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+    public class SliverGridLayout
     {
-        return constraints.AsBoxConstraints(minExtent: MainAxisExtent, maxExtent: MainAxisExtent, crossAxisExtent: CrossAxisExtent);
-    }
-
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// The size and position of all the tiles in a [RenderSliverGrid].
-///
-/// Rather that providing a grid with a [SliverGridLayout] directly, you instead
-/// provide the grid a [SliverGridDelegate], which can compute a
-/// [SliverGridLayout] given the current [SliverConstraints].
-///
-/// The tiles can be placed arbitrarily, but it is more efficient to place tiles
-/// in roughly in order by scroll offset because grids reify a contiguous
-/// sequence of children.
-///
-/// See also:
-///
-///  * [SliverGridRegularTileLayout], which represents a layout that uses
-///    equally sized and spaced tiles.
-///  * [SliverGridGeometry], which represents the size and position of a single
-///    tile in a grid.
-///  * [SliverGridDelegate.getLayout], which returns this object to describe the
-///    delegate's layout.
-///  * [RenderSliverGrid], which uses this class during its
-///    [RenderSliverGrid.performLayout] method.
-/// </Summary>
-public class SliverGridLayout
-{
-    #region constructors
-    public SliverGridLayout()
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-/// <Summary>
-/// The minimum child index that is visible at (or after) this scroll offset.
-/// </Summary>
-public virtual int GetMinChildIndexForScrollOffset(double scrollOffset)
-{
-    return default(int);
-}
-
-
-/// <Summary>
-/// The maximum child index that is visible at (or before) this scroll offset.
-/// </Summary>
-public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset)
-{
-    return default(int);
-}
-
-
-/// <Summary>
-/// The size and position of the child with the given index.
-/// </Summary>
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index)
-{
-    return default(SliverGridGeometry);
-}
-
-
-/// <Summary>
-/// The scroll extent needed to fully display all the tiles if there are
-/// `childCount` children in total.
-///
-/// The child count will never be null.
-/// </Summary>
-public virtual double ComputeMaxScrollOffset(int childCount)
-{
-    return default(double);
-}
-
-#endregion
-}
-
-
-/// <Summary>
-/// A [SliverGridLayout] that uses equally sized and spaced tiles.
-///
-/// Rather that providing a grid with a [SliverGridLayout] directly, you instead
-/// provide the grid a [SliverGridDelegate], which can compute a
-/// [SliverGridLayout] given the current [SliverConstraints].
-///
-/// This layout is used by [SliverGridDelegateWithFixedCrossAxisCount] and
-/// [SliverGridDelegateWithMaxCrossAxisExtent].
-///
-/// See also:
-///
-///  * [SliverGridDelegateWithFixedCrossAxisCount], which uses this layout.
-///  * [SliverGridDelegateWithMaxCrossAxisExtent], which uses this layout.
-///  * [SliverGridLayout], which represents an arbitrary tile layout.
-///  * [SliverGridGeometry], which represents the size and position of a single
-///    tile in a grid.
-///  * [SliverGridDelegate.getLayout], which returns this object to describe the
-///    delegate's layout.
-///  * [RenderSliverGrid], which uses this class during its
-///    [RenderSliverGrid.performLayout] method.
-/// </Summary>
-public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
-{
-    #region constructors
-    public SliverGridRegularTileLayout(int crossAxisCount = default(int), double mainAxisStride = default(double), double crossAxisStride = default(double), double childMainAxisExtent = default(double), double childCrossAxisExtent = default(double), bool reverseCrossAxis = default(bool))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual int CrossAxisCount { get; set; }
-public virtual double MainAxisStride { get; set; }
-public virtual double CrossAxisStride { get; set; }
-public virtual double ChildMainAxisExtent { get; set; }
-public virtual double ChildCrossAxisExtent { get; set; }
-public virtual bool ReverseCrossAxis { get; set; }
-#endregion
-
-#region methods
-
-public new int GetMinChildIndexForScrollOffset(double scrollOffset)
-{
-    return MainAxisStride > 0.0 ? CrossAxisCount * (scrollOffset~/ MainAxisStride):0;
-}
-
-
-
-
-public new int GetMaxChildIndexForScrollOffset(double scrollOffset)
-{
-    if (MainAxisStride > 0.0)
-    {
-        int mainAxisCount = (scrollOffset / MainAxisStride).Ceil();
-        return Math.Dart:mathDefaultClass.Max(0, CrossAxisCount * mainAxisCount - 1);
-    }
-
-    return 0;
-}
-
-
-
-
-private double _GetOffsetFromStartInCrossAxis(double crossAxisStart)
-{
-    if (ReverseCrossAxis) return CrossAxisCount * CrossAxisStride - crossAxisStart - ChildCrossAxisExtent - (CrossAxisStride - ChildCrossAxisExtent);
-    return crossAxisStart;
-}
-
-
-
-
-public new FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index)
-{
-    double crossAxisStart = (index % CrossAxisCount) * CrossAxisStride;
-    return new SliverGridGeometry(scrollOffset: (index~/ CrossAxisCount) * MainAxisStride, crossAxisOffset: _GetOffsetFromStartInCrossAxis(crossAxisStart), mainAxisExtent: ChildMainAxisExtent, crossAxisExtent: ChildCrossAxisExtent);
-}
-
-
-
-
-public new double ComputeMaxScrollOffset(int childCount)
-{
-
-    int mainAxisCount = ((childCount - 1)~/ CrossAxisCount)+1;
-    double mainAxisSpacing = MainAxisStride - ChildMainAxisExtent;
-    return MainAxisStride * mainAxisCount - mainAxisSpacing;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Controls the layout of tiles in a grid.
-///
-/// Given the current constraints on the grid, a [SliverGridDelegate] computes
-/// the layout for the tiles in the grid. The tiles can be placed arbitrarily,
-/// but it is more efficient to place tiles in roughly in order by scroll offset
-/// because grids reify a contiguous sequence of children.
-///
-/// See also:
-///
-///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
-///    a fixed number of tiles in the cross axis.
-///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
-///    tiles that have a maximum cross-axis extent.
-///  * [GridView], which uses this delegate to control the layout of its tiles.
-///  * [SliverGrid], which uses this delegate to control the layout of its
-///    tiles.
-///  * [RenderSliverGrid], which uses this delegate to control the layout of its
-///    tiles.
-/// </Summary>
-public class SliverGridDelegate
-{
-    #region constructors
-    public SliverGridDelegate()
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns information about the size and position of the tiles in the grid.
-/// </Summary>
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
-{
-    return default(SliverGridLayout);
-}
-
-
-/// <Summary>
-/// Override this method to return true when the children need to be
-/// laid out.
-///
-/// This should compare the fields of the current delegate and the given
-/// `oldDelegate` and return true if the fields are such that the layout would
-/// be different.
-/// </Summary>
-public virtual bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate)
-{
-    return default(bool);
-}
-
-#endregion
-}
-
-
-/// <Summary>
-/// Creates grid layouts with a fixed number of tiles in the cross axis.
-///
-/// For example, if the grid is vertical, this delegate will create a layout
-/// with a fixed number of columns. If the grid is horizontal, this delegate
-/// will create a layout with a fixed number of rows.
-///
-/// This delegate creates grids with equally sized and spaced tiles.
-///
-/// See also:
-///
-///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
-///    tiles that have a maximum cross-axis extent.
-///  * [SliverGridDelegate], which creates arbitrary layouts.
-///  * [GridView], which can use this delegate to control the layout of its
-///    tiles.
-///  * [SliverGrid], which can use this delegate to control the layout of its
-///    tiles.
-///  * [RenderSliverGrid], which can use this delegate to control the layout of
-///    its tiles.
-/// </Summary>
-public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
-{
-    #region constructors
-    public SliverGridDelegateWithFixedCrossAxisCount(int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual int CrossAxisCount { get; set; }
-public virtual double MainAxisSpacing { get; set; }
-public virtual double CrossAxisSpacing { get; set; }
-public virtual double ChildAspectRatio { get; set; }
-#endregion
-
-#region methods
-
-private bool _DebugAssertIsValid()
-{
-
-
-
-
-    return true;
-}
-
-
-
-
-public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
-{
-
-    double usableCrossAxisExtent = constraints.CrossAxisExtent - CrossAxisSpacing * (CrossAxisCount - 1);
-    double childCrossAxisExtent = usableCrossAxisExtent / CrossAxisCount;
-    double childMainAxisExtent = childCrossAxisExtent / ChildAspectRatio;
-    return new SliverGridRegularTileLayout(crossAxisCount: CrossAxisCount, mainAxisStride: childMainAxisExtent + MainAxisSpacing, crossAxisStride: childCrossAxisExtent + CrossAxisSpacing, childMainAxisExtent: childMainAxisExtent, childCrossAxisExtent: childCrossAxisExtent, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
-}
-
-
-
-
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithFixedCrossAxisCount oldDelegate)
-{
-    return oldDelegate.CrossAxisCount != CrossAxisCount || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
-}
-
-
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate)
-{
-    return oldDelegate.CrossAxisCount != CrossAxisCount || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Creates grid layouts with tiles that each have a maximum cross-axis extent.
-///
-/// This delegate will select a cross-axis extent for the tiles that is as
-/// large as possible subject to the following conditions:
-///
-///  - The extent evenly divides the cross-axis extent of the grid.
-///  - The extent is at most [maxCrossAxisExtent].
-///
-/// For example, if the grid is vertical, the grid is 500.0 pixels wide, and
-/// [maxCrossAxisExtent] is 150.0, this delegate will create a grid with 4
-/// columns that are 125.0 pixels wide.
-///
-/// This delegate creates grids with equally sized and spaced tiles.
-///
-/// See also:
-///
-///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
-///    a fixed number of tiles in the cross axis.
-///  * [SliverGridDelegate], which creates arbitrary layouts.
-///  * [GridView], which can use this delegate to control the layout of its
-///    tiles.
-///  * [SliverGrid], which can use this delegate to control the layout of its
-///    tiles.
-///  * [RenderSliverGrid], which can use this delegate to control the layout of
-///    its tiles.
-/// </Summary>
-public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
-{
-    #region constructors
-    public SliverGridDelegateWithMaxCrossAxisExtent(double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual double MaxCrossAxisExtent { get; set; }
-public virtual double MainAxisSpacing { get; set; }
-public virtual double CrossAxisSpacing { get; set; }
-public virtual double ChildAspectRatio { get; set; }
-#endregion
-
-#region methods
-
-private bool _DebugAssertIsValid()
-{
-
-
-
-
-    return true;
-}
-
-
-
-
-public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
-{
-
-    int crossAxisCount = (constraints.CrossAxisExtent / (MaxCrossAxisExtent + CrossAxisSpacing)).Ceil();
-    double usableCrossAxisExtent = constraints.CrossAxisExtent - CrossAxisSpacing * (crossAxisCount - 1);
-    double childCrossAxisExtent = usableCrossAxisExtent / crossAxisCount;
-    double childMainAxisExtent = childCrossAxisExtent / ChildAspectRatio;
-    return new SliverGridRegularTileLayout(crossAxisCount: crossAxisCount, mainAxisStride: childMainAxisExtent + MainAxisSpacing, crossAxisStride: childCrossAxisExtent + CrossAxisSpacing, childMainAxisExtent: childMainAxisExtent, childCrossAxisExtent: childCrossAxisExtent, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
-}
-
-
-
-
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithMaxCrossAxisExtent oldDelegate)
-{
-    return oldDelegate.MaxCrossAxisExtent != MaxCrossAxisExtent || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
-}
-
-
-public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate)
-{
-    return oldDelegate.MaxCrossAxisExtent != MaxCrossAxisExtent || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Parent data structure used by [RenderSliverGrid].
-/// </Summary>
-public class SliverGridParentData : FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData
-{
-    #region constructors
-    public SliverGridParentData()
-    { }
-    #endregion
-
-    #region fields
-    public virtual double CrossAxisOffset { get; set; }
-    #endregion
-
-    #region methods
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A sliver that places multiple box children in a two dimensional arrangement.
-///
-/// [RenderSliverGrid] places its children in arbitrary positions determined by
-/// [gridDelegate]. Each child is forced to have the size specified by the
-/// [gridDelegate].
-///
-/// See also:
-///
-///  * [RenderSliverList], which places its children in a linear
-///    array.
-///  * [RenderSliverFixedExtentList], which places its children in a linear
-///    array with a fixed extent in the main axis.
-/// </Summary>
-public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
-{
-    #region constructors
-    public RenderSliverGrid(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
-    : base(childManager: childManager)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate _GridDelegate { get; set; }
-public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
-{
-    if (!(child.ParentData is SliverGridParentData)) child.ParentData = new SliverGridParentData();
-}
-
-
-
-
-public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
-{
-    SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
-    return childParentData.CrossAxisOffset;
-}
-
-
-public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
-{
-    SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
-    return childParentData.CrossAxisOffset;
-}
-
-
-
-
-public new void PerformLayout()
-{
-    SliverConstraints constraints = this.Constraints;
-    ChildManager.DidStartLayout();
-    ChildManager.SetDidUnderflow(false);
-    double scrollOffset = constraints.ScrollOffset + constraints.CacheOrigin;
-
-    double remainingExtent = constraints.RemainingCacheExtent;
-
-    double targetEndScrollOffset = scrollOffset + remainingExtent;
-    SliverGridLayout layout = _GridDelegate.GetLayout(constraints);
-    int firstIndex = layout.GetMinChildIndexForScrollOffset(scrollOffset);
-    int targetLastIndex = targetEndScrollOffset.IsFinite() ? layout.GetMaxChildIndexForScrollOffset(targetEndScrollOffset) : null;
-    if (FirstChild != null)
-    {
-        int oldFirstIndex = IndexOf(FirstChild);
-        int oldLastIndex = IndexOf(LastChild);
-        int leadingGarbage = (firstIndex - oldFirstIndex).Clamp(0, ChildCount) as int;
-        int trailingGarbage = targetLastIndex == null ? 0 : ((oldLastIndex - targetLastIndex).Clamp(0, ChildCount) as int);
-        CollectGarbage(leadingGarbage, trailingGarbage);
-    }
-    else
-    {
-        CollectGarbage(0, 0);
-    }
-
-    SliverGridGeometry firstChildGridGeometry = layout.GetGeometryForChildIndex(firstIndex);
-    double leadingScrollOffset = firstChildGridGeometry.ScrollOffset;
-    double trailingScrollOffset = firstChildGridGeometry.TrailingScrollOffset;
-    if (FirstChild == null)
-    {
-        if (!AddInitialChild(index: firstIndex, layoutOffset: firstChildGridGeometry.ScrollOffset))
+        #region constructors
+        public SliverGridLayout()
         {
-            double max = layout.ComputeMaxScrollOffset(ChildManager.ChildCount);
-            Geometry = new SliverGeometry(scrollExtent: max, maxPaintExtent: max);
-            ChildManager.DidFinishLayout();
-            return;
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The minimum child index that is visible at (or after) this scroll offset.
+        /// </Summary>
+        public virtual int GetMinChildIndexForScrollOffset(double scrollOffset)
+        {
+            return default(int);
         }
 
-    }
 
-    RenderBox trailingChildWithLayout = default(RenderBox);
-    for (int index = IndexOf(FirstChild) - 1; index >= firstIndex; --index)
-    {
-        SliverGridGeometry gridGeometry = layout.GetGeometryForChildIndex(index);
-        RenderBox child = InsertAndLayoutLeadingChild(gridGeometry.GetBoxConstraints(constraints));
-        SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
-        childParentData.LayoutOffset = gridGeometry.ScrollOffset;
-        childParentData.CrossAxisOffset = gridGeometry.CrossAxisOffset;
-
-        trailingChildWithLayout = (trailingChildWithLayout == null ? child : trailingChildWithLayout);
-        trailingScrollOffset = Math.Dart:mathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
-    }
-
-    if (trailingChildWithLayout == null)
-    {
-        FirstChild.Layout(firstChildGridGeometry.GetBoxConstraints(constraints));
-        SliverGridParentData childParentData = FirstChild.ParentData as SliverGridParentData;
-        childParentData.LayoutOffset = firstChildGridGeometry.ScrollOffset;
-        childParentData.CrossAxisOffset = firstChildGridGeometry.CrossAxisOffset;
-        trailingChildWithLayout = FirstChild;
-    }
-
-    for (int index = IndexOf(trailingChildWithLayout) + 1; targetLastIndex == null || index <= targetLastIndex; ++index)
-    {
-        SliverGridGeometry gridGeometry = layout.GetGeometryForChildIndex(index);
-        BoxConstraints childConstraints = gridGeometry.GetBoxConstraints(constraints);
-        RenderBox child = ChildAfter(trailingChildWithLayout);
-        if (child == null || IndexOf(child) != index)
+        /// <Summary>
+        /// The maximum child index that is visible at (or before) this scroll offset.
+        /// </Summary>
+        public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset)
         {
-            child = InsertAndLayoutChild(childConstraints, after: trailingChildWithLayout);
-            if (child == null)
+            return default(int);
+        }
+
+
+        /// <Summary>
+        /// The size and position of the child with the given index.
+        /// </Summary>
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index)
+        {
+            return default(SliverGridGeometry);
+        }
+
+
+        /// <Summary>
+        /// The scroll extent needed to fully display all the tiles if there are
+        /// `childCount` children in total.
+        ///
+        /// The child count will never be null.
+        /// </Summary>
+        public virtual double ComputeMaxScrollOffset(int childCount)
+        {
+            return default(double);
+        }
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A [SliverGridLayout] that uses equally sized and spaced tiles.
+    ///
+    /// Rather that providing a grid with a [SliverGridLayout] directly, you instead
+    /// provide the grid a [SliverGridDelegate], which can compute a
+    /// [SliverGridLayout] given the current [SliverConstraints].
+    ///
+    /// This layout is used by [SliverGridDelegateWithFixedCrossAxisCount] and
+    /// [SliverGridDelegateWithMaxCrossAxisExtent].
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which uses this layout.
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which uses this layout.
+    ///  * [SliverGridLayout], which represents an arbitrary tile layout.
+    ///  * [SliverGridGeometry], which represents the size and position of a single
+    ///    tile in a grid.
+    ///  * [SliverGridDelegate.getLayout], which returns this object to describe the
+    ///    delegate's layout.
+    ///  * [RenderSliverGrid], which uses this class during its
+    ///    [RenderSliverGrid.performLayout] method.
+    /// </Summary>
+    public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
+    {
+        #region constructors
+        public SliverGridRegularTileLayout(int crossAxisCount = default(int), double mainAxisStride = default(double), double crossAxisStride = default(double), double childMainAxisExtent = default(double), double childCrossAxisExtent = default(double), bool reverseCrossAxis = default(bool))
+        : base()
+        {
+            this.CrossAxisCount = crossAxisCount;
+            this.MainAxisStride = mainAxisStride;
+            this.CrossAxisStride = crossAxisStride;
+            this.ChildMainAxisExtent = childMainAxisExtent;
+            this.ChildCrossAxisExtent = childCrossAxisExtent;
+            this.ReverseCrossAxis = reverseCrossAxis;
+        }
+        #endregion
+
+        #region fields
+        public virtual int CrossAxisCount { get; set; }
+        public virtual double MainAxisStride { get; set; }
+        public virtual double CrossAxisStride { get; set; }
+        public virtual double ChildMainAxisExtent { get; set; }
+        public virtual double ChildCrossAxisExtent { get; set; }
+        public virtual bool ReverseCrossAxis { get; set; }
+        #endregion
+
+        #region methods
+
+        public new int GetMinChildIndexForScrollOffset(double scrollOffset)
+        {
+            return MainAxisStride > 0.0 ? CrossAxisCount * (scrollOffset~/ MainAxisStride):0;
+        }
+
+
+
+
+        public new int GetMaxChildIndexForScrollOffset(double scrollOffset)
+        {
+            if (MainAxisStride > 0.0)
             {
-                break;
+                int mainAxisCount = (scrollOffset / MainAxisStride).Ceil();
+                return Math.Dart:mathDefaultClass.Max(0, CrossAxisCount * mainAxisCount - 1);
             }
 
+            return 0;
         }
-        else
+
+
+
+
+        private double _GetOffsetFromStartInCrossAxis(double crossAxisStart)
         {
-            child.Layout(childConstraints);
+            if (ReverseCrossAxis) return CrossAxisCount * CrossAxisStride - crossAxisStart - ChildCrossAxisExtent - (CrossAxisStride - ChildCrossAxisExtent);
+            return crossAxisStart;
         }
 
-        trailingChildWithLayout = child;
 
-        SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
-        childParentData.LayoutOffset = gridGeometry.ScrollOffset;
-        childParentData.CrossAxisOffset = gridGeometry.CrossAxisOffset;
 
-        trailingScrollOffset = Math.Dart:mathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
+
+        public new FlutterSDK.Rendering.Slivergrid.SliverGridGeometry GetGeometryForChildIndex(int index)
+        {
+            double crossAxisStart = (index % CrossAxisCount) * CrossAxisStride;
+            return new SliverGridGeometry(scrollOffset: (index~/ CrossAxisCount) * MainAxisStride, crossAxisOffset: _GetOffsetFromStartInCrossAxis(crossAxisStart), mainAxisExtent: ChildMainAxisExtent, crossAxisExtent: ChildCrossAxisExtent);
+        }
+
+
+
+
+        public new double ComputeMaxScrollOffset(int childCount)
+        {
+
+            int mainAxisCount = ((childCount - 1)~/ CrossAxisCount)+1;
+            double mainAxisSpacing = MainAxisStride - ChildMainAxisExtent;
+            return MainAxisStride * mainAxisCount - mainAxisSpacing;
+        }
+
+
+
+        #endregion
     }
 
-    int lastIndex = IndexOf(LastChild);
+
+    /// <Summary>
+    /// Controls the layout of tiles in a grid.
+    ///
+    /// Given the current constraints on the grid, a [SliverGridDelegate] computes
+    /// the layout for the tiles in the grid. The tiles can be placed arbitrarily,
+    /// but it is more efficient to place tiles in roughly in order by scroll offset
+    /// because grids reify a contiguous sequence of children.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
+    ///    a fixed number of tiles in the cross axis.
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
+    ///    tiles that have a maximum cross-axis extent.
+    ///  * [GridView], which uses this delegate to control the layout of its tiles.
+    ///  * [SliverGrid], which uses this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which uses this delegate to control the layout of its
+    ///    tiles.
+    /// </Summary>
+    public class SliverGridDelegate
+    {
+        #region constructors
+        public SliverGridDelegate()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns information about the size and position of the tiles in the grid.
+        /// </Summary>
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+        {
+            return default(SliverGridLayout);
+        }
+
+
+        /// <Summary>
+        /// Override this method to return true when the children need to be
+        /// laid out.
+        ///
+        /// This should compare the fields of the current delegate and the given
+        /// `oldDelegate` and return true if the fields are such that the layout would
+        /// be different.
+        /// </Summary>
+        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate)
+        {
+            return default(bool);
+        }
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Creates grid layouts with a fixed number of tiles in the cross axis.
+    ///
+    /// For example, if the grid is vertical, this delegate will create a layout
+    /// with a fixed number of columns. If the grid is horizontal, this delegate
+    /// will create a layout with a fixed number of rows.
+    ///
+    /// This delegate creates grids with equally sized and spaced tiles.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithMaxCrossAxisExtent], which creates a layout with
+    ///    tiles that have a maximum cross-axis extent.
+    ///  * [SliverGridDelegate], which creates arbitrary layouts.
+    ///  * [GridView], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [SliverGrid], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which can use this delegate to control the layout of
+    ///    its tiles.
+    /// </Summary>
+    public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+    {
+        #region constructors
+        public SliverGridDelegateWithFixedCrossAxisCount(int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
+        : base()
+        {
+            this.CrossAxisCount = crossAxisCount;
+            this.MainAxisSpacing = mainAxisSpacing;
+            this.CrossAxisSpacing = crossAxisSpacing;
+            this.ChildAspectRatio = childAspectRatio;
+        }
+        #endregion
+
+        #region fields
+        public virtual int CrossAxisCount { get; set; }
+        public virtual double MainAxisSpacing { get; set; }
+        public virtual double CrossAxisSpacing { get; set; }
+        public virtual double ChildAspectRatio { get; set; }
+        #endregion
+
+        #region methods
+
+        private bool _DebugAssertIsValid()
+        {
 
 
 
 
-    double estimatedTotalExtent = ChildManager.EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset);
-    double paintExtent = CalculatePaintOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
-    double cacheExtent = CalculateCacheOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
-    Geometry = new SliverGeometry(scrollExtent: estimatedTotalExtent, paintExtent: paintExtent, maxPaintExtent: estimatedTotalExtent, cacheExtent: cacheExtent, hasVisualOverflow: true);
-    if (estimatedTotalExtent == trailingScrollOffset) ChildManager.SetDidUnderflow(true);
-    ChildManager.DidFinishLayout();
-}
+            return true;
+        }
 
 
 
-#endregion
-}
+
+        public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+        {
+
+            double usableCrossAxisExtent = constraints.CrossAxisExtent - CrossAxisSpacing * (CrossAxisCount - 1);
+            double childCrossAxisExtent = usableCrossAxisExtent / CrossAxisCount;
+            double childMainAxisExtent = childCrossAxisExtent / ChildAspectRatio;
+            return new SliverGridRegularTileLayout(crossAxisCount: CrossAxisCount, mainAxisStride: childMainAxisExtent + MainAxisSpacing, crossAxisStride: childCrossAxisExtent + CrossAxisSpacing, childMainAxisExtent: childMainAxisExtent, childCrossAxisExtent: childCrossAxisExtent, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
+        }
+
+
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithFixedCrossAxisCount oldDelegate)
+        {
+            return oldDelegate.CrossAxisCount != CrossAxisCount || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
+        }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate)
+        {
+            return oldDelegate.CrossAxisCount != CrossAxisCount || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Creates grid layouts with tiles that each have a maximum cross-axis extent.
+    ///
+    /// This delegate will select a cross-axis extent for the tiles that is as
+    /// large as possible subject to the following conditions:
+    ///
+    ///  - The extent evenly divides the cross-axis extent of the grid.
+    ///  - The extent is at most [maxCrossAxisExtent].
+    ///
+    /// For example, if the grid is vertical, the grid is 500.0 pixels wide, and
+    /// [maxCrossAxisExtent] is 150.0, this delegate will create a grid with 4
+    /// columns that are 125.0 pixels wide.
+    ///
+    /// This delegate creates grids with equally sized and spaced tiles.
+    ///
+    /// See also:
+    ///
+    ///  * [SliverGridDelegateWithFixedCrossAxisCount], which creates a layout with
+    ///    a fixed number of tiles in the cross axis.
+    ///  * [SliverGridDelegate], which creates arbitrary layouts.
+    ///  * [GridView], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [SliverGrid], which can use this delegate to control the layout of its
+    ///    tiles.
+    ///  * [RenderSliverGrid], which can use this delegate to control the layout of
+    ///    its tiles.
+    /// </Summary>
+    public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
+    {
+        #region constructors
+        public SliverGridDelegateWithMaxCrossAxisExtent(double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
+        : base()
+        {
+            this.MaxCrossAxisExtent = maxCrossAxisExtent;
+            this.MainAxisSpacing = mainAxisSpacing;
+            this.CrossAxisSpacing = crossAxisSpacing;
+            this.ChildAspectRatio = childAspectRatio;
+        }
+        #endregion
+
+        #region fields
+        public virtual double MaxCrossAxisExtent { get; set; }
+        public virtual double MainAxisSpacing { get; set; }
+        public virtual double CrossAxisSpacing { get; set; }
+        public virtual double ChildAspectRatio { get; set; }
+        #endregion
+
+        #region methods
+
+        private bool _DebugAssertIsValid()
+        {
+
+
+
+
+            return true;
+        }
+
+
+
+
+        public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
+        {
+
+            int crossAxisCount = (constraints.CrossAxisExtent / (MaxCrossAxisExtent + CrossAxisSpacing)).Ceil();
+            double usableCrossAxisExtent = constraints.CrossAxisExtent - CrossAxisSpacing * (crossAxisCount - 1);
+            double childCrossAxisExtent = usableCrossAxisExtent / crossAxisCount;
+            double childMainAxisExtent = childCrossAxisExtent / ChildAspectRatio;
+            return new SliverGridRegularTileLayout(crossAxisCount: crossAxisCount, mainAxisStride: childMainAxisExtent + MainAxisSpacing, crossAxisStride: childCrossAxisExtent + CrossAxisSpacing, childMainAxisExtent: childMainAxisExtent, childCrossAxisExtent: childCrossAxisExtent, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
+        }
+
+
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegateWithMaxCrossAxisExtent oldDelegate)
+        {
+            return oldDelegate.MaxCrossAxisExtent != MaxCrossAxisExtent || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
+        }
+
+
+        public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate)
+        {
+            return oldDelegate.MaxCrossAxisExtent != MaxCrossAxisExtent || oldDelegate.MainAxisSpacing != MainAxisSpacing || oldDelegate.CrossAxisSpacing != CrossAxisSpacing || oldDelegate.ChildAspectRatio != ChildAspectRatio;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Parent data structure used by [RenderSliverGrid].
+    /// </Summary>
+    public class SliverGridParentData : FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData
+    {
+        #region constructors
+        public SliverGridParentData()
+        { }
+        #endregion
+
+        #region fields
+        public virtual double CrossAxisOffset { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A sliver that places multiple box children in a two dimensional arrangement.
+    ///
+    /// [RenderSliverGrid] places its children in arbitrary positions determined by
+    /// [gridDelegate]. Each child is forced to have the size specified by the
+    /// [gridDelegate].
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverList], which places its children in a linear
+    ///    array.
+    ///  * [RenderSliverFixedExtentList], which places its children in a linear
+    ///    array with a fixed extent in the main axis.
+    /// </Summary>
+    public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
+    {
+        #region constructors
+        public RenderSliverGrid(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
+        : base(childManager: childManager)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate _GridDelegate { get; set; }
+        public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            if (!(child.ParentData is SliverGridParentData)) child.ParentData = new SliverGridParentData();
+        }
+
+
+
+
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+            SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
+            return childParentData.CrossAxisOffset;
+        }
+
+
+        public new double ChildCrossAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
+            return childParentData.CrossAxisOffset;
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            SliverConstraints constraints = this.Constraints;
+            ChildManager.DidStartLayout();
+            ChildManager.SetDidUnderflow(false);
+            double scrollOffset = constraints.ScrollOffset + constraints.CacheOrigin;
+
+            double remainingExtent = constraints.RemainingCacheExtent;
+
+            double targetEndScrollOffset = scrollOffset + remainingExtent;
+            SliverGridLayout layout = _GridDelegate.GetLayout(constraints);
+            int firstIndex = layout.GetMinChildIndexForScrollOffset(scrollOffset);
+            int targetLastIndex = targetEndScrollOffset.IsFinite() ? layout.GetMaxChildIndexForScrollOffset(targetEndScrollOffset) : null;
+            if (FirstChild != null)
+            {
+                int oldFirstIndex = IndexOf(FirstChild);
+                int oldLastIndex = IndexOf(LastChild);
+                int leadingGarbage = (firstIndex - oldFirstIndex).Clamp(0, ChildCount) as int;
+                int trailingGarbage = targetLastIndex == null ? 0 : ((oldLastIndex - targetLastIndex).Clamp(0, ChildCount) as int);
+                CollectGarbage(leadingGarbage, trailingGarbage);
+            }
+            else
+            {
+                CollectGarbage(0, 0);
+            }
+
+            SliverGridGeometry firstChildGridGeometry = layout.GetGeometryForChildIndex(firstIndex);
+            double leadingScrollOffset = firstChildGridGeometry.ScrollOffset;
+            double trailingScrollOffset = firstChildGridGeometry.TrailingScrollOffset;
+            if (FirstChild == null)
+            {
+                if (!AddInitialChild(index: firstIndex, layoutOffset: firstChildGridGeometry.ScrollOffset))
+                {
+                    double max = layout.ComputeMaxScrollOffset(ChildManager.ChildCount);
+                    Geometry = new SliverGeometry(scrollExtent: max, maxPaintExtent: max);
+                    ChildManager.DidFinishLayout();
+                    return;
+                }
+
+            }
+
+            RenderBox trailingChildWithLayout = default(RenderBox);
+            for (int index = IndexOf(FirstChild) - 1; index >= firstIndex; --index)
+            {
+                SliverGridGeometry gridGeometry = layout.GetGeometryForChildIndex(index);
+                RenderBox child = InsertAndLayoutLeadingChild(gridGeometry.GetBoxConstraints(constraints));
+                SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
+                childParentData.LayoutOffset = gridGeometry.ScrollOffset;
+                childParentData.CrossAxisOffset = gridGeometry.CrossAxisOffset;
+
+                trailingChildWithLayout = (trailingChildWithLayout == null ? child : trailingChildWithLayout);
+                trailingScrollOffset = Math.Dart:mathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
+            }
+
+            if (trailingChildWithLayout == null)
+            {
+                FirstChild.Layout(firstChildGridGeometry.GetBoxConstraints(constraints));
+                SliverGridParentData childParentData = FirstChild.ParentData as SliverGridParentData;
+                childParentData.LayoutOffset = firstChildGridGeometry.ScrollOffset;
+                childParentData.CrossAxisOffset = firstChildGridGeometry.CrossAxisOffset;
+                trailingChildWithLayout = FirstChild;
+            }
+
+            for (int index = IndexOf(trailingChildWithLayout) + 1; targetLastIndex == null || index <= targetLastIndex; ++index)
+            {
+                SliverGridGeometry gridGeometry = layout.GetGeometryForChildIndex(index);
+                BoxConstraints childConstraints = gridGeometry.GetBoxConstraints(constraints);
+                RenderBox child = ChildAfter(trailingChildWithLayout);
+                if (child == null || IndexOf(child) != index)
+                {
+                    child = InsertAndLayoutChild(childConstraints, after: trailingChildWithLayout);
+                    if (child == null)
+                    {
+                        break;
+                    }
+
+                }
+                else
+                {
+                    child.Layout(childConstraints);
+                }
+
+                trailingChildWithLayout = child;
+
+                SliverGridParentData childParentData = child.ParentData as SliverGridParentData;
+                childParentData.LayoutOffset = gridGeometry.ScrollOffset;
+                childParentData.CrossAxisOffset = gridGeometry.CrossAxisOffset;
+
+                trailingScrollOffset = Math.Dart:mathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
+            }
+
+            int lastIndex = IndexOf(LastChild);
+
+
+
+
+            double estimatedTotalExtent = ChildManager.EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset);
+            double paintExtent = CalculatePaintOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
+            double cacheExtent = CalculateCacheOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
+            Geometry = new SliverGeometry(scrollExtent: estimatedTotalExtent, paintExtent: paintExtent, maxPaintExtent: estimatedTotalExtent, cacheExtent: cacheExtent, hasVisualOverflow: true);
+            if (estimatedTotalExtent == trailingScrollOffset) ChildManager.SetDidUnderflow(true);
+            ChildManager.DidFinishLayout();
+        }
+
+
+
+        #endregion
+    }
 
 }

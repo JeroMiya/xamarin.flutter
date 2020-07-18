@@ -479,670 +479,682 @@ namespace FlutterSDK.Painting.Boxborder
     {
         #region constructors
         public BoxBorder()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Painting.Borders.BorderSide Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) => null;
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two borders.
-    ///
-    /// If a border is null, it is treated as having four [BorderSide.none]
-    /// borders.
-    ///
-    /// This supports interpolating between [Border] and [BorderDirectional]
-    /// objects. If both objects are different types but both have sides on one or
-    /// both of their lateral edges (the two sides that aren't the top and bottom)
-    /// other than [BorderSide.none], then the sides are interpolated by reducing
-    /// `a`'s lateral edges to [BorderSide.none] over the first half of the
-    /// animation, and then bringing `b`'s lateral edges _from_ [BorderSide.none]
-    /// over the second half of the animation.
-    ///
-    /// For a more flexible approach, consider [ShapeBorder.lerp], which would
-    /// instead [add] the two sets of sides and interpolate them simultaneously.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Boxborder.BoxBorder Lerp(FlutterSDK.Painting.Boxborder.BoxBorder a, FlutterSDK.Painting.Boxborder.BoxBorder b, double t)
-    {
-
-        if ((a is Border || a == null) && (b is Border || b == null)) return BoxborderDefaultClass.Border.Lerp(a as Border, b as Border, t);
-        if ((a is BorderDirectional || a == null) && (b is BorderDirectional || b == null)) return BoxborderDefaultClass.BorderDirectional.Lerp(a as BorderDirectional, b as BorderDirectional, t);
-        if (b is Border && a is BorderDirectional)
         {
-            BoxBorder c = ((Border)b);
-            ((Border)b) = ((Border)a);
-            ((Border)a) = c;
-            t = 1.0 - t;
+
         }
+        #endregion
 
-        if (a is Border && b is BorderDirectional)
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) => null;
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two borders.
+        ///
+        /// If a border is null, it is treated as having four [BorderSide.none]
+        /// borders.
+        ///
+        /// This supports interpolating between [Border] and [BorderDirectional]
+        /// objects. If both objects are different types but both have sides on one or
+        /// both of their lateral edges (the two sides that aren't the top and bottom)
+        /// other than [BorderSide.none], then the sides are interpolated by reducing
+        /// `a`'s lateral edges to [BorderSide.none] over the first half of the
+        /// animation, and then bringing `b`'s lateral edges _from_ [BorderSide.none]
+        /// over the second half of the animation.
+        ///
+        /// For a more flexible approach, consider [ShapeBorder.lerp], which would
+        /// instead [add] the two sets of sides and interpolate them simultaneously.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxborder.BoxBorder Lerp(FlutterSDK.Painting.Boxborder.BoxBorder a, FlutterSDK.Painting.Boxborder.BoxBorder b, double t)
         {
-            if (((BorderDirectional)b).Start == BordersDefaultClass.BorderSide.None && ((BorderDirectional)b).End == BordersDefaultClass.BorderSide.None)
+
+            if ((a is Border || a == null) && (b is Border || b == null)) return BoxborderDefaultClass.Border.Lerp(a as Border, b as Border, t);
+            if ((a is BorderDirectional || a == null) && (b is BorderDirectional || b == null)) return BoxborderDefaultClass.BorderDirectional.Lerp(a as BorderDirectional, b as BorderDirectional, t);
+            if (b is Border && a is BorderDirectional)
             {
-                return new Border(top: BordersDefaultClass.BorderSide.Lerp(((Border)a).Top, ((BorderDirectional)b).Top, t), right: BordersDefaultClass.BorderSide.Lerp(((Border)a).Right, BordersDefaultClass.BorderSide.None, t), bottom: BordersDefaultClass.BorderSide.Lerp(((Border)a).Bottom, ((BorderDirectional)b).Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(((Border)a).Left, BordersDefaultClass.BorderSide.None, t));
+                BoxBorder c = ((Border)b);
+                ((Border)b) = ((Border)a);
+                ((Border)a) = c;
+                t = 1.0 - t;
             }
 
-            if (a.Left == BordersDefaultClass.BorderSide.None && a.Right == BordersDefaultClass.BorderSide.None)
+            if (a is Border && b is BorderDirectional)
             {
-                return new BorderDirectional(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), start: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.Start, t), end: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.End, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t));
-            }
-
-            if (t < 0.5)
-            {
-                return new Border(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), right: BordersDefaultClass.BorderSide.Lerp(a.Right, BordersDefaultClass.BorderSide.None, t * 2.0), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(a.Left, BordersDefaultClass.BorderSide.None, t * 2.0));
-            }
-
-            return new BorderDirectional(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), start: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.Start, (t - 0.5) * 2.0), end: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.End, (t - 0.5) * 2.0), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t));
-        }
-
-        throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("BoxBorder.lerp can only interpolate Border and BorderDirectional classes."), new ErrorDescription($"'BoxBorder.lerp() was called with two objects of type {a.GetType()} and {b.GetType()}:\n'" + $"'  {a}\n'" + $"'  {b}\n'" + "However, only Border and BorderDirectional classes are supported by this method."), new ErrorHint("For a more general interpolation method, consider using ShapeBorder.lerp instead.") });
-    }
-
-
-
-
-    public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-
-        return new Path();
-        new Path().AddRect(Dimensions.Resolve(textDirection).DeflateRect(rect));
-    }
-
-
-
-
-    public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-
-        return new Path();
-        new Path().AddRect(rect);
-    }
-
-
-
-
-    /// <Summary>
-    /// Paints the border within the given [Rect] on the given [Canvas].
-    ///
-    /// This is an extension of the [ShapeBorder.paint] method. It allows
-    /// [BoxBorder] borders to be applied to different [BoxShape]s and with
-    /// different [borderRadius] parameters, without changing the [BoxBorder]
-    /// object itself.
-    ///
-    /// The `shape` argument specifies the [BoxShape] to draw the border on.
-    ///
-    /// If the `shape` is specifies a rectangular box shape
-    /// ([BoxShape.rectangle]), then the `borderRadius` argument describes the
-    /// corners of the rectangle.
-    ///
-    /// The [getInnerPath] and [getOuterPath] methods do not know about the
-    /// `shape` and `borderRadius` arguments.
-    ///
-    /// See also:
-    ///
-    ///  * [paintBorder], which is used if the border is not uniform.
-    /// </Summary>
-    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
-    {
-    }
-
-
-    private void _PaintUniformBorderWithRadius(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius)
-    {
-
-        Paint paint = new Paint()..Color = side.Color;
-        RRect outer = borderRadius.ToRRect(rect);
-        double width = side.Width;
-        if (width == 0.0)
-        {
-            ..Style = PaintingStyle.Stroke..StrokeWidth = 0.0;
-            canvas.DrawRRect(outer, paint);
-        }
-        else
-        {
-            RRect inner = outer.Deflate(width);
-            canvas.DrawDRRect(outer, inner, paint);
-        }
-
-    }
-
-
-
-
-    private void _PaintUniformBorderWithCircle(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side)
-    {
-
-        double width = side.Width;
-        Paint paint = side.ToPaint();
-        double radius = (rect.ShortestSide - width) / 2.0;
-        canvas.DrawCircle(rect.Center, radius, paint);
-    }
-
-
-
-
-    private void _PaintUniformBorderWithRectangle(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side)
-    {
-
-        double width = side.Width;
-        Paint paint = side.ToPaint();
-        canvas.DrawRect(rect.Deflate(width / 2.0), paint);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A border of a box, comprised of four sides: top, right, bottom, left.
-///
-/// The sides are represented by [BorderSide] objects.
-///
-/// {@tool snippet}
-///
-/// All four borders the same, two-pixel wide solid white:
-///
-/// ```dart
-/// Border.all(width: 2.0, color: const Color(0xFFFFFFFF))
-/// ```
-/// {@end-tool}
-/// {@tool snippet}
-///
-/// The border for a material design divider:
-///
-/// ```dart
-/// Border(bottom: BorderSide(color: Theme.of(context).dividerColor))
-/// ```
-/// {@end-tool}
-/// {@tool snippet}
-///
-/// A 1990s-era "OK" button:
-///
-/// ```dart
-/// Container(
-///   decoration: const BoxDecoration(
-///     border: Border(
-///       top: BorderSide(width: 1.0, color: Color(0xFFFFFFFFFF)),
-///       left: BorderSide(width: 1.0, color: Color(0xFFFFFFFFFF)),
-///       right: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
-///       bottom: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
-///     ),
-///   ),
-///   child: Container(
-///     padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
-///     decoration: const BoxDecoration(
-///       border: Border(
-///         top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-///         left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
-///         right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-///         bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
-///       ),
-///       color: Color(0xFFBFBFBF),
-///     ),
-///     child: const Text(
-///       'OK',
-///       textAlign: TextAlign.center,
-///       style: TextStyle(color: Color(0xFF000000))
-///     ),
-///   ),
-/// )
-/// ```
-/// {@end-tool}
-///
-/// See also:
-///
-///  * [BoxDecoration], which uses this class to describe its edge decoration.
-///  * [BorderSide], which is used to describe each side of the box.
-///  * [Theme], from the material layer, which can be queried to obtain appropriate colors
-///    to use for borders in a material app, as shown in the "divider" sample above.
-/// </Summary>
-public class Border : FlutterSDK.Painting.Boxborder.BoxBorder
-{
-    #region constructors
-    public Border(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
-    : base()
-
-}
-public static Border FromBorderSide(FlutterSDK.Painting.Borders.BorderSide side)
-
-}
-public static Border Symmetric(FlutterSDK.Painting.Borders.BorderSide vertical = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontal = default(FlutterSDK.Painting.Borders.BorderSide))
-
-}
-public static Border All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
-
-BorderSide side = new BorderSide(color: color, width: width, style: style);
-return Border.FromBorderSide(side);
-}
-
-
-#endregion
-
-#region fields
-public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
-public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
-public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
-public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Creates a [Border] that represents the addition of the two given
-/// [Border]s.
-///
-/// It is only valid to call this if [BorderSide.canMerge] returns true for
-/// the pairwise combination of each side on both [Border]s.
-///
-/// The arguments must not be null.
-/// </Summary>
-public virtual FlutterSDK.Painting.Boxborder.Border Merge(FlutterSDK.Painting.Boxborder.Border a, FlutterSDK.Painting.Boxborder.Border b)
-{
-
-
-
-
-
-
-    return new Border(top: BordersDefaultClass.BorderSide.Merge(a.Top, b.Top), right: BordersDefaultClass.BorderSide.Merge(a.Right, b.Right), bottom: BordersDefaultClass.BorderSide.Merge(a.Bottom, b.Bottom), left: BordersDefaultClass.BorderSide.Merge(a.Left, b.Left));
-}
-
-
-
-
-public new FlutterSDK.Painting.Boxborder.Border Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false)
-{
-    if (other is Border && BordersDefaultClass.BorderSide.CanMerge(Top, other.Top) && BordersDefaultClass.BorderSide.CanMerge(Right, other.Right) && BordersDefaultClass.BorderSide.CanMerge(Bottom, other.Bottom) && BordersDefaultClass.BorderSide.CanMerge(Left, other.Left))
-    {
-        return BoxborderDefaultClass.Border.Merge(this, ((Border)other));
-    }
-
-    return null;
-}
-
-
-
-
-public new FlutterSDK.Painting.Boxborder.Border Scale(double t)
-{
-    return new Border(top: Top.Scale(t), right: Right.Scale(t), bottom: Bottom.Scale(t), left: Left.Scale(t));
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-    if (a is Border) return BoxborderDefaultClass.Border.Lerp(a, this, t);
-    return base.LerpFrom(a, t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-    if (b is Border) return BoxborderDefaultClass.Border.Lerp(this, b, t);
-    return base.LerpTo(b, t);
-}
-
-
-
-
-/// <Summary>
-/// Linearly interpolate between two borders.
-///
-/// If a border is null, it is treated as having four [BorderSide.none]
-/// borders.
-///
-/// {@macro dart.ui.shadow.lerp}
-/// </Summary>
-public virtual FlutterSDK.Painting.Boxborder.Border Lerp(FlutterSDK.Painting.Boxborder.Border a, FlutterSDK.Painting.Boxborder.Border b, double t)
-{
-
-    if (a == null && b == null) return null;
-    if (a == null) return b.Scale(t);
-    if (b == null) return a.Scale(1.0 - t);
-    return new Border(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), right: BordersDefaultClass.BorderSide.Lerp(a.Right, b.Right, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(a.Left, b.Left, t));
-}
-
-
-
-
-/// <Summary>
-/// Paints the border within the given [Rect] on the given [Canvas].
-///
-/// Uniform borders are more efficient to paint than more complex borders.
-///
-/// You can provide a [BoxShape] to draw the border on. If the `shape` in
-/// [BoxShape.circle], there is the requirement that the border [isUniform].
-///
-/// If you specify a rectangular box shape ([BoxShape.rectangle]), then you
-/// may specify a [BorderRadius]. If a `borderRadius` is specified, there is
-/// the requirement that the border [isUniform].
-///
-/// The [getInnerPath] and [getOuterPath] methods do not know about the
-/// `shape` and `borderRadius` arguments.
-///
-/// The `textDirection` argument is not used by this paint method.
-///
-/// See also:
-///
-///  * [paintBorder], which is used if the border is not uniform.
-/// </Summary>
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
-{
-    if (IsUniform)
-    {
-        switch (Top.Style)
-        {
-            case BorderStyle.None: return;
-            case BorderStyle.Solid:
-                switch (shape)
+                if (((BorderDirectional)b).Start == BordersDefaultClass.BorderSide.None && ((BorderDirectional)b).End == BordersDefaultClass.BorderSide.None)
                 {
-                    case BoxShape.Circle: BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithCircle(canvas, rect, Top); break;
-                    case BoxShape.Rectangle:
-                        if (borderRadius != null)
-                        {
-                            BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRadius(canvas, rect, Top, borderRadius);
-                            return;
-                        }
-                        BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRectangle(canvas, rect, Top); break;
+                    return new Border(top: BordersDefaultClass.BorderSide.Lerp(((Border)a).Top, ((BorderDirectional)b).Top, t), right: BordersDefaultClass.BorderSide.Lerp(((Border)a).Right, BordersDefaultClass.BorderSide.None, t), bottom: BordersDefaultClass.BorderSide.Lerp(((Border)a).Bottom, ((BorderDirectional)b).Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(((Border)a).Left, BordersDefaultClass.BorderSide.None, t));
                 }
-                return;
-        }
-    }
 
-
-
-    BordersDefaultClass.PaintBorder(canvas, rect, top: Top, right: Right, bottom: Bottom, left: Left);
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (Dart:coreDefaultClass.Identical(this, other))return true;
-    if (other.GetType() != GetType()) return false;
-    return other is Border && other.Top == Top && other.Right == Right && other.Bottom == Bottom && other.Left == Left;
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A border of a box, comprised of four sides, the lateral sides of which
-/// flip over based on the reading direction.
-///
-/// The lateral sides are called [start] and [end]. When painted in
-/// left-to-right environments, the [start] side will be painted on the left and
-/// the [end] side on the right; in right-to-left environments, it is the
-/// reverse. The other two sides are [top] and [bottom].
-///
-/// The sides are represented by [BorderSide] objects.
-///
-/// If the [start] and [end] sides are the same, then it is slightly more
-/// efficient to use a [Border] object rather than a [BorderDirectional] object.
-///
-/// See also:
-///
-///  * [BoxDecoration], which uses this class to describe its edge decoration.
-///  * [BorderSide], which is used to describe each side of the box.
-///  * [Theme], from the material layer, which can be queried to obtain appropriate colors
-///    to use for borders in a material app, as shown in the "divider" sample above.
-/// </Summary>
-public class BorderDirectional : FlutterSDK.Painting.Boxborder.BoxBorder
-{
-    #region constructors
-    public BorderDirectional(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide start = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide end = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide))
-    : base()
-
-}
-#endregion
-
-#region fields
-public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
-public virtual FlutterSDK.Painting.Borders.BorderSide Start { get; set; }
-public virtual FlutterSDK.Painting.Borders.BorderSide End { get; set; }
-public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Creates a [BorderDirectional] that represents the addition of the two
-/// given [BorderDirectional]s.
-///
-/// It is only valid to call this if [BorderSide.canMerge] returns true for
-/// the pairwise combination of each side on both [BorderDirectional]s.
-///
-/// The arguments must not be null.
-/// </Summary>
-public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Merge(FlutterSDK.Painting.Boxborder.BorderDirectional a, FlutterSDK.Painting.Boxborder.BorderDirectional b)
-{
-
-
-
-
-
-
-    return new BorderDirectional(top: BordersDefaultClass.BorderSide.Merge(a.Top, b.Top), start: BordersDefaultClass.BorderSide.Merge(a.Start, b.Start), end: BordersDefaultClass.BorderSide.Merge(a.End, b.End), bottom: BordersDefaultClass.BorderSide.Merge(a.Bottom, b.Bottom));
-}
-
-
-
-
-public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false)
-{
-    if (other is BorderDirectional)
-    {
-        BorderDirectional typedOther = ((Border)other);
-        if (BordersDefaultClass.BorderSide.CanMerge(Top, typedOther.Top) && BordersDefaultClass.BorderSide.CanMerge(Start, typedOther.Start) && BordersDefaultClass.BorderSide.CanMerge(End, typedOther.End) && BordersDefaultClass.BorderSide.CanMerge(Bottom, typedOther.Bottom))
-        {
-            return BoxborderDefaultClass.BorderDirectional.Merge(this, typedOther);
-        }
-
-        return null;
-    }
-
-    if (other is Border)
-    {
-        Border typedOther = ((Border)other);
-        if (!BordersDefaultClass.BorderSide.CanMerge(typedOther.Top, Top) || !BordersDefaultClass.BorderSide.CanMerge(typedOther.Bottom, Bottom)) return null;
-        if (Start != BordersDefaultClass.BorderSide.None || End != BordersDefaultClass.BorderSide.None)
-        {
-            if (typedOther.Left != BordersDefaultClass.BorderSide.None || typedOther.Right != BordersDefaultClass.BorderSide.None) return null;
-
-
-            return new BorderDirectional(top: BordersDefaultClass.BorderSide.Merge(typedOther.Top, Top), start: Start, end: End, bottom: BordersDefaultClass.BorderSide.Merge(typedOther.Bottom, Bottom));
-        }
-
-
-
-        return new Border(top: BordersDefaultClass.BorderSide.Merge(typedOther.Top, Top), right: typedOther.Right, bottom: BordersDefaultClass.BorderSide.Merge(typedOther.Bottom, Bottom), left: typedOther.Left);
-    }
-
-    return null;
-}
-
-
-
-
-public new FlutterSDK.Painting.Boxborder.BorderDirectional Scale(double t)
-{
-    return new BorderDirectional(top: Top.Scale(t), start: Start.Scale(t), end: End.Scale(t), bottom: Bottom.Scale(t));
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-    if (a is BorderDirectional) return BoxborderDefaultClass.BorderDirectional.Lerp(a, this, t);
-    return base.LerpFrom(a, t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-    if (b is BorderDirectional) return BoxborderDefaultClass.BorderDirectional.Lerp(this, b, t);
-    return base.LerpTo(b, t);
-}
-
-
-
-
-/// <Summary>
-/// Linearly interpolate between two borders.
-///
-/// If a border is null, it is treated as having four [BorderSide.none]
-/// borders.
-///
-/// {@macro dart.ui.shadow.lerp}
-/// </Summary>
-public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Lerp(FlutterSDK.Painting.Boxborder.BorderDirectional a, FlutterSDK.Painting.Boxborder.BorderDirectional b, double t)
-{
-
-    if (a == null && b == null) return null;
-    if (a == null) return b.Scale(t);
-    if (b == null) return a.Scale(1.0 - t);
-    return new BorderDirectional(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), end: BordersDefaultClass.BorderSide.Lerp(a.End, b.End, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), start: BordersDefaultClass.BorderSide.Lerp(a.Start, b.Start, t));
-}
-
-
-
-
-/// <Summary>
-/// Paints the border within the given [Rect] on the given [Canvas].
-///
-/// Uniform borders are more efficient to paint than more complex borders.
-///
-/// You can provide a [BoxShape] to draw the border on. If the `shape` in
-/// [BoxShape.circle], there is the requirement that the border [isUniform].
-///
-/// If you specify a rectangular box shape ([BoxShape.rectangle]), then you
-/// may specify a [BorderRadius]. If a `borderRadius` is specified, there is
-/// the requirement that the border [isUniform].
-///
-/// The [getInnerPath] and [getOuterPath] methods do not know about the
-/// `shape` and `borderRadius` arguments.
-///
-/// The `textDirection` argument is used to determine which of [start] and
-/// [end] map to the left and right. For [TextDirection.ltr], the [start] is
-/// the left and the [end] is the right; for [TextDirection.rtl], it is the
-/// reverse.
-///
-/// See also:
-///
-///  * [paintBorder], which is used if the border is not uniform.
-/// </Summary>
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
-{
-    if (IsUniform)
-    {
-        switch (Top.Style)
-        {
-            case BorderStyle.None: return;
-            case BorderStyle.Solid:
-                switch (shape)
+                if (a.Left == BordersDefaultClass.BorderSide.None && a.Right == BordersDefaultClass.BorderSide.None)
                 {
-                    case BoxShape.Circle: BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithCircle(canvas, rect, Top); break;
-                    case BoxShape.Rectangle:
-                        if (borderRadius != null)
-                        {
-                            BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRadius(canvas, rect, Top, borderRadius);
-                            return;
-                        }
-                        BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRectangle(canvas, rect, Top); break;
+                    return new BorderDirectional(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), start: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.Start, t), end: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.End, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t));
                 }
-                return;
+
+                if (t < 0.5)
+                {
+                    return new Border(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), right: BordersDefaultClass.BorderSide.Lerp(a.Right, BordersDefaultClass.BorderSide.None, t * 2.0), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(a.Left, BordersDefaultClass.BorderSide.None, t * 2.0));
+                }
+
+                return new BorderDirectional(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), start: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.Start, (t - 0.5) * 2.0), end: BordersDefaultClass.BorderSide.Lerp(BordersDefaultClass.BorderSide.None, b.End, (t - 0.5) * 2.0), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t));
+            }
+
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("BoxBorder.lerp can only interpolate Border and BorderDirectional classes."), new ErrorDescription($"'BoxBorder.lerp() was called with two objects of type {a.GetType()} and {b.GetType()}:\n'" + $"'  {a}\n'" + $"'  {b}\n'" + "However, only Border and BorderDirectional classes are supported by this method."), new ErrorHint("For a more general interpolation method, consider using ShapeBorder.lerp instead.") });
         }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+
+            return new Path();
+            new Path().AddRect(Dimensions.Resolve(textDirection).DeflateRect(rect));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+
+            return new Path();
+            new Path().AddRect(rect);
+        }
+
+
+
+
+        /// <Summary>
+        /// Paints the border within the given [Rect] on the given [Canvas].
+        ///
+        /// This is an extension of the [ShapeBorder.paint] method. It allows
+        /// [BoxBorder] borders to be applied to different [BoxShape]s and with
+        /// different [borderRadius] parameters, without changing the [BoxBorder]
+        /// object itself.
+        ///
+        /// The `shape` argument specifies the [BoxShape] to draw the border on.
+        ///
+        /// If the `shape` is specifies a rectangular box shape
+        /// ([BoxShape.rectangle]), then the `borderRadius` argument describes the
+        /// corners of the rectangle.
+        ///
+        /// The [getInnerPath] and [getOuterPath] methods do not know about the
+        /// `shape` and `borderRadius` arguments.
+        ///
+        /// See also:
+        ///
+        ///  * [paintBorder], which is used if the border is not uniform.
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
+        {
+        }
+
+
+        private void _PaintUniformBorderWithRadius(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius)
+        {
+
+            Paint paint = new Paint()..Color = side.Color;
+            RRect outer = borderRadius.ToRRect(rect);
+            double width = side.Width;
+            if (width == 0.0)
+            {
+                ..Style = PaintingStyle.Stroke..StrokeWidth = 0.0;
+                canvas.DrawRRect(outer, paint);
+            }
+            else
+            {
+                RRect inner = outer.Deflate(width);
+                canvas.DrawDRRect(outer, inner, paint);
+            }
+
+        }
+
+
+
+
+        private void _PaintUniformBorderWithCircle(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side)
+        {
+
+            double width = side.Width;
+            Paint paint = side.ToPaint();
+            double radius = (rect.ShortestSide - width) / 2.0;
+            canvas.DrawCircle(rect.Center, radius, paint);
+        }
+
+
+
+
+        private void _PaintUniformBorderWithRectangle(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide side)
+        {
+
+            double width = side.Width;
+            Paint paint = side.ToPaint();
+            canvas.DrawRect(rect.Deflate(width / 2.0), paint);
+        }
+
+
+
+        #endregion
     }
 
 
-
-    BorderSide left right = default(BorderSide);
-
-    switch (textDirection) { case TextDirection.Rtl: left = End; right = Start; break; case TextDirection.Ltr: left = Start; right = End; break; }
-    BordersDefaultClass.PaintBorder(canvas, rect, top: Top, left: left, bottom: Bottom, right: right);
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (Dart:coreDefaultClass.Identical(this, other))return true;
-    if (other.GetType() != GetType()) return false;
-    return other is BorderDirectional && other.Top == Top && other.Start == Start && other.End == End && other.Bottom == Bottom;
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The shape to use when rendering a [Border] or [BoxDecoration].
-///
-/// Consider using [ShapeBorder] subclasses directly (with [ShapeDecoration]),
-/// instead of using [BoxShape] and [Border], if the shapes will need to be
-/// interpolated or animated. The [Border] class cannot interpolate between
-/// different shapes.
-/// </Summary>
-public enum BoxShape
-{
-
     /// <Summary>
-    /// An axis-aligned, 2D rectangle. May have rounded corners (described by a
-    /// [BorderRadius]). The edges of the rectangle will match the edges of the box
-    /// into which the [Border] or [BoxDecoration] is painted.
+    /// A border of a box, comprised of four sides: top, right, bottom, left.
+    ///
+    /// The sides are represented by [BorderSide] objects.
+    ///
+    /// {@tool snippet}
+    ///
+    /// All four borders the same, two-pixel wide solid white:
+    ///
+    /// ```dart
+    /// Border.all(width: 2.0, color: const Color(0xFFFFFFFF))
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// The border for a material design divider:
+    ///
+    /// ```dart
+    /// Border(bottom: BorderSide(color: Theme.of(context).dividerColor))
+    /// ```
+    /// {@end-tool}
+    /// {@tool snippet}
+    ///
+    /// A 1990s-era "OK" button:
+    ///
+    /// ```dart
+    /// Container(
+    ///   decoration: const BoxDecoration(
+    ///     border: Border(
+    ///       top: BorderSide(width: 1.0, color: Color(0xFFFFFFFFFF)),
+    ///       left: BorderSide(width: 1.0, color: Color(0xFFFFFFFFFF)),
+    ///       right: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
+    ///       bottom: BorderSide(width: 1.0, color: Color(0xFFFF000000)),
+    ///     ),
+    ///   ),
+    ///   child: Container(
+    ///     padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+    ///     decoration: const BoxDecoration(
+    ///       border: Border(
+    ///         top: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+    ///         left: BorderSide(width: 1.0, color: Color(0xFFFFDFDFDF)),
+    ///         right: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+    ///         bottom: BorderSide(width: 1.0, color: Color(0xFFFF7F7F7F)),
+    ///       ),
+    ///       color: Color(0xFFBFBFBF),
+    ///     ),
+    ///     child: const Text(
+    ///       'OK',
+    ///       textAlign: TextAlign.center,
+    ///       style: TextStyle(color: Color(0xFF000000))
+    ///     ),
+    ///   ),
+    /// )
+    /// ```
+    /// {@end-tool}
     ///
     /// See also:
     ///
-    ///  * [RoundedRectangleBorder], the equivalent [ShapeBorder].
+    ///  * [BoxDecoration], which uses this class to describe its edge decoration.
+    ///  * [BorderSide], which is used to describe each side of the box.
+    ///  * [Theme], from the material layer, which can be queried to obtain appropriate colors
+    ///    to use for borders in a material app, as shown in the "divider" sample above.
     /// </Summary>
-    Rectangle,
+    public class Border : FlutterSDK.Painting.Boxborder.BoxBorder
+    {
+        #region constructors
+        public Border(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
+        : base()
+        {
+            this.Top = top;
+            this.Right = right;
+            this.Bottom = bottom;
+            this.Left = left;
+        }
+        public static Border FromBorderSide(FlutterSDK.Painting.Borders.BorderSide side)
+        {
+            var instance = new Border();
+        }
+        public static Border Symmetric(FlutterSDK.Painting.Borders.BorderSide vertical = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontal = default(FlutterSDK.Painting.Borders.BorderSide))
+        {
+            var instance = new Border();
+        }
+        public static Border All(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
+        {
+            var instance = new Border();
+            BorderSide side = new BorderSide(color: color, width: width, style: style);
+            return Border.FromBorderSide(side);
+        }
+
+
+        #endregion
+
+        #region fields
+        public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
+        public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Left { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Creates a [Border] that represents the addition of the two given
+        /// [Border]s.
+        ///
+        /// It is only valid to call this if [BorderSide.canMerge] returns true for
+        /// the pairwise combination of each side on both [Border]s.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxborder.Border Merge(FlutterSDK.Painting.Boxborder.Border a, FlutterSDK.Painting.Boxborder.Border b)
+        {
+
+
+
+
+
+
+            return new Border(top: BordersDefaultClass.BorderSide.Merge(a.Top, b.Top), right: BordersDefaultClass.BorderSide.Merge(a.Right, b.Right), bottom: BordersDefaultClass.BorderSide.Merge(a.Bottom, b.Bottom), left: BordersDefaultClass.BorderSide.Merge(a.Left, b.Left));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxborder.Border Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false)
+        {
+            if (other is Border && BordersDefaultClass.BorderSide.CanMerge(Top, other.Top) && BordersDefaultClass.BorderSide.CanMerge(Right, other.Right) && BordersDefaultClass.BorderSide.CanMerge(Bottom, other.Bottom) && BordersDefaultClass.BorderSide.CanMerge(Left, other.Left))
+            {
+                return BoxborderDefaultClass.Border.Merge(this, ((Border)other));
+            }
+
+            return null;
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxborder.Border Scale(double t)
+        {
+            return new Border(top: Top.Scale(t), right: Right.Scale(t), bottom: Bottom.Scale(t), left: Left.Scale(t));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+            if (a is Border) return BoxborderDefaultClass.Border.Lerp(a, this, t);
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+            if (b is Border) return BoxborderDefaultClass.Border.Lerp(this, b, t);
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two borders.
+        ///
+        /// If a border is null, it is treated as having four [BorderSide.none]
+        /// borders.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxborder.Border Lerp(FlutterSDK.Painting.Boxborder.Border a, FlutterSDK.Painting.Boxborder.Border b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            if (a == null) return b.Scale(t);
+            if (b == null) return a.Scale(1.0 - t);
+            return new Border(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), right: BordersDefaultClass.BorderSide.Lerp(a.Right, b.Right, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), left: BordersDefaultClass.BorderSide.Lerp(a.Left, b.Left, t));
+        }
+
+
+
+
+        /// <Summary>
+        /// Paints the border within the given [Rect] on the given [Canvas].
+        ///
+        /// Uniform borders are more efficient to paint than more complex borders.
+        ///
+        /// You can provide a [BoxShape] to draw the border on. If the `shape` in
+        /// [BoxShape.circle], there is the requirement that the border [isUniform].
+        ///
+        /// If you specify a rectangular box shape ([BoxShape.rectangle]), then you
+        /// may specify a [BorderRadius]. If a `borderRadius` is specified, there is
+        /// the requirement that the border [isUniform].
+        ///
+        /// The [getInnerPath] and [getOuterPath] methods do not know about the
+        /// `shape` and `borderRadius` arguments.
+        ///
+        /// The `textDirection` argument is not used by this paint method.
+        ///
+        /// See also:
+        ///
+        ///  * [paintBorder], which is used if the border is not uniform.
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
+        {
+            if (IsUniform)
+            {
+                switch (Top.Style)
+                {
+                    case BorderStyle.None: return;
+                    case BorderStyle.Solid:
+                        switch (shape)
+                        {
+                            case BoxShape.Circle: BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithCircle(canvas, rect, Top); break;
+                            case BoxShape.Rectangle:
+                                if (borderRadius != null)
+                                {
+                                    BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRadius(canvas, rect, Top, borderRadius);
+                                    return;
+                                }
+                                BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRectangle(canvas, rect, Top); break;
+                        }
+                        return;
+                }
+            }
+
+
+
+            BordersDefaultClass.PaintBorder(canvas, rect, top: Top, right: Right, bottom: Bottom, left: Left);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is Border && other.Top == Top && other.Right == Right && other.Bottom == Bottom && other.Left == Left;
+        }
+
+
+
+
+        #endregion
+    }
+
+
     /// <Summary>
-    /// A circle centered in the middle of the box into which the [Border] or
-    /// [BoxDecoration] is painted. The diameter of the circle is the shortest
-    /// dimension of the box, either the width or the height, such that the circle
-    /// touches the edges of the box.
+    /// A border of a box, comprised of four sides, the lateral sides of which
+    /// flip over based on the reading direction.
+    ///
+    /// The lateral sides are called [start] and [end]. When painted in
+    /// left-to-right environments, the [start] side will be painted on the left and
+    /// the [end] side on the right; in right-to-left environments, it is the
+    /// reverse. The other two sides are [top] and [bottom].
+    ///
+    /// The sides are represented by [BorderSide] objects.
+    ///
+    /// If the [start] and [end] sides are the same, then it is slightly more
+    /// efficient to use a [Border] object rather than a [BorderDirectional] object.
     ///
     /// See also:
     ///
-    ///  * [CircleBorder], the equivalent [ShapeBorder].
+    ///  * [BoxDecoration], which uses this class to describe its edge decoration.
+    ///  * [BorderSide], which is used to describe each side of the box.
+    ///  * [Theme], from the material layer, which can be queried to obtain appropriate colors
+    ///    to use for borders in a material app, as shown in the "divider" sample above.
     /// </Summary>
-    Circle,
-}
+    public class BorderDirectional : FlutterSDK.Painting.Boxborder.BoxBorder
+    {
+        #region constructors
+        public BorderDirectional(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide start = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide end = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide))
+        : base()
+        {
+            this.Top = top;
+            this.Start = start;
+            this.End = end;
+            this.Bottom = bottom;
+        }
+        #endregion
+
+        #region fields
+        public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide Start { get; set; }
+        public virtual FlutterSDK.Painting.Borders.BorderSide End { get; set; }
+        public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Creates a [BorderDirectional] that represents the addition of the two
+        /// given [BorderDirectional]s.
+        ///
+        /// It is only valid to call this if [BorderSide.canMerge] returns true for
+        /// the pairwise combination of each side on both [BorderDirectional]s.
+        ///
+        /// The arguments must not be null.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Merge(FlutterSDK.Painting.Boxborder.BorderDirectional a, FlutterSDK.Painting.Boxborder.BorderDirectional b)
+        {
+
+
+
+
+
+
+            return new BorderDirectional(top: BordersDefaultClass.BorderSide.Merge(a.Top, b.Top), start: BordersDefaultClass.BorderSide.Merge(a.Start, b.Start), end: BordersDefaultClass.BorderSide.Merge(a.End, b.End), bottom: BordersDefaultClass.BorderSide.Merge(a.Bottom, b.Bottom));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false)
+        {
+            if (other is BorderDirectional)
+            {
+                BorderDirectional typedOther = ((Border)other);
+                if (BordersDefaultClass.BorderSide.CanMerge(Top, typedOther.Top) && BordersDefaultClass.BorderSide.CanMerge(Start, typedOther.Start) && BordersDefaultClass.BorderSide.CanMerge(End, typedOther.End) && BordersDefaultClass.BorderSide.CanMerge(Bottom, typedOther.Bottom))
+                {
+                    return BoxborderDefaultClass.BorderDirectional.Merge(this, typedOther);
+                }
+
+                return null;
+            }
+
+            if (other is Border)
+            {
+                Border typedOther = ((Border)other);
+                if (!BordersDefaultClass.BorderSide.CanMerge(typedOther.Top, Top) || !BordersDefaultClass.BorderSide.CanMerge(typedOther.Bottom, Bottom)) return null;
+                if (Start != BordersDefaultClass.BorderSide.None || End != BordersDefaultClass.BorderSide.None)
+                {
+                    if (typedOther.Left != BordersDefaultClass.BorderSide.None || typedOther.Right != BordersDefaultClass.BorderSide.None) return null;
+
+
+                    return new BorderDirectional(top: BordersDefaultClass.BorderSide.Merge(typedOther.Top, Top), start: Start, end: End, bottom: BordersDefaultClass.BorderSide.Merge(typedOther.Bottom, Bottom));
+                }
+
+
+
+                return new Border(top: BordersDefaultClass.BorderSide.Merge(typedOther.Top, Top), right: typedOther.Right, bottom: BordersDefaultClass.BorderSide.Merge(typedOther.Bottom, Bottom), left: typedOther.Left);
+            }
+
+            return null;
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxborder.BorderDirectional Scale(double t)
+        {
+            return new BorderDirectional(top: Top.Scale(t), start: Start.Scale(t), end: End.Scale(t), bottom: Bottom.Scale(t));
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+            if (a is BorderDirectional) return BoxborderDefaultClass.BorderDirectional.Lerp(a, this, t);
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+            if (b is BorderDirectional) return BoxborderDefaultClass.BorderDirectional.Lerp(this, b, t);
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two borders.
+        ///
+        /// If a border is null, it is treated as having four [BorderSide.none]
+        /// borders.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxborder.BorderDirectional Lerp(FlutterSDK.Painting.Boxborder.BorderDirectional a, FlutterSDK.Painting.Boxborder.BorderDirectional b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            if (a == null) return b.Scale(t);
+            if (b == null) return a.Scale(1.0 - t);
+            return new BorderDirectional(top: BordersDefaultClass.BorderSide.Lerp(a.Top, b.Top, t), end: BordersDefaultClass.BorderSide.Lerp(a.End, b.End, t), bottom: BordersDefaultClass.BorderSide.Lerp(a.Bottom, b.Bottom, t), start: BordersDefaultClass.BorderSide.Lerp(a.Start, b.Start, t));
+        }
+
+
+
+
+        /// <Summary>
+        /// Paints the border within the given [Rect] on the given [Canvas].
+        ///
+        /// Uniform borders are more efficient to paint than more complex borders.
+        ///
+        /// You can provide a [BoxShape] to draw the border on. If the `shape` in
+        /// [BoxShape.circle], there is the requirement that the border [isUniform].
+        ///
+        /// If you specify a rectangular box shape ([BoxShape.rectangle]), then you
+        /// may specify a [BorderRadius]. If a `borderRadius` is specified, there is
+        /// the requirement that the border [isUniform].
+        ///
+        /// The [getInnerPath] and [getOuterPath] methods do not know about the
+        /// `shape` and `borderRadius` arguments.
+        ///
+        /// The `textDirection` argument is used to determine which of [start] and
+        /// [end] map to the left and right. For [TextDirection.ltr], the [start] is
+        /// the left and the [end] is the right; for [TextDirection.rtl], it is the
+        /// reverse.
+        ///
+        /// See also:
+        ///
+        ///  * [paintBorder], which is used if the border is not uniform.
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
+        {
+            if (IsUniform)
+            {
+                switch (Top.Style)
+                {
+                    case BorderStyle.None: return;
+                    case BorderStyle.Solid:
+                        switch (shape)
+                        {
+                            case BoxShape.Circle: BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithCircle(canvas, rect, Top); break;
+                            case BoxShape.Rectangle:
+                                if (borderRadius != null)
+                                {
+                                    BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRadius(canvas, rect, Top, borderRadius);
+                                    return;
+                                }
+                                BoxborderDefaultClass.BoxBorder._PaintUniformBorderWithRectangle(canvas, rect, Top); break;
+                        }
+                        return;
+                }
+            }
+
+
+
+            BorderSide left right = default(BorderSide);
+
+            switch (textDirection) { case TextDirection.Rtl: left = End; right = Start; break; case TextDirection.Ltr: left = Start; right = End; break; }
+            BordersDefaultClass.PaintBorder(canvas, rect, top: Top, left: left, bottom: Bottom, right: right);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is BorderDirectional && other.Top == Top && other.Start == Start && other.End == End && other.Bottom == Bottom;
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The shape to use when rendering a [Border] or [BoxDecoration].
+    ///
+    /// Consider using [ShapeBorder] subclasses directly (with [ShapeDecoration]),
+    /// instead of using [BoxShape] and [Border], if the shapes will need to be
+    /// interpolated or animated. The [Border] class cannot interpolate between
+    /// different shapes.
+    /// </Summary>
+    public enum BoxShape
+    {
+
+        /// <Summary>
+        /// An axis-aligned, 2D rectangle. May have rounded corners (described by a
+        /// [BorderRadius]). The edges of the rectangle will match the edges of the box
+        /// into which the [Border] or [BoxDecoration] is painted.
+        ///
+        /// See also:
+        ///
+        ///  * [RoundedRectangleBorder], the equivalent [ShapeBorder].
+        /// </Summary>
+        Rectangle,
+        /// <Summary>
+        /// A circle centered in the middle of the box into which the [Border] or
+        /// [BoxDecoration] is painted. The diameter of the circle is the shortest
+        /// dimension of the box, either the width or the height, such that the circle
+        /// touches the edges of the box.
+        ///
+        /// See also:
+        ///
+        ///  * [CircleBorder], the equivalent [ShapeBorder].
+        /// </Summary>
+        Circle,
+    }
 
 }

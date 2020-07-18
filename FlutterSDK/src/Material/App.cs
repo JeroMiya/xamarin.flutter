@@ -460,185 +460,213 @@ namespace FlutterSDK.Material.App
         #region constructors
         public MaterialApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<string, object> routes = default(Dictionary<string, object>), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Themedata.ThemeData darkTheme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.App.ThemeMode themeMode = default(FlutterSDK.Material.App.ThemeMode), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool debugShowMaterialGrid = false, bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowCheckedModeBanner = true, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
-    public virtual Dictionary<string, object> Routes { get; set; }
-    public virtual string InitialRoute { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
-    public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
-    public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
-    public virtual string Title { get; set; }
-    public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
-    public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get; set; }
-    public virtual FlutterSDK.Material.Themedata.ThemeData DarkTheme { get; set; }
-    public virtual FlutterSDK.Material.App.ThemeMode ThemeMode { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual Locale Locale { get; set; }
-    public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
-    public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
-    public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
-    public virtual Iterable<Locale> SupportedLocales { get; set; }
-    public virtual bool ShowPerformanceOverlay { get; set; }
-    public virtual bool CheckerboardRasterCacheImages { get; set; }
-    public virtual bool CheckerboardOffscreenLayers { get; set; }
-    public virtual bool ShowSemanticsDebugger { get; set; }
-    public virtual bool DebugShowCheckedModeBanner { get; set; }
-    public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
-    public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
-    public virtual bool DebugShowMaterialGrid { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.App._MaterialAppState CreateState() => new _MaterialAppState();
-
-
-    #endregion
-}
-
-
-public class _MaterialScrollBehavior : FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior
-{
-    #region constructors
-    public _MaterialScrollBehavior()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return ThemeDefaultClass.Theme.Of(context).Platform;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
-    {
-        switch (GetPlatform(context)) { case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: return child; case TargetPlatform.Android: case TargetPlatform.Fuchsia: return new GlowingOverscrollIndicator(child: child, axisDirection: axisDirection, color: ThemeDefaultClass.Theme.Of(context).AccentColor); }
-        return null;
-    }
-
-
-
-    #endregion
-}
-
-
-public class _MaterialAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.App.MaterialApp>
-{
-    #region constructors
-    public _MaterialAppState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
-    internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
-    internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _HeroController = new HeroController(createRectTween: _CreateRectTween);
-        _UpdateNavigator();
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Material.App.MaterialApp oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.NavigatorKey != oldWidget.NavigatorKey)
         {
+            this.NavigatorKey = navigatorKey;
+            this.Home = home;
+            this.Routes = routes;
+            this.InitialRoute = initialRoute;
+            this.OnGenerateRoute = onGenerateRoute;
+            this.OnGenerateInitialRoutes = onGenerateInitialRoutes;
+            this.OnUnknownRoute = onUnknownRoute;
+            this.NavigatorObservers = navigatorObservers;
+            this.Builder = builder;
+            this.Title = title;
+            this.OnGenerateTitle = onGenerateTitle;
+            this.Color = color;
+            this.Theme = theme;
+            this.DarkTheme = darkTheme;
+            this.ThemeMode = themeMode;
+            this.Locale = locale;
+            this.LocalizationsDelegates = localizationsDelegates;
+            this.LocaleListResolutionCallback = localeListResolutionCallback;
+            this.LocaleResolutionCallback = localeResolutionCallback;
+            this.SupportedLocales = supportedLocales;
+            this.DebugShowMaterialGrid = debugShowMaterialGrid;
+            this.ShowPerformanceOverlay = showPerformanceOverlay;
+            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+            this.ShowSemanticsDebugger = showSemanticsDebugger;
+            this.DebugShowCheckedModeBanner = debugShowCheckedModeBanner;
+            this.Shortcuts = shortcuts;
+            this.Actions = actions;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
+        public virtual Dictionary<string, object> Routes { get; set; }
+        public virtual string InitialRoute { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+        public virtual string Title { get; set; }
+        public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
+        public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get; set; }
+        public virtual FlutterSDK.Material.Themedata.ThemeData DarkTheme { get; set; }
+        public virtual FlutterSDK.Material.App.ThemeMode ThemeMode { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
+        public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
+        public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
+        public virtual Iterable<Locale> SupportedLocales { get; set; }
+        public virtual bool ShowPerformanceOverlay { get; set; }
+        public virtual bool CheckerboardRasterCacheImages { get; set; }
+        public virtual bool CheckerboardOffscreenLayers { get; set; }
+        public virtual bool ShowSemanticsDebugger { get; set; }
+        public virtual bool DebugShowCheckedModeBanner { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+        public virtual bool DebugShowMaterialGrid { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.App._MaterialAppState CreateState() => new _MaterialAppState();
+
+
+        #endregion
+    }
+
+
+    public class _MaterialScrollBehavior : FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior
+    {
+        #region constructors
+        public _MaterialScrollBehavior()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return ThemeDefaultClass.Theme.Of(context).Platform;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget BuildViewportChrome(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
+        {
+            switch (GetPlatform(context)) { case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: return child; case TargetPlatform.Android: case TargetPlatform.Fuchsia: return new GlowingOverscrollIndicator(child: child, axisDirection: axisDirection, color: ThemeDefaultClass.Theme.Of(context).AccentColor); }
+            return null;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _MaterialAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.App.MaterialApp>
+    {
+        #region constructors
+        public _MaterialAppState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
+        internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
             _HeroController = new HeroController(createRectTween: _CreateRectTween);
+            _UpdateNavigator();
         }
 
-        _UpdateNavigator();
-    }
 
 
 
-
-    private void _UpdateNavigator()
-    {
-        if (Widget.Home != null || Widget.Routes.IsNotEmpty || Widget.OnGenerateRoute != null || Widget.OnUnknownRoute != null)
+        public new void DidUpdateWidget(FlutterSDK.Material.App.MaterialApp oldWidget)
         {
-            _NavigatorObservers = List<NavigatorObserver>.From(Widget.NavigatorObservers);
-            List<NavigatorObserver>.From(Widget.NavigatorObservers).Add(_HeroController);
-        }
-        else
-        {
-            _NavigatorObservers = new List, < NavigatorObserver > (};
-    }
-
-}
-
-
-
-
-private FlutterSDK.Animation.Tween.RectTween _CreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end)
-{
-    return new MaterialRectArcTween(begin: begin, end: end);
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    Widget result = new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) =>
-    {
-        return new MaterialPageRoute<T>(settings: settings, builder: builder);
-    }
-    , home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: (BuildContext context, Widget child) =>
-    {
-        ThemeMode mode = Widget.ThemeMode ?? ThemeMode.System;
-        ThemeData theme = default(ThemeData);
-        if (Widget.DarkTheme != null)
-        {
-            Ui.Brightness platformBrightness = MediaqueryDefaultClass.MediaQuery.PlatformBrightnessOf(context);
-            if (mode == ThemeMode.Dark || (mode == ThemeMode.System && platformBrightness == Ui.Brightness.Dark))
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.NavigatorKey != oldWidget.NavigatorKey)
             {
-                theme = Widget.DarkTheme;
+                _HeroController = new HeroController(createRectTween: _CreateRectTween);
             }
 
+            _UpdateNavigator();
         }
 
-        theme = (theme == null ? Widget.Theme ?? ThemeData.Fallback() : theme);
-        return new AnimatedTheme(data: theme, isMaterialAppTheme: true, child: Widget.Builder != null ? new Builder(builder: (BuildContext context) =>
+
+
+
+        private void _UpdateNavigator()
         {
-            return Widget.Builder(context, child);
+            if (Widget.Home != null || Widget.Routes.IsNotEmpty || Widget.OnGenerateRoute != null || Widget.OnUnknownRoute != null)
+            {
+                _NavigatorObservers = List<NavigatorObserver>.From(Widget.NavigatorObservers);
+                List<NavigatorObserver>.From(Widget.NavigatorObservers).Add(_HeroController);
+            }
+            else
+            {
+                _NavigatorObservers = new List, < NavigatorObserver > (};
         }
-    ) : child);
+
     }
-    , title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: AppDefaultClass._ErrorTextStyle, color: Widget.Color ?? Widget.Theme?.PrimaryColor ?? ColorsDefaultClass.Colors.Blue, locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
+
+
+
+
+    private FlutterSDK.Animation.Tween.RectTween _CreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end)
     {
-        return new FloatingActionButton(child: new Icon(IconsDefaultClass.Icons.Search), onPressed: onPressed, mini: true);
+        return new MaterialRectArcTween(begin: begin, end: end);
     }
-    , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
-
-    return new ScrollConfiguration(behavior: new _MaterialScrollBehavior(), child: result);
-}
 
 
 
-#endregion
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Widget result = new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) =>
+        {
+            return new MaterialPageRoute<T>(settings: settings, builder: builder);
+        }
+        , home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: (BuildContext context, Widget child) =>
+        {
+            ThemeMode mode = Widget.ThemeMode ?? ThemeMode.System;
+            ThemeData theme = default(ThemeData);
+            if (Widget.DarkTheme != null)
+            {
+                Ui.Brightness platformBrightness = MediaqueryDefaultClass.MediaQuery.PlatformBrightnessOf(context);
+                if (mode == ThemeMode.Dark || (mode == ThemeMode.System && platformBrightness == Ui.Brightness.Dark))
+                {
+                    theme = Widget.DarkTheme;
+                }
+
+            }
+
+            theme = (theme == null ? Widget.Theme ?? ThemeData.Fallback() : theme);
+            return new AnimatedTheme(data: theme, isMaterialAppTheme: true, child: Widget.Builder != null ? new Builder(builder: (BuildContext context) =>
+            {
+                return Widget.Builder(context, child);
+            }
+    ) : child);
+        }
+        , title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: AppDefaultClass._ErrorTextStyle, color: Widget.Color ?? Widget.Theme?.PrimaryColor ?? ColorsDefaultClass.Colors.Blue, locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
+        {
+            return new FloatingActionButton(child: new Icon(IconsDefaultClass.Icons.Search), onPressed: onPressed, mini: true);
+        }
+        , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
+
+        return new ScrollConfiguration(behavior: new _MaterialScrollBehavior(), child: result);
+    }
+
+
+
+    #endregion
 }
 
 

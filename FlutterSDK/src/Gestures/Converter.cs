@@ -316,37 +316,38 @@ namespace FlutterSDK.Gestures.Converter
     {
         #region constructors
         internal PointerEventConverter()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        #endregion
 
-    /// <Summary>
-    /// Expand the given packet of pointer data into a sequence of framework
-    /// pointer events.
-    ///
-    /// The `devicePixelRatio` argument (usually given the value from
-    /// [dart:ui.Window.devicePixelRatio]) is used to convert the incoming data
-    /// from physical coordinates to logical pixels. See the discussion at
-    /// [PointerEvent] for more details on the [PointerEvent] coordinate space.
-    /// </Summary>
-    public virtual Iterable<FlutterSDK.Gestures.Events.PointerEvent> Expand(Iterable<PointerData> data, double devicePixelRatio)
-sync
-*
+        #region methods
+
+        /// <Summary>
+        /// Expand the given packet of pointer data into a sequence of framework
+        /// pointer events.
+        ///
+        /// The `devicePixelRatio` argument (usually given the value from
+        /// [dart:ui.Window.devicePixelRatio]) is used to convert the incoming data
+        /// from physical coordinates to logical pixels. See the discussion at
+        /// [PointerEvent] for more details on the [PointerEvent] coordinate space.
+        /// </Summary>
+        public virtual Iterable<FlutterSDK.Gestures.Events.PointerEvent> Expand(Iterable<PointerData> data, double devicePixelRatio)
+    sync
+    *
 {
 foreach(Ui.Dart:uiDefaultClass.PointerData datum  in data){
 Offset position = new Offset(datum.PhysicalX, datum.PhysicalY) / devicePixelRatio;
-    Offset delta = new Offset(datum.PhysicalDeltaX, datum.PhysicalDeltaY) / devicePixelRatio;
-    double radiusMinor = _ToLogicalPixels(datum.RadiusMinor, devicePixelRatio);
-    double radiusMajor = _ToLogicalPixels(datum.RadiusMajor, devicePixelRatio);
-    double radiusMin = _ToLogicalPixels(datum.RadiusMin, devicePixelRatio);
-    double radiusMax = _ToLogicalPixels(datum.RadiusMax, devicePixelRatio);
-    TimeSpan timeStamp = datum.TimeStamp;
-    PointerDeviceKind kind = datum.Kind;
+        Offset delta = new Offset(datum.PhysicalDeltaX, datum.PhysicalDeltaY) / devicePixelRatio;
+        double radiusMinor = _ToLogicalPixels(datum.RadiusMinor, devicePixelRatio);
+        double radiusMajor = _ToLogicalPixels(datum.RadiusMajor, devicePixelRatio);
+        double radiusMin = _ToLogicalPixels(datum.RadiusMin, devicePixelRatio);
+        double radiusMax = _ToLogicalPixels(datum.RadiusMax, devicePixelRatio);
+        TimeSpan timeStamp = datum.TimeStamp;
+        PointerDeviceKind kind = datum.Kind;
 
 if (datum.SignalKind==null ||datum.SignalKind==Ui.PointerSignalKind.None){
 switch (datum.Change){case Ui.PointerChange.Add:yield new PointerAddedEvent(timeStamp:timeStamp, kind:kind, device:datum.Device, position:position, obscured:datum.Obscured, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distance:datum.Distance, distanceMax:datum.DistanceMax, radiusMin:radiusMin, radiusMax:radiusMax, orientation:datum.Orientation, tilt:datum.Tilt);break;case Ui.PointerChange.Hover:yield new PointerHoverEvent(timeStamp:timeStamp, kind:kind, device:datum.Device, position:position, delta:delta, buttons:datum.Buttons, obscured:datum.Obscured, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distance:datum.Distance, distanceMax:datum.DistanceMax, size:datum.Size, radiusMajor:radiusMajor, radiusMinor:radiusMinor, radiusMin:radiusMin, radiusMax:radiusMax, orientation:datum.Orientation, tilt:datum.Tilt, synthesized:datum.Synthesized);break;case Ui.PointerChange.Down:yield new PointerDownEvent(timeStamp:timeStamp, pointer:datum.PointerIdentifier, kind:kind, device:datum.Device, position:position, buttons:ConverterDefaultClass._SynthesiseDownButtons(datum.Buttons, kind), obscured:datum.Obscured, pressure:datum.Pressure, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distanceMax:datum.DistanceMax, size:datum.Size, radiusMajor:radiusMajor, radiusMinor:radiusMinor, radiusMin:radiusMin, radiusMax:radiusMax, orientation:datum.Orientation, tilt:datum.Tilt);break;case Ui.PointerChange.Move:yield new PointerMoveEvent(timeStamp:timeStamp, pointer:datum.PointerIdentifier, kind:kind, device:datum.Device, position:position, delta:delta, buttons:ConverterDefaultClass._SynthesiseDownButtons(datum.Buttons, kind), obscured:datum.Obscured, pressure:datum.Pressure, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distanceMax:datum.DistanceMax, size:datum.Size, radiusMajor:radiusMajor, radiusMinor:radiusMinor, radiusMin:radiusMin, radiusMax:radiusMax, orientation:datum.Orientation, tilt:datum.Tilt, platformData:datum.PlatformData, synthesized:datum.Synthesized);break;case Ui.PointerChange.Up:yield new PointerUpEvent(timeStamp:timeStamp, pointer:datum.PointerIdentifier, kind:kind, device:datum.Device, position:position, buttons:datum.Buttons, obscured:datum.Obscured, pressure:datum.Pressure, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distance:datum.Distance, distanceMax:datum.DistanceMax, size:datum.Size, radiusMajor:radiusMajor, radiusMinor:radiusMinor, radiusMin:radiusMin, radiusMax:radiusMax, orientation:datum.Orientation, tilt:datum.Tilt);break;case Ui.PointerChange.Cancel:yield new PointerCancelEvent(timeStamp:timeStamp, pointer:datum.PointerIdentifier, kind:kind, device:datum.Device, position:position, buttons:datum.Buttons, obscured:datum.Obscured, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distance:datum.Distance, distanceMax:datum.DistanceMax, size:datum.Size, radiusMajor:radiusMajor, radiusMinor:radiusMinor, radiusMin:radiusMin, radiusMax:radiusMax, orientation:datum.Orientation, tilt:datum.Tilt);break;case Ui.PointerChange.Remove:yield new PointerRemovedEvent(timeStamp:timeStamp, kind:kind, device:datum.Device, position:position, obscured:datum.Obscured, pressureMin:datum.PressureMin, pressureMax:datum.PressureMax, distanceMax:datum.DistanceMax, radiusMin:radiusMin, radiusMax:radiusMax);break;}

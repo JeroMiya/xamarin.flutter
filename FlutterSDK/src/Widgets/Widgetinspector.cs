@@ -2120,32 +2120,33 @@ public class _ProxyLayer : FlutterSDK.Rendering.Layer.Layer
 {
     #region constructors
     public _ProxyLayer(FlutterSDK.Rendering.Layer.Layer _layer)
+    {
+        this._Layer = _layer;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    internal virtual FlutterSDK.Rendering.Layer.Layer _Layer { get; set; }
+    #endregion
 
-#region fields
-internal virtual FlutterSDK.Rendering.Layer.Layer _Layer { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-    _Layer.AddToScene(builder, layerOffset);
-}
-
-
-
-
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return _Layer.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
-}
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
+    {
+        _Layer.AddToScene(builder, layerOffset);
+    }
 
 
 
-#endregion
+
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+    {
+        return _Layer.FindAnnotations(result, localPosition, onlyFirst: onlyFirst);
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2159,313 +2160,314 @@ public class _MulticastCanvas : ICanvas
     #region constructors
     public _MulticastCanvas(Canvas main = default(Canvas), Canvas screenshot = default(Canvas))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual Canvas _Main { get; set; }
-internal virtual Canvas _Screenshot { get; set; }
-#endregion
+    #region fields
+    internal virtual Canvas _Main { get; set; }
+    internal virtual Canvas _Screenshot { get; set; }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void ClipPath(Path path, bool doAntiAlias = true)
-{
-    _Main.ClipPath(path, doAntiAlias: doAntiAlias);
-    _Screenshot.ClipPath(path, doAntiAlias: doAntiAlias);
-}
+    public new void ClipPath(Path path, bool doAntiAlias = true)
+    {
+        _Main.ClipPath(path, doAntiAlias: doAntiAlias);
+        _Screenshot.ClipPath(path, doAntiAlias: doAntiAlias);
+    }
 
 
 
 
-public new void ClipRRect(FlutterBinding.UI.RRect rrect, bool doAntiAlias = true)
-{
-    _Main.ClipRRect(rrect, doAntiAlias: doAntiAlias);
-    _Screenshot.ClipRRect(rrect, doAntiAlias: doAntiAlias);
-}
+    public new void ClipRRect(FlutterBinding.UI.RRect rrect, bool doAntiAlias = true)
+    {
+        _Main.ClipRRect(rrect, doAntiAlias: doAntiAlias);
+        _Screenshot.ClipRRect(rrect, doAntiAlias: doAntiAlias);
+    }
 
 
 
 
-public new void ClipRect(FlutterBinding.UI.Rect rect, ClipOp clipOp = default(ClipOp), bool doAntiAlias = true)
-{
-    _Main.ClipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
-    _Screenshot.ClipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
-}
+    public new void ClipRect(FlutterBinding.UI.Rect rect, ClipOp clipOp = default(ClipOp), bool doAntiAlias = true)
+    {
+        _Main.ClipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
+        _Screenshot.ClipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
+    }
 
 
 
 
-public new void DrawArc(FlutterBinding.UI.Rect rect, double startAngle, double sweepAngle, bool useCenter, SKPaint paint)
-{
-    _Main.DrawArc(rect, startAngle, sweepAngle, useCenter, paint);
-    _Screenshot.DrawArc(rect, startAngle, sweepAngle, useCenter, paint);
-}
+    public new void DrawArc(FlutterBinding.UI.Rect rect, double startAngle, double sweepAngle, bool useCenter, SKPaint paint)
+    {
+        _Main.DrawArc(rect, startAngle, sweepAngle, useCenter, paint);
+        _Screenshot.DrawArc(rect, startAngle, sweepAngle, useCenter, paint);
+    }
 
 
 
 
-public new void DrawAtlas(SKImage atlas, List<RSTransform> transforms, List<Rect> rects, List<Color> colors, FlutterBinding.UI.BlendMode blendMode, FlutterBinding.UI.Rect cullRect, SKPaint paint)
-{
-    _Main.DrawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
-    _Screenshot.DrawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
-}
+    public new void DrawAtlas(SKImage atlas, List<RSTransform> transforms, List<Rect> rects, List<Color> colors, FlutterBinding.UI.BlendMode blendMode, FlutterBinding.UI.Rect cullRect, SKPaint paint)
+    {
+        _Main.DrawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
+        _Screenshot.DrawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
+    }
 
 
 
 
-public new void DrawCircle(FlutterBinding.UI.Offset c, double radius, SKPaint paint)
-{
-    _Main.DrawCircle(c, radius, paint);
-    _Screenshot.DrawCircle(c, radius, paint);
-}
+    public new void DrawCircle(FlutterBinding.UI.Offset c, double radius, SKPaint paint)
+    {
+        _Main.DrawCircle(c, radius, paint);
+        _Screenshot.DrawCircle(c, radius, paint);
+    }
 
 
 
 
-public new void DrawColor(FlutterBinding.UI.Color color, FlutterBinding.UI.BlendMode blendMode)
-{
-    _Main.DrawColor(color, blendMode);
-    _Screenshot.DrawColor(color, blendMode);
-}
+    public new void DrawColor(FlutterBinding.UI.Color color, FlutterBinding.UI.BlendMode blendMode)
+    {
+        _Main.DrawColor(color, blendMode);
+        _Screenshot.DrawColor(color, blendMode);
+    }
 
 
 
 
-public new void DrawDRRect(FlutterBinding.UI.RRect outer, FlutterBinding.UI.RRect inner, SKPaint paint)
-{
-    _Main.DrawDRRect(outer, inner, paint);
-    _Screenshot.DrawDRRect(outer, inner, paint);
-}
+    public new void DrawDRRect(FlutterBinding.UI.RRect outer, FlutterBinding.UI.RRect inner, SKPaint paint)
+    {
+        _Main.DrawDRRect(outer, inner, paint);
+        _Screenshot.DrawDRRect(outer, inner, paint);
+    }
 
 
 
 
-public new void DrawImage(SKImage image, FlutterBinding.UI.Offset p, SKPaint paint)
-{
-    _Main.DrawImage(image, p, paint);
-    _Screenshot.DrawImage(image, p, paint);
-}
+    public new void DrawImage(SKImage image, FlutterBinding.UI.Offset p, SKPaint paint)
+    {
+        _Main.DrawImage(image, p, paint);
+        _Screenshot.DrawImage(image, p, paint);
+    }
 
 
 
 
-public new void DrawImageNine(SKImage image, FlutterBinding.UI.Rect center, FlutterBinding.UI.Rect dst, SKPaint paint)
-{
-    _Main.DrawImageNine(image, center, dst, paint);
-    _Screenshot.DrawImageNine(image, center, dst, paint);
-}
+    public new void DrawImageNine(SKImage image, FlutterBinding.UI.Rect center, FlutterBinding.UI.Rect dst, SKPaint paint)
+    {
+        _Main.DrawImageNine(image, center, dst, paint);
+        _Screenshot.DrawImageNine(image, center, dst, paint);
+    }
 
 
 
 
-public new void DrawImageRect(SKImage image, FlutterBinding.UI.Rect src, FlutterBinding.UI.Rect dst, SKPaint paint)
-{
-    _Main.DrawImageRect(image, src, dst, paint);
-    _Screenshot.DrawImageRect(image, src, dst, paint);
-}
+    public new void DrawImageRect(SKImage image, FlutterBinding.UI.Rect src, FlutterBinding.UI.Rect dst, SKPaint paint)
+    {
+        _Main.DrawImageRect(image, src, dst, paint);
+        _Screenshot.DrawImageRect(image, src, dst, paint);
+    }
 
 
 
 
-public new void DrawLine(FlutterBinding.UI.Offset p1, FlutterBinding.UI.Offset p2, SKPaint paint)
-{
-    _Main.DrawLine(p1, p2, paint);
-    _Screenshot.DrawLine(p1, p2, paint);
-}
+    public new void DrawLine(FlutterBinding.UI.Offset p1, FlutterBinding.UI.Offset p2, SKPaint paint)
+    {
+        _Main.DrawLine(p1, p2, paint);
+        _Screenshot.DrawLine(p1, p2, paint);
+    }
 
 
 
 
-public new void DrawOval(FlutterBinding.UI.Rect rect, SKPaint paint)
-{
-    _Main.DrawOval(rect, paint);
-    _Screenshot.DrawOval(rect, paint);
-}
+    public new void DrawOval(FlutterBinding.UI.Rect rect, SKPaint paint)
+    {
+        _Main.DrawOval(rect, paint);
+        _Screenshot.DrawOval(rect, paint);
+    }
 
 
 
 
-public new void DrawPaint(SKPaint paint)
-{
-    _Main.DrawPaint(paint);
-    _Screenshot.DrawPaint(paint);
-}
+    public new void DrawPaint(SKPaint paint)
+    {
+        _Main.DrawPaint(paint);
+        _Screenshot.DrawPaint(paint);
+    }
 
 
 
 
-public new void DrawParagraph(FlutterBinding.UI.Paragraph paragraph, FlutterBinding.UI.Offset offset)
-{
-    _Main.DrawParagraph(paragraph, offset);
-    _Screenshot.DrawParagraph(paragraph, offset);
-}
+    public new void DrawParagraph(FlutterBinding.UI.Paragraph paragraph, FlutterBinding.UI.Offset offset)
+    {
+        _Main.DrawParagraph(paragraph, offset);
+        _Screenshot.DrawParagraph(paragraph, offset);
+    }
 
 
 
 
-public new void DrawPath(Path path, SKPaint paint)
-{
-    _Main.DrawPath(path, paint);
-    _Screenshot.DrawPath(path, paint);
-}
+    public new void DrawPath(Path path, SKPaint paint)
+    {
+        _Main.DrawPath(path, paint);
+        _Screenshot.DrawPath(path, paint);
+    }
 
 
 
 
-public new void DrawPicture(SKPicture picture)
-{
-    _Main.DrawPicture(picture);
-    _Screenshot.DrawPicture(picture);
-}
+    public new void DrawPicture(SKPicture picture)
+    {
+        _Main.DrawPicture(picture);
+        _Screenshot.DrawPicture(picture);
+    }
 
 
 
 
-public new void DrawPoints(FlutterBinding.UI.PointMode pointMode, List<FlutterBinding.UI.Offset> points, SKPaint paint)
-{
-    _Main.DrawPoints(pointMode, points, paint);
-    _Screenshot.DrawPoints(pointMode, points, paint);
-}
+    public new void DrawPoints(FlutterBinding.UI.PointMode pointMode, List<FlutterBinding.UI.Offset> points, SKPaint paint)
+    {
+        _Main.DrawPoints(pointMode, points, paint);
+        _Screenshot.DrawPoints(pointMode, points, paint);
+    }
 
 
 
 
-public new void DrawRRect(FlutterBinding.UI.RRect rrect, SKPaint paint)
-{
-    _Main.DrawRRect(rrect, paint);
-    _Screenshot.DrawRRect(rrect, paint);
-}
+    public new void DrawRRect(FlutterBinding.UI.RRect rrect, SKPaint paint)
+    {
+        _Main.DrawRRect(rrect, paint);
+        _Screenshot.DrawRRect(rrect, paint);
+    }
 
 
 
 
-public new void DrawRawAtlas(SKImage atlas, List<double> rstTransforms, List<double> rects, List<uint> colors, FlutterBinding.UI.BlendMode blendMode, FlutterBinding.UI.Rect cullRect, SKPaint paint)
-{
-    _Main.DrawRawAtlas(atlas, rstTransforms, rects, colors, blendMode, cullRect, paint);
-    _Screenshot.DrawRawAtlas(atlas, rstTransforms, rects, colors, blendMode, cullRect, paint);
-}
+    public new void DrawRawAtlas(SKImage atlas, List<double> rstTransforms, List<double> rects, List<uint> colors, FlutterBinding.UI.BlendMode blendMode, FlutterBinding.UI.Rect cullRect, SKPaint paint)
+    {
+        _Main.DrawRawAtlas(atlas, rstTransforms, rects, colors, blendMode, cullRect, paint);
+        _Screenshot.DrawRawAtlas(atlas, rstTransforms, rects, colors, blendMode, cullRect, paint);
+    }
 
 
 
 
-public new void DrawRawPoints(FlutterBinding.UI.PointMode pointMode, List<double> points, SKPaint paint)
-{
-    _Main.DrawRawPoints(pointMode, points, paint);
-    _Screenshot.DrawRawPoints(pointMode, points, paint);
-}
+    public new void DrawRawPoints(FlutterBinding.UI.PointMode pointMode, List<double> points, SKPaint paint)
+    {
+        _Main.DrawRawPoints(pointMode, points, paint);
+        _Screenshot.DrawRawPoints(pointMode, points, paint);
+    }
 
 
 
 
-public new void DrawRect(FlutterBinding.UI.Rect rect, SKPaint paint)
-{
-    _Main.DrawRect(rect, paint);
-    _Screenshot.DrawRect(rect, paint);
-}
+    public new void DrawRect(FlutterBinding.UI.Rect rect, SKPaint paint)
+    {
+        _Main.DrawRect(rect, paint);
+        _Screenshot.DrawRect(rect, paint);
+    }
 
 
 
 
-public new void DrawShadow(Path path, FlutterBinding.UI.Color color, double elevation, bool transparentOccluder)
-{
-    _Main.DrawShadow(path, color, elevation, transparentOccluder);
-    _Screenshot.DrawShadow(path, color, elevation, transparentOccluder);
-}
+    public new void DrawShadow(Path path, FlutterBinding.UI.Color color, double elevation, bool transparentOccluder)
+    {
+        _Main.DrawShadow(path, color, elevation, transparentOccluder);
+        _Screenshot.DrawShadow(path, color, elevation, transparentOccluder);
+    }
 
 
 
 
-public new void DrawVertices(SKVertices vertices, FlutterBinding.UI.BlendMode blendMode, SKPaint paint)
-{
-    _Main.DrawVertices(vertices, blendMode, paint);
-    _Screenshot.DrawVertices(vertices, blendMode, paint);
-}
+    public new void DrawVertices(SKVertices vertices, FlutterBinding.UI.BlendMode blendMode, SKPaint paint)
+    {
+        _Main.DrawVertices(vertices, blendMode, paint);
+        _Screenshot.DrawVertices(vertices, blendMode, paint);
+    }
 
 
 
 
-public new int GetSaveCount()
-{
-    return _Main.GetSaveCount();
-}
+    public new int GetSaveCount()
+    {
+        return _Main.GetSaveCount();
+    }
 
 
 
 
-public new void Restore()
-{
-    _Main.Restore();
-    _Screenshot.Restore();
-}
+    public new void Restore()
+    {
+        _Main.Restore();
+        _Screenshot.Restore();
+    }
 
 
 
 
-public new void Rotate(double radians)
-{
-    _Main.Rotate(radians);
-    _Screenshot.Rotate(radians);
-}
+    public new void Rotate(double radians)
+    {
+        _Main.Rotate(radians);
+        _Screenshot.Rotate(radians);
+    }
 
 
 
 
-public new void Save()
-{
-    _Main.Save();
-    _Screenshot.Save();
-}
+    public new void Save()
+    {
+        _Main.Save();
+        _Screenshot.Save();
+    }
 
 
 
 
-public new void SaveLayer(FlutterBinding.UI.Rect bounds, SKPaint paint)
-{
-    _Main.SaveLayer(bounds, paint);
-    _Screenshot.SaveLayer(bounds, paint);
-}
+    public new void SaveLayer(FlutterBinding.UI.Rect bounds, SKPaint paint)
+    {
+        _Main.SaveLayer(bounds, paint);
+        _Screenshot.SaveLayer(bounds, paint);
+    }
 
 
 
 
-public new void Scale(double sx, double sy = default(double))
-{
-    _Main.Scale(sx, sy);
-    _Screenshot.Scale(sx, sy);
-}
+    public new void Scale(double sx, double sy = default(double))
+    {
+        _Main.Scale(sx, sy);
+        _Screenshot.Scale(sx, sy);
+    }
 
 
 
 
-public new void Skew(double sx, double sy)
-{
-    _Main.Skew(sx, sy);
-    _Screenshot.Skew(sx, sy);
-}
+    public new void Skew(double sx, double sy)
+    {
+        _Main.Skew(sx, sy);
+        _Screenshot.Skew(sx, sy);
+    }
 
 
 
 
-public new void Transform(List<float> matrix4)
-{
-    _Main.Transform(matrix4);
-    _Screenshot.Transform(matrix4);
-}
+    public new void Transform(List<float> matrix4)
+    {
+        _Main.Transform(matrix4);
+        _Screenshot.Transform(matrix4);
+    }
 
 
 
 
-public new void Translate(double dx, double dy)
-{
-    _Main.Translate(dx, dy);
-    _Screenshot.Translate(dx, dy);
-}
+    public new void Translate(double dx, double dy)
+    {
+        _Main.Translate(dx, dy);
+        _Screenshot.Translate(dx, dy);
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2505,21 +2507,22 @@ public class _ScreenshotData
     #region constructors
     public _ScreenshotData(FlutterSDK.Rendering.@object.RenderObject target = default(FlutterSDK.Rendering.@object.RenderObject))
     : base()
+    {
+        this.Target = target;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Rendering.@object.RenderObject Target { get; set; }
+    public virtual FlutterSDK.Rendering.Layer.OffsetLayer ContainerLayer { get; set; }
+    public virtual bool FoundTarget { get; set; }
+    public virtual bool IncludeInScreenshot { get; set; }
+    public virtual bool IncludeInRegularContext { get; set; }
+    public virtual FlutterBinding.UI.Offset ScreenshotOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Rendering.@object.RenderObject Target { get; set; }
-public virtual FlutterSDK.Rendering.Layer.OffsetLayer ContainerLayer { get; set; }
-public virtual bool FoundTarget { get; set; }
-public virtual bool IncludeInScreenshot { get; set; }
-public virtual bool IncludeInRegularContext { get; set; }
-public virtual FlutterBinding.UI.Offset ScreenshotOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -2540,209 +2543,210 @@ public class _ScreenshotPaintingContext : FlutterSDK.Rendering.@object.PaintingC
     #region constructors
     public _ScreenshotPaintingContext(FlutterSDK.Rendering.Layer.ContainerLayer containerLayer = default(FlutterSDK.Rendering.Layer.ContainerLayer), FlutterBinding.UI.Rect estimatedBounds = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector._ScreenshotData screenshotData = default(FlutterSDK.Widgets.Widgetinspector._ScreenshotData))
     : base(containerLayer, estimatedBounds)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Widgetinspector._ScreenshotData _Data { get; set; }
-internal virtual FlutterSDK.Rendering.Layer.PictureLayer _ScreenshotCurrentLayer { get; set; }
-internal virtual PictureRecorder _ScreenshotRecorder { get; set; }
-internal virtual Canvas _ScreenshotCanvas { get; set; }
-internal virtual FlutterSDK.Widgets.Widgetinspector._MulticastCanvas _MulticastCanvas { get; set; }
-public virtual Canvas Canvas { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual bool _IsScreenshotRecording { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _StartRecordingScreenshot()
-{
-
-
-    _ScreenshotCurrentLayer = new PictureLayer(EstimatedBounds);
-    _ScreenshotRecorder = new Ui.PictureRecorder();
-    _ScreenshotCanvas = new Canvas(_ScreenshotRecorder);
-    _Data.ContainerLayer.Append(_ScreenshotCurrentLayer);
-    if (_Data.IncludeInRegularContext)
     {
-        _MulticastCanvas = new _MulticastCanvas(main: base.Canvas, screenshot: _ScreenshotCanvas);
+
     }
-    else
+    #endregion
+
+    #region fields
+    internal virtual FlutterSDK.Widgets.Widgetinspector._ScreenshotData _Data { get; set; }
+    internal virtual FlutterSDK.Rendering.Layer.PictureLayer _ScreenshotCurrentLayer { get; set; }
+    internal virtual PictureRecorder _ScreenshotRecorder { get; set; }
+    internal virtual Canvas _ScreenshotCanvas { get; set; }
+    internal virtual FlutterSDK.Widgets.Widgetinspector._MulticastCanvas _MulticastCanvas { get; set; }
+    public virtual Canvas Canvas { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    internal virtual bool _IsScreenshotRecording { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    private void _StartRecordingScreenshot()
     {
-        _MulticastCanvas = null;
-    }
-
-}
 
 
-
-
-public new void StopRecordingIfNeeded()
-{
-    base.StopRecordingIfNeeded();
-    _StopRecordingScreenshotIfNeeded();
-}
-
-
-
-
-private void _StopRecordingScreenshotIfNeeded()
-{
-    if (!_IsScreenshotRecording) return;
-    _ScreenshotCurrentLayer.Picture = _ScreenshotRecorder.EndRecording();
-    _ScreenshotCurrentLayer = null;
-    _ScreenshotRecorder = null;
-    _MulticastCanvas = null;
-    _ScreenshotCanvas = null;
-}
-
-
-
-
-public new void AppendLayer(FlutterSDK.Rendering.Layer.Layer layer)
-{
-    if (_Data.IncludeInRegularContext)
-    {
-        base.AppendLayer(layer);
-        if (_Data.IncludeInScreenshot)
+        _ScreenshotCurrentLayer = new PictureLayer(EstimatedBounds);
+        _ScreenshotRecorder = new Ui.PictureRecorder();
+        _ScreenshotCanvas = new Canvas(_ScreenshotRecorder);
+        _Data.ContainerLayer.Append(_ScreenshotCurrentLayer);
+        if (_Data.IncludeInRegularContext)
         {
-
-            _Data.ContainerLayer.Append(new _ProxyLayer(layer));
+            _MulticastCanvas = new _MulticastCanvas(main: base.Canvas, screenshot: _ScreenshotCanvas);
+        }
+        else
+        {
+            _MulticastCanvas = null;
         }
 
     }
-    else
+
+
+
+
+    public new void StopRecordingIfNeeded()
     {
-
-
-        layer.Remove();
-        _Data.ContainerLayer.Append(layer);
-        return;
-    }
-
-}
-
-
-
-
-public new FlutterSDK.Rendering.@object.PaintingContext CreateChildContext(FlutterSDK.Rendering.Layer.ContainerLayer childLayer, FlutterBinding.UI.Rect bounds)
-{
-    if (_Data.FoundTarget)
-    {
-        return base.CreateChildContext(childLayer, bounds);
-    }
-    else
-    {
-        return new _ScreenshotPaintingContext(containerLayer: childLayer, estimatedBounds: bounds, screenshotData: _Data);
-    }
-
-}
-
-
-
-
-public new void PaintChild(FlutterSDK.Rendering.@object.RenderObject child, FlutterBinding.UI.Offset offset)
-{
-    bool isScreenshotTarget = Dart:coreDefaultClass.Identical(child, _Data.Target);
-    if (isScreenshotTarget)
-    {
-
-
-        _Data.FoundTarget = true;
-        _Data.ScreenshotOffset = offset;
-        _Data.IncludeInScreenshot = true;
-    }
-
-    base.PaintChild(child, offset);
-    if (isScreenshotTarget)
-    {
+        base.StopRecordingIfNeeded();
         _StopRecordingScreenshotIfNeeded();
-        _Data.IncludeInScreenshot = false;
     }
 
-}
 
 
 
-
-/// <Summary>
-/// Captures an image of the current state of [renderObject] and its children.
-///
-/// The returned [ui.Image] has uncompressed raw RGBA bytes, will be offset
-/// by the top-left corner of [renderBounds], and have dimensions equal to the
-/// size of [renderBounds] multiplied by [pixelRatio].
-///
-/// To use [toImage], the render object must have gone through the paint phase
-/// (i.e. [debugNeedsPaint] must be false).
-///
-/// The [pixelRatio] describes the scale between the logical pixels and the
-/// size of the output image. It is independent of the
-/// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
-/// will give you a 1:1 mapping between logical pixels and the output pixels
-/// in the image.
-///
-/// The [debugPaint] argument specifies whether the image should include the
-/// output of [RenderObject.debugPaint] for [renderObject] with
-/// [debugPaintSizeEnabled] set to true. Debug paint information is not
-/// included for the children of [renderObject] so that it is clear precisely
-/// which object the debug paint information references.
-///
-/// See also:
-///
-///  * [RenderRepaintBoundary.toImage] for a similar API for [RenderObject]s
-///    that are repaint boundaries that can be used outside of the inspector.
-///  * [OffsetLayer.toImage] for a similar API at the layer level.
-///  * [dart:ui.Scene.toImage] for more information about the image returned.
-/// </Summary>
-public virtual Future<SKImage> ToImage(FlutterSDK.Rendering.@object.RenderObject renderObject, FlutterBinding.UI.Rect renderBounds, double pixelRatio = 1.0, bool debugPaint = false)
-{
-    RenderObject repaintBoundary = renderObject;
-    while (repaintBoundary != null && !repaintBoundary.IsRepaintBoundary)
+    private void _StopRecordingScreenshotIfNeeded()
     {
-        repaintBoundary = repaintBoundary.Parent as RenderObject;
+        if (!_IsScreenshotRecording) return;
+        _ScreenshotCurrentLayer.Picture = _ScreenshotRecorder.EndRecording();
+        _ScreenshotCurrentLayer = null;
+        _ScreenshotRecorder = null;
+        _MulticastCanvas = null;
+        _ScreenshotCanvas = null;
     }
 
 
-    _ScreenshotData data = new _ScreenshotData(target: renderObject);
-    _ScreenshotPaintingContext context = new _ScreenshotPaintingContext(containerLayer: repaintBoundary.DebugLayer, estimatedBounds: repaintBoundary.PaintBounds, screenshotData: data);
-    if (Dart:coreDefaultClass.Identical(renderObject, repaintBoundary)){
-        data.ContainerLayer.Append(new _ProxyLayer(repaintBoundary.DebugLayer));
-        data.FoundTarget = true;
-        OffsetLayer offsetLayer = repaintBoundary.DebugLayer as OffsetLayer;
-        data.ScreenshotOffset = offsetLayer.Offset;
+
+
+    public new void AppendLayer(FlutterSDK.Rendering.Layer.Layer layer)
+    {
+        if (_Data.IncludeInRegularContext)
+        {
+            base.AppendLayer(layer);
+            if (_Data.IncludeInScreenshot)
+            {
+
+                _Data.ContainerLayer.Append(new _ProxyLayer(layer));
+            }
+
+        }
+        else
+        {
+
+
+            layer.Remove();
+            _Data.ContainerLayer.Append(layer);
+            return;
+        }
+
     }
+
+
+
+
+    public new FlutterSDK.Rendering.@object.PaintingContext CreateChildContext(FlutterSDK.Rendering.Layer.ContainerLayer childLayer, FlutterBinding.UI.Rect bounds)
+    {
+        if (_Data.FoundTarget)
+        {
+            return base.CreateChildContext(childLayer, bounds);
+        }
+        else
+        {
+            return new _ScreenshotPaintingContext(containerLayer: childLayer, estimatedBounds: bounds, screenshotData: _Data);
+        }
+
+    }
+
+
+
+
+    public new void PaintChild(FlutterSDK.Rendering.@object.RenderObject child, FlutterBinding.UI.Offset offset)
+    {
+        bool isScreenshotTarget = Dart:coreDefaultClass.Identical(child, _Data.Target);
+        if (isScreenshotTarget)
+        {
+
+
+            _Data.FoundTarget = true;
+            _Data.ScreenshotOffset = offset;
+            _Data.IncludeInScreenshot = true;
+        }
+
+        base.PaintChild(child, offset);
+        if (isScreenshotTarget)
+        {
+            _StopRecordingScreenshotIfNeeded();
+            _Data.IncludeInScreenshot = false;
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Captures an image of the current state of [renderObject] and its children.
+    ///
+    /// The returned [ui.Image] has uncompressed raw RGBA bytes, will be offset
+    /// by the top-left corner of [renderBounds], and have dimensions equal to the
+    /// size of [renderBounds] multiplied by [pixelRatio].
+    ///
+    /// To use [toImage], the render object must have gone through the paint phase
+    /// (i.e. [debugNeedsPaint] must be false).
+    ///
+    /// The [pixelRatio] describes the scale between the logical pixels and the
+    /// size of the output image. It is independent of the
+    /// [window.devicePixelRatio] for the device, so specifying 1.0 (the default)
+    /// will give you a 1:1 mapping between logical pixels and the output pixels
+    /// in the image.
+    ///
+    /// The [debugPaint] argument specifies whether the image should include the
+    /// output of [RenderObject.debugPaint] for [renderObject] with
+    /// [debugPaintSizeEnabled] set to true. Debug paint information is not
+    /// included for the children of [renderObject] so that it is clear precisely
+    /// which object the debug paint information references.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderRepaintBoundary.toImage] for a similar API for [RenderObject]s
+    ///    that are repaint boundaries that can be used outside of the inspector.
+    ///  * [OffsetLayer.toImage] for a similar API at the layer level.
+    ///  * [dart:ui.Scene.toImage] for more information about the image returned.
+    /// </Summary>
+    public virtual Future<SKImage> ToImage(FlutterSDK.Rendering.@object.RenderObject renderObject, FlutterBinding.UI.Rect renderBounds, double pixelRatio = 1.0, bool debugPaint = false)
+    {
+        RenderObject repaintBoundary = renderObject;
+        while (repaintBoundary != null && !repaintBoundary.IsRepaintBoundary)
+        {
+            repaintBoundary = repaintBoundary.Parent as RenderObject;
+        }
+
+
+        _ScreenshotData data = new _ScreenshotData(target: renderObject);
+        _ScreenshotPaintingContext context = new _ScreenshotPaintingContext(containerLayer: repaintBoundary.DebugLayer, estimatedBounds: repaintBoundary.PaintBounds, screenshotData: data);
+        if (Dart:coreDefaultClass.Identical(renderObject, repaintBoundary)){
+            data.ContainerLayer.Append(new _ProxyLayer(repaintBoundary.DebugLayer));
+            data.FoundTarget = true;
+            OffsetLayer offsetLayer = repaintBoundary.DebugLayer as OffsetLayer;
+            data.ScreenshotOffset = offsetLayer.Offset;
+        }
 else
-    {
-        ObjectDefaultClass.PaintingContext.DebugInstrumentRepaintCompositedChild(repaintBoundary, customContext: context);
-    }
-
-    if (debugPaint && !DebugDefaultClass.DebugPaintSizeEnabled)
-    {
-        data.IncludeInRegularContext = false;
-        context.StopRecordingIfNeeded();
-
-        data.IncludeInScreenshot = true;
-        DebugDefaultClass.DebugPaintSizeEnabled = true;
-        try
         {
-            renderObject.DebugPaint(context, data.ScreenshotOffset);
+            ObjectDefaultClass.PaintingContext.DebugInstrumentRepaintCompositedChild(repaintBoundary, customContext: context);
         }
-        finally
+
+        if (debugPaint && !DebugDefaultClass.DebugPaintSizeEnabled)
         {
-            DebugDefaultClass.DebugPaintSizeEnabled = false;
+            data.IncludeInRegularContext = false;
             context.StopRecordingIfNeeded();
+
+            data.IncludeInScreenshot = true;
+            DebugDefaultClass.DebugPaintSizeEnabled = true;
+            try
+            {
+                renderObject.DebugPaint(context, data.ScreenshotOffset);
+            }
+            finally
+            {
+                DebugDefaultClass.DebugPaintSizeEnabled = false;
+                context.StopRecordingIfNeeded();
+            }
+
         }
 
+        repaintBoundary.DebugLayer.BuildScene(new Ui.SceneBuilder());
+        return data.ContainerLayer.ToImage(renderBounds, pixelRatio: pixelRatio);
     }
 
-    repaintBoundary.DebugLayer.BuildScene(new Ui.SceneBuilder());
-    return data.ContainerLayer.ToImage(renderBounds, pixelRatio: pixelRatio);
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -2758,18 +2762,21 @@ public class _DiagnosticsPathNode
     #region constructors
     public _DiagnosticsPathNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>), int childIndex = default(int))
     : base()
+    {
+        this.Node = node;
+        this.Children = children;
+        this.ChildIndex = childIndex;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Node { get; set; }
+    public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Children { get; set; }
+    public virtual int ChildIndex { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Node { get; set; }
-public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Children { get; set; }
-public virtual int ChildIndex { get; set; }
-#endregion
-
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -2781,17 +2788,18 @@ public class _InspectorReferenceData
 {
     #region constructors
     public _InspectorReferenceData(@Object @object)
+    {
+        this.@object = @object;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual @Object @object { get; set; }
+    public virtual int Count { get; set; }
+    #endregion
 
-#region fields
-public virtual @Object @object { get; set; }
-public virtual int Count { get; set; }
-#endregion
-
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -2805,42 +2813,45 @@ public class _LocationCount
 {
     #region constructors
     public _LocationCount(FlutterSDK.Widgets.Widgetinspector._Location location = default(FlutterSDK.Widgets.Widgetinspector._Location), int id = default(int), bool local = default(bool))
+    {
+        this.Location = location;
+        this.Id = id;
+        this.Local = local;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual int Id { get; set; }
+    public virtual bool Local { get; set; }
+    public virtual FlutterSDK.Widgets.Widgetinspector._Location Location { get; set; }
+    internal virtual int _Count { get; set; }
+    public virtual int Count { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual int Id { get; set; }
-public virtual bool Local { get; set; }
-public virtual FlutterSDK.Widgets.Widgetinspector._Location Location { get; set; }
-internal virtual int _Count { get; set; }
-public virtual int Count { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Reset the count.
-/// </Summary>
-public virtual void Reset()
-{
-    _Count = 0;
-}
-
-
-
-
-/// <Summary>
-/// Increment the count.
-/// </Summary>
-public virtual void Increment()
-{
-    _Count++;
-}
+    /// <Summary>
+    /// Reset the count.
+    /// </Summary>
+    public virtual void Reset()
+    {
+        _Count = 0;
+    }
 
 
 
-#endregion
+
+    /// <Summary>
+    /// Increment the count.
+    /// </Summary>
+    public virtual void Increment()
+    {
+        _Count++;
+    }
+
+
+
+    #endregion
 }
 
 
@@ -2892,21 +2903,23 @@ public class WidgetInspector : FlutterSDK.Widgets.Framework.StatefulWidget
     #region constructors
     public WidgetInspector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder selectButtonBuilder = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder))
     : base(key: key)
+    {
+        this.Child = child;
+        this.SelectButtonBuilder = selectButtonBuilder;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder SelectButtonBuilder { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder SelectButtonBuilder { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.Widgetinspector._WidgetInspectorState CreateState() => new _WidgetInspectorState();
+    public new FlutterSDK.Widgets.Widgetinspector._WidgetInspectorState CreateState() => new _WidgetInspectorState();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2915,210 +2928,211 @@ public class _WidgetInspectorState : FlutterSDK.Widgets.Framework.State<FlutterS
     #region constructors
     public _WidgetInspectorState()
     : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterBinding.UI.Offset _LastPointerLocation { get; set; }
-public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
-public virtual bool IsSelectMode { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _IgnorePointerKey { get; set; }
-internal virtual double _EdgeHitMargin { get; set; }
-internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectionChangedCallback _SelectionChangedCallback { get; set; }
-#endregion
-
-#region methods
-
-public new void InitState()
-{
-    base.InitState();
-    _SelectionChangedCallback = () =>
     {
-        SetState(() =>
+
+    }
+    #endregion
+
+    #region fields
+    internal virtual FlutterBinding.UI.Offset _LastPointerLocation { get; set; }
+    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
+    public virtual bool IsSelectMode { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _IgnorePointerKey { get; set; }
+    internal virtual double _EdgeHitMargin { get; set; }
+    internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectionChangedCallback _SelectionChangedCallback { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _SelectionChangedCallback = () =>
         {
+            SetState(() =>
+            {
+            }
+            );
         }
-        );
+        ;
+        WidgetinspectorDefaultClass.WidgetInspectorService.Instance.SelectionChangedCallback = _SelectionChangedCallback;
     }
-    ;
-    WidgetinspectorDefaultClass.WidgetInspectorService.Instance.SelectionChangedCallback = _SelectionChangedCallback;
-}
 
 
 
 
-public new void Dispose()
-{
-    if (WidgetinspectorDefaultClass.WidgetInspectorService.Instance.SelectionChangedCallback == _SelectionChangedCallback)
+    public new void Dispose()
     {
-        WidgetinspectorDefaultClass.WidgetInspectorService.Instance.SelectionChangedCallback = null;
+        if (WidgetinspectorDefaultClass.WidgetInspectorService.Instance.SelectionChangedCallback == _SelectionChangedCallback)
+        {
+            WidgetinspectorDefaultClass.WidgetInspectorService.Instance.SelectionChangedCallback = null;
+        }
+
+        base.Dispose();
     }
 
-    base.Dispose();
-}
 
 
 
-
-private bool _HitTestHelper(List<FlutterSDK.Rendering.@object.RenderObject> hits, List<FlutterSDK.Rendering.@object.RenderObject> edgeHits, FlutterBinding.UI.Offset position, FlutterSDK.Rendering.@object.RenderObject @object, Matrix4 transform)
-{
-    bool hit = false;
-    Matrix4 inverse = Matrix4.TryInvert(transform);
-    if (inverse == null)
+    private bool _HitTestHelper(List<FlutterSDK.Rendering.@object.RenderObject> hits, List<FlutterSDK.Rendering.@object.RenderObject> edgeHits, FlutterBinding.UI.Offset position, FlutterSDK.Rendering.@object.RenderObject @object, Matrix4 transform)
     {
-        return false;
+        bool hit = false;
+        Matrix4 inverse = Matrix4.TryInvert(transform);
+        if (inverse == null)
+        {
+            return false;
+        }
+
+        Offset localPosition = MatrixutilsDefaultClass.MatrixUtils.TransformPoint(inverse, position);
+        List<DiagnosticsNode> children = object.DebugDescribeChildren();
+        for (int i = children.Count - 1; i >= 0; i -= 1)
+        {
+            DiagnosticsNode diagnostics = children[i];
+
+            if (diagnostics.Style == DiagnosticsTreeStyle.Offstage || !(diagnostics.Value is RenderObject)) continue;
+            RenderObject child = diagnostics.Value as RenderObject;
+            Rect paintClip = object.DescribeApproximatePaintClip(child);
+            if (paintClip != null && !paintClip.Contains(localPosition)) continue;
+            Matrix4 childTransform = transform.Clone();
+            object.ApplyPaintTransform(child, childTransform);
+            if (_HitTestHelper(hits, edgeHits, position, child, childTransform)) hit = true;
+        }
+
+        Rect bounds = object.SemanticBounds;
+        if (bounds.Contains(localPosition))
+        {
+            hit = true;
+            if (!bounds.Deflate(_EdgeHitMargin).Contains(localPosition)) edgeHits.Add(object);
+        }
+
+        if (hit) hits.Add(object);
+        return hit;
     }
 
-    Offset localPosition = MatrixutilsDefaultClass.MatrixUtils.TransformPoint(inverse, position);
-    List<DiagnosticsNode> children = object.DebugDescribeChildren();
-    for (int i = children.Count - 1; i >= 0; i -= 1)
+
+
+
+    /// <Summary>
+    /// Returns the list of render objects located at the given position ordered
+    /// by priority.
+    ///
+    /// All render objects that are not offstage that match the location are
+    /// included in the list of matches. Priority is given to matches that occur
+    /// on the edge of a render object's bounding box and to matches found by
+    /// [RenderBox.hitTest].
+    /// </Summary>
+    public virtual List<FlutterSDK.Rendering.@object.RenderObject> HitTest(FlutterBinding.UI.Offset position, FlutterSDK.Rendering.@object.RenderObject root)
     {
-        DiagnosticsNode diagnostics = children[i];
+        List<RenderObject> regularHits = new List<RenderObject>() { };
+        List<RenderObject> edgeHits = new List<RenderObject>() { };
+        _HitTestHelper(regularHits, edgeHits, position, root, root.GetTransformTo(null));
+        double _Area(RenderObject object) => {
+            Size size = object.SemanticBounds?.Size;
+            return size == null ? Dart : coreDefaultClass.Double.MaxFinite:size.Width* size.Height;
+        }
 
-        if (diagnostics.Style == DiagnosticsTreeStyle.Offstage || !(diagnostics.Value is RenderObject)) continue;
-        RenderObject child = diagnostics.Value as RenderObject;
-        Rect paintClip = object.DescribeApproximatePaintClip(child);
-        if (paintClip != null && !paintClip.Contains(localPosition)) continue;
-        Matrix4 childTransform = transform.Clone();
-        object.ApplyPaintTransform(child, childTransform);
-        if (_HitTestHelper(hits, edgeHits, position, child, childTransform)) hit = true;
+        regularHits.Sort((RenderObject a, RenderObject b) => =>_Area(a).CompareTo(_Area(b)));
+        HashSet<RenderObject> hits = new Dictionary<RenderObject> { {, edgeHits }{, regularHits } };
+        return hits.ToList();
     }
 
-    Rect bounds = object.SemanticBounds;
-    if (bounds.Contains(localPosition))
+
+
+
+    private void _InspectAt(FlutterBinding.UI.Offset position)
     {
-        hit = true;
-        if (!bounds.Deflate(_EdgeHitMargin).Contains(localPosition)) edgeHits.Add(object);
-    }
-
-    if (hit) hits.Add(object);
-    return hit;
-}
-
-
-
-
-/// <Summary>
-/// Returns the list of render objects located at the given position ordered
-/// by priority.
-///
-/// All render objects that are not offstage that match the location are
-/// included in the list of matches. Priority is given to matches that occur
-/// on the edge of a render object's bounding box and to matches found by
-/// [RenderBox.hitTest].
-/// </Summary>
-public virtual List<FlutterSDK.Rendering.@object.RenderObject> HitTest(FlutterBinding.UI.Offset position, FlutterSDK.Rendering.@object.RenderObject root)
-{
-    List<RenderObject> regularHits = new List<RenderObject>() { };
-    List<RenderObject> edgeHits = new List<RenderObject>() { };
-    _HitTestHelper(regularHits, edgeHits, position, root, root.GetTransformTo(null));
-    double _Area(RenderObject object) => {
-        Size size = object.SemanticBounds?.Size;
-        return size == null ? Dart : coreDefaultClass.Double.MaxFinite:size.Width* size.Height;
-    }
-
-    regularHits.Sort((RenderObject a, RenderObject b) => =>_Area(a).CompareTo(_Area(b)));
-    HashSet<RenderObject> hits = new Dictionary<RenderObject> { {, edgeHits }{, regularHits } };
-    return hits.ToList();
-}
-
-
-
-
-private void _InspectAt(FlutterBinding.UI.Offset position)
-{
-    if (!IsSelectMode) return;
-    RenderIgnorePointer ignorePointer = _IgnorePointerKey.CurrentContext.FindRenderObject() as RenderIgnorePointer;
-    RenderObject userRender = ignorePointer.Child;
-    List<RenderObject> selected = HitTest(position, userRender);
-    SetState(() =>
-    {
-        Selection.Candidates = selected;
-    }
-    );
-}
-
-
-
-
-private void _HandlePanDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails @event)
-{
-    _LastPointerLocation = @event.GlobalPosition;
-    _InspectAt(@event.GlobalPosition);
-}
-
-
-
-
-private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails @event)
-{
-    _LastPointerLocation = @event.GlobalPosition;
-    _InspectAt(@event.GlobalPosition);
-}
-
-
-
-
-private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-{
-    Rect bounds = (Dart: uiDefaultClass.Offset.Zero & (BindingDefaultClass.WidgetsBinding.Instance.Window.PhysicalSize / BindingDefaultClass.WidgetsBinding.Instance.Window.DevicePixelRatio)).Deflate(WidgetinspectorDefaultClass._KOffScreenMargin);
-    if (!bounds.Contains(_LastPointerLocation))
-    {
+        if (!IsSelectMode) return;
+        RenderIgnorePointer ignorePointer = _IgnorePointerKey.CurrentContext.FindRenderObject() as RenderIgnorePointer;
+        RenderObject userRender = ignorePointer.Child;
+        List<RenderObject> selected = HitTest(position, userRender);
         SetState(() =>
         {
-            Selection.Clear();
+            Selection.Candidates = selected;
         }
         );
     }
 
-}
 
 
 
-
-private void _HandleTap()
-{
-    if (!IsSelectMode) return;
-    if (_LastPointerLocation != null)
+    private void _HandlePanDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails @event)
     {
-        _InspectAt(_LastPointerLocation);
-        if (Selection != null)
-        {
-            Developer.Dart:developerDefaultClass.Inspect(Selection.Current);
-}
-
-}
-
-SetState(() =>
-{
-    if (Widget.SelectButtonBuilder != null) IsSelectMode = false;
-}
-);
-}
-
-
-
-
-private void _HandleEnableSelect()
-{
-    SetState(() =>
-    {
-        IsSelectMode = true;
+        _LastPointerLocation = @event.GlobalPosition;
+        _InspectAt(@event.GlobalPosition);
     }
-    );
-}
 
 
 
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new Stack(children: new List<Widget>() { new GestureDetector(onTap: _HandleTap, onPanDown: _HandlePanDown, onPanEnd: _HandlePanEnd, onPanUpdate: _HandlePanUpdate, behavior: HitTestBehavior.Opaque, excludeFromSemantics: true, child: new IgnorePointer(ignoring: IsSelectMode, key: _IgnorePointerKey, ignoringSemantics: false, child: Widget.Child)), });
-}
+    private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails @event)
+    {
+        _LastPointerLocation = @event.GlobalPosition;
+        _InspectAt(@event.GlobalPosition);
+    }
 
 
 
-#endregion
+
+    private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+    {
+        Rect bounds = (Dart: uiDefaultClass.Offset.Zero & (BindingDefaultClass.WidgetsBinding.Instance.Window.PhysicalSize / BindingDefaultClass.WidgetsBinding.Instance.Window.DevicePixelRatio)).Deflate(WidgetinspectorDefaultClass._KOffScreenMargin);
+        if (!bounds.Contains(_LastPointerLocation))
+        {
+            SetState(() =>
+            {
+                Selection.Clear();
+            }
+            );
+        }
+
+    }
+
+
+
+
+    private void _HandleTap()
+    {
+        if (!IsSelectMode) return;
+        if (_LastPointerLocation != null)
+        {
+            _InspectAt(_LastPointerLocation);
+            if (Selection != null)
+            {
+                Developer.Dart:developerDefaultClass.Inspect(Selection.Current);
+            }
+
+        }
+
+        SetState(() =>
+        {
+            if (Widget.SelectButtonBuilder != null) IsSelectMode = false;
+        }
+        );
+    }
+
+
+
+
+    private void _HandleEnableSelect()
+    {
+        SetState(() =>
+        {
+            IsSelectMode = true;
+        }
+        );
+    }
+
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new Stack(children: new List<Widget>() { new GestureDetector(onTap: _HandleTap, onPanDown: _HandlePanDown, onPanEnd: _HandlePanEnd, onPanUpdate: _HandlePanUpdate, behavior: HitTestBehavior.Opaque, excludeFromSemantics: true, child: new IgnorePointer(ignoring: IsSelectMode, key: _IgnorePointerKey, ignoringSemantics: false, child: Widget.Child)), });
+    }
+
+
+
+    #endregion
 }
 
 
@@ -3127,38 +3141,39 @@ public class _InspectorOverlay : FlutterSDK.Widgets.Framework.LeafRenderObjectWi
     #region constructors
     public _InspectorOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
     : base(key: key)
+    {
+        this.Selection = selection;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.Widgetinspector._RenderInspectorOverlay CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderInspectorOverlay(selection: Selection);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Widgetinspector._RenderInspectorOverlay renderObject)
-{
-    renderObject.Selection = Selection;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    renderObject.Selection = Selection;
-}
+    public new FlutterSDK.Widgets.Widgetinspector._RenderInspectorOverlay CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return new _RenderInspectorOverlay(selection: Selection);
+    }
 
 
 
-#endregion
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Widgetinspector._RenderInspectorOverlay renderObject)
+    {
+        renderObject.Selection = Selection;
+    }
+
+
+    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+    {
+        renderObject.Selection = Selection;
+    }
+
+
+
+    #endregion
 }
 
 
@@ -3167,36 +3182,37 @@ public class _RenderInspectorOverlay : FlutterSDK.Rendering.Box.RenderBox
     #region constructors
     public _RenderInspectorOverlay(FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection _Selection { get; set; }
-public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection _Selection { get; set; }
+    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new void PerformResize()
-{
-    Size = Constraints.Constrain(new Size(Dart: coreDefaultClass.Double.Infinity, Dart: coreDefaultClass.Double.Infinity));
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-
-    context.AddLayer(new _InspectorOverlayLayer(overlayRect: Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, Size.Height), selection: Selection));
-}
+    public new void PerformResize()
+    {
+        Size = Constraints.Constrain(new Size(Dart: coreDefaultClass.Double.Infinity, Dart: coreDefaultClass.Double.Infinity));
+    }
 
 
 
-#endregion
+
+    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    {
+
+        context.AddLayer(new _InspectorOverlayLayer(overlayRect: Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, Size.Height), selection: Selection));
+    }
+
+
+
+    #endregion
 }
 
 
@@ -3205,27 +3221,28 @@ public class _TransformedRect
     #region constructors
     public _TransformedRect(FlutterSDK.Rendering.@object.RenderObject @object)
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Rect Rect { get; set; }
-public virtual Matrix4 Transform { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region fields
+    public virtual FlutterBinding.UI.Rect Rect { get; set; }
+    public virtual Matrix4 Transform { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region methods
+    #region methods
 
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is _TransformedRect && other.Rect == Rect && other.Transform == Transform;
-}
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is _TransformedRect && other.Rect == Rect && other.Transform == Transform;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -3239,30 +3256,35 @@ public class _InspectorOverlayRenderState
 {
     #region constructors
     public _InspectorOverlayRenderState(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector._TransformedRect selected = default(FlutterSDK.Widgets.Widgetinspector._TransformedRect), List<FlutterSDK.Widgets.Widgetinspector._TransformedRect> candidates = default(List<FlutterSDK.Widgets.Widgetinspector._TransformedRect>), string tooltip = default(string), TextDirection textDirection = default(TextDirection))
+    {
+        this.OverlayRect = overlayRect;
+        this.Selected = selected;
+        this.Candidates = candidates;
+        this.Tooltip = tooltip;
+        this.TextDirection = textDirection;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
+    public virtual FlutterSDK.Widgets.Widgetinspector._TransformedRect Selected { get; set; }
+    public virtual List<FlutterSDK.Widgets.Widgetinspector._TransformedRect> Candidates { get; set; }
+    public virtual string Tooltip { get; set; }
+    public virtual TextDirection TextDirection { get; set; }
+    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
-public virtual FlutterSDK.Widgets.Widgetinspector._TransformedRect Selected { get; set; }
-public virtual List<FlutterSDK.Widgets.Widgetinspector._TransformedRect> Candidates { get; set; }
-public virtual string Tooltip { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is _InspectorOverlayRenderState && other.OverlayRect == OverlayRect && other.Selected == Selected && CollectionsDefaultClass.ListEquals(other.Candidates, Candidates) && other.Tooltip == Tooltip;
-}
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is _InspectorOverlayRenderState && other.OverlayRect == OverlayRect && other.Selected == Selected && CollectionsDefaultClass.ListEquals(other.Candidates, Candidates) && other.Tooltip == Tooltip;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -3278,127 +3300,130 @@ public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     #region constructors
     public _InspectorOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
     : base()
-
-bool inDebugMode = false;
-
-if (inDebugMode==false ){
-throw FlutterError.FromParts(new List<DiagnosticsNode>(){new ErrorSummary("The inspector should never be used in production mode due to the " + "negative performance impact.")});
-}
-
-}
-
-
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
-public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
-internal virtual FlutterSDK.Widgets.Widgetinspector._InspectorOverlayRenderState _LastState { get; set; }
-internal virtual SKPicture _Picture { get; set; }
-internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
-internal virtual double _TextPainterMaxWidth { get; set; }
-#endregion
-
-#region methods
-
-public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
-{
-    if (!Selection.Active) return;
-    RenderObject selected = Selection.Current;
-    List<_TransformedRect> candidates = new List<_TransformedRect>() { };
-    foreach (RenderObject candidate in Selection.Candidates)
     {
-        if (candidate == selected || !candidate.Attached) continue;
-        candidates.Add(new _TransformedRect(candidate));
+        this.OverlayRect = overlayRect;
+        this.Selection = selection;
+        bool inDebugMode = false;
+
+        if (inDebugMode == false)
+        {
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("The inspector should never be used in production mode due to the " + "negative performance impact.") });
+        }
+
     }
 
-    _InspectorOverlayRenderState state = new _InspectorOverlayRenderState(overlayRect: OverlayRect, selected: new _TransformedRect(selected), tooltip: Selection.CurrentElement.ToStringShort(), textDirection: TextDirection.Ltr, candidates: candidates);
-    if (state != _LastState)
+
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
+    public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
+    internal virtual FlutterSDK.Widgets.Widgetinspector._InspectorOverlayRenderState _LastState { get; set; }
+    internal virtual SKPicture _Picture { get; set; }
+    internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
+    internal virtual double _TextPainterMaxWidth { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
-        _LastState = state;
-        _Picture = _BuildPicture(state);
+        if (!Selection.Active) return;
+        RenderObject selected = Selection.Current;
+        List<_TransformedRect> candidates = new List<_TransformedRect>() { };
+        foreach (RenderObject candidate in Selection.Candidates)
+        {
+            if (candidate == selected || !candidate.Attached) continue;
+            candidates.Add(new _TransformedRect(candidate));
+        }
+
+        _InspectorOverlayRenderState state = new _InspectorOverlayRenderState(overlayRect: OverlayRect, selected: new _TransformedRect(selected), tooltip: Selection.CurrentElement.ToStringShort(), textDirection: TextDirection.Ltr, candidates: candidates);
+        if (state != _LastState)
+        {
+            _LastState = state;
+            _Picture = _BuildPicture(state);
+        }
+
+        builder.AddPicture(layerOffset, _Picture);
     }
 
-    builder.AddPicture(layerOffset, _Picture);
-}
 
 
 
-
-private Picture _BuildPicture(FlutterSDK.Widgets.Widgetinspector._InspectorOverlayRenderState state)
-{
-    Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
-Canvas canvas = new Canvas(recorder, state.OverlayRect);
-Size size = state.OverlayRect.Size;
-Paint fillPaint = new Paint()..Style = PaintingStyle.Fill..Color = WidgetinspectorDefaultClass._KHighlightedRenderObjectFillColor;
-Paint borderPaint = new Paint()..Style = PaintingStyle.Stroke..StrokeWidth = 1.0..Color = WidgetinspectorDefaultClass._KHighlightedRenderObjectBorderColor;
-Rect selectedPaintRect = state.Selected.Rect.Deflate(0.5);
-;
-canvas.Save();
-canvas.Transform(state.Selected.Transform.Storage);
-canvas.DrawRect(selectedPaintRect, fillPaint);
-canvas.DrawRect(selectedPaintRect, borderPaint);
-canvas.Restore();
-foreach (_TransformedRect transformedRect in state.Candidates)
-{
-    ;
-    canvas.Save();
-    canvas.Transform(transformedRect.Transform.Storage);
-    canvas.DrawRect(transformedRect.Rect.Deflate(0.5), borderPaint);
-    canvas.Restore();
-}
-
-Rect targetRect = MatrixutilsDefaultClass.MatrixUtils.TransformRect(state.Selected.Transform, state.Selected.Rect);
-Offset target = new Offset(targetRect.Left, targetRect.Center.Dy);
-double offsetFromWidget = 9.0;
-double verticalOffset = (targetRect.Height) / 2 + offsetFromWidget;
-_PaintDescription(canvas, state.Tooltip, state.TextDirection, target, verticalOffset, size, targetRect);
-return recorder.EndRecording();
-}
-
-
-
-
-private void _PaintDescription(Canvas canvas, string message, TextDirection textDirection, FlutterBinding.UI.Offset target, double verticalOffset, Size size, FlutterBinding.UI.Rect targetRect)
-{
-    canvas.Save();
-    double maxWidth = size.Width - 2 * (WidgetinspectorDefaultClass._KScreenEdgeMargin + WidgetinspectorDefaultClass._KTooltipPadding);
-    TextSpan textSpan = _TextPainter?.Text as TextSpan;
-    if (_TextPainter == null || textSpan.Text != message || _TextPainterMaxWidth != maxWidth)
+    private Picture _BuildPicture(FlutterSDK.Widgets.Widgetinspector._InspectorOverlayRenderState state)
     {
-        _TextPainterMaxWidth = maxWidth;
-        _TextPainter = new TextPainter()..MaxLines = WidgetinspectorDefaultClass._KMaxTooltipLines..Ellipsis = "..."..Text = new TextSpan(style: WidgetinspectorDefaultClass._MessageStyle, text: message)..TextDirection = textDirection;
-        new TextPainter().Layout(maxWidth: maxWidth);
+        Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
+        Canvas canvas = new Canvas(recorder, state.OverlayRect);
+        Size size = state.OverlayRect.Size;
+        Paint fillPaint = new Paint()..Style = PaintingStyle.Fill..Color = WidgetinspectorDefaultClass._KHighlightedRenderObjectFillColor;
+        Paint borderPaint = new Paint()..Style = PaintingStyle.Stroke..StrokeWidth = 1.0..Color = WidgetinspectorDefaultClass._KHighlightedRenderObjectBorderColor;
+        Rect selectedPaintRect = state.Selected.Rect.Deflate(0.5);
+        ;
+        canvas.Save();
+        canvas.Transform(state.Selected.Transform.Storage);
+        canvas.DrawRect(selectedPaintRect, fillPaint);
+        canvas.DrawRect(selectedPaintRect, borderPaint);
+        canvas.Restore();
+        foreach (_TransformedRect transformedRect in state.Candidates)
+        {
+            ;
+            canvas.Save();
+            canvas.Transform(transformedRect.Transform.Storage);
+            canvas.DrawRect(transformedRect.Rect.Deflate(0.5), borderPaint);
+            canvas.Restore();
+        }
+
+        Rect targetRect = MatrixutilsDefaultClass.MatrixUtils.TransformRect(state.Selected.Transform, state.Selected.Rect);
+        Offset target = new Offset(targetRect.Left, targetRect.Center.Dy);
+        double offsetFromWidget = 9.0;
+        double verticalOffset = (targetRect.Height) / 2 + offsetFromWidget;
+        _PaintDescription(canvas, state.Tooltip, state.TextDirection, target, verticalOffset, size, targetRect);
+        return recorder.EndRecording();
     }
 
-    Size tooltipSize = _TextPainter.Size + new Offset(WidgetinspectorDefaultClass._KTooltipPadding * 2, WidgetinspectorDefaultClass._KTooltipPadding * 2);
-    Offset tipOffset = GeometryDefaultClass.PositionDependentBox(size: size, childSize: tooltipSize, target: target, verticalOffset: verticalOffset, preferBelow: false);
-    Paint tooltipBackground = new Paint()..Style = PaintingStyle.Fill..Color = WidgetinspectorDefaultClass._KTooltipBackgroundColor;
-    canvas.DrawRect(Rect.FromPoints(tipOffset, tipOffset.Translate(tooltipSize.Width, tooltipSize.Height)), tooltipBackground);
-    double wedgeY = tipOffset.Dy;
-    bool tooltipBelow = tipOffset.Dy > target.Dy;
-    if (!tooltipBelow) wedgeY += tooltipSize.Height;
-    double wedgeSize = WidgetinspectorDefaultClass._KTooltipPadding * 2;
-    double wedgeX = Math.Dart:mathDefaultClass.Max(tipOffset.Dx, target.Dx) + wedgeSize * 2;
-wedgeX = Math.Dart:mathDefaultClass.Min(wedgeX, tipOffset.Dx + tooltipSize.Width - wedgeSize * 2);
-List<Offset> wedge = new List<Offset>() { new Offset(wedgeX - wedgeSize, wedgeY), new Offset(wedgeX + wedgeSize, wedgeY), new Offset(wedgeX, wedgeY + (tooltipBelow ? -wedgeSize : wedgeSize)) };
-canvas.DrawPath(new Path();
-new Path().AddPolygon(wedge, true), tooltipBackground);
-_TextPainter.Paint(canvas, tipOffset + new Offset(WidgetinspectorDefaultClass._KTooltipPadding, WidgetinspectorDefaultClass._KTooltipPadding));
-canvas.Restore();
-}
+
+
+
+    private void _PaintDescription(Canvas canvas, string message, TextDirection textDirection, FlutterBinding.UI.Offset target, double verticalOffset, Size size, FlutterBinding.UI.Rect targetRect)
+    {
+        canvas.Save();
+        double maxWidth = size.Width - 2 * (WidgetinspectorDefaultClass._KScreenEdgeMargin + WidgetinspectorDefaultClass._KTooltipPadding);
+        TextSpan textSpan = _TextPainter?.Text as TextSpan;
+        if (_TextPainter == null || textSpan.Text != message || _TextPainterMaxWidth != maxWidth)
+        {
+            _TextPainterMaxWidth = maxWidth;
+            _TextPainter = new TextPainter()..MaxLines = WidgetinspectorDefaultClass._KMaxTooltipLines..Ellipsis = "..."..Text = new TextSpan(style: WidgetinspectorDefaultClass._MessageStyle, text: message)..TextDirection = textDirection;
+            new TextPainter().Layout(maxWidth: maxWidth);
+        }
+
+        Size tooltipSize = _TextPainter.Size + new Offset(WidgetinspectorDefaultClass._KTooltipPadding * 2, WidgetinspectorDefaultClass._KTooltipPadding * 2);
+        Offset tipOffset = GeometryDefaultClass.PositionDependentBox(size: size, childSize: tooltipSize, target: target, verticalOffset: verticalOffset, preferBelow: false);
+        Paint tooltipBackground = new Paint()..Style = PaintingStyle.Fill..Color = WidgetinspectorDefaultClass._KTooltipBackgroundColor;
+        canvas.DrawRect(Rect.FromPoints(tipOffset, tipOffset.Translate(tooltipSize.Width, tooltipSize.Height)), tooltipBackground);
+        double wedgeY = tipOffset.Dy;
+        bool tooltipBelow = tipOffset.Dy > target.Dy;
+        if (!tooltipBelow) wedgeY += tooltipSize.Height;
+        double wedgeSize = WidgetinspectorDefaultClass._KTooltipPadding * 2;
+        double wedgeX = Math.Dart:mathDefaultClass.Max(tipOffset.Dx, target.Dx) + wedgeSize * 2;
+        wedgeX = Math.Dart:mathDefaultClass.Min(wedgeX, tipOffset.Dx + tooltipSize.Width - wedgeSize * 2);
+        List<Offset> wedge = new List<Offset>() { new Offset(wedgeX - wedgeSize, wedgeY), new Offset(wedgeX + wedgeSize, wedgeY), new Offset(wedgeX, wedgeY + (tooltipBelow ? -wedgeSize : wedgeSize)) };
+        canvas.DrawPath(new Path();
+        new Path().AddPolygon(wedge, true), tooltipBackground);
+        _TextPainter.Paint(canvas, tipOffset + new Offset(WidgetinspectorDefaultClass._KTooltipPadding, WidgetinspectorDefaultClass._KTooltipPadding));
+        canvas.Restore();
+    }
 
 
 
 
-public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
-{
-    return false;
-}
+    public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
+    {
+        return false;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -3410,40 +3435,45 @@ public class _Location
 {
     #region constructors
     public _Location(string file = default(string), int line = default(int), int column = default(int), string name = default(string), List<FlutterSDK.Widgets.Widgetinspector._Location> parameterLocations = default(List<FlutterSDK.Widgets.Widgetinspector._Location>))
-
-}
-#endregion
-
-#region fields
-public virtual string File { get; set; }
-public virtual int Line { get; set; }
-public virtual int Column { get; set; }
-public virtual string Name { get; set; }
-public virtual List<FlutterSDK.Widgets.Widgetinspector._Location> ParameterLocations { get; set; }
-#endregion
-
-#region methods
-
-public virtual Dictionary<string, @Object> ToJsonMap()
-{
-    Dictionary<string, object> json = new Dictionary<string, object> { { "file", File }{ "line", Line }{ "column", Column } };
-    if (Name != null)
     {
-        json["name"] = Name;
+        this.File = file;
+        this.Line = line;
+        this.Column = column;
+        this.Name = name;
+        this.ParameterLocations = parameterLocations;
+    }
+    #endregion
+
+    #region fields
+    public virtual string File { get; set; }
+    public virtual int Line { get; set; }
+    public virtual int Column { get; set; }
+    public virtual string Name { get; set; }
+    public virtual List<FlutterSDK.Widgets.Widgetinspector._Location> ParameterLocations { get; set; }
+    #endregion
+
+    #region methods
+
+    public virtual Dictionary<string, @Object> ToJsonMap()
+    {
+        Dictionary<string, object> json = new Dictionary<string, object> { { "file", File }{ "line", Line }{ "column", Column } };
+        if (Name != null)
+        {
+            json["name"] = Name;
+        }
+
+        if (ParameterLocations != null)
+        {
+            json["parameterLocations"] = ParameterLocations.Map((_Location location) => =>location.ToJsonMap()).ToList();
+        }
+
+        return json;
     }
 
-    if (ParameterLocations != null)
-    {
-        json["parameterLocations"] = ParameterLocations.Map((_Location location) => =>location.ToJsonMap()).ToList();
-    }
-
-    return json;
-}
 
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -3455,114 +3485,122 @@ public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
 {
     #region constructors
     public InspectorSerializationDelegate(string groupName = default(string), bool summaryTree = false, int maxDescendentsTruncatableNode = -1, bool expandPropertyValues = true, int subtreeDepth = 1, bool includeProperties = false, FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService service = default(FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService), Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> addAdditionalPropertiesCallback = default(Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate>))
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService Service { get; set; }
-public virtual string GroupName { get; set; }
-public virtual bool SummaryTree { get; set; }
-public virtual int MaxDescendentsTruncatableNode { get; set; }
-public new bool IncludeProperties { get; set; }
-public new int SubtreeDepth { get; set; }
-public new bool ExpandPropertyValues { get; set; }
-public virtual Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> AddAdditionalPropertiesCallback { get; set; }
-internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _NodesCreatedByLocalProject { get; set; }
-internal virtual bool _Interactive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
-{
-    Dictionary<string, object> result = new Dictionary<string, object> { };
-    object value = node.Value;
-    if (_Interactive)
     {
-        result["objectId"] = Service.ToId(node, GroupName);
-        result["valueId"] = Service.ToId(value, GroupName);
+        this.GroupName = groupName;
+        this.SummaryTree = summaryTree;
+        this.MaxDescendentsTruncatableNode = maxDescendentsTruncatableNode;
+        this.ExpandPropertyValues = expandPropertyValues;
+        this.SubtreeDepth = subtreeDepth;
+        this.IncludeProperties = includeProperties;
+        this.Service = service;
+        this.AddAdditionalPropertiesCallback = addAdditionalPropertiesCallback;
     }
+    #endregion
 
-    if (SummaryTree)
-    {
-        result["summaryTree"] = true;
-    }
+    #region fields
+    public virtual FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService Service { get; set; }
+    public virtual string GroupName { get; set; }
+    public virtual bool SummaryTree { get; set; }
+    public virtual int MaxDescendentsTruncatableNode { get; set; }
+    public new bool IncludeProperties { get; set; }
+    public new int SubtreeDepth { get; set; }
+    public new bool ExpandPropertyValues { get; set; }
+    public virtual Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> AddAdditionalPropertiesCallback { get; set; }
+    internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _NodesCreatedByLocalProject { get; set; }
+    internal virtual bool _Interactive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-    _Location creationLocation = WidgetinspectorDefaultClass._GetCreationLocation(value);
-    if (creationLocation != null)
+    #region methods
+
+    public new Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
     {
-        result["locationId"] = WidgetinspectorDefaultClass._ToLocationId(creationLocation);
-        result["creationLocation"] = creationLocation.ToJsonMap();
-        if (Service._IsLocalCreationLocation(creationLocation))
+        Dictionary<string, object> result = new Dictionary<string, object> { };
+        object value = node.Value;
+        if (_Interactive)
         {
-            _NodesCreatedByLocalProject.Add(node);
-            result["createdByLocalProject"] = true;
+            result["objectId"] = Service.ToId(node, GroupName);
+            result["valueId"] = Service.ToId(value, GroupName);
         }
 
+        if (SummaryTree)
+        {
+            result["summaryTree"] = true;
+        }
+
+        _Location creationLocation = WidgetinspectorDefaultClass._GetCreationLocation(value);
+        if (creationLocation != null)
+        {
+            result["locationId"] = WidgetinspectorDefaultClass._ToLocationId(creationLocation);
+            result["creationLocation"] = creationLocation.ToJsonMap();
+            if (Service._IsLocalCreationLocation(creationLocation))
+            {
+                _NodesCreatedByLocalProject.Add(node);
+                result["createdByLocalProject"] = true;
+            }
+
+        }
+
+        if (AddAdditionalPropertiesCallback != null)
+        {
+            result.AddAll(AddAdditionalPropertiesCallback(node, this) ?? new Dictionary<string, object> { });
+        }
+
+        return result;
     }
 
-    if (AddAdditionalPropertiesCallback != null)
+
+
+
+    public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate DelegateForNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
     {
-        result.AddAll(AddAdditionalPropertiesCallback(node, this) ?? new Dictionary<string, object> { });
+        return SummaryTree || SubtreeDepth > 1 || Service._ShouldShowInSummaryTree(node) ? CopyWith(subtreeDepth: SubtreeDepth - 1) : this;
     }
 
-    return result;
-}
 
 
 
-
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate DelegateForNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
-{
-    return SummaryTree || SubtreeDepth > 1 || Service._ShouldShowInSummaryTree(node) ? CopyWith(subtreeDepth: SubtreeDepth - 1) : this;
-}
-
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
-{
-    return Service._FilterChildren(children, this);
-}
-
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
-{
-    bool createdByLocalProject = _NodesCreatedByLocalProject.Contains(owner);
-    return properties.Where((DiagnosticsNode node) =>
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
     {
-        return !node.IsFiltered(createdByLocalProject ? DiagnosticLevel.Fine : DiagnosticLevel.Info);
+        return Service._FilterChildren(children, this);
     }
-    ).ToList();
-}
 
 
 
 
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TruncateNodesList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
-{
-    if (MaxDescendentsTruncatableNode >= 0 && owner?.AllowTruncate == true && nodes.Count > MaxDescendentsTruncatableNode)
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> FilterProperties(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
     {
-        nodes = Service._TruncateNodes(nodes, MaxDescendentsTruncatableNode);
+        bool createdByLocalProject = _NodesCreatedByLocalProject.Contains(owner);
+        return properties.Where((DiagnosticsNode node) =>
+        {
+            return !node.IsFiltered(createdByLocalProject ? DiagnosticLevel.Fine : DiagnosticLevel.Info);
+        }
+        ).ToList();
     }
 
-    return nodes;
-}
+
+
+
+    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TruncateNodesList(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode owner)
+    {
+        if (MaxDescendentsTruncatableNode >= 0 && owner?.AllowTruncate == true && nodes.Count > MaxDescendentsTruncatableNode)
+        {
+            nodes = Service._TruncateNodes(nodes, MaxDescendentsTruncatableNode);
+        }
+
+        return nodes;
+    }
 
 
 
 
-public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate CopyWith(int subtreeDepth = default(int), bool includeProperties = default(bool))
-{
-    return new InspectorSerializationDelegate(groupName: GroupName, summaryTree: SummaryTree, maxDescendentsTruncatableNode: MaxDescendentsTruncatableNode, expandPropertyValues: ExpandPropertyValues, subtreeDepth: subtreeDepth ?? this.SubtreeDepth, includeProperties: includeProperties ?? this.IncludeProperties, service: Service, addAdditionalPropertiesCallback: AddAdditionalPropertiesCallback);
-}
+    public new FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate CopyWith(int subtreeDepth = default(int), bool includeProperties = default(bool))
+    {
+        return new InspectorSerializationDelegate(groupName: GroupName, summaryTree: SummaryTree, maxDescendentsTruncatableNode: MaxDescendentsTruncatableNode, expandPropertyValues: ExpandPropertyValues, subtreeDepth: subtreeDepth ?? this.SubtreeDepth, includeProperties: includeProperties ?? this.IncludeProperties, service: Service, addAdditionalPropertiesCallback: AddAdditionalPropertiesCallback);
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 }

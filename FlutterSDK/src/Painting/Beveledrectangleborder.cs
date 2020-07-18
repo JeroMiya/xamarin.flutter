@@ -440,118 +440,120 @@ namespace FlutterSDK.Painting.Beveledrectangleborder
         #region constructors
         public BeveledRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
-    {
-        return new BeveledRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t);
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-    {
-
-        if (a is BeveledRectangleBorder)
         {
-            return new BeveledRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((Alignment)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((Alignment)a).BorderRadius, BorderRadius, t));
+            this.Side = side;
+            this.BorderRadius = borderRadius;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+        {
+            return new BeveledRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t);
         }
 
-        return base.LerpFrom(a, t);
-    }
 
 
 
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-    {
-
-        if (b is BeveledRectangleBorder)
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
         {
-            return new BeveledRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((BeveledRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((BeveledRectangleBorder)b).BorderRadius, t));
+
+            if (a is BeveledRectangleBorder)
+            {
+                return new BeveledRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((Alignment)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((Alignment)a).BorderRadius, BorderRadius, t));
+            }
+
+            return base.LerpFrom(a, t);
         }
 
-        return base.LerpTo(b, t);
-    }
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+
+            if (b is BeveledRectangleBorder)
+            {
+                return new BeveledRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((BeveledRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((BeveledRectangleBorder)b).BorderRadius, t));
+            }
+
+            return base.LerpTo(b, t);
+        }
 
 
 
 
-    private Path _GetPath(FlutterBinding.UI.RRect rrect)
-    {
-        Offset centerLeft = new Offset(rrect.Left, rrect.Center.Dy);
-        Offset centerRight = new Offset(rrect.Right, rrect.Center.Dy);
-        Offset centerTop = new Offset(rrect.Center.Dx, rrect.Top);
-        Offset centerBottom = new Offset(rrect.Center.Dx, rrect.Bottom);
-        double tlRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.TlRadiusX);
-        double tlRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.TlRadiusY);
-        double trRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.TrRadiusX);
-        double trRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.TrRadiusY);
-        double blRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.BlRadiusX);
-        double blRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.BlRadiusY);
-        double brRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.BrRadiusX);
-        double brRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.BrRadiusY);
-        List<Offset> vertices = new List<Offset>() { new Offset(rrect.Left, Math.Dart:mathDefaultClass.Min(centerLeft.Dy, rrect.Top + tlRadiusY)), new Offset(Math.Dart:mathDefaultClass.Min(centerTop.Dx, rrect.Left + tlRadiusX), rrect.Top), new Offset(Math.Dart:mathDefaultClass.Max(centerTop.Dx, rrect.Right - trRadiusX), rrect.Top), new Offset(rrect.Right, Math.Dart:mathDefaultClass.Min(centerRight.Dy, rrect.Top + trRadiusY)), new Offset(rrect.Right, Math.Dart:mathDefaultClass.Max(centerRight.Dy, rrect.Bottom - brRadiusY)), new Offset(Math.Dart:mathDefaultClass.Max(centerBottom.Dx, rrect.Right - brRadiusX), rrect.Bottom), new Offset(Math.Dart:mathDefaultClass.Min(centerBottom.Dx, rrect.Left + blRadiusX), rrect.Bottom), new Offset(rrect.Left, Math.Dart:mathDefaultClass.Max(centerLeft.Dy, rrect.Bottom - blRadiusY))};
+        private Path _GetPath(FlutterBinding.UI.RRect rrect)
+        {
+            Offset centerLeft = new Offset(rrect.Left, rrect.Center.Dy);
+            Offset centerRight = new Offset(rrect.Right, rrect.Center.Dy);
+            Offset centerTop = new Offset(rrect.Center.Dx, rrect.Top);
+            Offset centerBottom = new Offset(rrect.Center.Dx, rrect.Bottom);
+            double tlRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.TlRadiusX);
+            double tlRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.TlRadiusY);
+            double trRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.TrRadiusX);
+            double trRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.TrRadiusY);
+            double blRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.BlRadiusX);
+            double blRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.BlRadiusY);
+            double brRadiusX = Math.Dart:mathDefaultClass.Max(0.0, rrect.BrRadiusX);
+            double brRadiusY = Math.Dart:mathDefaultClass.Max(0.0, rrect.BrRadiusY);
+            List<Offset> vertices = new List<Offset>() { new Offset(rrect.Left, Math.Dart:mathDefaultClass.Min(centerLeft.Dy, rrect.Top + tlRadiusY)), new Offset(Math.Dart:mathDefaultClass.Min(centerTop.Dx, rrect.Left + tlRadiusX), rrect.Top), new Offset(Math.Dart:mathDefaultClass.Max(centerTop.Dx, rrect.Right - trRadiusX), rrect.Top), new Offset(rrect.Right, Math.Dart:mathDefaultClass.Min(centerRight.Dy, rrect.Top + trRadiusY)), new Offset(rrect.Right, Math.Dart:mathDefaultClass.Max(centerRight.Dy, rrect.Bottom - brRadiusY)), new Offset(Math.Dart:mathDefaultClass.Max(centerBottom.Dx, rrect.Right - brRadiusX), rrect.Bottom), new Offset(Math.Dart:mathDefaultClass.Min(centerBottom.Dx, rrect.Left + blRadiusX), rrect.Bottom), new Offset(rrect.Left, Math.Dart:mathDefaultClass.Max(centerLeft.Dy, rrect.Bottom - blRadiusY))};
 return new Path();
-    new Path().AddPolygon(vertices, true );
-}
-
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return _GetPath(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(Side.Width));
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return _GetPath(BorderRadius.Resolve(textDirection).ToRRect(rect));
-}
-
-
-
-
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    if (rect.IsEmpty()) return;
-    switch (Side.Style)
-    {
-        case BorderStyle.None: break;
-        case BorderStyle.Solid:
-            Path path = GetOuterPath(rect, textDirection: textDirection);
-            GetOuterPath(rect, textDirection: textDirection).AddPath(GetInnerPath(rect, textDirection: textDirection), Dart: uiDefaultClass.Offset.Zero); canvas.DrawPath(path, Side.ToPaint()); break;
+        new Path().AddPolygon(vertices, true );
     }
-}
 
 
 
 
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is BeveledRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius;
-}
+    public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        return _GetPath(BorderRadius.Resolve(textDirection).ToRRect(rect).Deflate(Side.Width));
+    }
 
 
 
 
-#endregion
+    public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        return _GetPath(BorderRadius.Resolve(textDirection).ToRRect(rect));
+    }
+
+
+
+
+    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+    {
+        if (rect.IsEmpty()) return;
+        switch (Side.Style)
+        {
+            case BorderStyle.None: break;
+            case BorderStyle.Solid:
+                Path path = GetOuterPath(rect, textDirection: textDirection);
+                GetOuterPath(rect, textDirection: textDirection).AddPath(GetInnerPath(rect, textDirection: textDirection), Dart: uiDefaultClass.Offset.Zero); canvas.DrawPath(path, Side.ToPaint()); break;
+        }
+    }
+
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is BeveledRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius;
+    }
+
+
+
+
+    #endregion
 }
 
 }

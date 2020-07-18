@@ -550,106 +550,107 @@ namespace FlutterSDK.Material.Textformfield
 
             return new TextField(controller: state._EffectiveController, focusNode: focusNode, decoration: effectiveDecoration.CopyWith(errorText: field.ErrorText), keyboardType: keyboardType, textInputAction: textInputAction, style: style, strutStyle: strutStyle, textAlign: textAlign, textAlignVertical: textAlignVertical, textDirection: textDirection, textCapitalization: textCapitalization, autofocus: autofocus, toolbarOptions: toolbarOptions, readOnly: readOnly, showCursor: showCursor, obscureText: obscureText, autocorrect: autocorrect, smartDashesType: smartDashesType ?? (obscureText ? SmartDashesType.Disabled : SmartDashesType.Enabled), smartQuotesType: smartQuotesType ?? (obscureText ? SmartQuotesType.Disabled : SmartQuotesType.Enabled), enableSuggestions: enableSuggestions, maxLengthEnforced: maxLengthEnforced, maxLines: maxLines, minLines: minLines, expands: expands, maxLength: maxLength, onChanged: OnChangedHandler, onTap: onTap, onEditingComplete: onEditingComplete, onSubmitted: onFieldSubmitted, inputFormatters: inputFormatters, enabled: enabled, cursorWidth: cursorWidth, cursorRadius: cursorRadius, cursorColor: cursorColor, scrollPadding: scrollPadding, scrollPhysics: scrollPhysics, keyboardAppearance: keyboardAppearance, enableInteractiveSelection: enableInteractiveSelection, buildCounter: buildCounter);
         })
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Textformfield._TextFormFieldState CreateState() => new _TextFormFieldState();
-
-
-    #endregion
-}
-
-
-public class _TextFormFieldState : FlutterSDK.Widgets.Form.FormFieldState<string>
-{
-    #region constructors
-    public _TextFormFieldState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
-    internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _EffectiveController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Material.Textformfield.TextFormField Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        if (Widget.Controller == null)
         {
-            _Controller = new TextEditingController(text: Widget.InitialValue);
+            this.Controller = controller;
         }
-        else
-        {
-            Widget.Controller.AddListener(_HandleControllerChanged);
-        }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Textformfield._TextFormFieldState CreateState() => new _TextFormFieldState();
+
+
+        #endregion
     }
 
 
-
-
-    public new void DidUpdateWidget(FlutterSDK.Material.Textformfield.TextFormField oldWidget)
+    public class _TextFormFieldState : FlutterSDK.Widgets.Form.FormFieldState<string>
     {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.Controller != oldWidget.Controller)
+        #region constructors
+        public _TextFormFieldState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _EffectiveController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Textformfield.TextFormField Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            oldWidget.Controller?.RemoveListener(_HandleControllerChanged);
-            Widget.Controller?.AddListener(_HandleControllerChanged);
-            if (oldWidget.Controller != null && Widget.Controller == null) _Controller = TextEditingController.FromValue(oldWidget.Controller.Value);
-            if (Widget.Controller != null)
+            base.InitState();
+            if (Widget.Controller == null)
             {
-                SetValue(Widget.Controller.Text);
-                if (oldWidget.Controller == null) _Controller = null;
+                _Controller = new TextEditingController(text: Widget.InitialValue);
+            }
+            else
+            {
+                Widget.Controller.AddListener(_HandleControllerChanged);
             }
 
         }
 
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        Widget.Controller?.RemoveListener(_HandleControllerChanged);
-        base.Dispose();
-    }
-
-
-
-
-    public new void Reset()
-    {
-        base.Reset();
-        SetState(() =>
+        public new void DidUpdateWidget(FlutterSDK.Material.Textformfield.TextFormField oldWidget)
         {
-            _EffectiveController.Text = Widget.InitialValue;
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.Controller != oldWidget.Controller)
+            {
+                oldWidget.Controller?.RemoveListener(_HandleControllerChanged);
+                Widget.Controller?.AddListener(_HandleControllerChanged);
+                if (oldWidget.Controller != null && Widget.Controller == null) _Controller = TextEditingController.FromValue(oldWidget.Controller.Value);
+                if (Widget.Controller != null)
+                {
+                    SetValue(Widget.Controller.Text);
+                    if (oldWidget.Controller == null) _Controller = null;
+                }
+
+            }
+
         }
-        );
+
+
+
+
+        public new void Dispose()
+        {
+            Widget.Controller?.RemoveListener(_HandleControllerChanged);
+            base.Dispose();
+        }
+
+
+
+
+        public new void Reset()
+        {
+            base.Reset();
+            SetState(() =>
+            {
+                _EffectiveController.Text = Widget.InitialValue;
+            }
+            );
+        }
+
+
+
+
+        private void _HandleControllerChanged()
+        {
+            if (_EffectiveController.Text != Value) DidChange(_EffectiveController.Text);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    private void _HandleControllerChanged()
-    {
-        if (_EffectiveController.Text != Value) DidChange(_EffectiveController.Text);
-    }
-
-
-
-    #endregion
-}
 
 }

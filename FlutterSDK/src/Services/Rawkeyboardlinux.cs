@@ -596,41 +596,47 @@ namespace FlutterSDK.Services.Rawkeyboardlinux
         #region constructors
         public RawKeyEventDataLinux(FlutterSDK.Services.Rawkeyboardlinux.KeyHelper keyHelper = default(FlutterSDK.Services.Rawkeyboardlinux.KeyHelper), int unicodeScalarValues = 0, int scanCode = 0, int keyCode = 0, int modifiers = 0, bool isDown = default(bool))
         : base()
-    
-}
-    #endregion
+        {
+            this.KeyHelper = keyHelper;
+            this.UnicodeScalarValues = unicodeScalarValues;
+            this.ScanCode = scanCode;
+            this.KeyCode = keyCode;
+            this.Modifiers = modifiers;
+            this.IsDown = isDown;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Services.Rawkeyboardlinux.KeyHelper KeyHelper { get; set; }
-    public virtual int UnicodeScalarValues { get; set; }
-    public virtual int ScanCode { get; set; }
-    public virtual int KeyCode { get; set; }
-    public virtual int Modifiers { get; set; }
-    public virtual bool IsDown { get; set; }
-    public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Services.Rawkeyboardlinux.KeyHelper KeyHelper { get; set; }
+        public virtual int UnicodeScalarValues { get; set; }
+        public virtual int ScanCode { get; set; }
+        public virtual int KeyCode { get; set; }
+        public virtual int Modifiers { get; set; }
+        public virtual bool IsDown { get; set; }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
-    {
-        return KeyHelper.IsModifierPressed(key, Modifiers, side: side, keyCode: KeyCode, isDown: IsDown);
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
+        {
+            return KeyHelper.IsModifierPressed(key, Modifiers, side: side, keyCode: KeyCode, isDown: IsDown);
+        }
+
+
+
+
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+        {
+            return KeyHelper.GetModifierSide(key);
+        }
+
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
-    {
-        return KeyHelper.GetModifierSide(key);
-    }
-
-
-
-
-    #endregion
-}
 
 }

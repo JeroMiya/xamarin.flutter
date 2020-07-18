@@ -441,172 +441,175 @@ namespace FlutterSDK.Material.Scrollbar
         #region constructors
         public Scrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false)
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Child = child;
+            this.Controller = controller;
+            this.IsAlwaysShown = isAlwaysShown;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
-    public virtual bool IsAlwaysShown { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        public virtual bool IsAlwaysShown { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Material.Scrollbar._ScrollbarState CreateState() => new _ScrollbarState();
-
-
-    #endregion
-}
+        public new FlutterSDK.Material.Scrollbar._ScrollbarState CreateState() => new _ScrollbarState();
 
 
-public class _ScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scrollbar.Scrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _ScrollbarState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _MaterialPainter { get; set; }
-    internal virtual TextDirection _TextDirection { get; set; }
-    internal virtual FlutterBinding.UI.Color _ThemeColor { get; set; }
-    internal virtual bool _UseCupertinoScrollbar { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
-    internal virtual Timer _FadeoutTimer { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _FadeoutAnimationController = new AnimationController(vsync: this, duration: ScrollbarDefaultClass._KScrollbarFadeDuration);
-        _FadeoutOpacityAnimation = new CurvedAnimation(parent: _FadeoutAnimationController, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+        #endregion
     }
 
 
-
-
-    public new void DidChangeDependencies()
+    public class _ScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scrollbar.Scrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        base.DidChangeDependencies();
+        #region constructors
+        public _ScrollbarState()
+        { }
+        #endregion
 
-        ThemeData theme = ThemeDefaultClass.Theme.Of(Context);
-        switch (theme.Platform)
+        #region fields
+        internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _MaterialPainter { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterBinding.UI.Color _ThemeColor { get; set; }
+        internal virtual bool _UseCupertinoScrollbar { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
+        internal virtual Timer _FadeoutTimer { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            case TargetPlatform.IOS: case TargetPlatform.MacOS: _FadeoutTimer?.Cancel(); _FadeoutTimer = null; _FadeoutAnimationController.Reset(); _UseCupertinoScrollbar = true; break;
-            case TargetPlatform.Android:
-            case TargetPlatform.Fuchsia:
-            case TargetPlatform.Linux:
-            case TargetPlatform.Windows:
-                _ThemeColor = theme.HighlightColor.WithOpacity(1.0); _TextDirection = BasicDefaultClass.Directionality.Of(Context); _MaterialPainter = _BuildMaterialScrollbarPainter(); _UseCupertinoScrollbar = false; BindingDefaultClass.WidgetsBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
-                {
-                    if (Widget.IsAlwaysShown)
+            base.InitState();
+            _FadeoutAnimationController = new AnimationController(vsync: this, duration: ScrollbarDefaultClass._KScrollbarFadeDuration);
+            _FadeoutOpacityAnimation = new CurvedAnimation(parent: _FadeoutAnimationController, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+        }
+
+
+
+
+        public new void DidChangeDependencies()
+        {
+            base.DidChangeDependencies();
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(Context);
+            switch (theme.Platform)
+            {
+                case TargetPlatform.IOS: case TargetPlatform.MacOS: _FadeoutTimer?.Cancel(); _FadeoutTimer = null; _FadeoutAnimationController.Reset(); _UseCupertinoScrollbar = true; break;
+                case TargetPlatform.Android:
+                case TargetPlatform.Fuchsia:
+                case TargetPlatform.Linux:
+                case TargetPlatform.Windows:
+                    _ThemeColor = theme.HighlightColor.WithOpacity(1.0); _TextDirection = BasicDefaultClass.Directionality.Of(Context); _MaterialPainter = _BuildMaterialScrollbarPainter(); _UseCupertinoScrollbar = false; BindingDefaultClass.WidgetsBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
                     {
+                        if (Widget.IsAlwaysShown)
+                        {
 
-                        Widget.Controller.Position.DidUpdateScrollPositionBy(0);
+                            Widget.Controller.Position.DidUpdateScrollPositionBy(0);
+                        }
+
                     }
-
-                }
 ); break;
-        }
-
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Material.Scrollbar.Scrollbar oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.IsAlwaysShown != oldWidget.IsAlwaysShown)
-        {
-
-            if (Widget.IsAlwaysShown == false)
-            {
-                _FadeoutAnimationController.Reverse();
-            }
-            else
-            {
-                _FadeoutAnimationController.AnimateTo(1.0);
             }
 
         }
 
-    }
 
 
 
-
-    private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildMaterialScrollbarPainter()
-    {
-        return new ScrollbarPainter(color: _ThemeColor, textDirection: _TextDirection, thickness: ScrollbarDefaultClass._KScrollbarThickness, fadeoutOpacityAnimation: _FadeoutOpacityAnimation, padding: MediaqueryDefaultClass.MediaQuery.Of(Context).Padding);
-    }
-
-
-
-
-    private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
-    {
-        ScrollMetrics metrics = notification.Metrics;
-        if (metrics.MaxScrollExtent <= metrics.MinScrollExtent)
+        public new void DidUpdateWidget(FlutterSDK.Material.Scrollbar.Scrollbar oldWidget)
         {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.IsAlwaysShown != oldWidget.IsAlwaysShown)
+            {
+
+                if (Widget.IsAlwaysShown == false)
+                {
+                    _FadeoutAnimationController.Reverse();
+                }
+                else
+                {
+                    _FadeoutAnimationController.AnimateTo(1.0);
+                }
+
+            }
+
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _BuildMaterialScrollbarPainter()
+        {
+            return new ScrollbarPainter(color: _ThemeColor, textDirection: _TextDirection, thickness: ScrollbarDefaultClass._KScrollbarThickness, fadeoutOpacityAnimation: _FadeoutOpacityAnimation, padding: MediaqueryDefaultClass.MediaQuery.Of(Context).Padding);
+        }
+
+
+
+
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+        {
+            ScrollMetrics metrics = notification.Metrics;
+            if (metrics.MaxScrollExtent <= metrics.MinScrollExtent)
+            {
+                return false;
+            }
+
+            if (!_UseCupertinoScrollbar && (notification is ScrollUpdateNotification || notification is OverscrollNotification))
+            {
+                if (_FadeoutAnimationController.Status != AnimationStatus.Forward)
+                {
+                    _FadeoutAnimationController.Forward();
+                }
+
+                _MaterialPainter.Update(notification.Metrics, notification.Metrics.AxisDirection);
+                if (!Widget.IsAlwaysShown)
+                {
+                    _FadeoutTimer?.Cancel();
+                    _FadeoutTimer = new Timer(ScrollbarDefaultClass._KScrollbarTimeToFade, () =>
+                    {
+                        _FadeoutAnimationController.Reverse();
+                        _FadeoutTimer = null;
+                    }
+                    );
+                }
+
+            }
+
             return false;
         }
 
-        if (!_UseCupertinoScrollbar && (notification is ScrollUpdateNotification || notification is OverscrollNotification))
+
+
+
+        public new void Dispose()
         {
-            if (_FadeoutAnimationController.Status != AnimationStatus.Forward)
-            {
-                _FadeoutAnimationController.Forward();
-            }
-
-            _MaterialPainter.Update(notification.Metrics, notification.Metrics.AxisDirection);
-            if (!Widget.IsAlwaysShown)
-            {
-                _FadeoutTimer?.Cancel();
-                _FadeoutTimer = new Timer(ScrollbarDefaultClass._KScrollbarTimeToFade, () =>
-                {
-                    _FadeoutAnimationController.Reverse();
-                    _FadeoutTimer = null;
-                }
-                );
-            }
-
+            _FadeoutAnimationController.Dispose();
+            _FadeoutTimer?.Cancel();
+            _MaterialPainter?.Dispose();
+            base.Dispose();
         }
 
-        return false;
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        _FadeoutAnimationController.Dispose();
-        _FadeoutTimer?.Cancel();
-        _MaterialPainter?.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (_UseCupertinoScrollbar)
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new CupertinoScrollbar(child: Widget.Child, isAlwaysShown: Widget.IsAlwaysShown, controller: Widget.Controller);
+            if (_UseCupertinoScrollbar)
+            {
+                return new CupertinoScrollbar(child: Widget.Child, isAlwaysShown: Widget.IsAlwaysShown, controller: Widget.Controller);
+            }
+
+            return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new RepaintBoundary(child: new CustomPaint(foregroundPainter: _MaterialPainter, child: new RepaintBoundary(child: Widget.Child))));
         }
 
-        return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new RepaintBoundary(child: new CustomPaint(foregroundPainter: _MaterialPainter, child: new RepaintBoundary(child: Widget.Child))));
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

@@ -440,44 +440,45 @@ namespace FlutterSDK.Semantics.Semanticsservice
     {
         #region constructors
         internal SemanticsService()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        #endregion
 
-    /// <Summary>
-    /// Sends a semantic announcement.
-    ///
-    /// This should be used for announcement that are not seamlessly announced by
-    /// the system as a result of a UI state change.
-    ///
-    /// For example a camera application can use this method to make accessibility
-    /// announcements regarding objects in the viewfinder.
-    /// </Summary>
-    public virtual Future<object> Announce(string message, TextDirection textDirection)
-async
+        #region methods
+
+        /// <Summary>
+        /// Sends a semantic announcement.
+        ///
+        /// This should be used for announcement that are not seamlessly announced by
+        /// the system as a result of a UI state change.
+        ///
+        /// For example a camera application can use this method to make accessibility
+        /// announcements regarding objects in the viewfinder.
+        /// </Summary>
+        public virtual Future<object> Announce(string message, TextDirection textDirection)
+    async
 {
 AnnounceSemanticsEvent @event = new AnnounceSemanticsEvent(message, textDirection);
-    await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());
-}
+        await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());
+    }
 
 
 
 
-/// <Summary>
-/// Sends a semantic announcement of a tooltip.
-///
-/// Currently only honored on Android. The contents of [message] will be
-/// read by TalkBack.
-/// </Summary>
-public virtual Future<object> Tooltip(string message)
+    /// <Summary>
+    /// Sends a semantic announcement of a tooltip.
+    ///
+    /// Currently only honored on Android. The contents of [message] will be
+    /// read by TalkBack.
+    /// </Summary>
+    public virtual Future<object> Tooltip(string message)
 async
 {
-    TooltipSemanticsEvent @event = new TooltipSemanticsEvent(message);
+TooltipSemanticsEvent @event = new TooltipSemanticsEvent(message);
     await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());
 }
 

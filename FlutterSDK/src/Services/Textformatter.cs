@@ -490,178 +490,183 @@ namespace FlutterSDK.Services.Textformatter
         #region constructors
         public _SimpleTextInputFormatter(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction)
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Services.Textformatter.TextInputFormatFunction FormatFunction { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
-    {
-        return FormatFunction(oldValue, newValue);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A [TextInputFormatter] that prevents the insertion of blacklisted
-/// characters patterns.
-///
-/// Instances of blacklisted characters found in the new [TextEditingValue]s
-/// will be replaced with the [replacementString] which defaults to the empty
-/// string.
-///
-/// Since this formatter only removes characters from the text, it attempts to
-/// preserve the existing [TextEditingValue.selection] to values it would now
-/// fall at with the removed characters.
-///
-/// See also:
-///
-///  * [WhitelistingTextInputFormatter], which uses a whitelist instead of a
-///    blacklist.
-/// </Summary>
-public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-    #region constructors
-    public BlacklistingTextInputFormatter(Pattern blacklistedPattern, string replacementString = default(string))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual Pattern BlacklistedPattern { get; set; }
-public virtual string ReplacementString { get; set; }
-public virtual FlutterSDK.Services.Textformatter.BlacklistingTextInputFormatter SingleLineFormatter { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
-{
-    return TextformatterDefaultClass._SelectionAwareTextManipulation(newValue, (string substring) =>
-    {
-        return substring.ReplaceAll(BlacklistedPattern, ReplacementString);
-    }
-    );
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A [TextInputFormatter] that prevents the insertion of more characters
-/// (currently defined as Unicode scalar values) than allowed.
-///
-/// Since this formatter only prevents new characters from being added to the
-/// text, it preserves the existing [TextEditingValue.selection].
-///
-///  * [maxLength], which discusses the precise meaning of "number of
-///    characters" and how it may differ from the intuitive meaning.
-/// </Summary>
-public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-    #region constructors
-    public LengthLimitingTextInputFormatter(int maxLength)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual int MaxLength { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Truncate the given TextEditingValue to maxLength runes.
-/// </Summary>
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Truncate(FlutterSDK.Services.Textinput.TextEditingValue value, int maxLength)
-{
-    TextSelection newSelection = value.Selection.CopyWith(baseOffset: Math.Dart:mathDefaultClass.Min(value.Selection.Start, maxLength), extentOffset: Math.Dart:mathDefaultClass.Min(value.Selection.End, maxLength));
-    RuneIterator iterator = new RuneIterator(value.Text);
-    if (iterator.MoveNext()) for (int count = 0; count < maxLength; ++count) if (!iterator.MoveNext()) break;
-    string truncated = value.Text.Substring(0, iterator.RawIndex);
-    return new TextEditingValue(text: truncated, selection: newSelection, composing: Dart:uiDefaultClass.TextRange.Empty);
-}
-
-
-
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
-{
-    if (MaxLength != null && MaxLength > 0 && newValue.Text.Runes.Length > MaxLength)
-    {
-        if (oldValue.Text.Runes.Length == MaxLength)
         {
-            return oldValue;
+            this.FormatFunction = formatFunction;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Textformatter.TextInputFormatFunction FormatFunction { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
+        {
+            return FormatFunction(oldValue, newValue);
         }
 
-        return Truncate(newValue, MaxLength);
+
+
+        #endregion
     }
 
-    return newValue;
-}
 
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A [TextInputFormatter] that allows only the insertion of whitelisted
-/// characters patterns.
-///
-/// Since this formatter only removes characters from the text, it attempts to
-/// preserve the existing [TextEditingValue.selection] to values it would now
-/// fall at with the removed characters.
-///
-/// See also:
-///
-///  * [BlacklistingTextInputFormatter], which uses a blacklist instead of a
-///    whitelist.
-/// </Summary>
-public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-    #region constructors
-    public WhitelistingTextInputFormatter(Pattern whitelistedPattern)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual Pattern WhitelistedPattern { get; set; }
-public virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter DigitsOnly { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
-{
-    return TextformatterDefaultClass._SelectionAwareTextManipulation(newValue, (string substring) =>
+    /// <Summary>
+    /// A [TextInputFormatter] that prevents the insertion of blacklisted
+    /// characters patterns.
+    ///
+    /// Instances of blacklisted characters found in the new [TextEditingValue]s
+    /// will be replaced with the [replacementString] which defaults to the empty
+    /// string.
+    ///
+    /// Since this formatter only removes characters from the text, it attempts to
+    /// preserve the existing [TextEditingValue.selection] to values it would now
+    /// fall at with the removed characters.
+    ///
+    /// See also:
+    ///
+    ///  * [WhitelistingTextInputFormatter], which uses a whitelist instead of a
+    ///    blacklist.
+    /// </Summary>
+    public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        return WhitelistedPattern.AllMatches(substring).Map((Match match) => =>match.Group(0)).Join();
+        #region constructors
+        public BlacklistingTextInputFormatter(Pattern blacklistedPattern, string replacementString = default(string))
+        : base()
+        {
+            this.BlacklistedPattern = blacklistedPattern;
+            this.ReplacementString = replacementString;
+        }
+        #endregion
+
+        #region fields
+        public virtual Pattern BlacklistedPattern { get; set; }
+        public virtual string ReplacementString { get; set; }
+        public virtual FlutterSDK.Services.Textformatter.BlacklistingTextInputFormatter SingleLineFormatter { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
+        {
+            return TextformatterDefaultClass._SelectionAwareTextManipulation(newValue, (string substring) =>
+            {
+                return substring.ReplaceAll(BlacklistedPattern, ReplacementString);
+            }
+            );
+        }
+
+
+
+        #endregion
     }
-    );
-}
+
+
+    /// <Summary>
+    /// A [TextInputFormatter] that prevents the insertion of more characters
+    /// (currently defined as Unicode scalar values) than allowed.
+    ///
+    /// Since this formatter only prevents new characters from being added to the
+    /// text, it preserves the existing [TextEditingValue.selection].
+    ///
+    ///  * [maxLength], which discusses the precise meaning of "number of
+    ///    characters" and how it may differ from the intuitive meaning.
+    /// </Summary>
+    public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public LengthLimitingTextInputFormatter(int maxLength)
+        : base()
+        {
+            this.MaxLength = maxLength;
+        }
+        #endregion
+
+        #region fields
+        public virtual int MaxLength { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Truncate the given TextEditingValue to maxLength runes.
+        /// </Summary>
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue Truncate(FlutterSDK.Services.Textinput.TextEditingValue value, int maxLength)
+        {
+            TextSelection newSelection = value.Selection.CopyWith(baseOffset: Math.Dart:mathDefaultClass.Min(value.Selection.Start, maxLength), extentOffset: Math.Dart:mathDefaultClass.Min(value.Selection.End, maxLength));
+            RuneIterator iterator = new RuneIterator(value.Text);
+            if (iterator.MoveNext()) for (int count = 0; count < maxLength; ++count) if (!iterator.MoveNext()) break;
+            string truncated = value.Text.Substring(0, iterator.RawIndex);
+            return new TextEditingValue(text: truncated, selection: newSelection, composing: Dart:uiDefaultClass.TextRange.Empty);
+        }
 
 
 
-#endregion
-}
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
+        {
+            if (MaxLength != null && MaxLength > 0 && newValue.Text.Runes.Length > MaxLength)
+            {
+                if (oldValue.Text.Runes.Length == MaxLength)
+                {
+                    return oldValue;
+                }
+
+                return Truncate(newValue, MaxLength);
+            }
+
+            return newValue;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A [TextInputFormatter] that allows only the insertion of whitelisted
+    /// characters patterns.
+    ///
+    /// Since this formatter only removes characters from the text, it attempts to
+    /// preserve the existing [TextEditingValue.selection] to values it would now
+    /// fall at with the removed characters.
+    ///
+    /// See also:
+    ///
+    ///  * [BlacklistingTextInputFormatter], which uses a blacklist instead of a
+    ///    whitelist.
+    /// </Summary>
+    public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public WhitelistingTextInputFormatter(Pattern whitelistedPattern)
+        : base()
+        {
+            this.WhitelistedPattern = whitelistedPattern;
+        }
+        #endregion
+
+        #region fields
+        public virtual Pattern WhitelistedPattern { get; set; }
+        public virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter DigitsOnly { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
+        {
+            return TextformatterDefaultClass._SelectionAwareTextManipulation(newValue, (string substring) =>
+            {
+                return WhitelistedPattern.AllMatches(substring).Map((Match match) => =>match.Group(0)).Join();
+            }
+            );
+        }
+
+
+
+        #endregion
+    }
 
 }

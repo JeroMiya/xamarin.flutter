@@ -439,46 +439,49 @@ namespace FlutterSDK.Services.Rawkeyboardweb
         #region constructors
         public RawKeyEventDataWeb(string code = default(string), string key = default(string), int metaState = default(int))
         : base()
-    
-}
-    #endregion
+        {
+            this.Code = code;
+            this.Key = key;
+            this.MetaState = metaState;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Code { get; set; }
-    public virtual string Key { get; set; }
-    public virtual int MetaState { get; set; }
-    public virtual int ModifierNone { get; set; }
-    public virtual int ModifierShift { get; set; }
-    public virtual int ModifierAlt { get; set; }
-    public virtual int ModifierControl { get; set; }
-    public virtual int ModifierMeta { get; set; }
-    public virtual int ModifierNumLock { get; set; }
-    public virtual int ModifierCapsLock { get; set; }
-    public virtual int ModifierScrollLock { get; set; }
-    public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual string Code { get; set; }
+        public virtual string Key { get; set; }
+        public virtual int MetaState { get; set; }
+        public virtual int ModifierNone { get; set; }
+        public virtual int ModifierShift { get; set; }
+        public virtual int ModifierAlt { get; set; }
+        public virtual int ModifierControl { get; set; }
+        public virtual int ModifierMeta { get; set; }
+        public virtual int ModifierNumLock { get; set; }
+        public virtual int ModifierCapsLock { get; set; }
+        public virtual int ModifierScrollLock { get; set; }
+        public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
-    {
-        switch (key) { case ModifierKey.ControlModifier: return MetaState & ModifierControl != 0; case ModifierKey.ShiftModifier: return MetaState & ModifierShift != 0; case ModifierKey.AltModifier: return MetaState & ModifierAlt != 0; case ModifierKey.MetaModifier: return MetaState & ModifierMeta != 0; case ModifierKey.NumLockModifier: return MetaState & ModifierNumLock != 0; case ModifierKey.CapsLockModifier: return MetaState & ModifierCapsLock != 0; case ModifierKey.ScrollLockModifier: return MetaState & ModifierScrollLock != 0; case ModifierKey.FunctionModifier: case ModifierKey.SymbolModifier: default: return false; }
+        public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
+        {
+            switch (key) { case ModifierKey.ControlModifier: return MetaState & ModifierControl != 0; case ModifierKey.ShiftModifier: return MetaState & ModifierShift != 0; case ModifierKey.AltModifier: return MetaState & ModifierAlt != 0; case ModifierKey.MetaModifier: return MetaState & ModifierMeta != 0; case ModifierKey.NumLockModifier: return MetaState & ModifierNumLock != 0; case ModifierKey.CapsLockModifier: return MetaState & ModifierCapsLock != 0; case ModifierKey.ScrollLockModifier: return MetaState & ModifierScrollLock != 0; case ModifierKey.FunctionModifier: case ModifierKey.SymbolModifier: default: return false; }
+        }
+
+
+
+
+        public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
+        {
+            return KeyboardSide.All;
+        }
+
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
-    {
-        return KeyboardSide.All;
-    }
-
-
-
-
-    #endregion
-}
 
 }

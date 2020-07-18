@@ -466,160 +466,188 @@ namespace FlutterSDK.Widgets.App
         #region constructors
         public WidgetsApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), string initialRoute = default(string), FlutterSDK.Widgets.App.PageRouteFactory pageRouteBuilder = default(FlutterSDK.Widgets.App.PageRouteFactory), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowWidgetInspector = false, bool debugShowCheckedModeBanner = true, FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder inspectorSelectButtonBuilder = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder), Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
-    public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
-    public virtual FlutterSDK.Widgets.App.PageRouteFactory PageRouteBuilder { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
-    public virtual Dictionary<string, object> Routes { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
-    public virtual string InitialRoute { get; set; }
-    public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
-    public virtual string Title { get; set; }
-    public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual Locale Locale { get; set; }
-    public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
-    public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
-    public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
-    public virtual Iterable<Locale> SupportedLocales { get; set; }
-    public virtual bool ShowPerformanceOverlay { get; set; }
-    public virtual bool CheckerboardRasterCacheImages { get; set; }
-    public virtual bool CheckerboardOffscreenLayers { get; set; }
-    public virtual bool ShowSemanticsDebugger { get; set; }
-    public virtual bool DebugShowWidgetInspector { get; set; }
-    public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder InspectorSelectButtonBuilder { get; set; }
-    public virtual bool DebugShowCheckedModeBanner { get; set; }
-    public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
-    public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
-    public virtual bool ShowPerformanceOverlayOverride { get; set; }
-    public virtual bool DebugShowWidgetInspectorOverride { get; set; }
-    public virtual bool DebugAllowBannerOverride { get; set; }
-    internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultShortcuts { get; set; }
-    internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultWebShortcuts { get; set; }
-    internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultMacOsShortcuts { get; set; }
-    public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> DefaultActions { get; set; }
-    public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> DefaultShortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.App._WidgetsAppState CreateState() => new _WidgetsAppState();
-
-
-    #endregion
-}
-
-
-public class _WidgetsAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App.WidgetsApp>, IWidgetsBindingObserver
-{
-    #region constructors
-    public _WidgetsAppState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> _Navigator { get; set; }
-    internal virtual Locale _Locale { get; set; }
-    internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _UpdateNavigator();
-        _Locale = _ResolveLocales(BindingDefaultClass.WidgetsBinding.Instance.Window.Locales, Widget.SupportedLocales);
-        BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.App.WidgetsApp oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.NavigatorKey != oldWidget.NavigatorKey) _UpdateNavigator();
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
-        base.Dispose();
-    }
-
-
-
-
-    private void _UpdateNavigator()
-    {
-        _Navigator = Widget.NavigatorKey ?? new GlobalObjectKey<NavigatorState>(this);
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
-    {
-        string name = settings.Name;
-        WidgetBuilder pageContentBuilder = name == NavigatorDefaultClass.Navigator.DefaultRouteName && Widget.Home != null ? (BuildContext context) => =>Widget.Home:Widget.Routes[name];
-        if (pageContentBuilder != null)
         {
+            this.NavigatorKey = navigatorKey;
+            this.OnGenerateRoute = onGenerateRoute;
+            this.OnGenerateInitialRoutes = onGenerateInitialRoutes;
+            this.OnUnknownRoute = onUnknownRoute;
+            this.NavigatorObservers = navigatorObservers;
+            this.InitialRoute = initialRoute;
+            this.PageRouteBuilder = pageRouteBuilder;
+            this.Home = home;
+            this.Routes = routes;
+            this.Builder = builder;
+            this.Title = title;
+            this.OnGenerateTitle = onGenerateTitle;
+            this.TextStyle = textStyle;
+            this.Color = color;
+            this.Locale = locale;
+            this.LocalizationsDelegates = localizationsDelegates;
+            this.LocaleListResolutionCallback = localeListResolutionCallback;
+            this.LocaleResolutionCallback = localeResolutionCallback;
+            this.SupportedLocales = supportedLocales;
+            this.ShowPerformanceOverlay = showPerformanceOverlay;
+            this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
+            this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
+            this.ShowSemanticsDebugger = showSemanticsDebugger;
+            this.DebugShowWidgetInspector = debugShowWidgetInspector;
+            this.DebugShowCheckedModeBanner = debugShowCheckedModeBanner;
+            this.InspectorSelectButtonBuilder = inspectorSelectButtonBuilder;
+            this.Shortcuts = shortcuts;
+            this.Actions = actions;
+        }
+        #endregion
 
-            Route<object> route = Widget.PageRouteBuilder(settings, pageContentBuilder);
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+        public virtual FlutterSDK.Widgets.App.InitialRouteListFactory OnGenerateInitialRoutes { get; set; }
+        public virtual FlutterSDK.Widgets.App.PageRouteFactory PageRouteBuilder { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
+        public virtual Dictionary<string, object> Routes { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+        public virtual string InitialRoute { get; set; }
+        public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
+        public virtual string Title { get; set; }
+        public virtual FlutterSDK.Widgets.App.GenerateAppTitle OnGenerateTitle { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> LocalizationsDelegates { get; set; }
+        public virtual FlutterSDK.Widgets.App.LocaleListResolutionCallback LocaleListResolutionCallback { get; set; }
+        public virtual FlutterSDK.Widgets.App.LocaleResolutionCallback LocaleResolutionCallback { get; set; }
+        public virtual Iterable<Locale> SupportedLocales { get; set; }
+        public virtual bool ShowPerformanceOverlay { get; set; }
+        public virtual bool CheckerboardRasterCacheImages { get; set; }
+        public virtual bool CheckerboardOffscreenLayers { get; set; }
+        public virtual bool ShowSemanticsDebugger { get; set; }
+        public virtual bool DebugShowWidgetInspector { get; set; }
+        public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder InspectorSelectButtonBuilder { get; set; }
+        public virtual bool DebugShowCheckedModeBanner { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
+        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
+        public virtual bool ShowPerformanceOverlayOverride { get; set; }
+        public virtual bool DebugShowWidgetInspectorOverride { get; set; }
+        public virtual bool DebugAllowBannerOverride { get; set; }
+        internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultShortcuts { get; set; }
+        internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultWebShortcuts { get; set; }
+        internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _DefaultMacOsShortcuts { get; set; }
+        public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> DefaultActions { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> DefaultShortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-            return route;
+        #region methods
+
+        public new FlutterSDK.Widgets.App._WidgetsAppState CreateState() => new _WidgetsAppState();
+
+
+        #endregion
+    }
+
+
+    public class _WidgetsAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App.WidgetsApp>, IWidgetsBindingObserver
+    {
+        #region constructors
+        public _WidgetsAppState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> _Navigator { get; set; }
+        internal virtual Locale _Locale { get; set; }
+        internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _UpdateNavigator();
+            _Locale = _ResolveLocales(BindingDefaultClass.WidgetsBinding.Instance.Window.Locales, Widget.SupportedLocales);
+            BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
         }
 
-        if (Widget.OnGenerateRoute != null) return Widget.OnGenerateRoute(settings);
-        return null;
-    }
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Widgets.App.WidgetsApp oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.NavigatorKey != oldWidget.NavigatorKey) _UpdateNavigator();
+        }
 
 
 
 
-    private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
-    {
-
-        Route<object> result = Widget.OnUnknownRoute(settings);
-
-        return result;
-    }
+        public new void Dispose()
+        {
+            BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+            base.Dispose();
+        }
 
 
 
 
-    public new Future<bool> DidPopRoute()
-async
+        private void _UpdateNavigator()
+        {
+            _Navigator = Widget.NavigatorKey ?? new GlobalObjectKey<NavigatorState>(this);
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Navigator.Route<object> _OnGenerateRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
+        {
+            string name = settings.Name;
+            WidgetBuilder pageContentBuilder = name == NavigatorDefaultClass.Navigator.DefaultRouteName && Widget.Home != null ? (BuildContext context) => =>Widget.Home:Widget.Routes[name];
+            if (pageContentBuilder != null)
+            {
+
+                Route<object> route = Widget.PageRouteBuilder(settings, pageContentBuilder);
+
+                return route;
+            }
+
+            if (Widget.OnGenerateRoute != null) return Widget.OnGenerateRoute(settings);
+            return null;
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Navigator.Route<object> _OnUnknownRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings)
+        {
+
+            Route<object> result = Widget.OnUnknownRoute(settings);
+
+            return result;
+        }
+
+
+
+
+        public new Future<bool> DidPopRoute()
+    async
 {
 
 NavigatorState navigator = _Navigator?.CurrentState;
 if (navigator==null )return false ;
 return await navigator.MaybePop();
-}
+    }
 
 
 
 
-public new Future<bool> DidPushRoute(string route)
+    public new Future<bool> DidPushRoute(string route)
 async
 {
 
-    NavigatorState navigator = _Navigator?.CurrentState;
-    if (navigator == null) return false;
-    navigator.PushNamed(route);
-    return true;
+NavigatorState navigator = _Navigator?.CurrentState;
+if (navigator==null )return false ;
+navigator.PushNamed(route);
+return true ;
 }
 
 
@@ -892,20 +920,21 @@ public class _MediaQueryFromWindow : FlutterSDK.Widgets.Framework.StatefulWidget
     #region constructors
     public _MediaQueryFromWindow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
     : base(key: key)
+    {
+        this.Child = child;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.App._MediaQueryFromWindowsState CreateState() => new _MediaQueryFromWindowsState();
+    public new FlutterSDK.Widgets.App._MediaQueryFromWindowsState CreateState() => new _MediaQueryFromWindowsState();
 
 
-#endregion
+    #endregion
 }
 
 

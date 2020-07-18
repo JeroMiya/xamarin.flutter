@@ -551,126 +551,131 @@ yield new DiagnosticsProperty<ChangeNotifier>($"'The {GetType()} sending notific
     {
         #region constructors
         public Listenable()
-    
-}
-    public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
+        {
 
-}
-#endregion
+        }
+        public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
+        {
+            var instance = new Listenable();
+        }
+        #endregion
 
-#region fields
-#endregion
+        #region fields
+        #endregion
 
-#region methods
+        #region methods
 
-/// <Summary>
-/// Register a closure to be called when the object notifies its listeners.
-/// </Summary>
-public virtual void AddListener(VoidCallback listener)
-{
-}
-
-
-/// <Summary>
-/// Remove a previously registered closure from the list of closures that the
-/// object notifies.
-/// </Summary>
-public virtual void RemoveListener(VoidCallback listener)
-{
-}
-
-#endregion
-}
+        /// <Summary>
+        /// Register a closure to be called when the object notifies its listeners.
+        /// </Summary>
+        public virtual void AddListener(VoidCallback listener)
+        {
+        }
 
 
-/// <Summary>
-/// An interface for subclasses of [Listenable] that expose a [value].
-///
-/// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
-/// allows other APIs to accept either of those implementations interchangeably.
-/// </Summary>
-public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
-{
-    #region constructors
-    public ValueListenable()
+        /// <Summary>
+        /// Remove a previously registered closure from the list of closures that the
+        /// object notifies.
+        /// </Summary>
+        public virtual void RemoveListener(VoidCallback listener)
+        {
+        }
 
-}
-#endregion
-
-#region fields
-public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
-{
-    #region constructors
-    public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
-
-}
-#endregion
-
-#region fields
-internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
-#endregion
-
-#region methods
-
-public new void AddListener(VoidCallback listener)
-{
-    foreach (Listenable child in _Children)
-    {
-        child?.AddListener(listener);
+        #endregion
     }
 
-}
 
-
-
-
-public new void RemoveListener(VoidCallback listener)
-{
-    foreach (Listenable child in _Children)
+    /// <Summary>
+    /// An interface for subclasses of [Listenable] that expose a [value].
+    ///
+    /// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
+    /// allows other APIs to accept either of those implementations interchangeably.
+    /// </Summary>
+    public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
     {
-        child?.RemoveListener(listener);
+        #region constructors
+        public ValueListenable()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
-}
+
+    public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
+    {
+        #region constructors
+        public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
+        {
+            this._Children = _children;
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AddListener(VoidCallback listener)
+        {
+            foreach (Listenable child in _Children)
+            {
+                child?.AddListener(listener);
+            }
+
+        }
 
 
 
 
-#endregion
-}
+        public new void RemoveListener(VoidCallback listener)
+        {
+            foreach (Listenable child in _Children)
+            {
+                child?.RemoveListener(listener);
+            }
+
+        }
 
 
-/// <Summary>
-/// A [ChangeNotifier] that holds a single value.
-///
-/// When [value] is replaced with something that is not equal to the old
-/// value as evaluated by the equality operator ==, this class notifies its
-/// listeners.
-/// </Summary>
-public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
-{
-    #region constructors
-    public ValueNotifier(T _value)
 
-}
-#endregion
 
-#region fields
-internal virtual T _Value { get; set; }
-public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+        #endregion
+    }
 
-#region methods
 
-#endregion
-}
+    /// <Summary>
+    /// A [ChangeNotifier] that holds a single value.
+    ///
+    /// When [value] is replaced with something that is not equal to the old
+    /// value as evaluated by the equality operator ==, this class notifies its
+    /// listeners.
+    /// </Summary>
+    public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
+    {
+        #region constructors
+        public ValueNotifier(T _value)
+        {
+            this._Value = _value;
+        }
+        #endregion
+
+        #region fields
+        internal virtual T _Value { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

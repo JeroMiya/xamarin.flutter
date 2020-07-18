@@ -474,807 +474,814 @@ namespace FlutterSDK.Widgets.Overlay
         #region constructors
         public OverlayEntry(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool opaque = false, bool maintainState = false)
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
-    internal virtual bool _Opaque { get; set; }
-    internal virtual bool _MaintainState { get; set; }
-    internal virtual FlutterSDK.Widgets.Overlay.OverlayState _Overlay { get; set; }
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState> _Key { get; set; }
-    public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Remove this entry from the overlay.
-    ///
-    /// This should only be called once.
-    ///
-    /// If this method is called while the [SchedulerBinding.schedulerPhase] is
-    /// [SchedulerPhase.persistentCallbacks], i.e. during the build, layout, or
-    /// paint phases (see [WidgetsBinding.drawFrame]), then the removal is
-    /// delayed until the post-frame callbacks phase. Otherwise the removal is
-    /// done synchronously. This means that it is safe to call during builds, but
-    /// also that if you do call this during a build, the UI will not update until
-    /// the next frame (i.e. many milliseconds later).
-    /// </Summary>
-    public virtual void Remove()
-    {
-
-        OverlayState overlay = _Overlay;
-        _Overlay = null;
-        if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.PersistentCallbacks)
         {
-            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
+            this.Builder = builder;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
+        internal virtual bool _Opaque { get; set; }
+        internal virtual bool _MaintainState { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayState _Overlay { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState> _Key { get; set; }
+        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Remove this entry from the overlay.
+        ///
+        /// This should only be called once.
+        ///
+        /// If this method is called while the [SchedulerBinding.schedulerPhase] is
+        /// [SchedulerPhase.persistentCallbacks], i.e. during the build, layout, or
+        /// paint phases (see [WidgetsBinding.drawFrame]), then the removal is
+        /// delayed until the post-frame callbacks phase. Otherwise the removal is
+        /// done synchronously. This means that it is safe to call during builds, but
+        /// also that if you do call this during a build, the UI will not update until
+        /// the next frame (i.e. many milliseconds later).
+        /// </Summary>
+        public virtual void Remove()
+        {
+
+            OverlayState overlay = _Overlay;
+            _Overlay = null;
+            if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.PersistentCallbacks)
             {
-                overlay._Remove(this);
-            }
-            );
-        }
-        else
-        {
-            overlay._Remove(this);
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Cause this entry to rebuild during the next pipeline flush.
-    ///
-    /// You need to call this function if the output of [builder] has changed.
-    /// </Summary>
-    public virtual void MarkNeedsBuild()
-    {
-        _Key.CurrentState?._MarkNeedsBuild();
-    }
-
-
-
-
-    #endregion
-}
-
-
-public class _OverlayEntryWidget : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public _OverlayEntryWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Overlay.OverlayEntry entry = default(FlutterSDK.Widgets.Overlay.OverlayEntry), bool tickerEnabled = true)
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Overlay.OverlayEntry Entry { get; set; }
-public virtual bool TickerEnabled { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState CreateState() => new _OverlayEntryWidgetState();
-
-
-#endregion
-}
-
-
-public class _OverlayEntryWidgetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay._OverlayEntryWidget>
-{
-    #region constructors
-    public _OverlayEntryWidgetState()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new TickerMode(enabled: Widget.TickerEnabled, child: Widget.Entry.Builder(context));
-    }
-
-
-
-
-    private void _MarkNeedsBuild()
-    {
-        SetState(() =>
-        {
-        }
-        );
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A [Stack] of entries that can be managed independently.
-///
-/// Overlays let independent child widgets "float" visual elements on top of
-/// other widgets by inserting them into the overlay's [Stack]. The overlay lets
-/// each of these widgets manage their participation in the overlay using
-/// [OverlayEntry] objects.
-///
-/// Although you can create an [Overlay] directly, it's most common to use the
-/// overlay created by the [Navigator] in a [WidgetsApp] or a [MaterialApp]. The
-/// navigator uses its overlay to manage the visual appearance of its routes.
-///
-/// See also:
-///
-///  * [OverlayEntry].
-///  * [OverlayState].
-///  * [WidgetsApp].
-///  * [MaterialApp].
-/// </Summary>
-public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public Overlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Overlay.OverlayEntry> initialEntries = default(List<FlutterSDK.Widgets.Overlay.OverlayEntry>))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> InitialEntries { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// The state from the closest instance of this class that encloses the given context.
-///
-/// In debug mode, if the `debugRequiredFor` argument is provided then this
-/// function will assert that an overlay was found and will throw an exception
-/// if not. The exception attempts to explain that the calling [Widget] (the
-/// one given by the `debugRequiredFor` argument) needs an [Overlay] to be
-/// present to function.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// OverlayState overlay = Overlay.of(context);
-/// ```
-///
-/// If `rootOverlay` is set to true, the state from the furthest instance of
-/// this class is given instead. Useful for installing overlay entries
-/// above all subsequent instances of [Overlay].
-/// </Summary>
-public virtual FlutterSDK.Widgets.Overlay.OverlayState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool rootOverlay = false, FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget))
-{
-    OverlayState result = rootOverlay ? context.FindRootAncestorStateOfType() : context.FindAncestorStateOfType();
-
-    return result;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Overlay.OverlayState CreateState() => new OverlayState();
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The current state of an [Overlay].
-///
-/// Used to insert [OverlayEntry]s into the overlay using the [insert] and
-/// [insertAll] functions.
-/// </Summary>
-public class OverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay.Overlay>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public OverlayState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Entries { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        InsertAll(Widget.InitialEntries);
-    }
-
-
-
-
-    private int _InsertionIndex(FlutterSDK.Widgets.Overlay.OverlayEntry below, FlutterSDK.Widgets.Overlay.OverlayEntry above)
-    {
-
-        if (below != null) return _Entries.IndexOf(below);
-        if (above != null) return _Entries.IndexOf(above) + 1;
-        return _Entries.Count;
-    }
-
-
-
-
-    /// <Summary>
-    /// Insert the given entry into the overlay.
-    ///
-    /// If `below` is non-null, the entry is inserted just below `below`.
-    /// If `above` is non-null, the entry is inserted just above `above`.
-    /// Otherwise, the entry is inserted on top.
-    ///
-    /// It is an error to specify both `above` and `below`.
-    /// </Summary>
-    public virtual void Insert(FlutterSDK.Widgets.Overlay.OverlayEntry entry, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry))
-    {
-
-
-
-
-
-        entry._Overlay = this;
-        SetState(() =>
-        {
-            _Entries.Insert(_InsertionIndex(below, above), entry);
-        }
-        );
-    }
-
-
-
-
-    /// <Summary>
-    /// Insert all the entries in the given iterable.
-    ///
-    /// If `below` is non-null, the entries are inserted just below `below`.
-    /// If `above` is non-null, the entries are inserted just above `above`.
-    /// Otherwise, the entries are inserted on top.
-    ///
-    /// It is an error to specify both `above` and `below`.
-    /// </Summary>
-    public virtual void InsertAll(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> entries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry))
-    {
-
-
-
-
-
-        if (entries.IsEmpty()) return;
-        foreach (OverlayEntry entry in entries)
-        {
-
-            entry._Overlay = this;
-        }
-
-        SetState(() =>
-        {
-            _Entries.InsertAll(_InsertionIndex(below, above), entries);
-        }
-        );
-    }
-
-
-
-
-    /// <Summary>
-    /// Remove all the entries listed in the given iterable, then reinsert them
-    /// into the overlay in the given order.
-    ///
-    /// Entries mention in `newEntries` but absent from the overlay are inserted
-    /// as if with [insertAll].
-    ///
-    /// Entries not mentioned in `newEntries` but present in the overlay are
-    /// positioned as a group in the resulting list relative to the entries that
-    /// were moved, as specified by one of `below` or `above`, which, if
-    /// specified, must be one of the entries in `newEntries`:
-    ///
-    /// If `below` is non-null, the group is positioned just below `below`.
-    /// If `above` is non-null, the group is positioned just above `above`.
-    /// Otherwise, the group is left on top, with all the rearranged entries
-    /// below.
-    ///
-    /// It is an error to specify both `above` and `below`.
-    /// </Summary>
-    public virtual void Rearrange(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> newEntries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry))
-    {
-        List<OverlayEntry> newEntriesList = newEntries is List<OverlayEntry> ? newEntries : newEntries.ToList(growable: false);
-
-
-
-
-
-        if (newEntriesList.IsEmpty()) return;
-        if (CollectionsDefaultClass.ListEquals(_Entries, newEntriesList)) return;
-        LinkedHashSet<OverlayEntry> old = LinkedHashSet<OverlayEntry>.From(_Entries);
-        foreach (OverlayEntry entry in newEntriesList)
-        {
-            entry._Overlay = (entry._Overlay == null ? this : entry._Overlay);
-        }
-
-        SetState(() =>
-        {
-            _Entries.Clear();
-            _Entries.AddAll(newEntriesList);
-            old.RemoveAll(newEntriesList);
-            _Entries.InsertAll(_InsertionIndex(below, above), old);
-        }
-        );
-    }
-
-
-
-
-    private void _Remove(FlutterSDK.Widgets.Overlay.OverlayEntry entry)
-    {
-        if (Mounted)
-        {
-            SetState(() =>
-            {
-                _Entries.Remove(entry);
-            }
-            );
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// (DEBUG ONLY) Check whether a given entry is visible (i.e., not behind an
-    /// opaque entry).
-    ///
-    /// This is an O(N) algorithm, and should not be necessary except for debug
-    /// asserts. To avoid people depending on it, this function is implemented
-    /// only in debug mode, and always returns false in release mode.
-    /// </Summary>
-    public virtual bool DebugIsVisible(FlutterSDK.Widgets.Overlay.OverlayEntry entry)
-    {
-        bool result = false;
-
-
-        return result;
-    }
-
-
-
-
-    private void _DidChangeEntryOpacity()
-    {
-        SetState(() =>
-        {
-        }
-        );
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        List<Widget> children = new List<Widget>() { };
-        bool onstage = true;
-        int onstageCount = 0;
-        for (int i = _Entries.Count - 1; i >= 0; i -= 1)
-        {
-            OverlayEntry entry = _Entries[i];
-            if (onstage)
-            {
-                onstageCount += 1;
-                children.Add(new _OverlayEntryWidget(key: entry._Key, entry: entry));
-                if (entry.Opaque) onstage = false;
-            }
-            else if (entry.MaintainState)
-            {
-                children.Add(new _OverlayEntryWidget(key: entry._Key, entry: entry, tickerEnabled: false));
-            }
-
-        }
-
-        return new _Theatre(skipCount: children.Count - onstageCount, children: children.Reversed.ToList(growable: false));
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<List<OverlayEntry>>("entries", _Entries));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Special version of a [Stack], that doesn't layout and render the first
-/// [skipCount] children.
-///
-/// The first [skipCount] children are considered "offstage".
-/// </Summary>
-public class _Theatre : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
-{
-    #region constructors
-    public _Theatre(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int skipCount = 0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
-    : base(key: key, children: children)
-
-}
-#endregion
-
-#region fields
-public virtual int SkipCount { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Overlay._TheatreElement CreateElement() => new _TheatreElement(this);
-
-
-
-public new FlutterSDK.Widgets.Overlay._RenderTheatre CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderTheatre(skipCount: SkipCount, textDirection: BasicDefaultClass.Directionality.Of(context));
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Overlay._RenderTheatre renderObject)
-{
-    ..SkipCount = SkipCount..TextDirection = BasicDefaultClass.Directionality.Of(context);
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..SkipCount = SkipCount..TextDirection = BasicDefaultClass.Directionality.Of(context);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new IntProperty("skipCount", SkipCount));
-}
-
-
-
-#endregion
-}
-
-
-public class _TheatreElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
-{
-    #region constructors
-    public _TheatreElement(FlutterSDK.Widgets.Overlay._Theatre widget)
-    : base(widget)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Overlay._Theatre Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Overlay._RenderTheatre RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
-{
-
-    Children.Skip(Widget.SkipCount).ForEach(visitor);
-}
-
-
-
-#endregion
-}
-
-
-public class _RenderTheatre : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
-{
-    #region constructors
-    public _RenderTheatre(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), TextDirection textDirection = default(TextDirection), int skipCount = 0)
-    : base()
-
-AddAll(children);
-}
-
-
-#endregion
-
-#region fields
-internal virtual bool _HasVisualOverflow { get; set; }
-internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
-internal virtual TextDirection _TextDirection { get; set; }
-internal virtual int _SkipCount { get; set; }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int SkipCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual FlutterSDK.Rendering.Box.RenderBox _FirstOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual FlutterSDK.Rendering.Box.RenderBox _LastOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual int _OnstageChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
-{
-    if (!(child.ParentData is StackParentData)) child.ParentData = new StackParentData();
-}
-
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
-{
-    if (!(child.ParentData is StackParentData)) child.ParentData = new StackParentData();
-}
-
-
-
-
-private void _Resolve()
-{
-    if (_ResolvedAlignment != null) return;
-    _ResolvedAlignment = AlignmentDefaultClass.AlignmentDirectional.TopStart.Resolve(TextDirection);
-}
-
-
-
-
-private void _MarkNeedResolution()
-{
-    _ResolvedAlignment = null;
-    MarkNeedsLayout();
-}
-
-
-
-
-public new double ComputeMinIntrinsicWidth(double height)
-{
-    return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMinIntrinsicWidth(height));
-}
-
-
-
-
-public new double ComputeMaxIntrinsicWidth(double height)
-{
-    return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMaxIntrinsicWidth(height));
-}
-
-
-
-
-public new double ComputeMinIntrinsicHeight(double width)
-{
-    return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMinIntrinsicHeight(width));
-}
-
-
-
-
-public new double ComputeMaxIntrinsicHeight(double width)
-{
-    return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMaxIntrinsicHeight(width));
-}
-
-
-
-
-public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
-{
-
-    double result = default(double);
-    RenderBox child = _FirstOnstageChild;
-    while (child != null)
-    {
-
-        StackParentData childParentData = child.ParentData as StackParentData;
-        double candidate = child.GetDistanceToActualBaseline(baseline);
-        if (candidate != null)
-        {
-            candidate += childParentData.Offset.Dy;
-            if (result != null)
-            {
-                result = Math.Dart:mathDefaultClass.Min(result, candidate);
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
+                {
+                    overlay._Remove(this);
+                }
+                );
             }
             else
             {
-                result = candidate;
+                overlay._Remove(this);
             }
 
         }
 
-        child = childParentData.NextSibling;
-    }
-
-    return result;
-}
 
 
 
-
-public new void PerformResize()
-{
-    Size = Constraints.Biggest;
-
-}
-
-
-
-
-public new void PerformLayout()
-{
-    _HasVisualOverflow = false;
-    if (_OnstageChildCount == 0)
-    {
-        return;
-    }
-
-    _Resolve();
-
-    BoxConstraints nonPositionedConstraints = BoxConstraints.Tight(Constraints.Biggest);
-    RenderBox child = _FirstOnstageChild;
-    while (child != null)
-    {
-        StackParentData childParentData = child.ParentData as StackParentData;
-        if (!childParentData.IsPositioned)
+        /// <Summary>
+        /// Cause this entry to rebuild during the next pipeline flush.
+        ///
+        /// You need to call this function if the output of [builder] has changed.
+        /// </Summary>
+        public virtual void MarkNeedsBuild()
         {
-            child.Layout(nonPositionedConstraints, parentUsesSize: true);
-            childParentData.Offset = _ResolvedAlignment.AlongOffset(Size - child.Size as Offset);
-        }
-        else
-        {
-            _HasVisualOverflow = StackDefaultClass.RenderStack.LayoutPositionedChild(child, childParentData, Size, _ResolvedAlignment) || _HasVisualOverflow;
+            _Key.CurrentState?._MarkNeedsBuild();
         }
 
 
-        child = childParentData.NextSibling;
+
+
+        #endregion
     }
 
-}
 
-
-
-
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
-{
-    RenderBox child = _LastOnstageChild;
-    for (int i = 0; i < _OnstageChildCount; i++)
+    public class _OverlayEntryWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
+        #region constructors
+        public _OverlayEntryWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Overlay.OverlayEntry entry = default(FlutterSDK.Widgets.Overlay.OverlayEntry), bool tickerEnabled = true)
+        : base(key: key)
+        {
+            this.Entry = entry;
+            this.TickerEnabled = tickerEnabled;
+        }
+        #endregion
 
-        StackParentData childParentData = child.ParentData as StackParentData;
-        bool isHit = result.AddWithPaintOffset(offset: childParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+        #region fields
+        public virtual FlutterSDK.Widgets.Overlay.OverlayEntry Entry { get; set; }
+        public virtual bool TickerEnabled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState CreateState() => new _OverlayEntryWidgetState();
+
+
+        #endregion
+    }
+
+
+    public class _OverlayEntryWidgetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay._OverlayEntryWidget>
+    {
+        #region constructors
+        public _OverlayEntryWidgetState()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new TickerMode(enabled: Widget.TickerEnabled, child: Widget.Entry.Builder(context));
+        }
+
+
+
+
+        private void _MarkNeedsBuild()
+        {
+            SetState(() =>
+            {
+            }
+            );
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A [Stack] of entries that can be managed independently.
+    ///
+    /// Overlays let independent child widgets "float" visual elements on top of
+    /// other widgets by inserting them into the overlay's [Stack]. The overlay lets
+    /// each of these widgets manage their participation in the overlay using
+    /// [OverlayEntry] objects.
+    ///
+    /// Although you can create an [Overlay] directly, it's most common to use the
+    /// overlay created by the [Navigator] in a [WidgetsApp] or a [MaterialApp]. The
+    /// navigator uses its overlay to manage the visual appearance of its routes.
+    ///
+    /// See also:
+    ///
+    ///  * [OverlayEntry].
+    ///  * [OverlayState].
+    ///  * [WidgetsApp].
+    ///  * [MaterialApp].
+    /// </Summary>
+    public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public Overlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Overlay.OverlayEntry> initialEntries = default(List<FlutterSDK.Widgets.Overlay.OverlayEntry>))
+        : base(key: key)
+        {
+            this.InitialEntries = initialEntries;
+        }
+        #endregion
+
+        #region fields
+        public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> InitialEntries { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The state from the closest instance of this class that encloses the given context.
+        ///
+        /// In debug mode, if the `debugRequiredFor` argument is provided then this
+        /// function will assert that an overlay was found and will throw an exception
+        /// if not. The exception attempts to explain that the calling [Widget] (the
+        /// one given by the `debugRequiredFor` argument) needs an [Overlay] to be
+        /// present to function.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// OverlayState overlay = Overlay.of(context);
+        /// ```
+        ///
+        /// If `rootOverlay` is set to true, the state from the furthest instance of
+        /// this class is given instead. Useful for installing overlay entries
+        /// above all subsequent instances of [Overlay].
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Overlay.OverlayState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool rootOverlay = false, FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            OverlayState result = rootOverlay ? context.FindRootAncestorStateOfType() : context.FindAncestorStateOfType();
+
+            return result;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Overlay.OverlayState CreateState() => new OverlayState();
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The current state of an [Overlay].
+    ///
+    /// Used to insert [OverlayEntry]s into the overlay using the [insert] and
+    /// [insertAll] functions.
+    /// </Summary>
+    public class OverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay.Overlay>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public OverlayState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Entries { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            InsertAll(Widget.InitialEntries);
+        }
+
+
+
+
+        private int _InsertionIndex(FlutterSDK.Widgets.Overlay.OverlayEntry below, FlutterSDK.Widgets.Overlay.OverlayEntry above)
         {
 
-            return child.HitTest(result, position: transformed);
+            if (below != null) return _Entries.IndexOf(below);
+            if (above != null) return _Entries.IndexOf(above) + 1;
+            return _Entries.Count;
         }
-        );
-        if (isHit) return true;
-        child = childParentData.PreviousSibling;
+
+
+
+
+        /// <Summary>
+        /// Insert the given entry into the overlay.
+        ///
+        /// If `below` is non-null, the entry is inserted just below `below`.
+        /// If `above` is non-null, the entry is inserted just above `above`.
+        /// Otherwise, the entry is inserted on top.
+        ///
+        /// It is an error to specify both `above` and `below`.
+        /// </Summary>
+        public virtual void Insert(FlutterSDK.Widgets.Overlay.OverlayEntry entry, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry))
+        {
+
+
+
+
+
+            entry._Overlay = this;
+            SetState(() =>
+            {
+                _Entries.Insert(_InsertionIndex(below, above), entry);
+            }
+            );
+        }
+
+
+
+
+        /// <Summary>
+        /// Insert all the entries in the given iterable.
+        ///
+        /// If `below` is non-null, the entries are inserted just below `below`.
+        /// If `above` is non-null, the entries are inserted just above `above`.
+        /// Otherwise, the entries are inserted on top.
+        ///
+        /// It is an error to specify both `above` and `below`.
+        /// </Summary>
+        public virtual void InsertAll(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> entries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry))
+        {
+
+
+
+
+
+            if (entries.IsEmpty()) return;
+            foreach (OverlayEntry entry in entries)
+            {
+
+                entry._Overlay = this;
+            }
+
+            SetState(() =>
+            {
+                _Entries.InsertAll(_InsertionIndex(below, above), entries);
+            }
+            );
+        }
+
+
+
+
+        /// <Summary>
+        /// Remove all the entries listed in the given iterable, then reinsert them
+        /// into the overlay in the given order.
+        ///
+        /// Entries mention in `newEntries` but absent from the overlay are inserted
+        /// as if with [insertAll].
+        ///
+        /// Entries not mentioned in `newEntries` but present in the overlay are
+        /// positioned as a group in the resulting list relative to the entries that
+        /// were moved, as specified by one of `below` or `above`, which, if
+        /// specified, must be one of the entries in `newEntries`:
+        ///
+        /// If `below` is non-null, the group is positioned just below `below`.
+        /// If `above` is non-null, the group is positioned just above `above`.
+        /// Otherwise, the group is left on top, with all the rearranged entries
+        /// below.
+        ///
+        /// It is an error to specify both `above` and `below`.
+        /// </Summary>
+        public virtual void Rearrange(Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> newEntries, FlutterSDK.Widgets.Overlay.OverlayEntry below = default(FlutterSDK.Widgets.Overlay.OverlayEntry), FlutterSDK.Widgets.Overlay.OverlayEntry above = default(FlutterSDK.Widgets.Overlay.OverlayEntry))
+        {
+            List<OverlayEntry> newEntriesList = newEntries is List<OverlayEntry> ? newEntries : newEntries.ToList(growable: false);
+
+
+
+
+
+            if (newEntriesList.IsEmpty()) return;
+            if (CollectionsDefaultClass.ListEquals(_Entries, newEntriesList)) return;
+            LinkedHashSet<OverlayEntry> old = LinkedHashSet<OverlayEntry>.From(_Entries);
+            foreach (OverlayEntry entry in newEntriesList)
+            {
+                entry._Overlay = (entry._Overlay == null ? this : entry._Overlay);
+            }
+
+            SetState(() =>
+            {
+                _Entries.Clear();
+                _Entries.AddAll(newEntriesList);
+                old.RemoveAll(newEntriesList);
+                _Entries.InsertAll(_InsertionIndex(below, above), old);
+            }
+            );
+        }
+
+
+
+
+        private void _Remove(FlutterSDK.Widgets.Overlay.OverlayEntry entry)
+        {
+            if (Mounted)
+            {
+                SetState(() =>
+                {
+                    _Entries.Remove(entry);
+                }
+                );
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// (DEBUG ONLY) Check whether a given entry is visible (i.e., not behind an
+        /// opaque entry).
+        ///
+        /// This is an O(N) algorithm, and should not be necessary except for debug
+        /// asserts. To avoid people depending on it, this function is implemented
+        /// only in debug mode, and always returns false in release mode.
+        /// </Summary>
+        public virtual bool DebugIsVisible(FlutterSDK.Widgets.Overlay.OverlayEntry entry)
+        {
+            bool result = false;
+
+
+            return result;
+        }
+
+
+
+
+        private void _DidChangeEntryOpacity()
+        {
+            SetState(() =>
+            {
+            }
+            );
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            List<Widget> children = new List<Widget>() { };
+            bool onstage = true;
+            int onstageCount = 0;
+            for (int i = _Entries.Count - 1; i >= 0; i -= 1)
+            {
+                OverlayEntry entry = _Entries[i];
+                if (onstage)
+                {
+                    onstageCount += 1;
+                    children.Add(new _OverlayEntryWidget(key: entry._Key, entry: entry));
+                    if (entry.Opaque) onstage = false;
+                }
+                else if (entry.MaintainState)
+                {
+                    children.Add(new _OverlayEntryWidget(key: entry._Key, entry: entry, tickerEnabled: false));
+                }
+
+            }
+
+            return new _Theatre(skipCount: children.Count - onstageCount, children: children.Reversed.ToList(growable: false));
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<List<OverlayEntry>>("entries", _Entries));
+        }
+
+
+
+        #endregion
     }
 
-    return false;
-}
 
-
-
-
-public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    RenderBox child = _FirstOnstageChild;
-    while (child != null)
+    /// <Summary>
+    /// Special version of a [Stack], that doesn't layout and render the first
+    /// [skipCount] children.
+    ///
+    /// The first [skipCount] children are considered "offstage".
+    /// </Summary>
+    public class _Theatre : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        StackParentData childParentData = child.ParentData as StackParentData;
-        context.PaintChild(child, childParentData.Offset + offset);
-        child = childParentData.NextSibling;
+        #region constructors
+        public _Theatre(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int skipCount = 0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
+        : base(key: key, children: children)
+        {
+            this.SkipCount = skipCount;
+        }
+        #endregion
+
+        #region fields
+        public virtual int SkipCount { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Overlay._TheatreElement CreateElement() => new _TheatreElement(this);
+
+
+
+        public new FlutterSDK.Widgets.Overlay._RenderTheatre CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderTheatre(skipCount: SkipCount, textDirection: BasicDefaultClass.Directionality.Of(context));
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Overlay._RenderTheatre renderObject)
+        {
+            ..SkipCount = SkipCount..TextDirection = BasicDefaultClass.Directionality.Of(context);
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..SkipCount = SkipCount..TextDirection = BasicDefaultClass.Directionality.Of(context);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new IntProperty("skipCount", SkipCount));
+        }
+
+
+
+        #endregion
     }
 
-}
 
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (_HasVisualOverflow)
+    public class _TheatreElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
     {
-        context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+        #region constructors
+        public _TheatreElement(FlutterSDK.Widgets.Overlay._Theatre widget)
+        : base(widget)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Overlay._Theatre Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Overlay._RenderTheatre RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+        {
+
+            Children.Skip(Widget.SkipCount).ForEach(visitor);
+        }
+
+
+
+        #endregion
     }
-    else
+
+
+    public class _RenderTheatre : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
     {
-        PaintStack(context, offset);
-    }
+        #region constructors
+        public _RenderTheatre(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), TextDirection textDirection = default(TextDirection), int skipCount = 0)
+        : base()
+        {
 
-}
-
-
-
-
-public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
-{
-    RenderBox child = _FirstOnstageChild;
-    while (child != null)
-    {
-        visitor(child);
-        StackParentData childParentData = child.ParentData as StackParentData;
-        child = childParentData.NextSibling;
-    }
-
-}
+            AddAll(children);
+        }
 
 
+        #endregion
+
+        #region fields
+        internal virtual bool _HasVisualOverflow { get; set; }
+        internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual int _SkipCount { get; set; }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int SkipCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _FirstOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _LastOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual int _OnstageChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+            if (!(child.ParentData is StackParentData)) child.ParentData = new StackParentData();
+        }
 
 
-public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null;
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            if (!(child.ParentData is StackParentData)) child.ParentData = new StackParentData();
+        }
+
+
+
+
+        private void _Resolve()
+        {
+            if (_ResolvedAlignment != null) return;
+            _ResolvedAlignment = AlignmentDefaultClass.AlignmentDirectional.TopStart.Resolve(TextDirection);
+        }
+
+
+
+
+        private void _MarkNeedResolution()
+        {
+            _ResolvedAlignment = null;
+            MarkNeedsLayout();
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicWidth(double height)
+        {
+            return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMinIntrinsicWidth(height));
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicWidth(double height)
+        {
+            return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMaxIntrinsicWidth(height));
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicHeight(double width)
+        {
+            return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMinIntrinsicHeight(width));
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicHeight(double width)
+        {
+            return StackDefaultClass.RenderStack.GetIntrinsicDimension(_FirstOnstageChild, (RenderBox child) => =>child.GetMaxIntrinsicHeight(width));
+        }
+
+
+
+
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+        {
+
+            double result = default(double);
+            RenderBox child = _FirstOnstageChild;
+            while (child != null)
+            {
+
+                StackParentData childParentData = child.ParentData as StackParentData;
+                double candidate = child.GetDistanceToActualBaseline(baseline);
+                if (candidate != null)
+                {
+                    candidate += childParentData.Offset.Dy;
+                    if (result != null)
+                    {
+                        result = Math.Dart:mathDefaultClass.Min(result, candidate);
+                    }
+                    else
+                    {
+                        result = candidate;
+                    }
+
+                }
+
+                child = childParentData.NextSibling;
+            }
+
+            return result;
+        }
+
+
+
+
+        public new void PerformResize()
+        {
+            Size = Constraints.Biggest;
+
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            _HasVisualOverflow = false;
+            if (_OnstageChildCount == 0)
+            {
+                return;
+            }
+
+            _Resolve();
+
+            BoxConstraints nonPositionedConstraints = BoxConstraints.Tight(Constraints.Biggest);
+            RenderBox child = _FirstOnstageChild;
+            while (child != null)
+            {
+                StackParentData childParentData = child.ParentData as StackParentData;
+                if (!childParentData.IsPositioned)
+                {
+                    child.Layout(nonPositionedConstraints, parentUsesSize: true);
+                    childParentData.Offset = _ResolvedAlignment.AlongOffset(Size - child.Size as Offset);
+                }
+                else
+                {
+                    _HasVisualOverflow = StackDefaultClass.RenderStack.LayoutPositionedChild(child, childParentData, Size, _ResolvedAlignment) || _HasVisualOverflow;
+                }
+
+
+                child = childParentData.NextSibling;
+            }
+
+        }
+
+
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+        {
+            RenderBox child = _LastOnstageChild;
+            for (int i = 0; i < _OnstageChildCount; i++)
+            {
+
+                StackParentData childParentData = child.ParentData as StackParentData;
+                bool isHit = result.AddWithPaintOffset(offset: childParentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+                {
+
+                    return child.HitTest(result, position: transformed);
+                }
+                );
+                if (isHit) return true;
+                child = childParentData.PreviousSibling;
+            }
+
+            return false;
+        }
+
+
+
+
+        public virtual void PaintStack(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            RenderBox child = _FirstOnstageChild;
+            while (child != null)
+            {
+                StackParentData childParentData = child.ParentData as StackParentData;
+                context.PaintChild(child, childParentData.Offset + offset);
+                child = childParentData.NextSibling;
+            }
+
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (_HasVisualOverflow)
+            {
+                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+            }
+            else
+            {
+                PaintStack(context, offset);
+            }
+
+        }
+
+
+
+
+        public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+        {
+            RenderBox child = _FirstOnstageChild;
+            while (child != null)
+            {
+                visitor(child);
+                StackParentData childParentData = child.ParentData as StackParentData;
+                child = childParentData.NextSibling;
+            }
+
+        }
+
+
+
+
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
 
 
 
 public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new IntProperty("skipCount", SkipCount));
-    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection));
-}
-
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
-{
-    List<DiagnosticsNode> offstageChildren = new List<DiagnosticsNode>() { };
-    List<DiagnosticsNode> onstageChildren = new List<DiagnosticsNode>() { };
-    int count = 1;
-    bool onstage = false;
-    RenderBox child = FirstChild;
-    RenderBox firstOnstageChild = _FirstOnstageChild;
-    while (child != null)
-    {
-        if (child == firstOnstageChild)
         {
-            onstage = true;
-            count = 1;
+            base.DebugFillProperties(properties);
+            properties.Add(new IntProperty("skipCount", SkipCount));
+            properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection));
         }
 
-        if (onstage)
+
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
         {
-            onstageChildren.Add(child.ToDiagnosticsNode(name: $"'onstage {count}'"));
-        }
-        else
-        {
-            offstageChildren.Add(child.ToDiagnosticsNode(name: $"'offstage {count}'", style: DiagnosticsTreeStyle.Offstage));
+            List<DiagnosticsNode> offstageChildren = new List<DiagnosticsNode>() { };
+            List<DiagnosticsNode> onstageChildren = new List<DiagnosticsNode>() { };
+            int count = 1;
+            bool onstage = false;
+            RenderBox child = FirstChild;
+            RenderBox firstOnstageChild = _FirstOnstageChild;
+            while (child != null)
+            {
+                if (child == firstOnstageChild)
+                {
+                    onstage = true;
+                    count = 1;
+                }
+
+                if (onstage)
+                {
+                    onstageChildren.Add(child.ToDiagnosticsNode(name: $"'onstage {count}'"));
+                }
+                else
+                {
+                    offstageChildren.Add(child.ToDiagnosticsNode(name: $"'offstage {count}'", style: DiagnosticsTreeStyle.Offstage));
+                }
+
+                StackParentData childParentData = child.ParentData as StackParentData;
+                child = childParentData.NextSibling;
+                count += 1;
+            }
+
+            return new List<DiagnosticsNode>() {, onstageChildren, };
         }
 
-        StackParentData childParentData = child.ParentData as StackParentData;
-        child = childParentData.NextSibling;
-        count += 1;
+
+
+        #endregion
     }
-
-    return new List<DiagnosticsNode>() {, onstageChildren, };
-}
-
-
-
-#endregion
-}
 
 }

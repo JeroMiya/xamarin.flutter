@@ -804,108 +804,214 @@ namespace FlutterSDK.Widgets.Navigator
         #region constructors
         public Route(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Navigator.NavigatorState _Navigator { get; set; }
-    internal virtual FlutterSDK.Widgets.Navigator.RouteSettings _Settings { get; set; }
-    internal virtual Completer<T> _PopCompleter { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Widgets.Navigator.RouteSettings Settings { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool WillHandlePopInternally { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual T CurrentResult { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual Future<T> Popped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsCurrent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsFirst { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    private void _UpdateSettings(FlutterSDK.Widgets.Navigator.RouteSettings newSettings)
-    {
-
-        if (_Settings != newSettings)
         {
-            _Settings = newSettings;
-            ChangedInternalState();
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Navigator.NavigatorState _Navigator { get; set; }
+        internal virtual FlutterSDK.Widgets.Navigator.RouteSettings _Settings { get; set; }
+        internal virtual Completer<T> _PopCompleter { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Navigator.RouteSettings Settings { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool WillHandlePopInternally { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual T CurrentResult { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Future<T> Popped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsCurrent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsFirst { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _UpdateSettings(FlutterSDK.Widgets.Navigator.RouteSettings newSettings)
+        {
+
+            if (_Settings != newSettings)
+            {
+                _Settings = newSettings;
+                ChangedInternalState();
+            }
+
         }
 
-    }
 
 
 
-
-    /// <Summary>
-    /// Called when the route is inserted into the navigator.
-    ///
-    /// Uses this to populate [overlayEntries]. There must be at least one entry in
-    /// this list after [install] has been invoked. The [Navigator] will be in charge
-    /// to add them to the [Overlay] or remove them from it by calling
-    /// [OverlayEntry.remove].
-    /// </Summary>
-    public virtual void Install()
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Called after [install] when the route is pushed onto the navigator.
-    ///
-    /// The returned value resolves when the push transition is complete.
-    ///
-    /// The [didAdd] method will be called instead of [didPush] when the route
-    /// immediately appears on screen without any push transition.
-    ///
-    /// The [didChangeNext] and [didChangePrevious] methods are typically called
-    /// immediately after this method is called.
-    /// </Summary>
-    public virtual FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
-    {
-        return TickerFuture.Complete();
-        TickerFuture.Complete().Then((void _) =>
+        /// <Summary>
+        /// Called when the route is inserted into the navigator.
+        ///
+        /// Uses this to populate [overlayEntries]. There must be at least one entry in
+        /// this list after [install] has been invoked. The [Navigator] will be in charge
+        /// to add them to the [Overlay] or remove them from it by calling
+        /// [OverlayEntry.remove].
+        /// </Summary>
+        public virtual void Install()
         {
-            Navigator?.FocusScopeNode?.RequestFocus();
         }
-        );
-    }
 
 
 
 
-    /// <Summary>
-    /// Called after [install] when the route is added to the navigator.
-    ///
-    /// This method is called instead of [didPush] when the route immediately
-    /// appears on screen without any push transition.
-    ///
-    /// The [didChangeNext] and [didChangePrevious] methods are typically called
-    /// immediately after this method is called.
-    /// </Summary>
-    public virtual void DidAdd()
-    {
-        TickerFuture.Complete().Then((void _) =>
+        /// <Summary>
+        /// Called after [install] when the route is pushed onto the navigator.
+        ///
+        /// The returned value resolves when the push transition is complete.
+        ///
+        /// The [didAdd] method will be called instead of [didPush] when the route
+        /// immediately appears on screen without any push transition.
+        ///
+        /// The [didChangeNext] and [didChangePrevious] methods are typically called
+        /// immediately after this method is called.
+        /// </Summary>
+        public virtual FlutterSDK.Scheduler.Ticker.TickerFuture DidPush()
         {
-            Navigator.FocusScopeNode.RequestFocus();
+            return TickerFuture.Complete();
+            TickerFuture.Complete().Then((void _) =>
+            {
+                Navigator?.FocusScopeNode?.RequestFocus();
+            }
+            );
         }
-        );
+
+
+
+
+        /// <Summary>
+        /// Called after [install] when the route is added to the navigator.
+        ///
+        /// This method is called instead of [didPush] when the route immediately
+        /// appears on screen without any push transition.
+        ///
+        /// The [didChangeNext] and [didChangePrevious] methods are typically called
+        /// immediately after this method is called.
+        /// </Summary>
+        public virtual void DidAdd()
+        {
+            TickerFuture.Complete().Then((void _) =>
+            {
+                Navigator.FocusScopeNode.RequestFocus();
+            }
+            );
+        }
+
+
+
+
+        /// <Summary>
+        /// Called after [install] when the route replaced another in the navigator.
+        ///
+        /// The [didChangeNext] and [didChangePrevious] methods are typically called
+        /// immediately after this method is called.
+        /// </Summary>
+        public virtual void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute)
+        {
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns whether calling [Navigator.maybePop] when this [Route] is current
+        /// ([isCurrent]) should do anything.
+        ///
+        /// [Navigator.maybePop] is usually used instead of [pop] to handle the system
+        /// back button.
+        ///
+        /// By default, if a [Route] is the first route in the history (i.e., if
+        /// [isFirst]), it reports that pops should be bubbled
+        /// ([RoutePopDisposition.bubble]). This behavior prevents the user from
+        /// popping the first route off the history and being stranded at a blank
+        /// screen; instead, the larger scope is popped (e.g. the application quits,
+        /// so that the user returns to the previous application).
+        ///
+        /// In other cases, the default behaviour is to accept the pop
+        /// ([RoutePopDisposition.pop]).
+        ///
+        /// The third possible value is [RoutePopDisposition.doNotPop], which causes
+        /// the pop request to be ignored entirely.
+        ///
+        /// See also:
+        ///
+        ///  * [Form], which provides a [Form.onWillPop] callback that uses this
+        ///    mechanism.
+        ///  * [WillPopScope], another widget that provides a way to intercept the
+        ///    back button.
+        /// </Summary>
+        public virtual Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
+    async
+{
+return IsFirst? RoutePopDisposition.Bubble:RoutePopDisposition.Pop;
     }
 
 
 
 
     /// <Summary>
-    /// Called after [install] when the route replaced another in the navigator.
+    /// A request was made to pop this route. If the route can handle it
+    /// internally (e.g. because it has its own stack of internal state) then
+    /// return false, otherwise return true (by returning the value of calling
+    /// `super.didPop`). Returning false will prevent the default behavior of
+    /// [NavigatorState.pop].
     ///
-    /// The [didChangeNext] and [didChangePrevious] methods are typically called
-    /// immediately after this method is called.
+    /// When this function returns true, the navigator removes this route from
+    /// the history but does not yet call [dispose]. Instead, it is the route's
+    /// responsibility to call [NavigatorState.finalizeRoute], which will in turn
+    /// call [dispose] on the route. This sequence lets the route perform an
+    /// exit animation (or some other visual effect) after being popped but prior
+    /// to being disposed.
+    ///
+    /// This method should call [didComplete] to resolve the [popped] future (and
+    /// this is all that the default implementation does); routes should not wait
+    /// for their exit animation to complete before doing so.
+    ///
+    /// See [popped], [didComplete], and [currentResult] for a discussion of the
+    /// `result` argument.
     /// </Summary>
-    public virtual void DidReplace(FlutterSDK.Widgets.Navigator.Route<object> oldRoute)
+    public virtual bool DidPop(T result)
+    {
+        DidComplete(result);
+        return true;
+    }
+
+
+
+
+    /// <Summary>
+    /// The route was popped or is otherwise being removed somewhat gracefully.
+    ///
+    /// This is called by [didPop] and in response to
+    /// [NavigatorState.pushReplacement]. If [didPop] was not called, then the
+    /// [Navigator.finalizeRoute] method must be called immediately, and no exit
+    /// animation will run.
+    ///
+    /// The [popped] future is completed by this method. The `result` argument
+    /// specifies the value that this future is completed with, unless it is null,
+    /// in which case [currentResult] is used instead.
+    ///
+    /// This should be called before the pop animation, if any, takes place,
+    /// though in some cases the animation may be driven by the user before the
+    /// route is committed to being popped; this can in particular happen with the
+    /// iOS-style back gesture. See [Navigator.didStartUserGesture].
+    /// </Summary>
+    public virtual void DidComplete(T result)
+    {
+        _PopCompleter.Complete(result ?? CurrentResult);
+    }
+
+
+
+
+    /// <Summary>
+    /// The given route, which was above this one, has been popped off the
+    /// navigator.
+    ///
+    /// This route is now the current route ([isCurrent] is now true), and there
+    /// is no next route.
+    /// </Summary>
+    public virtual void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
     {
     }
 
@@ -913,209 +1019,104 @@ namespace FlutterSDK.Widgets.Navigator
 
 
     /// <Summary>
-    /// Returns whether calling [Navigator.maybePop] when this [Route] is current
-    /// ([isCurrent]) should do anything.
+    /// This route's next route has changed to the given new route.
     ///
-    /// [Navigator.maybePop] is usually used instead of [pop] to handle the system
-    /// back button.
+    /// This is called on a route whenever the next route changes for any reason,
+    /// so long as it is in the history, including when a route is first added to
+    /// a [Navigator] (e.g. by [Navigator.push]), except for cases when
+    /// [didPopNext] would be called.
     ///
-    /// By default, if a [Route] is the first route in the history (i.e., if
-    /// [isFirst]), it reports that pops should be bubbled
-    /// ([RoutePopDisposition.bubble]). This behavior prevents the user from
-    /// popping the first route off the history and being stranded at a blank
-    /// screen; instead, the larger scope is popped (e.g. the application quits,
-    /// so that the user returns to the previous application).
+    /// The `nextRoute` argument will be null if there's no new next route (i.e.
+    /// if [isCurrent] is true).
+    /// </Summary>
+    public virtual void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
+    {
+    }
+
+
+
+
+    /// <Summary>
+    /// This route's previous route has changed to the given new route.
     ///
-    /// In other cases, the default behaviour is to accept the pop
-    /// ([RoutePopDisposition.pop]).
+    /// This is called on a route whenever the previous route changes for any
+    /// reason, so long as it is in the history, except for immediately after the
+    /// route itself has been pushed (in which case [didPush] or [didReplace] will
+    /// be called instead).
     ///
-    /// The third possible value is [RoutePopDisposition.doNotPop], which causes
-    /// the pop request to be ignored entirely.
+    /// The `previousRoute` argument will be null if there's no previous route
+    /// (i.e. if [isFirst] is true).
+    /// </Summary>
+    public virtual void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
+    {
+    }
+
+
+
+
+    /// <Summary>
+    /// Called whenever the internal state of the route has changed.
+    ///
+    /// This should be called whenever [willHandlePopInternally], [didPop],
+    /// [offstage], or other internal state of the route changes value. It is used
+    /// by [ModalRoute], for example, to report the new information via its
+    /// inherited widget to any children of the route.
     ///
     /// See also:
     ///
-    ///  * [Form], which provides a [Form.onWillPop] callback that uses this
-    ///    mechanism.
-    ///  * [WillPopScope], another widget that provides a way to intercept the
-    ///    back button.
+    ///  * [changedExternalState], which is called when the [Navigator] rebuilds.
     /// </Summary>
-    public virtual Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
-async
-{
-return IsFirst? RoutePopDisposition.Bubble:RoutePopDisposition.Pop;
-}
+    public virtual void ChangedInternalState()
+    {
+    }
 
 
 
 
-/// <Summary>
-/// A request was made to pop this route. If the route can handle it
-/// internally (e.g. because it has its own stack of internal state) then
-/// return false, otherwise return true (by returning the value of calling
-/// `super.didPop`). Returning false will prevent the default behavior of
-/// [NavigatorState.pop].
-///
-/// When this function returns true, the navigator removes this route from
-/// the history but does not yet call [dispose]. Instead, it is the route's
-/// responsibility to call [NavigatorState.finalizeRoute], which will in turn
-/// call [dispose] on the route. This sequence lets the route perform an
-/// exit animation (or some other visual effect) after being popped but prior
-/// to being disposed.
-///
-/// This method should call [didComplete] to resolve the [popped] future (and
-/// this is all that the default implementation does); routes should not wait
-/// for their exit animation to complete before doing so.
-///
-/// See [popped], [didComplete], and [currentResult] for a discussion of the
-/// `result` argument.
-/// </Summary>
-public virtual bool DidPop(T result)
-{
-    DidComplete(result);
-    return true;
-}
+    /// <Summary>
+    /// Called whenever the [Navigator] has its widget rebuilt, to indicate that
+    /// the route may wish to rebuild as well.
+    ///
+    /// This is called by the [Navigator] whenever the [NavigatorState]'s
+    /// [widget] changes, for example because the [MaterialApp] has been rebuilt.
+    /// This ensures that routes that directly refer to the state of the widget
+    /// that built the [MaterialApp] will be notified when that widget rebuilds,
+    /// since it would otherwise be difficult to notify the routes that state they
+    /// depend on may have changed.
+    ///
+    /// See also:
+    ///
+    ///  * [changedInternalState], the equivalent but for changes to the internal
+    ///    state of the route.
+    /// </Summary>
+    public virtual void ChangedExternalState()
+    {
+    }
 
 
 
 
-/// <Summary>
-/// The route was popped or is otherwise being removed somewhat gracefully.
-///
-/// This is called by [didPop] and in response to
-/// [NavigatorState.pushReplacement]. If [didPop] was not called, then the
-/// [Navigator.finalizeRoute] method must be called immediately, and no exit
-/// animation will run.
-///
-/// The [popped] future is completed by this method. The `result` argument
-/// specifies the value that this future is completed with, unless it is null,
-/// in which case [currentResult] is used instead.
-///
-/// This should be called before the pop animation, if any, takes place,
-/// though in some cases the animation may be driven by the user before the
-/// route is committed to being popped; this can in particular happen with the
-/// iOS-style back gesture. See [Navigator.didStartUserGesture].
-/// </Summary>
-public virtual void DidComplete(T result)
-{
-    _PopCompleter.Complete(result ?? CurrentResult);
-}
+    /// <Summary>
+    /// Discards any resources used by the object.
+    ///
+    /// This method should not remove its [overlayEntries] from the [Overlay]. The
+    /// object's owner is in charge of doing that.
+    ///
+    /// After this is called, the object is not in a usable state and should be
+    /// discarded.
+    ///
+    /// This method should only be called by the object's owner; typically the
+    /// [Navigator] owns a route and so will call this method when the route is
+    /// removed, after which the route is no longer referenced by the navigator.
+    /// </Summary>
+    public virtual void Dispose()
+    {
+        _Navigator = null;
+    }
 
 
 
-
-/// <Summary>
-/// The given route, which was above this one, has been popped off the
-/// navigator.
-///
-/// This route is now the current route ([isCurrent] is now true), and there
-/// is no next route.
-/// </Summary>
-public virtual void DidPopNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
-{
-}
-
-
-
-
-/// <Summary>
-/// This route's next route has changed to the given new route.
-///
-/// This is called on a route whenever the next route changes for any reason,
-/// so long as it is in the history, including when a route is first added to
-/// a [Navigator] (e.g. by [Navigator.push]), except for cases when
-/// [didPopNext] would be called.
-///
-/// The `nextRoute` argument will be null if there's no new next route (i.e.
-/// if [isCurrent] is true).
-/// </Summary>
-public virtual void DidChangeNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
-{
-}
-
-
-
-
-/// <Summary>
-/// This route's previous route has changed to the given new route.
-///
-/// This is called on a route whenever the previous route changes for any
-/// reason, so long as it is in the history, except for immediately after the
-/// route itself has been pushed (in which case [didPush] or [didReplace] will
-/// be called instead).
-///
-/// The `previousRoute` argument will be null if there's no previous route
-/// (i.e. if [isFirst] is true).
-/// </Summary>
-public virtual void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
-{
-}
-
-
-
-
-/// <Summary>
-/// Called whenever the internal state of the route has changed.
-///
-/// This should be called whenever [willHandlePopInternally], [didPop],
-/// [offstage], or other internal state of the route changes value. It is used
-/// by [ModalRoute], for example, to report the new information via its
-/// inherited widget to any children of the route.
-///
-/// See also:
-///
-///  * [changedExternalState], which is called when the [Navigator] rebuilds.
-/// </Summary>
-public virtual void ChangedInternalState()
-{
-}
-
-
-
-
-/// <Summary>
-/// Called whenever the [Navigator] has its widget rebuilt, to indicate that
-/// the route may wish to rebuild as well.
-///
-/// This is called by the [Navigator] whenever the [NavigatorState]'s
-/// [widget] changes, for example because the [MaterialApp] has been rebuilt.
-/// This ensures that routes that directly refer to the state of the widget
-/// that built the [MaterialApp] will be notified when that widget rebuilds,
-/// since it would otherwise be difficult to notify the routes that state they
-/// depend on may have changed.
-///
-/// See also:
-///
-///  * [changedInternalState], the equivalent but for changes to the internal
-///    state of the route.
-/// </Summary>
-public virtual void ChangedExternalState()
-{
-}
-
-
-
-
-/// <Summary>
-/// Discards any resources used by the object.
-///
-/// This method should not remove its [overlayEntries] from the [Overlay]. The
-/// object's owner is in charge of doing that.
-///
-/// After this is called, the object is not in a usable state and should be
-/// discarded.
-///
-/// This method should only be called by the object's owner; typically the
-/// [Navigator] owns a route and so will call this method when the route is
-/// removed, after which the route is no longer referenced by the navigator.
-/// </Summary>
-public virtual void Dispose()
-{
-    _Navigator = null;
-}
-
-
-
-#endregion
+    #endregion
 }
 
 
@@ -1126,30 +1127,32 @@ public class RouteSettings
 {
     #region constructors
     public RouteSettings(string name = default(string), @Object arguments = default(@Object))
+    {
+        this.Name = name;
+        this.Arguments = arguments;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual string Name { get; set; }
+    public virtual @Object Arguments { get; set; }
+    #endregion
 
-#region fields
-public virtual string Name { get; set; }
-public virtual @Object Arguments { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Creates a copy of this route settings object with the given fields
-/// replaced with the new values.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Navigator.RouteSettings CopyWith(string name = default(string), @Object arguments = default(@Object))
-{
-    return new RouteSettings(name: name ?? this.Name, arguments: arguments ?? this.Arguments);
-}
+    /// <Summary>
+    /// Creates a copy of this route settings object with the given fields
+    /// replaced with the new values.
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Navigator.RouteSettings CopyWith(string name = default(string), @Object arguments = default(@Object))
+    {
+        return new RouteSettings(name: name ?? this.Name, arguments: arguments ?? this.Arguments);
+    }
 
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1171,42 +1174,43 @@ public class Page<T> : FlutterSDK.Widgets.Navigator.RouteSettings
     #region constructors
     public Page(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), string name = default(string), @Object arguments = default(@Object))
     : base(name: name, arguments: arguments)
+    {
+        this.Key = key;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-/// <Summary>
-/// Whether this page can be updated with the [other] page.
-///
-/// Two pages are consider updatable if they have same the [runtimeType] and
-/// [key].
-/// </Summary>
-public virtual bool CanUpdate(FlutterSDK.Widgets.Navigator.Page<object> other)
-{
-    return other.GetType() == GetType() && other.Key == Key;
-}
-
-
-
-
-/// <Summary>
-/// Creates the [Route] that corresponds to this page.
-///
-/// The created [Route] must have its [Route.settings] property set to this [Page].
-/// </Summary>
-public virtual Route<T> CreateRoute(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return default(Route<T>);
-}
+    /// <Summary>
+    /// Whether this page can be updated with the [other] page.
+    ///
+    /// Two pages are consider updatable if they have same the [runtimeType] and
+    /// [key].
+    /// </Summary>
+    public virtual bool CanUpdate(FlutterSDK.Widgets.Navigator.Page<object> other)
+    {
+        return other.GetType() == GetType() && other.Key == Key;
+    }
 
 
-#endregion
+
+
+    /// <Summary>
+    /// Creates the [Route] that corresponds to this page.
+    ///
+    /// The created [Route] must have its [Route.settings] property set to this [Page].
+    /// </Summary>
+    public virtual Route<T> CreateRoute(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        return default(Route<T>);
+    }
+
+
+    #endregion
 }
 
 
@@ -1221,26 +1225,27 @@ public class CustomBuilderPage<T> : FlutterSDK.Widgets.Navigator.Page<T>
     #region constructors
     public CustomBuilderPage(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Widgets.Navigator.RouteBuilder<T> routeBuilder = default(FlutterSDK.Widgets.Navigator.RouteBuilder<T>), string name = default(string), @Object arguments = default(@Object))
     : base(key: key, name: name, arguments: arguments)
+    {
+        this.RouteBuilder = routeBuilder;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Navigator.RouteBuilder<T> RouteBuilder { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Navigator.RouteBuilder<T> RouteBuilder { get; set; }
-#endregion
+    #region methods
 
-#region methods
+    public new Route<T> CreateRoute(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Route<T> route = RouteBuilder(context, this);
 
-public new Route<T> CreateRoute(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    Route<T> route = RouteBuilder(context, this);
-
-    return route;
-}
+        return route;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1308,99 +1313,100 @@ public class TransitionDelegate<T>
 {
     #region constructors
     public TransitionDelegate()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-#endregion
+    #region fields
+    #endregion
 
-#region methods
+    #region methods
 
-private Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> _Transition(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
-{
-    Iterable<RouteTransitionRecord> results = Resolve(newPageRouteHistory: newPageRouteHistory, locationToExitingPageRoute: locationToExitingPageRoute, pageRouteToPagelessRoutes: pageRouteToPagelessRoutes);
+    private Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> _Transition(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
+    {
+        Iterable<RouteTransitionRecord> results = Resolve(newPageRouteHistory: newPageRouteHistory, locationToExitingPageRoute: locationToExitingPageRoute, pageRouteToPagelessRoutes: pageRouteToPagelessRoutes);
 
-    return results;
-}
-
-
+        return results;
+    }
 
 
-/// <Summary>
-/// A method that will be called by the [Navigator] to decide how routes
-/// transition in or out of the screen when [Navigator.pages] is updated.
-///
-/// The `newPageRouteHistory` list contains all page-based routes in the order
-/// that will be on the [Navigator]'s history stack after this update
-/// completes. If a route in `newPageRouteHistory` has its
-/// [RouteTransitionRecord.isEntering] set to true, this route requires explicit
-/// decision on how it should transition onto the Navigator. To make a
-/// decision, call [RouteTransitionRecord.markForPush] or
-/// [RouteTransitionRecord.markForAdd].
-///
-/// The `locationToExitingPageRoute` contains the pages-based routes that
-/// are removed from the routes history after page update and require explicit
-/// decision on how to transition off the screen. This map records page-based
-/// routes to be removed with the location of the route in the original route
-/// history before the update. The keys are the locations represented by the
-/// page-based routes that are directly below the removed routes, and the value
-/// are the page-based routes to be removed. The location is null if the route
-/// to be removed is the bottom most route. To make a decision for a removed
-/// route, call [RouteTransitionRecord.markForPop],
-/// [RouteTransitionRecord.markForComplete] or
-/// [RouteTransitionRecord.markForRemove].
-///
-/// The `pageRouteToPagelessRoutes` records the page-based routes and their
-/// associated pageless routes. If a page-based route is to be removed, its
-/// associated pageless routes also require explicit decisions on how to
-/// transition off the screen.
-///
-/// Once all the decisions have been made, this method must merge the removed
-/// routes and the `newPageRouteHistory` and return the merged result. The
-/// order in the result will be the order the [Navigator] uses for updating
-/// the route history. The return list must preserve the same order of routes
-/// in `newPageRouteHistory`. The removed routes, however, can be inserted
-/// into the return list freely as long as all of them are included.
-///
-/// For example, consider the following case.
-///
-///    newPageRouteHistory = [A, B, C]
-///
-///    locationToExitingPageRoute = {A -> D, C -> E}
-///
-/// The following outputs are valid.
-///
-///    result = [A, B ,C ,D ,E] is valid
-///    result = [D, A, B ,C ,E] is also valid because exiting route can be
-///    inserted in any place
-///
-/// The following outputs are invalid.
-///
-///    result = [B, A, C ,D ,E] is invalid because B must be after A.
-///    result = [A, B, C ,E] is invalid because results must include D.
-///
-/// See also:
-///
-///  * [RouteTransitionRecord.markForPush], which makes route enter the screen
-///    with an animated transition.
-///  * [RouteTransitionRecord.markForAdd], which makes route enter the screen
-///    without an animated transition.
-///  * [RouteTransitionRecord.markForPop], which makes route exit the screen
-///    with an animated transition.
-///  * [RouteTransitionRecord.markForRemove], which does not complete the
-///    route and makes it exit the screen without an animated transition.
-///  * [RouteTransitionRecord.markForComplete], which completes the route and
-///    makes it exit the screen without an animated transition.
-///  * [DefaultTransitionDelegate.resolve], which implements the default way
-///    to decide how routes transition in or out of the screen.
-/// </Summary>
-public virtual Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> Resolve(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
-{
-    return default(Iterable<RouteTransitionRecord>);
-}
 
-#endregion
+
+    /// <Summary>
+    /// A method that will be called by the [Navigator] to decide how routes
+    /// transition in or out of the screen when [Navigator.pages] is updated.
+    ///
+    /// The `newPageRouteHistory` list contains all page-based routes in the order
+    /// that will be on the [Navigator]'s history stack after this update
+    /// completes. If a route in `newPageRouteHistory` has its
+    /// [RouteTransitionRecord.isEntering] set to true, this route requires explicit
+    /// decision on how it should transition onto the Navigator. To make a
+    /// decision, call [RouteTransitionRecord.markForPush] or
+    /// [RouteTransitionRecord.markForAdd].
+    ///
+    /// The `locationToExitingPageRoute` contains the pages-based routes that
+    /// are removed from the routes history after page update and require explicit
+    /// decision on how to transition off the screen. This map records page-based
+    /// routes to be removed with the location of the route in the original route
+    /// history before the update. The keys are the locations represented by the
+    /// page-based routes that are directly below the removed routes, and the value
+    /// are the page-based routes to be removed. The location is null if the route
+    /// to be removed is the bottom most route. To make a decision for a removed
+    /// route, call [RouteTransitionRecord.markForPop],
+    /// [RouteTransitionRecord.markForComplete] or
+    /// [RouteTransitionRecord.markForRemove].
+    ///
+    /// The `pageRouteToPagelessRoutes` records the page-based routes and their
+    /// associated pageless routes. If a page-based route is to be removed, its
+    /// associated pageless routes also require explicit decisions on how to
+    /// transition off the screen.
+    ///
+    /// Once all the decisions have been made, this method must merge the removed
+    /// routes and the `newPageRouteHistory` and return the merged result. The
+    /// order in the result will be the order the [Navigator] uses for updating
+    /// the route history. The return list must preserve the same order of routes
+    /// in `newPageRouteHistory`. The removed routes, however, can be inserted
+    /// into the return list freely as long as all of them are included.
+    ///
+    /// For example, consider the following case.
+    ///
+    ///    newPageRouteHistory = [A, B, C]
+    ///
+    ///    locationToExitingPageRoute = {A -> D, C -> E}
+    ///
+    /// The following outputs are valid.
+    ///
+    ///    result = [A, B ,C ,D ,E] is valid
+    ///    result = [D, A, B ,C ,E] is also valid because exiting route can be
+    ///    inserted in any place
+    ///
+    /// The following outputs are invalid.
+    ///
+    ///    result = [B, A, C ,D ,E] is invalid because B must be after A.
+    ///    result = [A, B, C ,E] is invalid because results must include D.
+    ///
+    /// See also:
+    ///
+    ///  * [RouteTransitionRecord.markForPush], which makes route enter the screen
+    ///    with an animated transition.
+    ///  * [RouteTransitionRecord.markForAdd], which makes route enter the screen
+    ///    without an animated transition.
+    ///  * [RouteTransitionRecord.markForPop], which makes route exit the screen
+    ///    with an animated transition.
+    ///  * [RouteTransitionRecord.markForRemove], which does not complete the
+    ///    route and makes it exit the screen without an animated transition.
+    ///  * [RouteTransitionRecord.markForComplete], which completes the route and
+    ///    makes it exit the screen without an animated transition.
+    ///  * [DefaultTransitionDelegate.resolve], which implements the default way
+    ///    to decide how routes transition in or out of the screen.
+    /// </Summary>
+    public virtual Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> Resolve(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
+    {
+        return default(Iterable<RouteTransitionRecord>);
+    }
+
+    #endregion
 }
 
 
@@ -1419,83 +1425,84 @@ public class DefaultTransitionDelegate<T> : FlutterSDK.Widgets.Navigator.Transit
     #region constructors
     public DefaultTransitionDelegate()
     : base()
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> Resolve(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
-{
-    List<RouteTransitionRecord> results = new List<RouteTransitionRecord>() { };
-    void HandleExitingRoute(RouteTransitionRecord location, bool isLast) => {
-        RouteTransitionRecord exitingPageRoute = locationToExitingPageRoute[location];
-        if (exitingPageRoute == null) return;
-
-        bool hasPagelessRoute = pageRouteToPagelessRoutes.ContainsKey(exitingPageRoute);
-        bool isLastExitingPageRoute = isLast && !locationToExitingPageRoute.ContainsKey(exitingPageRoute);
-        if (isLastExitingPageRoute && !hasPagelessRoute)
-        {
-            exitingPageRoute.MarkForPop(exitingPageRoute.Route.CurrentResult);
-        }
-        else
-        {
-            exitingPageRoute.MarkForComplete(exitingPageRoute.Route.CurrentResult);
-        }
-
-        results.Add(exitingPageRoute);
-        if (hasPagelessRoute)
-        {
-            List<RouteTransitionRecord> pagelessRoutes = pageRouteToPagelessRoutes[exitingPageRoute];
-            foreach (RouteTransitionRecord pagelessRoute in pagelessRoutes)
-            {
-
-                if (isLastExitingPageRoute && pagelessRoute == pagelessRoutes.Last())
-                {
-                    pagelessRoute.MarkForPop(pagelessRoute.Route.CurrentResult);
-                }
-                else
-                {
-                    pagelessRoute.MarkForComplete(pagelessRoute.Route.CurrentResult);
-                }
-
-            }
-
-        }
-
-        HandleExitingRoute(exitingPageRoute, isLast);
-    }
-
-    HandleExitingRoute(null, newPageRouteHistory.IsEmpty());
-    foreach (RouteTransitionRecord pageRoute in newPageRouteHistory)
     {
-        bool isLastIteration = newPageRouteHistory.Last() == pageRoute;
-        if (pageRoute.IsEntering)
-        {
-            if (!locationToExitingPageRoute.ContainsKey(pageRoute) && isLastIteration)
+
+    }
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> Resolve(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
+    {
+        List<RouteTransitionRecord> results = new List<RouteTransitionRecord>() { };
+        void HandleExitingRoute(RouteTransitionRecord location, bool isLast) => {
+            RouteTransitionRecord exitingPageRoute = locationToExitingPageRoute[location];
+            if (exitingPageRoute == null) return;
+
+            bool hasPagelessRoute = pageRouteToPagelessRoutes.ContainsKey(exitingPageRoute);
+            bool isLastExitingPageRoute = isLast && !locationToExitingPageRoute.ContainsKey(exitingPageRoute);
+            if (isLastExitingPageRoute && !hasPagelessRoute)
             {
-                pageRoute.MarkForPush();
+                exitingPageRoute.MarkForPop(exitingPageRoute.Route.CurrentResult);
             }
             else
             {
-                pageRoute.MarkForAdd();
+                exitingPageRoute.MarkForComplete(exitingPageRoute.Route.CurrentResult);
             }
 
+            results.Add(exitingPageRoute);
+            if (hasPagelessRoute)
+            {
+                List<RouteTransitionRecord> pagelessRoutes = pageRouteToPagelessRoutes[exitingPageRoute];
+                foreach (RouteTransitionRecord pagelessRoute in pagelessRoutes)
+                {
+
+                    if (isLastExitingPageRoute && pagelessRoute == pagelessRoutes.Last())
+                    {
+                        pagelessRoute.MarkForPop(pagelessRoute.Route.CurrentResult);
+                    }
+                    else
+                    {
+                        pagelessRoute.MarkForComplete(pagelessRoute.Route.CurrentResult);
+                    }
+
+                }
+
+            }
+
+            HandleExitingRoute(exitingPageRoute, isLast);
         }
 
-        results.Add(pageRoute);
-        HandleExitingRoute(pageRoute, isLastIteration);
+        HandleExitingRoute(null, newPageRouteHistory.IsEmpty());
+        foreach (RouteTransitionRecord pageRoute in newPageRouteHistory)
+        {
+            bool isLastIteration = newPageRouteHistory.Last() == pageRoute;
+            if (pageRoute.IsEntering)
+            {
+                if (!locationToExitingPageRoute.ContainsKey(pageRoute) && isLastIteration)
+                {
+                    pageRoute.MarkForPush();
+                }
+                else
+                {
+                    pageRoute.MarkForAdd();
+                }
+
+            }
+
+            results.Add(pageRoute);
+            HandleExitingRoute(pageRoute, isLastIteration);
+        }
+
+        return results;
     }
 
-    return results;
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -1887,830 +1894,838 @@ public class Navigator : FlutterSDK.Widgets.Framework.StatefulWidget
     #region constructors
     public Navigator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Navigator.Page<object>> pages = default(List<FlutterSDK.Widgets.Navigator.Page<object>>), FlutterSDK.Widgets.Navigator.PopPageCallback onPopPage = default(FlutterSDK.Widgets.Navigator.PopPageCallback), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.Navigator.RouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.TransitionDelegate<object> transitionDelegate = default(FlutterSDK.Widgets.Navigator.TransitionDelegate<object>), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> observers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
     : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual List<FlutterSDK.Widgets.Navigator.Page<object>> Pages { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.PopPageCallback OnPopPage { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.TransitionDelegate<object> TransitionDelegate { get; set; }
-public virtual string InitialRoute { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
-public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> Observers { get; set; }
-public virtual string DefaultRouteName { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.RouteListFactory OnGenerateInitialRoutes { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Push a named route onto the navigator that most tightly encloses the given
-/// context.
-///
-/// {@template flutter.widgets.navigator.pushNamed}
-/// The route name will be passed to that navigator's [onGenerateRoute]
-/// callback. The returned route will be pushed into the navigator.
-///
-/// The new route and the previous route (if any) are notified (see
-/// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
-/// [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didPush]).
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the route.
-///
-/// To use [pushNamed], an [onGenerateRoute] callback must be provided,
-/// {@endtemplate}
-///
-/// {@template flutter.widgets.navigator.pushNamed.arguments}
-/// The provided `arguments` are passed to the pushed route via
-/// [RouteSettings.arguments]. Any object can be passed as `arguments` (e.g. a
-/// [String], [int], or an instance of a custom `MyRouteArguments` class).
-/// Often, a [Map] is used to pass key-value pairs.
-///
-/// The `arguments` may be used in [Navigator.onGenerateRoute] or
-/// [Navigator.onUnknownRoute] to construct the route.
-/// {@endtemplate}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _didPushButton() {
-///   Navigator.pushNamed(context, '/settings');
-/// }
-/// ```
-/// {@end-tool}
-///
-/// {@tool snippet}
-///
-/// The following example shows how to pass additional `arguments` to the
-/// route:
-///
-/// ```dart
-/// void _showBerlinWeather() {
-///   Navigator.pushNamed(
-///     context,
-///     '/weather',
-///     arguments: <String, String>{
-///       'city': 'Berlin',
-///       'country': 'Germany',
-///     },
-///   );
-/// }
-/// ```
-/// {@end-tool}
-///
-/// {@tool snippet}
-///
-/// The following example shows how to pass a custom Object to the route:
-///
-/// ```dart
-/// class WeatherRouteArguments {
-///   WeatherRouteArguments({ this.city, this.country });
-///   final String city;
-///   final String country;
-///
-///   bool get isGermanCapital {
-///     return country == 'Germany' && city == 'Berlin';
-///   }
-/// }
-///
-/// void _showWeather() {
-///   Navigator.pushNamed(
-///     context,
-///     '/weather',
-///     arguments: WeatherRouteArguments(city: 'Berlin', country: 'Germany'),
-///   );
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> PushNamed<T>(FlutterSDK.Widgets.Framework.BuildContext context, string routeName, @Object arguments = default(@Object))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).PushNamed(routeName, arguments: arguments);
-}
-
-
-
-
-/// <Summary>
-/// Replace the current route of the navigator that most tightly encloses the
-/// given context by pushing the route named [routeName] and then disposing
-/// the previous route once the new route has finished animating in.
-///
-/// {@template flutter.widgets.navigator.pushReplacementNamed}
-/// If non-null, `result` will be used as the result of the route that is
-/// removed; the future that had been returned from pushing that old route
-/// will complete with `result`. Routes such as dialogs or popup menus
-/// typically use this mechanism to return the value selected by the user to
-/// the widget that created their route. The type of `result`, if provided,
-/// must match the type argument of the class of the old route (`TO`).
-///
-/// The route name will be passed to the navigator's [onGenerateRoute]
-/// callback. The returned route will be pushed into the navigator.
-///
-/// The new route and the route below the removed route are notified (see
-/// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
-/// [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didReplace]). The removed route is notified once the
-/// new route has finished animating (see [Route.didComplete]). The removed
-/// route's exit animation is not run (see [popAndPushNamed] for a variant
-/// that does animated the removed route).
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the new route,
-/// and `TO` is the type of the return value of the old route.
-///
-/// To use [pushReplacementNamed], an [onGenerateRoute] callback must be
-/// provided.
-/// {@endtemplate}
-///
-/// {@macro flutter.widgets.navigator.pushNamed.arguments}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _switchToBrightness() {
-///   Navigator.pushReplacementNamed(context, '/settings/brightness');
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> PushReplacementNamed<T, TO>(FlutterSDK.Widgets.Framework.BuildContext context, string routeName, TO result = default(TO), @Object arguments = default(@Object))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).PushReplacementNamed(routeName, arguments: arguments, result: result);
-}
-
-
-
-
-/// <Summary>
-/// Pop the current route off the navigator that most tightly encloses the
-/// given context and push a named route in its place.
-///
-/// {@template flutter.widgets.navigator.popAndPushNamed}
-/// The popping of the previous route is handled as per [pop].
-///
-/// The new route's name will be passed to the navigator's [onGenerateRoute]
-/// callback. The returned route will be pushed into the navigator.
-///
-/// The new route, the old route, and the route below the old route (if any)
-/// are all notified (see [Route.didPop], [Route.didComplete],
-/// [Route.didPopNext], [Route.didPush], and [Route.didChangeNext]). If the
-/// [Navigator] has any [Navigator.observers], they will be notified as well
-/// (see [NavigatorObserver.didPop] and [NavigatorObservers.didPush]). The
-/// animations for the pop and the push are performed simultaneously, so the
-/// route below may be briefly visible even if both the old route and the new
-/// route are opaque (see [TransitionRoute.opaque]).
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the new route,
-/// and `TO` is the return value type of the old route.
-///
-/// To use [popAndPushNamed], an [onGenerateRoute] callback must be provided.
-///
-/// {@endtemplate}
-///
-/// {@macro flutter.widgets.navigator.pushNamed.arguments}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _selectAccessibility() {
-///   Navigator.popAndPushNamed(context, '/settings/accessibility');
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> PopAndPushNamed<T, TO>(FlutterSDK.Widgets.Framework.BuildContext context, string routeName, TO result = default(TO), @Object arguments = default(@Object))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).PopAndPushNamed(routeName, arguments: arguments, result: result);
-}
-
-
-
-
-/// <Summary>
-/// Push the route with the given name onto the navigator that most tightly
-/// encloses the given context, and then remove all the previous routes until
-/// the `predicate` returns true.
-///
-/// {@template flutter.widgets.navigator.pushNamedAndRemoveUntil}
-/// The predicate may be applied to the same route more than once if
-/// [Route.willHandlePopInternally] is true.
-///
-/// To remove routes until a route with a certain name, use the
-/// [RoutePredicate] returned from [ModalRoute.withName].
-///
-/// To remove all the routes below the pushed route, use a [RoutePredicate]
-/// that always returns false (e.g. `(Route<dynamic> route) => false`).
-///
-/// The removed routes are removed without being completed, so this method
-/// does not take a return value argument.
-///
-/// The new route's name (`routeName`) will be passed to the navigator's
-/// [onGenerateRoute] callback. The returned route will be pushed into the
-/// navigator.
-///
-/// The new route and the route below the bottommost removed route (which
-/// becomes the route below the new route) are notified (see [Route.didPush]
-/// and [Route.didChangeNext]). If the [Navigator] has any
-/// [Navigator.observers], they will be notified as well (see
-/// [NavigatorObservers.didPush] and [NavigatorObservers.didRemove]). The
-/// removed routes are disposed, without being notified, once the new route
-/// has finished animating. The futures that had been returned from pushing
-/// those routes will not complete.
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the new route.
-///
-/// To use [pushNamedAndRemoveUntil], an [onGenerateRoute] callback must be
-/// provided.
-/// {@endtemplate}
-///
-/// {@macro flutter.widgets.navigator.pushNamed.arguments}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _resetToCalendar() {
-///   Navigator.pushNamedAndRemoveUntil(context, '/calendar', ModalRoute.withName('/'));
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> PushNamedAndRemoveUntil<T>(FlutterSDK.Widgets.Framework.BuildContext context, string newRouteName, FlutterSDK.Widgets.Navigator.RoutePredicate predicate, @Object arguments = default(@Object))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).PushNamedAndRemoveUntil(newRouteName, predicate, arguments: arguments);
-}
-
-
-
-
-/// <Summary>
-/// Push the given route onto the navigator that most tightly encloses the
-/// given context.
-///
-/// {@template flutter.widgets.navigator.push}
-/// The new route and the previous route (if any) are notified (see
-/// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
-/// [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didPush]).
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the route.
-/// {@endtemplate}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _openMyPage() {
-///   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MyPage()));
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> Push<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<T> route)
-{
-    return NavigatorDefaultClass.Navigator.Of(context).Push(route);
-}
-
-
-
-
-/// <Summary>
-/// Replace the current route of the navigator that most tightly encloses the
-/// given context by pushing the given route and then disposing the previous
-/// route once the new route has finished animating in.
-///
-/// {@template flutter.widgets.navigator.pushReplacement}
-/// If non-null, `result` will be used as the result of the route that is
-/// removed; the future that had been returned from pushing that old route will
-/// complete with `result`. Routes such as dialogs or popup menus typically
-/// use this mechanism to return the value selected by the user to the widget
-/// that created their route. The type of `result`, if provided, must match
-/// the type argument of the class of the old route (`TO`).
-///
-/// The new route and the route below the removed route are notified (see
-/// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
-/// [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didReplace]). The removed route is notified once the
-/// new route has finished animating (see [Route.didComplete]).
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the new route,
-/// and `TO` is the type of the return value of the old route.
-/// {@endtemplate}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _completeLogin() {
-///   Navigator.pushReplacement(
-///       context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> PushReplacement<T, TO>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<T> newRoute, TO result = default(TO))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).PushReplacement(newRoute, result: result);
-}
-
-
-
-
-/// <Summary>
-/// Push the given route onto the navigator that most tightly encloses the
-/// given context, and then remove all the previous routes until the
-/// `predicate` returns true.
-///
-/// {@template flutter.widgets.navigator.pushAndRemoveUntil}
-/// The predicate may be applied to the same route more than once if
-/// [Route.willHandlePopInternally] is true.
-///
-/// To remove routes until a route with a certain name, use the
-/// [RoutePredicate] returned from [ModalRoute.withName].
-///
-/// To remove all the routes below the pushed route, use a [RoutePredicate]
-/// that always returns false (e.g. `(Route<dynamic> route) => false`).
-///
-/// The removed routes are removed without being completed, so this method
-/// does not take a return value argument.
-///
-/// The newly pushed route and its preceding route are notified for
-/// [Route.didPush]. After removal, the new route and its new preceding route,
-/// (the route below the bottommost removed route) are notified through
-/// [Route.didChangeNext]). If the [Navigator] has any [Navigator.observers],
-/// they will be notified as well (see [NavigatorObservers.didPush] and
-/// [NavigatorObservers.didRemove]). The removed routes are disposed of and
-/// notified, once the new route has finished animating. The futures that had
-/// been returned from pushing those routes will not complete.
-///
-/// Ongoing gestures within the current route are canceled when a new route is
-/// pushed.
-///
-/// Returns a [Future] that completes to the `result` value passed to [pop]
-/// when the pushed route is popped off the navigator.
-///
-/// The `T` type argument is the type of the return value of the new route.
-/// {@endtemplate}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _finishAccountCreation() {
-///   Navigator.pushAndRemoveUntil(
-///     context,
-///     MaterialPageRoute(builder: (BuildContext context) => MyHomePage()),
-///     ModalRoute.withName('/'),
-///   );
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual Future<T> PushAndRemoveUntil<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<T> newRoute, FlutterSDK.Widgets.Navigator.RoutePredicate predicate)
-{
-    return NavigatorDefaultClass.Navigator.Of(context).PushAndRemoveUntil(newRoute, predicate);
-}
-
-
-
-
-/// <Summary>
-/// Replaces a route on the navigator that most tightly encloses the given
-/// context with a new route.
-///
-/// {@template flutter.widgets.navigator.replace}
-/// The old route must not be currently visible, as this method skips the
-/// animations and therefore the removal would be jarring if it was visible.
-/// To replace the top-most route, consider [pushReplacement] instead, which
-/// _does_ animate the new route, and delays removing the old route until the
-/// new route has finished animating.
-///
-/// The removed route is removed without being completed, so this method does
-/// not take a return value argument.
-///
-/// The new route, the route below the new route (if any), and the route above
-/// the new route, are all notified (see [Route.didReplace],
-/// [Route.didChangeNext], and [Route.didChangePrevious]). If the [Navigator]
-/// has any [Navigator.observers], they will be notified as well (see
-/// [NavigatorObservers.didReplace]). The removed route is disposed without
-/// being notified. The future that had been returned from pushing that routes
-/// will not complete.
-///
-/// This can be useful in combination with [removeRouteBelow] when building a
-/// non-linear user experience.
-///
-/// The `T` type argument is the type of the return value of the new route.
-/// {@endtemplate}
-///
-/// See also:
-///
-///  * [replaceRouteBelow], which is the same but identifies the route to be
-///    removed by reference to the route above it, rather than directly.
-/// </Summary>
-public virtual void Replace<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> oldRoute = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<T> newRoute = default(FlutterSDK.Widgets.Navigator.Route<T>))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).Replace(oldRoute: oldRoute, newRoute: newRoute);
-}
-
-
-
-
-/// <Summary>
-/// Replaces a route on the navigator that most tightly encloses the given
-/// context with a new route. The route to be replaced is the one below the
-/// given `anchorRoute`.
-///
-/// {@template flutter.widgets.navigator.replaceRouteBelow}
-/// The old route must not be current visible, as this method skips the
-/// animations and therefore the removal would be jarring if it was visible.
-/// To replace the top-most route, consider [pushReplacement] instead, which
-/// _does_ animate the new route, and delays removing the old route until the
-/// new route has finished animating.
-///
-/// The removed route is removed without being completed, so this method does
-/// not take a return value argument.
-///
-/// The new route, the route below the new route (if any), and the route above
-/// the new route, are all notified (see [Route.didReplace],
-/// [Route.didChangeNext], and [Route.didChangePrevious]). If the [Navigator]
-/// has any [Navigator.observers], they will be notified as well (see
-/// [NavigatorObservers.didReplace]). The removed route is disposed without
-/// being notified. The future that had been returned from pushing that routes
-/// will not complete.
-///
-/// The `T` type argument is the type of the return value of the new route.
-/// {@endtemplate}
-///
-/// See also:
-///
-///  * [replace], which is the same but identifies the route to be removed
-///    directly.
-/// </Summary>
-public virtual void ReplaceRouteBelow<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> anchorRoute = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<T> newRoute = default(FlutterSDK.Widgets.Navigator.Route<T>))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).ReplaceRouteBelow(anchorRoute: anchorRoute, newRoute: newRoute);
-}
-
-
-
-
-/// <Summary>
-/// Whether the navigator that most tightly encloses the given context can be
-/// popped.
-///
-/// {@template flutter.widgets.navigator.canPop}
-/// The initial route cannot be popped off the navigator, which implies that
-/// this function returns true only if popping the navigator would not remove
-/// the initial route.
-///
-/// If there is no [Navigator] in scope, returns false.
-/// {@endtemplate}
-///
-/// See also:
-///
-///  * [Route.isFirst], which returns true for routes for which [canPop]
-///    returns false.
-/// </Summary>
-public virtual bool CanPop(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    NavigatorState navigator = NavigatorDefaultClass.Navigator.Of(context, nullOk: true);
-    return navigator != null && navigator.CanPop();
-}
-
-
-
-
-/// <Summary>
-/// Consults the current route's [Route.willPop] method, and acts accordingly,
-/// potentially popping the route as a result; returns whether the pop request
-/// should be considered handled.
-///
-/// {@template flutter.widgets.navigator.maybePop}
-/// If [Route.willPop] returns [RoutePopDisposition.pop], then the [pop]
-/// method is called, and this method returns true, indicating that it handled
-/// the pop request.
-///
-/// If [Route.willPop] returns [RoutePopDisposition.doNotPop], then this
-/// method returns true, but does not do anything beyond that.
-///
-/// If [Route.willPop] returns [RoutePopDisposition.bubble], then this method
-/// returns false, and the caller is responsible for sending the request to
-/// the containing scope (e.g. by closing the application).
-///
-/// This method is typically called for a user-initiated [pop]. For example on
-/// Android it's called by the binding for the system's back button.
-///
-/// The `T` type argument is the type of the return value of the current
-/// route. (Typically this isn't known; consider specifying `dynamic` or
-/// `Null`.)
-/// {@endtemplate}
-///
-/// See also:
-///
-///  * [Form], which provides an `onWillPop` callback that enables the form
-///    to veto a [pop] initiated by the app's back button.
-///  * [ModalRoute], which provides a `scopedWillPopCallback` that can be used
-///    to define the route's `willPop` method.
-/// </Summary>
-public virtual Future<bool> MaybePop<T>(FlutterSDK.Widgets.Framework.BuildContext context, T result = default(T))
-{
-    return NavigatorDefaultClass.Navigator.Of(context).MaybePop(result);
-}
-
-
-
-
-/// <Summary>
-/// Pop the top-most route off the navigator that most tightly encloses the
-/// given context.
-///
-/// {@template flutter.widgets.navigator.pop}
-/// The current route's [Route.didPop] method is called first. If that method
-/// returns false, then the route remains in the [Navigator]'s history (the
-/// route is expected to have popped some internal state; see e.g.
-/// [LocalHistoryRoute]). Otherwise, the rest of this description applies.
-///
-/// If non-null, `result` will be used as the result of the route that is
-/// popped; the future that had been returned from pushing the popped route
-/// will complete with `result`. Routes such as dialogs or popup menus
-/// typically use this mechanism to return the value selected by the user to
-/// the widget that created their route. The type of `result`, if provided,
-/// must match the type argument of the class of the popped route (`T`).
-///
-/// The popped route and the route below it are notified (see [Route.didPop],
-/// [Route.didComplete], and [Route.didPopNext]). If the [Navigator] has any
-/// [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didPop]).
-///
-/// The `T` type argument is the type of the return value of the popped route.
-///
-/// The type of `result`, if provided, must match the type argument of the
-/// class of the popped route (`T`).
-/// {@endtemplate}
-///
-/// {@tool snippet}
-///
-/// Typical usage for closing a route is as follows:
-///
-/// ```dart
-/// void _close() {
-///   Navigator.pop(context);
-/// }
-/// ```
-/// {@end-tool}
-///
-/// A dialog box might be closed with a result:
-///
-/// ```dart
-/// void _accept() {
-///   Navigator.pop(context, true); // dialog returns true
-/// }
-/// ```
-/// </Summary>
-public virtual void Pop<T>(FlutterSDK.Widgets.Framework.BuildContext context, T result = default(T))
-{
-    NavigatorDefaultClass.Navigator.Of(context).Pop(result);
-}
-
-
-
-
-/// <Summary>
-/// Calls [pop] repeatedly on the navigator that most tightly encloses the
-/// given context until the predicate returns true.
-///
-/// {@template flutter.widgets.navigator.popUntil}
-/// The predicate may be applied to the same route more than once if
-/// [Route.willHandlePopInternally] is true.
-///
-/// To pop until a route with a certain name, use the [RoutePredicate]
-/// returned from [ModalRoute.withName].
-///
-/// The routes are closed with null as their `return` value.
-///
-/// See [pop] for more details of the semantics of popping a route.
-/// {@endtemplate}
-///
-/// {@tool snippet}
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// void _logout() {
-///   Navigator.popUntil(context, ModalRoute.withName('/login'));
-/// }
-/// ```
-/// {@end-tool}
-/// </Summary>
-public virtual void PopUntil(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.RoutePredicate predicate)
-{
-    NavigatorDefaultClass.Navigator.Of(context).PopUntil(predicate);
-}
-
-
-
-
-/// <Summary>
-/// Immediately remove `route` from the navigator that most tightly encloses
-/// the given context, and [Route.dispose] it.
-///
-/// {@template flutter.widgets.navigator.removeRoute}
-/// The removed route is removed without being completed, so this method does
-/// not take a return value argument. No animations are run as a result of
-/// this method call.
-///
-/// The routes below and above the removed route are notified (see
-/// [Route.didChangeNext] and [Route.didChangePrevious]). If the [Navigator]
-/// has any [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didRemove]). The removed route is disposed without
-/// being notified. The future that had been returned from pushing that routes
-/// will not complete.
-///
-/// The given `route` must be in the history; this method will throw an
-/// exception if it is not.
-///
-/// Ongoing gestures within the current route are canceled.
-/// {@endtemplate}
-///
-/// This method is used, for example, to instantly dismiss dropdown menus that
-/// are up when the screen's orientation changes.
-/// </Summary>
-public virtual void RemoveRoute(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> route)
-{
-    return NavigatorDefaultClass.Navigator.Of(context).RemoveRoute(route);
-}
-
-
-
-
-/// <Summary>
-/// Immediately remove a route from the navigator that most tightly encloses
-/// the given context, and [Route.dispose] it. The route to be removed is the
-/// one below the given `anchorRoute`.
-///
-/// {@template flutter.widgets.navigator.removeRouteBelow}
-/// The removed route is removed without being completed, so this method does
-/// not take a return value argument. No animations are run as a result of
-/// this method call.
-///
-/// The routes below and above the removed route are notified (see
-/// [Route.didChangeNext] and [Route.didChangePrevious]). If the [Navigator]
-/// has any [Navigator.observers], they will be notified as well (see
-/// [NavigatorObserver.didRemove]). The removed route is disposed without
-/// being notified. The future that had been returned from pushing that routes
-/// will not complete.
-///
-/// The given `anchorRoute` must be in the history and must have a route below
-/// it; this method will throw an exception if it is not or does not.
-///
-/// Ongoing gestures within the current route are canceled.
-/// {@endtemplate}
-/// </Summary>
-public virtual void RemoveRouteBelow(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> anchorRoute)
-{
-    return NavigatorDefaultClass.Navigator.Of(context).RemoveRouteBelow(anchorRoute);
-}
-
-
-
-
-/// <Summary>
-/// The state from the closest instance of this class that encloses the given context.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// Navigator.of(context)
-///   ..pop()
-///   ..pop()
-///   ..pushNamed('/settings');
-/// ```
-///
-/// If `rootNavigator` is set to true, the state from the furthest instance of
-/// this class is given instead. Useful for pushing contents above all subsequent
-/// instances of [Navigator].
-/// </Summary>
-public virtual FlutterSDK.Widgets.Navigator.NavigatorState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool rootNavigator = false, bool nullOk = false)
-{
-    NavigatorState navigator = rootNavigator ? context.FindRootAncestorStateOfType() : context.FindAncestorStateOfType();
-
-    return navigator;
-}
-
-
-
-
-/// <Summary>
-/// Turn a route name into a set of [Route] objects.
-///
-/// This is the default value of [onGenerateInitialRoutes], which is used if
-/// [initialRoute] is not null.
-///
-/// If this string contains any `/` characters, then the string is split on
-/// those characters and substrings from the start of the string up to each
-/// such character are, in turn, used as routes to push.
-///
-/// For example, if the route `/stocks/HOOLI` was used as the [initialRoute],
-/// then the [Navigator] would push the following routes on startup: `/`,
-/// `/stocks`, `/stocks/HOOLI`. This enables deep linking while allowing the
-/// application to maintain a predictable route history.
-/// </Summary>
-public virtual List<FlutterSDK.Widgets.Navigator.Route<object>> DefaultGenerateInitialRoutes(FlutterSDK.Widgets.Navigator.NavigatorState navigator, string initialRouteName)
-{
-    List<Route<object>> result = new List<Route<object>>() { };
-    if (initialRouteName.StartsWith('/') && initialRouteName.Length > 1)
     {
-        initialRouteName = initialRouteName.Substring(1);
+        this.Pages = pages;
+        this.OnPopPage = onPopPage;
+        this.InitialRoute = initialRoute;
+        this.OnGenerateInitialRoutes = onGenerateInitialRoutes;
+        this.OnGenerateRoute = onGenerateRoute;
+        this.OnUnknownRoute = onUnknownRoute;
+        this.TransitionDelegate = transitionDelegate;
+        this.Observers = observers;
+    }
+    #endregion
 
-        List<string> debugRouteNames = default(List<string>);
+    #region fields
+    public virtual List<FlutterSDK.Widgets.Navigator.Page<object>> Pages { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.PopPageCallback OnPopPage { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.TransitionDelegate<object> TransitionDelegate { get; set; }
+    public virtual string InitialRoute { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
+    public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> Observers { get; set; }
+    public virtual string DefaultRouteName { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.RouteListFactory OnGenerateInitialRoutes { get; set; }
+    #endregion
 
-        result.Add(navigator._RouteNamed(NavigatorDefaultClass.Navigator.DefaultRouteName, arguments: null, allowNull: true));
-        List<string> routeParts = initialRouteName.Split('/').ToList();
-        if (initialRouteName.IsNotEmpty)
+    #region methods
+
+    /// <Summary>
+    /// Push a named route onto the navigator that most tightly encloses the given
+    /// context.
+    ///
+    /// {@template flutter.widgets.navigator.pushNamed}
+    /// The route name will be passed to that navigator's [onGenerateRoute]
+    /// callback. The returned route will be pushed into the navigator.
+    ///
+    /// The new route and the previous route (if any) are notified (see
+    /// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
+    /// [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didPush]).
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the route.
+    ///
+    /// To use [pushNamed], an [onGenerateRoute] callback must be provided,
+    /// {@endtemplate}
+    ///
+    /// {@template flutter.widgets.navigator.pushNamed.arguments}
+    /// The provided `arguments` are passed to the pushed route via
+    /// [RouteSettings.arguments]. Any object can be passed as `arguments` (e.g. a
+    /// [String], [int], or an instance of a custom `MyRouteArguments` class).
+    /// Often, a [Map] is used to pass key-value pairs.
+    ///
+    /// The `arguments` may be used in [Navigator.onGenerateRoute] or
+    /// [Navigator.onUnknownRoute] to construct the route.
+    /// {@endtemplate}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _didPushButton() {
+    ///   Navigator.pushNamed(context, '/settings');
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool snippet}
+    ///
+    /// The following example shows how to pass additional `arguments` to the
+    /// route:
+    ///
+    /// ```dart
+    /// void _showBerlinWeather() {
+    ///   Navigator.pushNamed(
+    ///     context,
+    ///     '/weather',
+    ///     arguments: <String, String>{
+    ///       'city': 'Berlin',
+    ///       'country': 'Germany',
+    ///     },
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// {@tool snippet}
+    ///
+    /// The following example shows how to pass a custom Object to the route:
+    ///
+    /// ```dart
+    /// class WeatherRouteArguments {
+    ///   WeatherRouteArguments({ this.city, this.country });
+    ///   final String city;
+    ///   final String country;
+    ///
+    ///   bool get isGermanCapital {
+    ///     return country == 'Germany' && city == 'Berlin';
+    ///   }
+    /// }
+    ///
+    /// void _showWeather() {
+    ///   Navigator.pushNamed(
+    ///     context,
+    ///     '/weather',
+    ///     arguments: WeatherRouteArguments(city: 'Berlin', country: 'Germany'),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> PushNamed<T>(FlutterSDK.Widgets.Framework.BuildContext context, string routeName, @Object arguments = default(@Object))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).PushNamed(routeName, arguments: arguments);
+    }
+
+
+
+
+    /// <Summary>
+    /// Replace the current route of the navigator that most tightly encloses the
+    /// given context by pushing the route named [routeName] and then disposing
+    /// the previous route once the new route has finished animating in.
+    ///
+    /// {@template flutter.widgets.navigator.pushReplacementNamed}
+    /// If non-null, `result` will be used as the result of the route that is
+    /// removed; the future that had been returned from pushing that old route
+    /// will complete with `result`. Routes such as dialogs or popup menus
+    /// typically use this mechanism to return the value selected by the user to
+    /// the widget that created their route. The type of `result`, if provided,
+    /// must match the type argument of the class of the old route (`TO`).
+    ///
+    /// The route name will be passed to the navigator's [onGenerateRoute]
+    /// callback. The returned route will be pushed into the navigator.
+    ///
+    /// The new route and the route below the removed route are notified (see
+    /// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
+    /// [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didReplace]). The removed route is notified once the
+    /// new route has finished animating (see [Route.didComplete]). The removed
+    /// route's exit animation is not run (see [popAndPushNamed] for a variant
+    /// that does animated the removed route).
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the new route,
+    /// and `TO` is the type of the return value of the old route.
+    ///
+    /// To use [pushReplacementNamed], an [onGenerateRoute] callback must be
+    /// provided.
+    /// {@endtemplate}
+    ///
+    /// {@macro flutter.widgets.navigator.pushNamed.arguments}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _switchToBrightness() {
+    ///   Navigator.pushReplacementNamed(context, '/settings/brightness');
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> PushReplacementNamed<T, TO>(FlutterSDK.Widgets.Framework.BuildContext context, string routeName, TO result = default(TO), @Object arguments = default(@Object))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).PushReplacementNamed(routeName, arguments: arguments, result: result);
+    }
+
+
+
+
+    /// <Summary>
+    /// Pop the current route off the navigator that most tightly encloses the
+    /// given context and push a named route in its place.
+    ///
+    /// {@template flutter.widgets.navigator.popAndPushNamed}
+    /// The popping of the previous route is handled as per [pop].
+    ///
+    /// The new route's name will be passed to the navigator's [onGenerateRoute]
+    /// callback. The returned route will be pushed into the navigator.
+    ///
+    /// The new route, the old route, and the route below the old route (if any)
+    /// are all notified (see [Route.didPop], [Route.didComplete],
+    /// [Route.didPopNext], [Route.didPush], and [Route.didChangeNext]). If the
+    /// [Navigator] has any [Navigator.observers], they will be notified as well
+    /// (see [NavigatorObserver.didPop] and [NavigatorObservers.didPush]). The
+    /// animations for the pop and the push are performed simultaneously, so the
+    /// route below may be briefly visible even if both the old route and the new
+    /// route are opaque (see [TransitionRoute.opaque]).
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the new route,
+    /// and `TO` is the return value type of the old route.
+    ///
+    /// To use [popAndPushNamed], an [onGenerateRoute] callback must be provided.
+    ///
+    /// {@endtemplate}
+    ///
+    /// {@macro flutter.widgets.navigator.pushNamed.arguments}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _selectAccessibility() {
+    ///   Navigator.popAndPushNamed(context, '/settings/accessibility');
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> PopAndPushNamed<T, TO>(FlutterSDK.Widgets.Framework.BuildContext context, string routeName, TO result = default(TO), @Object arguments = default(@Object))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).PopAndPushNamed(routeName, arguments: arguments, result: result);
+    }
+
+
+
+
+    /// <Summary>
+    /// Push the route with the given name onto the navigator that most tightly
+    /// encloses the given context, and then remove all the previous routes until
+    /// the `predicate` returns true.
+    ///
+    /// {@template flutter.widgets.navigator.pushNamedAndRemoveUntil}
+    /// The predicate may be applied to the same route more than once if
+    /// [Route.willHandlePopInternally] is true.
+    ///
+    /// To remove routes until a route with a certain name, use the
+    /// [RoutePredicate] returned from [ModalRoute.withName].
+    ///
+    /// To remove all the routes below the pushed route, use a [RoutePredicate]
+    /// that always returns false (e.g. `(Route<dynamic> route) => false`).
+    ///
+    /// The removed routes are removed without being completed, so this method
+    /// does not take a return value argument.
+    ///
+    /// The new route's name (`routeName`) will be passed to the navigator's
+    /// [onGenerateRoute] callback. The returned route will be pushed into the
+    /// navigator.
+    ///
+    /// The new route and the route below the bottommost removed route (which
+    /// becomes the route below the new route) are notified (see [Route.didPush]
+    /// and [Route.didChangeNext]). If the [Navigator] has any
+    /// [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObservers.didPush] and [NavigatorObservers.didRemove]). The
+    /// removed routes are disposed, without being notified, once the new route
+    /// has finished animating. The futures that had been returned from pushing
+    /// those routes will not complete.
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the new route.
+    ///
+    /// To use [pushNamedAndRemoveUntil], an [onGenerateRoute] callback must be
+    /// provided.
+    /// {@endtemplate}
+    ///
+    /// {@macro flutter.widgets.navigator.pushNamed.arguments}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _resetToCalendar() {
+    ///   Navigator.pushNamedAndRemoveUntil(context, '/calendar', ModalRoute.withName('/'));
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> PushNamedAndRemoveUntil<T>(FlutterSDK.Widgets.Framework.BuildContext context, string newRouteName, FlutterSDK.Widgets.Navigator.RoutePredicate predicate, @Object arguments = default(@Object))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).PushNamedAndRemoveUntil(newRouteName, predicate, arguments: arguments);
+    }
+
+
+
+
+    /// <Summary>
+    /// Push the given route onto the navigator that most tightly encloses the
+    /// given context.
+    ///
+    /// {@template flutter.widgets.navigator.push}
+    /// The new route and the previous route (if any) are notified (see
+    /// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
+    /// [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didPush]).
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the route.
+    /// {@endtemplate}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _openMyPage() {
+    ///   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => MyPage()));
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> Push<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<T> route)
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).Push(route);
+    }
+
+
+
+
+    /// <Summary>
+    /// Replace the current route of the navigator that most tightly encloses the
+    /// given context by pushing the given route and then disposing the previous
+    /// route once the new route has finished animating in.
+    ///
+    /// {@template flutter.widgets.navigator.pushReplacement}
+    /// If non-null, `result` will be used as the result of the route that is
+    /// removed; the future that had been returned from pushing that old route will
+    /// complete with `result`. Routes such as dialogs or popup menus typically
+    /// use this mechanism to return the value selected by the user to the widget
+    /// that created their route. The type of `result`, if provided, must match
+    /// the type argument of the class of the old route (`TO`).
+    ///
+    /// The new route and the route below the removed route are notified (see
+    /// [Route.didPush] and [Route.didChangeNext]). If the [Navigator] has any
+    /// [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didReplace]). The removed route is notified once the
+    /// new route has finished animating (see [Route.didComplete]).
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the new route,
+    /// and `TO` is the type of the return value of the old route.
+    /// {@endtemplate}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _completeLogin() {
+    ///   Navigator.pushReplacement(
+    ///       context, MaterialPageRoute(builder: (BuildContext context) => MyHomePage()));
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> PushReplacement<T, TO>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<T> newRoute, TO result = default(TO))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).PushReplacement(newRoute, result: result);
+    }
+
+
+
+
+    /// <Summary>
+    /// Push the given route onto the navigator that most tightly encloses the
+    /// given context, and then remove all the previous routes until the
+    /// `predicate` returns true.
+    ///
+    /// {@template flutter.widgets.navigator.pushAndRemoveUntil}
+    /// The predicate may be applied to the same route more than once if
+    /// [Route.willHandlePopInternally] is true.
+    ///
+    /// To remove routes until a route with a certain name, use the
+    /// [RoutePredicate] returned from [ModalRoute.withName].
+    ///
+    /// To remove all the routes below the pushed route, use a [RoutePredicate]
+    /// that always returns false (e.g. `(Route<dynamic> route) => false`).
+    ///
+    /// The removed routes are removed without being completed, so this method
+    /// does not take a return value argument.
+    ///
+    /// The newly pushed route and its preceding route are notified for
+    /// [Route.didPush]. After removal, the new route and its new preceding route,
+    /// (the route below the bottommost removed route) are notified through
+    /// [Route.didChangeNext]). If the [Navigator] has any [Navigator.observers],
+    /// they will be notified as well (see [NavigatorObservers.didPush] and
+    /// [NavigatorObservers.didRemove]). The removed routes are disposed of and
+    /// notified, once the new route has finished animating. The futures that had
+    /// been returned from pushing those routes will not complete.
+    ///
+    /// Ongoing gestures within the current route are canceled when a new route is
+    /// pushed.
+    ///
+    /// Returns a [Future] that completes to the `result` value passed to [pop]
+    /// when the pushed route is popped off the navigator.
+    ///
+    /// The `T` type argument is the type of the return value of the new route.
+    /// {@endtemplate}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _finishAccountCreation() {
+    ///   Navigator.pushAndRemoveUntil(
+    ///     context,
+    ///     MaterialPageRoute(builder: (BuildContext context) => MyHomePage()),
+    ///     ModalRoute.withName('/'),
+    ///   );
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual Future<T> PushAndRemoveUntil<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<T> newRoute, FlutterSDK.Widgets.Navigator.RoutePredicate predicate)
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).PushAndRemoveUntil(newRoute, predicate);
+    }
+
+
+
+
+    /// <Summary>
+    /// Replaces a route on the navigator that most tightly encloses the given
+    /// context with a new route.
+    ///
+    /// {@template flutter.widgets.navigator.replace}
+    /// The old route must not be currently visible, as this method skips the
+    /// animations and therefore the removal would be jarring if it was visible.
+    /// To replace the top-most route, consider [pushReplacement] instead, which
+    /// _does_ animate the new route, and delays removing the old route until the
+    /// new route has finished animating.
+    ///
+    /// The removed route is removed without being completed, so this method does
+    /// not take a return value argument.
+    ///
+    /// The new route, the route below the new route (if any), and the route above
+    /// the new route, are all notified (see [Route.didReplace],
+    /// [Route.didChangeNext], and [Route.didChangePrevious]). If the [Navigator]
+    /// has any [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObservers.didReplace]). The removed route is disposed without
+    /// being notified. The future that had been returned from pushing that routes
+    /// will not complete.
+    ///
+    /// This can be useful in combination with [removeRouteBelow] when building a
+    /// non-linear user experience.
+    ///
+    /// The `T` type argument is the type of the return value of the new route.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [replaceRouteBelow], which is the same but identifies the route to be
+    ///    removed by reference to the route above it, rather than directly.
+    /// </Summary>
+    public virtual void Replace<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> oldRoute = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<T> newRoute = default(FlutterSDK.Widgets.Navigator.Route<T>))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).Replace(oldRoute: oldRoute, newRoute: newRoute);
+    }
+
+
+
+
+    /// <Summary>
+    /// Replaces a route on the navigator that most tightly encloses the given
+    /// context with a new route. The route to be replaced is the one below the
+    /// given `anchorRoute`.
+    ///
+    /// {@template flutter.widgets.navigator.replaceRouteBelow}
+    /// The old route must not be current visible, as this method skips the
+    /// animations and therefore the removal would be jarring if it was visible.
+    /// To replace the top-most route, consider [pushReplacement] instead, which
+    /// _does_ animate the new route, and delays removing the old route until the
+    /// new route has finished animating.
+    ///
+    /// The removed route is removed without being completed, so this method does
+    /// not take a return value argument.
+    ///
+    /// The new route, the route below the new route (if any), and the route above
+    /// the new route, are all notified (see [Route.didReplace],
+    /// [Route.didChangeNext], and [Route.didChangePrevious]). If the [Navigator]
+    /// has any [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObservers.didReplace]). The removed route is disposed without
+    /// being notified. The future that had been returned from pushing that routes
+    /// will not complete.
+    ///
+    /// The `T` type argument is the type of the return value of the new route.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [replace], which is the same but identifies the route to be removed
+    ///    directly.
+    /// </Summary>
+    public virtual void ReplaceRouteBelow<T>(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> anchorRoute = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<T> newRoute = default(FlutterSDK.Widgets.Navigator.Route<T>))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).ReplaceRouteBelow(anchorRoute: anchorRoute, newRoute: newRoute);
+    }
+
+
+
+
+    /// <Summary>
+    /// Whether the navigator that most tightly encloses the given context can be
+    /// popped.
+    ///
+    /// {@template flutter.widgets.navigator.canPop}
+    /// The initial route cannot be popped off the navigator, which implies that
+    /// this function returns true only if popping the navigator would not remove
+    /// the initial route.
+    ///
+    /// If there is no [Navigator] in scope, returns false.
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [Route.isFirst], which returns true for routes for which [canPop]
+    ///    returns false.
+    /// </Summary>
+    public virtual bool CanPop(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        NavigatorState navigator = NavigatorDefaultClass.Navigator.Of(context, nullOk: true);
+        return navigator != null && navigator.CanPop();
+    }
+
+
+
+
+    /// <Summary>
+    /// Consults the current route's [Route.willPop] method, and acts accordingly,
+    /// potentially popping the route as a result; returns whether the pop request
+    /// should be considered handled.
+    ///
+    /// {@template flutter.widgets.navigator.maybePop}
+    /// If [Route.willPop] returns [RoutePopDisposition.pop], then the [pop]
+    /// method is called, and this method returns true, indicating that it handled
+    /// the pop request.
+    ///
+    /// If [Route.willPop] returns [RoutePopDisposition.doNotPop], then this
+    /// method returns true, but does not do anything beyond that.
+    ///
+    /// If [Route.willPop] returns [RoutePopDisposition.bubble], then this method
+    /// returns false, and the caller is responsible for sending the request to
+    /// the containing scope (e.g. by closing the application).
+    ///
+    /// This method is typically called for a user-initiated [pop]. For example on
+    /// Android it's called by the binding for the system's back button.
+    ///
+    /// The `T` type argument is the type of the return value of the current
+    /// route. (Typically this isn't known; consider specifying `dynamic` or
+    /// `Null`.)
+    /// {@endtemplate}
+    ///
+    /// See also:
+    ///
+    ///  * [Form], which provides an `onWillPop` callback that enables the form
+    ///    to veto a [pop] initiated by the app's back button.
+    ///  * [ModalRoute], which provides a `scopedWillPopCallback` that can be used
+    ///    to define the route's `willPop` method.
+    /// </Summary>
+    public virtual Future<bool> MaybePop<T>(FlutterSDK.Widgets.Framework.BuildContext context, T result = default(T))
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).MaybePop(result);
+    }
+
+
+
+
+    /// <Summary>
+    /// Pop the top-most route off the navigator that most tightly encloses the
+    /// given context.
+    ///
+    /// {@template flutter.widgets.navigator.pop}
+    /// The current route's [Route.didPop] method is called first. If that method
+    /// returns false, then the route remains in the [Navigator]'s history (the
+    /// route is expected to have popped some internal state; see e.g.
+    /// [LocalHistoryRoute]). Otherwise, the rest of this description applies.
+    ///
+    /// If non-null, `result` will be used as the result of the route that is
+    /// popped; the future that had been returned from pushing the popped route
+    /// will complete with `result`. Routes such as dialogs or popup menus
+    /// typically use this mechanism to return the value selected by the user to
+    /// the widget that created their route. The type of `result`, if provided,
+    /// must match the type argument of the class of the popped route (`T`).
+    ///
+    /// The popped route and the route below it are notified (see [Route.didPop],
+    /// [Route.didComplete], and [Route.didPopNext]). If the [Navigator] has any
+    /// [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didPop]).
+    ///
+    /// The `T` type argument is the type of the return value of the popped route.
+    ///
+    /// The type of `result`, if provided, must match the type argument of the
+    /// class of the popped route (`T`).
+    /// {@endtemplate}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage for closing a route is as follows:
+    ///
+    /// ```dart
+    /// void _close() {
+    ///   Navigator.pop(context);
+    /// }
+    /// ```
+    /// {@end-tool}
+    ///
+    /// A dialog box might be closed with a result:
+    ///
+    /// ```dart
+    /// void _accept() {
+    ///   Navigator.pop(context, true); // dialog returns true
+    /// }
+    /// ```
+    /// </Summary>
+    public virtual void Pop<T>(FlutterSDK.Widgets.Framework.BuildContext context, T result = default(T))
+    {
+        NavigatorDefaultClass.Navigator.Of(context).Pop(result);
+    }
+
+
+
+
+    /// <Summary>
+    /// Calls [pop] repeatedly on the navigator that most tightly encloses the
+    /// given context until the predicate returns true.
+    ///
+    /// {@template flutter.widgets.navigator.popUntil}
+    /// The predicate may be applied to the same route more than once if
+    /// [Route.willHandlePopInternally] is true.
+    ///
+    /// To pop until a route with a certain name, use the [RoutePredicate]
+    /// returned from [ModalRoute.withName].
+    ///
+    /// The routes are closed with null as their `return` value.
+    ///
+    /// See [pop] for more details of the semantics of popping a route.
+    /// {@endtemplate}
+    ///
+    /// {@tool snippet}
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// void _logout() {
+    ///   Navigator.popUntil(context, ModalRoute.withName('/login'));
+    /// }
+    /// ```
+    /// {@end-tool}
+    /// </Summary>
+    public virtual void PopUntil(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.RoutePredicate predicate)
+    {
+        NavigatorDefaultClass.Navigator.Of(context).PopUntil(predicate);
+    }
+
+
+
+
+    /// <Summary>
+    /// Immediately remove `route` from the navigator that most tightly encloses
+    /// the given context, and [Route.dispose] it.
+    ///
+    /// {@template flutter.widgets.navigator.removeRoute}
+    /// The removed route is removed without being completed, so this method does
+    /// not take a return value argument. No animations are run as a result of
+    /// this method call.
+    ///
+    /// The routes below and above the removed route are notified (see
+    /// [Route.didChangeNext] and [Route.didChangePrevious]). If the [Navigator]
+    /// has any [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didRemove]). The removed route is disposed without
+    /// being notified. The future that had been returned from pushing that routes
+    /// will not complete.
+    ///
+    /// The given `route` must be in the history; this method will throw an
+    /// exception if it is not.
+    ///
+    /// Ongoing gestures within the current route are canceled.
+    /// {@endtemplate}
+    ///
+    /// This method is used, for example, to instantly dismiss dropdown menus that
+    /// are up when the screen's orientation changes.
+    /// </Summary>
+    public virtual void RemoveRoute(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> route)
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).RemoveRoute(route);
+    }
+
+
+
+
+    /// <Summary>
+    /// Immediately remove a route from the navigator that most tightly encloses
+    /// the given context, and [Route.dispose] it. The route to be removed is the
+    /// one below the given `anchorRoute`.
+    ///
+    /// {@template flutter.widgets.navigator.removeRouteBelow}
+    /// The removed route is removed without being completed, so this method does
+    /// not take a return value argument. No animations are run as a result of
+    /// this method call.
+    ///
+    /// The routes below and above the removed route are notified (see
+    /// [Route.didChangeNext] and [Route.didChangePrevious]). If the [Navigator]
+    /// has any [Navigator.observers], they will be notified as well (see
+    /// [NavigatorObserver.didRemove]). The removed route is disposed without
+    /// being notified. The future that had been returned from pushing that routes
+    /// will not complete.
+    ///
+    /// The given `anchorRoute` must be in the history and must have a route below
+    /// it; this method will throw an exception if it is not or does not.
+    ///
+    /// Ongoing gestures within the current route are canceled.
+    /// {@endtemplate}
+    /// </Summary>
+    public virtual void RemoveRouteBelow(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Navigator.Route<object> anchorRoute)
+    {
+        return NavigatorDefaultClass.Navigator.Of(context).RemoveRouteBelow(anchorRoute);
+    }
+
+
+
+
+    /// <Summary>
+    /// The state from the closest instance of this class that encloses the given context.
+    ///
+    /// Typical usage is as follows:
+    ///
+    /// ```dart
+    /// Navigator.of(context)
+    ///   ..pop()
+    ///   ..pop()
+    ///   ..pushNamed('/settings');
+    /// ```
+    ///
+    /// If `rootNavigator` is set to true, the state from the furthest instance of
+    /// this class is given instead. Useful for pushing contents above all subsequent
+    /// instances of [Navigator].
+    /// </Summary>
+    public virtual FlutterSDK.Widgets.Navigator.NavigatorState Of(FlutterSDK.Widgets.Framework.BuildContext context, bool rootNavigator = false, bool nullOk = false)
+    {
+        NavigatorState navigator = rootNavigator ? context.FindRootAncestorStateOfType() : context.FindAncestorStateOfType();
+
+        return navigator;
+    }
+
+
+
+
+    /// <Summary>
+    /// Turn a route name into a set of [Route] objects.
+    ///
+    /// This is the default value of [onGenerateInitialRoutes], which is used if
+    /// [initialRoute] is not null.
+    ///
+    /// If this string contains any `/` characters, then the string is split on
+    /// those characters and substrings from the start of the string up to each
+    /// such character are, in turn, used as routes to push.
+    ///
+    /// For example, if the route `/stocks/HOOLI` was used as the [initialRoute],
+    /// then the [Navigator] would push the following routes on startup: `/`,
+    /// `/stocks`, `/stocks/HOOLI`. This enables deep linking while allowing the
+    /// application to maintain a predictable route history.
+    /// </Summary>
+    public virtual List<FlutterSDK.Widgets.Navigator.Route<object>> DefaultGenerateInitialRoutes(FlutterSDK.Widgets.Navigator.NavigatorState navigator, string initialRouteName)
+    {
+        List<Route<object>> result = new List<Route<object>>() { };
+        if (initialRouteName.StartsWith('/') && initialRouteName.Length > 1)
         {
-            string routeName = "";
-            foreach (string part in routeParts)
-            {
-                routeName += $"'/{part}'";
+            initialRouteName = initialRouteName.Substring(1);
 
-                result.Add(navigator._RouteNamed(routeName, arguments: null, allowNull: true));
+            List<string> debugRouteNames = default(List<string>);
+
+            result.Add(navigator._RouteNamed(NavigatorDefaultClass.Navigator.DefaultRouteName, arguments: null, allowNull: true));
+            List<string> routeParts = initialRouteName.Split('/').ToList();
+            if (initialRouteName.IsNotEmpty)
+            {
+                string routeName = "";
+                foreach (string part in routeParts)
+                {
+                    routeName += $"'/{part}'";
+
+                    result.Add(navigator._RouteNamed(routeName, arguments: null, allowNull: true));
+                }
+
+            }
+
+            if (result.Last() == null)
+            {
+
+                result.Clear();
             }
 
         }
-
-        if (result.Last() == null)
+        else if (initialRouteName != NavigatorDefaultClass.Navigator.DefaultRouteName)
         {
-
-            result.Clear();
+            result.Add(navigator._RouteNamed(initialRouteName, arguments: null, allowNull: true));
         }
 
+        result.RemoveWhere((Route<object> route) => =>route == null);
+        if (result.IsEmpty()) result.Add(navigator._RouteNamed(NavigatorDefaultClass.Navigator.DefaultRouteName, arguments: null));
+        return result;
     }
-    else if (initialRouteName != NavigatorDefaultClass.Navigator.DefaultRouteName)
-    {
-        result.Add(navigator._RouteNamed(initialRouteName, arguments: null, allowNull: true));
-    }
-
-    result.RemoveWhere((Route<object> route) => =>route == null);
-    if (result.IsEmpty()) result.Add(navigator._RouteNamed(NavigatorDefaultClass.Navigator.DefaultRouteName, arguments: null));
-    return result;
-}
 
 
 
 
-public new FlutterSDK.Widgets.Navigator.NavigatorState CreateState() => new NavigatorState();
+    public new FlutterSDK.Widgets.Navigator.NavigatorState CreateState() => new NavigatorState();
 
 
-#endregion
+    #endregion
 }
 
 
@@ -2719,289 +2734,290 @@ public class _RouteEntry : FlutterSDK.Widgets.Navigator.RouteTransitionRecord
     #region constructors
     public _RouteEntry(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator._RouteLifecycle initialState = default(FlutterSDK.Widgets.Navigator._RouteLifecycle))
     : base()
-
-}
-#endregion
-
-#region fields
-public new FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
-public virtual FlutterSDK.Widgets.Navigator._RouteLifecycle CurrentState { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedPreviousRoute { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedPoppedNextRoute { get; set; }
-public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedNextRoute { get; set; }
-public virtual bool DoingPop { get; set; }
-internal virtual bool _ReportRemovalToObserver { get; set; }
-public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate IsPresentPredicate { get; set; }
-public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate SuitableForTransitionAnimationPredicate { get; set; }
-public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate WillBePresentPredicate { get; set; }
-public virtual bool HasPage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool WillBePresent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsPresent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SuitableForAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SuitableForTransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsEntering { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public virtual bool CanUpdateFrom(FlutterSDK.Widgets.Navigator.Page<object> page)
-{
-    if (CurrentState.Index > _RouteLifecycle.Idle.Index) return false;
-    if (!HasPage) return false;
-    Page<object> routePage = Route.Settings as Page<object>;
-    return page.CanUpdate(routePage);
-}
-
-
-
-
-public virtual void HandleAdd(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState))
-{
-
-
-
-
-    Route._Navigator = navigator;
-    Route.Install();
-
-    CurrentState = _RouteLifecycle.Adding;
-}
-
-
-
-
-public virtual void HandlePush(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), bool isNewFirst = default(bool), FlutterSDK.Widgets.Navigator.Route<object> previous = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
-{
-
-
-
-
-    _RouteLifecycle previousState = CurrentState;
-    Route._Navigator = navigator;
-    Route.Install();
-
-    if (CurrentState == _RouteLifecycle.Push || CurrentState == _RouteLifecycle.PushReplace)
     {
-        TickerFuture routeFuture = Route.DidPush();
-        CurrentState = _RouteLifecycle.Pushing;
-        routeFuture.WhenCompleteOrCancel(() =>
+        this.Route = route;
+    }
+    #endregion
+
+    #region fields
+    public new FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator._RouteLifecycle CurrentState { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedPreviousRoute { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedPoppedNextRoute { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedNextRoute { get; set; }
+    public virtual bool DoingPop { get; set; }
+    internal virtual bool _ReportRemovalToObserver { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate IsPresentPredicate { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate SuitableForTransitionAnimationPredicate { get; set; }
+    public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate WillBePresentPredicate { get; set; }
+    public virtual bool HasPage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool WillBePresent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsPresent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool SuitableForAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool SuitableForTransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual bool IsEntering { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public virtual bool CanUpdateFrom(FlutterSDK.Widgets.Navigator.Page<object> page)
+    {
+        if (CurrentState.Index > _RouteLifecycle.Idle.Index) return false;
+        if (!HasPage) return false;
+        Page<object> routePage = Route.Settings as Page<object>;
+        return page.CanUpdate(routePage);
+    }
+
+
+
+
+    public virtual void HandleAdd(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState))
+    {
+
+
+
+
+        Route._Navigator = navigator;
+        Route.Install();
+
+        CurrentState = _RouteLifecycle.Adding;
+    }
+
+
+
+
+    public virtual void HandlePush(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), bool isNewFirst = default(bool), FlutterSDK.Widgets.Navigator.Route<object> previous = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
+    {
+
+
+
+
+        _RouteLifecycle previousState = CurrentState;
+        Route._Navigator = navigator;
+        Route.Install();
+
+        if (CurrentState == _RouteLifecycle.Push || CurrentState == _RouteLifecycle.PushReplace)
         {
-            if (CurrentState == _RouteLifecycle.Pushing)
+            TickerFuture routeFuture = Route.DidPush();
+            CurrentState = _RouteLifecycle.Pushing;
+            routeFuture.WhenCompleteOrCancel(() =>
             {
-                CurrentState = _RouteLifecycle.Idle;
+                if (CurrentState == _RouteLifecycle.Pushing)
+                {
+                    CurrentState = _RouteLifecycle.Idle;
 
 
-                navigator._FlushHistoryUpdates();
+                    navigator._FlushHistoryUpdates();
+
+                }
 
             }
-
+            );
         }
-        );
+        else
+        {
+
+            Route.DidReplace(previous);
+            CurrentState = _RouteLifecycle.Idle;
+        }
+
+        if (isNewFirst)
+        {
+            Route.DidChangeNext(null);
+        }
+
+        if (previousState == _RouteLifecycle.Replace || previousState == _RouteLifecycle.PushReplace)
+        {
+            foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidReplace(newRoute: Route, oldRoute: previous);
+        }
+        else
+        {
+
+            foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidPush(Route, previousPresent);
+        }
+
     }
-    else
+
+
+
+
+    public virtual void HandleDidPopNext(FlutterSDK.Widgets.Navigator.Route<object> poppedRoute)
+    {
+        Route.DidPopNext(poppedRoute);
+        LastAnnouncedPoppedNextRoute = poppedRoute;
+    }
+
+
+
+
+    public virtual void HandlePop(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
     {
 
-        Route.DidReplace(previous);
+
+
+        CurrentState = _RouteLifecycle.Popping;
+        foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidPop(Route, previousPresent);
+    }
+
+
+
+
+    public virtual void HandleRemoval(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
+    {
+
+
+
+        CurrentState = _RouteLifecycle.Removing;
+        if (_ReportRemovalToObserver)
+        {
+            foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidRemove(Route, previousPresent);
+        }
+
+    }
+
+
+
+
+    public virtual void DidAdd(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), bool isNewFirst = default(bool), FlutterSDK.Widgets.Navigator.Route<object> previous = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
+    {
+        Route.DidAdd();
         CurrentState = _RouteLifecycle.Idle;
-    }
-
-    if (isNewFirst)
-    {
-        Route.DidChangeNext(null);
-    }
-
-    if (previousState == _RouteLifecycle.Replace || previousState == _RouteLifecycle.PushReplace)
-    {
-        foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidReplace(newRoute: Route, oldRoute: previous);
-    }
-    else
-    {
+        if (isNewFirst)
+        {
+            Route.DidChangeNext(null);
+        }
 
         foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidPush(Route, previousPresent);
     }
 
-}
 
 
 
-
-public virtual void HandleDidPopNext(FlutterSDK.Widgets.Navigator.Route<object> poppedRoute)
-{
-    Route.DidPopNext(poppedRoute);
-    LastAnnouncedPoppedNextRoute = poppedRoute;
-}
-
-
-
-
-public virtual void HandlePop(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
-{
-
-
-
-    CurrentState = _RouteLifecycle.Popping;
-    foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidPop(Route, previousPresent);
-}
-
-
-
-
-public virtual void HandleRemoval(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
-{
-
-
-
-    CurrentState = _RouteLifecycle.Removing;
-    if (_ReportRemovalToObserver)
+    public virtual void Pop<T>(T result)
     {
-        foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidRemove(Route, previousPresent);
+
+        DoingPop = true;
+        if (Route.DidPop(result) && DoingPop)
+        {
+            CurrentState = _RouteLifecycle.Pop;
+        }
+
+        DoingPop = false;
     }
 
-}
 
 
 
-
-public virtual void DidAdd(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), bool isNewFirst = default(bool), FlutterSDK.Widgets.Navigator.Route<object> previous = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Navigator.Route<object> previousPresent = default(FlutterSDK.Widgets.Navigator.Route<object>))
-{
-    Route.DidAdd();
-    CurrentState = _RouteLifecycle.Idle;
-    if (isNewFirst)
+    public virtual void Remove(bool isReplaced = false)
     {
-        Route.DidChangeNext(null);
+
+        if (CurrentState.Index >= _RouteLifecycle.Remove.Index) return;
+
+        _ReportRemovalToObserver = !isReplaced;
+        CurrentState = _RouteLifecycle.Remove;
     }
 
-    foreach (NavigatorObserver observer in navigator.Widget.Observers) observer.DidPush(Route, previousPresent);
-}
 
 
 
-
-public virtual void Pop<T>(T result)
-{
-
-    DoingPop = true;
-    if (Route.DidPop(result) && DoingPop)
+    public virtual void Complete<T>(T result, bool isReplaced = false)
     {
-        CurrentState = _RouteLifecycle.Pop;
+
+        if (CurrentState.Index >= _RouteLifecycle.Remove.Index) return;
+
+        _ReportRemovalToObserver = !isReplaced;
+        Route.DidComplete(result);
+
+        CurrentState = _RouteLifecycle.Remove;
     }
 
-    DoingPop = false;
-}
+
+
+
+    public virtual void Finalize()
+    {
+
+        CurrentState = _RouteLifecycle.Dispose;
+    }
 
 
 
 
-public virtual void Remove(bool isReplaced = false)
-{
+    public virtual void Dispose()
+    {
 
-    if (CurrentState.Index >= _RouteLifecycle.Remove.Index) return;
-
-    _ReportRemovalToObserver = !isReplaced;
-    CurrentState = _RouteLifecycle.Remove;
-}
+        Route.Dispose();
+        CurrentState = _RouteLifecycle.Disposed;
+    }
 
 
 
 
-public virtual void Complete<T>(T result, bool isReplaced = false)
-{
+    public virtual bool ShouldAnnounceChangeToNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
+    {
 
-    if (CurrentState.Index >= _RouteLifecycle.Remove.Index) return;
-
-    _ReportRemovalToObserver = !isReplaced;
-    Route.DidComplete(result);
-
-    CurrentState = _RouteLifecycle.Remove;
-}
+        return !(nextRoute == null && LastAnnouncedPoppedNextRoute != null && LastAnnouncedPoppedNextRoute == LastAnnouncedNextRoute);
+    }
 
 
 
 
-public virtual void Finalize()
-{
-
-    CurrentState = _RouteLifecycle.Dispose;
-}
-
-
-
-
-public virtual void Dispose()
-{
-
-    Route.Dispose();
-    CurrentState = _RouteLifecycle.Disposed;
-}
+    public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate IsRoutePredicate(FlutterSDK.Widgets.Navigator.Route<object> route)
+    {
+        return (_RouteEntry entry) => =>entry.Route == route;
+    }
 
 
 
 
-public virtual bool ShouldAnnounceChangeToNext(FlutterSDK.Widgets.Navigator.Route<object> nextRoute)
-{
+    public new void MarkForPush()
+    {
 
-    return !(nextRoute == null && LastAnnouncedPoppedNextRoute != null && LastAnnouncedPoppedNextRoute == LastAnnouncedNextRoute);
-}
-
-
-
-
-public virtual FlutterSDK.Widgets.Navigator._RouteEntryPredicate IsRoutePredicate(FlutterSDK.Widgets.Navigator.Route<object> route)
-{
-    return (_RouteEntry entry) => =>entry.Route == route;
-}
+        CurrentState = _RouteLifecycle.Push;
+    }
 
 
 
 
-public new void MarkForPush()
-{
+    public new void MarkForAdd()
+    {
 
-    CurrentState = _RouteLifecycle.Push;
-}
-
-
-
-
-public new void MarkForAdd()
-{
-
-    CurrentState = _RouteLifecycle.Add;
-}
+        CurrentState = _RouteLifecycle.Add;
+    }
 
 
 
 
-public new void MarkForPop(object result = default(object))
-{
+    public new void MarkForPop(object result = default(object))
+    {
 
-    Pop(result);
-    _DebugWaitingForExitDecision = false;
-}
-
-
-
-
-public new void MarkForComplete(object result = default(object))
-{
-
-    Complete(result);
-    _DebugWaitingForExitDecision = false;
-}
+        Pop(result);
+        _DebugWaitingForExitDecision = false;
+    }
 
 
 
 
-public new void MarkForRemove()
-{
+    public new void MarkForComplete(object result = default(object))
+    {
 
-    Remove();
-    _DebugWaitingForExitDecision = false;
-}
+        Complete(result);
+        _DebugWaitingForExitDecision = false;
+    }
 
 
 
-#endregion
+
+    public new void MarkForRemove()
+    {
+
+        Remove();
+        _DebugWaitingForExitDecision = false;
+    }
+
+
+
+    #endregion
 }
 
 

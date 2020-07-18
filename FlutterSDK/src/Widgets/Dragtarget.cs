@@ -469,457 +469,485 @@ namespace FlutterSDK.Widgets.Dragtarget
         #region constructors
         public Draggable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Widgets.Framework.Widget childWhenDragging = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget.DragAnchor dragAnchor = default(FlutterSDK.Widgets.Dragtarget.DragAnchor), FlutterSDK.Painting.Basictypes.Axis affinity = default(FlutterSDK.Painting.Basictypes.Axis), int maxSimultaneousDrags = default(int), VoidCallback onDragStarted = default(VoidCallback), FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback onDraggableCanceled = default(FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback), FlutterSDK.Widgets.Dragtarget.DragEndCallback onDragEnd = default(FlutterSDK.Widgets.Dragtarget.DragEndCallback), VoidCallback onDragCompleted = default(VoidCallback), bool ignoringFeedbackSemantics = true)
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Child = child;
+            this.Feedback = feedback;
+            this.Data = data;
+            this.Axis = axis;
+            this.ChildWhenDragging = childWhenDragging;
+            this.FeedbackOffset = feedbackOffset;
+            this.DragAnchor = dragAnchor;
+            this.Affinity = affinity;
+            this.MaxSimultaneousDrags = maxSimultaneousDrags;
+            this.OnDragStarted = onDragStarted;
+            this.OnDraggableCanceled = onDraggableCanceled;
+            this.OnDragEnd = onDragEnd;
+            this.OnDragCompleted = onDragCompleted;
+            this.IgnoringFeedbackSemantics = ignoringFeedbackSemantics;
+        }
+        #endregion
 
-    #region fields
-    public virtual T Data { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget ChildWhenDragging { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Feedback { get; set; }
-    public virtual FlutterBinding.UI.Offset FeedbackOffset { get; set; }
-    public virtual FlutterSDK.Widgets.Dragtarget.DragAnchor DragAnchor { get; set; }
-    public virtual bool IgnoringFeedbackSemantics { get; set; }
-    public virtual FlutterSDK.Painting.Basictypes.Axis Affinity { get; set; }
-    public virtual int MaxSimultaneousDrags { get; set; }
-    public virtual VoidCallback OnDragStarted { get; set; }
-    public virtual FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback OnDraggableCanceled { get; set; }
-    public virtual VoidCallback OnDragCompleted { get; set; }
-    public virtual FlutterSDK.Widgets.Dragtarget.DragEndCallback OnDragEnd { get; set; }
-    #endregion
+        #region fields
+        public virtual T Data { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget ChildWhenDragging { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Feedback { get; set; }
+        public virtual FlutterBinding.UI.Offset FeedbackOffset { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget.DragAnchor DragAnchor { get; set; }
+        public virtual bool IgnoringFeedbackSemantics { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Affinity { get; set; }
+        public virtual int MaxSimultaneousDrags { get; set; }
+        public virtual VoidCallback OnDragStarted { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback OnDraggableCanceled { get; set; }
+        public virtual VoidCallback OnDragCompleted { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget.DragEndCallback OnDragEnd { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a gesture recognizer that recognizes the start of the drag.
+        ///
+        /// Subclasses can override this function to customize when they start
+        /// recognizing a drag.
+        /// </Summary>
+        public virtual FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag.MultiDragPointerState> CreateRecognizer(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback onStart)
+        {
+            switch (Affinity) { case Axis.Horizontal: return new HorizontalMultiDragGestureRecognizer()..OnStart = onStart; case Axis.Vertical: return new VerticalMultiDragGestureRecognizer()..OnStart = onStart; }
+            return new ImmediateMultiDragGestureRecognizer()..OnStart = onStart;
+        }
+
+
+
+
+        public new _DraggableState<T> CreateState() => new _DraggableState<T>();
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a gesture recognizer that recognizes the start of the drag.
-    ///
-    /// Subclasses can override this function to customize when they start
-    /// recognizing a drag.
+    /// Makes its child draggable starting from long press.
     /// </Summary>
-    public virtual FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag.MultiDragPointerState> CreateRecognizer(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback onStart)
+    public class LongPressDraggable<T> : FlutterSDK.Widgets.Dragtarget.Draggable<T>
     {
-        switch (Affinity) { case Axis.Horizontal: return new HorizontalMultiDragGestureRecognizer()..OnStart = onStart; case Axis.Vertical: return new VerticalMultiDragGestureRecognizer()..OnStart = onStart; }
-        return new ImmediateMultiDragGestureRecognizer()..OnStart = onStart;
-    }
-
-
-
-
-    public new _DraggableState<T> CreateState() => new _DraggableState<T>();
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Makes its child draggable starting from long press.
-/// </Summary>
-public class LongPressDraggable<T> : FlutterSDK.Widgets.Dragtarget.Draggable<T>
-{
-    #region constructors
-    public LongPressDraggable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Widgets.Framework.Widget childWhenDragging = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget.DragAnchor dragAnchor = default(FlutterSDK.Widgets.Dragtarget.DragAnchor), int maxSimultaneousDrags = default(int), VoidCallback onDragStarted = default(VoidCallback), FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback onDraggableCanceled = default(FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback), FlutterSDK.Widgets.Dragtarget.DragEndCallback onDragEnd = default(FlutterSDK.Widgets.Dragtarget.DragEndCallback), VoidCallback onDragCompleted = default(VoidCallback), bool hapticFeedbackOnStart = true, bool ignoringFeedbackSemantics = true)
-    : base(key: key, child: child, feedback: feedback, data: data, axis: axis, childWhenDragging: childWhenDragging, feedbackOffset: feedbackOffset, dragAnchor: dragAnchor, maxSimultaneousDrags: maxSimultaneousDrags, onDragStarted: onDragStarted, onDraggableCanceled: onDraggableCanceled, onDragEnd: onDragEnd, onDragCompleted: onDragCompleted, ignoringFeedbackSemantics: ignoringFeedbackSemantics)
-
-}
-#endregion
-
-#region fields
-public virtual bool HapticFeedbackOnStart { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Gestures.Multidrag.DelayedMultiDragGestureRecognizer CreateRecognizer(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback onStart)
-{
-    return new DelayedMultiDragGestureRecognizer()..OnStart = (Offset position) =>
-    {
-        Drag result = onStart(position);
-        if (result != null && HapticFeedbackOnStart) HapticfeedbackDefaultClass.HapticFeedback.SelectionClick();
-        return result;
-    }
-    ;
-}
-
-
-
-#endregion
-}
-
-
-public class _DraggableState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Dragtarget.Draggable<T>>
-{
-    #region constructors
-    public _DraggableState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer _Recognizer { get; set; }
-    internal virtual int _ActiveCount { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _Recognizer = Widget.CreateRecognizer(_StartDrag);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _DisposeRecognizerIfInactive();
-        base.Dispose();
-    }
-
-
-
-
-    private void _DisposeRecognizerIfInactive()
-    {
-        if (_ActiveCount > 0) return;
-        _Recognizer.Dispose();
-        _Recognizer = null;
-    }
-
-
-
-
-    private void _RoutePointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
-    {
-        if (Widget.MaxSimultaneousDrags != null && _ActiveCount >= Widget.MaxSimultaneousDrags) return;
-        _Recognizer.AddPointer(@event);
-    }
-
-
-
-
-    private _DragAvatar<T> _StartDrag(FlutterBinding.UI.Offset position)
-    {
-        if (Widget.MaxSimultaneousDrags != null && _ActiveCount >= Widget.MaxSimultaneousDrags) return null;
-        Offset dragStartPoint = default(Offset);
-        switch (Widget.DragAnchor) { case DragAnchor.Child: RenderBox renderObject = Context.FindRenderObject() as RenderBox; dragStartPoint = renderObject.GlobalToLocal(position); break; case DragAnchor.Pointer: dragStartPoint = Dart:uiDefaultClass.Offset.Zero; break; }
-        SetState(() =>
+        #region constructors
+        public LongPressDraggable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Widgets.Framework.Widget childWhenDragging = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget.DragAnchor dragAnchor = default(FlutterSDK.Widgets.Dragtarget.DragAnchor), int maxSimultaneousDrags = default(int), VoidCallback onDragStarted = default(VoidCallback), FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback onDraggableCanceled = default(FlutterSDK.Widgets.Dragtarget.DraggableCanceledCallback), FlutterSDK.Widgets.Dragtarget.DragEndCallback onDragEnd = default(FlutterSDK.Widgets.Dragtarget.DragEndCallback), VoidCallback onDragCompleted = default(VoidCallback), bool hapticFeedbackOnStart = true, bool ignoringFeedbackSemantics = true)
+        : base(key: key, child: child, feedback: feedback, data: data, axis: axis, childWhenDragging: childWhenDragging, feedbackOffset: feedbackOffset, dragAnchor: dragAnchor, maxSimultaneousDrags: maxSimultaneousDrags, onDragStarted: onDragStarted, onDraggableCanceled: onDraggableCanceled, onDragEnd: onDragEnd, onDragCompleted: onDragCompleted, ignoringFeedbackSemantics: ignoringFeedbackSemantics)
         {
-            _ActiveCount += 1;
+            this.HapticFeedbackOnStart = hapticFeedbackOnStart;
         }
-        );
-        _DragAvatar<T> avatar = new _DragAvatar<T>(overlayState: OverlayDefaultClass.Overlay.Of(Context, debugRequiredFor: Widget), data: Widget.Data, axis: Widget.Axis, initialPosition: position, dragStartPoint: dragStartPoint, feedback: Widget.Feedback, feedbackOffset: Widget.FeedbackOffset, ignoringFeedbackSemantics: Widget.IgnoringFeedbackSemantics, onDragEnd: (Velocity velocity, Offset offset, bool wasAccepted) =>
+        #endregion
+
+        #region fields
+        public virtual bool HapticFeedbackOnStart { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Gestures.Multidrag.DelayedMultiDragGestureRecognizer CreateRecognizer(FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback onStart)
         {
-            if (Mounted)
+            return new DelayedMultiDragGestureRecognizer()..OnStart = (Offset position) =>
+            {
+                Drag result = onStart(position);
+                if (result != null && HapticFeedbackOnStart) HapticfeedbackDefaultClass.HapticFeedback.SelectionClick();
+                return result;
+            }
+            ;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _DraggableState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Dragtarget.Draggable<T>>
+    {
+        #region constructors
+        public _DraggableState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer _Recognizer { get; set; }
+        internal virtual int _ActiveCount { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _Recognizer = Widget.CreateRecognizer(_StartDrag);
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _DisposeRecognizerIfInactive();
+            base.Dispose();
+        }
+
+
+
+
+        private void _DisposeRecognizerIfInactive()
+        {
+            if (_ActiveCount > 0) return;
+            _Recognizer.Dispose();
+            _Recognizer = null;
+        }
+
+
+
+
+        private void _RoutePointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
+        {
+            if (Widget.MaxSimultaneousDrags != null && _ActiveCount >= Widget.MaxSimultaneousDrags) return;
+            _Recognizer.AddPointer(@event);
+        }
+
+
+
+
+        private _DragAvatar<T> _StartDrag(FlutterBinding.UI.Offset position)
+        {
+            if (Widget.MaxSimultaneousDrags != null && _ActiveCount >= Widget.MaxSimultaneousDrags) return null;
+            Offset dragStartPoint = default(Offset);
+            switch (Widget.DragAnchor) { case DragAnchor.Child: RenderBox renderObject = Context.FindRenderObject() as RenderBox; dragStartPoint = renderObject.GlobalToLocal(position); break; case DragAnchor.Pointer: dragStartPoint = Dart:uiDefaultClass.Offset.Zero; break; }
+            SetState(() =>
+            {
+                _ActiveCount += 1;
+            }
+            );
+            _DragAvatar<T> avatar = new _DragAvatar<T>(overlayState: OverlayDefaultClass.Overlay.Of(Context, debugRequiredFor: Widget), data: Widget.Data, axis: Widget.Axis, initialPosition: position, dragStartPoint: dragStartPoint, feedback: Widget.Feedback, feedbackOffset: Widget.FeedbackOffset, ignoringFeedbackSemantics: Widget.IgnoringFeedbackSemantics, onDragEnd: (Velocity velocity, Offset offset, bool wasAccepted) =>
+            {
+                if (Mounted)
+                {
+                    SetState(() =>
+                    {
+                        _ActiveCount -= 1;
+                    }
+                    );
+                }
+                else
+                {
+                    _ActiveCount -= 1;
+                    _DisposeRecognizerIfInactive();
+                }
+
+                if (Mounted && Widget.OnDragEnd != null)
+                {
+                    Widget.OnDragEnd(new DraggableDetails(wasAccepted: wasAccepted, velocity: velocity, offset: offset));
+                }
+
+                if (wasAccepted && Widget.OnDragCompleted != null) Widget.OnDragCompleted();
+                if (!wasAccepted && Widget.OnDraggableCanceled != null) Widget.OnDraggableCanceled(velocity, offset);
+            }
+            );
+            if (Widget.OnDragStarted != null) Widget.OnDragStarted();
+            return avatar;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            bool canDrag = Widget.MaxSimultaneousDrags == null || _ActiveCount < Widget.MaxSimultaneousDrags;
+            bool showChild = _ActiveCount == 0 || Widget.ChildWhenDragging == null;
+            return new Listener(onPointerDown: canDrag ? _RoutePointer : null, child: showChild ? Widget.Child : Widget.ChildWhenDragging);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Represents the details when a specific pointer event occurred on
+    /// the [Draggable].
+    ///
+    /// This includes the [Velocity] at which the pointer was moving and [Offset]
+    /// when the draggable event occurred, and whether its [DragTarget] accepted it.
+    ///
+    /// Also, this is the details object for callbacks that use [DragEndCallback].
+    /// </Summary>
+    public class DraggableDetails
+    {
+        #region constructors
+        public DraggableDetails(bool wasAccepted = false, FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.WasAccepted = wasAccepted;
+            this.Velocity = velocity;
+            this.Offset = offset;
+        }
+        #endregion
+
+        #region fields
+        public virtual bool WasAccepted { get; set; }
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+        public virtual FlutterBinding.UI.Offset Offset { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A widget that receives data when a [Draggable] widget is dropped.
+    ///
+    /// When a draggable is dragged on top of a drag target, the drag target is
+    /// asked whether it will accept the data the draggable is carrying. If the user
+    /// does drop the draggable on top of the drag target (and the drag target has
+    /// indicated that it will accept the draggable's data), then the drag target is
+    /// asked to accept the draggable's data.
+    ///
+    /// See also:
+    ///
+    ///  * [Draggable]
+    ///  * [LongPressDraggable]
+    /// </Summary>
+    public class DragTarget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public DragTarget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T> builder = default(FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T>), FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T> onWillAccept = default(FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T>), FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T> onAccept = default(FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T>), FlutterSDK.Widgets.Dragtarget.DragTargetLeave onLeave = default(FlutterSDK.Widgets.Dragtarget.DragTargetLeave))
+        : base(key: key)
+        {
+            this.Builder = builder;
+            this.OnWillAccept = onWillAccept;
+            this.OnAccept = onAccept;
+            this.OnLeave = onLeave;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T> Builder { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T> OnWillAccept { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T> OnAccept { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget.DragTargetLeave OnLeave { get; set; }
+        #endregion
+
+        #region methods
+
+        public new _DragTargetState<T> CreateState() => new _DragTargetState<T>();
+
+
+        #endregion
+    }
+
+
+    public class _DragTargetState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Dragtarget.DragTarget<T>>
+    {
+        #region constructors
+        public _DragTargetState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Widgets.Dragtarget._DragAvatar<T>> _CandidateAvatars { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object>> _RejectedAvatars { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual bool DidEnter(FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object> avatar)
+        {
+
+
+            if (avatar is _DragAvatar<T> && (Widget.OnWillAccept == null || Widget.OnWillAccept(avatar.Data)))
             {
                 SetState(() =>
                 {
-                    _ActiveCount -= 1;
+                    _CandidateAvatars.Add(((_DragAvatar<T>)avatar));
                 }
                 );
+                return true;
             }
             else
             {
-                _ActiveCount -= 1;
-                _DisposeRecognizerIfInactive();
+                SetState(() =>
+                {
+                    _RejectedAvatars.Add(avatar);
+                }
+                );
+                return false;
             }
 
-            if (Mounted && Widget.OnDragEnd != null)
-            {
-                Widget.OnDragEnd(new DraggableDetails(wasAccepted: wasAccepted, velocity: velocity, offset: offset));
-            }
-
-            if (wasAccepted && Widget.OnDragCompleted != null) Widget.OnDragCompleted();
-            if (!wasAccepted && Widget.OnDraggableCanceled != null) Widget.OnDraggableCanceled(velocity, offset);
         }
-        );
-        if (Widget.OnDragStarted != null) Widget.OnDragStarted();
-        return avatar;
-    }
 
 
 
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        bool canDrag = Widget.MaxSimultaneousDrags == null || _ActiveCount < Widget.MaxSimultaneousDrags;
-        bool showChild = _ActiveCount == 0 || Widget.ChildWhenDragging == null;
-        return new Listener(onPointerDown: canDrag ? _RoutePointer : null, child: showChild ? Widget.Child : Widget.ChildWhenDragging);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Represents the details when a specific pointer event occurred on
-/// the [Draggable].
-///
-/// This includes the [Velocity] at which the pointer was moving and [Offset]
-/// when the draggable event occurred, and whether its [DragTarget] accepted it.
-///
-/// Also, this is the details object for callbacks that use [DragEndCallback].
-/// </Summary>
-public class DraggableDetails
-{
-    #region constructors
-    public DraggableDetails(bool wasAccepted = false, FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual bool WasAccepted { get; set; }
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
-public virtual FlutterBinding.UI.Offset Offset { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// A widget that receives data when a [Draggable] widget is dropped.
-///
-/// When a draggable is dragged on top of a drag target, the drag target is
-/// asked whether it will accept the data the draggable is carrying. If the user
-/// does drop the draggable on top of the drag target (and the drag target has
-/// indicated that it will accept the draggable's data), then the drag target is
-/// asked to accept the draggable's data.
-///
-/// See also:
-///
-///  * [Draggable]
-///  * [LongPressDraggable]
-/// </Summary>
-public class DragTarget<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public DragTarget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T> builder = default(FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T>), FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T> onWillAccept = default(FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T>), FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T> onAccept = default(FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T>), FlutterSDK.Widgets.Dragtarget.DragTargetLeave onLeave = default(FlutterSDK.Widgets.Dragtarget.DragTargetLeave))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Dragtarget.DragTargetBuilder<T> Builder { get; set; }
-public virtual FlutterSDK.Widgets.Dragtarget.DragTargetWillAccept<T> OnWillAccept { get; set; }
-public virtual FlutterSDK.Widgets.Dragtarget.DragTargetAccept<T> OnAccept { get; set; }
-public virtual FlutterSDK.Widgets.Dragtarget.DragTargetLeave OnLeave { get; set; }
-#endregion
-
-#region methods
-
-public new _DragTargetState<T> CreateState() => new _DragTargetState<T>();
-
-
-#endregion
-}
-
-
-public class _DragTargetState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Dragtarget.DragTarget<T>>
-{
-    #region constructors
-    public _DragTargetState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual List<FlutterSDK.Widgets.Dragtarget._DragAvatar<T>> _CandidateAvatars { get; set; }
-    internal virtual List<FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object>> _RejectedAvatars { get; set; }
-    #endregion
-
-    #region methods
-
-    public virtual bool DidEnter(FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object> avatar)
-    {
-
-
-        if (avatar is _DragAvatar<T> && (Widget.OnWillAccept == null || Widget.OnWillAccept(avatar.Data)))
+        public virtual void DidLeave(FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object> avatar)
         {
+
+            if (!Mounted) return;
             SetState(() =>
             {
-                _CandidateAvatars.Add(((_DragAvatar<T>)avatar));
+                _CandidateAvatars.Remove(avatar);
+                _RejectedAvatars.Remove(avatar);
             }
             );
-            return true;
+            if (Widget.OnLeave != null) Widget.OnLeave(avatar.Data);
         }
-        else
+
+
+
+
+        public virtual void DidDrop(FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object> avatar)
         {
+
+            if (!Mounted) return;
             SetState(() =>
             {
-                _RejectedAvatars.Add(avatar);
+                _CandidateAvatars.Remove(avatar);
             }
             );
-            return false;
+            if (Widget.OnAccept != null) Widget.OnAccept(avatar.Data as T);
         }
 
-    }
 
 
 
-
-    public virtual void DidLeave(FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object> avatar)
-    {
-
-        if (!Mounted) return;
-        SetState(() =>
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            _CandidateAvatars.Remove(avatar);
-            _RejectedAvatars.Remove(avatar);
+
+            return new MetaData(metaData: this, behavior: HitTestBehavior.Translucent, child: Widget.Builder(context, DragtargetDefaultClass._MapAvatarsToData(_CandidateAvatars), DragtargetDefaultClass._MapAvatarsToData(_RejectedAvatars)));
         }
-        );
-        if (Widget.OnLeave != null) Widget.OnLeave(avatar.Data);
+
+
+
+        #endregion
     }
 
 
-
-
-    public virtual void DidDrop(FlutterSDK.Widgets.Dragtarget._DragAvatar<@Object> avatar)
+    public class _DragAvatar<T> : FlutterSDK.Gestures.Drag.Drag
     {
-
-        if (!Mounted) return;
-        SetState(() =>
+        #region constructors
+        public _DragAvatar(FlutterSDK.Widgets.Overlay.OverlayState overlayState = default(FlutterSDK.Widgets.Overlay.OverlayState), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterBinding.UI.Offset initialPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset dragStartPoint = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget._OnDragEnd onDragEnd = default(FlutterSDK.Widgets.Dragtarget._OnDragEnd), bool ignoringFeedbackSemantics = default(bool))
+        : base()
         {
-            _CandidateAvatars.Remove(avatar);
+            this.OverlayState = overlayState;
+            this.Data = data;
+            this.Axis = axis;
+            this.DragStartPoint = dragStartPoint;
+            this.Feedback = feedback;
+            this.FeedbackOffset = feedbackOffset;
+            this.OnDragEnd = onDragEnd;
+            this.IgnoringFeedbackSemantics = ignoringFeedbackSemantics;
+            _Entry = new OverlayEntry(builder: _Build);
+            OverlayState.Insert(_Entry);
+            _Position = initialPosition;
+            UpdateDrag(initialPosition);
         }
-        );
-        if (Widget.OnAccept != null) Widget.OnAccept(avatar.Data as T);
-    }
 
 
+        #endregion
 
+        #region fields
+        public virtual T Data { get; set; }
+        public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
+        public virtual FlutterBinding.UI.Offset DragStartPoint { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Feedback { get; set; }
+        public virtual FlutterBinding.UI.Offset FeedbackOffset { get; set; }
+        public virtual FlutterSDK.Widgets.Dragtarget._OnDragEnd OnDragEnd { get; set; }
+        public virtual FlutterSDK.Widgets.Overlay.OverlayState OverlayState { get; set; }
+        public virtual bool IgnoringFeedbackSemantics { get; set; }
+        internal virtual FlutterSDK.Widgets.Dragtarget._DragTargetState<T> _ActiveTarget { get; set; }
+        internal virtual List<FlutterSDK.Widgets.Dragtarget._DragTargetState<T>> _EnteredTargets { get; set; }
+        internal virtual FlutterBinding.UI.Offset _Position { get; set; }
+        internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
+        internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Entry { get; set; }
+        #endregion
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
+        #region methods
 
-        return new MetaData(metaData: this, behavior: HitTestBehavior.Translucent, child: Widget.Builder(context, DragtargetDefaultClass._MapAvatarsToData(_CandidateAvatars), DragtargetDefaultClass._MapAvatarsToData(_RejectedAvatars)));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _DragAvatar<T> : FlutterSDK.Gestures.Drag.Drag
-{
-    #region constructors
-    public _DragAvatar(FlutterSDK.Widgets.Overlay.OverlayState overlayState = default(FlutterSDK.Widgets.Overlay.OverlayState), T data = default(T), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterBinding.UI.Offset initialPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset dragStartPoint = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Framework.Widget feedback = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset feedbackOffset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Dragtarget._OnDragEnd onDragEnd = default(FlutterSDK.Widgets.Dragtarget._OnDragEnd), bool ignoringFeedbackSemantics = default(bool))
-    : base()
-
-_Entry=new OverlayEntry(builder:_Build);
-    OverlayState.Insert(_Entry);
-_Position=initialPosition;
-UpdateDrag(initialPosition);
-}
-
-
-#endregion
-
-#region fields
-public virtual T Data { get; set; }
-public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
-public virtual FlutterBinding.UI.Offset DragStartPoint { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Feedback { get; set; }
-public virtual FlutterBinding.UI.Offset FeedbackOffset { get; set; }
-public virtual FlutterSDK.Widgets.Dragtarget._OnDragEnd OnDragEnd { get; set; }
-public virtual FlutterSDK.Widgets.Overlay.OverlayState OverlayState { get; set; }
-public virtual bool IgnoringFeedbackSemantics { get; set; }
-internal virtual FlutterSDK.Widgets.Dragtarget._DragTargetState<T> _ActiveTarget { get; set; }
-internal virtual List<FlutterSDK.Widgets.Dragtarget._DragTargetState<T>> _EnteredTargets { get; set; }
-internal virtual FlutterBinding.UI.Offset _Position { get; set; }
-internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
-internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _Entry { get; set; }
-#endregion
-
-#region methods
-
-public new void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
-{
-    _Position += _RestrictAxis(details.Delta);
-    UpdateDrag(_Position);
-}
-
-
-
-
-public new void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-{
-    FinishDrag(_DragEndKind.Dropped, _RestrictVelocityAxis(details.Velocity));
-}
-
-
-
-
-public new void Cancel()
-{
-    FinishDrag(_DragEndKind.Canceled);
-}
-
-
-
-
-public virtual void UpdateDrag(FlutterBinding.UI.Offset globalPosition)
-{
-    _LastOffset = globalPosition - DragStartPoint;
-    _Entry.MarkNeedsBuild();
-    HitTestResult result = new HitTestResult();
-    BindingDefaultClass.WidgetsBinding.Instance.HitTest(result, globalPosition + FeedbackOffset);
-    List<_DragTargetState<T>> targets = _GetDragTargets(result.Path).ToList();
-    bool listsMatch = false;
-    if (targets.Count >= _EnteredTargets.Count && _EnteredTargets.IsNotEmpty)
-    {
-        listsMatch = true;
-        Iterator<_DragTargetState<T>> iterator = targets.Iterator;
-        for (int i = 0; i < _EnteredTargets.Count; i += 1)
+        public new void Update(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
         {
-            iterator.MoveNext();
-            if (iterator.Current != _EnteredTargets[i])
+            _Position += _RestrictAxis(details.Delta);
+            UpdateDrag(_Position);
+        }
+
+
+
+
+        public new void End(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+        {
+            FinishDrag(_DragEndKind.Dropped, _RestrictVelocityAxis(details.Velocity));
+        }
+
+
+
+
+        public new void Cancel()
+        {
+            FinishDrag(_DragEndKind.Canceled);
+        }
+
+
+
+
+        public virtual void UpdateDrag(FlutterBinding.UI.Offset globalPosition)
+        {
+            _LastOffset = globalPosition - DragStartPoint;
+            _Entry.MarkNeedsBuild();
+            HitTestResult result = new HitTestResult();
+            BindingDefaultClass.WidgetsBinding.Instance.HitTest(result, globalPosition + FeedbackOffset);
+            List<_DragTargetState<T>> targets = _GetDragTargets(result.Path).ToList();
+            bool listsMatch = false;
+            if (targets.Count >= _EnteredTargets.Count && _EnteredTargets.IsNotEmpty)
             {
-                listsMatch = false;
-                break;
+                listsMatch = true;
+                Iterator<_DragTargetState<T>> iterator = targets.Iterator;
+                for (int i = 0; i < _EnteredTargets.Count; i += 1)
+                {
+                    iterator.MoveNext();
+                    if (iterator.Current != _EnteredTargets[i])
+                    {
+                        listsMatch = false;
+                        break;
+                    }
+
+                }
+
             }
 
+            if (listsMatch) return;
+            _LeaveAllEntered();
+            _DragTargetState<T> newTarget = targets.FirstWhere((_DragTargetState<T> target) =>
+            {
+                _EnteredTargets.Add(target);
+                return target.DidEnter(this);
+            }
+            , orElse: () => =>null);
+            _ActiveTarget = newTarget;
         }
 
-    }
-
-    if (listsMatch) return;
-    _LeaveAllEntered();
-    _DragTargetState<T> newTarget = targets.FirstWhere((_DragTargetState<T> target) =>
-    {
-        _EnteredTargets.Add(target);
-        return target.DidEnter(this);
-    }
-    , orElse: () => =>null);
-    _ActiveTarget = newTarget;
-}
 
 
 
-
-private Iterable<FlutterSDK.Widgets.Dragtarget._DragTargetState<T>> _GetDragTargets(Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> path)
-sync
-*
+        private Iterable<FlutterSDK.Widgets.Dragtarget._DragTargetState<T>> _GetDragTargets(Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> path)
+    sync
+    *
 {
-    foreach (HitTestEntry entry in path)
-    {
-        HitTestTarget target = entry.Target;
-        if (target is RenderMetaData)
-        {
-            object metaData = ((RenderMetaData)target).MetaData;
-            if (((_DragTargetState<T>)metaData) is _DragTargetState<T>) yield((_DragTargetState<T>)metaData);
-        }
-
+foreach(HitTestEntry entry  in path){
+HitTestTarget target = entry.Target;
+if (target is RenderMetaData){
+object metaData = ((RenderMetaData)target).MetaData;
+if (((_DragTargetState<T>) metaData) is _DragTargetState<T>)yield((_DragTargetState<T>) metaData);
     }
+
+}
 
 }
 

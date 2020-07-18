@@ -441,104 +441,111 @@ namespace FlutterSDK.Material.Snackbartheme
         #region constructors
         public SnackBarThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
         : base()
-    
-}
-    #endregion
+        {
+            this.BackgroundColor = backgroundColor;
+            this.ActionTextColor = actionTextColor;
+            this.DisabledActionTextColor = disabledActionTextColor;
+            this.ContentTextStyle = contentTextStyle;
+            this.Elevation = elevation;
+            this.Shape = shape;
+            this.Behavior = behavior;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual FlutterBinding.UI.Color ActionTextColor { get; set; }
-    public virtual FlutterBinding.UI.Color DisabledActionTextColor { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-    public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color ActionTextColor { get; set; }
+        public virtual FlutterBinding.UI.Color DisabledActionTextColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Creates a copy of this object with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
-    {
-        return new SnackBarThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, actionTextColor: actionTextColor ?? this.ActionTextColor, disabledActionTextColor: disabledActionTextColor ?? this.DisabledActionTextColor, contentTextStyle: contentTextStyle ?? this.ContentTextStyle, elevation: elevation == default(double) ? this.elevation : elevation, shape: shape ?? this.Shape, behavior: behavior ?? this.Behavior);
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData CopyWith(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
+        {
+            return new SnackBarThemeData(backgroundColor: backgroundColor ?? this.BackgroundColor, actionTextColor: actionTextColor ?? this.ActionTextColor, disabledActionTextColor: disabledActionTextColor ?? this.DisabledActionTextColor, contentTextStyle: contentTextStyle ?? this.ContentTextStyle, elevation: elevation == default(double) ? this.elevation : elevation, shape: shape ?? this.Shape, behavior: behavior ?? this.Behavior);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two SnackBar Themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData Lerp(FlutterSDK.Material.Snackbartheme.SnackBarThemeData a, FlutterSDK.Material.Snackbartheme.SnackBarThemeData b, double t)
+        {
+
+            return new SnackBarThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), actionTextColor: Dart:uiDefaultClass.Color.Lerp(a?.ActionTextColor, b?.ActionTextColor, t), disabledActionTextColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledActionTextColor, b?.DisabledActionTextColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), behavior: t < 0.5 ? a.Behavior : b.Behavior);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is SnackBarThemeData && other.BackgroundColor == BackgroundColor && other.ActionTextColor == ActionTextColor && other.DisabledActionTextColor == DisabledActionTextColor && other.ContentTextStyle == ContentTextStyle && other.Elevation == Elevation && other.Shape == Shape && other.Behavior == Behavior;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: null));
+            properties.Add(new ColorProperty("actionTextColor", ActionTextColor, defaultValue: null));
+            properties.Add(new ColorProperty("disabledActionTextColor", DisabledActionTextColor, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TextStyle>("contentTextStyle", ContentTextStyle, defaultValue: null));
+            properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<SnackBarBehavior>("behavior", Behavior, defaultValue: null));
+        }
+
+
+
+        #endregion
     }
 
 
-
-
     /// <Summary>
-    /// Linearly interpolate between two SnackBar Themes.
-    ///
-    /// The argument `t` must not be null.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
+    /// Defines where a [SnackBar] should appear within a [Scaffold] and how its
+    /// location should be adjusted when the scaffold also includes a
+    /// [FloatingActionButton] or a [BottomNavigationBar].
     /// </Summary>
-    public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData Lerp(FlutterSDK.Material.Snackbartheme.SnackBarThemeData a, FlutterSDK.Material.Snackbartheme.SnackBarThemeData b, double t)
+    public enum SnackBarBehavior
     {
 
-        return new SnackBarThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), actionTextColor: Dart:uiDefaultClass.Color.Lerp(a?.ActionTextColor, b?.ActionTextColor, t), disabledActionTextColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledActionTextColor, b?.DisabledActionTextColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), behavior: t < 0.5 ? a.Behavior : b.Behavior);
+        /// <Summary>
+        /// Fixes the [SnackBar] at the bottom of the [Scaffold].
+        ///
+        /// The exception is that the [SnackBar] will be shown above a
+        /// [BottomNavigationBar]. Additionally, the [SnackBar] will cause other
+        /// non-fixed widgets inside [Scaffold] to be pushed above (for example, the
+        /// [FloatingActionButton]).
+        /// </Summary>
+        @Fixed,
+        /// <Summary>
+        /// This behavior will cause [SnackBar] to be shown above other widgets in the
+        /// [Scaffold]. This includes being displayed above a [BottomNavigationBar]
+        /// and a [FloatingActionButton].
+        ///
+        /// See <https://material.io/design/components/snackbars.html> for more details.
+        /// </Summary>
+        Floating,
     }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is SnackBarThemeData && other.BackgroundColor == BackgroundColor && other.ActionTextColor == ActionTextColor && other.DisabledActionTextColor == DisabledActionTextColor && other.ContentTextStyle == ContentTextStyle && other.Elevation == Elevation && other.Shape == Shape && other.Behavior == Behavior;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new ColorProperty("backgroundColor", BackgroundColor, defaultValue: null));
-        properties.Add(new ColorProperty("actionTextColor", ActionTextColor, defaultValue: null));
-        properties.Add(new ColorProperty("disabledActionTextColor", DisabledActionTextColor, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TextStyle>("contentTextStyle", ContentTextStyle, defaultValue: null));
-        properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<SnackBarBehavior>("behavior", Behavior, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Defines where a [SnackBar] should appear within a [Scaffold] and how its
-/// location should be adjusted when the scaffold also includes a
-/// [FloatingActionButton] or a [BottomNavigationBar].
-/// </Summary>
-public enum SnackBarBehavior
-{
-
-    /// <Summary>
-    /// Fixes the [SnackBar] at the bottom of the [Scaffold].
-    ///
-    /// The exception is that the [SnackBar] will be shown above a
-    /// [BottomNavigationBar]. Additionally, the [SnackBar] will cause other
-    /// non-fixed widgets inside [Scaffold] to be pushed above (for example, the
-    /// [FloatingActionButton]).
-    /// </Summary>
-    @Fixed,
-    /// <Summary>
-    /// This behavior will cause [SnackBar] to be shown above other widgets in the
-    /// [Scaffold]. This includes being displayed above a [BottomNavigationBar]
-    /// and a [FloatingActionButton].
-    ///
-    /// See <https://material.io/design/components/snackbars.html> for more details.
-    /// </Summary>
-    Floating,
-}
 
 }

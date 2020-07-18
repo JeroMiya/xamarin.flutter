@@ -555,84 +555,90 @@ namespace FlutterSDK.Services.Messagecodec
         #region constructors
         public MethodCall(string method, object arguments = default(object))
         : base()
-    
-}
-    #endregion
+        {
+            this.Method = method;
+            this.Arguments = arguments;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Method { get; set; }
-    public virtual object Arguments { get; set; }
-    #endregion
+        #region fields
+        public virtual string Method { get; set; }
+        public virtual object Arguments { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    #endregion
-}
-
-
-/// <Summary>
-/// Thrown to indicate that a platform interaction failed in the platform
-/// plugin.
-///
-/// See also:
-///
-///  * [MethodCodec], which throws a [PlatformException], if a received result
-///    envelope represents an error.
-///  * [MethodChannel.invokeMethod], which completes the returned future
-///    with a [PlatformException], if invoking the platform plugin method
-///    results in an error envelope.
-///  * [EventChannel.receiveBroadcastStream], which emits
-///    [PlatformException]s as error events, whenever an event received from the
-///    platform plugin is wrapped in an error envelope.
-/// </Summary>
-public class PlatformException : IException
-{
-    #region constructors
-    public PlatformException(string code = default(string), string message = default(string), object details = default(object))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual string Code { get; set; }
-public virtual string Message { get; set; }
-public virtual object Details { get; set; }
-#endregion
-
-#region methods
-
-#endregion
-}
+        #endregion
+    }
 
 
-/// <Summary>
-/// Thrown to indicate that a platform interaction failed to find a handling
-/// plugin.
-///
-/// See also:
-///
-///  * [MethodChannel.invokeMethod], which completes the returned future
-///    with a [MissingPluginException], if no plugin handler for the method call
-///    was found.
-///  * [OptionalMethodChannel.invokeMethod], which completes the returned future
-///    with null, if no plugin handler for the method call was found.
-/// </Summary>
-public class MissingPluginException : IException
-{
-    #region constructors
-    public MissingPluginException(string message = default(string))
+    /// <Summary>
+    /// Thrown to indicate that a platform interaction failed in the platform
+    /// plugin.
+    ///
+    /// See also:
+    ///
+    ///  * [MethodCodec], which throws a [PlatformException], if a received result
+    ///    envelope represents an error.
+    ///  * [MethodChannel.invokeMethod], which completes the returned future
+    ///    with a [PlatformException], if invoking the platform plugin method
+    ///    results in an error envelope.
+    ///  * [EventChannel.receiveBroadcastStream], which emits
+    ///    [PlatformException]s as error events, whenever an event received from the
+    ///    platform plugin is wrapped in an error envelope.
+    /// </Summary>
+    public class PlatformException : IException
+    {
+        #region constructors
+        public PlatformException(string code = default(string), string message = default(string), object details = default(object))
+        : base()
+        {
+            this.Code = code;
+            this.Message = message;
+            this.Details = details;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual string Code { get; set; }
+        public virtual string Message { get; set; }
+        public virtual object Details { get; set; }
+        #endregion
 
-#region fields
-public virtual string Message { get; set; }
-#endregion
+        #region methods
 
-#region methods
+        #endregion
+    }
 
-#endregion
-}
+
+    /// <Summary>
+    /// Thrown to indicate that a platform interaction failed to find a handling
+    /// plugin.
+    ///
+    /// See also:
+    ///
+    ///  * [MethodChannel.invokeMethod], which completes the returned future
+    ///    with a [MissingPluginException], if no plugin handler for the method call
+    ///    was found.
+    ///  * [OptionalMethodChannel.invokeMethod], which completes the returned future
+    ///    with null, if no plugin handler for the method call was found.
+    /// </Summary>
+    public class MissingPluginException : IException
+    {
+        #region constructors
+        public MissingPluginException(string message = default(string))
+        {
+            this.Message = message;
+        }
+        #endregion
+
+        #region fields
+        public virtual string Message { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
+    }
 
 }

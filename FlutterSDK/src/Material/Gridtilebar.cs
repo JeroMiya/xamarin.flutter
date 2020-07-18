@@ -407,33 +407,38 @@ namespace FlutterSDK.Material.Gridtilebar
         #region constructors
         public GridTileBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.BackgroundColor = backgroundColor;
+            this.Leading = leading;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.Trailing = trailing;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        BoxDecoration decoration = default(BoxDecoration);
-        if (BackgroundColor != null) decoration = new BoxDecoration(color: BackgroundColor);
-        EdgeInsetsDirectional padding = EdgeInsetsDirectional.Only(start: Leading != null ? 8.0 : 16.0, end: Trailing != null ? 8.0 : 16.0);
-        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-        ThemeData darkTheme = new ThemeData(brightness: Brightness.Dark, accentColor: theme.AccentColor, accentColorBrightness: theme.AccentColorBrightness);
-        return new Container(padding: padding, decoration: decoration, height: (Title != null && Subtitle != null) ? 68.0 : 48.0, child: new Theme(data: darkTheme, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: ColorsDefaultClass.Colors.White), child: new Row(crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { }))));
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            BoxDecoration decoration = default(BoxDecoration);
+            if (BackgroundColor != null) decoration = new BoxDecoration(color: BackgroundColor);
+            EdgeInsetsDirectional padding = EdgeInsetsDirectional.Only(start: Leading != null ? 8.0 : 16.0, end: Trailing != null ? 8.0 : 16.0);
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            ThemeData darkTheme = new ThemeData(brightness: Brightness.Dark, accentColor: theme.AccentColor, accentColorBrightness: theme.AccentColorBrightness);
+            return new Container(padding: padding, decoration: decoration, height: (Title != null && Subtitle != null) ? 68.0 : 48.0, child: new Theme(data: darkTheme, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: ColorsDefaultClass.Colors.White), child: new Row(crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { }))));
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

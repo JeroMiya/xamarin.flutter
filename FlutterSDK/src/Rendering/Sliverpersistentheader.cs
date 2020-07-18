@@ -545,583 +545,593 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         #region constructors
         public OverScrollHeaderStretchConfiguration(double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual double StretchTriggerOffset { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// A base class for slivers that have a [RenderBox] child which scrolls
-/// normally, except that when it hits the leading edge (typically the top) of
-/// the viewport, it shrinks to a minimum size ([minExtent]).
-///
-/// This class primarily provides helpers for managing the child, in particular:
-///
-///  * [layoutChild], which applies min and max extents and a scroll offset to
-///    lay out the child. This is normally called from [performLayout].
-///
-///  * [childExtent], to convert the child's box layout dimensions to the sliver
-///    geometry model.
-///
-///  * hit testing, painting, and other details of the sliver protocol.
-///
-/// Subclasses must implement [performLayout], [minExtent], and [maxExtent], and
-/// typically also will implement [updateChild].
-/// </Summary>
-public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
-{
-    #region constructors
-    public RenderSliverPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-
-this .Child=child;
-}
-
-
-#endregion
-
-#region fields
-internal virtual double _LastStretchOffset { get; set; }
-internal virtual bool _NeedsUpdateChild { get; set; }
-internal virtual double _LastShrinkOffset { get; set; }
-internal virtual bool _LastOverlapsContent { get; set; }
-public virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
-internal virtual bool _ExcludeFromSemanticsScrolling { get; set; }
-public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double ChildExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool ExcludeFromSemanticsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Update the child render object if necessary.
-///
-/// Called before the first layout, any time [markNeedsLayout] is called, and
-/// any time the scroll offset changes. The `shrinkOffset` is the difference
-/// between the [maxExtent] and the current size. Zero means the header is
-/// fully expanded, any greater number up to [maxExtent] means that the header
-/// has been scrolled by that much. The `overlapsContent` argument is true if
-/// the sliver's leading edge is beyond its normal place in the viewport
-/// contents, and false otherwise. It may still paint beyond its normal place
-/// if the [minExtent] after this call is greater than the amount of space that
-/// would normally be left.
-///
-/// The render object will size itself to the larger of (a) the [maxExtent]
-/// minus the child's intrinsic height and (b) the [maxExtent] minus the
-/// shrink offset.
-///
-/// When this method is called by [layoutChild], the [child] can be set,
-/// mutated, or replaced. (It should not be called outside [layoutChild].)
-///
-/// Any time this method would mutate the child, call [markNeedsLayout].
-/// </Summary>
-public virtual void UpdateChild(double shrinkOffset, bool overlapsContent)
-{
-}
-
-
-
-
-public new void MarkNeedsLayout()
-{
-    _NeedsUpdateChild = true;
-    base.MarkNeedsLayout();
-}
-
-
-
-
-/// <Summary>
-/// Lays out the [child].
-///
-/// This is called by [performLayout]. It applies the given `scrollOffset`
-/// (which need not match the offset given by the [constraints]) and the
-/// `maxExtent` (which need not match the value returned by the [maxExtent]
-/// getter).
-///
-/// The `overlapsContent` argument is passed to [updateChild].
-/// </Summary>
-public virtual void LayoutChild(double scrollOffset, double maxExtent, bool overlapsContent = false)
-{
-
-    double shrinkOffset = Math.Dart:mathDefaultClass.Min(scrollOffset, maxExtent);
-    if (_NeedsUpdateChild || _LastShrinkOffset != shrinkOffset || _LastOverlapsContent != overlapsContent)
-    {
-        InvokeLayoutCallback((SliverConstraints constraints) =>
         {
-
-            UpdateChild(shrinkOffset, overlapsContent);
+            this.StretchTriggerOffset = stretchTriggerOffset;
+            this.OnStretchTrigger = onStretchTrigger;
         }
-        );
-        _LastShrinkOffset = shrinkOffset;
-        _LastOverlapsContent = overlapsContent;
-        _NeedsUpdateChild = false;
+        #endregion
+
+        #region fields
+        public virtual double StretchTriggerOffset { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
 
-
-    double stretchOffset = 0.0;
-    if (StretchConfiguration != null && ChildMainAxisPosition(Child) == 0.0) stretchOffset += Constraints.Overlap.Abs();
-    Child?.Layout(Constraints.AsBoxConstraints(maxExtent: Math.Dart:mathDefaultClass.Max(MinExtent, maxExtent - shrinkOffset) + stretchOffset), parentUsesSize: true);
-    if (StretchConfiguration != null && StretchConfiguration.OnStretchTrigger != null && stretchOffset >= StretchConfiguration.StretchTriggerOffset && _LastStretchOffset <= StretchConfiguration.StretchTriggerOffset)
+    /// <Summary>
+    /// A base class for slivers that have a [RenderBox] child which scrolls
+    /// normally, except that when it hits the leading edge (typically the top) of
+    /// the viewport, it shrinks to a minimum size ([minExtent]).
+    ///
+    /// This class primarily provides helpers for managing the child, in particular:
+    ///
+    ///  * [layoutChild], which applies min and max extents and a scroll offset to
+    ///    lay out the child. This is normally called from [performLayout].
+    ///
+    ///  * [childExtent], to convert the child's box layout dimensions to the sliver
+    ///    geometry model.
+    ///
+    ///  * hit testing, painting, and other details of the sliver protocol.
+    ///
+    /// Subclasses must implement [performLayout], [minExtent], and [maxExtent], and
+    /// typically also will implement [updateChild].
+    /// </Summary>
+    public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
     {
-        StretchConfiguration.OnStretchTrigger();
-    }
-
-    _LastStretchOffset = stretchOffset;
-}
-
-
-
-
-/// <Summary>
-/// Returns the distance from the leading _visible_ edge of the sliver to the
-/// side of the child closest to that edge, in the scroll axis direction.
-///
-/// For example, if the [constraints] describe this sliver as having an axis
-/// direction of [AxisDirection.down], then this is the distance from the top
-/// of the visible portion of the sliver to the top of the child. If the child
-/// is scrolled partially off the top of the viewport, then this will be
-/// negative. On the other hand, if the [constraints] describe this sliver as
-/// having an axis direction of [AxisDirection.up], then this is the distance
-/// from the bottom of the visible portion of the sliver to the bottom of the
-/// child. In both cases, this is the direction of increasing
-/// [SliverConstraints.scrollOffset].
-///
-/// Calling this when the child is not visible is not valid.
-///
-/// The argument must be the value of the [child] property.
-///
-/// This must be implemented by [RenderSliverPersistentHeader] subclasses.
-///
-/// If there is no child, this should return 0.0.
-/// </Summary>
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) => base.ChildMainAxisPosition(child);
-
-
-
-public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
-{
-
-    if (Child != null) return HitTestBoxChild(BoxHitTestResult.Wrap(result), Child, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
-    return false;
-}
-
-
-
-
-public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
-{
-
-
-    ApplyPaintTransformForBoxChild(child as RenderBox, transform);
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (Child != null && Geometry.Visible)
-    {
-
-        switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(Constraints.AxisDirection, Constraints.GrowthDirection)) { case AxisDirection.Up: offset += new Offset(0.0, Geometry.PaintExtent - ChildMainAxisPosition(Child) - ChildExtent); break; case AxisDirection.Down: offset += new Offset(0.0, ChildMainAxisPosition(Child)); break; case AxisDirection.Left: offset += new Offset(Geometry.PaintExtent - ChildMainAxisPosition(Child) - ChildExtent, 0.0); break; case AxisDirection.Right: offset += new Offset(ChildMainAxisPosition(Child), 0.0); break; }
-        context.PaintChild(Child, offset);
-    }
-
-}
-
-
-
-
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-{
-    base.DescribeSemanticsConfiguration(config);
-    if (_ExcludeFromSemanticsScrolling) config.AddTagForChildren(ViewportDefaultClass.RenderViewport.ExcludeFromScrolling);
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(DoubleProperty.Lazy("maxExtent", () => =>MaxExtent));
-    properties.Add(DoubleProperty.Lazy("child position", () => =>ChildMainAxisPosition(Child)));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A sliver with a [RenderBox] child which scrolls normally, except that when
-/// it hits the leading edge (typically the top) of the viewport, it shrinks to
-/// a minimum size before continuing to scroll.
-///
-/// This sliver makes no effort to avoid overlapping other content.
-/// </Summary>
-public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
-{
-    #region constructors
-    public RenderSliverScrollingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-    : base(child: child, stretchConfiguration: stretchConfiguration)
-
-}
-#endregion
-
-#region fields
-internal virtual double _ChildPosition { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Updates [geometry], and returns the new value for [childMainAxisPosition].
-///
-/// This is used by [performLayout].
-/// </Summary>
-public virtual double UpdateGeometry()
-{
-    double stretchOffset = 0.0;
-    if (StretchConfiguration != null && _ChildPosition == 0.0)
-    {
-        stretchOffset += Constraints.Overlap.Abs();
-    }
-
-    double maxExtent = this.MaxExtent;
-    double paintExtent = maxExtent - Constraints.ScrollOffset;
-    Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
-    return stretchOffset > 0 ? 0.0 : Math.Dart:mathDefaultClass.Min(0.0, paintExtent - ChildExtent);
-}
-
-
-
-
-public new void PerformLayout()
-{
-    SliverConstraints constraints = this.Constraints;
-    double maxExtent = this.MaxExtent;
-    LayoutChild(constraints.ScrollOffset, maxExtent);
-    double paintExtent = maxExtent - constraints.ScrollOffset;
-    Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent, hasVisualOverflow: true);
-    _ChildPosition = UpdateGeometry();
-}
-
-
-
-
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
-{
-
-    return _ChildPosition;
-}
-
-
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
-{
-
-    return _ChildPosition;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A sliver with a [RenderBox] child which never scrolls off the viewport in
-/// the positive scroll direction, and which first scrolls on at a full size but
-/// then shrinks as the viewport continues to scroll.
-///
-/// This sliver avoids overlapping other earlier slivers where possible.
-/// </Summary>
-public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
-{
-    #region constructors
-    public RenderSliverPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-    : base(child: child, stretchConfiguration: stretchConfiguration)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new void PerformLayout()
-{
-    SliverConstraints constraints = this.Constraints;
-    double maxExtent = this.MaxExtent;
-    bool overlapsContent = constraints.Overlap > 0.0;
-    ExcludeFromSemanticsScrolling = overlapsContent || (constraints.ScrollOffset > maxExtent - MinExtent);
-    LayoutChild(constraints.ScrollOffset, maxExtent, overlapsContent: overlapsContent);
-    double effectiveRemainingPaintExtent = Math.Dart:mathDefaultClass.Max(0, constraints.RemainingPaintExtent - constraints.Overlap);
-    double layoutExtent = (maxExtent - constraints.ScrollOffset).Clamp(0.0, effectiveRemainingPaintExtent) as double;
-    double stretchOffset = StretchConfiguration != null ? constraints.Overlap.Abs() : 0.0;
-    Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: constraints.Overlap, paintExtent: Math.Dart:mathDefaultClass.Min(ChildExtent, effectiveRemainingPaintExtent), layoutExtent: layoutExtent, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: MinExtent, cacheExtent: layoutExtent > 0.0 ? -constraints.CacheOrigin + layoutExtent : layoutExtent, hasVisualOverflow: true);
-}
-
-
-
-
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) => 0.0;
-
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) => 0.0;
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Specifies how a floating header is to be "snapped" (animated) into or out
-/// of view.
-///
-/// See also:
-///
-///  * [RenderSliverFloatingPersistentHeader.maybeStartSnapAnimation] and
-///    [RenderSliverFloatingPersistentHeader.maybeStopSnapAnimation], which
-///    start or stop the floating header's animation.
-///  * [SliverAppBar], which creates a header that can be pinned, floating,
-///    and snapped into view via the corresponding parameters.
-/// </Summary>
-public class FloatingHeaderSnapConfiguration
-{
-    #region constructors
-    public FloatingHeaderSnapConfiguration(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-public virtual TimeSpan Duration { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// A sliver with a [RenderBox] child which shrinks and scrolls like a
-/// [RenderSliverScrollingPersistentHeader], but immediately comes back when the
-/// user scrolls in the reverse direction.
-///
-/// See also:
-///
-///  * [RenderSliverFloatingPinnedPersistentHeader], which is similar but sticks
-///    to the start of the viewport rather than scrolling off.
-/// </Summary>
-public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
-{
-    #region constructors
-    public RenderSliverFloatingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-    : base(child: child, stretchConfiguration: stretchConfiguration)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
-internal virtual double _LastActualScrollOffset { get; set; }
-internal virtual double _EffectiveScrollOffset { get; set; }
-internal virtual double _ChildPosition { get; set; }
-internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration { get; set; }
-public virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Detach()
-{
-    _Controller?.Dispose();
-    _Controller = null;
-    base.Detach();
-}
-
-
-
-
-/// <Summary>
-/// Updates [geometry], and returns the new value for [childMainAxisPosition].
-///
-/// This is used by [performLayout].
-/// </Summary>
-public virtual double UpdateGeometry()
-{
-    double stretchOffset = 0.0;
-    if (StretchConfiguration != null && _ChildPosition == 0.0)
-    {
-        stretchOffset += Constraints.Overlap.Abs();
-    }
-
-    double maxExtent = this.MaxExtent;
-    double paintExtent = maxExtent - _EffectiveScrollOffset;
-    double layoutExtent = maxExtent - Constraints.ScrollOffset;
-    Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, layoutExtent: layoutExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
-    return stretchOffset > 0 ? 0.0 : Math.Dart:mathDefaultClass.Min(0.0, paintExtent - ChildExtent);
-}
-
-
-
-
-/// <Summary>
-/// If the header isn't already fully exposed, then scroll it into view.
-/// </Summary>
-public virtual void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
-{
-    if (SnapConfiguration == null) return;
-    if (direction == ScrollDirection.Forward && _EffectiveScrollOffset <= 0.0) return;
-    if (direction == ScrollDirection.Reverse && _EffectiveScrollOffset >= MaxExtent) return;
-    TickerProvider vsync = SnapConfiguration.Vsync;
-    TimeSpan duration = SnapConfiguration.Duration;
-    _Controller = (_Controller == null ? new AnimationController(vsync: vsync, duration: duration);
-    new AnimationController(vsync: vsync, duration: duration).AddListener(() =>
-    {
-        if (_EffectiveScrollOffset == _Animation.Value) return;
-        _EffectiveScrollOffset = _Animation.Value;
-        MarkNeedsLayout();
-    }
-    ) : _Controller );
-    _Animation = _Controller.Drive(new Tween<double>(begin: _EffectiveScrollOffset, end: direction == ScrollDirection.Forward ? 0.0 : MaxExtent).Chain(new CurveTween(curve: SnapConfiguration.Curve)));
-    _Controller.Forward(from: 0.0);
-}
-
-
-
-
-/// <Summary>
-/// If a header snap animation is underway then stop it.
-/// </Summary>
-public virtual void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
-{
-    _Controller?.Stop();
-}
-
-
-
-
-public new void PerformLayout()
-{
-    SliverConstraints constraints = this.Constraints;
-    double maxExtent = this.MaxExtent;
-    if (_LastActualScrollOffset != null && ((constraints.ScrollOffset < _LastActualScrollOffset) || (_EffectiveScrollOffset < maxExtent)))
-    {
-        double delta = _LastActualScrollOffset - constraints.ScrollOffset;
-        bool allowFloatingExpansion = constraints.UserScrollDirection == ScrollDirection.Forward;
-        if (allowFloatingExpansion)
+        #region constructors
+        public RenderSliverPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         {
-            if (_EffectiveScrollOffset > maxExtent) _EffectiveScrollOffset = maxExtent;
-        }
-        else
-        {
-            if (delta > 0.0) delta = 0.0;
+            this.StretchConfiguration = stretchConfiguration;
+            this.Child = child;
         }
 
-        _EffectiveScrollOffset = (_EffectiveScrollOffset - delta).Clamp(0.0, constraints.ScrollOffset) as double;
+
+        #endregion
+
+        #region fields
+        internal virtual double _LastStretchOffset { get; set; }
+        internal virtual bool _NeedsUpdateChild { get; set; }
+        internal virtual double _LastShrinkOffset { get; set; }
+        internal virtual bool _LastOverlapsContent { get; set; }
+        public virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
+        internal virtual bool _ExcludeFromSemanticsScrolling { get; set; }
+        public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double ChildExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool ExcludeFromSemanticsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Update the child render object if necessary.
+        ///
+        /// Called before the first layout, any time [markNeedsLayout] is called, and
+        /// any time the scroll offset changes. The `shrinkOffset` is the difference
+        /// between the [maxExtent] and the current size. Zero means the header is
+        /// fully expanded, any greater number up to [maxExtent] means that the header
+        /// has been scrolled by that much. The `overlapsContent` argument is true if
+        /// the sliver's leading edge is beyond its normal place in the viewport
+        /// contents, and false otherwise. It may still paint beyond its normal place
+        /// if the [minExtent] after this call is greater than the amount of space that
+        /// would normally be left.
+        ///
+        /// The render object will size itself to the larger of (a) the [maxExtent]
+        /// minus the child's intrinsic height and (b) the [maxExtent] minus the
+        /// shrink offset.
+        ///
+        /// When this method is called by [layoutChild], the [child] can be set,
+        /// mutated, or replaced. (It should not be called outside [layoutChild].)
+        ///
+        /// Any time this method would mutate the child, call [markNeedsLayout].
+        /// </Summary>
+        public virtual void UpdateChild(double shrinkOffset, bool overlapsContent)
+        {
+        }
+
+
+
+
+        public new void MarkNeedsLayout()
+        {
+            _NeedsUpdateChild = true;
+            base.MarkNeedsLayout();
+        }
+
+
+
+
+        /// <Summary>
+        /// Lays out the [child].
+        ///
+        /// This is called by [performLayout]. It applies the given `scrollOffset`
+        /// (which need not match the offset given by the [constraints]) and the
+        /// `maxExtent` (which need not match the value returned by the [maxExtent]
+        /// getter).
+        ///
+        /// The `overlapsContent` argument is passed to [updateChild].
+        /// </Summary>
+        public virtual void LayoutChild(double scrollOffset, double maxExtent, bool overlapsContent = false)
+        {
+
+            double shrinkOffset = Math.Dart:mathDefaultClass.Min(scrollOffset, maxExtent);
+            if (_NeedsUpdateChild || _LastShrinkOffset != shrinkOffset || _LastOverlapsContent != overlapsContent)
+            {
+                InvokeLayoutCallback((SliverConstraints constraints) =>
+                {
+
+                    UpdateChild(shrinkOffset, overlapsContent);
+                }
+                );
+                _LastShrinkOffset = shrinkOffset;
+                _LastOverlapsContent = overlapsContent;
+                _NeedsUpdateChild = false;
+            }
+
+
+
+            double stretchOffset = 0.0;
+            if (StretchConfiguration != null && ChildMainAxisPosition(Child) == 0.0) stretchOffset += Constraints.Overlap.Abs();
+            Child?.Layout(Constraints.AsBoxConstraints(maxExtent: Math.Dart:mathDefaultClass.Max(MinExtent, maxExtent - shrinkOffset) + stretchOffset), parentUsesSize: true);
+            if (StretchConfiguration != null && StretchConfiguration.OnStretchTrigger != null && stretchOffset >= StretchConfiguration.StretchTriggerOffset && _LastStretchOffset <= StretchConfiguration.StretchTriggerOffset)
+            {
+                StretchConfiguration.OnStretchTrigger();
+            }
+
+            _LastStretchOffset = stretchOffset;
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the distance from the leading _visible_ edge of the sliver to the
+        /// side of the child closest to that edge, in the scroll axis direction.
+        ///
+        /// For example, if the [constraints] describe this sliver as having an axis
+        /// direction of [AxisDirection.down], then this is the distance from the top
+        /// of the visible portion of the sliver to the top of the child. If the child
+        /// is scrolled partially off the top of the viewport, then this will be
+        /// negative. On the other hand, if the [constraints] describe this sliver as
+        /// having an axis direction of [AxisDirection.up], then this is the distance
+        /// from the bottom of the visible portion of the sliver to the bottom of the
+        /// child. In both cases, this is the direction of increasing
+        /// [SliverConstraints.scrollOffset].
+        ///
+        /// Calling this when the child is not visible is not valid.
+        ///
+        /// The argument must be the value of the [child] property.
+        ///
+        /// This must be implemented by [RenderSliverPersistentHeader] subclasses.
+        ///
+        /// If there is no child, this should return 0.0.
+        /// </Summary>
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) => base.ChildMainAxisPosition(child);
+
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
+        {
+
+            if (Child != null) return HitTestBoxChild(BoxHitTestResult.Wrap(result), Child, mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition);
+            return false;
+        }
+
+
+
+
+        public new void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
+        {
+
+
+            ApplyPaintTransformForBoxChild(child as RenderBox, transform);
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Child != null && Geometry.Visible)
+            {
+
+                switch (SliverDefaultClass.ApplyGrowthDirectionToAxisDirection(Constraints.AxisDirection, Constraints.GrowthDirection)) { case AxisDirection.Up: offset += new Offset(0.0, Geometry.PaintExtent - ChildMainAxisPosition(Child) - ChildExtent); break; case AxisDirection.Down: offset += new Offset(0.0, ChildMainAxisPosition(Child)); break; case AxisDirection.Left: offset += new Offset(Geometry.PaintExtent - ChildMainAxisPosition(Child) - ChildExtent, 0.0); break; case AxisDirection.Right: offset += new Offset(ChildMainAxisPosition(Child), 0.0); break; }
+                context.PaintChild(Child, offset);
+            }
+
+        }
+
+
+
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+        {
+            base.DescribeSemanticsConfiguration(config);
+            if (_ExcludeFromSemanticsScrolling) config.AddTagForChildren(ViewportDefaultClass.RenderViewport.ExcludeFromScrolling);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(DoubleProperty.Lazy("maxExtent", () => =>MaxExtent));
+            properties.Add(DoubleProperty.Lazy("child position", () => =>ChildMainAxisPosition(Child)));
+        }
+
+
+
+        #endregion
     }
-    else
+
+
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which scrolls normally, except that when
+    /// it hits the leading edge (typically the top) of the viewport, it shrinks to
+    /// a minimum size before continuing to scroll.
+    ///
+    /// This sliver makes no effort to avoid overlapping other content.
+    /// </Summary>
+    public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
-        _EffectiveScrollOffset = constraints.ScrollOffset;
+        #region constructors
+        public RenderSliverScrollingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, stretchConfiguration: stretchConfiguration)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _ChildPosition { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Updates [geometry], and returns the new value for [childMainAxisPosition].
+        ///
+        /// This is used by [performLayout].
+        /// </Summary>
+        public virtual double UpdateGeometry()
+        {
+            double stretchOffset = 0.0;
+            if (StretchConfiguration != null && _ChildPosition == 0.0)
+            {
+                stretchOffset += Constraints.Overlap.Abs();
+            }
+
+            double maxExtent = this.MaxExtent;
+            double paintExtent = maxExtent - Constraints.ScrollOffset;
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
+            return stretchOffset > 0 ? 0.0 : Math.Dart:mathDefaultClass.Min(0.0, paintExtent - ChildExtent);
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            SliverConstraints constraints = this.Constraints;
+            double maxExtent = this.MaxExtent;
+            LayoutChild(constraints.ScrollOffset, maxExtent);
+            double paintExtent = maxExtent - constraints.ScrollOffset;
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent, hasVisualOverflow: true);
+            _ChildPosition = UpdateGeometry();
+        }
+
+
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+
+            return _ChildPosition;
+        }
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+            return _ChildPosition;
+        }
+
+
+
+        #endregion
     }
 
-    ExcludeFromSemanticsScrolling = _EffectiveScrollOffset <= constraints.ScrollOffset;
-    bool overlapsContent = _EffectiveScrollOffset < constraints.ScrollOffset;
-    LayoutChild(_EffectiveScrollOffset, maxExtent, overlapsContent: overlapsContent);
-    _ChildPosition = UpdateGeometry();
-    _LastActualScrollOffset = constraints.ScrollOffset;
-}
+
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which never scrolls off the viewport in
+    /// the positive scroll direction, and which first scrolls on at a full size but
+    /// then shrinks as the viewport continues to scroll.
+    ///
+    /// This sliver avoids overlapping other earlier slivers where possible.
+    /// </Summary>
+    public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
+    {
+        #region constructors
+        public RenderSliverPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, stretchConfiguration: stretchConfiguration)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void PerformLayout()
+        {
+            SliverConstraints constraints = this.Constraints;
+            double maxExtent = this.MaxExtent;
+            bool overlapsContent = constraints.Overlap > 0.0;
+            ExcludeFromSemanticsScrolling = overlapsContent || (constraints.ScrollOffset > maxExtent - MinExtent);
+            LayoutChild(constraints.ScrollOffset, maxExtent, overlapsContent: overlapsContent);
+            double effectiveRemainingPaintExtent = Math.Dart:mathDefaultClass.Max(0, constraints.RemainingPaintExtent - constraints.Overlap);
+            double layoutExtent = (maxExtent - constraints.ScrollOffset).Clamp(0.0, effectiveRemainingPaintExtent) as double;
+            double stretchOffset = StretchConfiguration != null ? constraints.Overlap.Abs() : 0.0;
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: constraints.Overlap, paintExtent: Math.Dart:mathDefaultClass.Min(ChildExtent, effectiveRemainingPaintExtent), layoutExtent: layoutExtent, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: MinExtent, cacheExtent: layoutExtent > 0.0 ? -constraints.CacheOrigin + layoutExtent : layoutExtent, hasVisualOverflow: true);
+        }
 
 
 
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
-{
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child) => 0.0;
 
-    return _ChildPosition;
-}
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) => 0.0;
 
 
-public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
-{
-
-    return _ChildPosition;
-}
+        #endregion
+    }
 
 
+    /// <Summary>
+    /// Specifies how a floating header is to be "snapped" (animated) into or out
+    /// of view.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPersistentHeader.maybeStartSnapAnimation] and
+    ///    [RenderSliverFloatingPersistentHeader.maybeStopSnapAnimation], which
+    ///    start or stop the floating header's animation.
+    ///  * [SliverAppBar], which creates a header that can be pinned, floating,
+    ///    and snapped into view via the corresponding parameters.
+    /// </Summary>
+    public class FloatingHeaderSnapConfiguration
+    {
+        #region constructors
+        public FloatingHeaderSnapConfiguration(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
+        : base()
+        {
+            this.Vsync = vsync;
+            this.Curve = curve;
+            this.Duration = duration;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DoubleProperty("effective scroll offset", _EffectiveScrollOffset));
-}
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which shrinks and scrolls like a
+    /// [RenderSliverScrollingPersistentHeader], but immediately comes back when the
+    /// user scrolls in the reverse direction.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPinnedPersistentHeader], which is similar but sticks
+    ///    to the start of the viewport rather than scrolling off.
+    /// </Summary>
+    public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
+    {
+        #region constructors
+        public RenderSliverFloatingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, stretchConfiguration: stretchConfiguration)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
+        internal virtual double _LastActualScrollOffset { get; set; }
+        internal virtual double _EffectiveScrollOffset { get; set; }
+        internal virtual double _ChildPosition { get; set; }
+        internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration { get; set; }
+        public virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Detach()
+        {
+            _Controller?.Dispose();
+            _Controller = null;
+            base.Detach();
+        }
 
 
 
-#endregion
-}
 
+        /// <Summary>
+        /// Updates [geometry], and returns the new value for [childMainAxisPosition].
+        ///
+        /// This is used by [performLayout].
+        /// </Summary>
+        public virtual double UpdateGeometry()
+        {
+            double stretchOffset = 0.0;
+            if (StretchConfiguration != null && _ChildPosition == 0.0)
+            {
+                stretchOffset += Constraints.Overlap.Abs();
+            }
 
-/// <Summary>
-/// A sliver with a [RenderBox] child which shrinks and then remains pinned to
-/// the start of the viewport like a [RenderSliverPinnedPersistentHeader], but
-/// immediately grows when the user scrolls in the reverse direction.
-///
-/// See also:
-///
-///  * [RenderSliverFloatingPersistentHeader], which is similar but scrolls off
-///    the top rather than sticking to it.
-/// </Summary>
-public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
-{
-    #region constructors
-    public RenderSliverFloatingPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
-    : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new double UpdateGeometry()
-{
-    double minExtent = this.MinExtent;
-    double minAllowedExtent = Constraints.RemainingPaintExtent > minExtent ? minExtent : Constraints.RemainingPaintExtent;
-    double maxExtent = this.MaxExtent;
-    double paintExtent = maxExtent - _EffectiveScrollOffset;
-    double clampedPaintExtent = paintExtent.Clamp(minAllowedExtent, Constraints.RemainingPaintExtent) as double;
-    double layoutExtent = maxExtent - Constraints.ScrollOffset;
-    double stretchOffset = StretchConfiguration != null ? Constraints.Overlap.Abs() : 0.0;
-    Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: clampedPaintExtent, layoutExtent: layoutExtent.Clamp(0.0, clampedPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: maxExtent, hasVisualOverflow: true);
-    return 0.0;
-}
+            double maxExtent = this.MaxExtent;
+            double paintExtent = maxExtent - _EffectiveScrollOffset;
+            double layoutExtent = maxExtent - Constraints.ScrollOffset;
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, layoutExtent: layoutExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
+            return stretchOffset > 0 ? 0.0 : Math.Dart:mathDefaultClass.Min(0.0, paintExtent - ChildExtent);
+        }
 
 
 
-#endregion
-}
+
+        /// <Summary>
+        /// If the header isn't already fully exposed, then scroll it into view.
+        /// </Summary>
+        public virtual void MaybeStartSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
+        {
+            if (SnapConfiguration == null) return;
+            if (direction == ScrollDirection.Forward && _EffectiveScrollOffset <= 0.0) return;
+            if (direction == ScrollDirection.Reverse && _EffectiveScrollOffset >= MaxExtent) return;
+            TickerProvider vsync = SnapConfiguration.Vsync;
+            TimeSpan duration = SnapConfiguration.Duration;
+            _Controller = (_Controller == null ? new AnimationController(vsync: vsync, duration: duration);
+            new AnimationController(vsync: vsync, duration: duration).AddListener(() =>
+            {
+                if (_EffectiveScrollOffset == _Animation.Value) return;
+                _EffectiveScrollOffset = _Animation.Value;
+                MarkNeedsLayout();
+            }
+            ) : _Controller );
+            _Animation = _Controller.Drive(new Tween<double>(begin: _EffectiveScrollOffset, end: direction == ScrollDirection.Forward ? 0.0 : MaxExtent).Chain(new CurveTween(curve: SnapConfiguration.Curve)));
+            _Controller.Forward(from: 0.0);
+        }
+
+
+
+
+        /// <Summary>
+        /// If a header snap animation is underway then stop it.
+        /// </Summary>
+        public virtual void MaybeStopSnapAnimation(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
+        {
+            _Controller?.Stop();
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            SliverConstraints constraints = this.Constraints;
+            double maxExtent = this.MaxExtent;
+            if (_LastActualScrollOffset != null && ((constraints.ScrollOffset < _LastActualScrollOffset) || (_EffectiveScrollOffset < maxExtent)))
+            {
+                double delta = _LastActualScrollOffset - constraints.ScrollOffset;
+                bool allowFloatingExpansion = constraints.UserScrollDirection == ScrollDirection.Forward;
+                if (allowFloatingExpansion)
+                {
+                    if (_EffectiveScrollOffset > maxExtent) _EffectiveScrollOffset = maxExtent;
+                }
+                else
+                {
+                    if (delta > 0.0) delta = 0.0;
+                }
+
+                _EffectiveScrollOffset = (_EffectiveScrollOffset - delta).Clamp(0.0, constraints.ScrollOffset) as double;
+            }
+            else
+            {
+                _EffectiveScrollOffset = constraints.ScrollOffset;
+            }
+
+            ExcludeFromSemanticsScrolling = _EffectiveScrollOffset <= constraints.ScrollOffset;
+            bool overlapsContent = _EffectiveScrollOffset < constraints.ScrollOffset;
+            LayoutChild(_EffectiveScrollOffset, maxExtent, overlapsContent: overlapsContent);
+            _ChildPosition = UpdateGeometry();
+            _LastActualScrollOffset = constraints.ScrollOffset;
+        }
+
+
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.Box.RenderBox child)
+        {
+
+            return _ChildPosition;
+        }
+
+
+        public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+            return _ChildPosition;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DoubleProperty("effective scroll offset", _EffectiveScrollOffset));
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A sliver with a [RenderBox] child which shrinks and then remains pinned to
+    /// the start of the viewport like a [RenderSliverPinnedPersistentHeader], but
+    /// immediately grows when the user scrolls in the reverse direction.
+    ///
+    /// See also:
+    ///
+    ///  * [RenderSliverFloatingPersistentHeader], which is similar but scrolls off
+    ///    the top rather than sticking to it.
+    /// </Summary>
+    public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
+    {
+        #region constructors
+        public RenderSliverFloatingPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
+        : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double UpdateGeometry()
+        {
+            double minExtent = this.MinExtent;
+            double minAllowedExtent = Constraints.RemainingPaintExtent > minExtent ? minExtent : Constraints.RemainingPaintExtent;
+            double maxExtent = this.MaxExtent;
+            double paintExtent = maxExtent - _EffectiveScrollOffset;
+            double clampedPaintExtent = paintExtent.Clamp(minAllowedExtent, Constraints.RemainingPaintExtent) as double;
+            double layoutExtent = maxExtent - Constraints.ScrollOffset;
+            double stretchOffset = StretchConfiguration != null ? Constraints.Overlap.Abs() : 0.0;
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: clampedPaintExtent, layoutExtent: layoutExtent.Clamp(0.0, clampedPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: maxExtent, hasVisualOverflow: true);
+            return 0.0;
+        }
+
+
+
+        #endregion
+    }
 
 }

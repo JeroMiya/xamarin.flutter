@@ -780,365 +780,367 @@ namespace FlutterSDK.Material.Materiallocalizations
     {
         #region constructors
         public _MaterialLocalizationsDelegate()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        #endregion
 
-    public new bool IsSupported(Locale locale) => locale.LanguageCode == "en";
+        #region methods
 
-
-
-    public new Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale) => MateriallocalizationsDefaultClass.DefaultMaterialLocalizations.Load(locale);
+        public new bool IsSupported(Locale locale) => locale.LanguageCode == "en";
 
 
 
-    public new bool ShouldReload(FlutterSDK.Material.Materiallocalizations._MaterialLocalizationsDelegate old) => false;
+        public new Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale) => MateriallocalizationsDefaultClass.DefaultMaterialLocalizations.Load(locale);
 
 
 
-    #endregion
-}
-
-
-/// <Summary>
-/// US English strings for the material widgets.
-///
-/// See also:
-///
-///  * [GlobalMaterialLocalizations], which provides material localizations for
-///    many languages.
-///  * [MaterialApp.localizationsDelegates], which automatically includes
-///    [DefaultMaterialLocalizations.delegate] by default.
-/// </Summary>
-public class DefaultMaterialLocalizations : IMaterialLocalizations
-{
-    #region constructors
-    public DefaultMaterialLocalizations()
-
-}
-#endregion
-
-#region fields
-internal virtual List<string> _ShortWeekdays { get; set; }
-internal virtual List<string> _Weekdays { get; set; }
-internal virtual List<string> _NarrowWeekdays { get; set; }
-internal virtual List<string> _ShortMonths { get; set; }
-internal virtual List<string> _Months { get; set; }
-public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> @delegate { get; set; }
-public virtual List<string> NarrowWeekdays { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int FirstDayOfWeekIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string OpenAppDrawerTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string BackButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string CloseButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string DeleteButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string MoreButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string NextMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string PreviousMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string NextPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string PreviousPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ShowMenuTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string DrawerLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string PopupMenuLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string DialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string AlertDialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string SearchFieldLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string LicensesPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string RowsPerPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string CancelButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string CloseButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ContinueButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string CutButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string OkButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ViewLicensesButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string AnteMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string PostMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string TimePickerHourModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string TimePickerMinuteModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ModalBarrierDismissLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Material.Typography.ScriptCategory ScriptCategory { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string SignedInLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string HideAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ShowAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ReorderItemUp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ReorderItemDown { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ReorderItemLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ReorderItemRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ReorderItemToEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ReorderItemToStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string ExpandedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns the number of days in a month, according to the proleptic
-/// Gregorian calendar.
-///
-/// This applies the leap year logic introduced by the Gregorian reforms of
-/// 1582. It will not give valid results for dates prior to that time.
-/// </Summary>
-private int _GetDaysInMonth(int year, int month)
-{
-    if (month == Dart:coreDefaultClass.DateTime.February){
-    bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
-    if (isLeapYear) return 29;
-    return 28;
-}
-
-List<int> daysInMonth = new List<int>() { 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-return daysInMonth[month - 1];
-}
+        public new bool ShouldReload(FlutterSDK.Material.Materiallocalizations._MaterialLocalizationsDelegate old) => false;
 
 
 
-
-public new string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false)
-{
-    TimeOfDayFormat format = TimeOfDayFormat(alwaysUse24HourFormat: alwaysUse24HourFormat);
-    switch (format) { case TimeOfDayFormat.H_colon_mm_space_a: return FormatDecimal(timeOfDay.HourOfPeriod == 0 ? 12 : timeOfDay.HourOfPeriod); case TimeOfDayFormat.HH_colon_mm: return _FormatTwoDigitZeroPad(timeOfDay.Hour); default: throw new AssertionError($"'{GetType()} does not support {format}.'"); }
-}
-
-
-
-
-/// <Summary>
-/// Formats [number] using two digits, assuming it's in the 0-99 inclusive
-/// range. Not designed to format values outside this range.
-/// </Summary>
-private string _FormatTwoDigitZeroPad(int number)
-{
-
-    if (number < 10) return $"'0{number}'";
-    return $"'{number}'";
-}
-
-
-
-
-public new string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay)
-{
-    int minute = timeOfDay.Minute;
-    return minute < 10 ? $"'0{minute}'" : minute.ToString();
-}
-
-
-
-
-public new string FormatYear(DateTime date) => date.Year.ToString();
-
-
-
-public new string FormatCompactDate(DateTime date)
-{
-    string month = _FormatTwoDigitZeroPad(date.Month);
-    string day = _FormatTwoDigitZeroPad(date.Day);
-    string year = date.Year.ToString().PadLeft(4, '0');
-    return $"'{month}/{day}/{year}'";
-}
-
-
-
-
-public new string FormatShortDate(DateTime date)
-{
-    string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
-    return $"'{month} {date.Day}, {date.Year}'";
-}
-
-
-
-
-public new string FormatMediumDate(DateTime date)
-{
-    string day = _ShortWeekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday];
-    string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
-    return $"'{day}, {month} {date.Day}'";
-}
-
-
-
-
-public new string FormatFullDate(DateTime date)
-{
-    string month = _Months[date.Month - Dart:coreDefaultClass.DateTime.January];
-    return $"'{_Weekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday]}, {month} {date.Day}, {date.Year}'";
-}
-
-
-
-
-public new string FormatMonthYear(DateTime date)
-{
-    string year = FormatYear(date);
-    string month = _Months[date.Month - Dart:coreDefaultClass.DateTime.January];
-    return $"'{month} {year}'";
-}
-
-
-
-
-public new string FormatShortMonthDay(DateTime date)
-{
-    string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
-    return $"'{month} {date.Day}'";
-}
-
-
-
-
-public new DateTime ParseCompactDate(string inputString)
-{
-    List<string> inputParts = inputString.Split('/').ToList();
-    if (inputParts.Count != 3)
-    {
-        return null;
+        #endregion
     }
 
-    int year = Dart:coreDefaultClass.Int.TryParse(inputParts[2], radix: 10);
-    if (year == null || year < 1)
+
+    /// <Summary>
+    /// US English strings for the material widgets.
+    ///
+    /// See also:
+    ///
+    ///  * [GlobalMaterialLocalizations], which provides material localizations for
+    ///    many languages.
+    ///  * [MaterialApp.localizationsDelegates], which automatically includes
+    ///    [DefaultMaterialLocalizations.delegate] by default.
+    /// </Summary>
+    public class DefaultMaterialLocalizations : IMaterialLocalizations
     {
-        return null;
+        #region constructors
+        public DefaultMaterialLocalizations()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<string> _ShortWeekdays { get; set; }
+        internal virtual List<string> _Weekdays { get; set; }
+        internal virtual List<string> _NarrowWeekdays { get; set; }
+        internal virtual List<string> _ShortMonths { get; set; }
+        internal virtual List<string> _Months { get; set; }
+        public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> @delegate { get; set; }
+        public virtual List<string> NarrowWeekdays { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int FirstDayOfWeekIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string OpenAppDrawerTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string BackButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CloseButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DeleteButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string MoreButtonTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string NextMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PreviousMonthTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string NextPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PreviousPageTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ShowMenuTooltip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DrawerLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PopupMenuLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string DialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string AlertDialogLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SearchFieldLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string LicensesPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string RowsPerPageTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CancelButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CloseButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ContinueButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CutButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string OkButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ViewLicensesButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string AnteMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string PostMeridiemAbbreviation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string TimePickerHourModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string TimePickerMinuteModeAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ModalBarrierDismissLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Typography.ScriptCategory ScriptCategory { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string SignedInLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string HideAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ShowAccountsLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemUp { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemDown { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemToEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ReorderItemToStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ExpandedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns the number of days in a month, according to the proleptic
+        /// Gregorian calendar.
+        ///
+        /// This applies the leap year logic introduced by the Gregorian reforms of
+        /// 1582. It will not give valid results for dates prior to that time.
+        /// </Summary>
+        private int _GetDaysInMonth(int year, int month)
+        {
+            if (month == Dart:coreDefaultClass.DateTime.February){
+                bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
+                if (isLeapYear) return 29;
+                return 28;
+            }
+
+            List<int> daysInMonth = new List<int>() { 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            return daysInMonth[month - 1];
+        }
+
+
+
+
+        public new string FormatHour(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false)
+        {
+            TimeOfDayFormat format = TimeOfDayFormat(alwaysUse24HourFormat: alwaysUse24HourFormat);
+            switch (format) { case TimeOfDayFormat.H_colon_mm_space_a: return FormatDecimal(timeOfDay.HourOfPeriod == 0 ? 12 : timeOfDay.HourOfPeriod); case TimeOfDayFormat.HH_colon_mm: return _FormatTwoDigitZeroPad(timeOfDay.Hour); default: throw new AssertionError($"'{GetType()} does not support {format}.'"); }
+        }
+
+
+
+
+        /// <Summary>
+        /// Formats [number] using two digits, assuming it's in the 0-99 inclusive
+        /// range. Not designed to format values outside this range.
+        /// </Summary>
+        private string _FormatTwoDigitZeroPad(int number)
+        {
+
+            if (number < 10) return $"'0{number}'";
+            return $"'{number}'";
+        }
+
+
+
+
+        public new string FormatMinute(FlutterSDK.Material.Time.TimeOfDay timeOfDay)
+        {
+            int minute = timeOfDay.Minute;
+            return minute < 10 ? $"'0{minute}'" : minute.ToString();
+        }
+
+
+
+
+        public new string FormatYear(DateTime date) => date.Year.ToString();
+
+
+
+        public new string FormatCompactDate(DateTime date)
+        {
+            string month = _FormatTwoDigitZeroPad(date.Month);
+            string day = _FormatTwoDigitZeroPad(date.Day);
+            string year = date.Year.ToString().PadLeft(4, '0');
+            return $"'{month}/{day}/{year}'";
+        }
+
+
+
+
+        public new string FormatShortDate(DateTime date)
+        {
+            string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
+            return $"'{month} {date.Day}, {date.Year}'";
+        }
+
+
+
+
+        public new string FormatMediumDate(DateTime date)
+        {
+            string day = _ShortWeekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday];
+            string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
+            return $"'{day}, {month} {date.Day}'";
+        }
+
+
+
+
+        public new string FormatFullDate(DateTime date)
+        {
+            string month = _Months[date.Month - Dart:coreDefaultClass.DateTime.January];
+            return $"'{_Weekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday]}, {month} {date.Day}, {date.Year}'";
+        }
+
+
+
+
+        public new string FormatMonthYear(DateTime date)
+        {
+            string year = FormatYear(date);
+            string month = _Months[date.Month - Dart:coreDefaultClass.DateTime.January];
+            return $"'{month} {year}'";
+        }
+
+
+
+
+        public new string FormatShortMonthDay(DateTime date)
+        {
+            string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
+            return $"'{month} {date.Day}'";
+        }
+
+
+
+
+        public new DateTime ParseCompactDate(string inputString)
+        {
+            List<string> inputParts = inputString.Split('/').ToList();
+            if (inputParts.Count != 3)
+            {
+                return null;
+            }
+
+            int year = Dart:coreDefaultClass.Int.TryParse(inputParts[2], radix: 10);
+            if (year == null || year < 1)
+            {
+                return null;
+            }
+
+            int month = Dart:coreDefaultClass.Int.TryParse(inputParts[0], radix: 10);
+            if (month == null || month < 1 || month > 12)
+            {
+                return null;
+            }
+
+            int day = Dart:coreDefaultClass.Int.TryParse(inputParts[1], radix: 10);
+            if (day == null || day < 1 || day > _GetDaysInMonth(year, month))
+            {
+                return null;
+            }
+
+            return new DateTime(year, month, day);
+        }
+
+
+
+
+        private string _FormatDayPeriod(FlutterSDK.Material.Time.TimeOfDay timeOfDay)
+        {
+            switch (timeOfDay.Period) { case DayPeriod.Am: return AnteMeridiemAbbreviation; case DayPeriod.Pm: return PostMeridiemAbbreviation; }
+            return null;
+        }
+
+
+
+
+        public new string FormatDecimal(int number)
+        {
+            if (number > -1000 && number < 1000) return number.ToString();
+            string digits = number.Abs().ToString();
+            StringBuffer result = new StringBuffer(number < 0 ? '-' : "");
+            int maxDigitIndex = digits.Length - 1;
+            for (int i = 0; i <= maxDigitIndex; i += 1)
+            {
+                result.Write(digits[i]);
+                if (i < maxDigitIndex && (maxDigitIndex - i) % 3 == 0) result.Write(',');
+            }
+
+            return result.ToString();
+        }
+
+
+
+
+        public new string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false)
+        {
+            StringBuffer buffer = new StringBuffer();
+            ;
+            buffer.Write(FormatHour(timeOfDay, alwaysUse24HourFormat: alwaysUse24HourFormat));
+            buffer.Write(':');
+            buffer.Write(FormatMinute(timeOfDay));
+            if (alwaysUse24HourFormat)
+            {
+                return $"'{buffer}'";
+            }
+
+        ;
+            buffer.Write(' ');
+            buffer.Write(_FormatDayPeriod(timeOfDay));
+            return $"'{buffer}'";
+        }
+
+
+
+
+        public new string AboutListTileTitle(string applicationName) => $"'About {applicationName}'";
+
+
+
+        public new string PageRowsInfoTitle(int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate)
+        {
+            return rowCountIsApproximate ? $"'{firstRow}–{lastRow} of about {rowCount}'" : $"'{firstRow}–{lastRow} of {rowCount}'";
+        }
+
+
+
+
+        public new string TabLabel(int tabIndex = default(int), int tabCount = default(int))
+        {
+
+
+            return $"'Tab {tabIndex} of {tabCount}'";
+        }
+
+
+
+
+        public new string SelectedRowCountTitle(int selectedRowCount)
+        {
+            switch (selectedRowCount) { case 0: return "No items selected"; case 1: return "1 item selected"; default: return $"'{selectedRowCount} items selected'"; }
+        }
+
+
+
+
+        public new FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false)
+        {
+            return alwaysUse24HourFormat ? TimeOfDayFormat.HH_colon_mm : TimeOfDayFormat.H_colon_mm_space_a;
+        }
+
+
+
+
+        /// <Summary>
+        /// Creates an object that provides US English resource values for the material
+        /// library widgets.
+        ///
+        /// The [locale] parameter is ignored.
+        ///
+        /// This method is typically used to create a [LocalizationsDelegate].
+        /// The [MaterialApp] does so by default.
+        /// </Summary>
+        public virtual Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale)
+        {
+            return new SynchronousFuture<MaterialLocalizations>(new DefaultMaterialLocalizations());
+        }
+
+
+
+
+        public new string RemainingTextFieldCharacterCount(int remaining)
+        {
+            switch (remaining) { case 0: return "No characters remaining"; case 1: return "1 character remaining"; default: return $"'{remaining} characters remaining'"; }
+        }
+
+
+
+        #endregion
     }
-
-    int month = Dart:coreDefaultClass.Int.TryParse(inputParts[0], radix: 10);
-    if (month == null || month < 1 || month > 12)
-    {
-        return null;
-    }
-
-    int day = Dart:coreDefaultClass.Int.TryParse(inputParts[1], radix: 10);
-    if (day == null || day < 1 || day > _GetDaysInMonth(year, month))
-    {
-        return null;
-    }
-
-    return new DateTime(year, month, day);
-}
-
-
-
-
-private string _FormatDayPeriod(FlutterSDK.Material.Time.TimeOfDay timeOfDay)
-{
-    switch (timeOfDay.Period) { case DayPeriod.Am: return AnteMeridiemAbbreviation; case DayPeriod.Pm: return PostMeridiemAbbreviation; }
-    return null;
-}
-
-
-
-
-public new string FormatDecimal(int number)
-{
-    if (number > -1000 && number < 1000) return number.ToString();
-    string digits = number.Abs().ToString();
-    StringBuffer result = new StringBuffer(number < 0 ? '-' : "");
-    int maxDigitIndex = digits.Length - 1;
-    for (int i = 0; i <= maxDigitIndex; i += 1)
-    {
-        result.Write(digits[i]);
-        if (i < maxDigitIndex && (maxDigitIndex - i) % 3 == 0) result.Write(',');
-    }
-
-    return result.ToString();
-}
-
-
-
-
-public new string FormatTimeOfDay(FlutterSDK.Material.Time.TimeOfDay timeOfDay, bool alwaysUse24HourFormat = false)
-{
-    StringBuffer buffer = new StringBuffer();
-    ;
-    buffer.Write(FormatHour(timeOfDay, alwaysUse24HourFormat: alwaysUse24HourFormat));
-    buffer.Write(':');
-    buffer.Write(FormatMinute(timeOfDay));
-    if (alwaysUse24HourFormat)
-    {
-        return $"'{buffer}'";
-    }
-
-;
-    buffer.Write(' ');
-    buffer.Write(_FormatDayPeriod(timeOfDay));
-    return $"'{buffer}'";
-}
-
-
-
-
-public new string AboutListTileTitle(string applicationName) => $"'About {applicationName}'";
-
-
-
-public new string PageRowsInfoTitle(int firstRow, int lastRow, int rowCount, bool rowCountIsApproximate)
-{
-    return rowCountIsApproximate ? $"'{firstRow}–{lastRow} of about {rowCount}'" : $"'{firstRow}–{lastRow} of {rowCount}'";
-}
-
-
-
-
-public new string TabLabel(int tabIndex = default(int), int tabCount = default(int))
-{
-
-
-    return $"'Tab {tabIndex} of {tabCount}'";
-}
-
-
-
-
-public new string SelectedRowCountTitle(int selectedRowCount)
-{
-    switch (selectedRowCount) { case 0: return "No items selected"; case 1: return "1 item selected"; default: return $"'{selectedRowCount} items selected'"; }
-}
-
-
-
-
-public new FlutterSDK.Material.Time.TimeOfDayFormat TimeOfDayFormat(bool alwaysUse24HourFormat = false)
-{
-    return alwaysUse24HourFormat ? TimeOfDayFormat.HH_colon_mm : TimeOfDayFormat.H_colon_mm_space_a;
-}
-
-
-
-
-/// <Summary>
-/// Creates an object that provides US English resource values for the material
-/// library widgets.
-///
-/// The [locale] parameter is ignored.
-///
-/// This method is typically used to create a [LocalizationsDelegate].
-/// The [MaterialApp] does so by default.
-/// </Summary>
-public virtual Future<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations> Load(Locale locale)
-{
-    return new SynchronousFuture<MaterialLocalizations>(new DefaultMaterialLocalizations());
-}
-
-
-
-
-public new string RemainingTextFieldCharacterCount(int remaining)
-{
-    switch (remaining) { case 0: return "No characters remaining"; case 1: return "1 character remaining"; default: return $"'{remaining} characters remaining'"; }
-}
-
-
-
-#endregion
-}
 
 }

@@ -501,390 +501,401 @@ namespace FlutterSDK.Widgets.Form
         #region constructors
         public Form(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autovalidate = false, FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback), VoidCallback onChanged = default(VoidCallback))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual bool Autovalidate { get; set; }
-    public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
-    public virtual VoidCallback OnChanged { get; set; }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Returns the closest [FormState] which encloses the given context.
-    ///
-    /// Typical usage is as follows:
-    ///
-    /// ```dart
-    /// FormState form = Form.of(context);
-    /// form.save();
-    /// ```
-    /// </Summary>
-    public virtual FlutterSDK.Widgets.Form.FormState Of(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        _FormScope scope = context.DependOnInheritedWidgetOfExactType();
-        return scope?._FormState;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Form.FormState CreateState() => new FormState();
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// State associated with a [Form] widget.
-///
-/// A [FormState] object can be used to [save], [reset], and [validate] every
-/// [FormField] that is a descendant of the associated [Form].
-///
-/// Typically obtained via [Form.of].
-/// </Summary>
-public class FormState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.Form>
-{
-    #region constructors
-    public FormState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual int _Generation { get; set; }
-    internal virtual HashSet<FlutterSDK.Widgets.Form.FormFieldState<object>> _Fields { get; set; }
-    #endregion
-
-    #region methods
-
-    private void _FieldDidChange()
-    {
-        if (Widget.OnChanged != null) Widget.OnChanged();
-        _ForceRebuild();
-    }
-
-
-
-
-    private void _ForceRebuild()
-    {
-        SetState(() =>
         {
-            ++_Generation;
+            this.Child = child;
+            this.Autovalidate = autovalidate;
+            this.OnWillPop = onWillPop;
+            this.OnChanged = onChanged;
         }
-        );
-    }
+        #endregion
 
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual bool Autovalidate { get; set; }
+        public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
+        public virtual VoidCallback OnChanged { get; set; }
+        #endregion
 
+        #region methods
 
-
-    private void _Register(FlutterSDK.Widgets.Form.FormFieldState<object> field)
-    {
-        _Fields.Add(field);
-    }
-
-
-
-
-    private void _Unregister(FlutterSDK.Widgets.Form.FormFieldState<object> field)
-    {
-        _Fields.Remove(field);
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (Widget.Autovalidate) _Validate();
-        return new WillPopScope(onWillPop: Widget.OnWillPop, child: new _FormScope(formState: this, generation: _Generation, child: Widget.Child));
-    }
-
-
-
-
-    /// <Summary>
-    /// Saves every [FormField] that is a descendant of this [Form].
-    /// </Summary>
-    public virtual void Save()
-    {
-        foreach (FormFieldState<object> field in _Fields) field.Save();
-    }
-
-
-
-
-    /// <Summary>
-    /// Resets every [FormField] that is a descendant of this [Form] back to its
-    /// [FormField.initialValue].
-    ///
-    /// The [Form.onChanged] callback will be called.
-    ///
-    /// If the form's [Form.autovalidate] property is true, the fields will all be
-    /// revalidated after being reset.
-    /// </Summary>
-    public virtual void Reset()
-    {
-        foreach (FormFieldState<object> field in _Fields) field.Reset();
-        _FieldDidChange();
-    }
-
-
-
-
-    /// <Summary>
-    /// Validates every [FormField] that is a descendant of this [Form], and
-    /// returns true if there are no errors.
-    ///
-    /// The form will rebuild to report the results.
-    /// </Summary>
-    public virtual bool Validate()
-    {
-        _ForceRebuild();
-        return _Validate();
-    }
-
-
-
-
-    private bool _Validate()
-    {
-        bool hasError = false;
-        foreach (FormFieldState<object> field in _Fields) hasError = !field.Validate() || hasError;
-        return !hasError;
-    }
-
-
-
-    #endregion
-}
-
-
-public class _FormScope : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-    #region constructors
-    public _FormScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Form.FormState formState = default(FlutterSDK.Widgets.Form.FormState), int generation = default(int))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Form.FormState _FormState { get; set; }
-internal virtual int _Generation { get; set; }
-public virtual FlutterSDK.Widgets.Form.Form Form { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Form._FormScope old) => _Generation != old._Generation;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => _Generation != old._Generation;
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A single form field.
-///
-/// This widget maintains the current state of the form field, so that updates
-/// and validation errors are visually reflected in the UI.
-///
-/// When used inside a [Form], you can use methods on [FormState] to query or
-/// manipulate the form data as a whole. For example, calling [FormState.save]
-/// will invoke each [FormField]'s [onSaved] callback in turn.
-///
-/// Use a [GlobalKey] with [FormField] if you want to retrieve its current
-/// state, for example if you want one form field to depend on another.
-///
-/// A [Form] ancestor is not required. The [Form] simply makes it easier to
-/// save, reset, or validate multiple fields at once. To use without a [Form],
-/// pass a [GlobalKey] to the constructor and use [GlobalKey.currentState] to
-/// save or reset the form field.
-///
-/// See also:
-///
-///  * [Form], which is the widget that aggregates the form fields.
-///  * [TextField], which is a commonly used form field for entering text.
-/// </Summary>
-public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public FormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Form.FormFieldBuilder<T> builder = default(FlutterSDK.Widgets.Form.FormFieldBuilder<T>), FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>), FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>), T initialValue = default(T), bool autovalidate = false, bool enabled = true)
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Form.FormFieldSetter<T> OnSaved { get; set; }
-public virtual FlutterSDK.Widgets.Form.FormFieldValidator<T> Validator { get; set; }
-public virtual FlutterSDK.Widgets.Form.FormFieldBuilder<T> Builder { get; set; }
-public virtual T InitialValue { get; set; }
-public virtual bool Autovalidate { get; set; }
-public virtual bool Enabled { get; set; }
-#endregion
-
-#region methods
-
-public new FormFieldState<T> CreateState() => new FormFieldState<T>();
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The current state of a [FormField]. Passed to the [FormFieldBuilder] method
-/// for use in constructing the form field's widget.
-/// </Summary>
-public class FormFieldState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.FormField<T>>
-{
-    #region constructors
-    public FormFieldState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual T _Value { get; set; }
-    internal virtual string _ErrorText { get; set; }
-    public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual string ErrorText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Calls the [FormField]'s onSaved method with the current value.
-    /// </Summary>
-    public virtual void Save()
-    {
-        if (Widget.OnSaved != null) Widget.OnSaved(Value);
-    }
-
-
-
-
-    /// <Summary>
-    /// Resets the field to its initial value.
-    /// </Summary>
-    public virtual void Reset()
-    {
-        SetState(() =>
+        /// <Summary>
+        /// Returns the closest [FormState] which encloses the given context.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// FormState form = Form.of(context);
+        /// form.save();
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Form.FormState Of(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            _Value = Widget.InitialValue;
-            _ErrorText = null;
+            _FormScope scope = context.DependOnInheritedWidgetOfExactType();
+            return scope?._FormState;
         }
-        );
+
+
+
+
+        public new FlutterSDK.Widgets.Form.FormState CreateState() => new FormState();
+
+
+        #endregion
     }
 
 
+    /// <Summary>
+    /// State associated with a [Form] widget.
+    ///
+    /// A [FormState] object can be used to [save], [reset], and [validate] every
+    /// [FormField] that is a descendant of the associated [Form].
+    ///
+    /// Typically obtained via [Form.of].
+    /// </Summary>
+    public class FormState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.Form>
+    {
+        #region constructors
+        public FormState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual int _Generation { get; set; }
+        internal virtual HashSet<FlutterSDK.Widgets.Form.FormFieldState<object>> _Fields { get; set; }
+        #endregion
+
+        #region methods
+
+        private void _FieldDidChange()
+        {
+            if (Widget.OnChanged != null) Widget.OnChanged();
+            _ForceRebuild();
+        }
+
+
+
+
+        private void _ForceRebuild()
+        {
+            SetState(() =>
+            {
+                ++_Generation;
+            }
+            );
+        }
+
+
+
+
+        private void _Register(FlutterSDK.Widgets.Form.FormFieldState<object> field)
+        {
+            _Fields.Add(field);
+        }
+
+
+
+
+        private void _Unregister(FlutterSDK.Widgets.Form.FormFieldState<object> field)
+        {
+            _Fields.Remove(field);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (Widget.Autovalidate) _Validate();
+            return new WillPopScope(onWillPop: Widget.OnWillPop, child: new _FormScope(formState: this, generation: _Generation, child: Widget.Child));
+        }
+
+
+
+
+        /// <Summary>
+        /// Saves every [FormField] that is a descendant of this [Form].
+        /// </Summary>
+        public virtual void Save()
+        {
+            foreach (FormFieldState<object> field in _Fields) field.Save();
+        }
+
+
+
+
+        /// <Summary>
+        /// Resets every [FormField] that is a descendant of this [Form] back to its
+        /// [FormField.initialValue].
+        ///
+        /// The [Form.onChanged] callback will be called.
+        ///
+        /// If the form's [Form.autovalidate] property is true, the fields will all be
+        /// revalidated after being reset.
+        /// </Summary>
+        public virtual void Reset()
+        {
+            foreach (FormFieldState<object> field in _Fields) field.Reset();
+            _FieldDidChange();
+        }
+
+
+
+
+        /// <Summary>
+        /// Validates every [FormField] that is a descendant of this [Form], and
+        /// returns true if there are no errors.
+        ///
+        /// The form will rebuild to report the results.
+        /// </Summary>
+        public virtual bool Validate()
+        {
+            _ForceRebuild();
+            return _Validate();
+        }
+
+
+
+
+        private bool _Validate()
+        {
+            bool hasError = false;
+            foreach (FormFieldState<object> field in _Fields) hasError = !field.Validate() || hasError;
+            return !hasError;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _FormScope : FlutterSDK.Widgets.Framework.InheritedWidget
+    {
+        #region constructors
+        public _FormScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Form.FormState formState = default(FlutterSDK.Widgets.Form.FormState), int generation = default(int))
+        : base(key: key, child: child)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Form.FormState _FormState { get; set; }
+        internal virtual int _Generation { get; set; }
+        public virtual FlutterSDK.Widgets.Form.Form Form { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Form._FormScope old) => _Generation != old._Generation;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => _Generation != old._Generation;
+
+
+        #endregion
+    }
 
 
     /// <Summary>
-    /// Calls [FormField.validator] to set the [errorText]. Returns true if there
-    /// were no errors.
+    /// A single form field.
+    ///
+    /// This widget maintains the current state of the form field, so that updates
+    /// and validation errors are visually reflected in the UI.
+    ///
+    /// When used inside a [Form], you can use methods on [FormState] to query or
+    /// manipulate the form data as a whole. For example, calling [FormState.save]
+    /// will invoke each [FormField]'s [onSaved] callback in turn.
+    ///
+    /// Use a [GlobalKey] with [FormField] if you want to retrieve its current
+    /// state, for example if you want one form field to depend on another.
+    ///
+    /// A [Form] ancestor is not required. The [Form] simply makes it easier to
+    /// save, reset, or validate multiple fields at once. To use without a [Form],
+    /// pass a [GlobalKey] to the constructor and use [GlobalKey.currentState] to
+    /// save or reset the form field.
     ///
     /// See also:
     ///
-    ///  * [isValid], which passively gets the validity without setting
-    ///    [errorText] or [hasError].
+    ///  * [Form], which is the widget that aggregates the form fields.
+    ///  * [TextField], which is a commonly used form field for entering text.
     /// </Summary>
-    public virtual bool Validate()
+    public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        SetState(() =>
+        #region constructors
+        public FormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Form.FormFieldBuilder<T> builder = default(FlutterSDK.Widgets.Form.FormFieldBuilder<T>), FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>), FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>), T initialValue = default(T), bool autovalidate = false, bool enabled = true)
+        : base(key: key)
         {
-            _Validate();
+            this.Builder = builder;
+            this.OnSaved = onSaved;
+            this.Validator = validator;
+            this.InitialValue = initialValue;
+            this.Autovalidate = autovalidate;
+            this.Enabled = enabled;
         }
-        );
-        return !HasError;
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Form.FormFieldSetter<T> OnSaved { get; set; }
+        public virtual FlutterSDK.Widgets.Form.FormFieldValidator<T> Validator { get; set; }
+        public virtual FlutterSDK.Widgets.Form.FormFieldBuilder<T> Builder { get; set; }
+        public virtual T InitialValue { get; set; }
+        public virtual bool Autovalidate { get; set; }
+        public virtual bool Enabled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FormFieldState<T> CreateState() => new FormFieldState<T>();
+
+
+        #endregion
     }
-
-
-
-
-    private void _Validate()
-    {
-        if (Widget.Validator != null) _ErrorText = Widget.Validator(_Value);
-    }
-
-
 
 
     /// <Summary>
-    /// Updates this field's state to the new value. Useful for responding to
-    /// child widget changes, e.g. [Slider]'s [Slider.onChanged] argument.
-    ///
-    /// Triggers the [Form.onChanged] callback and, if the [Form.autovalidate]
-    /// field is set, revalidates all the fields of the form.
+    /// The current state of a [FormField]. Passed to the [FormFieldBuilder] method
+    /// for use in constructing the form field's widget.
     /// </Summary>
-    public virtual void DidChange(T value)
+    public class FormFieldState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.FormField<T>>
     {
-        SetState(() =>
+        #region constructors
+        public FormFieldState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual T _Value { get; set; }
+        internal virtual string _ErrorText { get; set; }
+        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual string ErrorText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Calls the [FormField]'s onSaved method with the current value.
+        /// </Summary>
+        public virtual void Save()
+        {
+            if (Widget.OnSaved != null) Widget.OnSaved(Value);
+        }
+
+
+
+
+        /// <Summary>
+        /// Resets the field to its initial value.
+        /// </Summary>
+        public virtual void Reset()
+        {
+            SetState(() =>
+            {
+                _Value = Widget.InitialValue;
+                _ErrorText = null;
+            }
+            );
+        }
+
+
+
+
+        /// <Summary>
+        /// Calls [FormField.validator] to set the [errorText]. Returns true if there
+        /// were no errors.
+        ///
+        /// See also:
+        ///
+        ///  * [isValid], which passively gets the validity without setting
+        ///    [errorText] or [hasError].
+        /// </Summary>
+        public virtual bool Validate()
+        {
+            SetState(() =>
+            {
+                _Validate();
+            }
+            );
+            return !HasError;
+        }
+
+
+
+
+        private void _Validate()
+        {
+            if (Widget.Validator != null) _ErrorText = Widget.Validator(_Value);
+        }
+
+
+
+
+        /// <Summary>
+        /// Updates this field's state to the new value. Useful for responding to
+        /// child widget changes, e.g. [Slider]'s [Slider.onChanged] argument.
+        ///
+        /// Triggers the [Form.onChanged] callback and, if the [Form.autovalidate]
+        /// field is set, revalidates all the fields of the form.
+        /// </Summary>
+        public virtual void DidChange(T value)
+        {
+            SetState(() =>
+            {
+                _Value = value;
+            }
+            );
+            FormDefaultClass.Form.Of(Context)?._FieldDidChange();
+        }
+
+
+
+
+        /// <Summary>
+        /// Sets the value associated with this form field.
+        ///
+        /// This method should be only be called by subclasses that need to update
+        /// the form field value due to state changes identified during the widget
+        /// build phase, when calling `setState` is prohibited. In all other cases,
+        /// the value should be set by a call to [didChange], which ensures that
+        /// `setState` is called.
+        /// </Summary>
+        public virtual void SetValue(T value)
         {
             _Value = value;
         }
-        );
-        FormDefaultClass.Form.Of(Context)?._FieldDidChange();
+
+
+
+
+        public new void InitState()
+        {
+            base.InitState();
+            _Value = Widget.InitialValue;
+        }
+
+
+
+
+        public new void Deactivate()
+        {
+            FormDefaultClass.Form.Of(Context)?._Unregister(this);
+            base.Deactivate();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (Widget.Autovalidate && Widget.Enabled) _Validate();
+            FormDefaultClass.Form.Of(context)?._Register(this);
+            return Widget.Builder(this);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    /// <Summary>
-    /// Sets the value associated with this form field.
-    ///
-    /// This method should be only be called by subclasses that need to update
-    /// the form field value due to state changes identified during the widget
-    /// build phase, when calling `setState` is prohibited. In all other cases,
-    /// the value should be set by a call to [didChange], which ensures that
-    /// `setState` is called.
-    /// </Summary>
-    public virtual void SetValue(T value)
-    {
-        _Value = value;
-    }
-
-
-
-
-    public new void InitState()
-    {
-        base.InitState();
-        _Value = Widget.InitialValue;
-    }
-
-
-
-
-    public new void Deactivate()
-    {
-        FormDefaultClass.Form.Of(Context)?._Unregister(this);
-        base.Deactivate();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (Widget.Autovalidate && Widget.Enabled) _Validate();
-        FormDefaultClass.Form.Of(context)?._Register(this);
-        return Widget.Builder(this);
-    }
-
-
-
-    #endregion
-}
 
 }

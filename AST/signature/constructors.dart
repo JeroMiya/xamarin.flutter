@@ -65,7 +65,7 @@ class Constructors {
 
         // add logic and closing curly brace
         if (Config.includeConstructorImplementations)
-          body = Implementation.MethodBody(node.body).substring(2);
+          body += Implementation.MethodBody(node.body).substring(2);
         else
           body += 'throw new NotImplementedException(); }';
 

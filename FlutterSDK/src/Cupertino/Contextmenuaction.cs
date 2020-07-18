@@ -309,90 +309,95 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
         #region constructors
         public CupertinoContextMenuAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool isDefaultAction = false, bool isDestructiveAction = false, VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Icondata.IconData trailingIcon = default(FlutterSDK.Widgets.Icondata.IconData))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual bool IsDefaultAction { get; set; }
-    public virtual bool IsDestructiveAction { get; set; }
-    public virtual VoidCallback OnPressed { get; set; }
-    public virtual FlutterSDK.Widgets.Icondata.IconData TrailingIcon { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Cupertino.Contextmenuaction._CupertinoContextMenuActionState CreateState() => new _CupertinoContextMenuActionState();
-
-
-    #endregion
-}
-
-
-public class _CupertinoContextMenuActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenuaction.CupertinoContextMenuAction>
-{
-    #region constructors
-    public _CupertinoContextMenuActionState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterBinding.UI.Color _KBackgroundColor { get; set; }
-    internal virtual FlutterBinding.UI.Color _KBackgroundColorPressed { get; set; }
-    internal virtual double _KButtonHeight { get; set; }
-    internal virtual FlutterSDK.Painting.Textstyle.TextStyle _KActionSheetActionStyle { get; set; }
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GlobalKey { get; set; }
-    internal virtual bool _IsPressed { get; set; }
-    internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
-    {
-        SetState(() =>
         {
-            _IsPressed = true;
+            this.Child = child;
+            this.IsDefaultAction = isDefaultAction;
+            this.IsDestructiveAction = isDestructiveAction;
+            this.OnPressed = onPressed;
+            this.TrailingIcon = trailingIcon;
         }
-        );
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual bool IsDefaultAction { get; set; }
+        public virtual bool IsDestructiveAction { get; set; }
+        public virtual VoidCallback OnPressed { get; set; }
+        public virtual FlutterSDK.Widgets.Icondata.IconData TrailingIcon { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Contextmenuaction._CupertinoContextMenuActionState CreateState() => new _CupertinoContextMenuActionState();
+
+
+        #endregion
     }
 
 
-
-
-    public virtual void OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
+    public class _CupertinoContextMenuActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenuaction.CupertinoContextMenuAction>
     {
-        SetState(() =>
+        #region constructors
+        public _CupertinoContextMenuActionState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Color _KBackgroundColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _KBackgroundColorPressed { get; set; }
+        internal virtual double _KButtonHeight { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _KActionSheetActionStyle { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GlobalKey { get; set; }
+        internal virtual bool _IsPressed { get; set; }
+        internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
         {
-            _IsPressed = false;
+            SetState(() =>
+            {
+                _IsPressed = true;
+            }
+            );
         }
-        );
-    }
 
 
 
 
-    public virtual void OnTapCancel()
-    {
-        SetState(() =>
+        public virtual void OnTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
         {
-            _IsPressed = false;
+            SetState(() =>
+            {
+                _IsPressed = false;
+            }
+            );
         }
-        );
+
+
+
+
+        public virtual void OnTapCancel()
+        {
+            SetState(() =>
+            {
+                _IsPressed = false;
+            }
+            );
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new GestureDetector(key: _GlobalKey, onTapDown: OnTapDown, onTapUp: OnTapUp, onTapCancel: OnTapCancel, onTap: Widget.OnPressed, behavior: HitTestBehavior.Opaque, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: _KButtonHeight), child: new Semantics(button: true, child: new Container(decoration: new BoxDecoration(color: _IsPressed ? _KBackgroundColorPressed : _KBackgroundColor, border: new Border(bottom: new BorderSide(width: 1.0, color: _KBackgroundColorPressed))), padding: EdgeInsets.Symmetric(vertical: 16.0, horizontal: 10.0), child: new DefaultTextStyle(style: _TextStyle, child: new Row(mainAxisAlignment: MainAxisAlignment.SpaceBetween, children: new List<Widget>() { new Flexible(child: Widget.Child), }))))));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new GestureDetector(key: _GlobalKey, onTapDown: OnTapDown, onTapUp: OnTapUp, onTapCancel: OnTapCancel, onTap: Widget.OnPressed, behavior: HitTestBehavior.Opaque, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: _KButtonHeight), child: new Semantics(button: true, child: new Container(decoration: new BoxDecoration(color: _IsPressed ? _KBackgroundColorPressed : _KBackgroundColor, border: new Border(bottom: new BorderSide(width: 1.0, color: _KBackgroundColorPressed))), padding: EdgeInsets.Symmetric(vertical: 16.0, horizontal: 10.0), child: new DefaultTextStyle(style: _TextStyle, child: new Row(mainAxisAlignment: MainAxisAlignment.SpaceBetween, children: new List<Widget>() { new Flexible(child: Widget.Child), }))))));
-    }
-
-
-
-    #endregion
-}
 
 }

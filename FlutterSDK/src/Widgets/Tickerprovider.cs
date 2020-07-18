@@ -592,118 +592,122 @@ namespace FlutterSDK.Widgets.Tickerprovider
         #region constructors
         public TickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Enabled = enabled;
+            this.Child = child;
+        }
+        #endregion
 
-    #region fields
-    public virtual bool Enabled { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    #endregion
+        #region fields
+        public virtual bool Enabled { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Whether tickers in the given subtree should be enabled or disabled.
-    ///
-    /// This is used automatically by [TickerProviderStateMixin] and
-    /// [SingleTickerProviderStateMixin] to decide if their tickers should be
-    /// enabled or disabled.
-    ///
-    /// In the absence of a [TickerMode] widget, this function defaults to true.
-    ///
-    /// Typical usage is as follows:
-    ///
-    /// ```dart
-    /// bool tickingEnabled = TickerMode.of(context);
-    /// ```
-    /// </Summary>
-    public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        _EffectiveTickerMode widget = context.DependOnInheritedWidgetOfExactType();
-        return widget?.Enabled ?? true;
+        /// <Summary>
+        /// Whether tickers in the given subtree should be enabled or disabled.
+        ///
+        /// This is used automatically by [TickerProviderStateMixin] and
+        /// [SingleTickerProviderStateMixin] to decide if their tickers should be
+        /// enabled or disabled.
+        ///
+        /// In the absence of a [TickerMode] widget, this function defaults to true.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// bool tickingEnabled = TickerMode.of(context);
+        /// ```
+        /// </Summary>
+        public virtual bool Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            _EffectiveTickerMode widget = context.DependOnInheritedWidgetOfExactType();
+            return widget?.Enabled ?? true;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _EffectiveTickerMode(enabled: Enabled && TickerproviderDefaultClass.TickerMode.Of(context), child: Child);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagProperty("requested mode", value: Enabled, ifTrue: "enabled", ifFalse: "disabled", showName: true));
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        return new _EffectiveTickerMode(enabled: Enabled && TickerproviderDefaultClass.TickerMode.Of(context), child: Child);
+        #region constructors
+        public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Enabled = enabled;
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Enabled { get; set; }
+        #endregion
+
+        #region methods
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget) => Enabled != oldWidget.Enabled;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Enabled != oldWidget.Enabled;
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagProperty("effective mode", value: Enabled, ifTrue: "enabled", ifFalse: "disabled", showName: true));
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
     {
-        base.DebugFillProperties(properties);
-        properties.Add(new FlagProperty("requested mode", value: Enabled, ifTrue: "enabled", ifFalse: "disabled", showName: true));
+        #region constructors
+        public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick, FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator, string debugLabel = default(string))
+        : base(onTick, debugLabel: debugLabel)
+        {
+            this._Creator = _creator;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Dispose()
+        {
+            _Creator._RemoveTicker(this);
+            base.Dispose();
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
-{
-    #region constructors
-    public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual bool Enabled { get; set; }
-#endregion
-
-#region methods
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget) => Enabled != oldWidget.Enabled;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Enabled != oldWidget.Enabled;
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new FlagProperty("effective mode", value: Enabled, ifTrue: "enabled", ifFalse: "disabled", showName: true));
-}
-
-
-
-#endregion
-}
-
-
-public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
-{
-    #region constructors
-    public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick, FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator, string debugLabel = default(string))
-    : base(onTick, debugLabel: debugLabel)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator { get; set; }
-#endregion
-
-#region methods
-
-public new void Dispose()
-{
-    _Creator._RemoveTicker(this);
-    base.Dispose();
-}
-
-
-
-#endregion
-}
 
 }

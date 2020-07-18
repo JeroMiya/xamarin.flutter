@@ -593,31 +593,32 @@ public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.Binar
 {
     #region constructors
     internal _DefaultBinaryMessenger()
-
-}
-#endregion
-
-#region fields
-internal virtual Dictionary<string, object> _Handlers { get; set; }
-internal virtual Dictionary<string, object> _MockHandlers { get; set; }
-#endregion
-
-#region methods
-
-private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
-{
-    Completer<ByteData> completer = new Completer<ByteData>();
-    Ui.Dart:uiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
     {
-    try
-    {
-        completer.Complete(reply);
+
     }
-    catch (exception,stack){
-    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription("during a platform message response callback")));
-}
+    #endregion
 
-}
+    #region fields
+    internal virtual Dictionary<string, object> _Handlers { get; set; }
+    internal virtual Dictionary<string, object> _MockHandlers { get; set; }
+    #endregion
+
+    #region methods
+
+    private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
+    {
+        Completer<ByteData> completer = new Completer<ByteData>();
+        Ui.Dart:uiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
+        {
+        try
+        {
+            completer.Complete(reply);
+        }
+        catch (exception,stack){
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription("during a platform message response callback")));
+        }
+
+    }
 );
 return completer.Future;
 }

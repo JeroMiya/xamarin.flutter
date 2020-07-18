@@ -442,301 +442,307 @@ namespace FlutterSDK.Rendering.Mousetracking
     {
         #region constructors
         public MouseTrackerAnnotation(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener))
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
-    public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
-    public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new FlagsSummary<Function>("callbacks", new Dictionary<string, Function> { { "enter", OnEnter }{ "hover", OnHover }{ "exit", OnExit } }, ifEmpty: "<none>"));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _MouseState
-{
-    #region constructors
-    public _MouseState(FlutterSDK.Gestures.Events.PointerEvent initialEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _Annotations { get; set; }
-internal virtual FlutterSDK.Gestures.Events.PointerEvent _LatestEvent { get; set; }
-public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> Annotations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Gestures.Events.PointerEvent LatestEvent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int Device { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> ReplaceAnnotations(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> value)
-{
-    LinkedHashSet<MouseTrackerAnnotation> previous = _Annotations;
-    _Annotations = value;
-    return previous;
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Maintains the relationship between mouse devices and
-/// [MouseTrackerAnnotation]s, and notifies interested callbacks of the changes
-/// thereof.
-///
-/// This class is a [ChangeNotifier] that notifies its listeners if the value of
-/// [mouseIsConnected] changes.
-///
-/// An instance of [MouseTracker] is owned by the global singleton of
-/// [RendererBinding].
-///
-/// ### Details
-///
-/// The state of [MouseTracker] consists of two parts:
-///
-///  * The mouse devices that are connected.
-///  * In which annotations each device is contained.
-///
-/// The states remain stable most of the time, and are only changed at the
-/// following moments:
-///
-///  * An eligible [PointerEvent] has been observed, e.g. a device is added,
-///    removed, or moved. In this case, the state related to this device will
-///    be immediately updated.
-///  * A frame has been painted. In this case, a callback will be scheduled for
-///    the upcoming post-frame phase to update all devices.
-/// </Summary>
-public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
-{
-    #region constructors
-    public MouseTracker(FlutterSDK.Gestures.Pointerrouter.PointerRouter _router, FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder annotationFinder)
-    : base()
-
-_Router.AddGlobalRoute(_HandleEvent);
-}
-
-
-#endregion
-
-#region fields
-public virtual FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder AnnotationFinder { get; set; }
-internal virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter _Router { get; set; }
-internal virtual Dictionary<int, FlutterSDK.Rendering.Mousetracking._MouseState> _MouseStates { get; set; }
-internal virtual bool _DuringDeviceUpdate { get; set; }
-internal virtual bool _HasScheduledPostFrameCheck { get; set; }
-internal virtual bool _DuringBuildPhase { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool MouseIsConnected { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void Dispose()
-{
-    base.Dispose();
-    _Router.RemoveGlobalRoute(_HandleEvent);
-}
-
-
-
-
-private bool _ShouldMarkStateDirty(FlutterSDK.Rendering.Mousetracking._MouseState state, FlutterSDK.Gestures.Events.PointerEvent value)
-{
-    if (state == null) return true;
-
-    PointerEvent lastEvent = state.LatestEvent;
-
-
-    if (value is PointerSignalEvent) return false;
-    return lastEvent is PointerAddedEvent || value is PointerRemovedEvent || lastEvent.Position != value.Position;
-}
-
-
-
-
-private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-    if (@event.Kind != PointerDeviceKind.Mouse) return;
-    if (@event is PointerSignalEvent) return;
-    int device = @event.Device;
-    _MouseState existingState = _MouseStates[device];
-    if (!_ShouldMarkStateDirty(existingState, @event)) return;
-    PointerEvent previousEvent = existingState?.LatestEvent;
-    _UpdateDevices(targetEvent: @event, handleUpdatedDevice: (_MouseState mouseState, LinkedHashSet<MouseTrackerAnnotation> previousAnnotations) =>
-    {
-
-        _DispatchDeviceCallbacks(lastAnnotations: previousAnnotations, nextAnnotations: mouseState.Annotations, previousEvent: previousEvent, unhandledEvent: @event);
-    }
-    );
-}
-
-
-
-
-private LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _FindAnnotations(FlutterSDK.Rendering.Mousetracking._MouseState state)
-{
-    Offset globalPosition = state.LatestEvent.Position;
-    int device = state.Device;
-    return (_MouseStates.ContainsKey(device)) ? LinkedHashSet<MouseTrackerAnnotation>.From(AnnotationFinder(globalPosition)) : new Dictionary<MouseTrackerAnnotation> { } as LinkedHashSet<MouseTrackerAnnotation>;
-}
-
-
-
-
-private void _UpdateAllDevices()
-{
-    _UpdateDevices(handleUpdatedDevice: (_MouseState mouseState, LinkedHashSet<MouseTrackerAnnotation> previousAnnotations) =>
-    {
-        _DispatchDeviceCallbacks(lastAnnotations: previousAnnotations, nextAnnotations: mouseState.Annotations, previousEvent: mouseState.LatestEvent, unhandledEvent: null);
-    }
-    );
-}
-
-
-
-
-private void _UpdateDevices(FlutterSDK.Gestures.Events.PointerEvent targetEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler handleUpdatedDevice = default(FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler))
-{
-
-
-
-    bool mouseWasConnected = MouseIsConnected;
-    _MouseState targetState = default(_MouseState);
-    if (targetEvent != null)
-    {
-        targetState = _MouseStates[targetEvent.Device];
-        if (targetState == null)
         {
-            targetState = new _MouseState(initialEvent: targetEvent);
-            _MouseStates[targetState.Device] = targetState;
+            this.OnEnter = onEnter;
+            this.OnHover = onHover;
+            this.OnExit = onExit;
         }
-        else
-        {
+        #endregion
 
-            targetState.LatestEvent = targetEvent;
-            if (((PointerRemovedEvent)targetEvent) is PointerRemovedEvent) _MouseStates.Remove(((PointerRemovedEvent)targetEvent).Device);
+        #region fields
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
+        public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagsSummary<Function>("callbacks", new Dictionary<string, Function> { { "enter", OnEnter }{ "hover", OnHover }{ "exit", OnExit } }, ifEmpty: "<none>"));
         }
 
+
+
+        #endregion
     }
 
 
-
-    Iterable<_MouseState> dirtyStates = targetEvent == null ? _MouseStates.Values : new List<_MouseState>() { targetState };
-    foreach (_MouseState dirtyState in dirtyStates)
+    public class _MouseState
     {
-        LinkedHashSet<MouseTrackerAnnotation> nextAnnotations = _FindAnnotations(dirtyState);
-        LinkedHashSet<MouseTrackerAnnotation> lastAnnotations = dirtyState.ReplaceAnnotations(nextAnnotations);
-        handleUpdatedDevice(dirtyState, lastAnnotations);
-    }
-
-
-    if (mouseWasConnected != MouseIsConnected) NotifyListeners();
-}
-
-
-
-
-private void _DispatchDeviceCallbacks(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> lastAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> nextAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), FlutterSDK.Gestures.Events.PointerEvent previousEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Events.PointerEvent unhandledEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
-{
-
-
-    PointerEvent latestEvent = unhandledEvent ?? previousEvent;
-
-    Iterable<MouseTrackerAnnotation> exitingAnnotations = lastAnnotations.Where((MouseTrackerAnnotation value) => =>!nextAnnotations.Contains(value));
-    foreach (MouseTrackerAnnotation annotation in exitingAnnotations)
-    {
-        if (annotation.OnExit != null)
+        #region constructors
+        public _MouseState(FlutterSDK.Gestures.Events.PointerEvent initialEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
+        : base()
         {
-            annotation.OnExit(PointerExitEvent.FromMouseEvent(latestEvent));
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _Annotations { get; set; }
+        internal virtual FlutterSDK.Gestures.Events.PointerEvent _LatestEvent { get; set; }
+        public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> Annotations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Gestures.Events.PointerEvent LatestEvent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Device { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> ReplaceAnnotations(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> value)
+        {
+            LinkedHashSet<MouseTrackerAnnotation> previous = _Annotations;
+            _Annotations = value;
+            return previous;
         }
 
+
+
+
+        #endregion
     }
 
-    Iterable<MouseTrackerAnnotation> enteringAnnotations = nextAnnotations.Difference(lastAnnotations).ToList().Reversed;
-    foreach (MouseTrackerAnnotation annotation in enteringAnnotations)
+
+    /// <Summary>
+    /// Maintains the relationship between mouse devices and
+    /// [MouseTrackerAnnotation]s, and notifies interested callbacks of the changes
+    /// thereof.
+    ///
+    /// This class is a [ChangeNotifier] that notifies its listeners if the value of
+    /// [mouseIsConnected] changes.
+    ///
+    /// An instance of [MouseTracker] is owned by the global singleton of
+    /// [RendererBinding].
+    ///
+    /// ### Details
+    ///
+    /// The state of [MouseTracker] consists of two parts:
+    ///
+    ///  * The mouse devices that are connected.
+    ///  * In which annotations each device is contained.
+    ///
+    /// The states remain stable most of the time, and are only changed at the
+    /// following moments:
+    ///
+    ///  * An eligible [PointerEvent] has been observed, e.g. a device is added,
+    ///    removed, or moved. In this case, the state related to this device will
+    ///    be immediately updated.
+    ///  * A frame has been painted. In this case, a callback will be scheduled for
+    ///    the upcoming post-frame phase to update all devices.
+    /// </Summary>
+    public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        if (annotation.OnEnter != null)
+        #region constructors
+        public MouseTracker(FlutterSDK.Gestures.Pointerrouter.PointerRouter _router, FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder annotationFinder)
+        : base()
         {
-            annotation.OnEnter(PointerEnterEvent.FromMouseEvent(latestEvent));
+            this._Router = _router;
+            this.AnnotationFinder = annotationFinder;
+            _Router.AddGlobalRoute(_HandleEvent);
         }
 
-    }
 
-    if (unhandledEvent is PointerHoverEvent)
-    {
-        Offset lastHoverPosition = ((PointerHoverEvent)previousEvent) is PointerHoverEvent ? ((PointerHoverEvent)previousEvent).Position : null;
-        bool pointerHasMoved = lastHoverPosition == null || lastHoverPosition != ((PointerHoverEvent)unhandledEvent).Position;
-        Iterable<MouseTrackerAnnotation> hoveringAnnotations = pointerHasMoved ? nextAnnotations.ToList().Reversed : enteringAnnotations;
-        foreach (MouseTrackerAnnotation annotation in hoveringAnnotations)
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder AnnotationFinder { get; set; }
+        internal virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter _Router { get; set; }
+        internal virtual Dictionary<int, FlutterSDK.Rendering.Mousetracking._MouseState> _MouseStates { get; set; }
+        internal virtual bool _DuringDeviceUpdate { get; set; }
+        internal virtual bool _HasScheduledPostFrameCheck { get; set; }
+        internal virtual bool _DuringBuildPhase { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MouseIsConnected { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void Dispose()
         {
-            if (annotation.OnHover != null)
+            base.Dispose();
+            _Router.RemoveGlobalRoute(_HandleEvent);
+        }
+
+
+
+
+        private bool _ShouldMarkStateDirty(FlutterSDK.Rendering.Mousetracking._MouseState state, FlutterSDK.Gestures.Events.PointerEvent value)
+        {
+            if (state == null) return true;
+
+            PointerEvent lastEvent = state.LatestEvent;
+
+
+            if (value is PointerSignalEvent) return false;
+            return lastEvent is PointerAddedEvent || value is PointerRemovedEvent || lastEvent.Position != value.Position;
+        }
+
+
+
+
+        private void _HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+            if (@event.Kind != PointerDeviceKind.Mouse) return;
+            if (@event is PointerSignalEvent) return;
+            int device = @event.Device;
+            _MouseState existingState = _MouseStates[device];
+            if (!_ShouldMarkStateDirty(existingState, @event)) return;
+            PointerEvent previousEvent = existingState?.LatestEvent;
+            _UpdateDevices(targetEvent: @event, handleUpdatedDevice: (_MouseState mouseState, LinkedHashSet<MouseTrackerAnnotation> previousAnnotations) =>
             {
-                annotation.OnHover(((PointerHoverEvent)unhandledEvent));
+
+                _DispatchDeviceCallbacks(lastAnnotations: previousAnnotations, nextAnnotations: mouseState.Annotations, previousEvent: previousEvent, unhandledEvent: @event);
+            }
+            );
+        }
+
+
+
+
+        private LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _FindAnnotations(FlutterSDK.Rendering.Mousetracking._MouseState state)
+        {
+            Offset globalPosition = state.LatestEvent.Position;
+            int device = state.Device;
+            return (_MouseStates.ContainsKey(device)) ? LinkedHashSet<MouseTrackerAnnotation>.From(AnnotationFinder(globalPosition)) : new Dictionary<MouseTrackerAnnotation> { } as LinkedHashSet<MouseTrackerAnnotation>;
+        }
+
+
+
+
+        private void _UpdateAllDevices()
+        {
+            _UpdateDevices(handleUpdatedDevice: (_MouseState mouseState, LinkedHashSet<MouseTrackerAnnotation> previousAnnotations) =>
+            {
+                _DispatchDeviceCallbacks(lastAnnotations: previousAnnotations, nextAnnotations: mouseState.Annotations, previousEvent: mouseState.LatestEvent, unhandledEvent: null);
+            }
+            );
+        }
+
+
+
+
+        private void _UpdateDevices(FlutterSDK.Gestures.Events.PointerEvent targetEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler handleUpdatedDevice = default(FlutterSDK.Rendering.Mousetracking._UpdatedDeviceHandler))
+        {
+
+
+
+            bool mouseWasConnected = MouseIsConnected;
+            _MouseState targetState = default(_MouseState);
+            if (targetEvent != null)
+            {
+                targetState = _MouseStates[targetEvent.Device];
+                if (targetState == null)
+                {
+                    targetState = new _MouseState(initialEvent: targetEvent);
+                    _MouseStates[targetState.Device] = targetState;
+                }
+                else
+                {
+
+                    targetState.LatestEvent = targetEvent;
+                    if (((PointerRemovedEvent)targetEvent) is PointerRemovedEvent) _MouseStates.Remove(((PointerRemovedEvent)targetEvent).Device);
+                }
+
+            }
+
+
+
+            Iterable<_MouseState> dirtyStates = targetEvent == null ? _MouseStates.Values : new List<_MouseState>() { targetState };
+            foreach (_MouseState dirtyState in dirtyStates)
+            {
+                LinkedHashSet<MouseTrackerAnnotation> nextAnnotations = _FindAnnotations(dirtyState);
+                LinkedHashSet<MouseTrackerAnnotation> lastAnnotations = dirtyState.ReplaceAnnotations(nextAnnotations);
+                handleUpdatedDevice(dirtyState, lastAnnotations);
+            }
+
+
+            if (mouseWasConnected != MouseIsConnected) NotifyListeners();
+        }
+
+
+
+
+        private void _DispatchDeviceCallbacks(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> lastAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> nextAnnotations = default(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation>), FlutterSDK.Gestures.Events.PointerEvent previousEvent = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Gestures.Events.PointerEvent unhandledEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
+        {
+
+
+            PointerEvent latestEvent = unhandledEvent ?? previousEvent;
+
+            Iterable<MouseTrackerAnnotation> exitingAnnotations = lastAnnotations.Where((MouseTrackerAnnotation value) => =>!nextAnnotations.Contains(value));
+            foreach (MouseTrackerAnnotation annotation in exitingAnnotations)
+            {
+                if (annotation.OnExit != null)
+                {
+                    annotation.OnExit(PointerExitEvent.FromMouseEvent(latestEvent));
+                }
+
+            }
+
+            Iterable<MouseTrackerAnnotation> enteringAnnotations = nextAnnotations.Difference(lastAnnotations).ToList().Reversed;
+            foreach (MouseTrackerAnnotation annotation in enteringAnnotations)
+            {
+                if (annotation.OnEnter != null)
+                {
+                    annotation.OnEnter(PointerEnterEvent.FromMouseEvent(latestEvent));
+                }
+
+            }
+
+            if (unhandledEvent is PointerHoverEvent)
+            {
+                Offset lastHoverPosition = ((PointerHoverEvent)previousEvent) is PointerHoverEvent ? ((PointerHoverEvent)previousEvent).Position : null;
+                bool pointerHasMoved = lastHoverPosition == null || lastHoverPosition != ((PointerHoverEvent)unhandledEvent).Position;
+                Iterable<MouseTrackerAnnotation> hoveringAnnotations = pointerHasMoved ? nextAnnotations.ToList().Reversed : enteringAnnotations;
+                foreach (MouseTrackerAnnotation annotation in hoveringAnnotations)
+                {
+                    if (annotation.OnHover != null)
+                    {
+                        annotation.OnHover(((PointerHoverEvent)unhandledEvent));
+                    }
+
+                }
+
             }
 
         }
 
-    }
-
-}
 
 
 
-
-/// <Summary>
-/// Mark all devices as dirty, and schedule a callback that is executed in the
-/// upcoming post-frame phase to check their updates.
-///
-/// Checking a device means to collect the annotations that the pointer
-/// hovers, and triggers necessary callbacks accordingly.
-///
-/// Although the actual callback belongs to the scheduler's post-frame phase,
-/// this method must be called in persistent callback phase to ensure that
-/// the callback is scheduled after every frame, since every frame can change
-/// the position of annotations. Typically the method is called by
-/// [RendererBinding]'s drawing method.
-/// </Summary>
-public virtual void SchedulePostFrameCheck()
-{
-
-
-    if (!MouseIsConnected) return;
-    if (!_HasScheduledPostFrameCheck)
-    {
-        _HasScheduledPostFrameCheck = true;
-        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
+        /// <Summary>
+        /// Mark all devices as dirty, and schedule a callback that is executed in the
+        /// upcoming post-frame phase to check their updates.
+        ///
+        /// Checking a device means to collect the annotations that the pointer
+        /// hovers, and triggers necessary callbacks accordingly.
+        ///
+        /// Although the actual callback belongs to the scheduler's post-frame phase,
+        /// this method must be called in persistent callback phase to ensure that
+        /// the callback is scheduled after every frame, since every frame can change
+        /// the position of annotations. Typically the method is called by
+        /// [RendererBinding]'s drawing method.
+        /// </Summary>
+        public virtual void SchedulePostFrameCheck()
         {
 
-            _HasScheduledPostFrameCheck = false;
-            _UpdateAllDevices();
+
+            if (!MouseIsConnected) return;
+            if (!_HasScheduledPostFrameCheck)
+            {
+                _HasScheduledPostFrameCheck = true;
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan duration) =>
+                {
+
+                    _HasScheduledPostFrameCheck = false;
+                    _UpdateAllDevices();
+                }
+                );
+            }
+
         }
-        );
+
+
+
+        #endregion
     }
-
-}
-
-
-
-#endregion
-}
 
 }

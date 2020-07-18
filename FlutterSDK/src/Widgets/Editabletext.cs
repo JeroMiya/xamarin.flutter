@@ -507,1368 +507,1457 @@ namespace FlutterSDK.Widgets.Editabletext
         #region constructors
         public TextEditingController(string text = default(string))
         : base(text == null ? TextinputDefaultClass.TextEditingValue.Empty : new TextEditingValue(text: text))
-    
-}
-    public static TextEditingController FromValue(FlutterSDK.Services.Textinput.TextEditingValue value)
-
-}
-#endregion
-
-#region fields
-public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Builds [TextSpan] from current editing value.
-///
-/// By default makes text in composing range appear as underlined.
-/// Descendants can override this method to customize appearance of text.
-/// </Summary>
-public virtual FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), bool withComposing = default(bool))
-{
-    if (!Value.Composing.IsValid || !withComposing)
-    {
-        return new TextSpan(style: style, text: Text);
-    }
-
-    TextStyle composingStyle = style.Merge(new TextStyle(decoration: Dart:uiDefaultClass.TextDecoration.Underline));
-    return new TextSpan(style: style, children: new List<TextSpan>() { new TextSpan(text: Value.Composing.TextBefore(Value.Text)), new TextSpan(style: composingStyle, text: Value.Composing.TextInside(Value.Text)), new TextSpan(text: Value.Composing.TextAfter(Value.Text)) });
-}
-
-
-
-
-/// <Summary>
-/// Set the [value] to empty.
-///
-/// After calling this function, [text] will be the empty string and the
-/// selection will be invalid.
-///
-/// Calling this will notify all the listeners of this [TextEditingController]
-/// that they need to update (it calls [notifyListeners]). For this reason,
-/// this method should only be called between frames, e.g. in response to user
-/// actions, not during the build, layout, or paint phases.
-/// </Summary>
-public virtual void Clear()
-{
-    Value = TextinputDefaultClass.TextEditingValue.Empty;
-}
-
-
-
-
-/// <Summary>
-/// Set the composing region to an empty range.
-///
-/// The composing region is the range of text that is still being composed.
-/// Calling this function indicates that the user is done composing that
-/// region.
-///
-/// Calling this will notify all the listeners of this [TextEditingController]
-/// that they need to update (it calls [notifyListeners]). For this reason,
-/// this method should only be called between frames, e.g. in response to user
-/// actions, not during the build, layout, or paint phases.
-/// </Summary>
-public virtual void ClearComposing()
-{
-    Value = Value.CopyWith(composing: Dart:uiDefaultClass.TextRange.Empty);
-}
-
-
-
-
-/// <Summary>
-/// Check that the [selection] is inside of the bounds of [text].
-/// </Summary>
-public virtual bool IsSelectionWithinTextBounds(FlutterSDK.Services.Textediting.TextSelection selection)
-{
-    return selection.Start <= Text.Length && selection.End <= Text.Length;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Toolbar configuration for [EditableText].
-///
-/// Toolbar is a context menu that will show up when user right click or long
-/// press the [EditableText]. It includes several options: cut, copy, paste,
-/// and select all.
-///
-/// [EditableText] and its derived widgets have their own default [ToolbarOptions].
-/// Create a custom [ToolbarOptions] if you want explicit control over the toolbar
-/// option.
-/// </Summary>
-public class ToolbarOptions
-{
-    #region constructors
-    public ToolbarOptions(bool copy = false, bool cut = false, bool paste = false, bool selectAll = false)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual bool Copy { get; set; }
-public virtual bool Cut { get; set; }
-public virtual bool Paste { get; set; }
-public virtual bool SelectAll { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// A basic text input field.
-///
-/// This widget interacts with the [TextInput] service to let the user edit the
-/// text it contains. It also provides scrolling, selection, and cursor
-/// movement. This widget does not provide any focus management (e.g.,
-/// tap-to-focus).
-///
-/// ## Input Actions
-///
-/// A [TextInputAction] can be provided to customize the appearance of the
-/// action button on the soft keyboard for Android and iOS. The default action
-/// is [TextInputAction.done].
-///
-/// Many [TextInputAction]s are common between Android and iOS. However, if an
-/// [inputAction] is provided that is not supported by the current
-/// platform in debug mode, an error will be thrown when the corresponding
-/// EditableText receives focus. For example, providing iOS's "emergencyCall"
-/// action when running on an Android device will result in an error when in
-/// debug mode. In release mode, incompatible [TextInputAction]s are replaced
-/// either with "unspecified" on Android, or "default" on iOS. Appropriate
-/// [inputAction]s can be chosen by checking the current platform and then
-/// selecting the appropriate action.
-///
-/// ## Lifecycle
-///
-/// Upon completion of editing, like pressing the "done" button on the keyboard,
-/// two actions take place:
-///
-///   1st: Editing is finalized. The default behavior of this step includes
-///   an invocation of [onChanged]. That default behavior can be overridden.
-///   See [onEditingComplete] for details.
-///
-///   2nd: [onSubmitted] is invoked with the user's input value.
-///
-/// [onSubmitted] can be used to manually move focus to another input widget
-/// when a user finishes with the currently focused input widget.
-///
-/// Rather than using this widget directly, consider using [TextField], which
-/// is a full-featured, material-design text input field with placeholder text,
-/// labels, and [Form] integration.
-///
-/// ## Gesture Events Handling
-///
-/// This widget provides rudimentary, platform-agnostic gesture handling for
-/// user actions such as tapping, long-pressing and scrolling when
-/// [rendererIgnoresPointer] is false (false by default). To tightly conform
-/// to the platform behavior with respect to input gestures in text fields, use
-/// [TextField] or [CupertinoTextField]. For custom selection behavior, call
-/// methods such as [RenderEditable.selectPosition],
-/// [RenderEditable.selectWord], etc. programmatically.
-///
-/// See also:
-///
-///  * [TextField], which is a full-featured, material-design text input field
-///    with placeholder text, labels, and [Form] integration.
-/// </Summary>
-public class EditableText : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public EditableText(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool readOnly = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), double textScaleFactor = default(double), int maxLines = 1, int minLines = default(int), bool expands = false, bool forceLine = true, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool autofocus = false, bool showCursor = default(bool), bool showSelectionHandles = false, FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Widgets.Editabletext.SelectionChangedCallback onSelectionChanged = default(FlutterSDK.Widgets.Editabletext.SelectionChangedCallback), VoidCallback onSelectionHandleTapped = default(VoidCallback), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool rendererIgnoresPointer = false, double cursorWidth = 2.0, Radius cursorRadius = default(Radius), bool cursorOpacityAnimates = false, FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), bool paintCursorAboveText = false, BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
-public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-public virtual bool ObscureText { get; set; }
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
-public virtual bool ReadOnly { get; set; }
-public virtual bool ForceLine { get; set; }
-public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
-public virtual bool ShowSelectionHandles { get; set; }
-public virtual bool ShowCursor { get; set; }
-public virtual bool Autocorrect { get; set; }
-public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
-public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
-public virtual bool EnableSuggestions { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
-internal virtual FlutterSDK.Painting.Strutstyle.StrutStyle _StrutStyle { get; set; }
-public virtual TextAlign TextAlign { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
-public virtual Locale Locale { get; set; }
-public virtual double TextScaleFactor { get; set; }
-public virtual FlutterBinding.UI.Color CursorColor { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundCursorColor { get; set; }
-public virtual int MaxLines { get; set; }
-public virtual int MinLines { get; set; }
-public virtual bool Expands { get; set; }
-public virtual bool Autofocus { get; set; }
-public virtual FlutterBinding.UI.Color SelectionColor { get; set; }
-public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnChanged { get; set; }
-public virtual VoidCallback OnEditingComplete { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnSubmitted { get; set; }
-public virtual FlutterSDK.Widgets.Editabletext.SelectionChangedCallback OnSelectionChanged { get; set; }
-public virtual VoidCallback OnSelectionHandleTapped { get; set; }
-public virtual List<FlutterSDK.Services.Textformatter.TextInputFormatter> InputFormatters { get; set; }
-public virtual bool RendererIgnoresPointer { get; set; }
-public virtual double CursorWidth { get; set; }
-public virtual Radius CursorRadius { get; set; }
-public virtual bool CursorOpacityAnimates { get; set; }
-public virtual FlutterBinding.UI.Offset CursorOffset { get; set; }
-public virtual bool PaintCursorAboveText { get; set; }
-public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
-public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
-public virtual Brightness KeyboardAppearance { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ScrollPadding { get; set; }
-public virtual bool EnableInteractiveSelection { get; set; }
-public virtual bool DebugDeterministicCursor { get; set; }
-public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Editabletext.EditableTextState CreateState() => new EditableTextState();
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<TextEditingController>("controller", Controller));
-    properties.Add(new DiagnosticsProperty<FocusNode>("focusNode", FocusNode));
-    properties.Add(new DiagnosticsProperty<bool>("obscureText", ObscureText, defaultValue: false));
-    properties.Add(new DiagnosticsProperty<bool>("autocorrect", Autocorrect, defaultValue: true));
-    properties.Add(new EnumProperty<SmartDashesType>("smartDashesType", SmartDashesType, defaultValue: ObscureText ? SmartDashesType.Disabled : SmartDashesType.Enabled));
-    properties.Add(new EnumProperty<SmartQuotesType>("smartQuotesType", SmartQuotesType, defaultValue: ObscureText ? SmartQuotesType.Disabled : SmartQuotesType.Enabled));
-    properties.Add(new DiagnosticsProperty<bool>("enableSuggestions", EnableSuggestions, defaultValue: true));
-    Style?.DebugFillProperties(properties);
-    properties.Add(new EnumProperty<TextAlign>("textAlign", TextAlign, defaultValue: null));
-    properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<Locale>("locale", Locale, defaultValue: null));
-    properties.Add(new DoubleProperty("textScaleFactor", TextScaleFactor, defaultValue: null));
-    properties.Add(new IntProperty("maxLines", MaxLines, defaultValue: 1));
-    properties.Add(new IntProperty("minLines", MinLines, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<bool>("expands", Expands, defaultValue: false));
-    properties.Add(new DiagnosticsProperty<bool>("autofocus", Autofocus, defaultValue: false));
-    properties.Add(new DiagnosticsProperty<TextInputType>("keyboardType", KeyboardType, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<ScrollController>("scrollController", ScrollController, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<ScrollPhysics>("scrollPhysics", ScrollPhysics, defaultValue: null));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// State for a [EditableText].
-/// </Summary>
-public class EditableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Editabletext.EditableText>, ITextInputClient, ITextSelectionDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Editabletext.EditableText>, IWidgetsBindingObserver, ITickerProviderStateMixin<FlutterSDK.Widgets.Editabletext.EditableText>
-{
-    #region constructors
-    public EditableTextState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual Timer _CursorTimer { get; set; }
-    internal virtual bool _TargetCursorVisibility { get; set; }
-    internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _CursorVisibilityNotifier { get; set; }
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _EditableKey { get; set; }
-    internal virtual FlutterSDK.Services.Textinput.TextInputConnection _TextInputConnection { get; set; }
-    internal virtual FlutterSDK.Widgets.Textselection.TextSelectionOverlay _SelectionOverlay { get; set; }
-    internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _CursorBlinkOpacityController { get; set; }
-    internal virtual FlutterSDK.Rendering.Layer.LayerLink _ToolbarLayerLink { get; set; }
-    internal virtual FlutterSDK.Rendering.Layer.LayerLink _StartHandleLayerLink { get; set; }
-    internal virtual FlutterSDK.Rendering.Layer.LayerLink _EndHandleLayerLink { get; set; }
-    internal virtual bool _DidAutoFocus { get; set; }
-    internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment { get; set; }
-    internal virtual TimeSpan _FadeDuration { get; set; }
-    internal virtual TimeSpan _FloatingCursorResetTime { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingCursorResetController { get; set; }
-    internal virtual FlutterSDK.Services.Textinput.TextEditingValue _LastFormattedUnmodifiedTextEditingValue { get; set; }
-    internal virtual FlutterSDK.Services.Textinput.TextEditingValue _LastFormattedValue { get; set; }
-    internal virtual FlutterSDK.Services.Textinput.TextEditingValue _ReceivedRemoteTextEditingValue { get; set; }
-    internal virtual FlutterBinding.UI.Rect _StartCaretRect { get; set; }
-    internal virtual TextPosition _LastTextPosition { get; set; }
-    internal virtual FlutterBinding.UI.Offset _PointOffsetOrigin { get; set; }
-    internal virtual FlutterBinding.UI.Offset _LastBoundedOffset { get; set; }
-    internal virtual bool _TextChangedSinceLastCaretUpdate { get; set; }
-    internal virtual FlutterBinding.UI.Rect _CurrentCaretRect { get; set; }
-    internal virtual TimeSpan _CaretAnimationDuration { get; set; }
-    internal virtual FlutterSDK.Animation.Curves.Curve _CaretAnimationCurve { get; set; }
-    internal virtual bool _ShowCaretOnScreenScheduled { get; set; }
-    internal virtual double _LastBottomViewInset { get; set; }
-    internal virtual FlutterSDK.Widgets.Editabletext._WhitespaceDirectionalityFormatter _WhitespaceFormatter { get; set; }
-    internal virtual int _ObscureShowCharTicksPending { get; set; }
-    internal virtual int _ObscureLatestCharIndex { get; set; }
-    public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual FlutterBinding.UI.Color _CursorColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool CutEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool CopyEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool PasteEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool SelectAllEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual FlutterBinding.UI.Offset _FloatingCursorOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _HasFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _IsMultiline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _HasInputConnection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool CursorCurrentlyVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual TimeSpan CursorBlinkInterval { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Widgets.Textselection.TextSelectionOverlay SelectionOverlay { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual TextDirection _TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Services.Textinput.TextEditingValue TextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _DevicePixelRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        Widget.Controller.AddListener(_DidChangeTextEditingValue);
-        _FocusAttachment = Widget.FocusNode.Attach(Context);
-        Widget.FocusNode.AddListener(_HandleFocusChanged);
-        _ScrollController = Widget.ScrollController ?? new ScrollController();
-        _ScrollController.AddListener(() =>
         {
-            _SelectionOverlay?.UpdateForScroll();
+
         }
-        );
-        _CursorBlinkOpacityController = new AnimationController(vsync: this, duration: _FadeDuration);
-        _CursorBlinkOpacityController.AddListener(_OnCursorColorTick);
-        _FloatingCursorResetController = new AnimationController(vsync: this);
-        _FloatingCursorResetController.AddListener(_OnFloatingCursorResetTick);
-        _CursorVisibilityNotifier.Value = Widget.ShowCursor;
-    }
-
-
-
-
-    public new void DidChangeDependencies()
-    {
-        base.DidChangeDependencies();
-        if (!_DidAutoFocus && Widget.Autofocus)
+        public static TextEditingController FromValue(FlutterSDK.Services.Textinput.TextEditingValue value)
         {
-            _DidAutoFocus = true;
-            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((_) =>
+            var instance = new TextEditingController(value ?? TextinputDefaultClass.TextEditingValue.Empty);
+        }
+        #endregion
+
+        #region fields
+        public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Builds [TextSpan] from current editing value.
+        ///
+        /// By default makes text in composing range appear as underlined.
+        /// Descendants can override this method to customize appearance of text.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), bool withComposing = default(bool))
+        {
+            if (!Value.Composing.IsValid || !withComposing)
             {
-                if (Mounted)
-                {
-                    FocusscopeDefaultClass.FocusScope.Of(Context).Autofocus(Widget.FocusNode);
-                }
-
-            }
-            );
-        }
-
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Editabletext.EditableText oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.Controller != oldWidget.Controller)
-        {
-            oldWidget.Controller.RemoveListener(_DidChangeTextEditingValue);
-            Widget.Controller.AddListener(_DidChangeTextEditingValue);
-            _UpdateRemoteEditingValueIfNeeded();
-        }
-
-        if (Widget.Controller.Selection != oldWidget.Controller.Selection)
-        {
-            _SelectionOverlay?.Update(_Value);
-        }
-
-        _SelectionOverlay?.HandlesVisible = Widget.ShowSelectionHandles;
-        if (Widget.FocusNode != oldWidget.FocusNode)
-        {
-            oldWidget.FocusNode.RemoveListener(_HandleFocusChanged);
-            _FocusAttachment?.Detach();
-            _FocusAttachment = Widget.FocusNode.Attach(Context);
-            Widget.FocusNode.AddListener(_HandleFocusChanged);
-            UpdateKeepAlive();
-        }
-
-        if (Widget.ReadOnly)
-        {
-            _CloseInputConnectionIfNeeded();
-        }
-        else
-        {
-            if (oldWidget.ReadOnly && _HasFocus) _OpenInputConnection();
-        }
-
-        if (Widget.Style != oldWidget.Style)
-        {
-            TextStyle style = Widget.Style;
-            if (_TextInputConnection != null && _TextInputConnection.Attached)
-            {
-                _TextInputConnection.SetStyle(fontFamily: style.FontFamily, fontSize: style.FontSize, fontWeight: style.FontWeight, textDirection: _TextDirection, textAlign: Widget.TextAlign);
+                return new TextSpan(style: style, text: Text);
             }
 
+            TextStyle composingStyle = style.Merge(new TextStyle(decoration: Dart:uiDefaultClass.TextDecoration.Underline));
+            return new TextSpan(style: style, children: new List<TextSpan>() { new TextSpan(text: Value.Composing.TextBefore(Value.Text)), new TextSpan(style: composingStyle, text: Value.Composing.TextInside(Value.Text)), new TextSpan(text: Value.Composing.TextAfter(Value.Text)) });
         }
 
+
+
+
+        /// <Summary>
+        /// Set the [value] to empty.
+        ///
+        /// After calling this function, [text] will be the empty string and the
+        /// selection will be invalid.
+        ///
+        /// Calling this will notify all the listeners of this [TextEditingController]
+        /// that they need to update (it calls [notifyListeners]). For this reason,
+        /// this method should only be called between frames, e.g. in response to user
+        /// actions, not during the build, layout, or paint phases.
+        /// </Summary>
+        public virtual void Clear()
+        {
+            Value = TextinputDefaultClass.TextEditingValue.Empty;
+        }
+
+
+
+
+        /// <Summary>
+        /// Set the composing region to an empty range.
+        ///
+        /// The composing region is the range of text that is still being composed.
+        /// Calling this function indicates that the user is done composing that
+        /// region.
+        ///
+        /// Calling this will notify all the listeners of this [TextEditingController]
+        /// that they need to update (it calls [notifyListeners]). For this reason,
+        /// this method should only be called between frames, e.g. in response to user
+        /// actions, not during the build, layout, or paint phases.
+        /// </Summary>
+        public virtual void ClearComposing()
+        {
+            Value = Value.CopyWith(composing: Dart:uiDefaultClass.TextRange.Empty);
+        }
+
+
+
+
+        /// <Summary>
+        /// Check that the [selection] is inside of the bounds of [text].
+        /// </Summary>
+        public virtual bool IsSelectionWithinTextBounds(FlutterSDK.Services.Textediting.TextSelection selection)
+        {
+            return selection.Start <= Text.Length && selection.End <= Text.Length;
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new void Dispose()
-    {
-        Widget.Controller.RemoveListener(_DidChangeTextEditingValue);
-        _CursorBlinkOpacityController.RemoveListener(_OnCursorColorTick);
-        _FloatingCursorResetController.RemoveListener(_OnFloatingCursorResetTick);
-        _CloseInputConnectionIfNeeded();
-
-        _StopCursorTimer();
-
-        _SelectionOverlay?.Dispose();
-        _SelectionOverlay = null;
-        _FocusAttachment.Detach();
-        Widget.FocusNode.RemoveListener(_HandleFocusChanged);
-        base.Dispose();
-    }
-
-
-
-
-    public new void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value)
-    {
-        if (Widget.ReadOnly)
-        {
-            return;
-        }
-
-        _ReceivedRemoteTextEditingValue = value;
-        if (value.Text != _Value.Text)
-        {
-            HideToolbar();
-            _ShowCaretOnScreen();
-            if (Widget.ObscureText && value.Text.Length == _Value.Text.Length + 1)
-            {
-                _ObscureShowCharTicksPending = EditabletextDefaultClass._KObscureShowLatestCharCursorTicks;
-                _ObscureLatestCharIndex = _Value.Selection.BaseOffset;
-            }
-
-        }
-
-        _FormatAndSetValue(value);
-        _StopCursorTimer(resetCharTicks: false);
-        _StartCursorTimer();
-    }
-
-
-
-
-    public new void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action)
-    {
-        switch (action) { case TextInputAction.Newline: if (!_IsMultiline) _FinalizeEditing(true); break; case TextInputAction.Done: case TextInputAction.Go: case TextInputAction.Send: case TextInputAction.Search: _FinalizeEditing(true); break; default: _FinalizeEditing(false); break; }
-    }
-
-
-
-
-    public new void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point)
-    {
-        switch (point.State)
-        {
-            case FloatingCursorDragState.Start:
-                if (_FloatingCursorResetController.IsAnimating)
-                {
-                    _FloatingCursorResetController.Stop();
-                    _OnFloatingCursorResetTick();
-                }
-                TextPosition currentTextPosition = new TextPosition(offset: RenderEditable.Selection.BaseOffset); _StartCaretRect = RenderEditable.GetLocalRectForCaret(currentTextPosition); RenderEditable.SetFloatingCursor(point.State, _StartCaretRect.Center - _FloatingCursorOffset, currentTextPosition); break;
-            case FloatingCursorDragState.Update:
-                if (_PointOffsetOrigin != null)
-                {
-                    Offset centeredPoint = point.Offset - _PointOffsetOrigin;
-                    Offset rawCursorOffset = _StartCaretRect.Center + centeredPoint - _FloatingCursorOffset;
-                    _LastBoundedOffset = RenderEditable.CalculateBoundedFloatingCursorOffset(rawCursorOffset);
-                    _LastTextPosition = RenderEditable.GetPositionForPoint(RenderEditable.LocalToGlobal(_LastBoundedOffset + _FloatingCursorOffset));
-                    RenderEditable.SetFloatingCursor(point.State, _LastBoundedOffset, _LastTextPosition);
-                }
-                else
-                {
-                    _PointOffsetOrigin = point.Offset;
-                }
-                break;
-            case FloatingCursorDragState.End:
-                if (_LastTextPosition != null && _LastBoundedOffset != null)
-                {
-                    _FloatingCursorResetController.Value = 0.0;
-                    _FloatingCursorResetController.AnimateTo(1.0, duration: _FloatingCursorResetTime, curve: CurvesDefaultClass.Curves.Decelerate);
-                }
-                break;
-        }
-    }
-
-
-
-
-    private void _OnFloatingCursorResetTick()
-    {
-        Offset finalPosition = RenderEditable.GetLocalRectForCaret(_LastTextPosition).CenterLeft - _FloatingCursorOffset;
-        if (_FloatingCursorResetController.IsCompleted)
-        {
-            RenderEditable.SetFloatingCursor(FloatingCursorDragState.End, finalPosition, _LastTextPosition);
-            if (_LastTextPosition.Offset != RenderEditable.Selection.BaseOffset) _HandleSelectionChanged(TextSelection.Collapsed(offset: _LastTextPosition.Offset), RenderEditable, SelectionChangedCause.ForcePress);
-            _StartCaretRect = null;
-            _LastTextPosition = null;
-            _PointOffsetOrigin = null;
-            _LastBoundedOffset = null;
-        }
-        else
-        {
-            double lerpValue = _FloatingCursorResetController.Value;
-            double lerpX = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dx, finalPosition.Dx, lerpValue);
-            double lerpY = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dy, finalPosition.Dy, lerpValue);
-            RenderEditable.SetFloatingCursor(FloatingCursorDragState.Update, new Offset(lerpX, lerpY), _LastTextPosition, resetLerpValue: lerpValue);
-        }
-
-    }
-
-
-
-
-    private void _FinalizeEditing(bool shouldUnfocus)
-    {
-        if (Widget.OnEditingComplete != null)
-        {
-            Widget.OnEditingComplete();
-        }
-        else
-        {
-            Widget.Controller.ClearComposing();
-            if (shouldUnfocus) Widget.FocusNode.Unfocus();
-        }
-
-        if (Widget.OnSubmitted != null) Widget.OnSubmitted(_Value.Text);
-    }
-
-
-
-
-    private void _UpdateRemoteEditingValueIfNeeded()
-    {
-        if (!_HasInputConnection) return;
-        TextEditingValue localValue = _Value;
-        if (localValue == _ReceivedRemoteTextEditingValue) return;
-        _TextInputConnection.SetEditingState(localValue);
-    }
-
-
-
-
-    private double _GetScrollOffsetForCaret(FlutterBinding.UI.Rect caretRect)
-    {
-        double caretStart = default(double);
-        double caretEnd = default(double);
-        if (_IsMultiline)
-        {
-            double lineHeight = RenderEditable.PreferredLineHeight;
-            double caretOffset = (lineHeight - caretRect.Height) / 2;
-            caretStart = caretRect.Top - caretOffset;
-            caretEnd = caretRect.Bottom + caretOffset;
-        }
-        else
-        {
-            caretStart = caretRect.Left;
-            caretEnd = caretRect.Right;
-        }
-
-        double scrollOffset = _ScrollController.Offset;
-        double viewportExtent = _ScrollController.Position.ViewportDimension;
-        if (caretStart < 0.0)
-        {
-            scrollOffset += caretStart;
-        }
-        else if (caretEnd >= viewportExtent)
-        {
-            scrollOffset += caretEnd - viewportExtent;
-        }
-
-        if (_IsMultiline)
-        {
-            scrollOffset = scrollOffset.Clamp(0.0, RenderEditable.MaxScrollExtent) as double;
-        }
-
-        return scrollOffset;
-    }
-
-
-
-
-    private Rect _GetCaretRectAtScrollOffset(FlutterBinding.UI.Rect caretRect, double scrollOffset)
-    {
-        double offsetDiff = _ScrollController.Offset - scrollOffset;
-        return _IsMultiline ? caretRect.Translate(0.0, offsetDiff) : caretRect.Translate(offsetDiff, 0.0);
-    }
-
-
-
-
-    private void _OpenInputConnection()
-    {
-        if (Widget.ReadOnly)
-        {
-            return;
-        }
-
-        if (!_HasInputConnection)
-        {
-            TextEditingValue localValue = _Value;
-            _LastFormattedUnmodifiedTextEditingValue = localValue;
-            _TextInputConnection = TextinputDefaultClass.TextInput.Attach(this, new TextInputConfiguration(inputType: Widget.KeyboardType, obscureText: Widget.ObscureText, autocorrect: Widget.Autocorrect, smartDashesType: Widget.SmartDashesType ?? (Widget.ObscureText ? SmartDashesType.Disabled : SmartDashesType.Enabled), smartQuotesType: Widget.SmartQuotesType ?? (Widget.ObscureText ? SmartQuotesType.Disabled : SmartQuotesType.Enabled), enableSuggestions: Widget.EnableSuggestions, inputAction: Widget.TextInputAction ?? (Widget.KeyboardType == TextinputDefaultClass.TextInputType.Multiline ? TextInputAction.Newline : TextInputAction.Done), textCapitalization: Widget.TextCapitalization, keyboardAppearance: Widget.KeyboardAppearance));
-            _TextInputConnection.Show();
-            _UpdateSizeAndTransform();
-            TextStyle style = Widget.Style;
-            ;
-            _TextInputConnection.SetStyle(fontFamily: style.FontFamily, fontSize: style.FontSize, fontWeight: style.FontWeight, textDirection: _TextDirection, textAlign: Widget.TextAlign);
-            _TextInputConnection.SetEditingState(localValue);
-        }
-        else
-        {
-            _TextInputConnection.Show();
-        }
-
-    }
-
-
-
-
-    private void _CloseInputConnectionIfNeeded()
-    {
-        if (_HasInputConnection)
-        {
-            _TextInputConnection.Close();
-            _TextInputConnection = null;
-            _LastFormattedUnmodifiedTextEditingValue = null;
-            _ReceivedRemoteTextEditingValue = null;
-        }
-
-    }
-
-
-
-
-    private void _OpenOrCloseInputConnectionIfNeeded()
-    {
-        if (_HasFocus && Widget.FocusNode.ConsumeKeyboardToken())
-        {
-            _OpenInputConnection();
-        }
-        else if (!_HasFocus)
-        {
-            _CloseInputConnectionIfNeeded();
-            Widget.Controller.ClearComposing();
-        }
-
-    }
-
-
-
-
-    public new void ConnectionClosed()
-    {
-        if (_HasInputConnection)
-        {
-            _TextInputConnection.ConnectionClosedReceived();
-            _TextInputConnection = null;
-            _LastFormattedUnmodifiedTextEditingValue = null;
-            _ReceivedRemoteTextEditingValue = null;
-            _FinalizeEditing(true);
-        }
-
-    }
-
-
 
 
     /// <Summary>
-    /// Express interest in interacting with the keyboard.
+    /// Toolbar configuration for [EditableText].
     ///
-    /// If this control is already attached to the keyboard, this function will
-    /// request that the keyboard become visible. Otherwise, this function will
-    /// ask the focus system that it become focused. If successful in acquiring
-    /// focus, the control will then attach to the keyboard and request that the
-    /// keyboard become visible.
+    /// Toolbar is a context menu that will show up when user right click or long
+    /// press the [EditableText]. It includes several options: cut, copy, paste,
+    /// and select all.
+    ///
+    /// [EditableText] and its derived widgets have their own default [ToolbarOptions].
+    /// Create a custom [ToolbarOptions] if you want explicit control over the toolbar
+    /// option.
     /// </Summary>
-    public virtual void RequestKeyboard()
+    public class ToolbarOptions
     {
-        if (_HasFocus)
+        #region constructors
+        public ToolbarOptions(bool copy = false, bool cut = false, bool paste = false, bool selectAll = false)
+        : base()
         {
-            _OpenInputConnection();
+            this.Copy = copy;
+            this.Cut = cut;
+            this.Paste = paste;
+            this.SelectAll = selectAll;
         }
-        else
-        {
-            Widget.FocusNode.RequestFocus();
-        }
+        #endregion
 
+        #region fields
+        public virtual bool Copy { get; set; }
+        public virtual bool Cut { get; set; }
+        public virtual bool Paste { get; set; }
+        public virtual bool SelectAll { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
 
-
-
-    private void _UpdateOrDisposeSelectionOverlayIfNeeded()
+    /// <Summary>
+    /// A basic text input field.
+    ///
+    /// This widget interacts with the [TextInput] service to let the user edit the
+    /// text it contains. It also provides scrolling, selection, and cursor
+    /// movement. This widget does not provide any focus management (e.g.,
+    /// tap-to-focus).
+    ///
+    /// ## Input Actions
+    ///
+    /// A [TextInputAction] can be provided to customize the appearance of the
+    /// action button on the soft keyboard for Android and iOS. The default action
+    /// is [TextInputAction.done].
+    ///
+    /// Many [TextInputAction]s are common between Android and iOS. However, if an
+    /// [inputAction] is provided that is not supported by the current
+    /// platform in debug mode, an error will be thrown when the corresponding
+    /// EditableText receives focus. For example, providing iOS's "emergencyCall"
+    /// action when running on an Android device will result in an error when in
+    /// debug mode. In release mode, incompatible [TextInputAction]s are replaced
+    /// either with "unspecified" on Android, or "default" on iOS. Appropriate
+    /// [inputAction]s can be chosen by checking the current platform and then
+    /// selecting the appropriate action.
+    ///
+    /// ## Lifecycle
+    ///
+    /// Upon completion of editing, like pressing the "done" button on the keyboard,
+    /// two actions take place:
+    ///
+    ///   1st: Editing is finalized. The default behavior of this step includes
+    ///   an invocation of [onChanged]. That default behavior can be overridden.
+    ///   See [onEditingComplete] for details.
+    ///
+    ///   2nd: [onSubmitted] is invoked with the user's input value.
+    ///
+    /// [onSubmitted] can be used to manually move focus to another input widget
+    /// when a user finishes with the currently focused input widget.
+    ///
+    /// Rather than using this widget directly, consider using [TextField], which
+    /// is a full-featured, material-design text input field with placeholder text,
+    /// labels, and [Form] integration.
+    ///
+    /// ## Gesture Events Handling
+    ///
+    /// This widget provides rudimentary, platform-agnostic gesture handling for
+    /// user actions such as tapping, long-pressing and scrolling when
+    /// [rendererIgnoresPointer] is false (false by default). To tightly conform
+    /// to the platform behavior with respect to input gestures in text fields, use
+    /// [TextField] or [CupertinoTextField]. For custom selection behavior, call
+    /// methods such as [RenderEditable.selectPosition],
+    /// [RenderEditable.selectWord], etc. programmatically.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField], which is a full-featured, material-design text input field
+    ///    with placeholder text, labels, and [Form] integration.
+    /// </Summary>
+    public class EditableText : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        if (_SelectionOverlay != null)
+        #region constructors
+        public EditableText(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool readOnly = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), double textScaleFactor = default(double), int maxLines = 1, int minLines = default(int), bool expands = false, bool forceLine = true, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool autofocus = false, bool showCursor = default(bool), bool showSelectionHandles = false, FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Widgets.Editabletext.SelectionChangedCallback onSelectionChanged = default(FlutterSDK.Widgets.Editabletext.SelectionChangedCallback), VoidCallback onSelectionHandleTapped = default(VoidCallback), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool rendererIgnoresPointer = false, double cursorWidth = 2.0, Radius cursorRadius = default(Radius), bool cursorOpacityAnimates = false, FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), bool paintCursorAboveText = false, BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions))
+        : base(key: key)
         {
-            if (_HasFocus)
+            this.Controller = controller;
+            this.FocusNode = focusNode;
+            this.ReadOnly = readOnly;
+            this.ObscureText = obscureText;
+            this.Autocorrect = autocorrect;
+            this.EnableSuggestions = enableSuggestions;
+            this.Style = style;
+            this.CursorColor = cursorColor;
+            this.BackgroundCursorColor = backgroundCursorColor;
+            this.TextAlign = textAlign;
+            this.TextDirection = textDirection;
+            this.Locale = locale;
+            this.TextScaleFactor = textScaleFactor;
+            this.MaxLines = maxLines;
+            this.MinLines = minLines;
+            this.Expands = expands;
+            this.ForceLine = forceLine;
+            this.TextWidthBasis = textWidthBasis;
+            this.Autofocus = autofocus;
+            this.ShowSelectionHandles = showSelectionHandles;
+            this.SelectionColor = selectionColor;
+            this.SelectionControls = selectionControls;
+            this.TextInputAction = textInputAction;
+            this.TextCapitalization = textCapitalization;
+            this.OnChanged = onChanged;
+            this.OnEditingComplete = onEditingComplete;
+            this.OnSubmitted = onSubmitted;
+            this.OnSelectionChanged = onSelectionChanged;
+            this.OnSelectionHandleTapped = onSelectionHandleTapped;
+            this.RendererIgnoresPointer = rendererIgnoresPointer;
+            this.CursorWidth = cursorWidth;
+            this.CursorRadius = cursorRadius;
+            this.CursorOpacityAnimates = cursorOpacityAnimates;
+            this.CursorOffset = cursorOffset;
+            this.PaintCursorAboveText = paintCursorAboveText;
+            this.SelectionHeightStyle = selectionHeightStyle;
+            this.SelectionWidthStyle = selectionWidthStyle;
+            this.ScrollPadding = scrollPadding;
+            this.KeyboardAppearance = keyboardAppearance;
+            this.DragStartBehavior = dragStartBehavior;
+            this.EnableInteractiveSelection = enableInteractiveSelection;
+            this.ScrollController = scrollController;
+            this.ScrollPhysics = scrollPhysics;
+            this.ToolbarOptions = toolbarOptions;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
+        public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
+        public virtual bool ObscureText { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        public virtual bool ReadOnly { get; set; }
+        public virtual bool ForceLine { get; set; }
+        public virtual FlutterSDK.Widgets.Editabletext.ToolbarOptions ToolbarOptions { get; set; }
+        public virtual bool ShowSelectionHandles { get; set; }
+        public virtual bool ShowCursor { get; set; }
+        public virtual bool Autocorrect { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        public virtual bool EnableSuggestions { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
+        internal virtual FlutterSDK.Painting.Strutstyle.StrutStyle _StrutStyle { get; set; }
+        public virtual TextAlign TextAlign { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundCursorColor { get; set; }
+        public virtual int MaxLines { get; set; }
+        public virtual int MinLines { get; set; }
+        public virtual bool Expands { get; set; }
+        public virtual bool Autofocus { get; set; }
+        public virtual FlutterBinding.UI.Color SelectionColor { get; set; }
+        public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnChanged { get; set; }
+        public virtual VoidCallback OnEditingComplete { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<string> OnSubmitted { get; set; }
+        public virtual FlutterSDK.Widgets.Editabletext.SelectionChangedCallback OnSelectionChanged { get; set; }
+        public virtual VoidCallback OnSelectionHandleTapped { get; set; }
+        public virtual List<FlutterSDK.Services.Textformatter.TextInputFormatter> InputFormatters { get; set; }
+        public virtual bool RendererIgnoresPointer { get; set; }
+        public virtual double CursorWidth { get; set; }
+        public virtual Radius CursorRadius { get; set; }
+        public virtual bool CursorOpacityAnimates { get; set; }
+        public virtual FlutterBinding.UI.Offset CursorOffset { get; set; }
+        public virtual bool PaintCursorAboveText { get; set; }
+        public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
+        public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
+        public virtual Brightness KeyboardAppearance { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ScrollPadding { get; set; }
+        public virtual bool EnableInteractiveSelection { get; set; }
+        public virtual bool DebugDeterministicCursor { get; set; }
+        public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
+        public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Editabletext.EditableTextState CreateState() => new EditableTextState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<TextEditingController>("controller", Controller));
+            properties.Add(new DiagnosticsProperty<FocusNode>("focusNode", FocusNode));
+            properties.Add(new DiagnosticsProperty<bool>("obscureText", ObscureText, defaultValue: false));
+            properties.Add(new DiagnosticsProperty<bool>("autocorrect", Autocorrect, defaultValue: true));
+            properties.Add(new EnumProperty<SmartDashesType>("smartDashesType", SmartDashesType, defaultValue: ObscureText ? SmartDashesType.Disabled : SmartDashesType.Enabled));
+            properties.Add(new EnumProperty<SmartQuotesType>("smartQuotesType", SmartQuotesType, defaultValue: ObscureText ? SmartQuotesType.Disabled : SmartQuotesType.Enabled));
+            properties.Add(new DiagnosticsProperty<bool>("enableSuggestions", EnableSuggestions, defaultValue: true));
+            Style?.DebugFillProperties(properties);
+            properties.Add(new EnumProperty<TextAlign>("textAlign", TextAlign, defaultValue: null));
+            properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Locale>("locale", Locale, defaultValue: null));
+            properties.Add(new DoubleProperty("textScaleFactor", TextScaleFactor, defaultValue: null));
+            properties.Add(new IntProperty("maxLines", MaxLines, defaultValue: 1));
+            properties.Add(new IntProperty("minLines", MinLines, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<bool>("expands", Expands, defaultValue: false));
+            properties.Add(new DiagnosticsProperty<bool>("autofocus", Autofocus, defaultValue: false));
+            properties.Add(new DiagnosticsProperty<TextInputType>("keyboardType", KeyboardType, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ScrollController>("scrollController", ScrollController, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<ScrollPhysics>("scrollPhysics", ScrollPhysics, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// State for a [EditableText].
+    /// </Summary>
+    public class EditableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Editabletext.EditableText>, ITextInputClient, ITextSelectionDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Editabletext.EditableText>, IWidgetsBindingObserver, ITickerProviderStateMixin<FlutterSDK.Widgets.Editabletext.EditableText>
+    {
+        #region constructors
+        public EditableTextState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Timer _CursorTimer { get; set; }
+        internal virtual bool _TargetCursorVisibility { get; set; }
+        internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _CursorVisibilityNotifier { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _EditableKey { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextInputConnection _TextInputConnection { get; set; }
+        internal virtual FlutterSDK.Widgets.Textselection.TextSelectionOverlay _SelectionOverlay { get; set; }
+        internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _CursorBlinkOpacityController { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _ToolbarLayerLink { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _StartHandleLayerLink { get; set; }
+        internal virtual FlutterSDK.Rendering.Layer.LayerLink _EndHandleLayerLink { get; set; }
+        internal virtual bool _DidAutoFocus { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment { get; set; }
+        internal virtual TimeSpan _FadeDuration { get; set; }
+        internal virtual TimeSpan _FloatingCursorResetTime { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingCursorResetController { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextEditingValue _LastFormattedUnmodifiedTextEditingValue { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextEditingValue _LastFormattedValue { get; set; }
+        internal virtual FlutterSDK.Services.Textinput.TextEditingValue _ReceivedRemoteTextEditingValue { get; set; }
+        internal virtual FlutterBinding.UI.Rect _StartCaretRect { get; set; }
+        internal virtual TextPosition _LastTextPosition { get; set; }
+        internal virtual FlutterBinding.UI.Offset _PointOffsetOrigin { get; set; }
+        internal virtual FlutterBinding.UI.Offset _LastBoundedOffset { get; set; }
+        internal virtual bool _TextChangedSinceLastCaretUpdate { get; set; }
+        internal virtual FlutterBinding.UI.Rect _CurrentCaretRect { get; set; }
+        internal virtual TimeSpan _CaretAnimationDuration { get; set; }
+        internal virtual FlutterSDK.Animation.Curves.Curve _CaretAnimationCurve { get; set; }
+        internal virtual bool _ShowCaretOnScreenScheduled { get; set; }
+        internal virtual double _LastBottomViewInset { get; set; }
+        internal virtual FlutterSDK.Widgets.Editabletext._WhitespaceDirectionalityFormatter _WhitespaceFormatter { get; set; }
+        internal virtual int _ObscureShowCharTicksPending { get; set; }
+        internal virtual int _ObscureLatestCharIndex { get; set; }
+        public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Color _CursorColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CutEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CopyEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool PasteEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SelectAllEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterBinding.UI.Offset _FloatingCursorOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual FlutterSDK.Services.Textinput.TextEditingValue _Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _HasFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _IsMultiline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _HasInputConnection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool CursorCurrentlyVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TimeSpan CursorBlinkInterval { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Widgets.Textselection.TextSelectionOverlay SelectionOverlay { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual TextDirection _TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue TextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _DevicePixelRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            Widget.Controller.AddListener(_DidChangeTextEditingValue);
+            _FocusAttachment = Widget.FocusNode.Attach(Context);
+            Widget.FocusNode.AddListener(_HandleFocusChanged);
+            _ScrollController = Widget.ScrollController ?? new ScrollController();
+            _ScrollController.AddListener(() =>
             {
-                _SelectionOverlay.Update(_Value);
+                _SelectionOverlay?.UpdateForScroll();
+            }
+            );
+            _CursorBlinkOpacityController = new AnimationController(vsync: this, duration: _FadeDuration);
+            _CursorBlinkOpacityController.AddListener(_OnCursorColorTick);
+            _FloatingCursorResetController = new AnimationController(vsync: this);
+            _FloatingCursorResetController.AddListener(_OnFloatingCursorResetTick);
+            _CursorVisibilityNotifier.Value = Widget.ShowCursor;
+        }
+
+
+
+
+        public new void DidChangeDependencies()
+        {
+            base.DidChangeDependencies();
+            if (!_DidAutoFocus && Widget.Autofocus)
+            {
+                _DidAutoFocus = true;
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((_) =>
+                {
+                    if (Mounted)
+                    {
+                        FocusscopeDefaultClass.FocusScope.Of(Context).Autofocus(Widget.FocusNode);
+                    }
+
+                }
+                );
+            }
+
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Editabletext.EditableText oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.Controller != oldWidget.Controller)
+            {
+                oldWidget.Controller.RemoveListener(_DidChangeTextEditingValue);
+                Widget.Controller.AddListener(_DidChangeTextEditingValue);
+                _UpdateRemoteEditingValueIfNeeded();
+            }
+
+            if (Widget.Controller.Selection != oldWidget.Controller.Selection)
+            {
+                _SelectionOverlay?.Update(_Value);
+            }
+
+            _SelectionOverlay?.HandlesVisible = Widget.ShowSelectionHandles;
+            if (Widget.FocusNode != oldWidget.FocusNode)
+            {
+                oldWidget.FocusNode.RemoveListener(_HandleFocusChanged);
+                _FocusAttachment?.Detach();
+                _FocusAttachment = Widget.FocusNode.Attach(Context);
+                Widget.FocusNode.AddListener(_HandleFocusChanged);
+                UpdateKeepAlive();
+            }
+
+            if (Widget.ReadOnly)
+            {
+                _CloseInputConnectionIfNeeded();
             }
             else
             {
-                _SelectionOverlay.Dispose();
-                _SelectionOverlay = null;
+                if (oldWidget.ReadOnly && _HasFocus) _OpenInputConnection();
+            }
+
+            if (Widget.Style != oldWidget.Style)
+            {
+                TextStyle style = Widget.Style;
+                if (_TextInputConnection != null && _TextInputConnection.Attached)
+                {
+                    _TextInputConnection.SetStyle(fontFamily: style.FontFamily, fontSize: style.FontSize, fontWeight: style.FontWeight, textDirection: _TextDirection, textAlign: Widget.TextAlign);
+                }
+
             }
 
         }
 
-    }
 
 
 
-
-    private void _HandleSelectionChanged(FlutterSDK.Services.Textediting.TextSelection selection, FlutterSDK.Rendering.Editable.RenderEditable renderObject, FlutterSDK.Rendering.Editable.SelectionChangedCause cause)
-    {
-        if (!Widget.Controller.IsSelectionWithinTextBounds(selection)) return;
-        Widget.Controller.Selection = selection;
-        RequestKeyboard();
-        _SelectionOverlay?.Hide();
-        _SelectionOverlay = null;
-        if (Widget.SelectionControls != null)
+        public new void Dispose()
         {
-            _SelectionOverlay = new TextSelectionOverlay(context: Context, value: _Value, debugRequiredFor: Widget, toolbarLayerLink: _ToolbarLayerLink, startHandleLayerLink: _StartHandleLayerLink, endHandleLayerLink: _EndHandleLayerLink, renderObject: renderObject, selectionControls: Widget.SelectionControls, selectionDelegate: this, dragStartBehavior: Widget.DragStartBehavior, onSelectionHandleTapped: Widget.OnSelectionHandleTapped);
-            _SelectionOverlay.HandlesVisible = Widget.ShowSelectionHandles;
-            _SelectionOverlay.ShowHandles();
-            if (Widget.OnSelectionChanged != null) Widget.OnSelectionChanged(selection, cause);
+            Widget.Controller.RemoveListener(_DidChangeTextEditingValue);
+            _CursorBlinkOpacityController.RemoveListener(_OnCursorColorTick);
+            _FloatingCursorResetController.RemoveListener(_OnFloatingCursorResetTick);
+            _CloseInputConnectionIfNeeded();
+
+            _StopCursorTimer();
+
+            _SelectionOverlay?.Dispose();
+            _SelectionOverlay = null;
+            _FocusAttachment.Detach();
+            Widget.FocusNode.RemoveListener(_HandleFocusChanged);
+            base.Dispose();
         }
 
-    }
 
 
 
-
-    private void _HandleCaretChanged(FlutterBinding.UI.Rect caretRect)
-    {
-        _CurrentCaretRect = caretRect;
-        if (_TextChangedSinceLastCaretUpdate)
+        public new void UpdateEditingValue(FlutterSDK.Services.Textinput.TextEditingValue value)
         {
-            _TextChangedSinceLastCaretUpdate = false;
-            _ShowCaretOnScreen();
-        }
-
-    }
-
-
-
-
-    private void _ShowCaretOnScreen()
-    {
-        if (_ShowCaretOnScreenScheduled)
-        {
-            return;
-        }
-
-        _ShowCaretOnScreenScheduled = true;
-        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) =>
-        {
-            _ShowCaretOnScreenScheduled = false;
-            if (_CurrentCaretRect == null || !_ScrollController.HasClients)
+            if (Widget.ReadOnly)
             {
                 return;
             }
 
-            double scrollOffsetForCaret = _GetScrollOffsetForCaret(_CurrentCaretRect);
-            _ScrollController.AnimateTo(scrollOffsetForCaret, duration: _CaretAnimationDuration, curve: _CaretAnimationCurve);
-            Rect newCaretRect = _GetCaretRectAtScrollOffset(_CurrentCaretRect, scrollOffsetForCaret);
-            double bottomSpacing = Widget.ScrollPadding.Bottom;
-            if (_SelectionOverlay?.SelectionControls != null)
+            _ReceivedRemoteTextEditingValue = value;
+            if (value.Text != _Value.Text)
             {
-                double handleHeight = _SelectionOverlay.SelectionControls.GetHandleSize(RenderEditable.PreferredLineHeight).Height;
-                double interactiveHandleHeight = Math.Dart:mathDefaultClass.Max(handleHeight, ConstantsDefaultClass.KMinInteractiveDimension);
-                Offset anchor = _SelectionOverlay.SelectionControls.GetHandleAnchor(TextSelectionHandleType.Collapsed, RenderEditable.PreferredLineHeight);
-                double handleCenter = handleHeight / 2 - anchor.Dy;
-                bottomSpacing = Math.Dart:mathDefaultClass.Max(handleCenter + interactiveHandleHeight / 2, bottomSpacing);
+                HideToolbar();
+                _ShowCaretOnScreen();
+                if (Widget.ObscureText && value.Text.Length == _Value.Text.Length + 1)
+                {
+                    _ObscureShowCharTicksPending = EditabletextDefaultClass._KObscureShowLatestCharCursorTicks;
+                    _ObscureLatestCharIndex = _Value.Selection.BaseOffset;
+                }
+
             }
 
-            Rect inflatedRect = Rect.FromLTRB(newCaretRect.Left - Widget.ScrollPadding.Left, newCaretRect.Top - Widget.ScrollPadding.Top, newCaretRect.Right + Widget.ScrollPadding.Right, newCaretRect.Bottom + bottomSpacing);
-            _EditableKey.CurrentContext.FindRenderObject().ShowOnScreen(rect: inflatedRect, duration: _CaretAnimationDuration, curve: _CaretAnimationCurve);
-        }
-        );
-    }
-
-
-
-
-    public new void DidChangeMetrics()
-    {
-        if (_LastBottomViewInset < BindingDefaultClass.WidgetsBinding.Instance.Window.ViewInsets.Bottom)
-        {
-            _ShowCaretOnScreen();
+            _FormatAndSetValue(value);
+            _StopCursorTimer(resetCharTicks: false);
+            _StartCursorTimer();
         }
 
-        _LastBottomViewInset = BindingDefaultClass.WidgetsBinding.Instance.Window.ViewInsets.Bottom;
-    }
 
 
 
-
-    private void _FormatAndSetValue(FlutterSDK.Services.Textinput.TextEditingValue value)
-    {
-        _WhitespaceFormatter = (_WhitespaceFormatter == null ? new _WhitespaceDirectionalityFormatter(textDirection: _TextDirection) : _WhitespaceFormatter);
-        bool textChanged = _Value?.Text != value?.Text;
-        bool isRepeatText = value?.Text == _LastFormattedUnmodifiedTextEditingValue?.Text;
-        bool isRepeatSelection = value?.Selection == _LastFormattedUnmodifiedTextEditingValue?.Selection;
-        bool isRepeatComposing = value?.Composing == _LastFormattedUnmodifiedTextEditingValue?.Composing;
-        if (!isRepeatText && textChanged && Widget.InputFormatters != null && Widget.InputFormatters.IsNotEmpty)
+        public new void PerformAction(FlutterSDK.Services.Textinput.TextInputAction action)
         {
-            foreach (TextInputFormatter formatter in Widget.InputFormatters)
+            switch (action) { case TextInputAction.Newline: if (!_IsMultiline) _FinalizeEditing(true); break; case TextInputAction.Done: case TextInputAction.Go: case TextInputAction.Send: case TextInputAction.Search: _FinalizeEditing(true); break; default: _FinalizeEditing(false); break; }
+        }
+
+
+
+
+        public new void UpdateFloatingCursor(FlutterSDK.Services.Textinput.RawFloatingCursorPoint point)
+        {
+            switch (point.State)
             {
-                value = formatter.FormatEditUpdate(_Value, value);
+                case FloatingCursorDragState.Start:
+                    if (_FloatingCursorResetController.IsAnimating)
+                    {
+                        _FloatingCursorResetController.Stop();
+                        _OnFloatingCursorResetTick();
+                    }
+                    TextPosition currentTextPosition = new TextPosition(offset: RenderEditable.Selection.BaseOffset); _StartCaretRect = RenderEditable.GetLocalRectForCaret(currentTextPosition); RenderEditable.SetFloatingCursor(point.State, _StartCaretRect.Center - _FloatingCursorOffset, currentTextPosition); break;
+                case FloatingCursorDragState.Update:
+                    if (_PointOffsetOrigin != null)
+                    {
+                        Offset centeredPoint = point.Offset - _PointOffsetOrigin;
+                        Offset rawCursorOffset = _StartCaretRect.Center + centeredPoint - _FloatingCursorOffset;
+                        _LastBoundedOffset = RenderEditable.CalculateBoundedFloatingCursorOffset(rawCursorOffset);
+                        _LastTextPosition = RenderEditable.GetPositionForPoint(RenderEditable.LocalToGlobal(_LastBoundedOffset + _FloatingCursorOffset));
+                        RenderEditable.SetFloatingCursor(point.State, _LastBoundedOffset, _LastTextPosition);
+                    }
+                    else
+                    {
+                        _PointOffsetOrigin = point.Offset;
+                    }
+                    break;
+                case FloatingCursorDragState.End:
+                    if (_LastTextPosition != null && _LastBoundedOffset != null)
+                    {
+                        _FloatingCursorResetController.Value = 0.0;
+                        _FloatingCursorResetController.AnimateTo(1.0, duration: _FloatingCursorResetTime, curve: CurvesDefaultClass.Curves.Decelerate);
+                    }
+                    break;
+            }
+        }
+
+
+
+
+        private void _OnFloatingCursorResetTick()
+        {
+            Offset finalPosition = RenderEditable.GetLocalRectForCaret(_LastTextPosition).CenterLeft - _FloatingCursorOffset;
+            if (_FloatingCursorResetController.IsCompleted)
+            {
+                RenderEditable.SetFloatingCursor(FloatingCursorDragState.End, finalPosition, _LastTextPosition);
+                if (_LastTextPosition.Offset != RenderEditable.Selection.BaseOffset) _HandleSelectionChanged(TextSelection.Collapsed(offset: _LastTextPosition.Offset), RenderEditable, SelectionChangedCause.ForcePress);
+                _StartCaretRect = null;
+                _LastTextPosition = null;
+                _PointOffsetOrigin = null;
+                _LastBoundedOffset = null;
+            }
+            else
+            {
+                double lerpValue = _FloatingCursorResetController.Value;
+                double lerpX = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dx, finalPosition.Dx, lerpValue);
+                double lerpY = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dy, finalPosition.Dy, lerpValue);
+                RenderEditable.SetFloatingCursor(FloatingCursorDragState.Update, new Offset(lerpX, lerpY), _LastTextPosition, resetLerpValue: lerpValue);
             }
 
-            value = _WhitespaceFormatter.FormatEditUpdate(_Value, value);
-            _LastFormattedValue = value;
         }
 
-        _Value = value;
-        if (isRepeatText && isRepeatSelection && isRepeatComposing && textChanged && _LastFormattedValue != null)
+
+
+
+        private void _FinalizeEditing(bool shouldUnfocus)
         {
-            _Value = _LastFormattedValue;
-        }
-
-        _UpdateRemoteEditingValueIfNeeded();
-        if (textChanged && Widget.OnChanged != null) Widget.OnChanged(value.Text);
-        _LastFormattedUnmodifiedTextEditingValue = _ReceivedRemoteTextEditingValue;
-    }
-
-
-
-
-    private void _OnCursorColorTick()
-    {
-        RenderEditable.CursorColor = Widget.CursorColor.WithOpacity(_CursorBlinkOpacityController.Value);
-        _CursorVisibilityNotifier.Value = Widget.ShowCursor && _CursorBlinkOpacityController.Value > 0;
-    }
-
-
-
-
-    private void _CursorTick(Timer timer)
-    {
-        _TargetCursorVisibility = !_TargetCursorVisibility;
-        double targetOpacity = _TargetCursorVisibility ? 1.0 : 0.0;
-        if (Widget.CursorOpacityAnimates)
-        {
-            _CursorBlinkOpacityController.AnimateTo(targetOpacity, curve: CurvesDefaultClass.Curves.EaseOut);
-        }
-        else
-        {
-            _CursorBlinkOpacityController.Value = targetOpacity;
-        }
-
-        if (_ObscureShowCharTicksPending > 0)
-        {
-            SetState(() =>
+            if (Widget.OnEditingComplete != null)
             {
-                _ObscureShowCharTicksPending--;
+                Widget.OnEditingComplete();
+            }
+            else
+            {
+                Widget.Controller.ClearComposing();
+                if (shouldUnfocus) Widget.FocusNode.Unfocus();
+            }
+
+            if (Widget.OnSubmitted != null) Widget.OnSubmitted(_Value.Text);
+        }
+
+
+
+
+        private void _UpdateRemoteEditingValueIfNeeded()
+        {
+            if (!_HasInputConnection) return;
+            TextEditingValue localValue = _Value;
+            if (localValue == _ReceivedRemoteTextEditingValue) return;
+            _TextInputConnection.SetEditingState(localValue);
+        }
+
+
+
+
+        private double _GetScrollOffsetForCaret(FlutterBinding.UI.Rect caretRect)
+        {
+            double caretStart = default(double);
+            double caretEnd = default(double);
+            if (_IsMultiline)
+            {
+                double lineHeight = RenderEditable.PreferredLineHeight;
+                double caretOffset = (lineHeight - caretRect.Height) / 2;
+                caretStart = caretRect.Top - caretOffset;
+                caretEnd = caretRect.Bottom + caretOffset;
+            }
+            else
+            {
+                caretStart = caretRect.Left;
+                caretEnd = caretRect.Right;
+            }
+
+            double scrollOffset = _ScrollController.Offset;
+            double viewportExtent = _ScrollController.Position.ViewportDimension;
+            if (caretStart < 0.0)
+            {
+                scrollOffset += caretStart;
+            }
+            else if (caretEnd >= viewportExtent)
+            {
+                scrollOffset += caretEnd - viewportExtent;
+            }
+
+            if (_IsMultiline)
+            {
+                scrollOffset = scrollOffset.Clamp(0.0, RenderEditable.MaxScrollExtent) as double;
+            }
+
+            return scrollOffset;
+        }
+
+
+
+
+        private Rect _GetCaretRectAtScrollOffset(FlutterBinding.UI.Rect caretRect, double scrollOffset)
+        {
+            double offsetDiff = _ScrollController.Offset - scrollOffset;
+            return _IsMultiline ? caretRect.Translate(0.0, offsetDiff) : caretRect.Translate(offsetDiff, 0.0);
+        }
+
+
+
+
+        private void _OpenInputConnection()
+        {
+            if (Widget.ReadOnly)
+            {
+                return;
+            }
+
+            if (!_HasInputConnection)
+            {
+                TextEditingValue localValue = _Value;
+                _LastFormattedUnmodifiedTextEditingValue = localValue;
+                _TextInputConnection = TextinputDefaultClass.TextInput.Attach(this, new TextInputConfiguration(inputType: Widget.KeyboardType, obscureText: Widget.ObscureText, autocorrect: Widget.Autocorrect, smartDashesType: Widget.SmartDashesType ?? (Widget.ObscureText ? SmartDashesType.Disabled : SmartDashesType.Enabled), smartQuotesType: Widget.SmartQuotesType ?? (Widget.ObscureText ? SmartQuotesType.Disabled : SmartQuotesType.Enabled), enableSuggestions: Widget.EnableSuggestions, inputAction: Widget.TextInputAction ?? (Widget.KeyboardType == TextinputDefaultClass.TextInputType.Multiline ? TextInputAction.Newline : TextInputAction.Done), textCapitalization: Widget.TextCapitalization, keyboardAppearance: Widget.KeyboardAppearance));
+                _TextInputConnection.Show();
+                _UpdateSizeAndTransform();
+                TextStyle style = Widget.Style;
+                ;
+                _TextInputConnection.SetStyle(fontFamily: style.FontFamily, fontSize: style.FontSize, fontWeight: style.FontWeight, textDirection: _TextDirection, textAlign: Widget.TextAlign);
+                _TextInputConnection.SetEditingState(localValue);
+            }
+            else
+            {
+                _TextInputConnection.Show();
+            }
+
+        }
+
+
+
+
+        private void _CloseInputConnectionIfNeeded()
+        {
+            if (_HasInputConnection)
+            {
+                _TextInputConnection.Close();
+                _TextInputConnection = null;
+                _LastFormattedUnmodifiedTextEditingValue = null;
+                _ReceivedRemoteTextEditingValue = null;
+            }
+
+        }
+
+
+
+
+        private void _OpenOrCloseInputConnectionIfNeeded()
+        {
+            if (_HasFocus && Widget.FocusNode.ConsumeKeyboardToken())
+            {
+                _OpenInputConnection();
+            }
+            else if (!_HasFocus)
+            {
+                _CloseInputConnectionIfNeeded();
+                Widget.Controller.ClearComposing();
+            }
+
+        }
+
+
+
+
+        public new void ConnectionClosed()
+        {
+            if (_HasInputConnection)
+            {
+                _TextInputConnection.ConnectionClosedReceived();
+                _TextInputConnection = null;
+                _LastFormattedUnmodifiedTextEditingValue = null;
+                _ReceivedRemoteTextEditingValue = null;
+                _FinalizeEditing(true);
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Express interest in interacting with the keyboard.
+        ///
+        /// If this control is already attached to the keyboard, this function will
+        /// request that the keyboard become visible. Otherwise, this function will
+        /// ask the focus system that it become focused. If successful in acquiring
+        /// focus, the control will then attach to the keyboard and request that the
+        /// keyboard become visible.
+        /// </Summary>
+        public virtual void RequestKeyboard()
+        {
+            if (_HasFocus)
+            {
+                _OpenInputConnection();
+            }
+            else
+            {
+                Widget.FocusNode.RequestFocus();
+            }
+
+        }
+
+
+
+
+        private void _UpdateOrDisposeSelectionOverlayIfNeeded()
+        {
+            if (_SelectionOverlay != null)
+            {
+                if (_HasFocus)
+                {
+                    _SelectionOverlay.Update(_Value);
+                }
+                else
+                {
+                    _SelectionOverlay.Dispose();
+                    _SelectionOverlay = null;
+                }
+
+            }
+
+        }
+
+
+
+
+        private void _HandleSelectionChanged(FlutterSDK.Services.Textediting.TextSelection selection, FlutterSDK.Rendering.Editable.RenderEditable renderObject, FlutterSDK.Rendering.Editable.SelectionChangedCause cause)
+        {
+            if (!Widget.Controller.IsSelectionWithinTextBounds(selection)) return;
+            Widget.Controller.Selection = selection;
+            RequestKeyboard();
+            _SelectionOverlay?.Hide();
+            _SelectionOverlay = null;
+            if (Widget.SelectionControls != null)
+            {
+                _SelectionOverlay = new TextSelectionOverlay(context: Context, value: _Value, debugRequiredFor: Widget, toolbarLayerLink: _ToolbarLayerLink, startHandleLayerLink: _StartHandleLayerLink, endHandleLayerLink: _EndHandleLayerLink, renderObject: renderObject, selectionControls: Widget.SelectionControls, selectionDelegate: this, dragStartBehavior: Widget.DragStartBehavior, onSelectionHandleTapped: Widget.OnSelectionHandleTapped);
+                _SelectionOverlay.HandlesVisible = Widget.ShowSelectionHandles;
+                _SelectionOverlay.ShowHandles();
+                if (Widget.OnSelectionChanged != null) Widget.OnSelectionChanged(selection, cause);
+            }
+
+        }
+
+
+
+
+        private void _HandleCaretChanged(FlutterBinding.UI.Rect caretRect)
+        {
+            _CurrentCaretRect = caretRect;
+            if (_TextChangedSinceLastCaretUpdate)
+            {
+                _TextChangedSinceLastCaretUpdate = false;
+                _ShowCaretOnScreen();
+            }
+
+        }
+
+
+
+
+        private void _ShowCaretOnScreen()
+        {
+            if (_ShowCaretOnScreenScheduled)
+            {
+                return;
+            }
+
+            _ShowCaretOnScreenScheduled = true;
+            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) =>
+            {
+                _ShowCaretOnScreenScheduled = false;
+                if (_CurrentCaretRect == null || !_ScrollController.HasClients)
+                {
+                    return;
+                }
+
+                double scrollOffsetForCaret = _GetScrollOffsetForCaret(_CurrentCaretRect);
+                _ScrollController.AnimateTo(scrollOffsetForCaret, duration: _CaretAnimationDuration, curve: _CaretAnimationCurve);
+                Rect newCaretRect = _GetCaretRectAtScrollOffset(_CurrentCaretRect, scrollOffsetForCaret);
+                double bottomSpacing = Widget.ScrollPadding.Bottom;
+                if (_SelectionOverlay?.SelectionControls != null)
+                {
+                    double handleHeight = _SelectionOverlay.SelectionControls.GetHandleSize(RenderEditable.PreferredLineHeight).Height;
+                    double interactiveHandleHeight = Math.Dart:mathDefaultClass.Max(handleHeight, ConstantsDefaultClass.KMinInteractiveDimension);
+                    Offset anchor = _SelectionOverlay.SelectionControls.GetHandleAnchor(TextSelectionHandleType.Collapsed, RenderEditable.PreferredLineHeight);
+                    double handleCenter = handleHeight / 2 - anchor.Dy;
+                    bottomSpacing = Math.Dart:mathDefaultClass.Max(handleCenter + interactiveHandleHeight / 2, bottomSpacing);
+                }
+
+                Rect inflatedRect = Rect.FromLTRB(newCaretRect.Left - Widget.ScrollPadding.Left, newCaretRect.Top - Widget.ScrollPadding.Top, newCaretRect.Right + Widget.ScrollPadding.Right, newCaretRect.Bottom + bottomSpacing);
+                _EditableKey.CurrentContext.FindRenderObject().ShowOnScreen(rect: inflatedRect, duration: _CaretAnimationDuration, curve: _CaretAnimationCurve);
             }
             );
         }
 
-    }
 
 
 
-
-    private void _CursorWaitForStart(Timer timer)
-    {
-
-        _CursorTimer?.Cancel();
-        _CursorTimer = Timer.Periodic(EditabletextDefaultClass._KCursorBlinkHalfPeriod, _CursorTick);
-    }
-
-
-
-
-    private void _StartCursorTimer()
-    {
-        _TargetCursorVisibility = true;
-        _CursorBlinkOpacityController.Value = 1.0;
-        if (EditabletextDefaultClass.EditableText.DebugDeterministicCursor) return;
-        if (Widget.CursorOpacityAnimates)
+        public new void DidChangeMetrics()
         {
-            _CursorTimer = Timer.Periodic(EditabletextDefaultClass._KCursorBlinkWaitForStart, _CursorWaitForStart);
-        }
-        else
-        {
-            _CursorTimer = Timer.Periodic(EditabletextDefaultClass._KCursorBlinkHalfPeriod, _CursorTick);
-        }
+            if (_LastBottomViewInset < BindingDefaultClass.WidgetsBinding.Instance.Window.ViewInsets.Bottom)
+            {
+                _ShowCaretOnScreen();
+            }
 
-    }
-
-
-
-
-    private void _StopCursorTimer(bool resetCharTicks = true)
-    {
-        _CursorTimer?.Cancel();
-        _CursorTimer = null;
-        _TargetCursorVisibility = false;
-        _CursorBlinkOpacityController.Value = 0.0;
-        if (EditabletextDefaultClass.EditableText.DebugDeterministicCursor) return;
-        if (resetCharTicks) _ObscureShowCharTicksPending = 0;
-        if (Widget.CursorOpacityAnimates)
-        {
-            _CursorBlinkOpacityController.Stop();
-            _CursorBlinkOpacityController.Value = 0.0;
-        }
-
-    }
-
-
-
-
-    private void _StartOrStopCursorTimerIfNeeded()
-    {
-        if (_CursorTimer == null && _HasFocus && _Value.Selection.IsCollapsed) _StartCursorTimer(); else if (_CursorTimer != null && (!_HasFocus || !_Value.Selection.IsCollapsed)) _StopCursorTimer();
-    }
-
-
-
-
-    private void _DidChangeTextEditingValue()
-    {
-        _UpdateRemoteEditingValueIfNeeded();
-        _StartOrStopCursorTimerIfNeeded();
-        _UpdateOrDisposeSelectionOverlayIfNeeded();
-        _TextChangedSinceLastCaretUpdate = true;
-        SetState(() =>
-        {
-        }
-        );
-    }
-
-
-
-
-    private void _HandleFocusChanged()
-    {
-        _OpenOrCloseInputConnectionIfNeeded();
-        _StartOrStopCursorTimerIfNeeded();
-        _UpdateOrDisposeSelectionOverlayIfNeeded();
-        if (_HasFocus)
-        {
-            BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
             _LastBottomViewInset = BindingDefaultClass.WidgetsBinding.Instance.Window.ViewInsets.Bottom;
-            _ShowCaretOnScreen();
-            if (!_Value.Selection.IsValid)
+        }
+
+
+
+
+        private void _FormatAndSetValue(FlutterSDK.Services.Textinput.TextEditingValue value)
+        {
+            _WhitespaceFormatter = (_WhitespaceFormatter == null ? new _WhitespaceDirectionalityFormatter(textDirection: _TextDirection) : _WhitespaceFormatter);
+            bool textChanged = _Value?.Text != value?.Text;
+            bool isRepeatText = value?.Text == _LastFormattedUnmodifiedTextEditingValue?.Text;
+            bool isRepeatSelection = value?.Selection == _LastFormattedUnmodifiedTextEditingValue?.Selection;
+            bool isRepeatComposing = value?.Composing == _LastFormattedUnmodifiedTextEditingValue?.Composing;
+            if (!isRepeatText && textChanged && Widget.InputFormatters != null && Widget.InputFormatters.IsNotEmpty)
             {
-                _HandleSelectionChanged(TextSelection.Collapsed(offset: _Value.Text.Length), RenderEditable, null);
+                foreach (TextInputFormatter formatter in Widget.InputFormatters)
+                {
+                    value = formatter.FormatEditUpdate(_Value, value);
+                }
+
+                value = _WhitespaceFormatter.FormatEditUpdate(_Value, value);
+                _LastFormattedValue = value;
             }
 
-        }
-        else
-        {
-            BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
-            _Value = new TextEditingValue(text: _Value.Text);
-        }
-
-        UpdateKeepAlive();
-    }
-
-
-
-
-    private void _UpdateSizeAndTransform()
-    {
-        if (_HasInputConnection)
-        {
-            Size size = RenderEditable.Size;
-            Matrix4 transform = RenderEditable.GetTransformTo(null);
-            _TextInputConnection.SetEditableSizeAndTransform(size, transform);
-            BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) => =>_UpdateSizeAndTransform());
-        }
-
-    }
-
-
-
-
-    public new void BringIntoView(TextPosition position)
-    {
-        _ScrollController.JumpTo(_GetScrollOffsetForCaret(RenderEditable.GetLocalRectForCaret(position)));
-    }
-
-
-
-
-    /// <Summary>
-    /// Shows the selection toolbar at the location of the current cursor.
-    ///
-    /// Returns `false` if a toolbar couldn't be shown, such as when the toolbar
-    /// is already shown, or when no text selection currently exists.
-    /// </Summary>
-    public virtual bool ShowToolbar()
-    {
-        if (ConstantsDefaultClass.KIsWeb)
-        {
-            return false;
-        }
-
-        if (_SelectionOverlay == null || _SelectionOverlay.ToolbarIsVisible)
-        {
-            return false;
-        }
-
-        _SelectionOverlay.ShowToolbar();
-        return true;
-    }
-
-
-
-
-    public new void HideToolbar()
-    {
-        _SelectionOverlay?.Hide();
-    }
-
-
-
-
-    /// <Summary>
-    /// Toggles the visibility of the toolbar.
-    /// </Summary>
-    public virtual void ToggleToolbar()
-    {
-
-        if (_SelectionOverlay.ToolbarIsVisible)
-        {
-            HideToolbar();
-        }
-        else
-        {
-            ShowToolbar();
-        }
-
-    }
-
-
-
-
-    private VoidCallback _SemanticsOnCopy(FlutterSDK.Widgets.Textselection.TextSelectionControls controls)
-    {
-        return Widget.SelectionEnabled && CopyEnabled && _HasFocus && controls?.CanCopy(this) == true ? () => =>controls.HandleCopy(this):null;
-    }
-
-
-
-
-    private VoidCallback _SemanticsOnCut(FlutterSDK.Widgets.Textselection.TextSelectionControls controls)
-    {
-        return Widget.SelectionEnabled && CutEnabled && _HasFocus && controls?.CanCut(this) == true ? () => =>controls.HandleCut(this):null;
-    }
-
-
-
-
-    private VoidCallback _SemanticsOnPaste(FlutterSDK.Widgets.Textselection.TextSelectionControls controls)
-    {
-        return Widget.SelectionEnabled && PasteEnabled && _HasFocus && controls?.CanPaste(this) == true ? () => =>controls.HandlePaste(this):null;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        _FocusAttachment.Reparent();
-        base.Build(context);
-        TextSelectionControls controls = Widget.SelectionControls;
-        return new Scrollable(excludeFromSemantics: true, axisDirection: _IsMultiline ? AxisDirection.Down : AxisDirection.Right, controller: _ScrollController, physics: Widget.ScrollPhysics, dragStartBehavior: Widget.DragStartBehavior, viewportBuilder: (BuildContext context, ViewportOffset offset) =>
-        {
-            return new CompositedTransformTarget(link: _ToolbarLayerLink, child: new Semantics(onCopy: _SemanticsOnCopy(controls), onCut: _SemanticsOnCut(controls), onPaste: _SemanticsOnPaste(controls), child: new _Editable(key: _EditableKey, startHandleLayerLink: _StartHandleLayerLink, endHandleLayerLink: _EndHandleLayerLink, textSpan: BuildTextSpan(), value: _Value, cursorColor: _CursorColor, backgroundCursorColor: Widget.BackgroundCursorColor, showCursor: EditabletextDefaultClass.EditableText.DebugDeterministicCursor ? new ValueNotifier<bool>(Widget.ShowCursor) : _CursorVisibilityNotifier, forceLine: Widget.ForceLine, readOnly: Widget.ReadOnly, hasFocus: _HasFocus, maxLines: Widget.MaxLines, minLines: Widget.MinLines, expands: Widget.Expands, strutStyle: Widget.StrutStyle, selectionColor: Widget.SelectionColor, textScaleFactor: Widget.TextScaleFactor ?? MediaqueryDefaultClass.MediaQuery.TextScaleFactorOf(context), textAlign: Widget.TextAlign, textDirection: _TextDirection, locale: Widget.Locale, textWidthBasis: Widget.TextWidthBasis, obscureText: Widget.ObscureText, autocorrect: Widget.Autocorrect, smartDashesType: Widget.SmartDashesType, smartQuotesType: Widget.SmartQuotesType, enableSuggestions: Widget.EnableSuggestions, offset: offset, onSelectionChanged: _HandleSelectionChanged, onCaretChanged: _HandleCaretChanged, rendererIgnoresPointer: Widget.RendererIgnoresPointer, cursorWidth: Widget.CursorWidth, cursorRadius: Widget.CursorRadius, cursorOffset: Widget.CursorOffset, selectionHeightStyle: Widget.SelectionHeightStyle, selectionWidthStyle: Widget.SelectionWidthStyle, paintCursorAboveText: Widget.PaintCursorAboveText, enableInteractiveSelection: Widget.EnableInteractiveSelection, textSelectionDelegate: this, devicePixelRatio: _DevicePixelRatio)));
-        }
-        );
-    }
-
-
-
-
-    /// <Summary>
-    /// Builds [TextSpan] from current editing value.
-    ///
-    /// By default makes text in composing range appear as underlined.
-    /// Descendants can override this method to customize appearance of text.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan()
-    {
-        if (Widget.ObscureText)
-        {
-            string text = _Value.Text;
-            text = EditableDefaultClass.RenderEditable.ObscuringCharacter * text.Length;
-            int o = _ObscureShowCharTicksPending > 0 ? _ObscureLatestCharIndex : null;
-            if (o != null && o >= 0 && o < text.Length) text = text.ReplaceRange(o, o + 1, _Value.Text.Substring(o, o + 1));
-            return new TextSpan(style: Widget.Style, text: text);
-        }
-
-        return Widget.Controller.BuildTextSpan(style: Widget.Style, withComposing: !Widget.ReadOnly);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _Editable : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-    #region constructors
-    public _Editable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textspan.TextSpan textSpan = default(FlutterSDK.Painting.Textspan.TextSpan), FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>), bool forceLine = default(bool), bool readOnly = default(bool), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool hasFocus = default(bool), int maxLines = default(int), int minLines = default(int), bool expands = default(bool), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), double textScaleFactor = default(double), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool obscureText = default(bool), bool autocorrect = default(bool), FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = default(bool), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler), FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler), bool rendererIgnoresPointer = false, double cursorWidth = default(double), Radius cursorRadius = default(Radius), FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), bool paintCursorAboveText = default(bool), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), bool enableInteractiveSelection = true, FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), double devicePixelRatio = default(double))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextEditingValue Value { get; set; }
-public virtual FlutterBinding.UI.Color CursorColor { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
-public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundCursorColor { get; set; }
-public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> ShowCursor { get; set; }
-public virtual bool ForceLine { get; set; }
-public virtual bool ReadOnly { get; set; }
-public virtual bool HasFocus { get; set; }
-public virtual int MaxLines { get; set; }
-public virtual int MinLines { get; set; }
-public virtual bool Expands { get; set; }
-public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
-public virtual FlutterBinding.UI.Color SelectionColor { get; set; }
-public virtual double TextScaleFactor { get; set; }
-public virtual TextAlign TextAlign { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-public virtual Locale Locale { get; set; }
-public virtual bool ObscureText { get; set; }
-public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
-public virtual bool Autocorrect { get; set; }
-public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
-public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
-public virtual bool EnableSuggestions { get; set; }
-public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-public virtual FlutterSDK.Rendering.Editable.SelectionChangedHandler OnSelectionChanged { get; set; }
-public virtual FlutterSDK.Rendering.Editable.CaretChangedHandler OnCaretChanged { get; set; }
-public virtual bool RendererIgnoresPointer { get; set; }
-public virtual double CursorWidth { get; set; }
-public virtual Radius CursorRadius { get; set; }
-public virtual FlutterBinding.UI.Offset CursorOffset { get; set; }
-public virtual bool PaintCursorAboveText { get; set; }
-public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
-public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
-public virtual bool EnableInteractiveSelection { get; set; }
-public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate TextSelectionDelegate { get; set; }
-public virtual double DevicePixelRatio { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Rendering.Editable.RenderEditable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new RenderEditable(text: TextSpan, cursorColor: CursorColor, startHandleLayerLink: StartHandleLayerLink, endHandleLayerLink: EndHandleLayerLink, backgroundCursorColor: BackgroundCursorColor, showCursor: ShowCursor, forceLine: ForceLine, readOnly: ReadOnly, hasFocus: HasFocus, maxLines: MaxLines, minLines: MinLines, expands: Expands, strutStyle: StrutStyle, selectionColor: SelectionColor, textScaleFactor: TextScaleFactor, textAlign: TextAlign, textDirection: TextDirection, locale: Locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true), selection: Value.Selection, offset: Offset, onSelectionChanged: OnSelectionChanged, onCaretChanged: OnCaretChanged, ignorePointer: RendererIgnoresPointer, obscureText: ObscureText, textWidthBasis: TextWidthBasis, cursorWidth: CursorWidth, cursorRadius: CursorRadius, cursorOffset: CursorOffset, paintCursorAboveText: PaintCursorAboveText, selectionHeightStyle: SelectionHeightStyle, selectionWidthStyle: SelectionWidthStyle, enableInteractiveSelection: EnableInteractiveSelection, textSelectionDelegate: TextSelectionDelegate, devicePixelRatio: DevicePixelRatio);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Editable.RenderEditable renderObject)
-{
-    ..Text = TextSpan..CursorColor = CursorColor..StartHandleLayerLink = StartHandleLayerLink..EndHandleLayerLink = EndHandleLayerLink..ShowCursor = ShowCursor..ForceLine = ForceLine..ReadOnly = ReadOnly..HasFocus = HasFocus..MaxLines = MaxLines..MinLines = MinLines..Expands = Expands..StrutStyle = StrutStyle..SelectionColor = SelectionColor..TextScaleFactor = TextScaleFactor..TextAlign = TextAlign..TextDirection = TextDirection..Locale = Locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true)..Selection = Value.Selection..Offset = Offset..OnSelectionChanged = OnSelectionChanged..OnCaretChanged = OnCaretChanged..IgnorePointer = RendererIgnoresPointer..TextWidthBasis = TextWidthBasis..ObscureText = ObscureText..CursorWidth = CursorWidth..CursorRadius = CursorRadius..CursorOffset = CursorOffset..SelectionHeightStyle = SelectionHeightStyle..SelectionWidthStyle = SelectionWidthStyle..TextSelectionDelegate = TextSelectionDelegate..DevicePixelRatio = DevicePixelRatio..PaintCursorAboveText = PaintCursorAboveText;
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..Text = TextSpan..CursorColor = CursorColor..StartHandleLayerLink = StartHandleLayerLink..EndHandleLayerLink = EndHandleLayerLink..ShowCursor = ShowCursor..ForceLine = ForceLine..ReadOnly = ReadOnly..HasFocus = HasFocus..MaxLines = MaxLines..MinLines = MinLines..Expands = Expands..StrutStyle = StrutStyle..SelectionColor = SelectionColor..TextScaleFactor = TextScaleFactor..TextAlign = TextAlign..TextDirection = TextDirection..Locale = Locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true)..Selection = Value.Selection..Offset = Offset..OnSelectionChanged = OnSelectionChanged..OnCaretChanged = OnCaretChanged..IgnorePointer = RendererIgnoresPointer..TextWidthBasis = TextWidthBasis..ObscureText = ObscureText..CursorWidth = CursorWidth..CursorRadius = CursorRadius..CursorOffset = CursorOffset..SelectionHeightStyle = SelectionHeightStyle..SelectionWidthStyle = SelectionWidthStyle..TextSelectionDelegate = TextSelectionDelegate..DevicePixelRatio = DevicePixelRatio..PaintCursorAboveText = PaintCursorAboveText;
-}
-
-
-
-#endregion
-}
-
-
-public class _WhitespaceDirectionalityFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
-{
-    #region constructors
-    public _WhitespaceDirectionalityFormatter(TextDirection textDirection = default(TextDirection))
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual RegExp _LtrRegExp { get; set; }
-internal virtual RegExp _RtlRegExp { get; set; }
-internal virtual RegExp _WhitespaceRegExp { get; set; }
-internal virtual TextDirection _BaseDirection { get; set; }
-internal virtual TextDirection _PreviousNonWhitespaceDirection { get; set; }
-internal virtual bool _HasOpposingDirection { get; set; }
-internal virtual int _Rlm { get; set; }
-internal virtual int _Lrm { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
-{
-    if (!_HasOpposingDirection)
-    {
-        _HasOpposingDirection = _BaseDirection == TextDirection.Ltr ? _RtlRegExp.HasMatch(newValue.Text) : _LtrRegExp.HasMatch(newValue.Text);
-    }
-
-    if (_HasOpposingDirection)
-    {
-        _PreviousNonWhitespaceDirection = _BaseDirection;
-        List<int> outputCodepoints = new List<int>() { };
-        int selectionBase = newValue.Selection.BaseOffset;
-        int selectionExtent = newValue.Selection.ExtentOffset;
-        int composingStart = newValue.Composing.Start;
-        int composingEnd = newValue.Composing.End;
-        void AddToLength() => {
-            selectionBase += outputCodepoints.Count <= selectionBase ? 1 : 0;
-            selectionExtent += outputCodepoints.Count <= selectionExtent ? 1 : 0;
-            composingStart += outputCodepoints.Count <= composingStart ? 1 : 0;
-            composingEnd += outputCodepoints.Count <= composingEnd ? 1 : 0;
-        }
-
-        void SubtractFromLength() => {
-            selectionBase -= outputCodepoints.Count < selectionBase ? 1 : 0;
-            selectionExtent -= outputCodepoints.Count < selectionExtent ? 1 : 0;
-            composingStart -= outputCodepoints.Count < composingStart ? 1 : 0;
-            composingEnd -= outputCodepoints.Count < composingEnd ? 1 : 0;
-        }
-
-        bool previousWasWhitespace = false;
-        bool previousWasDirectionalityMarker = false;
-        int previousNonWhitespaceCodepoint = default(int);
-        foreach (int codepoint in newValue.Text.Runes)
-        {
-            if (IsWhitespace(codepoint))
+            _Value = value;
+            if (isRepeatText && isRepeatSelection && isRepeatComposing && textChanged && _LastFormattedValue != null)
             {
-                if (!previousWasWhitespace && previousNonWhitespaceCodepoint != null)
-                {
-                    _PreviousNonWhitespaceDirection = GetDirection(previousNonWhitespaceCodepoint);
-                }
-
-                if (previousWasWhitespace)
-                {
-                    SubtractFromLength();
-                    outputCodepoints.RemoveLast();
-                }
-
-                outputCodepoints.Add(codepoint);
-                AddToLength();
-                outputCodepoints.Add(_PreviousNonWhitespaceDirection == TextDirection.Rtl ? _Rlm : _Lrm);
-                previousWasWhitespace = true;
-                previousWasDirectionalityMarker = false;
+                _Value = _LastFormattedValue;
             }
-            else if (IsDirectionalityMarker(codepoint))
-            {
-                if (previousWasWhitespace)
-                {
-                    SubtractFromLength();
-                    outputCodepoints.RemoveLast();
-                }
 
-                outputCodepoints.Add(codepoint);
-                previousWasWhitespace = false;
-                previousWasDirectionalityMarker = true;
+            _UpdateRemoteEditingValueIfNeeded();
+            if (textChanged && Widget.OnChanged != null) Widget.OnChanged(value.Text);
+            _LastFormattedUnmodifiedTextEditingValue = _ReceivedRemoteTextEditingValue;
+        }
+
+
+
+
+        private void _OnCursorColorTick()
+        {
+            RenderEditable.CursorColor = Widget.CursorColor.WithOpacity(_CursorBlinkOpacityController.Value);
+            _CursorVisibilityNotifier.Value = Widget.ShowCursor && _CursorBlinkOpacityController.Value > 0;
+        }
+
+
+
+
+        private void _CursorTick(Timer timer)
+        {
+            _TargetCursorVisibility = !_TargetCursorVisibility;
+            double targetOpacity = _TargetCursorVisibility ? 1.0 : 0.0;
+            if (Widget.CursorOpacityAnimates)
+            {
+                _CursorBlinkOpacityController.AnimateTo(targetOpacity, curve: CurvesDefaultClass.Curves.EaseOut);
             }
             else
             {
-                if (!previousWasDirectionalityMarker && previousWasWhitespace && GetDirection(codepoint) == _PreviousNonWhitespaceDirection)
-                {
-                    SubtractFromLength();
-                    outputCodepoints.RemoveLast();
-                }
+                _CursorBlinkOpacityController.Value = targetOpacity;
+            }
 
-                previousNonWhitespaceCodepoint = codepoint;
-                outputCodepoints.Add(codepoint);
-                previousWasWhitespace = false;
-                previousWasDirectionalityMarker = false;
+            if (_ObscureShowCharTicksPending > 0)
+            {
+                SetState(() =>
+                {
+                    _ObscureShowCharTicksPending--;
+                }
+                );
             }
 
         }
 
-        string formatted = string.FromCharCodes(outputCodepoints);
-        return new TextEditingValue(text: formatted, selection: new TextSelection(baseOffset: selectionBase, extentOffset: selectionExtent, affinity: newValue.Selection.Affinity, isDirectional: newValue.Selection.IsDirectional), composing: new TextRange(start: composingStart, end: composingEnd));
+
+
+
+        private void _CursorWaitForStart(Timer timer)
+        {
+
+            _CursorTimer?.Cancel();
+            _CursorTimer = Timer.Periodic(EditabletextDefaultClass._KCursorBlinkHalfPeriod, _CursorTick);
+        }
+
+
+
+
+        private void _StartCursorTimer()
+        {
+            _TargetCursorVisibility = true;
+            _CursorBlinkOpacityController.Value = 1.0;
+            if (EditabletextDefaultClass.EditableText.DebugDeterministicCursor) return;
+            if (Widget.CursorOpacityAnimates)
+            {
+                _CursorTimer = Timer.Periodic(EditabletextDefaultClass._KCursorBlinkWaitForStart, _CursorWaitForStart);
+            }
+            else
+            {
+                _CursorTimer = Timer.Periodic(EditabletextDefaultClass._KCursorBlinkHalfPeriod, _CursorTick);
+            }
+
+        }
+
+
+
+
+        private void _StopCursorTimer(bool resetCharTicks = true)
+        {
+            _CursorTimer?.Cancel();
+            _CursorTimer = null;
+            _TargetCursorVisibility = false;
+            _CursorBlinkOpacityController.Value = 0.0;
+            if (EditabletextDefaultClass.EditableText.DebugDeterministicCursor) return;
+            if (resetCharTicks) _ObscureShowCharTicksPending = 0;
+            if (Widget.CursorOpacityAnimates)
+            {
+                _CursorBlinkOpacityController.Stop();
+                _CursorBlinkOpacityController.Value = 0.0;
+            }
+
+        }
+
+
+
+
+        private void _StartOrStopCursorTimerIfNeeded()
+        {
+            if (_CursorTimer == null && _HasFocus && _Value.Selection.IsCollapsed) _StartCursorTimer(); else if (_CursorTimer != null && (!_HasFocus || !_Value.Selection.IsCollapsed)) _StopCursorTimer();
+        }
+
+
+
+
+        private void _DidChangeTextEditingValue()
+        {
+            _UpdateRemoteEditingValueIfNeeded();
+            _StartOrStopCursorTimerIfNeeded();
+            _UpdateOrDisposeSelectionOverlayIfNeeded();
+            _TextChangedSinceLastCaretUpdate = true;
+            SetState(() =>
+            {
+            }
+            );
+        }
+
+
+
+
+        private void _HandleFocusChanged()
+        {
+            _OpenOrCloseInputConnectionIfNeeded();
+            _StartOrStopCursorTimerIfNeeded();
+            _UpdateOrDisposeSelectionOverlayIfNeeded();
+            if (_HasFocus)
+            {
+                BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
+                _LastBottomViewInset = BindingDefaultClass.WidgetsBinding.Instance.Window.ViewInsets.Bottom;
+                _ShowCaretOnScreen();
+                if (!_Value.Selection.IsValid)
+                {
+                    _HandleSelectionChanged(TextSelection.Collapsed(offset: _Value.Text.Length), RenderEditable, null);
+                }
+
+            }
+            else
+            {
+                BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+                _Value = new TextEditingValue(text: _Value.Text);
+            }
+
+            UpdateKeepAlive();
+        }
+
+
+
+
+        private void _UpdateSizeAndTransform()
+        {
+            if (_HasInputConnection)
+            {
+                Size size = RenderEditable.Size;
+                Matrix4 transform = RenderEditable.GetTransformTo(null);
+                _TextInputConnection.SetEditableSizeAndTransform(size, transform);
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan _) => =>_UpdateSizeAndTransform());
+            }
+
+        }
+
+
+
+
+        public new void BringIntoView(TextPosition position)
+        {
+            _ScrollController.JumpTo(_GetScrollOffsetForCaret(RenderEditable.GetLocalRectForCaret(position)));
+        }
+
+
+
+
+        /// <Summary>
+        /// Shows the selection toolbar at the location of the current cursor.
+        ///
+        /// Returns `false` if a toolbar couldn't be shown, such as when the toolbar
+        /// is already shown, or when no text selection currently exists.
+        /// </Summary>
+        public virtual bool ShowToolbar()
+        {
+            if (ConstantsDefaultClass.KIsWeb)
+            {
+                return false;
+            }
+
+            if (_SelectionOverlay == null || _SelectionOverlay.ToolbarIsVisible)
+            {
+                return false;
+            }
+
+            _SelectionOverlay.ShowToolbar();
+            return true;
+        }
+
+
+
+
+        public new void HideToolbar()
+        {
+            _SelectionOverlay?.Hide();
+        }
+
+
+
+
+        /// <Summary>
+        /// Toggles the visibility of the toolbar.
+        /// </Summary>
+        public virtual void ToggleToolbar()
+        {
+
+            if (_SelectionOverlay.ToolbarIsVisible)
+            {
+                HideToolbar();
+            }
+            else
+            {
+                ShowToolbar();
+            }
+
+        }
+
+
+
+
+        private VoidCallback _SemanticsOnCopy(FlutterSDK.Widgets.Textselection.TextSelectionControls controls)
+        {
+            return Widget.SelectionEnabled && CopyEnabled && _HasFocus && controls?.CanCopy(this) == true ? () => =>controls.HandleCopy(this):null;
+        }
+
+
+
+
+        private VoidCallback _SemanticsOnCut(FlutterSDK.Widgets.Textselection.TextSelectionControls controls)
+        {
+            return Widget.SelectionEnabled && CutEnabled && _HasFocus && controls?.CanCut(this) == true ? () => =>controls.HandleCut(this):null;
+        }
+
+
+
+
+        private VoidCallback _SemanticsOnPaste(FlutterSDK.Widgets.Textselection.TextSelectionControls controls)
+        {
+            return Widget.SelectionEnabled && PasteEnabled && _HasFocus && controls?.CanPaste(this) == true ? () => =>controls.HandlePaste(this):null;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            _FocusAttachment.Reparent();
+            base.Build(context);
+            TextSelectionControls controls = Widget.SelectionControls;
+            return new Scrollable(excludeFromSemantics: true, axisDirection: _IsMultiline ? AxisDirection.Down : AxisDirection.Right, controller: _ScrollController, physics: Widget.ScrollPhysics, dragStartBehavior: Widget.DragStartBehavior, viewportBuilder: (BuildContext context, ViewportOffset offset) =>
+            {
+                return new CompositedTransformTarget(link: _ToolbarLayerLink, child: new Semantics(onCopy: _SemanticsOnCopy(controls), onCut: _SemanticsOnCut(controls), onPaste: _SemanticsOnPaste(controls), child: new _Editable(key: _EditableKey, startHandleLayerLink: _StartHandleLayerLink, endHandleLayerLink: _EndHandleLayerLink, textSpan: BuildTextSpan(), value: _Value, cursorColor: _CursorColor, backgroundCursorColor: Widget.BackgroundCursorColor, showCursor: EditabletextDefaultClass.EditableText.DebugDeterministicCursor ? new ValueNotifier<bool>(Widget.ShowCursor) : _CursorVisibilityNotifier, forceLine: Widget.ForceLine, readOnly: Widget.ReadOnly, hasFocus: _HasFocus, maxLines: Widget.MaxLines, minLines: Widget.MinLines, expands: Widget.Expands, strutStyle: Widget.StrutStyle, selectionColor: Widget.SelectionColor, textScaleFactor: Widget.TextScaleFactor ?? MediaqueryDefaultClass.MediaQuery.TextScaleFactorOf(context), textAlign: Widget.TextAlign, textDirection: _TextDirection, locale: Widget.Locale, textWidthBasis: Widget.TextWidthBasis, obscureText: Widget.ObscureText, autocorrect: Widget.Autocorrect, smartDashesType: Widget.SmartDashesType, smartQuotesType: Widget.SmartQuotesType, enableSuggestions: Widget.EnableSuggestions, offset: offset, onSelectionChanged: _HandleSelectionChanged, onCaretChanged: _HandleCaretChanged, rendererIgnoresPointer: Widget.RendererIgnoresPointer, cursorWidth: Widget.CursorWidth, cursorRadius: Widget.CursorRadius, cursorOffset: Widget.CursorOffset, selectionHeightStyle: Widget.SelectionHeightStyle, selectionWidthStyle: Widget.SelectionWidthStyle, paintCursorAboveText: Widget.PaintCursorAboveText, enableInteractiveSelection: Widget.EnableInteractiveSelection, textSelectionDelegate: this, devicePixelRatio: _DevicePixelRatio)));
+            }
+            );
+        }
+
+
+
+
+        /// <Summary>
+        /// Builds [TextSpan] from current editing value.
+        ///
+        /// By default makes text in composing range appear as underlined.
+        /// Descendants can override this method to customize appearance of text.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan()
+        {
+            if (Widget.ObscureText)
+            {
+                string text = _Value.Text;
+                text = EditableDefaultClass.RenderEditable.ObscuringCharacter * text.Length;
+                int o = _ObscureShowCharTicksPending > 0 ? _ObscureLatestCharIndex : null;
+                if (o != null && o >= 0 && o < text.Length) text = text.ReplaceRange(o, o + 1, _Value.Text.Substring(o, o + 1));
+                return new TextSpan(style: Widget.Style, text: text);
+            }
+
+            return Widget.Controller.BuildTextSpan(style: Widget.Style, withComposing: !Widget.ReadOnly);
+        }
+
+
+
+        #endregion
     }
 
-    return newValue;
-}
+
+    public class _Editable : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _Editable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textspan.TextSpan textSpan = default(FlutterSDK.Painting.Textspan.TextSpan), FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>), bool forceLine = default(bool), bool readOnly = default(bool), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool hasFocus = default(bool), int maxLines = default(int), int minLines = default(int), bool expands = default(bool), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), double textScaleFactor = default(double), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool obscureText = default(bool), bool autocorrect = default(bool), FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = default(bool), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler), FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler), bool rendererIgnoresPointer = false, double cursorWidth = default(double), Radius cursorRadius = default(Radius), FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), bool paintCursorAboveText = default(bool), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), bool enableInteractiveSelection = true, FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), double devicePixelRatio = default(double))
+        : base(key: key)
+        {
+            this.TextSpan = textSpan;
+            this.Value = value;
+            this.StartHandleLayerLink = startHandleLayerLink;
+            this.EndHandleLayerLink = endHandleLayerLink;
+            this.CursorColor = cursorColor;
+            this.BackgroundCursorColor = backgroundCursorColor;
+            this.ShowCursor = showCursor;
+            this.ForceLine = forceLine;
+            this.ReadOnly = readOnly;
+            this.TextWidthBasis = textWidthBasis;
+            this.HasFocus = hasFocus;
+            this.MaxLines = maxLines;
+            this.MinLines = minLines;
+            this.Expands = expands;
+            this.StrutStyle = strutStyle;
+            this.SelectionColor = selectionColor;
+            this.TextScaleFactor = textScaleFactor;
+            this.TextAlign = textAlign;
+            this.TextDirection = textDirection;
+            this.Locale = locale;
+            this.ObscureText = obscureText;
+            this.Autocorrect = autocorrect;
+            this.SmartDashesType = smartDashesType;
+            this.SmartQuotesType = smartQuotesType;
+            this.EnableSuggestions = enableSuggestions;
+            this.Offset = offset;
+            this.OnSelectionChanged = onSelectionChanged;
+            this.OnCaretChanged = onCaretChanged;
+            this.RendererIgnoresPointer = rendererIgnoresPointer;
+            this.CursorWidth = cursorWidth;
+            this.CursorRadius = cursorRadius;
+            this.CursorOffset = cursorOffset;
+            this.PaintCursorAboveText = paintCursorAboveText;
+            this.SelectionHeightStyle = selectionHeightStyle;
+            this.SelectionWidthStyle = selectionWidthStyle;
+            this.EnableInteractiveSelection = enableInteractiveSelection;
+            this.TextSelectionDelegate = textSelectionDelegate;
+            this.DevicePixelRatio = devicePixelRatio;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextEditingValue Value { get; set; }
+        public virtual FlutterBinding.UI.Color CursorColor { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
+        public virtual FlutterSDK.Rendering.Layer.LayerLink EndHandleLayerLink { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundCursorColor { get; set; }
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> ShowCursor { get; set; }
+        public virtual bool ForceLine { get; set; }
+        public virtual bool ReadOnly { get; set; }
+        public virtual bool HasFocus { get; set; }
+        public virtual int MaxLines { get; set; }
+        public virtual int MinLines { get; set; }
+        public virtual bool Expands { get; set; }
+        public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
+        public virtual FlutterBinding.UI.Color SelectionColor { get; set; }
+        public virtual double TextScaleFactor { get; set; }
+        public virtual TextAlign TextAlign { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual Locale Locale { get; set; }
+        public virtual bool ObscureText { get; set; }
+        public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
+        public virtual bool Autocorrect { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartDashesType SmartDashesType { get; set; }
+        public virtual FlutterSDK.Services.Textinput.SmartQuotesType SmartQuotesType { get; set; }
+        public virtual bool EnableSuggestions { get; set; }
+        public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
+        public virtual FlutterSDK.Rendering.Editable.SelectionChangedHandler OnSelectionChanged { get; set; }
+        public virtual FlutterSDK.Rendering.Editable.CaretChangedHandler OnCaretChanged { get; set; }
+        public virtual bool RendererIgnoresPointer { get; set; }
+        public virtual double CursorWidth { get; set; }
+        public virtual Radius CursorRadius { get; set; }
+        public virtual FlutterBinding.UI.Offset CursorOffset { get; set; }
+        public virtual bool PaintCursorAboveText { get; set; }
+        public virtual BoxHeightStyle SelectionHeightStyle { get; set; }
+        public virtual BoxWidthStyle SelectionWidthStyle { get; set; }
+        public virtual bool EnableInteractiveSelection { get; set; }
+        public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate TextSelectionDelegate { get; set; }
+        public virtual double DevicePixelRatio { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.Editable.RenderEditable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new RenderEditable(text: TextSpan, cursorColor: CursorColor, startHandleLayerLink: StartHandleLayerLink, endHandleLayerLink: EndHandleLayerLink, backgroundCursorColor: BackgroundCursorColor, showCursor: ShowCursor, forceLine: ForceLine, readOnly: ReadOnly, hasFocus: HasFocus, maxLines: MaxLines, minLines: MinLines, expands: Expands, strutStyle: StrutStyle, selectionColor: SelectionColor, textScaleFactor: TextScaleFactor, textAlign: TextAlign, textDirection: TextDirection, locale: Locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true), selection: Value.Selection, offset: Offset, onSelectionChanged: OnSelectionChanged, onCaretChanged: OnCaretChanged, ignorePointer: RendererIgnoresPointer, obscureText: ObscureText, textWidthBasis: TextWidthBasis, cursorWidth: CursorWidth, cursorRadius: CursorRadius, cursorOffset: CursorOffset, paintCursorAboveText: PaintCursorAboveText, selectionHeightStyle: SelectionHeightStyle, selectionWidthStyle: SelectionWidthStyle, enableInteractiveSelection: EnableInteractiveSelection, textSelectionDelegate: TextSelectionDelegate, devicePixelRatio: DevicePixelRatio);
+        }
 
 
 
 
-public virtual bool IsWhitespace(int value)
-{
-    return _WhitespaceRegExp.HasMatch(string.FromCharCode(value));
-}
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Editable.RenderEditable renderObject)
+        {
+            ..Text = TextSpan..CursorColor = CursorColor..StartHandleLayerLink = StartHandleLayerLink..EndHandleLayerLink = EndHandleLayerLink..ShowCursor = ShowCursor..ForceLine = ForceLine..ReadOnly = ReadOnly..HasFocus = HasFocus..MaxLines = MaxLines..MinLines = MinLines..Expands = Expands..StrutStyle = StrutStyle..SelectionColor = SelectionColor..TextScaleFactor = TextScaleFactor..TextAlign = TextAlign..TextDirection = TextDirection..Locale = Locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true)..Selection = Value.Selection..Offset = Offset..OnSelectionChanged = OnSelectionChanged..OnCaretChanged = OnCaretChanged..IgnorePointer = RendererIgnoresPointer..TextWidthBasis = TextWidthBasis..ObscureText = ObscureText..CursorWidth = CursorWidth..CursorRadius = CursorRadius..CursorOffset = CursorOffset..SelectionHeightStyle = SelectionHeightStyle..SelectionWidthStyle = SelectionWidthStyle..TextSelectionDelegate = TextSelectionDelegate..DevicePixelRatio = DevicePixelRatio..PaintCursorAboveText = PaintCursorAboveText;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..Text = TextSpan..CursorColor = CursorColor..StartHandleLayerLink = StartHandleLayerLink..EndHandleLayerLink = EndHandleLayerLink..ShowCursor = ShowCursor..ForceLine = ForceLine..ReadOnly = ReadOnly..HasFocus = HasFocus..MaxLines = MaxLines..MinLines = MinLines..Expands = Expands..StrutStyle = StrutStyle..SelectionColor = SelectionColor..TextScaleFactor = TextScaleFactor..TextAlign = TextAlign..TextDirection = TextDirection..Locale = Locale ?? LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true)..Selection = Value.Selection..Offset = Offset..OnSelectionChanged = OnSelectionChanged..OnCaretChanged = OnCaretChanged..IgnorePointer = RendererIgnoresPointer..TextWidthBasis = TextWidthBasis..ObscureText = ObscureText..CursorWidth = CursorWidth..CursorRadius = CursorRadius..CursorOffset = CursorOffset..SelectionHeightStyle = SelectionHeightStyle..SelectionWidthStyle = SelectionWidthStyle..TextSelectionDelegate = TextSelectionDelegate..DevicePixelRatio = DevicePixelRatio..PaintCursorAboveText = PaintCursorAboveText;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _WhitespaceDirectionalityFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
+    {
+        #region constructors
+        public _WhitespaceDirectionalityFormatter(TextDirection textDirection = default(TextDirection))
+        : base()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual RegExp _LtrRegExp { get; set; }
+        internal virtual RegExp _RtlRegExp { get; set; }
+        internal virtual RegExp _WhitespaceRegExp { get; set; }
+        internal virtual TextDirection _BaseDirection { get; set; }
+        internal virtual TextDirection _PreviousNonWhitespaceDirection { get; set; }
+        internal virtual bool _HasOpposingDirection { get; set; }
+        internal virtual int _Rlm { get; set; }
+        internal virtual int _Lrm { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
+        {
+            if (!_HasOpposingDirection)
+            {
+                _HasOpposingDirection = _BaseDirection == TextDirection.Ltr ? _RtlRegExp.HasMatch(newValue.Text) : _LtrRegExp.HasMatch(newValue.Text);
+            }
+
+            if (_HasOpposingDirection)
+            {
+                _PreviousNonWhitespaceDirection = _BaseDirection;
+                List<int> outputCodepoints = new List<int>() { };
+                int selectionBase = newValue.Selection.BaseOffset;
+                int selectionExtent = newValue.Selection.ExtentOffset;
+                int composingStart = newValue.Composing.Start;
+                int composingEnd = newValue.Composing.End;
+                void AddToLength() => {
+                    selectionBase += outputCodepoints.Count <= selectionBase ? 1 : 0;
+                    selectionExtent += outputCodepoints.Count <= selectionExtent ? 1 : 0;
+                    composingStart += outputCodepoints.Count <= composingStart ? 1 : 0;
+                    composingEnd += outputCodepoints.Count <= composingEnd ? 1 : 0;
+                }
+
+                void SubtractFromLength() => {
+                    selectionBase -= outputCodepoints.Count < selectionBase ? 1 : 0;
+                    selectionExtent -= outputCodepoints.Count < selectionExtent ? 1 : 0;
+                    composingStart -= outputCodepoints.Count < composingStart ? 1 : 0;
+                    composingEnd -= outputCodepoints.Count < composingEnd ? 1 : 0;
+                }
+
+                bool previousWasWhitespace = false;
+                bool previousWasDirectionalityMarker = false;
+                int previousNonWhitespaceCodepoint = default(int);
+                foreach (int codepoint in newValue.Text.Runes)
+                {
+                    if (IsWhitespace(codepoint))
+                    {
+                        if (!previousWasWhitespace && previousNonWhitespaceCodepoint != null)
+                        {
+                            _PreviousNonWhitespaceDirection = GetDirection(previousNonWhitespaceCodepoint);
+                        }
+
+                        if (previousWasWhitespace)
+                        {
+                            SubtractFromLength();
+                            outputCodepoints.RemoveLast();
+                        }
+
+                        outputCodepoints.Add(codepoint);
+                        AddToLength();
+                        outputCodepoints.Add(_PreviousNonWhitespaceDirection == TextDirection.Rtl ? _Rlm : _Lrm);
+                        previousWasWhitespace = true;
+                        previousWasDirectionalityMarker = false;
+                    }
+                    else if (IsDirectionalityMarker(codepoint))
+                    {
+                        if (previousWasWhitespace)
+                        {
+                            SubtractFromLength();
+                            outputCodepoints.RemoveLast();
+                        }
+
+                        outputCodepoints.Add(codepoint);
+                        previousWasWhitespace = false;
+                        previousWasDirectionalityMarker = true;
+                    }
+                    else
+                    {
+                        if (!previousWasDirectionalityMarker && previousWasWhitespace && GetDirection(codepoint) == _PreviousNonWhitespaceDirection)
+                        {
+                            SubtractFromLength();
+                            outputCodepoints.RemoveLast();
+                        }
+
+                        previousNonWhitespaceCodepoint = codepoint;
+                        outputCodepoints.Add(codepoint);
+                        previousWasWhitespace = false;
+                        previousWasDirectionalityMarker = false;
+                    }
+
+                }
+
+                string formatted = string.FromCharCodes(outputCodepoints);
+                return new TextEditingValue(text: formatted, selection: new TextSelection(baseOffset: selectionBase, extentOffset: selectionExtent, affinity: newValue.Selection.Affinity, isDirectional: newValue.Selection.IsDirectional), composing: new TextRange(start: composingStart, end: composingEnd));
+            }
+
+            return newValue;
+        }
 
 
 
 
-public virtual bool IsDirectionalityMarker(int value)
-{
-    return value == _Rlm || value == _Lrm;
-}
+        public virtual bool IsWhitespace(int value)
+        {
+            return _WhitespaceRegExp.HasMatch(string.FromCharCode(value));
+        }
 
 
 
 
-public virtual TextDirection GetDirection(int value)
-{
-    return _LtrRegExp.HasMatch(string.FromCharCode(value)) ? TextDirection.Ltr : TextDirection.Rtl;
-}
+        public virtual bool IsDirectionalityMarker(int value)
+        {
+            return value == _Rlm || value == _Lrm;
+        }
 
 
 
-#endregion
-}
+
+        public virtual TextDirection GetDirection(int value)
+        {
+            return _LtrRegExp.HasMatch(string.FromCharCode(value)) ? TextDirection.Ltr : TextDirection.Rtl;
+        }
+
+
+
+        #endregion
+    }
 
 }

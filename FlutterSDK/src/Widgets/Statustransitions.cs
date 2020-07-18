@@ -448,96 +448,97 @@ namespace FlutterSDK.Widgets.Statustransitions
         #region constructors
         public StatusTransitionWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Override this method to build widgets that depend on the current status
-    /// of the animation.
-    /// </Summary>
-    public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return default(Widget);
-    }
-
-
-    public new FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState() => new _StatusTransitionState();
-
-
-    #endregion
-}
-
-
-public class _StatusTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget>
-{
-    #region constructors
-    public _StatusTransitionState()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        Widget.Animation.AddStatusListener(_AnimationStatusChanged);
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.Animation != oldWidget.Animation)
         {
-            oldWidget.Animation.RemoveStatusListener(_AnimationStatusChanged);
+            this.Animation = animation;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Override this method to build widgets that depend on the current status
+        /// of the animation.
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return default(Widget);
+        }
+
+
+        public new FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState() => new _StatusTransitionState();
+
+
+        #endregion
+    }
+
+
+    public class _StatusTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget>
+    {
+        #region constructors
+        public _StatusTransitionState()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
             Widget.Animation.AddStatusListener(_AnimationStatusChanged);
         }
 
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        Widget.Animation.RemoveStatusListener(_AnimationStatusChanged);
-        base.Dispose();
-    }
-
-
-
-
-    private void _AnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
-    {
-        SetState(() =>
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget oldWidget)
         {
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.Animation != oldWidget.Animation)
+            {
+                oldWidget.Animation.RemoveStatusListener(_AnimationStatusChanged);
+                Widget.Animation.AddStatusListener(_AnimationStatusChanged);
+            }
+
         }
-        );
+
+
+
+
+        public new void Dispose()
+        {
+            Widget.Animation.RemoveStatusListener(_AnimationStatusChanged);
+            base.Dispose();
+        }
+
+
+
+
+        private void _AnimationStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            SetState(() =>
+            {
+            }
+            );
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return Widget.Build(context);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return Widget.Build(context);
-    }
-
-
-
-    #endregion
-}
 
 }

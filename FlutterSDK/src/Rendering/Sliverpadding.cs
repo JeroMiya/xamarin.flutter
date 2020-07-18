@@ -664,62 +664,63 @@ namespace FlutterSDK.Rendering.Sliverpadding
         #region constructors
         public RenderSliverPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
-    
-this .Child=child;
-}
+        {
+
+            this.Child = child;
+        }
 
 
-    #endregion
+        #endregion
 
-    #region fields
-    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
-    internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
-    internal virtual TextDirection _TextDirection { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
+        internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    private void _Resolve()
-    {
-        if (ResolvedPadding != null) return;
-        _ResolvedPadding = Padding.Resolve(TextDirection);
+        private void _Resolve()
+        {
+            if (ResolvedPadding != null) return;
+            _ResolvedPadding = Padding.Resolve(TextDirection);
 
+        }
+
+
+
+
+        private void _MarkNeedsResolution()
+        {
+            _ResolvedPadding = null;
+            MarkNeedsLayout();
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            _Resolve();
+            base.PerformLayout();
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding));
+            properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    private void _MarkNeedsResolution()
-    {
-        _ResolvedPadding = null;
-        MarkNeedsLayout();
-    }
-
-
-
-
-    public new void PerformLayout()
-    {
-        _Resolve();
-        base.PerformLayout();
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding));
-        properties.Add(new EnumProperty<TextDirection>("textDirection", TextDirection, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
 
 }

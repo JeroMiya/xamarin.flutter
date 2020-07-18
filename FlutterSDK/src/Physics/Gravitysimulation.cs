@@ -463,31 +463,32 @@ namespace FlutterSDK.Physics.Gravitysimulation
         #region constructors
         public GravitySimulation(double acceleration, double distance, double endDistance, double velocity)
         : base()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    internal virtual double _X { get; set; }
-    internal virtual double _V { get; set; }
-    internal virtual double _A { get; set; }
-    internal virtual double _End { get; set; }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        internal virtual double _X { get; set; }
+        internal virtual double _V { get; set; }
+        internal virtual double _A { get; set; }
+        internal virtual double _End { get; set; }
+        #endregion
 
-    public new double x(double time) => _X + _V * time + 0.5 * _A * time * time;
+        #region methods
 
-
-
-    public new double Dx(double time) => _V + time * _A;
+        public new double x(double time) => _X + _V * time + 0.5 * _A * time * time;
 
 
 
-    public new bool IsDone(double time) => x(time).Abs() >= _End;
+        public new double Dx(double time) => _V + time * _A;
 
 
-    #endregion
-}
+
+        public new bool IsDone(double time) => x(time).Abs() >= _End;
+
+
+        #endregion
+    }
 
 }

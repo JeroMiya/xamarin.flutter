@@ -465,54 +465,56 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
         #region constructors
         public ScrollAwareImageProvider(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> context = default(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Painting.Imageprovider.ImageProvider<T> imageProvider = default(FlutterSDK.Painting.Imageprovider.ImageProvider<T>))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
-    public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError)
-    {
-        if (stream.Completer != null || BindingDefaultClass.PaintingBinding.Instance.ImageCache.ContainsKey(key))
         {
-            ImageProvider.ResolveStreamForKey(configuration, stream, key, handleError);
-            return;
+            this.Context = context;
+            this.ImageProvider = imageProvider;
         }
+        #endregion
 
-        if (Context.Context == null)
-        {
-            return;
-        }
+        #region fields
+        public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
+        #endregion
 
-        if (ScrollableDefaultClass.Scrollable.RecommendDeferredLoadingForContext(Context.Context))
+        #region methods
+
+        public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError)
         {
-            BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback((_) =>
+            if (stream.Completer != null || BindingDefaultClass.PaintingBinding.Instance.ImageCache.ContainsKey(key))
             {
-            Dart: asyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
+                ImageProvider.ResolveStreamForKey(configuration, stream, key, handleError);
+                return;
             }
-            );
-            return;
+
+            if (Context.Context == null)
+            {
+                return;
+            }
+
+            if (ScrollableDefaultClass.Scrollable.RecommendDeferredLoadingForContext(Context.Context))
+            {
+                BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback((_) =>
+                {
+                Dart: asyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
+                }
+                );
+                return;
+            }
+
+            ImageProvider.ResolveStreamForKey(configuration, stream, key, handleError);
         }
 
-        ImageProvider.ResolveStreamForKey(configuration, stream, key, handleError);
+
+
+
+        public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) => ImageProvider.Load(key, decode);
+
+
+
+        public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) => ImageProvider.ObtainKey(configuration);
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode) => ImageProvider.Load(key, decode);
-
-
-
-    public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) => ImageProvider.ObtainKey(configuration);
-
-
-    #endregion
-}
 
 }

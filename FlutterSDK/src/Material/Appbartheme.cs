@@ -380,85 +380,91 @@ namespace FlutterSDK.Material.Appbartheme
     {
         #region constructors
         public AppBarTheme(Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
-    
-}
-    #endregion
+        {
+            this.Brightness = brightness;
+            this.Color = color;
+            this.Elevation = elevation;
+            this.IconTheme = iconTheme;
+            this.ActionsIconTheme = actionsIconTheme;
+            this.TextTheme = textTheme;
+        }
+        #endregion
 
-    #region fields
-    public virtual Brightness Brightness { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
-    public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
-    public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData IconTheme { get; set; }
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
+        public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Creates a copy of this object with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Appbartheme.AppBarTheme CopyWith(FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
-    {
-        return new AppBarTheme(brightness: brightness ?? this.Brightness, color: color ?? this.Color, elevation: elevation == default(double) ? this.elevation : elevation, iconTheme: iconTheme ?? this.IconTheme, actionsIconTheme: actionsIconTheme ?? this.ActionsIconTheme, textTheme: textTheme ?? this.TextTheme);
+        /// <Summary>
+        /// Creates a copy of this object with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme CopyWith(FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
+        {
+            return new AppBarTheme(brightness: brightness ?? this.Brightness, color: color ?? this.Color, elevation: elevation == default(double) ? this.elevation : elevation, iconTheme: iconTheme ?? this.IconTheme, actionsIconTheme: actionsIconTheme ?? this.ActionsIconTheme, textTheme: textTheme ?? this.TextTheme);
+        }
+
+
+
+
+        /// <Summary>
+        /// The [ThemeData.appBarTheme] property of the ambient [Theme].
+        /// </Summary>
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return ThemeDefaultClass.Theme.Of(context).AppBarTheme;
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two AppBar themes.
+        ///
+        /// The argument `t` must not be null.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Lerp(FlutterSDK.Material.Appbartheme.AppBarTheme a, FlutterSDK.Material.Appbartheme.AppBarTheme b, double t)
+        {
+
+            return new AppBarTheme(brightness: t < 0.5 ? a?.Brightness : b?.Brightness, color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), iconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.IconTheme, b?.IconTheme, t), actionsIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.ActionsIconTheme, b?.ActionsIconTheme, t), textTheme: TextthemeDefaultClass.TextTheme.Lerp(a?.TextTheme, b?.TextTheme, t));
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is AppBarTheme && other.Brightness == Brightness && other.Color == Color && other.Elevation == Elevation && other.IconTheme == IconTheme && other.ActionsIconTheme == ActionsIconTheme && other.TextTheme == TextTheme;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<Brightness>("brightness", Brightness, defaultValue: null));
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<double>("elevation", Elevation, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<IconThemeData>("iconTheme", IconTheme, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<IconThemeData>("actionsIconTheme", ActionsIconTheme, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TextTheme>("textTheme", TextTheme, defaultValue: null));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    /// <Summary>
-    /// The [ThemeData.appBarTheme] property of the ambient [Theme].
-    /// </Summary>
-    public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Of(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return ThemeDefaultClass.Theme.Of(context).AppBarTheme;
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two AppBar themes.
-    ///
-    /// The argument `t` must not be null.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
-    /// </Summary>
-    public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Lerp(FlutterSDK.Material.Appbartheme.AppBarTheme a, FlutterSDK.Material.Appbartheme.AppBarTheme b, double t)
-    {
-
-        return new AppBarTheme(brightness: t < 0.5 ? a?.Brightness : b?.Brightness, color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), iconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.IconTheme, b?.IconTheme, t), actionsIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.ActionsIconTheme, b?.ActionsIconTheme, t), textTheme: TextthemeDefaultClass.TextTheme.Lerp(a?.TextTheme, b?.TextTheme, t));
-    }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is AppBarTheme && other.Brightness == Brightness && other.Color == Color && other.Elevation == Elevation && other.IconTheme == IconTheme && other.ActionsIconTheme == ActionsIconTheme && other.TextTheme == TextTheme;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DiagnosticsProperty<Brightness>("brightness", Brightness, defaultValue: null));
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<double>("elevation", Elevation, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<IconThemeData>("iconTheme", IconTheme, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<IconThemeData>("actionsIconTheme", ActionsIconTheme, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TextTheme>("textTheme", TextTheme, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
 
 }

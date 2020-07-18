@@ -527,92 +527,95 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
         #region constructors
         public ValueListenableBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.ValueListenable<T> valueListenable = default(FlutterSDK.Foundation.Changenotifier.ValueListenable<T>), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.ValueListenable = valueListenable;
+            this.Builder = builder;
+            this.Child = child;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<T> ValueListenable { get; set; }
-    public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<T> ValueListenable { get; set; }
+        public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ValueListenableBuilderState<T>();
-
-
-    #endregion
-}
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ValueListenableBuilderState<T>();
 
 
-public class _ValueListenableBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T>>
-{
-    #region constructors
-    public _ValueListenableBuilderState()
-    { }
-    #endregion
-
-    #region fields
-    public virtual T Value { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        Value = Widget.ValueListenable.Value;
-        Widget.ValueListenable.AddListener(_ValueChanged);
+        #endregion
     }
 
 
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T> oldWidget)
+    public class _ValueListenableBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T>>
     {
-        if (oldWidget.ValueListenable != Widget.ValueListenable)
+        #region constructors
+        public _ValueListenableBuilderState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual T Value { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            oldWidget.ValueListenable.RemoveListener(_ValueChanged);
+            base.InitState();
             Value = Widget.ValueListenable.Value;
             Widget.ValueListenable.AddListener(_ValueChanged);
         }
 
-        base.DidUpdateWidget(oldWidget);
-    }
 
 
 
-
-    public new void Dispose()
-    {
-        Widget.ValueListenable.RemoveListener(_ValueChanged);
-        base.Dispose();
-    }
-
-
-
-
-    private void _ValueChanged()
-    {
-        SetState(() =>
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T> oldWidget)
         {
-            Value = Widget.ValueListenable.Value;
+            if (oldWidget.ValueListenable != Widget.ValueListenable)
+            {
+                oldWidget.ValueListenable.RemoveListener(_ValueChanged);
+                Value = Widget.ValueListenable.Value;
+                Widget.ValueListenable.AddListener(_ValueChanged);
+            }
+
+            base.DidUpdateWidget(oldWidget);
         }
-        );
+
+
+
+
+        public new void Dispose()
+        {
+            Widget.ValueListenable.RemoveListener(_ValueChanged);
+            base.Dispose();
+        }
+
+
+
+
+        private void _ValueChanged()
+        {
+            SetState(() =>
+            {
+                Value = Widget.ValueListenable.Value;
+            }
+            );
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return Widget.Builder(context, Value, Widget.Child);
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return Widget.Builder(context, Value, Widget.Child);
-    }
-
-
-
-    #endregion
-}
 
 }

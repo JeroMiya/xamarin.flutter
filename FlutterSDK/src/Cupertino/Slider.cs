@@ -328,326 +328,345 @@ namespace FlutterSDK.Cupertino.Slider
         #region constructors
         public CupertinoSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual double Value { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
-    public virtual double Min { get; set; }
-    public virtual double Max { get; set; }
-    public virtual int Divisions { get; set; }
-    public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-    public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Cupertino.Slider._CupertinoSliderState CreateState() => new _CupertinoSliderState();
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DoubleProperty("value", Value));
-        properties.Add(new DoubleProperty("min", Min));
-        properties.Add(new DoubleProperty("max", Max));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _CupertinoSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Slider.CupertinoSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _CupertinoSliderState()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    private void _HandleChanged(double value)
-    {
-
-        double lerpValue = Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
-        if (lerpValue != Widget.Value)
         {
-            Widget.OnChanged(lerpValue);
+            this.Value = value;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.Min = min;
+            this.Max = max;
+            this.Divisions = divisions;
+            this.ActiveColor = activeColor;
+            this.ThumbColor = thumbColor;
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        public virtual double Min { get; set; }
+        public virtual double Max { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Slider._CupertinoSliderState CreateState() => new _CupertinoSliderState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DoubleProperty("value", Value));
+            properties.Add(new DoubleProperty("min", Min));
+            properties.Add(new DoubleProperty("max", Max));
         }
 
+
+
+        #endregion
     }
 
 
-
-
-    private void _HandleDragStart(double value)
+    public class _CupertinoSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Slider.CupertinoSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
+        #region constructors
+        public _CupertinoSliderState()
+        { }
+        #endregion
 
-        Widget.OnChangeStart(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
-    }
+        #region fields
+        #endregion
 
+        #region methods
 
-
-
-    private void _HandleDragEnd(double value)
-    {
-
-        Widget.OnChangeEnd(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new _CupertinoSliderRenderObjectWidget(value: (Widget.Value - Widget.Min) / (Widget.Max - Widget.Min), divisions: Widget.Divisions, activeColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.ActiveColor ?? ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor, context), thumbColor: Widget.ThumbColor, onChanged: Widget.OnChanged != null ? _HandleChanged : null, onChangeStart: Widget.OnChangeStart != null ? _HandleDragStart : null, onChangeEnd: Widget.OnChangeEnd != null ? _HandleDragEnd : null, vsync: this);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _CupertinoSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-    #region constructors
-    public _CupertinoSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual double Value { get; set; }
-public virtual int Divisions { get; set; }
-public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Slider._RenderCupertinoSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderCupertinoSlider(value: Value, divisions: Divisions, activeColor: ActiveColor, thumbColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ThumbColor, context), trackColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemFill, context), onChanged: OnChanged, onChangeStart: OnChangeStart, onChangeEnd: OnChangeEnd, vsync: Vsync, textDirection: BasicDefaultClass.Directionality.Of(context));
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Slider._RenderCupertinoSlider renderObject)
-{
-    ..Value = Value..Divisions = Divisions..ActiveColor = ActiveColor..ThumbColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ThumbColor, context)..TrackColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemFill, context)..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context);
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    ..Value = Value..Divisions = Divisions..ActiveColor = ActiveColor..ThumbColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ThumbColor, context)..TrackColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemFill, context)..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context);
-}
-
-
-
-#endregion
-}
-
-
-public class _RenderCupertinoSlider : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
-{
-    #region constructors
-    public _RenderCupertinoSlider(double value = default(double), int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TextDirection textDirection = default(TextDirection))
-    : base(additionalConstraints: BoxConstraints.TightFor(width: SliderDefaultClass._KSliderWidth, height: SliderDefaultClass._KSliderHeight))
-
-_Drag=new HorizontalDragGestureRecognizer()..OnStart=_HandleDragStart..OnUpdate=_HandleDragUpdate..OnEnd=_HandleDragEnd;
-_Position=new AnimationController(value:value, duration:SliderDefaultClass._KDiscreteTransitionDuration, vsync:vsync);
-    new AnimationController(value:value, duration:SliderDefaultClass._KDiscreteTransitionDuration, vsync:vsync).AddListener(MarkNeedsPaint);
-}
-
-
-#endregion
-
-#region fields
-internal virtual double _Value { get; set; }
-internal virtual int _Divisions { get; set; }
-internal virtual FlutterBinding.UI.Color _ActiveColor { get; set; }
-internal virtual FlutterBinding.UI.Color _ThumbColor { get; set; }
-internal virtual FlutterBinding.UI.Color _TrackColor { get; set; }
-internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> _OnChanged { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
-internal virtual TextDirection _TextDirection { get; set; }
-internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Position { get; set; }
-internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
-internal virtual double _CurrentDragValue { get; set; }
-public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int Divisions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color ActiveColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color ThumbColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterBinding.UI.Color TrackColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _DiscretizedCurrentDragValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _TrackLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _TrackRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _ThumbCenter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) => _StartInteraction(details.GlobalPosition);
-
-
-
-private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
-{
-    if (IsInteractive)
-    {
-        double extent = Math.Dart:mathDefaultClass.Max(SliderDefaultClass._KPadding, Size.Width - 2.0 * (SliderDefaultClass._KPadding + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
-double valueDelta = details.PrimaryDelta / extent;
-switch (TextDirection) { case TextDirection.Rtl: _CurrentDragValue -= valueDelta; break; case TextDirection.Ltr: _CurrentDragValue += valueDelta; break; }
-OnChanged(_DiscretizedCurrentDragValue);
-}
-
-}
-
-
-
-
-private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) => _EndInteraction();
-
-
-
-private void _StartInteraction(FlutterBinding.UI.Offset globalPosition)
-{
-    if (IsInteractive)
-    {
-        if (OnChangeStart != null)
+        private void _HandleChanged(double value)
         {
-            OnChangeStart(_DiscretizedCurrentDragValue);
+
+            double lerpValue = Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
+            if (lerpValue != Widget.Value)
+            {
+                Widget.OnChanged(lerpValue);
+            }
+
         }
 
-        _CurrentDragValue = _Value;
-        OnChanged(_DiscretizedCurrentDragValue);
+
+
+
+        private void _HandleDragStart(double value)
+        {
+
+            Widget.OnChangeStart(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
+        }
+
+
+
+
+        private void _HandleDragEnd(double value)
+        {
+
+            Widget.OnChangeEnd(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _CupertinoSliderRenderObjectWidget(value: (Widget.Value - Widget.Min) / (Widget.Max - Widget.Min), divisions: Widget.Divisions, activeColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.ActiveColor ?? ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor, context), thumbColor: Widget.ThumbColor, onChanged: Widget.OnChanged != null ? _HandleChanged : null, onChangeStart: Widget.OnChangeStart != null ? _HandleDragStart : null, onChangeEnd: Widget.OnChangeEnd != null ? _HandleDragEnd : null, vsync: this);
+        }
+
+
+
+        #endregion
     }
 
-}
 
-
-
-
-private void _EndInteraction()
-{
-    if (OnChangeEnd != null)
+    public class _CupertinoSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        OnChangeEnd(_DiscretizedCurrentDragValue);
+        #region constructors
+        public _CupertinoSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
+        : base(key: key)
+        {
+            this.Value = value;
+            this.Divisions = divisions;
+            this.ActiveColor = activeColor;
+            this.ThumbColor = thumbColor;
+            this.OnChanged = onChanged;
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            this.Vsync = vsync;
+        }
+        #endregion
+
+        #region fields
+        public virtual double Value { get; set; }
+        public virtual int Divisions { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Slider._RenderCupertinoSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderCupertinoSlider(value: Value, divisions: Divisions, activeColor: ActiveColor, thumbColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ThumbColor, context), trackColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemFill, context), onChanged: OnChanged, onChangeStart: OnChangeStart, onChangeEnd: OnChangeEnd, vsync: Vsync, textDirection: BasicDefaultClass.Directionality.Of(context));
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Slider._RenderCupertinoSlider renderObject)
+        {
+            ..Value = Value..Divisions = Divisions..ActiveColor = ActiveColor..ThumbColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ThumbColor, context)..TrackColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemFill, context)..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context);
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..Value = Value..Divisions = Divisions..ActiveColor = ActiveColor..ThumbColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ThumbColor, context)..TrackColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemFill, context)..OnChanged = OnChanged..OnChangeStart = OnChangeStart..OnChangeEnd = OnChangeEnd..TextDirection = BasicDefaultClass.Directionality.Of(context);
+        }
+
+
+
+        #endregion
     }
 
-    _CurrentDragValue = 0.0;
-}
 
-
-
-
-public new bool HitTestSelf(FlutterBinding.UI.Offset position)
-{
-    return (position.Dx - _ThumbCenter).Abs() < ThumbpainterDefaultClass.CupertinoThumbPainter.Radius + SliderDefaultClass._KPadding;
-}
-
-
-
-
-public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry)
-{
-
-    if (@event is PointerDownEvent && IsInteractive) _Drag.AddPointer(@event);
-}
-
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    double visualPosition = default(double);
-    Color leftColor = default(Color);
-    Color rightColor = default(Color);
-    switch (TextDirection) { case TextDirection.Rtl: visualPosition = 1.0 - _Position.Value; leftColor = _ActiveColor; rightColor = TrackColor; break; case TextDirection.Ltr: visualPosition = _Position.Value; leftColor = TrackColor; rightColor = _ActiveColor; break; }
-    double trackCenter = offset.Dy + Size.Height / 2.0;
-    double trackLeft = offset.Dx + _TrackLeft;
-    double trackTop = trackCenter - 1.0;
-    double trackBottom = trackCenter + 1.0;
-    double trackRight = offset.Dx + _TrackRight;
-    double trackActive = offset.Dx + _ThumbCenter;
-    Canvas canvas = context.Canvas;
-    if (visualPosition > 0.0)
+    public class _RenderCupertinoSlider : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
-        Paint paint = new Paint()..Color = rightColor;
-        canvas.DrawRRect(RRect.FromLTRBXY(trackLeft, trackTop, trackActive, trackBottom, 1.0, 1.0), paint);
+        #region constructors
+        public _RenderCupertinoSlider(double value = default(double), int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TextDirection textDirection = default(TextDirection))
+        : base(additionalConstraints: BoxConstraints.TightFor(width: SliderDefaultClass._KSliderWidth, height: SliderDefaultClass._KSliderHeight))
+        {
+            this.OnChangeStart = onChangeStart;
+            this.OnChangeEnd = onChangeEnd;
+            _Drag = new HorizontalDragGestureRecognizer()..OnStart = _HandleDragStart..OnUpdate = _HandleDragUpdate..OnEnd = _HandleDragEnd;
+            _Position = new AnimationController(value: value, duration: SliderDefaultClass._KDiscreteTransitionDuration, vsync: vsync);
+            new AnimationController(value: value, duration: SliderDefaultClass._KDiscreteTransitionDuration, vsync: vsync).AddListener(MarkNeedsPaint);
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual double _Value { get; set; }
+        internal virtual int _Divisions { get; set; }
+        internal virtual FlutterBinding.UI.Color _ActiveColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _ThumbColor { get; set; }
+        internal virtual FlutterBinding.UI.Color _TrackColor { get; set; }
+        internal virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> _OnChanged { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Position { get; set; }
+        internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
+        internal virtual double _CurrentDragValue { get; set; }
+        public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int Divisions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ActiveColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color ThumbColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Color TrackColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _DiscretizedCurrentDragValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TrackLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _TrackRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _ThumbCenter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) => _StartInteraction(details.GlobalPosition);
+
+
+
+        private void _HandleDragUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+        {
+            if (IsInteractive)
+            {
+                double extent = Math.Dart:mathDefaultClass.Max(SliderDefaultClass._KPadding, Size.Width - 2.0 * (SliderDefaultClass._KPadding + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
+                double valueDelta = details.PrimaryDelta / extent;
+                switch (TextDirection) { case TextDirection.Rtl: _CurrentDragValue -= valueDelta; break; case TextDirection.Ltr: _CurrentDragValue += valueDelta; break; }
+                OnChanged(_DiscretizedCurrentDragValue);
+            }
+
+        }
+
+
+
+
+        private void _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details) => _EndInteraction();
+
+
+
+        private void _StartInteraction(FlutterBinding.UI.Offset globalPosition)
+        {
+            if (IsInteractive)
+            {
+                if (OnChangeStart != null)
+                {
+                    OnChangeStart(_DiscretizedCurrentDragValue);
+                }
+
+                _CurrentDragValue = _Value;
+                OnChanged(_DiscretizedCurrentDragValue);
+            }
+
+        }
+
+
+
+
+        private void _EndInteraction()
+        {
+            if (OnChangeEnd != null)
+            {
+                OnChangeEnd(_DiscretizedCurrentDragValue);
+            }
+
+            _CurrentDragValue = 0.0;
+        }
+
+
+
+
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position)
+        {
+            return (position.Dx - _ThumbCenter).Abs() < ThumbpainterDefaultClass.CupertinoThumbPainter.Radius + SliderDefaultClass._KPadding;
+        }
+
+
+
+
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Rendering.Box.BoxHitTestEntry entry)
+        {
+
+            if (@event is PointerDownEvent && IsInteractive) _Drag.AddPointer(@event);
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            double visualPosition = default(double);
+            Color leftColor = default(Color);
+            Color rightColor = default(Color);
+            switch (TextDirection) { case TextDirection.Rtl: visualPosition = 1.0 - _Position.Value; leftColor = _ActiveColor; rightColor = TrackColor; break; case TextDirection.Ltr: visualPosition = _Position.Value; leftColor = TrackColor; rightColor = _ActiveColor; break; }
+            double trackCenter = offset.Dy + Size.Height / 2.0;
+            double trackLeft = offset.Dx + _TrackLeft;
+            double trackTop = trackCenter - 1.0;
+            double trackBottom = trackCenter + 1.0;
+            double trackRight = offset.Dx + _TrackRight;
+            double trackActive = offset.Dx + _ThumbCenter;
+            Canvas canvas = context.Canvas;
+            if (visualPosition > 0.0)
+            {
+                Paint paint = new Paint()..Color = rightColor;
+                canvas.DrawRRect(RRect.FromLTRBXY(trackLeft, trackTop, trackActive, trackBottom, 1.0, 1.0), paint);
+            }
+
+            if (visualPosition < 1.0)
+            {
+                Paint paint = new Paint()..Color = leftColor;
+                canvas.DrawRRect(RRect.FromLTRBXY(trackActive, trackTop, trackRight, trackBottom, 1.0, 1.0), paint);
+            }
+
+            Offset thumbCenter = new Offset(trackActive, trackCenter);
+            new CupertinoThumbPainter(color: ThumbColor).Paint(canvas, Rect.FromCircle(center: thumbCenter, radius: ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
+        }
+
+
+
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+        {
+            base.DescribeSemanticsConfiguration(config);
+            config.IsSemanticBoundary = IsInteractive;
+            if (IsInteractive)
+            {
+                config.TextDirection = TextDirection;
+                config.OnIncrease = _IncreaseAction;
+                config.OnDecrease = _DecreaseAction;
+                config.Value = $"'{(Value * 100).Round()}%'";
+                config.IncreasedValue = $"'{((Value + _SemanticActionUnit).Clamp(0.0, 1.0) * 100).Round()}%'";
+                config.DecreasedValue = $"'{((Value - _SemanticActionUnit).Clamp(0.0, 1.0) * 100).Round()}%'";
+            }
+
+        }
+
+
+
+
+        private void _IncreaseAction()
+        {
+            if (IsInteractive) OnChanged((Value + _SemanticActionUnit).Clamp(0.0, 1.0) as double);
+        }
+
+
+
+
+        private void _DecreaseAction()
+        {
+            if (IsInteractive) OnChanged((Value - _SemanticActionUnit).Clamp(0.0, 1.0) as double);
+        }
+
+
+
+        #endregion
     }
-
-    if (visualPosition < 1.0)
-    {
-        Paint paint = new Paint()..Color = leftColor;
-        canvas.DrawRRect(RRect.FromLTRBXY(trackActive, trackTop, trackRight, trackBottom, 1.0, 1.0), paint);
-    }
-
-    Offset thumbCenter = new Offset(trackActive, trackCenter);
-    new CupertinoThumbPainter(color: ThumbColor).Paint(canvas, Rect.FromCircle(center: thumbCenter, radius: ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
-}
-
-
-
-
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-{
-    base.DescribeSemanticsConfiguration(config);
-    config.IsSemanticBoundary = IsInteractive;
-    if (IsInteractive)
-    {
-        config.TextDirection = TextDirection;
-        config.OnIncrease = _IncreaseAction;
-        config.OnDecrease = _DecreaseAction;
-        config.Value = $"'{(Value * 100).Round()}%'";
-        config.IncreasedValue = $"'{((Value + _SemanticActionUnit).Clamp(0.0, 1.0) * 100).Round()}%'";
-        config.DecreasedValue = $"'{((Value - _SemanticActionUnit).Clamp(0.0, 1.0) * 100).Round()}%'";
-    }
-
-}
-
-
-
-
-private void _IncreaseAction()
-{
-    if (IsInteractive) OnChanged((Value + _SemanticActionUnit).Clamp(0.0, 1.0) as double);
-}
-
-
-
-
-private void _DecreaseAction()
-{
-    if (IsInteractive) OnChanged((Value - _SemanticActionUnit).Clamp(0.0, 1.0) as double);
-}
-
-
-
-#endregion
-}
 
 }

@@ -695,42 +695,53 @@ namespace FlutterSDK.Material.Radiolisttile
         #region constructors
         public RadioListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), T groupValue = default(T), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false, FlutterSDK.Material.Listtile.ListTileControlAffinity controlAffinity = default(FlutterSDK.Material.Listtile.ListTileControlAffinity))
         : base(key: key)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual T Value { get; set; }
-    public virtual T GroupValue { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
-    public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
-    public virtual bool IsThreeLine { get; set; }
-    public virtual bool Dense { get; set; }
-    public virtual bool Selected { get; set; }
-    public virtual FlutterSDK.Material.Listtile.ListTileControlAffinity ControlAffinity { get; set; }
-    public virtual bool @checked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Widget control = new Radio<T>(value: Value, groupValue: GroupValue, onChanged: OnChanged, activeColor: ActiveColor, materialTapTargetSize: MaterialTapTargetSize.ShrinkWrap);
-        Widget leading trailing = default(Widget);
-        switch (ControlAffinity) { case ListTileControlAffinity.Leading: case ListTileControlAffinity.Platform: leading = control; trailing = Secondary; break; case ListTileControlAffinity.Trailing: leading = Secondary; trailing = control; break; }
-        return new MergeSemantics(child: ListtileDefaultClass.ListTileTheme.Merge(selectedColor: ActiveColor ?? ThemeDefaultClass.Theme.Of(context).AccentColor, child: new ListTile(leading: leading, title: Title, subtitle: Subtitle, trailing: trailing, isThreeLine: IsThreeLine, dense: Dense, enabled: OnChanged != null, onTap: OnChanged != null && !Checked ? () =>
         {
-            OnChanged(Value);
+            this.Value = value;
+            this.GroupValue = groupValue;
+            this.OnChanged = onChanged;
+            this.ActiveColor = activeColor;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.IsThreeLine = isThreeLine;
+            this.Dense = dense;
+            this.Secondary = secondary;
+            this.Selected = selected;
+            this.ControlAffinity = controlAffinity;
         }
-        : null, selected: Selected)));
+        #endregion
+
+        #region fields
+        public virtual T Value { get; set; }
+        public virtual T GroupValue { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
+        public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Secondary { get; set; }
+        public virtual bool IsThreeLine { get; set; }
+        public virtual bool Dense { get; set; }
+        public virtual bool Selected { get; set; }
+        public virtual FlutterSDK.Material.Listtile.ListTileControlAffinity ControlAffinity { get; set; }
+        public virtual bool @checked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Widget control = new Radio<T>(value: Value, groupValue: GroupValue, onChanged: OnChanged, activeColor: ActiveColor, materialTapTargetSize: MaterialTapTargetSize.ShrinkWrap);
+            Widget leading trailing = default(Widget);
+            switch (ControlAffinity) { case ListTileControlAffinity.Leading: case ListTileControlAffinity.Platform: leading = control; trailing = Secondary; break; case ListTileControlAffinity.Trailing: leading = Secondary; trailing = control; break; }
+            return new MergeSemantics(child: ListtileDefaultClass.ListTileTheme.Merge(selectedColor: ActiveColor ?? ThemeDefaultClass.Theme.Of(context).AccentColor, child: new ListTile(leading: leading, title: Title, subtitle: Subtitle, trailing: trailing, isThreeLine: IsThreeLine, dense: Dense, enabled: OnChanged != null, onTap: OnChanged != null && !Checked ? () =>
+            {
+                OnChanged(Value);
+            }
+            : null, selected: Selected)));
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

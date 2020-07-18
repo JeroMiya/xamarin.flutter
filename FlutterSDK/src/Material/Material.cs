@@ -531,576 +531,606 @@ namespace FlutterSDK.Material.Material
         #region constructors
         public Material(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Material.MaterialType type = default(FlutterSDK.Material.Material.MaterialType), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), TimeSpan animationDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
-    
-}
-    #endregion
+        {
+            this.Type = type;
+            this.Elevation = elevation;
+            this.Color = color;
+            this.ShadowColor = shadowColor;
+            this.TextStyle = textStyle;
+            this.BorderRadius = borderRadius;
+            this.Shape = shape;
+            this.BorderOnForeground = borderOnForeground;
+            this.ClipBehavior = clipBehavior;
+            this.AnimationDuration = animationDuration;
+            this.Child = child;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    public virtual FlutterSDK.Material.Material.MaterialType Type { get; set; }
-    public virtual double Elevation { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-    public virtual bool BorderOnForeground { get; set; }
-    public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-    public virtual TimeSpan AnimationDuration { get; set; }
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
-    public virtual double DefaultSplashRadius { get; set; }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Material.Material.MaterialType Type { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool BorderOnForeground { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual TimeSpan AnimationDuration { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        public virtual double DefaultSplashRadius { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// The ink controller from the closest instance of this class that
+        /// encloses the given context.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// MaterialInkController inkController = Material.of(context);
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Material.Material.MaterialInkController Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            _RenderInkFeatures result = context.FindAncestorRenderObjectOfType();
+            return result;
+        }
+
+
+
+
+        public new FlutterSDK.Material.Material._MaterialState CreateState() => new _MaterialState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new EnumProperty<MaterialType>("type", Type));
+            properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: 0.0));
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+            properties.Add(new ColorProperty("shadowColor", ShadowColor, defaultValue: new Color(0xFF000000)));
+            TextStyle?.DebugFillProperties(properties, prefix: "textStyle.");
+            properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<bool>("borderOnForeground", BorderOnForeground, defaultValue: true));
+            properties.Add(new DiagnosticsProperty<BorderRadiusGeometry>("borderRadius", BorderRadius, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _MaterialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Material.Material>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _MaterialState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _InkFeatureRenderer { get; set; }
+        #endregion
+
+        #region methods
+
+        private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            Color color = Widget.Color;
+            if (color == null)
+            {
+                switch (Widget.Type) { case MaterialType.Canvas: color = theme.CanvasColor; break; case MaterialType.Card: color = theme.CardColor; break; default: break; }
+            }
+
+            return color;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Color backgroundColor = _GetBackgroundColor(context);
+
+            Widget contents = Widget.Child;
+            if (contents != null)
+            {
+                contents = new AnimatedDefaultTextStyle(style: Widget.TextStyle ?? ThemeDefaultClass.Theme.Of(context).TextTheme.BodyText2, duration: Widget.AnimationDuration, child: contents);
+            }
+
+            contents = new NotificationListener<LayoutChangedNotification>(onNotification: (LayoutChangedNotification notification) =>
+            {
+                _RenderInkFeatures renderer = _InkFeatureRenderer.CurrentContext.FindRenderObject() as _RenderInkFeatures;
+                renderer._DidChangeLayout();
+                return false;
+            }
+            , child: new _InkFeatures(key: _InkFeatureRenderer, color: backgroundColor, child: contents, vsync: this));
+            if (Widget.Type == MaterialType.Canvas && Widget.Shape == null && Widget.BorderRadius == null)
+            {
+                return new AnimatedPhysicalModel(curve: CurvesDefaultClass.Curves.FastOutSlowIn, duration: Widget.AnimationDuration, shape: BoxShape.Rectangle, clipBehavior: Widget.ClipBehavior, borderRadius: BorderradiusDefaultClass.BorderRadius.Zero, elevation: Widget.Elevation, color: ElevationoverlayDefaultClass.ElevationOverlay.ApplyOverlay(context, backgroundColor, Widget.Elevation), shadowColor: Widget.ShadowColor, animateColor: false, child: contents);
+            }
+
+            ShapeBorder shape = _GetShape();
+            if (Widget.Type == MaterialType.Transparency)
+            {
+                return _TransparentInterior(context: context, shape: shape, clipBehavior: Widget.ClipBehavior, contents: contents);
+            }
+
+            return new _MaterialInterior(curve: CurvesDefaultClass.Curves.FastOutSlowIn, duration: Widget.AnimationDuration, shape: shape, borderOnForeground: Widget.BorderOnForeground, clipBehavior: Widget.ClipBehavior, elevation: Widget.Elevation, color: backgroundColor, shadowColor: Widget.ShadowColor, child: contents);
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _TransparentInterior(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget contents = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            _ShapeBorderPaint child = new _ShapeBorderPaint(child: contents, shape: shape);
+            if (clipBehavior == Clip.None)
+            {
+                return child;
+            }
+
+            return new ClipPath(child: child, clipper: new ShapeBorderClipper(shape: shape, textDirection: BasicDefaultClass.Directionality.Of(context)), clipBehavior: clipBehavior);
+        }
+
+
+
+
+        private FlutterSDK.Painting.Borders.ShapeBorder _GetShape()
+        {
+            if (Widget.Shape != null) return Widget.Shape;
+            if (Widget.BorderRadius != null) return new RoundedRectangleBorder(borderRadius: Widget.BorderRadius);
+            switch (Widget.Type) { case MaterialType.Canvas: case MaterialType.Transparency: return new RoundedRectangleBorder(); case MaterialType.Card: case MaterialType.Button: return new RoundedRectangleBorder(borderRadius: Widget.BorderRadius ?? MaterialDefaultClass.KMaterialEdges[Widget.Type]); case MaterialType.Circle: return new CircleBorder(); }
+            return new RoundedRectangleBorder();
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _RenderInkFeatures : FlutterSDK.Rendering.Proxybox.RenderProxyBox, IMaterialInkController
+    {
+        #region constructors
+        public _RenderInkFeatures(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
+        : base(child)
+        {
+            this.Vsync = vsync;
+            this.Color = color;
+        }
+        #endregion
+
+        #region fields
+        public new FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        public new FlutterBinding.UI.Color Color { get; set; }
+        internal virtual List<FlutterSDK.Material.Material.InkFeature> _InkFeatures { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AddInkFeature(FlutterSDK.Material.Material.InkFeature feature)
+        {
+
+
+            _InkFeatures = (_InkFeatures == null ? new List<InkFeature>() { } : _InkFeatures);
+
+            _InkFeatures.Add(feature);
+            MarkNeedsPaint();
+        }
+
+
+
+
+        private void _RemoveFeature(FlutterSDK.Material.Material.InkFeature feature)
+        {
+
+            _InkFeatures.Remove(feature);
+            MarkNeedsPaint();
+        }
+
+
+
+
+        private void _DidChangeLayout()
+        {
+            if (_InkFeatures != null && _InkFeatures.IsNotEmpty) MarkNeedsPaint();
+        }
+
+
+
+
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (_InkFeatures != null && _InkFeatures.IsNotEmpty)
+            {
+                Canvas canvas = context.Canvas;
+                canvas.Save();
+                canvas.Translate(offset.Dx, offset.Dy);
+                canvas.ClipRect(Dart: uiDefaultClass.Offset.Zero & Size);
+                foreach (InkFeature inkFeature in _InkFeatures) inkFeature._Paint(canvas);
+                canvas.Restore();
+            }
+
+            base.Paint(context, offset);
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _InkFeatures : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
+    {
+        #region constructors
+        public _InkFeatures(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Color = color;
+            this.Vsync = vsync;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Material._RenderInkFeatures CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderInkFeatures(color: Color, vsync: Vsync);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Material._RenderInkFeatures renderObject)
+        {
+            renderObject.Color = Color;
+
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            renderObject.Color = Color;
+
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// The ink controller from the closest instance of this class that
-    /// encloses the given context.
+    /// A visual reaction on a piece of [Material].
     ///
-    /// Typical usage is as follows:
+    /// To add an ink feature to a piece of [Material], obtain the
+    /// [MaterialInkController] via [Material.of] and call
+    /// [MaterialInkController.addInkFeature].
+    /// </Summary>
+    public class InkFeature
+    {
+        #region constructors
+        public InkFeature(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
+        : base()
+        {
+            this.ReferenceBox = referenceBox;
+            this.OnRemoved = onRemoved;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Material.Material._RenderInkFeatures _Controller { get; set; }
+        public virtual FlutterSDK.Rendering.Box.RenderBox ReferenceBox { get; set; }
+        public virtual VoidCallback OnRemoved { get; set; }
+        internal virtual bool _DebugDisposed { get; set; }
+        public virtual FlutterSDK.Material.Material.MaterialInkController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Free up the resources associated with this ink feature.
+        /// </Summary>
+        public virtual void Dispose()
+        {
+
+
+            _Controller._RemoveFeature(this);
+            if (OnRemoved != null) OnRemoved();
+        }
+
+
+
+
+        private void _Paint(Canvas canvas)
+        {
+
+
+            List<RenderObject> descendants = new List<RenderObject>() { ReferenceBox };
+            RenderObject node = ReferenceBox;
+            while (node != _Controller)
+            {
+                node = node.Parent as RenderObject;
+
+                descendants.Add(node);
+            }
+
+            Matrix4 transform = Matrix4.Identity();
+
+            for (int index = descendants.Count - 1; index > 0; index -= 1) descendants[index].ApplyPaintTransform(descendants[index - 1], transform);
+            PaintFeature(canvas, transform);
+        }
+
+
+
+
+        /// <Summary>
+        /// Override this method to paint the ink feature.
+        ///
+        /// The transform argument gives the coordinate conversion from the coordinate
+        /// system of the canvas to the coordinate system of the [referenceBox].
+        /// </Summary>
+        public virtual void PaintFeature(Canvas canvas, Matrix4 transform)
+        {
+        }
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An interpolation between two [ShapeBorder]s.
     ///
-    /// ```dart
-    /// MaterialInkController inkController = Material.of(context);
-    /// ```
+    /// This class specializes the interpolation of [Tween] to use [ShapeBorder.lerp].
     /// </Summary>
-    public virtual FlutterSDK.Material.Material.MaterialInkController Of(FlutterSDK.Widgets.Framework.BuildContext context)
+    public class ShapeBorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borders.ShapeBorder>
     {
-        _RenderInkFeatures result = context.FindAncestorRenderObjectOfType();
-        return result;
-    }
-
-
-
-
-    public new FlutterSDK.Material.Material._MaterialState CreateState() => new _MaterialState();
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new EnumProperty<MaterialType>("type", Type));
-        properties.Add(new DoubleProperty("elevation", Elevation, defaultValue: 0.0));
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-        properties.Add(new ColorProperty("shadowColor", ShadowColor, defaultValue: new Color(0xFF000000)));
-        TextStyle?.DebugFillProperties(properties, prefix: "textStyle.");
-        properties.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<bool>("borderOnForeground", BorderOnForeground, defaultValue: true));
-        properties.Add(new DiagnosticsProperty<BorderRadiusGeometry>("borderRadius", BorderRadius, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _MaterialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Material.Material>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _MaterialState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _InkFeatureRenderer { get; set; }
-    #endregion
-
-    #region methods
-
-    private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-        Color color = Widget.Color;
-        if (color == null)
+        #region constructors
+        public ShapeBorderTween(FlutterSDK.Painting.Borders.ShapeBorder begin = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Borders.ShapeBorder end = default(FlutterSDK.Painting.Borders.ShapeBorder))
+        : base(begin: begin, end: end)
         {
-            switch (Widget.Type) { case MaterialType.Canvas: color = theme.CanvasColor; break; case MaterialType.Card: color = theme.CardColor; break; default: break; }
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns the value this tween has at the given animation clock value.
+        /// </Summary>
+        public new FlutterSDK.Painting.Borders.ShapeBorder Lerp(double t)
+        {
+            return BordersDefaultClass.ShapeBorder.Lerp(Begin, End, t);
         }
 
-        return color;
+
+
+        #endregion
     }
 
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Color backgroundColor = _GetBackgroundColor(context);
-
-        Widget contents = Widget.Child;
-        if (contents != null)
-        {
-            contents = new AnimatedDefaultTextStyle(style: Widget.TextStyle ?? ThemeDefaultClass.Theme.Of(context).TextTheme.BodyText2, duration: Widget.AnimationDuration, child: contents);
-        }
-
-        contents = new NotificationListener<LayoutChangedNotification>(onNotification: (LayoutChangedNotification notification) =>
-        {
-            _RenderInkFeatures renderer = _InkFeatureRenderer.CurrentContext.FindRenderObject() as _RenderInkFeatures;
-            renderer._DidChangeLayout();
-            return false;
-        }
-        , child: new _InkFeatures(key: _InkFeatureRenderer, color: backgroundColor, child: contents, vsync: this));
-        if (Widget.Type == MaterialType.Canvas && Widget.Shape == null && Widget.BorderRadius == null)
-        {
-            return new AnimatedPhysicalModel(curve: CurvesDefaultClass.Curves.FastOutSlowIn, duration: Widget.AnimationDuration, shape: BoxShape.Rectangle, clipBehavior: Widget.ClipBehavior, borderRadius: BorderradiusDefaultClass.BorderRadius.Zero, elevation: Widget.Elevation, color: ElevationoverlayDefaultClass.ElevationOverlay.ApplyOverlay(context, backgroundColor, Widget.Elevation), shadowColor: Widget.ShadowColor, animateColor: false, child: contents);
-        }
-
-        ShapeBorder shape = _GetShape();
-        if (Widget.Type == MaterialType.Transparency)
-        {
-            return _TransparentInterior(context: context, shape: shape, clipBehavior: Widget.ClipBehavior, contents: contents);
-        }
-
-        return new _MaterialInterior(curve: CurvesDefaultClass.Curves.FastOutSlowIn, duration: Widget.AnimationDuration, shape: shape, borderOnForeground: Widget.BorderOnForeground, clipBehavior: Widget.ClipBehavior, elevation: Widget.Elevation, color: backgroundColor, shadowColor: Widget.ShadowColor, child: contents);
-    }
-
-
-
-
-    private FlutterSDK.Widgets.Framework.Widget _TransparentInterior(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget contents = default(FlutterSDK.Widgets.Framework.Widget))
-    {
-        _ShapeBorderPaint child = new _ShapeBorderPaint(child: contents, shape: shape);
-        if (clipBehavior == Clip.None)
-        {
-            return child;
-        }
-
-        return new ClipPath(child: child, clipper: new ShapeBorderClipper(shape: shape, textDirection: BasicDefaultClass.Directionality.Of(context)), clipBehavior: clipBehavior);
-    }
-
-
-
-
-    private FlutterSDK.Painting.Borders.ShapeBorder _GetShape()
-    {
-        if (Widget.Shape != null) return Widget.Shape;
-        if (Widget.BorderRadius != null) return new RoundedRectangleBorder(borderRadius: Widget.BorderRadius);
-        switch (Widget.Type) { case MaterialType.Canvas: case MaterialType.Transparency: return new RoundedRectangleBorder(); case MaterialType.Card: case MaterialType.Button: return new RoundedRectangleBorder(borderRadius: Widget.BorderRadius ?? MaterialDefaultClass.KMaterialEdges[Widget.Type]); case MaterialType.Circle: return new CircleBorder(); }
-        return new RoundedRectangleBorder();
-    }
-
-
-
-    #endregion
-}
-
-
-public class _RenderInkFeatures : FlutterSDK.Rendering.Proxybox.RenderProxyBox, IMaterialInkController
-{
-    #region constructors
-    public _RenderInkFeatures(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-    : base(child)
-
-}
-#endregion
-
-#region fields
-public new FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-public new FlutterBinding.UI.Color Color { get; set; }
-internal virtual List<FlutterSDK.Material.Material.InkFeature> _InkFeatures { get; set; }
-#endregion
-
-#region methods
-
-public new void AddInkFeature(FlutterSDK.Material.Material.InkFeature feature)
-{
-
-
-    _InkFeatures = (_InkFeatures == null ? new List<InkFeature>() { } : _InkFeatures);
-
-    _InkFeatures.Add(feature);
-    MarkNeedsPaint();
-}
-
-
-
-
-private void _RemoveFeature(FlutterSDK.Material.Material.InkFeature feature)
-{
-
-    _InkFeatures.Remove(feature);
-    MarkNeedsPaint();
-}
-
-
-
-
-private void _DidChangeLayout()
-{
-    if (_InkFeatures != null && _InkFeatures.IsNotEmpty) MarkNeedsPaint();
-}
-
-
-
-
-public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
-
-
-
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (_InkFeatures != null && _InkFeatures.IsNotEmpty)
-    {
-        Canvas canvas = context.Canvas;
-        canvas.Save();
-        canvas.Translate(offset.Dx, offset.Dy);
-        canvas.ClipRect(Dart: uiDefaultClass.Offset.Zero & Size);
-        foreach (InkFeature inkFeature in _InkFeatures) inkFeature._Paint(canvas);
-        canvas.Restore();
-    }
-
-    base.Paint(context, offset);
-}
-
-
-
-#endregion
-}
-
-
-public class _InkFeatures : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
-{
-    #region constructors
-    public _InkFeatures(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color Color { get; set; }
-public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Material._RenderInkFeatures CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new _RenderInkFeatures(color: Color, vsync: Vsync);
-}
-
-
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Material._RenderInkFeatures renderObject)
-{
-    renderObject.Color = Color;
-
-}
-
-
-public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    renderObject.Color = Color;
-
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A visual reaction on a piece of [Material].
-///
-/// To add an ink feature to a piece of [Material], obtain the
-/// [MaterialInkController] via [Material.of] and call
-/// [MaterialInkController.addInkFeature].
-/// </Summary>
-public class InkFeature
-{
-    #region constructors
-    public InkFeature(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Material.Material._RenderInkFeatures _Controller { get; set; }
-public virtual FlutterSDK.Rendering.Box.RenderBox ReferenceBox { get; set; }
-public virtual VoidCallback OnRemoved { get; set; }
-internal virtual bool _DebugDisposed { get; set; }
-public virtual FlutterSDK.Material.Material.MaterialInkController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Free up the resources associated with this ink feature.
-/// </Summary>
-public virtual void Dispose()
-{
-
-
-    _Controller._RemoveFeature(this);
-    if (OnRemoved != null) OnRemoved();
-}
-
-
-
-
-private void _Paint(Canvas canvas)
-{
-
-
-    List<RenderObject> descendants = new List<RenderObject>() { ReferenceBox };
-    RenderObject node = ReferenceBox;
-    while (node != _Controller)
-    {
-        node = node.Parent as RenderObject;
-
-        descendants.Add(node);
-    }
-
-    Matrix4 transform = Matrix4.Identity();
-
-    for (int index = descendants.Count - 1; index > 0; index -= 1) descendants[index].ApplyPaintTransform(descendants[index - 1], transform);
-    PaintFeature(canvas, transform);
-}
-
-
-
-
-/// <Summary>
-/// Override this method to paint the ink feature.
-///
-/// The transform argument gives the coordinate conversion from the coordinate
-/// system of the canvas to the coordinate system of the [referenceBox].
-/// </Summary>
-public virtual void PaintFeature(Canvas canvas, Matrix4 transform)
-{
-}
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An interpolation between two [ShapeBorder]s.
-///
-/// This class specializes the interpolation of [Tween] to use [ShapeBorder.lerp].
-/// </Summary>
-public class ShapeBorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borders.ShapeBorder>
-{
-    #region constructors
-    public ShapeBorderTween(FlutterSDK.Painting.Borders.ShapeBorder begin = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Borders.ShapeBorder end = default(FlutterSDK.Painting.Borders.ShapeBorder))
-    : base(begin: begin, end: end)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns the value this tween has at the given animation clock value.
-/// </Summary>
-public new FlutterSDK.Painting.Borders.ShapeBorder Lerp(double t)
-{
-    return BordersDefaultClass.ShapeBorder.Lerp(Begin, End, t);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The interior of non-transparent material.
-///
-/// Animates [elevation], [shadowColor], and [shape].
-/// </Summary>
-public class _MaterialInterior : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
-{
-    #region constructors
-    public _MaterialInterior(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
-    : base(key: key, curve: curve, duration: duration)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-public virtual bool BorderOnForeground { get; set; }
-public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-public virtual double Elevation { get; set; }
-public virtual FlutterBinding.UI.Color Color { get; set; }
-public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Material.Material._MaterialInteriorState CreateState() => new _MaterialInteriorState();
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
-{
-    base.DebugFillProperties(description);
-    description.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape));
-    description.Add(new DoubleProperty("elevation", Elevation));
-    description.Add(new ColorProperty("color", Color));
-    description.Add(new ColorProperty("shadowColor", ShadowColor));
-}
-
-
-
-#endregion
-}
-
-
-public class _MaterialInteriorState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Material.Material._MaterialInterior>
-{
-    #region constructors
-    public _MaterialInteriorState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Animation.Tween.Tween<double> _Elevation { get; set; }
-    internal virtual FlutterSDK.Animation.Tween.ColorTween _ShadowColor { get; set; }
-    internal virtual FlutterSDK.Material.Material.ShapeBorderTween _Border { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
-    {
-        _Elevation = visitor(_Elevation, Widget.Elevation, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
-        _ShadowColor = visitor(_ShadowColor, Widget.ShadowColor, (object value) => =>new ColorTween(begin: value as Color)) as ColorTween;
-        _Border = visitor(_Border, Widget.Shape, (object value) => =>new ShapeBorderTween(begin: value as ShapeBorder)) as ShapeBorderTween;
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        ShapeBorder shape = _Border.Evaluate(Animation);
-        double elevation = _Elevation.Evaluate(Animation);
-        return new PhysicalShape(child: new _ShapeBorderPaint(child: Widget.Child, shape: shape, borderOnForeground: Widget.BorderOnForeground), clipper: new ShapeBorderClipper(shape: shape, textDirection: BasicDefaultClass.Directionality.Of(context)), clipBehavior: Widget.ClipBehavior, elevation: elevation, color: ElevationoverlayDefaultClass.ElevationOverlay.ApplyOverlay(context, Widget.Color, elevation), shadowColor: _ShadowColor.Evaluate(Animation));
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ShapeBorderPaint : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public _ShapeBorderPaint(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-public virtual bool BorderOnForeground { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    return new CustomPaint(child: Child, painter: BorderOnForeground ? null : new _ShapeBorderPainter(Shape, BasicDefaultClass.Directionality.Of(context)), foregroundPainter: BorderOnForeground ? new _ShapeBorderPainter(Shape, BasicDefaultClass.Directionality.Of(context)) : null);
-}
-
-
-
-#endregion
-}
-
-
-public class _ShapeBorderPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-    #region constructors
-    public _ShapeBorderPainter(FlutterSDK.Painting.Borders.ShapeBorder border, TextDirection textDirection)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borders.ShapeBorder Border { get; set; }
-public virtual TextDirection TextDirection { get; set; }
-#endregion
-
-#region methods
-
-public new void Paint(Canvas canvas, Size size)
-{
-    Border.Paint(canvas, Dart: uiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
-}
-
-
-
-
-public new bool ShouldRepaint(FlutterSDK.Material.Material._ShapeBorderPainter oldDelegate)
-{
-    return oldDelegate.Border != Border;
-}
-
-
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
-{
-    return oldDelegate.Border != Border;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The various kinds of material in material design. Used to
-/// configure the default behavior of [Material] widgets.
-///
-/// See also:
-///
-///  * [Material], in particular [Material.type].
-///  * [kMaterialEdges]
-/// </Summary>
-public enum MaterialType
-{
 
     /// <Summary>
-    /// Rectangle using default theme canvas color.
-    /// </Summary>
-    Canvas,
-    /// <Summary>
-    /// Rounded edges, card theme color.
-    /// </Summary>
-    Card,
-    /// <Summary>
-    /// A circle, no color by default (used for floating action buttons).
-    /// </Summary>
-    Circle,
-    /// <Summary>
-    /// Rounded edges, no color by default (used for [MaterialButton] buttons).
-    /// </Summary>
-    Button,
-    /// <Summary>
-    /// A transparent piece of material that draws ink splashes and highlights.
+    /// The interior of non-transparent material.
     ///
-    /// While the material metaphor describes child widgets as printed on the
-    /// material itself and do not hide ink effects, in practice the [Material]
-    /// widget draws child widgets on top of the ink effects.
-    /// A [Material] with type transparency can be placed on top of opaque widgets
-    /// to show ink effects on top of them.
-    ///
-    /// Prefer using the [Ink] widget for showing ink effects on top of opaque
-    /// widgets.
+    /// Animates [elevation], [shadowColor], and [shape].
     /// </Summary>
-    Transparency,
-}
+    public class _MaterialInterior : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
+    {
+        #region constructors
+        public _MaterialInterior(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true, FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
+        : base(key: key, curve: curve, duration: duration)
+        {
+            this.Child = child;
+            this.Shape = shape;
+            this.BorderOnForeground = borderOnForeground;
+            this.ClipBehavior = clipBehavior;
+            this.Elevation = elevation;
+            this.Color = color;
+            this.ShadowColor = shadowColor;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool BorderOnForeground { get; set; }
+        public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
+        public virtual double Elevation { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Material._MaterialInteriorState CreateState() => new _MaterialInteriorState();
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder description)
+        {
+            base.DebugFillProperties(description);
+            description.Add(new DiagnosticsProperty<ShapeBorder>("shape", Shape));
+            description.Add(new DoubleProperty("elevation", Elevation));
+            description.Add(new ColorProperty("color", Color));
+            description.Add(new ColorProperty("shadowColor", ShadowColor));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _MaterialInteriorState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Material.Material._MaterialInterior>
+    {
+        #region constructors
+        public _MaterialInteriorState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Tween.Tween<double> _Elevation { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.ColorTween _ShadowColor { get; set; }
+        internal virtual FlutterSDK.Material.Material.ShapeBorderTween _Border { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
+        {
+            _Elevation = visitor(_Elevation, Widget.Elevation, (object value) => =>new Tween<double>(begin: value as double)) as Tween<double>;
+            _ShadowColor = visitor(_ShadowColor, Widget.ShadowColor, (object value) => =>new ColorTween(begin: value as Color)) as ColorTween;
+            _Border = visitor(_Border, Widget.Shape, (object value) => =>new ShapeBorderTween(begin: value as ShapeBorder)) as ShapeBorderTween;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            ShapeBorder shape = _Border.Evaluate(Animation);
+            double elevation = _Elevation.Evaluate(Animation);
+            return new PhysicalShape(child: new _ShapeBorderPaint(child: Widget.Child, shape: shape, borderOnForeground: Widget.BorderOnForeground), clipper: new ShapeBorderClipper(shape: shape, textDirection: BasicDefaultClass.Directionality.Of(context)), clipBehavior: Widget.ClipBehavior, elevation: elevation, color: ElevationoverlayDefaultClass.ElevationOverlay.ApplyOverlay(context, Widget.Color, elevation), shadowColor: _ShadowColor.Evaluate(Animation));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ShapeBorderPaint : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public _ShapeBorderPaint(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool borderOnForeground = true)
+        {
+            this.Child = child;
+            this.Shape = shape;
+            this.BorderOnForeground = borderOnForeground;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
+        public virtual bool BorderOnForeground { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new CustomPaint(child: Child, painter: BorderOnForeground ? null : new _ShapeBorderPainter(Shape, BasicDefaultClass.Directionality.Of(context)), foregroundPainter: BorderOnForeground ? new _ShapeBorderPainter(Shape, BasicDefaultClass.Directionality.Of(context)) : null);
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ShapeBorderPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
+    {
+        #region constructors
+        public _ShapeBorderPainter(FlutterSDK.Painting.Borders.ShapeBorder border, TextDirection textDirection)
+        {
+            this.Border = border;
+            this.TextDirection = textDirection;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.ShapeBorder Border { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            Border.Paint(canvas, Dart: uiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Material.Material._ShapeBorderPainter oldDelegate)
+        {
+            return oldDelegate.Border != Border;
+        }
+
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return oldDelegate.Border != Border;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The various kinds of material in material design. Used to
+    /// configure the default behavior of [Material] widgets.
+    ///
+    /// See also:
+    ///
+    ///  * [Material], in particular [Material.type].
+    ///  * [kMaterialEdges]
+    /// </Summary>
+    public enum MaterialType
+    {
+
+        /// <Summary>
+        /// Rectangle using default theme canvas color.
+        /// </Summary>
+        Canvas,
+        /// <Summary>
+        /// Rounded edges, card theme color.
+        /// </Summary>
+        Card,
+        /// <Summary>
+        /// A circle, no color by default (used for floating action buttons).
+        /// </Summary>
+        Circle,
+        /// <Summary>
+        /// Rounded edges, no color by default (used for [MaterialButton] buttons).
+        /// </Summary>
+        Button,
+        /// <Summary>
+        /// A transparent piece of material that draws ink splashes and highlights.
+        ///
+        /// While the material metaphor describes child widgets as printed on the
+        /// material itself and do not hide ink effects, in practice the [Material]
+        /// widget draws child widgets on top of the ink effects.
+        /// A [Material] with type transparency can be placed on top of opaque widgets
+        /// to show ink effects on top of them.
+        ///
+        /// Prefer using the [Ink] widget for showing ink effects on top of opaque
+        /// widgets.
+        /// </Summary>
+        Transparency,
+    }
 
 }

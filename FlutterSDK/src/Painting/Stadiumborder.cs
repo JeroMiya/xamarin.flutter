@@ -445,392 +445,398 @@ namespace FlutterSDK.Painting.Stadiumborder
         #region constructors
         public StadiumBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) => new StadiumBorder(side: Side.Scale(t));
-
-
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-    {
-
-        if (a is StadiumBorder) return new StadiumBorder(side: BordersDefaultClass.BorderSide.Lerp(a.Side, Side, t));
-        if (a is CircleBorder)
         {
-            return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((StadiumBorder)a).Side, Side, t), circleness: 1.0 - t);
+            this.Side = side;
         }
+        #endregion
 
-        if (a is RoundedRectangleBorder)
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) => new StadiumBorder(side: Side.Scale(t));
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
         {
-            return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: ((RoundedRectangleBorder)a).BorderRadius as BorderRadius, rectness: 1.0 - t);
-        }
 
-        return base.LerpFrom(a, t);
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-    {
-
-        if (b is StadiumBorder) return new StadiumBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, b.Side, t));
-        if (b is CircleBorder)
-        {
-            return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((StadiumBorder)b).Side, t), circleness: t);
-        }
-
-        if (b is RoundedRectangleBorder)
-        {
-            return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: ((RoundedRectangleBorder)b).BorderRadius as BorderRadius, rectness: t);
-        }
-
-        return base.LerpTo(b, t);
-    }
-
-
-
-
-    public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-        Radius radius = Radius.Circular(rect.ShortestSide / 2.0);
-        return new Path();
-        new Path().AddRRect(RRect.FromRectAndRadius(rect, radius).Deflate(Side.Width));
-    }
-
-
-
-
-    public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-        Radius radius = Radius.Circular(rect.ShortestSide / 2.0);
-        return new Path();
-        new Path().AddRRect(RRect.FromRectAndRadius(rect, radius));
-    }
-
-
-
-
-    public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-    {
-        switch (Side.Style) { case BorderStyle.None: break; case BorderStyle.Solid: Radius radius = Radius.Circular(rect.ShortestSide / 2.0); canvas.DrawRRect(RRect.FromRectAndRadius(rect, radius).Deflate(Side.Width / 2.0), Side.ToPaint()); }
-    }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (other.GetType() != GetType()) return false;
-        return other is StadiumBorder && other.Side == Side;
-    }
-
-
-
-
-    #endregion
-}
-
-
-public class _StadiumToCircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
-{
-    #region constructors
-    public _StadiumToCircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), double circleness = 0.0)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-public virtual double Circleness { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
-{
-    return new _StadiumToCircleBorder(side: Side.Scale(t), circleness: t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-
-    if (a is StadiumBorder)
-    {
-        return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((StadiumBorder)a).Side, Side, t), circleness: Circleness * t);
-    }
-
-    if (a is CircleBorder)
-    {
-        return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((CircleBorder)a).Side, Side, t), circleness: Circleness + (1.0 - Circleness) * (1.0 - t));
-    }
-
-    if (a is _StadiumToCircleBorder)
-    {
-        return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToCircleBorder)a).Side, Side, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_StadiumToCircleBorder)a).Circleness, Circleness, t));
-    }
-
-    return base.LerpFrom(a, t);
-}
-
-
-
-
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-
-    if (b is StadiumBorder)
-    {
-        return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((StadiumBorder)b).Side, t), circleness: Circleness * (1.0 - t));
-    }
-
-    if (b is CircleBorder)
-    {
-        return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((CircleBorder)b).Side, t), circleness: Circleness + (1.0 - Circleness) * t);
-    }
-
-    if (b is _StadiumToCircleBorder)
-    {
-        return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToCircleBorder)b).Side, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_StadiumToCircleBorder)b).Circleness, t));
-    }
-
-    return base.LerpTo(b, t);
-}
-
-
-
-
-private Rect _AdjustRect(FlutterBinding.UI.Rect rect)
-{
-    if (Circleness == 0.0 || rect.Width == rect.Height) return rect;
-    if (rect.Width < rect.Height)
-    {
-        double delta = Circleness * (rect.Height - rect.Width) / 2.0;
-        return Rect.FromLTRB(rect.Left, rect.Top + delta, rect.Right, rect.Bottom - delta);
-    }
-    else
-    {
-        double delta = Circleness * (rect.Width - rect.Height) / 2.0;
-        return Rect.FromLTRB(rect.Left + delta, rect.Top, rect.Right - delta, rect.Bottom);
-    }
-
-}
-
-
-
-
-private FlutterSDK.Painting.Borderradius.BorderRadius _AdjustBorderRadius(FlutterBinding.UI.Rect rect)
-{
-    return BorderRadius.Circular(rect.ShortestSide / 2.0);
-}
-
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect)).Deflate(Side.Width));
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect)));
-}
-
-
-
-
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    switch (Side.Style)
-    {
-        case BorderStyle.None: break;
-        case BorderStyle.Solid:
-            double width = Side.Width; if (width == 0.0)
+            if (a is StadiumBorder) return new StadiumBorder(side: BordersDefaultClass.BorderSide.Lerp(a.Side, Side, t));
+            if (a is CircleBorder)
             {
-                canvas.DrawRRect(_AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect)), Side.ToPaint());
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((StadiumBorder)a).Side, Side, t), circleness: 1.0 - t);
+            }
+
+            if (a is RoundedRectangleBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: ((RoundedRectangleBorder)a).BorderRadius as BorderRadius, rectness: 1.0 - t);
+            }
+
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+
+            if (b is StadiumBorder) return new StadiumBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, b.Side, t));
+            if (b is CircleBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((StadiumBorder)b).Side, t), circleness: t);
+            }
+
+            if (b is RoundedRectangleBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: ((RoundedRectangleBorder)b).BorderRadius as BorderRadius, rectness: t);
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            Radius radius = Radius.Circular(rect.ShortestSide / 2.0);
+            return new Path();
+            new Path().AddRRect(RRect.FromRectAndRadius(rect, radius).Deflate(Side.Width));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            Radius radius = Radius.Circular(rect.ShortestSide / 2.0);
+            return new Path();
+            new Path().AddRRect(RRect.FromRectAndRadius(rect, radius));
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            switch (Side.Style) { case BorderStyle.None: break; case BorderStyle.Solid: Radius radius = Radius.Circular(rect.ShortestSide / 2.0); canvas.DrawRRect(RRect.FromRectAndRadius(rect, radius).Deflate(Side.Width / 2.0), Side.ToPaint()); }
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is StadiumBorder && other.Side == Side;
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    public class _StadiumToCircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
+    {
+        #region constructors
+        public _StadiumToCircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), double circleness = 0.0)
+        : base()
+        {
+            this.Side = side;
+            this.Circleness = circleness;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual double Circleness { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+        {
+            return new _StadiumToCircleBorder(side: Side.Scale(t), circleness: t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+
+            if (a is StadiumBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((StadiumBorder)a).Side, Side, t), circleness: Circleness * t);
+            }
+
+            if (a is CircleBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((CircleBorder)a).Side, Side, t), circleness: Circleness + (1.0 - Circleness) * (1.0 - t));
+            }
+
+            if (a is _StadiumToCircleBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToCircleBorder)a).Side, Side, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_StadiumToCircleBorder)a).Circleness, Circleness, t));
+            }
+
+            return base.LerpFrom(a, t);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+
+            if (b is StadiumBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((StadiumBorder)b).Side, t), circleness: Circleness * (1.0 - t));
+            }
+
+            if (b is CircleBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((CircleBorder)b).Side, t), circleness: Circleness + (1.0 - Circleness) * t);
+            }
+
+            if (b is _StadiumToCircleBorder)
+            {
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToCircleBorder)b).Side, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_StadiumToCircleBorder)b).Circleness, t));
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        private Rect _AdjustRect(FlutterBinding.UI.Rect rect)
+        {
+            if (Circleness == 0.0 || rect.Width == rect.Height) return rect;
+            if (rect.Width < rect.Height)
+            {
+                double delta = Circleness * (rect.Height - rect.Width) / 2.0;
+                return Rect.FromLTRB(rect.Left, rect.Top + delta, rect.Right, rect.Bottom - delta);
             }
             else
             {
-                RRect outer = _AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect));
-                RRect inner = outer.Deflate(width);
-                Paint paint = new Paint()..Color = Side.Color;
-                canvas.DrawDRRect(outer, inner, paint);
+                double delta = Circleness * (rect.Width - rect.Height) / 2.0;
+                return Rect.FromLTRB(rect.Left + delta, rect.Top, rect.Right - delta, rect.Bottom);
             }
-    }
-}
+
+        }
 
 
 
 
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is _StadiumToCircleBorder && other.Side == Side && other.Circleness == Circleness;
-}
+        private FlutterSDK.Painting.Borderradius.BorderRadius _AdjustBorderRadius(FlutterBinding.UI.Rect rect)
+        {
+            return BorderRadius.Circular(rect.ShortestSide / 2.0);
+        }
 
 
 
 
-#endregion
-}
-
-
-public class _StadiumToRoundedRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
-{
-    #region constructors
-    public _StadiumToRoundedRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double rectness = 0.0)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
-public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-public virtual double Rectness { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
-{
-    return new _StadiumToRoundedRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t, rectness: t);
-}
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect)).Deflate(Side.Width));
+        }
 
 
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
-{
-
-    if (a is StadiumBorder)
-    {
-        return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((StadiumBorder)a).Side, Side, t), borderRadius: BorderRadius, rectness: Rectness * t);
-    }
-
-    if (a is RoundedRectangleBorder)
-    {
-        return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderRadius, rectness: Rectness + (1.0 - Rectness) * (1.0 - t));
-    }
-
-    if (a is _StadiumToRoundedRectangleBorder)
-    {
-        return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToRoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(((_StadiumToRoundedRectangleBorder)a).BorderRadius, BorderRadius, t), rectness: Ui.Dart:uiDefaultClass.LerpDouble(((_StadiumToRoundedRectangleBorder)a).Rectness, Rectness, t));
-    }
-
-    return base.LerpFrom(a, t);
-}
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect)));
+        }
 
 
 
 
-public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
-{
-
-    if (b is StadiumBorder)
-    {
-        return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((StadiumBorder)b).Side, t), borderRadius: BorderRadius, rectness: Rectness * (1.0 - t));
-    }
-
-    if (b is RoundedRectangleBorder)
-    {
-        return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: BorderRadius, rectness: Rectness + (1.0 - Rectness) * t);
-    }
-
-    if (b is _StadiumToRoundedRectangleBorder)
-    {
-        return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToRoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, ((_StadiumToRoundedRectangleBorder)b).BorderRadius, t), rectness: Ui.Dart:uiDefaultClass.LerpDouble(Rectness, ((_StadiumToRoundedRectangleBorder)b).Rectness, t));
-    }
-
-    return base.LerpTo(b, t);
-}
-
-
-
-
-private FlutterSDK.Painting.Borderradius.BorderRadius _AdjustBorderRadius(FlutterBinding.UI.Rect rect)
-{
-    return BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, BorderRadius.All(Radius.Circular(rect.ShortestSide / 2.0)), 1.0 - Rectness);
-}
-
-
-
-
-public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(rect).Deflate(Side.Width));
-}
-
-
-
-
-public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    return new Path();
-    new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(rect));
-}
-
-
-
-
-public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
-{
-    switch (Side.Style)
-    {
-        case BorderStyle.None: break;
-        case BorderStyle.Solid:
-            double width = Side.Width; if (width == 0.0)
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            switch (Side.Style)
             {
-                canvas.DrawRRect(_AdjustBorderRadius(rect).ToRRect(rect), Side.ToPaint());
+                case BorderStyle.None: break;
+                case BorderStyle.Solid:
+                    double width = Side.Width; if (width == 0.0)
+                    {
+                        canvas.DrawRRect(_AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect)), Side.ToPaint());
+                    }
+                    else
+                    {
+                        RRect outer = _AdjustBorderRadius(rect).ToRRect(_AdjustRect(rect));
+                        RRect inner = outer.Deflate(width);
+                        Paint paint = new Paint()..Color = Side.Color;
+                        canvas.DrawDRRect(outer, inner, paint);
+                    }
             }
-            else
-            {
-                RRect outer = _AdjustBorderRadius(rect).ToRRect(rect);
-                RRect inner = outer.Deflate(width);
-                Paint paint = new Paint()..Color = Side.Color;
-                canvas.DrawDRRect(outer, inner, paint);
-            }
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is _StadiumToCircleBorder && other.Side == Side && other.Circleness == Circleness;
+        }
+
+
+
+
+        #endregion
     }
-}
+
+
+    public class _StadiumToRoundedRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
+    {
+        #region constructors
+        public _StadiumToRoundedRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double rectness = 0.0)
+        : base()
+        {
+            this.Side = side;
+            this.BorderRadius = borderRadius;
+            this.Rectness = rectness;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
+        public virtual double Rectness { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
+        {
+            return new _StadiumToRoundedRectangleBorder(side: Side.Scale(t), borderRadius: BorderRadius * t, rectness: t);
+        }
 
 
 
 
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is _StadiumToRoundedRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius && other.Rectness == Rectness;
-}
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpFrom(FlutterSDK.Painting.Borders.ShapeBorder a, double t)
+        {
+
+            if (a is StadiumBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((StadiumBorder)a).Side, Side, t), borderRadius: BorderRadius, rectness: Rectness * t);
+            }
+
+            if (a is RoundedRectangleBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((RoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderRadius, rectness: Rectness + (1.0 - Rectness) * (1.0 - t));
+            }
+
+            if (a is _StadiumToRoundedRectangleBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToRoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(((_StadiumToRoundedRectangleBorder)a).BorderRadius, BorderRadius, t), rectness: Ui.Dart:uiDefaultClass.LerpDouble(((_StadiumToRoundedRectangleBorder)a).Rectness, Rectness, t));
+            }
+
+            return base.LerpFrom(a, t);
+        }
 
 
 
 
-#endregion
-}
+        public new FlutterSDK.Painting.Borders.ShapeBorder LerpTo(FlutterSDK.Painting.Borders.ShapeBorder b, double t)
+        {
+
+            if (b is StadiumBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((StadiumBorder)b).Side, t), borderRadius: BorderRadius, rectness: Rectness * (1.0 - t));
+            }
+
+            if (b is RoundedRectangleBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((RoundedRectangleBorder)b).Side, t), borderRadius: BorderRadius, rectness: Rectness + (1.0 - Rectness) * t);
+            }
+
+            if (b is _StadiumToRoundedRectangleBorder)
+            {
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToRoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, ((_StadiumToRoundedRectangleBorder)b).BorderRadius, t), rectness: Ui.Dart:uiDefaultClass.LerpDouble(Rectness, ((_StadiumToRoundedRectangleBorder)b).Rectness, t));
+            }
+
+            return base.LerpTo(b, t);
+        }
+
+
+
+
+        private FlutterSDK.Painting.Borderradius.BorderRadius _AdjustBorderRadius(FlutterBinding.UI.Rect rect)
+        {
+            return BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, BorderRadius.All(Radius.Circular(rect.ShortestSide / 2.0)), 1.0 - Rectness);
+        }
+
+
+
+
+        public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(rect).Deflate(Side.Width));
+        }
+
+
+
+
+        public new Path GetOuterPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            return new Path();
+            new Path().AddRRect(_AdjustBorderRadius(rect).ToRRect(rect));
+        }
+
+
+
+
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
+        {
+            switch (Side.Style)
+            {
+                case BorderStyle.None: break;
+                case BorderStyle.Solid:
+                    double width = Side.Width; if (width == 0.0)
+                    {
+                        canvas.DrawRRect(_AdjustBorderRadius(rect).ToRRect(rect), Side.ToPaint());
+                    }
+                    else
+                    {
+                        RRect outer = _AdjustBorderRadius(rect).ToRRect(rect);
+                        RRect inner = outer.Deflate(width);
+                        Paint paint = new Paint()..Color = Side.Color;
+                        canvas.DrawDRRect(outer, inner, paint);
+                    }
+            }
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is _StadiumToRoundedRectangleBorder && other.Side == Side && other.BorderRadius == BorderRadius && other.Rectness == Rectness;
+        }
+
+
+
+
+        #endregion
+    }
 
 }

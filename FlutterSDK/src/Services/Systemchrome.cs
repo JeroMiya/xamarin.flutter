@@ -443,141 +443,152 @@ namespace FlutterSDK.Services.Systemchrome
     {
         #region constructors
         public ApplicationSwitcherDescription(string label = default(string), int primaryColor = default(int))
-    
-}
-    #endregion
+        {
+            this.Label = label;
+            this.PrimaryColor = primaryColor;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Label { get; set; }
-    public virtual int PrimaryColor { get; set; }
-    #endregion
+        #region fields
+        public virtual string Label { get; set; }
+        public virtual int PrimaryColor { get; set; }
+        #endregion
 
-    #region methods
-    #endregion
-}
+        #region methods
+        #endregion
+    }
 
 
-/// <Summary>
-/// Specifies a preference for the style of the system overlays.
-///
-/// Used by [SystemChrome.setSystemUIOverlayStyle].
-/// </Summary>
-public class SystemUiOverlayStyle
+    /// <Summary>
+    /// Specifies a preference for the style of the system overlays.
+    ///
+    /// Used by [SystemChrome.setSystemUIOverlayStyle].
+    /// </Summary>
+    public class SystemUiOverlayStyle
+    {
+        #region constructors
+        public SystemUiOverlayStyle(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), Brightness systemNavigationBarIconBrightness = default(Brightness), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness))
+        {
+            this.SystemNavigationBarColor = systemNavigationBarColor;
+            this.SystemNavigationBarDividerColor = systemNavigationBarDividerColor;
+            this.SystemNavigationBarIconBrightness = systemNavigationBarIconBrightness;
+            this.StatusBarColor = statusBarColor;
+            this.StatusBarBrightness = statusBarBrightness;
+            this.StatusBarIconBrightness = statusBarIconBrightness;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color SystemNavigationBarColor { get; set; }
+        public virtual FlutterBinding.UI.Color SystemNavigationBarDividerColor { get; set; }
+        public virtual Brightness SystemNavigationBarIconBrightness { get; set; }
+        public virtual FlutterBinding.UI.Color StatusBarColor { get; set; }
+        public virtual Brightness StatusBarBrightness { get; set; }
+        public virtual Brightness StatusBarIconBrightness { get; set; }
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Light { get; set; }
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Dark { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Convert this event to a map for serialization.
+        /// </Summary>
+        private Dictionary<string, object> _ToMap()
+        {
+            return new Dictionary<string, object> { { "systemNavigationBarColor", SystemNavigationBarColor?.Value }{ "systemNavigationBarDividerColor", SystemNavigationBarDividerColor?.Value }{ "statusBarColor", StatusBarColor?.Value }{ "statusBarBrightness", StatusBarBrightness?.ToString() }{ "statusBarIconBrightness", StatusBarIconBrightness?.ToString() }{ "systemNavigationBarIconBrightness", SystemNavigationBarIconBrightness?.ToString() } };
+        }
+
+
+
+
+
+        /// <Summary>
+        /// Creates a copy of this theme with the given fields replaced with new values.
+        /// </Summary>
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle CopyWith(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness), Brightness systemNavigationBarIconBrightness = default(Brightness))
+        {
+            return new SystemUiOverlayStyle(systemNavigationBarColor: systemNavigationBarColor ?? this.SystemNavigationBarColor, systemNavigationBarDividerColor: systemNavigationBarDividerColor ?? this.SystemNavigationBarDividerColor, statusBarColor: statusBarColor ?? this.StatusBarColor, statusBarIconBrightness: statusBarIconBrightness ?? this.StatusBarIconBrightness, statusBarBrightness: statusBarBrightness ?? this.StatusBarBrightness, systemNavigationBarIconBrightness: systemNavigationBarIconBrightness ?? this.SystemNavigationBarIconBrightness);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is SystemUiOverlayStyle && other.SystemNavigationBarColor == SystemNavigationBarColor && other.SystemNavigationBarDividerColor == SystemNavigationBarDividerColor && other.StatusBarColor == StatusBarColor && other.StatusBarIconBrightness == StatusBarIconBrightness && other.StatusBarBrightness == StatusBarBrightness && other.SystemNavigationBarIconBrightness == SystemNavigationBarIconBrightness;
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Controls specific aspects of the operating system's graphical interface and
+    /// how it interacts with the application.
+    /// </Summary>
+    public class SystemChrome
+    {
+        #region constructors
+        internal SystemChrome()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _PendingStyle { get; set; }
+        internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _LatestStyle { get; set; }
+        public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle LatestStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Specifies the set of orientations the application interface can
+        /// be displayed in.
+        ///
+        /// The `orientation` argument is a list of [DeviceOrientation] enum values.
+        /// The empty list causes the application to defer to the operating system
+        /// default.
+        ///
+        /// ## Limitations
+        ///
+        /// This setting will only be respected on iPad if multitasking is disabled.
+        ///
+        /// You can decide to opt out of multitasking on iPad, then
+        /// setPreferredOrientations will work but your app will not
+        /// support Slide Over and Split View multitasking anymore.
+        ///
+        /// Should you decide to opt out of multitasking you can do this by
+        /// setting "Requires full screen" to true in the Xcode Deployment Info.
+        /// </Summary>
+        public virtual Future<object> SetPreferredOrientations(List<FlutterSDK.Services.Systemchrome.DeviceOrientation> orientations)
+    async
 {
-    #region constructors
-    public SystemUiOverlayStyle(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), Brightness systemNavigationBarIconBrightness = default(Brightness), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness))
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color SystemNavigationBarColor { get; set; }
-public virtual FlutterBinding.UI.Color SystemNavigationBarDividerColor { get; set; }
-public virtual Brightness SystemNavigationBarIconBrightness { get; set; }
-public virtual FlutterBinding.UI.Color StatusBarColor { get; set; }
-public virtual Brightness StatusBarBrightness { get; set; }
-public virtual Brightness StatusBarIconBrightness { get; set; }
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Light { get; set; }
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Dark { get; set; }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Convert this event to a map for serialization.
-/// </Summary>
-private Dictionary<string, object> _ToMap()
-{
-    return new Dictionary<string, object> { { "systemNavigationBarColor", SystemNavigationBarColor?.Value }{ "systemNavigationBarDividerColor", SystemNavigationBarDividerColor?.Value }{ "statusBarColor", StatusBarColor?.Value }{ "statusBarBrightness", StatusBarBrightness?.ToString() }{ "statusBarIconBrightness", StatusBarIconBrightness?.ToString() }{ "systemNavigationBarIconBrightness", SystemNavigationBarIconBrightness?.ToString() } };
-}
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setPreferredOrientations", SystemchromeDefaultClass._Stringify(orientations));
+    }
 
 
 
 
-
-/// <Summary>
-/// Creates a copy of this theme with the given fields replaced with new values.
-/// </Summary>
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle CopyWith(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness), Brightness systemNavigationBarIconBrightness = default(Brightness))
-{
-    return new SystemUiOverlayStyle(systemNavigationBarColor: systemNavigationBarColor ?? this.SystemNavigationBarColor, systemNavigationBarDividerColor: systemNavigationBarDividerColor ?? this.SystemNavigationBarDividerColor, statusBarColor: statusBarColor ?? this.StatusBarColor, statusBarIconBrightness: statusBarIconBrightness ?? this.StatusBarIconBrightness, statusBarBrightness: statusBarBrightness ?? this.StatusBarBrightness, systemNavigationBarIconBrightness: systemNavigationBarIconBrightness ?? this.SystemNavigationBarIconBrightness);
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is SystemUiOverlayStyle && other.SystemNavigationBarColor == SystemNavigationBarColor && other.SystemNavigationBarDividerColor == SystemNavigationBarDividerColor && other.StatusBarColor == StatusBarColor && other.StatusBarIconBrightness == StatusBarIconBrightness && other.StatusBarBrightness == StatusBarBrightness && other.SystemNavigationBarIconBrightness == SystemNavigationBarIconBrightness;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Controls specific aspects of the operating system's graphical interface and
-/// how it interacts with the application.
-/// </Summary>
-public class SystemChrome
-{
-    #region constructors
-    internal SystemChrome()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _PendingStyle { get; set; }
-internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _LatestStyle { get; set; }
-public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle LatestStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Specifies the set of orientations the application interface can
-/// be displayed in.
-///
-/// The `orientation` argument is a list of [DeviceOrientation] enum values.
-/// The empty list causes the application to defer to the operating system
-/// default.
-///
-/// ## Limitations
-///
-/// This setting will only be respected on iPad if multitasking is disabled.
-///
-/// You can decide to opt out of multitasking on iPad, then
-/// setPreferredOrientations will work but your app will not
-/// support Slide Over and Split View multitasking anymore.
-///
-/// Should you decide to opt out of multitasking you can do this by
-/// setting "Requires full screen" to true in the Xcode Deployment Info.
-/// </Summary>
-public virtual Future<object> SetPreferredOrientations(List<FlutterSDK.Services.Systemchrome.DeviceOrientation> orientations)
+    /// <Summary>
+    /// Specifies the description of the current state of the application as it
+    /// pertains to the application switcher (also known as "recent tasks").
+    ///
+    /// Any part of the description that is unsupported on the current platform
+    /// will be ignored.
+    /// </Summary>
+    public virtual Future<object> SetApplicationSwitcherDescription(FlutterSDK.Services.Systemchrome.ApplicationSwitcherDescription description)
 async
 {
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setPreferredOrientations", SystemchromeDefaultClass._Stringify(orientations));
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setApplicationSwitcherDescription", new Dictionary<string, object>{{"label", description.Label
 }
-
-
-
-
-/// <Summary>
-/// Specifies the description of the current state of the application as it
-/// pertains to the application switcher (also known as "recent tasks").
-///
-/// Any part of the description that is unsupported on the current platform
-/// will be ignored.
-/// </Summary>
-public virtual Future<object> SetApplicationSwitcherDescription(FlutterSDK.Services.Systemchrome.ApplicationSwitcherDescription description)
-async
-{
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setApplicationSwitcherDescription", new Dictionary<string, object> { { "label", description.Label }{ "primaryColor", description.PrimaryColor } });
+{ "primaryColor", description.PrimaryColor}});
 }
 
 

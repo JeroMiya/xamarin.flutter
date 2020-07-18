@@ -309,51 +309,53 @@ namespace FlutterSDK.Foundation._Bitfieldio
         #region constructors
         public BitField(int _length)
         : base()
-    
-}
-    public static BitField<T> Filled(int _length, bool value)
+        {
+            this._Length = _length;
+        }
+        public static BitField<T> Filled(int _length, bool value)
+        {
+            var instance = new BitField<T>(); instance._Length = _length;
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        internal virtual int _Length { get; set; }
+        internal virtual int _Bits { get; set; }
+        internal virtual int _SmiBits { get; set; }
+        internal virtual int _AllZeros { get; set; }
+        internal virtual int _AllOnes { get; set; }
+        #endregion
 
-#region fields
-internal virtual int _Length { get; set; }
-internal virtual int _Bits { get; set; }
-internal virtual int _SmiBits { get; set; }
-internal virtual int _AllZeros { get; set; }
-internal virtual int _AllOnes { get; set; }
-#endregion
+        #region methods
 
-#region methods
+        public new bool IndexOfOperator(T index)
+        {
+            int _index = index.Index as int;
 
-public new bool IndexOfOperator(T index)
-{
-    int _index = index.Index as int;
-
-    return (_Bits & 1 << _index) > 0;
-}
-
-
-
-
-public new void InsertAtOperator(T index, bool value)
-{
-    int _index = index.Index as int;
-
-    if (value) _Bits = _Bits | (1 << _index); else _Bits = _Bits & ~(1 << _index);
-}
+            return (_Bits & 1 << _index) > 0;
+        }
 
 
 
 
-public new void Reset(bool value = false)
-{
-    _Bits = value ? _AllOnes : _AllZeros;
-}
+        public new void InsertAtOperator(T index, bool value)
+        {
+            int _index = index.Index as int;
+
+            if (value) _Bits = _Bits | (1 << _index); else _Bits = _Bits & ~(1 << _index);
+        }
 
 
 
-#endregion
-}
+
+        public new void Reset(bool value = false)
+        {
+            _Bits = value ? _AllOnes : _AllZeros;
+        }
+
+
+
+        #endregion
+    }
 
 }

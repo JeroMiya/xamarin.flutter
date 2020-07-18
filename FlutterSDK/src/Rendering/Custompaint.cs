@@ -658,403 +658,411 @@ namespace FlutterSDK.Rendering.Custompaint
         #region constructors
         public CustomPainter(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
-    public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
+        public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    /// <Summary>
-    /// Register a closure to be notified when it is time to repaint.
-    ///
-    /// The [CustomPainter] implementation merely forwards to the same method on
-    /// the [Listenable] provided to the constructor in the `repaint` argument, if
-    /// it was not null.
-    /// </Summary>
-    public new void AddListener(VoidCallback listener) => _Repaint?.AddListener(listener);
+        #region methods
 
-
-
-    /// <Summary>
-    /// Remove a previously registered closure from the list of closures that the
-    /// object notifies when it is time to repaint.
-    ///
-    /// The [CustomPainter] implementation merely forwards to the same method on
-    /// the [Listenable] provided to the constructor in the `repaint` argument, if
-    /// it was not null.
-    /// </Summary>
-    public new void RemoveListener(VoidCallback listener) => _Repaint?.RemoveListener(listener);
+        /// <Summary>
+        /// Register a closure to be notified when it is time to repaint.
+        ///
+        /// The [CustomPainter] implementation merely forwards to the same method on
+        /// the [Listenable] provided to the constructor in the `repaint` argument, if
+        /// it was not null.
+        /// </Summary>
+        public new void AddListener(VoidCallback listener) => _Repaint?.AddListener(listener);
 
 
 
-    /// <Summary>
-    /// Called whenever the object needs to paint. The given [Canvas] has its
-    /// coordinate space configured such that the origin is at the top left of the
-    /// box. The area of the box is the size of the [size] argument.
-    ///
-    /// Paint operations should remain inside the given area. Graphical
-    /// operations outside the bounds may be silently ignored, clipped, or not
-    /// clipped. It may sometimes be difficult to guarantee that a certain
-    /// operation is inside the bounds (e.g., drawing a rectangle whose size is
-    /// determined by user inputs). In that case, consider calling
-    /// [Canvas.clipRect] at the beginning of [paint] so everything that follows
-    /// will be guaranteed to only draw within the clipped area.
-    ///
-    /// Implementations should be wary of correctly pairing any calls to
-    /// [Canvas.save]/[Canvas.saveLayer] and [Canvas.restore], otherwise all
-    /// subsequent painting on this canvas may be affected, with potentially
-    /// hilarious but confusing results.
-    ///
-    /// To paint text on a [Canvas], use a [TextPainter].
-    ///
-    /// To paint an image on a [Canvas]:
-    ///
-    /// 1. Obtain an [ImageStream], for example by calling [ImageProvider.resolve]
-    ///    on an [AssetImage] or [NetworkImage] object.
-    ///
-    /// 2. Whenever the [ImageStream]'s underlying [ImageInfo] object changes
-    ///    (see [ImageStream.addListener]), create a new instance of your custom
-    ///    paint delegate, giving it the new [ImageInfo] object.
-    ///
-    /// 3. In your delegate's [paint] method, call the [Canvas.drawImage],
-    ///    [Canvas.drawImageRect], or [Canvas.drawImageNine] methods to paint the
-    ///    [ImageInfo.image] object, applying the [ImageInfo.scale] value to
-    ///    obtain the correct rendering size.
-    /// </Summary>
-    public virtual void Paint(Canvas canvas, Size size)
-    {
+        /// <Summary>
+        /// Remove a previously registered closure from the list of closures that the
+        /// object notifies when it is time to repaint.
+        ///
+        /// The [CustomPainter] implementation merely forwards to the same method on
+        /// the [Listenable] provided to the constructor in the `repaint` argument, if
+        /// it was not null.
+        /// </Summary>
+        public new void RemoveListener(VoidCallback listener) => _Repaint?.RemoveListener(listener);
+
+
+
+        /// <Summary>
+        /// Called whenever the object needs to paint. The given [Canvas] has its
+        /// coordinate space configured such that the origin is at the top left of the
+        /// box. The area of the box is the size of the [size] argument.
+        ///
+        /// Paint operations should remain inside the given area. Graphical
+        /// operations outside the bounds may be silently ignored, clipped, or not
+        /// clipped. It may sometimes be difficult to guarantee that a certain
+        /// operation is inside the bounds (e.g., drawing a rectangle whose size is
+        /// determined by user inputs). In that case, consider calling
+        /// [Canvas.clipRect] at the beginning of [paint] so everything that follows
+        /// will be guaranteed to only draw within the clipped area.
+        ///
+        /// Implementations should be wary of correctly pairing any calls to
+        /// [Canvas.save]/[Canvas.saveLayer] and [Canvas.restore], otherwise all
+        /// subsequent painting on this canvas may be affected, with potentially
+        /// hilarious but confusing results.
+        ///
+        /// To paint text on a [Canvas], use a [TextPainter].
+        ///
+        /// To paint an image on a [Canvas]:
+        ///
+        /// 1. Obtain an [ImageStream], for example by calling [ImageProvider.resolve]
+        ///    on an [AssetImage] or [NetworkImage] object.
+        ///
+        /// 2. Whenever the [ImageStream]'s underlying [ImageInfo] object changes
+        ///    (see [ImageStream.addListener]), create a new instance of your custom
+        ///    paint delegate, giving it the new [ImageInfo] object.
+        ///
+        /// 3. In your delegate's [paint] method, call the [Canvas.drawImage],
+        ///    [Canvas.drawImageRect], or [Canvas.drawImageNine] methods to paint the
+        ///    [ImageInfo.image] object, applying the [ImageInfo.scale] value to
+        ///    obtain the correct rendering size.
+        /// </Summary>
+        public virtual void Paint(Canvas canvas, Size size)
+        {
+        }
+
+
+        /// <Summary>
+        /// Called whenever a new instance of the custom painter delegate class is
+        /// provided to the [RenderCustomPaint] object, or any time that a new
+        /// [CustomPaint] object is created with a new instance of the custom painter
+        /// delegate class (which amounts to the same thing, because the latter is
+        /// implemented in terms of the former).
+        ///
+        /// If the new instance would cause [semanticsBuilder] to create different
+        /// semantics information, then this method should return true, otherwise it
+        /// should return false.
+        ///
+        /// If the method returns false, then the [semanticsBuilder] call might be
+        /// optimized away.
+        ///
+        /// It's possible that the [semanticsBuilder] will get called even if
+        /// [shouldRebuildSemantics] would return false. For example, it is called
+        /// when the [CustomPaint] is rendered for the very first time, or when the
+        /// box changes its size.
+        ///
+        /// By default this method delegates to [shouldRepaint] under the assumption
+        /// that in most cases semantics change when something new is drawn.
+        /// </Summary>
+        public virtual bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => ShouldRepaint(oldDelegate);
+
+
+
+        /// <Summary>
+        /// Called whenever a new instance of the custom painter delegate class is
+        /// provided to the [RenderCustomPaint] object, or any time that a new
+        /// [CustomPaint] object is created with a new instance of the custom painter
+        /// delegate class (which amounts to the same thing, because the latter is
+        /// implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [paint] call might be optimized
+        /// away.
+        ///
+        /// It's possible that the [paint] method will get called even if
+        /// [shouldRepaint] returns false (e.g. if an ancestor or descendant needed to
+        /// be repainted). It's also possible that the [paint] method will get called
+        /// without [shouldRepaint] being called at all (e.g. if the box changes
+        /// size).
+        ///
+        /// If a custom delegate has a particularly expensive paint function such that
+        /// repaints should be avoided as much as possible, a [RepaintBoundary] or
+        /// [RenderRepaintBoundary] (or other render object with
+        /// [RenderObject.isRepaintBoundary] set to true) might be helpful.
+        ///
+        /// The `oldDelegate` argument will never be null.
+        /// </Summary>
+        public virtual bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+        {
+            return default(bool);
+        }
+
+
+        /// <Summary>
+        /// Called whenever a hit test is being performed on an object that is using
+        /// this custom paint delegate.
+        ///
+        /// The given point is relative to the same coordinate space as the last
+        /// [paint] call.
+        ///
+        /// The default behavior is to consider all points to be hits for
+        /// background painters, and no points to be hits for foreground painters.
+        ///
+        /// Return true if the given position corresponds to a point on the drawn
+        /// image that should be considered a "hit", false if it corresponds to a
+        /// point that should be considered outside the painted image, and null to use
+        /// the default behavior.
+        /// </Summary>
+        public virtual bool HitTest(FlutterBinding.UI.Offset position) => null;
+
+
+
+        #endregion
     }
 
 
     /// <Summary>
-    /// Called whenever a new instance of the custom painter delegate class is
-    /// provided to the [RenderCustomPaint] object, or any time that a new
-    /// [CustomPaint] object is created with a new instance of the custom painter
-    /// delegate class (which amounts to the same thing, because the latter is
-    /// implemented in terms of the former).
+    /// Contains properties describing information drawn in a rectangle contained by
+    /// the [Canvas] used by a [CustomPaint].
     ///
-    /// If the new instance would cause [semanticsBuilder] to create different
-    /// semantics information, then this method should return true, otherwise it
-    /// should return false.
+    /// This information is used, for example, by assistive technologies to improve
+    /// the accessibility of applications.
     ///
-    /// If the method returns false, then the [semanticsBuilder] call might be
-    /// optimized away.
+    /// Implement [CustomPainter.semanticsBuilder] to build the semantic
+    /// description of the whole picture drawn by a [CustomPaint], rather that one
+    /// particular rectangle.
     ///
-    /// It's possible that the [semanticsBuilder] will get called even if
-    /// [shouldRebuildSemantics] would return false. For example, it is called
-    /// when the [CustomPaint] is rendered for the very first time, or when the
-    /// box changes its size.
+    /// See also:
     ///
-    /// By default this method delegates to [shouldRepaint] under the assumption
-    /// that in most cases semantics change when something new is drawn.
+    ///  * [SemanticsNode], which is created using the properties of this class.
+    ///  * [CustomPainter], which creates instances of this class.
     /// </Summary>
-    public virtual bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => ShouldRepaint(oldDelegate);
-
-
-
-    /// <Summary>
-    /// Called whenever a new instance of the custom painter delegate class is
-    /// provided to the [RenderCustomPaint] object, or any time that a new
-    /// [CustomPaint] object is created with a new instance of the custom painter
-    /// delegate class (which amounts to the same thing, because the latter is
-    /// implemented in terms of the former).
-    ///
-    /// If the new instance represents different information than the old
-    /// instance, then the method should return true, otherwise it should return
-    /// false.
-    ///
-    /// If the method returns false, then the [paint] call might be optimized
-    /// away.
-    ///
-    /// It's possible that the [paint] method will get called even if
-    /// [shouldRepaint] returns false (e.g. if an ancestor or descendant needed to
-    /// be repainted). It's also possible that the [paint] method will get called
-    /// without [shouldRepaint] being called at all (e.g. if the box changes
-    /// size).
-    ///
-    /// If a custom delegate has a particularly expensive paint function such that
-    /// repaints should be avoided as much as possible, a [RepaintBoundary] or
-    /// [RenderRepaintBoundary] (or other render object with
-    /// [RenderObject.isRepaintBoundary] set to true) might be helpful.
-    ///
-    /// The `oldDelegate` argument will never be null.
-    /// </Summary>
-    public virtual bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+    public class CustomPainterSemantics
     {
-        return default(bool);
+        #region constructors
+        public CustomPainterSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties), Matrix4 transform = default(Matrix4), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>))
+        : base()
+        {
+            this.Key = key;
+            this.Rect = rect;
+            this.Properties = properties;
+            this.Transform = transform;
+            this.Tags = tags;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
+        public virtual FlutterBinding.UI.Rect Rect { get; set; }
+        public virtual Matrix4 Transform { get; set; }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
+        public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
 
     /// <Summary>
-    /// Called whenever a hit test is being performed on an object that is using
-    /// this custom paint delegate.
+    /// Provides a canvas on which to draw during the paint phase.
     ///
-    /// The given point is relative to the same coordinate space as the last
-    /// [paint] call.
+    /// When asked to paint, [RenderCustomPaint] first asks its [painter] to paint
+    /// on the current canvas, then it paints its child, and then, after painting
+    /// its child, it asks its [foregroundPainter] to paint. The coordinate system of
+    /// the canvas matches the coordinate system of the [CustomPaint] object. The
+    /// painters are expected to paint within a rectangle starting at the origin and
+    /// encompassing a region of the given size. (If the painters paint outside
+    /// those bounds, there might be insufficient memory allocated to rasterize the
+    /// painting commands and the resulting behavior is undefined.)
     ///
-    /// The default behavior is to consider all points to be hits for
-    /// background painters, and no points to be hits for foreground painters.
+    /// Painters are implemented by subclassing or implementing [CustomPainter].
     ///
-    /// Return true if the given position corresponds to a point on the drawn
-    /// image that should be considered a "hit", false if it corresponds to a
-    /// point that should be considered outside the painted image, and null to use
-    /// the default behavior.
+    /// Because custom paint calls its painters during paint, you cannot mark the
+    /// tree as needing a new layout during the callback (the layout for this frame
+    /// has already happened).
+    ///
+    /// Custom painters normally size themselves to their child. If they do not have
+    /// a child, they attempt to size themselves to the [preferredSize], which
+    /// defaults to [Size.zero].
+    ///
+    /// See also:
+    ///
+    ///  * [CustomPainter], the class that custom painter delegates should extend.
+    ///  * [Canvas], the API provided to custom painter delegates.
     /// </Summary>
-    public virtual bool HitTest(FlutterBinding.UI.Offset position) => null;
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Contains properties describing information drawn in a rectangle contained by
-/// the [Canvas] used by a [CustomPaint].
-///
-/// This information is used, for example, by assistive technologies to improve
-/// the accessibility of applications.
-///
-/// Implement [CustomPainter.semanticsBuilder] to build the semantic
-/// description of the whole picture drawn by a [CustomPaint], rather that one
-/// particular rectangle.
-///
-/// See also:
-///
-///  * [SemanticsNode], which is created using the properties of this class.
-///  * [CustomPainter], which creates instances of this class.
-/// </Summary>
-public class CustomPainterSemantics
-{
-    #region constructors
-    public CustomPainterSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties), Matrix4 transform = default(Matrix4), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
-public virtual FlutterBinding.UI.Rect Rect { get; set; }
-public virtual Matrix4 Transform { get; set; }
-public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
-public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// Provides a canvas on which to draw during the paint phase.
-///
-/// When asked to paint, [RenderCustomPaint] first asks its [painter] to paint
-/// on the current canvas, then it paints its child, and then, after painting
-/// its child, it asks its [foregroundPainter] to paint. The coordinate system of
-/// the canvas matches the coordinate system of the [CustomPaint] object. The
-/// painters are expected to paint within a rectangle starting at the origin and
-/// encompassing a region of the given size. (If the painters paint outside
-/// those bounds, there might be insufficient memory allocated to rasterize the
-/// painting commands and the resulting behavior is undefined.)
-///
-/// Painters are implemented by subclassing or implementing [CustomPainter].
-///
-/// Because custom paint calls its painters during paint, you cannot mark the
-/// tree as needing a new layout during the callback (the layout for this frame
-/// has already happened).
-///
-/// Custom painters normally size themselves to their child. If they do not have
-/// a child, they attempt to size themselves to the [preferredSize], which
-/// defaults to [Size.zero].
-///
-/// See also:
-///
-///  * [CustomPainter], the class that custom painter delegates should extend.
-///  * [Canvas], the API provided to custom painter delegates.
-/// </Summary>
-public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
-{
-    #region constructors
-    public RenderCustomPaint(FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size preferredSize = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
-    : base(child)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _Painter { get; set; }
-internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _ForegroundPainter { get; set; }
-internal virtual Size _PreferredSize { get; set; }
-public virtual bool IsComplex { get; set; }
-public virtual bool WillChange { get; set; }
-internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _BackgroundSemanticsBuilder { get; set; }
-internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _ForegroundSemanticsBuilder { get; set; }
-internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _BackgroundSemanticsNodes { get; set; }
-internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ForegroundSemanticsNodes { get; set; }
-public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-private void _DidUpdatePainter(FlutterSDK.Rendering.Custompaint.CustomPainter newPainter, FlutterSDK.Rendering.Custompaint.CustomPainter oldPainter)
-{
-    if (newPainter == null)
+    public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
+        #region constructors
+        public RenderCustomPaint(FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size preferredSize = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
+        : base(child)
+        {
+            this.IsComplex = isComplex;
+            this.WillChange = willChange;
+        }
+        #endregion
 
-        MarkNeedsPaint();
-    }
-    else if (oldPainter == null || newPainter.GetType() != oldPainter.GetType() || newPainter.ShouldRepaint(oldPainter))
-    {
-        MarkNeedsPaint();
-    }
+        #region fields
+        internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _Painter { get; set; }
+        internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _ForegroundPainter { get; set; }
+        internal virtual Size _PreferredSize { get; set; }
+        public virtual bool IsComplex { get; set; }
+        public virtual bool WillChange { get; set; }
+        internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _BackgroundSemanticsBuilder { get; set; }
+        internal virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback _ForegroundSemanticsBuilder { get; set; }
+        internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _BackgroundSemanticsNodes { get; set; }
+        internal virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ForegroundSemanticsNodes { get; set; }
+        public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    if (Attached)
-    {
-        oldPainter?.RemoveListener(MarkNeedsPaint);
-        newPainter?.AddListener(MarkNeedsPaint);
-    }
+        #region methods
 
-    if (newPainter == null)
-    {
+        private void _DidUpdatePainter(FlutterSDK.Rendering.Custompaint.CustomPainter newPainter, FlutterSDK.Rendering.Custompaint.CustomPainter oldPainter)
+        {
+            if (newPainter == null)
+            {
 
-        if (Attached) MarkNeedsSemanticsUpdate();
-    }
-    else if (oldPainter == null || newPainter.GetType() != oldPainter.GetType() || newPainter.ShouldRebuildSemantics(oldPainter))
-    {
-        MarkNeedsSemanticsUpdate();
-    }
+                MarkNeedsPaint();
+            }
+            else if (oldPainter == null || newPainter.GetType() != oldPainter.GetType() || newPainter.ShouldRepaint(oldPainter))
+            {
+                MarkNeedsPaint();
+            }
 
-}
+            if (Attached)
+            {
+                oldPainter?.RemoveListener(MarkNeedsPaint);
+                newPainter?.AddListener(MarkNeedsPaint);
+            }
 
+            if (newPainter == null)
+            {
 
+                if (Attached) MarkNeedsSemanticsUpdate();
+            }
+            else if (oldPainter == null || newPainter.GetType() != oldPainter.GetType() || newPainter.ShouldRebuildSemantics(oldPainter))
+            {
+                MarkNeedsSemanticsUpdate();
+            }
 
-
-public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
-{
-    base.Attach(owner);
-    _Painter?.AddListener(MarkNeedsPaint);
-    _ForegroundPainter?.AddListener(MarkNeedsPaint);
-}
-
-
-public new void Attach(@Object owner)
-{
-    base.Attach(owner);
-    _Painter?.AddListener(MarkNeedsPaint);
-    _ForegroundPainter?.AddListener(MarkNeedsPaint);
-}
-
-
-
-
-public new void Detach()
-{
-    _Painter?.RemoveListener(MarkNeedsPaint);
-    _ForegroundPainter?.RemoveListener(MarkNeedsPaint);
-    base.Detach();
-}
-
-
-
-
-public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
-{
-    if (_ForegroundPainter != null && (_ForegroundPainter.HitTest(position) ?? false)) return true;
-    return base.HitTestChildren(result, position: position);
-}
+        }
 
 
 
 
-public new bool HitTestSelf(FlutterBinding.UI.Offset position)
-{
-    return _Painter != null && (_Painter.HitTest(position) ?? true);
-}
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+        {
+            base.Attach(owner);
+            _Painter?.AddListener(MarkNeedsPaint);
+            _ForegroundPainter?.AddListener(MarkNeedsPaint);
+        }
+
+
+        public new void Attach(@Object owner)
+        {
+            base.Attach(owner);
+            _Painter?.AddListener(MarkNeedsPaint);
+            _ForegroundPainter?.AddListener(MarkNeedsPaint);
+        }
 
 
 
 
-public new void PerformResize()
-{
-    Size = Constraints.Constrain(PreferredSize);
-    MarkNeedsSemanticsUpdate();
-}
+        public new void Detach()
+        {
+            _Painter?.RemoveListener(MarkNeedsPaint);
+            _ForegroundPainter?.RemoveListener(MarkNeedsPaint);
+            base.Detach();
+        }
 
 
 
 
-private void _PaintWithPainter(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Custompaint.CustomPainter painter)
-{
-    int debugPreviousCanvasSaveCount = default(int);
-    canvas.Save();
-
-    if (offset != Dart:uiDefaultClass.Offset.Zero)canvas.Translate(offset.Dx, offset.Dy);
-painter.Paint(canvas, Size);
-
-canvas.Restore();
-}
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+        {
+            if (_ForegroundPainter != null && (_ForegroundPainter.HitTest(position) ?? false)) return true;
+            return base.HitTestChildren(result, position: position);
+        }
 
 
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (_Painter != null)
-    {
-        _PaintWithPainter(context.Canvas, offset, _Painter);
-        _SetRasterCacheHints(context);
-    }
-
-    base.Paint(context, offset);
-    if (_ForegroundPainter != null)
-    {
-        _PaintWithPainter(context.Canvas, offset, _ForegroundPainter);
-        _SetRasterCacheHints(context);
-    }
-
-}
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position)
+        {
+            return _Painter != null && (_Painter.HitTest(position) ?? true);
+        }
 
 
 
 
-private void _SetRasterCacheHints(FlutterSDK.Rendering.@object.PaintingContext context)
-{
-    if (IsComplex) context.SetIsComplexHint();
-    if (WillChange) context.SetWillChangeHint();
-}
+        public new void PerformResize()
+        {
+            Size = Constraints.Constrain(PreferredSize);
+            MarkNeedsSemanticsUpdate();
+        }
 
 
 
 
-public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-{
-    base.DescribeSemanticsConfiguration(config);
-    _BackgroundSemanticsBuilder = Painter?.SemanticsBuilder;
-    _ForegroundSemanticsBuilder = ForegroundPainter?.SemanticsBuilder;
-    config.IsSemanticBoundary = _BackgroundSemanticsBuilder != null || _ForegroundSemanticsBuilder != null;
-}
+        private void _PaintWithPainter(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Custompaint.CustomPainter painter)
+        {
+            int debugPreviousCanvasSaveCount = default(int);
+            canvas.Save();
+
+            if (offset != Dart:uiDefaultClass.Offset.Zero)canvas.Translate(offset.Dx, offset.Dy);
+            painter.Paint(canvas, Size);
+
+            canvas.Restore();
+        }
 
 
 
 
-public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
-{
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (_Painter != null)
+            {
+                _PaintWithPainter(context.Canvas, offset, _Painter);
+                _SetRasterCacheHints(context);
+            }
 
-    List<CustomPainterSemantics> backgroundSemantics = _BackgroundSemanticsBuilder != null ? _BackgroundSemanticsBuilder(Size) : new List, < CustomPainterSemantics > (};
-_BackgroundSemanticsNodes = _UpdateSemanticsChildren(_BackgroundSemanticsNodes, backgroundSemantics);
-List<CustomPainterSemantics> foregroundSemantics = _ForegroundSemanticsBuilder != null ? _ForegroundSemanticsBuilder(Size) : new List, <CustomPainterSemantics>(};
-_ForegroundSemanticsNodes = _UpdateSemanticsChildren(_ForegroundSemanticsNodes, foregroundSemantics);
-bool hasBackgroundSemantics = _BackgroundSemanticsNodes != null && _BackgroundSemanticsNodes.IsNotEmpty;
-bool hasForegroundSemantics = _ForegroundSemanticsNodes != null && _ForegroundSemanticsNodes.IsNotEmpty;
-List<SemanticsNode> finalChildren = new List<SemanticsNode>() { };
+            base.Paint(context, offset);
+            if (_ForegroundPainter != null)
+            {
+                _PaintWithPainter(context.Canvas, offset, _ForegroundPainter);
+                _SetRasterCacheHints(context);
+            }
+
+        }
+
+
+
+
+        private void _SetRasterCacheHints(FlutterSDK.Rendering.@object.PaintingContext context)
+        {
+            if (IsComplex) context.SetIsComplexHint();
+            if (WillChange) context.SetWillChangeHint();
+        }
+
+
+
+
+        public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
+        {
+            base.DescribeSemanticsConfiguration(config);
+            _BackgroundSemanticsBuilder = Painter?.SemanticsBuilder;
+            _ForegroundSemanticsBuilder = ForegroundPainter?.SemanticsBuilder;
+            config.IsSemanticBoundary = _BackgroundSemanticsBuilder != null || _ForegroundSemanticsBuilder != null;
+        }
+
+
+
+
+        public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
+        {
+
+            List<CustomPainterSemantics> backgroundSemantics = _BackgroundSemanticsBuilder != null ? _BackgroundSemanticsBuilder(Size) : new List, < CustomPainterSemantics > (};
+        _BackgroundSemanticsNodes=_UpdateSemanticsChildren(_BackgroundSemanticsNodes, backgroundSemantics);
+        List<CustomPainterSemantics> foregroundSemantics = _ForegroundSemanticsBuilder != null ? _ForegroundSemanticsBuilder(Size) : new List, <CustomPainterSemantics>(};
+    _ForegroundSemanticsNodes=_UpdateSemanticsChildren(_ForegroundSemanticsNodes, foregroundSemantics);
+    bool hasBackgroundSemantics = _BackgroundSemanticsNodes != null && _BackgroundSemanticsNodes.IsNotEmpty;
+    bool hasForegroundSemantics = _ForegroundSemanticsNodes != null && _ForegroundSemanticsNodes.IsNotEmpty;
+    List<SemanticsNode> finalChildren = new List<SemanticsNode>() { };
 base.AssembleSemanticsNode(node, config, finalChildren);
 }
 

@@ -325,299 +325,304 @@ namespace FlutterSDK.Cupertino.Textselection
         #region constructors
         internal CupertinoTextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double barTopY = default(double), double arrowTipX = default(double), bool isArrowPointingDown = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-    
-}
-    #endregion
+        {
 
-    #region fields
-    internal virtual double _BarTopY { get; set; }
-    internal virtual double _ArrowTipX { get; set; }
-    internal virtual bool _IsArrowPointingDown { get; set; }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        internal virtual double _BarTopY { get; set; }
+        internal virtual double _ArrowTipX { get; set; }
+        internal virtual bool _IsArrowPointingDown { get; set; }
+        #endregion
 
-    public new FlutterSDK.Cupertino.Textselection._ToolbarRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ToolbarRenderBox(_BarTopY, _ArrowTipX, _IsArrowPointingDown, null);
+        #region methods
+
+        public new FlutterSDK.Cupertino.Textselection._ToolbarRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ToolbarRenderBox(_BarTopY, _ArrowTipX, _IsArrowPointingDown, null);
 
 
 
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Textselection._ToolbarRenderBox renderObject)
-    {
-        ..BarTopY = _BarTopY..ArrowTipX = _ArrowTipX..IsArrowPointingDown = _IsArrowPointingDown;
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Textselection._ToolbarRenderBox renderObject)
+        {
+            ..BarTopY = _BarTopY..ArrowTipX = _ArrowTipX..IsArrowPointingDown = _IsArrowPointingDown;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..BarTopY = _BarTopY..ArrowTipX = _ArrowTipX..IsArrowPointingDown = _IsArrowPointingDown;
+        }
+
+
+
+        #endregion
     }
 
 
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+    public class _ToolbarParentData : FlutterSDK.Rendering.Box.BoxParentData
     {
-        ..BarTopY = _BarTopY..ArrowTipX = _ArrowTipX..IsArrowPointingDown = _IsArrowPointingDown;
+        #region constructors
+        public _ToolbarParentData()
+        { }
+        #endregion
+
+        #region fields
+        public virtual double ArrowXOffsetFromCenter { get; set; }
+        #endregion
+
+        #region methods
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-public class _ToolbarParentData : FlutterSDK.Rendering.Box.BoxParentData
-{
-    #region constructors
-    public _ToolbarParentData()
-    { }
-    #endregion
-
-    #region fields
-    public virtual double ArrowXOffsetFromCenter { get; set; }
-    #endregion
-
-    #region methods
-
-    #endregion
-}
-
-
-public class _ToolbarRenderBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
-{
-    #region constructors
-    public _ToolbarRenderBox(double _barTopY, double _arrowTipX, bool _isArrowPointingDown, FlutterSDK.Rendering.Box.RenderBox child)
-    : base(child)
-
-}
-#endregion
-
-#region fields
-internal virtual double _BarTopY { get; set; }
-internal virtual double _ArrowTipX { get; set; }
-internal virtual bool _IsArrowPointingDown { get; set; }
-public virtual FlutterSDK.Rendering.Box.BoxConstraints HeightConstraint { get; set; }
-internal virtual SKPaint _DebugPaint { get; set; }
-public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double BarTopY { set { throw new NotImplementedException(); } }
-public virtual double ArrowTipX { set { throw new NotImplementedException(); } }
-public virtual bool IsArrowPointingDown { set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
-{
-    if (!(child.ParentData is _ToolbarParentData))
+    public class _ToolbarRenderBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
-        ((_ToolbarParentData)child.ParentData) = new _ToolbarParentData();
-    }
+        #region constructors
+        public _ToolbarRenderBox(double _barTopY, double _arrowTipX, bool _isArrowPointingDown, FlutterSDK.Rendering.Box.RenderBox child)
+        : base(child)
+        {
+            this._BarTopY = _barTopY;
+            this._ArrowTipX = _arrowTipX;
+            this._IsArrowPointingDown = _isArrowPointingDown;
+        }
+        #endregion
 
-}
+        #region fields
+        internal virtual double _BarTopY { get; set; }
+        internal virtual double _ArrowTipX { get; set; }
+        internal virtual bool _IsArrowPointingDown { get; set; }
+        public virtual FlutterSDK.Rendering.Box.BoxConstraints HeightConstraint { get; set; }
+        internal virtual SKPaint _DebugPaint { get; set; }
+        public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double BarTopY { set { throw new NotImplementedException(); } }
+        public virtual double ArrowTipX { set { throw new NotImplementedException(); } }
+        public virtual bool IsArrowPointingDown { set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
+        public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            if (!(child.ParentData is _ToolbarParentData))
+            {
+                ((_ToolbarParentData)child.ParentData) = new _ToolbarParentData();
+            }
 
-
-public new void PerformLayout()
-{
-    BoxConstraints constraints = this.Constraints;
-    Size = constraints.Biggest;
-    if (Child == null)
-    {
-        return;
-    }
-
-    BoxConstraints enforcedConstraint = constraints.Deflate(EdgeInsets.Symmetric(horizontal: TextselectionDefaultClass._KToolbarScreenPadding)).Loosen();
-    Child.Layout(HeightConstraint.Enforce(enforcedConstraint), parentUsesSize: true);
-    _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
-    double lowerBound = Child.Size.Width / 2 + TextselectionDefaultClass._KToolbarScreenPadding;
-    double upperBound = Size.Width - Child.Size.Width / 2 - TextselectionDefaultClass._KToolbarScreenPadding;
-    double adjustedCenterX = _ArrowTipX.Clamp(lowerBound, upperBound) as double;
-    childParentData.Offset = new Offset(adjustedCenterX - Child.Size.Width / 2, _BarTopY);
-    childParentData.ArrowXOffsetFromCenter = _ArrowTipX - adjustedCenterX;
-}
-
-
-
-
-private Path _ClipPath()
-{
-    _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
-    Path rrect = new Path();
-    new Path().AddRRect(RRect.FromRectAndRadius(new Offset(0, _IsArrowPointingDown ? 0 : TextselectionDefaultClass._KToolbarArrowSize.Height) & new Size(Child.Size.Width, Child.Size.Height - TextselectionDefaultClass._KToolbarArrowSize.Height), TextselectionDefaultClass._KToolbarBorderRadius));
-    double arrowTipX = Child.Size.Width / 2 + childParentData.ArrowXOffsetFromCenter;
-    double arrowBottomY = _IsArrowPointingDown ? Child.Size.Height - TextselectionDefaultClass._KToolbarArrowSize.Height : TextselectionDefaultClass._KToolbarArrowSize.Height;
-    double arrowTipY = _IsArrowPointingDown ? Child.Size.Height : 0;
-    Path arrow = new Path();
-    new Path().MoveTo(arrowTipX, arrowTipY);
-    new Path().LineTo(arrowTipX - TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
-    new Path().LineTo(arrowTipX + TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
-    new Path().Close();
-    return Dart:uiDefaultClass.Path.Combine(PathOperation.Union, rrect, arrow);
-}
+        }
 
 
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-    if (Child == null)
-    {
-        return;
-    }
-
-    _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
-    context.PushClipPath(NeedsCompositing, offset + childParentData.Offset, Dart: uiDefaultClass.Offset.Zero & Child.Size, _ClipPath(), (PaintingContext innerContext, Offset innerOffset) => =>innerContext.PaintChild(Child, innerOffset));
-}
-
-
-
-
-public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-{
-
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Draws a single text selection handle with a bar and a ball.
-/// </Summary>
-public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
-{
-    #region constructors
-    public _TextSelectionHandlePainter(FlutterBinding.UI.Color color)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color Color { get; set; }
-#endregion
-
-#region methods
-
-public new void Paint(Canvas canvas, Size size)
-{
-    double halfStrokeWidth = 1.0;
-    Paint paint = new Paint()..Color = Color;
-    Rect circle = Rect.FromCircle(center: new Offset(TextselectionDefaultClass._KSelectionHandleRadius, TextselectionDefaultClass._KSelectionHandleRadius), radius: TextselectionDefaultClass._KSelectionHandleRadius);
-    Rect line = Rect.FromPoints(new Offset(TextselectionDefaultClass._KSelectionHandleRadius - halfStrokeWidth, 2 * TextselectionDefaultClass._KSelectionHandleRadius - TextselectionDefaultClass._KSelectionHandleOverlap), new Offset(TextselectionDefaultClass._KSelectionHandleRadius + halfStrokeWidth, size.Height));
-    Path path = new Path();
-    new Path().AddOval(circle);
-    new Path().AddRect(line);
-    canvas.DrawPath(path, paint);
-}
-
-
-
-
-public new bool ShouldRepaint(FlutterSDK.Cupertino.Textselection._TextSelectionHandlePainter oldPainter) => Color != oldPainter.Color;
-
-public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => Color != oldPainter.Color;
-
-
-#endregion
-}
-
-
-public class _CupertinoTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
-{
-    #region constructors
-    public _CupertinoTextSelectionControls()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Returns the size of the Cupertino handle.
-    /// </Summary>
-    public new Size GetHandleSize(double textLineHeight)
-    {
-        return new Size(TextselectionDefaultClass._KSelectionHandleRadius * 2, textLineHeight + TextselectionDefaultClass._KSelectionHandleRadius * 2 - TextselectionDefaultClass._KSelectionHandleOverlap);
-    }
-
-
-
-
-    /// <Summary>
-    /// Builder for iOS-style copy/paste text selection toolbar.
-    /// </Summary>
-    public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate)
-    {
-
-        MediaQueryData mediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
-        double toolbarHeightNeeded = mediaQuery.Padding.Top + TextselectionDefaultClass._KToolbarScreenPadding + TextselectionDefaultClass._KToolbarHeight + TextselectionDefaultClass._KToolbarContentDistance;
-        double availableHeight = globalEditableRegion.Top + endpoints.First.Point.Dy - textLineHeight;
-        bool isArrowPointingDown = toolbarHeightNeeded <= availableHeight;
-        double arrowTipX = (position.Dx + globalEditableRegion.Left).Clamp(TextselectionDefaultClass._KArrowScreenPadding + mediaQuery.Padding.Left, mediaQuery.Size.Width - mediaQuery.Padding.Right - TextselectionDefaultClass._KArrowScreenPadding) as double;
-        double localBarTopY = isArrowPointingDown ? endpoints.First.Point.Dy - textLineHeight - TextselectionDefaultClass._KToolbarContentDistance - TextselectionDefaultClass._KToolbarHeight : endpoints.Last().Point.Dy + TextselectionDefaultClass._KToolbarContentDistance;
-        List<Widget> items = new List<Widget>() { };
-        Widget onePhysicalPixelVerticalDivider = new SizedBox(width: 1.0 / MediaqueryDefaultClass.MediaQuery.Of(context).DevicePixelRatio);
-        CupertinoLocalizations localizations = LocalizationsDefaultClass.CupertinoLocalizations.Of(context);
-        EdgeInsets arrowPadding = isArrowPointingDown ? EdgeInsets.Only(bottom: TextselectionDefaultClass._KToolbarArrowSize.Height) : EdgeInsets.Only(top: TextselectionDefaultClass._KToolbarArrowSize.Height);
-        void AddToolbarButtonIfNeeded(string text, Func<TextSelectionDelegate, bool> predicate, Action<TextSelectionDelegate> onPressed) => {
-            if (!predicate(delegate))
+        public new void PerformLayout()
+        {
+            BoxConstraints constraints = this.Constraints;
+            Size = constraints.Biggest;
+            if (Child == null)
             {
                 return;
             }
 
-            if (items.IsNotEmpty)
+            BoxConstraints enforcedConstraint = constraints.Deflate(EdgeInsets.Symmetric(horizontal: TextselectionDefaultClass._KToolbarScreenPadding)).Loosen();
+            Child.Layout(HeightConstraint.Enforce(enforcedConstraint), parentUsesSize: true);
+            _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
+            double lowerBound = Child.Size.Width / 2 + TextselectionDefaultClass._KToolbarScreenPadding;
+            double upperBound = Size.Width - Child.Size.Width / 2 - TextselectionDefaultClass._KToolbarScreenPadding;
+            double adjustedCenterX = _ArrowTipX.Clamp(lowerBound, upperBound) as double;
+            childParentData.Offset = new Offset(adjustedCenterX - Child.Size.Width / 2, _BarTopY);
+            childParentData.ArrowXOffsetFromCenter = _ArrowTipX - adjustedCenterX;
+        }
+
+
+
+
+        private Path _ClipPath()
+        {
+            _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
+            Path rrect = new Path();
+            new Path().AddRRect(RRect.FromRectAndRadius(new Offset(0, _IsArrowPointingDown ? 0 : TextselectionDefaultClass._KToolbarArrowSize.Height) & new Size(Child.Size.Width, Child.Size.Height - TextselectionDefaultClass._KToolbarArrowSize.Height), TextselectionDefaultClass._KToolbarBorderRadius));
+            double arrowTipX = Child.Size.Width / 2 + childParentData.ArrowXOffsetFromCenter;
+            double arrowBottomY = _IsArrowPointingDown ? Child.Size.Height - TextselectionDefaultClass._KToolbarArrowSize.Height : TextselectionDefaultClass._KToolbarArrowSize.Height;
+            double arrowTipY = _IsArrowPointingDown ? Child.Size.Height : 0;
+            Path arrow = new Path();
+            new Path().MoveTo(arrowTipX, arrowTipY);
+            new Path().LineTo(arrowTipX - TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
+            new Path().LineTo(arrowTipX + TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
+            new Path().Close();
+            return Dart:uiDefaultClass.Path.Combine(PathOperation.Union, rrect, arrow);
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            if (Child == null)
             {
-                items.Add(onePhysicalPixelVerticalDivider);
+                return;
             }
 
-            items.Add(new CupertinoButton(child: new Text(text, style: TextselectionDefaultClass._KToolbarButtonFontStyle), color: TextselectionDefaultClass._KToolbarBackgroundColor, minSize: TextselectionDefaultClass._KToolbarHeight, padding: TextselectionDefaultClass._KToolbarButtonPadding.Add(arrowPadding), borderRadius: null, pressedOpacity: 0.7, onPressed: () => =>onPressed(delegate)));
+            _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
+            context.PushClipPath(NeedsCompositing, offset + childParentData.Offset, Dart: uiDefaultClass.Offset.Zero & Child.Size, _ClipPath(), (PaintingContext innerContext, Offset innerOffset) => =>innerContext.PaintChild(Child, innerOffset));
         }
 
-        AddToolbarButtonIfNeeded(localizations.CutButtonLabel, CanCut, HandleCut);
-        AddToolbarButtonIfNeeded(localizations.CopyButtonLabel, CanCopy, HandleCopy);
-        AddToolbarButtonIfNeeded(localizations.PasteButtonLabel, CanPaste, HandlePaste);
-        AddToolbarButtonIfNeeded(localizations.SelectAllButtonLabel, CanSelectAll, HandleSelectAll);
-        return CupertinoTextSelectionToolbar._(barTopY: localBarTopY + globalEditableRegion.Top, arrowTipX: arrowTipX, isArrowPointingDown: isArrowPointingDown, child: items.IsEmpty() ? null : new DecoratedBox(decoration: new BoxDecoration(color: TextselectionDefaultClass._KToolbarDividerColor), child: new Row(mainAxisSize: MainAxisSize.Min, children: items)));
-    }
 
 
 
-
-    /// <Summary>
-    /// Builder for iOS text selection edges.
-    /// </Summary>
-    public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight)
-    {
-        Size desiredSize = GetHandleSize(textLineHeight);
-        Widget handle = SizedBox.FromSize(size: desiredSize, child: new CustomPaint(painter: new _TextSelectionHandlePainter(ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor)));
-        switch (type)
+        public new void DebugPaintSize(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            case TextSelectionHandleType.Left: return handle;
-            case TextSelectionHandleType.Right:
-                return new Transform(transform: Matrix4.Identity();
-                Matrix4.Identity().Translate(desiredSize.Width / 2, desiredSize.Height / 2);
-                Matrix4.Identity().RotateZ(Math.Dart:mathDefaultClass.Pi);
-                Matrix4.Identity().Translate(-desiredSize.Width / 2, -desiredSize.Height / 2), child: handle);
-            case TextSelectionHandleType.Collapsed: return new SizedBox();
+
         }
 
-        return null;
+
+
+        #endregion
     }
-
-
 
 
     /// <Summary>
-    /// Gets anchor for cupertino-style text selection handles.
-    ///
-    /// See [TextSelectionControls.getHandleAnchor].
+    /// Draws a single text selection handle with a bar and a ball.
     /// </Summary>
-    public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight)
+    public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        Size handleSize = GetHandleSize(textLineHeight);
-        switch (type) { case TextSelectionHandleType.Left: return new Offset(handleSize.Width / 2, handleSize.Height); case TextSelectionHandleType.Right: return new Offset(handleSize.Width / 2, handleSize.Height - 2 * TextselectionDefaultClass._KSelectionHandleRadius + TextselectionDefaultClass._KSelectionHandleOverlap); default: return new Offset(handleSize.Width / 2, textLineHeight + (handleSize.Height - textLineHeight) / 2); }
+        #region constructors
+        public _TextSelectionHandlePainter(FlutterBinding.UI.Color color)
+        {
+            this.Color = color;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void Paint(Canvas canvas, Size size)
+        {
+            double halfStrokeWidth = 1.0;
+            Paint paint = new Paint()..Color = Color;
+            Rect circle = Rect.FromCircle(center: new Offset(TextselectionDefaultClass._KSelectionHandleRadius, TextselectionDefaultClass._KSelectionHandleRadius), radius: TextselectionDefaultClass._KSelectionHandleRadius);
+            Rect line = Rect.FromPoints(new Offset(TextselectionDefaultClass._KSelectionHandleRadius - halfStrokeWidth, 2 * TextselectionDefaultClass._KSelectionHandleRadius - TextselectionDefaultClass._KSelectionHandleOverlap), new Offset(TextselectionDefaultClass._KSelectionHandleRadius + halfStrokeWidth, size.Height));
+            Path path = new Path();
+            new Path().AddOval(circle);
+            new Path().AddRect(line);
+            canvas.DrawPath(path, paint);
+        }
+
+
+
+
+        public new bool ShouldRepaint(FlutterSDK.Cupertino.Textselection._TextSelectionHandlePainter oldPainter) => Color != oldPainter.Color;
+
+        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => Color != oldPainter.Color;
+
+
+        #endregion
     }
 
 
+    public class _CupertinoTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
+    {
+        #region constructors
+        public _CupertinoTextSelectionControls()
+        { }
+        #endregion
 
-    #endregion
-}
+        #region fields
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns the size of the Cupertino handle.
+        /// </Summary>
+        public new Size GetHandleSize(double textLineHeight)
+        {
+            return new Size(TextselectionDefaultClass._KSelectionHandleRadius * 2, textLineHeight + TextselectionDefaultClass._KSelectionHandleRadius * 2 - TextselectionDefaultClass._KSelectionHandleOverlap);
+        }
+
+
+
+
+        /// <Summary>
+        /// Builder for iOS-style copy/paste text selection toolbar.
+        /// </Summary>
+        public new FlutterSDK.Widgets.Framework.Widget BuildToolbar(FlutterSDK.Widgets.Framework.BuildContext context, FlutterBinding.UI.Rect globalEditableRegion, double textLineHeight, FlutterBinding.UI.Offset position, List<FlutterSDK.Rendering.Editable.TextSelectionPoint> endpoints, FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate)
+        {
+
+            MediaQueryData mediaQuery = MediaqueryDefaultClass.MediaQuery.Of(context);
+            double toolbarHeightNeeded = mediaQuery.Padding.Top + TextselectionDefaultClass._KToolbarScreenPadding + TextselectionDefaultClass._KToolbarHeight + TextselectionDefaultClass._KToolbarContentDistance;
+            double availableHeight = globalEditableRegion.Top + endpoints.First.Point.Dy - textLineHeight;
+            bool isArrowPointingDown = toolbarHeightNeeded <= availableHeight;
+            double arrowTipX = (position.Dx + globalEditableRegion.Left).Clamp(TextselectionDefaultClass._KArrowScreenPadding + mediaQuery.Padding.Left, mediaQuery.Size.Width - mediaQuery.Padding.Right - TextselectionDefaultClass._KArrowScreenPadding) as double;
+            double localBarTopY = isArrowPointingDown ? endpoints.First.Point.Dy - textLineHeight - TextselectionDefaultClass._KToolbarContentDistance - TextselectionDefaultClass._KToolbarHeight : endpoints.Last().Point.Dy + TextselectionDefaultClass._KToolbarContentDistance;
+            List<Widget> items = new List<Widget>() { };
+            Widget onePhysicalPixelVerticalDivider = new SizedBox(width: 1.0 / MediaqueryDefaultClass.MediaQuery.Of(context).DevicePixelRatio);
+            CupertinoLocalizations localizations = LocalizationsDefaultClass.CupertinoLocalizations.Of(context);
+            EdgeInsets arrowPadding = isArrowPointingDown ? EdgeInsets.Only(bottom: TextselectionDefaultClass._KToolbarArrowSize.Height) : EdgeInsets.Only(top: TextselectionDefaultClass._KToolbarArrowSize.Height);
+            void AddToolbarButtonIfNeeded(string text, Func<TextSelectionDelegate, bool> predicate, Action<TextSelectionDelegate> onPressed) => {
+                if (!predicate(delegate))
+                {
+                    return;
+                }
+
+                if (items.IsNotEmpty)
+                {
+                    items.Add(onePhysicalPixelVerticalDivider);
+                }
+
+                items.Add(new CupertinoButton(child: new Text(text, style: TextselectionDefaultClass._KToolbarButtonFontStyle), color: TextselectionDefaultClass._KToolbarBackgroundColor, minSize: TextselectionDefaultClass._KToolbarHeight, padding: TextselectionDefaultClass._KToolbarButtonPadding.Add(arrowPadding), borderRadius: null, pressedOpacity: 0.7, onPressed: () => =>onPressed(delegate)));
+            }
+
+            AddToolbarButtonIfNeeded(localizations.CutButtonLabel, CanCut, HandleCut);
+            AddToolbarButtonIfNeeded(localizations.CopyButtonLabel, CanCopy, HandleCopy);
+            AddToolbarButtonIfNeeded(localizations.PasteButtonLabel, CanPaste, HandlePaste);
+            AddToolbarButtonIfNeeded(localizations.SelectAllButtonLabel, CanSelectAll, HandleSelectAll);
+            return CupertinoTextSelectionToolbar._(barTopY: localBarTopY + globalEditableRegion.Top, arrowTipX: arrowTipX, isArrowPointingDown: isArrowPointingDown, child: items.IsEmpty() ? null : new DecoratedBox(decoration: new BoxDecoration(color: TextselectionDefaultClass._KToolbarDividerColor), child: new Row(mainAxisSize: MainAxisSize.Min, children: items)));
+        }
+
+
+
+
+        /// <Summary>
+        /// Builder for iOS text selection edges.
+        /// </Summary>
+        public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight)
+        {
+            Size desiredSize = GetHandleSize(textLineHeight);
+            Widget handle = SizedBox.FromSize(size: desiredSize, child: new CustomPaint(painter: new _TextSelectionHandlePainter(ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor)));
+            switch (type)
+            {
+                case TextSelectionHandleType.Left: return handle;
+                case TextSelectionHandleType.Right:
+                    return new Transform(transform: Matrix4.Identity();
+                    Matrix4.Identity().Translate(desiredSize.Width / 2, desiredSize.Height / 2);
+                    Matrix4.Identity().RotateZ(Math.Dart:mathDefaultClass.Pi);
+                    Matrix4.Identity().Translate(-desiredSize.Width / 2, -desiredSize.Height / 2), child: handle);
+                case TextSelectionHandleType.Collapsed: return new SizedBox();
+            }
+
+            return null;
+        }
+
+
+
+
+        /// <Summary>
+        /// Gets anchor for cupertino-style text selection handles.
+        ///
+        /// See [TextSelectionControls.getHandleAnchor].
+        /// </Summary>
+        public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight)
+        {
+            Size handleSize = GetHandleSize(textLineHeight);
+            switch (type) { case TextSelectionHandleType.Left: return new Offset(handleSize.Width / 2, handleSize.Height); case TextSelectionHandleType.Right: return new Offset(handleSize.Width / 2, handleSize.Height - 2 * TextselectionDefaultClass._KSelectionHandleRadius + TextselectionDefaultClass._KSelectionHandleOverlap); default: return new Offset(handleSize.Width / 2, textLineHeight + (handleSize.Height - textLineHeight) / 2); }
+        }
+
+
+
+        #endregion
+    }
 
 }

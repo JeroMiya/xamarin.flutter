@@ -487,332 +487,341 @@ namespace FlutterSDK.Painting.Boxdecoration
         #region constructors
         public BoxDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
-    public virtual FlutterSDK.Painting.Boxborder.BoxBorder Border { get; set; }
-    public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
-    public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadow { get; set; }
-    public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
-    public virtual FlutterBinding.UI.BlendMode BackgroundBlendMode { get; set; }
-    public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Creates a copy of this object but with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape))
-    {
-        return new BoxDecoration(color: color ?? this.Color, image: image ?? this.Image, border: border ?? this.Border, borderRadius: borderRadius ?? this.BorderRadius, boxShadow: boxShadow ?? this.BoxShadow, gradient: gradient ?? this.Gradient, backgroundBlendMode: backgroundBlendMode ?? this.BackgroundBlendMode, shape: shape ?? this.Shape);
-    }
-
-
-
-
-    public new bool DebugAssertIsValid()
-    {
-
-        return base.DebugAssertIsValid();
-    }
-
-
-
-
-    public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection)
-    {
-        Path clipPath = default(Path);
-        switch (Shape)
         {
-            case BoxShape.Circle:
-                clipPath = new Path();
-                new Path().AddOval(rect); break;
-            case BoxShape.Rectangle:
-                if (BorderRadius != null) clipPath = new Path();
-                new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect)); break;
+            this.Color = color;
+            this.Image = image;
+            this.Border = border;
+            this.BorderRadius = borderRadius;
+            this.BoxShadow = boxShadow;
+            this.Gradient = gradient;
+            this.BackgroundBlendMode = backgroundBlendMode;
+            this.Shape = shape;
         }
-        return clipPath;
-    }
+        #endregion
 
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
+        public virtual FlutterSDK.Painting.Boxborder.BoxBorder Border { get; set; }
+        public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
+        public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadow { get; set; }
+        public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
+        public virtual FlutterBinding.UI.BlendMode BackgroundBlendMode { get; set; }
+        public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
+        #region methods
 
-
-    /// <Summary>
-    /// Returns a new box decoration that is scaled by the given factor.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Scale(double factor)
-    {
-        return new BoxDecoration(color: Dart:uiDefaultClass.Color.Lerp(null, Color, factor), image: Image, border: BoxborderDefaultClass.BoxBorder.Lerp(null, Border, factor), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(null, BorderRadius, factor), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(null, BoxShadow, factor), gradient: Gradient?.Scale(factor), shape: Shape);
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Boxdecoration.BoxDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t)
-    {
-        if (a == null) return Scale(t);
-        if (a is BoxDecoration) return BoxdecorationDefaultClass.BoxDecoration.Lerp(a, this, t);
-        return base.LerpFrom(a, t) as BoxDecoration;
-    }
-
-
-
-
-    public new FlutterSDK.Painting.Boxdecoration.BoxDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t)
-    {
-        if (b == null) return Scale(1.0 - t);
-        if (b is BoxDecoration) return BoxdecorationDefaultClass.BoxDecoration.Lerp(this, b, t);
-        return base.LerpTo(b, t) as BoxDecoration;
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two box decorations.
-    ///
-    /// Interpolates each parameter of the box decoration separately.
-    ///
-    /// The [shape] is not interpolated. To interpolate the shape, consider using
-    /// a [ShapeDecoration] with different border shapes.
-    ///
-    /// If both values are null, this returns null. Otherwise, it returns a
-    /// non-null value. If one of the values is null, then the result is obtained
-    /// by applying [scale] to the other value. If neither value is null and `t ==
-    /// 0.0`, then `a` is returned unmodified; if `t == 1.0` then `b` is returned
-    /// unmodified. Otherwise, the values are computed by interpolating the
-    /// properties appropriately.
-    ///
-    /// {@macro dart.ui.shadow.lerp}
-    ///
-    /// See also:
-    ///
-    ///  * [Decoration.lerp], which can interpolate between any two types of
-    ///    [Decoration]s, not just [BoxDecoration]s.
-    ///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
-    ///    and which use [BoxDecoration.lerp] when interpolating two
-    ///    [BoxDecoration]s or a [BoxDecoration] to or from null.
-    /// </Summary>
-    public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Lerp(FlutterSDK.Painting.Boxdecoration.BoxDecoration a, FlutterSDK.Painting.Boxdecoration.BoxDecoration b, double t)
-    {
-
-        if (a == null && b == null) return null;
-        if (a == null) return b.Scale(t);
-        if (b == null) return a.Scale(1.0 - t);
-        if (t == 0.0) return a;
-        if (t == 1.0) return b;
-        return new BoxDecoration(color: Dart:uiDefaultClass.Color.Lerp(a.Color, b.Color, t), image: t < 0.5 ? a.Image : b.Image, border: BoxborderDefaultClass.BoxBorder.Lerp(a.Border, b.Border, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(a.BorderRadius, b.BorderRadius, t), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(a.BoxShadow, b.BoxShadow, t), gradient: GradientDefaultClass.Gradient.Lerp(a.Gradient, b.Gradient, t), shape: t < 0.5 ? a.Shape : b.Shape);
-    }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is BoxDecoration && other.Color == Color && other.Image == Image && other.Border == Border && other.BorderRadius == BorderRadius && other.BoxShadow == BoxShadow && other.Gradient == Gradient && other.Shape == Shape;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        ..DefaultDiagnosticsTreeStyle = DiagnosticsTreeStyle.Whitespace..EmptyBodyDescription = "<no decorations specified>";
-        properties.Add(new ColorProperty("color", Color, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<DecorationImage>("image", Image, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<BoxBorder>("border", Border, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<BorderRadiusGeometry>("borderRadius", BorderRadius, defaultValue: null));
-        properties.Add(new IterableProperty<BoxShadow>("boxShadow", BoxShadow, defaultValue: null, style: DiagnosticsTreeStyle.Whitespace));
-        properties.Add(new DiagnosticsProperty<Gradient>("gradient", Gradient, defaultValue: null));
-        properties.Add(new EnumProperty<BoxShape>("shape", Shape, defaultValue: BoxShape.Rectangle));
-    }
-
-
-
-
-    public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection))
-    {
-
-
-        switch (Shape)
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape))
         {
-            case BoxShape.Rectangle:
-                if (BorderRadius != null)
+            return new BoxDecoration(color: color ?? this.Color, image: image ?? this.Image, border: border ?? this.Border, borderRadius: borderRadius ?? this.BorderRadius, boxShadow: boxShadow ?? this.BoxShadow, gradient: gradient ?? this.Gradient, backgroundBlendMode: backgroundBlendMode ?? this.BackgroundBlendMode, shape: shape ?? this.Shape);
+        }
+
+
+
+
+        public new bool DebugAssertIsValid()
+        {
+
+            return base.DebugAssertIsValid();
+        }
+
+
+
+
+        public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection)
+        {
+            Path clipPath = default(Path);
+            switch (Shape)
+            {
+                case BoxShape.Circle:
+                    clipPath = new Path();
+                    new Path().AddOval(rect); break;
+                case BoxShape.Rectangle:
+                    if (BorderRadius != null) clipPath = new Path();
+                    new Path().AddRRect(BorderRadius.Resolve(textDirection).ToRRect(rect)); break;
+            }
+            return clipPath;
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns a new box decoration that is scaled by the given factor.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Scale(double factor)
+        {
+            return new BoxDecoration(color: Dart:uiDefaultClass.Color.Lerp(null, Color, factor), image: Image, border: BoxborderDefaultClass.BoxBorder.Lerp(null, Border, factor), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(null, BorderRadius, factor), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(null, BoxShadow, factor), gradient: Gradient?.Scale(factor), shape: Shape);
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxdecoration.BoxDecoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t)
+        {
+            if (a == null) return Scale(t);
+            if (a is BoxDecoration) return BoxdecorationDefaultClass.BoxDecoration.Lerp(a, this, t);
+            return base.LerpFrom(a, t) as BoxDecoration;
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxdecoration.BoxDecoration LerpTo(FlutterSDK.Painting.Decoration.Decoration b, double t)
+        {
+            if (b == null) return Scale(1.0 - t);
+            if (b is BoxDecoration) return BoxdecorationDefaultClass.BoxDecoration.Lerp(this, b, t);
+            return base.LerpTo(b, t) as BoxDecoration;
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two box decorations.
+        ///
+        /// Interpolates each parameter of the box decoration separately.
+        ///
+        /// The [shape] is not interpolated. To interpolate the shape, consider using
+        /// a [ShapeDecoration] with different border shapes.
+        ///
+        /// If both values are null, this returns null. Otherwise, it returns a
+        /// non-null value. If one of the values is null, then the result is obtained
+        /// by applying [scale] to the other value. If neither value is null and `t ==
+        /// 0.0`, then `a` is returned unmodified; if `t == 1.0` then `b` is returned
+        /// unmodified. Otherwise, the values are computed by interpolating the
+        /// properties appropriately.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        ///
+        /// See also:
+        ///
+        ///  * [Decoration.lerp], which can interpolate between any two types of
+        ///    [Decoration]s, not just [BoxDecoration]s.
+        ///  * [lerpFrom] and [lerpTo], which are used to implement [Decoration.lerp]
+        ///    and which use [BoxDecoration.lerp] when interpolating two
+        ///    [BoxDecoration]s or a [BoxDecoration] to or from null.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Lerp(FlutterSDK.Painting.Boxdecoration.BoxDecoration a, FlutterSDK.Painting.Boxdecoration.BoxDecoration b, double t)
+        {
+
+            if (a == null && b == null) return null;
+            if (a == null) return b.Scale(t);
+            if (b == null) return a.Scale(1.0 - t);
+            if (t == 0.0) return a;
+            if (t == 1.0) return b;
+            return new BoxDecoration(color: Dart:uiDefaultClass.Color.Lerp(a.Color, b.Color, t), image: t < 0.5 ? a.Image : b.Image, border: BoxborderDefaultClass.BoxBorder.Lerp(a.Border, b.Border, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(a.BorderRadius, b.BorderRadius, t), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(a.BoxShadow, b.BoxShadow, t), gradient: GradientDefaultClass.Gradient.Lerp(a.Gradient, b.Gradient, t), shape: t < 0.5 ? a.Shape : b.Shape);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is BoxDecoration && other.Color == Color && other.Image == Image && other.Border == Border && other.BorderRadius == BorderRadius && other.BoxShadow == BoxShadow && other.Gradient == Gradient && other.Shape == Shape;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            ..DefaultDiagnosticsTreeStyle = DiagnosticsTreeStyle.Whitespace..EmptyBodyDescription = "<no decorations specified>";
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<DecorationImage>("image", Image, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<BoxBorder>("border", Border, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<BorderRadiusGeometry>("borderRadius", BorderRadius, defaultValue: null));
+            properties.Add(new IterableProperty<BoxShadow>("boxShadow", BoxShadow, defaultValue: null, style: DiagnosticsTreeStyle.Whitespace));
+            properties.Add(new DiagnosticsProperty<Gradient>("gradient", Gradient, defaultValue: null));
+            properties.Add(new EnumProperty<BoxShape>("shape", Shape, defaultValue: BoxShape.Rectangle));
+        }
+
+
+
+
+        public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection))
+        {
+
+
+            switch (Shape)
+            {
+                case BoxShape.Rectangle:
+                    if (BorderRadius != null)
+                    {
+                        RRect bounds = BorderRadius.Resolve(textDirection).ToRRect(Dart: uiDefaultClass.Offset.Zero & size);
+                        return bounds.Contains(position);
+                    }
+                    return true;
+                case BoxShape.Circle: Offset center = size.Center(Dart: uiDefaultClass.Offset.Zero); double distance = (position - center).Distance; return distance <= Math.Dart:mathDefaultClass.Min(size.Width, size.Height) / 2.0;
+            }
+
+            return null;
+        }
+
+
+
+
+        public new FlutterSDK.Painting.Boxdecoration._BoxDecorationPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback))
+        {
+
+            return new _BoxDecorationPainter(this, onChanged);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An object that paints a [BoxDecoration] into a canvas.
+    /// </Summary>
+    public class _BoxDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
+    {
+        #region constructors
+        public _BoxDecorationPainter(FlutterSDK.Painting.Boxdecoration.BoxDecoration _decoration, VoidCallback onChanged)
+        : base(onChanged)
+        {
+            this._Decoration = _decoration;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration _Decoration { get; set; }
+        internal virtual SKPaint _CachedBackgroundPaint { get; set; }
+        internal virtual FlutterBinding.UI.Rect _RectForCachedBackgroundPaint { get; set; }
+        internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
+        #endregion
+
+        #region methods
+
+        private Paint _GetBackgroundPaint(FlutterBinding.UI.Rect rect, TextDirection textDirection)
+        {
+
+
+            if (_CachedBackgroundPaint == null || (_Decoration.Gradient != null && _RectForCachedBackgroundPaint != rect))
+            {
+                Paint paint = new Paint();
+                if (_Decoration.BackgroundBlendMode != null) paint.BlendMode = _Decoration.BackgroundBlendMode;
+                if (_Decoration.Color != null) paint.Color = _Decoration.Color;
+                if (_Decoration.Gradient != null)
                 {
-                    RRect bounds = BorderRadius.Resolve(textDirection).ToRRect(Dart: uiDefaultClass.Offset.Zero & size);
-                    return bounds.Contains(position);
+                    paint.Shader = _Decoration.Gradient.CreateShader(rect, textDirection: textDirection);
+                    _RectForCachedBackgroundPaint = rect;
                 }
-                return true;
-            case BoxShape.Circle: Offset center = size.Center(Dart: uiDefaultClass.Offset.Zero); double distance = (position - center).Distance; return distance <= Math.Dart:mathDefaultClass.Min(size.Width, size.Height) / 2.0;
+
+                _CachedBackgroundPaint = paint;
+            }
+
+            return _CachedBackgroundPaint;
         }
 
-        return null;
-    }
 
 
 
-
-    public new FlutterSDK.Painting.Boxdecoration._BoxDecorationPainter CreateBoxPainter(VoidCallback onChanged = default(VoidCallback))
-    {
-
-        return new _BoxDecorationPainter(this, onChanged);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An object that paints a [BoxDecoration] into a canvas.
-/// </Summary>
-public class _BoxDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
-{
-    #region constructors
-    public _BoxDecorationPainter(FlutterSDK.Painting.Boxdecoration.BoxDecoration _decoration, VoidCallback onChanged)
-    : base(onChanged)
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration _Decoration { get; set; }
-internal virtual SKPaint _CachedBackgroundPaint { get; set; }
-internal virtual FlutterBinding.UI.Rect _RectForCachedBackgroundPaint { get; set; }
-internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
-#endregion
-
-#region methods
-
-private Paint _GetBackgroundPaint(FlutterBinding.UI.Rect rect, TextDirection textDirection)
-{
-
-
-    if (_CachedBackgroundPaint == null || (_Decoration.Gradient != null && _RectForCachedBackgroundPaint != rect))
-    {
-        Paint paint = new Paint();
-        if (_Decoration.BackgroundBlendMode != null) paint.BlendMode = _Decoration.BackgroundBlendMode;
-        if (_Decoration.Color != null) paint.Color = _Decoration.Color;
-        if (_Decoration.Gradient != null)
+        private void _PaintBox(Canvas canvas, FlutterBinding.UI.Rect rect, SKPaint paint, TextDirection textDirection)
         {
-            paint.Shader = _Decoration.Gradient.CreateShader(rect, textDirection: textDirection);
-            _RectForCachedBackgroundPaint = rect;
+            switch (_Decoration.Shape)
+            {
+                case BoxShape.Circle: Offset center = rect.Center; double radius = rect.ShortestSide / 2.0; canvas.DrawCircle(center, radius, paint); break;
+                case BoxShape.Rectangle:
+                    if (_Decoration.BorderRadius == null)
+                    {
+                        canvas.DrawRect(rect, paint);
+                    }
+                    else
+                    {
+                        canvas.DrawRRect(_Decoration.BorderRadius.Resolve(textDirection).ToRRect(rect), paint);
+                    }
+                    break;
+            }
         }
 
-        _CachedBackgroundPaint = paint;
-    }
-
-    return _CachedBackgroundPaint;
-}
 
 
 
-
-private void _PaintBox(Canvas canvas, FlutterBinding.UI.Rect rect, SKPaint paint, TextDirection textDirection)
-{
-    switch (_Decoration.Shape)
-    {
-        case BoxShape.Circle: Offset center = rect.Center; double radius = rect.ShortestSide / 2.0; canvas.DrawCircle(center, radius, paint); break;
-        case BoxShape.Rectangle:
-            if (_Decoration.BorderRadius == null)
+        private void _PaintShadows(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection)
+        {
+            if (_Decoration.BoxShadow == null) return;
+            foreach (BoxShadow boxShadow in _Decoration.BoxShadow)
             {
-                canvas.DrawRect(rect, paint);
+                Paint paint = boxShadow.ToPaint();
+                Rect bounds = rect.Shift(boxShadow.Offset).Inflate(boxShadow.SpreadRadius);
+                _PaintBox(canvas, bounds, paint, textDirection);
             }
-            else
+
+        }
+
+
+
+
+        private void _PaintBackgroundColor(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection)
+        {
+            if (_Decoration.Color != null || _Decoration.Gradient != null) _PaintBox(canvas, rect, _GetBackgroundPaint(rect, textDirection), textDirection);
+        }
+
+
+
+
+        private void _PaintBackgroundImage(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+        {
+            if (_Decoration.Image == null) return;
+            _ImagePainter = (_ImagePainter == null ? _Decoration.Image.CreatePainter(OnChanged) : _ImagePainter);
+            Path clipPath = default(Path);
+            switch (_Decoration.Shape)
             {
-                canvas.DrawRRect(_Decoration.BorderRadius.Resolve(textDirection).ToRRect(rect), paint);
+                case BoxShape.Circle:
+                    clipPath = new Path();
+                    new Path().AddOval(rect); break;
+                case BoxShape.Rectangle:
+                    if (_Decoration.BorderRadius != null) clipPath = new Path();
+                    new Path().AddRRect(_Decoration.BorderRadius.Resolve(configuration.TextDirection).ToRRect(rect)); break;
             }
-            break;
+            _ImagePainter.Paint(canvas, rect, clipPath, configuration);
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _ImagePainter?.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        /// <Summary>
+        /// Paint the box decoration into the given location on the given canvas
+        /// </Summary>
+        public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+        {
+
+
+            Rect rect = offset & configuration.Size;
+            TextDirection textDirection = configuration.TextDirection;
+            _PaintShadows(canvas, rect, textDirection);
+            _PaintBackgroundColor(canvas, rect, textDirection);
+            _PaintBackgroundImage(canvas, rect, configuration);
+            _Decoration.Border?.Paint(canvas, rect, shape: _Decoration.Shape, borderRadius: _Decoration.BorderRadius as BorderRadius, textDirection: configuration.TextDirection);
+        }
+
+
+
+
+        #endregion
     }
-}
-
-
-
-
-private void _PaintShadows(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection)
-{
-    if (_Decoration.BoxShadow == null) return;
-    foreach (BoxShadow boxShadow in _Decoration.BoxShadow)
-    {
-        Paint paint = boxShadow.ToPaint();
-        Rect bounds = rect.Shift(boxShadow.Offset).Inflate(boxShadow.SpreadRadius);
-        _PaintBox(canvas, bounds, paint, textDirection);
-    }
-
-}
-
-
-
-
-private void _PaintBackgroundColor(Canvas canvas, FlutterBinding.UI.Rect rect, TextDirection textDirection)
-{
-    if (_Decoration.Color != null || _Decoration.Gradient != null) _PaintBox(canvas, rect, _GetBackgroundPaint(rect, textDirection), textDirection);
-}
-
-
-
-
-private void _PaintBackgroundImage(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
-{
-    if (_Decoration.Image == null) return;
-    _ImagePainter = (_ImagePainter == null ? _Decoration.Image.CreatePainter(OnChanged) : _ImagePainter);
-    Path clipPath = default(Path);
-    switch (_Decoration.Shape)
-    {
-        case BoxShape.Circle:
-            clipPath = new Path();
-            new Path().AddOval(rect); break;
-        case BoxShape.Rectangle:
-            if (_Decoration.BorderRadius != null) clipPath = new Path();
-            new Path().AddRRect(_Decoration.BorderRadius.Resolve(configuration.TextDirection).ToRRect(rect)); break;
-    }
-    _ImagePainter.Paint(canvas, rect, clipPath, configuration);
-}
-
-
-
-
-public new void Dispose()
-{
-    _ImagePainter?.Dispose();
-    base.Dispose();
-}
-
-
-
-
-/// <Summary>
-/// Paint the box decoration into the given location on the given canvas
-/// </Summary>
-public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
-{
-
-
-    Rect rect = offset & configuration.Size;
-    TextDirection textDirection = configuration.TextDirection;
-    _PaintShadows(canvas, rect, textDirection);
-    _PaintBackgroundColor(canvas, rect, textDirection);
-    _PaintBackgroundImage(canvas, rect, configuration);
-    _Decoration.Border?.Paint(canvas, rect, shape: _Decoration.Shape, borderRadius: _Decoration.BorderRadius as BorderRadius, textDirection: configuration.TextDirection);
-}
-
-
-
-
-#endregion
-}
 
 }

@@ -443,106 +443,109 @@ namespace FlutterSDK.Widgets.Iconthemedata
         #region constructors
         public IconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base()
-    
-}
-    public static IconThemeData Fallback()
+        {
+            this.Color = color;
+            this.Size = size;
+        }
+        public static IconThemeData Fallback()
+        {
+            var instance = new IconThemeData();
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        internal virtual double _Opacity { get; set; }
+        public virtual double Size { get; set; }
+        public virtual bool IsConcrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-#region fields
-public virtual FlutterBinding.UI.Color Color { get; set; }
-internal virtual double _Opacity { get; set; }
-public virtual double Size { get; set; }
-public virtual bool IsConcrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+        #region methods
 
-#region methods
-
-/// <Summary>
-/// Creates a copy of this icon theme but with the given fields replaced with
-/// the new values.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
-{
-    return new IconThemeData(color: color ?? this.Color, opacity: opacity == default(double) ? this.opacity : opacity, size: size == default(double) ? this.size : size);
-}
-
-
-
-
-/// <Summary>
-/// Returns a new icon theme that matches this icon theme but with some values
-/// replaced by the non-null parameters of the given icon theme. If the given
-/// icon theme is null, simply returns this icon theme.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Merge(FlutterSDK.Widgets.Iconthemedata.IconThemeData other)
-{
-    if (other == null) return this;
-    return CopyWith(color: other.Color, opacity: other.Opacity, size: other.Size);
-}
+        /// <Summary>
+        /// Creates a copy of this icon theme but with the given fields replaced with
+        /// the new values.
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
+        {
+            return new IconThemeData(color: color ?? this.Color, opacity: opacity == default(double) ? this.opacity : opacity, size: size == default(double) ? this.size : size);
+        }
 
 
 
 
-/// <Summary>
-/// Called by [IconTheme.of] to convert this instance to an [IconThemeData]
-/// that fits the given [BuildContext].
-///
-/// This method gives the ambient [IconThemeData] a chance to update itself,
-/// after it's been retrieved by [IconTheme.of], and before being returned as
-/// the final result. For instance, [CupertinoIconThemeData] overrides this method
-/// to resolve [color], in case [color] is a [CupertinoDynamicColor] and needs
-/// to be resolved against the given [BuildContext] before it can be used as a
-/// regular [Color].
-///
-/// The default implementation returns this [IconThemeData] as-is.
-///
-/// See also:
-///
-///  * [CupertinoIconThemeData.resolve] an implementation that resolves
-///    [CupertinoIconThemeData.color] before returning.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) => this;
-
-
-
-/// <Summary>
-/// Linearly interpolate between two icon theme data objects.
-///
-/// {@macro dart.ui.shadow.lerp}
-/// </Summary>
-public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Lerp(FlutterSDK.Widgets.Iconthemedata.IconThemeData a, FlutterSDK.Widgets.Iconthemedata.IconThemeData b, double t)
-{
-
-    return new IconThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), opacity: Ui.Dart:uiDefaultClass.LerpDouble(a?.Opacity, b?.Opacity, t), size: Ui.Dart:uiDefaultClass.LerpDouble(a?.Size, b?.Size, t));
-}
+        /// <Summary>
+        /// Returns a new icon theme that matches this icon theme but with some values
+        /// replaced by the non-null parameters of the given icon theme. If the given
+        /// icon theme is null, simply returns this icon theme.
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Merge(FlutterSDK.Widgets.Iconthemedata.IconThemeData other)
+        {
+            if (other == null) return this;
+            return CopyWith(color: other.Color, opacity: other.Opacity, size: other.Size);
+        }
 
 
 
 
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is IconThemeData && other.Color == Color && other.Opacity == Opacity && other.Size == Size;
-}
+        /// <Summary>
+        /// Called by [IconTheme.of] to convert this instance to an [IconThemeData]
+        /// that fits the given [BuildContext].
+        ///
+        /// This method gives the ambient [IconThemeData] a chance to update itself,
+        /// after it's been retrieved by [IconTheme.of], and before being returned as
+        /// the final result. For instance, [CupertinoIconThemeData] overrides this method
+        /// to resolve [color], in case [color] is a [CupertinoDynamicColor] and needs
+        /// to be resolved against the given [BuildContext] before it can be used as a
+        /// regular [Color].
+        ///
+        /// The default implementation returns this [IconThemeData] as-is.
+        ///
+        /// See also:
+        ///
+        ///  * [CupertinoIconThemeData.resolve] an implementation that resolves
+        ///    [CupertinoIconThemeData.color] before returning.
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context) => this;
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two icon theme data objects.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Lerp(FlutterSDK.Widgets.Iconthemedata.IconThemeData a, FlutterSDK.Widgets.Iconthemedata.IconThemeData b, double t)
+        {
+
+            return new IconThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), opacity: Ui.Dart:uiDefaultClass.LerpDouble(a?.Opacity, b?.Opacity, t), size: Ui.Dart:uiDefaultClass.LerpDouble(a?.Size, b?.Size, t));
+        }
 
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new ColorProperty("color", Color, defaultValue: null));
-    properties.Add(new DoubleProperty("opacity", Opacity, defaultValue: null));
-    properties.Add(new DoubleProperty("size", Size, defaultValue: null));
-}
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is IconThemeData && other.Color == Color && other.Opacity == Opacity && other.Size == Size;
+        }
 
 
 
-#endregion
-}
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new ColorProperty("color", Color, defaultValue: null));
+            properties.Add(new DoubleProperty("opacity", Opacity, defaultValue: null));
+            properties.Add(new DoubleProperty("size", Size, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
 
 }

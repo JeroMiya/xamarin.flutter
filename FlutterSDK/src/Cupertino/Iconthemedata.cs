@@ -306,48 +306,49 @@ namespace FlutterSDK.Cupertino.Iconthemedata
         #region constructors
         public CupertinoIconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base(color: color, opacity: opacity, size: size)
-    
-}
-    #endregion
+        {
 
-    #region fields
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        #endregion
 
-    /// <Summary>
-    /// Called by [IconTheme.of] to resolve [color] against the given [BuildContext].
-    /// </Summary>
-    public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Color resolvedColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Color, context);
-        return resolvedColor == Color ? this : CopyWith(color: resolvedColor);
+        #region methods
+
+        /// <Summary>
+        /// Called by [IconTheme.of] to resolve [color] against the given [BuildContext].
+        /// </Summary>
+        public new FlutterSDK.Widgets.Iconthemedata.IconThemeData Resolve(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Color resolvedColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Color, context);
+            return resolvedColor == Color ? this : CopyWith(color: resolvedColor);
+        }
+
+
+
+
+        /// <Summary>
+        /// Creates a copy of this icon theme but with the given fields replaced with
+        /// the new values.
+        /// </Summary>
+        public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
+        {
+            return new CupertinoIconThemeData(color: color ?? this.Color, opacity: opacity == default(double) ? this.opacity : opacity, size: size == default(double) ? this.size : size);
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("color", Color, defaultValue: null));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    /// <Summary>
-    /// Creates a copy of this icon theme but with the given fields replaced with
-    /// the new values.
-    /// </Summary>
-    public new FlutterSDK.Cupertino.Iconthemedata.CupertinoIconThemeData CopyWith(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
-    {
-        return new CupertinoIconThemeData(color: color ?? this.Color, opacity: opacity == default(double) ? this.opacity : opacity, size: size == default(double) ? this.size : size);
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(ColorsDefaultClass.CreateCupertinoColorProperty("color", Color, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
 
 }

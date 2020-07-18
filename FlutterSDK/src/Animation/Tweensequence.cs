@@ -101,138 +101,145 @@ namespace FlutterSDK.Animation.Tweensequence
         #region constructors
         public TweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> items)
         : base()
-    
-_Items.AddAll(items);
-double totalWeight = 0.0;
-foreach(TweenSequenceItem<T> item  in _Items)totalWeight+=item.Weight;
+        {
 
-double start = 0.0;
-for (int i=0;i<_Items.Count;i+=1){
-double end = i == _Items.Count - 1 ? 1.0 : start + _Items[i].Weight / totalWeight;
-        _Intervals.Add(new _Interval(start, end));
-start=end;
-}
+            _Items.AddAll(items);
+            double totalWeight = 0.0;
+            foreach (TweenSequenceItem<T> item in _Items) totalWeight += item.Weight;
 
-}
+            double start = 0.0;
+            for (int i = 0; i < _Items.Count; i += 1)
+            {
+                double end = i == _Items.Count - 1 ? 1.0 : start + _Items[i].Weight / totalWeight;
+                _Intervals.Add(new _Interval(start, end));
+                start = end;
+            }
 
-
-#endregion
-
-#region fields
-internal virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> _Items { get; set; }
-internal virtual List<FlutterSDK.Animation.Tweensequence._Interval> _Intervals { get; set; }
-#endregion
-
-#region methods
-
-private T _EvaluateAt(double t, int index)
-{
-    TweenSequenceItem<T> element = _Items[index];
-    double tInterval = _Intervals[index].Value(t);
-    return element.Tween.Transform(tInterval);
-}
+        }
 
 
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> _Items { get; set; }
+        internal virtual List<FlutterSDK.Animation.Tweensequence._Interval> _Intervals { get; set; }
+        #endregion
+
+        #region methods
+
+        private T _EvaluateAt(double t, int index)
+        {
+            TweenSequenceItem<T> element = _Items[index];
+            double tInterval = _Intervals[index].Value(t);
+            return element.Tween.Transform(tInterval);
+        }
 
 
-public new T Transform(double t)
-{
 
-    if (t == 1.0) return _EvaluateAt(t, _Items.Count - 1);
-    for (int index = 0; index < _Items.Count; index++)
-    {
-        if (_Intervals[index].Contains(t)) return _EvaluateAt(t, index);
+
+        public new T Transform(double t)
+        {
+
+            if (t == 1.0) return _EvaluateAt(t, _Items.Count - 1);
+            for (int index = 0; index < _Items.Count; index++)
+            {
+                if (_Intervals[index].Contains(t)) return _EvaluateAt(t, index);
+            }
+
+
+            return null;
+        }
+
+
+
+
+        #endregion
     }
 
 
-    return null;
-}
+    /// <Summary>
+    /// Enables creating a flipped [Animation] whose value is defined by a sequence
+    /// of [Tween]s.
+    ///
+    /// This creates a [TweenSequence] that evaluates to a result that flips the
+    /// tween both horizontally and vertically.
+    ///
+    /// This tween sequence assumes that the evaluated result has to be a double
+    /// between 0.0 and 1.0.
+    /// </Summary>
+    public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
+    {
+        #region constructors
+        public FlippedTweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> items)
+        : base(items)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new double Transform(double t) => 1 - base.Transform(1 - t);
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A simple holder for one element of a [TweenSequence].
+    /// </Summary>
+    public class TweenSequenceItem<T>
+    {
+        #region constructors
+        public TweenSequenceItem(FlutterSDK.Animation.Tween.Animatable<T> tween = default(FlutterSDK.Animation.Tween.Animatable<T>), double weight = default(double))
+        : base()
+        {
+            this.Tween = tween;
+            this.Weight = weight;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Animation.Tween.Animatable<T> Tween { get; set; }
+        public virtual double Weight { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    public class _Interval
+    {
+        #region constructors
+        public _Interval(double start, double end)
+        : base()
+        {
+            this.Start = start;
+            this.End = end;
+        }
+        #endregion
+
+        #region fields
+        public virtual double Start { get; set; }
+        public virtual double End { get; set; }
+        #endregion
+
+        #region methods
+
+        public virtual bool Contains(double t) => t >= Start && t < End;
 
 
 
-
-#endregion
-}
-
-
-/// <Summary>
-/// Enables creating a flipped [Animation] whose value is defined by a sequence
-/// of [Tween]s.
-///
-/// This creates a [TweenSequence] that evaluates to a result that flips the
-/// tween both horizontally and vertically.
-///
-/// This tween sequence assumes that the evaluated result has to be a double
-/// between 0.0 and 1.0.
-/// </Summary>
-public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
-{
-    #region constructors
-    public FlippedTweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> items)
-    : base(items)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new double Transform(double t) => 1 - base.Transform(1 - t);
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A simple holder for one element of a [TweenSequence].
-/// </Summary>
-public class TweenSequenceItem<T>
-{
-    #region constructors
-    public TweenSequenceItem(FlutterSDK.Animation.Tween.Animatable<T> tween = default(FlutterSDK.Animation.Tween.Animatable<T>), double weight = default(double))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Tween.Animatable<T> Tween { get; set; }
-public virtual double Weight { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-public class _Interval
-{
-    #region constructors
-    public _Interval(double start, double end)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual double Start { get; set; }
-public virtual double End { get; set; }
-#endregion
-
-#region methods
-
-public virtual bool Contains(double t) => t >= Start && t < End;
+        public virtual double Value(double t) => (t - Start) / (End - Start);
 
 
 
-public virtual double Value(double t) => (t - Start) / (End - Start);
-
-
-
-#endregion
-}
+        #endregion
+    }
 
 }

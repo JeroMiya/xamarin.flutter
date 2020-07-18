@@ -445,168 +445,179 @@ namespace FlutterSDK.Material.Tooltiptheme
     {
         #region constructors
         public TooltipThemeData(double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan))
-    
-}
-    #endregion
+        {
+            this.Height = height;
+            this.Padding = padding;
+            this.Margin = margin;
+            this.VerticalOffset = verticalOffset;
+            this.PreferBelow = preferBelow;
+            this.ExcludeFromSemantics = excludeFromSemantics;
+            this.Decoration = decoration;
+            this.TextStyle = textStyle;
+            this.WaitDuration = waitDuration;
+            this.ShowDuration = showDuration;
+        }
+        #endregion
 
-    #region fields
-    public virtual double Height { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
-    public virtual double VerticalOffset { get; set; }
-    public virtual bool PreferBelow { get; set; }
-    public virtual bool ExcludeFromSemantics { get; set; }
-    public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-    public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-    public virtual TimeSpan WaitDuration { get; set; }
-    public virtual TimeSpan ShowDuration { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual double Height { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
+        public virtual double VerticalOffset { get; set; }
+        public virtual bool PreferBelow { get; set; }
+        public virtual bool ExcludeFromSemantics { get; set; }
+        public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
+        public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
+        public virtual TimeSpan WaitDuration { get; set; }
+        public virtual TimeSpan ShowDuration { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a copy of this object but with the given fields replaced with the
+        /// new values.
+        /// </Summary>
+        public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData CopyWith(double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan))
+        {
+            return new TooltipThemeData(height: height == default(double) ? this.height : height, padding: padding ?? this.Padding, margin: margin ?? this.Margin, verticalOffset: verticalOffset == default(double) ? this.verticalOffset : verticalOffset, preferBelow: preferBelow ?? this.PreferBelow, excludeFromSemantics: excludeFromSemantics ?? this.ExcludeFromSemantics, decoration: decoration ?? this.Decoration, textStyle: textStyle ?? this.TextStyle, waitDuration: waitDuration ?? this.WaitDuration, showDuration: showDuration ?? this.ShowDuration);
+        }
+
+
+
+
+        /// <Summary>
+        /// Linearly interpolate between two tooltip themes.
+        ///
+        /// If both arguments are null, then null is returned.
+        ///
+        /// {@macro dart.ui.shadow.lerp}
+        /// </Summary>
+        public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Lerp(FlutterSDK.Material.Tooltiptheme.TooltipThemeData a, FlutterSDK.Material.Tooltiptheme.TooltipThemeData b, double t)
+        {
+            if (a == null && b == null) return null;
+
+            return new TooltipThemeData(height: Dart:uiDefaultClass.LerpDouble(a?.Height, b?.Height, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), margin: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Margin, b?.Margin, t), verticalOffset: Dart:uiDefaultClass.LerpDouble(a?.VerticalOffset, b?.VerticalOffset, t), preferBelow: t < 0.5 ? a.PreferBelow : b.PreferBelow, excludeFromSemantics: t < 0.5 ? a.ExcludeFromSemantics : b.ExcludeFromSemantics, decoration: DecorationDefaultClass.Decoration.Lerp(a?.Decoration, b?.Decoration, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is TooltipThemeData && other.Height == Height && other.Padding == Padding && other.Margin == Margin && other.VerticalOffset == VerticalOffset && other.PreferBelow == PreferBelow && other.ExcludeFromSemantics == ExcludeFromSemantics && other.Decoration == Decoration && other.TextStyle == TextStyle && other.WaitDuration == WaitDuration && other.ShowDuration == ShowDuration;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DoubleProperty("height", Height, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("margin", Margin, defaultValue: null));
+            properties.Add(new DoubleProperty("vertical offset", VerticalOffset, defaultValue: null));
+            properties.Add(new FlagProperty("position", value: PreferBelow, ifTrue: "below", ifFalse: "above", showName: true, defaultValue: null));
+            properties.Add(new FlagProperty("semantics", value: ExcludeFromSemantics, ifTrue: "excluded", showName: true, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Decoration>("decoration", Decoration, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TextStyle>("textStyle", TextStyle, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TimeSpan>("wait duration", WaitDuration, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<TimeSpan>("show duration", ShowDuration, defaultValue: null));
+        }
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a copy of this object but with the given fields replaced with the
-    /// new values.
-    /// </Summary>
-    public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData CopyWith(double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan))
-    {
-        return new TooltipThemeData(height: height == default(double) ? this.height : height, padding: padding ?? this.Padding, margin: margin ?? this.Margin, verticalOffset: verticalOffset == default(double) ? this.verticalOffset : verticalOffset, preferBelow: preferBelow ?? this.PreferBelow, excludeFromSemantics: excludeFromSemantics ?? this.ExcludeFromSemantics, decoration: decoration ?? this.Decoration, textStyle: textStyle ?? this.TextStyle, waitDuration: waitDuration ?? this.WaitDuration, showDuration: showDuration ?? this.ShowDuration);
-    }
-
-
-
-
-    /// <Summary>
-    /// Linearly interpolate between two tooltip themes.
+    /// An inherited widget that defines the configuration for
+    /// [Tooltip]s in this widget's subtree.
     ///
-    /// If both arguments are null, then null is returned.
+    /// Values specified here are used for [Tooltip] properties that are not
+    /// given an explicit non-null value.
     ///
-    /// {@macro dart.ui.shadow.lerp}
+    /// {@tool snippet}
+    ///
+    /// Here is an example of a tooltip theme that applies a blue foreground
+    /// with non-rounded corners.
+    ///
+    /// ```dart
+    /// TooltipTheme(
+    ///   data: TooltipThemeData(
+    ///     decoration: BoxDecoration(
+    ///       color: Colors.blue.withOpacity(0.9),
+    ///       borderRadius: BorderRadius.zero,
+    ///     ),
+    ///   ),
+    ///   child: Tooltip(
+    ///     message: 'Example tooltip',
+    ///     child: IconButton(
+    ///       iconSize: 36.0,
+    ///       icon: Icon(Icons.touch_app),
+    ///       onPressed: () {},
+    ///     ),
+    ///   ),
+    /// ),
+    /// ```
+    /// {@end-tool}
     /// </Summary>
-    public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Lerp(FlutterSDK.Material.Tooltiptheme.TooltipThemeData a, FlutterSDK.Material.Tooltiptheme.TooltipThemeData b, double t)
+    public class TooltipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        if (a == null && b == null) return null;
+        #region constructors
+        public TooltipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tooltiptheme.TooltipThemeData data = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.Data = data;
+        }
+        #endregion
 
-        return new TooltipThemeData(height: Dart:uiDefaultClass.LerpDouble(a?.Height, b?.Height, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), margin: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Margin, b?.Margin, t), verticalOffset: Dart:uiDefaultClass.LerpDouble(a?.VerticalOffset, b?.VerticalOffset, t), preferBelow: t < 0.5 ? a.PreferBelow : b.PreferBelow, excludeFromSemantics: t < 0.5 ? a.ExcludeFromSemantics : b.ExcludeFromSemantics, decoration: DecorationDefaultClass.Decoration.Lerp(a?.Decoration, b?.Decoration, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+        #region fields
+        public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Data { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Returns the [data] from the closest [TooltipTheme] ancestor. If there is
+        /// no ancestor, it returns [ThemeData.tooltipTheme]. Applications can assume
+        /// that the returned value will not be null.
+        ///
+        /// Typical usage is as follows:
+        ///
+        /// ```dart
+        /// TooltipThemeData theme = TooltipTheme.of(context);
+        /// ```
+        /// </Summary>
+        public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            TooltipTheme tooltipTheme = context.DependOnInheritedWidgetOfExactType();
+            return tooltipTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).TooltipTheme;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
+        {
+            TooltipTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
+            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new TooltipTheme(data: Data, child: child);
+        }
+
+
+
+
+        public new bool UpdateShouldNotify(FlutterSDK.Material.Tooltiptheme.TooltipTheme oldWidget) => Data != oldWidget.Data;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
+
+
+        #endregion
     }
-
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is TooltipThemeData && other.Height == Height && other.Padding == Padding && other.Margin == Margin && other.VerticalOffset == VerticalOffset && other.PreferBelow == PreferBelow && other.ExcludeFromSemantics == ExcludeFromSemantics && other.Decoration == Decoration && other.TextStyle == TextStyle && other.WaitDuration == WaitDuration && other.ShowDuration == ShowDuration;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new DoubleProperty("height", Height, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("padding", Padding, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<EdgeInsetsGeometry>("margin", Margin, defaultValue: null));
-        properties.Add(new DoubleProperty("vertical offset", VerticalOffset, defaultValue: null));
-        properties.Add(new FlagProperty("position", value: PreferBelow, ifTrue: "below", ifFalse: "above", showName: true, defaultValue: null));
-        properties.Add(new FlagProperty("semantics", value: ExcludeFromSemantics, ifTrue: "excluded", showName: true, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<Decoration>("decoration", Decoration, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TextStyle>("textStyle", TextStyle, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TimeSpan>("wait duration", WaitDuration, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<TimeSpan>("show duration", ShowDuration, defaultValue: null));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An inherited widget that defines the configuration for
-/// [Tooltip]s in this widget's subtree.
-///
-/// Values specified here are used for [Tooltip] properties that are not
-/// given an explicit non-null value.
-///
-/// {@tool snippet}
-///
-/// Here is an example of a tooltip theme that applies a blue foreground
-/// with non-rounded corners.
-///
-/// ```dart
-/// TooltipTheme(
-///   data: TooltipThemeData(
-///     decoration: BoxDecoration(
-///       color: Colors.blue.withOpacity(0.9),
-///       borderRadius: BorderRadius.zero,
-///     ),
-///   ),
-///   child: Tooltip(
-///     message: 'Example tooltip',
-///     child: IconButton(
-///       iconSize: 36.0,
-///       icon: Icon(Icons.touch_app),
-///       onPressed: () {},
-///     ),
-///   ),
-/// ),
-/// ```
-/// {@end-tool}
-/// </Summary>
-public class TooltipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
-{
-    #region constructors
-    public TooltipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tooltiptheme.TooltipThemeData data = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Data { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Returns the [data] from the closest [TooltipTheme] ancestor. If there is
-/// no ancestor, it returns [ThemeData.tooltipTheme]. Applications can assume
-/// that the returned value will not be null.
-///
-/// Typical usage is as follows:
-///
-/// ```dart
-/// TooltipThemeData theme = TooltipTheme.of(context);
-/// ```
-/// </Summary>
-public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Of(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    TooltipTheme tooltipTheme = context.DependOnInheritedWidgetOfExactType();
-    return tooltipTheme?.Data ?? ThemeDefaultClass.Theme.Of(context).TooltipTheme;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
-{
-    TooltipTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-    return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new TooltipTheme(data: Data, child: child);
-}
-
-
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Material.Tooltiptheme.TooltipTheme oldWidget) => Data != oldWidget.Data;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
-
-
-#endregion
-}
 
 }

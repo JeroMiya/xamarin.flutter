@@ -437,46 +437,47 @@ namespace FlutterSDK.Services.Hapticfeedback
     {
         #region constructors
         internal HapticFeedback()
-    
-}
-    #endregion
+        {
 
-    #region fields
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        #endregion
 
-    /// <Summary>
-    /// Provides vibration haptic feedback to the user for a short duration.
-    ///
-    /// On iOS devices that support haptic feedback, this uses the default system
-    /// vibration value (`kSystemSoundID_Vibrate`).
-    ///
-    /// On Android, this uses the platform haptic feedback API to simulate a
-    /// response to a long press (`HapticFeedbackConstants.LONG_PRESS`).
-    /// </Summary>
-    public virtual Future<object> Vibrate()
-async
+        #region methods
+
+        /// <Summary>
+        /// Provides vibration haptic feedback to the user for a short duration.
+        ///
+        /// On iOS devices that support haptic feedback, this uses the default system
+        /// vibration value (`kSystemSoundID_Vibrate`).
+        ///
+        /// On Android, this uses the platform haptic feedback API to simulate a
+        /// response to a long press (`HapticFeedbackConstants.LONG_PRESS`).
+        /// </Summary>
+        public virtual Future<object> Vibrate()
+    async
 {
 await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate");
-}
+    }
 
 
 
 
-/// <Summary>
-/// Provides a haptic feedback corresponding a collision impact with a light mass.
-///
-/// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
-/// `UIImpactFeedbackStyleLight`. This call has no effects on iOS versions
-/// below 10.
-///
-/// On Android, this uses `HapticFeedbackConstants.VIRTUAL_KEY`.
-/// </Summary>
-public virtual Future<object> LightImpact()
+    /// <Summary>
+    /// Provides a haptic feedback corresponding a collision impact with a light mass.
+    ///
+    /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+    /// `UIImpactFeedbackStyleLight`. This call has no effects on iOS versions
+    /// below 10.
+    ///
+    /// On Android, this uses `HapticFeedbackConstants.VIRTUAL_KEY`.
+    /// </Summary>
+    public virtual Future<object> LightImpact()
 async
 {
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.lightImpact");
+await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.lightImpact");
 }
 
 

@@ -439,50 +439,51 @@ namespace FlutterSDK.Services.Fontloader
         #region constructors
         public FontLoader(string family)
         : base()
-    
-}
-    #endregion
+        {
+            this.Family = family;
+        }
+        #endregion
 
-    #region fields
-    public virtual string Family { get; set; }
-    internal virtual bool _Loaded { get; set; }
-    internal virtual List<Future<Uint8List>> _FontFutures { get; set; }
-    #endregion
+        #region fields
+        public virtual string Family { get; set; }
+        internal virtual bool _Loaded { get; set; }
+        internal virtual List<Future<Uint8List>> _FontFutures { get; set; }
+        #endregion
 
-    #region methods
+        #region methods
 
-    /// <Summary>
-    /// Registers a font asset to be loaded by this font loader.
-    ///
-    /// The [bytes] argument specifies the actual font asset bytes. Currently,
-    /// only TrueType (TTF) fonts are supported.
-    /// </Summary>
-    public virtual void AddFont(Future<ByteData> bytes)
-    {
-        if (_Loaded) throw new StateError("FontLoader is already loaded");
-        _FontFutures.Add(bytes.Then((ByteData data) => =>Uint8List.View(data.Buffer, data.OffsetInBytes, data.LengthInBytes)));
-    }
-
-
+        /// <Summary>
+        /// Registers a font asset to be loaded by this font loader.
+        ///
+        /// The [bytes] argument specifies the actual font asset bytes. Currently,
+        /// only TrueType (TTF) fonts are supported.
+        /// </Summary>
+        public virtual void AddFont(Future<ByteData> bytes)
+        {
+            if (_Loaded) throw new StateError("FontLoader is already loaded");
+            _FontFutures.Add(bytes.Then((ByteData data) => =>Uint8List.View(data.Buffer, data.OffsetInBytes, data.LengthInBytes)));
+        }
 
 
-    /// <Summary>
-    /// Loads this font loader's font [family] and all of its associated assets
-    /// into the Flutter engine, making the font available to the current
-    /// application.
-    ///
-    /// This method should only be called once per font loader. Attempts to
-    /// load fonts from the same loader more than once will cause a [StateError]
-    /// to be thrown.
-    ///
-    /// The returned future will complete with an error if any of the font asset
-    /// futures yield an error.
-    /// </Summary>
-    public virtual Future<object> Load()
-async
+
+
+        /// <Summary>
+        /// Loads this font loader's font [family] and all of its associated assets
+        /// into the Flutter engine, making the font available to the current
+        /// application.
+        ///
+        /// This method should only be called once per font loader. Attempts to
+        /// load fonts from the same loader more than once will cause a [StateError]
+        /// to be thrown.
+        ///
+        /// The returned future will complete with an error if any of the font asset
+        /// futures yield an error.
+        /// </Summary>
+        public virtual Future<object> Load()
+    async
 {
 if (_Loaded)throw new StateError("FontLoader is already loaded");
-    _Loaded=true ;
+        _Loaded=true ;
 Iterable<Future<void>> loadFutures = _FontFutures.Map((Future<Uint8List> f) => =>f.Then((Uint8List list) => =>LoadFont(list, Family)));
 return Dart:asyncDefaultClass.Future.Wait(loadFutures.ToList());
 }
@@ -490,20 +491,20 @@ return Dart:asyncDefaultClass.Future.Wait(loadFutures.ToList());
 
 
 
-/// <Summary>
-/// Hook called to load a font asset into the engine.
-///
-/// Subclasses may override this to replace the default loading logic with
-/// custom logic (for example, to mock the underlying engine API in tests).
-/// </Summary>
-public virtual Future<object> LoadFont(Uint8List list, string family)
-{
-    return Dart:uiDefaultClass.LoadFontFromList(list, fontFamily: family);
-}
+    /// <Summary>
+    /// Hook called to load a font asset into the engine.
+    ///
+    /// Subclasses may override this to replace the default loading logic with
+    /// custom logic (for example, to mock the underlying engine API in tests).
+    /// </Summary>
+    public virtual Future<object> LoadFont(Uint8List list, string family)
+    {
+        return Dart:uiDefaultClass.LoadFontFromList(list, fontFamily: family);
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 }

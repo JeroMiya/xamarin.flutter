@@ -312,334 +312,336 @@ namespace FlutterSDK.Foundation.Serialization
     {
         #region constructors
         public WriteBuffer()
-    
-_Buffer=Uint8Buffer();
-        _EightBytes=new ByteData(8);
-        _EightBytesAsList=_EightBytes.Buffer.AsUint8List();
-}
-
-
-    #endregion
-
-    #region fields
-    internal virtual Uint8Buffer _Buffer { get; set; }
-    internal virtual ByteData _EightBytes { get; set; }
-    internal virtual Uint8List _EightBytesAsList { get; set; }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Write a Uint8 into the buffer.
-    /// </Summary>
-    public virtual void PutUint8(int @byte)
-    {
-        _Buffer.Add(@byte);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write a Uint16 into the buffer.
-    /// </Summary>
-    public virtual void PutUint16(int value, Endian endian = default(Endian))
-    {
-        _EightBytes.SetUint16(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-        _Buffer.AddAll(_EightBytesAsList, 0, 2);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write a Uint32 into the buffer.
-    /// </Summary>
-    public virtual void PutUint32(int value, Endian endian = default(Endian))
-    {
-        _EightBytes.SetUint32(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-        _Buffer.AddAll(_EightBytesAsList, 0, 4);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write an Int32 into the buffer.
-    /// </Summary>
-    public virtual void PutInt32(int value, Endian endian = default(Endian))
-    {
-        _EightBytes.SetInt32(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-        _Buffer.AddAll(_EightBytesAsList, 0, 4);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write an Int64 into the buffer.
-    /// </Summary>
-    public virtual void PutInt64(int value, Endian endian = default(Endian))
-    {
-        _EightBytes.SetInt64(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-        _Buffer.AddAll(_EightBytesAsList, 0, 8);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write an Float64 into the buffer.
-    /// </Summary>
-    public virtual void PutFloat64(double value, Endian endian = default(Endian))
-    {
-        _AlignTo(8);
-        _EightBytes.SetFloat64(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-        _Buffer.AddAll(_EightBytesAsList);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write all the values from a [Uint8List] into the buffer.
-    /// </Summary>
-    public virtual void PutUint8List(Uint8List list)
-    {
-        _Buffer.AddAll(list);
-    }
-
-
-
-
-    /// <Summary>
-    /// Write all the values from an [Int32List] into the buffer.
-    /// </Summary>
-    public virtual void PutInt32List(List<uint> list)
-    {
-        _AlignTo(4);
-        _Buffer.AddAll(list.Buffer.AsUint8List(list.OffsetInBytes, 4 * list.Count));
-    }
-
-
-
-
-    /// <Summary>
-    /// Write all the values from an [Int64List] into the buffer.
-    /// </Summary>
-    public virtual void PutInt64List(Int64List list)
-    {
-        _AlignTo(8);
-        _Buffer.AddAll(list.Buffer.AsUint8List(list.OffsetInBytes, 8 * list.Count));
-    }
-
-
-
-
-    /// <Summary>
-    /// Write all the values from a [Float64List] into the buffer.
-    /// </Summary>
-    public virtual void PutFloat64List(List<float> list)
-    {
-        _AlignTo(8);
-        _Buffer.AddAll(list.Buffer.AsUint8List(list.OffsetInBytes, 8 * list.Count));
-    }
-
-
-
-
-    private void _AlignTo(int alignment)
-    {
-        int mod = _Buffer.Length % alignment;
-        if (mod != 0)
         {
-            for (int i = 0; i < alignment - mod; i++) _Buffer.Add(0);
+
+            _Buffer = Uint8Buffer();
+            _EightBytes = new ByteData(8);
+            _EightBytesAsList = _EightBytes.Buffer.AsUint8List();
         }
 
+
+        #endregion
+
+        #region fields
+        internal virtual Uint8Buffer _Buffer { get; set; }
+        internal virtual ByteData _EightBytes { get; set; }
+        internal virtual Uint8List _EightBytesAsList { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Write a Uint8 into the buffer.
+        /// </Summary>
+        public virtual void PutUint8(int @byte)
+        {
+            _Buffer.Add(@byte);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write a Uint16 into the buffer.
+        /// </Summary>
+        public virtual void PutUint16(int value, Endian endian = default(Endian))
+        {
+            _EightBytes.SetUint16(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Buffer.AddAll(_EightBytesAsList, 0, 2);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write a Uint32 into the buffer.
+        /// </Summary>
+        public virtual void PutUint32(int value, Endian endian = default(Endian))
+        {
+            _EightBytes.SetUint32(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Buffer.AddAll(_EightBytesAsList, 0, 4);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write an Int32 into the buffer.
+        /// </Summary>
+        public virtual void PutInt32(int value, Endian endian = default(Endian))
+        {
+            _EightBytes.SetInt32(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Buffer.AddAll(_EightBytesAsList, 0, 4);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write an Int64 into the buffer.
+        /// </Summary>
+        public virtual void PutInt64(int value, Endian endian = default(Endian))
+        {
+            _EightBytes.SetInt64(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Buffer.AddAll(_EightBytesAsList, 0, 8);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write an Float64 into the buffer.
+        /// </Summary>
+        public virtual void PutFloat64(double value, Endian endian = default(Endian))
+        {
+            _AlignTo(8);
+            _EightBytes.SetFloat64(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Buffer.AddAll(_EightBytesAsList);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write all the values from a [Uint8List] into the buffer.
+        /// </Summary>
+        public virtual void PutUint8List(Uint8List list)
+        {
+            _Buffer.AddAll(list);
+        }
+
+
+
+
+        /// <Summary>
+        /// Write all the values from an [Int32List] into the buffer.
+        /// </Summary>
+        public virtual void PutInt32List(List<uint> list)
+        {
+            _AlignTo(4);
+            _Buffer.AddAll(list.Buffer.AsUint8List(list.OffsetInBytes, 4 * list.Count));
+        }
+
+
+
+
+        /// <Summary>
+        /// Write all the values from an [Int64List] into the buffer.
+        /// </Summary>
+        public virtual void PutInt64List(Int64List list)
+        {
+            _AlignTo(8);
+            _Buffer.AddAll(list.Buffer.AsUint8List(list.OffsetInBytes, 8 * list.Count));
+        }
+
+
+
+
+        /// <Summary>
+        /// Write all the values from a [Float64List] into the buffer.
+        /// </Summary>
+        public virtual void PutFloat64List(List<float> list)
+        {
+            _AlignTo(8);
+            _Buffer.AddAll(list.Buffer.AsUint8List(list.OffsetInBytes, 8 * list.Count));
+        }
+
+
+
+
+        private void _AlignTo(int alignment)
+        {
+            int mod = _Buffer.Length % alignment;
+            if (mod != 0)
+            {
+                for (int i = 0; i < alignment - mod; i++) _Buffer.Add(0);
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Finalize and return the written [ByteData].
+        /// </Summary>
+        public virtual ByteData Done()
+        {
+            ByteData result = _Buffer.Buffer.AsByteData(0, _Buffer.LengthInBytes);
+            _Buffer = null;
+            return result;
+        }
+
+
+
+        #endregion
     }
-
-
 
 
     /// <Summary>
-    /// Finalize and return the written [ByteData].
+    /// Read-only buffer for reading sequentially from a [ByteData] instance.
+    ///
+    /// The byte order used is [Endian.host] throughout.
     /// </Summary>
-    public virtual ByteData Done()
+    public class ReadBuffer
     {
-        ByteData result = _Buffer.Buffer.AsByteData(0, _Buffer.LengthInBytes);
-        _Buffer = null;
-        return result;
+        #region constructors
+        public ReadBuffer(ByteData data)
+        : base()
+        {
+            this.Data = data;
+        }
+        #endregion
+
+        #region fields
+        public virtual ByteData Data { get; set; }
+        internal virtual int _Position { get; set; }
+        public virtual bool HasRemaining { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Reads a Uint8 from the buffer.
+        /// </Summary>
+        public virtual int GetUint8()
+        {
+            return Data.GetUint8(_Position++);
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads a Uint16 from the buffer.
+        /// </Summary>
+        public virtual int GetUint16(Endian endian = default(Endian))
+        {
+            int value = Data.GetUint16(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Position += 2;
+            return value;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads a Uint32 from the buffer.
+        /// </Summary>
+        public virtual int GetUint32(Endian endian = default(Endian))
+        {
+            int value = Data.GetUint32(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Position += 4;
+            return value;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads an Int32 from the buffer.
+        /// </Summary>
+        public virtual int GetInt32(Endian endian = default(Endian))
+        {
+            int value = Data.GetInt32(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Position += 4;
+            return value;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads an Int64 from the buffer.
+        /// </Summary>
+        public virtual int GetInt64(Endian endian = default(Endian))
+        {
+            int value = Data.GetInt64(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Position += 8;
+            return value;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads a Float64 from the buffer.
+        /// </Summary>
+        public virtual double GetFloat64(Endian endian = default(Endian))
+        {
+            _AlignTo(8);
+            double value = Data.GetFloat64(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _Position += 8;
+            return value;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads the given number of Uint8s from the buffer.
+        /// </Summary>
+        public virtual Uint8List GetUint8List(int length)
+        {
+            Uint8List list = Data.Buffer.AsUint8List(Data.OffsetInBytes + _Position, length);
+            _Position += length;
+            return list;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads the given number of Int32s from the buffer.
+        /// </Summary>
+        public virtual List<uint> GetInt32List(int length)
+        {
+            _AlignTo(4);
+            List<uint> list = Data.Buffer.AsInt32List(Data.OffsetInBytes + _Position, length);
+            _Position += 4 * length;
+            return list;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads the given number of Int64s from the buffer.
+        /// </Summary>
+        public virtual Int64List GetInt64List(int length)
+        {
+            _AlignTo(8);
+            Int64List list = Data.Buffer.AsInt64List(Data.OffsetInBytes + _Position, length);
+            _Position += 8 * length;
+            return list;
+        }
+
+
+
+
+        /// <Summary>
+        /// Reads the given number of Float64s from the buffer.
+        /// </Summary>
+        public virtual List<float> GetFloat64List(int length)
+        {
+            _AlignTo(8);
+            List<float> list = Data.Buffer.AsFloat64List(Data.OffsetInBytes + _Position, length);
+            _Position += 8 * length;
+            return list;
+        }
+
+
+
+
+        private void _AlignTo(int alignment)
+        {
+            int mod = _Position % alignment;
+            if (mod != 0) _Position += alignment - mod;
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Read-only buffer for reading sequentially from a [ByteData] instance.
-///
-/// The byte order used is [Endian.host] throughout.
-/// </Summary>
-public class ReadBuffer
-{
-    #region constructors
-    public ReadBuffer(ByteData data)
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual ByteData Data { get; set; }
-internal virtual int _Position { get; set; }
-public virtual bool HasRemaining { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Reads a Uint8 from the buffer.
-/// </Summary>
-public virtual int GetUint8()
-{
-    return Data.GetUint8(_Position++);
-}
-
-
-
-
-/// <Summary>
-/// Reads a Uint16 from the buffer.
-/// </Summary>
-public virtual int GetUint16(Endian endian = default(Endian))
-{
-    int value = Data.GetUint16(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-    _Position += 2;
-    return value;
-}
-
-
-
-
-/// <Summary>
-/// Reads a Uint32 from the buffer.
-/// </Summary>
-public virtual int GetUint32(Endian endian = default(Endian))
-{
-    int value = Data.GetUint32(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-    _Position += 4;
-    return value;
-}
-
-
-
-
-/// <Summary>
-/// Reads an Int32 from the buffer.
-/// </Summary>
-public virtual int GetInt32(Endian endian = default(Endian))
-{
-    int value = Data.GetInt32(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-    _Position += 4;
-    return value;
-}
-
-
-
-
-/// <Summary>
-/// Reads an Int64 from the buffer.
-/// </Summary>
-public virtual int GetInt64(Endian endian = default(Endian))
-{
-    int value = Data.GetInt64(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-    _Position += 8;
-    return value;
-}
-
-
-
-
-/// <Summary>
-/// Reads a Float64 from the buffer.
-/// </Summary>
-public virtual double GetFloat64(Endian endian = default(Endian))
-{
-    _AlignTo(8);
-    double value = Data.GetFloat64(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
-    _Position += 8;
-    return value;
-}
-
-
-
-
-/// <Summary>
-/// Reads the given number of Uint8s from the buffer.
-/// </Summary>
-public virtual Uint8List GetUint8List(int length)
-{
-    Uint8List list = Data.Buffer.AsUint8List(Data.OffsetInBytes + _Position, length);
-    _Position += length;
-    return list;
-}
-
-
-
-
-/// <Summary>
-/// Reads the given number of Int32s from the buffer.
-/// </Summary>
-public virtual List<uint> GetInt32List(int length)
-{
-    _AlignTo(4);
-    List<uint> list = Data.Buffer.AsInt32List(Data.OffsetInBytes + _Position, length);
-    _Position += 4 * length;
-    return list;
-}
-
-
-
-
-/// <Summary>
-/// Reads the given number of Int64s from the buffer.
-/// </Summary>
-public virtual Int64List GetInt64List(int length)
-{
-    _AlignTo(8);
-    Int64List list = Data.Buffer.AsInt64List(Data.OffsetInBytes + _Position, length);
-    _Position += 8 * length;
-    return list;
-}
-
-
-
-
-/// <Summary>
-/// Reads the given number of Float64s from the buffer.
-/// </Summary>
-public virtual List<float> GetFloat64List(int length)
-{
-    _AlignTo(8);
-    List<float> list = Data.Buffer.AsFloat64List(Data.OffsetInBytes + _Position, length);
-    _Position += 8 * length;
-    return list;
-}
-
-
-
-
-private void _AlignTo(int alignment)
-{
-    int mod = _Position % alignment;
-    if (mod != 0) _Position += alignment - mod;
-}
-
-
-
-#endregion
-}
 
 }

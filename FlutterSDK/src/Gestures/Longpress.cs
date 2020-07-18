@@ -319,265 +319,271 @@ namespace FlutterSDK.Gestures.Longpress
         #region constructors
         public LongPressStartDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
-    public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// Details for callbacks that use [GestureLongPressMoveUpdateCallback].
-///
-/// See also:
-///
-///  * [LongPressGestureRecognizer.onLongPressMoveUpdate], which uses [GestureLongPressMoveUpdateCallback].
-///  * [LongPressEndDetails], the details for [GestureLongPressEndCallback]
-///  * [LongPressStartDetails], the details for [GestureLongPressStartCallback].
-/// </Summary>
-public class LongPressMoveUpdateDetails
-{
-    #region constructors
-    public LongPressMoveUpdateDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset offsetFromOrigin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localOffsetFromOrigin = default(FlutterBinding.UI.Offset))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
-public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-public virtual FlutterBinding.UI.Offset OffsetFromOrigin { get; set; }
-public virtual FlutterBinding.UI.Offset LocalOffsetFromOrigin { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// Details for callbacks that use [GestureLongPressEndCallback].
-///
-/// See also:
-///
-///  * [LongPressGestureRecognizer.onLongPressEnd], which uses [GestureLongPressEndCallback].
-///  * [LongPressMoveUpdateDetails], the details for [GestureLongPressMoveUpdateCallback]
-///  * [LongPressStartDetails], the details for [GestureLongPressStartCallback].
-/// </Summary>
-public class LongPressEndDetails
-{
-    #region constructors
-    public LongPressEndDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
-public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
-#endregion
-
-#region methods
-#endregion
-}
-
-
-/// <Summary>
-/// Recognizes when the user has pressed down at the same location for a long
-/// period of time.
-///
-/// The gesture must not deviate in position from its touch down point for 500ms
-/// until it's recognized. Once the gesture is accepted, the finger can be
-/// moved, triggering [onLongPressMoveUpdate] callbacks, unless the
-/// [postAcceptSlopTolerance] constructor argument is specified.
-///
-/// [LongPressGestureRecognizer] competes on pointer events of [kPrimaryButton]
-/// only when it has at least one non-null callback. If it has no callbacks, it
-/// is a no-op.
-/// </Summary>
-public class LongPressGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
-{
-    #region constructors
-    public LongPressGestureRecognizer(TimeSpan duration = default(TimeSpan), double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object))
-    : base(deadline: duration ?? ConstantsDefaultClass.KLongPressTimeout, postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner)
-
-}
-#endregion
-
-#region fields
-internal virtual bool _LongPressAccepted { get; set; }
-internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LongPressOrigin { get; set; }
-internal virtual int _InitialButtons { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnLongPressStart { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnLongPressMoveUpdate { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback OnLongPressUp { get; set; }
-public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
-internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
-public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
-{
-    switch (@event.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnLongPressStart == null && OnLongPress == null && OnLongPressMoveUpdate == null && OnLongPressEnd == null && OnLongPressUp == null) return false; break; default: return false; }
-    return base.IsPointerAllowed(@event);
-}
-
-
-
-
-public new void DidExceedDeadline()
-{
-    Resolve(GestureDisposition.Accepted);
-    _LongPressAccepted = true;
-    base.AcceptGesture(PrimaryPointer);
-    _CheckLongPressStart();
-}
-
-
-
-
-public new void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-    if (!@event.Synthesized)
-    {
-        if (((PointerDownEvent)@event) is PointerDownEvent)
         {
-            _VelocityTracker = new VelocityTracker();
-            _VelocityTracker.AddPosition(((PointerDownEvent)@event).TimeStamp, ((PointerDownEvent)@event).LocalPosition);
+            this.GlobalPosition = globalPosition;
         }
+        #endregion
 
-        if (@event is PointerMoveEvent)
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Details for callbacks that use [GestureLongPressMoveUpdateCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [LongPressGestureRecognizer.onLongPressMoveUpdate], which uses [GestureLongPressMoveUpdateCallback].
+    ///  * [LongPressEndDetails], the details for [GestureLongPressEndCallback]
+    ///  * [LongPressStartDetails], the details for [GestureLongPressStartCallback].
+    /// </Summary>
+    public class LongPressMoveUpdateDetails
+    {
+        #region constructors
+        public LongPressMoveUpdateDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset offsetFromOrigin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localOffsetFromOrigin = default(FlutterBinding.UI.Offset))
+        : base()
+        {
+            this.GlobalPosition = globalPosition;
+            this.OffsetFromOrigin = offsetFromOrigin;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset OffsetFromOrigin { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalOffsetFromOrigin { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Details for callbacks that use [GestureLongPressEndCallback].
+    ///
+    /// See also:
+    ///
+    ///  * [LongPressGestureRecognizer.onLongPressEnd], which uses [GestureLongPressEndCallback].
+    ///  * [LongPressMoveUpdateDetails], the details for [GestureLongPressMoveUpdateCallback]
+    ///  * [LongPressStartDetails], the details for [GestureLongPressStartCallback].
+    /// </Summary>
+    public class LongPressEndDetails
+    {
+        #region constructors
+        public LongPressEndDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
+        : base()
+        {
+            this.GlobalPosition = globalPosition;
+            this.Velocity = velocity;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
+        public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
+        public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Recognizes when the user has pressed down at the same location for a long
+    /// period of time.
+    ///
+    /// The gesture must not deviate in position from its touch down point for 500ms
+    /// until it's recognized. Once the gesture is accepted, the finger can be
+    /// moved, triggering [onLongPressMoveUpdate] callbacks, unless the
+    /// [postAcceptSlopTolerance] constructor argument is specified.
+    ///
+    /// [LongPressGestureRecognizer] competes on pointer events of [kPrimaryButton]
+    /// only when it has at least one non-null callback. If it has no callbacks, it
+    /// is a no-op.
+    /// </Summary>
+    public class LongPressGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
+    {
+        #region constructors
+        public LongPressGestureRecognizer(TimeSpan duration = default(TimeSpan), double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object))
+        : base(deadline: duration ?? ConstantsDefaultClass.KLongPressTimeout, postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner)
         {
 
-            _VelocityTracker.AddPosition(((PointerMoveEvent)@event).TimeStamp, ((PointerMoveEvent)@event).LocalPosition);
         }
+        #endregion
 
-    }
+        #region fields
+        internal virtual bool _LongPressAccepted { get; set; }
+        internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LongPressOrigin { get; set; }
+        internal virtual int _InitialButtons { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback OnLongPressStart { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback OnLongPressMoveUpdate { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback OnLongPressUp { get; set; }
+        public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
+        internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
+        public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    if (@event is PointerUpEvent)
-    {
-        if (_LongPressAccepted == true)
+        #region methods
+
+        public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
-            _CheckLongPressEnd(((PointerUpEvent)@event));
+            switch (@event.Buttons) { case EventsDefaultClass.KPrimaryButton: if (OnLongPressStart == null && OnLongPress == null && OnLongPressMoveUpdate == null && OnLongPressEnd == null && OnLongPressUp == null) return false; break; default: return false; }
+            return base.IsPointerAllowed(@event);
         }
-        else
+
+
+
+
+        public new void DidExceedDeadline()
         {
-            Resolve(GestureDisposition.Rejected);
+            Resolve(GestureDisposition.Accepted);
+            _LongPressAccepted = true;
+            base.AcceptGesture(PrimaryPointer);
+            _CheckLongPressStart();
         }
 
-        _Reset();
-    }
-    else if (@event is PointerCancelEvent)
-    {
-        _Reset();
-    }
-    else if (@event is PointerDownEvent)
-    {
-        _LongPressOrigin = OffsetPair.FromEventPosition(((PointerDownEvent)@event));
-        _InitialButtons = ((PointerDownEvent)@event).Buttons;
-    }
-    else if (@event is PointerMoveEvent)
-    {
-        if (((PointerMoveEvent)@event).Buttons != _InitialButtons)
+
+
+
+        public new void HandlePrimaryPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
-            Resolve(GestureDisposition.Rejected);
-            StopTrackingPointer(PrimaryPointer);
+            if (!@event.Synthesized)
+            {
+                if (((PointerDownEvent)@event) is PointerDownEvent)
+                {
+                    _VelocityTracker = new VelocityTracker();
+                    _VelocityTracker.AddPosition(((PointerDownEvent)@event).TimeStamp, ((PointerDownEvent)@event).LocalPosition);
+                }
+
+                if (@event is PointerMoveEvent)
+                {
+
+                    _VelocityTracker.AddPosition(((PointerMoveEvent)@event).TimeStamp, ((PointerMoveEvent)@event).LocalPosition);
+                }
+
+            }
+
+            if (@event is PointerUpEvent)
+            {
+                if (_LongPressAccepted == true)
+                {
+                    _CheckLongPressEnd(((PointerUpEvent)@event));
+                }
+                else
+                {
+                    Resolve(GestureDisposition.Rejected);
+                }
+
+                _Reset();
+            }
+            else if (@event is PointerCancelEvent)
+            {
+                _Reset();
+            }
+            else if (@event is PointerDownEvent)
+            {
+                _LongPressOrigin = OffsetPair.FromEventPosition(((PointerDownEvent)@event));
+                _InitialButtons = ((PointerDownEvent)@event).Buttons;
+            }
+            else if (@event is PointerMoveEvent)
+            {
+                if (((PointerMoveEvent)@event).Buttons != _InitialButtons)
+                {
+                    Resolve(GestureDisposition.Rejected);
+                    StopTrackingPointer(PrimaryPointer);
+                }
+                else if (_LongPressAccepted)
+                {
+                    _CheckLongPressMoveUpdate(@event);
+                }
+
+            }
+
         }
-        else if (_LongPressAccepted)
+
+
+
+
+        private void _CheckLongPressStart()
         {
-            _CheckLongPressMoveUpdate(@event);
+
+            if (OnLongPressStart != null)
+            {
+                LongPressStartDetails details = new LongPressStartDetails(globalPosition: _LongPressOrigin.Global, localPosition: _LongPressOrigin.Local);
+                InvokeCallback("onLongPressStart", () => =>OnLongPressStart(details));
+            }
+
+            if (OnLongPress != null) InvokeCallback("onLongPress", OnLongPress);
         }
 
+
+
+
+        private void _CheckLongPressMoveUpdate(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+
+            LongPressMoveUpdateDetails details = new LongPressMoveUpdateDetails(globalPosition: @event.Position, localPosition: @event.LocalPosition, offsetFromOrigin: @event.Position - _LongPressOrigin.Global, localOffsetFromOrigin: @event.LocalPosition - _LongPressOrigin.Local);
+            if (OnLongPressMoveUpdate != null) InvokeCallback("onLongPressMoveUpdate", () => =>OnLongPressMoveUpdate(details));
+        }
+
+
+
+
+        private void _CheckLongPressEnd(FlutterSDK.Gestures.Events.PointerEvent @event)
+        {
+
+            VelocityEstimate estimate = _VelocityTracker.GetVelocityEstimate();
+            Velocity velocity = estimate == null ? VelocitytrackerDefaultClass.Velocity.Zero : new Velocity(pixelsPerSecond: estimate.PixelsPerSecond);
+            LongPressEndDetails details = new LongPressEndDetails(globalPosition: @event.Position, localPosition: @event.LocalPosition, velocity: velocity);
+            _VelocityTracker = null;
+            if (OnLongPressEnd != null) InvokeCallback("onLongPressEnd", () => =>OnLongPressEnd(details));
+            if (OnLongPressUp != null) InvokeCallback("onLongPressUp", OnLongPressUp);
+        }
+
+
+
+
+        private void _Reset()
+        {
+            _LongPressAccepted = false;
+            _LongPressOrigin = null;
+            _InitialButtons = null;
+            _VelocityTracker = null;
+        }
+
+
+
+
+        public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
+        {
+            if (_LongPressAccepted && disposition == GestureDisposition.Rejected)
+            {
+                _Reset();
+            }
+
+            base.Resolve(disposition);
+        }
+
+
+
+
+        public new void AcceptGesture(int pointer)
+        {
+        }
+
+
+
+        #endregion
     }
-
-}
-
-
-
-
-private void _CheckLongPressStart()
-{
-
-    if (OnLongPressStart != null)
-    {
-        LongPressStartDetails details = new LongPressStartDetails(globalPosition: _LongPressOrigin.Global, localPosition: _LongPressOrigin.Local);
-        InvokeCallback("onLongPressStart", () => =>OnLongPressStart(details));
-    }
-
-    if (OnLongPress != null) InvokeCallback("onLongPress", OnLongPress);
-}
-
-
-
-
-private void _CheckLongPressMoveUpdate(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-
-    LongPressMoveUpdateDetails details = new LongPressMoveUpdateDetails(globalPosition: @event.Position, localPosition: @event.LocalPosition, offsetFromOrigin: @event.Position - _LongPressOrigin.Global, localOffsetFromOrigin: @event.LocalPosition - _LongPressOrigin.Local);
-    if (OnLongPressMoveUpdate != null) InvokeCallback("onLongPressMoveUpdate", () => =>OnLongPressMoveUpdate(details));
-}
-
-
-
-
-private void _CheckLongPressEnd(FlutterSDK.Gestures.Events.PointerEvent @event)
-{
-
-    VelocityEstimate estimate = _VelocityTracker.GetVelocityEstimate();
-    Velocity velocity = estimate == null ? VelocitytrackerDefaultClass.Velocity.Zero : new Velocity(pixelsPerSecond: estimate.PixelsPerSecond);
-    LongPressEndDetails details = new LongPressEndDetails(globalPosition: @event.Position, localPosition: @event.LocalPosition, velocity: velocity);
-    _VelocityTracker = null;
-    if (OnLongPressEnd != null) InvokeCallback("onLongPressEnd", () => =>OnLongPressEnd(details));
-    if (OnLongPressUp != null) InvokeCallback("onLongPressUp", OnLongPressUp);
-}
-
-
-
-
-private void _Reset()
-{
-    _LongPressAccepted = false;
-    _LongPressOrigin = null;
-    _InitialButtons = null;
-    _VelocityTracker = null;
-}
-
-
-
-
-public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
-{
-    if (_LongPressAccepted && disposition == GestureDisposition.Rejected)
-    {
-        _Reset();
-    }
-
-    base.Resolve(disposition);
-}
-
-
-
-
-public new void AcceptGesture(int pointer)
-{
-}
-
-
-
-#endregion
-}
 
 }

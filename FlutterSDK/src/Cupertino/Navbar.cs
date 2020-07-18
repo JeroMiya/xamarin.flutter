@@ -328,351 +328,390 @@ namespace FlutterSDK.Cupertino.Navbar
     {
         #region constructors
         public _HeroTag(FlutterSDK.Widgets.Navigator.NavigatorState navigator)
-    
-}
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other)){
-            return true;
-        }
-
-        if (other.GetType() != GetType())
         {
-            return false;
+            this.Navigator = navigator;
         }
+        #endregion
 
-        return other is _HeroTag && other.Navigator == Navigator;
-    }
+        #region fields
+        public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An iOS-styled navigation bar.
-///
-/// The navigation bar is a toolbar that minimally consists of a widget, normally
-/// a page title, in the [middle] of the toolbar.
-///
-/// It also supports a [leading] and [trailing] widget before and after the
-/// [middle] widget while keeping the [middle] widget centered.
-///
-/// The [leading] widget will automatically be a back chevron icon button (or a
-/// close button in case of a fullscreen dialog) to pop the current route if none
-/// is provided and [automaticallyImplyLeading] is true (true by default).
-///
-/// The [middle] widget will automatically be a title text from the current
-/// [CupertinoPageRoute] if none is provided and [automaticallyImplyMiddle] is
-/// true (true by default).
-///
-/// It should be placed at top of the screen and automatically accounts for
-/// the OS's status bar.
-///
-/// If the given [backgroundColor]'s opacity is not 1.0 (which is the case by
-/// default), it will produce a blurring effect to the content behind it.
-///
-/// When [transitionBetweenRoutes] is true, this navigation bar will transition
-/// on top of the routes instead of inside them if the route being transitioned
-/// to also has a [CupertinoNavigationBar] or a [CupertinoSliverNavigationBar]
-/// with [transitionBetweenRoutes] set to true. If [transitionBetweenRoutes] is
-/// true, none of the [Widget] parameters can contain a key in its subtree since
-/// that widget will exist in multiple places in the tree simultaneously.
-///
-/// By default, only one [CupertinoNavigationBar] or [CupertinoSliverNavigationBar]
-/// should be present in each [PageRoute] to support the default transitions.
-/// Use [transitionBetweenRoutes] or [heroTag] to customize the transition
-/// behavior for multiple navigation bars per route.
-///
-/// When used in a [CupertinoPageScaffold], [CupertinoPageScaffold.navigationBar]
-/// has its text scale factor set to 1.0 and does not respond to text scale factor
-/// changes from the operating system, to match the native iOS behavior. To override
-/// this behavior, wrap each of the `navigationBar`'s components inside a [MediaQuery]
-/// with the desired [MediaQueryData.textScaleFactor] value. The text scale factor
-/// value from the operating system can be retrieved in many ways, such as querying
-/// [MediaQuery.textScaleFactorOf] against [CupertinoApp]'s [BuildContext].
-///
-/// See also:
-///
-///  * [CupertinoPageScaffold], a page layout helper typically hosting the
-///    [CupertinoNavigationBar].
-///  * [CupertinoSliverNavigationBar] for a navigation bar to be placed in a
-///    scrolling list and that supports iOS-11-style large titles.
-/// </Summary>
-public class CupertinoNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget, FlutterSDK.Cupertino.Pagescaffold.IObstructingPreferredSizeWidget
-{
-    #region constructors
-    public CupertinoNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, bool automaticallyImplyMiddle = true, string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = true, @Object heroTag = default(@Object))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-public virtual bool AutomaticallyImplyLeading { get; set; }
-public virtual bool AutomaticallyImplyMiddle { get; set; }
-public virtual string PreviousPageTitle { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual Brightness Brightness { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
-public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
-public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
-public virtual bool TransitionBetweenRoutes { get; set; }
-public virtual @Object HeroTag { get; set; }
-public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// True if the navigation bar's background color has no transparency.
-/// </Summary>
-public new bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    Color backgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(this.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor;
-    return backgroundColor.Alpha == 0xFF;
-}
+        #region methods
 
 
-
-
-public new FlutterSDK.Cupertino.Navbar._CupertinoNavigationBarState CreateState()
-{
-    return new _CupertinoNavigationBarState();
-}
-
-
-
-#endregion
-}
-
-
-public class _CupertinoNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Navbar.CupertinoNavigationBar>
-{
-    #region constructors
-    public _CupertinoNavigationBarState()
-    { }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys Keys { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        Keys = new _NavigationBarStaticComponentsKeys();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Color backgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor;
-        _NavigationBarStaticComponents components = new _NavigationBarStaticComponents(keys: Keys, route: RoutesDefaultClass.ModalRoute.Of(context), userLeading: Widget.Leading, automaticallyImplyLeading: Widget.AutomaticallyImplyLeading, automaticallyImplyTitle: Widget.AutomaticallyImplyMiddle, previousPageTitle: Widget.PreviousPageTitle, userMiddle: Widget.Middle, userTrailing: Widget.Trailing, padding: Widget.Padding, userLargeTitle: null, large: false);
-        Widget navBar = NavbarDefaultClass._WrapWithBackground(border: Widget.Border, backgroundColor: backgroundColor, brightness: Widget.Brightness, child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, child: new _PersistentNavigationBar(components: components, padding: Widget.Padding)));
-        Color actionsForegroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.ActionsForegroundColor, context);
-        if (!Widget.TransitionBetweenRoutes || !NavbarDefaultClass._IsTransitionable(context))
+        public new bool Equals(@Object other)
         {
-            return NavbarDefaultClass._WrapActiveColor(actionsForegroundColor, context, navBar);
+            if (Dart:coreDefaultClass.Identical(this, other)){
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return other is _HeroTag && other.Navigator == Navigator;
         }
 
-        return NavbarDefaultClass._WrapActiveColor(actionsForegroundColor, context, new Builder(builder: (BuildContext context) =>
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An iOS-styled navigation bar.
+    ///
+    /// The navigation bar is a toolbar that minimally consists of a widget, normally
+    /// a page title, in the [middle] of the toolbar.
+    ///
+    /// It also supports a [leading] and [trailing] widget before and after the
+    /// [middle] widget while keeping the [middle] widget centered.
+    ///
+    /// The [leading] widget will automatically be a back chevron icon button (or a
+    /// close button in case of a fullscreen dialog) to pop the current route if none
+    /// is provided and [automaticallyImplyLeading] is true (true by default).
+    ///
+    /// The [middle] widget will automatically be a title text from the current
+    /// [CupertinoPageRoute] if none is provided and [automaticallyImplyMiddle] is
+    /// true (true by default).
+    ///
+    /// It should be placed at top of the screen and automatically accounts for
+    /// the OS's status bar.
+    ///
+    /// If the given [backgroundColor]'s opacity is not 1.0 (which is the case by
+    /// default), it will produce a blurring effect to the content behind it.
+    ///
+    /// When [transitionBetweenRoutes] is true, this navigation bar will transition
+    /// on top of the routes instead of inside them if the route being transitioned
+    /// to also has a [CupertinoNavigationBar] or a [CupertinoSliverNavigationBar]
+    /// with [transitionBetweenRoutes] set to true. If [transitionBetweenRoutes] is
+    /// true, none of the [Widget] parameters can contain a key in its subtree since
+    /// that widget will exist in multiple places in the tree simultaneously.
+    ///
+    /// By default, only one [CupertinoNavigationBar] or [CupertinoSliverNavigationBar]
+    /// should be present in each [PageRoute] to support the default transitions.
+    /// Use [transitionBetweenRoutes] or [heroTag] to customize the transition
+    /// behavior for multiple navigation bars per route.
+    ///
+    /// When used in a [CupertinoPageScaffold], [CupertinoPageScaffold.navigationBar]
+    /// has its text scale factor set to 1.0 and does not respond to text scale factor
+    /// changes from the operating system, to match the native iOS behavior. To override
+    /// this behavior, wrap each of the `navigationBar`'s components inside a [MediaQuery]
+    /// with the desired [MediaQueryData.textScaleFactor] value. The text scale factor
+    /// value from the operating system can be retrieved in many ways, such as querying
+    /// [MediaQuery.textScaleFactorOf] against [CupertinoApp]'s [BuildContext].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoPageScaffold], a page layout helper typically hosting the
+    ///    [CupertinoNavigationBar].
+    ///  * [CupertinoSliverNavigationBar] for a navigation bar to be placed in a
+    ///    scrolling list and that supports iOS-11-style large titles.
+    /// </Summary>
+    public class CupertinoNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget, FlutterSDK.Cupertino.Pagescaffold.IObstructingPreferredSizeWidget
+    {
+        #region constructors
+        public CupertinoNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, bool automaticallyImplyMiddle = true, string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = true, @Object heroTag = default(@Object))
+        : base(key: key)
         {
-            return new Hero(tag: Widget.HeroTag == NavbarDefaultClass._DefaultHeroTag ? new _HeroTag(NavigatorDefaultClass.Navigator.Of(context)) : Widget.HeroTag, createRectTween: NavbarDefaultClass._LinearTranslateWithLargestRectSizeTween, placeholderBuilder: NavbarDefaultClass._NavBarHeroLaunchPadBuilder, flightShuttleBuilder: NavbarDefaultClass._NavBarHeroFlightShuttleBuilder, transitionOnUserGestures: true, child: new _TransitionableNavigationBar(componentsKeys: Keys, backgroundColor: backgroundColor, backButtonTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavActionTextStyle, titleTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavTitleTextStyle, largeTitleTextStyle: null, border: Widget.Border, hasUserMiddle: Widget.Middle != null, largeExpanded: false, child: navBar));
+            this.Leading = leading;
+            this.AutomaticallyImplyLeading = automaticallyImplyLeading;
+            this.AutomaticallyImplyMiddle = automaticallyImplyMiddle;
+            this.PreviousPageTitle = previousPageTitle;
+            this.Middle = middle;
+            this.Trailing = trailing;
+            this.Border = border;
+            this.BackgroundColor = backgroundColor;
+            this.Brightness = brightness;
+            this.Padding = padding;
+            this.ActionsForegroundColor = actionsForegroundColor;
+            this.TransitionBetweenRoutes = transitionBetweenRoutes;
+            this.HeroTag = heroTag;
         }
-        ));
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual bool AutomaticallyImplyLeading { get; set; }
+        public virtual bool AutomaticallyImplyMiddle { get; set; }
+        public virtual string PreviousPageTitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+        public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+        public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
+        public virtual bool TransitionBetweenRoutes { get; set; }
+        public virtual @Object HeroTag { get; set; }
+        public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// True if the navigation bar's background color has no transparency.
+        /// </Summary>
+        public new bool ShouldFullyObstruct(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Color backgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(this.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor;
+            return backgroundColor.Alpha == 0xFF;
+        }
+
+
+
+
+        public new FlutterSDK.Cupertino.Navbar._CupertinoNavigationBarState CreateState()
+        {
+            return new _CupertinoNavigationBarState();
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An iOS-styled navigation bar with iOS-11-style large titles using slivers.
-///
-/// The [CupertinoSliverNavigationBar] must be placed in a sliver group such
-/// as the [CustomScrollView].
-///
-/// This navigation bar consists of two sections, a pinned static section on top
-/// and a sliding section containing iOS-11-style large title below it.
-///
-/// It should be placed at top of the screen and automatically accounts for
-/// the iOS status bar.
-///
-/// Minimally, a [largeTitle] widget will appear in the middle of the app bar
-/// when the sliver is collapsed and transfer to the area below in larger font
-/// when the sliver is expanded.
-///
-/// For advanced uses, an optional [middle] widget can be supplied to show a
-/// different widget in the middle of the navigation bar when the sliver is collapsed.
-///
-/// Like [CupertinoNavigationBar], it also supports a [leading] and [trailing]
-/// widget on the static section on top that remains while scrolling.
-///
-/// The [leading] widget will automatically be a back chevron icon button (or a
-/// close button in case of a fullscreen dialog) to pop the current route if none
-/// is provided and [automaticallyImplyLeading] is true (true by default).
-///
-/// The [largeTitle] widget will automatically be a title text from the current
-/// [CupertinoPageRoute] if none is provided and [automaticallyImplyTitle] is
-/// true (true by default).
-///
-/// When [transitionBetweenRoutes] is true, this navigation bar will transition
-/// on top of the routes instead of inside them if the route being transitioned
-/// to also has a [CupertinoNavigationBar] or a [CupertinoSliverNavigationBar]
-/// with [transitionBetweenRoutes] set to true. If [transitionBetweenRoutes] is
-/// true, none of the [Widget] parameters can contain any [GlobalKey]s in their
-/// subtrees since those widgets will exist in multiple places in the tree
-/// simultaneously.
-///
-/// By default, only one [CupertinoNavigationBar] or [CupertinoSliverNavigationBar]
-/// should be present in each [PageRoute] to support the default transitions.
-/// Use [transitionBetweenRoutes] or [heroTag] to customize the transition
-/// behavior for multiple navigation bars per route.
-///
-/// `CupertinoSliverNavigationBar` has its text scale factor set to 1.0 by default
-/// and does not respond to text scale factor changes from the operating system,
-/// to match the native iOS behavior. To override this behavior, wrap each of the
-/// `CupertinoSliverNavigationBar`'s components inside a [MediaQuery] with the
-/// desired [MediaQueryData.textScaleFactor] value. The text scale factor value
-/// from the operating system can be retrieved in many ways, such as querying
-/// [MediaQuery.textScaleFactorOf] against [CupertinoApp]'s [BuildContext].
-///
-/// See also:
-///
-///  * [CupertinoNavigationBar], an iOS navigation bar for use on non-scrolling
-///    pages.
-/// </Summary>
-public class CupertinoSliverNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public CupertinoSliverNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget largeTitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, bool automaticallyImplyTitle = true, string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = true, @Object heroTag = default(@Object))
-    : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Framework.Widget LargeTitle { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-public virtual bool AutomaticallyImplyLeading { get; set; }
-public virtual bool AutomaticallyImplyTitle { get; set; }
-public virtual string PreviousPageTitle { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual Brightness Brightness { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
-public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
-public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
-public virtual bool TransitionBetweenRoutes { get; set; }
-public virtual @Object HeroTag { get; set; }
-public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Cupertino.Navbar._CupertinoSliverNavigationBarState CreateState() => new _CupertinoSliverNavigationBarState();
-
-
-#endregion
-}
-
-
-public class _CupertinoSliverNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Navbar.CupertinoSliverNavigationBar>
-{
-    #region constructors
-    public _CupertinoSliverNavigationBarState()
-    { }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys Keys { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
+    public class _CupertinoNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Navbar.CupertinoNavigationBar>
     {
-        base.InitState();
-        Keys = new _NavigationBarStaticComponentsKeys();
+        #region constructors
+        public _CupertinoNavigationBarState()
+        { }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys Keys { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            Keys = new _NavigationBarStaticComponentsKeys();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Color backgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor;
+            _NavigationBarStaticComponents components = new _NavigationBarStaticComponents(keys: Keys, route: RoutesDefaultClass.ModalRoute.Of(context), userLeading: Widget.Leading, automaticallyImplyLeading: Widget.AutomaticallyImplyLeading, automaticallyImplyTitle: Widget.AutomaticallyImplyMiddle, previousPageTitle: Widget.PreviousPageTitle, userMiddle: Widget.Middle, userTrailing: Widget.Trailing, padding: Widget.Padding, userLargeTitle: null, large: false);
+            Widget navBar = NavbarDefaultClass._WrapWithBackground(border: Widget.Border, backgroundColor: backgroundColor, brightness: Widget.Brightness, child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, child: new _PersistentNavigationBar(components: components, padding: Widget.Padding)));
+            Color actionsForegroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.ActionsForegroundColor, context);
+            if (!Widget.TransitionBetweenRoutes || !NavbarDefaultClass._IsTransitionable(context))
+            {
+                return NavbarDefaultClass._WrapActiveColor(actionsForegroundColor, context, navBar);
+            }
+
+            return NavbarDefaultClass._WrapActiveColor(actionsForegroundColor, context, new Builder(builder: (BuildContext context) =>
+            {
+                return new Hero(tag: Widget.HeroTag == NavbarDefaultClass._DefaultHeroTag ? new _HeroTag(NavigatorDefaultClass.Navigator.Of(context)) : Widget.HeroTag, createRectTween: NavbarDefaultClass._LinearTranslateWithLargestRectSizeTween, placeholderBuilder: NavbarDefaultClass._NavBarHeroLaunchPadBuilder, flightShuttleBuilder: NavbarDefaultClass._NavBarHeroFlightShuttleBuilder, transitionOnUserGestures: true, child: new _TransitionableNavigationBar(componentsKeys: Keys, backgroundColor: backgroundColor, backButtonTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavActionTextStyle, titleTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavTitleTextStyle, largeTitleTextStyle: null, border: Widget.Border, hasUserMiddle: Widget.Middle != null, largeExpanded: false, child: navBar));
+            }
+            ));
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    /// <Summary>
+    /// An iOS-styled navigation bar with iOS-11-style large titles using slivers.
+    ///
+    /// The [CupertinoSliverNavigationBar] must be placed in a sliver group such
+    /// as the [CustomScrollView].
+    ///
+    /// This navigation bar consists of two sections, a pinned static section on top
+    /// and a sliding section containing iOS-11-style large title below it.
+    ///
+    /// It should be placed at top of the screen and automatically accounts for
+    /// the iOS status bar.
+    ///
+    /// Minimally, a [largeTitle] widget will appear in the middle of the app bar
+    /// when the sliver is collapsed and transfer to the area below in larger font
+    /// when the sliver is expanded.
+    ///
+    /// For advanced uses, an optional [middle] widget can be supplied to show a
+    /// different widget in the middle of the navigation bar when the sliver is collapsed.
+    ///
+    /// Like [CupertinoNavigationBar], it also supports a [leading] and [trailing]
+    /// widget on the static section on top that remains while scrolling.
+    ///
+    /// The [leading] widget will automatically be a back chevron icon button (or a
+    /// close button in case of a fullscreen dialog) to pop the current route if none
+    /// is provided and [automaticallyImplyLeading] is true (true by default).
+    ///
+    /// The [largeTitle] widget will automatically be a title text from the current
+    /// [CupertinoPageRoute] if none is provided and [automaticallyImplyTitle] is
+    /// true (true by default).
+    ///
+    /// When [transitionBetweenRoutes] is true, this navigation bar will transition
+    /// on top of the routes instead of inside them if the route being transitioned
+    /// to also has a [CupertinoNavigationBar] or a [CupertinoSliverNavigationBar]
+    /// with [transitionBetweenRoutes] set to true. If [transitionBetweenRoutes] is
+    /// true, none of the [Widget] parameters can contain any [GlobalKey]s in their
+    /// subtrees since those widgets will exist in multiple places in the tree
+    /// simultaneously.
+    ///
+    /// By default, only one [CupertinoNavigationBar] or [CupertinoSliverNavigationBar]
+    /// should be present in each [PageRoute] to support the default transitions.
+    /// Use [transitionBetweenRoutes] or [heroTag] to customize the transition
+    /// behavior for multiple navigation bars per route.
+    ///
+    /// `CupertinoSliverNavigationBar` has its text scale factor set to 1.0 by default
+    /// and does not respond to text scale factor changes from the operating system,
+    /// to match the native iOS behavior. To override this behavior, wrap each of the
+    /// `CupertinoSliverNavigationBar`'s components inside a [MediaQuery] with the
+    /// desired [MediaQueryData.textScaleFactor] value. The text scale factor value
+    /// from the operating system can be retrieved in many ways, such as querying
+    /// [MediaQuery.textScaleFactorOf] against [CupertinoApp]'s [BuildContext].
+    ///
+    /// See also:
+    ///
+    ///  * [CupertinoNavigationBar], an iOS navigation bar for use on non-scrolling
+    ///    pages.
+    /// </Summary>
+    public class CupertinoSliverNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        Color actionsForegroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.ActionsForegroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor;
-        _NavigationBarStaticComponents components = new _NavigationBarStaticComponents(keys: Keys, route: RoutesDefaultClass.ModalRoute.Of(context), userLeading: Widget.Leading, automaticallyImplyLeading: Widget.AutomaticallyImplyLeading, automaticallyImplyTitle: Widget.AutomaticallyImplyTitle, previousPageTitle: Widget.PreviousPageTitle, userMiddle: Widget.Middle, userTrailing: Widget.Trailing, userLargeTitle: Widget.LargeTitle, padding: Widget.Padding, large: true);
-        return NavbarDefaultClass._WrapActiveColor(actionsForegroundColor, context, new MediaQuery(data: MediaqueryDefaultClass.MediaQuery.Of(context).CopyWith(textScaleFactor: 1), child: new SliverPersistentHeader(pinned: true, @delegate: new _LargeTitleNavigationBarSliverDelegate(keys: Keys, components: components, userMiddle: Widget.Middle, backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor, brightness: Widget.Brightness, border: Widget.Border, padding: Widget.Padding, actionsForegroundColor: actionsForegroundColor, transitionBetweenRoutes: Widget.TransitionBetweenRoutes, heroTag: Widget.HeroTag, persistentHeight: NavbarDefaultClass._KNavBarPersistentHeight + MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top, alwaysShowMiddle: Widget.Middle != null))));
+        #region constructors
+        public CupertinoSliverNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget largeTitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, bool automaticallyImplyTitle = true, string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = true, @Object heroTag = default(@Object))
+        : base(key: key)
+        {
+            this.LargeTitle = largeTitle;
+            this.Leading = leading;
+            this.AutomaticallyImplyLeading = automaticallyImplyLeading;
+            this.AutomaticallyImplyTitle = automaticallyImplyTitle;
+            this.PreviousPageTitle = previousPageTitle;
+            this.Middle = middle;
+            this.Trailing = trailing;
+            this.Border = border;
+            this.BackgroundColor = backgroundColor;
+            this.Brightness = brightness;
+            this.Padding = padding;
+            this.ActionsForegroundColor = actionsForegroundColor;
+            this.TransitionBetweenRoutes = transitionBetweenRoutes;
+            this.HeroTag = heroTag;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget LargeTitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual bool AutomaticallyImplyLeading { get; set; }
+        public virtual bool AutomaticallyImplyTitle { get; set; }
+        public virtual string PreviousPageTitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+        public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+        public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
+        public virtual bool TransitionBetweenRoutes { get; set; }
+        public virtual @Object HeroTag { get; set; }
+        public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Cupertino.Navbar._CupertinoSliverNavigationBarState CreateState() => new _CupertinoSliverNavigationBarState();
+
+
+        #endregion
     }
 
 
+    public class _CupertinoSliverNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Navbar.CupertinoSliverNavigationBar>
+    {
+        #region constructors
+        public _CupertinoSliverNavigationBarState()
+        { }
+        #endregion
 
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys Keys { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            Keys = new _NavigationBarStaticComponentsKeys();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Color actionsForegroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.ActionsForegroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor;
+            _NavigationBarStaticComponents components = new _NavigationBarStaticComponents(keys: Keys, route: RoutesDefaultClass.ModalRoute.Of(context), userLeading: Widget.Leading, automaticallyImplyLeading: Widget.AutomaticallyImplyLeading, automaticallyImplyTitle: Widget.AutomaticallyImplyTitle, previousPageTitle: Widget.PreviousPageTitle, userMiddle: Widget.Middle, userTrailing: Widget.Trailing, userLargeTitle: Widget.LargeTitle, padding: Widget.Padding, large: true);
+            return NavbarDefaultClass._WrapActiveColor(actionsForegroundColor, context, new MediaQuery(data: MediaqueryDefaultClass.MediaQuery.Of(context).CopyWith(textScaleFactor: 1), child: new SliverPersistentHeader(pinned: true, @delegate: new _LargeTitleNavigationBarSliverDelegate(keys: Keys, components: components, userMiddle: Widget.Middle, backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor, brightness: Widget.Brightness, border: Widget.Border, padding: Widget.Padding, actionsForegroundColor: actionsForegroundColor, transitionBetweenRoutes: Widget.TransitionBetweenRoutes, heroTag: Widget.HeroTag, persistentHeight: NavbarDefaultClass._KNavBarPersistentHeight + MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top, alwaysShowMiddle: Widget.Middle != null))));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _LargeTitleNavigationBarSliverDelegate : FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate, IDiagnosticableTreeMixin
+    {
+        #region constructors
+        public _LargeTitleNavigationBarSliverDelegate(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys keys = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys), FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents components = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents), FlutterSDK.Widgets.Framework.Widget userMiddle = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = default(bool), @Object heroTag = default(@Object), double persistentHeight = default(double), bool alwaysShowMiddle = default(bool))
+        : base()
+        {
+            this.Keys = keys;
+            this.Components = components;
+            this.UserMiddle = userMiddle;
+            this.BackgroundColor = backgroundColor;
+            this.Brightness = brightness;
+            this.Border = border;
+            this.Padding = padding;
+            this.ActionsForegroundColor = actionsForegroundColor;
+            this.TransitionBetweenRoutes = transitionBetweenRoutes;
+            this.HeroTag = heroTag;
+            this.PersistentHeight = persistentHeight;
+            this.AlwaysShowMiddle = alwaysShowMiddle;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys Keys { get; set; }
+        public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents Components { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget UserMiddle { get; set; }
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual Brightness Brightness { get; set; }
+        public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+        public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+        public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
+        public virtual bool TransitionBetweenRoutes { get; set; }
+        public virtual @Object HeroTag { get; set; }
+        public virtual double PersistentHeight { get; set; }
+        public virtual bool AlwaysShowMiddle { get; set; }
+        public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, double shrinkOffset, bool overlapsContent)
+        {
+            bool showLargeTitle = shrinkOffset < MaxExtent - MinExtent - NavbarDefaultClass._KNavBarShowLargeTitleThreshold;
+            _PersistentNavigationBar persistentNavigationBar = new _PersistentNavigationBar(components: Components, padding: Padding, middleVisible: AlwaysShowMiddle ? null : !showLargeTitle);
+            Widget navBar = NavbarDefaultClass._WrapWithBackground(border: Border, backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(BackgroundColor, context), brightness: Brightness, child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, child: new Stack(fit: StackFit.Expand, children: new List<Widget>() { new Positioned(top: PersistentHeight, left: 0.0, right: 0.0, bottom: 0.0, child: new ClipRect(child: new OverflowBox(minHeight: 0.0, maxHeight: Dart:coreDefaultClass.Double.Infinity, alignment: AlignmentDefaultClass.AlignmentDirectional.BottomStart, child: new Padding(padding: EdgeInsetsDirectional.Only(start: NavbarDefaultClass._KNavBarEdgePadding, bottom: 8.0), child: new SafeArea(top: false, bottom: false, child: new AnimatedOpacity(opacity: showLargeTitle ? 1.0 : 0.0, duration: NavbarDefaultClass._KNavBarTitleFadeDuration, child: new Semantics(header: true, child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavLargeTitleTextStyle, maxLines: 1, overflow: TextOverflow.Ellipsis, child: Components.LargeTitle)))))))), new Positioned(left: 0.0, right: 0.0, top: 0.0, child: persistentNavigationBar)})));
+if (!TransitionBetweenRoutes||!NavbarDefaultClass._IsTransitionable(context)){
+return navBar;
 }
 
-
-public class _LargeTitleNavigationBarSliverDelegate : FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate, IDiagnosticableTreeMixin
-{
-    #region constructors
-    public _LargeTitleNavigationBarSliverDelegate(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys keys = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys), FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents components = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents), FlutterSDK.Widgets.Framework.Widget userMiddle = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), FlutterBinding.UI.Color actionsForegroundColor = default(FlutterBinding.UI.Color), bool transitionBetweenRoutes = default(bool), @Object heroTag = default(@Object), double persistentHeight = default(double), bool alwaysShowMiddle = default(bool))
-    : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys Keys { get; set; }
-public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents Components { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget UserMiddle { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual Brightness Brightness { get; set; }
-public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
-public virtual FlutterBinding.UI.Color ActionsForegroundColor { get; set; }
-public virtual bool TransitionBetweenRoutes { get; set; }
-public virtual @Object HeroTag { get; set; }
-public virtual double PersistentHeight { get; set; }
-public virtual bool AlwaysShowMiddle { get; set; }
-public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, double shrinkOffset, bool overlapsContent)
-{
-    bool showLargeTitle = shrinkOffset < MaxExtent - MinExtent - NavbarDefaultClass._KNavBarShowLargeTitleThreshold;
-    _PersistentNavigationBar persistentNavigationBar = new _PersistentNavigationBar(components: Components, padding: Padding, middleVisible: AlwaysShowMiddle ? null : !showLargeTitle);
-    Widget navBar = NavbarDefaultClass._WrapWithBackground(border: Border, backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(BackgroundColor, context), brightness: Brightness, child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, child: new Stack(fit: StackFit.Expand, children: new List<Widget>() { new Positioned(top: PersistentHeight, left: 0.0, right: 0.0, bottom: 0.0, child: new ClipRect(child: new OverflowBox(minHeight: 0.0, maxHeight: Dart:coreDefaultClass.Double.Infinity, alignment: AlignmentDefaultClass.AlignmentDirectional.BottomStart, child: new Padding(padding: EdgeInsetsDirectional.Only(start: NavbarDefaultClass._KNavBarEdgePadding, bottom: 8.0), child: new SafeArea(top: false, bottom: false, child: new AnimatedOpacity(opacity: showLargeTitle ? 1.0 : 0.0, duration: NavbarDefaultClass._KNavBarTitleFadeDuration, child: new Semantics(header: true, child: new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavLargeTitleTextStyle, maxLines: 1, overflow: TextOverflow.Ellipsis, child: Components.LargeTitle)))))))), new Positioned(left: 0.0, right: 0.0, top: 0.0, child: persistentNavigationBar)})));
-if (!TransitionBetweenRoutes || !NavbarDefaultClass._IsTransitionable(context))
-{
-    return navBar;
-}
-
-return new Hero(tag: HeroTag == NavbarDefaultClass._DefaultHeroTag ? new _HeroTag(NavigatorDefaultClass.Navigator.Of(context)) : HeroTag, createRectTween: NavbarDefaultClass._LinearTranslateWithLargestRectSizeTween, flightShuttleBuilder: NavbarDefaultClass._NavBarHeroFlightShuttleBuilder, placeholderBuilder: NavbarDefaultClass._NavBarHeroLaunchPadBuilder, transitionOnUserGestures: true, child: new _TransitionableNavigationBar(componentsKeys: Keys, backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(BackgroundColor, context), backButtonTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavActionTextStyle, titleTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavTitleTextStyle, largeTitleTextStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavLargeTitleTextStyle, border: Border, hasUserMiddle: UserMiddle != null, largeExpanded: showLargeTitle, child: navBar));
+return new Hero(tag:HeroTag==NavbarDefaultClass._DefaultHeroTag?new _HeroTag(NavigatorDefaultClass.Navigator.Of(context)) :HeroTag, createRectTween:NavbarDefaultClass._LinearTranslateWithLargestRectSizeTween, flightShuttleBuilder:NavbarDefaultClass._NavBarHeroFlightShuttleBuilder, placeholderBuilder:NavbarDefaultClass._NavBarHeroLaunchPadBuilder, transitionOnUserGestures:true , child:new _TransitionableNavigationBar(componentsKeys:Keys, backgroundColor:ColorsDefaultClass.CupertinoDynamicColor.Resolve(BackgroundColor, context), backButtonTextStyle:ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavActionTextStyle, titleTextStyle:ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavTitleTextStyle, largeTitleTextStyle:ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavLargeTitleTextStyle, border:Border, hasUserMiddle:UserMiddle!=null , largeExpanded:showLargeTitle, child:navBar));
 }
 
 
@@ -707,47 +746,50 @@ public class _PersistentNavigationBar : FlutterSDK.Widgets.Framework.StatelessWi
     #region constructors
     public _PersistentNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents components = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), bool middleVisible = default(bool))
     : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents Components { get; set; }
-public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
-public virtual bool MiddleVisible { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    Widget middle = Components.Middle;
-    if (middle != null)
     {
-        middle = new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavTitleTextStyle, child: new Semantics(header: true, child: middle));
-        middle = MiddleVisible == null ? middle : new AnimatedOpacity(opacity: MiddleVisible ? 1.0 : 0.0, duration: NavbarDefaultClass._KNavBarTitleFadeDuration, child: middle);
+        this.Components = components;
+        this.Padding = padding;
+        this.MiddleVisible = middleVisible;
+    }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponents Components { get; set; }
+    public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Padding { get; set; }
+    public virtual bool MiddleVisible { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        Widget middle = Components.Middle;
+        if (middle != null)
+        {
+            middle = new DefaultTextStyle(style: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavTitleTextStyle, child: new Semantics(header: true, child: middle));
+            middle = MiddleVisible == null ? middle : new AnimatedOpacity(opacity: MiddleVisible ? 1.0 : 0.0, duration: NavbarDefaultClass._KNavBarTitleFadeDuration, child: middle);
+        }
+
+        Widget leading = Components.Leading;
+        Widget backChevron = Components.BackChevron;
+        Widget backLabel = Components.BackLabel;
+        if (leading == null && backChevron != null && backLabel != null)
+        {
+            leading = CupertinoNavigationBarBackButton._Assemble(backChevron, backLabel);
+        }
+
+        Widget paddedToolbar = new NavigationToolbar(leading: leading, middle: middle, trailing: Components.Trailing, centerMiddle: true, middleSpacing: 6.0);
+        if (Padding != null)
+        {
+            paddedToolbar = new Padding(padding: EdgeInsets.Only(top: Padding.Top, bottom: Padding.Bottom), child: paddedToolbar);
+        }
+
+        return new SizedBox(height: NavbarDefaultClass._KNavBarPersistentHeight + MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top, child: new SafeArea(bottom: false, child: paddedToolbar));
     }
 
-    Widget leading = Components.Leading;
-    Widget backChevron = Components.BackChevron;
-    Widget backLabel = Components.BackLabel;
-    if (leading == null && backChevron != null && backLabel != null)
-    {
-        leading = CupertinoNavigationBarBackButton._Assemble(backChevron, backLabel);
-    }
-
-    Widget paddedToolbar = new NavigationToolbar(leading: leading, middle: middle, trailing: Components.Trailing, centerMiddle: true, middleSpacing: 6.0);
-    if (Padding != null)
-    {
-        paddedToolbar = new Padding(padding: EdgeInsets.Only(top: Padding.Top, bottom: Padding.Bottom), child: paddedToolbar);
-    }
-
-    return new SizedBox(height: NavbarDefaultClass._KNavBarPersistentHeight + MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top, child: new SafeArea(bottom: false, child: paddedToolbar));
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -756,22 +798,23 @@ public class _NavigationBarStaticComponentsKeys
     #region constructors
     public _NavigationBarStaticComponentsKeys()
     : base()
+    {
 
-}
-#endregion
+    }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> NavBarBoxKey { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> LeadingKey { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> BackChevronKey { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> BackLabelKey { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> MiddleKey { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> TrailingKey { get; set; }
-public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> LargeTitleKey { get; set; }
-#endregion
+    #region fields
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> NavBarBoxKey { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> LeadingKey { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> BackChevronKey { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> BackLabelKey { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> MiddleKey { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> TrailingKey { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> LargeTitleKey { get; set; }
+    #endregion
 
-#region methods
-#endregion
+    #region methods
+    #endregion
 }
 
 
@@ -780,135 +823,136 @@ public class _NavigationBarStaticComponents
     #region constructors
     public _NavigationBarStaticComponents(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys keys = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = default(bool), bool automaticallyImplyTitle = default(bool), string previousPageTitle = default(string), FlutterSDK.Widgets.Framework.Widget userMiddle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget userTrailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget userLargeTitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional), bool large = default(bool))
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Leading { get; set; }
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree BackChevron { get; set; }
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree BackLabel { get; set; }
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Middle { get; set; }
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Trailing { get; set; }
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree LargeTitle { get; set; }
-#endregion
-
-#region methods
-
-private FlutterSDK.Widgets.Framework.Widget _DerivedTitle(bool automaticallyImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> currentRoute = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
-{
-    if (automaticallyImplyTitle && currentRoute is CupertinoPageRoute && currentRoute.Title != null)
     {
-        return new Text(((CupertinoPageRoute)currentRoute).Title);
+
     }
+    #endregion
 
-    return null;
-}
+    #region fields
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Leading { get; set; }
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree BackChevron { get; set; }
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree BackLabel { get; set; }
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Middle { get; set; }
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree Trailing { get; set; }
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree LargeTitle { get; set; }
+    #endregion
 
+    #region methods
 
-
-
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateLeading(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> leadingKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), bool automaticallyImplyLeading = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional))
-{
-    Widget leadingContent = default(Widget);
-    if (userLeading != null)
+    private FlutterSDK.Widgets.Framework.Widget _DerivedTitle(bool automaticallyImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> currentRoute = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
     {
-        leadingContent = userLeading;
-    }
-    else if (automaticallyImplyLeading && route is PageRoute && route.CanPop && route.FullscreenDialog)
-    {
-        leadingContent = new CupertinoButton(child: new Text("Close"), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: () =>
+        if (automaticallyImplyTitle && currentRoute is CupertinoPageRoute && currentRoute.Title != null)
         {
-            ((PageRoute)route).Navigator.MaybePop();
+            return new Text(((CupertinoPageRoute)currentRoute).Title);
         }
-        );
-    }
 
-    if (leadingContent == null)
-    {
         return null;
     }
 
-    return new KeyedSubtree(key: leadingKey, child: new Padding(padding: EdgeInsetsDirectional.Only(start: padding?.Start ?? NavbarDefaultClass._KNavBarEdgePadding), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: 32.0), child: leadingContent)));
-}
 
 
 
-
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateBackChevron(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> backChevronKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), bool automaticallyImplyLeading = default(bool))
-{
-    if (userLeading != null || !automaticallyImplyLeading || route == null || !route.CanPop || (route is PageRoute && route.FullscreenDialog))
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateLeading(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> leadingKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), bool automaticallyImplyLeading = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional))
     {
-        return null;
+        Widget leadingContent = default(Widget);
+        if (userLeading != null)
+        {
+            leadingContent = userLeading;
+        }
+        else if (automaticallyImplyLeading && route is PageRoute && route.CanPop && route.FullscreenDialog)
+        {
+            leadingContent = new CupertinoButton(child: new Text("Close"), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: () =>
+            {
+                ((PageRoute)route).Navigator.MaybePop();
+            }
+            );
+        }
+
+        if (leadingContent == null)
+        {
+            return null;
+        }
+
+        return new KeyedSubtree(key: leadingKey, child: new Padding(padding: EdgeInsetsDirectional.Only(start: padding?.Start ?? NavbarDefaultClass._KNavBarEdgePadding), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: 32.0), child: leadingContent)));
     }
 
-    return new KeyedSubtree(key: backChevronKey, child: new _BackChevron());
-}
 
 
 
-
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateBackLabel(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> backLabelKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), bool automaticallyImplyLeading = default(bool), string previousPageTitle = default(string))
-{
-    if (userLeading != null || !automaticallyImplyLeading || route == null || !route.CanPop || (route is PageRoute && route.FullscreenDialog))
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateBackChevron(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> backChevronKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), bool automaticallyImplyLeading = default(bool))
     {
-        return null;
+        if (userLeading != null || !automaticallyImplyLeading || route == null || !route.CanPop || (route is PageRoute && route.FullscreenDialog))
+        {
+            return null;
+        }
+
+        return new KeyedSubtree(key: backChevronKey, child: new _BackChevron());
     }
 
-    return new KeyedSubtree(key: backLabelKey, child: new _BackLabel(specifiedPreviousTitle: previousPageTitle, route: route));
-}
 
 
 
-
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateMiddle(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> middleKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userMiddle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget userLargeTitle = default(FlutterSDK.Widgets.Framework.Widget), bool large = default(bool), bool automaticallyImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
-{
-    Widget middleContent = userMiddle;
-    if (large)
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateBackLabel(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> backLabelKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLeading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>), bool automaticallyImplyLeading = default(bool), string previousPageTitle = default(string))
     {
-        middleContent = (middleContent == null ? userLargeTitle : middleContent);
+        if (userLeading != null || !automaticallyImplyLeading || route == null || !route.CanPop || (route is PageRoute && route.FullscreenDialog))
+        {
+            return null;
+        }
+
+        return new KeyedSubtree(key: backLabelKey, child: new _BackLabel(specifiedPreviousTitle: previousPageTitle, route: route));
     }
 
-    middleContent = (middleContent == null ? _DerivedTitle(automaticallyImplyTitle: automaticallyImplyTitle, currentRoute: route) : middleContent);
-    if (middleContent == null)
+
+
+
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateMiddle(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> middleKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userMiddle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget userLargeTitle = default(FlutterSDK.Widgets.Framework.Widget), bool large = default(bool), bool automaticallyImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
     {
-        return null;
+        Widget middleContent = userMiddle;
+        if (large)
+        {
+            middleContent = (middleContent == null ? userLargeTitle : middleContent);
+        }
+
+        middleContent = (middleContent == null ? _DerivedTitle(automaticallyImplyTitle: automaticallyImplyTitle, currentRoute: route) : middleContent);
+        if (middleContent == null)
+        {
+            return null;
+        }
+
+        return new KeyedSubtree(key: middleKey, child: middleContent);
     }
 
-    return new KeyedSubtree(key: middleKey, child: middleContent);
-}
 
 
 
-
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateTrailing(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> trailingKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userTrailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional))
-{
-    if (userTrailing == null)
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateTrailing(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> trailingKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userTrailing = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional))
     {
-        return null;
+        if (userTrailing == null)
+        {
+            return null;
+        }
+
+        return new KeyedSubtree(key: trailingKey, child: new Padding(padding: EdgeInsetsDirectional.Only(end: padding?.End ?? NavbarDefaultClass._KNavBarEdgePadding), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: 32.0), child: userTrailing)));
     }
 
-    return new KeyedSubtree(key: trailingKey, child: new Padding(padding: EdgeInsetsDirectional.Only(end: padding?.End ?? NavbarDefaultClass._KNavBarEdgePadding), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: 32.0), child: userTrailing)));
-}
 
 
 
-
-public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateLargeTitle(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> largeTitleKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLargeTitle = default(FlutterSDK.Widgets.Framework.Widget), bool large = default(bool), bool automaticImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
-{
-    if (!large)
+    public virtual FlutterSDK.Widgets.Basic.KeyedSubtree CreateLargeTitle(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> largeTitleKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget userLargeTitle = default(FlutterSDK.Widgets.Framework.Widget), bool large = default(bool), bool automaticImplyTitle = default(bool), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
     {
-        return null;
+        if (!large)
+        {
+            return null;
+        }
+
+        Widget largeTitleContent = userLargeTitle ?? _DerivedTitle(automaticallyImplyTitle: automaticImplyTitle, currentRoute: route);
+
+        return new KeyedSubtree(key: largeTitleKey, child: largeTitleContent);
     }
 
-    Widget largeTitleContent = userLargeTitle ?? _DerivedTitle(automaticallyImplyTitle: automaticImplyTitle, currentRoute: route);
-
-    return new KeyedSubtree(key: largeTitleKey, child: largeTitleContent);
-}
 
 
-
-#endregion
+    #endregion
 }
 
 
@@ -932,55 +976,60 @@ public class CupertinoNavigationBarBackButton : FlutterSDK.Widgets.Framework.Sta
     #region constructors
     public CupertinoNavigationBarBackButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string previousPageTitle = default(string), VoidCallback onPressed = default(VoidCallback))
     : base(key: key)
-
-}
-internal static CupertinoNavigationBarBackButton _Assemble(FlutterSDK.Widgets.Framework.Widget _backChevron, FlutterSDK.Widgets.Framework.Widget _backLabel)
-
-}
-#endregion
-
-#region fields
-public virtual FlutterBinding.UI.Color Color { get; set; }
-public virtual string PreviousPageTitle { get; set; }
-public virtual VoidCallback OnPressed { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.Widget _BackChevron { get; set; }
-internal virtual FlutterSDK.Widgets.Framework.Widget _BackLabel { get; set; }
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    ModalRoute<object> currentRoute = RoutesDefaultClass.ModalRoute.Of(context);
-    if (OnPressed == null)
     {
-
+        this.Color = color;
+        this.PreviousPageTitle = previousPageTitle;
+        this.OnPressed = onPressed;
     }
-
-    TextStyle actionTextStyle = ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavActionTextStyle;
-    if (Color != null)
+    internal static CupertinoNavigationBarBackButton _Assemble(FlutterSDK.Widgets.Framework.Widget _backChevron, FlutterSDK.Widgets.Framework.Widget _backLabel)
     {
-        actionTextStyle = actionTextStyle.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Color, context));
+        var instance = new CupertinoNavigationBarBackButton(); instance._BackChevron = _backChevron;
+        instance._BackLabel = _backLabel;
     }
+    #endregion
 
-    return new CupertinoButton(child: new Semantics(container: true, excludeSemantics: true, label: "Back", button: true, child: new DefaultTextStyle(style: actionTextStyle, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: NavbarDefaultClass._KNavBarBackButtonTapWidth), child: new Row(mainAxisSize: MainAxisSize.Min, mainAxisAlignment: MainAxisAlignment.Start, children: new List<Widget>() { new Padding(padding: EdgeInsetsDirectional.Only(start: 8.0)), _BackChevron ?? new _BackChevron(), new Padding(padding: EdgeInsetsDirectional.Only(start: 6.0)), new Flexible(child: _BackLabel ?? new _BackLabel(specifiedPreviousTitle: PreviousPageTitle, route: currentRoute)) })))), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: () =>
+    #region fields
+    public virtual FlutterBinding.UI.Color Color { get; set; }
+    public virtual string PreviousPageTitle { get; set; }
+    public virtual VoidCallback OnPressed { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.Widget _BackChevron { get; set; }
+    internal virtual FlutterSDK.Widgets.Framework.Widget _BackLabel { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        if (OnPressed != null)
+        ModalRoute<object> currentRoute = RoutesDefaultClass.ModalRoute.Of(context);
+        if (OnPressed == null)
         {
-            OnPressed();
-        }
-        else
-        {
-            NavigatorDefaultClass.Navigator.MaybePop(context);
+
         }
 
+        TextStyle actionTextStyle = ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.NavActionTextStyle;
+        if (Color != null)
+        {
+            actionTextStyle = actionTextStyle.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Color, context));
+        }
+
+        return new CupertinoButton(child: new Semantics(container: true, excludeSemantics: true, label: "Back", button: true, child: new DefaultTextStyle(style: actionTextStyle, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: NavbarDefaultClass._KNavBarBackButtonTapWidth), child: new Row(mainAxisSize: MainAxisSize.Min, mainAxisAlignment: MainAxisAlignment.Start, children: new List<Widget>() { new Padding(padding: EdgeInsetsDirectional.Only(start: 8.0)), _BackChevron ?? new _BackChevron(), new Padding(padding: EdgeInsetsDirectional.Only(start: 6.0)), new Flexible(child: _BackLabel ?? new _BackLabel(specifiedPreviousTitle: PreviousPageTitle, route: currentRoute)) })))), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: () =>
+        {
+            if (OnPressed != null)
+            {
+                OnPressed();
+            }
+            else
+            {
+                NavigatorDefaultClass.Navigator.MaybePop(context);
+            }
+
+        }
+        );
     }
-    );
-}
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -989,33 +1038,34 @@ public class _BackChevron : FlutterSDK.Widgets.Framework.StatelessWidget
     #region constructors
     public _BackChevron(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
     : base(key: key)
-
-}
-#endregion
-
-#region fields
-#endregion
-
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
-    TextStyle textStyle = TextDefaultClass.DefaultTextStyle.Of(context).Style;
-    Widget iconWidget = Text.Rich(new TextSpan(text: string.FromCharCode(IconsDefaultClass.CupertinoIcons.Back.CodePoint), style: new TextStyle(inherit: false, color: textStyle.Color, fontSize: 34.0, fontFamily: IconsDefaultClass.CupertinoIcons.Back.FontFamily, package: IconsDefaultClass.CupertinoIcons.Back.FontPackage)));
-    switch (textDirection)
     {
-        case TextDirection.Rtl:
-            iconWidget = new Transform(transform: Matrix4.Identity();
-            Matrix4.Identity().Scale(-1.0, 1.0, 1.0), alignment: AlignmentDefaultClass.Alignment.Center, transformHitTests: false , child: iconWidget); break;
-        case TextDirection.Ltr: break;
+
     }
-    return iconWidget;
-}
+    #endregion
+
+    #region fields
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
+        TextStyle textStyle = TextDefaultClass.DefaultTextStyle.Of(context).Style;
+        Widget iconWidget = Text.Rich(new TextSpan(text: string.FromCharCode(IconsDefaultClass.CupertinoIcons.Back.CodePoint), style: new TextStyle(inherit: false, color: textStyle.Color, fontSize: 34.0, fontFamily: IconsDefaultClass.CupertinoIcons.Back.FontFamily, package: IconsDefaultClass.CupertinoIcons.Back.FontPackage)));
+        switch (textDirection)
+        {
+            case TextDirection.Rtl:
+                iconWidget = new Transform(transform: Matrix4.Identity();
+                Matrix4.Identity().Scale(-1.0, 1.0, 1.0), alignment: AlignmentDefaultClass.Alignment.Center, transformHitTests: false , child: iconWidget); break;
+            case TextDirection.Ltr: break;
+        }
+        return iconWidget;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1028,57 +1078,59 @@ public class _BackLabel : FlutterSDK.Widgets.Framework.StatelessWidget
     #region constructors
     public _BackLabel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string specifiedPreviousTitle = default(string), FlutterSDK.Widgets.Routes.ModalRoute<object> route = default(FlutterSDK.Widgets.Routes.ModalRoute<object>))
     : base(key: key)
-
-}
-#endregion
-
-#region fields
-public virtual string SpecifiedPreviousTitle { get; set; }
-public virtual FlutterSDK.Widgets.Routes.ModalRoute<object> Route { get; set; }
-#endregion
-
-#region methods
-
-private FlutterSDK.Widgets.Framework.Widget _BuildPreviousTitleWidget(FlutterSDK.Widgets.Framework.BuildContext context, string previousTitle, FlutterSDK.Widgets.Framework.Widget child)
-{
-    if (previousTitle == null)
     {
-        return new SizedBox(height: 0.0, width: 0.0);
+        this.SpecifiedPreviousTitle = specifiedPreviousTitle;
+        this.Route = route;
+    }
+    #endregion
+
+    #region fields
+    public virtual string SpecifiedPreviousTitle { get; set; }
+    public virtual FlutterSDK.Widgets.Routes.ModalRoute<object> Route { get; set; }
+    #endregion
+
+    #region methods
+
+    private FlutterSDK.Widgets.Framework.Widget _BuildPreviousTitleWidget(FlutterSDK.Widgets.Framework.BuildContext context, string previousTitle, FlutterSDK.Widgets.Framework.Widget child)
+    {
+        if (previousTitle == null)
+        {
+            return new SizedBox(height: 0.0, width: 0.0);
+        }
+
+        Text textWidget = new Text(previousTitle, maxLines: 1, overflow: TextOverflow.Ellipsis);
+        if (previousTitle.Length > 12)
+        {
+            textWidget = new Text("Back");
+        }
+
+        return new Align(alignment: AlignmentDefaultClass.AlignmentDirectional.CenterStart, widthFactor: 1.0, child: textWidget);
     }
 
-    Text textWidget = new Text(previousTitle, maxLines: 1, overflow: TextOverflow.Ellipsis);
-    if (previousTitle.Length > 12)
+
+
+
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
     {
-        textWidget = new Text("Back");
+        if (SpecifiedPreviousTitle != null)
+        {
+            return _BuildPreviousTitleWidget(context, SpecifiedPreviousTitle, null);
+        }
+        else if (Route is CupertinoPageRoute<object> && !Route.IsFirst)
+        {
+            CupertinoPageRoute<object> cupertinoRoute = ((CupertinoPageRoute<dynamic>)Route) as CupertinoPageRoute<object>;
+            return new ValueListenableBuilder<string>(valueListenable: cupertinoRoute.PreviousTitle, builder: _BuildPreviousTitleWidget);
+        }
+        else
+        {
+            return new SizedBox(height: 0.0, width: 0.0);
+        }
+
     }
 
-    return new Align(alignment: AlignmentDefaultClass.AlignmentDirectional.CenterStart, widthFactor: 1.0, child: textWidget);
-}
 
 
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    if (SpecifiedPreviousTitle != null)
-    {
-        return _BuildPreviousTitleWidget(context, SpecifiedPreviousTitle, null);
-    }
-    else if (Route is CupertinoPageRoute<object> && !Route.IsFirst)
-    {
-        CupertinoPageRoute<object> cupertinoRoute = ((CupertinoPageRoute<dynamic>)Route) as CupertinoPageRoute<object>;
-        return new ValueListenableBuilder<string>(valueListenable: cupertinoRoute.PreviousTitle, builder: _BuildPreviousTitleWidget);
-    }
-    else
-    {
-        return new SizedBox(height: 0.0, width: 0.0);
-    }
-
-}
-
-
-
-#endregion
+    #endregion
 }
 
 
@@ -1097,34 +1149,43 @@ public class _TransitionableNavigationBar : FlutterSDK.Widgets.Framework.Statele
     #region constructors
     public _TransitionableNavigationBar(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys componentsKeys = default(FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle backButtonTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle largeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), bool hasUserMiddle = default(bool), bool largeExpanded = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
     : base(key: componentsKeys.NavBarBoxKey)
+    {
+        this.ComponentsKeys = componentsKeys;
+        this.BackgroundColor = backgroundColor;
+        this.BackButtonTextStyle = backButtonTextStyle;
+        this.TitleTextStyle = titleTextStyle;
+        this.LargeTitleTextStyle = largeTitleTextStyle;
+        this.Border = border;
+        this.HasUserMiddle = hasUserMiddle;
+        this.LargeExpanded = largeExpanded;
+        this.Child = child;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys ComponentsKeys { get; set; }
+    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle BackButtonTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle LargeTitleTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
+    public virtual bool HasUserMiddle { get; set; }
+    public virtual bool LargeExpanded { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+    public virtual FlutterSDK.Rendering.Box.RenderBox RenderBox { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys ComponentsKeys { get; set; }
-public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle BackButtonTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle LargeTitleTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
-public virtual bool HasUserMiddle { get; set; }
-public virtual bool LargeExpanded { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-public virtual FlutterSDK.Rendering.Box.RenderBox RenderBox { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
+    #region methods
 
-#region methods
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
 
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    return Child;
-}
+        return Child;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 
@@ -1150,28 +1211,32 @@ public class _NavigationBarTransition : FlutterSDK.Widgets.Framework.StatelessWi
     #region constructors
     public _NavigationBarTransition(FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar topNavBar = default(FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar), FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar bottomNavBar = default(FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar))
     : base()
+    {
+        this.Animation = animation;
+        this.TopNavBar = topNavBar;
+        this.BottomNavBar = bottomNavBar;
+    }
+    #endregion
 
-}
-#endregion
+    #region fields
+    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+    public virtual FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar TopNavBar { get; set; }
+    public virtual FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar BottomNavBar { get; set; }
+    public virtual FlutterSDK.Animation.Tween.Tween<double> HeightTween { get; set; }
+    public virtual FlutterSDK.Animation.Tween.ColorTween BackgroundTween { get; set; }
+    public virtual FlutterSDK.Widgets.Implicitanimations.BorderTween BorderTween { get; set; }
+    #endregion
 
-#region fields
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-public virtual FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar TopNavBar { get; set; }
-public virtual FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar BottomNavBar { get; set; }
-public virtual FlutterSDK.Animation.Tween.Tween<double> HeightTween { get; set; }
-public virtual FlutterSDK.Animation.Tween.ColorTween BackgroundTween { get; set; }
-public virtual FlutterSDK.Widgets.Implicitanimations.BorderTween BorderTween { get; set; }
-#endregion
+    #region methods
 
-#region methods
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    _NavigationBarComponentsTransition componentsTransition = new _NavigationBarComponentsTransition(animation: Animation, bottomNavBar: BottomNavBar, topNavBar: TopNavBar, directionality: BasicDefaultClass.Directionality.Of(context));
-    List<Widget> children = new List<Widget>(){new AnimatedBuilder(animation:Animation, builder:(BuildContext context, Widget child) => {
+    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+    {
+        _NavigationBarComponentsTransition componentsTransition = new _NavigationBarComponentsTransition(animation: Animation, bottomNavBar: BottomNavBar, topNavBar: TopNavBar, directionality: BasicDefaultClass.Directionality.Of(context));
+        List<Widget> children = new List<Widget>(){new AnimatedBuilder(animation:Animation, builder:(BuildContext context, Widget child) => {
 return NavbarDefaultClass._WrapWithBackground(updateSystemUiOverlay:false , backgroundColor:BackgroundTween.Evaluate(Animation), border:BorderTween.Evaluate(Animation), child:new SizedBox(height:HeightTween.Evaluate(Animation), width:Dart:coreDefaultClass.Double.Infinity));
-}
-), componentsTransition.BottomBackChevron, componentsTransition.BottomBackLabel, componentsTransition.BottomLeading, componentsTransition.BottomMiddle, componentsTransition.BottomLargeTitle, componentsTransition.BottomTrailing, componentsTransition.TopLeading, componentsTransition.TopBackChevron, componentsTransition.TopBackLabel, componentsTransition.TopMiddle, componentsTransition.TopLargeTitle, componentsTransition.TopTrailing};
+    }
+), componentsTransition.BottomBackChevron, componentsTransition.BottomBackLabel, componentsTransition.BottomLeading, componentsTransition.BottomMiddle, componentsTransition.BottomLargeTitle, componentsTransition.BottomTrailing, componentsTransition.TopLeading, componentsTransition.TopBackChevron, componentsTransition.TopBackLabel, componentsTransition.TopMiddle, componentsTransition.TopLargeTitle, componentsTransition.TopTrailing
+};
 children.RemoveWhere((Widget child) => =>child == null);
 return new SizedBox(height: Math.Dart:mathDefaultClass.Max(HeightTween.Begin, HeightTween.End) + MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Top, width: Dart:coreDefaultClass.Double.Infinity, child: new Stack(children: children));
 }
@@ -1210,89 +1275,90 @@ public class _NavigationBarComponentsTransition
     #region constructors
     public _NavigationBarComponentsTransition(FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar bottomNavBar = default(FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar), FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar topNavBar = default(FlutterSDK.Cupertino.Navbar._TransitionableNavigationBar), TextDirection directionality = default(TextDirection))
     : base()
-
-}
-#endregion
-
-#region fields
-public virtual FlutterSDK.Animation.Tween.Animatable<double> FadeOut { get; set; }
-public virtual FlutterSDK.Animation.Tween.Animatable<double> FadeIn { get; set; }
-public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys BottomComponents { get; set; }
-public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys TopComponents { get; set; }
-public virtual FlutterSDK.Rendering.Box.RenderBox BottomNavBarBox { get; set; }
-public virtual FlutterSDK.Rendering.Box.RenderBox TopNavBarBox { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle BottomBackButtonTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TopBackButtonTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle BottomTitleTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TopTitleTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle BottomLargeTitleTextStyle { get; set; }
-public virtual FlutterSDK.Painting.Textstyle.TextStyle TopLargeTitleTextStyle { get; set; }
-public virtual bool BottomHasUserMiddle { get; set; }
-public virtual bool TopHasUserMiddle { get; set; }
-public virtual bool BottomLargeExpanded { get; set; }
-public virtual bool TopLargeExpanded { get; set; }
-public virtual FlutterBinding.UI.Rect TransitionBox { get; set; }
-public virtual double ForwardDirection { get; set; }
-public virtual FlutterSDK.Widgets.Framework.Widget BottomLeading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget BottomBackChevron { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget BottomBackLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget BottomMiddle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget BottomLargeTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget BottomTrailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget TopLeading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget TopBackChevron { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget TopBackLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget TopMiddle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget TopTrailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-public virtual FlutterSDK.Widgets.Framework.Widget TopLargeTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-#endregion
-
-#region methods
-
-public virtual FlutterSDK.Rendering.Stack.RelativeRect PositionInTransitionBox(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key, FlutterSDK.Rendering.Box.RenderBox from = default(FlutterSDK.Rendering.Box.RenderBox))
-{
-    RenderBox componentBox = key.CurrentContext.FindRenderObject() as RenderBox;
-
-    return RelativeRect.FromRect(componentBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero, ancestor: from) & componentBox.Size, TransitionBox);
-}
-
-
-
-
-public virtual FlutterSDK.Widgets.Transitions.RelativeRectTween SlideFromLeadingEdge(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> fromKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Rendering.Box.RenderBox fromNavBarBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> toKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Rendering.Box.RenderBox toNavBarBox = default(FlutterSDK.Rendering.Box.RenderBox))
-{
-    RelativeRect fromRect = PositionInTransitionBox(fromKey, from: fromNavBarBox);
-    RenderBox fromBox = fromKey.CurrentContext.FindRenderObject() as RenderBox;
-    RenderBox toBox = toKey.CurrentContext.FindRenderObject() as RenderBox;
-    Rect toRect = toBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero, ancestor: toNavBarBox).Translate(0.0, -fromBox.Size.Height / 2 + toBox.Size.Height / 2) & fromBox.Size;
-    if (ForwardDirection < 0)
     {
-        toRect = toRect.Translate(-fromBox.Size.Width + toBox.Size.Width, 0.0);
+        this.Animation = animation;
+    }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Animation.Tween.Animatable<double> FadeOut { get; set; }
+    public virtual FlutterSDK.Animation.Tween.Animatable<double> FadeIn { get; set; }
+    public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
+    public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys BottomComponents { get; set; }
+    public virtual FlutterSDK.Cupertino.Navbar._NavigationBarStaticComponentsKeys TopComponents { get; set; }
+    public virtual FlutterSDK.Rendering.Box.RenderBox BottomNavBarBox { get; set; }
+    public virtual FlutterSDK.Rendering.Box.RenderBox TopNavBarBox { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle BottomBackButtonTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TopBackButtonTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle BottomTitleTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TopTitleTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle BottomLargeTitleTextStyle { get; set; }
+    public virtual FlutterSDK.Painting.Textstyle.TextStyle TopLargeTitleTextStyle { get; set; }
+    public virtual bool BottomHasUserMiddle { get; set; }
+    public virtual bool TopHasUserMiddle { get; set; }
+    public virtual bool BottomLargeExpanded { get; set; }
+    public virtual bool TopLargeExpanded { get; set; }
+    public virtual FlutterBinding.UI.Rect TransitionBox { get; set; }
+    public virtual double ForwardDirection { get; set; }
+    public virtual FlutterSDK.Widgets.Framework.Widget BottomLeading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget BottomBackChevron { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget BottomBackLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget BottomMiddle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget BottomLargeTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget BottomTrailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget TopLeading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget TopBackChevron { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget TopBackLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget TopMiddle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget TopTrailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    public virtual FlutterSDK.Widgets.Framework.Widget TopLargeTitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public virtual FlutterSDK.Rendering.Stack.RelativeRect PositionInTransitionBox(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key, FlutterSDK.Rendering.Box.RenderBox from = default(FlutterSDK.Rendering.Box.RenderBox))
+    {
+        RenderBox componentBox = key.CurrentContext.FindRenderObject() as RenderBox;
+
+        return RelativeRect.FromRect(componentBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero, ancestor: from) & componentBox.Size, TransitionBox);
     }
 
-    return new RelativeRectTween(begin: fromRect, end: RelativeRect.FromRect(toRect, TransitionBox));
-}
+
+
+
+    public virtual FlutterSDK.Widgets.Transitions.RelativeRectTween SlideFromLeadingEdge(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> fromKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Rendering.Box.RenderBox fromNavBarBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> toKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Rendering.Box.RenderBox toNavBarBox = default(FlutterSDK.Rendering.Box.RenderBox))
+    {
+        RelativeRect fromRect = PositionInTransitionBox(fromKey, from: fromNavBarBox);
+        RenderBox fromBox = fromKey.CurrentContext.FindRenderObject() as RenderBox;
+        RenderBox toBox = toKey.CurrentContext.FindRenderObject() as RenderBox;
+        Rect toRect = toBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero, ancestor: toNavBarBox).Translate(0.0, -fromBox.Size.Height / 2 + toBox.Size.Height / 2) & fromBox.Size;
+        if (ForwardDirection < 0)
+        {
+            toRect = toRect.Translate(-fromBox.Size.Width + toBox.Size.Width, 0.0);
+        }
+
+        return new RelativeRectTween(begin: fromRect, end: RelativeRect.FromRect(toRect, TransitionBox));
+    }
 
 
 
 
-public virtual FlutterSDK.Animation.Animation.Animation<double> FadeInFrom(double t, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-{
-    return Animation.Drive(FadeIn.Chain(new CurveTween(curve: new Interval(t, 1.0, curve: curve))));
-}
+    public virtual FlutterSDK.Animation.Animation.Animation<double> FadeInFrom(double t, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+    {
+        return Animation.Drive(FadeIn.Chain(new CurveTween(curve: new Interval(t, 1.0, curve: curve))));
+    }
 
 
 
 
-public virtual FlutterSDK.Animation.Animation.Animation<double> FadeOutBy(double t, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-{
-    return Animation.Drive(FadeOut.Chain(new CurveTween(curve: new Interval(0.0, t, curve: curve))));
-}
+    public virtual FlutterSDK.Animation.Animation.Animation<double> FadeOutBy(double t, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+    {
+        return Animation.Drive(FadeOut.Chain(new CurveTween(curve: new Interval(0.0, t, curve: curve))));
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 }

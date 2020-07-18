@@ -447,188 +447,198 @@ namespace FlutterSDK.Painting.Decorationimage
         #region constructors
         public DecorationImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false)
         : base()
-    
-}
-    #endregion
+        {
+            this.Image = image;
+            this.OnError = onError;
+            this.ColorFilter = colorFilter;
+            this.Fit = fit;
+            this.Alignment = alignment;
+            this.CenterSlice = centerSlice;
+            this.Repeat = repeat;
+            this.MatchTextDirection = matchTextDirection;
+        }
+        #endregion
 
-    #region fields
-    public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
-    public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
-    public virtual ColorFilter ColorFilter { get; set; }
-    public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
-    public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-    public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
-    public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
-    public virtual bool MatchTextDirection { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        #region fields
+        public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
+        public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
+        public virtual ColorFilter ColorFilter { get; set; }
+        public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
+        public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
+        public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
+        public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
+        public virtual bool MatchTextDirection { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    #region methods
+        #region methods
+
+        /// <Summary>
+        /// Creates a [DecorationImagePainter] for this [DecorationImage].
+        ///
+        /// The `onChanged` argument must not be null. It will be called whenever the
+        /// image needs to be repainted, e.g. because it is loading incrementally or
+        /// because it is animated.
+        /// </Summary>
+        public virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter CreatePainter(VoidCallback onChanged)
+        {
+
+            return DecorationImagePainter._(this, onChanged);
+        }
+
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (other.GetType() != GetType()) return false;
+            return other is DecorationImage && other.Image == Image && other.ColorFilter == ColorFilter && other.Fit == Fit && other.Alignment == Alignment && other.CenterSlice == CenterSlice && other.Repeat == Repeat && other.MatchTextDirection == MatchTextDirection;
+        }
+
+
+
+
+        #endregion
+    }
+
 
     /// <Summary>
-    /// Creates a [DecorationImagePainter] for this [DecorationImage].
+    /// The painter for a [DecorationImage].
     ///
-    /// The `onChanged` argument must not be null. It will be called whenever the
-    /// image needs to be repainted, e.g. because it is loading incrementally or
-    /// because it is animated.
+    /// To obtain a painter, call [DecorationImage.createPainter].
+    ///
+    /// To paint, call [paint]. The `onChanged` callback passed to
+    /// [DecorationImage.createPainter] will be called if the image needs to paint
+    /// again (e.g. because it is animated or because it had not yet loaded the
+    /// first time the [paint] method was called).
+    ///
+    /// This object should be disposed using the [dispose] method when it is no
+    /// longer needed.
     /// </Summary>
-    public virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter CreatePainter(VoidCallback onChanged)
+    public class DecorationImagePainter
     {
+        #region constructors
+        internal DecorationImagePainter(FlutterSDK.Painting.Decorationimage.DecorationImage _details, VoidCallback _onChanged)
+        : base()
+        {
+            this._Details = _details;
+            this._OnChanged = _onChanged;
+        }
+        #endregion
 
-        return DecorationImagePainter._(this, onChanged);
+        #region fields
+        internal virtual FlutterSDK.Painting.Decorationimage.DecorationImage _Details { get; set; }
+        internal virtual VoidCallback _OnChanged { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
+        internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _Image { get; set; }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Draw the image onto the given canvas.
+        ///
+        /// The image is drawn at the position and size given by the `rect` argument.
+        ///
+        /// The image is clipped to the given `clipPath`, if any.
+        ///
+        /// The `configuration` object is used to resolve the image (e.g. to pick
+        /// resolution-specific assets), and to implement the
+        /// [DecorationImage.matchTextDirection] feature.
+        ///
+        /// If the image needs to be painted again, e.g. because it is animated or
+        /// because it had not yet been loaded the first time this method was called,
+        /// then the `onChanged` callback passed to [DecorationImage.createPainter]
+        /// will be called.
+        /// </Summary>
+        public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Path clipPath, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
+        {
+
+
+
+            bool flipHorizontally = false;
+            if (_Details.MatchTextDirection)
+            {
+
+                if (configuration.TextDirection == TextDirection.Rtl) flipHorizontally = true;
+            }
+
+            ImageStream newImageStream = _Details.Image.Resolve(configuration);
+            if (newImageStream.Key != _ImageStream?.Key)
+            {
+                ImageStreamListener listener = new ImageStreamListener(_HandleImage, onError: _Details.OnError);
+                _ImageStream?.RemoveListener(listener);
+                _ImageStream = newImageStream;
+                _ImageStream.AddListener(listener);
+            }
+
+            if (_Image == null) return;
+            if (clipPath != null)
+            {
+                canvas.Save();
+                canvas.ClipPath(clipPath);
+            }
+
+            DecorationimageDefaultClass.PaintImage(canvas: canvas, rect: rect, image: _Image.Image, scale: _Image.Scale, colorFilter: _Details.ColorFilter, fit: _Details.Fit, alignment: _Details.Alignment.Resolve(configuration.TextDirection), centerSlice: _Details.CenterSlice, repeat: _Details.Repeat, flipHorizontally: flipHorizontally, filterQuality: FilterQuality.Low);
+            if (clipPath != null) canvas.Restore();
+        }
+
+
+
+
+        private void _HandleImage(FlutterSDK.Painting.Imagestream.ImageInfo value, bool synchronousCall)
+        {
+            if (_Image == value) return;
+            _Image = value;
+
+            if (!synchronousCall) _OnChanged();
+        }
+
+
+
+
+        /// <Summary>
+        /// Releases the resources used by this painter.
+        ///
+        /// This should be called whenever the painter is no longer needed.
+        ///
+        /// After this method has been called, the object is no longer usable.
+        /// </Summary>
+        public virtual void Dispose()
+        {
+            _ImageStream?.RemoveListener(new ImageStreamListener(_HandleImage, onError: _Details.OnError));
+        }
+
+
+
+
+        #endregion
     }
 
-
-
-
-    public new bool Equals(@Object other)
-    {
-        if (Dart:coreDefaultClass.Identical(this, other))return true;
-        if (other.GetType() != GetType()) return false;
-        return other is DecorationImage && other.Image == Image && other.ColorFilter == ColorFilter && other.Fit == Fit && other.Alignment == Alignment && other.CenterSlice == CenterSlice && other.Repeat == Repeat && other.MatchTextDirection == MatchTextDirection;
-    }
-
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// The painter for a [DecorationImage].
-///
-/// To obtain a painter, call [DecorationImage.createPainter].
-///
-/// To paint, call [paint]. The `onChanged` callback passed to
-/// [DecorationImage.createPainter] will be called if the image needs to paint
-/// again (e.g. because it is animated or because it had not yet loaded the
-/// first time the [paint] method was called).
-///
-/// This object should be disposed using the [dispose] method when it is no
-/// longer needed.
-/// </Summary>
-public class DecorationImagePainter
-{
-    #region constructors
-    internal DecorationImagePainter(FlutterSDK.Painting.Decorationimage.DecorationImage _details, VoidCallback _onChanged)
-    : base()
-
-}
-#endregion
-
-#region fields
-internal virtual FlutterSDK.Painting.Decorationimage.DecorationImage _Details { get; set; }
-internal virtual VoidCallback _OnChanged { get; set; }
-internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
-internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _Image { get; set; }
-#endregion
-
-#region methods
-
-/// <Summary>
-/// Draw the image onto the given canvas.
-///
-/// The image is drawn at the position and size given by the `rect` argument.
-///
-/// The image is clipped to the given `clipPath`, if any.
-///
-/// The `configuration` object is used to resolve the image (e.g. to pick
-/// resolution-specific assets), and to implement the
-/// [DecorationImage.matchTextDirection] feature.
-///
-/// If the image needs to be painted again, e.g. because it is animated or
-/// because it had not yet been loaded the first time this method was called,
-/// then the `onChanged` callback passed to [DecorationImage.createPainter]
-/// will be called.
-/// </Summary>
-public virtual void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, Path clipPath, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
-{
-
-
-
-    bool flipHorizontally = false;
-    if (_Details.MatchTextDirection)
-    {
-
-        if (configuration.TextDirection == TextDirection.Rtl) flipHorizontally = true;
-    }
-
-    ImageStream newImageStream = _Details.Image.Resolve(configuration);
-    if (newImageStream.Key != _ImageStream?.Key)
-    {
-        ImageStreamListener listener = new ImageStreamListener(_HandleImage, onError: _Details.OnError);
-        _ImageStream?.RemoveListener(listener);
-        _ImageStream = newImageStream;
-        _ImageStream.AddListener(listener);
-    }
-
-    if (_Image == null) return;
-    if (clipPath != null)
-    {
-        canvas.Save();
-        canvas.ClipPath(clipPath);
-    }
-
-    DecorationimageDefaultClass.PaintImage(canvas: canvas, rect: rect, image: _Image.Image, scale: _Image.Scale, colorFilter: _Details.ColorFilter, fit: _Details.Fit, alignment: _Details.Alignment.Resolve(configuration.TextDirection), centerSlice: _Details.CenterSlice, repeat: _Details.Repeat, flipHorizontally: flipHorizontally, filterQuality: FilterQuality.Low);
-    if (clipPath != null) canvas.Restore();
-}
-
-
-
-
-private void _HandleImage(FlutterSDK.Painting.Imagestream.ImageInfo value, bool synchronousCall)
-{
-    if (_Image == value) return;
-    _Image = value;
-
-    if (!synchronousCall) _OnChanged();
-}
-
-
-
-
-/// <Summary>
-/// Releases the resources used by this painter.
-///
-/// This should be called whenever the painter is no longer needed.
-///
-/// After this method has been called, the object is no longer usable.
-/// </Summary>
-public virtual void Dispose()
-{
-    _ImageStream?.RemoveListener(new ImageStreamListener(_HandleImage, onError: _Details.OnError));
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// How to paint any portions of a box not covered by an image.
-/// </Summary>
-public enum ImageRepeat
-{
 
     /// <Summary>
-    /// Repeat the image in both the x and y directions until the box is filled.
+    /// How to paint any portions of a box not covered by an image.
     /// </Summary>
-    Repeat,
-    /// <Summary>
-    /// Repeat the image in the x direction until the box is filled horizontally.
-    /// </Summary>
-    RepeatX,
-    /// <Summary>
-    /// Repeat the image in the y direction until the box is filled vertically.
-    /// </Summary>
-    RepeatY,
-    /// <Summary>
-    /// Leave uncovered portions of the box transparent.
-    /// </Summary>
-    NoRepeat,
-}
+    public enum ImageRepeat
+    {
+
+        /// <Summary>
+        /// Repeat the image in both the x and y directions until the box is filled.
+        /// </Summary>
+        Repeat,
+        /// <Summary>
+        /// Repeat the image in the x direction until the box is filled horizontally.
+        /// </Summary>
+        RepeatX,
+        /// <Summary>
+        /// Repeat the image in the y direction until the box is filled vertically.
+        /// </Summary>
+        RepeatY,
+        /// <Summary>
+        /// Leave uncovered portions of the box transparent.
+        /// </Summary>
+        NoRepeat,
+    }
 
 }

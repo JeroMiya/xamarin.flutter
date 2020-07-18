@@ -445,50 +445,52 @@ namespace FlutterSDK.Widgets.Primaryscrollcontroller
         #region constructors
         public PrimaryScrollController(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
-    
-}
-    public static PrimaryScrollController None(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            this.Controller = controller;
+        }
+        public static PrimaryScrollController None(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        {
+            var instance = new PrimaryScrollController(key: key, child: child);
+        }
+        #endregion
 
-}
-#endregion
+        #region fields
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
+        #endregion
 
-#region fields
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
-#endregion
+        #region methods
 
-#region methods
-
-/// <Summary>
-/// Returns the [ScrollController] most closely associated with the given
-/// context.
-///
-/// Returns null if there is no [ScrollController] associated with the given
-/// context.
-/// </Summary>
-public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Of(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    PrimaryScrollController result = context.DependOnInheritedWidgetOfExactType();
-    return result?.Controller;
-}
-
-
-
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Primaryscrollcontroller.PrimaryScrollController oldWidget) => Controller != oldWidget.Controller;
-
-public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Controller != oldWidget.Controller;
+        /// <Summary>
+        /// Returns the [ScrollController] most closely associated with the given
+        /// context.
+        ///
+        /// Returns null if there is no [ScrollController] associated with the given
+        /// context.
+        /// </Summary>
+        public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Of(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            PrimaryScrollController result = context.DependOnInheritedWidgetOfExactType();
+            return result?.Controller;
+        }
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<ScrollController>("controller", Controller, ifNull: "no controller", showName: false));
-}
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Primaryscrollcontroller.PrimaryScrollController oldWidget) => Controller != oldWidget.Controller;
+
+        public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Controller != oldWidget.Controller;
 
 
 
-#endregion
-}
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<ScrollController>("controller", Controller, ifNull: "no controller", showName: false));
+        }
+
+
+
+        #endregion
+    }
 
 }

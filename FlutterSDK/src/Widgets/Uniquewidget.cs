@@ -471,22 +471,23 @@ namespace FlutterSDK.Widgets.Uniquewidget
         #region constructors
         public UniqueWidget(FlutterSDK.Widgets.Framework.GlobalKey<T> key = default(FlutterSDK.Widgets.Framework.GlobalKey<T>))
         : base(key: key)
-    
-}
-    #endregion
+        {
 
-    #region fields
-    public virtual T CurrentState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
+        }
+        #endregion
 
-    #region methods
+        #region fields
+        public virtual T CurrentState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
 
-    public new T CreateState()
-    {
-        return default(T);
+        #region methods
+
+        public new T CreateState()
+        {
+            return default(T);
+        }
+
+        #endregion
     }
-
-    #endregion
-}
 
 }
