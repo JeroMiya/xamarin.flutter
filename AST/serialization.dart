@@ -54,15 +54,15 @@ serialize(value, Serializer serializer, {bool primitiveOnly = false}) {
 
   for (Symbol symbol in _findGetters(classMirror)) {
     String name = MirrorSystem.getName(symbol);
-   
-      var field = instanceMirror.getField(symbol);
 
-      var valueForSymbol = field.reflectee;
-      try {
-        result[name] = serializer(valueForSymbol, primitiveOnly: primitiveOnly);
-      } catch (e) {
-        print('$name caused error ${e.toString}');
-      }
+    var field = instanceMirror.getField(symbol);
+
+    var valueForSymbol = field.reflectee;
+    try {
+      result[name] = serializer(valueForSymbol, primitiveOnly: primitiveOnly);
+    } catch (e) {
+      print('$name caused error ${e.toString}');
+    }
   }
 
   return result;
