@@ -223,7 +223,7 @@ class Methods {
       methodName = 'Then<E>';
 
     // Cheap Hack
-    if (returnTypeName == 'Future<Image>') returnTypeName = 'Future<SKImage>'; 
+    if (returnTypeName == 'Future<Image>') returnTypeName = 'Future<SKImage>';
 
     return "${returnTypeName} ${methodName}${typeParameter}$generics($additionalParameter${parameter})";
   }
@@ -287,7 +287,8 @@ class Methods {
       }
 
       // This is a workaround, the namespace should be added automatically
-      if (parameterType == 'List<Offset>') parameterType = 'List<FlutterBinding.UI.Offset>';
+      if (parameterType == 'List<Offset>')
+        parameterType = 'List<FlutterBinding.UI.Offset>';
 
       var parameterSignature = parameterType + " " + parameterName;
 

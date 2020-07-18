@@ -42,7 +42,7 @@ class Fields {
 
     if (fieldInSupertype != null) {
       return getBaseFieldInClass(fieldInSupertype);
-    } else if (element is FieldMember) {      
+    } else if (element is FieldMember) {
       return element.baseElement;
     } else
       return element;
@@ -55,7 +55,8 @@ class Fields {
     if (element.hasProtected == true) code.write("protected ");
     if (element.isPublic == true) code.write("public ");
     if (element.isPrivate == true) code.write("internal ");
-    if (element.hasOverride == true) code.write("new "); // Until we figure it out properly
+    if (element.hasOverride == true)
+      code.write("new "); // Until we figure it out properly
     if (element.hasOverride == false) code.write("virtual ");
 
     // type + name
@@ -115,31 +116,33 @@ class Fields {
 
     // HACK: For some reason, just in Animation and Tween, we want the overridingElement
     // but everywhere else we want the element. Need to correct this.
-    if (overridingElement != null && overridingElement.type.displayName == 'Animation<double>')
+    if (overridingElement != null &&
+        overridingElement.type.displayName == 'Animation<double>')
       elementForSignature = overridingElement;
 
     // type + name
     var name = getFieldName(elementForSignature);
 
-    if (name == Naming.nameWithTypeParameters(elementForSignature.enclosingElement, false))
-      name = name + "Value";
+    if (name ==
+        Naming.nameWithTypeParameters(
+            elementForSignature.enclosingElement, false)) name = name + "Value";
 
     if (containsGenericPart(elementForSignature.type)) {
       var typeParameter = implementedClass.typeParameters.firstWhere((tp) =>
           elementForSignature.type.displayName.contains(tp.type.displayName));
       var type = implementedClass.typeArguments[
           implementedClass.typeParameters.indexOf(typeParameter)];
-     
-     var typeName = type.name;
-    
-     // TODO: Might want to put this through a formatter of some kind
-     if (typeName == 'T' && originalMixin != null)
-      typeName = originalMixin.typeArguments[0].name;
-    
-    code.write("${typeName} I$implementedFieldName.$name");
-   
+
+      var typeName = type.name;
+
+      // TODO: Might want to put this through a formatter of some kind
+      if (typeName == 'T' && originalMixin != null)
+        typeName = originalMixin.typeArguments[0].name;
+
+      code.write("${typeName} I$implementedFieldName.$name");
     } else {
-      code.write(printTypeAndName(elementForSignature, interfaceName: 'I$implementedFieldName.'));
+      code.write(printTypeAndName(elementForSignature,
+          interfaceName: 'I$implementedFieldName.'));
     }
 
     var hasGetter = elementForSignature.getter != null;
@@ -148,8 +151,7 @@ class Fields {
     if (hasGetter || hasSetter) {
       code.write("{");
       // getter
-      if (hasGetter) {       
-       
+      if (hasGetter) {
         code.write("get => ${implementedFieldName}.${name};");
       }
       // setter
@@ -190,7 +192,8 @@ class Fields {
     return code.toString();
   }
 
-  static String printTypeAndName(FieldElement element, {String interfaceName = ''}) {
+  static String printTypeAndName(FieldElement element,
+      {String interfaceName = ''}) {
     var name = getFieldName(element);
     if (name == Naming.nameWithTypeParameters(element.enclosingElement, false))
       name = name + "Value";
@@ -206,12 +209,11 @@ class Fields {
     var name = getFieldName(element);
     if (name == Naming.nameWithTypeParameters(element.enclosingElement, false))
       name = name + "Value";
-    
+
     return "${type} ${name}";
   }
 
   static String getFieldName(FieldElement element) {
-    return Naming.getFormattedName(
-        element.name, NameStyle.UpperCamelCase);
+    return Naming.getFormattedName(element.name, NameStyle.UpperCamelCase);
   }
 }
