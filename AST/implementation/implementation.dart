@@ -51,17 +51,18 @@ class Implementation {
     var rawBody = "\n";
     bool ignoreNextEntity = false;
     for (var child in body.childEntities) {
-      if (ignoreNextEntity) {
+      if (ignoreNextEntity && child.toString() == '*') {
         ignoreNextEntity = false;
         continue;
       }
+      ignoreNextEntity = false;
       if (child is Block) {
         for (var entity in child.childEntities) {
           rawBody += processEntity(entity) + "\n";
         }
       } else if (child is KeywordToken) {
         var childStr = child.toString();
-        if (childStr == 'sync') {
+        if (childStr == 'sync' || childStr == 'async') {
           // The next entity is going to be a SimpleToken, i.e. '*'
           ignoreNextEntity = true;
         } else {
@@ -373,8 +374,18 @@ class Implementation {
 
   static String processBlockFunctionBody(BlockFunctionBody body) {
     var csharp = "";
+    bool skipNextEntity = false;
     for (var entity in body.childEntities) {
-      csharp += processEntity(entity);
+      if (skipNextEntity && entity.toString() == '*') {
+        skipNextEntity = false;
+        continue;
+      }
+      skipNextEntity = false;
+      if (entity.toString() == 'sync' || entity.toString() == 'async') {
+        skipNextEntity = true;
+      } else {
+        csharp += processEntity(entity);
+      }
     }
     return csharp;
   }
