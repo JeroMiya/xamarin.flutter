@@ -49,13 +49,24 @@ class Implementation {
 
   static String processBlockFunction(BlockFunctionBody body) {
     var rawBody = "\n";
+    bool ignoreNextEntity = false;
     for (var child in body.childEntities) {
+      if (ignoreNextEntity) {
+        ignoreNextEntity = false;
+        continue;
+      }
       if (child is Block) {
         for (var entity in child.childEntities) {
           rawBody += processEntity(entity) + "\n";
         }
       } else if (child is KeywordToken) {
-        rawBody += child.toString() + "\n";
+        var childStr = child.toString();
+        if (childStr == 'sync') {
+          // The next entity is going to be a SimpleToken, i.e. '*'
+          ignoreNextEntity = true;
+        } else {
+          rawBody += child.toString() + "\n";
+        }
       } else if (child is SimpleToken) {
         rawBody += child.toString() + "\n";
       } else
@@ -489,9 +500,32 @@ class Implementation {
   }
 
   static String processYieldStatement(YieldStatement statement) {
-    var csharp = "";
-    for (var entity in statement.childEntities) {
-      csharp += processEntity(entity);
+    var csharp = '';
+    int startIndex = 1;
+    bool closeForEach = false;
+
+    var children = statement.childEntities.toList();
+
+    if (statement.childEntities.length > 2 && children[1].toString() == '*') {
+      closeForEach = true;
+      startIndex = 2;
+      // TODO: if this yield statement is within an async context,
+      // we need to put 'await foreach(var enumItem in (' here.
+      csharp = 'foreach(var enumItem in (';
+    } else {
+      csharp = 'yield return ';
+    }
+
+    for (int i = startIndex; i < children.length; i++) {
+      var entity = children[i];
+      if (i != children.length - 1 ||
+          !closeForEach ||
+          entity.toString() != ';') {
+        csharp += processEntity(entity);
+      }
+    }
+    if (closeForEach) {
+      csharp += ')) { yield return enumItem; }';
     }
     return csharp;
   }
