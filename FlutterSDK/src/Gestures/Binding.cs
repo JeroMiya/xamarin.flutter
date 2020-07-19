@@ -430,37 +430,39 @@ namespace FlutterSDK.Gestures.Binding
                     PointerRouter.Route(@event);
                 }
                 catch (exception,stack){
-                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a non-hit-tested pointer event"), @event: @event, hitTestEntry: null, informationCollector: () => sync *{
-yield return new DiagnosticsProperty<PointerEvent>("Event", @event, style: DiagnosticsTreeStyle.ErrorProperty);
-                }
-));
+                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a non-hit-tested pointer event"), @event: @event, hitTestEntry: null, informationCollector: () =>
+                    {
+                        yield return new DiagnosticsProperty<PointerEvent>("Event", @event, style: DiagnosticsTreeStyle.ErrorProperty);
+                    }
+                    ));
                 }
 
                 return;
-            }
+                }
 
-            foreach (HitTestEntry entry in hitTestResult.Path)
-            {
-                try
+                foreach (HitTestEntry entry in hitTestResult.Path)
                 {
-                    entry.Target.HandleEvent(@event.Transformed(entry.Transform), entry);
+                    try
+                    {
+                        entry.Target.HandleEvent(@event.Transformed(entry.Transform), entry);
+                    }
+                    catch (exception,stack){
+                        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a pointer event"), @event: @event, hitTestEntry: entry, informationCollector: () =>
+                        {
+                            yield return new DiagnosticsProperty<PointerEvent>("Event", @event, style: DiagnosticsTreeStyle.ErrorProperty);
+                            yield return new DiagnosticsProperty<HitTestTarget>("Target", entry.Target, style: DiagnosticsTreeStyle.ErrorProperty);
+                        }
+                        ));
+                    }
+
+                    }
+
                 }
-                catch (exception,stack){
-                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a pointer event"), @event: @event, hitTestEntry: entry, informationCollector: () => sync *{
-yield return new DiagnosticsProperty<PointerEvent>("Event", @event, style: DiagnosticsTreeStyle.ErrorProperty);
-                    yield return new DiagnosticsProperty<HitTestTarget>("Target", entry.Target, style: DiagnosticsTreeStyle.ErrorProperty);
-                }
-));
-                }
-
-            }
-
-        }
 
 
 
 
-        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
         {
             PointerRouter.Route(@event);
             if (@event is PointerDownEvent)

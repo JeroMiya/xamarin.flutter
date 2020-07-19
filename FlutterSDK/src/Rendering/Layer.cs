@@ -1665,28 +1665,28 @@ public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     ///  * [dart:ui.Scene.toImage] for more information about the image returned.
     /// </Summary>
     public virtual Future<SKImage> ToImage(FlutterBinding.UI.Rect bounds, double pixelRatio = 1.0)
-async
-{
+    {
 
 
-Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
-    Matrix4 transform = Matrix4.TranslationValues((-bounds.Left - Offset.Dx) * pixelRatio, (-bounds.Top - Offset.Dy) * pixelRatio, 0.0);
-    transform.Scale(pixelRatio, pixelRatio);
-builder.PushTransform(transform.Storage);
-Ui.Dart:uiDefaultClass.Scene scene = BuildScene(builder);
-try {
-return await scene.ToImage((pixelRatio* bounds.Width).Ceil(), (pixelRatio* bounds.Height).Ceil());
-}
-finally
-{
-    scene.Dispose();
-}
+        Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
+        Matrix4 transform = Matrix4.TranslationValues((-bounds.Left - Offset.Dx) * pixelRatio, (-bounds.Top - Offset.Dy) * pixelRatio, 0.0);
+        transform.Scale(pixelRatio, pixelRatio);
+        builder.PushTransform(transform.Storage);
+        Ui.Dart:uiDefaultClass.Scene scene = BuildScene(builder);
+        try
+        {
+            return await scene.ToImage((pixelRatio * bounds.Width).Ceil(), (pixelRatio * bounds.Height).Ceil());
+        }
+        finally
+        {
+            scene.Dispose();
+        }
 
-}
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 

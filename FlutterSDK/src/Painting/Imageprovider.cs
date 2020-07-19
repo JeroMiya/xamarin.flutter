@@ -848,7 +848,8 @@ namespace FlutterSDK.Painting.Imageprovider
             {
                 ResolveStreamForKey(configuration, stream, key, errorHandler);
             }
-            , (T key, object exception, StackTrace stack) => async {
+            , (T key, object exception, StackTrace stack) =>
+            {
                 await null;
                 _ErrorImageCompleter imageCompleter = new _ErrorImageCompleter();
                 stream.SetCompleter(imageCompleter);
@@ -856,7 +857,7 @@ namespace FlutterSDK.Painting.Imageprovider
 
                 imageCompleter.SetError(exception: exception, stack: stack, context: new ErrorDescription("while resolving an image"), silent: true, informationCollector: collector);
             }
-);
+            );
             return stream;
         }
 
@@ -898,7 +899,8 @@ namespace FlutterSDK.Painting.Imageprovider
             {
                 completer.Complete(BindingDefaultClass.PaintingBinding.Instance.ImageCache.StatusForKey(key));
             }
-            , (T key, object exception, StackTrace stack) => async {
+            , (T key, object exception, StackTrace stack) =>
+            {
                 if (handleError != null)
                 {
                     handleError(exception, stack);
@@ -912,7 +914,7 @@ namespace FlutterSDK.Painting.Imageprovider
                 }
 
             }
-);
+            );
             return completer.Future;
         }
 
@@ -928,7 +930,7 @@ namespace FlutterSDK.Painting.Imageprovider
         {
             T obtainedKey = default(T);
             bool didError = false;
-            Future<void> HandleError(object exception, StackTrace stack) => async {
+            Future<void> HandleError(object exception, StackTrace stack) => {
                 if (didError)
                 {
                     return;
@@ -1058,7 +1060,6 @@ public virtual void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageC
 /// {@end-tool}
 /// </Summary>
 public virtual Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration))
-async
 {
     cache = (cache == null ? BindingDefaultClass.ImageCache : cache);
     T key = await ObtainKey(configuration);
@@ -1186,30 +1187,29 @@ public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageP
     /// This function is used by [load].
     /// </Summary>
     private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
-async
-{
-ByteData data = default(ByteData);
-try {
-data=await key.Bundle.Load(key.Name);
-}
-on FlutterError
-{
-    BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
-throw;
-}
+    {
+        ByteData data = default(ByteData);
+        try
+        {
+            data = await key.Bundle.Load(key.Name);
+        }
+on FlutterError{
+            BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+            throw;
+        }
 
-if (data == null)
-{
-    BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
-    throw new StateError("Unable to read data");
-}
+        if (data == null)
+        {
+            BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+            throw new StateError("Unable to read data");
+        }
 
-return await decode(data.Buffer.AsUint8List());
-}
-
+        return await decode(data.Buffer.AsUint8List());
+    }
 
 
-#endregion
+
+    #endregion
 }
 
 
@@ -1419,42 +1419,42 @@ public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutter
 
     public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
     {
-        return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key, decode), scale: key.Scale, informationCollector: () => sync *{
-yield return new ErrorDescription($"'Path: {File?.Path}'");
+        return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key, decode), scale: key.Scale, informationCollector: () =>
+        {
+            yield return new ErrorDescription($"'Path: {File?.Path}'");
+        }
+        );
     }
-);
-}
 
 
 
 
-private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
-async
-{
-
-    Uint8List bytes = await File.ReadAsBytes();
-    if (bytes.LengthInBytes == 0)
+    private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
     {
-        BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
-        throw new StateError($"'{File} is empty and cannot be loaded as an image.'");
+
+        Uint8List bytes = await File.ReadAsBytes();
+        if (bytes.LengthInBytes == 0)
+        {
+            BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+            throw new StateError($"'{File} is empty and cannot be loaded as an image.'");
+        }
+
+        return await decode(bytes);
     }
 
-    return await decode(bytes);
-}
+
+
+
+    public new bool Equals(@Object other)
+    {
+        if (other.GetType() != GetType()) return false;
+        return other is FileImage && other.File?.Path == File?.Path && other.Scale == Scale;
+    }
 
 
 
 
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is FileImage && other.File?.Path == File?.Path && other.Scale == Scale;
-}
-
-
-
-
-#endregion
+    #endregion
 }
 
 

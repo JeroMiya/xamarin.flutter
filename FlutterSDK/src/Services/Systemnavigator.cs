@@ -465,14 +465,13 @@ namespace FlutterSDK.Services.Systemnavigator
         /// as if the application had crashed.
         /// </Summary>
         public virtual Future<object> Pop(bool animated = default(bool))
-    async
-{
-await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemNavigator.pop", animated);
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemNavigator.pop", animated);
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

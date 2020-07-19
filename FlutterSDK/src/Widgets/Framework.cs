@@ -4051,11 +4051,12 @@ namespace FlutterSDK.Widgets.Framework
                         _DirtyElements[index].Rebuild();
                     }
                     catch (e,stack){
-                        FrameworkDefaultClass._DebugReportException(new ErrorDescription("while rebuilding dirty elements"), e, stack, informationCollector: () => sync *{
+                        FrameworkDefaultClass._DebugReportException(new ErrorDescription("while rebuilding dirty elements"), e, stack, informationCollector: () =>
+                        {
                             yield return new DiagnosticsDebugCreator(new DebugCreator(_DirtyElements[index]));
                             yield return _DirtyElements[index].DescribeElement($"'The element being rebuilt at the time was index {index} of {dirtyCount}'");
                         }
-);
+                        );
                     }
 
                     index += 1;
@@ -5620,10 +5621,11 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
             }
             catch (e,stack){
                 _DebugDoingBuild = false;
-                built = FrameworkDefaultClass.ErrorWidget.Builder(FrameworkDefaultClass._DebugReportException(new ErrorDescription($"'building {this }'"), e, stack, informationCollector: () => sync *{
+                built = FrameworkDefaultClass.ErrorWidget.Builder(FrameworkDefaultClass._DebugReportException(new ErrorDescription($"'building {this }'"), e, stack, informationCollector: () =>
+                {
                     yield return new DiagnosticsDebugCreator(new DebugCreator(this));
                 }
-));
+                ));
             }
 finally
             {
@@ -5637,10 +5639,11 @@ finally
 
             }
             catch (e,stack){
-                built = FrameworkDefaultClass.ErrorWidget.Builder(FrameworkDefaultClass._DebugReportException(new ErrorDescription($"'building {this }'"), e, stack, informationCollector: () => sync *{
+                built = FrameworkDefaultClass.ErrorWidget.Builder(FrameworkDefaultClass._DebugReportException(new ErrorDescription($"'building {this }'"), e, stack, informationCollector: () =>
+                {
                     yield return new DiagnosticsDebugCreator(new DebugCreator(this));
                 }
-));
+                ));
                 _Child = UpdateChild(null, built, Slot);
             }
 

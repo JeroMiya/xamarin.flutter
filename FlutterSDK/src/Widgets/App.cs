@@ -629,397 +629,395 @@ namespace FlutterSDK.Widgets.App
 
 
         public new Future<bool> DidPopRoute()
-    async
-{
-
-NavigatorState navigator = _Navigator?.CurrentState;
-if (navigator==null )return false ;
-return await navigator.MaybePop();
-    }
-
-
-
-
-    public new Future<bool> DidPushRoute(string route)
-async
-{
-
-NavigatorState navigator = _Navigator?.CurrentState;
-if (navigator==null )return false ;
-navigator.PushNamed(route);
-return true ;
-}
-
-
-
-
-private Locale _ResolveLocales(List<Locale> preferredLocales, Iterable<Locale> supportedLocales)
-{
-    if (Widget.LocaleListResolutionCallback != null)
-    {
-        Locale locale = Widget.LocaleListResolutionCallback(preferredLocales, Widget.SupportedLocales);
-        if (locale != null) return locale;
-    }
-
-    if (Widget.LocaleResolutionCallback != null)
-    {
-        Locale locale = Widget.LocaleResolutionCallback(preferredLocales != null && preferredLocales.IsNotEmpty ? preferredLocales.First : null, Widget.SupportedLocales);
-        if (locale != null) return locale;
-    }
-
-    return BasicLocaleListResolution(preferredLocales, supportedLocales);
-}
-
-
-
-
-/// <Summary>
-/// The default locale resolution algorithm.
-///
-/// Custom resolution algorithms can be provided through
-/// [WidgetsApp.localeListResolutionCallback] or
-/// [WidgetsApp.localeResolutionCallback].
-///
-/// When no custom locale resolution algorithms are provided or if both fail
-/// to resolve, Flutter will default to calling this algorithm.
-///
-/// This algorithm prioritizes speed at the cost of slightly less appropriate
-/// resolutions for edge cases.
-///
-/// This algorithm will resolve to the earliest preferred locale that
-/// matches the most fields, prioritizing in the order of perfect match,
-/// languageCode+countryCode, languageCode+scriptCode, languageCode-only.
-///
-/// In the case where a locale is matched by languageCode-only and is not the
-/// default (first) locale, the next preferred locale with a
-/// perfect match can supersede the languageCode-only match if it exists.
-///
-/// When a preferredLocale matches more than one supported locale, it will
-/// resolve to the first matching locale listed in the supportedLocales.
-///
-/// When all preferred locales have been exhausted without a match, the first
-/// countryCode only match will be returned.
-///
-/// When no match at all is found, the first (default) locale in
-/// [supportedLocales] will be returned.
-///
-/// To summarize, the main matching priority is:
-///
-///  1. [Locale.languageCode], [Locale.scriptCode], and [Locale.countryCode]
-///  1. [Locale.languageCode] and [Locale.scriptCode] only
-///  1. [Locale.languageCode] and [Locale.countryCode] only
-///  1. [Locale.languageCode] only (with caveats, see above)
-///  1. [Locale.countryCode] only when all [preferredLocales] fail to match
-///  1. Returns the first element of [supportedLocales] as a fallback
-///
-/// This algorithm does not take language distance (how similar languages are to each other)
-/// into account, and will not handle edge cases such as resolving `de` to `fr` rather than `zh`
-/// when `de` is not supported and `zh` is listed before `fr` (German is closer to French
-/// than Chinese).
-/// </Summary>
-public virtual Locale BasicLocaleListResolution(List<Locale> preferredLocales, Iterable<Locale> supportedLocales)
-{
-    if (preferredLocales == null || preferredLocales.IsEmpty())
-    {
-        return supportedLocales.First;
-    }
-
-    Dictionary<string, Locale> allSupportedLocales = new HashMap<string, Locale>();
-    Dictionary<string, Locale> languageAndCountryLocales = new HashMap<string, Locale>();
-    Dictionary<string, Locale> languageAndScriptLocales = new HashMap<string, Locale>();
-    Dictionary<string, Locale> languageLocales = new HashMap<string, Locale>();
-    Dictionary<string, Locale> countryLocales = new HashMap<string, Locale>();
-    foreach (Locale locale in supportedLocales)
-    {
-        allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] = (allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] == null ? locale : allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"]);
-        languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"] = (languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"] == null ? locale : languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"]);
-        languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"] = (languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"] == null ? locale : languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"]);
-        languageLocales[locale.LanguageCode] = (languageLocales[locale.LanguageCode] == null ? locale : languageLocales[locale.LanguageCode]);
-        countryLocales[locale.CountryCode] = (countryLocales[locale.CountryCode] == null ? locale : countryLocales[locale.CountryCode]);
-    }
-
-    Locale matchesLanguageCode = default(Locale);
-    Locale matchesCountryCode = default(Locale);
-    for (int localeIndex = 0; localeIndex < preferredLocales.Count; localeIndex += 1)
-    {
-        Locale userLocale = preferredLocales[localeIndex];
-        if (allSupportedLocales.ContainsKey($"'{userLocale.LanguageCode}_{userLocale.ScriptCode}_{userLocale.CountryCode}'"))
         {
-            return userLocale;
+
+            NavigatorState navigator = _Navigator?.CurrentState;
+            if (navigator == null) return false;
+            return await navigator.MaybePop();
         }
 
-        if (userLocale.ScriptCode != null)
+
+
+
+        public new Future<bool> DidPushRoute(string route)
         {
-            Locale match = languageAndScriptLocales[$"'{userLocale.LanguageCode}_{userLocale.ScriptCode}'"];
-            if (match != null)
+
+            NavigatorState navigator = _Navigator?.CurrentState;
+            if (navigator == null) return false;
+            navigator.PushNamed(route);
+            return true;
+        }
+
+
+
+
+        private Locale _ResolveLocales(List<Locale> preferredLocales, Iterable<Locale> supportedLocales)
+        {
+            if (Widget.LocaleListResolutionCallback != null)
             {
-                return match;
+                Locale locale = Widget.LocaleListResolutionCallback(preferredLocales, Widget.SupportedLocales);
+                if (locale != null) return locale;
+            }
+
+            if (Widget.LocaleResolutionCallback != null)
+            {
+                Locale locale = Widget.LocaleResolutionCallback(preferredLocales != null && preferredLocales.IsNotEmpty ? preferredLocales.First : null, Widget.SupportedLocales);
+                if (locale != null) return locale;
+            }
+
+            return BasicLocaleListResolution(preferredLocales, supportedLocales);
+        }
+
+
+
+
+        /// <Summary>
+        /// The default locale resolution algorithm.
+        ///
+        /// Custom resolution algorithms can be provided through
+        /// [WidgetsApp.localeListResolutionCallback] or
+        /// [WidgetsApp.localeResolutionCallback].
+        ///
+        /// When no custom locale resolution algorithms are provided or if both fail
+        /// to resolve, Flutter will default to calling this algorithm.
+        ///
+        /// This algorithm prioritizes speed at the cost of slightly less appropriate
+        /// resolutions for edge cases.
+        ///
+        /// This algorithm will resolve to the earliest preferred locale that
+        /// matches the most fields, prioritizing in the order of perfect match,
+        /// languageCode+countryCode, languageCode+scriptCode, languageCode-only.
+        ///
+        /// In the case where a locale is matched by languageCode-only and is not the
+        /// default (first) locale, the next preferred locale with a
+        /// perfect match can supersede the languageCode-only match if it exists.
+        ///
+        /// When a preferredLocale matches more than one supported locale, it will
+        /// resolve to the first matching locale listed in the supportedLocales.
+        ///
+        /// When all preferred locales have been exhausted without a match, the first
+        /// countryCode only match will be returned.
+        ///
+        /// When no match at all is found, the first (default) locale in
+        /// [supportedLocales] will be returned.
+        ///
+        /// To summarize, the main matching priority is:
+        ///
+        ///  1. [Locale.languageCode], [Locale.scriptCode], and [Locale.countryCode]
+        ///  1. [Locale.languageCode] and [Locale.scriptCode] only
+        ///  1. [Locale.languageCode] and [Locale.countryCode] only
+        ///  1. [Locale.languageCode] only (with caveats, see above)
+        ///  1. [Locale.countryCode] only when all [preferredLocales] fail to match
+        ///  1. Returns the first element of [supportedLocales] as a fallback
+        ///
+        /// This algorithm does not take language distance (how similar languages are to each other)
+        /// into account, and will not handle edge cases such as resolving `de` to `fr` rather than `zh`
+        /// when `de` is not supported and `zh` is listed before `fr` (German is closer to French
+        /// than Chinese).
+        /// </Summary>
+        public virtual Locale BasicLocaleListResolution(List<Locale> preferredLocales, Iterable<Locale> supportedLocales)
+        {
+            if (preferredLocales == null || preferredLocales.IsEmpty())
+            {
+                return supportedLocales.First;
+            }
+
+            Dictionary<string, Locale> allSupportedLocales = new HashMap<string, Locale>();
+            Dictionary<string, Locale> languageAndCountryLocales = new HashMap<string, Locale>();
+            Dictionary<string, Locale> languageAndScriptLocales = new HashMap<string, Locale>();
+            Dictionary<string, Locale> languageLocales = new HashMap<string, Locale>();
+            Dictionary<string, Locale> countryLocales = new HashMap<string, Locale>();
+            foreach (Locale locale in supportedLocales)
+            {
+                allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] = (allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"] == null ? locale : allSupportedLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}_{locale.CountryCode}'"]);
+                languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"] = (languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"] == null ? locale : languageAndScriptLocales[$"'{locale.LanguageCode}_{locale.ScriptCode}'"]);
+                languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"] = (languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"] == null ? locale : languageAndCountryLocales[$"'{locale.LanguageCode}_{locale.CountryCode}'"]);
+                languageLocales[locale.LanguageCode] = (languageLocales[locale.LanguageCode] == null ? locale : languageLocales[locale.LanguageCode]);
+                countryLocales[locale.CountryCode] = (countryLocales[locale.CountryCode] == null ? locale : countryLocales[locale.CountryCode]);
+            }
+
+            Locale matchesLanguageCode = default(Locale);
+            Locale matchesCountryCode = default(Locale);
+            for (int localeIndex = 0; localeIndex < preferredLocales.Count; localeIndex += 1)
+            {
+                Locale userLocale = preferredLocales[localeIndex];
+                if (allSupportedLocales.ContainsKey($"'{userLocale.LanguageCode}_{userLocale.ScriptCode}_{userLocale.CountryCode}'"))
+                {
+                    return userLocale;
+                }
+
+                if (userLocale.ScriptCode != null)
+                {
+                    Locale match = languageAndScriptLocales[$"'{userLocale.LanguageCode}_{userLocale.ScriptCode}'"];
+                    if (match != null)
+                    {
+                        return match;
+                    }
+
+                }
+
+                if (userLocale.CountryCode != null)
+                {
+                    Locale match = languageAndCountryLocales[$"'{userLocale.LanguageCode}_{userLocale.CountryCode}'"];
+                    if (match != null)
+                    {
+                        return match;
+                    }
+
+                }
+
+                if (matchesLanguageCode != null)
+                {
+                    return matchesLanguageCode;
+                }
+
+                Locale match = languageLocales[userLocale.LanguageCode];
+                if (match != null)
+                {
+                    matchesLanguageCode = match;
+                    if (localeIndex == 0 && !(localeIndex + 1 < preferredLocales.Count && preferredLocales[localeIndex + 1].LanguageCode == userLocale.LanguageCode))
+                    {
+                        return matchesLanguageCode;
+                    }
+
+                }
+
+                if (matchesCountryCode == null && userLocale.CountryCode != null)
+                {
+                    match = countryLocales[userLocale.CountryCode];
+                    if (match != null)
+                    {
+                        matchesCountryCode = match;
+                    }
+
+                }
+
+            }
+
+            Locale resolvedLocale = matchesLanguageCode ?? matchesCountryCode ?? supportedLocales.First;
+            return resolvedLocale;
+        }
+
+
+
+
+        public new void DidChangeLocales(List<Locale> locales)
+        {
+            Locale newLocale = _ResolveLocales(locales, Widget.SupportedLocales);
+            if (newLocale != _Locale)
+            {
+                SetState(() =>
+                {
+                    _Locale = newLocale;
+                }
+                );
             }
 
         }
 
-        if (userLocale.CountryCode != null)
+
+
+
+        private bool _DebugCheckLocalizations(Locale appLocale)
         {
-            Locale match = languageAndCountryLocales[$"'{userLocale.LanguageCode}_{userLocale.CountryCode}'"];
-            if (match != null)
+
+            return true;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            Widget navigator = default(Widget);
+            if (_Navigator != null)
             {
-                return match;
+                navigator = new Navigator(key: _Navigator, initialRoute: BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName != NavigatorDefaultClass.Navigator.DefaultRouteName ? BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName : Widget.InitialRoute ?? BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName, onGenerateRoute: _OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes == null ? NavigatorDefaultClass.Navigator.DefaultGenerateInitialRoutes : (NavigatorState navigator, string initialRouteName) =>
+                {
+                    return Widget.OnGenerateInitialRoutes(initialRouteName);
+                }
+                , onUnknownRoute: _OnUnknownRoute, observers: Widget.NavigatorObservers);
             }
 
-        }
-
-        if (matchesLanguageCode != null)
-        {
-            return matchesLanguageCode;
-        }
-
-        Locale match = languageLocales[userLocale.LanguageCode];
-        if (match != null)
-        {
-            matchesLanguageCode = match;
-            if (localeIndex == 0 && !(localeIndex + 1 < preferredLocales.Count && preferredLocales[localeIndex + 1].LanguageCode == userLocale.LanguageCode))
+            Widget result = default(Widget);
+            if (Widget.Builder != null)
             {
-                return matchesLanguageCode;
+                result = new Builder(builder: (BuildContext context) =>
+                {
+                    return Widget.Builder(context, navigator);
+                }
+                );
+            }
+            else
+            {
+
+                result = navigator;
             }
 
-        }
-
-        if (matchesCountryCode == null && userLocale.CountryCode != null)
-        {
-            match = countryLocales[userLocale.CountryCode];
-            if (match != null)
+            if (Widget.TextStyle != null)
             {
-                matchesCountryCode = match;
+                result = new DefaultTextStyle(style: Widget.TextStyle, child: result);
             }
 
+            PerformanceOverlay performanceOverlay = default(PerformanceOverlay);
+            if (Widget.ShowPerformanceOverlay || AppDefaultClass.WidgetsApp.ShowPerformanceOverlayOverride)
+            {
+                performanceOverlay = PerformanceOverlay.AllEnabled(checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers);
+            }
+            else if (Widget.CheckerboardRasterCacheImages || Widget.CheckerboardOffscreenLayers)
+            {
+                performanceOverlay = new PerformanceOverlay(checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers);
+            }
+
+            if (performanceOverlay != null)
+            {
+                result = new Stack(children: new List<Widget>() { result, new Positioned(top: 0.0, left: 0.0, right: 0.0, child: performanceOverlay) });
+            }
+
+            if (Widget.ShowSemanticsDebugger)
+            {
+                result = new SemanticsDebugger(child: result);
+            }
+
+
+            Widget title = default(Widget);
+            if (Widget.OnGenerateTitle != null)
+            {
+                title = new Builder(builder: (BuildContext context) =>
+                {
+                    string title = Widget.OnGenerateTitle(context);
+
+                    return new Title(title: title, color: Widget.Color, child: result);
+                }
+                );
+            }
+            else
+            {
+                title = new Title(title: Widget.Title, color: Widget.Color, child: result);
+            }
+
+            Locale appLocale = Widget.Locale != null ? _ResolveLocales(new List<Locale>() { Widget.Locale }, Widget.SupportedLocales) : _Locale;
+
+            return new Shortcuts(shortcuts: Widget.Shortcuts ?? AppDefaultClass.WidgetsApp.DefaultShortcuts, debugLabel: "<Default WidgetsApp Shortcuts>", child: new Actions(actions: Widget.Actions ?? AppDefaultClass.WidgetsApp.DefaultActions, child: new FocusTraversalGroup(policy: new ReadingOrderTraversalPolicy(), child: new _MediaQueryFromWindow(child: new Localizations(locale: appLocale, delegates: _LocalizationsDelegates.ToList(), child: title)))));
         }
 
+
+
+        #endregion
     }
 
-    Locale resolvedLocale = matchesLanguageCode ?? matchesCountryCode ?? supportedLocales.First;
-    return resolvedLocale;
-}
 
-
-
-
-public new void DidChangeLocales(List<Locale> locales)
-{
-    Locale newLocale = _ResolveLocales(locales, Widget.SupportedLocales);
-    if (newLocale != _Locale)
+    /// <Summary>
+    /// Builds [MediaQuery] from `window` by listening to [WidgetsBinding].
+    ///
+    /// It is performed in a standalone widget to rebuild **only** [MediaQuery] and
+    /// its dependents when `window` changes, instead of rebuilding the entire widget tree.
+    /// </Summary>
+    public class _MediaQueryFromWindow : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        SetState(() =>
+        #region constructors
+        public _MediaQueryFromWindow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key)
         {
-            _Locale = newLocale;
+            this.Child = child;
         }
-        );
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.App._MediaQueryFromWindowsState CreateState() => new _MediaQueryFromWindowsState();
+
+
+        #endregion
     }
 
-}
 
-
-
-
-private bool _DebugCheckLocalizations(Locale appLocale)
-{
-
-    return true;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    Widget navigator = default(Widget);
-    if (_Navigator != null)
+    public class _MediaQueryFromWindowsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App._MediaQueryFromWindow>, IWidgetsBindingObserver
     {
-        navigator = new Navigator(key: _Navigator, initialRoute: BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName != NavigatorDefaultClass.Navigator.DefaultRouteName ? BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName : Widget.InitialRoute ?? BindingDefaultClass.WidgetsBinding.Instance.Window.DefaultRouteName, onGenerateRoute: _OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes == null ? NavigatorDefaultClass.Navigator.DefaultGenerateInitialRoutes : (NavigatorState navigator, string initialRouteName) =>
+        #region constructors
+        public _MediaQueryFromWindowsState()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new void InitState()
         {
-            return Widget.OnGenerateInitialRoutes(initialRouteName);
+            base.InitState();
+            BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
         }
-        , onUnknownRoute: _OnUnknownRoute, observers: Widget.NavigatorObservers);
-    }
 
-    Widget result = default(Widget);
-    if (Widget.Builder != null)
-    {
-        result = new Builder(builder: (BuildContext context) =>
+
+
+
+        public new void DidChangeAccessibilityFeatures()
         {
-            return Widget.Builder(context, navigator);
+            SetState(() =>
+            {
+            }
+            );
         }
-        );
-    }
-    else
-    {
-
-        result = navigator;
-    }
-
-    if (Widget.TextStyle != null)
-    {
-        result = new DefaultTextStyle(style: Widget.TextStyle, child: result);
-    }
-
-    PerformanceOverlay performanceOverlay = default(PerformanceOverlay);
-    if (Widget.ShowPerformanceOverlay || AppDefaultClass.WidgetsApp.ShowPerformanceOverlayOverride)
-    {
-        performanceOverlay = PerformanceOverlay.AllEnabled(checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers);
-    }
-    else if (Widget.CheckerboardRasterCacheImages || Widget.CheckerboardOffscreenLayers)
-    {
-        performanceOverlay = new PerformanceOverlay(checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers);
-    }
-
-    if (performanceOverlay != null)
-    {
-        result = new Stack(children: new List<Widget>() { result, new Positioned(top: 0.0, left: 0.0, right: 0.0, child: performanceOverlay) });
-    }
-
-    if (Widget.ShowSemanticsDebugger)
-    {
-        result = new SemanticsDebugger(child: result);
-    }
 
 
-    Widget title = default(Widget);
-    if (Widget.OnGenerateTitle != null)
-    {
-        title = new Builder(builder: (BuildContext context) =>
+
+
+        public new void DidChangeMetrics()
         {
-            string title = Widget.OnGenerateTitle(context);
-
-            return new Title(title: title, color: Widget.Color, child: result);
+            SetState(() =>
+            {
+            }
+            );
         }
-        );
-    }
-    else
-    {
-        title = new Title(title: Widget.Title, color: Widget.Color, child: result);
-    }
-
-    Locale appLocale = Widget.Locale != null ? _ResolveLocales(new List<Locale>() { Widget.Locale }, Widget.SupportedLocales) : _Locale;
-
-    return new Shortcuts(shortcuts: Widget.Shortcuts ?? AppDefaultClass.WidgetsApp.DefaultShortcuts, debugLabel: "<Default WidgetsApp Shortcuts>", child: new Actions(actions: Widget.Actions ?? AppDefaultClass.WidgetsApp.DefaultActions, child: new FocusTraversalGroup(policy: new ReadingOrderTraversalPolicy(), child: new _MediaQueryFromWindow(child: new Localizations(locale: appLocale, delegates: _LocalizationsDelegates.ToList(), child: title)))));
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Builds [MediaQuery] from `window` by listening to [WidgetsBinding].
-///
-/// It is performed in a standalone widget to rebuild **only** [MediaQuery] and
-/// its dependents when `window` changes, instead of rebuilding the entire widget tree.
-/// </Summary>
-public class _MediaQueryFromWindow : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public _MediaQueryFromWindow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key)
-    {
-        this.Child = child;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.App._MediaQueryFromWindowsState CreateState() => new _MediaQueryFromWindowsState();
-
-
-    #endregion
-}
-
-
-public class _MediaQueryFromWindowsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.App._MediaQueryFromWindow>, IWidgetsBindingObserver
-{
-    #region constructors
-    public _MediaQueryFromWindowsState()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        BindingDefaultClass.WidgetsBinding.Instance.AddObserver(this);
-    }
 
 
 
 
-    public new void DidChangeAccessibilityFeatures()
-    {
-        SetState(() =>
+        public new void DidChangeTextScaleFactor()
         {
+            SetState(() =>
+            {
+            }
+            );
         }
-        );
-    }
 
 
 
 
-    public new void DidChangeMetrics()
-    {
-        SetState(() =>
+        public new void DidChangePlatformBrightness()
         {
+            SetState(() =>
+            {
+            }
+            );
         }
-        );
-    }
 
 
 
 
-    public new void DidChangeTextScaleFactor()
-    {
-        SetState(() =>
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
+            return new MediaQuery(data: MediaQueryData.FromWindow(BindingDefaultClass.WidgetsBinding.Instance.Window), child: Widget.Child);
         }
-        );
-    }
 
 
 
 
-    public new void DidChangePlatformBrightness()
-    {
-        SetState(() =>
+        public new void Dispose()
         {
+            BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
+            base.Dispose();
         }
-        );
+
+
+
+        #endregion
     }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new MediaQuery(data: MediaQueryData.FromWindow(BindingDefaultClass.WidgetsBinding.Instance.Window), child: Widget.Child);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        BindingDefaultClass.WidgetsBinding.Instance.RemoveObserver(this);
-        base.Dispose();
-    }
-
-
-
-    #endregion
-}
 
 }

@@ -473,36 +473,32 @@ namespace FlutterSDK.Services.Clipboard
         /// Stores the given clipboard data on the clipboard.
         /// </Summary>
         public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data)
-    async
-{
-await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.setData", new Dictionary<string, object>{{"text", data.Text
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.setData", new Dictionary<string, object> { { "text", data.Text } });
+        }
+
+
+
+
+        /// <Summary>
+        /// Retrieves data from the clipboard that matches the given format.
+        ///
+        /// The `format` argument specifies the media type, such as `text/plain`, of
+        /// the data to obtain.
+        ///
+        /// Returns a future which completes to null if the data could not be
+        /// obtained, and to a [ClipboardData] object if it could.
+        /// </Summary>
+        public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format)
+        {
+            Dictionary<string, object> result = await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.getData", format);
+            if (result == null) return null;
+            return new ClipboardData(text: result["text"] as string);
+        }
+
+
+
+        #endregion
     }
-});
-}
-
-
-
-
-/// <Summary>
-/// Retrieves data from the clipboard that matches the given format.
-///
-/// The `format` argument specifies the media type, such as `text/plain`, of
-/// the data to obtain.
-///
-/// Returns a future which completes to null if the data could not be
-/// obtained, and to a [ClipboardData] object if it could.
-/// </Summary>
-public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format)
-async
-{
-    Dictionary<string, object> result = await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.getData", format);
-    if (result == null) return null;
-    return new ClipboardData(text: result["text"] as string);
-}
-
-
-
-#endregion
-}
 
 }

@@ -626,10 +626,11 @@ namespace FlutterSDK.Widgets.Layoutbuilder
                     DebugDefaultClass.DebugWidgetBuilderValue(Widget, built);
                 }
                 catch (e,stack){
-                built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () => sync *{
+                built = FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector: () =>
+                {
                     yield return new DiagnosticsDebugCreator(new DebugCreator(this));
                 }
-));
+                ));
             }
 
         }
@@ -639,7 +640,7 @@ _Child=UpdateChild(_Child, built, null );
 
     }
 catch (e, stack){
-built=FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector:() => sync*{
+built=FrameworkDefaultClass.ErrorWidget.Builder(LayoutbuilderDefaultClass._DebugReportException(new ErrorDescription($"'building {Widget}'"), e, stack, informationCollector:() => {
 yield return new DiagnosticsDebugCreator(new DebugCreator(this ));
 }
 ));

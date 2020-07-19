@@ -667,688 +667,687 @@ params.OnPlatformViewCreated(params.Id);
         #region methods
 
         private Future<object> _Initialize()
-    async
-{
-Dictionary<string, object> args = new Dictionary<string, object> { { "id", ViewId }{ "viewType", ViewType } };
-        await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("create", args);
-        _Initialized=true ;
-}
-
-
-
-
-    public new void ClearFocus()
-    {
-    }
-
-
-
-
-    public new void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
-    {
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        if (_Initialized)
         {
-            SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("dispose", ViewId);
+            Dictionary<string, object> args = new Dictionary<string, object> { { "id", ViewId }{ "viewType", ViewType } };
+            await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("create", args);
+            _Initialized = true;
         }
 
-    }
 
 
 
-    #endregion
-}
-
-
-public class _AndroidViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.AndroidView>
-{
-    #region constructors
-    public _AndroidViewState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual int _Id { get; set; }
-    internal virtual FlutterSDK.Services.Platformviews.AndroidViewController _Controller { get; set; }
-    internal virtual TextDirection _LayoutDirection { get; set; }
-    internal virtual bool _Initialized { get; set; }
-    internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
-    internal virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> _EmptyRecognizersSet { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Focus(focusNode: _FocusNode, onFocusChange: _OnFocusChange, child: new _AndroidPlatformView(controller: _Controller, hitTestBehavior: Widget.HitTestBehavior, gestureRecognizers: Widget.GestureRecognizers ?? _EmptyRecognizersSet));
-    }
-
-
-
-
-    private void _InitializeOnce()
-    {
-        if (_Initialized)
+        public new void ClearFocus()
         {
-            return;
         }
 
-        _Initialized = true;
-        _CreateNewAndroidView();
-        _FocusNode = new FocusNode(debugLabel: $"'AndroidView(id: {_Id})'");
-    }
 
 
 
-
-    public new void DidChangeDependencies()
-    {
-        base.DidChangeDependencies();
-        TextDirection newLayoutDirection = _FindLayoutDirection();
-        bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
-        _LayoutDirection = newLayoutDirection;
-        _InitializeOnce();
-        if (didChangeLayoutDirection)
+        public new void DispatchPointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
-            _Controller.SetLayoutDirection(_LayoutDirection);
         }
 
+
+
+
+        public new void Dispose()
+        {
+            if (_Initialized)
+            {
+                SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("dispose", ViewId);
+            }
+
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Platformview.AndroidView oldWidget)
+    public class _AndroidViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.AndroidView>
     {
-        base.DidUpdateWidget(oldWidget);
-        TextDirection newLayoutDirection = _FindLayoutDirection();
-        bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
-        _LayoutDirection = newLayoutDirection;
-        if (Widget.ViewType != oldWidget.ViewType)
+        #region constructors
+        public _AndroidViewState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual int _Id { get; set; }
+        internal virtual FlutterSDK.Services.Platformviews.AndroidViewController _Controller { get; set; }
+        internal virtual TextDirection _LayoutDirection { get; set; }
+        internal virtual bool _Initialized { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
+        internal virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> _EmptyRecognizersSet { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Focus(focusNode: _FocusNode, onFocusChange: _OnFocusChange, child: new _AndroidPlatformView(controller: _Controller, hitTestBehavior: Widget.HitTestBehavior, gestureRecognizers: Widget.GestureRecognizers ?? _EmptyRecognizersSet));
+        }
+
+
+
+
+        private void _InitializeOnce()
+        {
+            if (_Initialized)
+            {
+                return;
+            }
+
+            _Initialized = true;
+            _CreateNewAndroidView();
+            _FocusNode = new FocusNode(debugLabel: $"'AndroidView(id: {_Id})'");
+        }
+
+
+
+
+        public new void DidChangeDependencies()
+        {
+            base.DidChangeDependencies();
+            TextDirection newLayoutDirection = _FindLayoutDirection();
+            bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
+            _LayoutDirection = newLayoutDirection;
+            _InitializeOnce();
+            if (didChangeLayoutDirection)
+            {
+                _Controller.SetLayoutDirection(_LayoutDirection);
+            }
+
+        }
+
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Platformview.AndroidView oldWidget)
+        {
+            base.DidUpdateWidget(oldWidget);
+            TextDirection newLayoutDirection = _FindLayoutDirection();
+            bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
+            _LayoutDirection = newLayoutDirection;
+            if (Widget.ViewType != oldWidget.ViewType)
+            {
+                _Controller.Dispose();
+                _CreateNewAndroidView();
+                return;
+            }
+
+            if (didChangeLayoutDirection)
+            {
+                _Controller.SetLayoutDirection(_LayoutDirection);
+            }
+
+        }
+
+
+
+
+        private TextDirection _FindLayoutDirection()
+        {
+
+            return Widget.LayoutDirection ?? BasicDefaultClass.Directionality.Of(Context);
+        }
+
+
+
+
+        public new void Dispose()
         {
             _Controller.Dispose();
-            _CreateNewAndroidView();
-            return;
+            base.Dispose();
         }
 
-        if (didChangeLayoutDirection)
+
+
+
+        private void _CreateNewAndroidView()
         {
-            _Controller.SetLayoutDirection(_LayoutDirection);
-        }
-
-    }
-
-
-
-
-    private TextDirection _FindLayoutDirection()
-    {
-
-        return Widget.LayoutDirection ?? BasicDefaultClass.Directionality.Of(Context);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _Controller.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private void _CreateNewAndroidView()
-    {
-        _Id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
-        _Controller = PlatformviewsDefaultClass.PlatformViewsService.InitAndroidView(id: _Id, viewType: Widget.ViewType, layoutDirection: _LayoutDirection, creationParams: Widget.CreationParams, creationParamsCodec: Widget.CreationParamsCodec, onFocus: () =>
-        {
-            _FocusNode.RequestFocus();
-        }
-        );
-        if (Widget.OnPlatformViewCreated != null)
-        {
-            _Controller.AddOnPlatformViewCreatedListener(Widget.OnPlatformViewCreated);
-        }
-
-    }
-
-
-
-
-    private void _OnFocusChange(bool isFocused)
-    {
-        if (!_Controller.IsCreated)
-        {
-            return;
-        }
-
-        if (!isFocused)
-        {
-            _Controller.ClearFocus().CatchError((object e) =>
+            _Id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
+            _Controller = PlatformviewsDefaultClass.PlatformViewsService.InitAndroidView(id: _Id, viewType: Widget.ViewType, layoutDirection: _LayoutDirection, creationParams: Widget.CreationParams, creationParamsCodec: Widget.CreationParamsCodec, onFocus: () =>
             {
-                if (((MissingPluginException)e) is MissingPluginException)
+                _FocusNode.RequestFocus();
+            }
+            );
+            if (Widget.OnPlatformViewCreated != null)
+            {
+                _Controller.AddOnPlatformViewCreatedListener(Widget.OnPlatformViewCreated);
+            }
+
+        }
+
+
+
+
+        private void _OnFocusChange(bool isFocused)
+        {
+            if (!_Controller.IsCreated)
+            {
+                return;
+            }
+
+            if (!isFocused)
+            {
+                _Controller.ClearFocus().CatchError((object e) =>
+                {
+                    if (((MissingPluginException)e) is MissingPluginException)
+                    {
+                        return;
+                    }
+
+                }
+                );
+                return;
+            }
+
+            SystemchannelsDefaultClass.SystemChannels.TextInput.InvokeMethod("TextInput.setPlatformViewClient", _Id).CatchError((object e) =>
+            {
+                if (e is MissingPluginException)
                 {
                     return;
                 }
 
             }
             );
-            return;
         }
 
-        SystemchannelsDefaultClass.SystemChannels.TextInput.InvokeMethod("TextInput.setPlatformViewClient", _Id).CatchError((object e) =>
+
+
+        #endregion
+    }
+
+
+    public class _UiKitViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.UiKitView>
+    {
+        #region constructors
+        public _UiKitViewState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Services.Platformviews.UiKitViewController _Controller { get; set; }
+        internal virtual TextDirection _LayoutDirection { get; set; }
+        internal virtual bool _Initialized { get; set; }
+        internal virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> _EmptyRecognizersSet { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            if (e is MissingPluginException)
+            if (_Controller == null)
+            {
+                return SizedBox.Expand();
+            }
+
+            return new _UiKitPlatformView(controller: _Controller, hitTestBehavior: Widget.HitTestBehavior, gestureRecognizers: Widget.GestureRecognizers ?? _EmptyRecognizersSet);
+        }
+
+
+
+
+        private void _InitializeOnce()
+        {
+            if (_Initialized)
             {
                 return;
             }
 
-        }
-        );
-    }
-
-
-
-    #endregion
-}
-
-
-public class _UiKitViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.UiKitView>
-{
-    #region constructors
-    public _UiKitViewState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Services.Platformviews.UiKitViewController _Controller { get; set; }
-    internal virtual TextDirection _LayoutDirection { get; set; }
-    internal virtual bool _Initialized { get; set; }
-    internal virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> _EmptyRecognizersSet { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (_Controller == null)
-        {
-            return SizedBox.Expand();
-        }
-
-        return new _UiKitPlatformView(controller: _Controller, hitTestBehavior: Widget.HitTestBehavior, gestureRecognizers: Widget.GestureRecognizers ?? _EmptyRecognizersSet);
-    }
-
-
-
-
-    private void _InitializeOnce()
-    {
-        if (_Initialized)
-        {
-            return;
-        }
-
-        _Initialized = true;
-        _CreateNewUiKitView();
-    }
-
-
-
-
-    public new void DidChangeDependencies()
-    {
-        base.DidChangeDependencies();
-        TextDirection newLayoutDirection = _FindLayoutDirection();
-        bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
-        _LayoutDirection = newLayoutDirection;
-        _InitializeOnce();
-        if (didChangeLayoutDirection)
-        {
-            _Controller?.SetLayoutDirection(_LayoutDirection);
-        }
-
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Platformview.UiKitView oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        TextDirection newLayoutDirection = _FindLayoutDirection();
-        bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
-        _LayoutDirection = newLayoutDirection;
-        if (Widget.ViewType != oldWidget.ViewType)
-        {
-            _Controller?.Dispose();
+            _Initialized = true;
             _CreateNewUiKitView();
-            return;
         }
 
-        if (didChangeLayoutDirection)
+
+
+
+        public new void DidChangeDependencies()
         {
-            _Controller?.SetLayoutDirection(_LayoutDirection);
+            base.DidChangeDependencies();
+            TextDirection newLayoutDirection = _FindLayoutDirection();
+            bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
+            _LayoutDirection = newLayoutDirection;
+            _InitializeOnce();
+            if (didChangeLayoutDirection)
+            {
+                _Controller?.SetLayoutDirection(_LayoutDirection);
+            }
+
         }
 
-    }
 
 
 
-
-    private TextDirection _FindLayoutDirection()
-    {
-
-        return Widget.LayoutDirection ?? BasicDefaultClass.Directionality.Of(Context);
-    }
-
-
-
-
-    public new void Dispose()
-    {
-        _Controller?.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    private Future<object> _CreateNewUiKitView()
-async
-{
-int id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
-    UiKitViewController controller = await PlatformviewsDefaultClass.PlatformViewsService.InitUiKitView(id: id, viewType: Widget.ViewType, layoutDirection: _LayoutDirection, creationParams: Widget.CreationParams, creationParamsCodec: Widget.CreationParamsCodec);
-if (!Mounted){
-controller.Dispose();
-return ;
-}
-
-if (Widget.OnPlatformViewCreated != null)
-{
-    Widget.OnPlatformViewCreated(id);
-}
-
-SetState(() =>
-{
-    _Controller = controller;
-}
-);
-}
-
-
-
-#endregion
-}
-
-
-public class _AndroidPlatformView : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-    #region constructors
-    public _AndroidPlatformView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.AndroidViewController controller = default(FlutterSDK.Services.Platformviews.AndroidViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
-    : base(key: key)
-    {
-        this.Controller = controller;
-        this.HitTestBehavior = hitTestBehavior;
-        this.GestureRecognizers = gestureRecognizers;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Services.Platformviews.AndroidViewController Controller { get; set; }
-    public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
-    public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderAndroidView(viewController: Controller, hitTestBehavior: HitTestBehavior, gestureRecognizers: GestureRecognizers);
-
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Platformview.RenderAndroidView renderObject)
-    {
-        renderObject.ViewController = Controller;
-        renderObject.HitTestBehavior = HitTestBehavior;
-        renderObject.UpdateGestureRecognizers(GestureRecognizers);
-    }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        renderObject.ViewController = Controller;
-        renderObject.HitTestBehavior = HitTestBehavior;
-        renderObject.UpdateGestureRecognizers(GestureRecognizers);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _UiKitPlatformView : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-    #region constructors
-    public _UiKitPlatformView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.UiKitViewController controller = default(FlutterSDK.Services.Platformviews.UiKitViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
-    : base(key: key)
-    {
-        this.Controller = controller;
-        this.HitTestBehavior = hitTestBehavior;
-        this.GestureRecognizers = gestureRecognizers;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Services.Platformviews.UiKitViewController Controller { get; set; }
-    public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
-    public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new RenderUiKitView(viewController: Controller, hitTestBehavior: HitTestBehavior, gestureRecognizers: GestureRecognizers);
-    }
-
-
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Platformview.RenderUiKitView renderObject)
-    {
-        renderObject.ViewController = Controller;
-        renderObject.HitTestBehavior = HitTestBehavior;
-        renderObject.UpdateGestureRecognizers(GestureRecognizers);
-    }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        renderObject.ViewController = Controller;
-        renderObject.HitTestBehavior = HitTestBehavior;
-        renderObject.UpdateGestureRecognizers(GestureRecognizers);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// The parameters used to create a [PlatformViewController].
-///
-/// See also:
-///
-///  * [CreatePlatformViewCallback] which uses this object to create a [PlatformViewController].
-/// </Summary>
-public class PlatformViewCreationParams
-{
-    #region constructors
-    internal PlatformViewCreationParams(int id = default(int), string viewType = default(string), FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback onPlatformViewCreated = default(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
-    : base()
-    {
-        this.Id = id;
-        this.ViewType = viewType;
-        this.OnPlatformViewCreated = onPlatformViewCreated;
-        this.OnFocusChanged = onFocusChanged;
-    }
-    #endregion
-
-    #region fields
-    public virtual int Id { get; set; }
-    public virtual string ViewType { get; set; }
-    public virtual FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback OnPlatformViewCreated { get; set; }
-    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChanged { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// Links a platform view with the Flutter framework.
-///
-/// Provides common functionality for embedding a platform view (e.g an android.view.View on Android)
-/// with the Flutter framework.
-///
-/// {@macro flutter.widgets.platformViews.lifetime}
-///
-/// To implement a new platform view widget, return this widget in the `build` method.
-/// For example:
-/// ```dart
-/// class FooPlatformView extends StatelessWidget {
-///   @override
-///   Widget build(BuildContext context) {
-///     return PlatformViewLink(
-///       viewType: 'webview',
-///       onCreatePlatformView: createFooWebView,
-///       surfaceFactory: (BuildContext context, PlatformViewController controller) {
-///        return PlatformViewSurface(
-///            gestureRecognizers: gestureRecognizers,
-///            controller: controller,
-///            hitTestBehavior: PlatformViewHitTestBehavior.opaque,
-///        );
-///       },
-///    );
-///   }
-/// }
-/// ```
-///
-/// The `surfaceFactory` and the `onCreatePlatformView` are only called when the
-/// state of this widget is initialized, or when the `viewType` changes.
-/// </Summary>
-public class PlatformViewLink : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public PlatformViewLink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory surfaceFactory = default(FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory), FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback onCreatePlatformView = default(FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback), string viewType = default(string))
-    : base(key: key)
-    {
-        this.ViewType = viewType;
-    }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory _SurfaceFactory { get; set; }
-    internal virtual FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback _OnCreatePlatformView { get; set; }
-    public virtual string ViewType { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _PlatformViewLinkState();
-
-
-    #endregion
-}
-
-
-public class _PlatformViewLinkState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.PlatformViewLink>
-{
-    #region constructors
-    public _PlatformViewLinkState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual int _Id { get; set; }
-    internal virtual FlutterSDK.Services.Platformviews.PlatformViewController _Controller { get; set; }
-    internal virtual bool _PlatformViewCreated { get; set; }
-    internal virtual FlutterSDK.Widgets.Framework.Widget _Surface { get; set; }
-    internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        if (!_PlatformViewCreated)
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Platformview.UiKitView oldWidget)
         {
-            return SizedBox.Expand();
+            base.DidUpdateWidget(oldWidget);
+            TextDirection newLayoutDirection = _FindLayoutDirection();
+            bool didChangeLayoutDirection = _LayoutDirection != newLayoutDirection;
+            _LayoutDirection = newLayoutDirection;
+            if (Widget.ViewType != oldWidget.ViewType)
+            {
+                _Controller?.Dispose();
+                _CreateNewUiKitView();
+                return;
+            }
+
+            if (didChangeLayoutDirection)
+            {
+                _Controller?.SetLayoutDirection(_LayoutDirection);
+            }
+
         }
 
-        _Surface = (_Surface == null ? Widget._SurfaceFactory(context, _Controller) : _Surface);
-        return new Focus(focusNode: _FocusNode, onFocusChange: _HandleFrameworkFocusChanged, child: _Surface);
-    }
+
+
+
+        private TextDirection _FindLayoutDirection()
+        {
+
+            return Widget.LayoutDirection ?? BasicDefaultClass.Directionality.Of(Context);
+        }
 
 
 
 
-    public new void InitState()
-    {
-        _FocusNode = new FocusNode(debugLabel: $"'PlatformView(id: {_Id})'");
-        _Initialize();
-        base.InitState();
-    }
-
-
-
-
-    public new void DidUpdateWidget(FlutterSDK.Widgets.Platformview.PlatformViewLink oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        if (Widget.ViewType != oldWidget.ViewType)
+        public new void Dispose()
         {
             _Controller?.Dispose();
-            _Surface = null;
-            _PlatformViewCreated = false;
+            base.Dispose();
+        }
+
+
+
+
+        private Future<object> _CreateNewUiKitView()
+        {
+            int id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
+            UiKitViewController controller = await PlatformviewsDefaultClass.PlatformViewsService.InitUiKitView(id: id, viewType: Widget.ViewType, layoutDirection: _LayoutDirection, creationParams: Widget.CreationParams, creationParamsCodec: Widget.CreationParamsCodec);
+            if (!Mounted)
+            {
+                controller.Dispose();
+                return;
+            }
+
+            if (Widget.OnPlatformViewCreated != null)
+            {
+                Widget.OnPlatformViewCreated(id);
+            }
+
+            SetState(() =>
+            {
+                _Controller = controller;
+            }
+            );
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _AndroidPlatformView : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _AndroidPlatformView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.AndroidViewController controller = default(FlutterSDK.Services.Platformviews.AndroidViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
+        : base(key: key)
+        {
+            this.Controller = controller;
+            this.HitTestBehavior = hitTestBehavior;
+            this.GestureRecognizers = gestureRecognizers;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Platformviews.AndroidViewController Controller { get; set; }
+        public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+        public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderAndroidView(viewController: Controller, hitTestBehavior: HitTestBehavior, gestureRecognizers: GestureRecognizers);
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Platformview.RenderAndroidView renderObject)
+        {
+            renderObject.ViewController = Controller;
+            renderObject.HitTestBehavior = HitTestBehavior;
+            renderObject.UpdateGestureRecognizers(GestureRecognizers);
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            renderObject.ViewController = Controller;
+            renderObject.HitTestBehavior = HitTestBehavior;
+            renderObject.UpdateGestureRecognizers(GestureRecognizers);
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _UiKitPlatformView : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
+    {
+        #region constructors
+        public _UiKitPlatformView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.UiKitViewController controller = default(FlutterSDK.Services.Platformviews.UiKitViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
+        : base(key: key)
+        {
+            this.Controller = controller;
+            this.HitTestBehavior = hitTestBehavior;
+            this.GestureRecognizers = gestureRecognizers;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Platformviews.UiKitViewController Controller { get; set; }
+        public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+        public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new RenderUiKitView(viewController: Controller, hitTestBehavior: HitTestBehavior, gestureRecognizers: GestureRecognizers);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Platformview.RenderUiKitView renderObject)
+        {
+            renderObject.ViewController = Controller;
+            renderObject.HitTestBehavior = HitTestBehavior;
+            renderObject.UpdateGestureRecognizers(GestureRecognizers);
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            renderObject.ViewController = Controller;
+            renderObject.HitTestBehavior = HitTestBehavior;
+            renderObject.UpdateGestureRecognizers(GestureRecognizers);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// The parameters used to create a [PlatformViewController].
+    ///
+    /// See also:
+    ///
+    ///  * [CreatePlatformViewCallback] which uses this object to create a [PlatformViewController].
+    /// </Summary>
+    public class PlatformViewCreationParams
+    {
+        #region constructors
+        internal PlatformViewCreationParams(int id = default(int), string viewType = default(string), FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback onPlatformViewCreated = default(FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
+        : base()
+        {
+            this.Id = id;
+            this.ViewType = viewType;
+            this.OnPlatformViewCreated = onPlatformViewCreated;
+            this.OnFocusChanged = onFocusChanged;
+        }
+        #endregion
+
+        #region fields
+        public virtual int Id { get; set; }
+        public virtual string ViewType { get; set; }
+        public virtual FlutterSDK.Services.Platformviews.PlatformViewCreatedCallback OnPlatformViewCreated { get; set; }
+        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChanged { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Links a platform view with the Flutter framework.
+    ///
+    /// Provides common functionality for embedding a platform view (e.g an android.view.View on Android)
+    /// with the Flutter framework.
+    ///
+    /// {@macro flutter.widgets.platformViews.lifetime}
+    ///
+    /// To implement a new platform view widget, return this widget in the `build` method.
+    /// For example:
+    /// ```dart
+    /// class FooPlatformView extends StatelessWidget {
+    ///   @override
+    ///   Widget build(BuildContext context) {
+    ///     return PlatformViewLink(
+    ///       viewType: 'webview',
+    ///       onCreatePlatformView: createFooWebView,
+    ///       surfaceFactory: (BuildContext context, PlatformViewController controller) {
+    ///        return PlatformViewSurface(
+    ///            gestureRecognizers: gestureRecognizers,
+    ///            controller: controller,
+    ///            hitTestBehavior: PlatformViewHitTestBehavior.opaque,
+    ///        );
+    ///       },
+    ///    );
+    ///   }
+    /// }
+    /// ```
+    ///
+    /// The `surfaceFactory` and the `onCreatePlatformView` are only called when the
+    /// state of this widget is initialized, or when the `viewType` changes.
+    /// </Summary>
+    public class PlatformViewLink : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public PlatformViewLink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory surfaceFactory = default(FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory), FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback onCreatePlatformView = default(FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback), string viewType = default(string))
+        : base(key: key)
+        {
+            this.ViewType = viewType;
+        }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Widgets.Platformview.PlatformViewSurfaceFactory _SurfaceFactory { get; set; }
+        internal virtual FlutterSDK.Widgets.Platformview.CreatePlatformViewCallback _OnCreatePlatformView { get; set; }
+        public virtual string ViewType { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _PlatformViewLinkState();
+
+
+        #endregion
+    }
+
+
+    public class _PlatformViewLinkState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Platformview.PlatformViewLink>
+    {
+        #region constructors
+        public _PlatformViewLinkState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual int _Id { get; set; }
+        internal virtual FlutterSDK.Services.Platformviews.PlatformViewController _Controller { get; set; }
+        internal virtual bool _PlatformViewCreated { get; set; }
+        internal virtual FlutterSDK.Widgets.Framework.Widget _Surface { get; set; }
+        internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            if (!_PlatformViewCreated)
+            {
+                return SizedBox.Expand();
+            }
+
+            _Surface = (_Surface == null ? Widget._SurfaceFactory(context, _Controller) : _Surface);
+            return new Focus(focusNode: _FocusNode, onFocusChange: _HandleFrameworkFocusChanged, child: _Surface);
+        }
+
+
+
+
+        public new void InitState()
+        {
+            _FocusNode = new FocusNode(debugLabel: $"'PlatformView(id: {_Id})'");
             _Initialize();
+            base.InitState();
         }
 
-    }
 
 
 
-
-    private void _Initialize()
-    {
-        _Id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
-        _Controller = Widget._OnCreatePlatformView(PlatformViewCreationParams._(id: _Id, viewType: Widget.ViewType, onPlatformViewCreated: _OnPlatformViewCreated, onFocusChanged: _HandlePlatformFocusChanged));
-    }
-
-
-
-
-    private void _OnPlatformViewCreated(int id)
-    {
-        SetState(() =>
+        public new void DidUpdateWidget(FlutterSDK.Widgets.Platformview.PlatformViewLink oldWidget)
         {
-            _PlatformViewCreated = true;
+            base.DidUpdateWidget(oldWidget);
+            if (Widget.ViewType != oldWidget.ViewType)
+            {
+                _Controller?.Dispose();
+                _Surface = null;
+                _PlatformViewCreated = false;
+                _Initialize();
+            }
+
         }
-        );
-    }
 
 
 
 
-    private void _HandleFrameworkFocusChanged(bool isFocused)
-    {
-        if (!isFocused)
+        private void _Initialize()
         {
-            _Controller?.ClearFocus();
+            _Id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
+            _Controller = Widget._OnCreatePlatformView(PlatformViewCreationParams._(id: _Id, viewType: Widget.ViewType, onPlatformViewCreated: _OnPlatformViewCreated, onFocusChanged: _HandlePlatformFocusChanged));
         }
 
-    }
 
 
 
-
-    private void _HandlePlatformFocusChanged(bool isFocused)
-    {
-        if (isFocused)
+        private void _OnPlatformViewCreated(int id)
         {
-            _FocusNode.RequestFocus();
+            SetState(() =>
+            {
+                _PlatformViewCreated = true;
+            }
+            );
         }
 
+
+
+
+        private void _HandleFrameworkFocusChanged(bool isFocused)
+        {
+            if (!isFocused)
+            {
+                _Controller?.ClearFocus();
+            }
+
+        }
+
+
+
+
+        private void _HandlePlatformFocusChanged(bool isFocused)
+        {
+            if (isFocused)
+            {
+                _FocusNode.RequestFocus();
+            }
+
+        }
+
+
+
+
+        public new void Dispose()
+        {
+            _Controller?.Dispose();
+            _Controller = null;
+            base.Dispose();
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void Dispose()
+    /// <Summary>
+    /// Integrates a platform view with Flutter's compositor, touch, and semantics subsystems.
+    ///
+    /// The compositor integration is done by adding a [PlatformViewLayer] to the layer tree. [PlatformViewLayer]
+    /// isn't supported on all platforms (e.g on Android platform views are composited using a [TextureLayer]).
+    /// Custom Flutter embedders can support [PlatformViewLayer]s by implementing a SystemCompositor.
+    ///
+    /// The widget fills all available space, the parent of this object must provide bounded layout
+    /// constraints.
+    ///
+    /// If the associated platform view is not created the [PlatformViewSurface] does not paint any contents.
+    ///
+    /// See also:
+    ///
+    ///  * [AndroidView] which embeds an Android platform view in the widget hierarchy.
+    ///  * [UIKitView] which embeds an iOS platform view in the widget hierarchy.
+    /// </Summary>
+    public class PlatformViewSurface : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        _Controller?.Dispose();
-        _Controller = null;
-        base.Dispose();
+        #region constructors
+        public PlatformViewSurface(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
+        : base(key: key)
+        {
+            this.Controller = controller;
+            this.HitTestBehavior = hitTestBehavior;
+            this.GestureRecognizers = gestureRecognizers;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Platformviews.PlatformViewController Controller { get; set; }
+        public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
+        public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new PlatformViewRenderBox(controller: Controller, gestureRecognizers: GestureRecognizers, hitTestBehavior: HitTestBehavior);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Platformview.PlatformViewRenderBox renderObject)
+        {
+            ..Controller = Controller..HitTestBehavior = HitTestBehavior;
+            renderObject.UpdateGestureRecognizers(GestureRecognizers);
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..Controller = Controller..HitTestBehavior = HitTestBehavior;
+            renderObject.UpdateGestureRecognizers(GestureRecognizers);
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Integrates a platform view with Flutter's compositor, touch, and semantics subsystems.
-///
-/// The compositor integration is done by adding a [PlatformViewLayer] to the layer tree. [PlatformViewLayer]
-/// isn't supported on all platforms (e.g on Android platform views are composited using a [TextureLayer]).
-/// Custom Flutter embedders can support [PlatformViewLayer]s by implementing a SystemCompositor.
-///
-/// The widget fills all available space, the parent of this object must provide bounded layout
-/// constraints.
-///
-/// If the associated platform view is not created the [PlatformViewSurface] does not paint any contents.
-///
-/// See also:
-///
-///  * [AndroidView] which embeds an Android platform view in the widget hierarchy.
-///  * [UIKitView] which embeds an iOS platform view in the widget hierarchy.
-/// </Summary>
-public class PlatformViewSurface : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
-{
-    #region constructors
-    public PlatformViewSurface(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
-    : base(key: key)
-    {
-        this.Controller = controller;
-        this.HitTestBehavior = hitTestBehavior;
-        this.GestureRecognizers = gestureRecognizers;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Services.Platformviews.PlatformViewController Controller { get; set; }
-    public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizers { get; set; }
-    public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new PlatformViewRenderBox(controller: Controller, gestureRecognizers: GestureRecognizers, hitTestBehavior: HitTestBehavior);
-    }
-
-
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Platformview.PlatformViewRenderBox renderObject)
-    {
-        ..Controller = Controller..HitTestBehavior = HitTestBehavior;
-        renderObject.UpdateGestureRecognizers(GestureRecognizers);
-    }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        ..Controller = Controller..HitTestBehavior = HitTestBehavior;
-        renderObject.UpdateGestureRecognizers(GestureRecognizers);
-    }
-
-
-
-    #endregion
-}
 
 }

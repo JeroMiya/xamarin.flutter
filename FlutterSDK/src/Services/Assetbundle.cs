@@ -479,253 +479,249 @@ namespace FlutterSDK.Services.Assetbundle
         /// implementation.)
         /// </Summary>
         public virtual Future<string> LoadString(string key, bool cache = true)
-    async
-{
-ByteData data = await Load(key);
-if (data==null )throw new FlutterError($"'Unable to load asset: {key}'");
-if (data.LengthInBytes<10*1024){
-return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
-}
-
-return IsolatesDefaultClass.Compute(_Utf8decode, data, debugLabel:$"'UTF8 decode for "{key
-}
-"'");
-}
-
-
-
-
-private string _Utf8decode(ByteData data)
-{
-    return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
-}
-
-
-
-
-/// <Summary>
-/// Retrieve a string from the asset bundle, parse it with the given function,
-/// and return the function's result.
-///
-/// Implementations may cache the result, so a particular key should only be
-/// used with one parser for the lifetime of the asset bundle.
-/// </Summary>
-public virtual Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
-{
-    return default(Future<T>);
-}
-
-
-/// <Summary>
-/// If this is a caching asset bundle, and the given key describes a cached
-/// asset, then evict the asset from the cache so that the next time it is
-/// loaded, the cache will be reread from the asset bundle.
-/// </Summary>
-public virtual void Evict(string key)
-{
-}
-
-
-
-
-}
-public static class AssetBundleMixin
-{
-    static System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle>();
-    static AssetBundle GetOrCreate(IAssetBundle instance)
-    {
-        if (!_table.TryGetValue(instance, out var value))
         {
-            value = new AssetBundle();
-            _table.Add(instance, value);
+            ByteData data = await Load(key);
+            if (data == null) throw new FlutterError($"'Unable to load asset: {key}'");
+            if (data.LengthInBytes < 10 * 1024)
+            {
+                return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
+            }
+
+            return IsolatesDefaultClass.Compute(_Utf8decode, data, debugLabel: $"'UTF8 decode for "{ key}
+            "'");
         }
-        return (AssetBundle)value;
+
+
+
+
+        private string _Utf8decode(ByteData data)
+        {
+            return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
+        }
+
+
+
+
+        /// <Summary>
+        /// Retrieve a string from the asset bundle, parse it with the given function,
+        /// and return the function's result.
+        ///
+        /// Implementations may cache the result, so a particular key should only be
+        /// used with one parser for the lifetime of the asset bundle.
+        /// </Summary>
+        public virtual Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
+        {
+            return default(Future<T>);
+        }
+
+
+        /// <Summary>
+        /// If this is a caching asset bundle, and the given key describes a cached
+        /// asset, then evict the asset from the cache so that the next time it is
+        /// loaded, the cache will be reread from the asset bundle.
+        /// </Summary>
+        public virtual void Evict(string key)
+        {
+        }
+
+
+
+
     }
-    public static Future<ByteData> Load(this IAssetBundle instance, string key) => GetOrCreate(instance).Load(key);
-    public static Future<string> LoadString(this IAssetBundle instance, string key, bool cache = true) => GetOrCreate(instance).LoadString(key, cache);
-    public static Future<T> LoadStructuredData<T>(this IAssetBundle instance, string key, Func<Future<T>, string> parser) => GetOrCreate(instance).LoadStructuredData<T>(key, parser);
-    public static void Evict(this IAssetBundle instance, string key) => GetOrCreate(instance).Evict(key);
-    public static string ToString(this IAssetBundle instance) => GetOrCreate(instance).ToString();
-}
-
-
-/// <Summary>
-/// An [AssetBundle] that loads resources over the network.
-///
-/// This asset bundle does not cache any resources, though the underlying
-/// network stack may implement some level of caching itself.
-/// </Summary>
-public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
-{
-    #region constructors
-    public NetworkAssetBundle(Uri baseUrl)
-    : base()
+    public static class AssetBundleMixin
     {
-
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IAssetBundle, AssetBundle>();
+        static AssetBundle GetOrCreate(IAssetBundle instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new AssetBundle();
+                _table.Add(instance, value);
+            }
+            return (AssetBundle)value;
+        }
+        public static Future<ByteData> Load(this IAssetBundle instance, string key) => GetOrCreate(instance).Load(key);
+        public static Future<string> LoadString(this IAssetBundle instance, string key, bool cache = true) => GetOrCreate(instance).LoadString(key, cache);
+        public static Future<T> LoadStructuredData<T>(this IAssetBundle instance, string key, Func<Future<T>, string> parser) => GetOrCreate(instance).LoadStructuredData<T>(key, parser);
+        public static void Evict(this IAssetBundle instance, string key) => GetOrCreate(instance).Evict(key);
+        public static string ToString(this IAssetBundle instance) => GetOrCreate(instance).ToString();
     }
-    #endregion
-
-    #region fields
-    internal virtual Uri _BaseUrl { get; set; }
-    internal virtual HttpClient _HttpClient { get; set; }
-    #endregion
-
-    #region methods
-
-    private Uri _UrlFromKey(string key) => _BaseUrl.Resolve(key);
-
-
-
-    public new Future<ByteData> Load(string key)
-async
-{
-HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
-    HttpResponseMessage response = await request.Close();
-if (response.StatusCode!=Dart:internalDefaultClass.HttpStatus.Ok)throw FlutterError.FromParts(new List<DiagnosticsNode>(){new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode)});
-Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response);
-return bytes.Buffer.AsByteData();
-}
-
-
-
-
-/// <Summary>
-/// Retrieve a string from the asset bundle, parse it with the given function,
-/// and return the function's result.
-///
-/// The result is not cached. The parser is run each time the resource is
-/// fetched.
-/// </Summary>
-public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
-async
-{
-
-
-    return parser(await LoadString(key));
-}
-
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An [AssetBundle] that permanently caches string and structured resources
-/// that have been fetched.
-///
-/// Strings (for [loadString] and [loadStructuredData]) are decoded as UTF-8.
-/// Data that is cached is cached for the lifetime of the asset bundle
-/// (typically the lifetime of the application).
-///
-/// Binary resources (from [load]) are not cached.
-/// </Summary>
-public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
-{
-    #region constructors
-    public CachingAssetBundle()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual Dictionary<string, Future<string>> _StringCache { get; set; }
-    internal virtual Dictionary<string, Future<object>> _StructuredDataCache { get; set; }
-    #endregion
-
-    #region methods
-
-    public new Future<string> LoadString(string key, bool cache = true)
-    {
-        if (cache) return _StringCache.PutIfAbsent(key, () => =>base.LoadString(key));
-        return base.LoadString(key);
-    }
-
-
 
 
     /// <Summary>
-    /// Retrieve a string from the asset bundle, parse it with the given function,
-    /// and return the function's result.
+    /// An [AssetBundle] that loads resources over the network.
     ///
-    /// The result of parsing the string is cached (the string itself is not,
-    /// unless you also fetch it with [loadString]). For any given `key`, the
-    /// `parser` is only run the first time.
-    ///
-    /// Once the value has been parsed, the future returned by this function for
-    /// subsequent calls will be a [SynchronousFuture], which resolves its
-    /// callback synchronously.
+    /// This asset bundle does not cache any resources, though the underlying
+    /// network stack may implement some level of caching itself.
     /// </Summary>
-    public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
+    public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
-
-
-        if (_StructuredDataCache.ContainsKey(key)) return _StructuredDataCache[key] as Future<T>;
-        Completer<T> completer = default(Completer<T>);
-        Future<T> result = default(Future<T>);
-        LoadString(key, cache: false).Then(parser).Then((T value) =>
+        #region constructors
+        public NetworkAssetBundle(Uri baseUrl)
+        : base()
         {
-            result = new SynchronousFuture<T>(value);
-            _StructuredDataCache[key] = result;
-            if (completer != null)
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual Uri _BaseUrl { get; set; }
+        internal virtual HttpClient _HttpClient { get; set; }
+        #endregion
+
+        #region methods
+
+        private Uri _UrlFromKey(string key) => _BaseUrl.Resolve(key);
+
+
+
+        public new Future<ByteData> Load(string key)
+        {
+            HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
+            HttpResponseMessage response = await request.Close();
+            if (response.StatusCode != Dart:internalDefaultClass.HttpStatus.Ok)throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode) });
+            Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response);
+            return bytes.Buffer.AsByteData();
+        }
+
+
+
+
+        /// <Summary>
+        /// Retrieve a string from the asset bundle, parse it with the given function,
+        /// and return the function's result.
+        ///
+        /// The result is not cached. The parser is run each time the resource is
+        /// fetched.
+        /// </Summary>
+        public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
+        {
+
+
+            return parser(await LoadString(key));
+        }
+
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An [AssetBundle] that permanently caches string and structured resources
+    /// that have been fetched.
+    ///
+    /// Strings (for [loadString] and [loadStructuredData]) are decoded as UTF-8.
+    /// Data that is cached is cached for the lifetime of the asset bundle
+    /// (typically the lifetime of the application).
+    ///
+    /// Binary resources (from [load]) are not cached.
+    /// </Summary>
+    public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
+    {
+        #region constructors
+        public CachingAssetBundle()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual Dictionary<string, Future<string>> _StringCache { get; set; }
+        internal virtual Dictionary<string, Future<object>> _StructuredDataCache { get; set; }
+        #endregion
+
+        #region methods
+
+        public new Future<string> LoadString(string key, bool cache = true)
+        {
+            if (cache) return _StringCache.PutIfAbsent(key, () => =>base.LoadString(key));
+            return base.LoadString(key);
+        }
+
+
+
+
+        /// <Summary>
+        /// Retrieve a string from the asset bundle, parse it with the given function,
+        /// and return the function's result.
+        ///
+        /// The result of parsing the string is cached (the string itself is not,
+        /// unless you also fetch it with [loadString]). For any given `key`, the
+        /// `parser` is only run the first time.
+        ///
+        /// Once the value has been parsed, the future returned by this function for
+        /// subsequent calls will be a [SynchronousFuture], which resolves its
+        /// callback synchronously.
+        /// </Summary>
+        public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
+        {
+
+
+            if (_StructuredDataCache.ContainsKey(key)) return _StructuredDataCache[key] as Future<T>;
+            Completer<T> completer = default(Completer<T>);
+            Future<T> result = default(Future<T>);
+            LoadString(key, cache: false).Then(parser).Then((T value) =>
             {
-                completer.Complete(value);
+                result = new SynchronousFuture<T>(value);
+                _StructuredDataCache[key] = result;
+                if (completer != null)
+                {
+                    completer.Complete(value);
+                }
+
+            }
+            );
+            if (result != null)
+            {
+                return result;
             }
 
+            completer = new Completer<T>();
+            _StructuredDataCache[key] = completer.Future;
+            return completer.Future;
         }
-        );
-        if (result != null)
+
+
+
+
+        public new void Evict(string key)
         {
-            return result;
+            _StringCache.Remove(key);
+            _StructuredDataCache.Remove(key);
         }
 
-        completer = new Completer<T>();
-        _StructuredDataCache[key] = completer.Future;
-        return completer.Future;
+
+
+        #endregion
     }
 
 
-
-
-    public new void Evict(string key)
+    /// <Summary>
+    /// An [AssetBundle] that loads resources using platform messages.
+    /// </Summary>
+    public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
     {
-        _StringCache.Remove(key);
-        _StructuredDataCache.Remove(key);
+        #region constructors
+        public PlatformAssetBundle()
+        { }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new Future<ByteData> Load(string key)
+        {
+            Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart:coreDefaultClass.Uri.EncodeFull(key)).Path);
+            ByteData asset = await BinarymessengerDefaultClass.DefaultBinaryMessenger.Send("flutter/assets", encoded.Buffer.AsByteData());
+            if (asset == null) throw new FlutterError($"'Unable to load asset: {key}'");
+            return asset;
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An [AssetBundle] that loads resources using platform messages.
-/// </Summary>
-public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
-{
-    #region constructors
-    public PlatformAssetBundle()
-    { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new Future<ByteData> Load(string key)
-async
-{
-Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(new Uri(path:Dart:coreDefaultClass.Uri.EncodeFull(key)).Path);
-ByteData asset = await BinarymessengerDefaultClass.DefaultBinaryMessenger.Send("flutter/assets", encoded.Buffer.AsByteData());
-if (asset==null )throw new FlutterError($"'Unable to load asset: {key}'");
-return asset;
-}
-
-
-
-#endregion
-}
 
 }

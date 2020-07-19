@@ -694,198 +694,204 @@ namespace FlutterSDK.Widgets.Dismissible
 
 
         private Future<object> _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-    async
-{
-if (!_IsActive||_MoveController.IsAnimating)return ;
-_DragUnderway=false ;
-if (_MoveController.IsCompleted&&await _ConfirmStartResizeAnimation()==true ){
-_StartResizeAnimation();
-return ;
-}
-
-    double flingVelocity = _DirectionIsXAxis ? details.Velocity.PixelsPerSecond.Dx : details.Velocity.PixelsPerSecond.Dy;
-switch (_DescribeFlingGesture(details.Velocity)){case _FlingGestureKind.Forward:if ((Widget.DismissThresholds[_DismissDirection]??DismissibleDefaultClass._KDismissThreshold)>=1.0){
-_MoveController.Reverse();
-break;
-}
-_DragExtent = flingVelocity.Sign; _MoveController.Fling(velocity: flingVelocity.Abs() * DismissibleDefaultClass._KFlingVelocityScale); break;case _FlingGestureKind.Reverse:_DragExtent = flingVelocity.Sign; _MoveController.Fling(velocity: -flingVelocity.Abs() * DismissibleDefaultClass._KFlingVelocityScale); break;case _FlingGestureKind.None:if (!_MoveController.IsDismissed)
-{
-    if (_MoveController.Value > (Widget.DismissThresholds[_DismissDirection] ?? DismissibleDefaultClass._KDismissThreshold))
-    {
-        _MoveController.Forward();
-    }
-    else
-    {
-        _MoveController.Reverse();
-    }
-
-}
-break;}
-}
-
-
-
-
-private Future<object> _HandleDismissStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
-async
-{
-    if (status == AnimationStatus.Completed && !_DragUnderway)
-    {
-        if (await _ConfirmStartResizeAnimation() == true) _StartResizeAnimation(); else _MoveController.Reverse();
-    }
-
-    UpdateKeepAlive();
-}
-
-
-
-
-private Future<bool> _ConfirmStartResizeAnimation()
-async
-{
-    if (Widget.ConfirmDismiss != null)
-    {
-        DismissDirection direction = _DismissDirection;
-
-        return Widget.ConfirmDismiss(direction);
-    }
-
-    return true;
-}
-
-
-
-
-private void _StartResizeAnimation()
-{
-
-
-
-
-    if (Widget.ResizeDuration == null)
-    {
-        if (Widget.OnDismissed != null)
         {
-            DismissDirection direction = _DismissDirection;
+            if (!_IsActive || _MoveController.IsAnimating) return;
+            _DragUnderway = false;
+            if (_MoveController.IsCompleted && await _ConfirmStartResizeAnimation() == true)
+            {
+                _StartResizeAnimation();
+                return;
+            }
 
-            Widget.OnDismissed(direction);
+            double flingVelocity = _DirectionIsXAxis ? details.Velocity.PixelsPerSecond.Dx : details.Velocity.PixelsPerSecond.Dy;
+            switch (_DescribeFlingGesture(details.Velocity))
+            {
+                case _FlingGestureKind.Forward:
+                    if ((Widget.DismissThresholds[_DismissDirection] ?? DismissibleDefaultClass._KDismissThreshold) >= 1.0)
+                    {
+                        _MoveController.Reverse();
+                        break;
+                    }
+                    _DragExtent = flingVelocity.Sign; _MoveController.Fling(velocity: flingVelocity.Abs() * DismissibleDefaultClass._KFlingVelocityScale); break;
+                case _FlingGestureKind.Reverse: _DragExtent = flingVelocity.Sign; _MoveController.Fling(velocity: -flingVelocity.Abs() * DismissibleDefaultClass._KFlingVelocityScale); break;
+                case _FlingGestureKind.None:
+                    if (!_MoveController.IsDismissed)
+                    {
+                        if (_MoveController.Value > (Widget.DismissThresholds[_DismissDirection] ?? DismissibleDefaultClass._KDismissThreshold))
+                        {
+                            _MoveController.Forward();
+                        }
+                        else
+                        {
+                            _MoveController.Reverse();
+                        }
+
+                    }
+                    break;
+            }
         }
 
-    }
-    else
-    {
-        _ResizeController = new AnimationController(duration: Widget.ResizeDuration, vsync: this);
-        new AnimationController(duration: Widget.ResizeDuration, vsync: this).AddListener(_HandleResizeProgressChanged);
-        new AnimationController(duration: Widget.ResizeDuration, vsync: this).AddStatusListener((AnimationStatus status) => =>UpdateKeepAlive());
-        _ResizeController.Forward();
-        SetState(() =>
+
+
+
+        private Future<object> _HandleDismissStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
         {
-            _SizePriorToCollapse = Context.Size;
-            _ResizeAnimation = _ResizeController.Drive(new CurveTween(curve: DismissibleDefaultClass._KResizeTimeCurve)).Drive(new Tween<double>(begin: 1.0, end: 0.0));
-        }
-        );
-    }
+            if (status == AnimationStatus.Completed && !_DragUnderway)
+            {
+                if (await _ConfirmStartResizeAnimation() == true) _StartResizeAnimation(); else _MoveController.Reverse();
+            }
 
-}
-
-
-
-
-private void _HandleResizeProgressChanged()
-{
-    if (_ResizeController.IsCompleted)
-    {
-        if (Widget.OnDismissed != null)
-        {
-            DismissDirection direction = _DismissDirection;
-
-            Widget.OnDismissed(direction);
+            UpdateKeepAlive();
         }
 
+
+
+
+        private Future<bool> _ConfirmStartResizeAnimation()
+        {
+            if (Widget.ConfirmDismiss != null)
+            {
+                DismissDirection direction = _DismissDirection;
+
+                return Widget.ConfirmDismiss(direction);
+            }
+
+            return true;
+        }
+
+
+
+
+        private void _StartResizeAnimation()
+        {
+
+
+
+
+            if (Widget.ResizeDuration == null)
+            {
+                if (Widget.OnDismissed != null)
+                {
+                    DismissDirection direction = _DismissDirection;
+
+                    Widget.OnDismissed(direction);
+                }
+
+            }
+            else
+            {
+                _ResizeController = new AnimationController(duration: Widget.ResizeDuration, vsync: this);
+                new AnimationController(duration: Widget.ResizeDuration, vsync: this).AddListener(_HandleResizeProgressChanged);
+                new AnimationController(duration: Widget.ResizeDuration, vsync: this).AddStatusListener((AnimationStatus status) => =>UpdateKeepAlive());
+                _ResizeController.Forward();
+                SetState(() =>
+                {
+                    _SizePriorToCollapse = Context.Size;
+                    _ResizeAnimation = _ResizeController.Drive(new CurveTween(curve: DismissibleDefaultClass._KResizeTimeCurve)).Drive(new Tween<double>(begin: 1.0, end: 0.0));
+                }
+                );
+            }
+
+        }
+
+
+
+
+        private void _HandleResizeProgressChanged()
+        {
+            if (_ResizeController.IsCompleted)
+            {
+                if (Widget.OnDismissed != null)
+                {
+                    DismissDirection direction = _DismissDirection;
+
+                    Widget.OnDismissed(direction);
+                }
+
+            }
+            else
+            {
+                if (Widget.OnResize != null) Widget.OnResize();
+            }
+
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            base.Build(context);
+
+            Widget background = Widget.Background;
+            if (Widget.SecondaryBackground != null)
+            {
+                DismissDirection direction = _DismissDirection;
+                if (direction == DismissDirection.EndToStart || direction == DismissDirection.Up) background = Widget.SecondaryBackground;
+            }
+
+            if (_ResizeAnimation != null)
+            {
+
+                return new SizeTransition(sizeFactor: _ResizeAnimation, axis: _DirectionIsXAxis ? Axis.Vertical : Axis.Horizontal, child: new SizedBox(width: _SizePriorToCollapse.Width, height: _SizePriorToCollapse.Height, child: background));
+            }
+
+            Widget content = new SlideTransition(position: _MoveAnimation, child: Widget.Child);
+            if (background != null)
+            {
+                content = new Stack(children: new List<Widget>() { });
+            }
+
+            return new GestureDetector(onHorizontalDragStart: _DirectionIsXAxis ? _HandleDragStart : null, onHorizontalDragUpdate: _DirectionIsXAxis ? _HandleDragUpdate : null, onHorizontalDragEnd: _DirectionIsXAxis ? _HandleDragEnd : null, onVerticalDragStart: _DirectionIsXAxis ? null : _HandleDragStart, onVerticalDragUpdate: _DirectionIsXAxis ? null : _HandleDragUpdate, onVerticalDragEnd: _DirectionIsXAxis ? null : _HandleDragEnd, behavior: HitTestBehavior.Opaque, child: content, dragStartBehavior: Widget.DragStartBehavior);
+        }
+
+
+
+        #endregion
     }
-    else
+
+
+    /// <Summary>
+    /// The direction in which a [Dismissible] can be dismissed.
+    /// </Summary>
+    public enum DismissDirection
     {
-        if (Widget.OnResize != null) Widget.OnResize();
+
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging either up or down.
+        /// </Summary>
+        Vertical,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging either left or right.
+        /// </Summary>
+        Horizontal,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging in the reverse of the
+        /// reading direction (e.g., from right to left in left-to-right languages).
+        /// </Summary>
+        EndToStart,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging in the reading direction
+        /// (e.g., from left to right in left-to-right languages).
+        /// </Summary>
+        StartToEnd,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging up only.
+        /// </Summary>
+        Up,
+        /// <Summary>
+        /// The [Dismissible] can be dismissed by dragging down only.
+        /// </Summary>
+        Down,
     }
 
-}
 
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    base.Build(context);
-
-    Widget background = Widget.Background;
-    if (Widget.SecondaryBackground != null)
+    public enum _FlingGestureKind
     {
-        DismissDirection direction = _DismissDirection;
-        if (direction == DismissDirection.EndToStart || direction == DismissDirection.Up) background = Widget.SecondaryBackground;
+
+        None,
+        Forward,
+        Reverse,
     }
-
-    if (_ResizeAnimation != null)
-    {
-
-        return new SizeTransition(sizeFactor: _ResizeAnimation, axis: _DirectionIsXAxis ? Axis.Vertical : Axis.Horizontal, child: new SizedBox(width: _SizePriorToCollapse.Width, height: _SizePriorToCollapse.Height, child: background));
-    }
-
-    Widget content = new SlideTransition(position: _MoveAnimation, child: Widget.Child);
-    if (background != null)
-    {
-        content = new Stack(children: new List<Widget>() { });
-    }
-
-    return new GestureDetector(onHorizontalDragStart: _DirectionIsXAxis ? _HandleDragStart : null, onHorizontalDragUpdate: _DirectionIsXAxis ? _HandleDragUpdate : null, onHorizontalDragEnd: _DirectionIsXAxis ? _HandleDragEnd : null, onVerticalDragStart: _DirectionIsXAxis ? null : _HandleDragStart, onVerticalDragUpdate: _DirectionIsXAxis ? null : _HandleDragUpdate, onVerticalDragEnd: _DirectionIsXAxis ? null : _HandleDragEnd, behavior: HitTestBehavior.Opaque, child: content, dragStartBehavior: Widget.DragStartBehavior);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// The direction in which a [Dismissible] can be dismissed.
-/// </Summary>
-public enum DismissDirection
-{
-
-    /// <Summary>
-    /// The [Dismissible] can be dismissed by dragging either up or down.
-    /// </Summary>
-    Vertical,
-    /// <Summary>
-    /// The [Dismissible] can be dismissed by dragging either left or right.
-    /// </Summary>
-    Horizontal,
-    /// <Summary>
-    /// The [Dismissible] can be dismissed by dragging in the reverse of the
-    /// reading direction (e.g., from right to left in left-to-right languages).
-    /// </Summary>
-    EndToStart,
-    /// <Summary>
-    /// The [Dismissible] can be dismissed by dragging in the reading direction
-    /// (e.g., from left to right in left-to-right languages).
-    /// </Summary>
-    StartToEnd,
-    /// <Summary>
-    /// The [Dismissible] can be dismissed by dragging up only.
-    /// </Summary>
-    Up,
-    /// <Summary>
-    /// The [Dismissible] can be dismissed by dragging down only.
-    /// </Summary>
-    Down,
-}
-
-
-public enum _FlingGestureKind
-{
-
-    None,
-    Forward,
-    Reverse,
-}
 
 }

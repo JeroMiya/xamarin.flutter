@@ -661,124 +661,126 @@ namespace FlutterSDK.Material.Refreshindicator
 
 
         private Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode)
-    async
-{
-await Future<void>.Value();
-
-        SetState(() => {
-            _Mode = newMode;
-        }
-);
-switch (_Mode){case _RefreshIndicatorMode.Done:await _ScaleController.AnimateTo(1.0, duration:RefreshindicatorDefaultClass._KIndicatorScaleDuration);break;case _RefreshIndicatorMode.Canceled:await _PositionController.AnimateTo(0.0, duration:RefreshindicatorDefaultClass._KIndicatorScaleDuration);break;default :}
-if (Mounted&&_Mode==newMode){
-_DragOffset=null ;
-_IsIndicatorAtTop=null ;
-SetState(() => {
-        _Mode = null;
-    }
-);
-}
-
-}
-
-
-
-
-private void _Show()
-{
-
-
-    Completer<void> completer = new Completer<void>();
-    _PendingRefreshFuture = completer.Future;
-    _Mode = _RefreshIndicatorMode.Snap;
-    _PositionController.AnimateTo(1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit, duration: RefreshindicatorDefaultClass._KIndicatorSnapDuration).Then((void value) =>
-    {
-        if (Mounted && _Mode == _RefreshIndicatorMode.Snap)
         {
+            await Future<void>.Value();
 
             SetState(() =>
             {
-                _Mode = _RefreshIndicatorMode.Refresh;
+                _Mode = newMode;
             }
             );
-            Future<void> refreshResult = Widget.OnRefresh();
-
-            if (refreshResult == null) return;
-            refreshResult.WhenComplete(() =>
+            switch (_Mode) { case _RefreshIndicatorMode.Done: await _ScaleController.AnimateTo(1.0, duration: RefreshindicatorDefaultClass._KIndicatorScaleDuration); break; case _RefreshIndicatorMode.Canceled: await _PositionController.AnimateTo(0.0, duration: RefreshindicatorDefaultClass._KIndicatorScaleDuration); break; default: }
+            if (Mounted && _Mode == newMode)
             {
-                if (Mounted && _Mode == _RefreshIndicatorMode.Refresh)
+                _DragOffset = null;
+                _IsIndicatorAtTop = null;
+                SetState(() =>
                 {
-                    completer.Complete();
-                    _Dismiss(_RefreshIndicatorMode.Done);
+                    _Mode = null;
+                }
+                );
+            }
+
+        }
+
+
+
+
+        private void _Show()
+        {
+
+
+            Completer<void> completer = new Completer<void>();
+            _PendingRefreshFuture = completer.Future;
+            _Mode = _RefreshIndicatorMode.Snap;
+            _PositionController.AnimateTo(1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit, duration: RefreshindicatorDefaultClass._KIndicatorSnapDuration).Then((void value) =>
+            {
+                if (Mounted && _Mode == _RefreshIndicatorMode.Snap)
+                {
+
+                    SetState(() =>
+                    {
+                        _Mode = _RefreshIndicatorMode.Refresh;
+                    }
+                    );
+                    Future<void> refreshResult = Widget.OnRefresh();
+
+                    if (refreshResult == null) return;
+                    refreshResult.WhenComplete(() =>
+                    {
+                        if (Mounted && _Mode == _RefreshIndicatorMode.Refresh)
+                        {
+                            completer.Complete();
+                            _Dismiss(_RefreshIndicatorMode.Done);
+                        }
+
+                    }
+                    );
                 }
 
             }
             );
         }
 
+
+
+
+        /// <Summary>
+        /// Show the refresh indicator and run the refresh callback as if it had
+        /// been started interactively. If this method is called while the refresh
+        /// callback is running, it quietly does nothing.
+        ///
+        /// Creating the [RefreshIndicator] with a [GlobalKey<RefreshIndicatorState>]
+        /// makes it possible to refer to the [RefreshIndicatorState].
+        ///
+        /// The future returned from this method completes when the
+        /// [RefreshIndicator.onRefresh] callback's future completes.
+        ///
+        /// If you await the future returned by this function from a [State], you
+        /// should check that the state is still [mounted] before calling [setState].
+        ///
+        /// When initiated in this manner, the refresh indicator is independent of any
+        /// actual scroll view. It defaults to showing the indicator at the top. To
+        /// show it at the bottom, set `atTop` to false.
+        /// </Summary>
+        public virtual Future<object> Show(bool atTop = true)
+        {
+            if (_Mode != _RefreshIndicatorMode.Refresh && _Mode != _RefreshIndicatorMode.Snap)
+            {
+                if (_Mode == null) _Start(atTop ? AxisDirection.Down : AxisDirection.Up);
+                _Show();
+            }
+
+            return _PendingRefreshFuture;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            Widget child = new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new NotificationListener<OverscrollIndicatorNotification>(onNotification: _HandleGlowNotification, child: Widget.Child));
+
+            bool showIndeterminateIndicator = _Mode == _RefreshIndicatorMode.Refresh || _Mode == _RefreshIndicatorMode.Done;
+            return new Stack(children: new List<Widget>() { child, });
+        }
+
+
+
+        #endregion
     }
-    );
-}
 
 
-
-
-/// <Summary>
-/// Show the refresh indicator and run the refresh callback as if it had
-/// been started interactively. If this method is called while the refresh
-/// callback is running, it quietly does nothing.
-///
-/// Creating the [RefreshIndicator] with a [GlobalKey<RefreshIndicatorState>]
-/// makes it possible to refer to the [RefreshIndicatorState].
-///
-/// The future returned from this method completes when the
-/// [RefreshIndicator.onRefresh] callback's future completes.
-///
-/// If you await the future returned by this function from a [State], you
-/// should check that the state is still [mounted] before calling [setState].
-///
-/// When initiated in this manner, the refresh indicator is independent of any
-/// actual scroll view. It defaults to showing the indicator at the top. To
-/// show it at the bottom, set `atTop` to false.
-/// </Summary>
-public virtual Future<object> Show(bool atTop = true)
-{
-    if (_Mode != _RefreshIndicatorMode.Refresh && _Mode != _RefreshIndicatorMode.Snap)
+    public enum _RefreshIndicatorMode
     {
-        if (_Mode == null) _Start(atTop ? AxisDirection.Down : AxisDirection.Up);
-        _Show();
+
+        Drag,
+        Armed,
+        Snap,
+        Refresh,
+        Done,
+        Canceled,
     }
-
-    return _PendingRefreshFuture;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    Widget child = new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new NotificationListener<OverscrollIndicatorNotification>(onNotification: _HandleGlowNotification, child: Widget.Child));
-
-    bool showIndeterminateIndicator = _Mode == _RefreshIndicatorMode.Refresh || _Mode == _RefreshIndicatorMode.Done;
-    return new Stack(children: new List<Widget>() { child, });
-}
-
-
-
-#endregion
-}
-
-
-public enum _RefreshIndicatorMode
-{
-
-    Drag,
-    Armed,
-    Snap,
-    Refresh,
-    Done,
-    Canceled,
-}
 
 }

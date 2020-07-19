@@ -819,112 +819,113 @@ namespace FlutterSDK.Rendering.Binding
 
 
         public new Future<object> PerformReassemble()
-    async
-{
-await base.PerformReassemble();
-        Dart:developerDefaultClass.Timeline.StartSync("Dirty Render Tree", arguments:DebugDefaultClass.TimelineWhitelistArguments);
-try {
-RenderView.Reassemble();
-}
-finally {
-Dart:developerDefaultClass.Timeline.FinishSync();
-}
-
-ScheduleWarmUpFrame();
-await EndOfFrame;
-}
-
-
-
-
-public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position)
-{
-
-    RenderView.HitTest(result, position: position);
-    base.HitTest(result, position);
-}
-
-
-
-
-private Future<object> _ForceRepaint()
-{
-    RenderObjectVisitor visitor = default(RenderObjectVisitor);
-    visitor = (RenderObject child) =>
-    {
-        child.MarkNeedsPaint();
-        child.VisitChildren(visitor);
-    }
-    ;
-    Instance?.RenderView?.VisitChildren(visitor);
-    return EndOfFrame;
-}
-
-
-
-}
-public static class RendererBindingMixin
-{
-    static System.Runtime.CompilerServices.ConditionalWeakTable<IRendererBinding, RendererBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IRendererBinding, RendererBinding>();
-    static RendererBinding GetOrCreate(IRendererBinding instance)
-    {
-        if (!_table.TryGetValue(instance, out var value))
         {
-            value = new RendererBinding();
-            _table.Add(instance, value);
+            await base.PerformReassemble();
+        Dart: developerDefaultClass.Timeline.StartSync("Dirty Render Tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            try
+            {
+                RenderView.Reassemble();
+            }
+            finally
+            {
+            Dart: developerDefaultClass.Timeline.FinishSync();
+            }
+
+            ScheduleWarmUpFrame();
+            await EndOfFrame;
         }
-        return (RendererBinding)value;
+
+
+
+
+        public new void HitTest(FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position)
+        {
+
+            RenderView.HitTest(result, position: position);
+            base.HitTest(result, position);
+        }
+
+
+
+
+        private Future<object> _ForceRepaint()
+        {
+            RenderObjectVisitor visitor = default(RenderObjectVisitor);
+            visitor = (RenderObject child) =>
+            {
+                child.MarkNeedsPaint();
+                child.VisitChildren(visitor);
+            }
+            ;
+            Instance?.RenderView?.VisitChildren(visitor);
+            return EndOfFrame;
+        }
+
+
+
     }
-    public static FlutterSDK.Rendering.Binding.RendererBinding InstanceProperty(this IRendererBinding instance) => GetOrCreate(instance).Instance;
-    public static FlutterSDK.Rendering.Mousetracking.MouseTracker MouseTrackerProperty(this IRendererBinding instance) => GetOrCreate(instance).MouseTracker;
-    public static FlutterSDK.Rendering.@object.PipelineOwner PipelineOwnerProperty(this IRendererBinding instance) => GetOrCreate(instance).PipelineOwner;
-    public static FlutterSDK.Rendering.View.RenderView RenderViewProperty(this IRendererBinding instance) => GetOrCreate(instance).RenderView;
-    public static bool SendFramesToEngineProperty(this IRendererBinding instance) => GetOrCreate(instance).SendFramesToEngine;
-    public static void InitInstances(this IRendererBinding instance) => GetOrCreate(instance).InitInstances();
-    public static void InitServiceExtensions(this IRendererBinding instance) => GetOrCreate(instance).InitServiceExtensions();
-    public static void InitRenderView(this IRendererBinding instance) => GetOrCreate(instance).InitRenderView();
-    public static void HandleMetricsChanged(this IRendererBinding instance) => GetOrCreate(instance).HandleMetricsChanged();
-    public static void HandleTextScaleFactorChanged(this IRendererBinding instance) => GetOrCreate(instance).HandleTextScaleFactorChanged();
-    public static void HandlePlatformBrightnessChanged(this IRendererBinding instance) => GetOrCreate(instance).HandlePlatformBrightnessChanged();
-    public static FlutterSDK.Rendering.View.ViewConfiguration CreateViewConfiguration(this IRendererBinding instance) => GetOrCreate(instance).CreateViewConfiguration();
-    public static void InitMouseTracker(this IRendererBinding instance, FlutterSDK.Rendering.Mousetracking.MouseTracker tracker = default(FlutterSDK.Rendering.Mousetracking.MouseTracker)) => GetOrCreate(instance).InitMouseTracker(tracker);
-    public static void SetSemanticsEnabled(this IRendererBinding instance, bool enabled) => GetOrCreate(instance).SetSemanticsEnabled(enabled);
-    public static void DeferFirstFrame(this IRendererBinding instance) => GetOrCreate(instance).DeferFirstFrame();
-    public static void AllowFirstFrame(this IRendererBinding instance) => GetOrCreate(instance).AllowFirstFrame();
-    public static void ResetFirstFrameSent(this IRendererBinding instance) => GetOrCreate(instance).ResetFirstFrameSent();
-    public static void DrawFrame(this IRendererBinding instance) => GetOrCreate(instance).DrawFrame();
-    public static Future<object> PerformReassemble(this IRendererBinding instance) => GetOrCreate(instance).PerformReassemble();
-    public static void HitTest(this IRendererBinding instance, FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) => GetOrCreate(instance).HitTest(result, position);
-}
-
-
-/// <Summary>
-/// A concrete binding for applications that use the Rendering framework
-/// directly. This is the glue that binds the framework to the Flutter engine.
-///
-/// You would only use this binding if you are writing to the
-/// rendering layer directly. If you are writing to a higher-level
-/// library, such as the Flutter Widgets library, then you would use
-/// that layer's binding.
-/// </Summary>
-public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, ISemanticsBinding, IPaintingBinding, IRendererBinding
-{
-    #region constructors
-    public RenderingFlutterBinding(FlutterSDK.Rendering.Box.RenderBox root = default(FlutterSDK.Rendering.Box.RenderBox))
+    public static class RendererBindingMixin
     {
-
-
-        RenderView.Child = root;
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IRendererBinding, RendererBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IRendererBinding, RendererBinding>();
+        static RendererBinding GetOrCreate(IRendererBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new RendererBinding();
+                _table.Add(instance, value);
+            }
+            return (RendererBinding)value;
+        }
+        public static FlutterSDK.Rendering.Binding.RendererBinding InstanceProperty(this IRendererBinding instance) => GetOrCreate(instance).Instance;
+        public static FlutterSDK.Rendering.Mousetracking.MouseTracker MouseTrackerProperty(this IRendererBinding instance) => GetOrCreate(instance).MouseTracker;
+        public static FlutterSDK.Rendering.@object.PipelineOwner PipelineOwnerProperty(this IRendererBinding instance) => GetOrCreate(instance).PipelineOwner;
+        public static FlutterSDK.Rendering.View.RenderView RenderViewProperty(this IRendererBinding instance) => GetOrCreate(instance).RenderView;
+        public static bool SendFramesToEngineProperty(this IRendererBinding instance) => GetOrCreate(instance).SendFramesToEngine;
+        public static void InitInstances(this IRendererBinding instance) => GetOrCreate(instance).InitInstances();
+        public static void InitServiceExtensions(this IRendererBinding instance) => GetOrCreate(instance).InitServiceExtensions();
+        public static void InitRenderView(this IRendererBinding instance) => GetOrCreate(instance).InitRenderView();
+        public static void HandleMetricsChanged(this IRendererBinding instance) => GetOrCreate(instance).HandleMetricsChanged();
+        public static void HandleTextScaleFactorChanged(this IRendererBinding instance) => GetOrCreate(instance).HandleTextScaleFactorChanged();
+        public static void HandlePlatformBrightnessChanged(this IRendererBinding instance) => GetOrCreate(instance).HandlePlatformBrightnessChanged();
+        public static FlutterSDK.Rendering.View.ViewConfiguration CreateViewConfiguration(this IRendererBinding instance) => GetOrCreate(instance).CreateViewConfiguration();
+        public static void InitMouseTracker(this IRendererBinding instance, FlutterSDK.Rendering.Mousetracking.MouseTracker tracker = default(FlutterSDK.Rendering.Mousetracking.MouseTracker)) => GetOrCreate(instance).InitMouseTracker(tracker);
+        public static void SetSemanticsEnabled(this IRendererBinding instance, bool enabled) => GetOrCreate(instance).SetSemanticsEnabled(enabled);
+        public static void DeferFirstFrame(this IRendererBinding instance) => GetOrCreate(instance).DeferFirstFrame();
+        public static void AllowFirstFrame(this IRendererBinding instance) => GetOrCreate(instance).AllowFirstFrame();
+        public static void ResetFirstFrameSent(this IRendererBinding instance) => GetOrCreate(instance).ResetFirstFrameSent();
+        public static void DrawFrame(this IRendererBinding instance) => GetOrCreate(instance).DrawFrame();
+        public static Future<object> PerformReassemble(this IRendererBinding instance) => GetOrCreate(instance).PerformReassemble();
+        public static void HitTest(this IRendererBinding instance, FlutterSDK.Gestures.Hittest.HitTestResult result, FlutterBinding.UI.Offset position) => GetOrCreate(instance).HitTest(result, position);
     }
 
 
-    #endregion
+    /// <Summary>
+    /// A concrete binding for applications that use the Rendering framework
+    /// directly. This is the glue that binds the framework to the Flutter engine.
+    ///
+    /// You would only use this binding if you are writing to the
+    /// rendering layer directly. If you are writing to a higher-level
+    /// library, such as the Flutter Widgets library, then you would use
+    /// that layer's binding.
+    /// </Summary>
+    public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, ISemanticsBinding, IPaintingBinding, IRendererBinding
+    {
+        #region constructors
+        public RenderingFlutterBinding(FlutterSDK.Rendering.Box.RenderBox root = default(FlutterSDK.Rendering.Box.RenderBox))
+        {
 
-    #region fields
-    #endregion
 
-    #region methods
-    #endregion
-}
+            RenderView.Child = root;
+        }
+
+
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

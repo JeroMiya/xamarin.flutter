@@ -592,65 +592,69 @@ NavigatorDefaultClass.Navigator.Pop(context);
 
 
         private Future<object> _InitLicenses()
-    async
-{
-int debugFlowId = -1;
+        {
+            int debugFlowId = -1;
 
-        await foreach(LicenseEntry license  in LicensesDefaultClass.LicenseRegistry.Licenses){
-if (!Mounted){
-return ;
-}
-
-
-List<LicenseParagraph> paragraphs = await BindingDefaultClass.SchedulerBinding.Instance.ScheduleTask(license.Paragraphs.ToList, PriorityDefaultClass.Priority.Animation, debugLabel: "License");
-if (!Mounted){
-return ;
-}
-
-SetState(() => {
-            _Licenses.Add(new Padding(padding: EdgeInsets.Symmetric(vertical: 18.0), child: new Text("🍀‬", textAlign: TextAlign.Center)));
-            _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
-            foreach (LicenseParagraph paragraph in paragraphs)
+            await foreach (LicenseEntry license in LicensesDefaultClass.LicenseRegistry.Licenses)
             {
-                if (paragraph.Indent == LicensesDefaultClass.LicenseParagraph.CenteredIndent)
+                if (!Mounted)
                 {
-                    _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
-                }
-                else
-                {
-
-                    _Licenses.Add(new Padding(padding: EdgeInsetsDirectional.Only(top: 8.0, start: 16.0 * paragraph.Indent), child: new Text(paragraph.Text)));
+                    return;
                 }
 
+
+                List<LicenseParagraph> paragraphs = await BindingDefaultClass.SchedulerBinding.Instance.ScheduleTask(license.Paragraphs.ToList, PriorityDefaultClass.Priority.Animation, debugLabel: "License");
+                if (!Mounted)
+                {
+                    return;
+                }
+
+                SetState(() =>
+                {
+                    _Licenses.Add(new Padding(padding: EdgeInsets.Symmetric(vertical: 18.0), child: new Text("🍀‬", textAlign: TextAlign.Center)));
+                    _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                    foreach (LicenseParagraph paragraph in paragraphs)
+                    {
+                        if (paragraph.Indent == LicensesDefaultClass.LicenseParagraph.CenteredIndent)
+                        {
+                            _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                        }
+                        else
+                        {
+
+                            _Licenses.Add(new Padding(padding: EdgeInsetsDirectional.Only(top: 8.0, start: 16.0 * paragraph.Indent), child: new Text(paragraph.Text)));
+                        }
+
+                    }
+
+                }
+                );
             }
 
+            SetState(() =>
+            {
+                _Loaded = true;
+            }
+            );
+
         }
-);
-}
 
-    SetState(() => {
-        _Loaded = true;
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            string name = Widget.ApplicationName ?? AboutDefaultClass._DefaultApplicationName(context);
+            string version = Widget.ApplicationVersion ?? AboutDefaultClass._DefaultApplicationVersion(context);
+            Widget icon = Widget.ApplicationIcon ?? AboutDefaultClass._DefaultApplicationIcon(context);
+            MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
+            return new Scaffold(appBar: new AppBar(title: new Text(localizations.LicensesPageTitle)), body: Localizations.Override(locale: new Locale("en", "US"), context: context, child: new DefaultTextStyle(style: ThemeDefaultClass.Theme.Of(context).TextTheme.Caption, child: new SafeArea(bottom: false, child: new Scrollbar(child: new ListView(padding: EdgeInsets.Symmetric(horizontal: 8.0, vertical: 12.0), children: new List<Widget>() { new Text(name, style: ThemeDefaultClass.Theme.Of(context).TextTheme.Headline5, textAlign: TextAlign.Center), }))))));
+        }
+
+
+
+        #endregion
     }
-);
-
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    string name = Widget.ApplicationName ?? AboutDefaultClass._DefaultApplicationName(context);
-    string version = Widget.ApplicationVersion ?? AboutDefaultClass._DefaultApplicationVersion(context);
-    Widget icon = Widget.ApplicationIcon ?? AboutDefaultClass._DefaultApplicationIcon(context);
-    MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
-    return new Scaffold(appBar: new AppBar(title: new Text(localizations.LicensesPageTitle)), body: Localizations.Override(locale: new Locale("en", "US"), context: context, child: new DefaultTextStyle(style: ThemeDefaultClass.Theme.Of(context).TextTheme.Caption, child: new SafeArea(bottom: false, child: new Scrollbar(child: new ListView(padding: EdgeInsets.Symmetric(horizontal: 8.0, vertical: 12.0), children: new List<Widget>() { new Text(name, style: ThemeDefaultClass.Theme.Of(context).TextTheme.Headline5, textAlign: TextAlign.Center), }))))));
-}
-
-
-
-#endregion
-}
 
 }

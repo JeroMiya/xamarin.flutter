@@ -433,10 +433,11 @@ namespace FlutterSDK.Foundation.Binding
             if (!ConstantsDefaultClass.KReleaseMode && !ConstantsDefaultClass.KIsWeb)
             {
                 RegisterSignalServiceExtension(name: "exit", callback: BindingDefaultClass._ExitApplication);
-                RegisterServiceExtension(name: "saveCompilationTrace", callback: (Dictionary<string, string> parameters) => async {
+                RegisterServiceExtension(name: "saveCompilationTrace", callback: (Dictionary<string, string> parameters) =>
+                {
                     return new Dictionary<string, object> { { "value", Ui.Dart:uiDefaultClass.SaveCompilationTrace() } };
                 }
-);
+                );
             }
 
 
@@ -556,11 +557,12 @@ namespace FlutterSDK.Foundation.Binding
         {
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 await callback();
                 return new Dictionary<string, object> { };
             }
-);
+            );
         }
 
 
@@ -587,7 +589,8 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 if (parameters.ContainsKey("enabled"))
                 {
                     await setter(parameters["enabled"] == "true");
@@ -596,7 +599,7 @@ namespace FlutterSDK.Foundation.Binding
 
                 return new Dictionary<string, object> { { "enabled", await getter() ? "true" : "false" } };
             }
-);
+            );
         }
 
 
@@ -622,7 +625,8 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 if (parameters.ContainsKey(name))
                 {
                     await setter(Dart: coreDefaultClass.Double.Parse(parameters[name]));
@@ -631,7 +635,7 @@ namespace FlutterSDK.Foundation.Binding
 
                 return new Dictionary<string, object> { { name, (await getter()).ToString() } };
             }
-);
+            );
         }
 
 
@@ -690,7 +694,8 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 if (parameters.ContainsKey("value"))
                 {
                     await setter(parameters["value"]);
@@ -699,7 +704,7 @@ namespace FlutterSDK.Foundation.Binding
 
                 return new Dictionary<string, object> { { "value", await getter() } };
             }
-);
+            );
         }
 
 
@@ -763,46 +768,47 @@ namespace FlutterSDK.Foundation.Binding
 
 
             string methodName = $"'ext.flutter.{name}'";
-            Developer.Dart:developerDefaultClass.RegisterExtension(methodName, (string method, Dictionary<string, string> parameters) => async {
+            Developer.Dart:developerDefaultClass.RegisterExtension(methodName, (string method, Dictionary<string, string> parameters) =>
+            {
 
 
-                await DebugDefaultClass.DebugInstrumentAction("Wait for outer event loop", () =>
-                {
-                    return Future<void>.Delayed(Dart: coreDefaultClass.Duration.Zero);
-                }
-                );
-                object caughtException = default(object);
-                StackTrace caughtStack = default(StackTrace);
-                Dictionary<string, object> result = default(Dictionary<string, object>);
-                try
-                {
-                    result = await callback(parameters);
-                }
-                catch (exception,stack){
-                    caughtException = exception;
-                    caughtStack = stack;
-                }
-
-                if (caughtException == null)
-                {
-                    result["type"] = "_extensionType";
-                    result["method"] = method;
-                    return Developer.Dart:developerDefaultClass.ServiceExtensionResponse.Result(Dart: convertDefaultClass.Json.Encode(result));
-                }
-                else
-                {
-                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: caughtException, stack: caughtStack, context: new ErrorDescription($"'during a service extension callback for "{ method }"'")));
-                    return Developer.Dart:developerDefaultClass.ServiceExtensionResponse.Error(Developer.Dart:developerDefaultClass.ServiceExtensionResponse.ExtensionError, Dart: convertDefaultClass.Json.Encode(new Dictionary<string, string> { { "exception", caughtException.ToString() }{ "stack", caughtStack.ToString() }{ "method", method } }));
-                }
-
-                }
-);
+            await DebugDefaultClass.DebugInstrumentAction("Wait for outer event loop", () =>
+            {
+                return Future<void>.Delayed(Dart: coreDefaultClass.Duration.Zero);
+            }
+            );
+            object caughtException = default(object);
+            StackTrace caughtStack = default(StackTrace);
+            Dictionary<string, object> result = default(Dictionary<string, object>);
+            try
+            {
+                result = await callback(parameters);
+            }
+            catch (exception,stack){
+                caughtException = exception;
+                caughtStack = stack;
             }
 
+            if (caughtException == null)
+            {
+                result["type"] = "_extensionType";
+                result["method"] = method;
+                return Developer.Dart:developerDefaultClass.ServiceExtensionResponse.Result(Dart: convertDefaultClass.Json.Encode(result));
+            }
+            else
+            {
+                AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: caughtException, stack: caughtStack, context: new ErrorDescription($"'during a service extension callback for "{ method }"'")));
+                return Developer.Dart:developerDefaultClass.ServiceExtensionResponse.Error(Developer.Dart:developerDefaultClass.ServiceExtensionResponse.ExtensionError, Dart: convertDefaultClass.Json.Encode(new Dictionary<string, string> { { "exception", caughtException.ToString() }{ "stack", caughtStack.ToString() }{ "method", method } }));
+            }
 
-
-
-            #endregion
         }
+);
+}
 
-    }
+
+
+
+    #endregion
+}
+
+}

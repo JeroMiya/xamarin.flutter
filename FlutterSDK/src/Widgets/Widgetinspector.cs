@@ -548,10 +548,11 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterSignalServiceExtension(string name = default(string), Func<FutureOr<object>> callback = default(Func<FutureOr<object>>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 return new Dictionary<string, object> { { "result", await callback() } };
             }
-);
+            );
         }
 
 
@@ -567,10 +568,11 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterObjectGroupServiceExtension(string name = default(string), Func<FutureOr<object>, string> callback = default(Func<FutureOr<object>, string>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 return new Dictionary<string, object> { { "result", await callback(parameters["objectGroup"]) } };
             }
-);
+            );
         }
 
 
@@ -595,7 +597,8 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 if (parameters.ContainsKey("enabled"))
                 {
                     bool value = parameters["enabled"] == "true";
@@ -605,7 +608,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
                 return new Dictionary<string, object> { { "enabled", await getter() ? "true" : "false" } };
             }
-);
+            );
         }
 
 
@@ -639,11 +642,12 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterServiceExtensionWithArg(string name = default(string), Func<FutureOr<object>, string, string> callback = default(Func<FutureOr<object>, string, string>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
 
                 return new Dictionary<string, object> { { "result", await callback(parameters["arg"], parameters["objectGroup"]) } };
             }
-);
+            );
         }
 
 
@@ -656,7 +660,8 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterServiceExtensionVarArgs(string name = default(string), Func<FutureOr<object>, List<string>> callback = default(Func<FutureOr<object>, List<string>>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            {
                 string argPrefix = "arg";
                 List<string> args = new List<string>() { };
                 parameters.ForEach((string name, string value) =>
@@ -676,7 +681,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
                 );
                 return new Dictionary<string, object> { { "result", await callback(args) } };
             }
-);
+            );
         }
 
 
@@ -766,7 +771,8 @@ namespace FlutterSDK.Widgets.Widgetinspector
             );
             if (IsWidgetCreationTracked())
             {
-                _RegisterBoolServiceExtension(name: "trackRebuildDirtyWidgets", getter: () => async => _TrackRebuildDirtyWidgets, setter: (bool value) => async {
+                _RegisterBoolServiceExtension(name: "trackRebuildDirtyWidgets", getter: () => async => _TrackRebuildDirtyWidgets, setter: (bool value) =>
+                {
                     if (value == _TrackRebuildDirtyWidgets)
                     {
                         return;
@@ -788,8 +794,9 @@ namespace FlutterSDK.Widgets.Widgetinspector
                     }
 
                 }
-);
-                _RegisterBoolServiceExtension(name: "trackRepaintWidgets", getter: () => async => _TrackRepaintWidgets, setter: (bool value) => async {
+                );
+                _RegisterBoolServiceExtension(name: "trackRepaintWidgets", getter: () => async => _TrackRepaintWidgets, setter: (bool value) =>
+                {
                     if (value == _TrackRepaintWidgets)
                     {
                         return;
@@ -819,7 +826,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
                     }
 
                 }
-);
+                );
             }
 
             _RegisterSignalServiceExtension(name: "disposeAllGroups", callback: DisposeAllGroups);
@@ -836,419 +843,285 @@ namespace FlutterSDK.Widgets.Widgetinspector
             _RegisterObjectGroupServiceExtension(name: "getRootWidget", callback: _GetRootWidget);
             _RegisterObjectGroupServiceExtension(name: "getRootRenderObject", callback: _GetRootRenderObject);
             _RegisterObjectGroupServiceExtension(name: "getRootWidgetSummaryTree", callback: _GetRootWidgetSummaryTree);
-            RegisterServiceExtension(name: "getDetailsSubtree", callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: "getDetailsSubtree", callback: (Dictionary<string, string> parameters) =>
+            {
 
                 string subtreeDepth = parameters["subtreeDepth"];
                 return new Dictionary<string, object> { { "result", _GetDetailsSubtree(parameters["arg"], parameters["objectGroup"], subtreeDepth != null ? Dart : coreDefaultClass.Int.Parse(subtreeDepth):2) } };
             }
-);
+            );
             _RegisterServiceExtensionWithArg(name: "getSelectedRenderObject", callback: _GetSelectedRenderObject);
             _RegisterServiceExtensionWithArg(name: "getSelectedWidget", callback: _GetSelectedWidget);
             _RegisterServiceExtensionWithArg(name: "getSelectedSummaryWidget", callback: _GetSelectedSummaryWidget);
             _RegisterSignalServiceExtension(name: "isWidgetCreationTracked", callback: IsWidgetCreationTracked);
-            RegisterServiceExtension(name: "screenshot", callback: (Dictionary<string, string> parameters) => async {
+            RegisterServiceExtension(name: "screenshot", callback: (Dictionary<string, string> parameters) =>
+            {
 
 
 
-                Ui.Dart:uiDefaultClass.Image image = await Screenshot(ToObject(parameters["id"]), width: Dart:coreDefaultClass.Double.Parse(parameters["width"]), height: Dart: coreDefaultClass.Double.Parse(parameters["height"]), margin: parameters.ContainsKey("margin") ? Dart : coreDefaultClass.Double.Parse(parameters["margin"]):0.0, maxPixelRatio: parameters.ContainsKey("maxPixelRatio") ? Dart : coreDefaultClass.Double.Parse(parameters["maxPixelRatio"]):1.0, debugPaint: parameters["debugPaint"] == "true");
-                if (image == null)
+            Ui.Dart:uiDefaultClass.Image image = await Screenshot(ToObject(parameters["id"]), width: Dart:coreDefaultClass.Double.Parse(parameters["width"]), height: Dart: coreDefaultClass.Double.Parse(parameters["height"]), margin: parameters.ContainsKey("margin") ? Dart : coreDefaultClass.Double.Parse(parameters["margin"]):0.0, maxPixelRatio: parameters.ContainsKey("maxPixelRatio") ? Dart : coreDefaultClass.Double.Parse(parameters["maxPixelRatio"]):1.0, debugPaint: parameters["debugPaint"] == "true");
+            if (image == null)
+            {
+                return new Dictionary<string, object> { { "result", null } };
+            }
+
+            ByteData byteData = await image.ToByteData(format: Ui.ImageByteFormat.Png);
+            return new Dictionary<string, object> { { "result", Dart:convertDefaultClass.Base64.Encoder.Convert(Uint8List.View(byteData.Buffer)) } };
+        }
+);
+}
+
+
+
+
+    private void _ClearStats()
+    {
+        _RebuildStats.ResetCounts();
+        _RepaintStats.ResetCounts();
+    }
+
+
+
+
+    /// <Summary>
+    /// Clear all InspectorService object references.
+    ///
+    /// Use this method only for testing to ensure that object references from one
+    /// test case do not impact other test cases.
+    /// </Summary>
+    public virtual void DisposeAllGroups()
+    {
+        _Groups.Clear();
+        _IdToReferenceData.Clear();
+        _ObjectToId.Clear();
+        _NextId = 0;
+    }
+
+
+
+
+    /// <Summary>
+    /// Free all references to objects in a group.
+    ///
+    /// Objects and their associated ids in the group may be kept alive by
+    /// references from a different group.
+    /// </Summary>
+    public virtual void DisposeGroup(string name)
+    {
+        HashSet<_InspectorReferenceData> references = _Groups.Remove(name);
+        if (references == null) return;
+        references.ForEach(_DecrementReferenceCount);
+    }
+
+
+
+
+    private void _DecrementReferenceCount(FlutterSDK.Widgets.Widgetinspector._InspectorReferenceData reference)
+    {
+        reference.Count -= 1;
+
+        if (reference.Count == 0)
+        {
+            string id = _ObjectToId.Remove(reference.Object);
+
+            _IdToReferenceData.Remove(id);
+        }
+
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a unique id for [object] that will remain live at least until
+    /// [disposeGroup] is called on [groupName] or [dispose] is called on the id
+    /// returned by this method.
+    /// </Summary>
+    public virtual string ToId(@Object @object, string groupName)
+    {
+        if (object == null) return null;
+        HashSet<_InspectorReferenceData> group = _Groups.PutIfAbsent(groupName, () => =>HashSet<_InspectorReferenceData>.Identity());
+        string id = _ObjectToId[object];
+        _InspectorReferenceData referenceData = default(_InspectorReferenceData);
+        if (id == null)
+        {
+            id = $"'inspector-{_NextId}'";
+            _NextId += 1;
+            _ObjectToId[object] = id;
+            referenceData = new _InspectorReferenceData(object);
+            _IdToReferenceData[id] = referenceData;
+            group.Add(referenceData);
+        }
+        else
+        {
+            referenceData = _IdToReferenceData[id];
+            if (group.Add(referenceData)) referenceData.Count += 1;
+        }
+
+        return id;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns whether the application has rendered its first frame and it is
+    /// appropriate to display the Widget tree in the inspector.
+    /// </Summary>
+    public virtual bool IsWidgetTreeReady(string groupName = default(string))
+    {
+        return BindingDefaultClass.WidgetsBinding.Instance != null && BindingDefaultClass.WidgetsBinding.Instance.DebugDidSendFirstFrameEvent;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the Dart object associated with a reference id.
+    ///
+    /// The `groupName` parameter is not required by is added to regularize the
+    /// API surface of the methods in this class called from the Flutter IntelliJ
+    /// Plugin.
+    /// </Summary>
+    public virtual @Object ToObject(string id, string groupName = default(string))
+    {
+        if (id == null) return null;
+        _InspectorReferenceData data = _IdToReferenceData[id];
+        if (data == null)
+        {
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("Id does not exist.") });
+        }
+
+        return data.Object;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns the object to introspect to determine the source location of an
+    /// object's class.
+    ///
+    /// The Dart object for the id is returned for all cases but [Element] objects
+    /// where the [Widget] configuring the [Element] is returned instead as the
+    /// class of the [Widget] is more relevant than the class of the [Element].
+    ///
+    /// The `groupName` parameter is not required by is added to regularize the
+    /// API surface of methods called from the Flutter IntelliJ Plugin.
+    /// </Summary>
+    public virtual @Object ToObjectForSourceLocation(string id, string groupName = default(string))
+    {
+        object   object= ToObject(id);
+        if (object is Element)
+        {
+            return ((Element)object).Widget;
+        }
+
+        return object;
+    }
+
+
+
+
+    /// <Summary>
+    /// Remove the object with the specified `id` from the specified object
+    /// group.
+    ///
+    /// If the object exists in other groups it will remain alive and the object
+    /// id will remain valid.
+    /// </Summary>
+    public virtual void DisposeId(string id, string groupName)
+    {
+        if (id == null) return;
+        _InspectorReferenceData referenceData = _IdToReferenceData[id];
+        if (referenceData == null) throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("Id does not exist") });
+        if (_Groups[groupName]?.Remove(referenceData) != true) throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("Id is not in group") });
+        _DecrementReferenceCount(referenceData);
+    }
+
+
+
+
+    /// <Summary>
+    /// Set the list of directories that should be considered part of the local
+    /// project.
+    ///
+    /// The local project directories are used to distinguish widgets created by
+    /// the local project over widgets created from inside the framework.
+    /// </Summary>
+    public virtual void SetPubRootDirectories(List<string> pubRootDirectories)
+    {
+        _PubRootDirectories = pubRootDirectories.Map((string directory) => =>Dart: coreDefaultClass.Uri.Parse(directory).Path).ToList();
+    }
+
+
+
+
+    /// <Summary>
+    /// Set the [WidgetInspector] selection to the object matching the specified
+    /// id if the object is valid object to set as the inspector selection.
+    ///
+    /// Returns true if the selection was changed.
+    ///
+    /// The `groupName` parameter is not required by is added to regularize the
+    /// API surface of methods called from the Flutter IntelliJ Plugin.
+    /// </Summary>
+    public virtual bool SetSelectionById(string id, string groupName = default(string))
+    {
+        return SetSelection(ToObject(id), groupName);
+    }
+
+
+
+
+    /// <Summary>
+    /// Set the [WidgetInspector] selection to the specified `object` if it is
+    /// a valid object to set as the inspector selection.
+    ///
+    /// Returns true if the selection was changed.
+    ///
+    /// The `groupName` parameter is not needed but is specified to regularize the
+    /// API surface of methods called from the Flutter IntelliJ Plugin.
+    /// </Summary>
+    public virtual bool SetSelection(@Object @object, string groupName = default(string))
+    {
+        if (object is Element || object is RenderObject)
+        {
+            if (((Element)object) is Element)
+            {
+                if (((Element)object) == Selection.CurrentElement)
                 {
-                    return new Dictionary<string, object> { { "result", null } };
+                    return false;
                 }
 
-                ByteData byteData = await image.ToByteData(format: Ui.ImageByteFormat.Png);
-                return new Dictionary<string, object> { { "result", Dart:convertDefaultClass.Base64.Encoder.Convert(Uint8List.View(byteData.Buffer)) } };
-            }
-);
-        }
-
-
-
-
-        private void _ClearStats()
-        {
-            _RebuildStats.ResetCounts();
-            _RepaintStats.ResetCounts();
-        }
-
-
-
-
-        /// <Summary>
-        /// Clear all InspectorService object references.
-        ///
-        /// Use this method only for testing to ensure that object references from one
-        /// test case do not impact other test cases.
-        /// </Summary>
-        public virtual void DisposeAllGroups()
-        {
-            _Groups.Clear();
-            _IdToReferenceData.Clear();
-            _ObjectToId.Clear();
-            _NextId = 0;
-        }
-
-
-
-
-        /// <Summary>
-        /// Free all references to objects in a group.
-        ///
-        /// Objects and their associated ids in the group may be kept alive by
-        /// references from a different group.
-        /// </Summary>
-        public virtual void DisposeGroup(string name)
-        {
-            HashSet<_InspectorReferenceData> references = _Groups.Remove(name);
-            if (references == null) return;
-            references.ForEach(_DecrementReferenceCount);
-        }
-
-
-
-
-        private void _DecrementReferenceCount(FlutterSDK.Widgets.Widgetinspector._InspectorReferenceData reference)
-        {
-            reference.Count -= 1;
-
-            if (reference.Count == 0)
-            {
-                string id = _ObjectToId.Remove(reference.Object);
-
-                _IdToReferenceData.Remove(id);
-            }
-
-        }
-
-
-
-
-        /// <Summary>
-        /// Returns a unique id for [object] that will remain live at least until
-        /// [disposeGroup] is called on [groupName] or [dispose] is called on the id
-        /// returned by this method.
-        /// </Summary>
-        public virtual string ToId(@Object @object, string groupName)
-        {
-            if (object == null) return null;
-            HashSet<_InspectorReferenceData> group = _Groups.PutIfAbsent(groupName, () => =>HashSet<_InspectorReferenceData>.Identity());
-            string id = _ObjectToId[object];
-            _InspectorReferenceData referenceData = default(_InspectorReferenceData);
-            if (id == null)
-            {
-                id = $"'inspector-{_NextId}'";
-                _NextId += 1;
-                _ObjectToId[object] = id;
-                referenceData = new _InspectorReferenceData(object);
-                _IdToReferenceData[id] = referenceData;
-                group.Add(referenceData);
+                Selection.CurrentElement = object;
+                Developer.Dart:developerDefaultClass.Inspect(Selection.CurrentElement);
             }
             else
             {
-                referenceData = _IdToReferenceData[id];
-                if (group.Add(referenceData)) referenceData.Count += 1;
-            }
-
-            return id;
-        }
-
-
-
-
-        /// <Summary>
-        /// Returns whether the application has rendered its first frame and it is
-        /// appropriate to display the Widget tree in the inspector.
-        /// </Summary>
-        public virtual bool IsWidgetTreeReady(string groupName = default(string))
-        {
-            return BindingDefaultClass.WidgetsBinding.Instance != null && BindingDefaultClass.WidgetsBinding.Instance.DebugDidSendFirstFrameEvent;
-        }
-
-
-
-
-        /// <Summary>
-        /// Returns the Dart object associated with a reference id.
-        ///
-        /// The `groupName` parameter is not required by is added to regularize the
-        /// API surface of the methods in this class called from the Flutter IntelliJ
-        /// Plugin.
-        /// </Summary>
-        public virtual @Object ToObject(string id, string groupName = default(string))
-        {
-            if (id == null) return null;
-            _InspectorReferenceData data = _IdToReferenceData[id];
-            if (data == null)
-            {
-                throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("Id does not exist.") });
-            }
-
-            return data.Object;
-        }
-
-
-
-
-        /// <Summary>
-        /// Returns the object to introspect to determine the source location of an
-        /// object's class.
-        ///
-        /// The Dart object for the id is returned for all cases but [Element] objects
-        /// where the [Widget] configuring the [Element] is returned instead as the
-        /// class of the [Widget] is more relevant than the class of the [Element].
-        ///
-        /// The `groupName` parameter is not required by is added to regularize the
-        /// API surface of methods called from the Flutter IntelliJ Plugin.
-        /// </Summary>
-        public virtual @Object ToObjectForSourceLocation(string id, string groupName = default(string))
-        {
-            object   object= ToObject(id);
-            if (object is Element)
-            {
-                return ((Element)object).Widget;
-            }
-
-            return object;
-        }
-
-
-
-
-        /// <Summary>
-        /// Remove the object with the specified `id` from the specified object
-        /// group.
-        ///
-        /// If the object exists in other groups it will remain alive and the object
-        /// id will remain valid.
-        /// </Summary>
-        public virtual void DisposeId(string id, string groupName)
-        {
-            if (id == null) return;
-            _InspectorReferenceData referenceData = _IdToReferenceData[id];
-            if (referenceData == null) throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("Id does not exist") });
-            if (_Groups[groupName]?.Remove(referenceData) != true) throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary("Id is not in group") });
-            _DecrementReferenceCount(referenceData);
-        }
-
-
-
-
-        /// <Summary>
-        /// Set the list of directories that should be considered part of the local
-        /// project.
-        ///
-        /// The local project directories are used to distinguish widgets created by
-        /// the local project over widgets created from inside the framework.
-        /// </Summary>
-        public virtual void SetPubRootDirectories(List<string> pubRootDirectories)
-        {
-            _PubRootDirectories = pubRootDirectories.Map((string directory) => =>Dart: coreDefaultClass.Uri.Parse(directory).Path).ToList();
-        }
-
-
-
-
-        /// <Summary>
-        /// Set the [WidgetInspector] selection to the object matching the specified
-        /// id if the object is valid object to set as the inspector selection.
-        ///
-        /// Returns true if the selection was changed.
-        ///
-        /// The `groupName` parameter is not required by is added to regularize the
-        /// API surface of methods called from the Flutter IntelliJ Plugin.
-        /// </Summary>
-        public virtual bool SetSelectionById(string id, string groupName = default(string))
-        {
-            return SetSelection(ToObject(id), groupName);
-        }
-
-
-
-
-        /// <Summary>
-        /// Set the [WidgetInspector] selection to the specified `object` if it is
-        /// a valid object to set as the inspector selection.
-        ///
-        /// Returns true if the selection was changed.
-        ///
-        /// The `groupName` parameter is not needed but is specified to regularize the
-        /// API surface of methods called from the Flutter IntelliJ Plugin.
-        /// </Summary>
-        public virtual bool SetSelection(@Object @object, string groupName = default(string))
-        {
-            if (object is Element || object is RenderObject)
-            {
-                if (((Element)object) is Element)
+                if (object == Selection.Current)
                 {
-                    if (((Element)object) == Selection.CurrentElement)
-                    {
-                        return false;
-                    }
+                    return false;
+                }
 
-                    Selection.CurrentElement = object;
-                    Developer.Dart:developerDefaultClass.Inspect(Selection.CurrentElement);
+                Selection.Current = object as RenderObject;
+                Developer.Dart:developerDefaultClass.Inspect(Selection.Current);
+            }
+
+            if (SelectionChangedCallback != null)
+            {
+                if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.Idle)
+                {
+                    SelectionChangedCallback();
                 }
                 else
                 {
-                    if (object == Selection.Current)
-                    {
-                        return false;
-                    }
-
-                    Selection.Current = object as RenderObject;
-                    Developer.Dart:developerDefaultClass.Inspect(Selection.Current);
-                }
-
-                if (SelectionChangedCallback != null)
-                {
-                    if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.Idle)
-                    {
-                        SelectionChangedCallback();
-                    }
-                    else
-                    {
-                        BindingDefaultClass.SchedulerBinding.Instance.ScheduleTask(SelectionChangedCallback, PriorityDefaultClass.Priority.Touch);
-                    }
-
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-
-
-
-        /// <Summary>
-        /// Returns JSON representing the chain of [DiagnosticsNode] instances from
-        /// root of thee tree to the [Element] or [RenderObject] matching `id`.
-        ///
-        /// The JSON contains all information required to display a tree view with
-        /// all nodes other than nodes along the path collapsed.
-        /// </Summary>
-        public virtual string GetParentChain(string id, string groupName)
-        {
-            return _SafeJsonEncode(_GetParentChain(id, groupName));
-        }
-
-
-
-
-        private List<@Object> _GetParentChain(string id, string groupName)
-        {
-            object value = ToObject(id);
-            List<_DiagnosticsPathNode> path = default(List<_DiagnosticsPathNode>);
-            if (value is RenderObject) path = _GetRenderObjectParentChain(value, groupName); else if (value is Element) path = _GetElementParentChain(value, groupName); else throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Cannot get parent chain for node of type {value.GetType()}'") });
-            return path.Map((_DiagnosticsPathNode node) => =>_PathNodeToJson(node, new InspectorSerializationDelegate(groupName: groupName, service: this))).ToList();
-        }
-
-
-
-
-        private Dictionary<string, @Object> _PathNodeToJson(FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode pathNode, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
-        {
-            if (pathNode == null) return null;
-            return new Dictionary<string, object> { { "node", _NodeToJson(pathNode.Node, delegate) }{ "children", _NodesToJson(pathNode.Children, delegate, parent: pathNode.Node) }{ "childIndex", pathNode.ChildIndex } };
-        }
-
-
-
-
-        private List<FlutterSDK.Widgets.Framework.Element> _GetRawElementParentChain(FlutterSDK.Widgets.Framework.Element element, int numLocalParents = default(int))
-        {
-            List<Element> elements = element?.DebugGetDiagnosticChain();
-            if (numLocalParents != null)
-            {
-                for (int i = 0; i < elements.Count; i += 1)
-                {
-                    if (_IsValueCreatedByLocalProject(elements[i]))
-                    {
-                        numLocalParents--;
-                        if (numLocalParents <= 0)
-                        {
-                            elements = elements.Take(i + 1).ToList();
-                            break;
-                        }
-
-                    }
-
+                    BindingDefaultClass.SchedulerBinding.Instance.ScheduleTask(SelectionChangedCallback, PriorityDefaultClass.Priority.Touch);
                 }
 
             }
 
-            return elements?.Reversed?.ToList();
-        }
-
-
-
-
-        private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetElementParentChain(FlutterSDK.Widgets.Framework.Element element, string groupName, int numLocalParents = default(int))
-        {
-            return WidgetinspectorDefaultClass._FollowDiagnosticableChain(_GetRawElementParentChain(element, numLocalParents: numLocalParents)) ?? new List, < _DiagnosticsPathNode > (};
-    }
-
-
-
-
-    private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetRenderObjectParentChain(FlutterSDK.Rendering.@object.RenderObject renderObject, string groupName, int maxparents = default(int))
-    {
-        List<RenderObject> chain = new List<RenderObject>() { };
-        while (renderObject != null)
-        {
-            chain.Add(renderObject);
-            renderObject = renderObject.Parent as RenderObject;
-        }
-
-        return WidgetinspectorDefaultClass._FollowDiagnosticableChain(chain.Reversed.ToList());
-    }
-
-
-
-
-    private Dictionary<string, @Object> _NodeToJson(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
-    {
-        return node?.ToJsonMap(delegate);
-    }
-
-
-
-
-    private bool _IsValueCreatedByLocalProject(@Object value)
-    {
-        _Location creationLocation = WidgetinspectorDefaultClass._GetCreationLocation(value);
-        if (creationLocation == null)
-        {
-            return false;
-        }
-
-        return _IsLocalCreationLocation(creationLocation);
-    }
-
-
-
-
-    private bool _IsLocalCreationLocation(FlutterSDK.Widgets.Widgetinspector._Location location)
-    {
-        if (location == null || location.File == null)
-        {
-            return false;
-        }
-
-        string file = Dart:coreDefaultClass.Uri.Parse(location.File).Path;
-        if (_PubRootDirectories == null)
-        {
-            return !file.Contains("packages/flutter/");
-        }
-
-        foreach (string directory in _PubRootDirectories)
-        {
-            if (file.StartsWith(directory))
-            {
-                return true;
-            }
-
+            return true;
         }
 
         return false;
@@ -1258,65 +1131,201 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
     /// <Summary>
-    /// Wrapper around `json.encode` that uses a ring of cached values to prevent
-    /// the Dart garbage collector from collecting objects between when
-    /// the value is returned over the Observatory protocol and when the
-    /// separate observatory protocol command has to be used to retrieve its full
-    /// contents.
+    /// Returns JSON representing the chain of [DiagnosticsNode] instances from
+    /// root of thee tree to the [Element] or [RenderObject] matching `id`.
+    ///
+    /// The JSON contains all information required to display a tree view with
+    /// all nodes other than nodes along the path collapsed.
     /// </Summary>
-    private string _SafeJsonEncode(@Object @object)
+    public virtual string GetParentChain(string id, string groupName)
     {
-        string jsonString = Dart:convertDefaultClass.Json.Encode(object);
-        _SerializeRing[_SerializeRingIndex] = jsonString;
-        _SerializeRingIndex = (_SerializeRingIndex + 1) % _SerializeRing.Count;
-        return jsonString;
+        return _SafeJsonEncode(_GetParentChain(id, groupName));
     }
 
 
 
 
-    private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _TruncateNodes(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, int maxDescendentsTruncatableNode)
+    private List<@Object> _GetParentChain(string id, string groupName)
     {
-        if (nodes.Every((DiagnosticsNode node) => =>node.Value is Element) && IsWidgetCreationTracked())
+        object value = ToObject(id);
+        List<_DiagnosticsPathNode> path = default(List<_DiagnosticsPathNode>);
+        if (value is RenderObject) path = _GetRenderObjectParentChain(value, groupName); else if (value is Element) path = _GetElementParentChain(value, groupName); else throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Cannot get parent chain for node of type {value.GetType()}'") });
+        return path.Map((_DiagnosticsPathNode node) => =>_PathNodeToJson(node, new InspectorSerializationDelegate(groupName: groupName, service: this))).ToList();
+    }
+
+
+
+
+    private Dictionary<string, @Object> _PathNodeToJson(FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode pathNode, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
+    {
+        if (pathNode == null) return null;
+        return new Dictionary<string, object> { { "node", _NodeToJson(pathNode.Node, delegate) }{ "children", _NodesToJson(pathNode.Children, delegate, parent: pathNode.Node) }{ "childIndex", pathNode.ChildIndex } };
+    }
+
+
+
+
+    private List<FlutterSDK.Widgets.Framework.Element> _GetRawElementParentChain(FlutterSDK.Widgets.Framework.Element element, int numLocalParents = default(int))
+    {
+        List<Element> elements = element?.DebugGetDiagnosticChain();
+        if (numLocalParents != null)
         {
-            List<DiagnosticsNode> localNodes = nodes.Where((DiagnosticsNode node) => =>_IsValueCreatedByLocalProject(((Element)node.Value))).ToList();
-            if (localNodes.IsNotEmpty)
+            for (int i = 0; i < elements.Count; i += 1)
             {
-                return localNodes;
+                if (_IsValueCreatedByLocalProject(elements[i]))
+                {
+                    numLocalParents--;
+                    if (numLocalParents <= 0)
+                    {
+                        elements = elements.Take(i + 1).ToList();
+                        break;
+                    }
+
+                }
+
             }
 
         }
 
-        return nodes.Take(maxDescendentsTruncatableNode).ToList();
+        return elements?.Reversed?.ToList();
     }
 
 
 
 
-    private List<Dictionary<string, @Object>> _NodesToJson(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode))
+    private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetElementParentChain(FlutterSDK.Widgets.Framework.Element element, string groupName, int numLocalParents = default(int))
     {
-        return DiagnosticsDefaultClass.DiagnosticsNode.ToJsonList(nodes, parent, delegate);
+        return WidgetinspectorDefaultClass._FollowDiagnosticableChain(_GetRawElementParentChain(element, numLocalParents: numLocalParents)) ?? new List, < _DiagnosticsPathNode > (};
+}
+
+
+
+
+private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetRenderObjectParentChain(FlutterSDK.Rendering.@object.RenderObject renderObject, string groupName, int maxparents = default(int))
+{
+    List<RenderObject> chain = new List<RenderObject>() { };
+    while (renderObject != null)
+    {
+        chain.Add(renderObject);
+        renderObject = renderObject.Parent as RenderObject;
     }
 
+    return WidgetinspectorDefaultClass._FollowDiagnosticableChain(chain.Reversed.ToList());
+}
 
 
 
-    /// <Summary>
-    /// Returns a JSON representation of the properties of the [DiagnosticsNode]
-    /// object that `diagnosticsNodeId` references.
-    /// </Summary>
-    public virtual string GetProperties(string diagnosticsNodeId, string groupName)
+
+private Dictionary<string, @Object> _NodeToJson(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
+{
+    return node?.ToJsonMap(delegate);
+}
+
+
+
+
+private bool _IsValueCreatedByLocalProject(@Object value)
+{
+    _Location creationLocation = WidgetinspectorDefaultClass._GetCreationLocation(value);
+    if (creationLocation == null)
     {
-        return _SafeJsonEncode(_GetProperties(diagnosticsNodeId, groupName));
+        return false;
     }
 
+    return _IsLocalCreationLocation(creationLocation);
+}
 
 
 
-    private List<@Object> _GetProperties(string diagnosticsNodeId, string groupName)
+
+private bool _IsLocalCreationLocation(FlutterSDK.Widgets.Widgetinspector._Location location)
+{
+    if (location == null || location.File == null)
     {
-        DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
-        return _NodesToJson(node == null ? new List, < DiagnosticsNode > (}:node.GetProperties(), new InspectorSerializationDelegate(groupName:groupName, service:this ), parent:node);
+        return false;
+    }
+
+    string file = Dart:coreDefaultClass.Uri.Parse(location.File).Path;
+if (_PubRootDirectories == null)
+{
+    return !file.Contains("packages/flutter/");
+}
+
+foreach (string directory in _PubRootDirectories)
+{
+    if (file.StartsWith(directory))
+    {
+        return true;
+    }
+
+}
+
+return false;
+}
+
+
+
+
+/// <Summary>
+/// Wrapper around `json.encode` that uses a ring of cached values to prevent
+/// the Dart garbage collector from collecting objects between when
+/// the value is returned over the Observatory protocol and when the
+/// separate observatory protocol command has to be used to retrieve its full
+/// contents.
+/// </Summary>
+private string _SafeJsonEncode(@Object @object)
+{
+    string jsonString = Dart:convertDefaultClass.Json.Encode(object);
+_SerializeRing[_SerializeRingIndex] = jsonString;
+_SerializeRingIndex = (_SerializeRingIndex + 1) % _SerializeRing.Count;
+return jsonString;
+}
+
+
+
+
+private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _TruncateNodes(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, int maxDescendentsTruncatableNode)
+{
+    if (nodes.Every((DiagnosticsNode node) => =>node.Value is Element) && IsWidgetCreationTracked())
+    {
+        List<DiagnosticsNode> localNodes = nodes.Where((DiagnosticsNode node) => =>_IsValueCreatedByLocalProject(((Element)node.Value))).ToList();
+        if (localNodes.IsNotEmpty)
+        {
+            return localNodes;
+        }
+
+    }
+
+    return nodes.Take(maxDescendentsTruncatableNode).ToList();
+}
+
+
+
+
+private List<Dictionary<string, @Object>> _NodesToJson(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode))
+{
+    return DiagnosticsDefaultClass.DiagnosticsNode.ToJsonList(nodes, parent, delegate);
+}
+
+
+
+
+/// <Summary>
+/// Returns a JSON representation of the properties of the [DiagnosticsNode]
+/// object that `diagnosticsNodeId` references.
+/// </Summary>
+public virtual string GetProperties(string diagnosticsNodeId, string groupName)
+{
+    return _SafeJsonEncode(_GetProperties(diagnosticsNodeId, groupName));
+}
+
+
+
+
+private List<@Object> _GetProperties(string diagnosticsNodeId, string groupName)
+{
+    DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
+    return _NodesToJson(node == null ? new List, < DiagnosticsNode > (}:node.GetProperties(), new InspectorSerializationDelegate(groupName: groupName, service: this), parent: node);
 }
 
 
@@ -1595,7 +1604,6 @@ public virtual string GetSelectedWidget(string previousSelectionId, string group
 /// some debug paint information.
 /// </Summary>
 public virtual Future<SKImage> Screenshot(@Object @object, double width = default(double), double height = default(double), double margin = 0.0, double maxPixelRatio = 1.0, bool debugPaint = false)
-async
 {
     if (!(object is Element) && !(object is RenderObject))
     {

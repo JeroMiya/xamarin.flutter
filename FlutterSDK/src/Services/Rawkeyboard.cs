@@ -765,219 +765,222 @@ namespace FlutterSDK.Services.Rawkeyboard
 
 
         private Future<object> _HandleKeyEvent(object message)
-    async
-{
-RawKeyEvent @event = RawKeyEvent.FromMessage(message as Dictionary<string, object>);
-if (@event==null ){
-return ;
-}
-
-if (@event.Data is RawKeyEventDataMacOs&&@event.LogicalKey==KeyboardkeyDefaultClass.LogicalKeyboardKey.Fn){
-return ;
-}
-
-if (@event is RawKeyDownEvent){
-_KeysPressed[((RawKeyDownEvent)@event).PhysicalKey]=((RawKeyDownEvent) @event).LogicalKey;
-}
-
-if (@event is RawKeyUpEvent){
-_KeysPressed.Remove(((RawKeyUpEvent) @event).PhysicalKey);
-}
-
-_SynchronizeModifiers(@event);
-if (_Listeners.IsEmpty())
-{
-    return;
-}
-
-foreach (ValueChanged<RawKeyEvent> listener in List<ValueChanged<RawKeyEvent>>.From(_Listeners))
-{
-    if (_Listeners.Contains(listener))
-    {
-        listener(@event);
-    }
-
-}
-
-}
-
-
-
-
-private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event)
-{
-    Dictionary<ModifierKey, KeyboardSide> modifiersPressed = @event.Data.ModifiersPressed;
-    Dictionary<PhysicalKeyboardKey, LogicalKeyboardKey> modifierKeys = new Dictionary<PhysicalKeyboardKey, LogicalKeyboardKey> { };
-    foreach (ModifierKey key in modifiersPressed.Keys)
-    {
-        HashSet<PhysicalKeyboardKey> mappedKeys = _ModifierKeyMap[new _ModifierSidePair(key, modifiersPressed[key])];
-
-        foreach (PhysicalKeyboardKey physicalModifier in mappedKeys)
         {
-            modifierKeys[physicalModifier] = _AllModifiers[physicalModifier];
+            RawKeyEvent @event = RawKeyEvent.FromMessage(message as Dictionary<string, object>);
+            if (@event == null)
+            {
+                return;
+            }
+
+            if (@event.Data is RawKeyEventDataMacOs && @event.LogicalKey == KeyboardkeyDefaultClass.LogicalKeyboardKey.Fn)
+            {
+                return;
+            }
+
+            if (@event is RawKeyDownEvent)
+            {
+                _KeysPressed[((RawKeyDownEvent)@event).PhysicalKey] = ((RawKeyDownEvent)@event).LogicalKey;
+            }
+
+            if (@event is RawKeyUpEvent)
+            {
+                _KeysPressed.Remove(((RawKeyUpEvent)@event).PhysicalKey);
+            }
+
+            _SynchronizeModifiers(@event);
+            if (_Listeners.IsEmpty())
+            {
+                return;
+            }
+
+            foreach (ValueChanged<RawKeyEvent> listener in List<ValueChanged<RawKeyEvent>>.From(_Listeners))
+            {
+                if (_Listeners.Contains(listener))
+                {
+                    listener(@event);
+                }
+
+            }
+
         }
 
+
+
+
+        private void _SynchronizeModifiers(FlutterSDK.Services.Rawkeyboard.RawKeyEvent @event)
+        {
+            Dictionary<ModifierKey, KeyboardSide> modifiersPressed = @event.Data.ModifiersPressed;
+            Dictionary<PhysicalKeyboardKey, LogicalKeyboardKey> modifierKeys = new Dictionary<PhysicalKeyboardKey, LogicalKeyboardKey> { };
+            foreach (ModifierKey key in modifiersPressed.Keys)
+            {
+                HashSet<PhysicalKeyboardKey> mappedKeys = _ModifierKeyMap[new _ModifierSidePair(key, modifiersPressed[key])];
+
+                foreach (PhysicalKeyboardKey physicalModifier in mappedKeys)
+                {
+                    modifierKeys[physicalModifier] = _AllModifiers[physicalModifier];
+                }
+
+            }
+
+            _AllModifiersExceptFn.Keys.ForEach(_KeysPressed.Remove);
+            if (!(@event.Data is RawKeyEventDataFuchsia) && !(@event.Data is RawKeyEventDataMacOs))
+            {
+                _KeysPressed.Remove(KeyboardkeyDefaultClass.PhysicalKeyboardKey.Fn);
+            }
+
+            _KeysPressed.AddAll(modifierKeys);
+        }
+
+
+
+
+        /// <Summary>
+        /// Clears the list of keys returned from [keysPressed].
+        ///
+        /// This is used by the testing framework to make sure tests are hermetic.
+        /// </Summary>
+        public virtual void ClearKeysPressed() => _KeysPressed.Clear();
+
+
+        #endregion
     }
 
-    _AllModifiersExceptFn.Keys.ForEach(_KeysPressed.Remove);
-    if (!(@event.Data is RawKeyEventDataFuchsia) && !(@event.Data is RawKeyEventDataMacOs))
+
+    public class _ModifierSidePair
     {
-        _KeysPressed.Remove(KeyboardkeyDefaultClass.PhysicalKeyboardKey.Fn);
+        #region constructors
+        public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier, FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
+        {
+            this.Modifier = modifier;
+            this.Side = side;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier { get; set; }
+        public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side { get; set; }
+        public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is _ModifierSidePair && other.Modifier == Modifier && other.Side == Side;
+        }
+
+
+
+        #endregion
     }
 
-    _KeysPressed.AddAll(modifierKeys);
-}
 
-
-
-
-/// <Summary>
-/// Clears the list of keys returned from [keysPressed].
-///
-/// This is used by the testing framework to make sure tests are hermetic.
-/// </Summary>
-public virtual void ClearKeysPressed() => _KeysPressed.Clear();
-
-
-#endregion
-}
-
-
-public class _ModifierSidePair
-{
-    #region constructors
-    public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier, FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
+    /// <Summary>
+    /// An enum describing the side of the keyboard that a key is on, to allow
+    /// discrimination between which key is pressed (e.g. the left or right SHIFT
+    /// key).
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
+    ///    argument.
+    /// </Summary>
+    public enum KeyboardSide
     {
-        this.Modifier = modifier;
-        this.Side = side;
+
+        /// <Summary>
+        /// Matches if either the left, right or both versions of the key are pressed.
+        /// </Summary>
+        Any,
+        /// <Summary>
+        /// Matches the left version of the key.
+        /// </Summary>
+        Left,
+        /// <Summary>
+        /// Matches the right version of the key.
+        /// </Summary>
+        Right,
+        /// <Summary>
+        /// Matches the left and right version of the key pressed simultaneously.
+        /// </Summary>
+        All,
     }
-    #endregion
 
-    #region fields
-    public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier { get; set; }
-    public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side { get; set; }
-    public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
 
-    #region methods
-
-    public new bool Equals(@Object other)
+    /// <Summary>
+    /// An enum describing the type of modifier key that is being pressed.
+    ///
+    /// See also:
+    ///
+    ///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
+    ///    argument.
+    /// </Summary>
+    public enum ModifierKey
     {
-        if (other.GetType() != GetType()) return false;
-        return other is _ModifierSidePair && other.Modifier == Modifier && other.Side == Side;
+
+        /// <Summary>
+        /// The CTRL modifier key.
+        ///
+        /// Typically, there are two of these.
+        /// </Summary>
+        ControlModifier,
+        /// <Summary>
+        /// The SHIFT modifier key.
+        ///
+        /// Typically, there are two of these.
+        /// </Summary>
+        ShiftModifier,
+        /// <Summary>
+        /// The ALT modifier key.
+        ///
+        /// Typically, there are two of these.
+        /// </Summary>
+        AltModifier,
+        /// <Summary>
+        /// The META modifier key.
+        ///
+        /// Typically, there are two of these. This is, for example, the Windows key
+        /// on Windows (⊞), the Command (⌘) key on macOS and iOS, and the Search (🔍)
+        /// key on Android.
+        /// </Summary>
+        MetaModifier,
+        /// <Summary>
+        /// The CAPS LOCK modifier key.
+        ///
+        /// Typically, there is one of these. Only shown as "pressed" when the caps
+        /// lock is on, so on a key up when the mode is turned on, on each key press
+        /// when it's enabled, and on a key down when it is turned off.
+        /// </Summary>
+        CapsLockModifier,
+        /// <Summary>
+        /// The NUM LOCK modifier key.
+        ///
+        /// Typically, there is one of these. Only shown as "pressed" when the num
+        /// lock is on, so on a key up when the mode is turned on, on each key press
+        /// when it's enabled, and on a key down when it is turned off.
+        /// </Summary>
+        NumLockModifier,
+        /// <Summary>
+        /// The SCROLL LOCK modifier key.
+        ///
+        /// Typically, there is one of these.  Only shown as "pressed" when the scroll
+        /// lock is on, so on a key up when the mode is turned on, on each key press
+        /// when it's enabled, and on a key down when it is turned off.
+        /// </Summary>
+        ScrollLockModifier,
+        /// <Summary>
+        /// The FUNCTION (Fn) modifier key.
+        ///
+        /// Typically, there is one of these.
+        /// </Summary>
+        FunctionModifier,
+        /// <Summary>
+        /// The SYMBOL modifier key.
+        ///
+        /// Typically, there is one of these.
+        /// </Summary>
+        SymbolModifier,
     }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An enum describing the side of the keyboard that a key is on, to allow
-/// discrimination between which key is pressed (e.g. the left or right SHIFT
-/// key).
-///
-/// See also:
-///
-///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
-///    argument.
-/// </Summary>
-public enum KeyboardSide
-{
-
-    /// <Summary>
-    /// Matches if either the left, right or both versions of the key are pressed.
-    /// </Summary>
-    Any,
-    /// <Summary>
-    /// Matches the left version of the key.
-    /// </Summary>
-    Left,
-    /// <Summary>
-    /// Matches the right version of the key.
-    /// </Summary>
-    Right,
-    /// <Summary>
-    /// Matches the left and right version of the key pressed simultaneously.
-    /// </Summary>
-    All,
-}
-
-
-/// <Summary>
-/// An enum describing the type of modifier key that is being pressed.
-///
-/// See also:
-///
-///  * [RawKeyEventData.isModifierPressed], which accepts this enum as an
-///    argument.
-/// </Summary>
-public enum ModifierKey
-{
-
-    /// <Summary>
-    /// The CTRL modifier key.
-    ///
-    /// Typically, there are two of these.
-    /// </Summary>
-    ControlModifier,
-    /// <Summary>
-    /// The SHIFT modifier key.
-    ///
-    /// Typically, there are two of these.
-    /// </Summary>
-    ShiftModifier,
-    /// <Summary>
-    /// The ALT modifier key.
-    ///
-    /// Typically, there are two of these.
-    /// </Summary>
-    AltModifier,
-    /// <Summary>
-    /// The META modifier key.
-    ///
-    /// Typically, there are two of these. This is, for example, the Windows key
-    /// on Windows (⊞), the Command (⌘) key on macOS and iOS, and the Search (🔍)
-    /// key on Android.
-    /// </Summary>
-    MetaModifier,
-    /// <Summary>
-    /// The CAPS LOCK modifier key.
-    ///
-    /// Typically, there is one of these. Only shown as "pressed" when the caps
-    /// lock is on, so on a key up when the mode is turned on, on each key press
-    /// when it's enabled, and on a key down when it is turned off.
-    /// </Summary>
-    CapsLockModifier,
-    /// <Summary>
-    /// The NUM LOCK modifier key.
-    ///
-    /// Typically, there is one of these. Only shown as "pressed" when the num
-    /// lock is on, so on a key up when the mode is turned on, on each key press
-    /// when it's enabled, and on a key down when it is turned off.
-    /// </Summary>
-    NumLockModifier,
-    /// <Summary>
-    /// The SCROLL LOCK modifier key.
-    ///
-    /// Typically, there is one of these.  Only shown as "pressed" when the scroll
-    /// lock is on, so on a key up when the mode is turned on, on each key press
-    /// when it's enabled, and on a key down when it is turned off.
-    /// </Summary>
-    ScrollLockModifier,
-    /// <Summary>
-    /// The FUNCTION (Fn) modifier key.
-    ///
-    /// Typically, there is one of these.
-    /// </Summary>
-    FunctionModifier,
-    /// <Summary>
-    /// The SYMBOL modifier key.
-    ///
-    /// Typically, there is one of these.
-    /// </Summary>
-    SymbolModifier,
-}
 
 }

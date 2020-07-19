@@ -1449,239 +1449,240 @@ namespace FlutterSDK.Material.Tabs
 
 
         private Future<object> _WarpToCurrentIndex()
-    async
-{
-if (!Mounted)return Future<void>.Value();
-if (_PageController.Page==_CurrentIndex.ToDouble())return Future<void>.Value();
-int previousIndex = _Controller.PreviousIndex;
-if ((_CurrentIndex-previousIndex).Abs()==1)return _PageController.AnimateToPage(_CurrentIndex, duration:ConstantsDefaultClass.KTabScrollDuration, curve:CurvesDefaultClass.Curves.Ease);
-
-int initialPage = _CurrentIndex > previousIndex ? _CurrentIndex - 1 : _CurrentIndex + 1;
-        List<Widget> originalChildren = _ChildrenWithKey;
-        SetState(() => {
-            _WarpUnderwayCount += 1;
-            _ChildrenWithKey = List<Widget>.From(_ChildrenWithKey, growable: false);
-            Widget temp = _ChildrenWithKey[initialPage];
-            _ChildrenWithKey[initialPage] = _ChildrenWithKey[previousIndex];
-            _ChildrenWithKey[previousIndex] = temp;
-        }
-);
-_PageController.JumpToPage(initialPage);
-await _PageController.AnimateToPage(_CurrentIndex, duration:ConstantsDefaultClass.KTabScrollDuration, curve:CurvesDefaultClass.Curves.Ease);
-if (!Mounted)return Future<void>.Value();
-SetState(() => {
-            _WarpUnderwayCount -= 1;
-            if (Widget.Children != _Children)
-            {
-                _UpdateChildren();
-            }
-            else
-            {
-                _ChildrenWithKey = originalChildren;
-            }
-
-        }
-);
-}
-
-
-
-
-    private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
-    {
-        if (_WarpUnderwayCount > 0) return false;
-        if (notification.Depth != 0) return false;
-        _WarpUnderwayCount += 1;
-        if (notification is ScrollUpdateNotification && !_Controller.IndexIsChanging)
         {
-            if ((_PageController.Page - _Controller.Index).Abs() > 1.0)
+            if (!Mounted) return Future<void>.Value();
+            if (_PageController.Page == _CurrentIndex.ToDouble()) return Future<void>.Value();
+            int previousIndex = _Controller.PreviousIndex;
+            if ((_CurrentIndex - previousIndex).Abs() == 1) return _PageController.AnimateToPage(_CurrentIndex, duration: ConstantsDefaultClass.KTabScrollDuration, curve: CurvesDefaultClass.Curves.Ease);
+
+            int initialPage = _CurrentIndex > previousIndex ? _CurrentIndex - 1 : _CurrentIndex + 1;
+            List<Widget> originalChildren = _ChildrenWithKey;
+            SetState(() =>
             {
-                _Controller.Index = _PageController.Page.Floor();
+                _WarpUnderwayCount += 1;
+                _ChildrenWithKey = List<Widget>.From(_ChildrenWithKey, growable: false);
+                Widget temp = _ChildrenWithKey[initialPage];
+                _ChildrenWithKey[initialPage] = _ChildrenWithKey[previousIndex];
+                _ChildrenWithKey[previousIndex] = temp;
+            }
+            );
+            _PageController.JumpToPage(initialPage);
+            await _PageController.AnimateToPage(_CurrentIndex, duration: ConstantsDefaultClass.KTabScrollDuration, curve: CurvesDefaultClass.Curves.Ease);
+            if (!Mounted) return Future<void>.Value();
+            SetState(() =>
+            {
+                _WarpUnderwayCount -= 1;
+                if (Widget.Children != _Children)
+                {
+                    _UpdateChildren();
+                }
+                else
+                {
+                    _ChildrenWithKey = originalChildren;
+                }
+
+            }
+            );
+        }
+
+
+
+
+        private bool _HandleScrollNotification(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
+        {
+            if (_WarpUnderwayCount > 0) return false;
+            if (notification.Depth != 0) return false;
+            _WarpUnderwayCount += 1;
+            if (notification is ScrollUpdateNotification && !_Controller.IndexIsChanging)
+            {
+                if ((_PageController.Page - _Controller.Index).Abs() > 1.0)
+                {
+                    _Controller.Index = _PageController.Page.Floor();
+                    _CurrentIndex = _Controller.Index;
+                }
+
+                _Controller.Offset = (_PageController.Page - _Controller.Index).Clamp(-1.0, 1.0) as double;
+            }
+            else if (notification is ScrollEndNotification)
+            {
+                _Controller.Index = _PageController.Page.Round();
                 _CurrentIndex = _Controller.Index;
             }
 
-            _Controller.Offset = (_PageController.Page - _Controller.Index).Clamp(-1.0, 1.0) as double;
-        }
-        else if (notification is ScrollEndNotification)
-        {
-            _Controller.Index = _PageController.Page.Round();
-            _CurrentIndex = _Controller.Index;
+            _WarpUnderwayCount -= 1;
+            return false;
         }
 
-        _WarpUnderwayCount -= 1;
-        return false;
-    }
 
 
 
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new PageView(dragStartBehavior: Widget.DragStartBehavior, controller: _PageController, physics: Widget.Physics == null ? TabsDefaultClass._KTabBarViewPhysics : TabsDefaultClass._KTabBarViewPhysics.ApplyTo(Widget.Physics), children: _ChildrenWithKey));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Displays a single circle with the specified border and background colors.
-///
-/// Used by [TabPageSelector] to indicate the selected page.
-/// </Summary>
-public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public TabPageSelectorIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), double size = default(double))
-    : base(key: key)
-    {
-        this.BackgroundColor = backgroundColor;
-        this.BorderColor = borderColor;
-        this.Size = size;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    public virtual FlutterBinding.UI.Color BorderColor { get; set; }
-    public virtual double Size { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Container(width: Size, height: Size, margin: EdgeInsets.All(4.0), decoration: new BoxDecoration(color: BackgroundColor, border: Border.All(color: BorderColor), shape: BoxShape.Circle));
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Displays a row of small circular indicators, one per tab.
-///
-/// The selected tab's indicator is highlighted. Often used in conjunction with
-/// a [TabBarView].
-///
-/// If a [TabController] is not provided, then there must be a
-/// [DefaultTabController] ancestor.
-/// </Summary>
-public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
-{
-    #region constructors
-    public TabPageSelector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), double indicatorSize = 12.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color))
-    : base(key: key)
-    {
-        this.Controller = controller;
-        this.IndicatorSize = indicatorSize;
-        this.Color = color;
-        this.SelectedColor = selectedColor;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
-    public virtual double IndicatorSize { get; set; }
-    public virtual FlutterBinding.UI.Color Color { get; set; }
-    public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
-    #endregion
-
-    #region methods
-
-    private FlutterSDK.Widgets.Framework.Widget _BuildTabIndicator(int tabIndex, FlutterSDK.Material.Tabcontroller.TabController tabController, FlutterSDK.Animation.Tween.ColorTween selectedColorTween, FlutterSDK.Animation.Tween.ColorTween previousColorTween)
-    {
-        Color background = default(Color);
-        if (tabController.IndexIsChanging)
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            double t = 1.0 - TabsDefaultClass._IndexChangeProgress(tabController);
-            if (tabController.Index == tabIndex) background = selectedColorTween.Lerp(t); else if (tabController.PreviousIndex == tabIndex) background = previousColorTween.Lerp(t); else background = selectedColorTween.Begin;
+
+            return new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new PageView(dragStartBehavior: Widget.DragStartBehavior, controller: _PageController, physics: Widget.Physics == null ? TabsDefaultClass._KTabBarViewPhysics : TabsDefaultClass._KTabBarViewPhysics.ApplyTo(Widget.Physics), children: _ChildrenWithKey));
         }
-        else
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Displays a single circle with the specified border and background colors.
+    ///
+    /// Used by [TabPageSelector] to indicate the selected page.
+    /// </Summary>
+    public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public TabPageSelectorIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), double size = default(double))
+        : base(key: key)
         {
-            double offset = tabController.Offset;
-            if (tabController.Index == tabIndex)
+            this.BackgroundColor = backgroundColor;
+            this.BorderColor = borderColor;
+            this.Size = size;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
+        public virtual FlutterBinding.UI.Color BorderColor { get; set; }
+        public virtual double Size { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Container(width: Size, height: Size, margin: EdgeInsets.All(4.0), decoration: new BoxDecoration(color: BackgroundColor, border: Border.All(color: BorderColor), shape: BoxShape.Circle));
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// Displays a row of small circular indicators, one per tab.
+    ///
+    /// The selected tab's indicator is highlighted. Often used in conjunction with
+    /// a [TabBarView].
+    ///
+    /// If a [TabController] is not provided, then there must be a
+    /// [DefaultTabController] ancestor.
+    /// </Summary>
+    public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
+    {
+        #region constructors
+        public TabPageSelector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), double indicatorSize = 12.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color))
+        : base(key: key)
+        {
+            this.Controller = controller;
+            this.IndicatorSize = indicatorSize;
+            this.Color = color;
+            this.SelectedColor = selectedColor;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
+        public virtual double IndicatorSize { get; set; }
+        public virtual FlutterBinding.UI.Color Color { get; set; }
+        public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
+        #endregion
+
+        #region methods
+
+        private FlutterSDK.Widgets.Framework.Widget _BuildTabIndicator(int tabIndex, FlutterSDK.Material.Tabcontroller.TabController tabController, FlutterSDK.Animation.Tween.ColorTween selectedColorTween, FlutterSDK.Animation.Tween.ColorTween previousColorTween)
+        {
+            Color background = default(Color);
+            if (tabController.IndexIsChanging)
             {
-                background = selectedColorTween.Lerp(1.0 - offset.Abs());
-            }
-            else if (tabController.Index == tabIndex - 1 && offset > 0.0)
-            {
-                background = selectedColorTween.Lerp(offset);
-            }
-            else if (tabController.Index == tabIndex + 1 && offset < 0.0)
-            {
-                background = selectedColorTween.Lerp(-offset);
+                double t = 1.0 - TabsDefaultClass._IndexChangeProgress(tabController);
+                if (tabController.Index == tabIndex) background = selectedColorTween.Lerp(t); else if (tabController.PreviousIndex == tabIndex) background = previousColorTween.Lerp(t); else background = selectedColorTween.Begin;
             }
             else
             {
-                background = selectedColorTween.Begin;
+                double offset = tabController.Offset;
+                if (tabController.Index == tabIndex)
+                {
+                    background = selectedColorTween.Lerp(1.0 - offset.Abs());
+                }
+                else if (tabController.Index == tabIndex - 1 && offset > 0.0)
+                {
+                    background = selectedColorTween.Lerp(offset);
+                }
+                else if (tabController.Index == tabIndex + 1 && offset < 0.0)
+                {
+                    background = selectedColorTween.Lerp(-offset);
+                }
+                else
+                {
+                    background = selectedColorTween.Begin;
+                }
+
             }
 
+            return new TabPageSelectorIndicator(backgroundColor: background, borderColor: selectedColorTween.End, size: IndicatorSize);
         }
 
-        return new TabPageSelectorIndicator(backgroundColor: background, borderColor: selectedColorTween.End, size: IndicatorSize);
-    }
 
 
 
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Color fixColor = Color ?? ColorsDefaultClass.Colors.Transparent;
-        Color fixSelectedColor = SelectedColor ?? ThemeDefaultClass.Theme.Of(context).AccentColor;
-        ColorTween selectedColorTween = new ColorTween(begin: fixColor, end: fixSelectedColor);
-        ColorTween previousColorTween = new ColorTween(begin: fixSelectedColor, end: fixColor);
-        TabController tabController = Controller ?? TabcontrollerDefaultClass.DefaultTabController.Of(context);
-
-        Animation<double> animation = new CurvedAnimation(parent: tabController.Animation, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
-        return new AnimatedBuilder(animation: animation, builder: (BuildContext context, Widget child) =>
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new Semantics(label: $"'Page {tabController.Index + 1} of {tabController.Length}'", child: new Row(mainAxisSize: MainAxisSize.Min, children: List<Widget>.Generate(tabController.Length, (int tabIndex) =>
+            Color fixColor = Color ?? ColorsDefaultClass.Colors.Transparent;
+            Color fixSelectedColor = SelectedColor ?? ThemeDefaultClass.Theme.Of(context).AccentColor;
+            ColorTween selectedColorTween = new ColorTween(begin: fixColor, end: fixSelectedColor);
+            ColorTween previousColorTween = new ColorTween(begin: fixSelectedColor, end: fixColor);
+            TabController tabController = Controller ?? TabcontrollerDefaultClass.DefaultTabController.Of(context);
+
+            Animation<double> animation = new CurvedAnimation(parent: tabController.Animation, curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+            return new AnimatedBuilder(animation: animation, builder: (BuildContext context, Widget child) =>
             {
-                return _BuildTabIndicator(tabIndex, tabController, selectedColorTween, previousColorTween);
+                return new Semantics(label: $"'Page {tabController.Index + 1} of {tabController.Length}'", child: new Row(mainAxisSize: MainAxisSize.Min, children: List<Widget>.Generate(tabController.Length, (int tabIndex) =>
+                {
+                    return _BuildTabIndicator(tabIndex, tabController, selectedColorTween, previousColorTween);
+                }
+                ).ToList()));
             }
-            ).ToList()));
+            );
         }
-        );
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Defines how the bounds of the selected tab indicator are computed.
-///
-/// See also:
-///
-///  * [TabBar], which displays a row of tabs.
-///  * [TabBarView], which displays a widget for the currently selected tab.
-///  * [TabBar.indicator], which defines the appearance of the selected tab
-///    indicator relative to the tab's bounds.
-/// </Summary>
-public enum TabBarIndicatorSize
-{
-
     /// <Summary>
-    /// The tab indicator's bounds are as wide as the space occupied by the tab
-    /// in the tab bar: from the right edge of the previous tab to the left edge
-    /// of the next tab.
-    /// </Summary>
-    Tab,
-    /// <Summary>
-    /// The tab's bounds are only as wide as the (centered) tab widget itself.
+    /// Defines how the bounds of the selected tab indicator are computed.
     ///
-    /// This value is used to align the tab's label, typically a [Tab]
-    /// widget's text or icon, with the selected tab indicator.
+    /// See also:
+    ///
+    ///  * [TabBar], which displays a row of tabs.
+    ///  * [TabBarView], which displays a widget for the currently selected tab.
+    ///  * [TabBar.indicator], which defines the appearance of the selected tab
+    ///    indicator relative to the tab's bounds.
     /// </Summary>
-    Label,
-}
+    public enum TabBarIndicatorSize
+    {
+
+        /// <Summary>
+        /// The tab indicator's bounds are as wide as the space occupied by the tab
+        /// in the tab bar: from the right edge of the previous tab to the left edge
+        /// of the next tab.
+        /// </Summary>
+        Tab,
+        /// <Summary>
+        /// The tab's bounds are only as wide as the (centered) tab widget itself.
+        ///
+        /// This value is used to align the tab's label, typically a [Tab]
+        /// widget's text or icon, with the selected tab indicator.
+        /// </Summary>
+        Label,
+    }
 
 }
