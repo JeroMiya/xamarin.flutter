@@ -2742,9 +2742,9 @@ namespace FlutterSDK.Rendering.@object
         private void _DebugReportException(string method, object exception, StackTrace stack)
         {
             AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForRendering(exception: exception, stack: stack, library: "rendering library", context: new ErrorDescription($"'during {method}()'"), renderObject: this, informationCollector: () => sync *{
-if (DebugCreator != null) yield new DiagnosticsDebugCreator(DebugCreator);
-            yield DescribeForError("The following RenderObject was being processed when the exception was fired");
-            yield DescribeForError("RenderObject", style: DiagnosticsTreeStyle.TruncateChildren);
+if (DebugCreator != null) yield return new DiagnosticsDebugCreator(DebugCreator);
+            yield return DescribeForError("The following RenderObject was being processed when the exception was fired");
+            yield return DescribeForError("RenderObject", style: DiagnosticsTreeStyle.TruncateChildren);
         }
 ));
 }
@@ -4306,49 +4306,47 @@ public class _RootSemanticsFragment : FlutterSDK.Rendering.@object._InterestingS
     #region methods
 
     public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-sync
-*
-{
+    {
 
 
 
 
 
-Owner._Semantics = (Owner._Semantics == null ? SemanticsNode.Root(showOnScreen:Owner.ShowOnScreen, owner:Owner.Owner.SemanticsOwner) : Owner._Semantics );
-SemanticsNode node = Owner._Semantics;
+        Owner._Semantics = (Owner._Semantics == null ? SemanticsNode.Root(showOnScreen: Owner.ShowOnScreen, owner: Owner.Owner.SemanticsOwner) : Owner._Semantics);
+        SemanticsNode node = Owner._Semantics;
 
 
 
-    node.Rect=Owner.SemanticBounds;
-List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) =>
-{
+        node.Rect = Owner.SemanticBounds;
+        List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) =>
+        {
 
-    return fragment.CompileChildren(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, elevationAdjustment: 0.0);
-}
-).ToList();
-    node.UpdateWith(config:null , childrenInInversePaintOrder:children);
+            return fragment.CompileChildren(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, elevationAdjustment: 0.0);
+        }
+        ).ToList();
+        node.UpdateWith(config: null, childrenInInversePaintOrder: children);
 
-yield node;
-}
-
-
-
-
-public new void MarkAsExplicit()
-{
-}
+        yield return node;
+    }
 
 
 
 
-public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-{
-    _Children.AddAll(fragments);
-}
+    public new void MarkAsExplicit()
+    {
+    }
 
 
 
-#endregion
+
+    public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+    {
+        _Children.AddAll(fragments);
+    }
+
+
+
+    #endregion
 }
 
 
@@ -4395,95 +4393,95 @@ public class _SwitchableSemanticsFragment : FlutterSDK.Rendering.@object._Intere
     #region methods
 
     public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-sync
-*
-{
-if (!_IsExplicit){
-Owner._Semantics=null ;
-foreach(_InterestingSemanticsFragment fragment  in _Children){
-
-fragment._AncestorChain.AddAll(_AncestorChain.Sublist(1));
-yield* fragment.CompileChildren(parentSemanticsClipRect:parentSemanticsClipRect, parentPaintClipRect:parentPaintClipRect, elevationAdjustment:elevationAdjustment+_Config.Elevation);
-}
-
-return;
-}
-
-_SemanticsGeometry geometry = _NeedsGeometryUpdate ? new _SemanticsGeometry(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, ancestors: _AncestorChain) : null;
-if (!_MergeIntoParent && (geometry?.DropFromTree == true)) return;
-Owner._Semantics = (Owner._Semantics == null ? new SemanticsNode(showOnScreen: Owner.ShowOnScreen) : Owner._Semantics);
-SemanticsNode node = Owner._Semantics..IsMergedIntoParent = _MergeIntoParent..Tags = _TagsForChildren;
-node.ElevationAdjustment = elevationAdjustment;
-if (elevationAdjustment != 0.0)
-{
-    _EnsureConfigIsWritable();
-    _Config.Elevation += elevationAdjustment;
-}
-
-if (geometry != null)
-{
-
-    ..Rect = geometry.Rect..Transform = geometry.Transform..ParentSemanticsClipRect = geometry.SemanticsClipRect..ParentPaintClipRect = geometry.PaintClipRect;
-    if (!_MergeIntoParent && geometry.MarkAsHidden)
     {
-        _EnsureConfigIsWritable();
-        _Config.IsHidden = true;
+        if (!_IsExplicit)
+        {
+            Owner._Semantics = null;
+            foreach (_InterestingSemanticsFragment fragment in _Children)
+            {
+
+                fragment._AncestorChain.AddAll(_AncestorChain.Sublist(1));
+                foreach (var enumItem in (fragment.CompileChildren(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, elevationAdjustment: elevationAdjustment + _Config.Elevation))) { yield return enumItem; }
+            }
+
+            return;
+        }
+
+        _SemanticsGeometry geometry = _NeedsGeometryUpdate ? new _SemanticsGeometry(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, ancestors: _AncestorChain) : null;
+        if (!_MergeIntoParent && (geometry?.DropFromTree == true)) return;
+        Owner._Semantics = (Owner._Semantics == null ? new SemanticsNode(showOnScreen: Owner.ShowOnScreen) : Owner._Semantics);
+        SemanticsNode node = Owner._Semantics..IsMergedIntoParent = _MergeIntoParent..Tags = _TagsForChildren;
+        node.ElevationAdjustment = elevationAdjustment;
+        if (elevationAdjustment != 0.0)
+        {
+            _EnsureConfigIsWritable();
+            _Config.Elevation += elevationAdjustment;
+        }
+
+        if (geometry != null)
+        {
+
+            ..Rect = geometry.Rect..Transform = geometry.Transform..ParentSemanticsClipRect = geometry.SemanticsClipRect..ParentPaintClipRect = geometry.PaintClipRect;
+            if (!_MergeIntoParent && geometry.MarkAsHidden)
+            {
+                _EnsureConfigIsWritable();
+                _Config.IsHidden = true;
+            }
+
+        }
+
+        List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) => =>fragment.CompileChildren(parentSemanticsClipRect: node.ParentSemanticsClipRect, parentPaintClipRect: node.ParentPaintClipRect, elevationAdjustment: 0.0)).ToList();
+        if (_Config.IsSemanticBoundary)
+        {
+            Owner.AssembleSemanticsNode(node, _Config, children);
+        }
+        else
+        {
+            node.UpdateWith(config: _Config, childrenInInversePaintOrder: children);
+        }
+
+        yield return node;
     }
 
-}
-
-List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) => =>fragment.CompileChildren(parentSemanticsClipRect: node.ParentSemanticsClipRect, parentPaintClipRect: node.ParentPaintClipRect, elevationAdjustment: 0.0)).ToList();
-if (_Config.IsSemanticBoundary)
-{
-    Owner.AssembleSemanticsNode(node, _Config, children);
-}
-else
-{
-    node.UpdateWith(config: _Config, childrenInInversePaintOrder: children);
-}
-
-yield node;
-}
 
 
 
-
-public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-{
-    foreach (_InterestingSemanticsFragment fragment in fragments)
+    public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
     {
-        _Children.Add(fragment);
-        if (fragment.Config == null) continue;
-        _EnsureConfigIsWritable();
-        _Config.Absorb(fragment.Config);
+        foreach (_InterestingSemanticsFragment fragment in fragments)
+        {
+            _Children.Add(fragment);
+            if (fragment.Config == null) continue;
+            _EnsureConfigIsWritable();
+            _Config.Absorb(fragment.Config);
+        }
+
     }
 
-}
 
 
 
-
-private void _EnsureConfigIsWritable()
-{
-    if (!_IsConfigWritable)
+    private void _EnsureConfigIsWritable()
     {
-        _Config = _Config.Copy();
-        _IsConfigWritable = true;
+        if (!_IsConfigWritable)
+        {
+            _Config = _Config.Copy();
+            _IsConfigWritable = true;
+        }
+
     }
 
-}
 
 
 
-
-public new void MarkAsExplicit()
-{
-    _IsExplicit = true;
-}
-
+    public new void MarkAsExplicit()
+    {
+        _IsExplicit = true;
+    }
 
 
-#endregion
+
+    #endregion
 }
 
 
@@ -4522,22 +4520,20 @@ public class _AbortingSemanticsFragment : FlutterSDK.Rendering.@object._Interest
 
 
     public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-sync
-*
-{
-yield Owner._Semantics;
-}
+    {
+        yield return Owner._Semantics;
+    }
 
 
 
 
-public new void MarkAsExplicit()
-{
-}
+    public new void MarkAsExplicit()
+    {
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 

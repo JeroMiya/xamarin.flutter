@@ -1974,11 +1974,9 @@ private FlutterSDK.Widgets.Framework.Widget _BuildModalScope(FlutterSDK.Widgets.
 
 
 public new Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> CreateOverlayEntries()
-sync
-*
 {
-    yield _ModalBarrier = new OverlayEntry(builder: _BuildModalBarrier);
-    yield new OverlayEntry(builder: _BuildModalScope, maintainState: MaintainState);
+    yield return _ModalBarrier = new OverlayEntry(builder: _BuildModalBarrier);
+    yield return new OverlayEntry(builder: _BuildModalScope, maintainState: MaintainState);
 }
 
 

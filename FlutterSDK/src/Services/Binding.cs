@@ -505,7 +505,7 @@ Dart: asyncDefaultClass.Timer.Run(() => async {
 }
 );
 await parsedLicenses.Future;
-yield* Stream<LicenseEntry>.FromIterable(await parsedLicenses.Future);
+foreach (var enumItem in (Stream<LicenseEntry>.FromIterable(await parsedLicenses.Future))) { yield return enumItem; }
 }
 
 

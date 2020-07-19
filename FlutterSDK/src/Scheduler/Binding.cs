@@ -744,7 +744,7 @@ return null ;
                 StackTrace callbackStack = default(StackTrace);
 
                 AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: exceptionStack, library: "scheduler library", context: new ErrorDescription("during a task callback"), informationCollector: (callbackStack == null) ? null : () => sync *{
-yield new DiagnosticsStackTrace("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
+yield return new DiagnosticsStackTrace("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
             }
 ));
             }
@@ -1289,7 +1289,7 @@ yield new DiagnosticsStackTrace("\nThis exception was thrown in the context of a
         }
         catch (exception,exceptionStack){
             AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: exceptionStack, library: "scheduler library", context: new ErrorDescription("during a scheduler callback"), informationCollector: (callbackStack == null) ? null : () => sync *{
-yield new DiagnosticsStackTrace("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
+yield return new DiagnosticsStackTrace("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
         }
 ));
         }

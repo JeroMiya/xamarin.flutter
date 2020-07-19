@@ -431,7 +431,7 @@ namespace FlutterSDK.Gestures.Binding
                 }
                 catch (exception,stack){
                     AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a non-hit-tested pointer event"), @event: @event, hitTestEntry: null, informationCollector: () => sync *{
-yield new DiagnosticsProperty<PointerEvent>("Event", @event, style:DiagnosticsTreeStyle.ErrorProperty);
+yield return new DiagnosticsProperty<PointerEvent>("Event", @event, style: DiagnosticsTreeStyle.ErrorProperty);
                 }
 ));
                 }
@@ -447,8 +447,8 @@ yield new DiagnosticsProperty<PointerEvent>("Event", @event, style:DiagnosticsTr
                 }
                 catch (exception,stack){
                     AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForPointerEventDispatcher(exception: exception, stack: stack, library: "gesture library", context: new ErrorDescription("while dispatching a pointer event"), @event: @event, hitTestEntry: entry, informationCollector: () => sync *{
-yield new DiagnosticsProperty<PointerEvent>("Event", @event, style:DiagnosticsTreeStyle.ErrorProperty);
-                    yield new DiagnosticsProperty<HitTestTarget>("Target", entry.Target, style: DiagnosticsTreeStyle.ErrorProperty);
+yield return new DiagnosticsProperty<PointerEvent>("Event", @event, style: DiagnosticsTreeStyle.ErrorProperty);
+                    yield return new DiagnosticsProperty<HitTestTarget>("Target", entry.Target, style: DiagnosticsTreeStyle.ErrorProperty);
                 }
 ));
                 }

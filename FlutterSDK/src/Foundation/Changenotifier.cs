@@ -469,7 +469,7 @@ namespace FlutterSDK.Foundation.Changenotifier
                     }
                     catch (exception,stack){
                         AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "foundation library", context: new ErrorDescription($"'while dispatching notifications for {GetType()}'"), informationCollector: () => sync *{
-yield new DiagnosticsProperty<ChangeNotifier>($"'The {GetType()} sending notification was'", this , style:DiagnosticsTreeStyle.ErrorProperty);
+yield return new DiagnosticsProperty<ChangeNotifier>($"'The {GetType()} sending notification was'", this, style: DiagnosticsTreeStyle.ErrorProperty);
                     }
 ));
                     }

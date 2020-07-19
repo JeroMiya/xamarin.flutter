@@ -1420,7 +1420,7 @@ public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutter
     public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
     {
         return new MultiFrameImageStreamCompleter(codec: _LoadAsync(key, decode), scale: key.Scale, informationCollector: () => sync *{
-yield new ErrorDescription($"'Path: {File?.Path}'");
+yield return new ErrorDescription($"'Path: {File?.Path}'");
     }
 );
 }
