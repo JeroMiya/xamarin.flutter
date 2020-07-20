@@ -311,13 +311,18 @@ namespace FlutterSDK.Cupertino.Datepicker
         public static double _KTimerPickerNumberLabelFontSize = default(double);
         internal static FlutterSDK.Painting.Textstyle.TextStyle _ThemeTextStyle(FlutterSDK.Widgets.Framework.BuildContext context, bool isValid = true)
         {
-            throw new NotImplementedException();
+            TextStyle style = ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.DateTimePickerTextStyle;
+            return isValid ? style : style.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.InactiveGray, context));
         }
+
+
 
         internal static void _AnimateColumnControllerToItem(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController controller, int targetItem)
         {
-            throw new NotImplementedException();
+            controller.AnimateToItem(targetItem, curve: CurvesDefaultClass.Curves.EaseInOut, duration: new TimeSpan(milliseconds: 200));
         }
+
+
 
     }
 

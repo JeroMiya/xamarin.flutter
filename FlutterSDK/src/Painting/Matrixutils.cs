@@ -427,8 +427,11 @@ namespace FlutterSDK.Painting.Matrixutils
     {
         internal static List<string> DebugDescribeTransform(Matrix4 transform)
         {
-            throw new NotImplementedException();
+            if (transform == null) return new List, < string > (){ "null"};
+            return new List<string>() { $"'[0] {DebugDefaultClass.DebugFormatDouble(transform.Entry(0, 0))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(0, 1))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(0, 2))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(0, 3))}'", $"'[1] {DebugDefaultClass.DebugFormatDouble(transform.Entry(1, 0))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(1, 1))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(1, 2))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(1, 3))}'", $"'[2] {DebugDefaultClass.DebugFormatDouble(transform.Entry(2, 0))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(2, 1))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(2, 2))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(2, 3))}'", $"'[3] {DebugDefaultClass.DebugFormatDouble(transform.Entry(3, 0))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(3, 1))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(3, 2))},{DebugDefaultClass.DebugFormatDouble(transform.Entry(3, 3))}'" };
         }
+
+
 
     }
 

@@ -434,8 +434,10 @@ namespace FlutterSDK.Widgets.Dragtarget
     {
         internal static List<T> _MapAvatarsToData<T>(List<FlutterSDK.Widgets.Dragtarget._DragAvatar<T>> avatars)
         {
-            throw new NotImplementedException();
+            return avatars.Map((_DragAvatar<T> avatar) => =>avatar.Data).ToList();
         }
+
+
 
     }
 
@@ -937,129 +939,129 @@ namespace FlutterSDK.Widgets.Dragtarget
 
 
         private Iterable<FlutterSDK.Widgets.Dragtarget._DragTargetState<T>> _GetDragTargets(Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> path)
-    sync
-    *
-{
-foreach(HitTestEntry entry  in path){
-HitTestTarget target = entry.Target;
-if (target is RenderMetaData){
-object metaData = ((RenderMetaData)target).MetaData;
-if (((_DragTargetState<T>) metaData) is _DragTargetState<T>)yield((_DragTargetState<T>) metaData);
+        {
+            foreach (HitTestEntry entry in path)
+            {
+                HitTestTarget target = entry.Target;
+                if (target is RenderMetaData)
+                {
+                    object metaData = ((RenderMetaData)target).MetaData;
+                    if (((_DragTargetState<T>)metaData) is _DragTargetState<T>) yield return ((_DragTargetState<T>)metaData);
+                }
+
+            }
+
+        }
+
+
+
+
+        private void _LeaveAllEntered()
+        {
+            for (int i = 0; i < _EnteredTargets.Count; i += 1) _EnteredTargets[i].DidLeave(this);
+            _EnteredTargets.Clear();
+        }
+
+
+
+
+        public virtual void FinishDrag(FlutterSDK.Widgets.Dragtarget._DragEndKind endKind, FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
+        {
+            bool wasAccepted = false;
+            if (endKind == _DragEndKind.Dropped && _ActiveTarget != null)
+            {
+                _ActiveTarget.DidDrop(this);
+                wasAccepted = true;
+                _EnteredTargets.Remove(_ActiveTarget);
+            }
+
+            _LeaveAllEntered();
+            _ActiveTarget = null;
+            _Entry.Remove();
+            _Entry = null;
+            if (OnDragEnd != null) OnDragEnd(velocity ?? VelocitytrackerDefaultClass.Velocity.Zero, _LastOffset, wasAccepted);
+        }
+
+
+
+
+        private FlutterSDK.Widgets.Framework.Widget _Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            RenderBox box = OverlayState.Context.FindRenderObject() as RenderBox;
+            Offset overlayTopLeft = box.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero);
+            return new Positioned(left: _LastOffset.Dx - overlayTopLeft.Dx, top: _LastOffset.Dy - overlayTopLeft.Dy, child: new IgnorePointer(child: Feedback, ignoringSemantics: IgnoringFeedbackSemantics));
+        }
+
+
+
+
+        private FlutterSDK.Gestures.Velocitytracker.Velocity _RestrictVelocityAxis(FlutterSDK.Gestures.Velocitytracker.Velocity velocity)
+        {
+            if (Axis == null)
+            {
+                return velocity;
+            }
+
+            return new Velocity(pixelsPerSecond: _RestrictAxis(velocity.PixelsPerSecond));
+        }
+
+
+
+
+        private Offset _RestrictAxis(FlutterBinding.UI.Offset offset)
+        {
+            if (Axis == null)
+            {
+                return offset;
+            }
+
+            if (Axis == Axis.Horizontal)
+            {
+                return new Offset(offset.Dx, 0.0);
+            }
+
+            return new Offset(0.0, offset.Dy);
+        }
+
+
+
+        #endregion
     }
 
-}
-
-}
-
-
-
-
-private void _LeaveAllEntered()
-{
-    for (int i = 0; i < _EnteredTargets.Count; i += 1) _EnteredTargets[i].DidLeave(this);
-    _EnteredTargets.Clear();
-}
-
-
-
-
-public virtual void FinishDrag(FlutterSDK.Widgets.Dragtarget._DragEndKind endKind, FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
-{
-    bool wasAccepted = false;
-    if (endKind == _DragEndKind.Dropped && _ActiveTarget != null)
-    {
-        _ActiveTarget.DidDrop(this);
-        wasAccepted = true;
-        _EnteredTargets.Remove(_ActiveTarget);
-    }
-
-    _LeaveAllEntered();
-    _ActiveTarget = null;
-    _Entry.Remove();
-    _Entry = null;
-    if (OnDragEnd != null) OnDragEnd(velocity ?? VelocitytrackerDefaultClass.Velocity.Zero, _LastOffset, wasAccepted);
-}
-
-
-
-
-private FlutterSDK.Widgets.Framework.Widget _Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-    RenderBox box = OverlayState.Context.FindRenderObject() as RenderBox;
-    Offset overlayTopLeft = box.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero);
-    return new Positioned(left: _LastOffset.Dx - overlayTopLeft.Dx, top: _LastOffset.Dy - overlayTopLeft.Dy, child: new IgnorePointer(child: Feedback, ignoringSemantics: IgnoringFeedbackSemantics));
-}
-
-
-
-
-private FlutterSDK.Gestures.Velocitytracker.Velocity _RestrictVelocityAxis(FlutterSDK.Gestures.Velocitytracker.Velocity velocity)
-{
-    if (Axis == null)
-    {
-        return velocity;
-    }
-
-    return new Velocity(pixelsPerSecond: _RestrictAxis(velocity.PixelsPerSecond));
-}
-
-
-
-
-private Offset _RestrictAxis(FlutterBinding.UI.Offset offset)
-{
-    if (Axis == null)
-    {
-        return offset;
-    }
-
-    if (Axis == Axis.Horizontal)
-    {
-        return new Offset(offset.Dx, 0.0);
-    }
-
-    return new Offset(0.0, offset.Dy);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Where the [Draggable] should be anchored during a drag.
-/// </Summary>
-public enum DragAnchor
-{
 
     /// <Summary>
-    /// Display the feedback anchored at the position of the original child. If
-    /// feedback is identical to the child, then this means the feedback will
-    /// exactly overlap the original child when the drag starts.
+    /// Where the [Draggable] should be anchored during a drag.
     /// </Summary>
-    Child,
-    /// <Summary>
-    /// Display the feedback anchored at the position of the touch that started
-    /// the drag. If feedback is identical to the child, then this means the top
-    /// left of the feedback will be under the finger when the drag starts. This
-    /// will likely not exactly overlap the original child, e.g. if the child is
-    /// big and the touch was not centered. This mode is useful when the feedback
-    /// is transformed so as to move the feedback to the left by half its width,
-    /// and up by half its width plus the height of the finger, since then it
-    /// appears as if putting the finger down makes the touch feedback appear
-    /// above the finger. (It feels weird for it to appear offset from the
-    /// original child if it's anchored to the child and not the finger.)
-    /// </Summary>
-    Pointer,
-}
+    public enum DragAnchor
+    {
+
+        /// <Summary>
+        /// Display the feedback anchored at the position of the original child. If
+        /// feedback is identical to the child, then this means the feedback will
+        /// exactly overlap the original child when the drag starts.
+        /// </Summary>
+        Child,
+        /// <Summary>
+        /// Display the feedback anchored at the position of the touch that started
+        /// the drag. If feedback is identical to the child, then this means the top
+        /// left of the feedback will be under the finger when the drag starts. This
+        /// will likely not exactly overlap the original child, e.g. if the child is
+        /// big and the touch was not centered. This mode is useful when the feedback
+        /// is transformed so as to move the feedback to the left by half its width,
+        /// and up by half its width plus the height of the finger, since then it
+        /// appears as if putting the finger down makes the touch feedback appear
+        /// above the finger. (It feels weird for it to appear offset from the
+        /// original child if it's anchored to the child and not the finger.)
+        /// </Summary>
+        Pointer,
+    }
 
 
-public enum _DragEndKind
-{
+    public enum _DragEndKind
+    {
 
-    Dropped,
-    Canceled,
-}
+        Dropped,
+        Canceled,
+    }
 
 }

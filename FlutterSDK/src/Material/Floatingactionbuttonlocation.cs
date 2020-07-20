@@ -392,28 +392,43 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
         public static double KFloatingActionButtonTurnInterval = default(double);
         internal static double _LeftOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
         {
-            throw new NotImplementedException();
+            return FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin + scaffoldGeometry.MinInsets.Left - offset;
         }
+
+
 
         internal static double _RightOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
         {
-            throw new NotImplementedException();
+            return scaffoldGeometry.ScaffoldSize.Width - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin - scaffoldGeometry.MinInsets.Right - scaffoldGeometry.FloatingActionButtonSize.Width + offset;
         }
+
+
 
         internal static double _EndOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
         {
-            throw new NotImplementedException();
+
+            switch (scaffoldGeometry.TextDirection) { case TextDirection.Rtl: return FloatingactionbuttonlocationDefaultClass._LeftOffset(scaffoldGeometry, offset: offset); case TextDirection.Ltr: return FloatingactionbuttonlocationDefaultClass._RightOffset(scaffoldGeometry, offset: offset); }
+            return null;
         }
+
+
 
         internal static double _StartOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry, double offset = 0.0)
         {
-            throw new NotImplementedException();
+
+            switch (scaffoldGeometry.TextDirection) { case TextDirection.Rtl: return FloatingactionbuttonlocationDefaultClass._RightOffset(scaffoldGeometry, offset: offset); case TextDirection.Ltr: return FloatingactionbuttonlocationDefaultClass._LeftOffset(scaffoldGeometry, offset: offset); }
+            return null;
         }
+
+
 
         internal static double _StraddleAppBar(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
-            throw new NotImplementedException();
+            double fabHalfHeight = scaffoldGeometry.FloatingActionButtonSize.Height / 2.0;
+            return scaffoldGeometry.ContentTop - fabHalfHeight;
         }
+
+
 
     }
 

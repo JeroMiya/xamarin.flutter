@@ -311,8 +311,11 @@ namespace FlutterSDK.Cupertino.Dialog
         public static double _KMaxRegularTextScaleFactor = default(double);
         internal static bool _IsInAccessibilityMode(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+            MediaQueryData data = MediaqueryDefaultClass.MediaQuery.Of(context, nullOk: true);
+            return data != null && data.TextScaleFactor > DialogDefaultClass._KMaxRegularTextScaleFactor;
         }
+
+
 
     }
 

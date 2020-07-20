@@ -1119,75 +1119,75 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        private Future<object> _DecodeNextFrameAndSchedule()
-    async
-{
-try {
-_NextFrame=await _Codec.GetNextFrame();
-    }
-catch (exception, stack){
-ReportError(context:new ErrorDescription("resolving an image frame"), exception:exception, stack:stack, informationCollector:_InformationCollector, silent:true );
-return ;
-}
+        private async Future<object> _DecodeNextFrameAndSchedule()
+        {
+            try
+            {
+                _NextFrame = await _Codec.GetNextFrame();
+            }
+            catch (exception,stack){
+                ReportError(context: new ErrorDescription("resolving an image frame"), exception: exception, stack: stack, informationCollector: _InformationCollector, silent: true);
+                return;
+            }
 
-if (_Codec.FrameCount == 1)
-{
-    _EmitFrame(new ImageInfo(image: _NextFrame.Image, scale: _Scale));
-    return;
-}
+            if (_Codec.FrameCount == 1)
+            {
+                _EmitFrame(new ImageInfo(image: _NextFrame.Image, scale: _Scale));
+                return;
+            }
 
-_ScheduleAppFrame();
-}
-
-
-
-
-private void _ScheduleAppFrame()
-{
-    if (_FrameCallbackScheduled)
-    {
-        return;
-    }
-
-    _FrameCallbackScheduled = true;
-    BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback(_HandleAppFrame);
-}
+            _ScheduleAppFrame();
+            }
 
 
 
 
-private void _EmitFrame(FlutterSDK.Painting.Imagestream.ImageInfo imageInfo)
-{
-    SetImage(imageInfo);
-    _FramesEmitted += 1;
-}
+            private void _ScheduleAppFrame()
+            {
+                if (_FrameCallbackScheduled)
+                {
+                    return;
+                }
+
+                _FrameCallbackScheduled = true;
+                BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback(_HandleAppFrame);
+            }
+
+
+
+
+            private void _EmitFrame(FlutterSDK.Painting.Imagestream.ImageInfo imageInfo)
+            {
+                SetImage(imageInfo);
+                _FramesEmitted += 1;
+            }
 
 
 
 
 public new void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
-{
-    if (!HasListeners && _Codec != null) _DecodeNextFrameAndSchedule();
-    base.AddListener(listener);
-}
+        {
+            if (!HasListeners && _Codec != null) _DecodeNextFrameAndSchedule();
+            base.AddListener(listener);
+        }
 
 
 
 
-public new void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
-{
-    base.RemoveListener(listener);
-    if (!HasListeners)
-    {
-        _Timer?.Cancel();
-        _Timer = null;
+        public new void RemoveListener(FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
+        {
+            base.RemoveListener(listener);
+            if (!HasListeners)
+            {
+                _Timer?.Cancel();
+                _Timer = null;
+            }
+
+        }
+
+
+
+        #endregion
     }
-
-}
-
-
-
-#endregion
-}
 
 }

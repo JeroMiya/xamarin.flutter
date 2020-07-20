@@ -299,8 +299,11 @@ namespace FlutterSDK.Foundation.@object
     {
         internal static string ObjectRuntimeType(@Object @object, string optimizedValue)
         {
-            throw new NotImplementedException();
+
+            return optimizedValue;
         }
+
+
 
     }
 }

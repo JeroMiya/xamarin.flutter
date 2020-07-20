@@ -467,68 +467,67 @@ namespace FlutterSDK.Services.Binding
         ///
         /// Other bindings may override this to respond to incoming system messages.
         /// </Summary>
-        public virtual Future<object> HandleSystemMessage(@Object systemMessage)
-    async
-{
-}
-
-
-
-
-    /// <Summary>
-    /// Adds relevant licenses to the [LicenseRegistry].
-    ///
-    /// By default, the [ServicesBinding]'s implementation of [initLicenses] adds
-    /// all the licenses collected by the `flutter` tool during compilation.
-    /// </Summary>
-    public virtual void InitLicenses()
-    {
-        LicensesDefaultClass.LicenseRegistry.AddLicense(_AddLicenses);
-    }
-
-
-
-
-    private Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
-async
-*
-{
-Completer<string> rawLicenses = new Completer<string>();
-    Dart:asyncDefaultClass.Timer.Run(() => async {
-rawLicenses.Complete(AssetbundleDefaultClass.RootBundle.LoadString("LICENSE", cache:false ));
-}
-);
-await rawLicenses.Future;
-Completer<List<LicenseEntry>> parsedLicenses = new Completer<List<LicenseEntry>>();
-Dart: asyncDefaultClass.Timer.Run(() => async {
-    parsedLicenses.Complete(IsolatesDefaultClass.Compute(_ParseLicenses, await rawLicenses.Future, debugLabel: "parseLicenses"));
-}
-);
-await parsedLicenses.Future;
-yield* Stream<LicenseEntry>.FromIterable(await parsedLicenses.Future);
-}
-
-
-
-
-private List<FlutterSDK.Foundation.Licenses.LicenseEntry> _ParseLicenses(string rawLicenses)
-{
-    string _licenseSeparator = '\n' + ('-' * 80) + '\n';
-    List<LicenseEntry> result = new List<LicenseEntry>() { };
-    List<string> licenses = rawLicenses.Split(_licenseSeparator).ToList();
-    foreach (string license in licenses)
-    {
-        int split = license.IndexOf("\n\n");
-        if (split >= 0)
+        public virtual async Future<object> HandleSystemMessage(@Object systemMessage)
         {
-            result.Add(new LicenseEntryWithLineBreaks(license.Substring(0, split).Split('\n').ToList(), license.Substring(split + 2)));
         }
-        else
-        {
-            result.Add(new LicenseEntryWithLineBreaks(new List, < string > (}, license));
-}
 
-}
+
+
+
+        /// <Summary>
+        /// Adds relevant licenses to the [LicenseRegistry].
+        ///
+        /// By default, the [ServicesBinding]'s implementation of [initLicenses] adds
+        /// all the licenses collected by the `flutter` tool during compilation.
+        /// </Summary>
+        public virtual void InitLicenses()
+        {
+            LicensesDefaultClass.LicenseRegistry.AddLicense(_AddLicenses);
+        }
+
+
+
+
+        private async Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
+        {
+            Completer<string> rawLicenses = new Completer<string>();
+        Dart: asyncDefaultClass.Timer.Run(async () =>
+        {
+            rawLicenses.Complete(AssetbundleDefaultClass.RootBundle.LoadString("LICENSE", cache: false));
+        }
+         );
+            await rawLicenses.Future;
+            Completer<List<LicenseEntry>> parsedLicenses = new Completer<List<LicenseEntry>>();
+        Dart: asyncDefaultClass.Timer.Run(async () =>
+        {
+            parsedLicenses.Complete(IsolatesDefaultClass.Compute(_ParseLicenses, await rawLicenses.Future, debugLabel: "parseLicenses"));
+        }
+         );
+            await parsedLicenses.Future;
+            foreach (var enumItem in (Stream<LicenseEntry>.FromIterable(await parsedLicenses.Future))) { yield return enumItem; }
+        }
+
+
+
+
+        private List<FlutterSDK.Foundation.Licenses.LicenseEntry> _ParseLicenses(string rawLicenses)
+        {
+            string _licenseSeparator = '\n' + ('-' * 80) + '\n';
+            List<LicenseEntry> result = new List<LicenseEntry>() { };
+            List<string> licenses = rawLicenses.Split(_licenseSeparator).ToList();
+            foreach (string license in licenses)
+            {
+                int split = license.IndexOf("\n\n");
+                if (split >= 0)
+                {
+                    result.Add(new LicenseEntryWithLineBreaks(license.Substring(0, split).Split('\n').ToList(), license.Substring(split + 2)));
+                }
+                else
+                {
+                    result.Add(new LicenseEntryWithLineBreaks(new List, < string > (}, license));
+            }
+
+        }
 
 return result;
 }
@@ -536,25 +535,25 @@ return result;
 
 
 
-public new void InitServiceExtensions()
-{
-    base.InitServiceExtensions();
+    public new void InitServiceExtensions()
+    {
+        base.InitServiceExtensions();
 
-}
-
-
+    }
 
 
-/// <Summary>
-/// Called in response to the `ext.flutter.evict` service extension.
-///
-/// This is used by the `flutter` tool during hot reload so that any images
-/// that have changed on disk get cleared from caches.
-/// </Summary>
-public virtual void Evict(string asset)
-{
-    AssetbundleDefaultClass.RootBundle.Evict(asset);
-}
+
+
+    /// <Summary>
+    /// Called in response to the `ext.flutter.evict` service extension.
+    ///
+    /// This is used by the `flutter` tool during hot reload so that any images
+    /// that have changed on disk get cleared from caches.
+    /// </Summary>
+    public virtual void Evict(string asset)
+    {
+        AssetbundleDefaultClass.RootBundle.Evict(asset);
+    }
 
 
 
@@ -626,8 +625,7 @@ return completer.Future;
 
 
 
-public new Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback)
-async
+public new async Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback)
 {
     ByteData response = default(ByteData);
     try
@@ -674,7 +672,7 @@ public new Future<ByteData> Send(string channel, ByteData message)
 public new void SetMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
 {
     if (handler == null) _Handlers.Remove(channel); else _Handlers[channel] = handler;
-    Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, (ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => async {
+    Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, async(ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => {
         await HandlePlatformMessage(channel, data, callback);
     }
 );

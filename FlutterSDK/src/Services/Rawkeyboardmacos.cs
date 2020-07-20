@@ -508,7 +508,8 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
 
         public new FlutterSDK.Services.Rawkeyboard.KeyboardSide GetModifierSide(FlutterSDK.Services.Rawkeyboard.ModifierKey key)
         {
-            KeyboardSide FindSide(int leftMask, int rightMask, int anyMask) => {
+            KeyboardSide FindSide(int leftMask, int rightMask, int anyMask)
+            {
                 int combinedMask = leftMask | rightMask;
                 int combined = Modifiers & combinedMask;
                 if (combined == leftMask)

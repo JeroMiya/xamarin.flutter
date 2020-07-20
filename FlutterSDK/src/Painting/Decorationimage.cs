@@ -426,13 +426,123 @@ namespace FlutterSDK.Painting.Decorationimage
     {
         internal static void PaintImage(Canvas canvas = default(Canvas), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), SKImage image = default(SKImage), double scale = 1.0, ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool flipHorizontally = false, bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         {
-            throw new NotImplementedException();
+
+
+
+
+
+            if (rect.IsEmpty()) return;
+            Size outputSize = rect.Size;
+            Size inputSize = new Size(image.Width.ToDouble(), image.Height.ToDouble());
+            Offset sliceBorder = default(Offset);
+            if (centerSlice != null)
+            {
+                sliceBorder = new Offset(centerSlice.Left + inputSize.Width - centerSlice.Right, centerSlice.Top + inputSize.Height - centerSlice.Bottom);
+                outputSize = outputSize - sliceBorder as Size;
+                inputSize = inputSize - sliceBorder as Size;
+            }
+
+            fit = (fit == null ? centerSlice == null ? BoxFit.ScaleDown : BoxFit.Fill : fit);
+
+            FittedSizes fittedSizes = BoxfitDefaultClass.ApplyBoxFit(fit, inputSize / scale, outputSize);
+            Size sourceSize = fittedSizes.Source * scale;
+            Size destinationSize = fittedSizes.Destination;
+            if (centerSlice != null)
+            {
+                outputSize += sliceBorder;
+                destinationSize += sliceBorder;
+
+            }
+
+            if (repeat != ImageRepeat.NoRepeat && destinationSize == outputSize)
+            {
+                repeat = ImageRepeat.NoRepeat;
+            }
+
+            Paint paint = new Paint()..IsAntiAlias = false;
+            if (colorFilter != null) paint.ColorFilter = colorFilter;
+            if (sourceSize != destinationSize)
+            {
+                paint.FilterQuality = filterQuality;
+            }
+
+            paint.InvertColors = invertColors;
+            double halfWidthDelta = (outputSize.Width - destinationSize.Width) / 2.0;
+            double halfHeightDelta = (outputSize.Height - destinationSize.Height) / 2.0;
+            double dx = halfWidthDelta + (flipHorizontally ? -alignment.x : alignment.x) * halfWidthDelta;
+            double dy = halfHeightDelta + alignment.y * halfHeightDelta;
+            Offset destinationPosition = rect.TopLeft.Translate(dx, dy);
+            Rect destinationRect = destinationPosition & destinationSize;
+            bool needSave = repeat != ImageRepeat.NoRepeat || flipHorizontally;
+            if (needSave) canvas.Save();
+            if (repeat != ImageRepeat.NoRepeat) canvas.ClipRect(rect);
+            if (flipHorizontally)
+            {
+                double dx = -(rect.Left + rect.Width / 2.0);
+                canvas.Translate(-dx, 0.0);
+                canvas.Scale(-1.0, 1.0);
+                canvas.Translate(dx, 0.0);
+            }
+
+            if (centerSlice == null)
+            {
+                Rect sourceRect = alignment.Inscribe(sourceSize, Dart: uiDefaultClass.Offset.Zero & inputSize);
+                if (repeat == ImageRepeat.NoRepeat)
+                {
+                    canvas.DrawImageRect(image, sourceRect, destinationRect, paint);
+                }
+                else
+                {
+                    foreach (Rect tileRect in DecorationimageDefaultClass._GenerateImageTileRects(rect, destinationRect, repeat)) canvas.DrawImageRect(image, sourceRect, tileRect, paint);
+                }
+
+            }
+            else
+            {
+                if (repeat == ImageRepeat.NoRepeat)
+                {
+                    canvas.DrawImageNine(image, centerSlice, destinationRect, paint);
+                }
+                else
+                {
+                    foreach (Rect tileRect in DecorationimageDefaultClass._GenerateImageTileRects(rect, destinationRect, repeat)) canvas.DrawImageNine(image, centerSlice, tileRect, paint);
+                }
+
+            }
+
+            if (needSave) canvas.Restore();
         }
+
+
 
         internal static Iterable<Rect> _GenerateImageTileRects(FlutterBinding.UI.Rect outputRect, FlutterBinding.UI.Rect fundamentalRect, FlutterSDK.Painting.Decorationimage.ImageRepeat repeat)
         {
-            throw new NotImplementedException();
+            int startX = 0;
+            int startY = 0;
+            int stopX = 0;
+            int stopY = 0;
+            double strideX = fundamentalRect.Width;
+            double strideY = fundamentalRect.Height;
+            if (repeat == ImageRepeat.Repeat || repeat == ImageRepeat.RepeatX)
+            {
+                startX = ((outputRect.Left - fundamentalRect.Left) / strideX).Floor();
+                stopX = ((outputRect.Right - fundamentalRect.Right) / strideX).Ceil();
+            }
+
+            if (repeat == ImageRepeat.Repeat || repeat == ImageRepeat.RepeatY)
+            {
+                startY = ((outputRect.Top - fundamentalRect.Top) / strideY).Floor();
+                stopY = ((outputRect.Bottom - fundamentalRect.Bottom) / strideY).Ceil();
+            }
+
+            for (int i = startX; i <= stopX; ++i)
+            {
+                for (int j = startY; j <= stopY; ++j) yield return fundamentalRect.Shift(new Offset(i * strideX, j * strideY));
+            }
+
         }
+
+
 
     }
 

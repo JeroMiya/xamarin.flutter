@@ -506,7 +506,7 @@ namespace FlutterSDK.Cupertino.Theme
         /// </Summary>
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false)
         {
-            Color ConvertColor(Color color) => =>ColorsDefaultClass.CupertinoDynamicColor.Resolve(color, context, nullOk: nullOk);
+            Color ConvertColor(Color color) => ColorsDefaultClass.CupertinoDynamicColor.Resolve(color, context, nullOk: nullOk);
             return CupertinoThemeData._RawWithDefaults(Brightness, ConvertColor(_PrimaryColor), ConvertColor(_PrimaryContrastingColor), _TextTheme?.ResolveFrom(context, nullOk: nullOk), ConvertColor(_BarBackgroundColor), ConvertColor(_ScaffoldBackgroundColor), _Defaults.ResolveFrom(context, _TextTheme == null, nullOk: nullOk));
         }
 
@@ -574,7 +574,7 @@ namespace FlutterSDK.Cupertino.Theme
 
         public new FlutterSDK.Cupertino.Theme._NoDefaultCupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false)
         {
-            Color ConvertColor(Color color) => =>ColorsDefaultClass.CupertinoDynamicColor.Resolve(color, context, nullOk: nullOk);
+            Color ConvertColor(Color color) => ColorsDefaultClass.CupertinoDynamicColor.Resolve(color, context, nullOk: nullOk);
             return new _NoDefaultCupertinoThemeData(Brightness, ConvertColor(PrimaryColor), ConvertColor(PrimaryContrastingColor), TextTheme?.ResolveFrom(context, nullOk: nullOk), ConvertColor(BarBackgroundColor), ConvertColor(ScaffoldBackgroundColor));
         }
 
@@ -620,7 +620,7 @@ namespace FlutterSDK.Cupertino.Theme
         public virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool resolveTextTheme, bool nullOk = default(bool))
         {
 
-            Color ConvertColor(Color color) => =>ColorsDefaultClass.CupertinoDynamicColor.Resolve(color, context, nullOk: nullOk);
+            Color ConvertColor(Color color) => ColorsDefaultClass.CupertinoDynamicColor.Resolve(color, context, nullOk: nullOk);
             return new _CupertinoThemeDefaults(Brightness, ConvertColor(PrimaryColor), ConvertColor(PrimaryContrastingColor), ConvertColor(BarBackgroundColor), ConvertColor(ScaffoldBackgroundColor), resolveTextTheme ? TextThemeDefaults?.ResolveFrom(context, nullOk: nullOk) : TextThemeDefaults);
         }
 

@@ -383,13 +383,30 @@ namespace FlutterSDK.Material.Dialog
         public static FlutterSDK.Painting.Edgeinsets.EdgeInsets _DefaultInsetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets);
         internal static FlutterSDK.Widgets.Framework.Widget _BuildMaterialDialogTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
-            throw new NotImplementedException();
+            return new FadeTransition(opacity: new CurvedAnimation(parent: animation, curve: CurvesDefaultClass.Curves.EaseOut), child: child);
         }
+
+
 
         internal static Future<T> ShowDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), bool barrierDismissible = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
-            throw new NotImplementedException();
+
+
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context, shadowThemeOnly: true);
+            return RoutesDefaultClass.ShowGeneralDialog(context: context, pageBuilder: (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) =>
+            {
+                Widget pageChild = child ?? new Builder(builder: builder);
+                return new SafeArea(child: new Builder(builder: (BuildContext context) =>
+                {
+                    return theme != null ? new Theme(data: theme, child: pageChild) : pageChild;
+                }
+                ));
+            }
+            , barrierDismissible: barrierDismissible, barrierLabel: MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).ModalBarrierDismissLabel, barrierColor: ColorsDefaultClass.Colors.Black54, transitionDuration: new TimeSpan(milliseconds: 150), transitionBuilder: DialogDefaultClass._BuildMaterialDialogTransitions, useRootNavigator: useRootNavigator, routeSettings: routeSettings);
         }
+
+
 
     }
 

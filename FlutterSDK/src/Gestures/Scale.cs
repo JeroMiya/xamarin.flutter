@@ -303,8 +303,12 @@ namespace FlutterSDK.Gestures.Scale
     {
         internal static bool _IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.Velocity velocity)
         {
-            throw new NotImplementedException();
+
+            double speedSquared = velocity.PixelsPerSecond.DistanceSquared;
+            return speedSquared > ConstantsDefaultClass.KMinFlingVelocity * ConstantsDefaultClass.KMinFlingVelocity;
         }
+
+
 
     }
 

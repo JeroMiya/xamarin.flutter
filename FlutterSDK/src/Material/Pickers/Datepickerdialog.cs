@@ -409,10 +409,42 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
         public static Size _InputPortraitDialogSize = default(Size);
         public static Size _InputLandscapeDialogSize = default(Size);
         public static TimeSpan _DialogSizeAnimationDuration = default(TimeSpan);
-        internal static Future<DateTime> ShowDatePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode initialEntryMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string helpText = default(string), string cancelText = default(string), string confirmText = default(string), Locale locale = default(Locale), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialDatePickerMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string))
+        internal static async Future<DateTime> ShowDatePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode initialEntryMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string helpText = default(string), string cancelText = default(string), string confirmText = default(string), Locale locale = default(Locale), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialDatePickerMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string))
         {
-            throw new NotImplementedException();
+
+
+
+
+            initialDate = Utils.DateutilsDefaultClass.DateOnly(initialDate);
+            firstDate = Utils.DateutilsDefaultClass.DateOnly(firstDate);
+            lastDate = Utils.DateutilsDefaultClass.DateOnly(lastDate);
+
+
+
+
+
+
+
+
+            Widget dialog = new _DatePickerDialog(initialDate: initialDate, firstDate: firstDate, lastDate: lastDate, initialEntryMode: initialEntryMode, selectableDayPredicate: selectableDayPredicate, helpText: helpText, cancelText: cancelText, confirmText: confirmText, initialCalendarMode: initialDatePickerMode, errorFormatText: errorFormatText, errorInvalidText: errorInvalidText, fieldHintText: fieldHintText, fieldLabelText: fieldLabelText);
+            if (textDirection != null)
+            {
+                dialog = new Directionality(textDirection: textDirection, child: dialog);
+            }
+
+            if (locale != null)
+            {
+                dialog = Localizations.Override(context: context, locale: locale, child: dialog);
+            }
+
+            return DialogDefaultClass.ShowDialog(context: context, useRootNavigator: useRootNavigator, routeSettings: routeSettings, builder: (BuildContext context) =>
+            {
+                return builder == null ? dialog : builder(context, dialog);
+            }
+            );
         }
+
+
 
     }
 

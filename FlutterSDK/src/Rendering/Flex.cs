@@ -428,8 +428,12 @@ namespace FlutterSDK.Rendering.Flex
     {
         internal static bool _StartIsTopLeft(FlutterSDK.Painting.Basictypes.Axis direction, TextDirection textDirection, FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection)
         {
-            throw new NotImplementedException();
+
+            switch (direction) { case Axis.Horizontal: switch (textDirection) { case TextDirection.Ltr: return true; case TextDirection.Rtl: return false; } break; case Axis.Vertical: switch (verticalDirection) { case VerticalDirection.Down: return true; case VerticalDirection.Up: return false; } break; }
+            return null;
         }
+
+
 
     }
 

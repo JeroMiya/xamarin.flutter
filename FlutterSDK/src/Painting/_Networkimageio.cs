@@ -474,51 +474,52 @@ namespace FlutterSDK.Painting._Networkimageio
 
 
 
-        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageio.NetworkImage key, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
-    async
-{
-try {
+        private async Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageio.NetworkImage key, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+        {
+            try
+            {
 
-Uri resolved = Dart:coreDefaultClass.Uri.Base.Resolve(key.Url);
-HttpClientRequest request = await _HttpClient.GetUrl(resolved);
-        Headers?.ForEach((string name, string value) => {
-            request.Headers.Add(name, value);
+                Uri resolved = Dart:coreDefaultClass.Uri.Base.Resolve(key.Url);
+                HttpClientRequest request = await _HttpClient.GetUrl(resolved);
+                Headers?.ForEach((string name, string value) =>
+                {
+                    request.Headers.Add(name, value);
+                }
+                );
+                HttpResponseMessage response = await request.Close();
+                if (response.StatusCode != Dart:internalDefaultClass.HttpStatus.Ok){
+                    BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
+                    throw new Image_provider.NetworkImageLoadException(statusCode: response.StatusCode, uri: resolved);
+                }
+
+                Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response, onBytesReceived: (int cumulative, int total) =>
+                {
+                    chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: cumulative, expectedTotalBytes: total));
+                }
+                );
+                if (bytes.LengthInBytes == 0) throw new Exception($"'NetworkImage is an empty file: {resolved}'");
+                return decode(bytes);
+            }
+            finally
+            {
+                chunkEvents.Close();
+            }
+
         }
-);
-HttpResponseMessage response = await request.Close();
-if (response.StatusCode!=Dart:internalDefaultClass.HttpStatus.Ok){
-BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
-throw new Image_provider.NetworkImageLoadException(statusCode:response.StatusCode, uri:resolved);
-}
 
-    Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response, onBytesReceived: (int cumulative, int total) =>
-    {
-        chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: cumulative, expectedTotalBytes: total));
+
+
+
+        public new bool Equals(@Object other)
+        {
+            if (other.GetType() != GetType()) return false;
+            return other is NetworkImage && other.Url == Url && other.Scale == Scale;
+        }
+
+
+
+
+        #endregion
     }
-    );
-if (bytes.LengthInBytes==0)throw new Exception($"'NetworkImage is an empty file: {resolved}'");
-return decode(bytes);
-}
-finally
-{
-    chunkEvents.Close();
-}
-
-}
-
-
-
-
-public new bool Equals(@Object other)
-{
-    if (other.GetType() != GetType()) return false;
-    return other is NetworkImage && other.Url == Url && other.Scale == Scale;
-}
-
-
-
-
-#endregion
-}
 
 }

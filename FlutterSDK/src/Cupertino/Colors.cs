@@ -297,8 +297,18 @@ namespace FlutterSDK.Cupertino.Colors
     {
         internal static FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color> CreateCupertinoColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), DiagnosticLevel level = default(DiagnosticLevel))
         {
-            throw new NotImplementedException();
+            if (value is CupertinoDynamicColor)
+            {
+                return new DiagnosticsProperty<CupertinoDynamicColor>(name, ((CupertinoDynamicColor)value), description: ((CupertinoDynamicColor)value)._DebugLabel, showName: showName, defaultValue: defaultValue, style: style, level: level);
+            }
+            else
+            {
+                return new ColorProperty(name, value, showName: showName, defaultValue: defaultValue, style: style, level: level);
+            }
+
         }
+
+
 
     }
 

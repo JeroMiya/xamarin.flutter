@@ -557,7 +557,8 @@ namespace FlutterSDK.Cupertino.Refresh
         public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode TransitionNextState()
         {
             RefreshIndicatorMode nextState = default(RefreshIndicatorMode);
-            void GoToDone() => {
+            void GoToDone()
+            {
                 nextState = RefreshIndicatorMode.Done;
                 if (BindingDefaultClass.SchedulerBinding.Instance.SchedulerPhase == SchedulerPhase.Idle)
                 {

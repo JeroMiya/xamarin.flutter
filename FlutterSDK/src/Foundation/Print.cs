@@ -311,23 +311,142 @@ namespace FlutterSDK.Foundation.Print
         public static RegExp _IndentPattern = default(RegExp);
         internal static void DebugPrintSynchronously(string message, int wrapWidth = default(int))
         {
-            throw new NotImplementedException();
+            if (wrapWidth != null)
+            {
+            Dart: coreDefaultClass.Print(message.Split('\n').ToList().Expand((string line) => =>PrintDefaultClass.DebugWordWrap(line, wrapWidth)).Join('\n'));
+            }
+            else
+            {
+            Dart: coreDefaultClass.Print(message);
+            }
+
         }
+
+
 
         internal static void DebugPrintThrottled(string message, int wrapWidth = default(int))
         {
-            throw new NotImplementedException();
+            List<string> messageLines = message?.Split('\n').ToList() ?? new List<string>() { "null" };
+            if (wrapWidth != null)
+            {
+                PrintDefaultClass._DebugPrintBuffer.AddAll(messageLines.Expand((string line) => =>PrintDefaultClass.DebugWordWrap(line, wrapWidth)));
+            }
+            else
+            {
+                PrintDefaultClass._DebugPrintBuffer.AddAll(messageLines);
+            }
+
+            if (!PrintDefaultClass._DebugPrintScheduled) PrintDefaultClass._DebugPrintTask();
         }
+
+
 
         internal static void _DebugPrintTask()
         {
-            throw new NotImplementedException();
+            PrintDefaultClass._DebugPrintScheduled = false;
+            if (PrintDefaultClass._DebugPrintStopwatch.Elapsed > PrintDefaultClass._KDebugPrintPauseTime)
+            {
+                PrintDefaultClass._DebugPrintStopwatch.Stop();
+                PrintDefaultClass._DebugPrintStopwatch.Reset();
+                PrintDefaultClass._DebugPrintedCharacters = 0;
+            }
+
+            while (PrintDefaultClass._DebugPrintedCharacters < PrintDefaultClass._KDebugPrintCapacity && PrintDefaultClass._DebugPrintBuffer.IsNotEmpty)
+            {
+                string line = PrintDefaultClass._DebugPrintBuffer.RemoveFirst();
+                PrintDefaultClass._DebugPrintedCharacters += line.Length;
+            Dart: coreDefaultClass.Print(line);
+            }
+
+            if (PrintDefaultClass._DebugPrintBuffer.IsNotEmpty)
+            {
+                PrintDefaultClass._DebugPrintScheduled = true;
+                PrintDefaultClass._DebugPrintedCharacters = 0;
+                new Timer(PrintDefaultClass._KDebugPrintPauseTime, PrintDefaultClass._DebugPrintTask);
+                PrintDefaultClass._DebugPrintCompleter = (PrintDefaultClass._DebugPrintCompleter == null ? new Completer<void>() : PrintDefaultClass._DebugPrintCompleter);
+            }
+            else
+            {
+                PrintDefaultClass._DebugPrintStopwatch.Start();
+                PrintDefaultClass._DebugPrintCompleter?.Complete();
+                PrintDefaultClass._DebugPrintCompleter = null;
+            }
+
         }
+
+
 
         internal static Iterable<string> DebugWordWrap(string message, int width, string wrapIndent = default(string))
         {
-            throw new NotImplementedException();
+            if (message.Length < width || message.TrimStart()[0] == '#')
+            {
+                yield return message;
+                return;
+            }
+
+            Match prefixMatch = PrintDefaultClass._IndentPattern.MatchAsPrefix(message);
+            string prefix = wrapIndent + ' ' * prefixMatch.Group(0).Length;
+            int start = 0;
+            int startForLengthCalculations = 0;
+            bool addPrefix = false;
+            int index = prefix.Length;
+            _WordWrapParseMode mode = _WordWrapParseMode.InSpace;
+            int lastWordStart = default(int);
+            int lastWordEnd = default(int);
+            while (true)
+            {
+                switch (mode)
+                {
+                    case _WordWrapParseMode.InSpace: while ((index < message.Length) && (message[index] == ' ')) index += 1; lastWordStart = index; mode = _WordWrapParseMode.InWord; break;
+                    case _WordWrapParseMode.InWord: while ((index < message.Length) && (message[index] != ' ')) index += 1; mode = _WordWrapParseMode.AtBreak; break;
+                    case _WordWrapParseMode.AtBreak:
+                        if ((index - startForLengthCalculations > width) || (index == message.Length))
+                        {
+                            if ((index - startForLengthCalculations <= width) || (lastWordEnd == null))
+                            {
+                                lastWordEnd = index;
+                            }
+
+                            if (addPrefix)
+                            {
+                                yield return prefix + message.Substring(start, lastWordEnd);
+                            }
+                            else
+                            {
+                                yield return message.Substring(start, lastWordEnd);
+                                addPrefix = true;
+                            }
+
+                            if (lastWordEnd >= message.Length) return;
+                            if (lastWordEnd == index)
+                            {
+                                while ((index < message.Length) && (message[index] == ' ')) index += 1;
+                                start = index;
+                                mode = _WordWrapParseMode.InWord;
+                            }
+                            else
+                            {
+
+                                start = lastWordStart;
+                                mode = _WordWrapParseMode.AtBreak;
+                            }
+
+                            startForLengthCalculations = start - prefix.Length;
+
+                            lastWordEnd = null;
+                        }
+                        else
+                        {
+                            lastWordEnd = index;
+                            mode = _WordWrapParseMode.InSpace;
+                        }
+                        break;
+                }
+            }
+
         }
+
+
 
     }
 

@@ -428,23 +428,38 @@ namespace FlutterSDK.Services.Textinput
         public static bool _KIsBrowser = default(bool);
         internal static TextAffinity _ToTextAffinity(string affinity)
         {
-            throw new NotImplementedException();
+            switch (affinity) { case "TextAffinity.downstream": return TextAffinity.Downstream; case "TextAffinity.upstream": return TextAffinity.Upstream; }
+            return null;
         }
+
+
 
         internal static FlutterSDK.Services.Textinput.TextInputAction _ToTextInputAction(string action)
         {
-            throw new NotImplementedException();
+            switch (action) { case "TextInputAction.none": return TextInputAction.None; case "TextInputAction.unspecified": return TextInputAction.Unspecified; case "TextInputAction.go": return TextInputAction.Go; case "TextInputAction.search": return TextInputAction.Search; case "TextInputAction.send": return TextInputAction.Send; case "TextInputAction.next": return TextInputAction.Next; case "TextInputAction.previuos": return TextInputAction.Previous; case "TextInputAction.continue_action": return TextInputAction.ContinueAction; case "TextInputAction.join": return TextInputAction.Join; case "TextInputAction.route": return TextInputAction.Route; case "TextInputAction.emergencyCall": return TextInputAction.EmergencyCall; case "TextInputAction.done": return TextInputAction.Done; case "TextInputAction.newline": return TextInputAction.Newline; }
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unknown text input action: {action}'") });
         }
+
+
 
         internal static FlutterSDK.Services.Textinput.FloatingCursorDragState _ToTextCursorAction(string state)
         {
-            throw new NotImplementedException();
+            switch (state) { case "FloatingCursorDragState.start": return FloatingCursorDragState.Start; case "FloatingCursorDragState.update": return FloatingCursorDragState.Update; case "FloatingCursorDragState.end": return FloatingCursorDragState.End; }
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unknown text cursor action: {state}'") });
         }
+
+
 
         internal static FlutterSDK.Services.Textinput.RawFloatingCursorPoint _ToTextPoint(FlutterSDK.Services.Textinput.FloatingCursorDragState state, Dictionary<string, object> encoded)
         {
-            throw new NotImplementedException();
+
+
+
+            Offset offset = state == FloatingCursorDragState.Update ? new Offset(encoded['X'] as double, encoded['Y'] as double) : new Offset(0, 0);
+            return new RawFloatingCursorPoint(offset: offset, state: state);
         }
+
+
 
     }
 
@@ -1035,412 +1050,413 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        private Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
-    async
-{
-if (_CurrentConnection==null )return ;
-string method = methodCall.Method;
-if (method=="TextInputClient.requestExistingInputState"){
+        private async Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
+        {
+            if (_CurrentConnection == null) return;
+            string method = methodCall.Method;
+            if (method == "TextInputClient.requestExistingInputState")
+            {
 
-_Attach(_CurrentConnection, _CurrentConfiguration);
-        TextEditingValue editingValue = _CurrentConnection._Client.CurrentTextEditingValue;
-if (editingValue!=null ){
-_SetEditingState(editingValue);
+                _Attach(_CurrentConnection, _CurrentConfiguration);
+                TextEditingValue editingValue = _CurrentConnection._Client.CurrentTextEditingValue;
+                if (editingValue != null)
+                {
+                    _SetEditingState(editingValue);
+                }
+
+                return;
+            }
+
+            List<object> args = methodCall.Arguments as List<object>;
+            int client = args[0] as int;
+            if (client != _CurrentConnection._Id) return;
+            switch (method) { case "TextInputClient.updateEditingState": _CurrentConnection._Client.UpdateEditingValue(TextEditingValue.FromJSON(args[1] as Dictionary<string, object>)); break; case "TextInputClient.performAction": _CurrentConnection._Client.PerformAction(TextinputDefaultClass._ToTextInputAction(args[1] as string)); break; case "TextInputClient.updateFloatingCursor": _CurrentConnection._Client.UpdateFloatingCursor(TextinputDefaultClass._ToTextPoint(TextinputDefaultClass._ToTextCursorAction(args[1] as string), args[2] as Dictionary<string, object>)); break; case "TextInputClient.onConnectionClosed": _CurrentConnection._Client.ConnectionClosed(); break; default: throw new MissingPluginException(); }
+        }
+
+
+
+
+        private void _ScheduleHide()
+        {
+            if (_HidePending) return;
+            _HidePending = true;
+        Dart: asyncDefaultClass.ScheduleMicrotask(() =>
+        {
+            _HidePending = false;
+            if (_CurrentConnection == null) _Channel.InvokeMethod("TextInput.hide");
+        }
+         );
+        }
+
+
+
+
+        private void _ClearClient()
+        {
+            _Channel.InvokeMethod("TextInput.clearClient");
+            _CurrentConnection = null;
+            _ScheduleHide();
+        }
+
+
+
+
+        private void _SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value)
+        {
+
+            _Channel.InvokeMethod("TextInput.setEditingState", value.ToJSON());
+        }
+
+
+
+
+        private void _Show()
+        {
+            _Channel.InvokeMethod("TextInput.show");
+        }
+
+
+
+
+        private void _SetEditableSizeAndTransform(Dictionary<string, object> args)
+        {
+            _Channel.InvokeMethod("TextInput.setEditableSizeAndTransform", args);
+        }
+
+
+
+
+        private void _SetStyle(Dictionary<string, object> args)
+        {
+            _Channel.InvokeMethod("TextInput.setStyle", args);
+        }
+
+
+
+        #endregion
     }
 
-return ;
-}
-
-List<object> args = methodCall.Arguments as List<object>;
-int client = args[0] as int;
-if (client != _CurrentConnection._Id) return;
-switch (method) { case "TextInputClient.updateEditingState": _CurrentConnection._Client.UpdateEditingValue(TextEditingValue.FromJSON(args[1] as Dictionary<string, object>)); break; case "TextInputClient.performAction": _CurrentConnection._Client.PerformAction(TextinputDefaultClass._ToTextInputAction(args[1] as string)); break; case "TextInputClient.updateFloatingCursor": _CurrentConnection._Client.UpdateFloatingCursor(TextinputDefaultClass._ToTextPoint(TextinputDefaultClass._ToTextCursorAction(args[1] as string), args[2] as Dictionary<string, object>)); break; case "TextInputClient.onConnectionClosed": _CurrentConnection._Client.ConnectionClosed(); break; default: throw new MissingPluginException(); }
-}
-
-
-
-
-private void _ScheduleHide()
-{
-    if (_HidePending) return;
-    _HidePending = true;
-Dart: asyncDefaultClass.ScheduleMicrotask(() =>
-{
-    _HidePending = false;
-    if (_CurrentConnection == null) _Channel.InvokeMethod("TextInput.hide");
-}
- );
-}
-
-
-
-
-private void _ClearClient()
-{
-    _Channel.InvokeMethod("TextInput.clearClient");
-    _CurrentConnection = null;
-    _ScheduleHide();
-}
-
-
-
-
-private void _SetEditingState(FlutterSDK.Services.Textinput.TextEditingValue value)
-{
-
-    _Channel.InvokeMethod("TextInput.setEditingState", value.ToJSON());
-}
-
-
-
-
-private void _Show()
-{
-    _Channel.InvokeMethod("TextInput.show");
-}
-
-
-
-
-private void _SetEditableSizeAndTransform(Dictionary<string, object> args)
-{
-    _Channel.InvokeMethod("TextInput.setEditableSizeAndTransform", args);
-}
-
-
-
-
-private void _SetStyle(Dictionary<string, object> args)
-{
-    _Channel.InvokeMethod("TextInput.setStyle", args);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Indicates how to handle the intelligent replacement of dashes in text input.
-///
-/// See also:
-///
-///  * [TextField.smartDashesType]
-///  * [TextFormField.smartDashesType]
-///  * [CupertinoTextField.smartDashesType]
-///  * [EditableText.smartDashesType]
-///  * [SmartQuotesType]
-///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
-/// </Summary>
-public enum SmartDashesType
-{
 
     /// <Summary>
-    /// Smart dashes is disabled.
+    /// Indicates how to handle the intelligent replacement of dashes in text input.
     ///
-    /// This corresponds to the
-    /// ["no" value of UITextSmartDashesType](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/no).
-    /// </Summary>
-    Disabled,
-    /// <Summary>
-    /// Smart dashes is enabled.
+    /// See also:
     ///
-    /// This corresponds to the
-    /// ["yes" value of UITextSmartDashesType](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/yes).
+    ///  * [TextField.smartDashesType]
+    ///  * [TextFormField.smartDashesType]
+    ///  * [CupertinoTextField.smartDashesType]
+    ///  * [EditableText.smartDashesType]
+    ///  * [SmartQuotesType]
+    ///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
     /// </Summary>
-    Enabled,
-}
+    public enum SmartDashesType
+    {
+
+        /// <Summary>
+        /// Smart dashes is disabled.
+        ///
+        /// This corresponds to the
+        /// ["no" value of UITextSmartDashesType](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/no).
+        /// </Summary>
+        Disabled,
+        /// <Summary>
+        /// Smart dashes is enabled.
+        ///
+        /// This corresponds to the
+        /// ["yes" value of UITextSmartDashesType](https://developer.apple.com/documentation/uikit/uitextsmartdashestype/yes).
+        /// </Summary>
+        Enabled,
+    }
 
 
-/// <Summary>
-/// Indicates how to handle the intelligent replacement of quotes in text input.
-///
-/// See also:
-///
-///  * [TextField.smartQuotesType]
-///  * [TextFormField.smartQuotesType]
-///  * [CupertinoTextField.smartQuotesType]
-///  * [EditableText.smartQuotesType]
-///  * [SmartDashesType]
-///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
-/// </Summary>
-public enum SmartQuotesType
-{
+    /// <Summary>
+    /// Indicates how to handle the intelligent replacement of quotes in text input.
+    ///
+    /// See also:
+    ///
+    ///  * [TextField.smartQuotesType]
+    ///  * [TextFormField.smartQuotesType]
+    ///  * [CupertinoTextField.smartQuotesType]
+    ///  * [EditableText.smartQuotesType]
+    ///  * [SmartDashesType]
+    ///  * <https://developer.apple.com/documentation/uikit/uitextinputtraits>
+    /// </Summary>
+    public enum SmartQuotesType
+    {
 
-    /// <Summary>
-    /// Smart quotes is disabled.
-    ///
-    /// This corresponds to the
-    /// ["no" value of UITextSmartQuotesType](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/no).
-    /// </Summary>
-    Disabled,
-    /// <Summary>
-    /// Smart quotes is enabled.
-    ///
-    /// This corresponds to the
-    /// ["yes" value of UITextSmartQuotesType](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/yes).
-    /// </Summary>
-    Enabled,
-}
-
-
-/// <Summary>
-/// An action the user has requested the text input control to perform.
-///
-/// Each action represents a logical meaning, and also configures the soft
-/// keyboard to display a certain kind of action button. The visual appearance
-/// of the action button might differ between versions of the same OS.
-///
-/// Despite the logical meaning of each action, choosing a particular
-/// [TextInputAction] does not necessarily cause any specific behavior to
-/// happen. It is up to the developer to ensure that the behavior that occurs
-/// when an action button is pressed is appropriate for the action button chosen.
-///
-/// For example: If the user presses the keyboard action button on iOS when it
-/// reads "Emergency Call", the result should not be a focus change to the next
-/// TextField. This behavior is not logically appropriate for a button that says
-/// "Emergency Call".
-///
-/// See [EditableText] for more information about customizing action button
-/// behavior.
-///
-/// Most [TextInputAction]s are supported equally by both Android and iOS.
-/// However, there is not a complete, direct mapping between Android's IME input
-/// types and iOS's keyboard return types. Therefore, some [TextInputAction]s
-/// are inappropriate for one of the platforms. If a developer chooses an
-/// inappropriate [TextInputAction] when running in debug mode, an error will be
-/// thrown. If the same thing is done in release mode, then instead of sending
-/// the inappropriate value, Android will use "unspecified" on the platform
-/// side and iOS will use "default" on the platform side.
-///
-/// See also:
-///
-///  * [TextInput], which configures the platform's keyboard setup.
-///  * [EditableText], which invokes callbacks when the action button is pressed.
-/// </Summary>
-public enum TextInputAction
-{
-
-    /// <Summary>
-    /// Logical meaning: There is no relevant input action for the current input
-    /// source, e.g., [TextField].
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_NONE". The keyboard setup
-    /// is decided by the OS. The keyboard will likely show a return key.
-    ///
-    /// iOS: iOS does not have a keyboard return type of "none." It is
-    /// inappropriate to choose this [TextInputAction] when running on iOS.
-    /// </Summary>
-    None,
-    /// <Summary>
-    /// Logical meaning: Let the OS decide which action is most appropriate.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_UNSPECIFIED". The OS chooses
-    /// which keyboard action to display. The decision will likely be a done
-    /// button or a return key.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyDefault". The title displayed in
-    /// the action button is "return".
-    /// </Summary>
-    Unspecified,
-    /// <Summary>
-    /// Logical meaning: The user is done providing input to a group of inputs
-    /// (like a form). Some kind of finalization behavior should now take place.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_DONE". The OS displays a
-    /// button that represents completion, e.g., a checkmark button.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyDone". The title displayed in the
-    /// action button is "Done".
-    /// </Summary>
-    Done,
-    /// <Summary>
-    /// Logical meaning: The user has entered some text that represents a
-    /// destination, e.g., a restaurant name. The "go" button is intended to take
-    /// the user to a part of the app that corresponds to this destination.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_GO". The OS displays a
-    /// button that represents taking "the user to the target of the text they
-    /// typed", e.g., a right-facing arrow button.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyGo". The title displayed in the
-    /// action button is "Go".
-    /// </Summary>
-    Go,
-    /// <Summary>
-    /// Logical meaning: Execute a search query.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_SEARCH". The OS displays a
-    /// button that represents a search, e.g., a magnifying glass button.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeySearch". The title displayed in the
-    /// action button is "Search".
-    /// </Summary>
-    Search,
-    /// <Summary>
-    /// Logical meaning: Sends something that the user has composed, e.g., an
-    /// email or a text message.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_SEND". The OS displays a
-    /// button that represents sending something, e.g., a paper plane button.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeySend". The title displayed in the
-    /// action button is "Send".
-    /// </Summary>
-    Send,
-    /// <Summary>
-    /// Logical meaning: The user is done with the current input source and wants
-    /// to move to the next one.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_NEXT". The OS displays a
-    /// button that represents moving forward, e.g., a right-facing arrow button.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyNext". The title displayed in the
-    /// action button is "Next".
-    /// </Summary>
-    Next,
-    /// <Summary>
-    /// Logical meaning: The user wishes to return to the previous input source
-    /// in the group, e.g., a form with multiple [TextField]s.
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_PREVIOUS". The OS displays a
-    /// button that represents moving backward, e.g., a left-facing arrow button.
-    ///
-    /// iOS: iOS does not have a keyboard return type of "previous." It is
-    /// inappropriate to choose this [TextInputAction] when running on iOS.
-    /// </Summary>
-    Previous,
-    /// <Summary>
-    /// Logical meaning: In iOS apps, it is common for a "Back" button and
-    /// "Continue" button to appear at the top of the screen. However, when the
-    /// keyboard is open, these buttons are often hidden off-screen. Therefore,
-    /// the purpose of the "Continue" return key on iOS is to make the "Continue"
-    /// button available when the user is entering text.
-    ///
-    /// Historical context aside, [TextInputAction.continueAction] can be used any
-    /// time that the term "Continue" seems most appropriate for the given action.
-    ///
-    /// Android: Android does not have an IME input type of "continue." It is
-    /// inappropriate to choose this [TextInputAction] when running on Android.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyContinue". The title displayed in the
-    /// action button is "Continue". This action is only available on iOS 9.0+.
-    ///
-    /// The reason that this value has "Action" post-fixed to it is because
-    /// "continue" is a reserved word in Dart, as well as many other languages.
-    /// </Summary>
-    ContinueAction,
-    /// <Summary>
-    /// Logical meaning: The user wants to join something, e.g., a wireless
-    /// network.
-    ///
-    /// Android: Android does not have an IME input type of "join." It is
-    /// inappropriate to choose this [TextInputAction] when running on Android.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyJoin". The title displayed in the
-    /// action button is "Join".
-    /// </Summary>
-    Join,
-    /// <Summary>
-    /// Logical meaning: The user wants routing options, e.g., driving directions.
-    ///
-    /// Android: Android does not have an IME input type of "route." It is
-    /// inappropriate to choose this [TextInputAction] when running on Android.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyRoute". The title displayed in the
-    /// action button is "Route".
-    /// </Summary>
-    Route,
-    /// <Summary>
-    /// Logical meaning: Initiate a call to emergency services.
-    ///
-    /// Android: Android does not have an IME input type of "emergencyCall." It is
-    /// inappropriate to choose this [TextInputAction] when running on Android.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyEmergencyCall". The title displayed
-    /// in the action button is "Emergency Call".
-    /// </Summary>
-    EmergencyCall,
-    /// <Summary>
-    /// Logical meaning: Insert a newline character in the focused text input,
-    /// e.g., [TextField].
-    ///
-    /// Android: Corresponds to Android's "IME_ACTION_NONE". The OS displays a
-    /// button that represents a new line, e.g., a carriage return button.
-    ///
-    /// iOS: Corresponds to iOS's "UIReturnKeyDefault". The title displayed in the
-    /// action button is "return".
-    ///
-    /// The term [TextInputAction.newline] exists in Flutter but not in Android
-    /// or iOS. The reason for introducing this term is so that developers can
-    /// achieve the common result of inserting new lines without needing to
-    /// understand the various IME actions on Android and return keys on iOS.
-    /// Thus, [TextInputAction.newline] is a convenience term that alleviates the
-    /// need to understand the underlying platforms to achieve this common behavior.
-    /// </Summary>
-    Newline,
-}
+        /// <Summary>
+        /// Smart quotes is disabled.
+        ///
+        /// This corresponds to the
+        /// ["no" value of UITextSmartQuotesType](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/no).
+        /// </Summary>
+        Disabled,
+        /// <Summary>
+        /// Smart quotes is enabled.
+        ///
+        /// This corresponds to the
+        /// ["yes" value of UITextSmartQuotesType](https://developer.apple.com/documentation/uikit/uitextsmartquotestype/yes).
+        /// </Summary>
+        Enabled,
+    }
 
 
-/// <Summary>
-/// Configures how the platform keyboard will select an uppercase or
-/// lowercase keyboard.
-///
-/// Only supports text keyboards, other keyboard types will ignore this
-/// configuration. Capitalization is locale-aware.
-/// </Summary>
-public enum TextCapitalization
-{
-
     /// <Summary>
-    /// Defaults to an uppercase keyboard for the first letter of each word.
+    /// An action the user has requested the text input control to perform.
     ///
-    /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_WORDS` on Android, and
-    /// `UITextAutocapitalizationTypeWords` on iOS.
-    /// </Summary>
-    Words,
-    /// <Summary>
-    /// Defaults to an uppercase keyboard for the first letter of each sentence.
+    /// Each action represents a logical meaning, and also configures the soft
+    /// keyboard to display a certain kind of action button. The visual appearance
+    /// of the action button might differ between versions of the same OS.
     ///
-    /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_SENTENCES` on Android, and
-    /// `UITextAutocapitalizationTypeSentences` on iOS.
-    /// </Summary>
-    Sentences,
-    /// <Summary>
-    /// Defaults to an uppercase keyboard for each character.
+    /// Despite the logical meaning of each action, choosing a particular
+    /// [TextInputAction] does not necessarily cause any specific behavior to
+    /// happen. It is up to the developer to ensure that the behavior that occurs
+    /// when an action button is pressed is appropriate for the action button chosen.
     ///
-    /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS` on Android, and
-    /// `UITextAutocapitalizationTypeAllCharacters` on iOS.
+    /// For example: If the user presses the keyboard action button on iOS when it
+    /// reads "Emergency Call", the result should not be a focus change to the next
+    /// TextField. This behavior is not logically appropriate for a button that says
+    /// "Emergency Call".
+    ///
+    /// See [EditableText] for more information about customizing action button
+    /// behavior.
+    ///
+    /// Most [TextInputAction]s are supported equally by both Android and iOS.
+    /// However, there is not a complete, direct mapping between Android's IME input
+    /// types and iOS's keyboard return types. Therefore, some [TextInputAction]s
+    /// are inappropriate for one of the platforms. If a developer chooses an
+    /// inappropriate [TextInputAction] when running in debug mode, an error will be
+    /// thrown. If the same thing is done in release mode, then instead of sending
+    /// the inappropriate value, Android will use "unspecified" on the platform
+    /// side and iOS will use "default" on the platform side.
+    ///
+    /// See also:
+    ///
+    ///  * [TextInput], which configures the platform's keyboard setup.
+    ///  * [EditableText], which invokes callbacks when the action button is pressed.
     /// </Summary>
-    Characters,
-    /// <Summary>
-    /// Defaults to a lowercase keyboard.
-    /// </Summary>
-    None,
-}
+    public enum TextInputAction
+    {
+
+        /// <Summary>
+        /// Logical meaning: There is no relevant input action for the current input
+        /// source, e.g., [TextField].
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_NONE". The keyboard setup
+        /// is decided by the OS. The keyboard will likely show a return key.
+        ///
+        /// iOS: iOS does not have a keyboard return type of "none." It is
+        /// inappropriate to choose this [TextInputAction] when running on iOS.
+        /// </Summary>
+        None,
+        /// <Summary>
+        /// Logical meaning: Let the OS decide which action is most appropriate.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_UNSPECIFIED". The OS chooses
+        /// which keyboard action to display. The decision will likely be a done
+        /// button or a return key.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyDefault". The title displayed in
+        /// the action button is "return".
+        /// </Summary>
+        Unspecified,
+        /// <Summary>
+        /// Logical meaning: The user is done providing input to a group of inputs
+        /// (like a form). Some kind of finalization behavior should now take place.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_DONE". The OS displays a
+        /// button that represents completion, e.g., a checkmark button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyDone". The title displayed in the
+        /// action button is "Done".
+        /// </Summary>
+        Done,
+        /// <Summary>
+        /// Logical meaning: The user has entered some text that represents a
+        /// destination, e.g., a restaurant name. The "go" button is intended to take
+        /// the user to a part of the app that corresponds to this destination.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_GO". The OS displays a
+        /// button that represents taking "the user to the target of the text they
+        /// typed", e.g., a right-facing arrow button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyGo". The title displayed in the
+        /// action button is "Go".
+        /// </Summary>
+        Go,
+        /// <Summary>
+        /// Logical meaning: Execute a search query.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_SEARCH". The OS displays a
+        /// button that represents a search, e.g., a magnifying glass button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeySearch". The title displayed in the
+        /// action button is "Search".
+        /// </Summary>
+        Search,
+        /// <Summary>
+        /// Logical meaning: Sends something that the user has composed, e.g., an
+        /// email or a text message.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_SEND". The OS displays a
+        /// button that represents sending something, e.g., a paper plane button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeySend". The title displayed in the
+        /// action button is "Send".
+        /// </Summary>
+        Send,
+        /// <Summary>
+        /// Logical meaning: The user is done with the current input source and wants
+        /// to move to the next one.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_NEXT". The OS displays a
+        /// button that represents moving forward, e.g., a right-facing arrow button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyNext". The title displayed in the
+        /// action button is "Next".
+        /// </Summary>
+        Next,
+        /// <Summary>
+        /// Logical meaning: The user wishes to return to the previous input source
+        /// in the group, e.g., a form with multiple [TextField]s.
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_PREVIOUS". The OS displays a
+        /// button that represents moving backward, e.g., a left-facing arrow button.
+        ///
+        /// iOS: iOS does not have a keyboard return type of "previous." It is
+        /// inappropriate to choose this [TextInputAction] when running on iOS.
+        /// </Summary>
+        Previous,
+        /// <Summary>
+        /// Logical meaning: In iOS apps, it is common for a "Back" button and
+        /// "Continue" button to appear at the top of the screen. However, when the
+        /// keyboard is open, these buttons are often hidden off-screen. Therefore,
+        /// the purpose of the "Continue" return key on iOS is to make the "Continue"
+        /// button available when the user is entering text.
+        ///
+        /// Historical context aside, [TextInputAction.continueAction] can be used any
+        /// time that the term "Continue" seems most appropriate for the given action.
+        ///
+        /// Android: Android does not have an IME input type of "continue." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyContinue". The title displayed in the
+        /// action button is "Continue". This action is only available on iOS 9.0+.
+        ///
+        /// The reason that this value has "Action" post-fixed to it is because
+        /// "continue" is a reserved word in Dart, as well as many other languages.
+        /// </Summary>
+        ContinueAction,
+        /// <Summary>
+        /// Logical meaning: The user wants to join something, e.g., a wireless
+        /// network.
+        ///
+        /// Android: Android does not have an IME input type of "join." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyJoin". The title displayed in the
+        /// action button is "Join".
+        /// </Summary>
+        Join,
+        /// <Summary>
+        /// Logical meaning: The user wants routing options, e.g., driving directions.
+        ///
+        /// Android: Android does not have an IME input type of "route." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyRoute". The title displayed in the
+        /// action button is "Route".
+        /// </Summary>
+        Route,
+        /// <Summary>
+        /// Logical meaning: Initiate a call to emergency services.
+        ///
+        /// Android: Android does not have an IME input type of "emergencyCall." It is
+        /// inappropriate to choose this [TextInputAction] when running on Android.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyEmergencyCall". The title displayed
+        /// in the action button is "Emergency Call".
+        /// </Summary>
+        EmergencyCall,
+        /// <Summary>
+        /// Logical meaning: Insert a newline character in the focused text input,
+        /// e.g., [TextField].
+        ///
+        /// Android: Corresponds to Android's "IME_ACTION_NONE". The OS displays a
+        /// button that represents a new line, e.g., a carriage return button.
+        ///
+        /// iOS: Corresponds to iOS's "UIReturnKeyDefault". The title displayed in the
+        /// action button is "return".
+        ///
+        /// The term [TextInputAction.newline] exists in Flutter but not in Android
+        /// or iOS. The reason for introducing this term is so that developers can
+        /// achieve the common result of inserting new lines without needing to
+        /// understand the various IME actions on Android and return keys on iOS.
+        /// Thus, [TextInputAction.newline] is a convenience term that alleviates the
+        /// need to understand the underlying platforms to achieve this common behavior.
+        /// </Summary>
+        Newline,
+    }
 
 
-/// <Summary>
-/// A floating cursor state the user has induced by force pressing an iOS
-/// keyboard.
-/// </Summary>
-public enum FloatingCursorDragState
-{
+    /// <Summary>
+    /// Configures how the platform keyboard will select an uppercase or
+    /// lowercase keyboard.
+    ///
+    /// Only supports text keyboards, other keyboard types will ignore this
+    /// configuration. Capitalization is locale-aware.
+    /// </Summary>
+    public enum TextCapitalization
+    {
+
+        /// <Summary>
+        /// Defaults to an uppercase keyboard for the first letter of each word.
+        ///
+        /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_WORDS` on Android, and
+        /// `UITextAutocapitalizationTypeWords` on iOS.
+        /// </Summary>
+        Words,
+        /// <Summary>
+        /// Defaults to an uppercase keyboard for the first letter of each sentence.
+        ///
+        /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_SENTENCES` on Android, and
+        /// `UITextAutocapitalizationTypeSentences` on iOS.
+        /// </Summary>
+        Sentences,
+        /// <Summary>
+        /// Defaults to an uppercase keyboard for each character.
+        ///
+        /// Corresponds to `InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS` on Android, and
+        /// `UITextAutocapitalizationTypeAllCharacters` on iOS.
+        /// </Summary>
+        Characters,
+        /// <Summary>
+        /// Defaults to a lowercase keyboard.
+        /// </Summary>
+        None,
+    }
+
 
     /// <Summary>
-    /// A user has just activated a floating cursor.
+    /// A floating cursor state the user has induced by force pressing an iOS
+    /// keyboard.
     /// </Summary>
-    Start,
-    /// <Summary>
-    /// A user is dragging a floating cursor.
-    /// </Summary>
-    Update,
-    /// <Summary>
-    /// A user has lifted their finger off the screen after using a floating
-    /// cursor.
-    /// </Summary>
-    End,
-}
+    public enum FloatingCursorDragState
+    {
+
+        /// <Summary>
+        /// A user has just activated a floating cursor.
+        /// </Summary>
+        Start,
+        /// <Summary>
+        /// A user is dragging a floating cursor.
+        /// </Summary>
+        Update,
+        /// <Summary>
+        /// A user has lifted their finger off the screen after using a floating
+        /// cursor.
+        /// </Summary>
+        End,
+    }
 
 }

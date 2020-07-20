@@ -309,25 +309,17 @@ namespace FlutterSDK.Gestures.Events
         public static int KBackMouseButton = default(int);
         public static int KForwardMouseButton = default(int);
         public static int KTouchContact = default(int);
-        internal static int NthMouseButton(int number)
-        {
-            throw new NotImplementedException();
-        }
+        internal static int NthMouseButton(int number) => (EventsDefaultClass.KPrimaryMouseButton << (number - 1)) & BitfieldDefaultClass.KMaxUnsignedSMI;
 
-        internal static int NthStylusButton(int number)
-        {
-            throw new NotImplementedException();
-        }
 
-        internal static int SmallestButton(int buttons)
-        {
-            throw new NotImplementedException();
-        }
+        internal static int NthStylusButton(int number) => (EventsDefaultClass.KPrimaryStylusButton << (number - 1)) & BitfieldDefaultClass.KMaxUnsignedSMI;
 
-        internal static bool IsSingleButton(int buttons)
-        {
-            throw new NotImplementedException();
-        }
+
+        internal static int SmallestButton(int buttons) => buttons & (-buttons);
+
+
+        internal static bool IsSingleButton(int buttons) => buttons != 0 && (EventsDefaultClass.SmallestButton(buttons) == buttons);
+
 
     }
 

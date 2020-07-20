@@ -304,8 +304,10 @@ namespace FlutterSDK.Cupertino.Texttheme
         public static FlutterSDK.Painting.Textstyle.TextStyle _KDefaultDateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle);
         internal static FlutterSDK.Painting.Textstyle.TextStyle _ResolveTextStyle(FlutterSDK.Painting.Textstyle.TextStyle style, FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk)
         {
-            throw new NotImplementedException();
+            return style?.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(style?.Color, context, nullOk: nullOk), backgroundColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(style?.BackgroundColor, context, nullOk: nullOk), decorationColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(style?.DecorationColor, context, nullOk: nullOk));
         }
+
+
 
     }
 

@@ -60,8 +60,26 @@ namespace FlutterSDK.Animation.Curves
     {
         internal static double _Bounce(double t)
         {
-            throw new NotImplementedException();
+            if (t < 1.0 / 2.75)
+            {
+                return 7.5625 * t * t;
+            }
+            else if (t < 2 / 2.75)
+            {
+                t -= 1.5 / 2.75;
+                return 7.5625 * t * t + 0.75;
+            }
+            else if (t < 2.5 / 2.75)
+            {
+                t -= 2.25 / 2.75;
+                return 7.5625 * t * t + 0.9375;
+            }
+
+            t -= 2.625 / 2.75;
+            return 7.5625 * t * t + 0.984375;
         }
+
+
 
     }
 
@@ -752,7 +770,8 @@ namespace FlutterSDK.Animation.Curves
 
 
             Math.Dart:mathDefaultClass.Random rand = new Math.Random(SamplingSeed);
-            bool IsFlat(Offset p, Offset q, Offset r) => {
+            bool IsFlat(Offset p, Offset q, Offset r)
+            {
                 Offset pr = p - r;
                 Offset qr = q - r;
                 double z = pr.Dx * qr.Dy - qr.Dx * pr.Dy;
@@ -762,7 +781,7 @@ namespace FlutterSDK.Animation.Curves
             Curve2DSample first = new Curve2DSample(start, Transform(start));
             Curve2DSample last = new Curve2DSample(end, Transform(end));
             List<Curve2DSample> samples = new List<Curve2DSample>() { first };
-            void Sample(Curve2DSample p, Curve2DSample q, { bool forceSubdivide = fals) => {
+            void Sample(Curve2DSample p, Curve2DSample q, { bool forceSubdivide = fals){
                 double t = p.t + (0.45 + 0.1 * rand.NextDouble()) * (q.t - p.t);
                 Curve2DSample r = new Curve2DSample(t, Transform(t));
                 if (!forceSubdivide && IsFlat(p.Value, q.Value, r.Value))
@@ -799,7 +818,7 @@ namespace FlutterSDK.Animation.Curves
             double start = 0.0;
             double end = 1.0;
             double mid = default(double);
-            double OffsetToOrigin(double pos) => =>x - Transform(pos).Dx;
+            double OffsetToOrigin(double pos) => x - Transform(pos).Dx;
             double errorLimit = 1e-6;
             int count = 100;
             double startValue = OffsetToOrigin(start);

@@ -426,8 +426,45 @@ namespace FlutterSDK.Painting.Geometry
     {
         internal static Offset PositionDependentBox(Size size = default(Size), Size childSize = default(Size), FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), bool preferBelow = default(bool), double verticalOffset = 0.0, double margin = 10.0)
         {
-            throw new NotImplementedException();
+
+
+
+
+
+
+            bool fitsBelow = target.Dy + verticalOffset + childSize.Height <= size.Height - margin;
+            bool fitsAbove = target.Dy - verticalOffset - childSize.Height >= margin;
+            bool tooltipBelow = preferBelow ? fitsBelow || !fitsAbove : !(fitsAbove || !fitsBelow);
+            double y = default(double);
+            if (tooltipBelow) y = Math.Dart:mathDefaultClass.Min(target.Dy + verticalOffset, size.Height - margin);else y = Math.Dart:mathDefaultClass.Max(target.Dy - verticalOffset - childSize.Height, margin);
+            double x = default(double);
+            if (size.Width - margin * 2.0 < childSize.Width)
+            {
+                x = (size.Width - childSize.Width) / 2.0;
+            }
+            else
+            {
+                double normalizedTargetX = target.Dx.Clamp(margin, size.Width - margin) as double;
+                double edge = margin + childSize.Width / 2.0;
+                if (normalizedTargetX < edge)
+                {
+                    x = margin;
+                }
+                else if (normalizedTargetX > size.Width - edge)
+                {
+                    x = size.Width - margin - childSize.Width;
+                }
+                else
+                {
+                    x = normalizedTargetX - childSize.Width / 2.0;
+                }
+
+            }
+
+            return new Offset(x, y);
         }
+
+
 
     }
 }

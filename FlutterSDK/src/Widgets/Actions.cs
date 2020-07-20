@@ -725,7 +725,8 @@ namespace FlutterSDK.Widgets.Actions
             ActionDispatcher dispatcher = actions.Dispatcher;
             if (dispatcher == null)
             {
-                bool VisitAncestorElement(Element visitedElement) => {
+                bool VisitAncestorElement(Element visitedElement)
+                {
                     if (!(((Actions)visitedElement.Widget) is Actions))
                     {
                         return true;
@@ -798,7 +799,8 @@ namespace FlutterSDK.Widgets.Actions
 
             Element actionsElement = default(Element);
             Action action = default(Action);
-            bool VisitAncestorElement(Element element) => {
+            bool VisitAncestorElement(Element element)
+            {
                 if (!(element.Widget is Actions))
                 {
                     return true;
@@ -1156,11 +1158,13 @@ namespace FlutterSDK.Widgets.Actions
 
         private void _MayTriggerCallback(VoidCallback task = default(VoidCallback), FlutterSDK.Widgets.Actions.FocusableActionDetector oldWidget = default(FlutterSDK.Widgets.Actions.FocusableActionDetector))
         {
-            bool ShouldShowHoverHighlight(FocusableActionDetector target) => {
+            bool ShouldShowHoverHighlight(FocusableActionDetector target)
+            {
                 return _Hovering && target.Enabled && _CanShowHighlight;
             }
 
-            bool ShouldShowFocusHighlight(FocusableActionDetector target) => {
+            bool ShouldShowFocusHighlight(FocusableActionDetector target)
+            {
                 return _Focused && target.Enabled && _CanShowHighlight;
             }
 

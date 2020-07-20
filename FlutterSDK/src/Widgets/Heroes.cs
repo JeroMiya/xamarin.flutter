@@ -432,8 +432,12 @@ namespace FlutterSDK.Widgets.Heroes
     {
         internal static Rect _BoundingBoxFor(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.BuildContext ancestorContext = default(FlutterSDK.Widgets.Framework.BuildContext))
         {
-            throw new NotImplementedException();
+            RenderBox box = context.FindRenderObject() as RenderBox;
+
+            return MatrixutilsDefaultClass.MatrixUtils.TransformRect(box.GetTransformTo(ancestorContext?.FindRenderObject()), Dart: uiDefaultClass.Offset.Zero & box.Size);
         }
+
+
 
     }
 
@@ -538,7 +542,8 @@ namespace FlutterSDK.Widgets.Heroes
 
 
             Dictionary<object, _HeroState> result = new Dictionary<object, _HeroState> { };
-            void InviteHero(StatefulElement hero, object tag) => {
+            void InviteHero(StatefulElement hero, object tag)
+            {
 
                 Hero heroWidget = hero.Widget as Hero;
                 _HeroState heroState = hero.State as _HeroState;
@@ -553,7 +558,8 @@ namespace FlutterSDK.Widgets.Heroes
 
             }
 
-            void Visitor(Element element) => {
+            void Visitor(Element element)
+            {
                 Widget widget = element.Widget;
                 if (widget is Hero)
                 {
@@ -969,7 +975,8 @@ namespace FlutterSDK.Widgets.Heroes
         public new void DidStopUserGesture()
         {
             if (Navigator.UserGestureInProgress) return;
-            bool IsInvalidFlight(_HeroFlight flight) => {
+            bool IsInvalidFlight(_HeroFlight flight)
+            {
                 return flight.Manifest.IsUserGestureTransition && flight.Manifest.Type == HeroFlightDirection.Pop && flight._ProxyAnimation.IsDismissed;
             }
 

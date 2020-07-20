@@ -449,28 +449,27 @@ namespace FlutterSDK.Services.Systemsound
         /// Play the specified system sound. If that sound is not present on the
         /// system, the call is ignored.
         /// </Summary>
-        public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type)
-    async
-{
-await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemSound.play", type.ToString());
+        public virtual async Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type)
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemSound.play", type.ToString());
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A sound provided by the system.
-/// </Summary>
-public enum SystemSoundType
-{
-
     /// <Summary>
-    /// A short indication that a button was pressed.
+    /// A sound provided by the system.
     /// </Summary>
-    Click,
-}
+    public enum SystemSoundType
+    {
+
+        /// <Summary>
+        /// A short indication that a button was pressed.
+        /// </Summary>
+        Click,
+    }
 
 }

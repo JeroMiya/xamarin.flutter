@@ -80,6 +80,10 @@ class Methods {
     else if (element.hasOverride == false && element.isPrivate == false)
       code.write("virtual ");
 
+    if (element.isAsynchronous) {
+      code.write("async ");
+    }
+
     code.write(methodSignature(baseMethod, element, isOverride, inheritedType));
 
     code.writeln(Implementation.MethodBody(element.computeNode().body));

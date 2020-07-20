@@ -446,18 +446,29 @@ namespace FlutterSDK.Rendering.Debug
         public static bool DebugDisableOpacityLayers = default(bool);
         internal static void _DebugDrawDoubleRect(Canvas canvas, FlutterBinding.UI.Rect outerRect, FlutterBinding.UI.Rect innerRect, FlutterBinding.UI.Color color)
         {
-            throw new NotImplementedException();
+            Path path = new Path()..FillType = PathFillType.EvenOdd;
+            new Path().AddRect(outerRect);
+            new Path().AddRect(innerRect);
+            Paint paint = new Paint()..Color = color;
+            canvas.DrawPath(path, paint);
         }
+
+
 
         internal static void DebugPaintPadding(Canvas canvas, FlutterBinding.UI.Rect outerRect, FlutterBinding.UI.Rect innerRect, double outlineWidth = 2.0)
         {
-            throw new NotImplementedException();
+
         }
+
+
 
         internal static bool DebugAssertAllRenderVarsUnset(string reason, bool debugCheckIntrinsicSizesOverride = false)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
     }
 }

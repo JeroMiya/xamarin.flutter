@@ -49,13 +49,25 @@ class Implementation {
 
   static String processBlockFunction(BlockFunctionBody body) {
     var rawBody = "\n";
+    bool ignoreNextEntity = false;
     for (var child in body.childEntities) {
+      if (ignoreNextEntity && child.toString() == '*') {
+        ignoreNextEntity = false;
+        continue;
+      }
+      ignoreNextEntity = false;
       if (child is Block) {
         for (var entity in child.childEntities) {
           rawBody += processEntity(entity) + "\n";
         }
       } else if (child is KeywordToken) {
-        rawBody += child.toString() + "\n";
+        var childStr = child.toString();
+        if (childStr == 'sync' || childStr == 'async') {
+          // The next entity is going to be a SimpleToken, i.e. '*'
+          ignoreNextEntity = true;
+        } else {
+          rawBody += child.toString() + "\n";
+        }
       } else if (child is SimpleToken) {
         rawBody += child.toString() + "\n";
       } else
@@ -319,9 +331,16 @@ class Implementation {
   }
 
   static String processFunctionDeclaration(FunctionDeclaration declaration) {
-    var csharp = "";
+    var csharp =
+        (declaration?.functionExpression?.body?.isAsynchronous ?? false)
+            ? "async "
+            : "";
     for (var entity in declaration.childEntities) {
-      csharp += processEntity(entity) + ' ';
+      if (entity is FunctionExpression) {
+        csharp += processFunctionExpression(entity, isMethod: true);
+      } else {
+        csharp += processEntity(entity) + ' ';
+      }
     }
     return csharp;
   }
@@ -362,8 +381,18 @@ class Implementation {
 
   static String processBlockFunctionBody(BlockFunctionBody body) {
     var csharp = "";
+    bool skipNextEntity = false;
     for (var entity in body.childEntities) {
-      csharp += processEntity(entity);
+      if (skipNextEntity && entity.toString() == '*') {
+        skipNextEntity = false;
+        continue;
+      }
+      skipNextEntity = false;
+      if (entity.toString() == 'sync' || entity.toString() == 'async') {
+        skipNextEntity = true;
+      } else {
+        csharp += processEntity(entity);
+      }
     }
     return csharp;
   }
@@ -425,12 +454,15 @@ class Implementation {
     return csharp;
   }
 
-  static String processFunctionExpression(FunctionExpression expression) {
-    var csharp = "";
+  static String processFunctionExpression(FunctionExpression expression,
+      {bool isMethod = false}) {
+    var csharp =
+        !isMethod && expression.body != null && expression.body.isAsynchronous
+            ? "async "
+            : "";
     for (var entity in expression.childEntities) {
       csharp += processEntity(entity);
-      // TODO: need to find a way when it's only a function expression not an actual method
-      if (entity is FormalParameterList) csharp += ' => ';
+      if (!isMethod && entity is FormalParameterList) csharp += ' => ';
     }
     return csharp;
   }
@@ -489,9 +521,32 @@ class Implementation {
   }
 
   static String processYieldStatement(YieldStatement statement) {
-    var csharp = "";
-    for (var entity in statement.childEntities) {
-      csharp += processEntity(entity);
+    var csharp = '';
+    int startIndex = 1;
+    bool closeForEach = false;
+
+    var children = statement.childEntities.toList();
+
+    if (statement.childEntities.length > 2 && children[1].toString() == '*') {
+      closeForEach = true;
+      startIndex = 2;
+      // TODO: if this yield statement is within an async context,
+      // we need to put 'await foreach(var enumItem in (' here.
+      csharp = 'foreach(var enumItem in (';
+    } else {
+      csharp = 'yield return ';
+    }
+
+    for (int i = startIndex; i < children.length; i++) {
+      var entity = children[i];
+      if (i != children.length - 1 ||
+          !closeForEach ||
+          entity.toString() != ';') {
+        csharp += processEntity(entity);
+      }
+    }
+    if (closeForEach) {
+      csharp += ')) { yield return enumItem; }';
     }
     return csharp;
   }
@@ -890,7 +945,9 @@ class Implementation {
   }
 
   static String functionBody(FunctionElement element) {
-    // TODO
-    return "throw new NotImplementedException();";
+    var node = element.computeNode();
+    var exp = node.functionExpression;
+    var body = exp.body;
+    return Implementation.MethodBody(body);
   }
 }

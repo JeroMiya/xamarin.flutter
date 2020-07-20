@@ -468,214 +468,215 @@ namespace FlutterSDK.Foundation.Changenotifier
                         if (_Listeners.Contains(listener)) listener();
                     }
                     catch (exception,stack){
-                        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "foundation library", context: new ErrorDescription($"'while dispatching notifications for {GetType()}'"), informationCollector: () => sync *{
-yield new DiagnosticsProperty<ChangeNotifier>($"'The {GetType()} sending notification was'", this , style:DiagnosticsTreeStyle.ErrorProperty);
+                        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "foundation library", context: new ErrorDescription($"'while dispatching notifications for {GetType()}'"), informationCollector: () =>
+                        {
+                            yield return new DiagnosticsProperty<ChangeNotifier>($"'The {GetType()} sending notification was'", this, style: DiagnosticsTreeStyle.ErrorProperty);
+                        }
+                        ));
                     }
-));
+
                     }
 
                 }
 
             }
 
+
+
         }
-
-
-
-    }
-    public static class ChangeNotifierMixin
-    {
-        static System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier>();
-        static ChangeNotifier GetOrCreate(IChangeNotifier instance)
+        public static class ChangeNotifierMixin
         {
-            if (!_table.TryGetValue(instance, out var value))
+            static System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IChangeNotifier, ChangeNotifier>();
+            static ChangeNotifier GetOrCreate(IChangeNotifier instance)
             {
-                value = new ChangeNotifier();
-                _table.Add(instance, value);
+                if (!_table.TryGetValue(instance, out var value))
+                {
+                    value = new ChangeNotifier();
+                    _table.Add(instance, value);
+                }
+                return (ChangeNotifier)value;
             }
-            return (ChangeNotifier)value;
-        }
-        public static bool HasListenersProperty(this IChangeNotifier instance) => GetOrCreate(instance).HasListeners;
-        public static void AddListener(this IChangeNotifier instance, VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
-        public static void RemoveListener(this IChangeNotifier instance, VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
-        public static void Dispose(this IChangeNotifier instance) => GetOrCreate(instance).Dispose();
-        public static void NotifyListeners(this IChangeNotifier instance) => GetOrCreate(instance).NotifyListeners();
-    }
-
-
-    /// <Summary>
-    /// An object that maintains a list of listeners.
-    ///
-    /// The listeners are typically used to notify clients that the object has been
-    /// updated.
-    ///
-    /// There are two variants of this interface:
-    ///
-    ///  * [ValueListenable], an interface that augments the [Listenable] interface
-    ///    with the concept of a _current value_.
-    ///
-    ///  * [Animation], an interface that augments the [ValueListenable] interface
-    ///    to add the concept of direction (forward or reverse).
-    ///
-    /// Many classes in the Flutter API use or implement these interfaces. The
-    /// following subclasses are especially relevant:
-    ///
-    ///  * [ChangeNotifier], which can be subclassed or mixed in to create objects
-    ///    that implement the [Listenable] interface.
-    ///
-    ///  * [ValueNotifier], which implements the [ValueListenable] interface with
-    ///    a mutable value that triggers the notifications when modified.
-    ///
-    /// The terms "notify clients", "send notifications", "trigger notifications",
-    /// and "fire notifications" are used interchangeably.
-    ///
-    /// See also:
-    ///
-    ///  * [AnimatedBuilder], a widget that uses a builder callback to rebuild
-    ///    whenever a given [Listenable] triggers its notifications. This widget is
-    ///    commonly used with [Animation] subclasses, hence its name, but is by no
-    ///    means limited to animations, as it can be used with any [Listenable]. It
-    ///    is a subclass of [AnimatedWidget], which can be used to create widgets
-    ///    that are driven from a [Listenable].
-    ///  * [ValueListenableBuilder], a widget that uses a builder callback to
-    ///    rebuild whenever a [ValueListenable] object triggers its notifications,
-    ///    providing the builder with the value of the object.
-    ///  * [InheritedNotifier], an abstract superclass for widgets that use a
-    ///    [Listenable]'s notifications to trigger rebuilds in descendant widgets
-    ///    that declare a dependency on them, using the [InheritedWidget] mechanism.
-    ///  * [new Listenable.merge], which creates a [Listenable] that triggers
-    ///    notifications whenever any of a list of other [Listenable]s trigger their
-    ///    notifications.
-    /// </Summary>
-    public class Listenable
-    {
-        #region constructors
-        public Listenable()
-        {
-
-        }
-        public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
-        {
-            var instance = new Listenable();
-        }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-
-        /// <Summary>
-        /// Register a closure to be called when the object notifies its listeners.
-        /// </Summary>
-        public virtual void AddListener(VoidCallback listener)
-        {
+            public static bool HasListenersProperty(this IChangeNotifier instance) => GetOrCreate(instance).HasListeners;
+            public static void AddListener(this IChangeNotifier instance, VoidCallback listener) => GetOrCreate(instance).AddListener(listener);
+            public static void RemoveListener(this IChangeNotifier instance, VoidCallback listener) => GetOrCreate(instance).RemoveListener(listener);
+            public static void Dispose(this IChangeNotifier instance) => GetOrCreate(instance).Dispose();
+            public static void NotifyListeners(this IChangeNotifier instance) => GetOrCreate(instance).NotifyListeners();
         }
 
 
         /// <Summary>
-        /// Remove a previously registered closure from the list of closures that the
-        /// object notifies.
+        /// An object that maintains a list of listeners.
+        ///
+        /// The listeners are typically used to notify clients that the object has been
+        /// updated.
+        ///
+        /// There are two variants of this interface:
+        ///
+        ///  * [ValueListenable], an interface that augments the [Listenable] interface
+        ///    with the concept of a _current value_.
+        ///
+        ///  * [Animation], an interface that augments the [ValueListenable] interface
+        ///    to add the concept of direction (forward or reverse).
+        ///
+        /// Many classes in the Flutter API use or implement these interfaces. The
+        /// following subclasses are especially relevant:
+        ///
+        ///  * [ChangeNotifier], which can be subclassed or mixed in to create objects
+        ///    that implement the [Listenable] interface.
+        ///
+        ///  * [ValueNotifier], which implements the [ValueListenable] interface with
+        ///    a mutable value that triggers the notifications when modified.
+        ///
+        /// The terms "notify clients", "send notifications", "trigger notifications",
+        /// and "fire notifications" are used interchangeably.
+        ///
+        /// See also:
+        ///
+        ///  * [AnimatedBuilder], a widget that uses a builder callback to rebuild
+        ///    whenever a given [Listenable] triggers its notifications. This widget is
+        ///    commonly used with [Animation] subclasses, hence its name, but is by no
+        ///    means limited to animations, as it can be used with any [Listenable]. It
+        ///    is a subclass of [AnimatedWidget], which can be used to create widgets
+        ///    that are driven from a [Listenable].
+        ///  * [ValueListenableBuilder], a widget that uses a builder callback to
+        ///    rebuild whenever a [ValueListenable] object triggers its notifications,
+        ///    providing the builder with the value of the object.
+        ///  * [InheritedNotifier], an abstract superclass for widgets that use a
+        ///    [Listenable]'s notifications to trigger rebuilds in descendant widgets
+        ///    that declare a dependency on them, using the [InheritedWidget] mechanism.
+        ///  * [new Listenable.merge], which creates a [Listenable] that triggers
+        ///    notifications whenever any of a list of other [Listenable]s trigger their
+        ///    notifications.
         /// </Summary>
-        public virtual void RemoveListener(VoidCallback listener)
+        public class Listenable
         {
-        }
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// An interface for subclasses of [Listenable] that expose a [value].
-    ///
-    /// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
-    /// allows other APIs to accept either of those implementations interchangeably.
-    /// </Summary>
-    public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
-    {
-        #region constructors
-        public ValueListenable()
-        {
-
-        }
-        #endregion
-
-        #region fields
-        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
-    }
-
-
-    public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
-    {
-        #region constructors
-        public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
-        {
-            this._Children = _children;
-        }
-        #endregion
-
-        #region fields
-        internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void AddListener(VoidCallback listener)
-        {
-            foreach (Listenable child in _Children)
+            #region constructors
+            public Listenable()
             {
-                child?.AddListener(listener);
+
+            }
+            public static Listenable Merge(List<FlutterSDK.Foundation.Changenotifier.Listenable> listenables)
+            {
+                var instance = new Listenable();
+            }
+            #endregion
+
+            #region fields
+            #endregion
+
+            #region methods
+
+            /// <Summary>
+            /// Register a closure to be called when the object notifies its listeners.
+            /// </Summary>
+            public virtual void AddListener(VoidCallback listener)
+            {
             }
 
-        }
 
-
-
-
-        public new void RemoveListener(VoidCallback listener)
-        {
-            foreach (Listenable child in _Children)
+            /// <Summary>
+            /// Remove a previously registered closure from the list of closures that the
+            /// object notifies.
+            /// </Summary>
+            public virtual void RemoveListener(VoidCallback listener)
             {
-                child?.RemoveListener(listener);
             }
 
+            #endregion
         }
 
 
-
-
-        #endregion
-    }
-
-
-    /// <Summary>
-    /// A [ChangeNotifier] that holds a single value.
-    ///
-    /// When [value] is replaced with something that is not equal to the old
-    /// value as evaluated by the equality operator ==, this class notifies its
-    /// listeners.
-    /// </Summary>
-    public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
-    {
-        #region constructors
-        public ValueNotifier(T _value)
+        /// <Summary>
+        /// An interface for subclasses of [Listenable] that expose a [value].
+        ///
+        /// This interface is implemented by [ValueNotifier<T>] and [Animation<T>], and
+        /// allows other APIs to accept either of those implementations interchangeably.
+        /// </Summary>
+        public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
         {
-            this._Value = _value;
+            #region constructors
+            public ValueListenable()
+            {
+
+            }
+            #endregion
+
+            #region fields
+            public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+            #endregion
+
+            #region methods
+            #endregion
         }
-        #endregion
 
-        #region fields
-        internal virtual T _Value { get; set; }
-        public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
+        public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
+        {
+            #region constructors
+            public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
+            {
+                this._Children = _children;
+            }
+            #endregion
 
-        #endregion
+            #region fields
+            internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
+            #endregion
+
+            #region methods
+
+            public new void AddListener(VoidCallback listener)
+            {
+                foreach (Listenable child in _Children)
+                {
+                    child?.AddListener(listener);
+                }
+
+            }
+
+
+
+
+            public new void RemoveListener(VoidCallback listener)
+            {
+                foreach (Listenable child in _Children)
+                {
+                    child?.RemoveListener(listener);
+                }
+
+            }
+
+
+
+
+            #endregion
+        }
+
+
+        /// <Summary>
+        /// A [ChangeNotifier] that holds a single value.
+        ///
+        /// When [value] is replaced with something that is not equal to the old
+        /// value as evaluated by the equality operator ==, this class notifies its
+        /// listeners.
+        /// </Summary>
+        public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
+        {
+            #region constructors
+            public ValueNotifier(T _value)
+            {
+                this._Value = _value;
+            }
+            #endregion
+
+            #region fields
+            internal virtual T _Value { get; set; }
+            public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+            #endregion
+
+            #region methods
+
+            #endregion
+        }
+
     }
-
-}

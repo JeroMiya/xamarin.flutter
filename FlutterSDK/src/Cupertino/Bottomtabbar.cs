@@ -378,7 +378,8 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
         {
             double bottomPadding = MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Bottom;
             Color backgroundColor = ColorsDefaultClass.CupertinoDynamicColor.Resolve(this.BackgroundColor ?? ThemeDefaultClass.CupertinoTheme.Of(context).BarBackgroundColor, context);
-            BorderSide ResolveBorderSide(BorderSide side) => {
+            BorderSide ResolveBorderSide(BorderSide side)
+            {
                 return side == BordersDefaultClass.BorderSide.None ? side : side.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(side.Color, context));
             }
 

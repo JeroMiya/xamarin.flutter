@@ -381,18 +381,27 @@ namespace FlutterSDK.Material.Debug
     {
         internal static bool DebugCheckHasMaterial(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
         internal static bool DebugCheckHasMaterialLocalizations(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
         internal static bool DebugCheckHasScaffold(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
     }
 }

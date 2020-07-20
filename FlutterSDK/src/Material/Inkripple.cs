@@ -395,13 +395,27 @@ namespace FlutterSDK.Material.Inkripple
         public static double _KFadeOutIntervalStart = default(double);
         internal static FlutterSDK.Material.Material.RectCallback _GetClipCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback)
         {
-            throw new NotImplementedException();
+            if (rectCallback != null)
+            {
+
+                return rectCallback;
+            }
+
+            if (containedInkWell) return () => =>Dart: uiDefaultClass.Offset.Zero & referenceBox.Size;
+            return null;
         }
+
+
 
         internal static double _GetTargetRadius(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback, FlutterBinding.UI.Offset position)
         {
-            throw new NotImplementedException();
+            Size size = rectCallback != null ? rectCallback().Size : referenceBox.Size;
+            double d1 = size.BottomRight(Dart: uiDefaultClass.Offset.Zero).Distance;
+            double d2 = (size.TopRight(Dart: uiDefaultClass.Offset.Zero) - size.BottomLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
+            return Math.Dart:mathDefaultClass.Max(d1, d2) / 2.0;
         }
+
+
 
     }
 

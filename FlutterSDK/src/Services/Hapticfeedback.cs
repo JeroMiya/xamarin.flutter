@@ -456,87 +456,82 @@ namespace FlutterSDK.Services.Hapticfeedback
         /// On Android, this uses the platform haptic feedback API to simulate a
         /// response to a long press (`HapticFeedbackConstants.LONG_PRESS`).
         /// </Summary>
-        public virtual Future<object> Vibrate()
-    async
-{
-await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate");
+        public virtual async Future<object> Vibrate()
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate");
+        }
+
+
+
+
+        /// <Summary>
+        /// Provides a haptic feedback corresponding a collision impact with a light mass.
+        ///
+        /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+        /// `UIImpactFeedbackStyleLight`. This call has no effects on iOS versions
+        /// below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.VIRTUAL_KEY`.
+        /// </Summary>
+        public virtual async Future<object> LightImpact()
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.lightImpact");
+        }
+
+
+
+
+        /// <Summary>
+        /// Provides a haptic feedback corresponding a collision impact with a medium mass.
+        ///
+        /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+        /// `UIImpactFeedbackStyleMedium`. This call has no effects on iOS versions
+        /// below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.KEYBOARD_TAP`.
+        /// </Summary>
+        public virtual async Future<object> MediumImpact()
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.mediumImpact");
+        }
+
+
+
+
+        /// <Summary>
+        /// Provides a haptic feedback corresponding a collision impact with a heavy mass.
+        ///
+        /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
+        /// `UIImpactFeedbackStyleHeavy`. This call has no effects on iOS versions
+        /// below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.CONTEXT_CLICK` on API levels
+        /// 23 and above. This call has no effects on Android API levels below 23.
+        /// </Summary>
+        public virtual async Future<object> HeavyImpact()
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.heavyImpact");
+        }
+
+
+
+
+        /// <Summary>
+        /// Provides a haptic feedback indication selection changing through discrete values.
+        ///
+        /// On iOS versions 10 and above, this uses a `UISelectionFeedbackGenerator`.
+        /// This call has no effects on iOS versions below 10.
+        ///
+        /// On Android, this uses `HapticFeedbackConstants.CLOCK_TICK`.
+        /// </Summary>
+        public virtual async Future<object> SelectionClick()
+        {
+            await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.selectionClick");
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    /// <Summary>
-    /// Provides a haptic feedback corresponding a collision impact with a light mass.
-    ///
-    /// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
-    /// `UIImpactFeedbackStyleLight`. This call has no effects on iOS versions
-    /// below 10.
-    ///
-    /// On Android, this uses `HapticFeedbackConstants.VIRTUAL_KEY`.
-    /// </Summary>
-    public virtual Future<object> LightImpact()
-async
-{
-await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.lightImpact");
-}
-
-
-
-
-/// <Summary>
-/// Provides a haptic feedback corresponding a collision impact with a medium mass.
-///
-/// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
-/// `UIImpactFeedbackStyleMedium`. This call has no effects on iOS versions
-/// below 10.
-///
-/// On Android, this uses `HapticFeedbackConstants.KEYBOARD_TAP`.
-/// </Summary>
-public virtual Future<object> MediumImpact()
-async
-{
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.mediumImpact");
-}
-
-
-
-
-/// <Summary>
-/// Provides a haptic feedback corresponding a collision impact with a heavy mass.
-///
-/// On iOS versions 10 and above, this uses a `UIImpactFeedbackGenerator` with
-/// `UIImpactFeedbackStyleHeavy`. This call has no effects on iOS versions
-/// below 10.
-///
-/// On Android, this uses `HapticFeedbackConstants.CONTEXT_CLICK` on API levels
-/// 23 and above. This call has no effects on Android API levels below 23.
-/// </Summary>
-public virtual Future<object> HeavyImpact()
-async
-{
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.heavyImpact");
-}
-
-
-
-
-/// <Summary>
-/// Provides a haptic feedback indication selection changing through discrete values.
-///
-/// On iOS versions 10 and above, this uses a `UISelectionFeedbackGenerator`.
-/// This call has no effects on iOS versions below 10.
-///
-/// On Android, this uses `HapticFeedbackConstants.CLOCK_TICK`.
-/// </Summary>
-public virtual Future<object> SelectionClick()
-async
-{
-    await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.selectionClick");
-}
-
-
-
-#endregion
-}
 
 }

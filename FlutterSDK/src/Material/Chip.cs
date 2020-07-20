@@ -392,8 +392,20 @@ namespace FlutterSDK.Material.Chip
         public static FlutterSDK.Widgets.Icon.Icon _KDefaultDeleteIcon = default(FlutterSDK.Widgets.Icon.Icon);
         internal static bool _TapIsOnDeleteIcon(bool hasDeleteButton = default(bool), FlutterBinding.UI.Offset tapPosition = default(FlutterBinding.UI.Offset), Size chipSize = default(Size), TextDirection textDirection = default(TextDirection))
         {
-            throw new NotImplementedException();
+            bool tapIsOnDeleteIcon = default(bool);
+            if (!hasDeleteButton)
+            {
+                tapIsOnDeleteIcon = false;
+            }
+            else
+            {
+                switch (textDirection) { case TextDirection.Ltr: tapIsOnDeleteIcon = tapPosition.Dx / chipSize.Width > 0.66; break; case TextDirection.Rtl: tapIsOnDeleteIcon = tapPosition.Dx / chipSize.Width < 0.33; break; }
+            }
+
+            return tapIsOnDeleteIcon;
         }
+
+
 
     }
 
@@ -2134,7 +2146,8 @@ namespace FlutterSDK.Material.Chip
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
         {
             List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
-            void Add(RenderBox child, string name) => {
+            void Add(RenderBox child, string name)
+            {
                 if (child != null)
                 {
                     value.Add(child.ToDiagnosticsNode(name: name));
@@ -2332,7 +2345,8 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             Size overallSize = new Size(avatarSize.Width + labelSize.Width + deleteIconSize.Width, contentSize) + densityAdjustment;
             double left = 0.0;
             double right = overallSize.Width;
-            Offset CenterLayout(Size boxSize, double x) => {
+            Offset CenterLayout(Size boxSize, double x)
+            {
 
                 Offset boxOffset = default(Offset);
                 switch (TextDirection) { case TextDirection.Rtl: boxOffset = new Offset(x - boxSize.Width, (contentSize - boxSize.Height + densityAdjustment.Dy) / 2.0); break; case TextDirection.Ltr: boxOffset = new Offset(x, (contentSize - boxSize.Height + densityAdjustment.Dy) / 2.0); break; }
@@ -2478,7 +2492,8 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         private void _PaintAvatar(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            void PaintWithOverlay(PaintingContext context, Offset offset) => {
+            void PaintWithOverlay(PaintingContext context, Offset offset)
+            {
                 context.PaintChild(Avatar, _BoxParentData(Avatar).Offset + offset);
                 _PaintSelectionOverlay(context, offset);
             }

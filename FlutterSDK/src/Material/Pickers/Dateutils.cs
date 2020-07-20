@@ -406,33 +406,55 @@ namespace FlutterSDK.Material.Pickers.Dateutils
     {
         internal static DateTime DateOnly(DateTime date)
         {
-            throw new NotImplementedException();
+            return new DateTime(date.Year, date.Month, date.Day);
         }
+
+
 
         internal static bool IsSameDay(DateTime dateA, DateTime dateB)
         {
-            throw new NotImplementedException();
+            return dateA.Year == dateB.Year && dateA.Month == dateB.Month && dateA.Day == dateB.Day;
         }
+
+
 
         internal static int MonthDelta(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return (endDate.Year - startDate.Year) * 12 + endDate.Month - startDate.Month;
         }
+
+
 
         internal static DateTime AddMonthsToMonthDate(DateTime monthDate, int monthsToAdd)
         {
-            throw new NotImplementedException();
+            return new DateTime(monthDate.Year, monthDate.Month + monthsToAdd);
         }
+
+
 
         internal static int FirstDayOffset(int year, int month, FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations)
         {
-            throw new NotImplementedException();
+            int weekdayFromMonday = new DateTime(year, month).Weekday - 1;
+            int firstDayOfWeekIndex = localizations.FirstDayOfWeekIndex;
+            firstDayOfWeekIndex = (firstDayOfWeekIndex - 1) % 7;
+            return (weekdayFromMonday - firstDayOfWeekIndex) % 7;
         }
+
+
 
         internal static int GetDaysInMonth(int year, int month)
         {
-            throw new NotImplementedException();
+            if (month == Dart:coreDefaultClass.DateTime.February){
+                bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
+                if (isLeapYear) return 29;
+                return 28;
+            }
+
+            List<int> daysInMonth = new List<int>() { 31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            return daysInMonth[month - 1];
         }
+
+
 
     }
 }

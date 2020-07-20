@@ -304,8 +304,11 @@ namespace FlutterSDK.Gestures.Debug
         public static bool DebugPrintRecognizerCallbacksTrace = default(bool);
         internal static bool DebugAssertAllGesturesVarsUnset(string reason)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
     }
 }

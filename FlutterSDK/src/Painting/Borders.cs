@@ -426,8 +426,81 @@ namespace FlutterSDK.Painting.Borders
     {
         internal static void PaintBorder(Canvas canvas, FlutterBinding.UI.Rect rect, FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
         {
-            throw new NotImplementedException();
+
+
+
+
+
+
+            Paint paint = new Paint()..StrokeWidth = 0.0;
+            Path path = new Path();
+            switch (top.Style)
+            {
+                case BorderStyle.Solid:
+                    paint.Color = top.Color; path.Reset(); path.MoveTo(rect.Left, rect.Top); path.LineTo(rect.Right, rect.Top); if (top.Width == 0.0)
+                    {
+                        paint.Style = PaintingStyle.Stroke;
+                    }
+                    else
+                    {
+                        paint.Style = PaintingStyle.Fill;
+                        path.LineTo(rect.Right - right.Width, rect.Top + top.Width);
+                        path.LineTo(rect.Left + left.Width, rect.Top + top.Width);
+                    }
+                    canvas.DrawPath(path, paint); break;
+                case BorderStyle.None: break;
+            }
+            switch (right.Style)
+            {
+                case BorderStyle.Solid:
+                    paint.Color = right.Color; path.Reset(); path.MoveTo(rect.Right, rect.Top); path.LineTo(rect.Right, rect.Bottom); if (right.Width == 0.0)
+                    {
+                        paint.Style = PaintingStyle.Stroke;
+                    }
+                    else
+                    {
+                        paint.Style = PaintingStyle.Fill;
+                        path.LineTo(rect.Right - right.Width, rect.Bottom - bottom.Width);
+                        path.LineTo(rect.Right - right.Width, rect.Top + top.Width);
+                    }
+                    canvas.DrawPath(path, paint); break;
+                case BorderStyle.None: break;
+            }
+            switch (bottom.Style)
+            {
+                case BorderStyle.Solid:
+                    paint.Color = bottom.Color; path.Reset(); path.MoveTo(rect.Right, rect.Bottom); path.LineTo(rect.Left, rect.Bottom); if (bottom.Width == 0.0)
+                    {
+                        paint.Style = PaintingStyle.Stroke;
+                    }
+                    else
+                    {
+                        paint.Style = PaintingStyle.Fill;
+                        path.LineTo(rect.Left + left.Width, rect.Bottom - bottom.Width);
+                        path.LineTo(rect.Right - right.Width, rect.Bottom - bottom.Width);
+                    }
+                    canvas.DrawPath(path, paint); break;
+                case BorderStyle.None: break;
+            }
+            switch (left.Style)
+            {
+                case BorderStyle.Solid:
+                    paint.Color = left.Color; path.Reset(); path.MoveTo(rect.Left, rect.Bottom); path.LineTo(rect.Left, rect.Top); if (left.Width == 0.0)
+                    {
+                        paint.Style = PaintingStyle.Stroke;
+                    }
+                    else
+                    {
+                        paint.Style = PaintingStyle.Fill;
+                        path.LineTo(rect.Left + left.Width, rect.Top + top.Width);
+                        path.LineTo(rect.Left + left.Width, rect.Bottom - bottom.Width);
+                    }
+                    canvas.DrawPath(path, paint); break;
+                case BorderStyle.None: break;
+            }
         }
+
+
 
     }
 

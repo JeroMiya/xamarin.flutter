@@ -805,7 +805,8 @@ namespace FlutterSDK.Scheduler.Ticker
         /// </Summary>
         public virtual void WhenCompleteOrCancel(VoidCallback callback)
         {
-            void Thunk(object value) => {
+            void Thunk(object value)
+            {
                 callback();
             }
 

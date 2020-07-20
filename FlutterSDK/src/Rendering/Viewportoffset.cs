@@ -427,8 +427,11 @@ namespace FlutterSDK.Rendering.Viewportoffset
     {
         internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection FlipScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
         {
-            throw new NotImplementedException();
+            switch (direction) { case ScrollDirection.Idle: return ScrollDirection.Idle; case ScrollDirection.Forward: return ScrollDirection.Reverse; case ScrollDirection.Reverse: return ScrollDirection.Forward; }
+            return null;
         }
+
+
 
     }
 
@@ -711,51 +714,50 @@ else
 
 
 
-        public new Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-    async
-{
-}
+        public new async Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        {
+        }
 
 
 
-    #endregion
-}
+        #endregion
+    }
 
-
-/// <Summary>
-/// The direction of a scroll, relative to the positive scroll offset axis given
-/// by an [AxisDirection] and a [GrowthDirection].
-///
-/// This contrasts to [GrowthDirection] in that it has a third value, [idle],
-/// for the case where no scroll is occurring.
-///
-/// This is used by [RenderSliverFloatingPersistentHeader] to only expand when
-/// the user is scrolling in the same direction as the detected scroll offset
-/// change.
-/// </Summary>
-public enum ScrollDirection
-{
 
     /// <Summary>
-    /// No scrolling is underway.
-    /// </Summary>
-    Idle,
-    /// <Summary>
-    /// Scrolling is happening in the positive scroll offset direction.
+    /// The direction of a scroll, relative to the positive scroll offset axis given
+    /// by an [AxisDirection] and a [GrowthDirection].
     ///
-    /// For example, for the [GrowthDirection.forward] part of a vertical
-    /// [AxisDirection.down] list, this means the content is moving up, exposing
-    /// lower content.
-    /// </Summary>
-    Forward,
-    /// <Summary>
-    /// Scrolling is happening in the negative scroll offset direction.
+    /// This contrasts to [GrowthDirection] in that it has a third value, [idle],
+    /// for the case where no scroll is occurring.
     ///
-    /// For example, for the [GrowthDirection.forward] part of a vertical
-    /// [AxisDirection.down] list, this means the content is moving down, exposing
-    /// earlier content.
+    /// This is used by [RenderSliverFloatingPersistentHeader] to only expand when
+    /// the user is scrolling in the same direction as the detected scroll offset
+    /// change.
     /// </Summary>
-    Reverse,
-}
+    public enum ScrollDirection
+    {
+
+        /// <Summary>
+        /// No scrolling is underway.
+        /// </Summary>
+        Idle,
+        /// <Summary>
+        /// Scrolling is happening in the positive scroll offset direction.
+        ///
+        /// For example, for the [GrowthDirection.forward] part of a vertical
+        /// [AxisDirection.down] list, this means the content is moving up, exposing
+        /// lower content.
+        /// </Summary>
+        Forward,
+        /// <Summary>
+        /// Scrolling is happening in the negative scroll offset direction.
+        ///
+        /// For example, for the [GrowthDirection.forward] part of a vertical
+        /// [AxisDirection.down] list, this means the content is moving down, exposing
+        /// earlier content.
+        /// </Summary>
+        Reverse,
+    }
 
 }

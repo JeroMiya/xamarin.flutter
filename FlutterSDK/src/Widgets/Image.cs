@@ -431,13 +431,54 @@ namespace FlutterSDK.Widgets.Image
     {
         internal static FlutterSDK.Painting.Imageprovider.ImageConfiguration CreateLocalImageConfiguration(FlutterSDK.Widgets.Framework.BuildContext context, Size size = default(Size))
         {
-            throw new NotImplementedException();
+            return new ImageConfiguration(bundle: BasicDefaultClass.DefaultAssetBundle.Of(context), devicePixelRatio: MediaqueryDefaultClass.MediaQuery.Of(context, nullOk: true)?.DevicePixelRatio ?? 1.0, locale: LocalizationsDefaultClass.Localizations.LocaleOf(context, nullOk: true), textDirection: BasicDefaultClass.Directionality.Of(context), size: size, platform: PlatformDefaultClass.DefaultTargetPlatform);
         }
+
+
 
         internal static Future<object> PrecacheImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> provider, FlutterSDK.Widgets.Framework.BuildContext context, Size size = default(Size), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
         {
-            throw new NotImplementedException();
+            ImageConfiguration config = ImageDefaultClass.CreateLocalImageConfiguration(context, size: size);
+            Completer<void> completer = new Completer<void>();
+            ImageStream stream = provider.Resolve(config);
+            ImageStreamListener listener = default(ImageStreamListener);
+            listener = new ImageStreamListener((ImageInfo image, bool sync) =>
+            {
+                if (!completer.IsCompleted)
+                {
+                    completer.Complete();
+                }
+
+                BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback((TimeSpan timeStamp) =>
+                {
+                    stream.RemoveListener(listener);
+                }
+                );
+            }
+            , onError: (object exception, StackTrace stackTrace) =>
+            {
+                if (!completer.IsCompleted)
+                {
+                    completer.Complete();
+                }
+
+                stream.RemoveListener(listener);
+                if (onError != null)
+                {
+                    onError(exception, stackTrace);
+                }
+                else
+                {
+                    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(context: new ErrorDescription("image failed to precache"), library: "image resource service", exception: exception, stack: stackTrace, silent: true));
+                }
+
+            }
+            );
+            stream.AddListener(listener);
+            return completer.Future;
         }
+
+
 
     }
 

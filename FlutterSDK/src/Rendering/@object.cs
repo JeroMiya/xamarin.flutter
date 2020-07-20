@@ -2741,294 +2741,295 @@ namespace FlutterSDK.Rendering.@object
 
         private void _DebugReportException(string method, object exception, StackTrace stack)
         {
-            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForRendering(exception: exception, stack: stack, library: "rendering library", context: new ErrorDescription($"'during {method}()'"), renderObject: this, informationCollector: () => sync *{
-if (DebugCreator != null) yield new DiagnosticsDebugCreator(DebugCreator);
-            yield DescribeForError("The following RenderObject was being processed when the exception was fired");
-            yield DescribeForError("RenderObject", style: DiagnosticsTreeStyle.TruncateChildren);
-        }
-));
-}
-
-
-
-
-    public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
-    {
-        base.Attach(owner);
-        if (_NeedsLayout && _RelayoutBoundary != null)
-        {
-            _NeedsLayout = false;
-            MarkNeedsLayout();
-        }
-
-        if (_NeedsCompositingBitsUpdate)
-        {
-            _NeedsCompositingBitsUpdate = false;
-            MarkNeedsCompositingBitsUpdate();
-        }
-
-        if (_NeedsPaint && _Layer != null)
-        {
-            _NeedsPaint = false;
-            MarkNeedsPaint();
-        }
-
-        if (_NeedsSemanticsUpdate && _SemanticsConfiguration.IsSemanticBoundary)
-        {
-            _NeedsSemanticsUpdate = false;
-            MarkNeedsSemanticsUpdate();
-        }
-
-    }
-
-
-    public new void Attach(@Object owner)
-    {
-        base.Attach(owner);
-        if (_NeedsLayout && _RelayoutBoundary != null)
-        {
-            _NeedsLayout = false;
-            MarkNeedsLayout();
-        }
-
-        if (_NeedsCompositingBitsUpdate)
-        {
-            _NeedsCompositingBitsUpdate = false;
-            MarkNeedsCompositingBitsUpdate();
-        }
-
-        if (_NeedsPaint && _Layer != null)
-        {
-            _NeedsPaint = false;
-            MarkNeedsPaint();
-        }
-
-        if (_NeedsSemanticsUpdate && _SemanticsConfiguration.IsSemanticBoundary)
-        {
-            _NeedsSemanticsUpdate = false;
-            MarkNeedsSemanticsUpdate();
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Verify that the object's constraints are being met. Override
-    /// this function in a subclass to verify that your state matches
-    /// the constraints object. This function is only called in checked
-    /// mode and only when needsLayout is false. If the constraints are
-    /// not met, it should assert or throw an exception.
-    /// </Summary>
-    public virtual void DebugAssertDoesMeetConstraints()
-    {
-    }
-
-
-    private bool _DebugSubtreeRelayoutRootAlreadyMarkedNeedsLayout()
-    {
-        if (_RelayoutBoundary == null) return true;
-        RenderObject node = this;
-        while (node != _RelayoutBoundary)
-        {
-
-
-            node = node.Parent as RenderObject;
-            if ((!node._NeedsLayout) && (!node._DebugDoingThisLayout)) return false;
-        }
-
-
-        return true;
-    }
-
-
-
-
-    /// <Summary>
-    /// Mark this render object's layout information as dirty, and either register
-    /// this object with its [PipelineOwner], or defer to the parent, depending on
-    /// whether this object is a relayout boundary or not respectively.
-    ///
-    /// ## Background
-    ///
-    /// Rather than eagerly updating layout information in response to writes into
-    /// a render object, we instead mark the layout information as dirty, which
-    /// schedules a visual update. As part of the visual update, the rendering
-    /// pipeline updates the render object's layout information.
-    ///
-    /// This mechanism batches the layout work so that multiple sequential writes
-    /// are coalesced, removing redundant computation.
-    ///
-    /// If a render object's parent indicates that it uses the size of one of its
-    /// render object children when computing its layout information, this
-    /// function, when called for the child, will also mark the parent as needing
-    /// layout. In that case, since both the parent and the child need to have
-    /// their layout recomputed, the pipeline owner is only notified about the
-    /// parent; when the parent is laid out, it will call the child's [layout]
-    /// method and thus the child will be laid out as well.
-    ///
-    /// Once [markNeedsLayout] has been called on a render object,
-    /// [debugNeedsLayout] returns true for that render object until just after
-    /// the pipeline owner has called [layout] on the render object.
-    ///
-    /// ## Special cases
-    ///
-    /// Some subclasses of [RenderObject], notably [RenderBox], have other
-    /// situations in which the parent needs to be notified if the child is
-    /// dirtied (e.g., if the child's intrinsic dimensions or baseline changes).
-    /// Such subclasses override markNeedsLayout and either call
-    /// `super.markNeedsLayout()`, in the normal case, or call
-    /// [markParentNeedsLayout], in the case where the parent needs to be laid out
-    /// as well as the child.
-    ///
-    /// If [sizedByParent] has changed, calls
-    /// [markNeedsLayoutForSizedByParentChange] instead of [markNeedsLayout].
-    /// </Summary>
-    public virtual void MarkNeedsLayout()
-    {
-
-        if (_NeedsLayout)
-        {
-
-            return;
-        }
-
-
-        if (_RelayoutBoundary != this)
-        {
-            MarkParentNeedsLayout();
-        }
-        else
-        {
-            _NeedsLayout = true;
-            if (Owner != null)
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetailsForRendering(exception: exception, stack: stack, library: "rendering library", context: new ErrorDescription($"'during {method}()'"), renderObject: this, informationCollector: () =>
             {
+                if (DebugCreator != null) yield return new DiagnosticsDebugCreator(DebugCreator);
+                yield return DescribeForError("The following RenderObject was being processed when the exception was fired");
+                yield return DescribeForError("RenderObject", style: DiagnosticsTreeStyle.TruncateChildren);
+            }
+            ));
+        }
 
-                Owner._NodesNeedingLayout.Add(this);
-                Owner.RequestVisualUpdate();
+
+
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+        {
+            base.Attach(owner);
+            if (_NeedsLayout && _RelayoutBoundary != null)
+            {
+                _NeedsLayout = false;
+                MarkNeedsLayout();
+            }
+
+            if (_NeedsCompositingBitsUpdate)
+            {
+                _NeedsCompositingBitsUpdate = false;
+                MarkNeedsCompositingBitsUpdate();
+            }
+
+            if (_NeedsPaint && _Layer != null)
+            {
+                _NeedsPaint = false;
+                MarkNeedsPaint();
+            }
+
+            if (_NeedsSemanticsUpdate && _SemanticsConfiguration.IsSemanticBoundary)
+            {
+                _NeedsSemanticsUpdate = false;
+                MarkNeedsSemanticsUpdate();
             }
 
         }
 
-    }
 
-
-
-
-    /// <Summary>
-    /// Mark this render object's layout information as dirty, and then defer to
-    /// the parent.
-    ///
-    /// This function should only be called from [markNeedsLayout] or
-    /// [markNeedsLayoutForSizedByParentChange] implementations of subclasses that
-    /// introduce more reasons for deferring the handling of dirty layout to the
-    /// parent. See [markNeedsLayout] for details.
-    ///
-    /// Only call this if [parent] is not null.
-    /// </Summary>
-    public virtual void MarkParentNeedsLayout()
-    {
-        _NeedsLayout = true;
-        RenderObject parent = this.Parent as RenderObject;
-        if (!_DoingThisLayoutWithCallback)
+        public new void Attach(@Object owner)
         {
-            parent.MarkNeedsLayout();
+            base.Attach(owner);
+            if (_NeedsLayout && _RelayoutBoundary != null)
+            {
+                _NeedsLayout = false;
+                MarkNeedsLayout();
+            }
+
+            if (_NeedsCompositingBitsUpdate)
+            {
+                _NeedsCompositingBitsUpdate = false;
+                MarkNeedsCompositingBitsUpdate();
+            }
+
+            if (_NeedsPaint && _Layer != null)
+            {
+                _NeedsPaint = false;
+                MarkNeedsPaint();
+            }
+
+            if (_NeedsSemanticsUpdate && _SemanticsConfiguration.IsSemanticBoundary)
+            {
+                _NeedsSemanticsUpdate = false;
+                MarkNeedsSemanticsUpdate();
+            }
+
         }
-        else
+
+
+
+
+        /// <Summary>
+        /// Verify that the object's constraints are being met. Override
+        /// this function in a subclass to verify that your state matches
+        /// the constraints object. This function is only called in checked
+        /// mode and only when needsLayout is false. If the constraints are
+        /// not met, it should assert or throw an exception.
+        /// </Summary>
+        public virtual void DebugAssertDoesMeetConstraints()
         {
+        }
+
+
+        private bool _DebugSubtreeRelayoutRootAlreadyMarkedNeedsLayout()
+        {
+            if (_RelayoutBoundary == null) return true;
+            RenderObject node = this;
+            while (node != _RelayoutBoundary)
+            {
+
+
+                node = node.Parent as RenderObject;
+                if ((!node._NeedsLayout) && (!node._DebugDoingThisLayout)) return false;
+            }
+
+
+            return true;
+        }
+
+
+
+
+        /// <Summary>
+        /// Mark this render object's layout information as dirty, and either register
+        /// this object with its [PipelineOwner], or defer to the parent, depending on
+        /// whether this object is a relayout boundary or not respectively.
+        ///
+        /// ## Background
+        ///
+        /// Rather than eagerly updating layout information in response to writes into
+        /// a render object, we instead mark the layout information as dirty, which
+        /// schedules a visual update. As part of the visual update, the rendering
+        /// pipeline updates the render object's layout information.
+        ///
+        /// This mechanism batches the layout work so that multiple sequential writes
+        /// are coalesced, removing redundant computation.
+        ///
+        /// If a render object's parent indicates that it uses the size of one of its
+        /// render object children when computing its layout information, this
+        /// function, when called for the child, will also mark the parent as needing
+        /// layout. In that case, since both the parent and the child need to have
+        /// their layout recomputed, the pipeline owner is only notified about the
+        /// parent; when the parent is laid out, it will call the child's [layout]
+        /// method and thus the child will be laid out as well.
+        ///
+        /// Once [markNeedsLayout] has been called on a render object,
+        /// [debugNeedsLayout] returns true for that render object until just after
+        /// the pipeline owner has called [layout] on the render object.
+        ///
+        /// ## Special cases
+        ///
+        /// Some subclasses of [RenderObject], notably [RenderBox], have other
+        /// situations in which the parent needs to be notified if the child is
+        /// dirtied (e.g., if the child's intrinsic dimensions or baseline changes).
+        /// Such subclasses override markNeedsLayout and either call
+        /// `super.markNeedsLayout()`, in the normal case, or call
+        /// [markParentNeedsLayout], in the case where the parent needs to be laid out
+        /// as well as the child.
+        ///
+        /// If [sizedByParent] has changed, calls
+        /// [markNeedsLayoutForSizedByParentChange] instead of [markNeedsLayout].
+        /// </Summary>
+        public virtual void MarkNeedsLayout()
+        {
+
+            if (_NeedsLayout)
+            {
+
+                return;
+            }
+
+
+            if (_RelayoutBoundary != this)
+            {
+                MarkParentNeedsLayout();
+            }
+            else
+            {
+                _NeedsLayout = true;
+                if (Owner != null)
+                {
+
+                    Owner._NodesNeedingLayout.Add(this);
+                    Owner.RequestVisualUpdate();
+                }
+
+            }
 
         }
 
 
-    }
 
 
-
-
-    /// <Summary>
-    /// Mark this render object's layout information as dirty (like
-    /// [markNeedsLayout]), and additionally also handle any necessary work to
-    /// handle the case where [sizedByParent] has changed value.
-    ///
-    /// This should be called whenever [sizedByParent] might have changed.
-    ///
-    /// Only call this if [parent] is not null.
-    /// </Summary>
-    public virtual void MarkNeedsLayoutForSizedByParentChange()
-    {
-        MarkNeedsLayout();
-        MarkParentNeedsLayout();
-    }
-
-
-
-
-    private void _CleanRelayoutBoundary()
-    {
-        if (_RelayoutBoundary != this)
+        /// <Summary>
+        /// Mark this render object's layout information as dirty, and then defer to
+        /// the parent.
+        ///
+        /// This function should only be called from [markNeedsLayout] or
+        /// [markNeedsLayoutForSizedByParentChange] implementations of subclasses that
+        /// introduce more reasons for deferring the handling of dirty layout to the
+        /// parent. See [markNeedsLayout] for details.
+        ///
+        /// Only call this if [parent] is not null.
+        /// </Summary>
+        public virtual void MarkParentNeedsLayout()
         {
-            _RelayoutBoundary = null;
             _NeedsLayout = true;
-            VisitChildren(_CleanChildRelayoutBoundary);
+            RenderObject parent = this.Parent as RenderObject;
+            if (!_DoingThisLayoutWithCallback)
+            {
+                parent.MarkNeedsLayout();
+            }
+            else
+            {
+
+            }
+
+
         }
 
-    }
 
 
 
-
-    private void _CleanChildRelayoutBoundary(FlutterSDK.Rendering.@object.RenderObject child)
-    {
-        child._CleanRelayoutBoundary();
-    }
-
-
-
-
-    /// <Summary>
-    /// Bootstrap the rendering pipeline by scheduling the very first layout.
-    ///
-    /// Requires this render object to be attached and that this render object
-    /// is the root of the render tree.
-    ///
-    /// See [RenderView] for an example of how this function is used.
-    /// </Summary>
-    public virtual void ScheduleInitialLayout()
-    {
-
-
-
-
-        _RelayoutBoundary = this;
-
-        Owner._NodesNeedingLayout.Add(this);
-    }
-
-
-
-
-    private void _LayoutWithoutResize()
-    {
-
-        RenderObject debugPreviousActiveLayout = default(RenderObject);
-
-
-
-
-        try
+        /// <Summary>
+        /// Mark this render object's layout information as dirty (like
+        /// [markNeedsLayout]), and additionally also handle any necessary work to
+        /// handle the case where [sizedByParent] has changed value.
+        ///
+        /// This should be called whenever [sizedByParent] might have changed.
+        ///
+        /// Only call this if [parent] is not null.
+        /// </Summary>
+        public virtual void MarkNeedsLayoutForSizedByParentChange()
         {
-            PerformLayout();
-            MarkNeedsSemanticsUpdate();
-        }
-        catch (e,stack){
-            _DebugReportException("performLayout", e, stack);
+            MarkNeedsLayout();
+            MarkParentNeedsLayout();
         }
 
 
-        _NeedsLayout = false;
-        MarkNeedsPaint();
+
+
+        private void _CleanRelayoutBoundary()
+        {
+            if (_RelayoutBoundary != this)
+            {
+                _RelayoutBoundary = null;
+                _NeedsLayout = true;
+                VisitChildren(_CleanChildRelayoutBoundary);
+            }
+
         }
+
+
+
+
+        private void _CleanChildRelayoutBoundary(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+            child._CleanRelayoutBoundary();
+        }
+
+
+
+
+        /// <Summary>
+        /// Bootstrap the rendering pipeline by scheduling the very first layout.
+        ///
+        /// Requires this render object to be attached and that this render object
+        /// is the root of the render tree.
+        ///
+        /// See [RenderView] for an example of how this function is used.
+        /// </Summary>
+        public virtual void ScheduleInitialLayout()
+        {
+
+
+
+
+            _RelayoutBoundary = this;
+
+            Owner._NodesNeedingLayout.Add(this);
+        }
+
+
+
+
+        private void _LayoutWithoutResize()
+        {
+
+            RenderObject debugPreviousActiveLayout = default(RenderObject);
+
+
+
+
+            try
+            {
+                PerformLayout();
+                MarkNeedsSemanticsUpdate();
+            }
+            catch (e,stack){
+                _DebugReportException("performLayout", e, stack);
+            }
+
+
+            _NeedsLayout = false;
+            MarkNeedsPaint();
+            }
 
 
 
@@ -3058,70 +3059,70 @@ if (DebugCreator != null) yield new DiagnosticsDebugCreator(DebugCreator);
 /// implemented here) to return early if the child does not need to do any
 /// work to update its layout information.
 /// </Summary>
-    public virtual void Layout(FlutterSDK.Rendering.@object.Constraints constraints, bool parentUsesSize = false)
-    {
-
-
-
-
-        RenderObject relayoutBoundary = default(RenderObject);
-        if (!parentUsesSize || SizedByParent || constraints.IsTight || !(Parent is RenderObject))
-        {
-            relayoutBoundary = this;
-        }
-        else
-        {
-            relayoutBoundary = (Parent as RenderObject)._RelayoutBoundary;
-        }
-
-
-        if (!_NeedsLayout && constraints == _Constraints && relayoutBoundary == _RelayoutBoundary)
+        public virtual void Layout(FlutterSDK.Rendering.@object.Constraints constraints, bool parentUsesSize = false)
         {
 
-            return;
-        }
-
-        _Constraints = constraints;
-        if (_RelayoutBoundary != null && relayoutBoundary != _RelayoutBoundary)
-        {
-            VisitChildren(_CleanChildRelayoutBoundary);
-        }
-
-        _RelayoutBoundary = relayoutBoundary;
 
 
 
-        if (SizedByParent)
-        {
-
-            try
+            RenderObject relayoutBoundary = default(RenderObject);
+            if (!parentUsesSize || SizedByParent || constraints.IsTight || !(Parent is RenderObject))
             {
-                PerformResize();
-
+                relayoutBoundary = this;
             }
-            catch (e,stack){
-                _DebugReportException("performResize", e, stack);
-            }
-
-
-            }
-
-            RenderObject debugPreviousActiveLayout = default(RenderObject);
-
-            try
+            else
             {
-                PerformLayout();
-                MarkNeedsSemanticsUpdate();
-
-            }
-            catch (e,stack){
-                _DebugReportException("performLayout", e, stack);
+                relayoutBoundary = (Parent as RenderObject)._RelayoutBoundary;
             }
 
 
-            _NeedsLayout = false;
-            MarkNeedsPaint();
+            if (!_NeedsLayout && constraints == _Constraints && relayoutBoundary == _RelayoutBoundary)
+            {
+
+                return;
             }
+
+            _Constraints = constraints;
+            if (_RelayoutBoundary != null && relayoutBoundary != _RelayoutBoundary)
+            {
+                VisitChildren(_CleanChildRelayoutBoundary);
+            }
+
+            _RelayoutBoundary = relayoutBoundary;
+
+
+
+            if (SizedByParent)
+            {
+
+                try
+                {
+                    PerformResize();
+
+                }
+                catch (e,stack){
+                    _DebugReportException("performResize", e, stack);
+                }
+
+
+                }
+
+                RenderObject debugPreviousActiveLayout = default(RenderObject);
+
+                try
+                {
+                    PerformLayout();
+                    MarkNeedsSemanticsUpdate();
+
+                }
+                catch (e,stack){
+                    _DebugReportException("performLayout", e, stack);
+                }
+
+
+                _NeedsLayout = false;
+                MarkNeedsPaint();
+                }
 
 
 
@@ -3134,330 +3135,330 @@ if (DebugCreator != null) yield new DiagnosticsDebugCreator(DebugCreator);
 /// subclass should override [debugResetSize] to reapply the current values of
 /// [debugCanParentUseSize] to that state.
 /// </Summary>
-    public virtual void DebugResetSize()
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Updates the render objects size using only the constraints.
-    ///
-    /// Do not call this function directly: call [layout] instead. This function
-    /// is called by [layout] when there is actually work to be done by this
-    /// render object during layout. The layout constraints provided by your
-    /// parent are available via the [constraints] getter.
-    ///
-    /// Subclasses that set [sizedByParent] to true should override this method
-    /// to compute their size.
-    ///
-    /// This function is called only if [sizedByParent] is true.
-    /// </Summary>
-    public virtual void PerformResize()
-    {
-    }
-
-
-    /// <Summary>
-    /// Do the work of computing the layout for this render object.
-    ///
-    /// Do not call this function directly: call [layout] instead. This function
-    /// is called by [layout] when there is actually work to be done by this
-    /// render object during layout. The layout constraints provided by your
-    /// parent are available via the [constraints] getter.
-    ///
-    /// If [sizedByParent] is true, then this function should not actually change
-    /// the dimensions of this render object. Instead, that work should be done by
-    /// [performResize]. If [sizedByParent] is false, then this function should
-    /// both change the dimensions of this render object and instruct its children
-    /// to layout.
-    ///
-    /// In implementing this function, you must call [layout] on each of your
-    /// children, passing true for parentUsesSize if your layout information is
-    /// dependent on your child's layout information. Passing true for
-    /// parentUsesSize ensures that this render object will undergo layout if the
-    /// child undergoes layout. Otherwise, the child can change its layout
-    /// information without informing this render object.
-    /// </Summary>
-    public virtual void PerformLayout()
-    {
-    }
-
-
-    /// <Summary>
-    /// Allows mutations to be made to this object's child list (and any
-    /// descendants) as well as to any other dirty nodes in the render tree owned
-    /// by the same [PipelineOwner] as this object. The `callback` argument is
-    /// invoked synchronously, and the mutations are allowed only during that
-    /// callback's execution.
-    ///
-    /// This exists to allow child lists to be built on-demand during layout (e.g.
-    /// based on the object's size), and to enable nodes to be moved around the
-    /// tree as this happens (e.g. to handle [GlobalKey] reparenting), while still
-    /// ensuring that any particular node is only laid out once per frame.
-    ///
-    /// Calling this function disables a number of assertions that are intended to
-    /// catch likely bugs. As such, using this function is generally discouraged.
-    ///
-    /// This function can only be called during layout.
-    /// </Summary>
-    public virtual void InvokeLayoutCallback<T>(FlutterSDK.Rendering.@object.LayoutCallback<T> callback)
-    {
-
-
-
-        _DoingThisLayoutWithCallback = true;
-        try
+        public virtual void DebugResetSize()
         {
-            Owner._EnableMutationsToDirtySubtrees(() =>
+        }
+
+
+
+
+        /// <Summary>
+        /// Updates the render objects size using only the constraints.
+        ///
+        /// Do not call this function directly: call [layout] instead. This function
+        /// is called by [layout] when there is actually work to be done by this
+        /// render object during layout. The layout constraints provided by your
+        /// parent are available via the [constraints] getter.
+        ///
+        /// Subclasses that set [sizedByParent] to true should override this method
+        /// to compute their size.
+        ///
+        /// This function is called only if [sizedByParent] is true.
+        /// </Summary>
+        public virtual void PerformResize()
+        {
+        }
+
+
+        /// <Summary>
+        /// Do the work of computing the layout for this render object.
+        ///
+        /// Do not call this function directly: call [layout] instead. This function
+        /// is called by [layout] when there is actually work to be done by this
+        /// render object during layout. The layout constraints provided by your
+        /// parent are available via the [constraints] getter.
+        ///
+        /// If [sizedByParent] is true, then this function should not actually change
+        /// the dimensions of this render object. Instead, that work should be done by
+        /// [performResize]. If [sizedByParent] is false, then this function should
+        /// both change the dimensions of this render object and instruct its children
+        /// to layout.
+        ///
+        /// In implementing this function, you must call [layout] on each of your
+        /// children, passing true for parentUsesSize if your layout information is
+        /// dependent on your child's layout information. Passing true for
+        /// parentUsesSize ensures that this render object will undergo layout if the
+        /// child undergoes layout. Otherwise, the child can change its layout
+        /// information without informing this render object.
+        /// </Summary>
+        public virtual void PerformLayout()
+        {
+        }
+
+
+        /// <Summary>
+        /// Allows mutations to be made to this object's child list (and any
+        /// descendants) as well as to any other dirty nodes in the render tree owned
+        /// by the same [PipelineOwner] as this object. The `callback` argument is
+        /// invoked synchronously, and the mutations are allowed only during that
+        /// callback's execution.
+        ///
+        /// This exists to allow child lists to be built on-demand during layout (e.g.
+        /// based on the object's size), and to enable nodes to be moved around the
+        /// tree as this happens (e.g. to handle [GlobalKey] reparenting), while still
+        /// ensuring that any particular node is only laid out once per frame.
+        ///
+        /// Calling this function disables a number of assertions that are intended to
+        /// catch likely bugs. As such, using this function is generally discouraged.
+        ///
+        /// This function can only be called during layout.
+        /// </Summary>
+        public virtual void InvokeLayoutCallback<T>(FlutterSDK.Rendering.@object.LayoutCallback<T> callback)
+        {
+
+
+
+            _DoingThisLayoutWithCallback = true;
+            try
             {
-                callback(Constraints as T);
+                Owner._EnableMutationsToDirtySubtrees(() =>
+                {
+                    callback(Constraints as T);
+                }
+                );
+            }
+            finally
+            {
+                _DoingThisLayoutWithCallback = false;
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Rotate this render object (not yet implemented).
+        /// </Summary>
+        public virtual void Rotate(int oldAngle = default(int), int newAngle = default(int), TimeSpan time = default(TimeSpan))
+        {
+        }
+
+
+
+
+        /// <Summary>
+        /// Called, in checked mode, if [isRepaintBoundary] is true, when either the
+        /// this render object or its parent attempt to paint.
+        ///
+        /// This can be used to record metrics about whether the node should actually
+        /// be a repaint boundary.
+        /// </Summary>
+        public virtual void DebugRegisterRepaintBoundaryPaint(bool includedParent = true, bool includedChild = false)
+        {
+        }
+
+
+
+
+        /// <Summary>
+        /// Mark the compositing state for this render object as dirty.
+        ///
+        /// This is called to indicate that the value for [needsCompositing] needs to
+        /// be recomputed during the next [PipelineOwner.flushCompositingBits] engine
+        /// phase.
+        ///
+        /// When the subtree is mutated, we need to recompute our
+        /// [needsCompositing] bit, and some of our ancestors need to do the
+        /// same (in case ours changed in a way that will change theirs). To
+        /// this end, [adoptChild] and [dropChild] call this method, and, as
+        /// necessary, this method calls the parent's, etc, walking up the
+        /// tree to mark all the nodes that need updating.
+        ///
+        /// This method does not schedule a rendering frame, because since
+        /// it cannot be the case that _only_ the compositing bits changed,
+        /// something else will have scheduled a frame for us.
+        /// </Summary>
+        public virtual void MarkNeedsCompositingBitsUpdate()
+        {
+            if (_NeedsCompositingBitsUpdate) return;
+            _NeedsCompositingBitsUpdate = true;
+            if (Parent is RenderObject)
+            {
+                RenderObject((RenderObject)parent) = this.((RenderObject)Parent) as RenderObject;
+                if (((RenderObject)parent)._NeedsCompositingBitsUpdate) return;
+                if (!IsRepaintBoundary && !((RenderObject)parent).IsRepaintBoundary)
+                {
+                    ((RenderObject)parent).MarkNeedsCompositingBitsUpdate();
+                    return;
+                }
+
+            }
+
+
+            if (Owner != null) Owner._NodesNeedingCompositingBitsUpdate.Add(this);
+        }
+
+
+
+
+        private void _UpdateCompositingBits()
+        {
+            if (!_NeedsCompositingBitsUpdate) return;
+            bool oldNeedsCompositing = _NeedsCompositing;
+            _NeedsCompositing = false;
+            VisitChildren((RenderObject child) =>
+            {
+                child._UpdateCompositingBits();
+                if (child.NeedsCompositing) _NeedsCompositing = true;
             }
             );
+            if (IsRepaintBoundary || AlwaysNeedsCompositing) _NeedsCompositing = true;
+            if (oldNeedsCompositing != _NeedsCompositing) MarkNeedsPaint();
+            _NeedsCompositingBitsUpdate = false;
         }
-        finally
+
+
+
+
+        /// <Summary>
+        /// Mark this render object as having changed its visual appearance.
+        ///
+        /// Rather than eagerly updating this render object's display list
+        /// in response to writes, we instead mark the render object as needing to
+        /// paint, which schedules a visual update. As part of the visual update, the
+        /// rendering pipeline will give this render object an opportunity to update
+        /// its display list.
+        ///
+        /// This mechanism batches the painting work so that multiple sequential
+        /// writes are coalesced, removing redundant computation.
+        ///
+        /// Once [markNeedsPaint] has been called on a render object,
+        /// [debugNeedsPaint] returns true for that render object until just after
+        /// the pipeline owner has called [paint] on the render object.
+        ///
+        /// See also:
+        ///
+        ///  * [RepaintBoundary], to scope a subtree of render objects to their own
+        ///    layer, thus limiting the number of nodes that [markNeedsPaint] must mark
+        ///    dirty.
+        /// </Summary>
+        public virtual void MarkNeedsPaint()
         {
-            _DoingThisLayoutWithCallback = false;
-        }
 
-    }
-
-
-
-
-    /// <Summary>
-    /// Rotate this render object (not yet implemented).
-    /// </Summary>
-    public virtual void Rotate(int oldAngle = default(int), int newAngle = default(int), TimeSpan time = default(TimeSpan))
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Called, in checked mode, if [isRepaintBoundary] is true, when either the
-    /// this render object or its parent attempt to paint.
-    ///
-    /// This can be used to record metrics about whether the node should actually
-    /// be a repaint boundary.
-    /// </Summary>
-    public virtual void DebugRegisterRepaintBoundaryPaint(bool includedParent = true, bool includedChild = false)
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Mark the compositing state for this render object as dirty.
-    ///
-    /// This is called to indicate that the value for [needsCompositing] needs to
-    /// be recomputed during the next [PipelineOwner.flushCompositingBits] engine
-    /// phase.
-    ///
-    /// When the subtree is mutated, we need to recompute our
-    /// [needsCompositing] bit, and some of our ancestors need to do the
-    /// same (in case ours changed in a way that will change theirs). To
-    /// this end, [adoptChild] and [dropChild] call this method, and, as
-    /// necessary, this method calls the parent's, etc, walking up the
-    /// tree to mark all the nodes that need updating.
-    ///
-    /// This method does not schedule a rendering frame, because since
-    /// it cannot be the case that _only_ the compositing bits changed,
-    /// something else will have scheduled a frame for us.
-    /// </Summary>
-    public virtual void MarkNeedsCompositingBitsUpdate()
-    {
-        if (_NeedsCompositingBitsUpdate) return;
-        _NeedsCompositingBitsUpdate = true;
-        if (Parent is RenderObject)
-        {
-            RenderObject((RenderObject)parent) = this.((RenderObject)Parent) as RenderObject;
-            if (((RenderObject)parent)._NeedsCompositingBitsUpdate) return;
-            if (!IsRepaintBoundary && !((RenderObject)parent).IsRepaintBoundary)
+            if (_NeedsPaint) return;
+            _NeedsPaint = true;
+            if (IsRepaintBoundary)
             {
-                ((RenderObject)parent).MarkNeedsCompositingBitsUpdate();
-                return;
+
+
+                if (Owner != null)
+                {
+                    Owner._NodesNeedingPaint.Add(this);
+                    Owner.RequestVisualUpdate();
+                }
+
+            }
+            else if (Parent is RenderObject)
+            {
+                RenderObject((RenderObject)parent) = this.((RenderObject)Parent) as RenderObject;
+                ((RenderObject)parent).MarkNeedsPaint();
+
+            }
+            else
+            {
+
+                if (Owner != null) Owner.RequestVisualUpdate();
             }
 
         }
 
 
-        if (Owner != null) Owner._NodesNeedingCompositingBitsUpdate.Add(this);
-    }
 
 
-
-
-    private void _UpdateCompositingBits()
-    {
-        if (!_NeedsCompositingBitsUpdate) return;
-        bool oldNeedsCompositing = _NeedsCompositing;
-        _NeedsCompositing = false;
-        VisitChildren((RenderObject child) =>
-        {
-            child._UpdateCompositingBits();
-            if (child.NeedsCompositing) _NeedsCompositing = true;
-        }
-        );
-        if (IsRepaintBoundary || AlwaysNeedsCompositing) _NeedsCompositing = true;
-        if (oldNeedsCompositing != _NeedsCompositing) MarkNeedsPaint();
-        _NeedsCompositingBitsUpdate = false;
-    }
-
-
-
-
-    /// <Summary>
-    /// Mark this render object as having changed its visual appearance.
-    ///
-    /// Rather than eagerly updating this render object's display list
-    /// in response to writes, we instead mark the render object as needing to
-    /// paint, which schedules a visual update. As part of the visual update, the
-    /// rendering pipeline will give this render object an opportunity to update
-    /// its display list.
-    ///
-    /// This mechanism batches the painting work so that multiple sequential
-    /// writes are coalesced, removing redundant computation.
-    ///
-    /// Once [markNeedsPaint] has been called on a render object,
-    /// [debugNeedsPaint] returns true for that render object until just after
-    /// the pipeline owner has called [paint] on the render object.
-    ///
-    /// See also:
-    ///
-    ///  * [RepaintBoundary], to scope a subtree of render objects to their own
-    ///    layer, thus limiting the number of nodes that [markNeedsPaint] must mark
-    ///    dirty.
-    /// </Summary>
-    public virtual void MarkNeedsPaint()
-    {
-
-        if (_NeedsPaint) return;
-        _NeedsPaint = true;
-        if (IsRepaintBoundary)
+        private void _SkippedPaintingOnLayer()
         {
 
 
-            if (Owner != null)
+
+
+
+            AbstractNode ancestor = Parent;
+            while (ancestor is RenderObject)
             {
-                Owner._NodesNeedingPaint.Add(this);
-                Owner.RequestVisualUpdate();
+                RenderObject node = ancestor as RenderObject;
+                if (node.IsRepaintBoundary)
+                {
+                    if (node._Layer == null) break;
+                    if (node._Layer.Attached) break;
+                    node._NeedsPaint = true;
+                }
+
+                ancestor = node.Parent;
             }
 
         }
-        else if (Parent is RenderObject)
-        {
-            RenderObject((RenderObject)parent) = this.((RenderObject)Parent) as RenderObject;
-            ((RenderObject)parent).MarkNeedsPaint();
 
+
+
+
+        /// <Summary>
+        /// Bootstrap the rendering pipeline by scheduling the very first paint.
+        ///
+        /// Requires that this render object is attached, is the root of the render
+        /// tree, and has a composited layer.
+        ///
+        /// See [RenderView] for an example of how this function is used.
+        /// </Summary>
+        public virtual void ScheduleInitialPaint(FlutterSDK.Rendering.Layer.ContainerLayer rootLayer)
+        {
+
+
+
+
+
+
+            _Layer = rootLayer;
+
+            Owner._NodesNeedingPaint.Add(this);
         }
-        else
+
+
+
+
+        /// <Summary>
+        /// Replace the layer. This is only valid for the root of a render
+        /// object subtree (whatever object [scheduleInitialPaint] was
+        /// called on).
+        ///
+        /// This might be called if, e.g., the device pixel ratio changed.
+        /// </Summary>
+        public virtual void ReplaceRootLayer(FlutterSDK.Rendering.Layer.OffsetLayer rootLayer)
         {
 
-            if (Owner != null) Owner.RequestVisualUpdate();
+
+
+
+
+
+            _Layer.Detach();
+            _Layer = rootLayer;
+            MarkNeedsPaint();
         }
 
-    }
 
 
 
-
-    private void _SkippedPaintingOnLayer()
-    {
-
-
-
-
-
-        AbstractNode ancestor = Parent;
-        while (ancestor is RenderObject)
+        private void _PaintWithContext(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            RenderObject node = ancestor as RenderObject;
-            if (node.IsRepaintBoundary)
+
+            if (_NeedsLayout) return;
+
+            RenderObject debugLastActivePaint = default(RenderObject);
+
+            _NeedsPaint = false;
+            try
             {
-                if (node._Layer == null) break;
-                if (node._Layer.Attached) break;
-                node._NeedsPaint = true;
+                Paint(context, offset);
+
+
+            }
+            catch (e,stack){
+                _DebugReportException("paint", e, stack);
             }
 
-            ancestor = node.Parent;
-        }
 
-    }
-
-
-
-
-    /// <Summary>
-    /// Bootstrap the rendering pipeline by scheduling the very first paint.
-    ///
-    /// Requires that this render object is attached, is the root of the render
-    /// tree, and has a composited layer.
-    ///
-    /// See [RenderView] for an example of how this function is used.
-    /// </Summary>
-    public virtual void ScheduleInitialPaint(FlutterSDK.Rendering.Layer.ContainerLayer rootLayer)
-    {
-
-
-
-
-
-
-        _Layer = rootLayer;
-
-        Owner._NodesNeedingPaint.Add(this);
-    }
-
-
-
-
-    /// <Summary>
-    /// Replace the layer. This is only valid for the root of a render
-    /// object subtree (whatever object [scheduleInitialPaint] was
-    /// called on).
-    ///
-    /// This might be called if, e.g., the device pixel ratio changed.
-    /// </Summary>
-    public virtual void ReplaceRootLayer(FlutterSDK.Rendering.Layer.OffsetLayer rootLayer)
-    {
-
-
-
-
-
-
-        _Layer.Detach();
-        _Layer = rootLayer;
-        MarkNeedsPaint();
-    }
-
-
-
-
-    private void _PaintWithContext(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-
-        if (_NeedsLayout) return;
-
-        RenderObject debugLastActivePaint = default(RenderObject);
-
-        _NeedsPaint = false;
-        try
-        {
-            Paint(context, offset);
-
-
-        }
-        catch (e,stack){
-            _DebugReportException("paint", e, stack);
-        }
-
-
-        }
+            }
 
 
 
@@ -3465,1231 +3466,1227 @@ if (DebugCreator != null) yield new DiagnosticsDebugCreator(DebugCreator);
 /// <Summary>
 /// Override this method to paint debugging information.
 /// </Summary>
-    public virtual void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Paint this render object into the given context at the given offset.
-    ///
-    /// Subclasses should override this method to provide a visual appearance
-    /// for themselves. The render object's local coordinate system is
-    /// axis-aligned with the coordinate system of the context's canvas and the
-    /// render object's local origin (i.e, x=0 and y=0) is placed at the given
-    /// offset in the context's canvas.
-    ///
-    /// Do not call this function directly. If you wish to paint yourself, call
-    /// [markNeedsPaint] instead to schedule a call to this function. If you wish
-    /// to paint one of your children, call [PaintingContext.paintChild] on the
-    /// given `context`.
-    ///
-    /// When painting one of your children (via a paint child function on the
-    /// given context), the current canvas held by the context might change
-    /// because draw operations before and after painting children might need to
-    /// be recorded on separate compositing layers.
-    /// </Summary>
-    public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Applies the transform that would be applied when painting the given child
-    /// to the given matrix.
-    ///
-    /// Used by coordinate conversion functions to translate coordinates local to
-    /// one render object into coordinates local to another render object.
-    /// </Summary>
-    public virtual void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
-    {
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Applies the paint transform up the tree to `ancestor`.
-    ///
-    /// Returns a matrix that maps the local paint coordinate system to the
-    /// coordinate system of `ancestor`.
-    ///
-    /// If `ancestor` is null, this method returns a matrix that maps from the
-    /// local paint coordinate system to the coordinate system of the
-    /// [PipelineOwner.rootNode]. For the render tree owner by the
-    /// [RendererBinding] (i.e. for the main render tree displayed on the device)
-    /// this means that this method maps to the global coordinate system in
-    /// logical pixels. To get physical pixels, use [applyPaintTransform] from the
-    /// [RenderView] to further transform the coordinate.
-    /// </Summary>
-    public virtual Matrix4 GetTransformTo(FlutterSDK.Rendering.@object.RenderObject ancestor)
-    {
-        bool ancestorSpecified = ancestor != null;
-
-        if (ancestor == null)
+        public virtual void DebugPaint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            AbstractNode rootNode = Owner.RootNode;
-            if (((RenderObject)rootNode) is RenderObject) ancestor = ((RenderObject)rootNode);
         }
 
-        List<RenderObject> renderers = new List<RenderObject>() { };
-        for (RenderObject renderer = this; renderer != ancestor; renderer = renderer.Parent as RenderObject)
-        {
 
-            renderers.Add(renderer);
+
+
+        /// <Summary>
+        /// Paint this render object into the given context at the given offset.
+        ///
+        /// Subclasses should override this method to provide a visual appearance
+        /// for themselves. The render object's local coordinate system is
+        /// axis-aligned with the coordinate system of the context's canvas and the
+        /// render object's local origin (i.e, x=0 and y=0) is placed at the given
+        /// offset in the context's canvas.
+        ///
+        /// Do not call this function directly. If you wish to paint yourself, call
+        /// [markNeedsPaint] instead to schedule a call to this function. If you wish
+        /// to paint one of your children, call [PaintingContext.paintChild] on the
+        /// given `context`.
+        ///
+        /// When painting one of your children (via a paint child function on the
+        /// given context), the current canvas held by the context might change
+        /// because draw operations before and after painting children might need to
+        /// be recorded on separate compositing layers.
+        /// </Summary>
+        public virtual void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
         }
 
-        if (ancestorSpecified) renderers.Add(ancestor);
-        Matrix4 transform = Matrix4.Identity();
-        for (int index = renderers.Count - 1; index > 0; index -= 1)
+
+
+
+        /// <Summary>
+        /// Applies the transform that would be applied when painting the given child
+        /// to the given matrix.
+        ///
+        /// Used by coordinate conversion functions to translate coordinates local to
+        /// one render object into coordinates local to another render object.
+        /// </Summary>
+        public virtual void ApplyPaintTransform(FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform)
         {
-            renderers[index].ApplyPaintTransform(renderers[index - 1], transform);
+
         }
 
-        return transform;
-    }
 
 
 
-
-    /// <Summary>
-    /// Returns a rect in this object's coordinate system that describes
-    /// the approximate bounding box of the clip rect that would be
-    /// applied to the given child during the paint phase, if any.
-    ///
-    /// Returns null if the child would not be clipped.
-    ///
-    /// This is used in the semantics phase to avoid including children
-    /// that are not physically visible.
-    /// </Summary>
-    public virtual Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => null;
-
-
-
-    /// <Summary>
-    /// Returns a rect in this object's coordinate system that describes
-    /// which [SemanticsNode]s produced by the `child` should be included in the
-    /// semantics tree. [SemanticsNode]s from the `child` that are positioned
-    /// outside of this rect will be dropped. Child [SemanticsNode]s that are
-    /// positioned inside this rect, but outside of [describeApproximatePaintClip]
-    /// will be included in the tree marked as hidden. Child [SemanticsNode]s
-    /// that are inside of both rect will be included in the tree as regular
-    /// nodes.
-    ///
-    /// This method only returns a non-null value if the semantics clip rect
-    /// is different from the rect returned by [describeApproximatePaintClip].
-    /// If the semantics clip rect and the paint clip rect are the same, this
-    /// method returns null.
-    ///
-    /// A viewport would typically implement this method to include semantic nodes
-    /// in the semantics tree that are currently hidden just before the leading
-    /// or just after the trailing edge. These nodes have to be included in the
-    /// semantics tree to implement implicit accessibility scrolling on iOS where
-    /// the viewport scrolls implicitly when moving the accessibility focus from
-    /// a the last visible node in the viewport to the first hidden one.
-    /// </Summary>
-    public virtual Rect DescribeSemanticsClip(FlutterSDK.Rendering.@object.RenderObject child) => null;
-
-
-
-    /// <Summary>
-    /// Bootstrap the semantics reporting mechanism by marking this node
-    /// as needing a semantics update.
-    ///
-    /// Requires that this render object is attached, and is the root of
-    /// the render tree.
-    ///
-    /// See [RendererBinding] for an example of how this function is used.
-    /// </Summary>
-    public virtual void ScheduleInitialSemantics()
-    {
-
-
-
-
-
-
-        Owner._NodesNeedingSemantics.Add(this);
-        Owner.RequestVisualUpdate();
-    }
-
-
-
-
-    /// <Summary>
-    /// Report the semantics of this node, for example for accessibility purposes.
-    ///
-    /// This method should be overridden by subclasses that have interesting
-    /// semantic information.
-    ///
-    /// The given [SemanticsConfiguration] object is mutable and should be
-    /// annotated in a manner that describes the current state. No reference
-    /// should be kept to that object; mutating it outside of the context of the
-    /// [describeSemanticsConfiguration] call (for example as a result of
-    /// asynchronous computation) will at best have no useful effect and at worse
-    /// will cause crashes as the data will be in an inconsistent state.
-    ///
-    /// {@tool snippet}
-    ///
-    /// The following snippet will describe the node as a button that responds to
-    /// tap actions.
-    ///
-    /// ```dart
-    /// abstract class SemanticButtonRenderObject extends RenderObject {
-    ///   @override
-    ///   void describeSemanticsConfiguration(SemanticsConfiguration config) {
-    ///     super.describeSemanticsConfiguration(config);
-    ///     config
-    ///       ..onTap = _handleTap
-    ///       ..label = 'I am a button'
-    ///       ..isButton = true;
-    ///   }
-    ///
-    ///   void _handleTap() {
-    ///     // Do something.
-    ///   }
-    /// }
-    /// ```
-    /// {@end-tool}
-    /// </Summary>
-    public virtual void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Sends a [SemanticsEvent] associated with this render object's [SemanticsNode].
-    ///
-    /// If this render object has no semantics information, the first parent
-    /// render object with a non-null semantic node is used.
-    ///
-    /// If semantics are disabled, no events are dispatched.
-    ///
-    /// See [SemanticsNode.sendEvent] for a full description of the behavior.
-    /// </Summary>
-    public virtual void SendSemanticsEvent(FlutterSDK.Semantics.Semanticsevent.SemanticsEvent semanticsEvent)
-    {
-        if (Owner.SemanticsOwner == null) return;
-        if (_Semantics != null && !_Semantics.IsMergedIntoParent)
+        /// <Summary>
+        /// Applies the paint transform up the tree to `ancestor`.
+        ///
+        /// Returns a matrix that maps the local paint coordinate system to the
+        /// coordinate system of `ancestor`.
+        ///
+        /// If `ancestor` is null, this method returns a matrix that maps from the
+        /// local paint coordinate system to the coordinate system of the
+        /// [PipelineOwner.rootNode]. For the render tree owner by the
+        /// [RendererBinding] (i.e. for the main render tree displayed on the device)
+        /// this means that this method maps to the global coordinate system in
+        /// logical pixels. To get physical pixels, use [applyPaintTransform] from the
+        /// [RenderView] to further transform the coordinate.
+        /// </Summary>
+        public virtual Matrix4 GetTransformTo(FlutterSDK.Rendering.@object.RenderObject ancestor)
         {
-            _Semantics.SendEvent(semanticsEvent);
-        }
-        else if (Parent != null)
-        {
-            RenderObject renderParent = Parent as RenderObject;
-            renderParent.SendSemanticsEvent(semanticsEvent);
+            bool ancestorSpecified = ancestor != null;
+
+            if (ancestor == null)
+            {
+                AbstractNode rootNode = Owner.RootNode;
+                if (((RenderObject)rootNode) is RenderObject) ancestor = ((RenderObject)rootNode);
+            }
+
+            List<RenderObject> renderers = new List<RenderObject>() { };
+            for (RenderObject renderer = this; renderer != ancestor; renderer = renderer.Parent as RenderObject)
+            {
+
+                renderers.Add(renderer);
+            }
+
+            if (ancestorSpecified) renderers.Add(ancestor);
+            Matrix4 transform = Matrix4.Identity();
+            for (int index = renderers.Count - 1; index > 0; index -= 1)
+            {
+                renderers[index].ApplyPaintTransform(renderers[index - 1], transform);
+            }
+
+            return transform;
         }
 
-    }
 
 
 
+        /// <Summary>
+        /// Returns a rect in this object's coordinate system that describes
+        /// the approximate bounding box of the clip rect that would be
+        /// applied to the given child during the paint phase, if any.
+        ///
+        /// Returns null if the child would not be clipped.
+        ///
+        /// This is used in the semantics phase to avoid including children
+        /// that are not physically visible.
+        /// </Summary>
+        public virtual Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => null;
 
-    /// <Summary>
-    /// Removes all semantics from this render object and its descendants.
-    ///
-    /// Should only be called on objects whose [parent] is not a [RenderObject].
-    ///
-    /// Override this method if you instantiate new [SemanticsNode]s in an
-    /// overridden [assembleSemanticsNode] method, to dispose of those nodes.
-    /// </Summary>
-    public virtual void ClearSemantics()
-    {
-        _NeedsSemanticsUpdate = true;
-        _Semantics = null;
-        VisitChildren((RenderObject child) =>
+
+
+        /// <Summary>
+        /// Returns a rect in this object's coordinate system that describes
+        /// which [SemanticsNode]s produced by the `child` should be included in the
+        /// semantics tree. [SemanticsNode]s from the `child` that are positioned
+        /// outside of this rect will be dropped. Child [SemanticsNode]s that are
+        /// positioned inside this rect, but outside of [describeApproximatePaintClip]
+        /// will be included in the tree marked as hidden. Child [SemanticsNode]s
+        /// that are inside of both rect will be included in the tree as regular
+        /// nodes.
+        ///
+        /// This method only returns a non-null value if the semantics clip rect
+        /// is different from the rect returned by [describeApproximatePaintClip].
+        /// If the semantics clip rect and the paint clip rect are the same, this
+        /// method returns null.
+        ///
+        /// A viewport would typically implement this method to include semantic nodes
+        /// in the semantics tree that are currently hidden just before the leading
+        /// or just after the trailing edge. These nodes have to be included in the
+        /// semantics tree to implement implicit accessibility scrolling on iOS where
+        /// the viewport scrolls implicitly when moving the accessibility focus from
+        /// a the last visible node in the viewport to the first hidden one.
+        /// </Summary>
+        public virtual Rect DescribeSemanticsClip(FlutterSDK.Rendering.@object.RenderObject child) => null;
+
+
+
+        /// <Summary>
+        /// Bootstrap the semantics reporting mechanism by marking this node
+        /// as needing a semantics update.
+        ///
+        /// Requires that this render object is attached, and is the root of
+        /// the render tree.
+        ///
+        /// See [RendererBinding] for an example of how this function is used.
+        /// </Summary>
+        public virtual void ScheduleInitialSemantics()
         {
-            child.ClearSemantics();
+
+
+
+
+
+
+            Owner._NodesNeedingSemantics.Add(this);
+            Owner.RequestVisualUpdate();
         }
-        );
-    }
 
 
 
 
-    /// <Summary>
-    /// Mark this node as needing an update to its semantics description.
-    ///
-    /// This must be called whenever the semantics configuration of this
-    /// [RenderObject] as annotated by [describeSemanticsConfiguration] changes in
-    /// any way to update the semantics tree.
-    /// </Summary>
-    public virtual void MarkNeedsSemanticsUpdate()
-    {
-
-        if (!Attached || Owner._SemanticsOwner == null)
+        /// <Summary>
+        /// Report the semantics of this node, for example for accessibility purposes.
+        ///
+        /// This method should be overridden by subclasses that have interesting
+        /// semantic information.
+        ///
+        /// The given [SemanticsConfiguration] object is mutable and should be
+        /// annotated in a manner that describes the current state. No reference
+        /// should be kept to that object; mutating it outside of the context of the
+        /// [describeSemanticsConfiguration] call (for example as a result of
+        /// asynchronous computation) will at best have no useful effect and at worse
+        /// will cause crashes as the data will be in an inconsistent state.
+        ///
+        /// {@tool snippet}
+        ///
+        /// The following snippet will describe the node as a button that responds to
+        /// tap actions.
+        ///
+        /// ```dart
+        /// abstract class SemanticButtonRenderObject extends RenderObject {
+        ///   @override
+        ///   void describeSemanticsConfiguration(SemanticsConfiguration config) {
+        ///     super.describeSemanticsConfiguration(config);
+        ///     config
+        ///       ..onTap = _handleTap
+        ///       ..label = 'I am a button'
+        ///       ..isButton = true;
+        ///   }
+        ///
+        ///   void _handleTap() {
+        ///     // Do something.
+        ///   }
+        /// }
+        /// ```
+        /// {@end-tool}
+        /// </Summary>
+        public virtual void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
+        }
+
+
+
+
+        /// <Summary>
+        /// Sends a [SemanticsEvent] associated with this render object's [SemanticsNode].
+        ///
+        /// If this render object has no semantics information, the first parent
+        /// render object with a non-null semantic node is used.
+        ///
+        /// If semantics are disabled, no events are dispatched.
+        ///
+        /// See [SemanticsNode.sendEvent] for a full description of the behavior.
+        /// </Summary>
+        public virtual void SendSemanticsEvent(FlutterSDK.Semantics.Semanticsevent.SemanticsEvent semanticsEvent)
+        {
+            if (Owner.SemanticsOwner == null) return;
+            if (_Semantics != null && !_Semantics.IsMergedIntoParent)
+            {
+                _Semantics.SendEvent(semanticsEvent);
+            }
+            else if (Parent != null)
+            {
+                RenderObject renderParent = Parent as RenderObject;
+                renderParent.SendSemanticsEvent(semanticsEvent);
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Removes all semantics from this render object and its descendants.
+        ///
+        /// Should only be called on objects whose [parent] is not a [RenderObject].
+        ///
+        /// Override this method if you instantiate new [SemanticsNode]s in an
+        /// overridden [assembleSemanticsNode] method, to dispose of those nodes.
+        /// </Summary>
+        public virtual void ClearSemantics()
+        {
+            _NeedsSemanticsUpdate = true;
+            _Semantics = null;
+            VisitChildren((RenderObject child) =>
+            {
+                child.ClearSemantics();
+            }
+            );
+        }
+
+
+
+
+        /// <Summary>
+        /// Mark this node as needing an update to its semantics description.
+        ///
+        /// This must be called whenever the semantics configuration of this
+        /// [RenderObject] as annotated by [describeSemanticsConfiguration] changes in
+        /// any way to update the semantics tree.
+        /// </Summary>
+        public virtual void MarkNeedsSemanticsUpdate()
+        {
+
+            if (!Attached || Owner._SemanticsOwner == null)
+            {
+                _CachedSemanticsConfiguration = null;
+                return;
+            }
+
+            bool wasSemanticsBoundary = _Semantics != null && _CachedSemanticsConfiguration?.IsSemanticBoundary == true;
             _CachedSemanticsConfiguration = null;
-            return;
-        }
-
-        bool wasSemanticsBoundary = _Semantics != null && _CachedSemanticsConfiguration?.IsSemanticBoundary == true;
-        _CachedSemanticsConfiguration = null;
-        bool isEffectiveSemanticsBoundary = _SemanticsConfiguration.IsSemanticBoundary && wasSemanticsBoundary;
-        RenderObject node = this;
-        while (!isEffectiveSemanticsBoundary && node.Parent is RenderObject)
-        {
-            if (node != this && node._NeedsSemanticsUpdate) break;
-            node._NeedsSemanticsUpdate = true;
-            node = node.Parent as RenderObject;
-            isEffectiveSemanticsBoundary = node._SemanticsConfiguration.IsSemanticBoundary;
-            if (isEffectiveSemanticsBoundary && node._Semantics == null)
+            bool isEffectiveSemanticsBoundary = _SemanticsConfiguration.IsSemanticBoundary && wasSemanticsBoundary;
+            RenderObject node = this;
+            while (!isEffectiveSemanticsBoundary && node.Parent is RenderObject)
             {
-                return;
-            }
-
-        }
-
-        if (node != this && _Semantics != null && _NeedsSemanticsUpdate)
-        {
-            Owner._NodesNeedingSemantics.Remove(this);
-        }
-
-        if (!node._NeedsSemanticsUpdate)
-        {
-            node._NeedsSemanticsUpdate = true;
-            if (Owner != null)
-            {
-
-                Owner._NodesNeedingSemantics.Add(node);
-                Owner.RequestVisualUpdate();
-            }
-
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Updates the semantic information of the render object.
-    /// </Summary>
-    private void _UpdateSemantics()
-    {
-
-        if (_NeedsLayout)
-        {
-            return;
-        }
-
-        _SemanticsFragment fragment = _GetSemanticsForParent(mergeIntoParent: _Semantics?.Parent?.IsPartOfNodeMerging ?? false);
-
-        _InterestingSemanticsFragment interestingFragment = fragment as _InterestingSemanticsFragment;
-        SemanticsNode node = interestingFragment.CompileChildren(parentSemanticsClipRect: _Semantics?.ParentSemanticsClipRect, parentPaintClipRect: _Semantics?.ParentPaintClipRect, elevationAdjustment: _Semantics?.ElevationAdjustment ?? 0.0).Single();
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Returns the semantics that this node would like to add to its parent.
-    /// </Summary>
-    private FlutterSDK.Rendering.@object._SemanticsFragment _GetSemanticsForParent(bool mergeIntoParent = default(bool))
-    {
-
-
-        SemanticsConfiguration config = _SemanticsConfiguration;
-        bool dropSemanticsOfPreviousSiblings = config.IsBlockingSemanticsOfPreviouslyPaintedNodes;
-        bool producesForkingFragment = !config.HasBeenAnnotated && !config.IsSemanticBoundary;
-        List<_InterestingSemanticsFragment> fragments = new List<_InterestingSemanticsFragment>() { };
-        HashSet<_InterestingSemanticsFragment> toBeMarkedExplicit = new Dictionary<_InterestingSemanticsFragment> { };
-        bool childrenMergeIntoParent = mergeIntoParent || config.IsMergingSemanticsOfDescendants;
-        bool abortWalk = false;
-        VisitChildrenForSemantics((RenderObject renderChild) =>
-        {
-            if (abortWalk || _NeedsLayout)
-            {
-                abortWalk = true;
-                return;
-            }
-
-            _SemanticsFragment parentFragment = renderChild._GetSemanticsForParent(mergeIntoParent: childrenMergeIntoParent);
-            if (parentFragment.AbortsWalk)
-            {
-                abortWalk = true;
-                return;
-            }
-
-            if (parentFragment.DropsSemanticsOfPreviousSiblings)
-            {
-                fragments.Clear();
-                toBeMarkedExplicit.Clear();
-                if (!config.IsSemanticBoundary) dropSemanticsOfPreviousSiblings = true;
-            }
-
-            foreach (_InterestingSemanticsFragment fragment in parentFragment.InterestingFragments)
-            {
-                fragments.Add(fragment);
-                fragment.AddAncestor(this);
-                fragment.AddTags(config.TagsForChildren);
-                if (config.ExplicitChildNodes || !(Parent is RenderObject))
+                if (node != this && node._NeedsSemanticsUpdate) break;
+                node._NeedsSemanticsUpdate = true;
+                node = node.Parent as RenderObject;
+                isEffectiveSemanticsBoundary = node._SemanticsConfiguration.IsSemanticBoundary;
+                if (isEffectiveSemanticsBoundary && node._Semantics == null)
                 {
-                    fragment.MarkAsExplicit();
-                    continue;
+                    return;
                 }
 
-                if (!fragment.HasConfigForParent || producesForkingFragment) continue;
-                if (!config.IsCompatibleWith(fragment.Config)) toBeMarkedExplicit.Add(fragment);
-                foreach (_InterestingSemanticsFragment siblingFragment in fragments.Sublist(0, fragments.Count - 1))
+            }
+
+            if (node != this && _Semantics != null && _NeedsSemanticsUpdate)
+            {
+                Owner._NodesNeedingSemantics.Remove(this);
+            }
+
+            if (!node._NeedsSemanticsUpdate)
+            {
+                node._NeedsSemanticsUpdate = true;
+                if (Owner != null)
                 {
-                    if (!fragment.Config.IsCompatibleWith(siblingFragment.Config))
+
+                    Owner._NodesNeedingSemantics.Add(node);
+                    Owner.RequestVisualUpdate();
+                }
+
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Updates the semantic information of the render object.
+        /// </Summary>
+        private void _UpdateSemantics()
+        {
+
+            if (_NeedsLayout)
+            {
+                return;
+            }
+
+            _SemanticsFragment fragment = _GetSemanticsForParent(mergeIntoParent: _Semantics?.Parent?.IsPartOfNodeMerging ?? false);
+
+            _InterestingSemanticsFragment interestingFragment = fragment as _InterestingSemanticsFragment;
+            SemanticsNode node = interestingFragment.CompileChildren(parentSemanticsClipRect: _Semantics?.ParentSemanticsClipRect, parentPaintClipRect: _Semantics?.ParentPaintClipRect, elevationAdjustment: _Semantics?.ElevationAdjustment ?? 0.0).Single();
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns the semantics that this node would like to add to its parent.
+        /// </Summary>
+        private FlutterSDK.Rendering.@object._SemanticsFragment _GetSemanticsForParent(bool mergeIntoParent = default(bool))
+        {
+
+
+            SemanticsConfiguration config = _SemanticsConfiguration;
+            bool dropSemanticsOfPreviousSiblings = config.IsBlockingSemanticsOfPreviouslyPaintedNodes;
+            bool producesForkingFragment = !config.HasBeenAnnotated && !config.IsSemanticBoundary;
+            List<_InterestingSemanticsFragment> fragments = new List<_InterestingSemanticsFragment>() { };
+            HashSet<_InterestingSemanticsFragment> toBeMarkedExplicit = new Dictionary<_InterestingSemanticsFragment> { };
+            bool childrenMergeIntoParent = mergeIntoParent || config.IsMergingSemanticsOfDescendants;
+            bool abortWalk = false;
+            VisitChildrenForSemantics((RenderObject renderChild) =>
+            {
+                if (abortWalk || _NeedsLayout)
+                {
+                    abortWalk = true;
+                    return;
+                }
+
+                _SemanticsFragment parentFragment = renderChild._GetSemanticsForParent(mergeIntoParent: childrenMergeIntoParent);
+                if (parentFragment.AbortsWalk)
+                {
+                    abortWalk = true;
+                    return;
+                }
+
+                if (parentFragment.DropsSemanticsOfPreviousSiblings)
+                {
+                    fragments.Clear();
+                    toBeMarkedExplicit.Clear();
+                    if (!config.IsSemanticBoundary) dropSemanticsOfPreviousSiblings = true;
+                }
+
+                foreach (_InterestingSemanticsFragment fragment in parentFragment.InterestingFragments)
+                {
+                    fragments.Add(fragment);
+                    fragment.AddAncestor(this);
+                    fragment.AddTags(config.TagsForChildren);
+                    if (config.ExplicitChildNodes || !(Parent is RenderObject))
                     {
-                        toBeMarkedExplicit.Add(fragment);
-                        toBeMarkedExplicit.Add(siblingFragment);
+                        fragment.MarkAsExplicit();
+                        continue;
+                    }
+
+                    if (!fragment.HasConfigForParent || producesForkingFragment) continue;
+                    if (!config.IsCompatibleWith(fragment.Config)) toBeMarkedExplicit.Add(fragment);
+                    foreach (_InterestingSemanticsFragment siblingFragment in fragments.Sublist(0, fragments.Count - 1))
+                    {
+                        if (!fragment.Config.IsCompatibleWith(siblingFragment.Config))
+                        {
+                            toBeMarkedExplicit.Add(fragment);
+                            toBeMarkedExplicit.Add(siblingFragment);
+                        }
+
                     }
 
                 }
 
             }
-
-        }
-        );
-        if (abortWalk)
-        {
-            return new _AbortingSemanticsFragment(owner: this);
-        }
-
-        foreach (_InterestingSemanticsFragment fragment in toBeMarkedExplicit) fragment.MarkAsExplicit();
-        _NeedsSemanticsUpdate = false;
-        _SemanticsFragment result = default(_SemanticsFragment);
-        if (!(Parent is RenderObject))
-        {
-
-
-            result = new _RootSemanticsFragment(owner: this, dropsSemanticsOfPreviousSiblings: dropSemanticsOfPreviousSiblings);
-        }
-        else if (producesForkingFragment)
-        {
-            result = new _ContainerSemanticsFragment(dropsSemanticsOfPreviousSiblings: dropSemanticsOfPreviousSiblings);
-        }
-        else
-        {
-            result = new _SwitchableSemanticsFragment(config: config, mergeIntoParent: mergeIntoParent, owner: this, dropsSemanticsOfPreviousSiblings: dropSemanticsOfPreviousSiblings);
-            if (config.IsSemanticBoundary)
+            );
+            if (abortWalk)
             {
-                _SwitchableSemanticsFragment fragment = result as _SwitchableSemanticsFragment;
-                fragment.MarkAsExplicit();
+                return new _AbortingSemanticsFragment(owner: this);
             }
 
-        }
-
-        result.AddAll(fragments);
-        return result;
-    }
-
-
-
-
-    /// <Summary>
-    /// Called when collecting the semantics of this node.
-    ///
-    /// The implementation has to return the children in paint order skipping all
-    /// children that are not semantically relevant (e.g. because they are
-    /// invisible).
-    ///
-    /// The default implementation mirrors the behavior of
-    /// [visitChildren] (which is supposed to walk all the children).
-    /// </Summary>
-    public virtual void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
-    {
-        VisitChildren(visitor);
-    }
-
-
-
-
-    /// <Summary>
-    /// Assemble the [SemanticsNode] for this [RenderObject].
-    ///
-    /// If [isSemanticBoundary] is true, this method is called with the `node`
-    /// created for this [RenderObject], the `config` to be applied to that node
-    /// and the `children` [SemanticsNode]s that descendants of this RenderObject
-    /// have generated.
-    ///
-    /// By default, the method will annotate `node` with `config` and add the
-    /// `children` to it.
-    ///
-    /// Subclasses can override this method to add additional [SemanticsNode]s
-    /// to the tree. If new [SemanticsNode]s are instantiated in this method
-    /// they must be disposed in [clearSemantics].
-    /// </Summary>
-    public virtual void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
-    {
-
-        node.UpdateWith(config: config, childrenInInversePaintOrder: children as List<SemanticsNode>);
-    }
-
-
-
-
-    /// <Summary>
-    /// Override this method to handle pointer events that hit this render object.
-    /// </Summary>
-    public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
-    {
-    }
-
-
-
-
-    /// <Summary>
-    /// Returns a human understandable name.
-    /// </Summary>
-    public new string ToStringShort()
-    {
-        string header = DiagnosticsDefaultClass.DescribeIdentity(this);
-        if (_RelayoutBoundary != null && _RelayoutBoundary != this)
-        {
-            int count = 1;
-            RenderObject target = Parent as RenderObject;
-            while (target != null && target != _RelayoutBoundary)
+            foreach (_InterestingSemanticsFragment fragment in toBeMarkedExplicit) fragment.MarkAsExplicit();
+            _NeedsSemanticsUpdate = false;
+            _SemanticsFragment result = default(_SemanticsFragment);
+            if (!(Parent is RenderObject))
             {
-                target = target.Parent as RenderObject;
-                count += 1;
+
+
+                result = new _RootSemanticsFragment(owner: this, dropsSemanticsOfPreviousSiblings: dropSemanticsOfPreviousSiblings);
             }
-
-            header += $"' relayoutBoundary=up{count}'";
-        }
-
-        if (_NeedsLayout) header += " NEEDS-LAYOUT";
-        if (_NeedsPaint) header += " NEEDS-PAINT";
-        if (_NeedsCompositingBitsUpdate) header += " NEEDS-COMPOSITING-BITS-UPDATE";
-        if (!Attached) header += " DETACHED";
-        return header;
-    }
-
-
-
-
-
-    /// <Summary>
-    /// Returns a description of the tree rooted at this node.
-    /// If the prefix argument is provided, then every line in the output
-    /// will be prefixed by that string.
-    /// </Summary>
-    public new string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-    {
-        RenderObject debugPreviousActiveLayout = default(RenderObject);
-
-        string result = base.ToStringDeep(prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, minLevel: minLevel);
-
-        return result;
-    }
-
-
-
-
-    /// <Summary>
-    /// Returns a one-line detailed description of the render object.
-    /// This description is often somewhat long.
-    ///
-    /// This includes the same information for this RenderObject as given by
-    /// [toStringDeep], but does not recurse to any children.
-    /// </Summary>
-    public new string ToStringShallow(string joiner = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
-    {
-        RenderObject debugPreviousActiveLayout = default(RenderObject);
-
-        string result = base.ToStringShallow(joiner: joiner, minLevel: minLevel);
-
-        return result;
-    }
-
-
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-    {
-        base.DebugFillProperties(properties);
-        properties.Add(new FlagProperty("needsCompositing", value: _NeedsCompositing, ifTrue: "needs compositing"));
-        properties.Add(new DiagnosticsProperty<object>("creator", DebugCreator, defaultValue: null, level: DiagnosticLevel.Debug));
-        properties.Add(new DiagnosticsProperty<ParentData>("parentData", ParentData, tooltip: _DebugCanParentUseSize == true ? "can use size" : null, missingIfNull: true));
-        properties.Add(new DiagnosticsProperty<Constraints>("constraints", Constraints, missingIfNull: true));
-        properties.Add(new DiagnosticsProperty<ContainerLayer>("layer", _Layer, defaultValue: null));
-        properties.Add(new DiagnosticsProperty<SemanticsNode>("semantics node", _Semantics, defaultValue: null));
-        properties.Add(new FlagProperty("isBlockingSemanticsOfPreviouslyPaintedNodes", value: _SemanticsConfiguration.IsBlockingSemanticsOfPreviouslyPaintedNodes, ifTrue: "blocks semantics of earlier render objects below the common boundary"));
-        properties.Add(new FlagProperty("isSemanticBoundary", value: _SemanticsConfiguration.IsSemanticBoundary, ifTrue: "semantic boundary"));
-    }
-
-
-
-
-    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() => new List<DiagnosticsNode>() { };
-
-
-
-    /// <Summary>
-    /// Attempt to make (a portion of) this or a descendant [RenderObject] visible
-    /// on screen.
-    ///
-    /// If `descendant` is provided, that [RenderObject] is made visible. If
-    /// `descendant` is omitted, this [RenderObject] is made visible.
-    ///
-    /// The optional `rect` parameter describes which area of that [RenderObject]
-    /// should be shown on screen. If `rect` is null, the entire
-    /// [RenderObject] (as defined by its [paintBounds]) will be revealed. The
-    /// `rect` parameter is interpreted relative to the coordinate system of
-    /// `descendant` if that argument is provided and relative to this
-    /// [RenderObject] otherwise.
-    ///
-    /// The `duration` parameter can be set to a non-zero value to bring the
-    /// target object on screen in an animation defined by `curve`.
-    /// </Summary>
-    public virtual void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
-    {
-        if (Parent is RenderObject)
-        {
-            RenderObject renderParent = ((RenderObject)Parent) as RenderObject;
-            renderParent.ShowOnScreen(descendant: descendant ?? this, rect: rect, duration: duration, curve: curve);
-        }
-
-    }
-
-
-
-
-    /// <Summary>
-    /// Adds a debug representation of a [RenderObject] optimized for including in
-    /// error messages.
-    ///
-    /// The default [style] of [DiagnosticsTreeStyle.shallow] ensures that all of
-    /// the properties of the render object are included in the error output but
-    /// none of the children of the object are.
-    ///
-    /// You should always include a RenderObject in an error message if it is the
-    /// [RenderObject] causing the failure or contract violation of the error.
-    /// </Summary>
-    public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode DescribeForError(string name, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
-    {
-        return ToDiagnosticsNode(name: name, style: style);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Variant of [FlutterErrorDetails] with extra fields for the rendering
-/// library.
-/// </Summary>
-public class FlutterErrorDetailsForRendering : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
-{
-    #region constructors
-    public FlutterErrorDetailsForRendering(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Rendering.@object.RenderObject renderObject = default(FlutterSDK.Rendering.@object.RenderObject), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
-    : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
-    {
-        this.RenderObject = renderObject;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Rendering.@object.RenderObject RenderObject { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
-}
-
-
-/// <Summary>
-/// Describes the semantics information a [RenderObject] wants to add to its
-/// parent.
-///
-/// It has two notable subclasses:
-///  * [_InterestingSemanticsFragment] describing actual semantic information to
-///    be added to the parent.
-///  * [_ContainerSemanticsFragment]: a container class to transport the semantic
-///    information of multiple [_InterestingSemanticsFragment] to a parent.
-/// </Summary>
-public class _SemanticsFragment
-{
-    #region constructors
-    public _SemanticsFragment(bool dropsSemanticsOfPreviousSiblings = default(bool))
-    : base()
-    {
-        this.DropsSemanticsOfPreviousSiblings = dropsSemanticsOfPreviousSiblings;
-    }
-    #endregion
-
-    #region fields
-    public virtual bool DropsSemanticsOfPreviousSiblings { get; set; }
-    public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// Incorporate the fragments of children into this fragment.
-    /// </Summary>
-    public virtual void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-    {
-    }
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A container used when a [RenderObject] wants to add multiple independent
-/// [_InterestingSemanticsFragment] to its parent.
-///
-/// The [_InterestingSemanticsFragment] to be added to the parent can be
-/// obtained via [interestingFragments].
-/// </Summary>
-public class _ContainerSemanticsFragment : FlutterSDK.Rendering.@object._SemanticsFragment
-{
-    #region constructors
-    public _ContainerSemanticsFragment(bool dropsSemanticsOfPreviousSiblings = default(bool))
-    : base(dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    public new List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-    {
-        InterestingFragments.AddAll(fragments);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A [_SemanticsFragment] that describes which concrete semantic information
-/// a [RenderObject] wants to add to the [SemanticsNode] of its parent.
-///
-/// Specifically, it describes which children (as returned by [compileChildren])
-/// should be added to the parent's [SemanticsNode] and which [config] should be
-/// merged into the parent's [SemanticsNode].
-/// </Summary>
-public class _InterestingSemanticsFragment : FlutterSDK.Rendering.@object._SemanticsFragment
-{
-    #region constructors
-    public _InterestingSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
-    : base(dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    internal virtual List<FlutterSDK.Rendering.@object.RenderObject> _AncestorChain { get; set; }
-    internal virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> _TagsForChildren { get; set; }
-    public virtual FlutterSDK.Rendering.@object.RenderObject Owner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool HasConfigForParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    /// <Summary>
-    /// The children to be added to the parent.
-    ///
-    /// See also:
-    ///
-    ///  * [SemanticsNode.parentSemanticsClipRect] for the source and definition
-    ///    of the `parentSemanticsClipRect` argument.
-    ///  * [SemanticsNode.parentPaintClipRect] for the source and definition
-    ///  * [SemanticsNode.elevationAdjustment] for the source and definition
-    /// </Summary>
-    public virtual Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-    {
-        return default(Iterable<SemanticsNode>);
-    }
-
-
-    /// <Summary>
-    /// Disallows this fragment to merge any configuration into its parent's
-    /// [SemanticsNode].
-    ///
-    /// After calling this the fragment will only produce children to be added
-    /// to the parent and it will return null for [config].
-    /// </Summary>
-    public virtual void MarkAsExplicit()
-    {
-    }
-
-
-    /// <Summary>
-    /// Consume the fragments of children.
-    ///
-    /// For each provided fragment it will add that fragment's children to
-    /// this fragment's children (as returned by [compileChildren]) and merge that
-    /// fragment's [config] into this fragment's [config].
-    ///
-    /// If a provided fragment should not merge anything into [config] call
-    /// [markAsExplicit] before passing the fragment to this method.
-    /// </Summary>
-    public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-    {
-    }
-
-
-    /// <Summary>
-    /// Tag all children produced by [compileChildren] with `tags`.
-    /// </Summary>
-    public virtual void AddTags(Iterable<FlutterSDK.Semantics.Semantics.SemanticsTag> tags)
-    {
-        if (tags == null || tags.IsEmpty()) return;
-        _TagsForChildren = (_TagsForChildren == null ? new Dictionary<SemanticsTag> { } : _TagsForChildren);
-        _TagsForChildren.AddAll(tags);
-    }
-
-
-
-
-    /// <Summary>
-    /// Adds the geometric information of `ancestor` to this object.
-    ///
-    /// Those information are required to properly compute the value for
-    /// [SemanticsNode.transform], [SemanticsNode.clipRect], and
-    /// [SemanticsNode.rect].
-    ///
-    /// Ancestors have to be added in order from [owner] up until the next
-    /// [RenderObject] that owns a [SemanticsNode] is reached.
-    /// </Summary>
-    public virtual void AddAncestor(FlutterSDK.Rendering.@object.RenderObject ancestor)
-    {
-        _AncestorChain.Add(ancestor);
-    }
-
-
-
-    #endregion
-}
-
-
-/// <Summary>
-/// An [_InterestingSemanticsFragment] that produces the root [SemanticsNode] of
-/// the semantics tree.
-///
-/// The root node is available as the only element in the Iterable returned by
-/// [children].
-/// </Summary>
-public class _RootSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
-{
-    #region constructors
-    public _RootSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
-    : base(owner: owner, dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    internal virtual List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> _Children { get; set; }
-    public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-sync
-*
-{
-
-
-
-
-
-Owner._Semantics = (Owner._Semantics == null ? SemanticsNode.Root(showOnScreen:Owner.ShowOnScreen, owner:Owner.Owner.SemanticsOwner) : Owner._Semantics );
-SemanticsNode node = Owner._Semantics;
-
-
-
-    node.Rect=Owner.SemanticBounds;
-List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) =>
-{
-
-    return fragment.CompileChildren(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, elevationAdjustment: 0.0);
-}
-).ToList();
-    node.UpdateWith(config:null , childrenInInversePaintOrder:children);
-
-yield node;
-}
-
-
-
-
-public new void MarkAsExplicit()
-{
-}
-
-
-
-
-public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-{
-    _Children.AddAll(fragments);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// An [_InterestingSemanticsFragment] that can be told to only add explicit
-/// [SemanticsNode]s to the parent.
-///
-/// If [markAsExplicit] was not called before this fragment is added to
-/// another fragment it will merge [config] into the parent's [SemanticsNode]
-/// and add its [children] to it.
-///
-/// If [markAsExplicit] was called before adding this fragment to another
-/// fragment it will create a new [SemanticsNode]. The newly created node will
-/// be annotated with the [SemanticsConfiguration] that - without the call to
-/// [markAsExplicit] - would have been merged into the parent's [SemanticsNode].
-/// Similarly, the new node will also take over the children that otherwise
-/// would have been added to the parent's [SemanticsNode].
-///
-/// After a call to [markAsExplicit] the only element returned by [children]
-/// is the newly created node and [config] will return null as the fragment
-/// no longer wants to merge any semantic information into the parent's
-/// [SemanticsNode].
-/// </Summary>
-public class _SwitchableSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
-{
-    #region constructors
-    public _SwitchableSemanticsFragment(bool mergeIntoParent = default(bool), FlutterSDK.Semantics.Semantics.SemanticsConfiguration config = default(FlutterSDK.Semantics.Semantics.SemanticsConfiguration), FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
-    : base(owner: owner, dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    internal virtual bool _MergeIntoParent { get; set; }
-    internal virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration _Config { get; set; }
-    internal virtual bool _IsConfigWritable { get; set; }
-    internal virtual List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> _Children { get; set; }
-    internal virtual bool _IsExplicit { get; set; }
-    public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual bool _NeedsGeometryUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-sync
-*
-{
-if (!_IsExplicit){
-Owner._Semantics=null ;
-foreach(_InterestingSemanticsFragment fragment  in _Children){
-
-fragment._AncestorChain.AddAll(_AncestorChain.Sublist(1));
-yield* fragment.CompileChildren(parentSemanticsClipRect:parentSemanticsClipRect, parentPaintClipRect:parentPaintClipRect, elevationAdjustment:elevationAdjustment+_Config.Elevation);
-}
-
-return;
-}
-
-_SemanticsGeometry geometry = _NeedsGeometryUpdate ? new _SemanticsGeometry(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, ancestors: _AncestorChain) : null;
-if (!_MergeIntoParent && (geometry?.DropFromTree == true)) return;
-Owner._Semantics = (Owner._Semantics == null ? new SemanticsNode(showOnScreen: Owner.ShowOnScreen) : Owner._Semantics);
-SemanticsNode node = Owner._Semantics..IsMergedIntoParent = _MergeIntoParent..Tags = _TagsForChildren;
-node.ElevationAdjustment = elevationAdjustment;
-if (elevationAdjustment != 0.0)
-{
-    _EnsureConfigIsWritable();
-    _Config.Elevation += elevationAdjustment;
-}
-
-if (geometry != null)
-{
-
-    ..Rect = geometry.Rect..Transform = geometry.Transform..ParentSemanticsClipRect = geometry.SemanticsClipRect..ParentPaintClipRect = geometry.PaintClipRect;
-    if (!_MergeIntoParent && geometry.MarkAsHidden)
-    {
-        _EnsureConfigIsWritable();
-        _Config.IsHidden = true;
-    }
-
-}
-
-List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) => =>fragment.CompileChildren(parentSemanticsClipRect: node.ParentSemanticsClipRect, parentPaintClipRect: node.ParentPaintClipRect, elevationAdjustment: 0.0)).ToList();
-if (_Config.IsSemanticBoundary)
-{
-    Owner.AssembleSemanticsNode(node, _Config, children);
-}
-else
-{
-    node.UpdateWith(config: _Config, childrenInInversePaintOrder: children);
-}
-
-yield node;
-}
-
-
-
-
-public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-{
-    foreach (_InterestingSemanticsFragment fragment in fragments)
-    {
-        _Children.Add(fragment);
-        if (fragment.Config == null) continue;
-        _EnsureConfigIsWritable();
-        _Config.Absorb(fragment.Config);
-    }
-
-}
-
-
-
-
-private void _EnsureConfigIsWritable()
-{
-    if (!_IsConfigWritable)
-    {
-        _Config = _Config.Copy();
-        _IsConfigWritable = true;
-    }
-
-}
-
-
-
-
-public new void MarkAsExplicit()
-{
-    _IsExplicit = true;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// [_SemanticsFragment] used to indicate that the current information in this
-/// subtree is not sufficient to update semantics.
-///
-/// Anybody processing this [_SemanticsFragment] should abort the walk of the
-/// current subtree without updating any [SemanticsNode]s as there is no semantic
-/// information to compute. As a result, this fragment also doesn't carry any
-/// semantics information either.
-/// </Summary>
-public class _AbortingSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
-{
-    #region constructors
-    public _AbortingSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject))
-    : base(owner: owner, dropsSemanticsOfPreviousSiblings: false)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
-    {
-
-    }
-
-
-
-
-    public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
-sync
-*
-{
-yield Owner._Semantics;
-}
-
-
-
-
-public new void MarkAsExplicit()
-{
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Helper class that keeps track of the geometry of a [SemanticsNode].
-///
-/// It is used to annotate a [SemanticsNode] with the current information for
-/// [SemanticsNode.rect] and [SemanticsNode.transform].
-/// </Summary>
-public class _SemanticsGeometry
-{
-    #region constructors
-    public _SemanticsGeometry(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), List<FlutterSDK.Rendering.@object.RenderObject> ancestors = default(List<FlutterSDK.Rendering.@object.RenderObject>))
-    {
-
-        _ComputeValues(parentSemanticsClipRect, parentPaintClipRect, ancestors);
-    }
-
-
-    #endregion
-
-    #region fields
-    internal virtual FlutterBinding.UI.Rect _PaintClipRect { get; set; }
-    internal virtual FlutterBinding.UI.Rect _SemanticsClipRect { get; set; }
-    internal virtual Matrix4 _Transform { get; set; }
-    internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
-    internal virtual Matrix4 _TemporaryTransformHolder { get; set; }
-    internal virtual bool _MarkAsHidden { get; set; }
-    public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterBinding.UI.Rect SemanticsClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterBinding.UI.Rect PaintClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool DropFromTree { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool MarkAsHidden { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    private void _ComputeValues(FlutterBinding.UI.Rect parentSemanticsClipRect, FlutterBinding.UI.Rect parentPaintClipRect, List<FlutterSDK.Rendering.@object.RenderObject> ancestors)
-    {
-
-        _Transform = Matrix4.Identity();
-        _SemanticsClipRect = parentSemanticsClipRect;
-        _PaintClipRect = parentPaintClipRect;
-        for (int index = ancestors.Count - 1; index > 0; index -= 1)
-        {
-            RenderObject parent = ancestors[index];
-            RenderObject child = ancestors[index - 1];
-            Rect parentSemanticsClipRect = parent.DescribeSemanticsClip(child);
-            if (parentSemanticsClipRect != null)
+            else if (producesForkingFragment)
             {
-                _SemanticsClipRect = parentSemanticsClipRect;
-                _PaintClipRect = _IntersectRects(_PaintClipRect, parent.DescribeApproximatePaintClip(child));
+                result = new _ContainerSemanticsFragment(dropsSemanticsOfPreviousSiblings: dropSemanticsOfPreviousSiblings);
             }
             else
             {
-                _SemanticsClipRect = _IntersectRects(_SemanticsClipRect, parent.DescribeApproximatePaintClip(child));
+                result = new _SwitchableSemanticsFragment(config: config, mergeIntoParent: mergeIntoParent, owner: this, dropsSemanticsOfPreviousSiblings: dropSemanticsOfPreviousSiblings);
+                if (config.IsSemanticBoundary)
+                {
+                    _SwitchableSemanticsFragment fragment = result as _SwitchableSemanticsFragment;
+                    fragment.MarkAsExplicit();
+                }
+
             }
 
-            _TemporaryTransformHolder.SetIdentity();
-            _ApplyIntermediatePaintTransforms(parent, child, _Transform, _TemporaryTransformHolder);
-            _SemanticsClipRect = _TransformRect(_SemanticsClipRect, _TemporaryTransformHolder);
-            _PaintClipRect = _TransformRect(_PaintClipRect, _TemporaryTransformHolder);
+            result.AddAll(fragments);
+            return result;
         }
 
-        RenderObject owner = ancestors.First;
-        _Rect = _SemanticsClipRect == null ? owner.SemanticBounds : _SemanticsClipRect.Intersect(owner.SemanticBounds);
-        if (_PaintClipRect != null)
+
+
+
+        /// <Summary>
+        /// Called when collecting the semantics of this node.
+        ///
+        /// The implementation has to return the children in paint order skipping all
+        /// children that are not semantically relevant (e.g. because they are
+        /// invisible).
+        ///
+        /// The default implementation mirrors the behavior of
+        /// [visitChildren] (which is supposed to walk all the children).
+        /// </Summary>
+        public virtual void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
         {
-            Rect paintRect = _PaintClipRect.Intersect(_Rect);
-            _MarkAsHidden = paintRect.IsEmpty() && !_Rect.IsEmpty();
-            if (!_MarkAsHidden) _Rect = paintRect;
+            VisitChildren(visitor);
         }
 
+
+
+
+        /// <Summary>
+        /// Assemble the [SemanticsNode] for this [RenderObject].
+        ///
+        /// If [isSemanticBoundary] is true, this method is called with the `node`
+        /// created for this [RenderObject], the `config` to be applied to that node
+        /// and the `children` [SemanticsNode]s that descendants of this RenderObject
+        /// have generated.
+        ///
+        /// By default, the method will annotate `node` with `config` and add the
+        /// `children` to it.
+        ///
+        /// Subclasses can override this method to add additional [SemanticsNode]s
+        /// to the tree. If new [SemanticsNode]s are instantiated in this method
+        /// they must be disposed in [clearSemantics].
+        /// </Summary>
+        public virtual void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
+        {
+
+            node.UpdateWith(config: config, childrenInInversePaintOrder: children as List<SemanticsNode>);
+        }
+
+
+
+
+        /// <Summary>
+        /// Override this method to handle pointer events that hit this render object.
+        /// </Summary>
+        public new void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event, FlutterSDK.Gestures.Hittest.HitTestEntry entry)
+        {
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns a human understandable name.
+        /// </Summary>
+        public new string ToStringShort()
+        {
+            string header = DiagnosticsDefaultClass.DescribeIdentity(this);
+            if (_RelayoutBoundary != null && _RelayoutBoundary != this)
+            {
+                int count = 1;
+                RenderObject target = Parent as RenderObject;
+                while (target != null && target != _RelayoutBoundary)
+                {
+                    target = target.Parent as RenderObject;
+                    count += 1;
+                }
+
+                header += $"' relayoutBoundary=up{count}'";
+            }
+
+            if (_NeedsLayout) header += " NEEDS-LAYOUT";
+            if (_NeedsPaint) header += " NEEDS-PAINT";
+            if (_NeedsCompositingBitsUpdate) header += " NEEDS-COMPOSITING-BITS-UPDATE";
+            if (!Attached) header += " DETACHED";
+            return header;
+        }
+
+
+
+
+
+        /// <Summary>
+        /// Returns a description of the tree rooted at this node.
+        /// If the prefix argument is provided, then every line in the output
+        /// will be prefixed by that string.
+        /// </Summary>
+        public new string ToStringDeep(string prefixLineOne = default(string), string prefixOtherLines = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        {
+            RenderObject debugPreviousActiveLayout = default(RenderObject);
+
+            string result = base.ToStringDeep(prefixLineOne: prefixLineOne, prefixOtherLines: prefixOtherLines, minLevel: minLevel);
+
+            return result;
+        }
+
+
+
+
+        /// <Summary>
+        /// Returns a one-line detailed description of the render object.
+        /// This description is often somewhat long.
+        ///
+        /// This includes the same information for this RenderObject as given by
+        /// [toStringDeep], but does not recurse to any children.
+        /// </Summary>
+        public new string ToStringShallow(string joiner = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
+        {
+            RenderObject debugPreviousActiveLayout = default(RenderObject);
+
+            string result = base.ToStringShallow(joiner: joiner, minLevel: minLevel);
+
+            return result;
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new FlagProperty("needsCompositing", value: _NeedsCompositing, ifTrue: "needs compositing"));
+            properties.Add(new DiagnosticsProperty<object>("creator", DebugCreator, defaultValue: null, level: DiagnosticLevel.Debug));
+            properties.Add(new DiagnosticsProperty<ParentData>("parentData", ParentData, tooltip: _DebugCanParentUseSize == true ? "can use size" : null, missingIfNull: true));
+            properties.Add(new DiagnosticsProperty<Constraints>("constraints", Constraints, missingIfNull: true));
+            properties.Add(new DiagnosticsProperty<ContainerLayer>("layer", _Layer, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<SemanticsNode>("semantics node", _Semantics, defaultValue: null));
+            properties.Add(new FlagProperty("isBlockingSemanticsOfPreviouslyPaintedNodes", value: _SemanticsConfiguration.IsBlockingSemanticsOfPreviouslyPaintedNodes, ifTrue: "blocks semantics of earlier render objects below the common boundary"));
+            properties.Add(new FlagProperty("isSemanticBoundary", value: _SemanticsConfiguration.IsSemanticBoundary, ifTrue: "semantic boundary"));
+        }
+
+
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() => new List<DiagnosticsNode>() { };
+
+
+
+        /// <Summary>
+        /// Attempt to make (a portion of) this or a descendant [RenderObject] visible
+        /// on screen.
+        ///
+        /// If `descendant` is provided, that [RenderObject] is made visible. If
+        /// `descendant` is omitted, this [RenderObject] is made visible.
+        ///
+        /// The optional `rect` parameter describes which area of that [RenderObject]
+        /// should be shown on screen. If `rect` is null, the entire
+        /// [RenderObject] (as defined by its [paintBounds]) will be revealed. The
+        /// `rect` parameter is interpreted relative to the coordinate system of
+        /// `descendant` if that argument is provided and relative to this
+        /// [RenderObject] otherwise.
+        ///
+        /// The `duration` parameter can be set to a non-zero value to bring the
+        /// target object on screen in an animation defined by `curve`.
+        /// </Summary>
+        public virtual void ShowOnScreen(FlutterSDK.Rendering.@object.RenderObject descendant = default(FlutterSDK.Rendering.@object.RenderObject), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        {
+            if (Parent is RenderObject)
+            {
+                RenderObject renderParent = ((RenderObject)Parent) as RenderObject;
+                renderParent.ShowOnScreen(descendant: descendant ?? this, rect: rect, duration: duration, curve: curve);
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// Adds a debug representation of a [RenderObject] optimized for including in
+        /// error messages.
+        ///
+        /// The default [style] of [DiagnosticsTreeStyle.shallow] ensures that all of
+        /// the properties of the render object are included in the error output but
+        /// none of the children of the object are.
+        ///
+        /// You should always include a RenderObject in an error message if it is the
+        /// [RenderObject] causing the failure or contract violation of the error.
+        /// </Summary>
+        public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode DescribeForError(string name, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
+        {
+            return ToDiagnosticsNode(name: name, style: style);
+        }
+
+
+
+        #endregion
     }
-
-
 
 
     /// <Summary>
-    /// From parent to child coordinate system.
+    /// Variant of [FlutterErrorDetails] with extra fields for the rendering
+    /// library.
     /// </Summary>
-    private Rect _TransformRect(FlutterBinding.UI.Rect rect, Matrix4 transform)
+    public class FlutterErrorDetailsForRendering : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
+        #region constructors
+        public FlutterErrorDetailsForRendering(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Rendering.@object.RenderObject renderObject = default(FlutterSDK.Rendering.@object.RenderObject), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
+        : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
+        {
+            this.RenderObject = renderObject;
+        }
+        #endregion
 
-        if (rect == null) return null;
-        if (rect.IsEmpty() || transform.IsZero()) return Dart:uiDefaultClass.Rect.Zero;
-        return MatrixutilsDefaultClass.MatrixUtils.InverseTransformRect(transform, rect);
+        #region fields
+        public virtual FlutterSDK.Rendering.@object.RenderObject RenderObject { get; set; }
+        #endregion
+
+        #region methods
+        #endregion
     }
 
 
-
-
-    private void _ApplyIntermediatePaintTransforms(FlutterSDK.Rendering.@object.RenderObject ancestor, FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform, Matrix4 clipRectTransform)
+    /// <Summary>
+    /// Describes the semantics information a [RenderObject] wants to add to its
+    /// parent.
+    ///
+    /// It has two notable subclasses:
+    ///  * [_InterestingSemanticsFragment] describing actual semantic information to
+    ///    be added to the parent.
+    ///  * [_ContainerSemanticsFragment]: a container class to transport the semantic
+    ///    information of multiple [_InterestingSemanticsFragment] to a parent.
+    /// </Summary>
+    public class _SemanticsFragment
     {
-
-
-
-
-
-        RenderObject intermediateParent = child.Parent as RenderObject;
-
-        while (intermediateParent != ancestor)
+        #region constructors
+        public _SemanticsFragment(bool dropsSemanticsOfPreviousSiblings = default(bool))
+        : base()
         {
-            intermediateParent.ApplyPaintTransform(child, transform);
-            intermediateParent = intermediateParent.Parent as RenderObject;
-            child = child.Parent as RenderObject;
+            this.DropsSemanticsOfPreviousSiblings = dropsSemanticsOfPreviousSiblings;
+        }
+        #endregion
+
+        #region fields
+        public virtual bool DropsSemanticsOfPreviousSiblings { get; set; }
+        public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// Incorporate the fragments of children into this fragment.
+        /// </Summary>
+        public virtual void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+        {
+        }
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A container used when a [RenderObject] wants to add multiple independent
+    /// [_InterestingSemanticsFragment] to its parent.
+    ///
+    /// The [_InterestingSemanticsFragment] to be added to the parent can be
+    /// obtained via [interestingFragments].
+    /// </Summary>
+    public class _ContainerSemanticsFragment : FlutterSDK.Rendering.@object._SemanticsFragment
+    {
+        #region constructors
+        public _ContainerSemanticsFragment(bool dropsSemanticsOfPreviousSiblings = default(bool))
+        : base(dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public new List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+        {
+            InterestingFragments.AddAll(fragments);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A [_SemanticsFragment] that describes which concrete semantic information
+    /// a [RenderObject] wants to add to the [SemanticsNode] of its parent.
+    ///
+    /// Specifically, it describes which children (as returned by [compileChildren])
+    /// should be added to the parent's [SemanticsNode] and which [config] should be
+    /// merged into the parent's [SemanticsNode].
+    /// </Summary>
+    public class _InterestingSemanticsFragment : FlutterSDK.Rendering.@object._SemanticsFragment
+    {
+        #region constructors
+        public _InterestingSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
+        : base(dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Rendering.@object.RenderObject> _AncestorChain { get; set; }
+        internal virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> _TagsForChildren { get; set; }
+        public virtual FlutterSDK.Rendering.@object.RenderObject Owner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool HasConfigForParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        /// <Summary>
+        /// The children to be added to the parent.
+        ///
+        /// See also:
+        ///
+        ///  * [SemanticsNode.parentSemanticsClipRect] for the source and definition
+        ///    of the `parentSemanticsClipRect` argument.
+        ///  * [SemanticsNode.parentPaintClipRect] for the source and definition
+        ///  * [SemanticsNode.elevationAdjustment] for the source and definition
+        /// </Summary>
+        public virtual Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
+        {
+            return default(Iterable<SemanticsNode>);
+        }
+
+
+        /// <Summary>
+        /// Disallows this fragment to merge any configuration into its parent's
+        /// [SemanticsNode].
+        ///
+        /// After calling this the fragment will only produce children to be added
+        /// to the parent and it will return null for [config].
+        /// </Summary>
+        public virtual void MarkAsExplicit()
+        {
+        }
+
+
+        /// <Summary>
+        /// Consume the fragments of children.
+        ///
+        /// For each provided fragment it will add that fragment's children to
+        /// this fragment's children (as returned by [compileChildren]) and merge that
+        /// fragment's [config] into this fragment's [config].
+        ///
+        /// If a provided fragment should not merge anything into [config] call
+        /// [markAsExplicit] before passing the fragment to this method.
+        /// </Summary>
+        public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+        {
+        }
+
+
+        /// <Summary>
+        /// Tag all children produced by [compileChildren] with `tags`.
+        /// </Summary>
+        public virtual void AddTags(Iterable<FlutterSDK.Semantics.Semantics.SemanticsTag> tags)
+        {
+            if (tags == null || tags.IsEmpty()) return;
+            _TagsForChildren = (_TagsForChildren == null ? new Dictionary<SemanticsTag> { } : _TagsForChildren);
+            _TagsForChildren.AddAll(tags);
+        }
+
+
+
+
+        /// <Summary>
+        /// Adds the geometric information of `ancestor` to this object.
+        ///
+        /// Those information are required to properly compute the value for
+        /// [SemanticsNode.transform], [SemanticsNode.clipRect], and
+        /// [SemanticsNode.rect].
+        ///
+        /// Ancestors have to be added in order from [owner] up until the next
+        /// [RenderObject] that owns a [SemanticsNode] is reached.
+        /// </Summary>
+        public virtual void AddAncestor(FlutterSDK.Rendering.@object.RenderObject ancestor)
+        {
+            _AncestorChain.Add(ancestor);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An [_InterestingSemanticsFragment] that produces the root [SemanticsNode] of
+    /// the semantics tree.
+    ///
+    /// The root node is available as the only element in the Iterable returned by
+    /// [children].
+    /// </Summary>
+    public class _RootSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
+    {
+        #region constructors
+        public _RootSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
+        : base(owner: owner, dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> _Children { get; set; }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
+        {
+
+
+
+
+
+            Owner._Semantics = (Owner._Semantics == null ? SemanticsNode.Root(showOnScreen: Owner.ShowOnScreen, owner: Owner.Owner.SemanticsOwner) : Owner._Semantics);
+            SemanticsNode node = Owner._Semantics;
+
+
+
+            node.Rect = Owner.SemanticBounds;
+            List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) =>
+            {
+
+                return fragment.CompileChildren(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, elevationAdjustment: 0.0);
+            }
+            ).ToList();
+            node.UpdateWith(config: null, childrenInInversePaintOrder: children);
+
+            yield return node;
+        }
+
+
+
+
+        public new void MarkAsExplicit()
+        {
+        }
+
+
+
+
+        public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+        {
+            _Children.AddAll(fragments);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// An [_InterestingSemanticsFragment] that can be told to only add explicit
+    /// [SemanticsNode]s to the parent.
+    ///
+    /// If [markAsExplicit] was not called before this fragment is added to
+    /// another fragment it will merge [config] into the parent's [SemanticsNode]
+    /// and add its [children] to it.
+    ///
+    /// If [markAsExplicit] was called before adding this fragment to another
+    /// fragment it will create a new [SemanticsNode]. The newly created node will
+    /// be annotated with the [SemanticsConfiguration] that - without the call to
+    /// [markAsExplicit] - would have been merged into the parent's [SemanticsNode].
+    /// Similarly, the new node will also take over the children that otherwise
+    /// would have been added to the parent's [SemanticsNode].
+    ///
+    /// After a call to [markAsExplicit] the only element returned by [children]
+    /// is the newly created node and [config] will return null as the fragment
+    /// no longer wants to merge any semantic information into the parent's
+    /// [SemanticsNode].
+    /// </Summary>
+    public class _SwitchableSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
+    {
+        #region constructors
+        public _SwitchableSemanticsFragment(bool mergeIntoParent = default(bool), FlutterSDK.Semantics.Semantics.SemanticsConfiguration config = default(FlutterSDK.Semantics.Semantics.SemanticsConfiguration), FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
+        : base(owner: owner, dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual bool _MergeIntoParent { get; set; }
+        internal virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration _Config { get; set; }
+        internal virtual bool _IsConfigWritable { get; set; }
+        internal virtual List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> _Children { get; set; }
+        internal virtual bool _IsExplicit { get; set; }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual bool _NeedsGeometryUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
+        {
+            if (!_IsExplicit)
+            {
+                Owner._Semantics = null;
+                foreach (_InterestingSemanticsFragment fragment in _Children)
+                {
+
+                    fragment._AncestorChain.AddAll(_AncestorChain.Sublist(1));
+                    foreach (var enumItem in (fragment.CompileChildren(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, elevationAdjustment: elevationAdjustment + _Config.Elevation))) { yield return enumItem; }
+                }
+
+                return;
+            }
+
+            _SemanticsGeometry geometry = _NeedsGeometryUpdate ? new _SemanticsGeometry(parentSemanticsClipRect: parentSemanticsClipRect, parentPaintClipRect: parentPaintClipRect, ancestors: _AncestorChain) : null;
+            if (!_MergeIntoParent && (geometry?.DropFromTree == true)) return;
+            Owner._Semantics = (Owner._Semantics == null ? new SemanticsNode(showOnScreen: Owner.ShowOnScreen) : Owner._Semantics);
+            SemanticsNode node = Owner._Semantics..IsMergedIntoParent = _MergeIntoParent..Tags = _TagsForChildren;
+            node.ElevationAdjustment = elevationAdjustment;
+            if (elevationAdjustment != 0.0)
+            {
+                _EnsureConfigIsWritable();
+                _Config.Elevation += elevationAdjustment;
+            }
+
+            if (geometry != null)
+            {
+
+                ..Rect = geometry.Rect..Transform = geometry.Transform..ParentSemanticsClipRect = geometry.SemanticsClipRect..ParentPaintClipRect = geometry.PaintClipRect;
+                if (!_MergeIntoParent && geometry.MarkAsHidden)
+                {
+                    _EnsureConfigIsWritable();
+                    _Config.IsHidden = true;
+                }
+
+            }
+
+            List<SemanticsNode> children = _Children.Expand((_InterestingSemanticsFragment fragment) => =>fragment.CompileChildren(parentSemanticsClipRect: node.ParentSemanticsClipRect, parentPaintClipRect: node.ParentPaintClipRect, elevationAdjustment: 0.0)).ToList();
+            if (_Config.IsSemanticBoundary)
+            {
+                Owner.AssembleSemanticsNode(node, _Config, children);
+            }
+            else
+            {
+                node.UpdateWith(config: _Config, childrenInInversePaintOrder: children);
+            }
+
+            yield return node;
+        }
+
+
+
+
+        public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+        {
+            foreach (_InterestingSemanticsFragment fragment in fragments)
+            {
+                _Children.Add(fragment);
+                if (fragment.Config == null) continue;
+                _EnsureConfigIsWritable();
+                _Config.Absorb(fragment.Config);
+            }
 
         }
 
-        ancestor.ApplyPaintTransform(child, transform);
-        ancestor.ApplyPaintTransform(child, clipRectTransform);
+
+
+
+        private void _EnsureConfigIsWritable()
+        {
+            if (!_IsConfigWritable)
+            {
+                _Config = _Config.Copy();
+                _IsConfigWritable = true;
+            }
+
+        }
+
+
+
+
+        public new void MarkAsExplicit()
+        {
+            _IsExplicit = true;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    private Rect _IntersectRects(FlutterBinding.UI.Rect a, FlutterBinding.UI.Rect b)
+    /// <Summary>
+    /// [_SemanticsFragment] used to indicate that the current information in this
+    /// subtree is not sufficient to update semantics.
+    ///
+    /// Anybody processing this [_SemanticsFragment] should abort the walk of the
+    /// current subtree without updating any [SemanticsNode]s as there is no semantic
+    /// information to compute. As a result, this fragment also doesn't carry any
+    /// semantics information either.
+    /// </Summary>
+    public class _AbortingSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
     {
-        if (a == null) return b;
-        if (b == null) return a;
-        return a.Intersect(b);
+        #region constructors
+        public _AbortingSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject))
+        : base(owner: owner, dropsSemanticsOfPreviousSiblings: false)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
+        {
+
+        }
+
+
+
+
+        public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
+        {
+            yield return Owner._Semantics;
+        }
+
+
+
+
+        public new void MarkAsExplicit()
+        {
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// A class that creates [DiagnosticsNode] by wrapping [RenderObject.debugCreator].
-///
-/// Attach a [DiagnosticsDebugCreator] into [FlutterErrorDetails.informationCollector]
-/// when a [RenderObject.debugCreator] is available. This will lead to improved
-/// error message.
-/// </Summary>
-public class DiagnosticsDebugCreator : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<@Object>
-{
-    #region constructors
-    public DiagnosticsDebugCreator(@Object value)
-    : base("debugCreator", value, level: DiagnosticLevel.Hidden)
+    /// <Summary>
+    /// Helper class that keeps track of the geometry of a [SemanticsNode].
+    ///
+    /// It is used to annotate a [SemanticsNode] with the current information for
+    /// [SemanticsNode.rect] and [SemanticsNode.transform].
+    /// </Summary>
+    public class _SemanticsGeometry
     {
+        #region constructors
+        public _SemanticsGeometry(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), List<FlutterSDK.Rendering.@object.RenderObject> ancestors = default(List<FlutterSDK.Rendering.@object.RenderObject>))
+        {
 
+            _ComputeValues(parentSemanticsClipRect, parentPaintClipRect, ancestors);
+        }
+
+
+        #endregion
+
+        #region fields
+        internal virtual FlutterBinding.UI.Rect _PaintClipRect { get; set; }
+        internal virtual FlutterBinding.UI.Rect _SemanticsClipRect { get; set; }
+        internal virtual Matrix4 _Transform { get; set; }
+        internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
+        internal virtual Matrix4 _TemporaryTransformHolder { get; set; }
+        internal virtual bool _MarkAsHidden { get; set; }
+        public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect SemanticsClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect PaintClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool DropFromTree { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool MarkAsHidden { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private void _ComputeValues(FlutterBinding.UI.Rect parentSemanticsClipRect, FlutterBinding.UI.Rect parentPaintClipRect, List<FlutterSDK.Rendering.@object.RenderObject> ancestors)
+        {
+
+            _Transform = Matrix4.Identity();
+            _SemanticsClipRect = parentSemanticsClipRect;
+            _PaintClipRect = parentPaintClipRect;
+            for (int index = ancestors.Count - 1; index > 0; index -= 1)
+            {
+                RenderObject parent = ancestors[index];
+                RenderObject child = ancestors[index - 1];
+                Rect parentSemanticsClipRect = parent.DescribeSemanticsClip(child);
+                if (parentSemanticsClipRect != null)
+                {
+                    _SemanticsClipRect = parentSemanticsClipRect;
+                    _PaintClipRect = _IntersectRects(_PaintClipRect, parent.DescribeApproximatePaintClip(child));
+                }
+                else
+                {
+                    _SemanticsClipRect = _IntersectRects(_SemanticsClipRect, parent.DescribeApproximatePaintClip(child));
+                }
+
+                _TemporaryTransformHolder.SetIdentity();
+                _ApplyIntermediatePaintTransforms(parent, child, _Transform, _TemporaryTransformHolder);
+                _SemanticsClipRect = _TransformRect(_SemanticsClipRect, _TemporaryTransformHolder);
+                _PaintClipRect = _TransformRect(_PaintClipRect, _TemporaryTransformHolder);
+            }
+
+            RenderObject owner = ancestors.First;
+            _Rect = _SemanticsClipRect == null ? owner.SemanticBounds : _SemanticsClipRect.Intersect(owner.SemanticBounds);
+            if (_PaintClipRect != null)
+            {
+                Rect paintRect = _PaintClipRect.Intersect(_Rect);
+                _MarkAsHidden = paintRect.IsEmpty() && !_Rect.IsEmpty();
+                if (!_MarkAsHidden) _Rect = paintRect;
+            }
+
+        }
+
+
+
+
+        /// <Summary>
+        /// From parent to child coordinate system.
+        /// </Summary>
+        private Rect _TransformRect(FlutterBinding.UI.Rect rect, Matrix4 transform)
+        {
+
+            if (rect == null) return null;
+            if (rect.IsEmpty() || transform.IsZero()) return Dart:uiDefaultClass.Rect.Zero;
+            return MatrixutilsDefaultClass.MatrixUtils.InverseTransformRect(transform, rect);
+        }
+
+
+
+
+        private void _ApplyIntermediatePaintTransforms(FlutterSDK.Rendering.@object.RenderObject ancestor, FlutterSDK.Rendering.@object.RenderObject child, Matrix4 transform, Matrix4 clipRectTransform)
+        {
+
+
+
+
+
+            RenderObject intermediateParent = child.Parent as RenderObject;
+
+            while (intermediateParent != ancestor)
+            {
+                intermediateParent.ApplyPaintTransform(child, transform);
+                intermediateParent = intermediateParent.Parent as RenderObject;
+                child = child.Parent as RenderObject;
+
+            }
+
+            ancestor.ApplyPaintTransform(child, transform);
+            ancestor.ApplyPaintTransform(child, clipRectTransform);
+        }
+
+
+
+
+        private Rect _IntersectRects(FlutterBinding.UI.Rect a, FlutterBinding.UI.Rect b)
+        {
+            if (a == null) return b;
+            if (b == null) return a;
+            return a.Intersect(b);
+        }
+
+
+
+        #endregion
     }
-    #endregion
 
-    #region fields
-    #endregion
 
-    #region methods
-    #endregion
-}
+    /// <Summary>
+    /// A class that creates [DiagnosticsNode] by wrapping [RenderObject.debugCreator].
+    ///
+    /// Attach a [DiagnosticsDebugCreator] into [FlutterErrorDetails.informationCollector]
+    /// when a [RenderObject.debugCreator] is available. This will lead to improved
+    /// error message.
+    /// </Summary>
+    public class DiagnosticsDebugCreator : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<@Object>
+    {
+        #region constructors
+        public DiagnosticsDebugCreator(@Object value)
+        : base("debugCreator", value, level: DiagnosticLevel.Hidden)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+        #endregion
+    }
 
 }

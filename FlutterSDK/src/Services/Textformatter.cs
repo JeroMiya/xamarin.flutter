@@ -428,8 +428,35 @@ namespace FlutterSDK.Services.Textformatter
     {
         internal static FlutterSDK.Services.Textinput.TextEditingValue _SelectionAwareTextManipulation(FlutterSDK.Services.Textinput.TextEditingValue value, Func<String, string> substringManipulation)
         {
-            throw new NotImplementedException();
+            int selectionStartIndex = value.Selection.Start;
+            int selectionEndIndex = value.Selection.End;
+            string manipulatedText = default(string);
+            TextSelection manipulatedSelection = default(TextSelection);
+            if (selectionStartIndex < 0 || selectionEndIndex < 0)
+            {
+                manipulatedText = substringManipulation(value.Text);
+            }
+            else
+            {
+                string beforeSelection = substringManipulation(value.Text.Substring(0, selectionStartIndex));
+                string inSelection = substringManipulation(value.Text.Substring(selectionStartIndex, selectionEndIndex));
+                string afterSelection = substringManipulation(value.Text.Substring(selectionEndIndex));
+                manipulatedText = beforeSelection + inSelection + afterSelection;
+                if (value.Selection.BaseOffset > value.Selection.ExtentOffset)
+                {
+                    manipulatedSelection = value.Selection.CopyWith(baseOffset: beforeSelection.Length + inSelection.Length, extentOffset: beforeSelection.Length);
+                }
+                else
+                {
+                    manipulatedSelection = value.Selection.CopyWith(baseOffset: beforeSelection.Length, extentOffset: beforeSelection.Length + inSelection.Length);
+                }
+
+            }
+
+            return new TextEditingValue(text: manipulatedText, selection: manipulatedSelection ?? TextSelection.Collapsed(offset: -1), composing: manipulatedText == value.Text ? value.Composing : Dart:uiDefaultClass.TextRange.Empty);
         }
+
+
 
     }
 

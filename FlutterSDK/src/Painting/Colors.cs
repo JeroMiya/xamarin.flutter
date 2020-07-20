@@ -426,13 +426,76 @@ namespace FlutterSDK.Painting.Colors
     {
         internal static double _GetHue(double red, double green, double blue, double max, double delta)
         {
-            throw new NotImplementedException();
+            double hue = default(double);
+            if (max == 0.0)
+            {
+                hue = 0.0;
+            }
+            else if (max == red)
+            {
+                hue = 60.0 * (((green - blue) / delta) % 6);
+            }
+            else if (max == green)
+            {
+                hue = 60.0 * (((blue - red) / delta) + 2);
+            }
+            else if (max == blue)
+            {
+                hue = 60.0 * (((red - green) / delta) + 4);
+            }
+
+            hue = hue.IsNaN ? 0.0 : hue;
+            return hue;
         }
+
+
 
         internal static Color _ColorFromHue(double alpha, double hue, double chroma, double secondary, double match)
         {
-            throw new NotImplementedException();
+            double red = default(double);
+            double green = default(double);
+            double blue = default(double);
+            if (hue < 60.0)
+            {
+                red = chroma;
+                green = secondary;
+                blue = 0.0;
+            }
+            else if (hue < 120.0)
+            {
+                red = secondary;
+                green = chroma;
+                blue = 0.0;
+            }
+            else if (hue < 180.0)
+            {
+                red = 0.0;
+                green = chroma;
+                blue = secondary;
+            }
+            else if (hue < 240.0)
+            {
+                red = 0.0;
+                green = secondary;
+                blue = chroma;
+            }
+            else if (hue < 300.0)
+            {
+                red = secondary;
+                green = 0.0;
+                blue = chroma;
+            }
+            else
+            {
+                red = chroma;
+                green = 0.0;
+                blue = secondary;
+            }
+
+            return Color.FromARGB((alpha * 0xFF).Round(), ((red + match) * 0xFF).Round(), ((green + match) * 0xFF).Round(), ((blue + match) * 0xFF).Round());
         }
+
+
 
     }
 

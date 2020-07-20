@@ -425,8 +425,11 @@ namespace FlutterSDK.Material.Time
     {
         internal static FlutterSDK.Material.Time.HourFormat HourFormat(FlutterSDK.Material.Time.TimeOfDayFormat of = default(FlutterSDK.Material.Time.TimeOfDayFormat))
         {
-            throw new NotImplementedException();
+            switch (of) { case TimeOfDayFormat.H_colon_mm_space_a: case TimeOfDayFormat.A_space_h_colon_mm: return HourFormat.h; case TimeOfDayFormat.H_colon_mm: return HourFormat.H; case TimeOfDayFormat.HH_dot_mm: case TimeOfDayFormat.HH_colon_mm: case TimeOfDayFormat.FrenchCanadian: return HourFormat.HH; }
+            return null;
         }
+
+
 
     }
 

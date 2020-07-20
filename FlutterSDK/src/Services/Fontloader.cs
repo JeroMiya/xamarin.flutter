@@ -479,32 +479,31 @@ namespace FlutterSDK.Services.Fontloader
         /// The returned future will complete with an error if any of the font asset
         /// futures yield an error.
         /// </Summary>
-        public virtual Future<object> Load()
-    async
-{
-if (_Loaded)throw new StateError("FontLoader is already loaded");
-        _Loaded=true ;
-Iterable<Future<void>> loadFutures = _FontFutures.Map((Future<Uint8List> f) => =>f.Then((Uint8List list) => =>LoadFont(list, Family)));
-return Dart:asyncDefaultClass.Future.Wait(loadFutures.ToList());
-}
+        public virtual async Future<object> Load()
+        {
+            if (_Loaded) throw new StateError("FontLoader is already loaded");
+            _Loaded = true;
+            Iterable<Future<void>> loadFutures = _FontFutures.Map((Future<Uint8List> f) => =>f.Then((Uint8List list) => =>LoadFont(list, Family)));
+            return Dart:asyncDefaultClass.Future.Wait(loadFutures.ToList());
+        }
 
 
 
 
-    /// <Summary>
-    /// Hook called to load a font asset into the engine.
-    ///
-    /// Subclasses may override this to replace the default loading logic with
-    /// custom logic (for example, to mock the underlying engine API in tests).
-    /// </Summary>
-    public virtual Future<object> LoadFont(Uint8List list, string family)
-    {
-        return Dart:uiDefaultClass.LoadFontFromList(list, fontFamily: family);
+        /// <Summary>
+        /// Hook called to load a font asset into the engine.
+        ///
+        /// Subclasses may override this to replace the default loading logic with
+        /// custom logic (for example, to mock the underlying engine API in tests).
+        /// </Summary>
+        public virtual Future<object> LoadFont(Uint8List list, string family)
+        {
+            return Dart:uiDefaultClass.LoadFontFromList(list, fontFamily: family);
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

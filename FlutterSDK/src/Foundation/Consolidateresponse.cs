@@ -299,58 +299,103 @@ namespace FlutterSDK.Foundation.Consolidateresponse
     {
         internal static Future<Uint8List> ConsolidateHttpClientResponseBytes(HttpResponseMessage response, bool autoUncompress = true, FlutterSDK.Foundation.Consolidateresponse.BytesReceivedCallback onBytesReceived = default(FlutterSDK.Foundation.Consolidateresponse.BytesReceivedCallback))
         {
-            throw new NotImplementedException();
-        }
 
-    }
-
-    public class _OutputBuffer : ByteConversionSinkBase
-    {
-        #region constructors
-        public _OutputBuffer()
-        { }
-        #endregion
-
-        #region fields
-        internal virtual List<List<int>> _Chunks { get; set; }
-        internal virtual int _ContentLength { get; set; }
-        internal virtual Uint8List _Bytes { get; set; }
-        public virtual Uint8List Bytes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-
-        public new void Add(List<int> chunk)
-        {
-
-            _Chunks.Add(chunk);
-            _ContentLength += chunk.Count;
-        }
-
-
-
-
-        public new void Close()
-        {
-            if (_Bytes != null)
+            Completer<Uint8List> completer = Completer<Uint8List>.Sync();
+            _OutputBuffer output = new _OutputBuffer();
+            ByteConversionSink sink = output;
+            int expectedContentLength = response.ContentLength;
+            if (expectedContentLength == -1) expectedContentLength = null;
+            switch (response.CompressionState)
             {
+                case HttpClientResponseCompressionState.Compressed:
+                    if (autoUncompress)
+                    {
+                        sink = Dart:ioDefaultClass.Gzip.Decoder.StartChunkedConversion(output);
+                    }
+                    break;
+                case HttpClientResponseCompressionState.Decompressed: expectedContentLength = null; break;
+                case HttpClientResponseCompressionState.NotCompressed: break;
+            }
+            int bytesReceived = 0;
+            StreamSubscription<List<int>> subscription = default(StreamSubscription<List<int>>);
+            subscription = response.Listen((List<int> chunk) =>
+            {
+            sink.Add(chunk);
+            if (onBytesReceived != null)
+            {
+                bytesReceived += chunk.Count;
+                try
+                {
+                    onBytesReceived(bytesReceived, expectedContentLength);
+                }
+                catch (error,stackTrace){
+                completer.CompleteError(error, stackTrace);
+                subscription.Cancel();
                 return;
             }
 
-            _Bytes = new Uint8List(_ContentLength);
-            int offset = 0;
-            foreach (List<int> chunk in _Chunks)
-            {
-                _Bytes.SetRange(offset, offset + chunk.Count, chunk);
-                offset += chunk.Count;
-            }
-
-            _Chunks = null;
         }
 
-
-
-        #endregion
     }
+, onDone:() => {
+sink.Close();
+completer.Complete(output.Bytes);
+}
+, onError: completer.CompleteError, cancelOnError: true );
+return completer.Future;
+}
+
+
+
+}
+
+public class _OutputBuffer : ByteConversionSinkBase
+{
+    #region constructors
+    public _OutputBuffer()
+    { }
+    #endregion
+
+    #region fields
+    internal virtual List<List<int>> _Chunks { get; set; }
+    internal virtual int _ContentLength { get; set; }
+    internal virtual Uint8List _Bytes { get; set; }
+    public virtual Uint8List Bytes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+    #endregion
+
+    #region methods
+
+    public new void Add(List<int> chunk)
+    {
+
+        _Chunks.Add(chunk);
+        _ContentLength += chunk.Count;
+    }
+
+
+
+
+    public new void Close()
+    {
+        if (_Bytes != null)
+        {
+            return;
+        }
+
+        _Bytes = new Uint8List(_ContentLength);
+        int offset = 0;
+        foreach (List<int> chunk in _Chunks)
+        {
+            _Bytes.SetRange(offset, offset + chunk.Count, chunk);
+            offset += chunk.Count;
+        }
+
+        _Chunks = null;
+    }
+
+
+
+    #endregion
+}
 
 }

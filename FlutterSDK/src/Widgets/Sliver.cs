@@ -429,15 +429,17 @@ namespace FlutterSDK.Widgets.Sliver
     public delegate int ChildIndexGetter(FlutterSDK.Foundation.Key.Key key);
     internal static class SliverDefaultClass
     {
-        internal static int _KDefaultSemanticIndexCallback(FlutterSDK.Widgets.Framework.Widget _, int localIndex)
-        {
-            throw new NotImplementedException();
-        }
+        internal static int _KDefaultSemanticIndexCallback(FlutterSDK.Widgets.Framework.Widget _, int localIndex) => localIndex;
+
 
         internal static FlutterSDK.Widgets.Framework.Widget _CreateErrorWidget(object exception, StackTrace stackTrace)
         {
-            throw new NotImplementedException();
+            FlutterErrorDetails details = new FlutterErrorDetails(exception: exception, stack: stackTrace, library: "widgets library", context: new ErrorDescription("building"));
+            AssertionsDefaultClass.FlutterError.ReportError(details);
+            return FrameworkDefaultClass.ErrorWidget.Builder(details);
         }
+
+
 
     }
 
@@ -1571,7 +1573,8 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
             {
                 SplayTreeMap<int, Element> newChildren = new SplayTreeMap<int, Element>();
                 Dictionary<int, double> indexToLayoutOffset = new HashMap<int, double>();
-                void ProcessElement(int index) => {
+                void ProcessElement(int index)
+                {
                     _CurrentlyUpdatingChildIndex = index;
                     if (_ChildElements[index] != null && _ChildElements[index] != newChildren[index])
                     {

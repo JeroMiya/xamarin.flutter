@@ -1858,14 +1858,16 @@ namespace FlutterSDK.Widgets.Editabletext
                 int selectionExtent = newValue.Selection.ExtentOffset;
                 int composingStart = newValue.Composing.Start;
                 int composingEnd = newValue.Composing.End;
-                void AddToLength() => {
+                void AddToLength()
+                {
                     selectionBase += outputCodepoints.Count <= selectionBase ? 1 : 0;
                     selectionExtent += outputCodepoints.Count <= selectionExtent ? 1 : 0;
                     composingStart += outputCodepoints.Count <= composingStart ? 1 : 0;
                     composingEnd += outputCodepoints.Count <= composingEnd ? 1 : 0;
                 }
 
-                void SubtractFromLength() => {
+                void SubtractFromLength()
+                {
                     selectionBase -= outputCodepoints.Count < selectionBase ? 1 : 0;
                     selectionExtent -= outputCodepoints.Count < selectionExtent ? 1 : 0;
                     composingStart -= outputCodepoints.Count < composingStart ? 1 : 0;

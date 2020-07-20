@@ -433,8 +433,11 @@ namespace FlutterSDK.Rendering.Editable
         public static double _KFloatingCaretRadius = default(double);
         internal static bool _IsWhitespace(int codeUnit)
         {
-            throw new NotImplementedException();
+            switch (codeUnit) { case 0x9: case 0xA: case 0xB: case 0xC: case 0xD: case 0x1C: case 0x1D: case 0x1E: case 0x1F: case 0x20: case 0xA0: case 0x1680: case 0x2000: case 0x2001: case 0x2002: case 0x2003: case 0x2004: case 0x2005: case 0x2006: case 0x2007: case 0x2008: case 0x2009: case 0x200A: case 0x202F: case 0x205F: case 0x3000: break; default: return false; }
+            return true;
         }
+
+
 
     }
 
@@ -699,184 +702,183 @@ namespace FlutterSDK.Rendering.Editable
             bool leftArrow = key == KeyboardkeyDefaultClass.LogicalKeyboardKey.ArrowLeft;
             bool upArrow = key == KeyboardkeyDefaultClass.LogicalKeyboardKey.ArrowUp;
             bool downArrow = key == KeyboardkeyDefaultClass.LogicalKeyboardKey.ArrowDown;
-            int PreviousNonWhitespace(int extent) => {
+            int PreviousNonWhitespace(int extent)
+            {
                 int result = Math.Dart:mathDefaultClass.Max(extent - 1, 0);
-                while (result > 0 && EditableDefaultClass._IsWhitespace(_PlainText.CodeUnitAt(result)))
-                {
-                    result -= 1;
-                }
-
-                return result;
-            }
-
-            int NextNonWhitespace(int extent) => {
-                int result = Math.Dart:mathDefaultClass.Min(extent + 1, _PlainText.Length);
-                while (result < _PlainText.Length && EditableDefaultClass._IsWhitespace(_PlainText.CodeUnitAt(result)))
-                {
-                    result += 1;
-                }
-
-                return result;
-            }
-
-            if ((rightArrow || leftArrow) && !(rightArrow && leftArrow))
+            while (result > 0 && EditableDefaultClass._IsWhitespace(_PlainText.CodeUnitAt(result)))
             {
-                if (wordModifier)
-                {
-                    if (leftArrow)
-                    {
-                        int startPoint = PreviousNonWhitespace(newSelection.ExtentOffset);
-                        TextSelection textSelection = _SelectWordAtOffset(new TextPosition(offset: startPoint));
-                        newSelection = newSelection.CopyWith(extentOffset: textSelection.BaseOffset);
-                    }
-                    else
-                    {
-                        int startPoint = NextNonWhitespace(newSelection.ExtentOffset);
-                        TextSelection textSelection = _SelectWordAtOffset(new TextPosition(offset: startPoint));
-                        newSelection = newSelection.CopyWith(extentOffset: textSelection.ExtentOffset);
-                    }
-
-                }
-                else if (lineModifier)
-                {
-                    if (leftArrow)
-                    {
-                        int startPoint = PreviousNonWhitespace(newSelection.ExtentOffset);
-                        TextSelection textSelection = _SelectLineAtOffset(new TextPosition(offset: startPoint));
-                        newSelection = newSelection.CopyWith(extentOffset: textSelection.BaseOffset);
-                    }
-                    else
-                    {
-                        int startPoint = NextNonWhitespace(newSelection.ExtentOffset);
-                        TextSelection textSelection = _SelectLineAtOffset(new TextPosition(offset: startPoint));
-                        newSelection = newSelection.CopyWith(extentOffset: textSelection.ExtentOffset);
-                    }
-
-                }
-                else
-                {
-                    if (rightArrow && newSelection.ExtentOffset < _PlainText.Length)
-                    {
-                        newSelection = newSelection.CopyWith(extentOffset: newSelection.ExtentOffset + 1);
-                        if (shift)
-                        {
-                            _CursorResetLocation += 1;
-                        }
-
-                    }
-                    else if (leftArrow && newSelection.ExtentOffset > 0)
-                    {
-                        newSelection = newSelection.CopyWith(extentOffset: newSelection.ExtentOffset - 1);
-                        if (shift)
-                        {
-                            _CursorResetLocation -= 1;
-                        }
-
-                    }
-
-                }
-
+                result -= 1;
             }
 
-            if (downArrow || upArrow)
-            {
-                double preferredLineHeight = _TextPainter.PreferredLineHeight;
-                double verticalOffset = upArrow ? -0.5 * preferredLineHeight : 1.5 * preferredLineHeight;
-                Offset caretOffset = _TextPainter.GetOffsetForCaret(new TextPosition(offset: newSelection.ExtentOffset), _CaretPrototype);
-                Offset caretOffsetTranslated = caretOffset.Translate(0.0, verticalOffset);
-                TextPosition position = _TextPainter.GetPositionForOffset(caretOffsetTranslated);
-                if (position.Offset == newSelection.ExtentOffset)
-                {
-                    if (downArrow)
-                    {
-                        newSelection = newSelection.CopyWith(extentOffset: _PlainText.Length);
-                    }
-                    else if (upArrow)
-                    {
-                        newSelection = newSelection.CopyWith(extentOffset: 0);
-                    }
-
-                    _WasSelectingVerticallyWithKeyboard = shift;
-                }
-                else if (_WasSelectingVerticallyWithKeyboard && shift)
-                {
-                    newSelection = newSelection.CopyWith(extentOffset: _CursorResetLocation);
-                    _WasSelectingVerticallyWithKeyboard = false;
-                }
-                else
-                {
-                    newSelection = newSelection.CopyWith(extentOffset: position.Offset);
-                    _CursorResetLocation = newSelection.ExtentOffset;
-                }
-
-            }
-
-            if (!shift)
-            {
-                int newOffset = newSelection.ExtentOffset;
-                if (!Selection.IsCollapsed)
-                {
-                    if (leftArrow)
-                    {
-                        newOffset = newSelection.BaseOffset < newSelection.ExtentOffset ? newSelection.BaseOffset : newSelection.ExtentOffset;
-                    }
-                    else if (rightArrow)
-                    {
-                        newOffset = newSelection.BaseOffset > newSelection.ExtentOffset ? newSelection.BaseOffset : newSelection.ExtentOffset;
-                    }
-
-                }
-
-                newSelection = TextSelection.FromPosition(new TextPosition(offset: newOffset));
-            }
-
-            TextSelectionDelegate.TextEditingValue = TextSelectionDelegate.TextEditingValue.CopyWith(selection: newSelection);
-            _HandleSelectionChange(newSelection, SelectionChangedCause.Keyboard);
+            return result;
         }
 
+        int NextNonWhitespace(int extent)
+        {
+            int result = Math.Dart:mathDefaultClass.Min(extent + 1, _PlainText.Length);
+            while (result < _PlainText.Length && EditableDefaultClass._IsWhitespace(_PlainText.CodeUnitAt(result)))
+            {
+                result += 1;
+            }
 
+            return result;
+        }
 
-
-        private Future<object> _HandleShortcuts(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key)
-    async
-{
-
-if (key==KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyC){
-if (!Selection.IsCollapsed){
-ClipboardDefaultClass.Clipboard.SetData(new ClipboardData(text:Selection.TextInside(_PlainText)));
+if ((rightArrow||leftArrow)&&!(rightArrow&&leftArrow)){
+if (wordModifier){
+if (leftArrow){
+int startPoint = PreviousNonWhitespace(newSelection.ExtentOffset);
+        TextSelection textSelection = _SelectWordAtOffset(new TextPosition(offset: startPoint));
+        newSelection=newSelection.CopyWith(extentOffset:textSelection.BaseOffset);
+}
+else {
+int startPoint = NextNonWhitespace(newSelection.ExtentOffset);
+    TextSelection textSelection = _SelectWordAtOffset(new TextPosition(offset: startPoint));
+    newSelection=newSelection.CopyWith(extentOffset:textSelection.ExtentOffset);
 }
 
-return ;
+}
+else if (lineModifier)
+{
+    if (leftArrow)
+    {
+        int startPoint = PreviousNonWhitespace(newSelection.ExtentOffset);
+        TextSelection textSelection = _SelectLineAtOffset(new TextPosition(offset: startPoint));
+        newSelection = newSelection.CopyWith(extentOffset: textSelection.BaseOffset);
+    }
+    else
+    {
+        int startPoint = NextNonWhitespace(newSelection.ExtentOffset);
+        TextSelection textSelection = _SelectLineAtOffset(new TextPosition(offset: startPoint));
+        newSelection = newSelection.CopyWith(extentOffset: textSelection.ExtentOffset);
+    }
+
+}
+else
+{
+    if (rightArrow && newSelection.ExtentOffset < _PlainText.Length)
+    {
+        newSelection = newSelection.CopyWith(extentOffset: newSelection.ExtentOffset + 1);
+        if (shift)
+        {
+            _CursorResetLocation += 1;
+        }
+
+    }
+    else if (leftArrow && newSelection.ExtentOffset > 0)
+    {
+        newSelection = newSelection.CopyWith(extentOffset: newSelection.ExtentOffset - 1);
+        if (shift)
+        {
+            _CursorResetLocation -= 1;
+        }
+
+    }
+
 }
 
-if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyX)
+}
+
+if (downArrow || upArrow)
 {
+    double preferredLineHeight = _TextPainter.PreferredLineHeight;
+    double verticalOffset = upArrow ? -0.5 * preferredLineHeight : 1.5 * preferredLineHeight;
+    Offset caretOffset = _TextPainter.GetOffsetForCaret(new TextPosition(offset: newSelection.ExtentOffset), _CaretPrototype);
+    Offset caretOffsetTranslated = caretOffset.Translate(0.0, verticalOffset);
+    TextPosition position = _TextPainter.GetPositionForOffset(caretOffsetTranslated);
+    if (position.Offset == newSelection.ExtentOffset)
+    {
+        if (downArrow)
+        {
+            newSelection = newSelection.CopyWith(extentOffset: _PlainText.Length);
+        }
+        else if (upArrow)
+        {
+            newSelection = newSelection.CopyWith(extentOffset: 0);
+        }
+
+        _WasSelectingVerticallyWithKeyboard = shift;
+    }
+    else if (_WasSelectingVerticallyWithKeyboard && shift)
+    {
+        newSelection = newSelection.CopyWith(extentOffset: _CursorResetLocation);
+        _WasSelectingVerticallyWithKeyboard = false;
+    }
+    else
+    {
+        newSelection = newSelection.CopyWith(extentOffset: position.Offset);
+        _CursorResetLocation = newSelection.ExtentOffset;
+    }
+
+}
+
+if (!shift)
+{
+    int newOffset = newSelection.ExtentOffset;
     if (!Selection.IsCollapsed)
     {
-        ClipboardDefaultClass.Clipboard.SetData(new ClipboardData(text: Selection.TextInside(_PlainText)));
-        TextSelectionDelegate.TextEditingValue = new TextEditingValue(text: Selection.TextBefore(_PlainText) + Selection.TextAfter(_PlainText), selection: TextSelection.Collapsed(offset: Selection.Start));
+        if (leftArrow)
+        {
+            newOffset = newSelection.BaseOffset < newSelection.ExtentOffset ? newSelection.BaseOffset : newSelection.ExtentOffset;
+        }
+        else if (rightArrow)
+        {
+            newOffset = newSelection.BaseOffset > newSelection.ExtentOffset ? newSelection.BaseOffset : newSelection.ExtentOffset;
+        }
+
     }
 
-    return;
+    newSelection = TextSelection.FromPosition(new TextPosition(offset: newOffset));
 }
 
-if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyV)
+TextSelectionDelegate.TextEditingValue = TextSelectionDelegate.TextEditingValue.CopyWith(selection: newSelection);
+_HandleSelectionChange(newSelection, SelectionChangedCause.Keyboard);
+}
+
+
+
+
+private async Future<object> _HandleShortcuts(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key)
 {
-    TextEditingValue value = TextSelectionDelegate.TextEditingValue;
-    ClipboardData data = await ClipboardDefaultClass.Clipboard.GetData(ClipboardDefaultClass.Clipboard.KTextPlain);
-    if (data != null)
+
+    if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyC)
     {
-        TextSelectionDelegate.TextEditingValue = new TextEditingValue(text: value.Selection.TextBefore(value.Text) + data.Text + value.Selection.TextAfter(value.Text), selection: TextSelection.Collapsed(offset: value.Selection.Start + data.Text.Length));
+        if (!Selection.IsCollapsed)
+        {
+            ClipboardDefaultClass.Clipboard.SetData(new ClipboardData(text: Selection.TextInside(_PlainText)));
+        }
+
+        return;
     }
 
-    return;
-}
+    if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyX)
+    {
+        if (!Selection.IsCollapsed)
+        {
+            ClipboardDefaultClass.Clipboard.SetData(new ClipboardData(text: Selection.TextInside(_PlainText)));
+            TextSelectionDelegate.TextEditingValue = new TextEditingValue(text: Selection.TextBefore(_PlainText) + Selection.TextAfter(_PlainText), selection: TextSelection.Collapsed(offset: Selection.Start));
+        }
 
-if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyA)
-{
-    _HandleSelectionChange(Selection.CopyWith(baseOffset: 0, extentOffset: TextSelectionDelegate.TextEditingValue.Text.Length), SelectionChangedCause.Keyboard);
-    return;
-}
+        return;
+    }
+
+    if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyV)
+    {
+        TextEditingValue value = TextSelectionDelegate.TextEditingValue;
+        ClipboardData data = await ClipboardDefaultClass.Clipboard.GetData(ClipboardDefaultClass.Clipboard.KTextPlain);
+        if (data != null)
+        {
+            TextSelectionDelegate.TextEditingValue = new TextEditingValue(text: value.Selection.TextBefore(value.Text) + data.Text + value.Selection.TextAfter(value.Text), selection: TextSelection.Collapsed(offset: value.Selection.Start + data.Text.Length));
+        }
+
+        return;
+    }
+
+    if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyA)
+    {
+        _HandleSelectionChange(Selection.CopyWith(baseOffset: 0, extentOffset: TextSelectionDelegate.TextEditingValue.Text.Length), SelectionChangedCause.Keyboard);
+        return;
+    }
 
 }
 

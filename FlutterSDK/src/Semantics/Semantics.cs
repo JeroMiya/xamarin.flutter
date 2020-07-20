@@ -431,23 +431,81 @@ namespace FlutterSDK.Semantics.Semantics
     {
         internal static void DebugResetSemanticsIdCounter()
         {
-            throw new NotImplementedException();
+            SemanticsDefaultClass.SemanticsNode._LastIdentifier = 0;
         }
+
+
 
         internal static Offset _PointInParentCoordinates(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterBinding.UI.Offset point)
         {
-            throw new NotImplementedException();
+            if (node.Transform == null)
+            {
+                return point;
+            }
+
+            Vector3 vector = Vector3(point.Dx, point.Dy, 0.0);
+            node.Transform.Transform3(vector);
+            return new Offset(vector.x, vector.y);
         }
+
+
 
         internal static List<FlutterSDK.Semantics.Semantics.SemanticsNode> _ChildrenInDefaultOrder(List<FlutterSDK.Semantics.Semantics.SemanticsNode> children, TextDirection textDirection)
         {
-            throw new NotImplementedException();
+            List<_BoxEdge> edges = new List<_BoxEdge>() { };
+            foreach (SemanticsNode child in children)
+            {
+
+                Rect childRect = child.Rect.Deflate(0.1);
+                edges.Add(new _BoxEdge(isLeadingEdge: true, offset: SemanticsDefaultClass._PointInParentCoordinates(child, childRect.TopLeft).Dy, node: child));
+                edges.Add(new _BoxEdge(isLeadingEdge: false, offset: SemanticsDefaultClass._PointInParentCoordinates(child, childRect.BottomRight).Dy, node: child));
+            }
+
+            edges.Sort();
+            List<_SemanticsSortGroup> verticalGroups = new List<_SemanticsSortGroup>() { };
+            _SemanticsSortGroup group = default(_SemanticsSortGroup);
+            int depth = 0;
+            foreach (_BoxEdge edge in edges)
+            {
+                if (edge.IsLeadingEdge)
+                {
+                    depth += 1;
+                    group = (group == null ? new _SemanticsSortGroup(startOffset: edge.Offset, textDirection: textDirection) : group);
+                    group.Nodes.Add(edge.Node);
+                }
+                else
+                {
+                    depth -= 1;
+                }
+
+                if (depth == 0)
+                {
+                    verticalGroups.Add(group);
+                    group = null;
+                }
+
+            }
+
+            verticalGroups.Sort();
+            return verticalGroups.Expand((_SemanticsSortGroup group) => =>group.SortedWithinVerticalGroup()).ToList();
         }
+
+
 
         internal static string _ConcatStrings(string thisString = default(string), string otherString = default(string), TextDirection thisTextDirection = default(TextDirection), TextDirection otherTextDirection = default(TextDirection))
         {
-            throw new NotImplementedException();
+            if (otherString.IsEmpty()) return thisString;
+            string nestedLabel = otherString;
+            if (thisTextDirection != otherTextDirection && otherTextDirection != null)
+            {
+                switch (otherTextDirection) { case TextDirection.Rtl: nestedLabel = $"'{UnicodeDefaultClass.Unicode.RLE}{nestedLabel}{UnicodeDefaultClass.Unicode.PDF}'"; break; case TextDirection.Ltr: nestedLabel = $"'{UnicodeDefaultClass.Unicode.LRE}{nestedLabel}{UnicodeDefaultClass.Unicode.PDF}'"; break; }
+            }
+
+            if (thisString.IsEmpty()) return nestedLabel;
+            return $"'{thisString}\n{nestedLabel}'";
         }
+
+
 
     }
 
@@ -1839,37 +1897,37 @@ public virtual FlutterSDK.Semantics.Semantics.SemanticsData GetSemanticsData()
         _VisitDescendants((SemanticsNode node) =>
         {
 
-            flags |= node._Flags;
-            actions |= node._ActionsAsBits;
-            textDirection = (textDirection == null ? node._TextDirection : textDirection);
-            textSelection = (textSelection == null ? node._TextSelection : textSelection);
-            scrollChildCount = (scrollChildCount == null ? node._ScrollChildCount : scrollChildCount);
-            scrollIndex = (scrollIndex == null ? node._ScrollIndex : scrollIndex);
-            scrollPosition = (scrollPosition == null ? node._ScrollPosition : scrollPosition);
-            scrollExtentMax = (scrollExtentMax == null ? node._ScrollExtentMax : scrollExtentMax);
-            scrollExtentMin = (scrollExtentMin == null ? node._ScrollExtentMin : scrollExtentMin);
-            platformViewId = (platformViewId == null ? node._PlatformViewId : platformViewId);
-            maxValueLength = (maxValueLength == null ? node._MaxValueLength : maxValueLength);
-            currentValueLength = (currentValueLength == null ? node._CurrentValueLength : currentValueLength);
-            if (value == "" || value == null) value = node._Value;
-            if (increasedValue == "" || increasedValue == null) increasedValue = node._IncreasedValue;
-            if (decreasedValue == "" || decreasedValue == null) decreasedValue = node._DecreasedValue;
-            if (node.Tags != null)
-            {
-                mergedTags = (mergedTags == null ? new Dictionary<SemanticsTag> { } : mergedTags);
-                mergedTags.AddAll(node.Tags);
-            }
+        flags |= node._Flags;
+        actions |= node._ActionsAsBits;
+        textDirection = (textDirection == null ? node._TextDirection : textDirection);
+        textSelection = (textSelection == null ? node._TextSelection : textSelection);
+        scrollChildCount = (scrollChildCount == null ? node._ScrollChildCount : scrollChildCount);
+        scrollIndex = (scrollIndex == null ? node._ScrollIndex : scrollIndex);
+        scrollPosition = (scrollPosition == null ? node._ScrollPosition : scrollPosition);
+        scrollExtentMax = (scrollExtentMax == null ? node._ScrollExtentMax : scrollExtentMax);
+        scrollExtentMin = (scrollExtentMin == null ? node._ScrollExtentMin : scrollExtentMin);
+        platformViewId = (platformViewId == null ? node._PlatformViewId : platformViewId);
+        maxValueLength = (maxValueLength == null ? node._MaxValueLength : maxValueLength);
+        currentValueLength = (currentValueLength == null ? node._CurrentValueLength : currentValueLength);
+        if (value == "" || value == null) value = node._Value;
+        if (increasedValue == "" || increasedValue == null) increasedValue = node._IncreasedValue;
+        if (decreasedValue == "" || decreasedValue == null) decreasedValue = node._DecreasedValue;
+        if (node.Tags != null)
+        {
+            mergedTags = (mergedTags == null ? new Dictionary<SemanticsTag> { } : mergedTags);
+            mergedTags.AddAll(node.Tags);
+        }
 
-            if (node._CustomSemanticsActions != null)
-            {
-                foreach (CustomSemanticsAction action in _CustomSemanticsActions.Keys) customSemanticsActionIds.Add(SemanticsDefaultClass.CustomSemanticsAction.GetIdentifier(action));
-            }
+        if (node._CustomSemanticsActions != null)
+        {
+            foreach (CustomSemanticsAction action in _CustomSemanticsActions.Keys) customSemanticsActionIds.Add(SemanticsDefaultClass.CustomSemanticsAction.GetIdentifier(action));
+        }
 
-            if (node.HintOverrides != null)
+        if (node.HintOverrides != null)
+        {
+            if (node.HintOverrides.OnTapHint != null)
             {
-                if (node.HintOverrides.OnTapHint != null)
-                {
-                    CustomSemanticsAction action = CustomSemanticsAction.OverridingAction(hint: node.HintOverrides.OnTapHint, action: Dart:uiDefaultClass.SemanticsAction.Tap);
+                CustomSemanticsAction action = CustomSemanticsAction.OverridingAction(hint: node.HintOverrides.OnTapHint, action: Dart:uiDefaultClass.SemanticsAction.Tap);
         customSemanticsActionIds.Add(SemanticsDefaultClass.CustomSemanticsAction.GetIdentifier(action));
     }
 
@@ -2346,7 +2404,8 @@ public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._Se
             return -aTopLeft.Dx.CompareTo(bTopLeft.Dx);
         }
         );
-        void Search(int id) => {
+        void Search(int id)
+        {
             if (visitedIds.Contains(id))
             {
                 return;

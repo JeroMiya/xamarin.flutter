@@ -426,13 +426,35 @@ namespace FlutterSDK.Painting.Gradient
     {
         internal static Color _Sample(List<Color> colors, List<double> stops, double t)
         {
-            throw new NotImplementedException();
+
+
+
+
+
+            if (t <= stops.First) return colors.First;
+            if (t >= stops.Last()) return colors.Last();
+            int index = stops.LastIndexWhere((double s) => =>s <= t);
+
+            return Dart:uiDefaultClass.Color.Lerp(colors[index], colors[index + 1], (t - stops[index]) / (stops[index + 1] - stops[index]));
         }
+
+
 
         internal static FlutterSDK.Painting.Gradient._ColorsAndStops _InterpolateColorsAndStops(List<Color> aColors, List<double> aStops, List<Color> bColors, List<double> bStops, double t)
         {
-            throw new NotImplementedException();
+
+
+
+
+            SplayTreeSet<double> stops = new SplayTreeSet<double>();
+            new SplayTreeSet<double>().AddAll(aStops);
+            new SplayTreeSet<double>().AddAll(bStops);
+            List<double> interpolatedStops = stops.ToList(growable: false);
+            List<Color> interpolatedColors = interpolatedStops.Map((double stop) => =>Dart: uiDefaultClass.Color.Lerp(GradientDefaultClass._Sample(aColors, aStops, stop), GradientDefaultClass._Sample(bColors, bStops, stop), t)).ToList(growable: false);
+            return new _ColorsAndStops(interpolatedColors, interpolatedStops);
         }
+
+
 
     }
 

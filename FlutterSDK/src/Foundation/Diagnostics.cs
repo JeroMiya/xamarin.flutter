@@ -310,23 +310,30 @@ namespace FlutterSDK.Foundation.Diagnostics
         public static FlutterSDK.Foundation.Diagnostics._NoDefaultValue KNoDefaultValue = default(FlutterSDK.Foundation.Diagnostics._NoDefaultValue);
         internal static bool _IsSingleLine(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style)
         {
-            throw new NotImplementedException();
+            return style == DiagnosticsTreeStyle.SingleLine;
         }
+
+
 
         internal static string ShortHash(@Object @object)
         {
-            throw new NotImplementedException();
+            return object.HashCode.ToUnsigned(20).ToRadixString(16).PadLeft(5, '0');
         }
 
-        internal static string DescribeIdentity(@Object @object)
-        {
-            throw new NotImplementedException();
-        }
+
+
+        internal static string DescribeIdentity(@Object @object) => $"'{ObjectDefaultClass.ObjectRuntimeType(object, "<optimized out>")}#{DiagnosticsDefaultClass.ShortHash(object)}'";
+
 
         internal static string DescribeEnum(@Object enumEntry)
         {
-            throw new NotImplementedException();
+            string description = enumEntry.ToString();
+            int indexOfDot = description.IndexOf('.');
+
+            return description.Substring(indexOfDot + 1);
         }
+
+
 
     }
 
@@ -1090,217 +1097,217 @@ public class _PrefixedStringBuilder
     /// used as wrap boundaries.
     /// </Summary>
     private Iterable<string> _WordWrapLine(string message, List<int> wrapRanges, int width, int startOffset = 0, int otherLineOffset = 0)
-sync
-*
-{
-if (message.Length+startOffset<width){
-yield message;
-return ;
-}
-
-int startForLengthCalculations = -startOffset;
-bool addPrefix = false;
-int index = 0;
-_WordWrapParseMode mode = _WordWrapParseMode.InSpace;
-int lastWordStart = default(int);
-int lastWordEnd = default(int);
-int start = 0;
-int currentChunk = 0;
-bool NoWrap(int index) => {
-    while (true)
     {
-        if (currentChunk >= wrapRanges.Count) return true;
-        if (index < wrapRanges[currentChunk + 1]) break;
-        currentChunk += 2;
+        if (message.Length + startOffset < width)
+        {
+            yield return message;
+            return;
+        }
+
+        int startForLengthCalculations = -startOffset;
+        bool addPrefix = false;
+        int index = 0;
+        _WordWrapParseMode mode = _WordWrapParseMode.InSpace;
+        int lastWordStart = default(int);
+        int lastWordEnd = default(int);
+        int start = 0;
+        int currentChunk = 0;
+        bool NoWrap(int index)
+        {
+            while (true)
+            {
+                if (currentChunk >= wrapRanges.Count) return true;
+                if (index < wrapRanges[currentChunk + 1]) break;
+                currentChunk += 2;
+            }
+
+            return index < wrapRanges[currentChunk];
+        }
+
+        while (true)
+        {
+            switch (mode)
+            {
+                case _WordWrapParseMode.InSpace: while ((index < message.Length) && (message[index] == ' ')) index += 1; lastWordStart = index; mode = _WordWrapParseMode.InWord; break;
+                case _WordWrapParseMode.InWord: while ((index < message.Length) && (message[index] != ' ' || NoWrap(index))) index += 1; mode = _WordWrapParseMode.AtBreak; break;
+                case _WordWrapParseMode.AtBreak:
+                    if ((index - startForLengthCalculations > width) || (index == message.Length))
+                    {
+                        if ((index - startForLengthCalculations <= width) || (lastWordEnd == null))
+                        {
+                            lastWordEnd = index;
+                        }
+
+                        string line = message.Substring(start, lastWordEnd);
+                        yield return line;
+                        addPrefix = true;
+                        if (lastWordEnd >= message.Length) return;
+                        if (lastWordEnd == index)
+                        {
+                            while ((index < message.Length) && (message[index] == ' ')) index += 1;
+                            start = index;
+                            mode = _WordWrapParseMode.InWord;
+                        }
+                        else
+                        {
+
+                            start = lastWordStart;
+                            mode = _WordWrapParseMode.AtBreak;
+                        }
+
+                        startForLengthCalculations = start - otherLineOffset;
+
+                        lastWordEnd = null;
+                    }
+                    else
+                    {
+                        lastWordEnd = index;
+                        mode = _WordWrapParseMode.InSpace;
+                    }
+                    break;
+            }
+        }
+
     }
 
-    return index < wrapRanges[currentChunk];
-}
 
-while (true)
-{
-    switch (mode)
+
+
+    /// <Summary>
+    /// Write text ensuring the specified prefixes for the first and subsequent
+    /// lines.
+    ///
+    /// If [allowWrap] is true, the text may be wrapped to stay within the
+    /// allow `wrapWidth`.
+    /// </Summary>
+    public virtual void Write(string s, bool allowWrap = false)
     {
-        case _WordWrapParseMode.InSpace: while ((index < message.Length) && (message[index] == ' ')) index += 1; lastWordStart = index; mode = _WordWrapParseMode.InWord; break;
-        case _WordWrapParseMode.InWord: while ((index < message.Length) && (message[index] != ' ' || NoWrap(index))) index += 1; mode = _WordWrapParseMode.AtBreak; break;
-        case _WordWrapParseMode.AtBreak:
-            if ((index - startForLengthCalculations > width) || (index == message.Length))
+        if (s.IsEmpty()) return;
+        List<string> lines = s.Split('\n').ToList();
+        for (int i = 0; i < lines.Count; i += 1)
+        {
+            if (i > 0)
             {
-                if ((index - startForLengthCalculations <= width) || (lastWordEnd == null))
-                {
-                    lastWordEnd = index;
-                }
-
-                string line = message.Substring(start, lastWordEnd);
-                yield line;
-                addPrefix = true;
-                if (lastWordEnd >= message.Length) return;
-                if (lastWordEnd == index)
-                {
-                    while ((index < message.Length) && (message[index] == ' ')) index += 1;
-                    start = index;
-                    mode = _WordWrapParseMode.InWord;
-                }
-                else
-                {
-
-                    start = lastWordStart;
-                    mode = _WordWrapParseMode.AtBreak;
-                }
-
-                startForLengthCalculations = start - otherLineOffset;
-
-                lastWordEnd = null;
+                _FinalizeLine(true);
+                _UpdatePrefix();
             }
-            else
+
+            string line = lines[i];
+            if (line.IsNotEmpty)
             {
-                lastWordEnd = index;
-                mode = _WordWrapParseMode.InSpace;
+                if (allowWrap && WrapWidth != null)
+                {
+                    int wrapStart = _CurrentLine.Length;
+                    int wrapEnd = wrapStart + line.Length;
+                    if (_WrappableRanges.IsNotEmpty && _WrappableRanges.Last() == wrapStart)
+                    {
+                        _WrappableRanges.Last() = wrapEnd;
+                    }
+                    else
+                    {
+                        ;
+                        _WrappableRanges.Add(wrapStart);
+                        _WrappableRanges.Add(wrapEnd);
+                    }
+
+                }
+
+                _CurrentLine.Write(line);
             }
-            break;
+
+        }
+
     }
-}
-
-}
 
 
 
 
-/// <Summary>
-/// Write text ensuring the specified prefixes for the first and subsequent
-/// lines.
-///
-/// If [allowWrap] is true, the text may be wrapped to stay within the
-/// allow `wrapWidth`.
-/// </Summary>
-public virtual void Write(string s, bool allowWrap = false)
-{
-    if (s.IsEmpty()) return;
-    List<string> lines = s.Split('\n').ToList();
-    for (int i = 0; i < lines.Count; i += 1)
+    private void _UpdatePrefix()
     {
-        if (i > 0)
+        if (_NextPrefixOtherLines != null)
+        {
+            _PrefixOtherLines = _NextPrefixOtherLines;
+            _NextPrefixOtherLines = null;
+        }
+
+    }
+
+
+
+
+    private void _WriteLine(string line, bool includeLineBreak = default(bool), bool firstLine = default(bool))
+    {
+        line = $"'{_GetCurrentPrefix(firstLine)}{line}'";
+        _Buffer.Write(line.TrimEnd());
+        if (includeLineBreak) _Buffer.Write('\n');
+        _NumLines++;
+    }
+
+
+
+
+    private string _GetCurrentPrefix(bool firstLine)
+    {
+        return _Buffer.IsEmpty() ? PrefixLineOne : (firstLine ? _PrefixOtherLines : _PrefixOtherLines);
+    }
+
+
+
+
+    /// <Summary>
+    /// Write lines assuming the lines obey the specified prefixes. Ensures that
+    /// a newline is added if one is not present.
+    /// </Summary>
+    public virtual void WriteRawLines(string lines)
+    {
+        if (lines.IsEmpty()) return;
+        if (_CurrentLine.IsNotEmpty)
         {
             _FinalizeLine(true);
-            _UpdatePrefix();
         }
 
-        string line = lines[i];
-        if (line.IsNotEmpty)
+
+        _Buffer.Write(lines);
+        if (!lines.EndsWith('\n')) _Buffer.Write('\n');
+        _NumLines++;
+        _UpdatePrefix();
+    }
+
+
+
+
+    /// <Summary>
+    /// Finishes the current line with a stretched version of text.
+    /// </Summary>
+    public virtual void WriteStretched(string text, int targetLineLength)
+    {
+        Write(text);
+        int currentLineLength = _CurrentLine.Length + _GetCurrentPrefix(_Buffer.IsEmpty()).Length;
+
+        int targetLength = targetLineLength - currentLineLength;
+        if (targetLength > 0)
         {
-            if (allowWrap && WrapWidth != null)
-            {
-                int wrapStart = _CurrentLine.Length;
-                int wrapEnd = wrapStart + line.Length;
-                if (_WrappableRanges.IsNotEmpty && _WrappableRanges.Last() == wrapStart)
-                {
-                    _WrappableRanges.Last() = wrapEnd;
-                }
-                else
-                {
-                    ;
-                    _WrappableRanges.Add(wrapStart);
-                    _WrappableRanges.Add(wrapEnd);
-                }
 
-            }
+            string lastChar = text[text.Length - 1];
 
-            _CurrentLine.Write(line);
+            _CurrentLine.Write(lastChar * targetLength);
         }
 
+        _WrappableRanges.Clear();
     }
 
-}
 
 
 
-
-private void _UpdatePrefix()
-{
-    if (_NextPrefixOtherLines != null)
+    public virtual string Build()
     {
-        _PrefixOtherLines = _NextPrefixOtherLines;
-        _NextPrefixOtherLines = null;
-    }
-
-}
-
-
-
-
-private void _WriteLine(string line, bool includeLineBreak = default(bool), bool firstLine = default(bool))
-{
-    line = $"'{_GetCurrentPrefix(firstLine)}{line}'";
-    _Buffer.Write(line.TrimEnd());
-    if (includeLineBreak) _Buffer.Write('\n');
-    _NumLines++;
-}
-
-
-
-
-private string _GetCurrentPrefix(bool firstLine)
-{
-    return _Buffer.IsEmpty() ? PrefixLineOne : (firstLine ? _PrefixOtherLines : _PrefixOtherLines);
-}
-
-
-
-
-/// <Summary>
-/// Write lines assuming the lines obey the specified prefixes. Ensures that
-/// a newline is added if one is not present.
-/// </Summary>
-public virtual void WriteRawLines(string lines)
-{
-    if (lines.IsEmpty()) return;
-    if (_CurrentLine.IsNotEmpty)
-    {
-        _FinalizeLine(true);
+        if (_CurrentLine.IsNotEmpty) _FinalizeLine(false);
+        return _Buffer.ToString();
     }
 
 
-    _Buffer.Write(lines);
-    if (!lines.EndsWith('\n')) _Buffer.Write('\n');
-    _NumLines++;
-    _UpdatePrefix();
-}
 
-
-
-
-/// <Summary>
-/// Finishes the current line with a stretched version of text.
-/// </Summary>
-public virtual void WriteStretched(string text, int targetLineLength)
-{
-    Write(text);
-    int currentLineLength = _CurrentLine.Length + _GetCurrentPrefix(_Buffer.IsEmpty()).Length;
-
-    int targetLength = targetLineLength - currentLineLength;
-    if (targetLength > 0)
-    {
-
-        string lastChar = text[text.Length - 1];
-
-        _CurrentLine.Write(lastChar * targetLength);
-    }
-
-    _WrappableRanges.Clear();
-}
-
-
-
-
-public virtual string Build()
-{
-    if (_CurrentLine.IsNotEmpty) _FinalizeLine(false);
-    return _Buffer.ToString();
-}
-
-
-
-#endregion
+    #endregion
 }
 
 
@@ -1404,7 +1411,8 @@ public class TextTreeRenderer
             int depth = 0;
             int maxLines = 25;
             int lines = 0;
-            void Visitor(DiagnosticsNode node) => {
+            void Visitor(DiagnosticsNode node)
+            {
                 foreach (DiagnosticsNode child in node.GetChildren())
                 {
                     if (lines < maxLines)
@@ -2440,21 +2448,21 @@ public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
 
 
     private Iterable<string> _FormattedValues()
-sync
-*
-{
-foreach(DictionaryEntry<string, T> entry  in Value.Entries){
-if (entry.Value!=null ){
-yield entry.Key;
-}
+    {
+        foreach (DictionaryEntry<string, T> entry in Value.Entries)
+        {
+            if (entry.Value != null)
+            {
+                yield return entry.Key;
+            }
 
-}
+        }
 
-}
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 

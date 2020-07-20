@@ -308,18 +308,37 @@ namespace FlutterSDK.Cupertino.Route
         public static FlutterSDK.Animation.Tween.Animatable<double> _DialogScaleTween = default(FlutterSDK.Animation.Tween.Animatable<double>);
         internal static Future<T> ShowCupertinoModalPopup<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), ImageFilter filter = default(ImageFilter), bool useRootNavigator = true, bool semanticsDismissible = default(bool))
         {
-            throw new NotImplementedException();
+
+            return NavigatorDefaultClass.Navigator.Of(context, rootNavigator: useRootNavigator).Push(new _CupertinoModalPopupRoute<T>(barrierColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(RouteDefaultClass._KModalBarrierColor, context), barrierLabel: "Dismiss", builder: builder, filter: filter, semanticsDismissible: semanticsDismissible));
         }
+
+
 
         internal static FlutterSDK.Widgets.Framework.Widget _BuildCupertinoDialogTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
-            throw new NotImplementedException();
+            CurvedAnimation fadeAnimation = new CurvedAnimation(parent: animation, curve: CurvesDefaultClass.Curves.EaseInOut);
+            if (animation.Status == AnimationStatus.Reverse)
+            {
+                return new FadeTransition(opacity: fadeAnimation, child: child);
+            }
+
+            return new FadeTransition(opacity: fadeAnimation, child: new ScaleTransition(child: child, scale: animation.Drive(RouteDefaultClass._DialogScaleTween)));
         }
+
+
 
         internal static Future<T> ShowCupertinoDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
-            throw new NotImplementedException();
+
+
+            return RoutesDefaultClass.ShowGeneralDialog(context: context, barrierDismissible: false, barrierColor: ColorsDefaultClass.CupertinoDynamicColor.Resolve(RouteDefaultClass._KModalBarrierColor, context), transitionDuration: new TimeSpan(milliseconds: 250), pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) =>
+            {
+                return builder(context);
+            }
+            , transitionBuilder: RouteDefaultClass._BuildCupertinoDialogTransitions, useRootNavigator: useRootNavigator, routeSettings: routeSettings);
         }
+
+
 
     }
 

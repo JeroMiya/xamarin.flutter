@@ -9,11 +9,12 @@ class Functions {
   static String printFunction(FunctionElement element) {
     var code = new StringBuffer();
     code.write("internal static ");
+    if (element.isAsynchronous) {
+      code.write('async ');
+    }
     code.write(methodSignature(element));
 
-    code.writeln("{");
     code.writeln(Implementation.functionBody(element));
-    code.writeln("}");
 
     return code.toString();
   }

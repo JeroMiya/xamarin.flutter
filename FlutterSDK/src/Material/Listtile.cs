@@ -995,780 +995,781 @@ namespace FlutterSDK.Material.Listtile
         ///  * [Divider], which you can use to obtain this effect manually.
         /// </Summary>
         public virtual Iterable<FlutterSDK.Widgets.Framework.Widget> DivideTiles(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), Iterable<FlutterSDK.Widgets.Framework.Widget> tiles = default(Iterable<FlutterSDK.Widgets.Framework.Widget>), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
-    sync
-    *
-{
-
-
-Iterator<Widget> iterator = tiles.Iterator;
-        bool isNotEmpty = iterator.MoveNext();
-        Decoration decoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, color: color)));
-        Widget tile = iterator.Current;
-while (iterator.MoveNext()){
-yield new DecoratedBox(position:DecorationPosition.Foreground, decoration:decoration, child:tile);
-        tile=iterator.Current;
-}
-
-if (isNotEmpty) yield tile;
-}
-
-
-
-
-private Color _IconColor(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
-{
-    if (!Enabled) return theme.DisabledColor;
-    if (Selected && tileTheme?.SelectedColor != null) return tileTheme.SelectedColor;
-    if (!Selected && tileTheme?.IconColor != null) return tileTheme.IconColor;
-    switch (theme.Brightness) { case Brightness.Light: return Selected ? theme.PrimaryColor : ColorsDefaultClass.Colors.Black45; case Brightness.Dark: return Selected ? theme.AccentColor : null; }
-
-    return null;
-}
-
-
-
-
-private Color _TextColor(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme, FlutterBinding.UI.Color defaultColor)
-{
-    if (!Enabled) return theme.DisabledColor;
-    if (Selected && tileTheme?.SelectedColor != null) return tileTheme.SelectedColor;
-    if (!Selected && tileTheme?.TextColor != null) return tileTheme.TextColor;
-    if (Selected)
-    {
-        switch (theme.Brightness) { case Brightness.Light: return theme.PrimaryColor; case Brightness.Dark: return theme.AccentColor; }
-    }
-
-    return defaultColor;
-}
-
-
-
-
-private bool _IsDenseLayout(FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
-{
-    return Dense ?? tileTheme?.Dense ?? false;
-}
-
-
-
-
-private FlutterSDK.Painting.Textstyle.TextStyle _TitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
-{
-    TextStyle style = default(TextStyle);
-    if (tileTheme != null)
-    {
-        switch (tileTheme.Style) { case ListTileStyle.Drawer: style = theme.TextTheme.BodyText1; break; case ListTileStyle.List: style = theme.TextTheme.Subtitle1; break; }
-    }
-    else
-    {
-        style = theme.TextTheme.Subtitle1;
-    }
-
-    Color color = _TextColor(theme, tileTheme, style.Color);
-    return _IsDenseLayout(tileTheme) ? style.CopyWith(fontSize: 13.0, color: color) : style.CopyWith(color: color);
-}
-
-
-
-
-private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
-{
-    TextStyle style = theme.TextTheme.BodyText2;
-    Color color = _TextColor(theme, tileTheme, theme.TextTheme.Caption.Color);
-    return _IsDenseLayout(tileTheme) ? style.CopyWith(color: color, fontSize: 12.0) : style.CopyWith(color: color);
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-    ListTileTheme tileTheme = ListtileDefaultClass.ListTileTheme.Of(context);
-    IconThemeData iconThemeData = default(IconThemeData);
-    if (Leading != null || Trailing != null) iconThemeData = new IconThemeData(color: _IconColor(theme, tileTheme));
-    Widget leadingIcon = default(Widget);
-    if (Leading != null)
-    {
-        leadingIcon = IconthemeDefaultClass.IconTheme.Merge(data: iconThemeData, child: Leading);
-    }
-
-    TextStyle titleStyle = _TitleTextStyle(theme, tileTheme);
-    Widget titleText = new AnimatedDefaultTextStyle(style: titleStyle, duration: ConstantsDefaultClass.KThemeChangeDuration, child: Title ?? new SizedBox());
-    Widget subtitleText = default(Widget);
-    TextStyle subtitleStyle = default(TextStyle);
-    if (Subtitle != null)
-    {
-        subtitleStyle = _SubtitleTextStyle(theme, tileTheme);
-        subtitleText = new AnimatedDefaultTextStyle(style: subtitleStyle, duration: ConstantsDefaultClass.KThemeChangeDuration, child: Subtitle);
-    }
-
-    Widget trailingIcon = default(Widget);
-    if (Trailing != null)
-    {
-        trailingIcon = IconthemeDefaultClass.IconTheme.Merge(data: iconThemeData, child: Trailing);
-    }
-
-    EdgeInsets _defaultContentPadding = EdgeInsets.Symmetric(horizontal: 16.0);
-    TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
-    EdgeInsets resolvedContentPadding = ContentPadding?.Resolve(textDirection) ?? tileTheme?.ContentPadding?.Resolve(textDirection) ?? _defaultContentPadding;
-    return new InkWell(onTap: Enabled ? OnTap : null, onLongPress: Enabled ? OnLongPress : null, canRequestFocus: Enabled, child: new Semantics(selected: Selected, enabled: Enabled, child: new SafeArea(top: false, bottom: false, minimum: resolvedContentPadding, child: new _ListTile(leading: leadingIcon, title: titleText, subtitle: subtitleText, trailing: trailingIcon, isDense: _IsDenseLayout(tileTheme), isThreeLine: IsThreeLine, textDirection: textDirection, titleBaselineType: titleStyle.TextBaseline, subtitleBaselineType: subtitleStyle?.TextBaseline))));
-}
-
-
-
-#endregion
-}
-
-
-public class _ListTile : FlutterSDK.Widgets.Framework.RenderObjectWidget
-{
-    #region constructors
-    public _ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = default(bool), bool isDense = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
-    : base(key: key)
-    {
-        this.Leading = leading;
-        this.Title = title;
-        this.Subtitle = subtitle;
-        this.Trailing = trailing;
-        this.IsThreeLine = isThreeLine;
-        this.IsDense = isDense;
-        this.TextDirection = textDirection;
-        this.TitleBaselineType = titleBaselineType;
-        this.SubtitleBaselineType = subtitleBaselineType;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
-    public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-    public virtual bool IsThreeLine { get; set; }
-    public virtual bool IsDense { get; set; }
-    public virtual TextDirection TextDirection { get; set; }
-    public virtual TextBaseline TitleBaselineType { get; set; }
-    public virtual TextBaseline SubtitleBaselineType { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Listtile._ListTileElement CreateElement() => new _ListTileElement(this);
-
-
-
-    public new FlutterSDK.Material.Listtile._RenderListTile CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new _RenderListTile(isThreeLine: IsThreeLine, isDense: IsDense, textDirection: TextDirection, titleBaselineType: TitleBaselineType, subtitleBaselineType: SubtitleBaselineType);
-    }
-
-
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Listtile._RenderListTile renderObject)
-    {
-        ..IsThreeLine = IsThreeLine..IsDense = IsDense..TextDirection = TextDirection..TitleBaselineType = TitleBaselineType..SubtitleBaselineType = SubtitleBaselineType;
-    }
-
-
-    public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        ..IsThreeLine = IsThreeLine..IsDense = IsDense..TextDirection = TextDirection..TitleBaselineType = TitleBaselineType..SubtitleBaselineType = SubtitleBaselineType;
-    }
-
-
-
-    #endregion
-}
-
-
-public class _ListTileElement : FlutterSDK.Widgets.Framework.RenderObjectElement
-{
-    #region constructors
-    public _ListTileElement(FlutterSDK.Material.Listtile._ListTile widget)
-    : base(widget)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Widgets.Framework.Element> SlotToChild { get; set; }
-    public virtual Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
-    public virtual FlutterSDK.Material.Listtile._ListTile Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Material.Listtile._RenderListTile RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
-    {
-        SlotToChild.Values.ForEach(visitor);
-    }
-
-
-
-
-    public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
-    {
-
-
-        _ListTileSlot slot = ChildToSlot[child];
-        ChildToSlot.Remove(child);
-        SlotToChild.Remove(slot);
-        base.ForgetChild(child);
-    }
-
-
-
-
-    private void _MountChild(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Material.Listtile._ListTileSlot slot)
-    {
-        Element oldChild = SlotToChild[slot];
-        Element newChild = UpdateChild(oldChild, widget, slot);
-        if (oldChild != null)
-        {
-            SlotToChild.Remove(slot);
-            ChildToSlot.Remove(oldChild);
-        }
-
-        if (newChild != null)
-        {
-            SlotToChild[slot] = newChild;
-            ChildToSlot[newChild] = slot;
-        }
-
-    }
-
-
-
-
-    public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
-    {
-        base.Mount(parent, newSlot);
-        _MountChild(Widget.Leading, _ListTileSlot.Leading);
-        _MountChild(Widget.Title, _ListTileSlot.Title);
-        _MountChild(Widget.Subtitle, _ListTileSlot.Subtitle);
-        _MountChild(Widget.Trailing, _ListTileSlot.Trailing);
-    }
-
-
-
-
-    private void _UpdateChild(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Material.Listtile._ListTileSlot slot)
-    {
-        Element oldChild = SlotToChild[slot];
-        Element newChild = UpdateChild(oldChild, widget, slot);
-        if (oldChild != null)
-        {
-            ChildToSlot.Remove(oldChild);
-            SlotToChild.Remove(slot);
-        }
-
-        if (newChild != null)
-        {
-            SlotToChild[slot] = newChild;
-            ChildToSlot[newChild] = slot;
-        }
-
-    }
-
-
-
-
-    public new void Update(FlutterSDK.Material.Listtile._ListTile newWidget)
-    {
-        base.Update(newWidget);
-
-        _UpdateChild(Widget.Leading, _ListTileSlot.Leading);
-        _UpdateChild(Widget.Title, _ListTileSlot.Title);
-        _UpdateChild(Widget.Subtitle, _ListTileSlot.Subtitle);
-        _UpdateChild(Widget.Trailing, _ListTileSlot.Trailing);
-    }
-
-
-    public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
-    {
-        base.Update(newWidget);
-
-        _UpdateChild(Widget.Leading, _ListTileSlot.Leading);
-        _UpdateChild(Widget.Title, _ListTileSlot.Title);
-        _UpdateChild(Widget.Subtitle, _ListTileSlot.Subtitle);
-        _UpdateChild(Widget.Trailing, _ListTileSlot.Trailing);
-    }
-
-
-
-
-    private void _UpdateRenderObject(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Material.Listtile._ListTileSlot slot)
-    {
-        switch (slot) { case _ListTileSlot.Leading: RenderObject.Leading = child; break; case _ListTileSlot.Title: RenderObject.Title = child; break; case _ListTileSlot.Subtitle: RenderObject.Subtitle = child; break; case _ListTileSlot.Trailing: RenderObject.Trailing = child; break; }
-    }
-
-
-
-
-    public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slotValue)
-    {
-
-
-        _ListTileSlot slot = slotValue as _ListTileSlot;
-        _UpdateRenderObject(child as RenderBox, slot);
-
-
-    }
-
-
-
-
-    public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
-    {
-
-
-        _UpdateRenderObject(null, RenderObject.ChildToSlot[child]);
-
-
-    }
-
-
-
-
-    public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slotValue)
-    {
-
-    }
-
-
-
-    #endregion
-}
-
-
-public class _RenderListTile : FlutterSDK.Rendering.Box.RenderBox
-{
-    #region constructors
-    public _RenderListTile(bool isDense = default(bool), bool isThreeLine = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
-    : base()
-    {
-
-    }
-    #endregion
-
-    #region fields
-    internal virtual double _MinLeadingWidth { get; set; }
-    internal virtual double _HorizontalTitleGap { get; set; }
-    internal virtual double _MinVerticalPadding { get; set; }
-    public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Rendering.Box.RenderBox> SlotToChild { get; set; }
-    public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
-    internal virtual FlutterSDK.Rendering.Box.RenderBox _Leading { get; set; }
-    internal virtual FlutterSDK.Rendering.Box.RenderBox _Title { get; set; }
-    internal virtual FlutterSDK.Rendering.Box.RenderBox _Subtitle { get; set; }
-    internal virtual FlutterSDK.Rendering.Box.RenderBox _Trailing { get; set; }
-    internal virtual bool _IsDense { get; set; }
-    internal virtual bool _IsThreeLine { get; set; }
-    internal virtual TextDirection _TextDirection { get; set; }
-    internal virtual TextBaseline _TitleBaselineType { get; set; }
-    internal virtual TextBaseline _SubtitleBaselineType { get; set; }
-    public virtual FlutterSDK.Rendering.Box.RenderBox Leading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Box.RenderBox Title { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Box.RenderBox Subtitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual FlutterSDK.Rendering.Box.RenderBox Trailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> _Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsDense { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool IsThreeLine { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual TextBaseline TitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual TextBaseline SubtitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    internal virtual double _DefaultTileHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild, FlutterSDK.Rendering.Box.RenderBox newChild, FlutterSDK.Material.Listtile._ListTileSlot slot)
-    {
-        if (oldChild != null)
-        {
-            DropChild(oldChild);
-            ChildToSlot.Remove(oldChild);
-            SlotToChild.Remove(slot);
-        }
-
-        if (newChild != null)
-        {
-            ChildToSlot[newChild] = slot;
-            SlotToChild[slot] = newChild;
-            AdoptChild(newChild);
-        }
-
-        return newChild;
-    }
-
-
-
-
-    public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
-    {
-        base.Attach(owner);
-        foreach (RenderBox child in _Children) child.Attach(owner);
-    }
-
-
-    public new void Attach(@Object owner)
-    {
-        base.Attach(owner);
-        foreach (RenderBox child in _Children) child.Attach(owner);
-    }
-
-
-
-
-    public new void Detach()
-    {
-        base.Detach();
-        foreach (RenderBox child in _Children) child.Detach();
-    }
-
-
-
-
-    public new void RedepthChildren()
-    {
-        _Children.ForEach(RedepthChild);
-    }
-
-
-
-
-    public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
-    {
-        _Children.ForEach(visitor);
-    }
-
-
-
-
-    public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
-    {
-        List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
-        void Add(RenderBox child, string name) => {
-            if (child != null) value.Add(child.ToDiagnosticsNode(name: name));
-        }
-
-        Add(Leading, "leading");
-        Add(Title, "title");
-        Add(Subtitle, "subtitle");
-        Add(Trailing, "trailing");
-        return value;
-    }
-
-
-
-
-    private double _MinWidth(FlutterSDK.Rendering.Box.RenderBox box, double height)
-    {
-        return box == null ? 0.0 : box.GetMinIntrinsicWidth(height);
-    }
-
-
-
-
-    private double _MaxWidth(FlutterSDK.Rendering.Box.RenderBox box, double height)
-    {
-        return box == null ? 0.0 : box.GetMaxIntrinsicWidth(height);
-    }
-
-
-
-
-    public new double ComputeMinIntrinsicWidth(double height)
-    {
-        double leadingWidth = Leading != null ? Math.Dart : mathDefaultClass.Max(Leading.GetMinIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap:0.0;
-        return leadingWidth + Math.Dart:mathDefaultClass.Max(_MinWidth(Title, height), _MinWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
-    }
-
-
-
-
-    public new double ComputeMaxIntrinsicWidth(double height)
-    {
-        double leadingWidth = Leading != null ? Math.Dart : mathDefaultClass.Max(Leading.GetMaxIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap:0.0;
-        return leadingWidth + Math.Dart:mathDefaultClass.Max(_MaxWidth(Title, height), _MaxWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
-    }
-
-
-
-
-    public new double ComputeMinIntrinsicHeight(double width)
-    {
-        return Math.Dart:mathDefaultClass.Max(_DefaultTileHeight, Title.GetMinIntrinsicHeight(width) + (Subtitle?.GetMinIntrinsicHeight(width) ?? 0.0));
-    }
-
-
-
-
-    public new double ComputeMaxIntrinsicHeight(double width)
-    {
-        return ComputeMinIntrinsicHeight(width);
-    }
-
-
-
-
-    public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
-    {
-
-        BoxParentData parentData = Title.ParentData as BoxParentData;
-        return parentData.Offset.Dy + Title.GetDistanceToActualBaseline(baseline);
-    }
-
-
-
-
-    private double _BoxBaseline(FlutterSDK.Rendering.Box.RenderBox box, TextBaseline baseline)
-    {
-        return box.GetDistanceToBaseline(baseline);
-    }
-
-
-
-
-    private Size _LayoutBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterSDK.Rendering.Box.BoxConstraints constraints)
-    {
-        if (box == null) return Dart:uiDefaultClass.Size.Zero;
-        box.Layout(constraints, parentUsesSize: true);
-        return box.Size;
-    }
-
-
-
-
-    private void _PositionBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterBinding.UI.Offset offset)
-    {
-        BoxParentData parentData = box.ParentData as BoxParentData;
-        parentData.Offset = offset;
-    }
-
-
-
-
-    public new void PerformLayout()
-    {
-        BoxConstraints constraints = this.Constraints;
-        bool hasLeading = Leading != null;
-        bool hasSubtitle = Subtitle != null;
-        bool hasTrailing = Trailing != null;
-        bool isTwoLine = !IsThreeLine && hasSubtitle;
-        bool isOneLine = !IsThreeLine && !hasSubtitle;
-        BoxConstraints maxIconHeightConstraint = new BoxConstraints(maxHeight: IsDense ? 48.0 : 56.0);
-        BoxConstraints looseConstraints = constraints.Loosen();
-        BoxConstraints iconConstraints = looseConstraints.Enforce(maxIconHeightConstraint);
-        double tileWidth = looseConstraints.MaxWidth;
-        Size leadingSize = _LayoutBox(Leading, iconConstraints);
-        Size trailingSize = _LayoutBox(Trailing, iconConstraints);
-
-
-        double titleStart = hasLeading ? Math.Dart : mathDefaultClass.Max(_MinLeadingWidth, leadingSize.Width) + _HorizontalTitleGap:0.0;
-        BoxConstraints textConstraints = looseConstraints.Tighten(width: tileWidth - titleStart - (hasTrailing ? trailingSize.Width + _HorizontalTitleGap : 0.0));
-        Size titleSize = _LayoutBox(Title, textConstraints);
-        Size subtitleSize = _LayoutBox(Subtitle, textConstraints);
-        double titleBaseline = default(double);
-        double subtitleBaseline = default(double);
-        if (isTwoLine)
-        {
-            titleBaseline = IsDense ? 28.0 : 32.0;
-            subtitleBaseline = IsDense ? 48.0 : 52.0;
-        }
-        else if (IsThreeLine)
-        {
-            titleBaseline = IsDense ? 22.0 : 28.0;
-            subtitleBaseline = IsDense ? 42.0 : 48.0;
-        }
-        else
         {
 
-        }
 
-        double defaultTileHeight = _DefaultTileHeight;
-        double tileHeight = default(double);
-        double titleY = default(double);
-        double subtitleY = default(double);
-        if (!hasSubtitle)
-        {
-            tileHeight = Math.Dart:mathDefaultClass.Max(defaultTileHeight, titleSize.Height + 2.0 * _MinVerticalPadding);
-            titleY = (tileHeight - titleSize.Height) / 2.0;
-        }
-        else
-        {
-
-            titleY = titleBaseline - _BoxBaseline(Title, TitleBaselineType);
-            subtitleY = subtitleBaseline - _BoxBaseline(Subtitle, SubtitleBaselineType);
-            tileHeight = defaultTileHeight;
-            double titleOverlap = titleY + titleSize.Height - subtitleY;
-            if (titleOverlap > 0.0)
+            Iterator<Widget> iterator = tiles.Iterator;
+            bool isNotEmpty = iterator.MoveNext();
+            Decoration decoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, color: color)));
+            Widget tile = iterator.Current;
+            while (iterator.MoveNext())
             {
-                titleY -= titleOverlap / 2.0;
-                subtitleY += titleOverlap / 2.0;
+                yield return new DecoratedBox(position: DecorationPosition.Foreground, decoration: decoration, child: tile);
+                tile = iterator.Current;
             }
 
-            if (titleY < _MinVerticalPadding || (subtitleY + subtitleSize.Height + _MinVerticalPadding) > tileHeight)
+            if (isNotEmpty) yield return tile;
+        }
+
+
+
+
+        private Color _IconColor(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
+        {
+            if (!Enabled) return theme.DisabledColor;
+            if (Selected && tileTheme?.SelectedColor != null) return tileTheme.SelectedColor;
+            if (!Selected && tileTheme?.IconColor != null) return tileTheme.IconColor;
+            switch (theme.Brightness) { case Brightness.Light: return Selected ? theme.PrimaryColor : ColorsDefaultClass.Colors.Black45; case Brightness.Dark: return Selected ? theme.AccentColor : null; }
+
+            return null;
+        }
+
+
+
+
+        private Color _TextColor(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme, FlutterBinding.UI.Color defaultColor)
+        {
+            if (!Enabled) return theme.DisabledColor;
+            if (Selected && tileTheme?.SelectedColor != null) return tileTheme.SelectedColor;
+            if (!Selected && tileTheme?.TextColor != null) return tileTheme.TextColor;
+            if (Selected)
             {
-                tileHeight = titleSize.Height + subtitleSize.Height + 2.0 * _MinVerticalPadding;
-                titleY = _MinVerticalPadding;
-                subtitleY = titleSize.Height + _MinVerticalPadding;
+                switch (theme.Brightness) { case Brightness.Light: return theme.PrimaryColor; case Brightness.Dark: return theme.AccentColor; }
+            }
+
+            return defaultColor;
+        }
+
+
+
+
+        private bool _IsDenseLayout(FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
+        {
+            return Dense ?? tileTheme?.Dense ?? false;
+        }
+
+
+
+
+        private FlutterSDK.Painting.Textstyle.TextStyle _TitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
+        {
+            TextStyle style = default(TextStyle);
+            if (tileTheme != null)
+            {
+                switch (tileTheme.Style) { case ListTileStyle.Drawer: style = theme.TextTheme.BodyText1; break; case ListTileStyle.List: style = theme.TextTheme.Subtitle1; break; }
+            }
+            else
+            {
+                style = theme.TextTheme.Subtitle1;
+            }
+
+            Color color = _TextColor(theme, tileTheme, style.Color);
+            return _IsDenseLayout(tileTheme) ? style.CopyWith(fontSize: 13.0, color: color) : style.CopyWith(color: color);
+        }
+
+
+
+
+        private FlutterSDK.Painting.Textstyle.TextStyle _SubtitleTextStyle(FlutterSDK.Material.Themedata.ThemeData theme, FlutterSDK.Material.Listtile.ListTileTheme tileTheme)
+        {
+            TextStyle style = theme.TextTheme.BodyText2;
+            Color color = _TextColor(theme, tileTheme, theme.TextTheme.Caption.Color);
+            return _IsDenseLayout(tileTheme) ? style.CopyWith(color: color, fontSize: 12.0) : style.CopyWith(color: color);
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            ListTileTheme tileTheme = ListtileDefaultClass.ListTileTheme.Of(context);
+            IconThemeData iconThemeData = default(IconThemeData);
+            if (Leading != null || Trailing != null) iconThemeData = new IconThemeData(color: _IconColor(theme, tileTheme));
+            Widget leadingIcon = default(Widget);
+            if (Leading != null)
+            {
+                leadingIcon = IconthemeDefaultClass.IconTheme.Merge(data: iconThemeData, child: Leading);
+            }
+
+            TextStyle titleStyle = _TitleTextStyle(theme, tileTheme);
+            Widget titleText = new AnimatedDefaultTextStyle(style: titleStyle, duration: ConstantsDefaultClass.KThemeChangeDuration, child: Title ?? new SizedBox());
+            Widget subtitleText = default(Widget);
+            TextStyle subtitleStyle = default(TextStyle);
+            if (Subtitle != null)
+            {
+                subtitleStyle = _SubtitleTextStyle(theme, tileTheme);
+                subtitleText = new AnimatedDefaultTextStyle(style: subtitleStyle, duration: ConstantsDefaultClass.KThemeChangeDuration, child: Subtitle);
+            }
+
+            Widget trailingIcon = default(Widget);
+            if (Trailing != null)
+            {
+                trailingIcon = IconthemeDefaultClass.IconTheme.Merge(data: iconThemeData, child: Trailing);
+            }
+
+            EdgeInsets _defaultContentPadding = EdgeInsets.Symmetric(horizontal: 16.0);
+            TextDirection textDirection = BasicDefaultClass.Directionality.Of(context);
+            EdgeInsets resolvedContentPadding = ContentPadding?.Resolve(textDirection) ?? tileTheme?.ContentPadding?.Resolve(textDirection) ?? _defaultContentPadding;
+            return new InkWell(onTap: Enabled ? OnTap : null, onLongPress: Enabled ? OnLongPress : null, canRequestFocus: Enabled, child: new Semantics(selected: Selected, enabled: Enabled, child: new SafeArea(top: false, bottom: false, minimum: resolvedContentPadding, child: new _ListTile(leading: leadingIcon, title: titleText, subtitle: subtitleText, trailing: trailingIcon, isDense: _IsDenseLayout(tileTheme), isThreeLine: IsThreeLine, textDirection: textDirection, titleBaselineType: titleStyle.TextBaseline, subtitleBaselineType: subtitleStyle?.TextBaseline))));
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ListTile : FlutterSDK.Widgets.Framework.RenderObjectWidget
+    {
+        #region constructors
+        public _ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = default(bool), bool isDense = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
+        : base(key: key)
+        {
+            this.Leading = leading;
+            this.Title = title;
+            this.Subtitle = subtitle;
+            this.Trailing = trailing;
+            this.IsThreeLine = isThreeLine;
+            this.IsDense = isDense;
+            this.TextDirection = textDirection;
+            this.TitleBaselineType = titleBaselineType;
+            this.SubtitleBaselineType = subtitleBaselineType;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
+        public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
+        public virtual bool IsThreeLine { get; set; }
+        public virtual bool IsDense { get; set; }
+        public virtual TextDirection TextDirection { get; set; }
+        public virtual TextBaseline TitleBaselineType { get; set; }
+        public virtual TextBaseline SubtitleBaselineType { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Listtile._ListTileElement CreateElement() => new _ListTileElement(this);
+
+
+
+        public new FlutterSDK.Material.Listtile._RenderListTile CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new _RenderListTile(isThreeLine: IsThreeLine, isDense: IsDense, textDirection: TextDirection, titleBaselineType: TitleBaselineType, subtitleBaselineType: SubtitleBaselineType);
+        }
+
+
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Material.Listtile._RenderListTile renderObject)
+        {
+            ..IsThreeLine = IsThreeLine..IsDense = IsDense..TextDirection = TextDirection..TitleBaselineType = TitleBaselineType..SubtitleBaselineType = SubtitleBaselineType;
+        }
+
+
+        public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            ..IsThreeLine = IsThreeLine..IsDense = IsDense..TextDirection = TextDirection..TitleBaselineType = TitleBaselineType..SubtitleBaselineType = SubtitleBaselineType;
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _ListTileElement : FlutterSDK.Widgets.Framework.RenderObjectElement
+    {
+        #region constructors
+        public _ListTileElement(FlutterSDK.Material.Listtile._ListTile widget)
+        : base(widget)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Widgets.Framework.Element> SlotToChild { get; set; }
+        public virtual Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
+        public virtual FlutterSDK.Material.Listtile._ListTile Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Material.Listtile._RenderListTile RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+        {
+            SlotToChild.Values.ForEach(visitor);
+        }
+
+
+
+
+        public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+        {
+
+
+            _ListTileSlot slot = ChildToSlot[child];
+            ChildToSlot.Remove(child);
+            SlotToChild.Remove(slot);
+            base.ForgetChild(child);
+        }
+
+
+
+
+        private void _MountChild(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Material.Listtile._ListTileSlot slot)
+        {
+            Element oldChild = SlotToChild[slot];
+            Element newChild = UpdateChild(oldChild, widget, slot);
+            if (oldChild != null)
+            {
+                SlotToChild.Remove(slot);
+                ChildToSlot.Remove(oldChild);
+            }
+
+            if (newChild != null)
+            {
+                SlotToChild[slot] = newChild;
+                ChildToSlot[newChild] = slot;
             }
 
         }
 
-        double leadingY = default(double);
-        double trailingY = default(double);
-        if (tileHeight > 72.0)
-        {
-            leadingY = 16.0;
-            trailingY = 16.0;
-        }
-        else
-        {
-            leadingY = Math.Dart:mathDefaultClass.Min((tileHeight - leadingSize.Height) / 2.0, 16.0);
-            trailingY = (tileHeight - trailingSize.Height) / 2.0;
-        }
-
-        switch (TextDirection)
-        {
-            case TextDirection.Rtl:
-                {
-                    if (hasLeading) _PositionBox(Leading, new Offset(tileWidth - leadingSize.Width, leadingY));
-                    double titleX = hasTrailing ? trailingSize.Width + _HorizontalTitleGap : 0.0;
-                    _PositionBox(Title, new Offset(titleX, titleY));
-                    if (hasSubtitle) _PositionBox(Subtitle, new Offset(titleX, subtitleY));
-                    if (hasTrailing) _PositionBox(Trailing, new Offset(0.0, trailingY));
-                    break;
-                }
-            case TextDirection.Ltr:
-                {
-                    if (hasLeading) _PositionBox(Leading, new Offset(0.0, leadingY));
-                    _PositionBox(Title, new Offset(titleStart, titleY));
-                    if (hasSubtitle) _PositionBox(Subtitle, new Offset(titleStart, subtitleY));
-                    if (hasTrailing) _PositionBox(Trailing, new Offset(tileWidth - trailingSize.Width, trailingY));
-                    break;
-                }
-        }
-        Size = constraints.Constrain(new Size(tileWidth, tileHeight));
 
 
+
+        public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
+        {
+            base.Mount(parent, newSlot);
+            _MountChild(Widget.Leading, _ListTileSlot.Leading);
+            _MountChild(Widget.Title, _ListTileSlot.Title);
+            _MountChild(Widget.Subtitle, _ListTileSlot.Subtitle);
+            _MountChild(Widget.Trailing, _ListTileSlot.Trailing);
+        }
+
+
+
+
+        private void _UpdateChild(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Material.Listtile._ListTileSlot slot)
+        {
+            Element oldChild = SlotToChild[slot];
+            Element newChild = UpdateChild(oldChild, widget, slot);
+            if (oldChild != null)
+            {
+                ChildToSlot.Remove(oldChild);
+                SlotToChild.Remove(slot);
+            }
+
+            if (newChild != null)
+            {
+                SlotToChild[slot] = newChild;
+                ChildToSlot[newChild] = slot;
+            }
+
+        }
+
+
+
+
+        public new void Update(FlutterSDK.Material.Listtile._ListTile newWidget)
+        {
+            base.Update(newWidget);
+
+            _UpdateChild(Widget.Leading, _ListTileSlot.Leading);
+            _UpdateChild(Widget.Title, _ListTileSlot.Title);
+            _UpdateChild(Widget.Subtitle, _ListTileSlot.Subtitle);
+            _UpdateChild(Widget.Trailing, _ListTileSlot.Trailing);
+        }
+
+
+        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
+        {
+            base.Update(newWidget);
+
+            _UpdateChild(Widget.Leading, _ListTileSlot.Leading);
+            _UpdateChild(Widget.Title, _ListTileSlot.Title);
+            _UpdateChild(Widget.Subtitle, _ListTileSlot.Subtitle);
+            _UpdateChild(Widget.Trailing, _ListTileSlot.Trailing);
+        }
+
+
+
+
+        private void _UpdateRenderObject(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Material.Listtile._ListTileSlot slot)
+        {
+            switch (slot) { case _ListTileSlot.Leading: RenderObject.Leading = child; break; case _ListTileSlot.Title: RenderObject.Title = child; break; case _ListTileSlot.Subtitle: RenderObject.Subtitle = child; break; case _ListTileSlot.Trailing: RenderObject.Trailing = child; break; }
+        }
+
+
+
+
+        public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slotValue)
+        {
+
+
+            _ListTileSlot slot = slotValue as _ListTileSlot;
+            _UpdateRenderObject(child as RenderBox, slot);
+
+
+        }
+
+
+
+
+        public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child)
+        {
+
+
+            _UpdateRenderObject(null, RenderObject.ChildToSlot[child]);
+
+
+        }
+
+
+
+
+        public new void MoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slotValue)
+        {
+
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+    public class _RenderListTile : FlutterSDK.Rendering.Box.RenderBox
     {
-        void DoPaint(RenderBox child) => {
-            if (child != null)
+        #region constructors
+        public _RenderListTile(bool isDense = default(bool), bool isThreeLine = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
+        : base()
+        {
+
+        }
+        #endregion
+
+        #region fields
+        internal virtual double _MinLeadingWidth { get; set; }
+        internal virtual double _HorizontalTitleGap { get; set; }
+        internal virtual double _MinVerticalPadding { get; set; }
+        public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Rendering.Box.RenderBox> SlotToChild { get; set; }
+        public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Leading { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Title { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Subtitle { get; set; }
+        internal virtual FlutterSDK.Rendering.Box.RenderBox _Trailing { get; set; }
+        internal virtual bool _IsDense { get; set; }
+        internal virtual bool _IsThreeLine { get; set; }
+        internal virtual TextDirection _TextDirection { get; set; }
+        internal virtual TextBaseline _TitleBaselineType { get; set; }
+        internal virtual TextBaseline _SubtitleBaselineType { get; set; }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Leading { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Title { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Subtitle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual FlutterSDK.Rendering.Box.RenderBox Trailing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> _Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsDense { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool IsThreeLine { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextBaseline TitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual TextBaseline SubtitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        internal virtual double _DefaultTileHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild, FlutterSDK.Rendering.Box.RenderBox newChild, FlutterSDK.Material.Listtile._ListTileSlot slot)
+        {
+            if (oldChild != null)
+            {
+                DropChild(oldChild);
+                ChildToSlot.Remove(oldChild);
+                SlotToChild.Remove(slot);
+            }
+
+            if (newChild != null)
+            {
+                ChildToSlot[newChild] = slot;
+                SlotToChild[slot] = newChild;
+                AdoptChild(newChild);
+            }
+
+            return newChild;
+        }
+
+
+
+
+        public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
+        {
+            base.Attach(owner);
+            foreach (RenderBox child in _Children) child.Attach(owner);
+        }
+
+
+        public new void Attach(@Object owner)
+        {
+            base.Attach(owner);
+            foreach (RenderBox child in _Children) child.Attach(owner);
+        }
+
+
+
+
+        public new void Detach()
+        {
+            base.Detach();
+            foreach (RenderBox child in _Children) child.Detach();
+        }
+
+
+
+
+        public new void RedepthChildren()
+        {
+            _Children.ForEach(RedepthChild);
+        }
+
+
+
+
+        public new void VisitChildren(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
+        {
+            _Children.ForEach(visitor);
+        }
+
+
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+        {
+            List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
+            void Add(RenderBox child, string name)
+            {
+                if (child != null) value.Add(child.ToDiagnosticsNode(name: name));
+            }
+
+            Add(Leading, "leading");
+            Add(Title, "title");
+            Add(Subtitle, "subtitle");
+            Add(Trailing, "trailing");
+            return value;
+        }
+
+
+
+
+        private double _MinWidth(FlutterSDK.Rendering.Box.RenderBox box, double height)
+        {
+            return box == null ? 0.0 : box.GetMinIntrinsicWidth(height);
+        }
+
+
+
+
+        private double _MaxWidth(FlutterSDK.Rendering.Box.RenderBox box, double height)
+        {
+            return box == null ? 0.0 : box.GetMaxIntrinsicWidth(height);
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicWidth(double height)
+        {
+            double leadingWidth = Leading != null ? Math.Dart : mathDefaultClass.Max(Leading.GetMinIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap:0.0;
+            return leadingWidth + Math.Dart:mathDefaultClass.Max(_MinWidth(Title, height), _MinWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicWidth(double height)
+        {
+            double leadingWidth = Leading != null ? Math.Dart : mathDefaultClass.Max(Leading.GetMaxIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap:0.0;
+            return leadingWidth + Math.Dart:mathDefaultClass.Max(_MaxWidth(Title, height), _MaxWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
+        }
+
+
+
+
+        public new double ComputeMinIntrinsicHeight(double width)
+        {
+            return Math.Dart:mathDefaultClass.Max(_DefaultTileHeight, Title.GetMinIntrinsicHeight(width) + (Subtitle?.GetMinIntrinsicHeight(width) ?? 0.0));
+        }
+
+
+
+
+        public new double ComputeMaxIntrinsicHeight(double width)
+        {
+            return ComputeMinIntrinsicHeight(width);
+        }
+
+
+
+
+        public new double ComputeDistanceToActualBaseline(TextBaseline baseline)
+        {
+
+            BoxParentData parentData = Title.ParentData as BoxParentData;
+            return parentData.Offset.Dy + Title.GetDistanceToActualBaseline(baseline);
+        }
+
+
+
+
+        private double _BoxBaseline(FlutterSDK.Rendering.Box.RenderBox box, TextBaseline baseline)
+        {
+            return box.GetDistanceToBaseline(baseline);
+        }
+
+
+
+
+        private Size _LayoutBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterSDK.Rendering.Box.BoxConstraints constraints)
+        {
+            if (box == null) return Dart:uiDefaultClass.Size.Zero;
+            box.Layout(constraints, parentUsesSize: true);
+            return box.Size;
+        }
+
+
+
+
+        private void _PositionBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterBinding.UI.Offset offset)
+        {
+            BoxParentData parentData = box.ParentData as BoxParentData;
+            parentData.Offset = offset;
+        }
+
+
+
+
+        public new void PerformLayout()
+        {
+            BoxConstraints constraints = this.Constraints;
+            bool hasLeading = Leading != null;
+            bool hasSubtitle = Subtitle != null;
+            bool hasTrailing = Trailing != null;
+            bool isTwoLine = !IsThreeLine && hasSubtitle;
+            bool isOneLine = !IsThreeLine && !hasSubtitle;
+            BoxConstraints maxIconHeightConstraint = new BoxConstraints(maxHeight: IsDense ? 48.0 : 56.0);
+            BoxConstraints looseConstraints = constraints.Loosen();
+            BoxConstraints iconConstraints = looseConstraints.Enforce(maxIconHeightConstraint);
+            double tileWidth = looseConstraints.MaxWidth;
+            Size leadingSize = _LayoutBox(Leading, iconConstraints);
+            Size trailingSize = _LayoutBox(Trailing, iconConstraints);
+
+
+            double titleStart = hasLeading ? Math.Dart : mathDefaultClass.Max(_MinLeadingWidth, leadingSize.Width) + _HorizontalTitleGap:0.0;
+            BoxConstraints textConstraints = looseConstraints.Tighten(width: tileWidth - titleStart - (hasTrailing ? trailingSize.Width + _HorizontalTitleGap : 0.0));
+            Size titleSize = _LayoutBox(Title, textConstraints);
+            Size subtitleSize = _LayoutBox(Subtitle, textConstraints);
+            double titleBaseline = default(double);
+            double subtitleBaseline = default(double);
+            if (isTwoLine)
+            {
+                titleBaseline = IsDense ? 28.0 : 32.0;
+                subtitleBaseline = IsDense ? 48.0 : 52.0;
+            }
+            else if (IsThreeLine)
+            {
+                titleBaseline = IsDense ? 22.0 : 28.0;
+                subtitleBaseline = IsDense ? 42.0 : 48.0;
+            }
+            else
+            {
+
+            }
+
+            double defaultTileHeight = _DefaultTileHeight;
+            double tileHeight = default(double);
+            double titleY = default(double);
+            double subtitleY = default(double);
+            if (!hasSubtitle)
+            {
+                tileHeight = Math.Dart:mathDefaultClass.Max(defaultTileHeight, titleSize.Height + 2.0 * _MinVerticalPadding);
+                titleY = (tileHeight - titleSize.Height) / 2.0;
+            }
+            else
+            {
+
+                titleY = titleBaseline - _BoxBaseline(Title, TitleBaselineType);
+                subtitleY = subtitleBaseline - _BoxBaseline(Subtitle, SubtitleBaselineType);
+                tileHeight = defaultTileHeight;
+                double titleOverlap = titleY + titleSize.Height - subtitleY;
+                if (titleOverlap > 0.0)
+                {
+                    titleY -= titleOverlap / 2.0;
+                    subtitleY += titleOverlap / 2.0;
+                }
+
+                if (titleY < _MinVerticalPadding || (subtitleY + subtitleSize.Height + _MinVerticalPadding) > tileHeight)
+                {
+                    tileHeight = titleSize.Height + subtitleSize.Height + 2.0 * _MinVerticalPadding;
+                    titleY = _MinVerticalPadding;
+                    subtitleY = titleSize.Height + _MinVerticalPadding;
+                }
+
+            }
+
+            double leadingY = default(double);
+            double trailingY = default(double);
+            if (tileHeight > 72.0)
+            {
+                leadingY = 16.0;
+                trailingY = 16.0;
+            }
+            else
+            {
+                leadingY = Math.Dart:mathDefaultClass.Min((tileHeight - leadingSize.Height) / 2.0, 16.0);
+                trailingY = (tileHeight - trailingSize.Height) / 2.0;
+            }
+
+            switch (TextDirection)
+            {
+                case TextDirection.Rtl:
+                    {
+                        if (hasLeading) _PositionBox(Leading, new Offset(tileWidth - leadingSize.Width, leadingY));
+                        double titleX = hasTrailing ? trailingSize.Width + _HorizontalTitleGap : 0.0;
+                        _PositionBox(Title, new Offset(titleX, titleY));
+                        if (hasSubtitle) _PositionBox(Subtitle, new Offset(titleX, subtitleY));
+                        if (hasTrailing) _PositionBox(Trailing, new Offset(0.0, trailingY));
+                        break;
+                    }
+                case TextDirection.Ltr:
+                    {
+                        if (hasLeading) _PositionBox(Leading, new Offset(0.0, leadingY));
+                        _PositionBox(Title, new Offset(titleStart, titleY));
+                        if (hasSubtitle) _PositionBox(Subtitle, new Offset(titleStart, subtitleY));
+                        if (hasTrailing) _PositionBox(Trailing, new Offset(tileWidth - trailingSize.Width, trailingY));
+                        break;
+                    }
+            }
+            Size = constraints.Constrain(new Size(tileWidth, tileHeight));
+
+
+        }
+
+
+
+
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
+        {
+            void DoPaint(RenderBox child)
+            {
+                if (child != null)
+                {
+                    BoxParentData parentData = child.ParentData as BoxParentData;
+                    context.PaintChild(child, parentData.Offset + offset);
+                }
+
+            }
+
+            DoPaint(Leading);
+            DoPaint(Title);
+            DoPaint(Subtitle);
+            DoPaint(Trailing);
+        }
+
+
+
+
+        public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
+
+
+
+        public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+        {
+
+            foreach (RenderBox child in _Children)
             {
                 BoxParentData parentData = child.ParentData as BoxParentData;
-                context.PaintChild(child, parentData.Offset + offset);
+                bool isHit = result.AddWithPaintOffset(offset: parentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
+                {
+
+                    return child.HitTest(result, position: transformed);
+                }
+                );
+                if (isHit) return true;
             }
 
+            return false;
         }
 
-        DoPaint(Leading);
-        DoPaint(Title);
-        DoPaint(Subtitle);
-        DoPaint(Trailing);
+
+
+        #endregion
     }
 
 
-
-
-    public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
-
-
-
-    public new bool HitTestChildren(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
+    /// <Summary>
+    /// Defines the title font used for [ListTile] descendants of a [ListTileTheme].
+    ///
+    /// List tiles that appear in a [Drawer] use the theme's [TextTheme.bodyText1]
+    /// text style, which is a little smaller than the theme's [TextTheme.subtitle1]
+    /// text style, which is used by default.
+    /// </Summary>
+    public enum ListTileStyle
     {
 
-        foreach (RenderBox child in _Children)
-        {
-            BoxParentData parentData = child.ParentData as BoxParentData;
-            bool isHit = result.AddWithPaintOffset(offset: parentData.Offset, position: position, hitTest: (BoxHitTestResult result, Offset transformed) =>
-            {
-
-                return child.HitTest(result, position: transformed);
-            }
-            );
-            if (isHit) return true;
-        }
-
-        return false;
+        /// <Summary>
+        /// Use a title font that's appropriate for a [ListTile] in a list.
+        /// </Summary>
+        List,
+        /// <Summary>
+        /// Use a title font that's appropriate for a [ListTile] that appears in a [Drawer].
+        /// </Summary>
+        Drawer,
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Defines the title font used for [ListTile] descendants of a [ListTileTheme].
-///
-/// List tiles that appear in a [Drawer] use the theme's [TextTheme.bodyText1]
-/// text style, which is a little smaller than the theme's [TextTheme.subtitle1]
-/// text style, which is used by default.
-/// </Summary>
-public enum ListTileStyle
-{
-
     /// <Summary>
-    /// Use a title font that's appropriate for a [ListTile] in a list.
+    /// Where to place the control in widgets that use [ListTile] to position a
+    /// control next to a label.
+    ///
+    /// See also:
+    ///
+    ///  * [CheckboxListTile], which combines a [ListTile] with a [Checkbox].
+    ///  * [RadioListTile], which combines a [ListTile] with a [Radio] button.
     /// </Summary>
-    List,
-    /// <Summary>
-    /// Use a title font that's appropriate for a [ListTile] that appears in a [Drawer].
-    /// </Summary>
-    Drawer,
-}
+    public enum ListTileControlAffinity
+    {
+
+        /// <Summary>
+        /// Position the control on the leading edge, and the secondary widget, if
+        /// any, on the trailing edge.
+        /// </Summary>
+        Leading,
+        /// <Summary>
+        /// Position the control on the trailing edge, and the secondary widget, if
+        /// any, on the leading edge.
+        /// </Summary>
+        Trailing,
+        /// <Summary>
+        /// Position the control relative to the text in the fashion that is typical
+        /// for the current platform, and place the secondary widget on the opposite
+        /// side.
+        /// </Summary>
+        Platform,
+    }
 
 
-/// <Summary>
-/// Where to place the control in widgets that use [ListTile] to position a
-/// control next to a label.
-///
-/// See also:
-///
-///  * [CheckboxListTile], which combines a [ListTile] with a [Checkbox].
-///  * [RadioListTile], which combines a [ListTile] with a [Radio] button.
-/// </Summary>
-public enum ListTileControlAffinity
-{
+    public enum _ListTileSlot
+    {
 
-    /// <Summary>
-    /// Position the control on the leading edge, and the secondary widget, if
-    /// any, on the trailing edge.
-    /// </Summary>
-    Leading,
-    /// <Summary>
-    /// Position the control on the trailing edge, and the secondary widget, if
-    /// any, on the leading edge.
-    /// </Summary>
-    Trailing,
-    /// <Summary>
-    /// Position the control relative to the text in the fashion that is typical
-    /// for the current platform, and place the secondary widget on the opposite
-    /// side.
-    /// </Summary>
-    Platform,
-}
-
-
-public enum _ListTileSlot
-{
-
-    Leading,
-    Title,
-    Subtitle,
-    Trailing,
-}
+        Leading,
+        Title,
+        Subtitle,
+        Trailing,
+    }
 
 }

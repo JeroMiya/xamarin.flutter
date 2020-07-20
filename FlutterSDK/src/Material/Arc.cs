@@ -360,8 +360,23 @@ namespace FlutterSDK.Material.Arc
         public static List<FlutterSDK.Material.Arc._Diagonal> _AllDiagonals = default(List<FlutterSDK.Material.Arc._Diagonal>);
         internal static T _MaxBy<T>(Iterable<T> input, FlutterSDK.Material.Arc._KeyFunc<T> keyFunc)
         {
-            throw new NotImplementedException();
+            T maxValue = default(T);
+            double maxKey = default(double);
+            foreach (T value in input)
+            {
+                double key = keyFunc(value);
+                if (maxKey == null || key > maxKey)
+                {
+                    maxValue = value;
+                    maxKey = key;
+                }
+
+            }
+
+            return maxValue;
         }
+
+
 
     }
 
@@ -418,7 +433,7 @@ namespace FlutterSDK.Material.Arc
             double deltaY = delta.Dy.Abs();
             double distanceFromAtoB = delta.Distance;
             Offset c = new Offset(End.Dx, Begin.Dy);
-            double SweepAngle() => =>2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
+            double SweepAngle() => 2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
             if (deltaX > ArcDefaultClass._KOnAxisDelta && deltaY > ArcDefaultClass._KOnAxisDelta)
             {
                 if (deltaX < deltaY)

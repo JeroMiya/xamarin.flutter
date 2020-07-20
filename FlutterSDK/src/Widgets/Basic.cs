@@ -428,8 +428,11 @@ namespace FlutterSDK.Widgets.Basic
     {
         internal static FlutterSDK.Painting.Basictypes.AxisDirection GetAxisDirectionFromAxisReverseAndDirectionality(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Painting.Basictypes.Axis axis, bool reverse)
         {
-            throw new NotImplementedException();
+            switch (axis) { case Axis.Horizontal: TextDirection textDirection = BasicDefaultClass.Directionality.Of(context); AxisDirection axisDirection = BasictypesDefaultClass.TextDirectionToAxisDirection(textDirection); return reverse ? BasictypesDefaultClass.FlipAxisDirection(axisDirection) : axisDirection; case Axis.Vertical: return reverse ? AxisDirection.Up : AxisDirection.Down; }
+            return null;
         }
+
+
 
     }
 
