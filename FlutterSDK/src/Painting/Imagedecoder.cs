@@ -424,7 +424,7 @@ namespace FlutterSDK.Painting.Imagedecoder
 {
     internal static class ImagedecoderDefaultClass
     {
-        internal static Future<Image> DecodeImageFromList(Uint8List bytes)
+        internal static async Future<Image> DecodeImageFromList(Uint8List bytes)
         {
             throw new NotImplementedException();
         }

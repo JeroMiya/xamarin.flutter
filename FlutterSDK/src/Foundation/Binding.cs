@@ -296,7 +296,7 @@ namespace FlutterSDK.Foundation.Binding
     public delegate Future<Dictionary<string, object>> ServiceExtensionCallback(Dictionary<string, string> parameters);
     internal static class BindingDefaultClass
     {
-        internal static Future<object> _ExitApplication()
+        internal static async Future<object> _ExitApplication()
         {
             throw new NotImplementedException();
         }

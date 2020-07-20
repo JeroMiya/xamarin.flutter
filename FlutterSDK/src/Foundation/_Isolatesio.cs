@@ -298,12 +298,12 @@ namespace FlutterSDK.Foundation._Isolatesio
 {
     internal static class _IsolatesioDefaultClass
     {
-        internal static Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
+        internal static async Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
         {
             throw new NotImplementedException();
         }
 
-        internal static Future<object> _Spawn<Q, R>(FlutterSDK.Foundation._Isolatesio._IsolateConfiguration<Q, FutureOr<R>> configuration)
+        internal static async Future<object> _Spawn<Q, R>(FlutterSDK.Foundation._Isolatesio._IsolateConfiguration<Q, FutureOr<R>> configuration)
         {
             throw new NotImplementedException();
         }

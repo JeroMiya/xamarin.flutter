@@ -298,7 +298,7 @@ namespace FlutterSDK.Foundation._Isolatesweb
 {
     internal static class _IsolateswebDefaultClass
     {
-        internal static Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
+        internal static async Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
         {
             throw new NotImplementedException();
         }
