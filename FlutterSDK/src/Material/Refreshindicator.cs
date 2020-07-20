@@ -660,7 +660,7 @@ namespace FlutterSDK.Material.Refreshindicator
 
 
 
-        private Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode)
+        private async Future<object> _Dismiss(FlutterSDK.Material.Refreshindicator._RefreshIndicatorMode newMode)
         {
             await Future<void>.Value();
 

@@ -1106,7 +1106,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        public virtual Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        public virtual async Future<object> AnimateTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         {
             DrivenScrollActivity outerActivity = _OuterPosition.CreateDrivenScrollActivity(NestOffset(to, _OuterPosition), duration, curve);
             List<Future<void>> resultFutures = new List<Future<void>>() { outerActivity.Done };

@@ -464,7 +464,7 @@ namespace FlutterSDK.Services.Systemnavigator
         /// method, as the latter may cause the underlying platform to act
         /// as if the application had crashed.
         /// </Summary>
-        public virtual Future<object> Pop(bool animated = default(bool))
+        public virtual async Future<object> Pop(bool animated = default(bool))
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemNavigator.pop", animated);
         }

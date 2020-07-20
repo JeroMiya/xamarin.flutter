@@ -449,7 +449,7 @@ namespace FlutterSDK.Services.Systemsound
         /// Play the specified system sound. If that sound is not present on the
         /// system, the call is ignored.
         /// </Summary>
-        public virtual Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type)
+        public virtual async Future<object> Play(FlutterSDK.Services.Systemsound.SystemSoundType type)
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemSound.play", type.ToString());
         }

@@ -749,7 +749,7 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
         ///
         /// The `duration` and `curve` arguments must not be null.
         /// </Summary>
-        public virtual Future<object> AnimateToItem(int itemIndex, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
+        public virtual async Future<object> AnimateToItem(int itemIndex, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         {
             if (!HasClients)
             {

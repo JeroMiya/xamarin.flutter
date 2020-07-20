@@ -474,7 +474,7 @@ namespace FlutterSDK.Painting._Networkimageio
 
 
 
-        private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageio.NetworkImage key, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+        private async Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageio.NetworkImage key, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
         {
             try
             {

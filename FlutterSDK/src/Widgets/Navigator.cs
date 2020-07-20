@@ -940,7 +940,7 @@ namespace FlutterSDK.Widgets.Navigator
         ///  * [WillPopScope], another widget that provides a way to intercept the
         ///    back button.
         /// </Summary>
-        public virtual Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
+        public virtual async Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
         {
             return IsFirst ? RoutePopDisposition.Bubble : RoutePopDisposition.Pop;
         }
@@ -3854,7 +3854,7 @@ namespace FlutterSDK.Widgets.Navigator
         ///  * [ModalRoute], which provides a `scopedWillPopCallback` that can be used
         ///    to define the route's `willPop` method.
         /// </Summary>
-        public virtual Future<bool> MaybePop<T>(T result = default(T))
+        public virtual async Future<bool> MaybePop<T>(T result = default(T))
         {
             _RouteEntry lastEntry = _History.LastWhere(NavigatorDefaultClass._RouteEntry.IsPresentPredicate, orElse: () => =>null);
             if (lastEntry == null) return false;

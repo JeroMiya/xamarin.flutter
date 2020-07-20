@@ -567,7 +567,7 @@ namespace FlutterSDK.Services.Systemchrome
         /// Should you decide to opt out of multitasking you can do this by
         /// setting "Requires full screen" to true in the Xcode Deployment Info.
         /// </Summary>
-        public virtual Future<object> SetPreferredOrientations(List<FlutterSDK.Services.Systemchrome.DeviceOrientation> orientations)
+        public virtual async Future<object> SetPreferredOrientations(List<FlutterSDK.Services.Systemchrome.DeviceOrientation> orientations)
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setPreferredOrientations", SystemchromeDefaultClass._Stringify(orientations));
         }
@@ -582,7 +582,7 @@ namespace FlutterSDK.Services.Systemchrome
         /// Any part of the description that is unsupported on the current platform
         /// will be ignored.
         /// </Summary>
-        public virtual Future<object> SetApplicationSwitcherDescription(FlutterSDK.Services.Systemchrome.ApplicationSwitcherDescription description)
+        public virtual async Future<object> SetApplicationSwitcherDescription(FlutterSDK.Services.Systemchrome.ApplicationSwitcherDescription description)
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setApplicationSwitcherDescription", new Dictionary<string, object> { { "label", description.Label }{ "primaryColor", description.PrimaryColor } });
         }
@@ -614,7 +614,7 @@ namespace FlutterSDK.Services.Systemchrome
         /// or calling this again. Otherwise, the original UI overlay settings will be
         /// automatically restored only when the application loses and regains focus.
         /// </Summary>
-        public virtual Future<object> SetEnabledSystemUIOverlays(List<FlutterSDK.Services.Systemchrome.SystemUiOverlay> overlays)
+        public virtual async Future<object> SetEnabledSystemUIOverlays(List<FlutterSDK.Services.Systemchrome.SystemUiOverlay> overlays)
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setEnabledSystemUIOverlays", SystemchromeDefaultClass._Stringify(overlays));
         }
@@ -633,7 +633,7 @@ namespace FlutterSDK.Services.Systemchrome
         /// On Android, the system UI cannot be changed until 1 second after the previous
         /// change. This is to prevent malware from permanently hiding navigation buttons.
         /// </Summary>
-        public virtual Future<object> RestoreSystemUIOverlays()
+        public virtual async Future<object> RestoreSystemUIOverlays()
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.restoreSystemUIOverlays", null);
         }

@@ -478,7 +478,7 @@ namespace FlutterSDK.Services.Assetbundle
         /// it's set to true either, that depends on the asset bundle
         /// implementation.)
         /// </Summary>
-        public virtual Future<string> LoadString(string key, bool cache = true)
+        public virtual async Future<string> LoadString(string key, bool cache = true)
         {
             ByteData data = await Load(key);
             if (data == null) throw new FlutterError($"'Unable to load asset: {key}'");
@@ -575,7 +575,7 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        public new Future<ByteData> Load(string key)
+        public new async Future<ByteData> Load(string key)
         {
             HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
             HttpResponseMessage response = await request.Close();
@@ -594,7 +594,7 @@ namespace FlutterSDK.Services.Assetbundle
         /// The result is not cached. The parser is run each time the resource is
         /// fetched.
         /// </Summary>
-        public new Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
+        public new async Future<T> LoadStructuredData<T>(string key, Func<Future<T>, string> parser)
         {
 
 
@@ -711,7 +711,7 @@ namespace FlutterSDK.Services.Assetbundle
 
         #region methods
 
-        public new Future<ByteData> Load(string key)
+        public new async Future<ByteData> Load(string key)
         {
             Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart:coreDefaultClass.Uri.EncodeFull(key)).Path);
             ByteData asset = await BinarymessengerDefaultClass.DefaultBinaryMessenger.Send("flutter/assets", encoded.Buffer.AsByteData());

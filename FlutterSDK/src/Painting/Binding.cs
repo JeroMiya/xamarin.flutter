@@ -495,7 +495,7 @@ namespace FlutterSDK.Painting.Binding
 
 
 
-        public new Future<object> HandleSystemMessage(@Object systemMessage)
+        public new async Future<object> HandleSystemMessage(@Object systemMessage)
         {
             await base.HandleSystemMessage(systemMessage);
             Dictionary<string, object> message = systemMessage as Dictionary<string, object>;

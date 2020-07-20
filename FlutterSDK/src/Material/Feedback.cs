@@ -481,7 +481,7 @@ namespace FlutterSDK.Material.Feedback
         ///  * [wrapForTap] to trigger platform-specific feedback before executing a
         ///    [GestureTapCallback].
         /// </Summary>
-        public virtual Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context)
+        public virtual async Future<object> ForTap(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             context.FindRenderObject().SendSemanticsEvent(new TapSemanticEvent());
             switch (_Platform(context)) { case TargetPlatform.Android: case TargetPlatform.Fuchsia: return SystemsoundDefaultClass.SystemSound.Play(SystemSoundType.Click); case TargetPlatform.IOS: case TargetPlatform.Linux: case TargetPlatform.MacOS: case TargetPlatform.Windows: return Future<void>.Value(); break; }

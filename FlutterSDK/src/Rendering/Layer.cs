@@ -1664,7 +1664,7 @@ public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     ///  * [RenderRepaintBoundary.toImage] for a similar API at the render object level.
     ///  * [dart:ui.Scene.toImage] for more information about the image returned.
     /// </Summary>
-    public virtual Future<SKImage> ToImage(FlutterBinding.UI.Rect bounds, double pixelRatio = 1.0)
+    public virtual async Future<SKImage> ToImage(FlutterBinding.UI.Rect bounds, double pixelRatio = 1.0)
     {
 
 

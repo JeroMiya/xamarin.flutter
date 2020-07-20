@@ -459,7 +459,7 @@ namespace FlutterSDK.Semantics.Semanticsservice
         /// For example a camera application can use this method to make accessibility
         /// announcements regarding objects in the viewfinder.
         /// </Summary>
-        public virtual Future<object> Announce(string message, TextDirection textDirection)
+        public virtual async Future<object> Announce(string message, TextDirection textDirection)
         {
             AnnounceSemanticsEvent @event = new AnnounceSemanticsEvent(message, textDirection);
             await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());
@@ -474,7 +474,7 @@ namespace FlutterSDK.Semantics.Semanticsservice
         /// Currently only honored on Android. The contents of [message] will be
         /// read by TalkBack.
         /// </Summary>
-        public virtual Future<object> Tooltip(string message)
+        public virtual async Future<object> Tooltip(string message)
         {
             TooltipSemanticsEvent @event = new TooltipSemanticsEvent(message);
             await SystemchannelsDefaultClass.SystemChannels.Accessibility.Send(@event.ToMap());

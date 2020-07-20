@@ -666,7 +666,7 @@ params.OnPlatformViewCreated(params.Id);
 
         #region methods
 
-        private Future<object> _Initialize()
+        private async Future<object> _Initialize()
         {
             Dictionary<string, object> args = new Dictionary<string, object> { { "id", ViewId }{ "viewType", ViewType } };
             await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("create", args);
@@ -961,7 +961,7 @@ params.OnPlatformViewCreated(params.Id);
 
 
 
-        private Future<object> _CreateNewUiKitView()
+        private async Future<object> _CreateNewUiKitView()
         {
             int id = PlatformviewsDefaultClass.PlatformViewsRegistry.GetNextPlatformViewId();
             UiKitViewController controller = await PlatformviewsDefaultClass.PlatformViewsService.InitUiKitView(id: id, viewType: Widget.ViewType, layoutDirection: _LayoutDirection, creationParams: Widget.CreationParams, creationParamsCodec: Widget.CreationParamsCodec);

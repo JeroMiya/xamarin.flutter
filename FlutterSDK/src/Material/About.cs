@@ -591,7 +591,7 @@ NavigatorDefaultClass.Navigator.Pop(context);
 
 
 
-        private Future<object> _InitLicenses()
+        private async Future<object> _InitLicenses()
         {
             int debugFlowId = -1;
 

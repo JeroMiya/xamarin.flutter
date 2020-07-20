@@ -628,7 +628,7 @@ public new void InitServiceExtensions()
 
 
 
-        private Future<string> _HandleLifecycleMessage(string message)
+        private async Future<string> _HandleLifecycleMessage(string message)
         {
             HandleAppLifecycleStateChanged(_ParseAppLifecycleMessage(message));
             return null;

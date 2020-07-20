@@ -1035,7 +1035,7 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        private Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
+        private async Future<object> _HandleTextInputInvocation(FlutterSDK.Services.Messagecodec.MethodCall methodCall)
         {
             if (_CurrentConnection == null) return;
             string method = methodCall.Method;

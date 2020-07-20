@@ -561,7 +561,7 @@ namespace FlutterSDK.Painting.Shaderwarmup
         /// Construct an offscreen image of [size], and execute [warmUpOnCanvas] on a
         /// canvas associated with that image.
         /// </Summary>
-        public virtual Future<object> Execute()
+        public virtual async Future<object> Execute()
         {
             Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
             Ui.Dart:uiDefaultClass.Canvas canvas = new Ui.Canvas(recorder);
@@ -608,7 +608,7 @@ namespace FlutterSDK.Painting.Shaderwarmup
         /// Trigger common draw operations on a canvas to warm up GPU shader
         /// compilation cache.
         /// </Summary>
-        public new Future<object> WarmUpOnCanvas(Canvas canvas)
+        public new async Future<object> WarmUpOnCanvas(Canvas canvas)
         {
             Ui.Dart:uiDefaultClass.RRect rrect = Ui.Dart:uiDefaultClass.RRect.FromLTRBXY(20.0, 20.0, 60.0, 60.0, 10.0, 10.0);
             Ui.Dart:uiDefaultClass.Path rrectPath = new Ui.Path();

@@ -628,7 +628,7 @@ namespace FlutterSDK.Widgets.App
 
 
 
-        public new Future<bool> DidPopRoute()
+        public new async Future<bool> DidPopRoute()
         {
 
             NavigatorState navigator = _Navigator?.CurrentState;
@@ -639,7 +639,7 @@ namespace FlutterSDK.Widgets.App
 
 
 
-        public new Future<bool> DidPushRoute(string route)
+        public new async Future<bool> DidPushRoute(string route)
         {
 
             NavigatorState navigator = _Navigator?.CurrentState;

@@ -479,7 +479,7 @@ namespace FlutterSDK.Services.Fontloader
         /// The returned future will complete with an error if any of the font asset
         /// futures yield an error.
         /// </Summary>
-        public virtual Future<object> Load()
+        public virtual async Future<object> Load()
         {
             if (_Loaded) throw new StateError("FontLoader is already loaded");
             _Loaded = true;

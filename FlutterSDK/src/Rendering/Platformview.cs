@@ -657,7 +657,7 @@ namespace FlutterSDK.Rendering.Platformview
 
 
 
-        private Future<object> _SizePlatformView()
+        private async Future<object> _SizePlatformView()
         {
             if (_State == _PlatformViewState.Resizing || Size.IsEmpty())
             {

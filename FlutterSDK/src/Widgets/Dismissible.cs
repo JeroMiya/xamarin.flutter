@@ -693,7 +693,7 @@ namespace FlutterSDK.Widgets.Dismissible
 
 
 
-        private Future<object> _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+        private async Future<object> _HandleDragEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
         {
             if (!_IsActive || _MoveController.IsAnimating) return;
             _DragUnderway = false;
@@ -734,7 +734,7 @@ namespace FlutterSDK.Widgets.Dismissible
 
 
 
-        private Future<object> _HandleDismissStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
+        private async Future<object> _HandleDismissStatusChanged(FlutterSDK.Animation.Animation.AnimationStatus status)
         {
             if (status == AnimationStatus.Completed && !_DragUnderway)
             {
@@ -747,7 +747,7 @@ namespace FlutterSDK.Widgets.Dismissible
 
 
 
-        private Future<bool> _ConfirmStartResizeAnimation()
+        private async Future<bool> _ConfirmStartResizeAnimation()
         {
             if (Widget.ConfirmDismiss != null)
             {

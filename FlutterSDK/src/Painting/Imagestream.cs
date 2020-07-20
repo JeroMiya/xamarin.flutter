@@ -1119,7 +1119,7 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        private Future<object> _DecodeNextFrameAndSchedule()
+        private async Future<object> _DecodeNextFrameAndSchedule()
         {
             try
             {

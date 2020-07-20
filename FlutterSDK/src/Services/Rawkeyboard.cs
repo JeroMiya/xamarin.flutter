@@ -764,7 +764,7 @@ namespace FlutterSDK.Services.Rawkeyboard
 
 
 
-        private Future<object> _HandleKeyEvent(object message)
+        private async Future<object> _HandleKeyEvent(object message)
         {
             RawKeyEvent @event = RawKeyEvent.FromMessage(message as Dictionary<string, object>);
             if (@event == null)

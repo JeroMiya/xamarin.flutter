@@ -714,7 +714,7 @@ namespace FlutterSDK.Widgets.Binding
         /// This method exposes the `popRoute` notification from
         /// [SystemChannels.navigation].
         /// </Summary>
-        public virtual Future<object> HandlePopRoute()
+        public virtual async Future<object> HandlePopRoute()
         {
             foreach (WidgetsBindingObserver observer in List<WidgetsBindingObserver>.From(_Observers))
             {
@@ -739,7 +739,7 @@ namespace FlutterSDK.Widgets.Binding
         /// This method exposes the `pushRoute` notification from
         /// [SystemChannels.navigation].
         /// </Summary>
-        public virtual Future<object> HandlePushRoute(string route)
+        public virtual async Future<object> HandlePushRoute(string route)
         {
             foreach (WidgetsBindingObserver observer in List<WidgetsBindingObserver>.From(_Observers))
             {
@@ -787,7 +787,7 @@ namespace FlutterSDK.Widgets.Binding
 
 
 
-        public new Future<object> HandleSystemMessage(@Object systemMessage)
+        public new async Future<object> HandleSystemMessage(@Object systemMessage)
         {
             await base.HandleSystemMessage(systemMessage);
             Dictionary<string, object> message = systemMessage as Dictionary<string, object>;

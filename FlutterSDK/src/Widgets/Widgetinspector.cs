@@ -1604,7 +1604,7 @@ public virtual string GetSelectedWidget(string previousSelectionId, string group
 /// areas that are slightly outside of the normal bounds of an object such as
 /// some debug paint information.
 /// </Summary>
-public virtual Future<SKImage> Screenshot(@Object @object, double width = default(double), double height = default(double), double margin = 0.0, double maxPixelRatio = 1.0, bool debugPaint = false)
+public virtual async Future<SKImage> Screenshot(@Object @object, double width = default(double), double height = default(double), double margin = 0.0, double maxPixelRatio = 1.0, bool debugPaint = false)
 {
     if (!(object is Element) && !(object is RenderObject))
     {

@@ -835,7 +835,7 @@ _HandleSelectionChange(newSelection, SelectionChangedCause.Keyboard);
 
 
 
-private Future<object> _HandleShortcuts(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key)
+private async Future<object> _HandleShortcuts(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key)
 {
 
     if (key == KeyboardkeyDefaultClass.LogicalKeyboardKey.KeyC)

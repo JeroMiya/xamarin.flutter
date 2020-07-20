@@ -1060,7 +1060,7 @@ public virtual void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageC
 /// ```
 /// {@end-tool}
 /// </Summary>
-public virtual Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration))
+public virtual async Future<bool> Evict(FlutterSDK.Painting.Imagecache.ImageCache cache = default(FlutterSDK.Painting.Imagecache.ImageCache), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration))
 {
     cache = (cache == null ? BindingDefaultClass.ImageCache : cache);
     T key = await ObtainKey(configuration);
@@ -1187,7 +1187,7 @@ public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageP
     ///
     /// This function is used by [load].
     /// </Summary>
-    private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+    private async Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.AssetBundleImageKey key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
     {
         ByteData data = default(ByteData);
         try
@@ -1430,7 +1430,7 @@ public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutter
 
 
 
-    private Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
+    private async Future<SKCodec> _LoadAsync(FlutterSDK.Painting.Imageprovider.FileImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
     {
 
         Uint8List bytes = await File.ReadAsBytes();

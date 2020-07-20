@@ -456,7 +456,7 @@ namespace FlutterSDK.Services.Hapticfeedback
         /// On Android, this uses the platform haptic feedback API to simulate a
         /// response to a long press (`HapticFeedbackConstants.LONG_PRESS`).
         /// </Summary>
-        public virtual Future<object> Vibrate()
+        public virtual async Future<object> Vibrate()
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate");
         }
@@ -473,7 +473,7 @@ namespace FlutterSDK.Services.Hapticfeedback
         ///
         /// On Android, this uses `HapticFeedbackConstants.VIRTUAL_KEY`.
         /// </Summary>
-        public virtual Future<object> LightImpact()
+        public virtual async Future<object> LightImpact()
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.lightImpact");
         }
@@ -490,7 +490,7 @@ namespace FlutterSDK.Services.Hapticfeedback
         ///
         /// On Android, this uses `HapticFeedbackConstants.KEYBOARD_TAP`.
         /// </Summary>
-        public virtual Future<object> MediumImpact()
+        public virtual async Future<object> MediumImpact()
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.mediumImpact");
         }
@@ -508,7 +508,7 @@ namespace FlutterSDK.Services.Hapticfeedback
         /// On Android, this uses `HapticFeedbackConstants.CONTEXT_CLICK` on API levels
         /// 23 and above. This call has no effects on Android API levels below 23.
         /// </Summary>
-        public virtual Future<object> HeavyImpact()
+        public virtual async Future<object> HeavyImpact()
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.heavyImpact");
         }
@@ -524,7 +524,7 @@ namespace FlutterSDK.Services.Hapticfeedback
         ///
         /// On Android, this uses `HapticFeedbackConstants.CLOCK_TICK`.
         /// </Summary>
-        public virtual Future<object> SelectionClick()
+        public virtual async Future<object> SelectionClick()
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("HapticFeedback.vibrate", "HapticFeedbackType.selectionClick");
         }

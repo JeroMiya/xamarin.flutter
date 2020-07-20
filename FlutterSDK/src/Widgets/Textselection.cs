@@ -608,7 +608,7 @@ namespace FlutterSDK.Widgets.Textselection
         /// asynchronous. Race conditions may exist with this API as currently
         /// implemented.
         /// </Summary>
-        public virtual Future<object> HandlePaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate)
+        public virtual async Future<object> HandlePaste(FlutterSDK.Services.Textinput.TextSelectionDelegate @delegate)
         {
             TextEditingValue value = delegate.TextEditingValue;
             ClipboardData data = await ClipboardDefaultClass.Clipboard.GetData(ClipboardDefaultClass.Clipboard.KTextPlain);

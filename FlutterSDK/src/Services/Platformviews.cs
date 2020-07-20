@@ -614,7 +614,7 @@ namespace FlutterSDK.Services.Platformviews
         /// The `id, `viewType, and `layoutDirection` parameters must not be null.
         /// If `creationParams` is non null then `creationParamsCodec` must not be null.
         /// </Summary>
-        public virtual Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>))
+        public virtual async Future<FlutterSDK.Services.Platformviews.UiKitViewController> InitUiKitView(int id = default(int), string viewType = default(string), TextDirection layoutDirection = default(TextDirection), object creationParams = default(object), FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec = default(FlutterSDK.Services.Messagecodec.MessageCodec<object>))
         {
 
 
@@ -850,7 +850,7 @@ namespace FlutterSDK.Services.Platformviews
         /// The identifier of the platform view cannot be reused after the view is
         /// disposed.
         /// </Summary>
-        public virtual Future<object> Dispose()
+        public virtual async Future<object> Dispose()
         {
             if (_State == _AndroidViewState.Creating || _State == _AndroidViewState.Created) await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("dispose", Id);
             _PlatformViewCreatedCallbacks.Clear();
@@ -868,7 +868,7 @@ namespace FlutterSDK.Services.Platformviews
         ///
         /// The first time a size is set triggers the creation of the Android view.
         /// </Summary>
-        public virtual Future<object> SetSize(Size size)
+        public virtual async Future<object> SetSize(Size size)
         {
 
 
@@ -883,7 +883,7 @@ namespace FlutterSDK.Services.Platformviews
         /// <Summary>
         /// Sets the layout direction for the Android view.
         /// </Summary>
-        public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection)
+        public virtual async Future<object> SetLayoutDirection(TextDirection layoutDirection)
         {
 
             if (layoutDirection == _LayoutDirection) return;
@@ -930,7 +930,7 @@ namespace FlutterSDK.Services.Platformviews
         /// See documentation of [MotionEvent.obtain](https://developer.android.com/reference/android/view/MotionEvent.html#obtain(long,%20long,%20int,%20float,%20float,%20float,%20float,%20int,%20float,%20float,%20int,%20int))
         /// for description of the parameters.
         /// </Summary>
-        public virtual Future<object> SendMotionEvent(FlutterSDK.Services.Platformviews.AndroidMotionEvent @event)
+        public virtual async Future<object> SendMotionEvent(FlutterSDK.Services.Platformviews.AndroidMotionEvent @event)
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("touch", @event._AsList(Id));
         }
@@ -949,7 +949,7 @@ namespace FlutterSDK.Services.Platformviews
 
 
 
-        private Future<object> _Create(Size size)
+        private async Future<object> _Create(Size size)
         {
             Dictionary<string, object> args = new Dictionary<string, object> { { "id", Id }{ "viewType", _ViewType }{ "width", size.Width }{ "height", size.Height }{ "direction", _GetAndroidDirection(_LayoutDirection) } };
             if (_CreationParams != null)
@@ -999,7 +999,7 @@ namespace FlutterSDK.Services.Platformviews
         /// <Summary>
         /// Sets the layout direction for the iOS UIView.
         /// </Summary>
-        public virtual Future<object> SetLayoutDirection(TextDirection layoutDirection)
+        public virtual async Future<object> SetLayoutDirection(TextDirection layoutDirection)
         {
 
             if (layoutDirection == _LayoutDirection) return;
@@ -1049,7 +1049,7 @@ namespace FlutterSDK.Services.Platformviews
         /// The `id` of the platform view cannot be reused after the view is
         /// disposed.
         /// </Summary>
-        public virtual Future<object> Dispose()
+        public virtual async Future<object> Dispose()
         {
             _DebugDisposed = true;
             await SystemchannelsDefaultClass.SystemChannels.Platform_views.InvokeMethod("dispose", Id);

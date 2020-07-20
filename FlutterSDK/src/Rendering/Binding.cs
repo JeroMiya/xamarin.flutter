@@ -818,7 +818,7 @@ namespace FlutterSDK.Rendering.Binding
 
 
 
-        public new Future<object> PerformReassemble()
+        public new async Future<object> PerformReassemble()
         {
             await base.PerformReassemble();
         Dart: developerDefaultClass.Timeline.StartSync("Dirty Render Tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);

@@ -467,7 +467,7 @@ namespace FlutterSDK.Services.Binding
         ///
         /// Other bindings may override this to respond to incoming system messages.
         /// </Summary>
-        public virtual Future<object> HandleSystemMessage(@Object systemMessage)
+        public virtual async Future<object> HandleSystemMessage(@Object systemMessage)
         {
         }
 
@@ -488,7 +488,7 @@ namespace FlutterSDK.Services.Binding
 
 
 
-        private Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
+        private async Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
         {
             Completer<string> rawLicenses = new Completer<string>();
         Dart: asyncDefaultClass.Timer.Run(async () =>
@@ -625,7 +625,7 @@ return completer.Future;
 
 
 
-public new Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback)
+public new async Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback)
 {
     ByteData response = default(ByteData);
     try

@@ -1448,7 +1448,7 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        private Future<object> _WarpToCurrentIndex()
+        private async Future<object> _WarpToCurrentIndex()
         {
             if (!Mounted) return Future<void>.Value();
             if (_PageController.Page == _CurrentIndex.ToDouble()) return Future<void>.Value();

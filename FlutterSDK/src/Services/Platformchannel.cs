@@ -472,7 +472,7 @@ namespace FlutterSDK.Services.Platformchannel
         /// Returns a [Future] which completes to the received response, which may
         /// be null.
         /// </Summary>
-        public virtual Future<T> Send(T message)
+        public virtual async Future<T> Send(T message)
         {
             return Codec.DecodeMessage(await BinaryMessenger.Send(Name, Codec.EncodeMessage(message)));
         }
@@ -586,7 +586,7 @@ namespace FlutterSDK.Services.Platformchannel
 
         #region methods
 
-        private Future<T> _InvokeMethod<T>(string method, bool missingOk = default(bool), object arguments = default(object))
+        private async Future<T> _InvokeMethod<T>(string method, bool missingOk = default(bool), object arguments = default(object))
         {
 
             ByteData result = await BinaryMessenger.Send(Name, Codec.EncodeMethodCall(new MethodCall(method, arguments)));
@@ -795,7 +795,7 @@ namespace FlutterSDK.Services.Platformchannel
         ///
         ///  * [invokeMethod], which this call delegates to.
         /// </Summary>
-        public virtual Future<List<T>> InvokeListMethod<T>(string method, object arguments = default(object))
+        public virtual async Future<List<T>> InvokeListMethod<T>(string method, object arguments = default(object))
         {
             List<object> result = await InvokeMethod(method, arguments);
             return result?.Cast();
@@ -815,7 +815,7 @@ namespace FlutterSDK.Services.Platformchannel
         ///
         ///  * [invokeMethod], which this call delegates to.
         /// </Summary>
-        public virtual Future<Dictionary<K, V>> InvokeMapMethod<K, V>(string method, object arguments = default(object))
+        public virtual async Future<Dictionary<K, V>> InvokeMapMethod<K, V>(string method, object arguments = default(object))
         {
             Dictionary<object, object> result = await InvokeMethod(method, arguments);
             return result?.Cast();
@@ -876,7 +876,7 @@ namespace FlutterSDK.Services.Platformchannel
 
 
 
-        private Future<ByteData> _HandleAsMethodCall(ByteData message, Func<Future<object>, MethodCall> handler)
+        private async Future<ByteData> _HandleAsMethodCall(ByteData message, Func<Future<object>, MethodCall> handler)
         {
             MethodCall call = Codec.DecodeMethodCall(message);
             try
@@ -924,7 +924,7 @@ catch (e)
 
         #region methods
 
-        public new Future<T> InvokeMethod<T>(string method, object arguments = default(object))
+        public new async Future<T> InvokeMethod<T>(string method, object arguments = default(object))
         {
             return base._InvokeMethod(method, missingOk: true, arguments: arguments);
         }
@@ -932,7 +932,7 @@ catch (e)
 
 
 
-        public new Future<List<T>> InvokeListMethod<T>(string method, object arguments = default(object))
+        public new async Future<List<T>> InvokeListMethod<T>(string method, object arguments = default(object))
         {
             List<object> result = await InvokeMethod(method, arguments);
             return result.Cast();
@@ -941,7 +941,7 @@ catch (e)
 
 
 
-        public new Future<Dictionary<K, V>> InvokeMapMethod<K, V>(string method, object arguments = default(object))
+        public new async Future<Dictionary<K, V>> InvokeMapMethod<K, V>(string method, object arguments = default(object))
         {
             Dictionary<object, object> result = await InvokeMethod(method, arguments);
             return result.Cast();

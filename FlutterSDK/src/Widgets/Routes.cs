@@ -719,7 +719,7 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
+        public new async Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
         {
             if (WillHandlePopInternally) return RoutePopDisposition.Pop;
             return base.WillPop();
@@ -1805,7 +1805,7 @@ namespace FlutterSDK.Widgets.Routes
         ///  * [removeScopedWillPopCallback], which removes a callback from the list
         ///    this method checks.
         /// </Summary>
-        public new Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
+        public new async Future<FlutterSDK.Widgets.Navigator.RoutePopDisposition> WillPop()
         {
             _ModalScopeState<T> scope = _ScopeKey.CurrentState;
 

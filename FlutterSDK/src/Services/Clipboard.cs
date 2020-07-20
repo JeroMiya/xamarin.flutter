@@ -472,7 +472,7 @@ namespace FlutterSDK.Services.Clipboard
         /// <Summary>
         /// Stores the given clipboard data on the clipboard.
         /// </Summary>
-        public virtual Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data)
+        public virtual async Future<object> SetData(FlutterSDK.Services.Clipboard.ClipboardData data)
         {
             await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.setData", new Dictionary<string, object> { { "text", data.Text } });
         }
@@ -489,7 +489,7 @@ namespace FlutterSDK.Services.Clipboard
         /// Returns a future which completes to null if the data could not be
         /// obtained, and to a [ClipboardData] object if it could.
         /// </Summary>
-        public virtual Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format)
+        public virtual async Future<FlutterSDK.Services.Clipboard.ClipboardData> GetData(string format)
         {
             Dictionary<string, object> result = await SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("Clipboard.getData", format);
             if (result == null) return null;
