@@ -331,9 +331,16 @@ class Implementation {
   }
 
   static String processFunctionDeclaration(FunctionDeclaration declaration) {
-    var csharp = "";
+    var csharp =
+        (declaration?.functionExpression?.body?.isAsynchronous ?? false)
+            ? "async "
+            : "";
     for (var entity in declaration.childEntities) {
-      csharp += processEntity(entity) + ' ';
+      if (entity is FunctionExpression) {
+        csharp += processFunctionExpression(entity, isMethod: true);
+      } else {
+        csharp += processEntity(entity) + ' ';
+      }
     }
     return csharp;
   }
@@ -447,12 +454,15 @@ class Implementation {
     return csharp;
   }
 
-  static String processFunctionExpression(FunctionExpression expression) {
-    var csharp = "";
+  static String processFunctionExpression(FunctionExpression expression,
+      {bool isMethod = false}) {
+    var csharp =
+        !isMethod && expression.body != null && expression.body.isAsynchronous
+            ? "async "
+            : "";
     for (var entity in expression.childEntities) {
       csharp += processEntity(entity);
-      // TODO: need to find a way when it's only a function expression not an actual method
-      if (entity is FormalParameterList) csharp += ' => ';
+      if (!isMethod && entity is FormalParameterList) csharp += ' => ';
     }
     return csharp;
   }
