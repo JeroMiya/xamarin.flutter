@@ -834,7 +834,8 @@ namespace FlutterSDK.Rendering.Flow
             _LastPaintOrder.Add(i);
             childParentData._Transform = transform;
             if (opacity == 0.0) return;
-            void Painter(PaintingContext context, Offset offset) => {
+            void Painter(PaintingContext context, Offset offset)
+            {
                 context.PaintChild(child, offset);
             }
 

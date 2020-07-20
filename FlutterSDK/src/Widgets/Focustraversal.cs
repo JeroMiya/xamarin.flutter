@@ -636,7 +636,8 @@ namespace FlutterSDK.Widgets.Focustraversal
                     return false;
                 }
 
-                bool PopOrInvalidate(TraversalDirection direction) => {
+                bool PopOrInvalidate(TraversalDirection direction)
+                {
                     FocusNode lastNode = policyData.History.RemoveLast().Node;
                     if (ScrollableDefaultClass.Scrollable.Of(lastNode.Context) != ScrollableDefaultClass.Scrollable.Of(FocusmanagerDefaultClass.PrimaryFocus.Context))
                     {
@@ -1113,7 +1114,8 @@ namespace FlutterSDK.Widgets.Focustraversal
             }
 
             List<FocusNode> sortedDescendants = new List<FocusNode>() { };
-            void VisitGroups(_FocusTraversalGroupInfo info) => {
+            void VisitGroups(_FocusTraversalGroupInfo info)
+            {
                 foreach (FocusNode node in info.Members)
                 {
                     if (groupKeys.Contains(node))
@@ -1488,7 +1490,8 @@ namespace FlutterSDK.Widgets.Focustraversal
         {
             MergeSort(candidates, Compare: (_ReadingOrderSortData a, _ReadingOrderSortData b) => =>a.Rect.Top.CompareTo(b.Rect.Top));
             _ReadingOrderSortData topmost = candidates.First;
-            List<_ReadingOrderSortData> InBand(_ReadingOrderSortData current, Iterable<_ReadingOrderSortData> candidates) => {
+            List<_ReadingOrderSortData> InBand(_ReadingOrderSortData current, Iterable<_ReadingOrderSortData> candidates)
+            {
                 Rect band = Rect.FromLTRB(Dart: coreDefaultClass.Double.NegativeInfinity, current.Rect.Top, Dart: coreDefaultClass.Double.Infinity, current.Rect.Bottom);
                 return candidates.Where((_ReadingOrderSortData item) =>
                 {

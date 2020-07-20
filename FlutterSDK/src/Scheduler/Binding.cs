@@ -574,7 +574,7 @@ public new void InitServiceExtensions()
             base.InitServiceExtensions();
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-                RegisterNumericServiceExtension(name: "timeDilation", getter: () => async => BindingDefaultClass.TimeDilation, setter: (double value) =>
+                RegisterNumericServiceExtension(name: "timeDilation", getter: async () => async => BindingDefaultClass.TimeDilation, setter: async (double value) =>
                 {
                     BindingDefaultClass.TimeDilation = value;
                 }
@@ -1076,7 +1076,7 @@ public new void InitServiceExtensions()
             if (hadScheduledFrame) ScheduleFrame();
         }
          );
-            LockEvents(() =>
+            LockEvents(async () =>
             {
                 await EndOfFrame;
             Dart: developerDefaultClass.Timeline.FinishSync();

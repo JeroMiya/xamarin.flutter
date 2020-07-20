@@ -575,7 +575,8 @@ namespace FlutterSDK.Rendering.Sliverlist
             RenderBox child = earliestUsefulChild;
             int index = IndexOf(child);
             double endScrollOffset = ChildScrollOffset(child) + PaintExtentOf(child);
-            bool Advance() => {
+            bool Advance()
+            {
 
                 if (child == trailingChildWithLayout) inLayoutRange = false;
                 child = ChildAfter(child);

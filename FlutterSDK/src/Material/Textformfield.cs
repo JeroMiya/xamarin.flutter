@@ -539,7 +539,8 @@ namespace FlutterSDK.Material.Textformfield
         {
             _TextFormFieldState state = field as _TextFormFieldState;
             InputDecoration effectiveDecoration = (decoration ?? new InputDecoration()).ApplyDefaults(ThemeDefaultClass.Theme.Of(field.Context).InputDecorationTheme);
-            void OnChangedHandler(string value) => {
+            void OnChangedHandler(string value)
+            {
                 if (onChanged != null)
                 {
                     onChanged(value);

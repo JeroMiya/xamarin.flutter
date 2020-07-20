@@ -520,19 +520,20 @@ namespace FlutterSDK.Widgets.Binding
                     );
                 }
 
-                RegisterServiceExtension(name: "didSendFirstFrameEvent", callback: (_) =>
+                RegisterServiceExtension(name: "didSendFirstFrameEvent", callback: async (_) =>
                 {
                     return new Dictionary<string, object> { { "enabled", _NeedToReportFirstFrame ? "false" : "true" } };
                 }
                 );
-                RegisterServiceExtension(name: "didSendFirstFrameRasterizedEvent", callback: (_) =>
+                RegisterServiceExtension(name: "didSendFirstFrameRasterizedEvent", callback: async (_) =>
                 {
                     return new Dictionary<string, object> { { "enabled", FirstFrameRasterized ? "true" : "false" } };
                 }
                 );
-                RegisterServiceExtension(name: "fastReassemble", callback: (Dictionary<string, object> params) => {
+                RegisterServiceExtension(name: "fastReassemble", callback: async(Dictionary<string, object> params) => {
                     string className =params["class"] as string;
-                    void MarkElementsDirty(Element element) => {
+                    void MarkElementsDirty(Element element)
+                    {
                         if (element == null)
                         {
                             return;
@@ -550,7 +551,7 @@ namespace FlutterSDK.Widgets.Binding
                     return new Dictionary<string, string> { { "Success", "true" } };
                 }
 );
-                RegisterBoolServiceExtension(name: "profileWidgetBuilds", getter: () => async => DebugDefaultClass.DebugProfileBuildsEnabled, setter: (bool value) =>
+                RegisterBoolServiceExtension(name: "profileWidgetBuilds", getter: async () => async => DebugDefaultClass.DebugProfileBuildsEnabled, setter: async (bool value) =>
                 {
                     if (DebugDefaultClass.DebugProfileBuildsEnabled != value) DebugDefaultClass.DebugProfileBuildsEnabled = value;
                 }

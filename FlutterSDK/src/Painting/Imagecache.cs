@@ -697,7 +697,8 @@ namespace FlutterSDK.Painting.Imagecache
 
             bool listenedOnce = false;
             _PendingImage untrackedPendingImage = default(_PendingImage);
-            void Listener(ImageInfo info, bool syncCall) => {
+            void Listener(ImageInfo info, bool syncCall)
+            {
                 int imageSize = info?.Image == null ? 0 : info.Image.Height * info.Image.Width * 4;
                 _CachedImage image = new _CachedImage(result, imageSize);
                 _TrackLiveImage(key, new _LiveImage(result, imageSize, () => =>_LiveImages.Remove(key)), debugPutOk: syncCall);

@@ -540,7 +540,8 @@ namespace FlutterSDK.Material.Progressindicator
             Paint paint = new Paint()..Color = BackgroundColor..Style = PaintingStyle.Fill;
             canvas.DrawRect(Dart: uiDefaultClass.Offset.Zero & size, paint);
             paint.Color = ValueColor;
-            void DrawBar(double x, double width) => {
+            void DrawBar(double x, double width)
+            {
                 if (width <= 0.0) return;
                 double left = default(double);
                 switch (TextDirection) { case TextDirection.Rtl: left = size.Width - width - x; break; case TextDirection.Ltr: left = x; break; }

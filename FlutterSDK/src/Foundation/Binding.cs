@@ -433,7 +433,7 @@ namespace FlutterSDK.Foundation.Binding
             if (!ConstantsDefaultClass.KReleaseMode && !ConstantsDefaultClass.KIsWeb)
             {
                 RegisterSignalServiceExtension(name: "exit", callback: BindingDefaultClass._ExitApplication);
-                RegisterServiceExtension(name: "saveCompilationTrace", callback: (Dictionary<string, string> parameters) =>
+                RegisterServiceExtension(name: "saveCompilationTrace", callback: async (Dictionary<string, string> parameters) =>
                 {
                     return new Dictionary<string, object> { { "value", Ui.Dart:uiDefaultClass.SaveCompilationTrace() } };
                 }
@@ -557,7 +557,7 @@ namespace FlutterSDK.Foundation.Binding
         {
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 await callback();
                 return new Dictionary<string, object> { };
@@ -589,7 +589,7 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 if (parameters.ContainsKey("enabled"))
                 {
@@ -625,7 +625,7 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 if (parameters.ContainsKey(name))
                 {
@@ -694,7 +694,7 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 if (parameters.ContainsKey("value"))
                 {
@@ -768,7 +768,7 @@ namespace FlutterSDK.Foundation.Binding
 
 
             string methodName = $"'ext.flutter.{name}'";
-            Developer.Dart:developerDefaultClass.RegisterExtension(methodName, (string method, Dictionary<string, string> parameters) =>
+            Developer.Dart:developerDefaultClass.RegisterExtension(methodName, async (string method, Dictionary<string, string> parameters) =>
             {
 
 

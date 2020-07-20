@@ -843,7 +843,8 @@ namespace FlutterSDK.Widgets.Draggablescrollablesheet
             Simulation simulation = new ClampingScrollSimulation(position: Extent.CurrentExtent, velocity: velocity, tolerance: Physics.Tolerance);
             AnimationController ballisticController = AnimationController.Unbounded(debugLabel: ObjectDefaultClass.ObjectRuntimeType(this, "_DraggableScrollableSheetPosition"), vsync: Context.Vsync);
             double lastDelta = 0;
-            void _Tick() => {
+            void _Tick()
+            {
                 double delta = ballisticController.Value - lastDelta;
                 lastDelta = ballisticController.Value;
                 Extent.AddPixelDelta(delta, Context.NotificationContext);

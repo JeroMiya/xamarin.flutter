@@ -4629,7 +4629,8 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
 
 
 
-            void Visit(Element element) => {
+            void Visit(Element element)
+            {
                 element._UpdateSlot(newSlot);
                 if (!(element is RenderObjectElement)) element.VisitChildren(Visit);
             }
@@ -6036,7 +6037,8 @@ finally
 
         private void _ApplyParentData(FlutterSDK.Widgets.Framework.ParentDataWidget<T> widget)
         {
-            void ApplyParentDataToChild(Element child) => {
+            void ApplyParentDataToChild(Element child)
+            {
                 if (child is RenderObjectElement)
                 {
                     ((RenderObjectElement)child)._UpdateParentData(widget);
@@ -6672,7 +6674,8 @@ finally
         {
 
 
-            Element ReplaceWithNullIfForgotten(Element child) => {
+            Element ReplaceWithNullIfForgotten(Element child)
+            {
                 return forgottenChildren != null && forgottenChildren.Contains(child) ? null : child;
             }
 

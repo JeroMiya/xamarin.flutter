@@ -763,7 +763,8 @@ namespace FlutterSDK.Cupertino.Textfield
             Border resolvedBorder = border as Border;
             if (border is Border)
             {
-                BorderSide ResolveBorderSide(BorderSide side) => {
+                BorderSide ResolveBorderSide(BorderSide side)
+                {
                     return side == BordersDefaultClass.BorderSide.None ? side : side.CopyWith(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(side.Color, context));
                 }
 

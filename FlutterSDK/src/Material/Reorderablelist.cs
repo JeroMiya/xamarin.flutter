@@ -666,7 +666,8 @@ namespace FlutterSDK.Material.Reorderablelist
         {
 
             GlobalObjectKey keyIndexGlobalKey = new GlobalObjectKey(toWrap.Key);
-            void OnDragStarted() => {
+            void OnDragStarted()
+            {
                 SetState(() =>
                 {
                     _Dragging = toWrap.Key;
@@ -679,7 +680,8 @@ namespace FlutterSDK.Material.Reorderablelist
                 );
             }
 
-            void Reorder(int startIndex, int endIndex) => {
+            void Reorder(int startIndex, int endIndex)
+            {
                 SetState(() =>
                 {
                     if (startIndex != endIndex) Widget.OnReorder(startIndex, endIndex);
@@ -690,16 +692,18 @@ namespace FlutterSDK.Material.Reorderablelist
                 );
             }
 
-            void OnDragEnded() => {
+            void OnDragEnded()
+            {
                 Reorder(_DragStartIndex, _CurrentIndex);
             }
 
-            Widget WrapWithSemantics() => {
+            Widget WrapWithSemantics()
+            {
                 Dictionary<CustomSemanticsAction, VoidCallback> semanticsActions = new Dictionary<CustomSemanticsAction, VoidCallback> { };
-                void MoveToStart() => =>Reorder(index, 0);
-                void MoveToEnd() => =>Reorder(index, Widget.Children.Count);
-                void MoveBefore() => =>Reorder(index, index - 1);
-                void MoveAfter() => =>Reorder(index, index + 2);
+                void MoveToStart() => Reorder(index, 0);
+                void MoveToEnd() => Reorder(index, Widget.Children.Count);
+                void MoveBefore() => Reorder(index, index - 1);
+                void MoveAfter() => Reorder(index, index + 2);
                 MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
                 if (index > 0)
                 {
@@ -728,7 +732,8 @@ namespace FlutterSDK.Material.Reorderablelist
                 return new KeyedSubtree(key: keyIndexGlobalKey, child: new MergeSemantics(child: new Semantics(customSemanticsActions: semanticsActions, child: toWrap)));
             }
 
-            Widget BuildDragTarget(BuildContext context, List<Key> acceptedCandidates, List<object> rejectedCandidates) => {
+            Widget BuildDragTarget(BuildContext context, List<Key> acceptedCandidates, List<object> rejectedCandidates)
+            {
                 Widget toWrapWithSemantics = WrapWithSemantics();
                 Widget child = new LongPressDraggable<Key>(maxSimultaneousDrags: 1, axis: Widget.ScrollDirection, data: toWrap.Key, ignoringFeedbackSemantics: false, feedback: new Container(alignment: AlignmentDefaultClass.Alignment.TopLeft, constraints: constraints, child: new Material(elevation: 6.0, child: toWrapWithSemantics)), child: _Dragging == toWrap.Key ? new SizedBox() : toWrapWithSemantics, childWhenDragging: new SizedBox(), dragAnchor: DragAnchor.Child, onDragStarted: OnDragStarted, onDragCompleted: OnDragEnded, onDraggableCanceled: (Velocity velocity, Offset offset) =>
                 {

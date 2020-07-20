@@ -908,7 +908,8 @@ namespace FlutterSDK.Material.Inkwell
         public virtual void UpdateHighlight(FlutterSDK.Material.Inkwell._HighlightType type, bool value = default(bool))
         {
             InkHighlight highlight = _Highlights[type];
-            void HandleInkRemoval() => {
+            void HandleInkRemoval()
+            {
 
                 _Highlights[type] = null;
                 UpdateKeepAlive();
@@ -951,7 +952,8 @@ namespace FlutterSDK.Material.Inkwell
             BorderRadius borderRadius = Widget.BorderRadius;
             ShapeBorder customBorder = Widget.CustomBorder;
             InteractiveInkFeature splash = default(InteractiveInkFeature);
-            void OnRemoved() => {
+            void OnRemoved()
+            {
                 if (_Splashes != null)
                 {
 

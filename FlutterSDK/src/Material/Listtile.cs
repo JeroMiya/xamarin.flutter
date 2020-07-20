@@ -1451,7 +1451,8 @@ namespace FlutterSDK.Material.Listtile
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
         {
             List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
-            void Add(RenderBox child, string name) => {
+            void Add(RenderBox child, string name)
+            {
                 if (child != null) value.Add(child.ToDiagnosticsNode(name: name));
             }
 
@@ -1663,7 +1664,8 @@ namespace FlutterSDK.Material.Listtile
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            void DoPaint(RenderBox child) => {
+            void DoPaint(RenderBox child)
+            {
                 if (child != null)
                 {
                     BoxParentData parentData = child.ParentData as BoxParentData;

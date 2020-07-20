@@ -1714,7 +1714,8 @@ namespace FlutterSDK.Material.Scaffold
             {
                 AnimationController animationController = BottomsheetDefaultClass.BottomSheet.CreateAnimationController(this)..Value = 1.0;
                 LocalHistoryEntry _persistentSheetHistoryEntry = default(LocalHistoryEntry);
-                bool _PersistentBottomSheetExtentChanged(DraggableScrollableNotification notification) => {
+                bool _PersistentBottomSheetExtentChanged(DraggableScrollableNotification notification)
+                {
                     if (notification.Extent > notification.InitialExtent)
                     {
                         if (_persistentSheetHistoryEntry == null)
@@ -1779,7 +1780,8 @@ namespace FlutterSDK.Material.Scaffold
             GlobalKey<_StandardBottomSheetState> bottomSheetKey = new GlobalKey<_StandardBottomSheetState>();
             _StandardBottomSheet bottomSheet = default(_StandardBottomSheet);
             bool removedEntry = false;
-            void _RemoveCurrentBottomSheet() => {
+            void _RemoveCurrentBottomSheet()
+            {
                 removedEntry = true;
                 if (_CurrentBottomSheet == null)
                 {
@@ -1789,7 +1791,8 @@ namespace FlutterSDK.Material.Scaffold
 
 
                 _ShowFloatingActionButton();
-                void _Closed(void value) => {
+                void _Closed(void value)
+                {
                     SetState(() =>
                     {
                         _CurrentBottomSheet = null;

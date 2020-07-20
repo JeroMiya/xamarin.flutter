@@ -561,7 +561,8 @@ namespace FlutterSDK.Cupertino.Textselection
             Widget onePhysicalPixelVerticalDivider = new SizedBox(width: 1.0 / MediaqueryDefaultClass.MediaQuery.Of(context).DevicePixelRatio);
             CupertinoLocalizations localizations = LocalizationsDefaultClass.CupertinoLocalizations.Of(context);
             EdgeInsets arrowPadding = isArrowPointingDown ? EdgeInsets.Only(bottom: TextselectionDefaultClass._KToolbarArrowSize.Height) : EdgeInsets.Only(top: TextselectionDefaultClass._KToolbarArrowSize.Height);
-            void AddToolbarButtonIfNeeded(string text, Func<TextSelectionDelegate, bool> predicate, Action<TextSelectionDelegate> onPressed) => {
+            void AddToolbarButtonIfNeeded(string text, Func<TextSelectionDelegate, bool> predicate, Action<TextSelectionDelegate> onPressed)
+            {
                 if (!predicate(delegate))
                 {
                     return;

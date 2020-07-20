@@ -491,14 +491,14 @@ namespace FlutterSDK.Services.Binding
         private Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
         {
             Completer<string> rawLicenses = new Completer<string>();
-        Dart: asyncDefaultClass.Timer.Run(() =>
+        Dart: asyncDefaultClass.Timer.Run(async () =>
         {
             rawLicenses.Complete(AssetbundleDefaultClass.RootBundle.LoadString("LICENSE", cache: false));
         }
          );
             await rawLicenses.Future;
             Completer<List<LicenseEntry>> parsedLicenses = new Completer<List<LicenseEntry>>();
-        Dart: asyncDefaultClass.Timer.Run(() =>
+        Dart: asyncDefaultClass.Timer.Run(async () =>
         {
             parsedLicenses.Complete(IsolatesDefaultClass.Compute(_ParseLicenses, await rawLicenses.Future, debugLabel: "parseLicenses"));
         }
@@ -672,7 +672,7 @@ public new Future<ByteData> Send(string channel, ByteData message)
 public new void SetMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
 {
     if (handler == null) _Handlers.Remove(channel); else _Handlers[channel] = handler;
-    Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, (ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => {
+    Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, async(ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => {
         await HandlePlatformMessage(channel, data, callback);
     }
 );

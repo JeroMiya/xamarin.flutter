@@ -499,7 +499,7 @@ namespace FlutterSDK.Services.Platformchannel
             }
             else
             {
-                BinaryMessenger.SetMessageHandler(Name, (ByteData message) =>
+                BinaryMessenger.SetMessageHandler(Name, async (ByteData message) =>
                 {
                     return Codec.EncodeMessage(await handler(Codec.DecodeMessage(message)));
                 }
@@ -532,7 +532,7 @@ namespace FlutterSDK.Services.Platformchannel
             }
             else
             {
-                BinaryMessenger.SetMockMessageHandler(Name, (ByteData message) =>
+                BinaryMessenger.SetMockMessageHandler(Name, async (ByteData message) =>
                 {
                     return Codec.EncodeMessage(await handler(Codec.DecodeMessage(message)));
                 }
@@ -1008,9 +1008,9 @@ catch (e)
         {
             MethodChannel methodChannel = new MethodChannel(Name, Codec);
             StreamController<object> controller = default(StreamController<object>);
-            controller = StreamController<object>.Broadcast(onListen: () =>
+            controller = StreamController<object>.Broadcast(onListen: async () =>
             {
-                BinaryMessenger.SetMessageHandler(Name, (ByteData reply) =>
+                BinaryMessenger.SetMessageHandler(Name, async (ByteData reply) =>
                 {
                     if (reply == null)
                     {
@@ -1041,7 +1041,7 @@ on PlatformExceptioncatch(e)
             }
 
         }
-, onCancel:() => {
+, onCancel:async() => {
 BinaryMessenger.SetMessageHandler(Name, null );
 try {
 await methodChannel.InvokeMethod("cancel", arguments);

@@ -1571,7 +1571,8 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
             {
                 SplayTreeMap<int, Element> newChildren = new SplayTreeMap<int, Element>();
                 Dictionary<int, double> indexToLayoutOffset = new HashMap<int, double>();
-                void ProcessElement(int index) => {
+                void ProcessElement(int index)
+                {
                     _CurrentlyUpdatingChildIndex = index;
                     if (_ChildElements[index] != null && _ChildElements[index] != newChildren[index])
                     {

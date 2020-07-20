@@ -702,7 +702,8 @@ namespace FlutterSDK.Material.Timepicker
             MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
             TextStyle hourStyle = FragmentContext.Mode == _TimePickerMode.Hour ? FragmentContext.ActiveStyle : FragmentContext.InactiveStyle;
             string formattedHour = localizations.FormatHour(FragmentContext.SelectedTime, alwaysUse24HourFormat: alwaysUse24HourFormat);
-            TimeOfDay HoursFromSelected(int hoursToAdd) => {
+            TimeOfDay HoursFromSelected(int hoursToAdd)
+            {
                 if (FragmentContext.Use24HourDials)
                 {
                     int selectedHour = FragmentContext.SelectedTime.Hour;
@@ -1102,527 +1103,531 @@ namespace FlutterSDK.Material.Timepicker
             double labelPadding = 24.0;
             double outerLabelRadius = radius - labelPadding;
             double innerLabelRadius = radius - labelPadding * 2.5;
-            Offset GetOffsetForTheta(double theta, _DialRing ring) => {
+            Offset GetOffsetForTheta(double theta, _DialRing ring)
+            {
                 double labelRadius = default(double);
                 switch (ring) { case _DialRing.Outer: labelRadius = outerLabelRadius; break; case _DialRing.Inner: labelRadius = innerLabelRadius; break; }
                 return center + new Offset(labelRadius * Math.Dart:mathDefaultClass.Cos(theta), -labelRadius * Math.Dart:mathDefaultClass.Sin(theta));
-            }
-
-            void PaintLabels(List<_TappableLabel> labels, _DialRing ring) => {
-                if (labels == null) return;
-                double labelThetaIncrement = -TimepickerDefaultClass._KTwoPi / labels.Count;
-                double labelTheta = Math.Dart:mathDefaultClass.Pi / 2.0;
-                foreach (_TappableLabel label in labels)
-                {
-                    TextPainter labelPainter = label.Painter;
-                    Offset labelOffset = new Offset(-labelPainter.Width / 2.0, -labelPainter.Height / 2.0);
-                    labelPainter.Paint(canvas, GetOffsetForTheta(labelTheta, ring) + labelOffset);
-                    labelTheta += labelThetaIncrement;
-                }
-
-            }
-
-            PaintLabels(PrimaryOuterLabels, _DialRing.Outer);
-            PaintLabels(PrimaryInnerLabels, _DialRing.Inner);
-            Paint selectorPaint = new Paint()..Color = AccentColor;
-            Offset focusedPoint = GetOffsetForTheta(Theta, ActiveRing);
-            double focusedRadius = labelPadding - 4.0;
-            canvas.DrawCircle(centerPoint, 4.0, selectorPaint);
-            canvas.DrawCircle(focusedPoint, focusedRadius, selectorPaint);
-            selectorPaint.StrokeWidth = 2.0;
-            canvas.DrawLine(centerPoint, focusedPoint, selectorPaint);
-            Rect focusedRect = Rect.FromCircle(center: focusedPoint, radius: focusedRadius);
-            ;
-            canvas.Save();
-            canvas.ClipPath(new Path();
-            new Path().AddOval(focusedRect));
-            PaintLabels(SecondaryOuterLabels, _DialRing.Outer);
-            PaintLabels(SecondaryInnerLabels, _DialRing.Inner);
-            canvas.Restore();
         }
 
-
-
-
-        /// <Summary>
-        /// Creates semantics nodes for the hour/minute labels painted on the dial.
-        ///
-        /// The nodes are positioned on top of the text and their size is
-        /// [_semanticNodeSizeScale] bigger than those of the text boxes to provide
-        /// bigger tap area.
-        /// </Summary>
-        private List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> _BuildSemantics(Size size)
+        void PaintLabels(List<_TappableLabel> labels, _DialRing ring)
         {
-            double radius = size.ShortestSide / 2.0;
-            Offset center = new Offset(size.Width / 2.0, size.Height / 2.0);
-            double labelPadding = 24.0;
-            double outerLabelRadius = radius - labelPadding;
-            double innerLabelRadius = radius - labelPadding * 2.5;
-            Offset GetOffsetForTheta(double theta, _DialRing ring) => {
-                double labelRadius = default(double);
-                switch (ring) { case _DialRing.Outer: labelRadius = outerLabelRadius; break; case _DialRing.Inner: labelRadius = innerLabelRadius; break; }
-                return center + new Offset(labelRadius * Math.Dart:mathDefaultClass.Cos(theta), -labelRadius * Math.Dart:mathDefaultClass.Sin(theta));
+            if (labels == null) return;
+            double labelThetaIncrement = -TimepickerDefaultClass._KTwoPi / labels.Count;
+            double labelTheta = Math.Dart:mathDefaultClass.Pi / 2.0;
+            foreach (_TappableLabel label in labels)
+            {
+                TextPainter labelPainter = label.Painter;
+                Offset labelOffset = new Offset(-labelPainter.Width / 2.0, -labelPainter.Height / 2.0);
+                labelPainter.Paint(canvas, GetOffsetForTheta(labelTheta, ring) + labelOffset);
+                labelTheta += labelThetaIncrement;
             }
 
-            List<CustomPainterSemantics> nodes = new List<CustomPainterSemantics>() { };
-            void PaintLabels(List<_TappableLabel> labels, _DialRing ring) => {
-                if (labels == null) return;
-                double labelThetaIncrement = -TimepickerDefaultClass._KTwoPi / labels.Count;
-                double ordinalOffset = ring == _DialRing.Inner ? 12.0 : 0.0;
-                double labelTheta = Math.Dart:mathDefaultClass.Pi / 2.0;
-                for (int i = 0; i < labels.Count; i++)
-                {
-                    _TappableLabel label = labels[i];
-                    TextPainter labelPainter = label.Painter;
-                    double width = labelPainter.Width * _SemanticNodeSizeScale;
-                    double height = labelPainter.Height * _SemanticNodeSizeScale;
-                    Offset nodeOffset = GetOffsetForTheta(labelTheta, ring) + new Offset(-width / 2.0, -height / 2.0);
-                    TextSpan textSpan = labelPainter.Text as TextSpan;
-                    CustomPainterSemantics node = new CustomPainterSemantics(rect: Rect.FromLTRB(nodeOffset.Dx - 24.0 + width / 2, nodeOffset.Dy - 24.0 + height / 2, nodeOffset.Dx + 24.0 + width / 2, nodeOffset.Dy + 24.0 + height / 2), properties: new SemanticsProperties(sortKey: new OrdinalSortKey(i.ToDouble() + ordinalOffset), selected: label.Value == SelectedValue, value: textSpan?.Text, textDirection: TextDirection, onTap: label.OnTap), tags: new Dictionary<SemanticsTag> { { new SemanticsTag("dial-label"), } });
-                    nodes.Add(node);
-                    labelTheta += labelThetaIncrement;
-                }
-
-            }
-
-            PaintLabels(PrimaryOuterLabels, _DialRing.Outer);
-            PaintLabels(PrimaryInnerLabels, _DialRing.Inner);
-            return nodes;
         }
 
+        PaintLabels(PrimaryOuterLabels, _DialRing.Outer);
+        PaintLabels(PrimaryInnerLabels, _DialRing.Inner);
+        Paint selectorPaint = new Paint()..Color = AccentColor;
+        Offset focusedPoint = GetOffsetForTheta(Theta, ActiveRing);
+        double focusedRadius = labelPadding - 4.0;
+        canvas.DrawCircle(centerPoint, 4.0, selectorPaint);
+canvas.DrawCircle(focusedPoint, focusedRadius, selectorPaint);
+selectorPaint.StrokeWidth=2.0;
+canvas.DrawLine(centerPoint, focusedPoint, selectorPaint);
+Rect focusedRect = Rect.FromCircle(center: focusedPoint, radius: focusedRadius);
+;
+canvas.Save();
+canvas.ClipPath(new Path();
+        new Path().AddOval(focusedRect));
+PaintLabels(SecondaryOuterLabels, _DialRing.Outer);
+        PaintLabels(SecondaryInnerLabels, _DialRing.Inner);
+        canvas.Restore();
+}
 
 
 
-        public new bool ShouldRepaint(FlutterSDK.Material.Timepicker._DialPainter oldPainter)
+
+    /// <Summary>
+    /// Creates semantics nodes for the hour/minute labels painted on the dial.
+    ///
+    /// The nodes are positioned on top of the text and their size is
+    /// [_semanticNodeSizeScale] bigger than those of the text boxes to provide
+    /// bigger tap area.
+    /// </Summary>
+    private List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> _BuildSemantics(Size size)
+    {
+        double radius = size.ShortestSide / 2.0;
+        Offset center = new Offset(size.Width / 2.0, size.Height / 2.0);
+        double labelPadding = 24.0;
+        double outerLabelRadius = radius - labelPadding;
+        double innerLabelRadius = radius - labelPadding * 2.5;
+        Offset GetOffsetForTheta(double theta, _DialRing ring)
         {
-            return oldPainter.PrimaryOuterLabels != PrimaryOuterLabels || oldPainter.PrimaryInnerLabels != PrimaryInnerLabels || oldPainter.SecondaryOuterLabels != SecondaryOuterLabels || oldPainter.SecondaryInnerLabels != SecondaryInnerLabels || oldPainter.BackgroundColor != BackgroundColor || oldPainter.AccentColor != AccentColor || oldPainter.Theta != Theta || oldPainter.ActiveRing != ActiveRing;
-        }
+            double labelRadius = default(double);
+            switch (ring) { case _DialRing.Outer: labelRadius = outerLabelRadius; break; case _DialRing.Inner: labelRadius = innerLabelRadius; break; }
+            return center + new Offset(labelRadius * Math.Dart:mathDefaultClass.Cos(theta), -labelRadius * Math.Dart:mathDefaultClass.Sin(theta));
+    }
 
-
-        public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+    List<CustomPainterSemantics> nodes = new List<CustomPainterSemantics>() { };
+    void PaintLabels(List<_TappableLabel> labels, _DialRing ring)
+    {
+        if (labels == null) return;
+        double labelThetaIncrement = -TimepickerDefaultClass._KTwoPi / labels.Count;
+        double ordinalOffset = ring == _DialRing.Inner ? 12.0 : 0.0;
+        double labelTheta = Math.Dart:mathDefaultClass.Pi / 2.0;
+        for (int i = 0; i < labels.Count; i++)
         {
-            return oldPainter.PrimaryOuterLabels != PrimaryOuterLabels || oldPainter.PrimaryInnerLabels != PrimaryInnerLabels || oldPainter.SecondaryOuterLabels != SecondaryOuterLabels || oldPainter.SecondaryInnerLabels != SecondaryInnerLabels || oldPainter.BackgroundColor != BackgroundColor || oldPainter.AccentColor != AccentColor || oldPainter.Theta != Theta || oldPainter.ActiveRing != ActiveRing;
+            _TappableLabel label = labels[i];
+            TextPainter labelPainter = label.Painter;
+            double width = labelPainter.Width * _SemanticNodeSizeScale;
+            double height = labelPainter.Height * _SemanticNodeSizeScale;
+            Offset nodeOffset = GetOffsetForTheta(labelTheta, ring) + new Offset(-width / 2.0, -height / 2.0);
+            TextSpan textSpan = labelPainter.Text as TextSpan;
+            CustomPainterSemantics node = new CustomPainterSemantics(rect: Rect.FromLTRB(nodeOffset.Dx - 24.0 + width / 2, nodeOffset.Dy - 24.0 + height / 2, nodeOffset.Dx + 24.0 + width / 2, nodeOffset.Dy + 24.0 + height / 2), properties: new SemanticsProperties(sortKey: new OrdinalSortKey(i.ToDouble() + ordinalOffset), selected: label.Value == SelectedValue, value: textSpan?.Text, textDirection: TextDirection, onTap: label.OnTap), tags: new Dictionary<SemanticsTag> { { new SemanticsTag("dial-label"), } });
+            nodes.Add(node);
+            labelTheta += labelThetaIncrement;
         }
 
+    }
+
+    PaintLabels(PrimaryOuterLabels, _DialRing.Outer);
+    PaintLabels(PrimaryInnerLabels, _DialRing.Inner);
+return nodes;
+}
 
 
-        #endregion
+
+
+public new bool ShouldRepaint(FlutterSDK.Material.Timepicker._DialPainter oldPainter)
+{
+    return oldPainter.PrimaryOuterLabels != PrimaryOuterLabels || oldPainter.PrimaryInnerLabels != PrimaryInnerLabels || oldPainter.SecondaryOuterLabels != SecondaryOuterLabels || oldPainter.SecondaryInnerLabels != SecondaryInnerLabels || oldPainter.BackgroundColor != BackgroundColor || oldPainter.AccentColor != AccentColor || oldPainter.Theta != Theta || oldPainter.ActiveRing != ActiveRing;
+}
+
+
+public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate)
+{
+    return oldPainter.PrimaryOuterLabels != PrimaryOuterLabels || oldPainter.PrimaryInnerLabels != PrimaryInnerLabels || oldPainter.SecondaryOuterLabels != SecondaryOuterLabels || oldPainter.SecondaryInnerLabels != SecondaryInnerLabels || oldPainter.BackgroundColor != BackgroundColor || oldPainter.AccentColor != AccentColor || oldPainter.Theta != Theta || oldPainter.ActiveRing != ActiveRing;
+}
+
+
+
+#endregion
+}
+
+
+public class _Dial : FlutterSDK.Widgets.Framework.StatefulWidget
+{
+    #region constructors
+    public _Dial(FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode), bool use24HourDials = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>), VoidCallback onHourSelected = default(VoidCallback))
+    : base()
+    {
+        this.SelectedTime = selectedTime;
+        this.Mode = mode;
+        this.Use24HourDials = use24HourDials;
+        this.OnChanged = onChanged;
+        this.OnHourSelected = onHourSelected;
+    }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime { get; set; }
+    public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode { get; set; }
+    public virtual bool Use24HourDials { get; set; }
+    public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnChanged { get; set; }
+    public virtual VoidCallback OnHourSelected { get; set; }
+    #endregion
+
+    #region methods
+
+    public new FlutterSDK.Material.Timepicker._DialState CreateState() => new _DialState();
+
+
+    #endregion
+}
+
+
+public class _DialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Timepicker._Dial>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+{
+    #region constructors
+    public _DialState()
+    { }
+    #endregion
+
+    #region fields
+    public virtual FlutterSDK.Material.Themedata.ThemeData ThemeData { get; set; }
+    public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations { get; set; }
+    public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Media { get; set; }
+    internal virtual FlutterSDK.Animation.Tween.Tween<double> _ThetaTween { get; set; }
+    internal virtual FlutterSDK.Animation.Animation.Animation<double> _Theta { get; set; }
+    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThetaController { get; set; }
+    internal virtual bool _Dragging { get; set; }
+    internal virtual FlutterBinding.UI.Offset _Position { get; set; }
+    internal virtual FlutterBinding.UI.Offset _Center { get; set; }
+    internal virtual FlutterSDK.Material.Timepicker._DialRing _ActiveRing { get; set; }
+    internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _AmHours { get; set; }
+    internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _PmHours { get; set; }
+    #endregion
+
+    #region methods
+
+    public new void InitState()
+    {
+        base.InitState();
+        _UpdateDialRingFromWidget();
+        _ThetaController = new AnimationController(duration: TimepickerDefaultClass._KDialAnimateDuration, vsync: this);
+        _ThetaTween = new Tween<double>(begin: _GetThetaForTime(Widget.SelectedTime));
+        _Theta = _ThetaController.Drive(new CurveTween(curve: CurvesDefaultClass.Curves.FastOutSlowIn)).Drive(_ThetaTween);
+        _ThetaController.Drive(new CurveTween(curve: CurvesDefaultClass.Curves.FastOutSlowIn)).Drive(_ThetaTween).AddListener(() => =>SetState(() =>
+        {
+        }
+        ));
     }
 
 
-    public class _Dial : FlutterSDK.Widgets.Framework.StatefulWidget
+
+
+    public new void DidChangeDependencies()
     {
-        #region constructors
-        public _Dial(FlutterSDK.Material.Time.TimeOfDay selectedTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Material.Timepicker._TimePickerMode mode = default(FlutterSDK.Material.Timepicker._TimePickerMode), bool use24HourDials = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay>), VoidCallback onHourSelected = default(VoidCallback))
-        : base()
-        {
-            this.SelectedTime = selectedTime;
-            this.Mode = mode;
-            this.Use24HourDials = use24HourDials;
-            this.OnChanged = onChanged;
-            this.OnHourSelected = onHourSelected;
-        }
-        #endregion
+        base.DidChangeDependencies();
 
-        #region fields
-        public virtual FlutterSDK.Material.Time.TimeOfDay SelectedTime { get; set; }
-        public virtual FlutterSDK.Material.Timepicker._TimePickerMode Mode { get; set; }
-        public virtual bool Use24HourDials { get; set; }
-        public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeOfDay> OnChanged { get; set; }
-        public virtual VoidCallback OnHourSelected { get; set; }
-        #endregion
-
-        #region methods
-
-        public new FlutterSDK.Material.Timepicker._DialState CreateState() => new _DialState();
-
-
-        #endregion
+        ThemeData = ThemeDefaultClass.Theme.Of(Context);
+        Localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
+        Media = MediaqueryDefaultClass.MediaQuery.Of(Context);
     }
 
 
-    public class _DialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Timepicker._Dial>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+
+
+    public new void DidUpdateWidget(FlutterSDK.Material.Timepicker._Dial oldWidget)
     {
-        #region constructors
-        public _DialState()
-        { }
-        #endregion
-
-        #region fields
-        public virtual FlutterSDK.Material.Themedata.ThemeData ThemeData { get; set; }
-        public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations { get; set; }
-        public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Media { get; set; }
-        internal virtual FlutterSDK.Animation.Tween.Tween<double> _ThetaTween { get; set; }
-        internal virtual FlutterSDK.Animation.Animation.Animation<double> _Theta { get; set; }
-        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ThetaController { get; set; }
-        internal virtual bool _Dragging { get; set; }
-        internal virtual FlutterBinding.UI.Offset _Position { get; set; }
-        internal virtual FlutterBinding.UI.Offset _Center { get; set; }
-        internal virtual FlutterSDK.Material.Timepicker._DialRing _ActiveRing { get; set; }
-        internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _AmHours { get; set; }
-        internal virtual List<FlutterSDK.Material.Time.TimeOfDay> _PmHours { get; set; }
-        #endregion
-
-        #region methods
-
-        public new void InitState()
+        base.DidUpdateWidget(oldWidget);
+        _UpdateDialRingFromWidget();
+        if (Widget.Mode != oldWidget.Mode || Widget.SelectedTime != oldWidget.SelectedTime)
         {
-            base.InitState();
-            _UpdateDialRingFromWidget();
-            _ThetaController = new AnimationController(duration: TimepickerDefaultClass._KDialAnimateDuration, vsync: this);
-            _ThetaTween = new Tween<double>(begin: _GetThetaForTime(Widget.SelectedTime));
-            _Theta = _ThetaController.Drive(new CurveTween(curve: CurvesDefaultClass.Curves.FastOutSlowIn)).Drive(_ThetaTween);
-            _ThetaController.Drive(new CurveTween(curve: CurvesDefaultClass.Curves.FastOutSlowIn)).Drive(_ThetaTween).AddListener(() => =>SetState(() =>
-            {
-            }
-            ));
+            if (!_Dragging) _AnimateTo(_GetThetaForTime(Widget.SelectedTime));
         }
 
+    }
 
 
 
-        public new void DidChangeDependencies()
+
+    private void _UpdateDialRingFromWidget()
+    {
+        if (Widget.Mode == _TimePickerMode.Hour && Widget.Use24HourDials)
         {
-            base.DidChangeDependencies();
-
-            ThemeData = ThemeDefaultClass.Theme.Of(Context);
-            Localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(Context);
-            Media = MediaqueryDefaultClass.MediaQuery.Of(Context);
+            _ActiveRing = Widget.SelectedTime.Hour >= 1 && Widget.SelectedTime.Hour <= 12 ? _DialRing.Inner : _DialRing.Outer;
+        }
+        else
+        {
+            _ActiveRing = _DialRing.Outer;
         }
 
+    }
 
 
 
-        public new void DidUpdateWidget(FlutterSDK.Material.Timepicker._Dial oldWidget)
+
+    public new void Dispose()
+    {
+        _ThetaController.Dispose();
+        base.Dispose();
+    }
+
+
+
+
+    private double _Nearest(double target, double a, double b)
+    {
+        return ((target - a).Abs() < (target - b).Abs()) ? a : b;
+    }
+
+
+
+
+    private void _AnimateTo(double targetTheta)
+    {
+        double currentTheta = _Theta.Value;
+        double beginTheta = _Nearest(targetTheta, currentTheta, currentTheta + TimepickerDefaultClass._KTwoPi);
+        beginTheta = _Nearest(targetTheta, beginTheta, currentTheta - TimepickerDefaultClass._KTwoPi);
+        ..Begin = beginTheta..End = targetTheta;
+        ..Value = 0.0;
+        _ThetaController.Forward();
+    }
+
+
+
+
+    private double _GetThetaForTime(FlutterSDK.Material.Time.TimeOfDay time)
+    {
+        double fraction = Widget.Mode == _TimePickerMode.Hour ? (time.Hour / TimeDefaultClass.TimeOfDay.HoursPerPeriod) % TimeDefaultClass.TimeOfDay.HoursPerPeriod : (time.Minute / TimeDefaultClass.TimeOfDay.MinutesPerHour) % TimeDefaultClass.TimeOfDay.MinutesPerHour;
+        return (Math.Dart:mathDefaultClass.Pi / 2.0 - fraction * TimepickerDefaultClass._KTwoPi)% TimepickerDefaultClass._KTwoPi;
+    }
+
+
+
+
+    private FlutterSDK.Material.Time.TimeOfDay _GetTimeForTheta(double theta)
+    {
+        double fraction = (0.25 - (theta % TimepickerDefaultClass._KTwoPi) / TimepickerDefaultClass._KTwoPi) % 1.0;
+        if (Widget.Mode == _TimePickerMode.Hour)
         {
-            base.DidUpdateWidget(oldWidget);
-            _UpdateDialRingFromWidget();
-            if (Widget.Mode != oldWidget.Mode || Widget.SelectedTime != oldWidget.SelectedTime)
+            int newHour = (fraction * TimeDefaultClass.TimeOfDay.HoursPerPeriod).Round() % TimeDefaultClass.TimeOfDay.HoursPerPeriod;
+            if (Widget.Use24HourDials)
             {
-                if (!_Dragging) _AnimateTo(_GetThetaForTime(Widget.SelectedTime));
-            }
+                if (_ActiveRing == _DialRing.Outer)
+                {
+                    if (newHour != 0) newHour = (newHour + TimeDefaultClass.TimeOfDay.HoursPerPeriod) % TimeDefaultClass.TimeOfDay.HoursPerDay;
+                }
+                else if (newHour == 0)
+                {
+                    newHour = TimeDefaultClass.TimeOfDay.HoursPerPeriod;
+                }
 
-        }
-
-
-
-
-        private void _UpdateDialRingFromWidget()
-        {
-            if (Widget.Mode == _TimePickerMode.Hour && Widget.Use24HourDials)
-            {
-                _ActiveRing = Widget.SelectedTime.Hour >= 1 && Widget.SelectedTime.Hour <= 12 ? _DialRing.Inner : _DialRing.Outer;
             }
             else
             {
-                _ActiveRing = _DialRing.Outer;
+                newHour = newHour + Widget.SelectedTime.PeriodOffset;
             }
 
+            return Widget.SelectedTime.Replacing(hour: newHour);
         }
-
-
-
-
-        public new void Dispose()
+        else
         {
-            _ThetaController.Dispose();
-            base.Dispose();
+            return Widget.SelectedTime.Replacing(minute: (fraction * TimeDefaultClass.TimeOfDay.MinutesPerHour).Round() % TimeDefaultClass.TimeOfDay.MinutesPerHour);
         }
 
+    }
 
 
 
-        private double _Nearest(double target, double a, double b)
+
+    private FlutterSDK.Material.Time.TimeOfDay _NotifyOnChangedIfNeeded()
+    {
+        TimeOfDay current = _GetTimeForTheta(_Theta.Value);
+        if (Widget.OnChanged == null) return current;
+        if (current != Widget.SelectedTime) Widget.OnChanged(current);
+        return current;
+    }
+
+
+
+
+    private void _UpdateThetaForPan()
+    {
+        SetState(() =>
         {
-            return ((target - a).Abs() < (target - b).Abs()) ? a : b;
-        }
-
-
-
-
-        private void _AnimateTo(double targetTheta)
+        Offset offset = _Position - _Center;
+        double angle = (Math.Dart:mathDefaultClass.Atan2(offset.Dx, offset.Dy) - Math.Dart:mathDefaultClass.Pi / 2.0) % TimepickerDefaultClass._KTwoPi;
+        ..Begin = angle..End = angle;
+        RenderBox box = Context.FindRenderObject() as RenderBox;
+        double radius = box.Size.ShortestSide / 2.0;
+        if (Widget.Mode == _TimePickerMode.Hour && Widget.Use24HourDials)
         {
-            double currentTheta = _Theta.Value;
-            double beginTheta = _Nearest(targetTheta, currentTheta, currentTheta + TimepickerDefaultClass._KTwoPi);
-            beginTheta = _Nearest(targetTheta, beginTheta, currentTheta - TimepickerDefaultClass._KTwoPi);
-            ..Begin = beginTheta..End = targetTheta;
-            ..Value = 0.0;
-            _ThetaController.Forward();
+            if (offset.Distance * 1.5 < radius) _ActiveRing = _DialRing.Inner; else _ActiveRing = _DialRing.Outer;
         }
 
-
-
-
-        private double _GetThetaForTime(FlutterSDK.Material.Time.TimeOfDay time)
-        {
-            double fraction = Widget.Mode == _TimePickerMode.Hour ? (time.Hour / TimeDefaultClass.TimeOfDay.HoursPerPeriod) % TimeDefaultClass.TimeOfDay.HoursPerPeriod : (time.Minute / TimeDefaultClass.TimeOfDay.MinutesPerHour) % TimeDefaultClass.TimeOfDay.MinutesPerHour;
-            return (Math.Dart:mathDefaultClass.Pi / 2.0 - fraction * TimepickerDefaultClass._KTwoPi)% TimepickerDefaultClass._KTwoPi;
-        }
-
-
-
-
-        private FlutterSDK.Material.Time.TimeOfDay _GetTimeForTheta(double theta)
-        {
-            double fraction = (0.25 - (theta % TimepickerDefaultClass._KTwoPi) / TimepickerDefaultClass._KTwoPi) % 1.0;
-            if (Widget.Mode == _TimePickerMode.Hour)
-            {
-                int newHour = (fraction * TimeDefaultClass.TimeOfDay.HoursPerPeriod).Round() % TimeDefaultClass.TimeOfDay.HoursPerPeriod;
-                if (Widget.Use24HourDials)
-                {
-                    if (_ActiveRing == _DialRing.Outer)
-                    {
-                        if (newHour != 0) newHour = (newHour + TimeDefaultClass.TimeOfDay.HoursPerPeriod) % TimeDefaultClass.TimeOfDay.HoursPerDay;
-                    }
-                    else if (newHour == 0)
-                    {
-                        newHour = TimeDefaultClass.TimeOfDay.HoursPerPeriod;
-                    }
-
-                }
-                else
-                {
-                    newHour = newHour + Widget.SelectedTime.PeriodOffset;
-                }
-
-                return Widget.SelectedTime.Replacing(hour: newHour);
-            }
-            else
-            {
-                return Widget.SelectedTime.Replacing(minute: (fraction * TimeDefaultClass.TimeOfDay.MinutesPerHour).Round() % TimeDefaultClass.TimeOfDay.MinutesPerHour);
-            }
-
-        }
-
-
-
-
-        private FlutterSDK.Material.Time.TimeOfDay _NotifyOnChangedIfNeeded()
-        {
-            TimeOfDay current = _GetTimeForTheta(_Theta.Value);
-            if (Widget.OnChanged == null) return current;
-            if (current != Widget.SelectedTime) Widget.OnChanged(current);
-            return current;
-        }
-
-
-
-
-        private void _UpdateThetaForPan()
-        {
-            SetState(() =>
-            {
-            Offset offset = _Position - _Center;
-            double angle = (Math.Dart:mathDefaultClass.Atan2(offset.Dx, offset.Dy) - Math.Dart:mathDefaultClass.Pi / 2.0) % TimepickerDefaultClass._KTwoPi;
-            ..Begin = angle..End = angle;
-            RenderBox box = Context.FindRenderObject() as RenderBox;
-            double radius = box.Size.ShortestSide / 2.0;
-            if (Widget.Mode == _TimePickerMode.Hour && Widget.Use24HourDials)
-            {
-                if (offset.Distance * 1.5 < radius) _ActiveRing = _DialRing.Inner; else _ActiveRing = _DialRing.Outer;
-            }
-
-        }
+    }
 );
 }
 
 
 
 
-    private void _HandlePanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
+private void _HandlePanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
+{
+
+    _Dragging = true;
+    RenderBox box = Context.FindRenderObject() as RenderBox;
+    _Position = box.GlobalToLocal(details.GlobalPosition);
+    _Center = box.Size.Center(Dart: uiDefaultClass.Offset.Zero);
+    _UpdateThetaForPan();
+    _NotifyOnChangedIfNeeded();
+}
+
+
+
+
+private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
+{
+    _Position += details.Delta;
+    _UpdateThetaForPan();
+    _NotifyOnChangedIfNeeded();
+}
+
+
+
+
+private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+{
+
+    _Dragging = false;
+    _Position = null;
+    _Center = null;
+    _AnimateTo(_GetThetaForTime(Widget.SelectedTime));
+    if (Widget.Mode == _TimePickerMode.Hour)
     {
-
-        _Dragging = true;
-        RenderBox box = Context.FindRenderObject() as RenderBox;
-        _Position = box.GlobalToLocal(details.GlobalPosition);
-        _Center = box.Size.Center(Dart: uiDefaultClass.Offset.Zero);
-        _UpdateThetaForPan();
-        _NotifyOnChangedIfNeeded();
-    }
-
-
-
-
-    private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
-    {
-        _Position += details.Delta;
-        _UpdateThetaForPan();
-        _NotifyOnChangedIfNeeded();
-    }
-
-
-
-
-    private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-    {
-
-        _Dragging = false;
-        _Position = null;
-        _Center = null;
-        _AnimateTo(_GetThetaForTime(Widget.SelectedTime));
-        if (Widget.Mode == _TimePickerMode.Hour)
+        if (Widget.OnHourSelected != null)
         {
-            if (Widget.OnHourSelected != null)
-            {
-                Widget.OnHourSelected();
-            }
-
+            Widget.OnHourSelected();
         }
 
     }
 
+}
 
 
 
-    private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
+
+private void _HandleTapUp(FlutterSDK.Gestures.Tap.TapUpDetails details)
+{
+    RenderBox box = Context.FindRenderObject() as RenderBox;
+    _Position = box.GlobalToLocal(details.GlobalPosition);
+    _Center = box.Size.Center(Dart: uiDefaultClass.Offset.Zero);
+    _UpdateThetaForPan();
+    TimeOfDay newTime = _NotifyOnChangedIfNeeded();
+    if (Widget.Mode == _TimePickerMode.Hour)
     {
-        RenderBox box = Context.FindRenderObject() as RenderBox;
-        _Position = box.GlobalToLocal(details.GlobalPosition);
-        _Center = box.Size.Center(Dart: uiDefaultClass.Offset.Zero);
-        _UpdateThetaForPan();
-        TimeOfDay newTime = _NotifyOnChangedIfNeeded();
-        if (Widget.Mode == _TimePickerMode.Hour)
+        if (Widget.Use24HourDials)
         {
-            if (Widget.Use24HourDials)
-            {
-                TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(newTime.Hour));
-            }
-            else
-            {
-                TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(newTime.HourOfPeriod));
-            }
-
-            if (Widget.OnHourSelected != null)
-            {
-                Widget.OnHourSelected();
-            }
-
+            TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(newTime.Hour));
         }
         else
         {
-            TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(newTime.Minute));
+            TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(newTime.HourOfPeriod));
         }
 
-        _AnimateTo(_GetThetaForTime(_GetTimeForTheta(_Theta.Value)));
-        _Dragging = false;
-        _Position = null;
-        _Center = null;
+        if (Widget.OnHourSelected != null)
+        {
+            Widget.OnHourSelected();
+        }
+
+    }
+    else
+    {
+        TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(newTime.Minute));
     }
 
+    _AnimateTo(_GetThetaForTime(_GetTimeForTheta(_Theta.Value)));
+    _Dragging = false;
+    _Position = null;
+    _Center = null;
+}
 
 
 
-    private void _SelectHour(int hour)
+
+private void _SelectHour(int hour)
+{
+    TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(hour));
+    TimeOfDay time = default(TimeOfDay);
+    if (Widget.Mode == _TimePickerMode.Hour && Widget.Use24HourDials)
     {
-        TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(hour));
-        TimeOfDay time = default(TimeOfDay);
-        if (Widget.Mode == _TimePickerMode.Hour && Widget.Use24HourDials)
+        _ActiveRing = hour >= 1 && hour <= 12 ? _DialRing.Inner : _DialRing.Outer;
+        time = new TimeOfDay(hour: hour, minute: Widget.SelectedTime.Minute);
+    }
+    else
+    {
+        _ActiveRing = _DialRing.Outer;
+        if (Widget.SelectedTime.Period == DayPeriod.Am)
         {
-            _ActiveRing = hour >= 1 && hour <= 12 ? _DialRing.Inner : _DialRing.Outer;
             time = new TimeOfDay(hour: hour, minute: Widget.SelectedTime.Minute);
         }
         else
         {
-            _ActiveRing = _DialRing.Outer;
-            if (Widget.SelectedTime.Period == DayPeriod.Am)
+            time = new TimeOfDay(hour: hour + TimeDefaultClass.TimeOfDay.HoursPerPeriod, minute: Widget.SelectedTime.Minute);
+        }
+
+    }
+
+    double angle = _GetThetaForTime(time);
+    ..Begin = angle..End = angle;
+    _NotifyOnChangedIfNeeded();
+}
+
+
+
+
+private void _SelectMinute(int minute)
+{
+    TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(minute));
+    TimeOfDay time = new TimeOfDay(hour: Widget.SelectedTime.Hour, minute: minute);
+    double angle = _GetThetaForTime(time);
+    ..Begin = angle..End = angle;
+    _NotifyOnChangedIfNeeded();
+}
+
+
+
+
+private FlutterSDK.Material.Timepicker._TappableLabel _BuildTappableLabel(FlutterSDK.Material.Texttheme.TextTheme textTheme, int value, string label, VoidCallback onTap)
+{
+    TextStyle style = textTheme.Subtitle1;
+    double labelScaleFactor = Math.Dart:mathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(Context).TextScaleFactor, 2.0);
+return new _TappableLabel(value: value, painter: new TextPainter(text: new TextSpan(style: style, text: label), textDirection: TextDirection.Ltr, textScaleFactor: labelScaleFactor);
+new TextPainter(text: new TextSpan(style: style, text: label), textDirection: TextDirection.Ltr, textScaleFactor: labelScaleFactor).Layout(), onTap: onTap);
+}
+
+
+
+
+private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourInnerRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) => new List<_TappableLabel>() { };
+
+
+
+private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) => new List<_TappableLabel>() { };
+
+
+
+private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build12HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) => new List<_TappableLabel>() { };
+
+
+
+private List<FlutterSDK.Material.Timepicker._TappableLabel> _BuildMinutes(FlutterSDK.Material.Texttheme.TextTheme textTheme)
+{
+    List<TimeOfDay> _minuteMarkerValues = new List<TimeOfDay>() { new TimeOfDay(hour: 0, minute: 0), new TimeOfDay(hour: 0, minute: 5), new TimeOfDay(hour: 0, minute: 10), new TimeOfDay(hour: 0, minute: 15), new TimeOfDay(hour: 0, minute: 20), new TimeOfDay(hour: 0, minute: 25), new TimeOfDay(hour: 0, minute: 30), new TimeOfDay(hour: 0, minute: 35), new TimeOfDay(hour: 0, minute: 40), new TimeOfDay(hour: 0, minute: 45), new TimeOfDay(hour: 0, minute: 50), new TimeOfDay(hour: 0, minute: 55) };
+    return new List<_TappableLabel>() { };
+}
+
+
+
+
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    Color backgroundColor = default(Color);
+    switch (ThemeData.Brightness) { case Brightness.Light: backgroundColor = ColorsDefaultClass.Colors.Grey[200]; break; case Brightness.Dark: backgroundColor = ThemeData.BackgroundColor; break; }
+    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+    List<_TappableLabel> primaryOuterLabels = default(List<_TappableLabel>);
+    List<_TappableLabel> primaryInnerLabels = default(List<_TappableLabel>);
+    List<_TappableLabel> secondaryOuterLabels = default(List<_TappableLabel>);
+    List<_TappableLabel> secondaryInnerLabels = default(List<_TappableLabel>);
+    int selectedDialValue = default(int);
+    switch (Widget.Mode)
+    {
+        case _TimePickerMode.Hour:
+            if (Widget.Use24HourDials)
             {
-                time = new TimeOfDay(hour: hour, minute: Widget.SelectedTime.Minute);
+                selectedDialValue = Widget.SelectedTime.Hour;
+                primaryOuterLabels = _Build24HourOuterRing(theme.TextTheme);
+                secondaryOuterLabels = _Build24HourOuterRing(theme.AccentTextTheme);
+                primaryInnerLabels = _Build24HourInnerRing(theme.TextTheme);
+                secondaryInnerLabels = _Build24HourInnerRing(theme.AccentTextTheme);
             }
             else
             {
-                time = new TimeOfDay(hour: hour + TimeDefaultClass.TimeOfDay.HoursPerPeriod, minute: Widget.SelectedTime.Minute);
+                selectedDialValue = Widget.SelectedTime.HourOfPeriod;
+                primaryOuterLabels = _Build12HourOuterRing(theme.TextTheme);
+                secondaryOuterLabels = _Build12HourOuterRing(theme.AccentTextTheme);
             }
-
-        }
-
-        double angle = _GetThetaForTime(time);
-        ..Begin = angle..End = angle;
-        _NotifyOnChangedIfNeeded();
+            break;
+        case _TimePickerMode.Minute: selectedDialValue = Widget.SelectedTime.Minute; primaryOuterLabels = _BuildMinutes(theme.TextTheme); primaryInnerLabels = null; secondaryOuterLabels = _BuildMinutes(theme.AccentTextTheme); secondaryInnerLabels = null; break;
     }
+    return new GestureDetector(excludeFromSemantics: true, onPanStart: _HandlePanStart, onPanUpdate: _HandlePanUpdate, onPanEnd: _HandlePanEnd, onTapUp: _HandleTapUp, child: new CustomPaint(key: new ValueKey<string>("time-picker-dial"), painter: new _DialPainter(selectedValue: selectedDialValue, primaryOuterLabels: primaryOuterLabels, primaryInnerLabels: primaryInnerLabels, secondaryOuterLabels: secondaryOuterLabels, secondaryInnerLabels: secondaryInnerLabels, backgroundColor: backgroundColor, accentColor: ThemeData.AccentColor, theta: _Theta.Value, activeRing: _ActiveRing, textDirection: BasicDefaultClass.Directionality.Of(context))));
+}
 
 
 
-
-    private void _SelectMinute(int minute)
-    {
-        TimepickerDefaultClass._AnnounceToAccessibility(Context, Localizations.FormatDecimal(minute));
-        TimeOfDay time = new TimeOfDay(hour: Widget.SelectedTime.Hour, minute: minute);
-        double angle = _GetThetaForTime(time);
-        ..Begin = angle..End = angle;
-        _NotifyOnChangedIfNeeded();
-    }
-
-
-
-
-    private FlutterSDK.Material.Timepicker._TappableLabel _BuildTappableLabel(FlutterSDK.Material.Texttheme.TextTheme textTheme, int value, string label, VoidCallback onTap)
-    {
-        TextStyle style = textTheme.Subtitle1;
-        double labelScaleFactor = Math.Dart:mathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(Context).TextScaleFactor, 2.0);
-        return new _TappableLabel(value: value, painter: new TextPainter(text: new TextSpan(style: style, text: label), textDirection: TextDirection.Ltr, textScaleFactor: labelScaleFactor);
-        new TextPainter(text: new TextSpan(style: style, text: label), textDirection: TextDirection.Ltr, textScaleFactor: labelScaleFactor).Layout(), onTap: onTap);
-    }
-
-
-
-
-    private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourInnerRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) => new List<_TappableLabel>() { };
-
-
-
-    private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build24HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) => new List<_TappableLabel>() { };
-
-
-
-    private List<FlutterSDK.Material.Timepicker._TappableLabel> _Build12HourOuterRing(FlutterSDK.Material.Texttheme.TextTheme textTheme) => new List<_TappableLabel>() { };
-
-
-
-    private List<FlutterSDK.Material.Timepicker._TappableLabel> _BuildMinutes(FlutterSDK.Material.Texttheme.TextTheme textTheme)
-    {
-        List<TimeOfDay> _minuteMarkerValues = new List<TimeOfDay>() { new TimeOfDay(hour: 0, minute: 0), new TimeOfDay(hour: 0, minute: 5), new TimeOfDay(hour: 0, minute: 10), new TimeOfDay(hour: 0, minute: 15), new TimeOfDay(hour: 0, minute: 20), new TimeOfDay(hour: 0, minute: 25), new TimeOfDay(hour: 0, minute: 30), new TimeOfDay(hour: 0, minute: 35), new TimeOfDay(hour: 0, minute: 40), new TimeOfDay(hour: 0, minute: 45), new TimeOfDay(hour: 0, minute: 50), new TimeOfDay(hour: 0, minute: 55) };
-        return new List<_TappableLabel>() { };
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Color backgroundColor = default(Color);
-        switch (ThemeData.Brightness) { case Brightness.Light: backgroundColor = ColorsDefaultClass.Colors.Grey[200]; break; case Brightness.Dark: backgroundColor = ThemeData.BackgroundColor; break; }
-        ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-        List<_TappableLabel> primaryOuterLabels = default(List<_TappableLabel>);
-        List<_TappableLabel> primaryInnerLabels = default(List<_TappableLabel>);
-        List<_TappableLabel> secondaryOuterLabels = default(List<_TappableLabel>);
-        List<_TappableLabel> secondaryInnerLabels = default(List<_TappableLabel>);
-        int selectedDialValue = default(int);
-        switch (Widget.Mode)
-        {
-            case _TimePickerMode.Hour:
-                if (Widget.Use24HourDials)
-                {
-                    selectedDialValue = Widget.SelectedTime.Hour;
-                    primaryOuterLabels = _Build24HourOuterRing(theme.TextTheme);
-                    secondaryOuterLabels = _Build24HourOuterRing(theme.AccentTextTheme);
-                    primaryInnerLabels = _Build24HourInnerRing(theme.TextTheme);
-                    secondaryInnerLabels = _Build24HourInnerRing(theme.AccentTextTheme);
-                }
-                else
-                {
-                    selectedDialValue = Widget.SelectedTime.HourOfPeriod;
-                    primaryOuterLabels = _Build12HourOuterRing(theme.TextTheme);
-                    secondaryOuterLabels = _Build12HourOuterRing(theme.AccentTextTheme);
-                }
-                break;
-            case _TimePickerMode.Minute: selectedDialValue = Widget.SelectedTime.Minute; primaryOuterLabels = _BuildMinutes(theme.TextTheme); primaryInnerLabels = null; secondaryOuterLabels = _BuildMinutes(theme.AccentTextTheme); secondaryInnerLabels = null; break;
-        }
-        return new GestureDetector(excludeFromSemantics: true, onPanStart: _HandlePanStart, onPanUpdate: _HandlePanUpdate, onPanEnd: _HandlePanEnd, onTapUp: _HandleTapUp, child: new CustomPaint(key: new ValueKey<string>("time-picker-dial"), painter: new _DialPainter(selectedValue: selectedDialValue, primaryOuterLabels: primaryOuterLabels, primaryInnerLabels: primaryInnerLabels, secondaryOuterLabels: secondaryOuterLabels, secondaryInnerLabels: secondaryInnerLabels, backgroundColor: backgroundColor, accentColor: ThemeData.AccentColor, theta: _Theta.Value, activeRing: _ActiveRing, textDirection: BasicDefaultClass.Directionality.Of(context))));
-    }
-
-
-
-    #endregion
+#endregion
 }
 
 

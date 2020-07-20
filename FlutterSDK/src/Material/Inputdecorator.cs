@@ -1108,7 +1108,8 @@ namespace FlutterSDK.Material.Inputdecorator
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
         {
             List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
-            void Add(RenderBox child, string name) => {
+            void Add(RenderBox child, string name)
+            {
                 if (child != null) value.Add(child.ToDiagnosticsNode(name: name));
             }
 
@@ -1354,13 +1355,15 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             }
 
             double height = default(double);
-            double CenterLayout(RenderBox box, double x) => {
+            double CenterLayout(RenderBox box, double x)
+            {
                 _BoxParentData(box).Offset = new Offset(x, (height - box.Size.Height) / 2.0);
                 return box.Size.Width;
             }
 
             double baseline = default(double);
-            double BaselineLayout(RenderBox box, double x) => {
+            double BaselineLayout(RenderBox box, double x)
+            {
                 _BoxParentData(box).Offset = new Offset(x, baseline - layout.BoxToBaseline[box]);
                 return box.Size.Width;
             }
@@ -1486,7 +1489,8 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            void DoPaint(RenderBox child) => {
+            void DoPaint(RenderBox child)
+            {
                 if (child != null) context.PaintChild(child, _BoxParentData(child).Offset + offset);
             }
 

@@ -1437,7 +1437,8 @@ namespace FlutterSDK.Widgets.Navigator
         public new Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> Resolve(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
         {
             List<RouteTransitionRecord> results = new List<RouteTransitionRecord>() { };
-            void HandleExitingRoute(RouteTransitionRecord location, bool isLast) => {
+            void HandleExitingRoute(RouteTransitionRecord location, bool isLast)
+            {
                 RouteTransitionRecord exitingPageRoute = locationToExitingPageRoute[location];
                 if (exitingPageRoute == null) return;
 

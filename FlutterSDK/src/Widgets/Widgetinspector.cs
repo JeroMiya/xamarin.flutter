@@ -548,7 +548,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterSignalServiceExtension(string name = default(string), Func<FutureOr<object>> callback = default(Func<FutureOr<object>>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 return new Dictionary<string, object> { { "result", await callback() } };
             }
@@ -568,7 +568,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterObjectGroupServiceExtension(string name = default(string), Func<FutureOr<object>, string> callback = default(Func<FutureOr<object>, string>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 return new Dictionary<string, object> { { "result", await callback(parameters["objectGroup"]) } };
             }
@@ -597,7 +597,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 if (parameters.ContainsKey("enabled"))
                 {
@@ -642,7 +642,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterServiceExtensionWithArg(string name = default(string), Func<FutureOr<object>, string, string> callback = default(Func<FutureOr<object>, string, string>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
 
                 return new Dictionary<string, object> { { "result", await callback(parameters["arg"], parameters["objectGroup"]) } };
@@ -660,7 +660,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         private void _RegisterServiceExtensionVarArgs(string name = default(string), Func<FutureOr<object>, List<string>> callback = default(Func<FutureOr<object>, List<string>>))
         {
-            RegisterServiceExtension(name: name, callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: name, callback: async (Dictionary<string, string> parameters) =>
             {
                 string argPrefix = "arg";
                 List<string> args = new List<string>() { };
@@ -752,13 +752,13 @@ namespace FlutterSDK.Widgets.Widgetinspector
             BindingDefaultClass.SchedulerBinding.Instance.AddPersistentFrameCallback(_OnFrameStart);
             FlutterExceptionHandler structuredExceptionHandler = _ReportError;
             FlutterExceptionHandler defaultExceptionHandler = AssertionsDefaultClass.FlutterError.OnError;
-            _RegisterBoolServiceExtension(name: "structuredErrors", getter: () => async => AssertionsDefaultClass.FlutterError.OnError == structuredExceptionHandler, setter: (bool value) =>
+            _RegisterBoolServiceExtension(name: "structuredErrors", getter: async () => async => AssertionsDefaultClass.FlutterError.OnError == structuredExceptionHandler, setter: (bool value) =>
             {
                 AssertionsDefaultClass.FlutterError.OnError = value ? structuredExceptionHandler : defaultExceptionHandler;
                 return Future<void>.Value();
             }
             );
-            _RegisterBoolServiceExtension(name: "show", getter: () => async => AppDefaultClass.WidgetsApp.DebugShowWidgetInspectorOverride, setter: (bool value) =>
+            _RegisterBoolServiceExtension(name: "show", getter: async () => async => AppDefaultClass.WidgetsApp.DebugShowWidgetInspectorOverride, setter: (bool value) =>
             {
                 if (AppDefaultClass.WidgetsApp.DebugShowWidgetInspectorOverride == value)
                 {
@@ -771,7 +771,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
             );
             if (IsWidgetCreationTracked())
             {
-                _RegisterBoolServiceExtension(name: "trackRebuildDirtyWidgets", getter: () => async => _TrackRebuildDirtyWidgets, setter: (bool value) =>
+                _RegisterBoolServiceExtension(name: "trackRebuildDirtyWidgets", getter: async () => async => _TrackRebuildDirtyWidgets, setter: async (bool value) =>
                 {
                     if (value == _TrackRebuildDirtyWidgets)
                     {
@@ -795,7 +795,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
                 }
                 );
-                _RegisterBoolServiceExtension(name: "trackRepaintWidgets", getter: () => async => _TrackRepaintWidgets, setter: (bool value) =>
+                _RegisterBoolServiceExtension(name: "trackRepaintWidgets", getter: async () => async => _TrackRepaintWidgets, setter: async (bool value) =>
                 {
                     if (value == _TrackRepaintWidgets)
                     {
@@ -808,7 +808,8 @@ namespace FlutterSDK.Widgets.Widgetinspector
                     {
 
                         DebugDefaultClass.DebugOnProfilePaint = _OnPaint;
-                        void MarkTreeNeedsPaint(RenderObject renderObject) => {
+                        void MarkTreeNeedsPaint(RenderObject renderObject)
+                        {
                             renderObject.MarkNeedsPaint();
                             renderObject.VisitChildren(MarkTreeNeedsPaint);
                         }
@@ -843,7 +844,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
             _RegisterObjectGroupServiceExtension(name: "getRootWidget", callback: _GetRootWidget);
             _RegisterObjectGroupServiceExtension(name: "getRootRenderObject", callback: _GetRootRenderObject);
             _RegisterObjectGroupServiceExtension(name: "getRootWidgetSummaryTree", callback: _GetRootWidgetSummaryTree);
-            RegisterServiceExtension(name: "getDetailsSubtree", callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: "getDetailsSubtree", callback: async (Dictionary<string, string> parameters) =>
             {
 
                 string subtreeDepth = parameters["subtreeDepth"];
@@ -854,7 +855,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
             _RegisterServiceExtensionWithArg(name: "getSelectedWidget", callback: _GetSelectedWidget);
             _RegisterServiceExtensionWithArg(name: "getSelectedSummaryWidget", callback: _GetSelectedSummaryWidget);
             _RegisterSignalServiceExtension(name: "isWidgetCreationTracked", callback: IsWidgetCreationTracked);
-            RegisterServiceExtension(name: "screenshot", callback: (Dictionary<string, string> parameters) =>
+            RegisterServiceExtension(name: "screenshot", callback: async (Dictionary<string, string> parameters) =>
             {
 
 
@@ -3034,113 +3035,114 @@ public class _WidgetInspectorState : FlutterSDK.Widgets.Framework.State<FlutterS
         List<RenderObject> regularHits = new List<RenderObject>() { };
         List<RenderObject> edgeHits = new List<RenderObject>() { };
         _HitTestHelper(regularHits, edgeHits, position, root, root.GetTransformTo(null));
-        double _Area(RenderObject object) => {
+        double _Area(RenderObject object)
+        {
             Size size = object.SemanticBounds?.Size;
             return size == null ? Dart : coreDefaultClass.Double.MaxFinite:size.Width* size.Height;
-        }
-
-        regularHits.Sort((RenderObject a, RenderObject b) => =>_Area(a).CompareTo(_Area(b)));
-        HashSet<RenderObject> hits = new Dictionary<RenderObject> { {, edgeHits }{, regularHits } };
-        return hits.ToList();
     }
 
+    regularHits.Sort((RenderObject a, RenderObject b) => =>_Area(a).CompareTo(_Area(b)));
+HashSet<RenderObject> hits = new Dictionary<RenderObject> { {, edgeHits }{, regularHits } };
+return hits.ToList();
+}
 
 
 
-    private void _InspectAt(FlutterBinding.UI.Offset position)
+
+private void _InspectAt(FlutterBinding.UI.Offset position)
+{
+    if (!IsSelectMode) return;
+    RenderIgnorePointer ignorePointer = _IgnorePointerKey.CurrentContext.FindRenderObject() as RenderIgnorePointer;
+    RenderObject userRender = ignorePointer.Child;
+    List<RenderObject> selected = HitTest(position, userRender);
+    SetState(() =>
     {
-        if (!IsSelectMode) return;
-        RenderIgnorePointer ignorePointer = _IgnorePointerKey.CurrentContext.FindRenderObject() as RenderIgnorePointer;
-        RenderObject userRender = ignorePointer.Child;
-        List<RenderObject> selected = HitTest(position, userRender);
+        Selection.Candidates = selected;
+    }
+    );
+}
+
+
+
+
+private void _HandlePanDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails @event)
+{
+    _LastPointerLocation = @event.GlobalPosition;
+    _InspectAt(@event.GlobalPosition);
+}
+
+
+
+
+private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails @event)
+{
+    _LastPointerLocation = @event.GlobalPosition;
+    _InspectAt(@event.GlobalPosition);
+}
+
+
+
+
+private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
+{
+    Rect bounds = (Dart: uiDefaultClass.Offset.Zero & (BindingDefaultClass.WidgetsBinding.Instance.Window.PhysicalSize / BindingDefaultClass.WidgetsBinding.Instance.Window.DevicePixelRatio)).Deflate(WidgetinspectorDefaultClass._KOffScreenMargin);
+    if (!bounds.Contains(_LastPointerLocation))
+    {
         SetState(() =>
         {
-            Selection.Candidates = selected;
+            Selection.Clear();
         }
         );
     }
 
+}
 
 
 
-    private void _HandlePanDown(FlutterSDK.Gestures.Dragdetails.DragDownDetails @event)
+
+private void _HandleTap()
+{
+    if (!IsSelectMode) return;
+    if (_LastPointerLocation != null)
     {
-        _LastPointerLocation = @event.GlobalPosition;
-        _InspectAt(@event.GlobalPosition);
-    }
-
-
-
-
-    private void _HandlePanUpdate(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails @event)
-    {
-        _LastPointerLocation = @event.GlobalPosition;
-        _InspectAt(@event.GlobalPosition);
-    }
-
-
-
-
-    private void _HandlePanEnd(FlutterSDK.Gestures.Dragdetails.DragEndDetails details)
-    {
-        Rect bounds = (Dart: uiDefaultClass.Offset.Zero & (BindingDefaultClass.WidgetsBinding.Instance.Window.PhysicalSize / BindingDefaultClass.WidgetsBinding.Instance.Window.DevicePixelRatio)).Deflate(WidgetinspectorDefaultClass._KOffScreenMargin);
-        if (!bounds.Contains(_LastPointerLocation))
+        _InspectAt(_LastPointerLocation);
+        if (Selection != null)
         {
-            SetState(() =>
-            {
-                Selection.Clear();
-            }
-            );
-        }
+            Developer.Dart:developerDefaultClass.Inspect(Selection.Current);
+}
 
-    }
+}
+
+SetState(() =>
+{
+    if (Widget.SelectButtonBuilder != null) IsSelectMode = false;
+}
+);
+}
 
 
 
 
-    private void _HandleTap()
+private void _HandleEnableSelect()
+{
+    SetState(() =>
     {
-        if (!IsSelectMode) return;
-        if (_LastPointerLocation != null)
-        {
-            _InspectAt(_LastPointerLocation);
-            if (Selection != null)
-            {
-                Developer.Dart:developerDefaultClass.Inspect(Selection.Current);
-            }
-
-        }
-
-        SetState(() =>
-        {
-            if (Widget.SelectButtonBuilder != null) IsSelectMode = false;
-        }
-        );
+        IsSelectMode = true;
     }
+    );
+}
 
 
 
 
-    private void _HandleEnableSelect()
-    {
-        SetState(() =>
-        {
-            IsSelectMode = true;
-        }
-        );
-    }
+public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+{
+    return new Stack(children: new List<Widget>() { new GestureDetector(onTap: _HandleTap, onPanDown: _HandlePanDown, onPanEnd: _HandlePanEnd, onPanUpdate: _HandlePanUpdate, behavior: HitTestBehavior.Opaque, excludeFromSemantics: true, child: new IgnorePointer(ignoring: IsSelectMode, key: _IgnorePointerKey, ignoringSemantics: false, child: Widget.Child)), });
+}
 
 
 
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Stack(children: new List<Widget>() { new GestureDetector(onTap: _HandleTap, onPanDown: _HandlePanDown, onPanEnd: _HandlePanEnd, onPanUpdate: _HandlePanUpdate, behavior: HitTestBehavior.Opaque, excludeFromSemantics: true, child: new IgnorePointer(ignoring: IsSelectMode, key: _IgnorePointerKey, ignoringSemantics: false, child: Widget.Child)), });
-    }
-
-
-
-    #endregion
+#endregion
 }
 
 

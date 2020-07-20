@@ -885,7 +885,8 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
             if (Child != null)
             {
                 Offset paintOffset = _PaintOffset;
-                void PaintContents(PaintingContext context, Offset offset) => {
+                void PaintContents(PaintingContext context, Offset offset)
+                {
                     context.PaintChild(Child, offset + paintOffset);
                 }
 

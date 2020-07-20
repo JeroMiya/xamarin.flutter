@@ -2134,7 +2134,8 @@ namespace FlutterSDK.Material.Chip
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
         {
             List<DiagnosticsNode> value = new List<DiagnosticsNode>() { };
-            void Add(RenderBox child, string name) => {
+            void Add(RenderBox child, string name)
+            {
                 if (child != null)
                 {
                     value.Add(child.ToDiagnosticsNode(name: name));
@@ -2332,7 +2333,8 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             Size overallSize = new Size(avatarSize.Width + labelSize.Width + deleteIconSize.Width, contentSize) + densityAdjustment;
             double left = 0.0;
             double right = overallSize.Width;
-            Offset CenterLayout(Size boxSize, double x) => {
+            Offset CenterLayout(Size boxSize, double x)
+            {
 
                 Offset boxOffset = default(Offset);
                 switch (TextDirection) { case TextDirection.Rtl: boxOffset = new Offset(x - boxSize.Width, (contentSize - boxSize.Height + densityAdjustment.Dy) / 2.0); break; case TextDirection.Ltr: boxOffset = new Offset(x, (contentSize - boxSize.Height + densityAdjustment.Dy) / 2.0); break; }
@@ -2478,7 +2480,8 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         private void _PaintAvatar(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            void PaintWithOverlay(PaintingContext context, Offset offset) => {
+            void PaintWithOverlay(PaintingContext context, Offset offset)
+            {
                 context.PaintChild(Avatar, _BoxParentData(Avatar).Offset + offset);
                 _PaintSelectionOverlay(context, offset);
             }

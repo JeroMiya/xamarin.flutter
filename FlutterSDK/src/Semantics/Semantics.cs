@@ -2346,7 +2346,8 @@ public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._Se
             return -aTopLeft.Dx.CompareTo(bTopLeft.Dx);
         }
         );
-        void Search(int id) => {
+        void Search(int id)
+        {
             if (visitedIds.Contains(id))
             {
                 return;

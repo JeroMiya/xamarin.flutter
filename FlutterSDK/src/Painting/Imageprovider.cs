@@ -848,7 +848,7 @@ namespace FlutterSDK.Painting.Imageprovider
             {
                 ResolveStreamForKey(configuration, stream, key, errorHandler);
             }
-            , (T key, object exception, StackTrace stack) =>
+            , async (T key, object exception, StackTrace stack) =>
             {
                 await null;
                 _ErrorImageCompleter imageCompleter = new _ErrorImageCompleter();
@@ -899,7 +899,7 @@ namespace FlutterSDK.Painting.Imageprovider
             {
                 completer.Complete(BindingDefaultClass.PaintingBinding.Instance.ImageCache.StatusForKey(key));
             }
-            , (T key, object exception, StackTrace stack) =>
+            , async (T key, object exception, StackTrace stack) =>
             {
                 if (handleError != null)
                 {
@@ -930,7 +930,8 @@ namespace FlutterSDK.Painting.Imageprovider
         {
             T obtainedKey = default(T);
             bool didError = false;
-            Future<void> HandleError(object exception, StackTrace stack) => {
+            async Future<void> HandleError(object exception, StackTrace stack)
+            {
                 if (didError)
                 {
                     return;

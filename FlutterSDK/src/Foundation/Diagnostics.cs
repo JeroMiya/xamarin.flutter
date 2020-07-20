@@ -1105,7 +1105,8 @@ public class _PrefixedStringBuilder
         int lastWordEnd = default(int);
         int start = 0;
         int currentChunk = 0;
-        bool NoWrap(int index) => {
+        bool NoWrap(int index)
+        {
             while (true)
             {
                 if (currentChunk >= wrapRanges.Count) return true;
@@ -1403,7 +1404,8 @@ public class TextTreeRenderer
             int depth = 0;
             int maxLines = 25;
             int lines = 0;
-            void Visitor(DiagnosticsNode node) => {
+            void Visitor(DiagnosticsNode node)
+            {
                 foreach (DiagnosticsNode child in node.GetChildren())
                 {
                     if (lines < maxLines)

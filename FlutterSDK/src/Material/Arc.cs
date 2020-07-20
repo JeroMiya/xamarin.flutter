@@ -418,7 +418,7 @@ namespace FlutterSDK.Material.Arc
             double deltaY = delta.Dy.Abs();
             double distanceFromAtoB = delta.Distance;
             Offset c = new Offset(End.Dx, Begin.Dy);
-            double SweepAngle() => =>2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
+            double SweepAngle() => 2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
             if (deltaX > ArcDefaultClass._KOnAxisDelta && deltaY > ArcDefaultClass._KOnAxisDelta)
             {
                 if (deltaX < deltaY)

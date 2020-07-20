@@ -676,7 +676,8 @@ namespace FlutterSDK.Material.Datatable
 
         private FlutterSDK.Widgets.Framework.Widget _BuildHeadingCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = default(bool), VoidCallback onSort = default(VoidCallback), bool sorted = default(bool), bool ascending = default(bool))
         {
-            List<Widget> ArrowWithPadding() => {
+            List<Widget> ArrowWithPadding()
+            {
                 return onSort == null ? new List, < Widget > (}:new List<Widget>() { new _SortArrow(visible: sorted, down: sorted ? ascending : null, duration: _SortArrowAnimationDuration), new SizedBox(width: _SortArrowPadding) };
         }
 

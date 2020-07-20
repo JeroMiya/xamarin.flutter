@@ -1094,7 +1094,8 @@ namespace FlutterSDK.Widgets.Routes
                     else
                     {
                         TrainHoppingAnimation newAnimation = default(TrainHoppingAnimation);
-                        void _JumpOnAnimationEnd(AnimationStatus status) => {
+                        void _JumpOnAnimationEnd(AnimationStatus status)
+                        {
                             switch (status)
                             {
                                 case AnimationStatus.Completed:
