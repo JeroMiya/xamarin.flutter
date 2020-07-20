@@ -298,8 +298,10 @@ namespace FlutterSDK.Foundation.Binding
     {
         internal static async Future<object> _ExitApplication()
         {
-            throw new NotImplementedException();
+        Dart: ioDefaultClass.Exit(0);
         }
+
+
 
     }
 

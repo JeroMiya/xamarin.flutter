@@ -437,18 +437,77 @@ namespace FlutterSDK.Material.Timepicker
         public static FlutterSDK.Rendering.Box.BoxConstraints _KMinTappableRegion = default(FlutterSDK.Rendering.Box.BoxConstraints);
         internal static FlutterSDK.Material.Timepicker._TimePickerHeaderFormat _BuildHeaderFormat(FlutterSDK.Material.Time.TimeOfDayFormat timeOfDayFormat, FlutterSDK.Material.Timepicker._TimePickerFragmentContext context, FlutterSDK.Widgets.Mediaquery.Orientation orientation)
         {
-            throw new NotImplementedException();
+            _TimePickerHeaderFragment Hour()
+            {
+                return new _TimePickerHeaderFragment(layoutId: _TimePickerHeaderId.Hour, widget: new _HourControl(fragmentContext: context));
+            }
+
+            _TimePickerHeaderFragment Minute()
+            {
+                return new _TimePickerHeaderFragment(layoutId: _TimePickerHeaderId.Minute, widget: new _MinuteControl(fragmentContext: context));
+            }
+
+            _TimePickerHeaderFragment String(_TimePickerHeaderId layoutId, string value)
+            {
+                return new _TimePickerHeaderFragment(layoutId: layoutId, widget: new _StringFragment(fragmentContext: context, value: value));
+            }
+
+            _TimePickerHeaderFragment DayPeriod()
+            {
+                return new _TimePickerHeaderFragment(layoutId: _TimePickerHeaderId.Period, widget: new _DayPeriodControl(fragmentContext: context, orientation: orientation));
+            }
+
+            _TimePickerHeaderFormat Format(_TimePickerHeaderPiece piece1, [_TimePickerHeaderPiece piece)
+            {
+                List<_TimePickerHeaderPiece> pieces = new List<_TimePickerHeaderPiece>() { };
+                switch (context.TextDirection) { case TextDirection.Ltr: pieces.Add(piece1); if (piece2 != null) pieces.Add(piece2); break; case TextDirection.Rtl: if (piece2 != null) pieces.Add(piece2); pieces.Add(piece1); break; }
+                int centerpieceIndex = default(int);
+                for (int i = 0; i < pieces.Count; i += 1)
+                {
+                    if (pieces[i].PivotIndex >= 0)
+                    {
+                        centerpieceIndex = i;
+                    }
+
+                }
+
+
+                return new _TimePickerHeaderFormat(centerpieceIndex, pieces);
+            }
+
+            _TimePickerHeaderPiece Piece({ int pivotIndex = -1double bottomMargin = 0.0_TimePickerHeaderFragment fragment1_TimePickerHeaderFragment fragment2_TimePickerHeaderFragment fragment3}){
+                List<_TimePickerHeaderFragment> fragments = new List<_TimePickerHeaderFragment>() { fragment1, };
+                return new _TimePickerHeaderPiece(pivotIndex, fragments, bottomMargin: bottomMargin);
+            }
+
+            switch (timeOfDayFormat) { case TimeOfDayFormat.H_colon_mm_space_a: return Format(Piece(pivotIndex: 1, fragment1: Hour(), fragment2: String(_TimePickerHeaderId.Colon, ':'), fragment3: Minute()), Piece(fragment1: DayPeriod())); case TimeOfDayFormat.H_colon_mm: return Format(Piece(pivotIndex: 1, fragment1: Hour(), fragment2: String(_TimePickerHeaderId.Colon, ':'), fragment3: Minute())); case TimeOfDayFormat.HH_dot_mm: return Format(Piece(pivotIndex: 1, fragment1: Hour(), fragment2: String(_TimePickerHeaderId.Dot, '.'), fragment3: Minute())); case TimeOfDayFormat.A_space_h_colon_mm: return Format(Piece(fragment1: DayPeriod()), Piece(pivotIndex: 1, fragment1: Hour(), fragment2: String(_TimePickerHeaderId.Colon, ':'), fragment3: Minute())); case TimeOfDayFormat.FrenchCanadian: return Format(Piece(pivotIndex: 1, fragment1: Hour(), fragment2: String(_TimePickerHeaderId.HString, 'h'), fragment3: Minute())); case TimeOfDayFormat.HH_colon_mm: return Format(Piece(pivotIndex: 1, fragment1: Hour(), fragment2: String(_TimePickerHeaderId.Colon, ':'), fragment3: Minute())); }
+            return null;
         }
+
+
 
         internal static async Future<FlutterSDK.Material.Time.TimeOfDay> ShowTimePicker(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Material.Time.TimeOfDay initialTime = default(FlutterSDK.Material.Time.TimeOfDay), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
-            throw new NotImplementedException();
+
+
+
+
+            Widget dialog = new _TimePickerDialog(initialTime: initialTime);
+            return await DialogDefaultClass.ShowDialog(context: context, useRootNavigator: useRootNavigator, builder: (BuildContext context) =>
+            {
+                return builder == null ? dialog : builder(context, dialog);
+            }
+            , routeSettings: routeSettings);
         }
+
+
 
         internal static void _AnnounceToAccessibility(FlutterSDK.Widgets.Framework.BuildContext context, string message)
         {
-            throw new NotImplementedException();
+            SemanticsserviceDefaultClass.SemanticsService.Announce(message, BasicDefaultClass.Directionality.Of(context));
         }
+
+
 
     }
 

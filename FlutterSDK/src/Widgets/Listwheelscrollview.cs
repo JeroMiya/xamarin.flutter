@@ -428,13 +428,17 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
     {
         internal static int _GetItemFromOffset(double offset = default(double), double itemExtent = default(double), double minScrollExtent = default(double), double maxScrollExtent = default(double))
         {
-            throw new NotImplementedException();
+            return (ListwheelscrollviewDefaultClass._ClipOffsetToScrollableRange(offset, minScrollExtent, maxScrollExtent) / itemExtent).Round();
         }
+
+
 
         internal static double _ClipOffsetToScrollableRange(double offset, double minScrollExtent, double maxScrollExtent)
         {
-            throw new NotImplementedException();
+            return Math.Dart:mathDefaultClass.Min(Math.Dart:mathDefaultClass.Max(offset, minScrollExtent), maxScrollExtent);
         }
+
+
 
     }
 

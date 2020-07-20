@@ -309,8 +309,19 @@ namespace FlutterSDK.Cupertino.Scrollbar
         public static double _KScrollbarCrossAxisMargin = default(double);
         internal static bool _HitTestInteractive(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> customPaintKey, FlutterBinding.UI.Offset offset)
         {
-            throw new NotImplementedException();
+            if (customPaintKey.CurrentContext == null)
+            {
+                return false;
+            }
+
+            CustomPaint customPaint = customPaintKey.CurrentContext.Widget as CustomPaint;
+            ScrollbarPainter painter = customPaint.ForegroundPainter as ScrollbarPainter;
+            RenderBox renderBox = customPaintKey.CurrentContext.FindRenderObject() as RenderBox;
+            Offset localOffset = renderBox.GlobalToLocal(offset);
+            return painter.HitTestInteractive(localOffset);
         }
+
+
 
     }
 

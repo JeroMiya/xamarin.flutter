@@ -435,8 +435,12 @@ namespace FlutterSDK.Widgets.Framework
     {
         internal static FlutterSDK.Foundation.Assertions.FlutterErrorDetails _DebugReportException(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context, object exception, StackTrace stack, FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
         {
-            throw new NotImplementedException();
+            FlutterErrorDetails details = new FlutterErrorDetails(exception: exception, stack: stack, library: "widgets library", context: context, informationCollector: informationCollector);
+            AssertionsDefaultClass.FlutterError.ReportError(details);
+            return details;
         }
+
+
 
     }
 

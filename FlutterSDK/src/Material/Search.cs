@@ -416,8 +416,14 @@ namespace FlutterSDK.Material.Search
     {
         internal static Future<T> ShowSearch<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), string query = default(string))
         {
-            throw new NotImplementedException();
+
+
+            delegate.Query = query ?? delegate.Query;
+            delegate._CurrentBody = _SearchBody.Suggestions;
+            return NavigatorDefaultClass.Navigator.Of(context).Push(new _SearchPageRoute<T>(@delegate: @delegate));
         }
+
+
 
     }
 

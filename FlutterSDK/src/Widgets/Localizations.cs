@@ -428,8 +428,58 @@ namespace FlutterSDK.Widgets.Localizations
     {
         internal static Future<Dictionary<Type, object>> _LoadAll(Locale locale, Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> allDelegates)
         {
-            throw new NotImplementedException();
+            Dictionary<Type, object> output = new Dictionary<Type, object> { };
+            List<_Pending> pendingList = default(List<_Pending>);
+            HashSet<Type> types = new Dictionary<Type> { };
+            List<LocalizationsDelegate<object>> delegates = new List<LocalizationsDelegate<object>>() { };
+            foreach (LocalizationsDelegate<object> delegate  in allDelegates){
+                if (!types.Contains(delegate.Type) && delegate.IsSupported(locale))
+                {
+                    types.Add(delegate.Type);
+                    delegates.Add(delegate);
+                }
+
+            }
+
+            foreach (LocalizationsDelegate<object> delegate  in delegates){
+                Future<object> inputValue = delegate.Load(locale);
+                object completedValue = default(object);
+                Future<object> futureValue = inputValue.Then((object value) =>
+                {
+                    return completedValue = value;
+                }
+                );
+                if (completedValue != null)
+                {
+                    Type type = delegate.Type;
+
+                    output[type] = completedValue;
+                }
+                else
+                {
+                    pendingList = (pendingList == null ? new List<_Pending>() { } : pendingList);
+                    pendingList.Add(new _Pending(delegate, futureValue));
+                }
+
+            }
+
+            if (pendingList == null) return new SynchronousFuture<Dictionary<Type, object>>(output);
+            return Dart:asyncDefaultClass.Future.Wait(pendingList.Map((_Pending p) => =>p.FutureValue)).Then((List<object> values) =>
+            {
+
+                for (int i = 0; i < values.Count; i += 1)
+                {
+                    Type type = pendingList[i].Delegate.Type;
+
+                    output[type] = values[i];
+                }
+
+                return output;
+            }
+            );
         }
+
+
 
     }
 

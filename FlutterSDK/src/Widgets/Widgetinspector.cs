@@ -443,58 +443,180 @@ namespace FlutterSDK.Widgets.Widgetinspector
         public static List<FlutterSDK.Widgets.Widgetinspector._Location> _Locations = default(List<FlutterSDK.Widgets.Widgetinspector._Location>);
         internal static Rect _CalculateSubtreeBoundsHelper(FlutterSDK.Rendering.@object.RenderObject @object, Matrix4 transform)
         {
-            throw new NotImplementedException();
+            Rect bounds = MatrixutilsDefaultClass.MatrixUtils.TransformRect(transform, object.SemanticBounds);
+            object.VisitChildren((RenderObject child) =>
+            {
+                Matrix4 childTransform = transform.Clone();
+                object.ApplyPaintTransform(child, childTransform);
+                Rect childBounds = WidgetinspectorDefaultClass._CalculateSubtreeBoundsHelper(child, childTransform);
+                Rect paintClip = object.DescribeApproximatePaintClip(child);
+                if (paintClip != null)
+                {
+                    Rect transformedPaintClip = MatrixutilsDefaultClass.MatrixUtils.TransformRect(transform, paintClip);
+                    childBounds = childBounds.Intersect(transformedPaintClip);
+                }
+
+                if (childBounds.IsFinite() && !childBounds.IsEmpty())
+                {
+                    bounds = bounds.IsEmpty() ? childBounds : bounds.ExpandToInclude(childBounds);
+                }
+
+            }
+            );
+            return bounds;
         }
+
+
 
         internal static Rect _CalculateSubtreeBounds(FlutterSDK.Rendering.@object.RenderObject @object)
         {
-            throw new NotImplementedException();
+            return WidgetinspectorDefaultClass._CalculateSubtreeBoundsHelper(object, Matrix4.Identity());
         }
+
+
 
         internal static List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _FollowDiagnosticableChain(List<FlutterSDK.Foundation.Diagnostics.Diagnosticable> chain, string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
         {
-            throw new NotImplementedException();
+            List<_DiagnosticsPathNode> path = new List<_DiagnosticsPathNode>() { };
+            if (chain.IsEmpty()) return path;
+            DiagnosticsNode diagnostic = chain.First.ToDiagnosticsNode(name: name, style: style);
+            for (int i = 1; i < chain.Count; i += 1)
+            {
+                Diagnosticable target = chain[i];
+                bool foundMatch = false;
+                List<DiagnosticsNode> children = diagnostic.GetChildren();
+                for (int j = 0; j < children.Count; j += 1)
+                {
+                    DiagnosticsNode child = children[j];
+                    if (child.Value == target)
+                    {
+                        foundMatch = true;
+                        path.Add(new _DiagnosticsPathNode(node: diagnostic, children: children, childIndex: j));
+                        diagnostic = child;
+                        break;
+                    }
+
+                }
+
+
+            }
+
+            path.Add(new _DiagnosticsPathNode(node: diagnostic, children: diagnostic.GetChildren()));
+            return path;
         }
 
-        internal static bool _IsDebugCreator(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
-        {
-            throw new NotImplementedException();
-        }
+
+
+        internal static bool _IsDebugCreator(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node) => node is DiagnosticsDebugCreator;
+
 
         internal static Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> TransformDebugCreator(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties)
         {
-            throw new NotImplementedException();
+            List<DiagnosticsNode> pending = new List<DiagnosticsNode>() { };
+            bool foundStackTrace = false;
+            foreach (DiagnosticsNode node in properties)
+            {
+                if (!foundStackTrace && node is DiagnosticsStackTrace) foundStackTrace = true;
+                if (WidgetinspectorDefaultClass._IsDebugCreator(node))
+                {
+                    foreach (var enumItem in (WidgetinspectorDefaultClass._ParseDiagnosticsNode(((DiagnosticsDebugCreator)node)))) { yield return enumItem; }
+                }
+                else
+                {
+                    if (foundStackTrace)
+                    {
+                        pending.Add(node);
+                    }
+                    else
+                    {
+                        yield return node;
+                    }
+
+                }
+
+            }
+
+            foreach (var enumItem in (pending)) { yield return enumItem; }
         }
+
+
 
         internal static Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _ParseDiagnosticsNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
         {
-            throw new NotImplementedException();
+            if (!WidgetinspectorDefaultClass._IsDebugCreator(node)) return null;
+            DebugCreator debugCreator = node.Value as DebugCreator;
+            Element element = debugCreator.Element;
+            return WidgetinspectorDefaultClass._DescribeRelevantUserCode(element);
         }
+
+
 
         internal static Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _DescribeRelevantUserCode(FlutterSDK.Widgets.Framework.Element element)
         {
-            throw new NotImplementedException();
+            if (!WidgetinspectorDefaultClass.WidgetInspectorService.Instance.IsWidgetCreationTracked())
+            {
+                return new List<DiagnosticsNode>() { new ErrorDescription("Widget creation tracking is currently disabled. Enabling " + "it enables improved error messages. It can be enabled by passing " + "`--track-widget-creation` to `flutter run` or `flutter test`."), new ErrorSpacer() };
+            }
+
+            List<DiagnosticsNode> nodes = new List<DiagnosticsNode>() { };
+            bool ProcessElement(Element target)
+            {
+                if (WidgetinspectorDefaultClass._IsLocalCreationLocation(target))
+                {
+                    nodes.Add(new DiagnosticsBlock(name: "The relevant error-causing widget was", children: new List<DiagnosticsNode>() { new ErrorDescription($"'{target.Widget.ToStringShort()} {WidgetinspectorDefaultClass._DescribeCreationLocation(target)}'") }));
+                    nodes.Add(new ErrorSpacer());
+                    return false;
+                }
+
+                return true;
+            }
+
+            if (ProcessElement(element)) element.VisitAncestorElements(ProcessElement);
+            return nodes;
         }
+
+
 
         internal static bool _IsLocalCreationLocation(@Object @object)
         {
-            throw new NotImplementedException();
+            _Location location = WidgetinspectorDefaultClass._GetCreationLocation(object);
+            if (location == null) return false;
+            return WidgetinspectorDefaultClass.WidgetInspectorService.Instance._IsLocalCreationLocation(location);
         }
+
+
 
         internal static string _DescribeCreationLocation(@Object @object)
         {
-            throw new NotImplementedException();
+            _Location location = WidgetinspectorDefaultClass._GetCreationLocation(object);
+            return location?.ToString();
         }
+
+
 
         internal static FlutterSDK.Widgets.Widgetinspector._Location _GetCreationLocation(@Object @object)
         {
-            throw new NotImplementedException();
+            object candidate = object is Element ? object.Widget : object;
+            return candidate is _HasCreationLocation ? candidate._Location : null;
         }
+
+
 
         internal static int _ToLocationId(FlutterSDK.Widgets.Widgetinspector._Location location)
         {
-            throw new NotImplementedException();
+            int id = WidgetinspectorDefaultClass._LocationToId[location];
+            if (id != null)
+            {
+                return id;
+            }
+
+            id = WidgetinspectorDefaultClass._Locations.Count;
+            WidgetinspectorDefaultClass._Locations.Add(location);
+            WidgetinspectorDefaultClass._LocationToId[location] = id;
+            return id;
         }
+
+
 
     }
 
@@ -860,7 +982,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
-            Ui.Dart:uiDefaultClass.Image image = await Screenshot(ToObject(parameters["id"]), width: Dart:coreDefaultClass.Double.Parse(parameters["width"]), height: Dart: coreDefaultClass.Double.Parse(parameters["height"]), margin: parameters.ContainsKey("margin") ? Dart : coreDefaultClass.Double.Parse(parameters["margin"]):0.0, maxPixelRatio: parameters.ContainsKey("maxPixelRatio") ? Dart : coreDefaultClass.Double.Parse(parameters["maxPixelRatio"]):1.0, debugPaint: parameters["debugPaint"] == "true");
+                Ui.Dart:uiDefaultClass.Image image = await Screenshot(ToObject(parameters["id"]), width: Dart:coreDefaultClass.Double.Parse(parameters["width"]), height: Dart: coreDefaultClass.Double.Parse(parameters["height"]), margin: parameters.ContainsKey("margin") ? Dart : coreDefaultClass.Double.Parse(parameters["margin"]):0.0, maxPixelRatio: parameters.ContainsKey("maxPixelRatio") ? Dart : coreDefaultClass.Double.Parse(parameters["maxPixelRatio"]):1.0, debugPaint: parameters["debugPaint"] == "true");
             if (image == null)
             {
                 return new Dictionary<string, object> { { "result", null } };

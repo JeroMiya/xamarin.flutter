@@ -429,8 +429,10 @@ namespace FlutterSDK.Widgets.Pages
     {
         internal static FlutterSDK.Widgets.Framework.Widget _DefaultTransitionsBuilder(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
-            throw new NotImplementedException();
+            return child;
         }
+
+
 
     }
 

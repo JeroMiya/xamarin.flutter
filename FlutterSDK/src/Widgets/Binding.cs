@@ -427,13 +427,31 @@ namespace FlutterSDK.Widgets.Binding
     {
         internal static void RunApp(FlutterSDK.Widgets.Framework.Widget app)
         {
-            throw new NotImplementedException();
+            BindingDefaultClass.WidgetsFlutterBinding.EnsureInitialized();
+            BindingDefaultClass.WidgetsFlutterBinding.EnsureInitialized().ScheduleAttachRootWidget(app);
+            BindingDefaultClass.WidgetsFlutterBinding.EnsureInitialized().ScheduleWarmUpFrame();
         }
+
+
 
         internal static void DebugDumpApp()
         {
-            throw new NotImplementedException();
+
+            string mode = "RELEASE MODE";
+
+            PrintDefaultClass.DebugPrint($"'{BindingDefaultClass.WidgetsBinding.Instance.GetType()} - {mode}'");
+            if (BindingDefaultClass.WidgetsBinding.Instance.RenderViewElement != null)
+            {
+                PrintDefaultClass.DebugPrint(BindingDefaultClass.WidgetsBinding.Instance.RenderViewElement.ToStringDeep());
+            }
+            else
+            {
+                PrintDefaultClass.DebugPrint("<no tree currently mounted>");
+            }
+
         }
+
+
 
     }
 

@@ -425,8 +425,14 @@ namespace FlutterSDK.Material.Tabs
         public static FlutterSDK.Widgets.Pageview.PageScrollPhysics _KTabBarViewPhysics = default(FlutterSDK.Widgets.Pageview.PageScrollPhysics);
         internal static double _IndexChangeProgress(FlutterSDK.Material.Tabcontroller.TabController controller)
         {
-            throw new NotImplementedException();
+            double controllerValue = controller.Animation.Value;
+            double previousIndex = controller.PreviousIndex.ToDouble();
+            double currentIndex = controller.Index.ToDouble();
+            if (!controller.IndexIsChanging) return (currentIndex - controllerValue).Abs().Clamp(0.0, 1.0) as double;
+            return (controllerValue - currentIndex).Abs() / (currentIndex - previousIndex).Abs();
         }
+
+
 
     }
 

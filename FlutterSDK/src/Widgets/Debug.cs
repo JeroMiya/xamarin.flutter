@@ -435,43 +435,73 @@ namespace FlutterSDK.Widgets.Debug
         public static bool DebugHighlightDeprecatedWidgets = default(bool);
         internal static FlutterSDK.Foundation.Key.Key _FirstNonUniqueKey(Iterable<FlutterSDK.Widgets.Framework.Widget> widgets)
         {
-            throw new NotImplementedException();
+            HashSet<Key> keySet = new HashSet<Key>();
+            foreach (Widget widget in widgets)
+            {
+
+                if (widget.Key == null) continue;
+                if (!keySet.Add(widget.Key)) return widget.Key;
+            }
+
+            return null;
         }
+
+
 
         internal static bool DebugChildrenHaveDuplicateKeys(FlutterSDK.Widgets.Framework.Widget parent, Iterable<FlutterSDK.Widgets.Framework.Widget> children)
         {
-            throw new NotImplementedException();
+
+            return false;
         }
+
+
 
         internal static bool DebugItemsHaveDuplicateKeys(Iterable<FlutterSDK.Widgets.Framework.Widget> items)
         {
-            throw new NotImplementedException();
+
+            return false;
         }
+
+
 
         internal static bool DebugCheckHasTable(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
         internal static bool DebugCheckHasMediaQuery(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
         internal static bool DebugCheckHasDirectionality(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
         internal static void DebugWidgetBuilderValue(FlutterSDK.Widgets.Framework.Widget widget, FlutterSDK.Widgets.Framework.Widget built)
         {
-            throw new NotImplementedException();
+
         }
+
+
 
         internal static bool DebugAssertAllWidgetVarsUnset(string reason)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
     }
 }

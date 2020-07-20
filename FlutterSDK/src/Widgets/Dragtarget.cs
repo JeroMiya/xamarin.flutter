@@ -434,8 +434,10 @@ namespace FlutterSDK.Widgets.Dragtarget
     {
         internal static List<T> _MapAvatarsToData<T>(List<FlutterSDK.Widgets.Dragtarget._DragAvatar<T>> avatars)
         {
-            throw new NotImplementedException();
+            return avatars.Map((_DragAvatar<T> avatar) => =>avatar.Data).ToList();
         }
+
+
 
     }
 

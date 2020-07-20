@@ -432,8 +432,12 @@ namespace FlutterSDK.Widgets.Heroes
     {
         internal static Rect _BoundingBoxFor(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.BuildContext ancestorContext = default(FlutterSDK.Widgets.Framework.BuildContext))
         {
-            throw new NotImplementedException();
+            RenderBox box = context.FindRenderObject() as RenderBox;
+
+            return MatrixutilsDefaultClass.MatrixUtils.TransformRect(box.GetTransformTo(ancestorContext?.FindRenderObject()), Dart: uiDefaultClass.Offset.Zero & box.Size);
         }
+
+
 
     }
 

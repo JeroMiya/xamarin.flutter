@@ -428,18 +428,30 @@ namespace FlutterSDK.Rendering.Sliver
     {
         internal static FlutterSDK.Painting.Basictypes.AxisDirection ApplyGrowthDirectionToAxisDirection(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
         {
-            throw new NotImplementedException();
+
+
+            switch (growthDirection) { case GrowthDirection.Forward: return axisDirection; case GrowthDirection.Reverse: return BasictypesDefaultClass.FlipAxisDirection(axisDirection); }
+            return null;
         }
+
+
 
         internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection ApplyGrowthDirectionToScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection scrollDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
         {
-            throw new NotImplementedException();
+
+
+            switch (growthDirection) { case GrowthDirection.Forward: return scrollDirection; case GrowthDirection.Reverse: return ViewportoffsetDefaultClass.FlipScrollDirection(scrollDirection); }
+            return null;
         }
+
+
 
         internal static List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _DebugCompareFloats(string labelA, double valueA, string labelB, double valueB)
         {
-            throw new NotImplementedException();
+            return new List<DiagnosticsNode>() { };
         }
+
+
 
     }
 

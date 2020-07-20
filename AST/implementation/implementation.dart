@@ -945,7 +945,9 @@ class Implementation {
   }
 
   static String functionBody(FunctionElement element) {
-    // TODO
-    return "throw new NotImplementedException();";
+    var node = element.computeNode();
+    var exp = node.functionExpression;
+    var body = exp.body;
+    return Implementation.MethodBody(body);
   }
 }

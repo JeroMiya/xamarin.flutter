@@ -429,8 +429,11 @@ namespace FlutterSDK.Painting.Debug
         public static object DebugNetworkImageHttpClientProvider = default(object);
         internal static bool DebugAssertAllPaintingVarsUnset(string reason, bool debugDisableShadowsOverride = false)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
     }
 }

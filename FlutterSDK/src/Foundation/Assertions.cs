@@ -300,8 +300,23 @@ namespace FlutterSDK.Foundation.Assertions
     {
         internal static void DebugPrintStack(StackTrace stackTrace = default(StackTrace), string label = default(string), int maxFrames = default(int))
         {
-            throw new NotImplementedException();
+            if (label != null) PrintDefaultClass.DebugPrint(label);
+            stackTrace = (stackTrace == null ? Dart : coreDefaultClass.StackTrace.Current : stackTrace );
+            Iterable<string> lines = stackTrace.ToString().TrimEnd().Split('\n').ToList();
+            if (ConstantsDefaultClass.KIsWeb && lines.IsNotEmpty)
+            {
+                lines = lines.SkipWhile((string line) =>
+                {
+                    return line.Contains("StackTrace.current") || line.Contains("dart:sdk_internal");
+                }
+                );
+            }
+
+            if (maxFrames != null) lines = lines.Take(maxFrames);
+            PrintDefaultClass.DebugPrint(AssertionsDefaultClass.FlutterError.DefaultStackFilter(lines).Join('\n'));
         }
+
+
 
     }
 

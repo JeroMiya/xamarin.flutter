@@ -301,18 +301,52 @@ namespace FlutterSDK.Foundation.Debug
         public static int DebugDoublePrecision = default(int);
         internal static bool DebugAssertAllFoundationVarsUnset(string reason, FlutterSDK.Foundation.Print.DebugPrintCallback debugPrintOverride = default(FlutterSDK.Foundation.Print.DebugPrintCallback))
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
         internal static Future<T> DebugInstrumentAction<T>(string description, Func<Future<T>> action)
         {
-            throw new NotImplementedException();
-        }
+            bool instrument = false;
 
-        internal static string DebugFormatDouble(double value)
-        {
-            throw new NotImplementedException();
+            if (instrument)
+            {
+                Stopwatch stopwatch = new Stopwatch();
+                new Stopwatch().Start();
+                return action().WhenComplete(() =>
+                {
+                stopwatch.Stop();
+                PrintDefaultClass.DebugPrint($"'Action "{ description}
+                " took {stopwatch.Elapsed}'");
+            }
+);
         }
-
+else {
+return action();
     }
+
+}
+
+
+
+internal static string DebugFormatDouble(double value)
+{
+    if (value == null)
+    {
+        return "null";
+    }
+
+    if (DebugDefaultClass.DebugDoublePrecision != null)
+    {
+        return value.ToStringAsPrecision(DebugDefaultClass.DebugDoublePrecision);
+    }
+
+    return value.ToStringAsFixed(1);
+}
+
+
+
+}
 }

@@ -300,8 +300,10 @@ namespace FlutterSDK.Gestures.Converter
     {
         internal static int _SynthesiseDownButtons(int buttons, PointerDeviceKind kind)
         {
-            throw new NotImplementedException();
+            switch (kind) { case PointerDeviceKind.Mouse: return buttons; case PointerDeviceKind.Touch: case PointerDeviceKind.Stylus: case PointerDeviceKind.InvertedStylus: return buttons | EventsDefaultClass.KPrimaryButton; default: return buttons == 0 ? EventsDefaultClass.KPrimaryButton : buttons; }
         }
+
+
 
     }
 

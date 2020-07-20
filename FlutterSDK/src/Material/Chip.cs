@@ -392,8 +392,20 @@ namespace FlutterSDK.Material.Chip
         public static FlutterSDK.Widgets.Icon.Icon _KDefaultDeleteIcon = default(FlutterSDK.Widgets.Icon.Icon);
         internal static bool _TapIsOnDeleteIcon(bool hasDeleteButton = default(bool), FlutterBinding.UI.Offset tapPosition = default(FlutterBinding.UI.Offset), Size chipSize = default(Size), TextDirection textDirection = default(TextDirection))
         {
-            throw new NotImplementedException();
+            bool tapIsOnDeleteIcon = default(bool);
+            if (!hasDeleteButton)
+            {
+                tapIsOnDeleteIcon = false;
+            }
+            else
+            {
+                switch (textDirection) { case TextDirection.Ltr: tapIsOnDeleteIcon = tapPosition.Dx / chipSize.Width > 0.66; break; case TextDirection.Rtl: tapIsOnDeleteIcon = tapPosition.Dx / chipSize.Width < 0.33; break; }
+            }
+
+            return tapIsOnDeleteIcon;
         }
+
+
 
     }
 

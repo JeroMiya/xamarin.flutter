@@ -393,18 +393,41 @@ namespace FlutterSDK.Material.Inksplash
         public static double _KSplashConfirmedVelocity = default(double);
         internal static FlutterSDK.Material.Material.RectCallback _GetClipCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback)
         {
-            throw new NotImplementedException();
+            if (rectCallback != null)
+            {
+
+                return rectCallback;
+            }
+
+            if (containedInkWell) return () => =>Dart: uiDefaultClass.Offset.Zero & referenceBox.Size;
+            return null;
         }
+
+
 
         internal static double _GetTargetRadius(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback, FlutterBinding.UI.Offset position)
         {
-            throw new NotImplementedException();
+            if (containedInkWell)
+            {
+                Size size = rectCallback != null ? rectCallback().Size : referenceBox.Size;
+                return InksplashDefaultClass._GetSplashRadiusForPositionInSize(size, position);
+            }
+
+            return MaterialDefaultClass.Material.DefaultSplashRadius;
         }
+
+
 
         internal static double _GetSplashRadiusForPositionInSize(Size bounds, FlutterBinding.UI.Offset position)
         {
-            throw new NotImplementedException();
+            double d1 = (position - bounds.TopLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
+            double d2 = (position - bounds.TopRight(Dart: uiDefaultClass.Offset.Zero)).Distance;
+            double d3 = (position - bounds.BottomLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
+            double d4 = (position - bounds.BottomRight(Dart: uiDefaultClass.Offset.Zero)).Distance;
+            return Math.Dart:mathDefaultClass.Max(Math.Dart:mathDefaultClass.Max(d1, d2), Math.Dart:mathDefaultClass.Max(d3, d4)).CeilToDouble();
         }
+
+
 
     }
 

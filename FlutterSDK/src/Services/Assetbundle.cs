@@ -428,8 +428,10 @@ namespace FlutterSDK.Services.Assetbundle
         public static FlutterSDK.Services.Assetbundle.AssetBundle RootBundle = default(FlutterSDK.Services.Assetbundle.AssetBundle);
         internal static FlutterSDK.Services.Assetbundle.AssetBundle _InitRootBundle()
         {
-            throw new NotImplementedException();
+            return new PlatformAssetBundle();
         }
+
+
 
     }
 

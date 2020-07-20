@@ -427,8 +427,11 @@ namespace FlutterSDK.Rendering.Viewportoffset
     {
         internal static FlutterSDK.Rendering.Viewportoffset.ScrollDirection FlipScrollDirection(FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction)
         {
-            throw new NotImplementedException();
+            switch (direction) { case ScrollDirection.Idle: return ScrollDirection.Idle; case ScrollDirection.Forward: return ScrollDirection.Reverse; case ScrollDirection.Reverse: return ScrollDirection.Forward; }
+            return null;
         }
+
+
 
     }
 

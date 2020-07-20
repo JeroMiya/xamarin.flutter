@@ -426,8 +426,12 @@ namespace FlutterSDK.Painting.Imagedecoder
     {
         internal static async Future<Image> DecodeImageFromList(Uint8List bytes)
         {
-            throw new NotImplementedException();
+            Ui.Dart:uiDefaultClass.Codec codec = await BindingDefaultClass.PaintingBinding.Instance.InstantiateImageCodec(bytes);
+            Ui.Dart:uiDefaultClass.FrameInfo frameInfo = await codec.GetNextFrame();
+            return frameInfo.Image;
         }
+
+
 
     }
 }

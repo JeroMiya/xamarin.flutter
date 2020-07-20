@@ -300,8 +300,11 @@ namespace FlutterSDK.Foundation._Isolatesweb
     {
         internal static async Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
         {
-            throw new NotImplementedException();
+            await null;
+            return callback(message);
         }
+
+
 
     }
 }

@@ -425,10 +425,8 @@ namespace FlutterSDK.Services.Systemchrome
 {
     internal static class SystemchromeDefaultClass
     {
-        internal static List<string> _Stringify(List<object> list)
-        {
-            throw new NotImplementedException();
-        }
+        internal static List<string> _Stringify(List<object> list) => new List<string>() { };
+
 
     }
 

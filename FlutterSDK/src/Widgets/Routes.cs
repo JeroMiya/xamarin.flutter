@@ -432,8 +432,13 @@ namespace FlutterSDK.Widgets.Routes
         public static Color _KTransparent = default(Color);
         internal static Future<T> ShowGeneralDialog<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), bool barrierDismissible = default(bool), string barrierLabel = default(string), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), TimeSpan transitionDuration = default(TimeSpan), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
-            throw new NotImplementedException();
+
+
+
+            return NavigatorDefaultClass.Navigator.Of(context, rootNavigator: useRootNavigator).Push(new _DialogRoute<T>(pageBuilder: pageBuilder, barrierDismissible: barrierDismissible, barrierLabel: barrierLabel, barrierColor: barrierColor, transitionDuration: transitionDuration, transitionBuilder: transitionBuilder, settings: routeSettings));
         }
+
+
 
     }
 

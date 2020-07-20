@@ -433,8 +433,11 @@ namespace FlutterSDK.Rendering.Editable
         public static double _KFloatingCaretRadius = default(double);
         internal static bool _IsWhitespace(int codeUnit)
         {
-            throw new NotImplementedException();
+            switch (codeUnit) { case 0x9: case 0xA: case 0xB: case 0xC: case 0xD: case 0x1C: case 0x1D: case 0x1E: case 0x1F: case 0x20: case 0xA0: case 0x1680: case 0x2000: case 0x2001: case 0x2002: case 0x2003: case 0x2004: case 0x2005: case 0x2006: case 0x2007: case 0x2008: case 0x2009: case 0x200A: case 0x202F: case 0x205F: case 0x3000: break; default: return false; }
+            return true;
         }
+
+
 
     }
 

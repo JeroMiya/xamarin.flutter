@@ -431,18 +431,41 @@ namespace FlutterSDK.Widgets.Focusmanager
         public static FlutterSDK.Widgets.Focusmanager.FocusNode PrimaryFocus = default(FlutterSDK.Widgets.Focusmanager.FocusNode);
         internal static bool _FocusDebug(string message, Iterable<string> details = default(Iterable<string>))
         {
-            throw new NotImplementedException();
+            if (FocusmanagerDefaultClass._KDebugFocus)
+            {
+                PrintDefaultClass.DebugPrint($"'FOCUS: {message}'");
+                if (details != null && details.IsNotEmpty)
+                {
+                    foreach (string detail in details)
+                    {
+                        PrintDefaultClass.DebugPrint($"'    {detail}'");
+                    }
+
+                }
+
+            }
+
+            return true;
         }
+
+
 
         internal static string DebugDescribeFocusTree()
         {
-            throw new NotImplementedException();
+
+            string result = default(string);
+
+            return result ?? "";
         }
+
+
 
         internal static void DebugDumpFocusTree()
         {
-            throw new NotImplementedException();
+
         }
+
+
 
     }
 

@@ -427,8 +427,29 @@ namespace FlutterSDK.Painting.Paintutilities
     {
         internal static void PaintZigZag(Canvas canvas, SKPaint paint, FlutterBinding.UI.Offset start, FlutterBinding.UI.Offset end, int zigs, double width)
         {
-            throw new NotImplementedException();
+
+
+            canvas.Save();
+            canvas.Translate(start.Dx, start.Dy);
+            end = end - start;
+            canvas.Rotate(Math.Dart:mathDefaultClass.Atan2(end.Dy, end.Dx));
+            double length = end.Distance;
+            double spacing = length / (zigs * 2.0);
+            Path path = new Path();
+            new Path().MoveTo(0.0, 0.0);
+            for (int index = 0; index < zigs; index += 1)
+            {
+                double x = (index * 2.0 + 1.0) * spacing;
+                double y = width * ((index % 2.0) * 2.0 - 1.0);
+                path.LineTo(x, y);
+            }
+
+            path.LineTo(length, 0.0);
+            canvas.DrawPath(path, paint);
+            canvas.Restore();
         }
+
+
 
     }
 }

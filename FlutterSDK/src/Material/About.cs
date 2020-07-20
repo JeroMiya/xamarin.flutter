@@ -311,28 +311,47 @@ namespace FlutterSDK.Material.About
     {
         internal static void ShowAboutDialog(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), bool useRootNavigator = true, FlutterSDK.Widgets.Navigator.RouteSettings routeSettings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         {
-            throw new NotImplementedException();
+
+
+            DialogDefaultClass.ShowDialog(context: context, useRootNavigator: useRootNavigator, builder: (BuildContext context) =>
+            {
+                return new AboutDialog(applicationName: applicationName, applicationVersion: applicationVersion, applicationIcon: applicationIcon, applicationLegalese: applicationLegalese, children: children);
+            }
+            , routeSettings: routeSettings);
         }
+
+
 
         internal static void ShowLicensePage(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), bool useRootNavigator = false)
         {
-            throw new NotImplementedException();
+
+
+            NavigatorDefaultClass.Navigator.Of(context, rootNavigator: useRootNavigator).Push(new MaterialPageRoute<void>(builder: (BuildContext context) => =>new LicensePage(applicationName: applicationName, applicationVersion: applicationVersion, applicationIcon: applicationIcon, applicationLegalese: applicationLegalese)));
         }
+
+
 
         internal static string _DefaultApplicationName(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+            Title ancestorTitle = context.FindAncestorWidgetOfExactType();
+            return ancestorTitle?.Title ?? Dart:ioDefaultClass.Platform.ResolvedExecutable.Split(Dart: ioDefaultClass.Platform.PathSeparator).ToList().Last();
         }
+
+
 
         internal static string _DefaultApplicationVersion(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+            return "";
         }
+
+
 
         internal static FlutterSDK.Widgets.Framework.Widget _DefaultApplicationIcon(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+            return null;
         }
+
+
 
     }
 

@@ -301,8 +301,10 @@ namespace FlutterSDK.Gestures.Pointersignalresolver
     {
         internal static bool _IsSameEvent(FlutterSDK.Gestures.Events.PointerSignalEvent event1, FlutterSDK.Gestures.Events.PointerSignalEvent event2)
         {
-            throw new NotImplementedException();
+            return (event1.Original ?? event1) == (event2.Original ?? event2);
         }
+
+
 
     }
 

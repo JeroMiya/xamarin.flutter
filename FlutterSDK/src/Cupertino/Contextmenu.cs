@@ -301,8 +301,13 @@ namespace FlutterSDK.Cupertino.Contextmenu
         public static double _KOpenScale = default(double);
         internal static Rect _GetRect(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> globalKey)
         {
-            throw new NotImplementedException();
+
+            RenderBox renderBoxContainer = globalKey.CurrentContext.FindRenderObject() as RenderBox;
+            Offset containerOffset = renderBoxContainer.LocalToGlobal(renderBoxContainer.PaintBounds.TopLeft);
+            return containerOffset & renderBoxContainer.PaintBounds.Size;
         }
+
+
 
     }
 

@@ -430,8 +430,11 @@ namespace FlutterSDK.Scheduler.Debug
         public static bool DebugPrintScheduleFrameStacks = default(bool);
         internal static bool DebugAssertAllSchedulerVarsUnset(string reason)
         {
-            throw new NotImplementedException();
+
+            return true;
         }
+
+
 
     }
 }

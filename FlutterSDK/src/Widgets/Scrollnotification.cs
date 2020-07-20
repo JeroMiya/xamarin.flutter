@@ -430,8 +430,10 @@ namespace FlutterSDK.Widgets.Scrollnotification
     {
         internal static bool DefaultScrollNotificationPredicate(FlutterSDK.Widgets.Scrollnotification.ScrollNotification notification)
         {
-            throw new NotImplementedException();
+            return notification.Depth == 0;
         }
+
+
 
     }
 

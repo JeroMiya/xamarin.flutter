@@ -309,18 +309,42 @@ namespace FlutterSDK.Cupertino.Navbar
         public static object _NavBarHeroFlightShuttleBuilder = default(object);
         internal static FlutterSDK.Widgets.Framework.Widget _WrapWithBackground(FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool updateSystemUiOverlay = true)
         {
-            throw new NotImplementedException();
+            Widget result = child;
+            if (updateSystemUiOverlay)
+            {
+                bool isDark = backgroundColor.ComputeLuminance() < 0.179;
+                Brightness newBrightness = brightness ?? (isDark ? Brightness.Dark : Brightness.Light);
+                SystemUiOverlayStyle overlayStyle = default(SystemUiOverlayStyle);
+                switch (newBrightness) { case Brightness.Dark: overlayStyle = SystemchromeDefaultClass.SystemUiOverlayStyle.Light; break; case Brightness.Light: default: overlayStyle = SystemchromeDefaultClass.SystemUiOverlayStyle.Dark; break; }
+                result = new AnnotatedRegion<SystemUiOverlayStyle>(value: overlayStyle, sized: true, child: result);
+            }
+
+            DecoratedBox childWithBackground = new DecoratedBox(decoration: new BoxDecoration(border: border, color: backgroundColor), child: result);
+            if (backgroundColor.Alpha == 0xFF) return childWithBackground;
+            return new ClipRect(child: new BackdropFilter(filter: ImageFilter.Blur(sigmaX: 10.0, sigmaY: 10.0), child: childWithBackground));
         }
+
+
 
         internal static FlutterSDK.Widgets.Framework.Widget _WrapActiveColor(FlutterBinding.UI.Color color, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
-            throw new NotImplementedException();
+            if (color == null)
+            {
+                return child;
+            }
+
+            return new CupertinoTheme(data: ThemeDefaultClass.CupertinoTheme.Of(context).CopyWith(primaryColor: color), child: child);
         }
+
+
 
         internal static bool _IsTransitionable(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            throw new NotImplementedException();
+            ModalRoute<object> route = RoutesDefaultClass.ModalRoute.Of(context);
+            return route is PageRoute && !route.FullscreenDialog;
         }
+
+
 
     }
 

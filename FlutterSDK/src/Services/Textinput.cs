@@ -428,23 +428,38 @@ namespace FlutterSDK.Services.Textinput
         public static bool _KIsBrowser = default(bool);
         internal static TextAffinity _ToTextAffinity(string affinity)
         {
-            throw new NotImplementedException();
+            switch (affinity) { case "TextAffinity.downstream": return TextAffinity.Downstream; case "TextAffinity.upstream": return TextAffinity.Upstream; }
+            return null;
         }
+
+
 
         internal static FlutterSDK.Services.Textinput.TextInputAction _ToTextInputAction(string action)
         {
-            throw new NotImplementedException();
+            switch (action) { case "TextInputAction.none": return TextInputAction.None; case "TextInputAction.unspecified": return TextInputAction.Unspecified; case "TextInputAction.go": return TextInputAction.Go; case "TextInputAction.search": return TextInputAction.Search; case "TextInputAction.send": return TextInputAction.Send; case "TextInputAction.next": return TextInputAction.Next; case "TextInputAction.previuos": return TextInputAction.Previous; case "TextInputAction.continue_action": return TextInputAction.ContinueAction; case "TextInputAction.join": return TextInputAction.Join; case "TextInputAction.route": return TextInputAction.Route; case "TextInputAction.emergencyCall": return TextInputAction.EmergencyCall; case "TextInputAction.done": return TextInputAction.Done; case "TextInputAction.newline": return TextInputAction.Newline; }
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unknown text input action: {action}'") });
         }
+
+
 
         internal static FlutterSDK.Services.Textinput.FloatingCursorDragState _ToTextCursorAction(string state)
         {
-            throw new NotImplementedException();
+            switch (state) { case "FloatingCursorDragState.start": return FloatingCursorDragState.Start; case "FloatingCursorDragState.update": return FloatingCursorDragState.Update; case "FloatingCursorDragState.end": return FloatingCursorDragState.End; }
+            throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unknown text cursor action: {state}'") });
         }
+
+
 
         internal static FlutterSDK.Services.Textinput.RawFloatingCursorPoint _ToTextPoint(FlutterSDK.Services.Textinput.FloatingCursorDragState state, Dictionary<string, object> encoded)
         {
-            throw new NotImplementedException();
+
+
+
+            Offset offset = state == FloatingCursorDragState.Update ? new Offset(encoded['X'] as double, encoded['Y'] as double) : new Offset(0, 0);
+            return new RawFloatingCursorPoint(offset: offset, state: state);
         }
+
+
 
     }
 

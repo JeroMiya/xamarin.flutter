@@ -428,13 +428,31 @@ namespace FlutterSDK.Widgets.Focustraversal
     {
         internal static FlutterSDK.Widgets.Framework.BuildContext _GetAncestor(FlutterSDK.Widgets.Framework.BuildContext context, int count = 1)
         {
-            throw new NotImplementedException();
+            BuildContext target = default(BuildContext);
+            context.VisitAncestorElements((Element ancestor) =>
+            {
+                count--;
+                if (count == 0)
+                {
+                    target = ancestor;
+                    return false;
+                }
+
+                return true;
+            }
+            );
+            return target;
         }
+
+
 
         internal static void _FocusAndEnsureVisible(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy alignmentPolicy = default(FlutterSDK.Widgets.Scrollposition.ScrollPositionAlignmentPolicy))
         {
-            throw new NotImplementedException();
+            node.RequestFocus();
+            ScrollableDefaultClass.Scrollable.EnsureVisible(node.Context, alignment: 1.0, alignmentPolicy: alignmentPolicy);
         }
+
+
 
     }
 

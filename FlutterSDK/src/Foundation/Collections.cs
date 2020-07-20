@@ -298,23 +298,82 @@ namespace FlutterSDK.Foundation.Collections
     {
         internal static bool SetEquals<T>(HashSet<T> a, HashSet<T> b)
         {
-            throw new NotImplementedException();
+            if (a == null) return b == null;
+            if (b == null || a.Length != b.Length) return false;
+            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            foreach (T value in a)
+            {
+                if (!b.Contains(value)) return false;
+            }
+
+            return true;
         }
+
+
 
         internal static bool ListEquals<T>(List<T> a, List<T> b)
         {
-            throw new NotImplementedException();
+            if (a == null) return b == null;
+            if (b == null || a.Count != b.Count) return false;
+            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            for (int index = 0; index < a.Count; index += 1)
+            {
+                if (a[index] != b[index]) return false;
+            }
+
+            return true;
         }
+
+
 
         internal static bool MapEquals<T, U>(Dictionary<T, U> a, Dictionary<T, U> b)
         {
-            throw new NotImplementedException();
+            if (a == null) return b == null;
+            if (b == null || a.Length != b.Length) return false;
+            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            foreach (T key in a.Keys)
+            {
+                if (!b.ContainsKey(key) || b[key] != a[key])
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
         }
+
+
 
         internal static int BinarySearch<T>(List<T> sortedList, T value)
         {
-            throw new NotImplementedException();
+            int min = 0;
+            int max = sortedList.Count;
+            while (min < max)
+            {
+                int mid = min + ((max - min) >> 1);
+                T element = sortedList[mid];
+                int comp = element.CompareTo(value);
+                if (comp == 0)
+                {
+                    return mid;
+                }
+
+                if (comp < 0)
+                {
+                    min = mid + 1;
+                }
+                else
+                {
+                    max = mid;
+                }
+
+            }
+
+            return -1;
         }
+
+
 
     }
 }

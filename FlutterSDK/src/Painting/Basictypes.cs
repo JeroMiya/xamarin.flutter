@@ -426,28 +426,48 @@ namespace FlutterSDK.Painting.Basictypes
     {
         internal static FlutterSDK.Painting.Basictypes.Axis FlipAxis(FlutterSDK.Painting.Basictypes.Axis direction)
         {
-            throw new NotImplementedException();
+
+            switch (direction) { case Axis.Horizontal: return Axis.Vertical; case Axis.Vertical: return Axis.Horizontal; }
+            return null;
         }
+
+
 
         internal static FlutterSDK.Painting.Basictypes.Axis AxisDirectionToAxis(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
-            throw new NotImplementedException();
+
+            switch (axisDirection) { case AxisDirection.Up: case AxisDirection.Down: return Axis.Vertical; case AxisDirection.Left: case AxisDirection.Right: return Axis.Horizontal; }
+            return null;
         }
+
+
 
         internal static FlutterSDK.Painting.Basictypes.AxisDirection TextDirectionToAxisDirection(TextDirection textDirection)
         {
-            throw new NotImplementedException();
+
+            switch (textDirection) { case TextDirection.Rtl: return AxisDirection.Left; case TextDirection.Ltr: return AxisDirection.Right; }
+            return null;
         }
+
+
 
         internal static FlutterSDK.Painting.Basictypes.AxisDirection FlipAxisDirection(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
-            throw new NotImplementedException();
+
+            switch (axisDirection) { case AxisDirection.Up: return AxisDirection.Down; case AxisDirection.Right: return AxisDirection.Left; case AxisDirection.Down: return AxisDirection.Up; case AxisDirection.Left: return AxisDirection.Right; }
+            return null;
         }
+
+
 
         internal static bool AxisDirectionIsReversed(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection)
         {
-            throw new NotImplementedException();
+
+            switch (axisDirection) { case AxisDirection.Up: case AxisDirection.Left: return true; case AxisDirection.Down: case AxisDirection.Right: return false; }
+            return null;
         }
+
+
 
     }
 

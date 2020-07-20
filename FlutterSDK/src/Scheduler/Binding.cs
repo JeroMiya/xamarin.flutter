@@ -432,8 +432,11 @@ namespace FlutterSDK.Scheduler.Binding
         public static double _TimeDilation = default(double);
         internal static bool DefaultSchedulingStrategy(int priority = default(int), FlutterSDK.Scheduler.Binding.SchedulerBinding scheduler = default(FlutterSDK.Scheduler.Binding.SchedulerBinding))
         {
-            throw new NotImplementedException();
+            if (scheduler.TransientCallbackCount > 0) return priority >= PriorityDefaultClass.Priority.Animation.Value;
+            return true;
         }
+
+
 
     }
 

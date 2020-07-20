@@ -427,13 +427,16 @@ namespace FlutterSDK.Physics.Utils
     {
         internal static bool NearEqual(double a, double b, double epsilon)
         {
-            throw new NotImplementedException();
+
+
+            if (a == null || b == null) return a == b;
+            return (a > (b - epsilon)) && (a < (b + epsilon)) || a == b;
         }
 
-        internal static bool NearZero(double a, double epsilon)
-        {
-            throw new NotImplementedException();
-        }
+
+
+        internal static bool NearZero(double a, double epsilon) => UtilsDefaultClass.NearEqual(a, 0.0, epsilon);
+
 
     }
 }

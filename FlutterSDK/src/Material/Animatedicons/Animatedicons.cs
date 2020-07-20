@@ -315,8 +315,17 @@ namespace FlutterSDK.Material.Animatedicons.Animatedicons
     {
         internal static T _Interpolate<T>(List<T> values, double progress, FlutterSDK.Material.Animatedicons.Animatedicons._Interpolator<T> interpolator)
         {
-            throw new NotImplementedException();
+
+
+            if (values.Count == 1) return values[0];
+            double targetIdx = LerpDouble(0, values.Count - 1, progress);
+            int lowIdx = targetIdx.Floor();
+            int highIdx = targetIdx.Ceil();
+            double t = targetIdx - lowIdx;
+            return interpolator(values[lowIdx], values[highIdx], t);
         }
+
+
 
     }
 

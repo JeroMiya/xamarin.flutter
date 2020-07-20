@@ -429,13 +429,27 @@ namespace FlutterSDK.Rendering.Platformview
     {
         internal static bool _FactoryTypesSetEquals<T>(HashSet<FlutterSDK.Foundation.Basictypes.Factory<T>> a, HashSet<FlutterSDK.Foundation.Basictypes.Factory<T>> b)
         {
-            throw new NotImplementedException();
+            if (a == b)
+            {
+                return true;
+            }
+
+            if (a == null || b == null)
+            {
+                return false;
+            }
+
+            return CollectionsDefaultClass.SetEquals(PlatformviewDefaultClass._FactoriesTypeSet(a), PlatformviewDefaultClass._FactoriesTypeSet(b));
         }
+
+
 
         internal static HashSet<Type> _FactoriesTypeSet<T>(HashSet<FlutterSDK.Foundation.Basictypes.Factory<T>> factories)
         {
-            throw new NotImplementedException();
+            return factories.Map((Factory<T> factory) => =>factory.Type).ToSet();
         }
+
+
 
     }
 

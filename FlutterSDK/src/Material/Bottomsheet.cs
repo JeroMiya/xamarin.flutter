@@ -373,13 +373,28 @@ namespace FlutterSDK.Material.Bottomsheet
         public static double _CloseProgressThreshold = default(double);
         internal static Future<T> ShowModalBottomSheet<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), bool isScrollControlled = false, bool useRootNavigator = false, bool isDismissible = true, bool enableDrag = true)
         {
-            throw new NotImplementedException();
+
+
+
+
+
+
+
+
+            return NavigatorDefaultClass.Navigator.Of(context, rootNavigator: useRootNavigator).Push(new _ModalBottomSheetRoute<T>(builder: builder, theme: ThemeDefaultClass.Theme.Of(context, shadowThemeOnly: true), isScrollControlled: isScrollControlled, barrierLabel: MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).ModalBarrierDismissLabel, backgroundColor: backgroundColor, elevation: elevation, shape: shape, clipBehavior: clipBehavior, isDismissible: isDismissible, modalBarrierColor: barrierColor, enableDrag: enableDrag));
         }
+
+
 
         internal static FlutterSDK.Material.Scaffold.PersistentBottomSheetController<T> ShowBottomSheet<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         {
-            throw new NotImplementedException();
+
+
+
+            return ScaffoldDefaultClass.Scaffold.Of(context).ShowBottomSheet(builder, backgroundColor: backgroundColor, elevation: elevation, shape: shape, clipBehavior: clipBehavior);
         }
+
+
 
     }
 

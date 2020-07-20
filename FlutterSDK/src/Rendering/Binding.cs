@@ -427,18 +427,24 @@ namespace FlutterSDK.Rendering.Binding
     {
         internal static void DebugDumpRenderTree()
         {
-            throw new NotImplementedException();
+            PrintDefaultClass.DebugPrint(BindingDefaultClass.RendererBinding.Instance?.RenderView?.ToStringDeep() ?? "Render tree unavailable.");
         }
+
+
 
         internal static void DebugDumpLayerTree()
         {
-            throw new NotImplementedException();
+            PrintDefaultClass.DebugPrint(BindingDefaultClass.RendererBinding.Instance?.RenderView?.DebugLayer?.ToStringDeep() ?? "Layer tree unavailable.");
         }
+
+
 
         internal static void DebugDumpSemanticsTree(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder)
         {
-            throw new NotImplementedException();
+            PrintDefaultClass.DebugPrint(BindingDefaultClass.RendererBinding.Instance?.RenderView?.DebugSemantics?.ToStringDeep(childOrder: childOrder) ?? "Semantics not collected.");
         }
+
+
 
     }
 

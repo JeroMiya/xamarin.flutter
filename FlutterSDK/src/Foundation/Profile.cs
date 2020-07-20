@@ -300,8 +300,11 @@ namespace FlutterSDK.Foundation.Profile
     {
         internal static void Profile(VoidCallback function)
         {
-            throw new NotImplementedException();
+            if (ConstantsDefaultClass.KReleaseMode) return;
+            function();
         }
+
+
 
     }
 }

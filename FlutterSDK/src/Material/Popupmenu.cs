@@ -421,8 +421,18 @@ namespace FlutterSDK.Material.Popupmenu
         public static double _KMenuScreenPadding = default(double);
         internal static Future<T> ShowMenu<T>(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Stack.RelativeRect position = default(FlutterSDK.Rendering.Stack.RelativeRect), List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>> items = default(List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>>), T initialValue = default(T), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool captureInheritedThemes = true, bool useRootNavigator = false)
         {
-            throw new NotImplementedException();
+
+
+
+
+
+
+            string label = semanticLabel;
+            switch (ThemeDefaultClass.Theme.Of(context).Platform) { case TargetPlatform.IOS: case TargetPlatform.MacOS: label = semanticLabel; break; case TargetPlatform.Android: case TargetPlatform.Fuchsia: case TargetPlatform.Linux: case TargetPlatform.Windows: label = semanticLabel ?? MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context)?.PopupMenuLabel; }
+            return NavigatorDefaultClass.Navigator.Of(context, rootNavigator: useRootNavigator).Push(new _PopupMenuRoute<T>(position: position, items: items, initialValue: initialValue, elevation: elevation, semanticLabel: label, theme: ThemeDefaultClass.Theme.Of(context, shadowThemeOnly: true), popupMenuTheme: PopupmenuthemeDefaultClass.PopupMenuTheme.Of(context), barrierLabel: MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context).ModalBarrierDismissLabel, shape: shape, color: color, showMenuContext: context, captureInheritedThemes: captureInheritedThemes));
         }
+
+
 
     }
 

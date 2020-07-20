@@ -310,23 +310,30 @@ namespace FlutterSDK.Foundation.Diagnostics
         public static FlutterSDK.Foundation.Diagnostics._NoDefaultValue KNoDefaultValue = default(FlutterSDK.Foundation.Diagnostics._NoDefaultValue);
         internal static bool _IsSingleLine(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style)
         {
-            throw new NotImplementedException();
+            return style == DiagnosticsTreeStyle.SingleLine;
         }
+
+
 
         internal static string ShortHash(@Object @object)
         {
-            throw new NotImplementedException();
+            return object.HashCode.ToUnsigned(20).ToRadixString(16).PadLeft(5, '0');
         }
 
-        internal static string DescribeIdentity(@Object @object)
-        {
-            throw new NotImplementedException();
-        }
+
+
+        internal static string DescribeIdentity(@Object @object) => $"'{ObjectDefaultClass.ObjectRuntimeType(object, "<optimized out>")}#{DiagnosticsDefaultClass.ShortHash(object)}'";
+
 
         internal static string DescribeEnum(@Object enumEntry)
         {
-            throw new NotImplementedException();
+            string description = enumEntry.ToString();
+            int indexOfDot = description.IndexOf('.');
+
+            return description.Substring(indexOfDot + 1);
         }
+
+
 
     }
 
