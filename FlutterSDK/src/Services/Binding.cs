@@ -524,100 +524,100 @@ namespace FlutterSDK.Services.Binding
                 }
                 else
                 {
-                    result.Add(new LicenseEntryWithLineBreaks(new List, < string > (}, license));
+                    result.Add(new LicenseEntryWithLineBreaks(new List<string>() { }, license));
+                }
+
             }
+
+            return result;
+        }
+
+
+
+
+        public new void InitServiceExtensions()
+        {
+            base.InitServiceExtensions();
 
         }
 
-return result;
-}
 
 
 
+        /// <Summary>
+        /// Called in response to the `ext.flutter.evict` service extension.
+        ///
+        /// This is used by the `flutter` tool during hot reload so that any images
+        /// that have changed on disk get cleared from caches.
+        /// </Summary>
+        public virtual void Evict(string asset)
+        {
+            AssetbundleDefaultClass.RootBundle.Evict(asset);
+        }
 
-    public new void InitServiceExtensions()
-    {
-        base.InitServiceExtensions();
+
 
     }
-
-
+    public static class ServicesBindingMixin
+    {
+        static System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding>();
+        static ServicesBinding GetOrCreate(IServicesBinding instance)
+        {
+            if (!_table.TryGetValue(instance, out var value))
+            {
+                value = new ServicesBinding();
+                _table.Add(instance, value);
+            }
+            return (ServicesBinding)value;
+        }
+        public static FlutterSDK.Services.Binding.ServicesBinding InstanceProperty(this IServicesBinding instance) => GetOrCreate(instance).Instance;
+        public static FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessengerProperty(this IServicesBinding instance) => GetOrCreate(instance).DefaultBinaryMessenger;
+        public static void InitInstances(this IServicesBinding instance) => GetOrCreate(instance).InitInstances();
+        public static FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger(this IServicesBinding instance) => GetOrCreate(instance).CreateBinaryMessenger();
+        public static Future<object> HandleSystemMessage(this IServicesBinding instance, @Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
+        public static void InitLicenses(this IServicesBinding instance) => GetOrCreate(instance).InitLicenses();
+        public static void InitServiceExtensions(this IServicesBinding instance) => GetOrCreate(instance).InitServiceExtensions();
+        public static void Evict(this IServicesBinding instance, string asset) => GetOrCreate(instance).Evict(asset);
+    }
 
 
     /// <Summary>
-    /// Called in response to the `ext.flutter.evict` service extension.
+    /// The default implementation of [BinaryMessenger].
     ///
-    /// This is used by the `flutter` tool during hot reload so that any images
-    /// that have changed on disk get cleared from caches.
+    /// This messenger sends messages from the app-side to the platform-side and
+    /// dispatches incoming messages from the platform-side to the appropriate
+    /// handler.
     /// </Summary>
-    public virtual void Evict(string asset)
+    public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
     {
-        AssetbundleDefaultClass.RootBundle.Evict(asset);
-    }
-
-
-
-}
-public static class ServicesBindingMixin
-{
-    static System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding> _table = new System.Runtime.CompilerServices.ConditionalWeakTable<IServicesBinding, ServicesBinding>();
-    static ServicesBinding GetOrCreate(IServicesBinding instance)
-    {
-        if (!_table.TryGetValue(instance, out var value))
+        #region constructors
+        internal _DefaultBinaryMessenger()
         {
-            value = new ServicesBinding();
-            _table.Add(instance, value);
+
         }
-        return (ServicesBinding)value;
-    }
-    public static FlutterSDK.Services.Binding.ServicesBinding InstanceProperty(this IServicesBinding instance) => GetOrCreate(instance).Instance;
-    public static FlutterSDK.Services.Binarymessenger.BinaryMessenger DefaultBinaryMessengerProperty(this IServicesBinding instance) => GetOrCreate(instance).DefaultBinaryMessenger;
-    public static void InitInstances(this IServicesBinding instance) => GetOrCreate(instance).InitInstances();
-    public static FlutterSDK.Services.Binarymessenger.BinaryMessenger CreateBinaryMessenger(this IServicesBinding instance) => GetOrCreate(instance).CreateBinaryMessenger();
-    public static Future<object> HandleSystemMessage(this IServicesBinding instance, @Object systemMessage) => GetOrCreate(instance).HandleSystemMessage(systemMessage);
-    public static void InitLicenses(this IServicesBinding instance) => GetOrCreate(instance).InitLicenses();
-    public static void InitServiceExtensions(this IServicesBinding instance) => GetOrCreate(instance).InitServiceExtensions();
-    public static void Evict(this IServicesBinding instance, string asset) => GetOrCreate(instance).Evict(asset);
-}
+        #endregion
 
+        #region fields
+        internal virtual Dictionary<string, object> _Handlers { get; set; }
+        internal virtual Dictionary<string, object> _MockHandlers { get; set; }
+        #endregion
 
-/// <Summary>
-/// The default implementation of [BinaryMessenger].
-///
-/// This messenger sends messages from the app-side to the platform-side and
-/// dispatches incoming messages from the platform-side to the appropriate
-/// handler.
-/// </Summary>
-public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
-{
-    #region constructors
-    internal _DefaultBinaryMessenger()
-    {
+        #region methods
 
-    }
-    #endregion
-
-    #region fields
-    internal virtual Dictionary<string, object> _Handlers { get; set; }
-    internal virtual Dictionary<string, object> _MockHandlers { get; set; }
-    #endregion
-
-    #region methods
-
-    private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
-    {
-        Completer<ByteData> completer = new Completer<ByteData>();
-        Ui.Dart:uiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
+        private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
         {
-        try
-        {
-            completer.Complete(reply);
-        }
-        catch (exception,stack){
-            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription("during a platform message response callback")));
-        }
+            Completer<ByteData> completer = new Completer<ByteData>();
+            Ui.Dart:uiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
+            {
+            try
+            {
+                completer.Complete(reply);
+            }
+            catch (exception,stack){
+                AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription("during a platform message response callback")));
+            }
 
-    }
+        }
 );
 return completer.Future;
 }
@@ -625,70 +625,70 @@ return completer.Future;
 
 
 
-public new async Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback)
-{
-    ByteData response = default(ByteData);
-    try
+    public new async Future<object> HandlePlatformMessage(string channel, ByteData data, PlatformMessageResponseCallback callback)
     {
-        MessageHandler handler = _Handlers[channel];
-        if (handler != null)
+        ByteData response = default(ByteData);
+        try
         {
-            response = await handler(data);
-        }
-        else
-        {
-            Ui.Dart:uiDefaultClass.ChannelBuffers.Push(channel, data, callback);
-            callback = null;
-        }
+            MessageHandler handler = _Handlers[channel];
+            if (handler != null)
+            {
+                response = await handler(data);
+            }
+            else
+            {
+                Ui.Dart:uiDefaultClass.ChannelBuffers.Push(channel, data, callback);
+                callback = null;
+            }
 
-    }
-    catch (exception,stack){
-        AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription("during a platform message callback")));
-    }
+        }
+        catch (exception,stack){
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack, library: "services library", context: new ErrorDescription("during a platform message callback")));
+        }
 finally
-    {
-        if (callback != null)
         {
-            callback(response);
+            if (callback != null)
+            {
+                callback(response);
+            }
+
         }
 
     }
 
-}
 
 
 
-
-public new Future<ByteData> Send(string channel, ByteData message)
-{
-    MessageHandler handler = _MockHandlers[channel];
-    if (handler != null) return handler(message);
-    return _SendPlatformMessage(channel, message);
-}
-
-
-
-
-public new void SetMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
-{
-    if (handler == null) _Handlers.Remove(channel); else _Handlers[channel] = handler;
-    Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, async(ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => {
-        await HandlePlatformMessage(channel, data, callback);
+    public new Future<ByteData> Send(string channel, ByteData message)
+    {
+        MessageHandler handler = _MockHandlers[channel];
+        if (handler != null) return handler(message);
+        return _SendPlatformMessage(channel, message);
     }
+
+
+
+
+    public new void SetMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
+    {
+        if (handler == null) _Handlers.Remove(channel); else _Handlers[channel] = handler;
+        Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, async(ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => {
+            await HandlePlatformMessage(channel, data, callback);
+        }
 );
-}
+    }
 
 
 
 
-public new void SetMockMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
-{
-    if (handler == null) _MockHandlers.Remove(channel); else _MockHandlers[channel] = handler;
-}
+    public new void SetMockMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
+    {
+        if (handler == null) _MockHandlers.Remove(channel); else _MockHandlers[channel] = handler;
+    }
 
 
 
-#endregion
+    #endregion
 }
 
 }

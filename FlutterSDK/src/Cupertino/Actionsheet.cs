@@ -406,7 +406,7 @@ namespace FlutterSDK.Cupertino.Actionsheet
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            List<Widget> children = new List<Widget>() { new Flexible(child: new ClipRRect(borderRadius: BorderRadius.Circular(12.0), child: new BackdropFilter(filter: ImageFilter.Blur(sigmaX: ActionsheetDefaultClass._KBlurAmount, sigmaY: ActionsheetDefaultClass._KBlurAmount), child: new _CupertinoAlertRenderWidget(contentSection: new Builder(builder: _BuildContent), actionsSection: _BuildActions())))), };
+            List<Widget> children = new List<Widget>() { new Flexible(child: new ClipRRect(borderRadius: BorderRadius.Circular(12.0), child: new BackdropFilter(filter: ImageFilter.Blur(sigmaX: ActionsheetDefaultClass._KBlurAmount, sigmaY: ActionsheetDefaultClass._KBlurAmount), child: new _CupertinoAlertRenderWidget(contentSection: new Builder(builder: _BuildContent), actionsSection: _BuildActions())))) };
             Orientation orientation = MediaqueryDefaultClass.MediaQuery.Of(context).Orientation;
             double actionSheetWidth = default(double);
             if (orientation == Orientation.Portrait)

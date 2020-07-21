@@ -514,7 +514,7 @@ _OverflowOpen=!_OverflowOpen;
 }
 );
 }
-, tooltip:_OverflowOpen?localizations.BackButtonTooltip:localizations.MoreButtonTooltip)), , items}))));
+, tooltip:_OverflowOpen?localizations.BackButtonTooltip:localizations.MoreButtonTooltip)),  /* ...items */}))));
         }
 
 

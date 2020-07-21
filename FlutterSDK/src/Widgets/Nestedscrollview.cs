@@ -624,7 +624,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
         private List<FlutterSDK.Widgets.Framework.Widget> _BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Scrollcontroller.ScrollController innerController, bool bodyIsScrolled)
         {
-            return new List<Widget>() {, HeaderSliverBuilder(context, bodyIsScrolled), new SliverFillRemaining(child: new PrimaryScrollController(controller: innerController, child: Body)) };
+            return new List<Widget>() { /* ...HeaderSliverBuilder(context, bodyIsScrolled), */ new SliverFillRemaining(child: new PrimaryScrollController(controller: innerController, child: Body)) };
         }
 
 

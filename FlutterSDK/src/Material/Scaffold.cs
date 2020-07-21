@@ -2225,7 +2225,7 @@ namespace FlutterSDK.Material.Scaffold
 
             if (_CurrentBottomSheet != null || _DismissedBottomSheets.IsNotEmpty)
             {
-                Widget stack = new Stack(alignment: AlignmentDefaultClass.Alignment.BottomCenter, children: new List<Widget>() {, _DismissedBottomSheets, });
+                Widget stack = new Stack(alignment: AlignmentDefaultClass.Alignment.BottomCenter, children: new List<Widget>() { /* ..._DismissedBottomSheets, */ });
                 _AddIfNonNull(children, stack, _ScaffoldSlot.BottomSheet, removeLeftPadding: false, removeTopPadding: true, removeRightPadding: false, removeBottomPadding: _ResizeToAvoidBottomInset);
             }
 

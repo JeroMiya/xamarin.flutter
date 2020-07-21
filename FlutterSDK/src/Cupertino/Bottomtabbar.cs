@@ -418,7 +418,7 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
 
         private List<FlutterSDK.Widgets.Framework.Widget> _BuildSingleTabItem(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, bool active)
         {
-            return new List<Widget>() { new Expanded(child: new Center(child: active ? item.ActiveIcon : item.Icon)), };
+            return new List<Widget>() { new Expanded(child: new Center(child: active ? item.ActiveIcon : item.Icon)) };
         }
 
 

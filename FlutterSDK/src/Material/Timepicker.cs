@@ -476,7 +476,7 @@ namespace FlutterSDK.Material.Timepicker
             }
 
             _TimePickerHeaderPiece Piece({ int pivotIndex = -1double bottomMargin = 0.0_TimePickerHeaderFragment fragment1_TimePickerHeaderFragment fragment2_TimePickerHeaderFragment fragment3}){
-                List<_TimePickerHeaderFragment> fragments = new List<_TimePickerHeaderFragment>() { fragment1, };
+                List<_TimePickerHeaderFragment> fragments = new List<_TimePickerHeaderFragment>() { fragment1 };
                 return new _TimePickerHeaderPiece(pivotIndex, fragments, bottomMargin: bottomMargin);
             }
 

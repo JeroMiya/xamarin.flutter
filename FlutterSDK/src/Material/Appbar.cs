@@ -693,7 +693,7 @@ namespace FlutterSDK.Material.Appbar
             Widget appBar = new ClipRect(child: new CustomSingleChildLayout(@delegate: new _ToolbarContainerLayout(), child: IconthemeDefaultClass.IconTheme.Merge(data: overallIconTheme, child: new DefaultTextStyle(style: sideStyle, child: toolbar))));
             if (Widget.Bottom != null)
             {
-                appBar = new Column(mainAxisAlignment: MainAxisAlignment.SpaceBetween, children: new List<Widget>() { new Flexible(child: new ConstrainedBox(constraints: new BoxConstraints(maxHeight: ConstantsDefaultClass.KToolbarHeight), child: appBar)), });
+                appBar = new Column(mainAxisAlignment: MainAxisAlignment.SpaceBetween, children: new List<Widget>() { new Flexible(child: new ConstrainedBox(constraints: new BoxConstraints(maxHeight: ConstantsDefaultClass.KToolbarHeight), child: appBar)) });
             }
 
             if (Widget.Primary)

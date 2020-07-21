@@ -1736,7 +1736,7 @@ else
                 }
 
                 bool handled = false;
-                foreach (FocusNode node in new List<FocusNode>() { _PrimaryFocus, , _PrimaryFocus.Ancestors })
+                foreach (FocusNode node in new List<FocusNode>() { _PrimaryFocus,  /* ..._PrimaryFocus.Ancestors */})
                 {
                     if (node.OnKey != null && node.OnKey(node, @event))
                     {

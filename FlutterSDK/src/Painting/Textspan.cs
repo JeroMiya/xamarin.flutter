@@ -780,22 +780,25 @@ namespace FlutterSDK.Painting.Textspan
 
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
         {
-            if (Children == null) return new List, < DiagnosticsNode > (};
-return Children.Map((InlineSpan child) => {
-if (child!=null ){
-return child.ToDiagnosticsNode();
-}
-else {
-return DiagnosticsNode.Message("<null child>");
-}
+            if (Children == null) return new List<DiagnosticsNode>() { };
+            return Children.Map((InlineSpan child) =>
+            {
+                if (child != null)
+                {
+                    return child.ToDiagnosticsNode();
+                }
+                else
+                {
+                    return DiagnosticsNode.Message("<null child>");
+                }
 
-}
-).ToList();
-}
+            }
+            ).ToList();
+        }
 
 
 
-#endregion
-}
+        #endregion
+    }
 
 }

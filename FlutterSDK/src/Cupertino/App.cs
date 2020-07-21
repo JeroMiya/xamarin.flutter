@@ -499,31 +499,31 @@ namespace FlutterSDK.Cupertino.App
             }
             else
             {
-                _NavigatorObservers = new List, < NavigatorObserver > (};
-        }
-
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        CupertinoThemeData effectiveThemeData = Widget.Theme ?? new CupertinoThemeData();
-        return new ScrollConfiguration(behavior: new _AlwaysCupertinoScrollBehavior(), child: new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Base, child: new CupertinoTheme(data: effectiveThemeData, child: new Builder(builder: (BuildContext context) =>
-        {
-            return new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) => =>new CupertinoPageRoute<T>(settings: settings, builder: builder), home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: Widget.Builder, title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.Color ?? effectiveThemeData.PrimaryColor, context), locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
-            {
-                return CupertinoButton.Filled(child: new Icon(IconsDefaultClass.CupertinoIcons.Search, size: 28.0, color: ColorsDefaultClass.CupertinoColors.White), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: onPressed);
+                _NavigatorObservers = new List<NavigatorObserver>() { };
             }
-            , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
+
         }
-        ))));
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            CupertinoThemeData effectiveThemeData = Widget.Theme ?? new CupertinoThemeData();
+            return new ScrollConfiguration(behavior: new _AlwaysCupertinoScrollBehavior(), child: new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Base, child: new CupertinoTheme(data: effectiveThemeData, child: new Builder(builder: (BuildContext context) =>
+            {
+                return new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) => =>new CupertinoPageRoute<T>(settings: settings, builder: builder), home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: Widget.Builder, title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: ThemeDefaultClass.CupertinoTheme.Of(context).TextTheme.TextStyle, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.Color ?? effectiveThemeData.PrimaryColor, context), locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
+                {
+                    return CupertinoButton.Filled(child: new Icon(IconsDefaultClass.CupertinoIcons.Search, size: 28.0, color: ColorsDefaultClass.CupertinoColors.White), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, onPressed: onPressed);
+                }
+                , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
+            }
+            ))));
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

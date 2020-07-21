@@ -4127,68 +4127,68 @@ namespace FlutterSDK.Widgets.Navigator
         {
 
 
-            return new Listener(onPointerDown: _HandlePointerDown, onPointerUp: _HandlePointerUpOrCancel, onPointerCancel: _HandlePointerUpOrCancel, child: new AbsorbPointer(absorbing: false, child: new FocusScope(node: FocusScopeNode, autofocus: true, child: new Overlay(key: _OverlayKey, initialEntries: Overlay == null ? _AllRouteOverlayEntries.ToList(growable: false) : new List, < OverlayEntry > (}))));
-}
+            return new Listener(onPointerDown: _HandlePointerDown, onPointerUp: _HandlePointerUpOrCancel, onPointerCancel: _HandlePointerUpOrCancel, child: new AbsorbPointer(absorbing: false, child: new FocusScope(node: FocusScopeNode, autofocus: true, child: new Overlay(key: _OverlayKey, initialEntries: Overlay == null ? _AllRouteOverlayEntries.ToList(growable: false) : new List<OverlayEntry>() { }))));
+        }
 
 
 
-    #endregion
-}
+        #endregion
+    }
 
-
-/// <Summary>
-/// Indicates whether the current route should be popped.
-///
-/// Used as the return value for [Route.willPop].
-///
-/// See also:
-///
-///  * [WillPopScope], a widget that hooks into the route's [Route.willPop]
-///    mechanism.
-/// </Summary>
-public enum RoutePopDisposition
-{
 
     /// <Summary>
-    /// Pop the route.
+    /// Indicates whether the current route should be popped.
     ///
-    /// If [Route.willPop] returns [pop] then the back button will actually pop
-    /// the current route.
-    /// </Summary>
-    Pop,
-    /// <Summary>
-    /// Do not pop the route.
+    /// Used as the return value for [Route.willPop].
     ///
-    /// If [Route.willPop] returns [doNotPop] then the back button will be ignored.
-    /// </Summary>
-    DoNotPop,
-    /// <Summary>
-    /// Delegate this to the next level of navigation.
+    /// See also:
     ///
-    /// If [Route.willPop] returns [bubble] then the back button will be handled
-    /// by the [SystemNavigator], which will usually close the application.
+    ///  * [WillPopScope], a widget that hooks into the route's [Route.willPop]
+    ///    mechanism.
     /// </Summary>
-    Bubble,
-}
+    public enum RoutePopDisposition
+    {
+
+        /// <Summary>
+        /// Pop the route.
+        ///
+        /// If [Route.willPop] returns [pop] then the back button will actually pop
+        /// the current route.
+        /// </Summary>
+        Pop,
+        /// <Summary>
+        /// Do not pop the route.
+        ///
+        /// If [Route.willPop] returns [doNotPop] then the back button will be ignored.
+        /// </Summary>
+        DoNotPop,
+        /// <Summary>
+        /// Delegate this to the next level of navigation.
+        ///
+        /// If [Route.willPop] returns [bubble] then the back button will be handled
+        /// by the [SystemNavigator], which will usually close the application.
+        /// </Summary>
+        Bubble,
+    }
 
 
-public enum _RouteLifecycle
-{
+    public enum _RouteLifecycle
+    {
 
-    Staging,
-    Add,
-    Adding,
-    Push,
-    PushReplace,
-    Pushing,
-    Replace,
-    Idle,
-    Pop,
-    Remove,
-    Popping,
-    Removing,
-    Dispose,
-    Disposed,
-}
+        Staging,
+        Add,
+        Adding,
+        Push,
+        PushReplace,
+        Pushing,
+        Replace,
+        Idle,
+        Pop,
+        Remove,
+        Popping,
+        Removing,
+        Dispose,
+        Disposed,
+    }
 
 }

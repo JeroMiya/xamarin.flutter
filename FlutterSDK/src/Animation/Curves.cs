@@ -932,7 +932,7 @@ namespace FlutterSDK.Animation.Curves
         {
             startHandle = (startHandle == null ? controlPoints[0] * 2.0 - controlPoints[1] : startHandle);
             endHandle = (endHandle == null ? controlPoints.Last() * 2.0 - controlPoints[controlPoints.Count - 2] : endHandle);
-            List<Offset> allPoints = new List<Offset>() { startHandle, , controlPoints, endHandle };
+            List<Offset> allPoints = new List<Offset>() { startHandle,  /* ...controlPoints */, endHandle };
             double alpha = 0.5;
             double reverseTension = 1.0 - tension;
             List<List<Offset>> result = new List<List<Offset>>() { };
@@ -1052,7 +1052,7 @@ namespace FlutterSDK.Animation.Curves
 
         private List<FlutterSDK.Animation.Curves.Curve2DSample> _ComputeSamples(List<FlutterBinding.UI.Offset> controlPoints, double tension)
         {
-            return CatmullRomSpline.Precompute(new List<Offset>() { Dart:uiDefaultClass.Offset.Zero, , controlPoints, new Offset(1.0, 1.0) }, tension: tension).GenerateSamples(start: 0.0, end: 1.0, tolerance: 1e-12).ToList();
+            return CatmullRomSpline.Precompute(new List<Offset>() { Dart:uiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) }, tension: tension).GenerateSamples(start: 0.0, end: 1.0, tolerance: 1e-12).ToList();
         }
 
 
@@ -1088,10 +1088,10 @@ namespace FlutterSDK.Animation.Curves
                 return false;
             }
 
-            controlPoints = new List<Offset>() { Dart:uiDefaultClass.Offset.Zero, , controlPoints, new Offset(1.0, 1.0) };
+            controlPoints = new List<Offset>() { Dart:uiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) };
             Offset startHandle = controlPoints[0] * 2.0 - controlPoints[1];
             Offset endHandle = controlPoints.Last() * 2.0 - controlPoints[controlPoints.Count - 2];
-            controlPoints = new List<Offset>() { startHandle, , controlPoints, endHandle };
+            controlPoints = new List<Offset>() { startHandle,  /* ...controlPoints */, endHandle };
             double lastX = -Dart:coreDefaultClass.Double.Infinity;
             for (int i = 0; i < controlPoints.Count; ++i)
             {

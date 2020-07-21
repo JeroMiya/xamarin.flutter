@@ -423,7 +423,7 @@ namespace FlutterSDK.Cupertino.Pagescaffold
                 paddedContent = new Padding(padding: EdgeInsets.Only(bottom: bottomPadding), child: paddedContent);
             }
 
-            return new DecoratedBox(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).ScaffoldBackgroundColor), child: new Stack(children: new List<Widget>() { new PrimaryScrollController(controller: _PrimaryScrollController, child: paddedContent), }));
+            return new DecoratedBox(decoration: new BoxDecoration(color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(Widget.BackgroundColor, context) ?? ThemeDefaultClass.CupertinoTheme.Of(context).ScaffoldBackgroundColor), child: new Stack(children: new List<Widget>() { new PrimaryScrollController(controller: _PrimaryScrollController, child: paddedContent) }));
         }
 
 

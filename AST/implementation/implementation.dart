@@ -242,6 +242,8 @@ class Implementation {
       return processGenericFunctionType(entity);
     } else if (entity is RethrowExpression) {
       return processRethrowExpression(entity);
+    } else if (entity is EmptyStatement) {
+      return '';
     } else {
       throw new AssertionError('Unknown entity');
     }

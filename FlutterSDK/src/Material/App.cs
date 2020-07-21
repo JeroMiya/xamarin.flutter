@@ -612,83 +612,83 @@ namespace FlutterSDK.Material.App
             }
             else
             {
-                _NavigatorObservers = new List, < NavigatorObserver > (};
+                _NavigatorObservers = new List<NavigatorObserver>() { };
+            }
+
         }
 
-    }
 
 
 
-
-    private FlutterSDK.Animation.Tween.RectTween _CreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end)
-    {
-        return new MaterialRectArcTween(begin: begin, end: end);
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        Widget result = new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) =>
+        private FlutterSDK.Animation.Tween.RectTween _CreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end)
         {
-            return new MaterialPageRoute<T>(settings: settings, builder: builder);
+            return new MaterialRectArcTween(begin: begin, end: end);
         }
-        , home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: (BuildContext context, Widget child) =>
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            ThemeMode mode = Widget.ThemeMode ?? ThemeMode.System;
-            ThemeData theme = default(ThemeData);
-            if (Widget.DarkTheme != null)
+            Widget result = new WidgetsApp(key: new GlobalObjectKey(this), navigatorKey: Widget.NavigatorKey, navigatorObservers: _NavigatorObservers, pageRouteBuilder: (RouteSettings settings, WidgetBuilder builder) =>
             {
-                Ui.Brightness platformBrightness = MediaqueryDefaultClass.MediaQuery.PlatformBrightnessOf(context);
-                if (mode == ThemeMode.Dark || (mode == ThemeMode.System && platformBrightness == Ui.Brightness.Dark))
+                return new MaterialPageRoute<T>(settings: settings, builder: builder);
+            }
+            , home: Widget.Home, routes: Widget.Routes, initialRoute: Widget.InitialRoute, onGenerateRoute: Widget.OnGenerateRoute, onGenerateInitialRoutes: Widget.OnGenerateInitialRoutes, onUnknownRoute: Widget.OnUnknownRoute, builder: (BuildContext context, Widget child) =>
+            {
+                ThemeMode mode = Widget.ThemeMode ?? ThemeMode.System;
+                ThemeData theme = default(ThemeData);
+                if (Widget.DarkTheme != null)
                 {
-                    theme = Widget.DarkTheme;
+                    Ui.Brightness platformBrightness = MediaqueryDefaultClass.MediaQuery.PlatformBrightnessOf(context);
+                    if (mode == ThemeMode.Dark || (mode == ThemeMode.System && platformBrightness == Ui.Brightness.Dark))
+                    {
+                        theme = Widget.DarkTheme;
+                    }
+
                 }
 
-            }
-
-            theme = (theme == null ? Widget.Theme ?? ThemeData.Fallback() : theme);
-            return new AnimatedTheme(data: theme, isMaterialAppTheme: true, child: Widget.Builder != null ? new Builder(builder: (BuildContext context) =>
-            {
-                return Widget.Builder(context, child);
-            }
+                theme = (theme == null ? Widget.Theme ?? ThemeData.Fallback() : theme);
+                return new AnimatedTheme(data: theme, isMaterialAppTheme: true, child: Widget.Builder != null ? new Builder(builder: (BuildContext context) =>
+                {
+                    return Widget.Builder(context, child);
+                }
     ) : child);
-        }
-        , title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: AppDefaultClass._ErrorTextStyle, color: Widget.Color ?? Widget.Theme?.PrimaryColor ?? ColorsDefaultClass.Colors.Blue, locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
-        {
-            return new FloatingActionButton(child: new Icon(IconsDefaultClass.Icons.Search), onPressed: onPressed, mini: true);
-        }
-        , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
+            }
+            , title: Widget.Title, onGenerateTitle: Widget.OnGenerateTitle, textStyle: AppDefaultClass._ErrorTextStyle, color: Widget.Color ?? Widget.Theme?.PrimaryColor ?? ColorsDefaultClass.Colors.Blue, locale: Widget.Locale, localizationsDelegates: _LocalizationsDelegates, localeResolutionCallback: Widget.LocaleResolutionCallback, localeListResolutionCallback: Widget.LocaleListResolutionCallback, supportedLocales: Widget.SupportedLocales, showPerformanceOverlay: Widget.ShowPerformanceOverlay, checkerboardRasterCacheImages: Widget.CheckerboardRasterCacheImages, checkerboardOffscreenLayers: Widget.CheckerboardOffscreenLayers, showSemanticsDebugger: Widget.ShowSemanticsDebugger, debugShowCheckedModeBanner: Widget.DebugShowCheckedModeBanner, inspectorSelectButtonBuilder: (BuildContext context, VoidCallback onPressed) =>
+            {
+                return new FloatingActionButton(child: new Icon(IconsDefaultClass.Icons.Search), onPressed: onPressed, mini: true);
+            }
+            , shortcuts: Widget.Shortcuts, actions: Widget.Actions);
 
-        return new ScrollConfiguration(behavior: new _MaterialScrollBehavior(), child: result);
+            return new ScrollConfiguration(behavior: new _MaterialScrollBehavior(), child: result);
+        }
+
+
+
+        #endregion
     }
 
 
-
-    #endregion
-}
-
-
-/// <Summary>
-/// Describes which theme will be used by [MaterialApp].
-/// </Summary>
-public enum ThemeMode
-{
-
     /// <Summary>
-    /// Use either the light or dark theme based on what the user has selected in
-    /// the system settings.
+    /// Describes which theme will be used by [MaterialApp].
     /// </Summary>
-    System,
-    /// <Summary>
-    /// Always use the light mode regardless of system preference.
-    /// </Summary>
-    Light,
-    /// <Summary>
-    /// Always use the dark mode (if available) regardless of system preference.
-    /// </Summary>
-    Dark,
-}
+    public enum ThemeMode
+    {
+
+        /// <Summary>
+        /// Use either the light or dark theme based on what the user has selected in
+        /// the system settings.
+        /// </Summary>
+        System,
+        /// <Summary>
+        /// Always use the light mode regardless of system preference.
+        /// </Summary>
+        Light,
+        /// <Summary>
+        /// Always use the dark mode (if available) regardless of system preference.
+        /// </Summary>
+        Dark,
+    }
 
 }

@@ -392,7 +392,7 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new GestureDetector(key: _GlobalKey, onTapDown: OnTapDown, onTapUp: OnTapUp, onTapCancel: OnTapCancel, onTap: Widget.OnPressed, behavior: HitTestBehavior.Opaque, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: _KButtonHeight), child: new Semantics(button: true, child: new Container(decoration: new BoxDecoration(color: _IsPressed ? _KBackgroundColorPressed : _KBackgroundColor, border: new Border(bottom: new BorderSide(width: 1.0, color: _KBackgroundColorPressed))), padding: EdgeInsets.Symmetric(vertical: 16.0, horizontal: 10.0), child: new DefaultTextStyle(style: _TextStyle, child: new Row(mainAxisAlignment: MainAxisAlignment.SpaceBetween, children: new List<Widget>() { new Flexible(child: Widget.Child), }))))));
+            return new GestureDetector(key: _GlobalKey, onTapDown: OnTapDown, onTapUp: OnTapUp, onTapCancel: OnTapCancel, onTap: Widget.OnPressed, behavior: HitTestBehavior.Opaque, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: _KButtonHeight), child: new Semantics(button: true, child: new Container(decoration: new BoxDecoration(color: _IsPressed ? _KBackgroundColorPressed : _KBackgroundColor, border: new Border(bottom: new BorderSide(width: 1.0, color: _KBackgroundColorPressed))), padding: EdgeInsets.Symmetric(vertical: 16.0, horizontal: 10.0), child: new DefaultTextStyle(style: _TextStyle, child: new Row(mainAxisAlignment: MainAxisAlignment.SpaceBetween, children: new List<Widget>() { new Flexible(child: Widget.Child) }))))));
         }
 
 

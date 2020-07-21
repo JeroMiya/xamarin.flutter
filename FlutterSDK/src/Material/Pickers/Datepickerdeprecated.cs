@@ -601,7 +601,7 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
             int month = DisplayedMonth.Month;
             int daysInMonth = GetDaysInMonth(year, month);
             int firstDayOffset = _ComputeFirstDayOffset(year, month, localizations);
-            List<Widget> labels = new List<Widget>() {, _GetDayHeaders(themeData.TextTheme.Caption, localizations) };
+            List<Widget> labels = new List<Widget>() { /* ..._GetDayHeaders(themeData.TextTheme.Caption, localizations), */ };
             for (int i = 0; true; i += 1)
             {
                 int day = i - firstDayOffset + 1;

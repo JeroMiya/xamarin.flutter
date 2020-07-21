@@ -1056,424 +1056,424 @@ namespace FlutterSDK.Rendering.Custompaint
         public new void AssembleSemanticsNode(FlutterSDK.Semantics.Semantics.SemanticsNode node, FlutterSDK.Semantics.Semantics.SemanticsConfiguration config, Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> children)
         {
 
-            List<CustomPainterSemantics> backgroundSemantics = _BackgroundSemanticsBuilder != null ? _BackgroundSemanticsBuilder(Size) : new List, < CustomPainterSemantics > (};
-        _BackgroundSemanticsNodes=_UpdateSemanticsChildren(_BackgroundSemanticsNodes, backgroundSemantics);
-        List<CustomPainterSemantics> foregroundSemantics = _ForegroundSemanticsBuilder != null ? _ForegroundSemanticsBuilder(Size) : new List, <CustomPainterSemantics>(};
-    _ForegroundSemanticsNodes=_UpdateSemanticsChildren(_ForegroundSemanticsNodes, foregroundSemantics);
-    bool hasBackgroundSemantics = _BackgroundSemanticsNodes != null && _BackgroundSemanticsNodes.IsNotEmpty;
-    bool hasForegroundSemantics = _ForegroundSemanticsNodes != null && _ForegroundSemanticsNodes.IsNotEmpty;
-    List<SemanticsNode> finalChildren = new List<SemanticsNode>() { };
-base.AssembleSemanticsNode(node, config, finalChildren);
-}
+            List<CustomPainterSemantics> backgroundSemantics = _BackgroundSemanticsBuilder != null ? _BackgroundSemanticsBuilder(Size) : new List<CustomPainterSemantics>() { };
+            _BackgroundSemanticsNodes = _UpdateSemanticsChildren(_BackgroundSemanticsNodes, backgroundSemantics);
+            List<CustomPainterSemantics> foregroundSemantics = _ForegroundSemanticsBuilder != null ? _ForegroundSemanticsBuilder(Size) : new List<CustomPainterSemantics>() { };
+            _ForegroundSemanticsNodes = _UpdateSemanticsChildren(_ForegroundSemanticsNodes, foregroundSemantics);
+            bool hasBackgroundSemantics = _BackgroundSemanticsNodes != null && _BackgroundSemanticsNodes.IsNotEmpty;
+            bool hasForegroundSemantics = _ForegroundSemanticsNodes != null && _ForegroundSemanticsNodes.IsNotEmpty;
+            List<SemanticsNode> finalChildren = new List<SemanticsNode>() { };
+            base.AssembleSemanticsNode(node, config, finalChildren);
+        }
 
 
 
 
-public new void ClearSemantics()
-{
-    base.ClearSemantics();
-    _BackgroundSemanticsNodes = null;
-    _ForegroundSemanticsNodes = null;
-}
-
-
-
-
-/// <Summary>
-/// Updates the nodes of `oldSemantics` using data in `newChildSemantics`, and
-/// returns a new list containing child nodes sorted according to the order
-/// specified by `newChildSemantics`.
-///
-/// [SemanticsNode]s that match [CustomPainterSemantics] by [Key]s preserve
-/// their [SemanticsNode.key] field. If a node with the same key appears in
-/// a different position in the list, it is moved to the new position, but the
-/// same object is reused.
-///
-/// [SemanticsNode]s whose `key` is null may be updated from
-/// [CustomPainterSemantics] whose `key` is also null. However, the algorithm
-/// does not guarantee it. If your semantics require that specific nodes are
-/// updated from specific [CustomPainterSemantics], it is recommended to match
-/// them by specifying non-null keys.
-///
-/// The algorithm tries to be as close to [RenderObjectElement.updateChildren]
-/// as possible, deviating only where the concepts diverge between widgets and
-/// semantics. For example, a [SemanticsNode] can be updated from a
-/// [CustomPainterSemantics] based on `Key` alone; their types are not
-/// considered because there is only one type of [SemanticsNode]. There is no
-/// concept of a "forgotten" node in semantics, deactivated nodes, or global
-/// keys.
-/// </Summary>
-private List<FlutterSDK.Semantics.Semantics.SemanticsNode> _UpdateSemanticsChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> oldSemantics, List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> newChildSemantics)
-{
-    oldSemantics = oldSemantics ?? new List, < SemanticsNode > (};
-newChildSemantics = newChildSemantics ?? new List, < CustomPainterSemantics > (};
-
-int newChildrenTop = 0;
-int oldChildrenTop = 0;
-int newChildrenBottom = newChildSemantics.Count - 1;
-int oldChildrenBottom = oldSemantics.Count - 1;
-List<SemanticsNode> newChildren = new List<SemanticsNode>(newChildSemantics.Count);
-while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
-{
-    SemanticsNode oldChild = oldSemantics[oldChildrenTop];
-    CustomPainterSemantics newSemantics = newChildSemantics[newChildrenTop];
-    if (!_CanUpdateSemanticsChild(oldChild, newSemantics)) break;
-    SemanticsNode newChild = _UpdateSemanticsChild(oldChild, newSemantics);
-    newChildren[newChildrenTop] = newChild;
-    newChildrenTop += 1;
-    oldChildrenTop += 1;
-}
-
-while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
-{
-    SemanticsNode oldChild = oldSemantics[oldChildrenBottom];
-    CustomPainterSemantics newChild = newChildSemantics[newChildrenBottom];
-    if (!_CanUpdateSemanticsChild(oldChild, newChild)) break;
-    oldChildrenBottom -= 1;
-    newChildrenBottom -= 1;
-}
-
-bool haveOldChildren = oldChildrenTop <= oldChildrenBottom;
-Dictionary<Key, SemanticsNode> oldKeyedChildren = default(Dictionary<Key, SemanticsNode>);
-if (haveOldChildren)
-{
-    oldKeyedChildren = new Dictionary<Key, SemanticsNode> { };
-    while (oldChildrenTop <= oldChildrenBottom)
-    {
-        SemanticsNode oldChild = oldSemantics[oldChildrenTop];
-        if (oldChild.Key != null) oldKeyedChildren[oldChild.Key] = oldChild;
-        oldChildrenTop += 1;
-    }
-
-}
-
-while (newChildrenTop <= newChildrenBottom)
-{
-    SemanticsNode oldChild = default(SemanticsNode);
-    CustomPainterSemantics newSemantics = newChildSemantics[newChildrenTop];
-    if (haveOldChildren)
-    {
-        Key key = newSemantics.Key;
-        if (key != null)
+        public new void ClearSemantics()
         {
-            oldChild = oldKeyedChildren[key];
-            if (oldChild != null)
+            base.ClearSemantics();
+            _BackgroundSemanticsNodes = null;
+            _ForegroundSemanticsNodes = null;
+        }
+
+
+
+
+        /// <Summary>
+        /// Updates the nodes of `oldSemantics` using data in `newChildSemantics`, and
+        /// returns a new list containing child nodes sorted according to the order
+        /// specified by `newChildSemantics`.
+        ///
+        /// [SemanticsNode]s that match [CustomPainterSemantics] by [Key]s preserve
+        /// their [SemanticsNode.key] field. If a node with the same key appears in
+        /// a different position in the list, it is moved to the new position, but the
+        /// same object is reused.
+        ///
+        /// [SemanticsNode]s whose `key` is null may be updated from
+        /// [CustomPainterSemantics] whose `key` is also null. However, the algorithm
+        /// does not guarantee it. If your semantics require that specific nodes are
+        /// updated from specific [CustomPainterSemantics], it is recommended to match
+        /// them by specifying non-null keys.
+        ///
+        /// The algorithm tries to be as close to [RenderObjectElement.updateChildren]
+        /// as possible, deviating only where the concepts diverge between widgets and
+        /// semantics. For example, a [SemanticsNode] can be updated from a
+        /// [CustomPainterSemantics] based on `Key` alone; their types are not
+        /// considered because there is only one type of [SemanticsNode]. There is no
+        /// concept of a "forgotten" node in semantics, deactivated nodes, or global
+        /// keys.
+        /// </Summary>
+        private List<FlutterSDK.Semantics.Semantics.SemanticsNode> _UpdateSemanticsChildren(List<FlutterSDK.Semantics.Semantics.SemanticsNode> oldSemantics, List<FlutterSDK.Rendering.Custompaint.CustomPainterSemantics> newChildSemantics)
+        {
+            oldSemantics = oldSemantics ?? new List<SemanticsNode>() { };
+            newChildSemantics = newChildSemantics ?? new List<CustomPainterSemantics>() { };
+
+            int newChildrenTop = 0;
+            int oldChildrenTop = 0;
+            int newChildrenBottom = newChildSemantics.Count - 1;
+            int oldChildrenBottom = oldSemantics.Count - 1;
+            List<SemanticsNode> newChildren = new List<SemanticsNode>(newChildSemantics.Count);
+            while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
             {
-                if (_CanUpdateSemanticsChild(oldChild, newSemantics))
+                SemanticsNode oldChild = oldSemantics[oldChildrenTop];
+                CustomPainterSemantics newSemantics = newChildSemantics[newChildrenTop];
+                if (!_CanUpdateSemanticsChild(oldChild, newSemantics)) break;
+                SemanticsNode newChild = _UpdateSemanticsChild(oldChild, newSemantics);
+                newChildren[newChildrenTop] = newChild;
+                newChildrenTop += 1;
+                oldChildrenTop += 1;
+            }
+
+            while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
+            {
+                SemanticsNode oldChild = oldSemantics[oldChildrenBottom];
+                CustomPainterSemantics newChild = newChildSemantics[newChildrenBottom];
+                if (!_CanUpdateSemanticsChild(oldChild, newChild)) break;
+                oldChildrenBottom -= 1;
+                newChildrenBottom -= 1;
+            }
+
+            bool haveOldChildren = oldChildrenTop <= oldChildrenBottom;
+            Dictionary<Key, SemanticsNode> oldKeyedChildren = default(Dictionary<Key, SemanticsNode>);
+            if (haveOldChildren)
+            {
+                oldKeyedChildren = new Dictionary<Key, SemanticsNode> { };
+                while (oldChildrenTop <= oldChildrenBottom)
                 {
-                    oldKeyedChildren.Remove(key);
-                }
-                else
-                {
-                    oldChild = null;
+                    SemanticsNode oldChild = oldSemantics[oldChildrenTop];
+                    if (oldChild.Key != null) oldKeyedChildren[oldChild.Key] = oldChild;
+                    oldChildrenTop += 1;
                 }
 
             }
 
+            while (newChildrenTop <= newChildrenBottom)
+            {
+                SemanticsNode oldChild = default(SemanticsNode);
+                CustomPainterSemantics newSemantics = newChildSemantics[newChildrenTop];
+                if (haveOldChildren)
+                {
+                    Key key = newSemantics.Key;
+                    if (key != null)
+                    {
+                        oldChild = oldKeyedChildren[key];
+                        if (oldChild != null)
+                        {
+                            if (_CanUpdateSemanticsChild(oldChild, newSemantics))
+                            {
+                                oldKeyedChildren.Remove(key);
+                            }
+                            else
+                            {
+                                oldChild = null;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+                SemanticsNode newChild = _UpdateSemanticsChild(oldChild, newSemantics);
+
+                newChildren[newChildrenTop] = newChild;
+                newChildrenTop += 1;
+            }
+
+
+
+
+            newChildrenBottom = newChildSemantics.Count - 1;
+            oldChildrenBottom = oldSemantics.Count - 1;
+            while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
+            {
+                SemanticsNode oldChild = oldSemantics[oldChildrenTop];
+                CustomPainterSemantics newSemantics = newChildSemantics[newChildrenTop];
+
+                SemanticsNode newChild = _UpdateSemanticsChild(oldChild, newSemantics);
+
+                newChildren[newChildrenTop] = newChild;
+                newChildrenTop += 1;
+                oldChildrenTop += 1;
+            }
+
+
+            return newChildren;
         }
 
+
+
+
+        /// <Summary>
+        /// Whether `oldChild` can be updated with properties from `newSemantics`.
+        ///
+        /// If `oldChild` can be updated, it is updated using [_updateSemanticsChild].
+        /// Otherwise, the node is replaced by a new instance of [SemanticsNode].
+        /// </Summary>
+        private bool _CanUpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics)
+        {
+            return oldChild.Key == newSemantics.Key;
+        }
+
+
+
+
+        /// <Summary>
+        /// Updates `oldChild` using the properties of `newSemantics`.
+        ///
+        /// This method requires that `_canUpdateSemanticsChild(oldChild, newSemantics)`
+        /// is true prior to calling it.
+        /// </Summary>
+        private FlutterSDK.Semantics.Semantics.SemanticsNode _UpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics)
+        {
+
+            SemanticsNode newChild = oldChild ?? new SemanticsNode(key: newSemantics.Key);
+            SemanticsProperties properties = newSemantics.Properties;
+            SemanticsConfiguration config = new SemanticsConfiguration();
+            if (properties.SortKey != null)
+            {
+                config.SortKey = properties.SortKey;
+            }
+
+            if (properties.Checked != null)
+            {
+                config.IsChecked = properties.Checked;
+            }
+
+            if (properties.Selected != null)
+            {
+                config.IsSelected = properties.Selected;
+            }
+
+            if (properties.Button != null)
+            {
+                config.IsButton = properties.Button;
+            }
+
+            if (properties.Link != null)
+            {
+                config.IsLink = properties.Link;
+            }
+
+            if (properties.TextField != null)
+            {
+                config.IsTextField = properties.TextField;
+            }
+
+            if (properties.ReadOnly != null)
+            {
+                config.IsReadOnly = properties.ReadOnly;
+            }
+
+            if (properties.Focusable != null)
+            {
+                config.IsFocusable = properties.Focusable;
+            }
+
+            if (properties.Focused != null)
+            {
+                config.IsFocused = properties.Focused;
+            }
+
+            if (properties.Enabled != null)
+            {
+                config.IsEnabled = properties.Enabled;
+            }
+
+            if (properties.InMutuallyExclusiveGroup != null)
+            {
+                config.IsInMutuallyExclusiveGroup = properties.InMutuallyExclusiveGroup;
+            }
+
+            if (properties.Obscured != null)
+            {
+                config.IsObscured = properties.Obscured;
+            }
+
+            if (properties.Multiline != null)
+            {
+                config.IsMultiline = properties.Multiline;
+            }
+
+            if (properties.Hidden != null)
+            {
+                config.IsHidden = properties.Hidden;
+            }
+
+            if (properties.Header != null)
+            {
+                config.IsHeader = properties.Header;
+            }
+
+            if (properties.ScopesRoute != null)
+            {
+                config.ScopesRoute = properties.ScopesRoute;
+            }
+
+            if (properties.NamesRoute != null)
+            {
+                config.NamesRoute = properties.NamesRoute;
+            }
+
+            if (properties.LiveRegion != null)
+            {
+                config.LiveRegion = properties.LiveRegion;
+            }
+
+            if (properties.MaxValueLength != null)
+            {
+                config.MaxValueLength = properties.MaxValueLength;
+            }
+
+            if (properties.CurrentValueLength != null)
+            {
+                config.CurrentValueLength = properties.CurrentValueLength;
+            }
+
+            if (properties.Toggled != null)
+            {
+                config.IsToggled = properties.Toggled;
+            }
+
+            if (properties.Image != null)
+            {
+                config.IsImage = properties.Image;
+            }
+
+            if (properties.Label != null)
+            {
+                config.Label = properties.Label;
+            }
+
+            if (properties.Value != null)
+            {
+                config.Value = properties.Value;
+            }
+
+            if (properties.IncreasedValue != null)
+            {
+                config.IncreasedValue = properties.IncreasedValue;
+            }
+
+            if (properties.DecreasedValue != null)
+            {
+                config.DecreasedValue = properties.DecreasedValue;
+            }
+
+            if (properties.Hint != null)
+            {
+                config.Hint = properties.Hint;
+            }
+
+            if (properties.TextDirection != null)
+            {
+                config.TextDirection = properties.TextDirection;
+            }
+
+            if (properties.OnTap != null)
+            {
+                config.OnTap = properties.OnTap;
+            }
+
+            if (properties.OnLongPress != null)
+            {
+                config.OnLongPress = properties.OnLongPress;
+            }
+
+            if (properties.OnScrollLeft != null)
+            {
+                config.OnScrollLeft = properties.OnScrollLeft;
+            }
+
+            if (properties.OnScrollRight != null)
+            {
+                config.OnScrollRight = properties.OnScrollRight;
+            }
+
+            if (properties.OnScrollUp != null)
+            {
+                config.OnScrollUp = properties.OnScrollUp;
+            }
+
+            if (properties.OnScrollDown != null)
+            {
+                config.OnScrollDown = properties.OnScrollDown;
+            }
+
+            if (properties.OnIncrease != null)
+            {
+                config.OnIncrease = properties.OnIncrease;
+            }
+
+            if (properties.OnDecrease != null)
+            {
+                config.OnDecrease = properties.OnDecrease;
+            }
+
+            if (properties.OnCopy != null)
+            {
+                config.OnCopy = properties.OnCopy;
+            }
+
+            if (properties.OnCut != null)
+            {
+                config.OnCut = properties.OnCut;
+            }
+
+            if (properties.OnPaste != null)
+            {
+                config.OnPaste = properties.OnPaste;
+            }
+
+            if (properties.OnMoveCursorForwardByCharacter != null)
+            {
+                config.OnMoveCursorForwardByCharacter = properties.OnMoveCursorForwardByCharacter;
+            }
+
+            if (properties.OnMoveCursorBackwardByCharacter != null)
+            {
+                config.OnMoveCursorBackwardByCharacter = properties.OnMoveCursorBackwardByCharacter;
+            }
+
+            if (properties.OnMoveCursorForwardByWord != null)
+            {
+                config.OnMoveCursorForwardByWord = properties.OnMoveCursorForwardByWord;
+            }
+
+            if (properties.OnMoveCursorBackwardByWord != null)
+            {
+                config.OnMoveCursorBackwardByWord = properties.OnMoveCursorBackwardByWord;
+            }
+
+            if (properties.OnSetSelection != null)
+            {
+                config.OnSetSelection = properties.OnSetSelection;
+            }
+
+            if (properties.OnDidGainAccessibilityFocus != null)
+            {
+                config.OnDidGainAccessibilityFocus = properties.OnDidGainAccessibilityFocus;
+            }
+
+            if (properties.OnDidLoseAccessibilityFocus != null)
+            {
+                config.OnDidLoseAccessibilityFocus = properties.OnDidLoseAccessibilityFocus;
+            }
+
+            if (properties.OnDismiss != null)
+            {
+                config.OnDismiss = properties.OnDismiss;
+            }
+
+            newChild.UpdateWith(config: config, childrenInInversePaintOrder: new List<SemanticsNode>() { });
+            ..Rect = newSemantics.Rect..Transform = newSemantics.Transform..Tags = newSemantics.Tags;
+            return newChild;
+        }
+
+
+
+        #endregion
     }
-
-
-    SemanticsNode newChild = _UpdateSemanticsChild(oldChild, newSemantics);
-
-    newChildren[newChildrenTop] = newChild;
-    newChildrenTop += 1;
-}
-
-
-
-
-newChildrenBottom = newChildSemantics.Count - 1;
-oldChildrenBottom = oldSemantics.Count - 1;
-while ((oldChildrenTop <= oldChildrenBottom) && (newChildrenTop <= newChildrenBottom))
-{
-    SemanticsNode oldChild = oldSemantics[oldChildrenTop];
-    CustomPainterSemantics newSemantics = newChildSemantics[newChildrenTop];
-
-    SemanticsNode newChild = _UpdateSemanticsChild(oldChild, newSemantics);
-
-    newChildren[newChildrenTop] = newChild;
-    newChildrenTop += 1;
-    oldChildrenTop += 1;
-}
-
-
-return newChildren;
-}
-
-
-
-
-/// <Summary>
-/// Whether `oldChild` can be updated with properties from `newSemantics`.
-///
-/// If `oldChild` can be updated, it is updated using [_updateSemanticsChild].
-/// Otherwise, the node is replaced by a new instance of [SemanticsNode].
-/// </Summary>
-private bool _CanUpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics)
-{
-    return oldChild.Key == newSemantics.Key;
-}
-
-
-
-
-/// <Summary>
-/// Updates `oldChild` using the properties of `newSemantics`.
-///
-/// This method requires that `_canUpdateSemanticsChild(oldChild, newSemantics)`
-/// is true prior to calling it.
-/// </Summary>
-private FlutterSDK.Semantics.Semantics.SemanticsNode _UpdateSemanticsChild(FlutterSDK.Semantics.Semantics.SemanticsNode oldChild, FlutterSDK.Rendering.Custompaint.CustomPainterSemantics newSemantics)
-{
-
-    SemanticsNode newChild = oldChild ?? new SemanticsNode(key: newSemantics.Key);
-    SemanticsProperties properties = newSemantics.Properties;
-    SemanticsConfiguration config = new SemanticsConfiguration();
-    if (properties.SortKey != null)
-    {
-        config.SortKey = properties.SortKey;
-    }
-
-    if (properties.Checked != null)
-    {
-        config.IsChecked = properties.Checked;
-    }
-
-    if (properties.Selected != null)
-    {
-        config.IsSelected = properties.Selected;
-    }
-
-    if (properties.Button != null)
-    {
-        config.IsButton = properties.Button;
-    }
-
-    if (properties.Link != null)
-    {
-        config.IsLink = properties.Link;
-    }
-
-    if (properties.TextField != null)
-    {
-        config.IsTextField = properties.TextField;
-    }
-
-    if (properties.ReadOnly != null)
-    {
-        config.IsReadOnly = properties.ReadOnly;
-    }
-
-    if (properties.Focusable != null)
-    {
-        config.IsFocusable = properties.Focusable;
-    }
-
-    if (properties.Focused != null)
-    {
-        config.IsFocused = properties.Focused;
-    }
-
-    if (properties.Enabled != null)
-    {
-        config.IsEnabled = properties.Enabled;
-    }
-
-    if (properties.InMutuallyExclusiveGroup != null)
-    {
-        config.IsInMutuallyExclusiveGroup = properties.InMutuallyExclusiveGroup;
-    }
-
-    if (properties.Obscured != null)
-    {
-        config.IsObscured = properties.Obscured;
-    }
-
-    if (properties.Multiline != null)
-    {
-        config.IsMultiline = properties.Multiline;
-    }
-
-    if (properties.Hidden != null)
-    {
-        config.IsHidden = properties.Hidden;
-    }
-
-    if (properties.Header != null)
-    {
-        config.IsHeader = properties.Header;
-    }
-
-    if (properties.ScopesRoute != null)
-    {
-        config.ScopesRoute = properties.ScopesRoute;
-    }
-
-    if (properties.NamesRoute != null)
-    {
-        config.NamesRoute = properties.NamesRoute;
-    }
-
-    if (properties.LiveRegion != null)
-    {
-        config.LiveRegion = properties.LiveRegion;
-    }
-
-    if (properties.MaxValueLength != null)
-    {
-        config.MaxValueLength = properties.MaxValueLength;
-    }
-
-    if (properties.CurrentValueLength != null)
-    {
-        config.CurrentValueLength = properties.CurrentValueLength;
-    }
-
-    if (properties.Toggled != null)
-    {
-        config.IsToggled = properties.Toggled;
-    }
-
-    if (properties.Image != null)
-    {
-        config.IsImage = properties.Image;
-    }
-
-    if (properties.Label != null)
-    {
-        config.Label = properties.Label;
-    }
-
-    if (properties.Value != null)
-    {
-        config.Value = properties.Value;
-    }
-
-    if (properties.IncreasedValue != null)
-    {
-        config.IncreasedValue = properties.IncreasedValue;
-    }
-
-    if (properties.DecreasedValue != null)
-    {
-        config.DecreasedValue = properties.DecreasedValue;
-    }
-
-    if (properties.Hint != null)
-    {
-        config.Hint = properties.Hint;
-    }
-
-    if (properties.TextDirection != null)
-    {
-        config.TextDirection = properties.TextDirection;
-    }
-
-    if (properties.OnTap != null)
-    {
-        config.OnTap = properties.OnTap;
-    }
-
-    if (properties.OnLongPress != null)
-    {
-        config.OnLongPress = properties.OnLongPress;
-    }
-
-    if (properties.OnScrollLeft != null)
-    {
-        config.OnScrollLeft = properties.OnScrollLeft;
-    }
-
-    if (properties.OnScrollRight != null)
-    {
-        config.OnScrollRight = properties.OnScrollRight;
-    }
-
-    if (properties.OnScrollUp != null)
-    {
-        config.OnScrollUp = properties.OnScrollUp;
-    }
-
-    if (properties.OnScrollDown != null)
-    {
-        config.OnScrollDown = properties.OnScrollDown;
-    }
-
-    if (properties.OnIncrease != null)
-    {
-        config.OnIncrease = properties.OnIncrease;
-    }
-
-    if (properties.OnDecrease != null)
-    {
-        config.OnDecrease = properties.OnDecrease;
-    }
-
-    if (properties.OnCopy != null)
-    {
-        config.OnCopy = properties.OnCopy;
-    }
-
-    if (properties.OnCut != null)
-    {
-        config.OnCut = properties.OnCut;
-    }
-
-    if (properties.OnPaste != null)
-    {
-        config.OnPaste = properties.OnPaste;
-    }
-
-    if (properties.OnMoveCursorForwardByCharacter != null)
-    {
-        config.OnMoveCursorForwardByCharacter = properties.OnMoveCursorForwardByCharacter;
-    }
-
-    if (properties.OnMoveCursorBackwardByCharacter != null)
-    {
-        config.OnMoveCursorBackwardByCharacter = properties.OnMoveCursorBackwardByCharacter;
-    }
-
-    if (properties.OnMoveCursorForwardByWord != null)
-    {
-        config.OnMoveCursorForwardByWord = properties.OnMoveCursorForwardByWord;
-    }
-
-    if (properties.OnMoveCursorBackwardByWord != null)
-    {
-        config.OnMoveCursorBackwardByWord = properties.OnMoveCursorBackwardByWord;
-    }
-
-    if (properties.OnSetSelection != null)
-    {
-        config.OnSetSelection = properties.OnSetSelection;
-    }
-
-    if (properties.OnDidGainAccessibilityFocus != null)
-    {
-        config.OnDidGainAccessibilityFocus = properties.OnDidGainAccessibilityFocus;
-    }
-
-    if (properties.OnDidLoseAccessibilityFocus != null)
-    {
-        config.OnDidLoseAccessibilityFocus = properties.OnDidLoseAccessibilityFocus;
-    }
-
-    if (properties.OnDismiss != null)
-    {
-        config.OnDismiss = properties.OnDismiss;
-    }
-
-    newChild.UpdateWith(config: config, childrenInInversePaintOrder: new List, < SemanticsNode > (});
-..Rect = newSemantics.Rect..Transform = newSemantics.Transform..Tags = newSemantics.Tags;
-return newChild;
-}
-
-
-
-#endregion
-}
 
 }
