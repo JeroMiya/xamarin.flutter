@@ -652,7 +652,7 @@ namespace FlutterSDK.Painting.Flutterlogo
             new Path().LineTo(107.4, 142.8);
             canvas.DrawPath(bottomBeam, darkPaint);
             canvas.Save();
-            canvas.Transform(List<float>.FromList(new List, < double > (){ 0.7071, -0.7071, 0.0, 0.0, 0.7071, 0.7071, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -77.697, 98.057, 0.0, 1.0}));
+            canvas.Transform(List<float>.FromList(new List<double>() { 0.7071, -0.7071, 0.0, 0.0, 0.7071, 0.7071, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -77.697, 98.057, 0.0, 1.0 }));
             canvas.DrawRect(Rect.FromLTWH(59.8, 123.1, 39.4, 39.4), mediumPaint);
             canvas.Restore();
             Path triangle = new Path();

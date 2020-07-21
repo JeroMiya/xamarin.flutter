@@ -982,7 +982,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
 
 
-                Ui.Dart:uiDefaultClass.Image image = await Screenshot(ToObject(parameters["id"]), width: Dart:coreDefaultClass.Double.Parse(parameters["width"]), height: Dart: coreDefaultClass.Double.Parse(parameters["height"]), margin: parameters.ContainsKey("margin") ? Dart : coreDefaultClass.Double.Parse(parameters["margin"]):0.0, maxPixelRatio: parameters.ContainsKey("maxPixelRatio") ? Dart : coreDefaultClass.Double.Parse(parameters["maxPixelRatio"]):1.0, debugPaint: parameters["debugPaint"] == "true");
+            Ui.Dart:uiDefaultClass.Image image = await Screenshot(ToObject(parameters["id"]), width: Dart:coreDefaultClass.Double.Parse(parameters["width"]), height: Dart: coreDefaultClass.Double.Parse(parameters["height"]), margin: parameters.ContainsKey("margin") ? Dart : coreDefaultClass.Double.Parse(parameters["margin"]):0.0, maxPixelRatio: parameters.ContainsKey("maxPixelRatio") ? Dart : coreDefaultClass.Double.Parse(parameters["maxPixelRatio"]):1.0, debugPaint: parameters["debugPaint"] == "true");
             if (image == null)
             {
                 return new Dictionary<string, object> { { "result", null } };
@@ -1318,621 +1318,621 @@ namespace FlutterSDK.Widgets.Widgetinspector
 
     private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetElementParentChain(FlutterSDK.Widgets.Framework.Element element, string groupName, int numLocalParents = default(int))
     {
-        return WidgetinspectorDefaultClass._FollowDiagnosticableChain(_GetRawElementParentChain(element, numLocalParents: numLocalParents)) ?? new List, < _DiagnosticsPathNode > (};
-}
-
-
-
-
-private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetRenderObjectParentChain(FlutterSDK.Rendering.@object.RenderObject renderObject, string groupName, int maxparents = default(int))
-{
-    List<RenderObject> chain = new List<RenderObject>() { };
-    while (renderObject != null)
-    {
-        chain.Add(renderObject);
-        renderObject = renderObject.Parent as RenderObject;
+        return WidgetinspectorDefaultClass._FollowDiagnosticableChain(_GetRawElementParentChain(element, numLocalParents: numLocalParents)) ?? new List<_DiagnosticsPathNode>() { };
     }
 
-    return WidgetinspectorDefaultClass._FollowDiagnosticableChain(chain.Reversed.ToList());
-}
 
 
 
-
-private Dictionary<string, @Object> _NodeToJson(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
-{
-    return node?.ToJsonMap(delegate);
-}
-
-
-
-
-private bool _IsValueCreatedByLocalProject(@Object value)
-{
-    _Location creationLocation = WidgetinspectorDefaultClass._GetCreationLocation(value);
-    if (creationLocation == null)
+    private List<FlutterSDK.Widgets.Widgetinspector._DiagnosticsPathNode> _GetRenderObjectParentChain(FlutterSDK.Rendering.@object.RenderObject renderObject, string groupName, int maxparents = default(int))
     {
-        return false;
-    }
-
-    return _IsLocalCreationLocation(creationLocation);
-}
-
-
-
-
-private bool _IsLocalCreationLocation(FlutterSDK.Widgets.Widgetinspector._Location location)
-{
-    if (location == null || location.File == null)
-    {
-        return false;
-    }
-
-    string file = Dart:coreDefaultClass.Uri.Parse(location.File).Path;
-if (_PubRootDirectories == null)
-{
-    return !file.Contains("packages/flutter/");
-}
-
-foreach (string directory in _PubRootDirectories)
-{
-    if (file.StartsWith(directory))
-    {
-        return true;
-    }
-
-}
-
-return false;
-}
-
-
-
-
-/// <Summary>
-/// Wrapper around `json.encode` that uses a ring of cached values to prevent
-/// the Dart garbage collector from collecting objects between when
-/// the value is returned over the Observatory protocol and when the
-/// separate observatory protocol command has to be used to retrieve its full
-/// contents.
-/// </Summary>
-private string _SafeJsonEncode(@Object @object)
-{
-    string jsonString = Dart:convertDefaultClass.Json.Encode(object);
-_SerializeRing[_SerializeRingIndex] = jsonString;
-_SerializeRingIndex = (_SerializeRingIndex + 1) % _SerializeRing.Count;
-return jsonString;
-}
-
-
-
-
-private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _TruncateNodes(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, int maxDescendentsTruncatableNode)
-{
-    if (nodes.Every((DiagnosticsNode node) => =>node.Value is Element) && IsWidgetCreationTracked())
-    {
-        List<DiagnosticsNode> localNodes = nodes.Where((DiagnosticsNode node) => =>_IsValueCreatedByLocalProject(((Element)node.Value))).ToList();
-        if (localNodes.IsNotEmpty)
+        List<RenderObject> chain = new List<RenderObject>() { };
+        while (renderObject != null)
         {
-            return localNodes;
+            chain.Add(renderObject);
+            renderObject = renderObject.Parent as RenderObject;
         }
 
+        return WidgetinspectorDefaultClass._FollowDiagnosticableChain(chain.Reversed.ToList());
     }
 
-    return nodes.Take(maxDescendentsTruncatableNode).ToList();
-}
 
 
 
-
-private List<Dictionary<string, @Object>> _NodesToJson(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode))
-{
-    return DiagnosticsDefaultClass.DiagnosticsNode.ToJsonList(nodes, parent, delegate);
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the properties of the [DiagnosticsNode]
-/// object that `diagnosticsNodeId` references.
-/// </Summary>
-public virtual string GetProperties(string diagnosticsNodeId, string groupName)
-{
-    return _SafeJsonEncode(_GetProperties(diagnosticsNodeId, groupName));
-}
-
-
-
-
-private List<@Object> _GetProperties(string diagnosticsNodeId, string groupName)
-{
-    DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
-    return _NodesToJson(node == null ? new List, < DiagnosticsNode > (}:node.GetProperties(), new InspectorSerializationDelegate(groupName: groupName, service: this), parent: node);
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the children of the [DiagnosticsNode]
-/// object that `diagnosticsNodeId` references.
-/// </Summary>
-public virtual string GetChildren(string diagnosticsNodeId, string groupName)
-{
-    return _SafeJsonEncode(_GetChildren(diagnosticsNodeId, groupName));
-}
-
-
-
-
-private List<@Object> _GetChildren(string diagnosticsNodeId, string groupName)
-{
-    DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
-    InspectorSerializationDelegate   delegate= new InspectorSerializationDelegate(groupName: groupName, service: this);
-    return _NodesToJson(node == null ? new List, < DiagnosticsNode > (}:_GetChildrenFiltered(node, delegate), delegate, parent:node);
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the children of the [DiagnosticsNode]
-/// object that `diagnosticsNodeId` references only including children that
-/// were created directly by user code.
-///
-/// Requires [Widget] creation locations which are only available for debug
-/// mode builds when the `--track-widget-creation` flag is passed to
-/// `flutter_tool`.
-///
-/// See also:
-///
-///  * [isWidgetCreationTracked] which indicates whether this method can be
-///    used.
-/// </Summary>
-public virtual string GetChildrenSummaryTree(string diagnosticsNodeId, string groupName)
-{
-    return _SafeJsonEncode(_GetChildrenSummaryTree(diagnosticsNodeId, groupName));
-}
-
-
-
-
-private List<@Object> _GetChildrenSummaryTree(string diagnosticsNodeId, string groupName)
-{
-    DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
-    InspectorSerializationDelegate   delegate= new InspectorSerializationDelegate(groupName: groupName, summaryTree: true, service: this);
-    return _NodesToJson(node == null ? new List, < DiagnosticsNode > (}:_GetChildrenFiltered(node, delegate), delegate, parent:node);
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the children of the [DiagnosticsNode]
-/// object that `diagnosticsNodeId` references providing information needed
-/// for the details subtree view.
-///
-/// The details subtree shows properties inline and includes all children
-/// rather than a filtered set of important children.
-/// </Summary>
-public virtual string GetChildrenDetailsSubtree(string diagnosticsNodeId, string groupName)
-{
-    return _SafeJsonEncode(_GetChildrenDetailsSubtree(diagnosticsNodeId, groupName));
-}
-
-
-
-
-private List<@Object> _GetChildrenDetailsSubtree(string diagnosticsNodeId, string groupName)
-{
-    DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
-    InspectorSerializationDelegate   delegate= new InspectorSerializationDelegate(groupName: groupName, subtreeDepth: 1, includeProperties: true, service: this);
-    return _NodesToJson(node == null ? new List, < DiagnosticsNode > (}:_GetChildrenFiltered(node, delegate), delegate, parent:node);
-}
-
-
-
-
-private bool _ShouldShowInSummaryTree(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
-{
-    if (node.Level == DiagnosticLevel.Error)
+    private Dictionary<string, @Object> _NodeToJson(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
     {
-        return true;
+        return node?.ToJsonMap(delegate);
     }
 
-    object value = node.Value;
-    if (!(value is Diagnosticable))
+
+
+
+    private bool _IsValueCreatedByLocalProject(@Object value)
     {
-        return true;
+        _Location creationLocation = WidgetinspectorDefaultClass._GetCreationLocation(value);
+        if (creationLocation == null)
+        {
+            return false;
+        }
+
+        return _IsLocalCreationLocation(creationLocation);
     }
 
-    if (!(value is Element) || !IsWidgetCreationTracked())
+
+
+
+    private bool _IsLocalCreationLocation(FlutterSDK.Widgets.Widgetinspector._Location location)
     {
-        return true;
+        if (location == null || location.File == null)
+        {
+            return false;
+        }
+
+        string file = Dart:coreDefaultClass.Uri.Parse(location.File).Path;
+        if (_PubRootDirectories == null)
+        {
+            return !file.Contains("packages/flutter/");
+        }
+
+        foreach (string directory in _PubRootDirectories)
+        {
+            if (file.StartsWith(directory))
+            {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
-    return _IsValueCreatedByLocalProject(value);
-}
 
 
 
-
-private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _GetChildrenFiltered(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
-{
-    return _FilterChildren(node.GetChildren(), delegate);
-}
-
-
-
-
-private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
-{
-    List<DiagnosticsNode> children = new List<DiagnosticsNode>() { };
-    return children;
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the [DiagnosticsNode] for the root
-/// [Element].
-/// </Summary>
-public virtual string GetRootWidget(string groupName)
-{
-    return _SafeJsonEncode(_GetRootWidget(groupName));
-}
-
-
-
-
-private Dictionary<string, @Object> _GetRootWidget(string groupName)
-{
-    return _NodeToJson(BindingDefaultClass.WidgetsBinding.Instance?.RenderViewElement?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the [DiagnosticsNode] for the root
-/// [Element] showing only nodes that should be included in a summary tree.
-/// </Summary>
-public virtual string GetRootWidgetSummaryTree(string groupName)
-{
-    return _SafeJsonEncode(_GetRootWidgetSummaryTree(groupName));
-}
-
-
-
-
-private Dictionary<string, @Object> _GetRootWidgetSummaryTree(string groupName)
-{
-    return _NodeToJson(BindingDefaultClass.WidgetsBinding.Instance?.RenderViewElement?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, subtreeDepth: 1000000, summaryTree: true, service: this));
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the [DiagnosticsNode] for the root
-/// [RenderObject].
-/// </Summary>
-public virtual string GetRootRenderObject(string groupName)
-{
-    return _SafeJsonEncode(_GetRootRenderObject(groupName));
-}
-
-
-
-
-private Dictionary<string, @Object> _GetRootRenderObject(string groupName)
-{
-    return _NodeToJson(BindingDefaultClass.RendererBinding.Instance?.RenderView?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
-}
-
-
-
-
-/// <Summary>
-/// Returns a JSON representation of the subtree rooted at the
-/// [DiagnosticsNode] object that `diagnosticsNodeId` references providing
-/// information needed for the details subtree view.
-///
-/// The number of levels of the subtree that should be returned is specified
-/// by the [subtreeDepth] parameter. This value defaults to 2 for backwards
-/// compatibility.
-///
-/// See also:
-///
-///  * [getChildrenDetailsSubtree], a method to get children of a node
-///    in the details subtree.
-/// </Summary>
-public virtual string GetDetailsSubtree(string id, string groupName, int subtreeDepth = 2)
-{
-    return _SafeJsonEncode(_GetDetailsSubtree(id, groupName, subtreeDepth));
-}
-
-
-
-
-private Dictionary<string, @Object> _GetDetailsSubtree(string id, string groupName, int subtreeDepth)
-{
-    DiagnosticsNode root = ToObject(id) as DiagnosticsNode;
-    if (root == null)
+    /// <Summary>
+    /// Wrapper around `json.encode` that uses a ring of cached values to prevent
+    /// the Dart garbage collector from collecting objects between when
+    /// the value is returned over the Observatory protocol and when the
+    /// separate observatory protocol command has to be used to retrieve its full
+    /// contents.
+    /// </Summary>
+    private string _SafeJsonEncode(@Object @object)
     {
-        return null;
+        string jsonString = Dart:convertDefaultClass.Json.Encode(object);
+        _SerializeRing[_SerializeRingIndex] = jsonString;
+        _SerializeRingIndex = (_SerializeRingIndex + 1) % _SerializeRing.Count;
+        return jsonString;
     }
 
-    return _NodeToJson(root, new InspectorSerializationDelegate(groupName: groupName, summaryTree: false, subtreeDepth: subtreeDepth, includeProperties: true, service: this));
-}
 
 
 
-
-/// <Summary>
-/// Returns a [DiagnosticsNode] representing the currently selected
-/// [RenderObject].
-///
-/// If the currently selected [RenderObject] is identical to the
-/// [RenderObject] referenced by `previousSelectionId` then the previous
-/// [DiagnosticsNode] is reused.
-/// </Summary>
-public virtual string GetSelectedRenderObject(string previousSelectionId, string groupName)
-{
-    return _SafeJsonEncode(_GetSelectedRenderObject(previousSelectionId, groupName));
-}
-
-
-
-
-private Dictionary<string, @Object> _GetSelectedRenderObject(string previousSelectionId, string groupName)
-{
-    DiagnosticsNode previousSelection = ToObject(previousSelectionId) as DiagnosticsNode;
-    RenderObject current = Selection?.Current;
-    return _NodeToJson(current == previousSelection?.Value ? previousSelection : current?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
-}
-
-
-
-
-/// <Summary>
-/// Returns a [DiagnosticsNode] representing the currently selected [Element].
-///
-/// If the currently selected [Element] is identical to the [Element]
-/// referenced by `previousSelectionId` then the previous [DiagnosticsNode] is
-/// reused.
-/// </Summary>
-public virtual string GetSelectedWidget(string previousSelectionId, string groupName)
-{
-    return _SafeJsonEncode(_GetSelectedWidget(previousSelectionId, groupName));
-}
-
-
-
-
-/// <Summary>
-/// Captures an image of the current state of an [object] that is a
-/// [RenderObject] or [Element].
-///
-/// The returned [ui.Image] has uncompressed raw RGBA bytes and will be scaled
-/// to be at most [width] pixels wide and [height] pixels tall. The returned
-/// image will never have a scale between logical pixels and the
-/// size of the output image larger than maxPixelRatio.
-/// [margin] indicates the number of pixels relative to the un-scaled size of
-/// the [object] to include as a margin to include around the bounds of the
-/// [object] in the screenshot. Including a margin can be useful to capture
-/// areas that are slightly outside of the normal bounds of an object such as
-/// some debug paint information.
-/// </Summary>
-public virtual async Future<SKImage> Screenshot(@Object @object, double width = default(double), double height = default(double), double margin = 0.0, double maxPixelRatio = 1.0, bool debugPaint = false)
-{
-    if (!(object is Element) && !(object is RenderObject))
+    private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _TruncateNodes(Iterable<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, int maxDescendentsTruncatableNode)
     {
-        return null;
+        if (nodes.Every((DiagnosticsNode node) => =>node.Value is Element) && IsWidgetCreationTracked())
+        {
+            List<DiagnosticsNode> localNodes = nodes.Where((DiagnosticsNode node) => =>_IsValueCreatedByLocalProject(((Element)node.Value))).ToList();
+            if (localNodes.IsNotEmpty)
+            {
+                return localNodes;
+            }
+
+        }
+
+        return nodes.Take(maxDescendentsTruncatableNode).ToList();
     }
 
-    RenderObject renderObject = object is Element ? object.RenderObject : (object as RenderObject);
-    if (renderObject == null || !renderObject.Attached)
+
+
+
+    private List<Dictionary<string, @Object>> _NodesToJson(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate, FlutterSDK.Foundation.Diagnostics.DiagnosticsNode parent = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode))
     {
-        return null;
+        return DiagnosticsDefaultClass.DiagnosticsNode.ToJsonList(nodes, parent, delegate);
     }
 
-    if (renderObject.DebugNeedsLayout)
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the properties of the [DiagnosticsNode]
+    /// object that `diagnosticsNodeId` references.
+    /// </Summary>
+    public virtual string GetProperties(string diagnosticsNodeId, string groupName)
     {
-        PipelineOwner owner = renderObject.Owner;
+        return _SafeJsonEncode(_GetProperties(diagnosticsNodeId, groupName));
+    }
 
 
-        ;
-        owner.FlushLayout();
-        owner.FlushCompositingBits();
-        owner.FlushPaint();
-        if (renderObject.DebugNeedsLayout)
+
+
+    private List<@Object> _GetProperties(string diagnosticsNodeId, string groupName)
+    {
+        DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
+        return _NodesToJson(node == null ? new List<DiagnosticsNode>() { } : node.GetProperties(), new InspectorSerializationDelegate(groupName: groupName, service: this), parent: node);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the children of the [DiagnosticsNode]
+    /// object that `diagnosticsNodeId` references.
+    /// </Summary>
+    public virtual string GetChildren(string diagnosticsNodeId, string groupName)
+    {
+        return _SafeJsonEncode(_GetChildren(diagnosticsNodeId, groupName));
+    }
+
+
+
+
+    private List<@Object> _GetChildren(string diagnosticsNodeId, string groupName)
+    {
+        DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
+        InspectorSerializationDelegate   delegate= new InspectorSerializationDelegate(groupName: groupName, service: this);
+        return _NodesToJson(node == null ? new List<DiagnosticsNode>() { } : _GetChildrenFiltered(node, delegate), delegate, parent: node);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the children of the [DiagnosticsNode]
+    /// object that `diagnosticsNodeId` references only including children that
+    /// were created directly by user code.
+    ///
+    /// Requires [Widget] creation locations which are only available for debug
+    /// mode builds when the `--track-widget-creation` flag is passed to
+    /// `flutter_tool`.
+    ///
+    /// See also:
+    ///
+    ///  * [isWidgetCreationTracked] which indicates whether this method can be
+    ///    used.
+    /// </Summary>
+    public virtual string GetChildrenSummaryTree(string diagnosticsNodeId, string groupName)
+    {
+        return _SafeJsonEncode(_GetChildrenSummaryTree(diagnosticsNodeId, groupName));
+    }
+
+
+
+
+    private List<@Object> _GetChildrenSummaryTree(string diagnosticsNodeId, string groupName)
+    {
+        DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
+        InspectorSerializationDelegate   delegate= new InspectorSerializationDelegate(groupName: groupName, summaryTree: true, service: this);
+        return _NodesToJson(node == null ? new List<DiagnosticsNode>() { } : _GetChildrenFiltered(node, delegate), delegate, parent: node);
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the children of the [DiagnosticsNode]
+    /// object that `diagnosticsNodeId` references providing information needed
+    /// for the details subtree view.
+    ///
+    /// The details subtree shows properties inline and includes all children
+    /// rather than a filtered set of important children.
+    /// </Summary>
+    public virtual string GetChildrenDetailsSubtree(string diagnosticsNodeId, string groupName)
+    {
+        return _SafeJsonEncode(_GetChildrenDetailsSubtree(diagnosticsNodeId, groupName));
+    }
+
+
+
+
+    private List<@Object> _GetChildrenDetailsSubtree(string diagnosticsNodeId, string groupName)
+    {
+        DiagnosticsNode node = ToObject(diagnosticsNodeId) as DiagnosticsNode;
+        InspectorSerializationDelegate   delegate= new InspectorSerializationDelegate(groupName: groupName, subtreeDepth: 1, includeProperties: true, service: this);
+        return _NodesToJson(node == null ? new List<DiagnosticsNode>() { } : _GetChildrenFiltered(node, delegate), delegate, parent: node);
+    }
+
+
+
+
+    private bool _ShouldShowInSummaryTree(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
+    {
+        if (node.Level == DiagnosticLevel.Error)
+        {
+            return true;
+        }
+
+        object value = node.Value;
+        if (!(value is Diagnosticable))
+        {
+            return true;
+        }
+
+        if (!(value is Element) || !IsWidgetCreationTracked())
+        {
+            return true;
+        }
+
+        return _IsValueCreatedByLocalProject(value);
+    }
+
+
+
+
+    private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _GetChildrenFiltered(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
+    {
+        return _FilterChildren(node.GetChildren(), delegate);
+    }
+
+
+
+
+    private List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _FilterChildren(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> nodes, FlutterSDK.Widgets.Widgetinspector.InspectorSerializationDelegate @delegate)
+    {
+        List<DiagnosticsNode> children = new List<DiagnosticsNode>() { };
+        return children;
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the [DiagnosticsNode] for the root
+    /// [Element].
+    /// </Summary>
+    public virtual string GetRootWidget(string groupName)
+    {
+        return _SafeJsonEncode(_GetRootWidget(groupName));
+    }
+
+
+
+
+    private Dictionary<string, @Object> _GetRootWidget(string groupName)
+    {
+        return _NodeToJson(BindingDefaultClass.WidgetsBinding.Instance?.RenderViewElement?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the [DiagnosticsNode] for the root
+    /// [Element] showing only nodes that should be included in a summary tree.
+    /// </Summary>
+    public virtual string GetRootWidgetSummaryTree(string groupName)
+    {
+        return _SafeJsonEncode(_GetRootWidgetSummaryTree(groupName));
+    }
+
+
+
+
+    private Dictionary<string, @Object> _GetRootWidgetSummaryTree(string groupName)
+    {
+        return _NodeToJson(BindingDefaultClass.WidgetsBinding.Instance?.RenderViewElement?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, subtreeDepth: 1000000, summaryTree: true, service: this));
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the [DiagnosticsNode] for the root
+    /// [RenderObject].
+    /// </Summary>
+    public virtual string GetRootRenderObject(string groupName)
+    {
+        return _SafeJsonEncode(_GetRootRenderObject(groupName));
+    }
+
+
+
+
+    private Dictionary<string, @Object> _GetRootRenderObject(string groupName)
+    {
+        return _NodeToJson(BindingDefaultClass.RendererBinding.Instance?.RenderView?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a JSON representation of the subtree rooted at the
+    /// [DiagnosticsNode] object that `diagnosticsNodeId` references providing
+    /// information needed for the details subtree view.
+    ///
+    /// The number of levels of the subtree that should be returned is specified
+    /// by the [subtreeDepth] parameter. This value defaults to 2 for backwards
+    /// compatibility.
+    ///
+    /// See also:
+    ///
+    ///  * [getChildrenDetailsSubtree], a method to get children of a node
+    ///    in the details subtree.
+    /// </Summary>
+    public virtual string GetDetailsSubtree(string id, string groupName, int subtreeDepth = 2)
+    {
+        return _SafeJsonEncode(_GetDetailsSubtree(id, groupName, subtreeDepth));
+    }
+
+
+
+
+    private Dictionary<string, @Object> _GetDetailsSubtree(string id, string groupName, int subtreeDepth)
+    {
+        DiagnosticsNode root = ToObject(id) as DiagnosticsNode;
+        if (root == null)
         {
             return null;
         }
 
+        return _NodeToJson(root, new InspectorSerializationDelegate(groupName: groupName, summaryTree: false, subtreeDepth: subtreeDepth, includeProperties: true, service: this));
     }
 
-    Rect renderBounds = WidgetinspectorDefaultClass._CalculateSubtreeBounds(renderObject);
-    if (margin != 0.0)
+
+
+
+    /// <Summary>
+    /// Returns a [DiagnosticsNode] representing the currently selected
+    /// [RenderObject].
+    ///
+    /// If the currently selected [RenderObject] is identical to the
+    /// [RenderObject] referenced by `previousSelectionId` then the previous
+    /// [DiagnosticsNode] is reused.
+    /// </Summary>
+    public virtual string GetSelectedRenderObject(string previousSelectionId, string groupName)
     {
-        renderBounds = renderBounds.Inflate(margin);
+        return _SafeJsonEncode(_GetSelectedRenderObject(previousSelectionId, groupName));
     }
 
-    if (renderBounds.IsEmpty())
+
+
+
+    private Dictionary<string, @Object> _GetSelectedRenderObject(string previousSelectionId, string groupName)
     {
-        return null;
+        DiagnosticsNode previousSelection = ToObject(previousSelectionId) as DiagnosticsNode;
+        RenderObject current = Selection?.Current;
+        return _NodeToJson(current == previousSelection?.Value ? previousSelection : current?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
     }
 
-    double pixelRatio = Math.Dart:mathDefaultClass.Min(maxPixelRatio, Math.Dart:mathDefaultClass.Min(width / renderBounds.Width, height / renderBounds.Height));
-    return WidgetinspectorDefaultClass._ScreenshotPaintingContext.ToImage(renderObject, renderBounds, pixelRatio: pixelRatio, debugPaint: debugPaint);
-}
 
 
 
-
-private Dictionary<string, @Object> _GetSelectedWidget(string previousSelectionId, string groupName)
-{
-    DiagnosticsNode previousSelection = ToObject(previousSelectionId) as DiagnosticsNode;
-    Element current = Selection?.CurrentElement;
-    return _NodeToJson(current == previousSelection?.Value ? previousSelection : current?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
-}
-
-
-
-
-/// <Summary>
-/// Returns a [DiagnosticsNode] representing the currently selected [Element]
-/// if the selected [Element] should be shown in the summary tree otherwise
-/// returns the first ancestor of the selected [Element] shown in the summary
-/// tree.
-///
-/// If the currently selected [Element] is identical to the [Element]
-/// referenced by `previousSelectionId` then the previous [DiagnosticsNode] is
-/// reused.
-/// </Summary>
-public virtual string GetSelectedSummaryWidget(string previousSelectionId, string groupName)
-{
-    return _SafeJsonEncode(_GetSelectedSummaryWidget(previousSelectionId, groupName));
-}
-
-
-
-
-private Dictionary<string, @Object> _GetSelectedSummaryWidget(string previousSelectionId, string groupName)
-{
-    if (!IsWidgetCreationTracked())
+    /// <Summary>
+    /// Returns a [DiagnosticsNode] representing the currently selected [Element].
+    ///
+    /// If the currently selected [Element] is identical to the [Element]
+    /// referenced by `previousSelectionId` then the previous [DiagnosticsNode] is
+    /// reused.
+    /// </Summary>
+    public virtual string GetSelectedWidget(string previousSelectionId, string groupName)
     {
-        return _GetSelectedWidget(previousSelectionId, groupName);
+        return _SafeJsonEncode(_GetSelectedWidget(previousSelectionId, groupName));
     }
 
-    DiagnosticsNode previousSelection = ToObject(previousSelectionId) as DiagnosticsNode;
-    Element current = Selection?.CurrentElement;
-    if (current != null && !_IsValueCreatedByLocalProject(current))
+
+
+
+    /// <Summary>
+    /// Captures an image of the current state of an [object] that is a
+    /// [RenderObject] or [Element].
+    ///
+    /// The returned [ui.Image] has uncompressed raw RGBA bytes and will be scaled
+    /// to be at most [width] pixels wide and [height] pixels tall. The returned
+    /// image will never have a scale between logical pixels and the
+    /// size of the output image larger than maxPixelRatio.
+    /// [margin] indicates the number of pixels relative to the un-scaled size of
+    /// the [object] to include as a margin to include around the bounds of the
+    /// [object] in the screenshot. Including a margin can be useful to capture
+    /// areas that are slightly outside of the normal bounds of an object such as
+    /// some debug paint information.
+    /// </Summary>
+    public virtual async Future<SKImage> Screenshot(@Object @object, double width = default(double), double height = default(double), double margin = 0.0, double maxPixelRatio = 1.0, bool debugPaint = false)
     {
-        Element firstLocal = default(Element);
-        foreach (Element candidate in current.DebugGetDiagnosticChain())
+        if (!(object is Element) && !(object is RenderObject))
         {
-            if (_IsValueCreatedByLocalProject(candidate))
+            return null;
+        }
+
+        RenderObject renderObject = object is Element ? object.RenderObject : (object as RenderObject);
+        if (renderObject == null || !renderObject.Attached)
+        {
+            return null;
+        }
+
+        if (renderObject.DebugNeedsLayout)
+        {
+            PipelineOwner owner = renderObject.Owner;
+
+
+            ;
+            owner.FlushLayout();
+            owner.FlushCompositingBits();
+            owner.FlushPaint();
+            if (renderObject.DebugNeedsLayout)
             {
-                firstLocal = candidate;
-                break;
+                return null;
             }
 
         }
 
-        current = firstLocal;
-    }
-
-    return _NodeToJson(current == previousSelection?.Value ? previousSelection : current?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
-}
-
-
-
-
-/// <Summary>
-/// Returns whether [Widget] creation locations are available.
-///
-/// [Widget] creation locations are only available for debug mode builds when
-/// the `--track-widget-creation` flag is passed to `flutter_tool`. Dart 2.0
-/// is required as injecting creation locations requires a
-/// [Dart Kernel Transformer](https://github.com/dart-lang/sdk/wiki/Kernel-Documentation).
-/// </Summary>
-public virtual bool IsWidgetCreationTracked()
-{
-    _WidgetCreationTracked = (_WidgetCreationTracked == null ? new _WidgetForTypeTests() is _HasCreationLocation : _WidgetCreationTracked);
-    return _WidgetCreationTracked;
-}
-
-
-
-
-private void _OnFrameStart(TimeSpan timeStamp)
-{
-    _FrameStart = timeStamp;
-    BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback(_OnFrameEnd);
-}
-
-
-
-
-private void _OnFrameEnd(TimeSpan timeStamp)
-{
-    if (_TrackRebuildDirtyWidgets)
-    {
-        _PostStatsEvent("Flutter.RebuiltWidgets", _RebuildStats);
-    }
-
-    if (_TrackRepaintWidgets)
-    {
-        _PostStatsEvent("Flutter.RepaintWidgets", _RepaintStats);
-    }
-
-}
-
-
-
-
-private void _PostStatsEvent(string eventName, FlutterSDK.Widgets.Widgetinspector._ElementLocationStatsTracker stats)
-{
-    PostEvent(eventName, stats.ExportToJson(_FrameStart));
-}
-
-
-
-
-/// <Summary>
-/// All events dispatched by a [WidgetInspectorService] use this method
-/// instead of calling [developer.postEvent] directly so that tests for
-/// [WidgetInspectorService] can track which events were dispatched by
-/// overriding this method.
-/// </Summary>
-public virtual void PostEvent(string eventKind, Dictionary<@Object, @Object> eventData)
-{
-    Developer.Dart:developerDefaultClass.PostEvent(eventKind, eventData);
-}
-
-
-
-
-private void _OnRebuildWidget(FlutterSDK.Widgets.Framework.Element element, bool builtOnce)
-{
-    _RebuildStats.Add(element);
-}
-
-
-
-
-private void _OnPaint(FlutterSDK.Rendering.@object.RenderObject renderObject)
-{
-    try
-    {
-        Element element = renderObject.DebugCreator?.Element as Element;
-        if (!(element is RenderObjectElement))
+        Rect renderBounds = WidgetinspectorDefaultClass._CalculateSubtreeBounds(renderObject);
+        if (margin != 0.0)
         {
-            return;
+            renderBounds = renderBounds.Inflate(margin);
         }
 
-        _RepaintStats.Add(element);
-        element.VisitAncestorElements((Element ancestor) =>
+        if (renderBounds.IsEmpty())
         {
-            if (ancestor is RenderObjectElement)
+            return null;
+        }
+
+        double pixelRatio = Math.Dart:mathDefaultClass.Min(maxPixelRatio, Math.Dart:mathDefaultClass.Min(width / renderBounds.Width, height / renderBounds.Height));
+        return WidgetinspectorDefaultClass._ScreenshotPaintingContext.ToImage(renderObject, renderBounds, pixelRatio: pixelRatio, debugPaint: debugPaint);
+    }
+
+
+
+
+    private Dictionary<string, @Object> _GetSelectedWidget(string previousSelectionId, string groupName)
+    {
+        DiagnosticsNode previousSelection = ToObject(previousSelectionId) as DiagnosticsNode;
+        Element current = Selection?.CurrentElement;
+        return _NodeToJson(current == previousSelection?.Value ? previousSelection : current?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns a [DiagnosticsNode] representing the currently selected [Element]
+    /// if the selected [Element] should be shown in the summary tree otherwise
+    /// returns the first ancestor of the selected [Element] shown in the summary
+    /// tree.
+    ///
+    /// If the currently selected [Element] is identical to the [Element]
+    /// referenced by `previousSelectionId` then the previous [DiagnosticsNode] is
+    /// reused.
+    /// </Summary>
+    public virtual string GetSelectedSummaryWidget(string previousSelectionId, string groupName)
+    {
+        return _SafeJsonEncode(_GetSelectedSummaryWidget(previousSelectionId, groupName));
+    }
+
+
+
+
+    private Dictionary<string, @Object> _GetSelectedSummaryWidget(string previousSelectionId, string groupName)
+    {
+        if (!IsWidgetCreationTracked())
+        {
+            return _GetSelectedWidget(previousSelectionId, groupName);
+        }
+
+        DiagnosticsNode previousSelection = ToObject(previousSelectionId) as DiagnosticsNode;
+        Element current = Selection?.CurrentElement;
+        if (current != null && !_IsValueCreatedByLocalProject(current))
+        {
+            Element firstLocal = default(Element);
+            foreach (Element candidate in current.DebugGetDiagnosticChain())
             {
-                return false;
+                if (_IsValueCreatedByLocalProject(candidate))
+                {
+                    firstLocal = candidate;
+                    break;
+                }
+
             }
 
-            _RepaintStats.Add(ancestor);
-            return true;
+            current = firstLocal;
         }
-        );
-    }
-    catch (exception,stack){
-    AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack));
-}
 
-}
+        return _NodeToJson(current == previousSelection?.Value ? previousSelection : current?.ToDiagnosticsNode(), new InspectorSerializationDelegate(groupName: groupName, service: this));
+    }
+
+
+
+
+    /// <Summary>
+    /// Returns whether [Widget] creation locations are available.
+    ///
+    /// [Widget] creation locations are only available for debug mode builds when
+    /// the `--track-widget-creation` flag is passed to `flutter_tool`. Dart 2.0
+    /// is required as injecting creation locations requires a
+    /// [Dart Kernel Transformer](https://github.com/dart-lang/sdk/wiki/Kernel-Documentation).
+    /// </Summary>
+    public virtual bool IsWidgetCreationTracked()
+    {
+        _WidgetCreationTracked = (_WidgetCreationTracked == null ? new _WidgetForTypeTests() is _HasCreationLocation : _WidgetCreationTracked);
+        return _WidgetCreationTracked;
+    }
+
+
+
+
+    private void _OnFrameStart(TimeSpan timeStamp)
+    {
+        _FrameStart = timeStamp;
+        BindingDefaultClass.SchedulerBinding.Instance.AddPostFrameCallback(_OnFrameEnd);
+    }
+
+
+
+
+    private void _OnFrameEnd(TimeSpan timeStamp)
+    {
+        if (_TrackRebuildDirtyWidgets)
+        {
+            _PostStatsEvent("Flutter.RebuiltWidgets", _RebuildStats);
+        }
+
+        if (_TrackRepaintWidgets)
+        {
+            _PostStatsEvent("Flutter.RepaintWidgets", _RepaintStats);
+        }
+
+    }
+
+
+
+
+    private void _PostStatsEvent(string eventName, FlutterSDK.Widgets.Widgetinspector._ElementLocationStatsTracker stats)
+    {
+        PostEvent(eventName, stats.ExportToJson(_FrameStart));
+    }
+
+
+
+
+    /// <Summary>
+    /// All events dispatched by a [WidgetInspectorService] use this method
+    /// instead of calling [developer.postEvent] directly so that tests for
+    /// [WidgetInspectorService] can track which events were dispatched by
+    /// overriding this method.
+    /// </Summary>
+    public virtual void PostEvent(string eventKind, Dictionary<@Object, @Object> eventData)
+    {
+        Developer.Dart:developerDefaultClass.PostEvent(eventKind, eventData);
+    }
+
+
+
+
+    private void _OnRebuildWidget(FlutterSDK.Widgets.Framework.Element element, bool builtOnce)
+    {
+        _RebuildStats.Add(element);
+    }
+
+
+
+
+    private void _OnPaint(FlutterSDK.Rendering.@object.RenderObject renderObject)
+    {
+        try
+        {
+            Element element = renderObject.DebugCreator?.Element as Element;
+            if (!(element is RenderObjectElement))
+            {
+                return;
+            }
+
+            _RepaintStats.Add(element);
+            element.VisitAncestorElements((Element ancestor) =>
+            {
+                if (ancestor is RenderObjectElement)
+                {
+                    return false;
+                }
+
+                _RepaintStats.Add(ancestor);
+                return true;
+            }
+            );
+        }
+        catch (exception,stack){
+            AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: exception, stack: stack));
+        }
+
+        }
 
 
 
@@ -1944,11 +1944,11 @@ private void _OnPaint(FlutterSDK.Rendering.@object.RenderObject renderObject)
 /// Do not call this method directly. Instead, use
 /// [BindingBase.reassembleApplication].
 /// </Summary>
-public virtual void PerformReassemble()
-{
-    _ClearStats();
-    _ResetErrorCount();
-}
+    public virtual void PerformReassemble()
+    {
+        _ClearStats();
+        _ResetErrorCount();
+    }
 
 
 
@@ -3259,7 +3259,7 @@ private void _HandleEnableSelect()
 
 public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
 {
-    return new Stack(children: new List<Widget>() { new GestureDetector(onTap: _HandleTap, onPanDown: _HandlePanDown, onPanEnd: _HandlePanEnd, onPanUpdate: _HandlePanUpdate, behavior: HitTestBehavior.Opaque, excludeFromSemantics: true, child: new IgnorePointer(ignoring: IsSelectMode, key: _IgnorePointerKey, ignoringSemantics: false, child: Widget.Child)), });
+    return new Stack(children: new List<Widget>() { new GestureDetector(onTap: _HandleTap, onPanDown: _HandlePanDown, onPanEnd: _HandlePanEnd, onPanUpdate: _HandlePanUpdate, behavior: HitTestBehavior.Opaque, excludeFromSemantics: true, child: new IgnorePointer(ignoring: IsSelectMode, key: _IgnorePointerKey, ignoringSemantics: false, child: Widget.Child)) });
 }
 
 

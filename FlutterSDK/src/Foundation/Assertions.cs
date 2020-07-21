@@ -882,7 +882,7 @@ namespace FlutterSDK.Foundation.Assertions
         {
 
             List<string> lines = message.Split('\n').ToList();
-            return FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary(lines.First), , lines.Skip(1).Map((string line) => =>new ErrorDescription(line)) });
+            return FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary(lines.First),  /* ...lines.Skip(1).Map((string line) => =>new ErrorDescription(line)) */});
         }
 
 

@@ -594,7 +594,7 @@ namespace FlutterSDK.Widgets.Animatedswitcher
         /// </Summary>
         public virtual FlutterSDK.Widgets.Framework.Widget DefaultLayoutBuilder(FlutterSDK.Widgets.Framework.Widget currentChild, List<FlutterSDK.Widgets.Framework.Widget> previousChildren)
         {
-            return new Stack(children: new List<Widget>() {, previousChildren, }, alignment: AlignmentDefaultClass.Alignment.Center);
+            return new Stack(children: new List<Widget>() { /* ...previousChildren, */ }, alignment: AlignmentDefaultClass.Alignment.Center);
         }
 
 

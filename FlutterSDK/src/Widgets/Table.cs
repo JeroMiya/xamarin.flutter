@@ -664,161 +664,161 @@ namespace FlutterSDK.Widgets.Table
                 }
                 else
                 {
-                    oldChildren = new List, < Element > (};
+                    oldChildren = new List<Element>() { };
+                }
+
+                newChildren.Add(new _TableElementRow(key: row.Key, children: UpdateChildren(oldChildren, row.Children, forgottenChildren: _ForgottenChildren)));
             }
 
-            newChildren.Add(new _TableElementRow(key: row.Key, children: UpdateChildren(oldChildren, row.Children, forgottenChildren: _ForgottenChildren)));
+            while (oldUnkeyedRows.MoveNext()) UpdateChildren(oldUnkeyedRows.Current.Children, new List<Widget>() { }, forgottenChildren: _ForgottenChildren);
+            foreach (List<Element> oldChildren in oldKeyedRows.Values.Where((List<Element> list) => =>!taken.Contains(list))) UpdateChildren(oldChildren, new List<Widget>() { }, forgottenChildren: _ForgottenChildren);
+            _Children = newChildren;
+            _UpdateRenderObjectChildren();
+            _ForgottenChildren.Clear();
+            base.Update(newWidget);
+
         }
 
-while (oldUnkeyedRows.MoveNext())UpdateChildren(oldUnkeyedRows.Current.Children, new List, <Widget>(}, forgottenChildren:_ForgottenChildren);
-foreach(List<Element> oldChildren  in oldKeyedRows.Values.Where((List<Element> list) => =>!taken.Contains(list)))UpdateChildren(oldChildren, new List, <Widget>(}, forgottenChildren: _ForgottenChildren);
-_Children = newChildren;
-_UpdateRenderObjectChildren();
-_ForgottenChildren.Clear();
-base.Update(newWidget);
 
-}
-
-
-public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
-{
-    Dictionary<LocalKey, List<Element>> oldKeyedRows = new Dictionary<LocalKey, List<Element>> { };
-    foreach (_TableElementRow row in _Children)
-    {
-        if (row.Key != null)
+        public new void Update(FlutterSDK.Widgets.Framework.Widget newWidget)
         {
-            oldKeyedRows[row.Key] = row.Children;
+            Dictionary<LocalKey, List<Element>> oldKeyedRows = new Dictionary<LocalKey, List<Element>> { };
+            foreach (_TableElementRow row in _Children)
+            {
+                if (row.Key != null)
+                {
+                    oldKeyedRows[row.Key] = row.Children;
+                }
+
+            }
+
+            Iterator<_TableElementRow> oldUnkeyedRows = _Children.Where((_TableElementRow row) => =>row.Key == null).Iterator;
+            List<_TableElementRow> newChildren = new List<_TableElementRow>() { };
+            HashSet<List<Element>> taken = new Dictionary<List<Element>> { };
+            foreach (TableRow row in newWidget.Children)
+            {
+                List<Element> oldChildren = default(List<Element>);
+                if (row.Key != null && oldKeyedRows.ContainsKey(row.Key))
+                {
+                    oldChildren = oldKeyedRows[row.Key];
+                    taken.Add(oldChildren);
+                }
+                else if (row.Key == null && oldUnkeyedRows.MoveNext())
+                {
+                    oldChildren = oldUnkeyedRows.Current.Children;
+                }
+                else
+                {
+                    oldChildren = new List<Element>() { };
+                }
+
+                newChildren.Add(new _TableElementRow(key: row.Key, children: UpdateChildren(oldChildren, row.Children, forgottenChildren: _ForgottenChildren)));
+            }
+
+            while (oldUnkeyedRows.MoveNext()) UpdateChildren(oldUnkeyedRows.Current.Children, new List<Widget>() { }, forgottenChildren: _ForgottenChildren);
+            foreach (List<Element> oldChildren in oldKeyedRows.Values.Where((List<Element> list) => =>!taken.Contains(list))) UpdateChildren(oldChildren, new List<Widget>() { }, forgottenChildren: _ForgottenChildren);
+            _Children = newChildren;
+            _UpdateRenderObjectChildren();
+            _ForgottenChildren.Clear();
+            base.Update(newWidget);
+
         }
 
-    }
 
-    Iterator<_TableElementRow> oldUnkeyedRows = _Children.Where((_TableElementRow row) => =>row.Key == null).Iterator;
-    List<_TableElementRow> newChildren = new List<_TableElementRow>() { };
-    HashSet<List<Element>> taken = new Dictionary<List<Element>> { };
-    foreach (TableRow row in newWidget.Children)
-    {
-        List<Element> oldChildren = default(List<Element>);
-        if (row.Key != null && oldKeyedRows.ContainsKey(row.Key))
+
+
+        private void _UpdateRenderObjectChildren()
         {
-            oldChildren = oldKeyedRows[row.Key];
-            taken.Add(oldChildren);
-        }
-        else if (row.Key == null && oldUnkeyedRows.MoveNext())
-        {
-            oldChildren = oldUnkeyedRows.Current.Children;
-        }
-        else
-        {
-            oldChildren = new List, < Element > (};
-    }
 
-    newChildren.Add(new _TableElementRow(key: row.Key, children: UpdateChildren(oldChildren, row.Children, forgottenChildren: _ForgottenChildren)));
-}
-
-while (oldUnkeyedRows.MoveNext()) UpdateChildren(oldUnkeyedRows.Current.Children, new List, < Widget > (}, forgottenChildren: _ForgottenChildren);
-foreach (List<Element> oldChildren in oldKeyedRows.Values.Where((List<Element> list) => =>!taken.Contains(list))) UpdateChildren(oldChildren, new List, < Widget > (}, forgottenChildren: _ForgottenChildren);
-_Children = newChildren;
-_UpdateRenderObjectChildren();
-_ForgottenChildren.Clear();
-base.Update(newWidget);
-
-}
-
-
-
-
-private void _UpdateRenderObjectChildren()
-{
-
-    RenderObject.SetFlatChildren(_Children.IsNotEmpty ? _Children[0].Children.Count : 0, _Children.Expand((_TableElementRow row) =>
-    {
-        return row.Children.Map((Element child) =>
-        {
-            RenderBox box = child.RenderObject as RenderBox;
-            return box;
-        }
-        );
-    }
-    ).ToList());
-}
-
-
-
-
-public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
-{
-    foreach (Element child in _Children.Expand((_TableElementRow row) => =>row.Children))
-    {
-        if (!_ForgottenChildren.Contains(child)) visitor(child);
-    }
-
-}
-
-
-
-
-public new bool ForgetChild(FlutterSDK.Widgets.Framework.Element child)
-{
-    _ForgottenChildren.Add(child);
-    base.ForgetChild(child);
-    return true;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A widget that controls how a child of a [Table] is aligned.
-///
-/// A [TableCell] widget must be a descendant of a [Table], and the path from
-/// the [TableCell] widget to its enclosing [Table] must contain only
-/// [TableRow]s, [StatelessWidget]s, or [StatefulWidget]s (not
-/// other kinds of widgets, like [RenderObjectWidget]s).
-/// </Summary>
-public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
-{
-    #region constructors
-    public TableCell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Table.TableCellVerticalAlignment verticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
-    : base(key: key, child: child)
-    {
-        this.VerticalAlignment = verticalAlignment;
-    }
-    #endregion
-
-    #region fields
-    public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
-    public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-
-    public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
-    {
-        TableCellParentData parentData = renderObject.ParentData as TableCellParentData;
-        if (parentData.VerticalAlignment != VerticalAlignment)
-        {
-            parentData.VerticalAlignment = VerticalAlignment;
-            AbstractNode targetParent = renderObject.Parent;
-            if (((RenderObject)targetParent) is RenderObject) ((RenderObject)targetParent).MarkNeedsLayout();
+            RenderObject.SetFlatChildren(_Children.IsNotEmpty ? _Children[0].Children.Count : 0, _Children.Expand((_TableElementRow row) =>
+            {
+                return row.Children.Map((Element child) =>
+                {
+                    RenderBox box = child.RenderObject as RenderBox;
+                    return box;
+                }
+                );
+            }
+            ).ToList());
         }
 
+
+
+
+        public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
+        {
+            foreach (Element child in _Children.Expand((_TableElementRow row) => =>row.Children))
+            {
+                if (!_ForgottenChildren.Contains(child)) visitor(child);
+            }
+
+        }
+
+
+
+
+        public new bool ForgetChild(FlutterSDK.Widgets.Framework.Element child)
+        {
+            _ForgottenChildren.Add(child);
+            base.ForgetChild(child);
+            return true;
+        }
+
+
+
+        #endregion
     }
 
 
-
-
-    public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+    /// <Summary>
+    /// A widget that controls how a child of a [Table] is aligned.
+    ///
+    /// A [TableCell] widget must be a descendant of a [Table], and the path from
+    /// the [TableCell] widget to its enclosing [Table] must contain only
+    /// [TableRow]s, [StatelessWidget]s, or [StatefulWidget]s (not
+    /// other kinds of widgets, like [RenderObjectWidget]s).
+    /// </Summary>
+    public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
     {
-        base.DebugFillProperties(properties);
-        properties.Add(new EnumProperty<TableCellVerticalAlignment>("verticalAlignment", VerticalAlignment));
+        #region constructors
+        public TableCell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Table.TableCellVerticalAlignment verticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
+        : base(key: key, child: child)
+        {
+            this.VerticalAlignment = verticalAlignment;
+        }
+        #endregion
+
+        #region fields
+        public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
+        public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
+        #endregion
+
+        #region methods
+
+        public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
+        {
+            TableCellParentData parentData = renderObject.ParentData as TableCellParentData;
+            if (parentData.VerticalAlignment != VerticalAlignment)
+            {
+                parentData.VerticalAlignment = VerticalAlignment;
+                AbstractNode targetParent = renderObject.Parent;
+                if (((RenderObject)targetParent) is RenderObject) ((RenderObject)targetParent).MarkNeedsLayout();
+            }
+
+        }
+
+
+
+
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        {
+            base.DebugFillProperties(properties);
+            properties.Add(new EnumProperty<TableCellVerticalAlignment>("verticalAlignment", VerticalAlignment));
+        }
+
+
+
+        #endregion
     }
-
-
-
-    #endregion
-}
 
 }

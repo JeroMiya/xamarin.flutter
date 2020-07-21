@@ -690,7 +690,7 @@ namespace FlutterSDK.Material.Stepper
 
         private FlutterSDK.Widgets.Framework.Widget _BuildHeaderText(int index)
         {
-            return new Column(crossAxisAlignment: CrossAxisAlignment.Start, mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { new AnimatedDefaultTextStyle(style: _TitleStyle(index), duration: ThemeDefaultClass.KThemeAnimationDuration, curve: CurvesDefaultClass.Curves.FastOutSlowIn, child: Widget.Steps[index].Title), });
+            return new Column(crossAxisAlignment: CrossAxisAlignment.Start, mainAxisSize: MainAxisSize.Min, children: new List<Widget>() { new AnimatedDefaultTextStyle(style: _TitleStyle(index), duration: ThemeDefaultClass.KThemeAnimationDuration, curve: CurvesDefaultClass.Curves.FastOutSlowIn, child: Widget.Steps[index].Title) });
         }
 
 

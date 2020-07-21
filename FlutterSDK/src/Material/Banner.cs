@@ -423,7 +423,7 @@ namespace FlutterSDK.Material.Banner
             Widget buttonBar = new ButtonBar(layoutBehavior: ButtonBarLayoutBehavior.Constrained, children: Actions);
             Color backgroundColor = this.BackgroundColor ?? bannerTheme.BackgroundColor ?? theme.ColorScheme.Surface;
             TextStyle textStyle = ContentTextStyle ?? bannerTheme.ContentTextStyle ?? theme.TextTheme.BodyText2;
-            return new Container(color: backgroundColor, child: new Column(children: new List<Widget>() { new Padding(padding: padding, child: new Row(children: new List<Widget>() { })), }));
+            return new Container(color: backgroundColor, child: new Column(children: new List<Widget>() { new Padding(padding: padding, child: new Row(children: new List<Widget>() { })) }));
         }
 
 

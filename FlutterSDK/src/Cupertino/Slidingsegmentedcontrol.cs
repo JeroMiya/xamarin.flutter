@@ -559,7 +559,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
         {
             DebugDefaultClass.DebugCheckHasDirectionality(context);
             switch (BasicDefaultClass.Directionality.Of(context)) { case TextDirection.Ltr: Keys = Widget.Children.Keys.ToList(growable: false); break; case TextDirection.Rtl: Keys = Widget.Children.Keys.ToList().Reversed.ToList(growable: false); break; }
-            return new AnimatedBuilder(animation: Listenable.Merge(new List<Listenable>() {, _HighlightControllers.Values, , _PressControllers.Values }), builder: (BuildContext context, Widget child) =>
+            return new AnimatedBuilder(animation: Listenable.Merge(new List<Listenable>() { /* ..._HighlightControllers.Values, */  /* ..._PressControllers.Values, */ }), builder: (BuildContext context, Widget child) =>
             {
                 List<Widget> children = new List<Widget>() { };
                 foreach (T currentKey in Keys)

@@ -1037,7 +1037,7 @@ namespace FlutterSDK.Painting.Borders
                 ShapeBorder merged = ours.Add(((BorderSide)other), reversed: reversed) ?? ((BorderSide)other).Add(ours, reversed: !reversed);
                 if (merged != null)
                 {
-                    List<ShapeBorder> result = new List<ShapeBorder>() {, Borders };
+                    List<ShapeBorder> result = new List<ShapeBorder>() { /* ...Borders, */ };
                     result[reversed ? result.Count - 1 : 0] = merged;
                     return new _CompoundBorder(result);
                 }

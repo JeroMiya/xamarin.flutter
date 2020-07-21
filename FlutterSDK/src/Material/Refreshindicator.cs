@@ -763,7 +763,7 @@ namespace FlutterSDK.Material.Refreshindicator
             Widget child = new NotificationListener<ScrollNotification>(onNotification: _HandleScrollNotification, child: new NotificationListener<OverscrollIndicatorNotification>(onNotification: _HandleGlowNotification, child: Widget.Child));
 
             bool showIndeterminateIndicator = _Mode == _RefreshIndicatorMode.Refresh || _Mode == _RefreshIndicatorMode.Done;
-            return new Stack(children: new List<Widget>() { child, });
+            return new Stack(children: new List<Widget>() { child });
         }
 
 

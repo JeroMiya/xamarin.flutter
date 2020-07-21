@@ -676,7 +676,7 @@ namespace FlutterSDK.Material.Snackbar
             CurvedAnimation heightAnimation = new CurvedAnimation(parent: Widget.Animation, curve: SnackbarDefaultClass._SnackBarHeightCurve);
             CurvedAnimation fadeInAnimation = new CurvedAnimation(parent: Widget.Animation, curve: SnackbarDefaultClass._SnackBarFadeInCurve);
             CurvedAnimation fadeOutAnimation = new CurvedAnimation(parent: Widget.Animation, curve: SnackbarDefaultClass._SnackBarFadeOutCurve, reverseCurve: new Threshold(0.0));
-            Widget snackBar = new SafeArea(top: false, bottom: !isFloatingSnackBar, child: new Row(crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { new SizedBox(width: snackBarPadding), new Expanded(child: new Container(padding: EdgeInsets.Symmetric(vertical: SnackbarDefaultClass._SingleLineVerticalPadding), child: new DefaultTextStyle(style: contentTextStyle, child: Widget.Content))), }));
+            Widget snackBar = new SafeArea(top: false, bottom: !isFloatingSnackBar, child: new Row(crossAxisAlignment: CrossAxisAlignment.Center, children: new List<Widget>() { new SizedBox(width: snackBarPadding), new Expanded(child: new Container(padding: EdgeInsets.Symmetric(vertical: SnackbarDefaultClass._SingleLineVerticalPadding), child: new DefaultTextStyle(style: contentTextStyle, child: Widget.Content))) }));
             double elevation = Widget.Elevation ?? snackBarTheme.Elevation ?? 6.0;
             Color backgroundColor = Widget.BackgroundColor ?? snackBarTheme.BackgroundColor ?? inverseTheme.BackgroundColor;
             ShapeBorder shape = Widget.Shape ?? snackBarTheme.Shape ?? (isFloatingSnackBar ? new RoundedRectangleBorder(borderRadius: BorderRadius.Circular(4.0)) : null);

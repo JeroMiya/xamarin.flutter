@@ -1552,132 +1552,135 @@ namespace FlutterSDK.Rendering.Table
                 if (Border != null)
                 {
                     Rect borderRect = Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, 0.0);
-                    Border.Paint(context.Canvas, borderRect, rows: new List, < double > (}, columns: new List, < double > (});
+                    Border.Paint(context.Canvas, borderRect, rows: new List<double>() { }, columns: new List<double>() { });
+                }
+
+                return;
+            }
+
+
+            if (_RowDecorations != null)
+            {
+
+                Canvas canvas = context.Canvas;
+                for (int y = 0; y < Rows; y += 1)
+                {
+                    if (_RowDecorations.Count <= y) break;
+                    if (_RowDecorations[y] != null)
+                    {
+                        _RowDecorationPainters[y] = (_RowDecorationPainters[y] == null ? _RowDecorations[y].CreateBoxPainter(MarkNeedsPaint) : _RowDecorationPainters[y]);
+                        _RowDecorationPainters[y].Paint(canvas, new Offset(offset.Dx, offset.Dy + _RowTops[y]), Configuration.CopyWith(size: new Size(Size.Width, _RowTops[y + 1] - _RowTops[y])));
+                    }
+
+                }
+
+            }
+
+            for (int index = 0; index < _Children.Count; index += 1)
+            {
+                RenderBox child = _Children[index];
+                if (child != null)
+                {
+                    BoxParentData childParentData = child.ParentData as BoxParentData;
+                    context.PaintChild(child, childParentData.Offset + offset);
+                }
+
+            }
+
+
+
+            if (Border != null)
+            {
+                Rect borderRect = Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, _RowTops.Last());
+                Iterable<double> rows = _RowTops.GetRange(1, _RowTops.Count - 1);
+                Iterable<double> columns = _ColumnLefts.Skip(1);
+                Border.Paint(context.Canvas, borderRect, rows: rows, columns: columns);
+            }
+
         }
 
-return ;
-}
-
-
-if (_RowDecorations!=null ){
-
-Canvas canvas = context.Canvas;
-for (int y=0;y<Rows;y+=1){
-if (_RowDecorations.Count<=y)break;
-if (_RowDecorations[y]!=null ){
-_RowDecorationPainters[y] = (_RowDecorationPainters[y] == null ? _RowDecorations[y].CreateBoxPainter(MarkNeedsPaint) : _RowDecorationPainters[y] );
-_RowDecorationPainters[y].Paint(canvas, new Offset(offset.Dx, offset.Dy+_RowTops[y]), Configuration.CopyWith(size:new Size(Size.Width, _RowTops[y + 1]-_RowTops[y])));
-}
-
-}
-
-}
-
-for (int index = 0; index < _Children.Count; index += 1)
-{
-    RenderBox child = _Children[index];
-    if (child != null)
-    {
-        BoxParentData childParentData = child.ParentData as BoxParentData;
-        context.PaintChild(child, childParentData.Offset + offset);
-    }
-
-}
 
 
 
-if (Border != null)
-{
-    Rect borderRect = Rect.FromLTWH(offset.Dx, offset.Dy, Size.Width, _RowTops.Last());
-    Iterable<double> rows = _RowTops.GetRange(1, _RowTops.Count - 1);
-    Iterable<double> columns = _ColumnLefts.Skip(1);
-    Border.Paint(context.Canvas, borderRect, rows: rows, columns: columns);
-}
-
-}
-
-
-
-
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
-{
-    base.DebugFillProperties(properties);
-    properties.Add(new DiagnosticsProperty<TableBorder>("border", Border, defaultValue: null));
-    properties.Add(new DiagnosticsProperty<Dictionary<int, TableColumnWidth>>("specified column widths", _ColumnWidths, level: _ColumnWidths.IsEmpty() ? DiagnosticLevel.Hidden : DiagnosticLevel.Info));
-    properties.Add(new DiagnosticsProperty<TableColumnWidth>("default column width", DefaultColumnWidth));
-    properties.Add(new MessageProperty("table size", $"'{Columns}\u00D7{Rows}'"));
-    properties.Add(new IterableProperty<string>("column offsets", _ColumnLefts?.Map(DebugDefaultClass.DebugFormatDouble), ifNull: "unknown"));
-    properties.Add(new IterableProperty<string>("row offsets", _RowTops?.Map(DebugDefaultClass.DebugFormatDouble), ifNull: "unknown"));
-}
-
-
-
-
-public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
-{
-    if (_Children.IsEmpty())
-    {
-        return new List<DiagnosticsNode>() { DiagnosticsNode.Message("table is empty") };
-    }
-
-    List<DiagnosticsNode> children = new List<DiagnosticsNode>() { };
-    for (int y = 0; y < Rows; y += 1)
-    {
-        for (int x = 0; x < Columns; x += 1)
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
-            int xy = x + y * Columns;
-            RenderBox child = _Children[xy];
-            string name = $"'child ({x}, {y})'";
-            if (child != null) children.Add(child.ToDiagnosticsNode(name: name)); else children.Add(new DiagnosticsProperty<object>(name, null, ifNull: "is null", showSeparator: false));
+            base.DebugFillProperties(properties);
+            properties.Add(new DiagnosticsProperty<TableBorder>("border", Border, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Dictionary<int, TableColumnWidth>>("specified column widths", _ColumnWidths, level: _ColumnWidths.IsEmpty() ? DiagnosticLevel.Hidden : DiagnosticLevel.Info));
+            properties.Add(new DiagnosticsProperty<TableColumnWidth>("default column width", DefaultColumnWidth));
+            properties.Add(new MessageProperty("table size", $"'{Columns}\u00D7{Rows}'"));
+            properties.Add(new IterableProperty<string>("column offsets", _ColumnLefts?.Map(DebugDefaultClass.DebugFormatDouble), ifNull: "unknown"));
+            properties.Add(new IterableProperty<string>("row offsets", _RowTops?.Map(DebugDefaultClass.DebugFormatDouble), ifNull: "unknown"));
         }
 
+
+
+
+        public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren()
+        {
+            if (_Children.IsEmpty())
+            {
+                return new List<DiagnosticsNode>() { DiagnosticsNode.Message("table is empty") };
+            }
+
+            List<DiagnosticsNode> children = new List<DiagnosticsNode>() { };
+            for (int y = 0; y < Rows; y += 1)
+            {
+                for (int x = 0; x < Columns; x += 1)
+                {
+                    int xy = x + y * Columns;
+                    RenderBox child = _Children[xy];
+                    string name = $"'child ({x}, {y})'";
+                    if (child != null) children.Add(child.ToDiagnosticsNode(name: name)); else children.Add(new DiagnosticsProperty<object>(name, null, ifNull: "is null", showSeparator: false));
+                }
+
+            }
+
+            return children;
+        }
+
+
+
+        #endregion
     }
 
-    return children;
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// Vertical alignment options for cells in [RenderTable] objects.
-///
-/// This is specified using [TableCellParentData] objects on the
-/// [RenderObject.parentData] of the children of the [RenderTable].
-/// </Summary>
-public enum TableCellVerticalAlignment
-{
 
     /// <Summary>
-    /// Cells with this alignment are placed with their top at the top of the row.
-    /// </Summary>
-    Top,
-    /// <Summary>
-    /// Cells with this alignment are vertically centered in the row.
-    /// </Summary>
-    Middle,
-    /// <Summary>
-    /// Cells with this alignment are placed with their bottom at the bottom of the row.
-    /// </Summary>
-    Bottom,
-    /// <Summary>
-    /// Cells with this alignment are aligned such that they all share the same
-    /// baseline. Cells with no baseline are top-aligned instead. The baseline
-    /// used is specified by [RenderTable.textBaseline]. It is not valid to use
-    /// the baseline value if [RenderTable.textBaseline] is not specified.
+    /// Vertical alignment options for cells in [RenderTable] objects.
     ///
-    /// This vertical alignment is relatively expensive because it causes the table
-    /// to compute the baseline for each cell in the row.
+    /// This is specified using [TableCellParentData] objects on the
+    /// [RenderObject.parentData] of the children of the [RenderTable].
     /// </Summary>
-    Baseline,
-    /// <Summary>
-    /// Cells with this alignment are sized to be as tall as the row, then made to fit the row.
-    /// If all the cells have this alignment, then the row will have zero height.
-    /// </Summary>
-    Fill,
-}
+    public enum TableCellVerticalAlignment
+    {
+
+        /// <Summary>
+        /// Cells with this alignment are placed with their top at the top of the row.
+        /// </Summary>
+        Top,
+        /// <Summary>
+        /// Cells with this alignment are vertically centered in the row.
+        /// </Summary>
+        Middle,
+        /// <Summary>
+        /// Cells with this alignment are placed with their bottom at the bottom of the row.
+        /// </Summary>
+        Bottom,
+        /// <Summary>
+        /// Cells with this alignment are aligned such that they all share the same
+        /// baseline. Cells with no baseline are top-aligned instead. The baseline
+        /// used is specified by [RenderTable.textBaseline]. It is not valid to use
+        /// the baseline value if [RenderTable.textBaseline] is not specified.
+        ///
+        /// This vertical alignment is relatively expensive because it causes the table
+        /// to compute the baseline for each cell in the row.
+        /// </Summary>
+        Baseline,
+        /// <Summary>
+        /// Cells with this alignment are sized to be as tall as the row, then made to fit the row.
+        /// If all the cells have this alignment, then the row will have zero height.
+        /// </Summary>
+        Fill,
+    }
 
 }

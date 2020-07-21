@@ -668,7 +668,7 @@ NavigatorDefaultClass.Navigator.Pop(context);
             string version = Widget.ApplicationVersion ?? AboutDefaultClass._DefaultApplicationVersion(context);
             Widget icon = Widget.ApplicationIcon ?? AboutDefaultClass._DefaultApplicationIcon(context);
             MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
-            return new Scaffold(appBar: new AppBar(title: new Text(localizations.LicensesPageTitle)), body: Localizations.Override(locale: new Locale("en", "US"), context: context, child: new DefaultTextStyle(style: ThemeDefaultClass.Theme.Of(context).TextTheme.Caption, child: new SafeArea(bottom: false, child: new Scrollbar(child: new ListView(padding: EdgeInsets.Symmetric(horizontal: 8.0, vertical: 12.0), children: new List<Widget>() { new Text(name, style: ThemeDefaultClass.Theme.Of(context).TextTheme.Headline5, textAlign: TextAlign.Center), }))))));
+            return new Scaffold(appBar: new AppBar(title: new Text(localizations.LicensesPageTitle)), body: Localizations.Override(locale: new Locale("en", "US"), context: context, child: new DefaultTextStyle(style: ThemeDefaultClass.Theme.Of(context).TextTheme.Caption, child: new SafeArea(bottom: false, child: new Scrollbar(child: new ListView(padding: EdgeInsets.Symmetric(horizontal: 8.0, vertical: 12.0), children: new List<Widget>() { new Text(name, style: ThemeDefaultClass.Theme.Of(context).TextTheme.Headline5, textAlign: TextAlign.Center) }))))));
         }
 
 

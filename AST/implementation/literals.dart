@@ -68,6 +68,8 @@ class Literals {
   static String processListLiteral(ListLiteral literal) {
     var csharp = 'new List';
     var args = false;
+    bool commentNextEntity = false;
+
     for (var entity in literal.childEntities) {
       if (entity.toString() == '[')
         csharp += '{';
@@ -76,9 +78,23 @@ class Literals {
         csharp = csharp.substring(0, csharp.length - length) + '}';
       } else if (entity is TypeArgumentList) {
         csharp += Implementation.processEntity(entity) + '()';
-      } else {
-        csharp += Implementation.processEntity(entity) + ', ';
-        args = true;
+      } else if (entity.toString() != 'const') {
+        String entityStr = Implementation.processEntity(entity);
+        if (entityStr.length > 0) {
+          if (commentNextEntity) {
+            commentNextEntity = false;
+            csharp += ' /* ...' + entityStr + (args ? ' */, ' : ', */ ');
+          } else {
+            csharp += entityStr + ', ';
+            args = true;
+          }
+        } else {
+          if (entity is SimpleIdentifier) {
+            print(
+                'ERROR: dart code is using a spread operator in a list initializer, but this is not yet supported');
+            commentNextEntity = true;
+          }
+        }
       }
     }
     return csharp;

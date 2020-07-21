@@ -678,365 +678,366 @@ namespace FlutterSDK.Material.Datatable
         {
             List<Widget> ArrowWithPadding()
             {
-                return onSort == null ? new List, < Widget > (}:new List<Widget>() { new _SortArrow(visible: sorted, down: sorted ? ascending : null, duration: _SortArrowAnimationDuration), new SizedBox(width: _SortArrowPadding) };
-        }
-
-        label=new Row(textDirection:numeric? TextDirection.Rtl:null , children:new List<Widget>(){label, , ArrowWithPadding()});
-label=new Container(padding:padding, height:HeadingRowHeight, alignment:numeric? AlignmentDefaultClass.Alignment.CenterRight:AlignmentDefaultClass.AlignmentDirectional.CenterStart, child:new AnimatedDefaultTextStyle(style:new TextStyle(fontWeight:Dart:uiDefaultClass.FontWeight.W500, fontSize:_HeadingFontSize, height:Math.Dart:mathDefaultClass.Min(1.0, HeadingRowHeight/_HeadingFontSize), color:(ThemeDefaultClass.Theme.Of(context).Brightness==Brightness.Light)? ((onSort!=null &&sorted)? ColorsDefaultClass.Colors.Black87:ColorsDefaultClass.Colors.Black54):((onSort!=null &&sorted)?ColorsDefaultClass.Colors.White:ColorsDefaultClass.Colors.White70)), softWrap:false , duration:_SortArrowAnimationDuration, child:label));
-if (tooltip!=null ){
-label=new Tooltip(message:tooltip, child:label);
-}
-
-label = new InkWell(onTap: onSort, child: label);
-return label;
-}
-
-
-
-
-private FlutterSDK.Widgets.Framework.Widget _BuildDataCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), bool numeric = default(bool), bool placeholder = default(bool), bool showEditIcon = default(bool), VoidCallback onTap = default(VoidCallback), VoidCallback onSelectChanged = default(VoidCallback))
-{
-    bool isLightTheme = ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light;
-    if (showEditIcon)
-    {
-        Widget icon = new Icon(IconsDefaultClass.Icons.Edit, size: 18.0);
-        label = new Expanded(child: label);
-        label = new Row(textDirection: numeric ? TextDirection.Rtl : null, children: new List<Widget>() { label, icon });
-    }
-
-    label = new Container(padding: padding, height: DataRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new DefaultTextStyle(style: new TextStyle(fontSize: 13.0, color: isLightTheme ? (placeholder ? ColorsDefaultClass.Colors.Black38 : ColorsDefaultClass.Colors.Black87) : (placeholder ? ColorsDefaultClass.Colors.White38 : ColorsDefaultClass.Colors.White70)), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: isLightTheme ? ColorsDefaultClass.Colors.Black54 : ColorsDefaultClass.Colors.White70), child: new DropdownButtonHideUnderline(child: label))));
-    if (onTap != null)
-    {
-        label = new InkWell(onTap: onTap, child: label);
-    }
-    else if (onSelectChanged != null)
-    {
-        label = new TableRowInkWell(onTap: onSelectChanged, child: label);
-    }
-
-    return label;
-}
-
-
-
-
-public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-{
-
-    ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-    BoxDecoration _kSelectedDecoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, width: DividerThickness)), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? _Grey100Opacity : _Grey300Opacity);
-    BoxDecoration _kUnselectedDecoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, width: DividerThickness)));
-    bool displayCheckboxColumn = ShowCheckboxColumn && Rows.Any((DataRow row) => =>row.OnSelectChanged != null);
-    bool allChecked = displayCheckboxColumn && !Rows.Any((DataRow row) => =>row.OnSelectChanged != null && !row.Selected);
-    List<TableColumnWidth> tableColumns = new List<TableColumnWidth>(Columns.Count + (displayCheckboxColumn ? 1 : 0));
-    List<TableRow> tableRows = List<TableRow>.Generate(Rows.Count + 1, (int index) =>
-    {
-        return new TableRow(key: index == 0 ? _HeadingRowKey : Rows[index - 1].Key, decoration: index > 0 && Rows[index - 1].Selected ? _kSelectedDecoration : _kUnselectedDecoration, children: new List<Widget>(tableColumns.Count));
-    }
-    );
-    int rowIndex = default(int);
-    int displayColumnIndex = 0;
-    if (displayCheckboxColumn)
-    {
-        tableColumns[0] = new FixedColumnWidth(HorizontalMargin + CheckboxDefaultClass.Checkbox.Width + HorizontalMargin / 2.0);
-        tableRows[0].Children[0] = _BuildCheckbox(color: theme.AccentColor, @checked: allChecked, onCheckboxChanged: _HandleSelectAll);
-        rowIndex = 1;
-        foreach (DataRow row in Rows)
-        {
-            tableRows[rowIndex].Children[0] = _BuildCheckbox(color: theme.AccentColor, @checked: row.Selected, onRowTap: () => =>row.OnSelectChanged != null ? row.OnSelectChanged(!row.Selected) : null, onCheckboxChanged: row.OnSelectChanged);
-            rowIndex += 1;
-        }
-
-        displayColumnIndex += 1;
-    }
-
-    for (int dataColumnIndex = 0; dataColumnIndex < Columns.Count; dataColumnIndex += 1)
-    {
-        DataColumn column = Columns[dataColumnIndex];
-        double paddingStart = default(double);
-        if (dataColumnIndex == 0 && displayCheckboxColumn)
-        {
-            paddingStart = HorizontalMargin / 2.0;
-        }
-        else if (dataColumnIndex == 0 && !displayCheckboxColumn)
-        {
-            paddingStart = HorizontalMargin;
-        }
-        else
-        {
-            paddingStart = ColumnSpacing / 2.0;
-        }
-
-        double paddingEnd = default(double);
-        if (dataColumnIndex == Columns.Count - 1)
-        {
-            paddingEnd = HorizontalMargin;
-        }
-        else
-        {
-            paddingEnd = ColumnSpacing / 2.0;
-        }
-
-        EdgeInsetsDirectional padding = EdgeInsetsDirectional.Only(start: paddingStart, end: paddingEnd);
-        if (dataColumnIndex == _OnlyTextColumn)
-        {
-            tableColumns[displayColumnIndex] = new IntrinsicColumnWidth(flex: 1.0);
-        }
-        else
-        {
-            tableColumns[displayColumnIndex] = new IntrinsicColumnWidth();
-        }
-
-        tableRows[0].Children[displayColumnIndex] = _BuildHeadingCell(context: context, padding: padding, label: column.Label, tooltip: column.Tooltip, numeric: column.Numeric, onSort: column.OnSort != null ? () => =>column.OnSort(dataColumnIndex, SortColumnIndex != dataColumnIndex || !SortAscending):null, sorted: dataColumnIndex == SortColumnIndex, ascending: SortAscending);
-        rowIndex = 1;
-        foreach (DataRow row in Rows)
-        {
-            DataCell cell = row.Cells[dataColumnIndex];
-            tableRows[rowIndex].Children[displayColumnIndex] = _BuildDataCell(context: context, padding: padding, label: cell.Child, numeric: column.Numeric, placeholder: cell.Placeholder, showEditIcon: cell.ShowEditIcon, onTap: cell.OnTap, onSelectChanged: () => =>row.OnSelectChanged != null ? row.OnSelectChanged(!row.Selected) : null);
-            rowIndex += 1;
-        }
-
-        displayColumnIndex += 1;
-    }
-
-    return new Table(columnWidths: tableColumns.AsMap(), children: tableRows);
-}
-
-
-
-#endregion
-}
-
-
-/// <Summary>
-/// A rectangular area of a Material that responds to touch but clips
-/// its ink splashes to the current table row of the nearest table.
-///
-/// Must have an ancestor [Material] widget in which to cause ink
-/// reactions and an ancestor [Table] widget to establish a row.
-///
-/// The [TableRowInkWell] must be in the same coordinate space (modulo
-/// translations) as the [Table]. If it's rotated or scaled or
-/// otherwise transformed, it will not be able to describe the
-/// rectangle of the row in its own coordinate system as a [Rect], and
-/// thus the splash will not occur. (In general, this is easy to
-/// achieve: just put the [TableRowInkWell] as the direct child of the
-/// [Table], and put the other contents of the cell inside it.)
-/// </Summary>
-public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
-{
-    #region constructors
-    public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
-    : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, containedInkWell: true, highlightShape: BoxShape.Rectangle)
-    {
-
-    }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox)
-    {
-        return () =>
-        {
-            RenderObject cell = referenceBox;
-            AbstractNode table = cell.Parent;
-            Matrix4 transform = Matrix4.Identity();
-            while (table is RenderObject && !(table is RenderTable))
-            {
-                RenderObject parentBox = table as RenderObject;
-                parentBox.ApplyPaintTransform(cell, transform);
-
-                cell = parentBox;
-                table = table.Parent;
+                return onSort == null ? new List<Widget>() { } : new List<Widget>() { new _SortArrow(visible: sorted, down: sorted ? ascending : null, duration: _SortArrowAnimationDuration), new SizedBox(width: _SortArrowPadding) };
             }
 
-            if (table is RenderTable)
+            label = new Row(textDirection: numeric ? TextDirection.Rtl : null, children: new List<Widget>() { label,  /* ...ArrowWithPadding() */});
+            label = new Container(padding: padding, height: HeadingRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new AnimatedDefaultTextStyle(style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.W500, fontSize: _HeadingFontSize, height: Math.Dart:mathDefaultClass.Min(1.0, HeadingRowHeight / _HeadingFontSize), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ((onSort != null && sorted) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.Black54) : ((onSort != null && sorted) ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.White70)), softWrap: false, duration: _SortArrowAnimationDuration, child: label));
+            if (tooltip != null)
             {
-                TableCellParentData cellParentData = cell.ParentData as TableCellParentData;
-
-                Rect rect = ((RenderObject)table).GetRowBox(cellParentData.y);
-                ((RenderObject)table).ApplyPaintTransform(cell, transform);
-                Offset offset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
-                if (offset != null) return rect.Shift(-offset);
+                label = new Tooltip(message: tooltip, child: label);
             }
 
-            return Dart:uiDefaultClass.Rect.Zero;
-        }
-        ;
-    }
-
-
-
-
-    public new bool DebugCheckContext(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-
-        return base.DebugCheckContext(context);
-    }
-
-
-
-    #endregion
-}
-
-
-public class _SortArrow : FlutterSDK.Widgets.Framework.StatefulWidget
-{
-    #region constructors
-    public _SortArrow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool visible = default(bool), bool down = default(bool), TimeSpan duration = default(TimeSpan))
-    : base(key: key)
-    {
-        this.Visible = visible;
-        this.Down = down;
-        this.Duration = duration;
-    }
-    #endregion
-
-    #region fields
-    public virtual bool Visible { get; set; }
-    public virtual bool Down { get; set; }
-    public virtual TimeSpan Duration { get; set; }
-    #endregion
-
-    #region methods
-
-    public new FlutterSDK.Material.Datatable._SortArrowState CreateState() => new _SortArrowState();
-
-
-    #endregion
-}
-
-
-public class _SortArrowState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Datatable._SortArrow>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
-{
-    #region constructors
-    public _SortArrowState()
-    { }
-    #endregion
-
-    #region fields
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpacityController { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-    internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OrientationController { get; set; }
-    internal virtual FlutterSDK.Animation.Animation.Animation<double> _OrientationAnimation { get; set; }
-    internal virtual double _OrientationOffset { get; set; }
-    internal virtual bool _Down { get; set; }
-    internal virtual FlutterSDK.Animation.Tween.Animatable<double> _TurnTween { get; set; }
-    internal virtual double _ArrowIconBaselineOffset { get; set; }
-    internal virtual double _ArrowIconSize { get; set; }
-    #endregion
-
-    #region methods
-
-    public new void InitState()
-    {
-        base.InitState();
-        _OpacityAnimation = new CurvedAnimation(parent: _OpacityController = new AnimationController(duration: Widget.Duration, vsync: this), curve: CurvesDefaultClass.Curves.FastOutSlowIn);
-        new CurvedAnimation(parent: _OpacityController = new AnimationController(duration: Widget.Duration, vsync: this), curve: CurvesDefaultClass.Curves.FastOutSlowIn).AddListener(_Rebuild);
-        _OpacityController.Value = Widget.Visible ? 1.0 : 0.0;
-        _OrientationController = new AnimationController(duration: Widget.Duration, vsync: this);
-        _OrientationAnimation = _OrientationController.Drive(_TurnTween);
-        _OrientationController.Drive(_TurnTween).AddListener(_Rebuild);
-        _OrientationController.Drive(_TurnTween).AddStatusListener(_ResetOrientationAnimation);
-        if (Widget.Visible) _OrientationOffset = Widget.Down ? 0.0 : Math.Dart:mathDefaultClass.Pi;
-    }
-
-
-
-
-    private void _Rebuild()
-    {
-        SetState(() =>
-        {
-        }
-        );
-    }
-
-
-
-
-    private void _ResetOrientationAnimation(FlutterSDK.Animation.Animation.AnimationStatus status)
-    {
-        if (status == AnimationStatus.Completed)
-        {
-
-            _OrientationOffset += Math.Dart:mathDefaultClass.Pi;
-            _OrientationController.Value = 0.0;
+            label = new InkWell(onTap: onSort, child: label);
+            return label;
         }
 
-    }
 
 
 
-
-    public new void DidUpdateWidget(FlutterSDK.Material.Datatable._SortArrow oldWidget)
-    {
-        base.DidUpdateWidget(oldWidget);
-        bool skipArrow = false;
-        bool newDown = Widget.Down ?? _Down;
-        if (oldWidget.Visible != Widget.Visible)
+        private FlutterSDK.Widgets.Framework.Widget _BuildDataCell(FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), bool numeric = default(bool), bool placeholder = default(bool), bool showEditIcon = default(bool), VoidCallback onTap = default(VoidCallback), VoidCallback onSelectChanged = default(VoidCallback))
         {
-            if (Widget.Visible && (_OpacityController.Status == AnimationStatus.Dismissed))
+            bool isLightTheme = ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light;
+            if (showEditIcon)
             {
-                _OrientationController.Stop();
+                Widget icon = new Icon(IconsDefaultClass.Icons.Edit, size: 18.0);
+                label = new Expanded(child: label);
+                label = new Row(textDirection: numeric ? TextDirection.Rtl : null, children: new List<Widget>() { label, icon });
+            }
+
+            label = new Container(padding: padding, height: DataRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new DefaultTextStyle(style: new TextStyle(fontSize: 13.0, color: isLightTheme ? (placeholder ? ColorsDefaultClass.Colors.Black38 : ColorsDefaultClass.Colors.Black87) : (placeholder ? ColorsDefaultClass.Colors.White38 : ColorsDefaultClass.Colors.White70)), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: isLightTheme ? ColorsDefaultClass.Colors.Black54 : ColorsDefaultClass.Colors.White70), child: new DropdownButtonHideUnderline(child: label))));
+            if (onTap != null)
+            {
+                label = new InkWell(onTap: onTap, child: label);
+            }
+            else if (onSelectChanged != null)
+            {
+                label = new TableRowInkWell(onTap: onSelectChanged, child: label);
+            }
+
+            return label;
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            ThemeData theme = ThemeDefaultClass.Theme.Of(context);
+            BoxDecoration _kSelectedDecoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, width: DividerThickness)), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? _Grey100Opacity : _Grey300Opacity);
+            BoxDecoration _kUnselectedDecoration = new BoxDecoration(border: new Border(bottom: DividerDefaultClass.Divider.CreateBorderSide(context, width: DividerThickness)));
+            bool displayCheckboxColumn = ShowCheckboxColumn && Rows.Any((DataRow row) => =>row.OnSelectChanged != null);
+            bool allChecked = displayCheckboxColumn && !Rows.Any((DataRow row) => =>row.OnSelectChanged != null && !row.Selected);
+            List<TableColumnWidth> tableColumns = new List<TableColumnWidth>(Columns.Count + (displayCheckboxColumn ? 1 : 0));
+            List<TableRow> tableRows = List<TableRow>.Generate(Rows.Count + 1, (int index) =>
+            {
+                return new TableRow(key: index == 0 ? _HeadingRowKey : Rows[index - 1].Key, decoration: index > 0 && Rows[index - 1].Selected ? _kSelectedDecoration : _kUnselectedDecoration, children: new List<Widget>(tableColumns.Count));
+            }
+            );
+            int rowIndex = default(int);
+            int displayColumnIndex = 0;
+            if (displayCheckboxColumn)
+            {
+                tableColumns[0] = new FixedColumnWidth(HorizontalMargin + CheckboxDefaultClass.Checkbox.Width + HorizontalMargin / 2.0);
+                tableRows[0].Children[0] = _BuildCheckbox(color: theme.AccentColor, @checked: allChecked, onCheckboxChanged: _HandleSelectAll);
+                rowIndex = 1;
+                foreach (DataRow row in Rows)
+                {
+                    tableRows[rowIndex].Children[0] = _BuildCheckbox(color: theme.AccentColor, @checked: row.Selected, onRowTap: () => =>row.OnSelectChanged != null ? row.OnSelectChanged(!row.Selected) : null, onCheckboxChanged: row.OnSelectChanged);
+                    rowIndex += 1;
+                }
+
+                displayColumnIndex += 1;
+            }
+
+            for (int dataColumnIndex = 0; dataColumnIndex < Columns.Count; dataColumnIndex += 1)
+            {
+                DataColumn column = Columns[dataColumnIndex];
+                double paddingStart = default(double);
+                if (dataColumnIndex == 0 && displayCheckboxColumn)
+                {
+                    paddingStart = HorizontalMargin / 2.0;
+                }
+                else if (dataColumnIndex == 0 && !displayCheckboxColumn)
+                {
+                    paddingStart = HorizontalMargin;
+                }
+                else
+                {
+                    paddingStart = ColumnSpacing / 2.0;
+                }
+
+                double paddingEnd = default(double);
+                if (dataColumnIndex == Columns.Count - 1)
+                {
+                    paddingEnd = HorizontalMargin;
+                }
+                else
+                {
+                    paddingEnd = ColumnSpacing / 2.0;
+                }
+
+                EdgeInsetsDirectional padding = EdgeInsetsDirectional.Only(start: paddingStart, end: paddingEnd);
+                if (dataColumnIndex == _OnlyTextColumn)
+                {
+                    tableColumns[displayColumnIndex] = new IntrinsicColumnWidth(flex: 1.0);
+                }
+                else
+                {
+                    tableColumns[displayColumnIndex] = new IntrinsicColumnWidth();
+                }
+
+                tableRows[0].Children[displayColumnIndex] = _BuildHeadingCell(context: context, padding: padding, label: column.Label, tooltip: column.Tooltip, numeric: column.Numeric, onSort: column.OnSort != null ? () => =>column.OnSort(dataColumnIndex, SortColumnIndex != dataColumnIndex || !SortAscending):null, sorted: dataColumnIndex == SortColumnIndex, ascending: SortAscending);
+                rowIndex = 1;
+                foreach (DataRow row in Rows)
+                {
+                    DataCell cell = row.Cells[dataColumnIndex];
+                    tableRows[rowIndex].Children[displayColumnIndex] = _BuildDataCell(context: context, padding: padding, label: cell.Child, numeric: column.Numeric, placeholder: cell.Placeholder, showEditIcon: cell.ShowEditIcon, onTap: cell.OnTap, onSelectChanged: () => =>row.OnSelectChanged != null ? row.OnSelectChanged(!row.Selected) : null);
+                    rowIndex += 1;
+                }
+
+                displayColumnIndex += 1;
+            }
+
+            return new Table(columnWidths: tableColumns.AsMap(), children: tableRows);
+        }
+
+
+
+        #endregion
+    }
+
+
+    /// <Summary>
+    /// A rectangular area of a Material that responds to touch but clips
+    /// its ink splashes to the current table row of the nearest table.
+    ///
+    /// Must have an ancestor [Material] widget in which to cause ink
+    /// reactions and an ancestor [Table] widget to establish a row.
+    ///
+    /// The [TableRowInkWell] must be in the same coordinate space (modulo
+    /// translations) as the [Table]. If it's rotated or scaled or
+    /// otherwise transformed, it will not be able to describe the
+    /// rectangle of the row in its own coordinate system as a [Rect], and
+    /// thus the splash will not occur. (In general, this is easy to
+    /// achieve: just put the [TableRowInkWell] as the direct child of the
+    /// [Table], and put the other contents of the cell inside it.)
+    /// </Summary>
+    public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
+    {
+        #region constructors
+        public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
+        : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, containedInkWell: true, highlightShape: BoxShape.Rectangle)
+        {
+
+        }
+        #endregion
+
+        #region fields
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox)
+        {
+            return () =>
+            {
+                RenderObject cell = referenceBox;
+                AbstractNode table = cell.Parent;
+                Matrix4 transform = Matrix4.Identity();
+                while (table is RenderObject && !(table is RenderTable))
+                {
+                    RenderObject parentBox = table as RenderObject;
+                    parentBox.ApplyPaintTransform(cell, transform);
+
+                    cell = parentBox;
+                    table = table.Parent;
+                }
+
+                if (table is RenderTable)
+                {
+                    TableCellParentData cellParentData = cell.ParentData as TableCellParentData;
+
+                    Rect rect = ((RenderObject)table).GetRowBox(cellParentData.y);
+                    ((RenderObject)table).ApplyPaintTransform(cell, transform);
+                    Offset offset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
+                    if (offset != null) return rect.Shift(-offset);
+                }
+
+                return Dart:uiDefaultClass.Rect.Zero;
+            }
+            ;
+        }
+
+
+
+
+        public new bool DebugCheckContext(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+
+            return base.DebugCheckContext(context);
+        }
+
+
+
+        #endregion
+    }
+
+
+    public class _SortArrow : FlutterSDK.Widgets.Framework.StatefulWidget
+    {
+        #region constructors
+        public _SortArrow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool visible = default(bool), bool down = default(bool), TimeSpan duration = default(TimeSpan))
+        : base(key: key)
+        {
+            this.Visible = visible;
+            this.Down = down;
+            this.Duration = duration;
+        }
+        #endregion
+
+        #region fields
+        public virtual bool Visible { get; set; }
+        public virtual bool Down { get; set; }
+        public virtual TimeSpan Duration { get; set; }
+        #endregion
+
+        #region methods
+
+        public new FlutterSDK.Material.Datatable._SortArrowState CreateState() => new _SortArrowState();
+
+
+        #endregion
+    }
+
+
+    public class _SortArrowState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Datatable._SortArrow>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
+    {
+        #region constructors
+        public _SortArrowState()
+        { }
+        #endregion
+
+        #region fields
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpacityController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
+        internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OrientationController { get; set; }
+        internal virtual FlutterSDK.Animation.Animation.Animation<double> _OrientationAnimation { get; set; }
+        internal virtual double _OrientationOffset { get; set; }
+        internal virtual bool _Down { get; set; }
+        internal virtual FlutterSDK.Animation.Tween.Animatable<double> _TurnTween { get; set; }
+        internal virtual double _ArrowIconBaselineOffset { get; set; }
+        internal virtual double _ArrowIconSize { get; set; }
+        #endregion
+
+        #region methods
+
+        public new void InitState()
+        {
+            base.InitState();
+            _OpacityAnimation = new CurvedAnimation(parent: _OpacityController = new AnimationController(duration: Widget.Duration, vsync: this), curve: CurvesDefaultClass.Curves.FastOutSlowIn);
+            new CurvedAnimation(parent: _OpacityController = new AnimationController(duration: Widget.Duration, vsync: this), curve: CurvesDefaultClass.Curves.FastOutSlowIn).AddListener(_Rebuild);
+            _OpacityController.Value = Widget.Visible ? 1.0 : 0.0;
+            _OrientationController = new AnimationController(duration: Widget.Duration, vsync: this);
+            _OrientationAnimation = _OrientationController.Drive(_TurnTween);
+            _OrientationController.Drive(_TurnTween).AddListener(_Rebuild);
+            _OrientationController.Drive(_TurnTween).AddStatusListener(_ResetOrientationAnimation);
+            if (Widget.Visible) _OrientationOffset = Widget.Down ? 0.0 : Math.Dart:mathDefaultClass.Pi;
+        }
+
+
+
+
+        private void _Rebuild()
+        {
+            SetState(() =>
+            {
+            }
+            );
+        }
+
+
+
+
+        private void _ResetOrientationAnimation(FlutterSDK.Animation.Animation.AnimationStatus status)
+        {
+            if (status == AnimationStatus.Completed)
+            {
+
+                _OrientationOffset += Math.Dart:mathDefaultClass.Pi;
                 _OrientationController.Value = 0.0;
-                _OrientationOffset = newDown ? 0.0 : Math.Dart:mathDefaultClass.Pi;
-                skipArrow = true;
-            }
-
-            if (Widget.Visible)
-            {
-                _OpacityController.Forward();
-            }
-            else
-            {
-                _OpacityController.Reverse();
             }
 
         }
 
-        if ((_Down != newDown) && !skipArrow)
+
+
+
+        public new void DidUpdateWidget(FlutterSDK.Material.Datatable._SortArrow oldWidget)
         {
-            if (_OrientationController.Status == AnimationStatus.Dismissed)
+            base.DidUpdateWidget(oldWidget);
+            bool skipArrow = false;
+            bool newDown = Widget.Down ?? _Down;
+            if (oldWidget.Visible != Widget.Visible)
             {
-                _OrientationController.Forward();
-            }
-            else
-            {
-                _OrientationController.Reverse();
+                if (Widget.Visible && (_OpacityController.Status == AnimationStatus.Dismissed))
+                {
+                    _OrientationController.Stop();
+                    _OrientationController.Value = 0.0;
+                    _OrientationOffset = newDown ? 0.0 : Math.Dart:mathDefaultClass.Pi;
+                    skipArrow = true;
+                }
+
+                if (Widget.Visible)
+                {
+                    _OpacityController.Forward();
+                }
+                else
+                {
+                    _OpacityController.Reverse();
+                }
+
             }
 
+            if ((_Down != newDown) && !skipArrow)
+            {
+                if (_OrientationController.Status == AnimationStatus.Dismissed)
+                {
+                    _OrientationController.Forward();
+                }
+                else
+                {
+                    _OrientationController.Reverse();
+                }
+
+            }
+
+            _Down = newDown;
         }
 
-        _Down = newDown;
+
+
+
+        public new void Dispose()
+        {
+            _OpacityController.Dispose();
+            _OrientationController.Dispose();
+            base.Dispose();
+        }
+
+
+
+
+        public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
+        {
+            return new Opacity(opacity: _OpacityAnimation.Value, child: new Transform(transform: Matrix4.RotationZ(_OrientationOffset + _OrientationAnimation.Value);
+            Matrix4.RotationZ(_OrientationOffset + _OrientationAnimation.Value).SetTranslationRaw(0.0, _ArrowIconBaselineOffset, 0.0), alignment: AlignmentDefaultClass.Alignment.Center, child: new Icon(IconsDefaultClass.Icons.Arrow_downward, size: _ArrowIconSize, color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.White70)));
+        }
+
+
+
+        #endregion
     }
-
-
-
-
-    public new void Dispose()
-    {
-        _OpacityController.Dispose();
-        _OrientationController.Dispose();
-        base.Dispose();
-    }
-
-
-
-
-    public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
-    {
-        return new Opacity(opacity: _OpacityAnimation.Value, child: new Transform(transform: Matrix4.RotationZ(_OrientationOffset + _OrientationAnimation.Value);
-        Matrix4.RotationZ(_OrientationOffset + _OrientationAnimation.Value).SetTranslationRaw(0.0, _ArrowIconBaselineOffset, 0.0), alignment: AlignmentDefaultClass.Alignment.Center, child: new Icon(IconsDefaultClass.Icons.Arrow_downward, size: _ArrowIconSize, color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.White70)));
-    }
-
-
-
-    #endregion
-}
 
 }

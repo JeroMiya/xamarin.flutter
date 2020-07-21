@@ -692,7 +692,7 @@ namespace FlutterSDK.Material.Navigationrail
             TextStyle selectedLabelTextStyle = theme.TextTheme.BodyText1.CopyWith(color: baseSelectedColor).Merge(Widget.SelectedLabelTextStyle ?? navigationRailTheme.SelectedLabelTextStyle);
             double groupAlignment = Widget.GroupAlignment ?? navigationRailTheme.GroupAlignment ?? -1.0;
             NavigationRailLabelType labelType = Widget.LabelType ?? navigationRailTheme.LabelType ?? NavigationRailLabelType.None;
-            return new _ExtendedNavigationRailAnimation(animation: _ExtendedAnimation, child: new Semantics(explicitChildNodes: true, child: new Material(elevation: elevation, color: backgroundColor, child: new Column(children: new List<Widget>() { NavigationrailDefaultClass._VerticalSpacer, }))));
+            return new _ExtendedNavigationRailAnimation(animation: _ExtendedAnimation, child: new Semantics(explicitChildNodes: true, child: new Material(elevation: elevation, color: backgroundColor, child: new Column(children: new List<Widget>() { NavigationrailDefaultClass._VerticalSpacer }))));
         }
 
 

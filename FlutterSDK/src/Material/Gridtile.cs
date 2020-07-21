@@ -426,7 +426,7 @@ namespace FlutterSDK.Material.Gridtile
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             if (Header == null && Footer == null) return Child;
-            return new Stack(children: new List<Widget>() { Positioned.Fill(child: Child), });
+            return new Stack(children: new List<Widget>() { Positioned.Fill(child: Child) });
         }
 
 

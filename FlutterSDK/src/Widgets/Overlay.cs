@@ -1276,7 +1276,7 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
                 count += 1;
             }
 
-            return new List<DiagnosticsNode>() {, onstageChildren, };
+            return new List<DiagnosticsNode>() { /* ...onstageChildren, */ };
         }
 
 
