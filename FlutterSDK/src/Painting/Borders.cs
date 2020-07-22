@@ -576,7 +576,6 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class BorderSide
     {
-        #region constructors
         public BorderSide(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         : base()
         {
@@ -584,17 +583,11 @@ namespace FlutterSDK.Painting.Borders
             this.Width = width;
             this.Style = style;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Width { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderStyle Style { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide None { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [BorderSide] that represents the addition of the two given
@@ -743,7 +736,6 @@ namespace FlutterSDK.Painting.Borders
 
 
 
-        #endregion
     }
 
 
@@ -765,18 +757,11 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class ShapeBorder
     {
-        #region constructors
         public ShapeBorder()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Attempts to create a new object that represents the amalgamation of `this`
@@ -1002,7 +987,6 @@ namespace FlutterSDK.Painting.Borders
         }
 
 
-        #endregion
     }
 
 
@@ -1013,21 +997,14 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class _CompoundBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public _CompoundBorder(List<FlutterSDK.Painting.Borders.ShapeBorder> borders)
         : base()
         {
             this.Borders = borders;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Painting.Borders.ShapeBorder> Borders { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false)
         {
@@ -1148,7 +1125,6 @@ namespace FlutterSDK.Painting.Borders
 
 
 
-        #endregion
     }
 
 

@@ -476,7 +476,6 @@ namespace FlutterSDK.Material.Drawer
     /// </Summary>
     public class Drawer : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Drawer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double elevation = 16.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string semanticLabel = default(string))
         : base(key: key)
         {
@@ -484,15 +483,9 @@ namespace FlutterSDK.Material.Drawer
             this.Child = child;
             this.SemanticLabel = semanticLabel;
         }
-        #endregion
-
-        #region fields
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual string SemanticLabel { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -504,7 +497,6 @@ namespace FlutterSDK.Material.Drawer
 
 
 
-        #endregion
     }
 
 
@@ -526,7 +518,6 @@ namespace FlutterSDK.Material.Drawer
     /// </Summary>
     public class DrawerController : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public DrawerController(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> key = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Drawer.DrawerAlignment alignment = default(FlutterSDK.Material.Drawer.DrawerAlignment), FlutterSDK.Material.Drawer.DrawerCallback drawerCallback = default(FlutterSDK.Material.Drawer.DrawerCallback), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color scrimColor = default(FlutterBinding.UI.Color), double edgeDragWidth = default(double), bool enableOpenDragGesture = true)
         : base(key: key)
         {
@@ -538,9 +529,6 @@ namespace FlutterSDK.Material.Drawer
             this.EdgeDragWidth = edgeDragWidth;
             this.EnableOpenDragGesture = enableOpenDragGesture;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Material.Drawer.DrawerAlignment Alignment { get; set; }
         public virtual FlutterSDK.Material.Drawer.DrawerCallback DrawerCallback { get; set; }
@@ -548,14 +536,10 @@ namespace FlutterSDK.Material.Drawer
         public virtual FlutterBinding.UI.Color ScrimColor { get; set; }
         public virtual bool EnableOpenDragGesture { get; set; }
         public virtual double EdgeDragWidth { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Drawer.DrawerControllerState CreateState() => new DrawerControllerState();
 
 
-        #endregion
     }
 
 
@@ -566,12 +550,8 @@ namespace FlutterSDK.Material.Drawer
     /// </Summary>
     public class DrawerControllerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Drawer.DrawerController>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public DrawerControllerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Routes.LocalHistoryEntry _HistoryEntry { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode _FocusScopeNode { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
@@ -582,9 +562,6 @@ namespace FlutterSDK.Material.Drawer
         internal virtual double _Width { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentDirectional _DrawerOuterAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentDirectional _DrawerInnerAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -804,7 +781,6 @@ namespace FlutterSDK.Material.Drawer
 
 
 
-        #endregion
     }
 
 

@@ -446,19 +446,12 @@ namespace FlutterSDK.Widgets.Orientationbuilder
     /// </Summary>
     public class OrientationBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public OrientationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder builder = default(FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder))
         : base(key: key)
         {
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Orientationbuilder.OrientationWidgetBuilder Builder { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Framework.Widget _BuildWithConstraints(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
@@ -476,7 +469,6 @@ namespace FlutterSDK.Widgets.Orientationbuilder
 
 
 
-        #endregion
     }
 
 }

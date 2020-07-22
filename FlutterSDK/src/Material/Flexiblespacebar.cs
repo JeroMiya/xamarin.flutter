@@ -494,7 +494,6 @@ namespace FlutterSDK.Material.Flexiblespacebar
     /// </Summary>
     public class FlexibleSpaceBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public FlexibleSpaceBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget background = default(FlutterSDK.Widgets.Framework.Widget), bool centerTitle = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Flexiblespacebar.CollapseMode collapseMode = default(FlutterSDK.Material.Flexiblespacebar.CollapseMode), List<FlutterSDK.Material.Flexiblespacebar.StretchMode> stretchModes = default(List<FlutterSDK.Material.Flexiblespacebar.StretchMode>))
         : base(key: key)
         {
@@ -505,18 +504,12 @@ namespace FlutterSDK.Material.Flexiblespacebar
             this.CollapseMode = collapseMode;
             this.StretchModes = stretchModes;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Background { get; set; }
         public virtual bool CenterTitle { get; set; }
         public virtual FlutterSDK.Material.Flexiblespacebar.CollapseMode CollapseMode { get; set; }
         public virtual List<FlutterSDK.Material.Flexiblespacebar.StretchMode> StretchModes { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Wraps a widget that contains an [AppBar] to convey sizing information down
@@ -549,21 +542,13 @@ namespace FlutterSDK.Material.Flexiblespacebar
         public new FlutterSDK.Material.Flexiblespacebar._FlexibleSpaceBarState CreateState() => new _FlexibleSpaceBarState();
 
 
-        #endregion
     }
 
 
     public class _FlexibleSpaceBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBar>
     {
-        #region constructors
         public _FlexibleSpaceBarState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme)
         {
@@ -669,7 +654,6 @@ namespace FlutterSDK.Material.Flexiblespacebar
 
 
 
-        #endregion
     }
 
 
@@ -682,7 +666,6 @@ namespace FlutterSDK.Material.Flexiblespacebar
     /// </Summary>
     public class FlexibleSpaceBarSettings : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public FlexibleSpaceBarSettings(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double toolbarOpacity = default(double), double minExtent = default(double), double maxExtent = default(double), double currentExtent = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -691,16 +674,10 @@ namespace FlutterSDK.Material.Flexiblespacebar
             this.MaxExtent = maxExtent;
             this.CurrentExtent = currentExtent;
         }
-        #endregion
-
-        #region fields
         public virtual double ToolbarOpacity { get; set; }
         public virtual double MinExtent { get; set; }
         public virtual double MaxExtent { get; set; }
         public virtual double CurrentExtent { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Material.Flexiblespacebar.FlexibleSpaceBarSettings oldWidget)
         {
@@ -715,7 +692,6 @@ namespace FlutterSDK.Material.Flexiblespacebar
 
 
 
-        #endregion
     }
 
 

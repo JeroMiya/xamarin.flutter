@@ -524,7 +524,6 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
     /// </Summary>
     public class ValueListenableBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public ValueListenableBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.ValueListenable<T> valueListenable = default(FlutterSDK.Foundation.Changenotifier.ValueListenable<T>), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -532,35 +531,21 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
             this.Builder = builder;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<T> ValueListenable { get; set; }
         public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _ValueListenableBuilderState<T>();
 
 
-        #endregion
     }
 
 
     public class _ValueListenableBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Valuelistenablebuilder.ValueListenableBuilder<T>>
     {
-        #region constructors
         public _ValueListenableBuilderState()
         { }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -615,7 +600,6 @@ namespace FlutterSDK.Widgets.Valuelistenablebuilder
 
 
 
-        #endregion
     }
 
 }

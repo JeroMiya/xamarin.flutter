@@ -540,7 +540,6 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
-        #region constructors
         public PageController(int initialPage = 0, bool keepPage = true, double viewportFraction = 1.0)
         : base()
         {
@@ -548,16 +547,10 @@ namespace FlutterSDK.Widgets.Pageview
             this.KeepPage = keepPage;
             this.ViewportFraction = viewportFraction;
         }
-        #endregion
-
-        #region fields
         public virtual int InitialPage { get; set; }
         public virtual bool KeepPage { get; set; }
         public virtual double ViewportFraction { get; set; }
         public virtual double Page { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Animates the controlled [PageView] from the current page to the given page.
@@ -640,7 +633,6 @@ namespace FlutterSDK.Widgets.Pageview
 
 
 
-        #endregion
     }
 
 
@@ -652,20 +644,13 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
     {
-        #region constructors
         public PageMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double viewportFraction = default(double))
         : base(minScrollExtent: minScrollExtent, maxScrollExtent: maxScrollExtent, pixels: pixels, viewportDimension: viewportDimension, axisDirection: axisDirection)
         {
             this.ViewportFraction = viewportFraction;
         }
-        #endregion
-
-        #region fields
         public virtual double ViewportFraction { get; set; }
         public virtual double Page { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Pageview.PageMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double viewportFraction = default(double))
         {
@@ -674,30 +659,22 @@ namespace FlutterSDK.Widgets.Pageview
 
 
 
-        #endregion
     }
 
 
     public class _PagePosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext, IPageMetrics
     {
-        #region constructors
         public _PagePosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), int initialPage = 0, bool keepPage = true, double viewportFraction = 1.0, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition))
         : base(physics: physics, context: context, initialPixels: null, keepScrollOffset: keepPage, oldPosition: oldPosition)
         {
             this.InitialPage = initialPage;
         }
-        #endregion
-
-        #region fields
         public virtual int InitialPage { get; set; }
         internal virtual double _PageToUseOnStartup { get; set; }
         internal virtual double _ViewportFraction { get; set; }
         public virtual double ViewportFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _InitialPageOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Page { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual double GetPageFromPixels(double pixels, double viewportDimension)
         {
@@ -778,25 +755,17 @@ namespace FlutterSDK.Widgets.Pageview
 
 
 
-        #endregion
     }
 
 
     public class _ForceImplicitScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
-        #region constructors
         public _ForceImplicitScrollPhysics(bool allowImplicitScrolling = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
             this.AllowImplicitScrolling = allowImplicitScrolling;
         }
-        #endregion
-
-        #region fields
         public new bool AllowImplicitScrolling { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Pageview._ForceImplicitScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
         {
@@ -805,7 +774,6 @@ namespace FlutterSDK.Widgets.Pageview
 
 
 
-        #endregion
     }
 
 
@@ -822,19 +790,12 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
-        #region constructors
         public PageScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Pageview.PageScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
         {
@@ -883,7 +844,6 @@ namespace FlutterSDK.Widgets.Pageview
 
 
 
-        #endregion
     }
 
 
@@ -915,7 +875,6 @@ namespace FlutterSDK.Widgets.Pageview
     /// </Summary>
     public class PageView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public PageView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Pageview.PageController controller = default(FlutterSDK.Widgets.Pageview.PageController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool pageSnapping = true, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool allowImplicitScrolling = false)
         : base(key: key)
         {
@@ -948,9 +907,6 @@ namespace FlutterSDK.Widgets.Pageview
             instance.DragStartBehavior = dragStartBehavior;
             instance.AllowImplicitScrolling = allowImplicitScrolling;
         }
-        #endregion
-
-        #region fields
         public virtual bool AllowImplicitScrolling { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
         public virtual bool Reverse { get; set; }
@@ -960,29 +916,18 @@ namespace FlutterSDK.Widgets.Pageview
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnPageChanged { get; set; }
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Pageview._PageViewState CreateState() => new _PageViewState();
 
 
-        #endregion
     }
 
 
     public class _PageViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Pageview.PageView>
     {
-        #region constructors
         public _PageViewState()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _LastReportedPage { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1045,7 +990,6 @@ namespace FlutterSDK.Widgets.Pageview
 
 
 
-        #endregion
     }
 
 }

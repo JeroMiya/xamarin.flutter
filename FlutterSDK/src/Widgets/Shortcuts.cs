@@ -446,7 +446,6 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class KeySet<T>
     {
-        #region constructors
         public KeySet(T key1, T key2 = default(T), T key3 = default(T), T key4 = default(T))
         : base()
         {
@@ -478,18 +477,12 @@ namespace FlutterSDK.Widgets.Shortcuts
         {
             var instance = new KeySet<T>();
         }
-        #endregion
-
-        #region fields
         internal virtual HashSet<T> _Keys { get; set; }
         internal virtual List<int> _TempHashStore3 { get; set; }
         internal virtual List<int> _TempHashStore4 { get; set; }
         internal virtual int _HashCode { get; set; }
         public virtual HashSet<T> Keys { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -503,7 +496,6 @@ namespace FlutterSDK.Widgets.Shortcuts
 
 
 
-        #endregion
     }
 
 
@@ -522,7 +514,6 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class LogicalKeySet : FlutterSDK.Widgets.Shortcuts.KeySet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey>, IDiagnosticable
     {
-        #region constructors
         public LogicalKeySet(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key1, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key2 = default(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey), FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key3 = default(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey), FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey key4 = default(FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey))
         : base(key1, key2, key3, key4)
         {
@@ -532,13 +523,7 @@ namespace FlutterSDK.Widgets.Shortcuts
         {
             var instance = new LogicalKeySet(keys);
         }
-        #endregion
-
-        #region fields
         internal virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _Modifiers { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a description of the key set that is short and readable.
@@ -578,7 +563,6 @@ namespace FlutterSDK.Widgets.Shortcuts
 
 
 
-        #endregion
     }
 
 
@@ -588,18 +572,11 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class ShortcutMapProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>>
     {
-        #region constructors
         public ShortcutMapProperty(string name, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), string description = default(string))
         : base(name, value, showName: showName, defaultValue: defaultValue, level: level, description: description)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
         {
@@ -608,7 +585,6 @@ namespace FlutterSDK.Widgets.Shortcuts
 
 
 
-        #endregion
     }
 
 
@@ -620,21 +596,14 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class ShortcutManager : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IDiagnosticable
     {
-        #region constructors
         public ShortcutManager(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), bool modal = false)
         : base()
         {
             this.Modal = modal;
         }
-        #endregion
-
-        #region fields
         public virtual bool Modal { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _Shortcuts { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Handles a key pressed `event` in the given `context`.
@@ -699,7 +668,6 @@ namespace FlutterSDK.Widgets.Shortcuts
 
 
 
-        #endregion
     }
 
 
@@ -716,7 +684,6 @@ namespace FlutterSDK.Widgets.Shortcuts
     /// </Summary>
     public class Shortcuts : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Shortcuts(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Shortcuts.ShortcutManager manager = default(FlutterSDK.Widgets.Shortcuts.ShortcutManager), Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string debugLabel = default(string))
         : base(key: key)
         {
@@ -725,16 +692,10 @@ namespace FlutterSDK.Widgets.Shortcuts
             this.Child = child;
             this.DebugLabel = debugLabel;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Shortcuts.ShortcutManager Manager { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> ShortcutsValue { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual string DebugLabel { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the [ActionDispatcher] that most tightly encloses the given
@@ -766,23 +727,15 @@ namespace FlutterSDK.Widgets.Shortcuts
 
 
 
-        #endregion
     }
 
 
     public class _ShortcutsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Shortcuts.Shortcuts>
     {
-        #region constructors
         public _ShortcutsState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Shortcuts.ShortcutManager _InternalManager { get; set; }
         public virtual FlutterSDK.Widgets.Shortcuts.ShortcutManager Manager { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -850,25 +803,16 @@ namespace FlutterSDK.Widgets.Shortcuts
 
 
 
-        #endregion
     }
 
 
     public class _ShortcutsMarker : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Shortcuts.ShortcutManager>
     {
-        #region constructors
         public _ShortcutsMarker(FlutterSDK.Widgets.Shortcuts.ShortcutManager manager = default(FlutterSDK.Widgets.Shortcuts.ShortcutManager), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(notifier: manager, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

@@ -613,18 +613,11 @@ namespace FlutterSDK.Widgets.Inheritedmodel
     /// </Summary>
     public class InheritedModel<T> : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public InheritedModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new InheritedModelElement<T> CreateElement() => new InheritedModelElement<T>(this);
 
@@ -715,7 +708,6 @@ namespace FlutterSDK.Widgets.Inheritedmodel
 
 
 
-        #endregion
     }
 
 
@@ -724,19 +716,12 @@ namespace FlutterSDK.Widgets.Inheritedmodel
     /// </Summary>
     public class InheritedModelElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
     {
-        #region constructors
         public InheritedModelElement(FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Inheritedmodel.InheritedModel<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void UpdateDependencies(FlutterSDK.Widgets.Framework.Element dependent, @Object aspect)
         {
@@ -767,7 +752,6 @@ namespace FlutterSDK.Widgets.Inheritedmodel
 
 
 
-        #endregion
     }
 
 }

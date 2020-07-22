@@ -2249,18 +2249,11 @@ public static class _HasCreationLocationMixin
 /// </Summary>
 public class _ProxyLayer : FlutterSDK.Rendering.Layer.Layer
 {
-    #region constructors
     public _ProxyLayer(FlutterSDK.Rendering.Layer.Layer _layer)
     {
         this._Layer = _layer;
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterSDK.Rendering.Layer.Layer _Layer { get; set; }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -2277,7 +2270,6 @@ public class _ProxyLayer : FlutterSDK.Rendering.Layer.Layer
 
 
 
-    #endregion
 }
 
 
@@ -2288,20 +2280,13 @@ public class _ProxyLayer : FlutterSDK.Rendering.Layer.Layer
 /// </Summary>
 public class _MulticastCanvas : ICanvas
 {
-    #region constructors
     public _MulticastCanvas(Canvas main = default(Canvas), Canvas screenshot = default(Canvas))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual Canvas _Main { get; set; }
     internal virtual Canvas _Screenshot { get; set; }
-    #endregion
-
-    #region methods
 
     public new void ClipPath(Path path, bool doAntiAlias = true)
     {
@@ -2598,7 +2583,6 @@ public class _MulticastCanvas : ICanvas
 
 
 
-    #endregion
 }
 
 
@@ -2608,15 +2592,8 @@ public class _MulticastCanvas : ICanvas
 /// </Summary>
 public class _ScreenshotContainerLayer : FlutterSDK.Rendering.Layer.OffsetLayer
 {
-    #region constructors
     public _ScreenshotContainerLayer()
     { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -2625,7 +2602,6 @@ public class _ScreenshotContainerLayer : FlutterSDK.Rendering.Layer.OffsetLayer
 
 
 
-    #endregion
 }
 
 
@@ -2635,25 +2611,17 @@ public class _ScreenshotContainerLayer : FlutterSDK.Rendering.Layer.OffsetLayer
 /// </Summary>
 public class _ScreenshotData
 {
-    #region constructors
     public _ScreenshotData(FlutterSDK.Rendering.@object.RenderObject target = default(FlutterSDK.Rendering.@object.RenderObject))
     : base()
     {
         this.Target = target;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Rendering.@object.RenderObject Target { get; set; }
     public virtual FlutterSDK.Rendering.Layer.OffsetLayer ContainerLayer { get; set; }
     public virtual bool FoundTarget { get; set; }
     public virtual bool IncludeInScreenshot { get; set; }
     public virtual bool IncludeInRegularContext { get; set; }
     public virtual FlutterBinding.UI.Offset ScreenshotOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
-    #endregion
 }
 
 
@@ -2671,15 +2639,11 @@ public class _ScreenshotData
 /// </Summary>
 public class _ScreenshotPaintingContext : FlutterSDK.Rendering.@object.PaintingContext
 {
-    #region constructors
     public _ScreenshotPaintingContext(FlutterSDK.Rendering.Layer.ContainerLayer containerLayer = default(FlutterSDK.Rendering.Layer.ContainerLayer), FlutterBinding.UI.Rect estimatedBounds = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector._ScreenshotData screenshotData = default(FlutterSDK.Widgets.Widgetinspector._ScreenshotData))
     : base(containerLayer, estimatedBounds)
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterSDK.Widgets.Widgetinspector._ScreenshotData _Data { get; set; }
     internal virtual FlutterSDK.Rendering.Layer.PictureLayer _ScreenshotCurrentLayer { get; set; }
     internal virtual PictureRecorder _ScreenshotRecorder { get; set; }
@@ -2687,9 +2651,6 @@ public class _ScreenshotPaintingContext : FlutterSDK.Rendering.@object.PaintingC
     internal virtual FlutterSDK.Widgets.Widgetinspector._MulticastCanvas _MulticastCanvas { get; set; }
     public virtual Canvas Canvas { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     internal virtual bool _IsScreenshotRecording { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     private void _StartRecordingScreenshot()
     {
@@ -2877,7 +2838,6 @@ else
 
 
 
-    #endregion
 }
 
 
@@ -2890,7 +2850,6 @@ else
 /// </Summary>
 public class _DiagnosticsPathNode
 {
-    #region constructors
     public _DiagnosticsPathNode(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>), int childIndex = default(int))
     : base()
     {
@@ -2898,16 +2857,9 @@ public class _DiagnosticsPathNode
         this.Children = children;
         this.ChildIndex = childIndex;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Node { get; set; }
     public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Children { get; set; }
     public virtual int ChildIndex { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
 }
 
 
@@ -2917,20 +2869,12 @@ public class _DiagnosticsPathNode
 /// </Summary>
 public class _InspectorReferenceData
 {
-    #region constructors
     public _InspectorReferenceData(@Object @object)
     {
         this.@object = @object;
     }
-    #endregion
-
-    #region fields
     public virtual @Object @object { get; set; }
     public virtual int Count { get; set; }
-    #endregion
-
-    #region methods
-    #endregion
 }
 
 
@@ -2942,24 +2886,17 @@ public class _InspectorReferenceData
 /// </Summary>
 public class _LocationCount
 {
-    #region constructors
     public _LocationCount(FlutterSDK.Widgets.Widgetinspector._Location location = default(FlutterSDK.Widgets.Widgetinspector._Location), int id = default(int), bool local = default(bool))
     {
         this.Location = location;
         this.Id = id;
         this.Local = local;
     }
-    #endregion
-
-    #region fields
     public virtual int Id { get; set; }
     public virtual bool Local { get; set; }
     public virtual FlutterSDK.Widgets.Widgetinspector._Location Location { get; set; }
     internal virtual int _Count { get; set; }
     public virtual int Count { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     /// <Summary>
     /// Reset the count.
@@ -2982,26 +2919,17 @@ public class _LocationCount
 
 
 
-    #endregion
 }
 
 
 public class _WidgetForTypeTests : FlutterSDK.Widgets.Framework.Widget
 {
-    #region constructors
     public _WidgetForTypeTests()
     { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     public new FlutterSDK.Widgets.Framework.Element CreateElement() => null;
 
 
-    #endregion
 }
 
 
@@ -3031,49 +2959,34 @@ public class _WidgetForTypeTests : FlutterSDK.Widgets.Framework.Widget
 /// </Summary>
 public class WidgetInspector : FlutterSDK.Widgets.Framework.StatefulWidget
 {
-    #region constructors
     public WidgetInspector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder selectButtonBuilder = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder))
     : base(key: key)
     {
         this.Child = child;
         this.SelectButtonBuilder = selectButtonBuilder;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
     public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectButtonBuilder SelectButtonBuilder { get; set; }
-    #endregion
-
-    #region methods
 
     public new FlutterSDK.Widgets.Widgetinspector._WidgetInspectorState CreateState() => new _WidgetInspectorState();
 
 
-    #endregion
 }
 
 
 public class _WidgetInspectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Widgetinspector.WidgetInspector>, IWidgetsBindingObserver
 {
-    #region constructors
     public _WidgetInspectorState()
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterBinding.UI.Offset _LastPointerLocation { get; set; }
     public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
     public virtual bool IsSelectMode { get; set; }
     internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _IgnorePointerKey { get; set; }
     internal virtual double _EdgeHitMargin { get; set; }
     internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelectionChangedCallback _SelectionChangedCallback { get; set; }
-    #endregion
-
-    #region methods
 
     public new void InitState()
     {
@@ -3264,25 +3177,17 @@ public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framewor
 
 
 
-#endregion
 }
 
 
 public class _InspectorOverlay : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
 {
-    #region constructors
     public _InspectorOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
     : base(key: key)
     {
         this.Selection = selection;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
-    #endregion
-
-    #region methods
 
     public new FlutterSDK.Widgets.Widgetinspector._RenderInspectorOverlay CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
     {
@@ -3305,28 +3210,20 @@ public class _InspectorOverlay : FlutterSDK.Widgets.Framework.LeafRenderObjectWi
 
 
 
-    #endregion
 }
 
 
 public class _RenderInspectorOverlay : FlutterSDK.Rendering.Box.RenderBox
 {
-    #region constructors
     public _RenderInspectorOverlay(FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection _Selection { get; set; }
     public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void PerformResize()
     {
@@ -3344,27 +3241,19 @@ public class _RenderInspectorOverlay : FlutterSDK.Rendering.Box.RenderBox
 
 
 
-    #endregion
 }
 
 
 public class _TransformedRect
 {
-    #region constructors
     public _TransformedRect(FlutterSDK.Rendering.@object.RenderObject @object)
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     public virtual FlutterBinding.UI.Rect Rect { get; set; }
     public virtual Matrix4 Transform { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool Equals(@Object other)
     {
@@ -3374,7 +3263,6 @@ public class _TransformedRect
 
 
 
-    #endregion
 }
 
 
@@ -3386,7 +3274,6 @@ public class _TransformedRect
 /// </Summary>
 public class _InspectorOverlayRenderState
 {
-    #region constructors
     public _InspectorOverlayRenderState(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector._TransformedRect selected = default(FlutterSDK.Widgets.Widgetinspector._TransformedRect), List<FlutterSDK.Widgets.Widgetinspector._TransformedRect> candidates = default(List<FlutterSDK.Widgets.Widgetinspector._TransformedRect>), string tooltip = default(string), TextDirection textDirection = default(TextDirection))
     {
         this.OverlayRect = overlayRect;
@@ -3395,18 +3282,12 @@ public class _InspectorOverlayRenderState
         this.Tooltip = tooltip;
         this.TextDirection = textDirection;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
     public virtual FlutterSDK.Widgets.Widgetinspector._TransformedRect Selected { get; set; }
     public virtual List<FlutterSDK.Widgets.Widgetinspector._TransformedRect> Candidates { get; set; }
     public virtual string Tooltip { get; set; }
     public virtual TextDirection TextDirection { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool Equals(@Object other)
     {
@@ -3416,7 +3297,6 @@ public class _InspectorOverlayRenderState
 
 
 
-    #endregion
 }
 
 
@@ -3429,7 +3309,6 @@ public class _InspectorOverlayRenderState
 /// </Summary>
 public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
 {
-    #region constructors
     public _InspectorOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Widgetinspector.InspectorSelection selection = default(FlutterSDK.Widgets.Widgetinspector.InspectorSelection))
     : base()
     {
@@ -3445,18 +3324,12 @@ public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     }
 
 
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Widgets.Widgetinspector.InspectorSelection Selection { get; set; }
     public virtual FlutterBinding.UI.Rect OverlayRect { get; set; }
     internal virtual FlutterSDK.Widgets.Widgetinspector._InspectorOverlayRenderState _LastState { get; set; }
     internal virtual SKPicture _Picture { get; set; }
     internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
     internal virtual double _TextPainterMaxWidth { get; set; }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -3555,7 +3428,6 @@ public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
 
 
 
-    #endregion
 }
 
 
@@ -3565,7 +3437,6 @@ public class _InspectorOverlayLayer : FlutterSDK.Rendering.Layer.Layer
 /// </Summary>
 public class _Location
 {
-    #region constructors
     public _Location(string file = default(string), int line = default(int), int column = default(int), string name = default(string), List<FlutterSDK.Widgets.Widgetinspector._Location> parameterLocations = default(List<FlutterSDK.Widgets.Widgetinspector._Location>))
     {
         this.File = file;
@@ -3574,17 +3445,11 @@ public class _Location
         this.Name = name;
         this.ParameterLocations = parameterLocations;
     }
-    #endregion
-
-    #region fields
     public virtual string File { get; set; }
     public virtual int Line { get; set; }
     public virtual int Column { get; set; }
     public virtual string Name { get; set; }
     public virtual List<FlutterSDK.Widgets.Widgetinspector._Location> ParameterLocations { get; set; }
-    #endregion
-
-    #region methods
 
     public virtual Dictionary<string, @Object> ToJsonMap()
     {
@@ -3605,7 +3470,6 @@ public class _Location
 
 
 
-    #endregion
 }
 
 
@@ -3615,7 +3479,6 @@ public class _Location
 /// </Summary>
 public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
 {
-    #region constructors
     public InspectorSerializationDelegate(string groupName = default(string), bool summaryTree = false, int maxDescendentsTruncatableNode = -1, bool expandPropertyValues = true, int subtreeDepth = 1, bool includeProperties = false, FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService service = default(FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService), Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> addAdditionalPropertiesCallback = default(Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate>))
     {
         this.GroupName = groupName;
@@ -3627,9 +3490,6 @@ public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
         this.Service = service;
         this.AddAdditionalPropertiesCallback = addAdditionalPropertiesCallback;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Widgets.Widgetinspector.WidgetInspectorService Service { get; set; }
     public virtual string GroupName { get; set; }
     public virtual bool SummaryTree { get; set; }
@@ -3640,9 +3500,6 @@ public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
     public virtual Func<Map<string, object>, DiagnosticsNode, InspectorSerializationDelegate> AddAdditionalPropertiesCallback { get; set; }
     internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _NodesCreatedByLocalProject { get; set; }
     internal virtual bool _Interactive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
     {
@@ -3732,7 +3589,6 @@ public class InspectorSerializationDelegate : IDiagnosticsSerializationDelegate
 
 
 
-    #endregion
 }
 
 }

@@ -345,7 +345,6 @@ namespace FlutterSDK.Cupertino.Switch
     /// </Summary>
     public class CupertinoSwitch : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoSwitch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -355,17 +354,11 @@ namespace FlutterSDK.Cupertino.Switch
             this.TrackColor = trackColor;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
         public virtual FlutterBinding.UI.Color TrackColor { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Switch._CupertinoSwitchState CreateState() => new _CupertinoSwitchState();
 
@@ -380,18 +373,13 @@ namespace FlutterSDK.Cupertino.Switch
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoSwitchState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Switch.CupertinoSwitch>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CupertinoSwitchState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Gestures.Tap.TapGestureRecognizer _Tap { get; set; }
         internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Drag { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
@@ -400,9 +388,6 @@ namespace FlutterSDK.Cupertino.Switch
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Reaction { get; set; }
         public virtual bool NeedsPositionAnimation { get; set; }
         public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -551,13 +536,11 @@ namespace FlutterSDK.Cupertino.Switch
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoSwitchRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _CupertinoSwitchRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), TextDirection textDirection = default(TextDirection), FlutterSDK.Cupertino.Switch._CupertinoSwitchState state = default(FlutterSDK.Cupertino.Switch._CupertinoSwitchState))
         : base(key: key)
         {
@@ -568,18 +551,12 @@ namespace FlutterSDK.Cupertino.Switch
             this.TextDirection = textDirection;
             this.State = state;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
         public virtual FlutterBinding.UI.Color TrackColor { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterSDK.Cupertino.Switch._CupertinoSwitchState State { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Switch._RenderCupertinoSwitch CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -602,13 +579,11 @@ namespace FlutterSDK.Cupertino.Switch
 
 
 
-        #endregion
     }
 
 
     public class _RenderCupertinoSwitch : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
-        #region constructors
         public _RenderCupertinoSwitch(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), TextDirection textDirection = default(TextDirection), FlutterSDK.Cupertino.Switch._CupertinoSwitchState state = default(FlutterSDK.Cupertino.Switch._CupertinoSwitchState))
         : base(additionalConstraints: BoxConstraints.TightFor(width: SwitchDefaultClass._KSwitchWidth, height: SwitchDefaultClass._KSwitchHeight))
         {
@@ -618,9 +593,6 @@ namespace FlutterSDK.Cupertino.Switch
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Cupertino.Switch._CupertinoSwitchState _State { get; set; }
         internal virtual bool _Value { get; set; }
         internal virtual FlutterBinding.UI.Color _ActiveColor { get; set; }
@@ -633,9 +605,6 @@ namespace FlutterSDK.Cupertino.Switch
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTestSelf(FlutterBinding.UI.Offset position) => true;
 
@@ -701,7 +670,6 @@ namespace FlutterSDK.Cupertino.Switch
 
 
 
-        #endregion
     }
 
 }

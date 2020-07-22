@@ -322,14 +322,10 @@ namespace FlutterSDK.Cupertino.Icons
     /// </Summary>
     public class CupertinoIcons
     {
-        #region constructors
         internal CupertinoIcons()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string IconFont { get; set; }
         public virtual string IconFontPackage { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Leftchevron { get; set; }
@@ -470,10 +466,6 @@ namespace FlutterSDK.Cupertino.Icons
         public virtual FlutterSDK.Widgets.Icondata.IconData Newssolid { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Brightness { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Brightnesssolid { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

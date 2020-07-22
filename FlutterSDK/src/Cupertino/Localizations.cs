@@ -562,17 +562,10 @@ namespace FlutterSDK.Cupertino.Localizations
 
     public class _CupertinoLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Cupertino.Localizations.CupertinoLocalizations>
     {
-        #region constructors
         public _CupertinoLocalizationsDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new bool IsSupported(Locale locale) => locale.LanguageCode == "en";
 
@@ -586,7 +579,6 @@ namespace FlutterSDK.Cupertino.Localizations
 
 
 
-        #endregion
     }
 
 
@@ -595,14 +587,10 @@ namespace FlutterSDK.Cupertino.Localizations
     /// </Summary>
     public class DefaultCupertinoLocalizations : ICupertinoLocalizations
     {
-        #region constructors
         public DefaultCupertinoLocalizations()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<string> _ShortWeekdays { get; set; }
         internal virtual List<string> _ShortMonths { get; set; }
         internal virtual List<string> _Months { get; set; }
@@ -617,9 +605,6 @@ namespace FlutterSDK.Cupertino.Localizations
         public virtual string CopyButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string PasteButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string SelectAllButtonLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new string DatePickerYear(int yearIndex) => yearIndex.ToString();
 
@@ -701,7 +686,6 @@ namespace FlutterSDK.Cupertino.Localizations
 
 
 
-        #endregion
     }
 
 

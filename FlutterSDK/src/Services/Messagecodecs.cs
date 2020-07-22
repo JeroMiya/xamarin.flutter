@@ -439,17 +439,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class BinaryCodec : IMessageCodec<ByteData>
     {
-        #region constructors
         public BinaryCodec()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new ByteData DecodeMessage(ByteData message) => message;
 
@@ -458,7 +451,6 @@ namespace FlutterSDK.Services.Messagecodecs
         public new ByteData EncodeMessage(ByteData message) => message;
 
 
-        #endregion
     }
 
 
@@ -470,17 +462,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class StringCodec : IMessageCodec<string>
     {
-        #region constructors
         public StringCodec()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string DecodeMessage(ByteData message)
         {
@@ -500,7 +485,6 @@ namespace FlutterSDK.Services.Messagecodecs
 
 
 
-        #endregion
     }
 
 
@@ -526,17 +510,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class JSONMessageCodec : IMessageCodec<object>
     {
-        #region constructors
         public JSONMessageCodec()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new ByteData EncodeMessage(object message)
         {
@@ -555,7 +532,6 @@ namespace FlutterSDK.Services.Messagecodecs
 
 
 
-        #endregion
     }
 
 
@@ -567,17 +543,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class JSONMethodCodec : IMethodCodec
     {
-        #region constructors
         public JSONMethodCodec()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
         {
@@ -628,7 +597,6 @@ namespace FlutterSDK.Services.Messagecodecs
 
 
 
-        #endregion
     }
 
 
@@ -687,14 +655,10 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class StandardMessageCodec : IMessageCodec<object>
     {
-        #region constructors
         public StandardMessageCodec()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _ValueNull { get; set; }
         internal virtual int _ValueTrue { get; set; }
         internal virtual int _ValueFalse { get; set; }
@@ -709,9 +673,6 @@ namespace FlutterSDK.Services.Messagecodecs
         internal virtual int _ValueFloat64List { get; set; }
         internal virtual int _ValueList { get; set; }
         internal virtual int _ValueMap { get; set; }
-        #endregion
-
-        #region methods
 
         public new ByteData EncodeMessage(object message)
         {
@@ -939,7 +900,6 @@ namespace FlutterSDK.Services.Messagecodecs
 
 
 
-        #endregion
     }
 
 
@@ -955,18 +915,11 @@ namespace FlutterSDK.Services.Messagecodecs
     /// </Summary>
     public class StandardMethodCodec : IMethodCodec
     {
-        #region constructors
         public StandardMethodCodec(FlutterSDK.Services.Messagecodecs.StandardMessageCodec messageCodec = default(FlutterSDK.Services.Messagecodecs.StandardMessageCodec))
         {
             this.MessageCodec = messageCodec;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Messagecodecs.StandardMessageCodec MessageCodec { get; set; }
-        #endregion
-
-        #region methods
 
         public new ByteData EncodeMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
         {
@@ -1027,7 +980,6 @@ namespace FlutterSDK.Services.Messagecodecs
 
 
 
-        #endregion
     }
 
 }

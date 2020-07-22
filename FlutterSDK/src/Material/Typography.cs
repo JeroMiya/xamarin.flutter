@@ -471,7 +471,6 @@ namespace FlutterSDK.Material.Typography
     /// </Summary>
     public class Typography : IDiagnosticable
     {
-        #region constructors
         public Typography(FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Texttheme.TextTheme black = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme white = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme englishLike = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme dense = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme tall = default(FlutterSDK.Material.Texttheme.TextTheme))
         : base()
         {
@@ -514,9 +513,6 @@ namespace FlutterSDK.Material.Typography
             this.Dense = dense;
             this.Tall = tall;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Texttheme.TextTheme Black { get; set; }
         public virtual FlutterSDK.Material.Texttheme.TextTheme White { get; set; }
         public virtual FlutterSDK.Material.Texttheme.TextTheme EnglishLike { get; set; }
@@ -538,9 +534,6 @@ namespace FlutterSDK.Material.Typography
         public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2014 { get; set; }
         public virtual FlutterSDK.Material.Texttheme.TextTheme Tall2018 { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns one of [englishLike], [dense], or [tall].
@@ -603,7 +596,6 @@ namespace FlutterSDK.Material.Typography
 
 
 
-        #endregion
     }
 
 

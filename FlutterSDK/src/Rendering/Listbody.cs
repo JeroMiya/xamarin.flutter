@@ -433,16 +433,8 @@ namespace FlutterSDK.Rendering.Listbody
     /// </Summary>
     public class ListBodyParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public ListBodyParentData()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -460,7 +452,6 @@ namespace FlutterSDK.Rendering.Listbody
     /// </Summary>
     public class RenderListBody : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listbody.ListBodyParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listbody.ListBodyParentData>
     {
-        #region constructors
         public RenderListBody(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
         : base()
         {
@@ -469,15 +460,9 @@ namespace FlutterSDK.Rendering.Listbody
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -673,7 +658,6 @@ namespace FlutterSDK.Rendering.Listbody
 
 
 
-        #endregion
     }
 
 }

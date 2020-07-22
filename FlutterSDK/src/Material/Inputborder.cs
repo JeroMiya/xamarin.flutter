@@ -446,21 +446,14 @@ namespace FlutterSDK.Material.Inputborder
     /// </Summary>
     public class InputBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public InputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
             this.BorderSide = borderSide;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Inputborder.InputBorder None { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this input border with the specified `borderSide`.
@@ -486,26 +479,18 @@ namespace FlutterSDK.Material.Inputborder
         {
         }
 
-        #endregion
     }
 
 
     public class _NoInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
-        #region constructors
         public _NoInputBorder()
         : base(borderSide: BordersDefaultClass.BorderSide.None)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputborder._NoInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide)) => new _NoInputBorder();
 
@@ -539,7 +524,6 @@ namespace FlutterSDK.Material.Inputborder
 
 
 
-        #endregion
     }
 
 
@@ -558,22 +542,15 @@ namespace FlutterSDK.Material.Inputborder
     /// </Summary>
     public class UnderlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
-        #region constructors
         public UnderlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
         : base(borderSide: borderSide)
         {
             this.BorderRadius = borderRadius;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputborder.UnderlineInputBorder CopyWith(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius))
         {
@@ -659,7 +636,6 @@ namespace FlutterSDK.Material.Inputborder
 
 
 
-        #endregion
     }
 
 
@@ -680,24 +656,17 @@ namespace FlutterSDK.Material.Inputborder
     /// </Summary>
     public class OutlineInputBorder : FlutterSDK.Material.Inputborder.InputBorder
     {
-        #region constructors
         public OutlineInputBorder(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double gapPadding = 4.0)
         : base(borderSide: borderSide)
         {
             this.BorderRadius = borderRadius;
             this.GapPadding = gapPadding;
         }
-        #endregion
-
-        #region fields
         public virtual double GapPadding { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual bool IsOutline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private bool _CornersAreCircular(FlutterSDK.Painting.Borderradius.BorderRadius borderRadius)
         {
@@ -852,7 +821,6 @@ namespace FlutterSDK.Material.Inputborder
 
 
 
-        #endregion
     }
 
 }

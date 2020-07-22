@@ -395,20 +395,13 @@ namespace FlutterSDK.Material.Inputdecorator
 
     public class _InputBorderGap : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public _InputBorderGap()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _Start { get; set; }
         internal virtual double _Extent { get; set; }
         public virtual double Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Extent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -419,35 +412,25 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        #endregion
     }
 
 
     public class _InputBorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Material.Inputborder.InputBorder>
     {
-        #region constructors
         public _InputBorderTween(FlutterSDK.Material.Inputborder.InputBorder begin = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder end = default(FlutterSDK.Material.Inputborder.InputBorder))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputborder.InputBorder Lerp(double t) => BordersDefaultClass.ShapeBorder.Lerp(Begin, End, t) as InputBorder;
 
 
-        #endregion
     }
 
 
     public class _InputBorderPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _InputBorderPainter(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable), FlutterSDK.Animation.Animation.Animation<double> borderAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Material.Inputdecorator._InputBorderTween border = default(FlutterSDK.Material.Inputdecorator._InputBorderTween), FlutterSDK.Animation.Animation.Animation<double> gapAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Material.Inputdecorator._InputBorderGap gap = default(FlutterSDK.Material.Inputdecorator._InputBorderGap), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<double> hoverAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Tween.ColorTween hoverColorTween = default(FlutterSDK.Animation.Tween.ColorTween))
         : base(repaint: repaint)
         {
@@ -460,9 +443,6 @@ namespace FlutterSDK.Material.Inputdecorator
             this.HoverAnimation = hoverAnimation;
             this.HoverColorTween = hoverColorTween;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> BorderAnimation { get; set; }
         public virtual FlutterSDK.Material.Inputdecorator._InputBorderTween Border { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> GapAnimation { get; set; }
@@ -472,9 +452,6 @@ namespace FlutterSDK.Material.Inputdecorator
         public virtual FlutterSDK.Animation.Tween.ColorTween HoverColorTween { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> HoverAnimation { get; set; }
         public virtual FlutterBinding.UI.Color BlendedColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -505,13 +482,11 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        #endregion
     }
 
 
     public class _BorderContainer : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _BorderContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputdecorator._InputBorderGap gap = default(FlutterSDK.Material.Inputdecorator._InputBorderGap), FlutterSDK.Animation.Animation.Animation<double> gapAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), bool isHovering = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -523,9 +498,6 @@ namespace FlutterSDK.Material.Inputdecorator
             this.IsHovering = isHovering;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Inputborder.InputBorder Border { get; set; }
         public virtual FlutterSDK.Material.Inputdecorator._InputBorderGap Gap { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> GapAnimation { get; set; }
@@ -533,25 +505,17 @@ namespace FlutterSDK.Material.Inputdecorator
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
         public virtual bool IsHovering { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputdecorator._BorderContainerState CreateState() => new _BorderContainerState();
 
 
-        #endregion
     }
 
 
     public class _BorderContainerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Inputdecorator._BorderContainer>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _BorderContainerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual TimeSpan _KHoverDuration { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _HoverColorController { get; set; }
@@ -559,9 +523,6 @@ namespace FlutterSDK.Material.Inputdecorator
         internal virtual FlutterSDK.Material.Inputdecorator._InputBorderTween _Border { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _HoverAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Tween.ColorTween _HoverColorTween { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -627,27 +588,19 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        #endregion
     }
 
 
     public class _Shaker : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public _Shaker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: animation)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double TranslateX { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -656,13 +609,11 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        #endregion
     }
 
 
     public class _HelperError : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _HelperError(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), TextAlign textAlign = default(TextAlign), string helperText = default(string), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), string errorText = default(string), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int))
         : base(key: key)
         {
@@ -674,9 +625,6 @@ namespace FlutterSDK.Material.Inputdecorator
             this.ErrorStyle = errorStyle;
             this.ErrorMaxLines = errorMaxLines;
         }
-        #endregion
-
-        #region fields
         public virtual TextAlign TextAlign { get; set; }
         public virtual string HelperText { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle HelperStyle { get; set; }
@@ -684,32 +632,21 @@ namespace FlutterSDK.Material.Inputdecorator
         public virtual string ErrorText { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ErrorStyle { get; set; }
         public virtual int ErrorMaxLines { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputdecorator._HelperErrorState CreateState() => new _HelperErrorState();
 
 
-        #endregion
     }
 
 
     public class _HelperErrorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Inputdecorator._HelperError>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _HelperErrorState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Empty { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _Helper { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _Error { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -851,13 +788,11 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        #endregion
     }
 
 
     public class _Decoration
     {
-        #region constructors
         public _Decoration(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool isCollapsed = default(bool), double floatingLabelHeight = default(double), double floatingLabelProgress = default(double), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputdecorator._InputBorderGap borderGap = default(FlutterSDK.Material.Inputdecorator._InputBorderGap), bool alignLabelWithHint = default(bool), bool isDense = default(bool), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget input = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget hint = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget prefixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget suffixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget helperError = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget counter = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget container = default(FlutterSDK.Widgets.Framework.Widget))
         : base()
         {
@@ -882,9 +817,6 @@ namespace FlutterSDK.Material.Inputdecorator
             this.Counter = counter;
             this.Container = container;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
         public virtual bool IsCollapsed { get; set; }
         public virtual double FloatingLabelHeight { get; set; }
@@ -906,9 +838,6 @@ namespace FlutterSDK.Material.Inputdecorator
         public virtual FlutterSDK.Widgets.Framework.Widget Counter { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Container { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -919,13 +848,11 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        #endregion
     }
 
 
     public class _RenderDecorationLayout
     {
-        #region constructors
         public _RenderDecorationLayout(Dictionary<FlutterSDK.Rendering.Box.RenderBox, double> boxToBaseline = default(Dictionary<FlutterSDK.Rendering.Box.RenderBox, double>), double inputBaseline = default(double), double outlineBaseline = default(double), double subtextBaseline = default(double), double containerHeight = default(double), double subtextHeight = default(double))
         {
             this.BoxToBaseline = boxToBaseline;
@@ -935,33 +862,22 @@ namespace FlutterSDK.Material.Inputdecorator
             this.ContainerHeight = containerHeight;
             this.SubtextHeight = subtextHeight;
         }
-        #endregion
-
-        #region fields
         public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, double> BoxToBaseline { get; set; }
         public virtual double InputBaseline { get; set; }
         public virtual double OutlineBaseline { get; set; }
         public virtual double SubtextBaseline { get; set; }
         public virtual double ContainerHeight { get; set; }
         public virtual double SubtextHeight { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _RenderDecoration : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public _RenderDecoration(FlutterSDK.Material.Inputdecorator._Decoration decoration = default(FlutterSDK.Material.Inputdecorator._Decoration), TextDirection textDirection = default(TextDirection), TextBaseline textBaseline = default(TextBaseline), bool isFocused = default(bool), bool expands = default(bool), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double SubtextGap { get; set; }
         public virtual Dictionary<FlutterSDK.Material.Inputdecorator._DecorationSlot, FlutterSDK.Rendering.Box.RenderBox> SlotToChild { get; set; }
         public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Inputdecorator._DecorationSlot> ChildToSlot { get; set; }
@@ -1004,9 +920,6 @@ namespace FlutterSDK.Material.Inputdecorator
         internal virtual bool _IsOutlineAligned { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ContentPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild, FlutterSDK.Rendering.Box.RenderBox newChild, FlutterSDK.Material.Inputdecorator._DecorationSlot slot)
         {
@@ -1566,28 +1479,20 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
     public class _RenderDecorationElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _RenderDecorationElement(FlutterSDK.Material.Inputdecorator._Decorator widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Dictionary<FlutterSDK.Material.Inputdecorator._DecorationSlot, FlutterSDK.Widgets.Framework.Element> SlotToChild { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Material.Inputdecorator._DecorationSlot> ChildToSlot { get; set; }
         public virtual FlutterSDK.Material.Inputdecorator._Decorator Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Material.Inputdecorator._RenderDecoration RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -1749,13 +1654,11 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
     public class _Decorator : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public _Decorator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), FlutterSDK.Material.Inputdecorator._Decoration decoration = default(FlutterSDK.Material.Inputdecorator._Decoration), TextDirection textDirection = default(TextDirection), TextBaseline textBaseline = default(TextBaseline), bool isFocused = default(bool), bool expands = default(bool))
         : base(key: key)
         {
@@ -1766,18 +1669,12 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             this.IsFocused = isFocused;
             this.Expands = expands;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Inputdecorator._Decoration Decoration { get; set; }
         public virtual TextDirection TextDirection { get; set; }
         public virtual TextBaseline TextBaseline { get; set; }
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical TextAlignVertical { get; set; }
         public virtual bool IsFocused { get; set; }
         public virtual bool Expands { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputdecorator._RenderDecorationElement CreateElement() => new _RenderDecorationElement(this);
 
@@ -1804,13 +1701,11 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
     public class _AffixText : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _AffixText(bool labelIsFloating = default(bool), string text = default(string), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             this.LabelIsFloating = labelIsFloating;
@@ -1818,16 +1713,10 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             this.Style = style;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool LabelIsFloating { get; set; }
         public virtual string Text { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1836,7 +1725,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
@@ -1864,7 +1752,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
     /// </Summary>
     public class InputDecorator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public InputDecorator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Painting.Textstyle.TextStyle baseStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), bool isFocused = false, bool isHovering = false, bool expands = false, bool isEmpty = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1878,9 +1765,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             this.IsEmpty = isEmpty;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration Decoration { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle BaseStyle { get; set; }
         public virtual TextAlign TextAlign { get; set; }
@@ -1891,9 +1775,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
         public virtual bool IsEmpty { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual bool _LabelShouldWithdraw { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inputdecorator._InputDecoratorState CreateState() => new _InputDecoratorState();
 
@@ -1929,18 +1810,13 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
     public class _InputDecoratorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Inputdecorator.InputDecorator>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _InputDecoratorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FloatingLabelController { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ShakingLabelController { get; set; }
         internal virtual FlutterSDK.Material.Inputdecorator._InputBorderGap _BorderGap { get; set; }
@@ -1953,9 +1829,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
         internal virtual bool _FloatingLabelEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _HasInlineLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _ShouldShowLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -2222,7 +2095,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
@@ -2333,7 +2205,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
     /// </Summary>
     public class InputDecoration
     {
-        #region constructors
         public InputDecoration(FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), string labelText = default(string), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), string helperText = default(string), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), string hintText = default(string), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int hintMaxLines = default(int), string errorText = default(string), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int), bool hasFloatingPlaceholder = true, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), bool isDense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget prefixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Box.BoxConstraints prefixIconConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget prefix = default(FlutterSDK.Widgets.Framework.Widget), string prefixText = default(string), FlutterSDK.Painting.Textstyle.TextStyle prefixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget suffixIcon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget suffix = default(FlutterSDK.Widgets.Framework.Widget), string suffixText = default(string), FlutterSDK.Painting.Textstyle.TextStyle suffixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints suffixIconConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget counter = default(FlutterSDK.Widgets.Framework.Widget), string counterText = default(string), FlutterSDK.Painting.Textstyle.TextStyle counterStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = default(bool), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder errorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedErrorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder disabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder enabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool enabled = true, string semanticCounterText = default(string), bool alignLabelWithHint = default(bool))
         : base()
         {
@@ -2393,9 +2264,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             instance.Border = border;
             instance.Enabled = enabled;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
         public virtual string LabelText { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -2440,9 +2308,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
         public virtual string SemanticCounterText { get; set; }
         public virtual bool AlignLabelWithHint { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this input decoration with the given fields replaced
@@ -2483,7 +2348,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 
@@ -2500,7 +2364,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
     /// </Summary>
     public class InputDecorationTheme : IDiagnosticable
     {
-        #region constructors
         public InputDecorationTheme(FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle helperStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int helperMaxLines = default(int), FlutterSDK.Painting.Textstyle.TextStyle hintStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle errorStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), int errorMaxLines = default(int), bool hasFloatingPlaceholder = true, FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior floatingLabelBehavior = default(FlutterSDK.Material.Inputdecorator.FloatingLabelBehavior), bool isDense = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool isCollapsed = false, FlutterSDK.Painting.Textstyle.TextStyle prefixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle suffixStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle counterStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool filled = false, FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inputborder.InputBorder errorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder focusedErrorBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder disabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder enabledBorder = default(FlutterSDK.Material.Inputborder.InputBorder), FlutterSDK.Material.Inputborder.InputBorder border = default(FlutterSDK.Material.Inputborder.InputBorder), bool alignLabelWithHint = false)
         : base()
         {
@@ -2530,9 +2393,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             this.Border = border;
             this.AlignLabelWithHint = alignLabelWithHint;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle HelperStyle { get; set; }
         public virtual int HelperMaxLines { get; set; }
@@ -2559,9 +2419,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
         public virtual FlutterSDK.Material.Inputborder.InputBorder Border { get; set; }
         public virtual bool AlignLabelWithHint { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -2618,7 +2475,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 

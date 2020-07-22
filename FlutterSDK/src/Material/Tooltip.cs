@@ -450,7 +450,6 @@ namespace FlutterSDK.Material.Tooltip
     /// </Summary>
     public class Tooltip : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Tooltip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -467,9 +466,6 @@ namespace FlutterSDK.Material.Tooltip
             this.ShowDuration = showDuration;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
@@ -482,9 +478,6 @@ namespace FlutterSDK.Material.Tooltip
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual TimeSpan WaitDuration { get; set; }
         public virtual TimeSpan ShowDuration { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Tooltip._TooltipState CreateState() => new _TooltipState();
 
@@ -506,18 +499,13 @@ namespace FlutterSDK.Material.Tooltip
 
 
 
-        #endregion
     }
 
 
     public class _TooltipState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tooltip.Tooltip>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _TooltipState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _DefaultTooltipHeight { get; set; }
         internal virtual double _DefaultVerticalOffset { get; set; }
         internal virtual bool _DefaultPreferBelow { get; set; }
@@ -544,9 +532,6 @@ namespace FlutterSDK.Material.Tooltip
         public virtual TimeSpan WaitDuration { get; set; }
         internal virtual bool _MouseIsConnected { get; set; }
         internal virtual bool _LongPressActivated { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -782,7 +767,6 @@ namespace FlutterSDK.Material.Tooltip
 
 
 
-        #endregion
     }
 
 
@@ -792,7 +776,6 @@ namespace FlutterSDK.Material.Tooltip
     /// </Summary>
     public class _TooltipPositionDelegate : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        #region constructors
         public _TooltipPositionDelegate(FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
         : base()
         {
@@ -800,15 +783,9 @@ namespace FlutterSDK.Material.Tooltip
             this.VerticalOffset = verticalOffset;
             this.PreferBelow = preferBelow;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Target { get; set; }
         public virtual double VerticalOffset { get; set; }
         public virtual bool PreferBelow { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints) => constraints.Loosen();
 
@@ -835,13 +812,11 @@ namespace FlutterSDK.Material.Tooltip
 
 
 
-        #endregion
     }
 
 
     public class _TooltipOverlay : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _TooltipOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string message = default(string), double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Offset target = default(FlutterBinding.UI.Offset), double verticalOffset = default(double), bool preferBelow = default(bool))
         : base(key: key)
         {
@@ -856,9 +831,6 @@ namespace FlutterSDK.Material.Tooltip
             this.VerticalOffset = verticalOffset;
             this.PreferBelow = preferBelow;
         }
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
@@ -869,9 +841,6 @@ namespace FlutterSDK.Material.Tooltip
         public virtual FlutterBinding.UI.Offset Target { get; set; }
         public virtual double VerticalOffset { get; set; }
         public virtual bool PreferBelow { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -880,7 +849,6 @@ namespace FlutterSDK.Material.Tooltip
 
 
 
-        #endregion
     }
 
 }

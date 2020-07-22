@@ -454,21 +454,14 @@ namespace FlutterSDK.Widgets.Pages
     /// </Summary>
     public class PageRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     {
-        #region constructors
         public PageRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool fullscreenDialog = false)
         : base(settings: settings)
         {
             this.FullscreenDialog = fullscreenDialog;
         }
-        #endregion
-
-        #region fields
         public virtual bool FullscreenDialog { get; set; }
         public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute) => nextRoute is PageRoute;
 
@@ -477,7 +470,6 @@ namespace FlutterSDK.Widgets.Pages
         public new bool CanTransitionFrom(FlutterSDK.Widgets.Routes.TransitionRoute<object> previousRoute) => previousRoute is PageRoute;
 
 
-        #endregion
     }
 
 
@@ -489,7 +481,6 @@ namespace FlutterSDK.Widgets.Pages
     /// </Summary>
     public class PageRouteBuilder<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
-        #region constructors
         public PageRouteBuilder(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionsBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), TimeSpan transitionDuration = default(TimeSpan), bool opaque = true, bool barrierDismissible = false, FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), string barrierLabel = default(string), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
         {
@@ -502,9 +493,6 @@ namespace FlutterSDK.Widgets.Pages
             this.BarrierLabel = barrierLabel;
             this.MaintainState = maintainState;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Routes.RoutePageBuilder PageBuilder { get; set; }
         public virtual FlutterSDK.Widgets.Routes.RouteTransitionsBuilder TransitionsBuilder { get; set; }
         public new TimeSpan TransitionDuration { get; set; }
@@ -513,9 +501,6 @@ namespace FlutterSDK.Widgets.Pages
         public new FlutterBinding.UI.Color BarrierColor { get; set; }
         public new string BarrierLabel { get; set; }
         public new bool MaintainState { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
         {
@@ -532,7 +517,6 @@ namespace FlutterSDK.Widgets.Pages
 
 
 
-        #endregion
     }
 
 }

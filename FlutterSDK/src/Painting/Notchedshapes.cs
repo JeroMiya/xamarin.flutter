@@ -459,17 +459,10 @@ namespace FlutterSDK.Painting.Notchedshapes
     /// </Summary>
     public class NotchedShape
     {
-        #region constructors
         public NotchedShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [Path] that describes the outline of the shape.
@@ -484,7 +477,6 @@ namespace FlutterSDK.Painting.Notchedshapes
             return default(Path);
         }
 
-        #endregion
     }
 
 
@@ -497,17 +489,10 @@ namespace FlutterSDK.Painting.Notchedshapes
     /// </Summary>
     public class CircularNotchedRectangle : FlutterSDK.Painting.Notchedshapes.NotchedShape
     {
-        #region constructors
         public CircularNotchedRectangle()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [Path] that describes a rectangle with a smooth circular notch.
@@ -560,7 +545,6 @@ namespace FlutterSDK.Painting.Notchedshapes
 
 
 
-        #endregion
     }
 
 
@@ -574,20 +558,13 @@ namespace FlutterSDK.Painting.Notchedshapes
     /// </Summary>
     public class AutomaticNotchedShape : FlutterSDK.Painting.Notchedshapes.NotchedShape
     {
-        #region constructors
         public AutomaticNotchedShape(FlutterSDK.Painting.Borders.ShapeBorder host, FlutterSDK.Painting.Borders.ShapeBorder guest = default(FlutterSDK.Painting.Borders.ShapeBorder))
         {
             this.Host = host;
             this.Guest = guest;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Host { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Guest { get; set; }
-        #endregion
-
-        #region methods
 
         public new Path GetOuterPath(FlutterBinding.UI.Rect hostRect, FlutterBinding.UI.Rect guestRect)
         {
@@ -603,7 +580,6 @@ namespace FlutterSDK.Painting.Notchedshapes
 
 
 
-        #endregion
     }
 
 }

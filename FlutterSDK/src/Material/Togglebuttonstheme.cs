@@ -443,7 +443,6 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     /// </Summary>
     public class ToggleButtonsThemeData : IDiagnosticable
     {
-        #region constructors
         public ToggleButtonsThemeData(FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
         {
             this.TextStyle = textStyle;
@@ -462,9 +461,6 @@ namespace FlutterSDK.Material.Togglebuttonstheme
             this.BorderRadius = borderRadius;
             this.BorderWidth = borderWidth;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
@@ -481,9 +477,6 @@ namespace FlutterSDK.Material.Togglebuttonstheme
         public virtual double BorderWidth { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -542,7 +535,6 @@ namespace FlutterSDK.Material.Togglebuttonstheme
 
 
 
-        #endregion
     }
 
 
@@ -555,19 +547,12 @@ namespace FlutterSDK.Material.Togglebuttonstheme
     /// </Summary>
     public class ToggleButtonsTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public ToggleButtonsTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData data = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The closest instance of this class that encloses the given context.
@@ -604,7 +589,6 @@ namespace FlutterSDK.Material.Togglebuttonstheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 }

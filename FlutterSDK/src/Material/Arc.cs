@@ -400,15 +400,11 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialPointArcTween : FlutterSDK.Animation.Tween.Tween<Offset>
     {
-        #region constructors
         public MaterialPointArcTween(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         internal virtual FlutterBinding.UI.Offset _Center { get; set; }
         internal virtual double _Radius { get; set; }
@@ -420,9 +416,6 @@ namespace FlutterSDK.Material.Arc
         public virtual double EndAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset Begin { set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Initialize()
         {
@@ -499,27 +492,18 @@ namespace FlutterSDK.Material.Arc
 
 
 
-        #endregion
     }
 
 
     public class _Diagonal
     {
-        #region constructors
         public _Diagonal(FlutterSDK.Material.Arc._CornerId beginId, FlutterSDK.Material.Arc._CornerId endId)
         {
             this.BeginId = beginId;
             this.EndId = endId;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Arc._CornerId BeginId { get; set; }
         public virtual FlutterSDK.Material.Arc._CornerId EndId { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -546,15 +530,11 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
     {
-        #region constructors
         public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _BeginArc { get; set; }
         internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _EndArc { get; set; }
@@ -562,9 +542,6 @@ namespace FlutterSDK.Material.Arc
         public virtual FlutterSDK.Material.Arc.MaterialPointArcTween EndArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Initialize()
         {
@@ -610,7 +587,6 @@ namespace FlutterSDK.Material.Arc
 
 
 
-        #endregion
     }
 
 
@@ -634,23 +610,16 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
     {
-        #region constructors
         public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _CenterArc { get; set; }
         public virtual FlutterSDK.Material.Arc.MaterialPointArcTween CenterArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Initialize()
         {
@@ -677,7 +646,6 @@ namespace FlutterSDK.Material.Arc
 
 
 
-        #endregion
     }
 
 

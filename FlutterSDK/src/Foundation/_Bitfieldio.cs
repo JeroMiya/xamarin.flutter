@@ -306,7 +306,6 @@ namespace FlutterSDK.Foundation._Bitfieldio
     /// </Summary>
     public class BitField<T> : IBitField<T>
     {
-        #region constructors
         public BitField(int _length)
         : base()
         {
@@ -316,17 +315,11 @@ namespace FlutterSDK.Foundation._Bitfieldio
         {
             var instance = new BitField<T>(); instance._Length = _length;
         }
-        #endregion
-
-        #region fields
         internal virtual int _Length { get; set; }
         internal virtual int _Bits { get; set; }
         internal virtual int _SmiBits { get; set; }
         internal virtual int _AllZeros { get; set; }
         internal virtual int _AllOnes { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool IndexOfOperator(T index)
         {
@@ -355,7 +348,6 @@ namespace FlutterSDK.Foundation._Bitfieldio
 
 
 
-        #endregion
     }
 
 }

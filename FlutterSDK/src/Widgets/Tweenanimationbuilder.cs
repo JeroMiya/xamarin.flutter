@@ -536,7 +536,6 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
     /// </Summary>
     public class TweenAnimationBuilder<T> : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public TweenAnimationBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.Tween<T> tween = default(FlutterSDK.Animation.Tween.Tween<T>), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T>), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, duration: duration, curve: curve, onEnd: onEnd)
         {
@@ -544,15 +543,9 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
             this.Builder = builder;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Tween.Tween<T> Tween { get; set; }
         public virtual FlutterSDK.Widgets.Valuelistenablebuilder.ValueWidgetBuilder<T> Builder { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
         {
@@ -561,22 +554,14 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
 
 
 
-        #endregion
     }
 
 
     public class _TweenAnimationBuilderState<T> : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Tweenanimationbuilder.TweenAnimationBuilder<T>>
     {
-        #region constructors
         public _TweenAnimationBuilderState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<T> _CurrentTween { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -614,7 +599,6 @@ namespace FlutterSDK.Widgets.Tweenanimationbuilder
 
 
 
-        #endregion
     }
 
 }

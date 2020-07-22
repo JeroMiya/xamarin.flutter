@@ -455,7 +455,6 @@ namespace FlutterSDK.Widgets.Safearea
     /// </Summary>
     public class SafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool maintainBottomViewPadding = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -467,9 +466,6 @@ namespace FlutterSDK.Widgets.Safearea
             this.MaintainBottomViewPadding = maintainBottomViewPadding;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool Left { get; set; }
         public virtual bool Top { get; set; }
         public virtual bool Right { get; set; }
@@ -477,9 +473,6 @@ namespace FlutterSDK.Widgets.Safearea
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
         public virtual bool MaintainBottomViewPadding { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -504,7 +497,6 @@ namespace FlutterSDK.Widgets.Safearea
 
 
 
-        #endregion
     }
 
 
@@ -532,7 +524,6 @@ namespace FlutterSDK.Widgets.Safearea
     /// </Summary>
     public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -543,18 +534,12 @@ namespace FlutterSDK.Widgets.Safearea
             this.Minimum = minimum;
             this.Sliver = sliver;
         }
-        #endregion
-
-        #region fields
         public virtual bool Left { get; set; }
         public virtual bool Top { get; set; }
         public virtual bool Right { get; set; }
         public virtual bool Bottom { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -577,7 +562,6 @@ namespace FlutterSDK.Widgets.Safearea
 
 
 
-        #endregion
     }
 
 }

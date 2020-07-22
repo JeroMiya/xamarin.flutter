@@ -373,18 +373,11 @@ namespace FlutterSDK.Material.Backbutton
     /// </Summary>
     public class BackButtonIcon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public BackButtonIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the appropriate "back" icon for the given `platform`.
@@ -402,7 +395,6 @@ namespace FlutterSDK.Material.Backbutton
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => new Icon(_GetIconData(ThemeDefaultClass.Theme.Of(context).Platform));
 
 
-        #endregion
     }
 
 
@@ -436,21 +428,14 @@ namespace FlutterSDK.Material.Backbutton
     /// </Summary>
     public class BackButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public BackButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
             this.Color = color;
             this.OnPressed = onPressed;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual VoidCallback OnPressed { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -472,7 +457,6 @@ namespace FlutterSDK.Material.Backbutton
 
 
 
-        #endregion
     }
 
 
@@ -496,21 +480,14 @@ namespace FlutterSDK.Material.Backbutton
     /// </Summary>
     public class CloseButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CloseButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
             this.Color = color;
             this.OnPressed = onPressed;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual VoidCallback OnPressed { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -532,7 +509,6 @@ namespace FlutterSDK.Material.Backbutton
 
 
 
-        #endregion
     }
 
 }

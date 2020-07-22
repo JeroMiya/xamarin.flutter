@@ -450,17 +450,10 @@ namespace FlutterSDK.Services.Binarymessenger
     /// </Summary>
     public class BinaryMessenger
     {
-        #region constructors
         public BinaryMessenger()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Calls the handler registered for the given channel.
@@ -520,7 +513,6 @@ namespace FlutterSDK.Services.Binarymessenger
         {
         }
 
-        #endregion
     }
 
 }

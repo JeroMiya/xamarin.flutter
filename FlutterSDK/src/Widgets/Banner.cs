@@ -438,7 +438,6 @@ namespace FlutterSDK.Widgets.Banner
     /// </Summary>
     public class BannerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public BannerPainter(string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(repaint: BindingDefaultClass.PaintingBinding.Instance.SystemFonts)
         {
@@ -449,9 +448,6 @@ namespace FlutterSDK.Widgets.Banner
             this.Color = color;
             this.TextStyle = textStyle;
         }
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
         public virtual TextDirection TextDirection { get; set; }
         public virtual FlutterSDK.Widgets.Banner.BannerLocation Location { get; set; }
@@ -464,9 +460,6 @@ namespace FlutterSDK.Widgets.Banner
         internal virtual SKPaint _PaintShadow { get; set; }
         internal virtual SKPaint _PaintBanner { get; set; }
         internal virtual double _Rotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Prepare()
         {
@@ -533,7 +526,6 @@ namespace FlutterSDK.Widgets.Banner
 
 
 
-        #endregion
     }
 
 
@@ -550,7 +542,6 @@ namespace FlutterSDK.Widgets.Banner
     /// </Summary>
     public class Banner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Banner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string message = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Banner.BannerLocation location = default(FlutterSDK.Widgets.Banner.BannerLocation), TextDirection layoutDirection = default(TextDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(key: key)
         {
@@ -562,9 +553,6 @@ namespace FlutterSDK.Widgets.Banner
             this.Color = color;
             this.TextStyle = textStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual string Message { get; set; }
         public virtual TextDirection TextDirection { get; set; }
@@ -572,9 +560,6 @@ namespace FlutterSDK.Widgets.Banner
         public virtual TextDirection LayoutDirection { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -598,7 +583,6 @@ namespace FlutterSDK.Widgets.Banner
 
 
 
-        #endregion
     }
 
 
@@ -609,19 +593,12 @@ namespace FlutterSDK.Widgets.Banner
     /// </Summary>
     public class CheckedModeBanner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CheckedModeBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -643,7 +620,6 @@ namespace FlutterSDK.Widgets.Banner
 
 
 
-        #endregion
     }
 
 

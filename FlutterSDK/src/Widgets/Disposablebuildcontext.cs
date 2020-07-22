@@ -446,20 +446,13 @@ namespace FlutterSDK.Widgets.Disposablebuildcontext
     /// </Summary>
     public class DisposableBuildContext<T>
     {
-        #region constructors
         public DisposableBuildContext(T _state)
         : base()
         {
             this._State = _state;
         }
-        #endregion
-
-        #region fields
         internal virtual T _State { get; set; }
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called from asserts or tests to determine whether this object is in a
@@ -490,7 +483,6 @@ namespace FlutterSDK.Widgets.Disposablebuildcontext
 
 
 
-        #endregion
     }
 
 }

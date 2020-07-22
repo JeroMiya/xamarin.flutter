@@ -538,7 +538,6 @@ namespace FlutterSDK.Painting.Imageresolution
     /// </Summary>
     public class AssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
     {
-        #region constructors
         public AssetImage(string assetName, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
         : base()
         {
@@ -546,9 +545,6 @@ namespace FlutterSDK.Painting.Imageresolution
             this.Bundle = bundle;
             this.Package = package;
         }
-        #endregion
-
-        #region fields
         public virtual string AssetName { get; set; }
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
         public virtual string Package { get; set; }
@@ -556,9 +552,6 @@ namespace FlutterSDK.Painting.Imageresolution
         internal virtual RegExp _ExtractRatioRegExp { get; set; }
         public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
         {
@@ -666,7 +659,6 @@ namespace FlutterSDK.Painting.Imageresolution
 
 
 
-        #endregion
     }
 
 }

@@ -378,7 +378,6 @@ namespace FlutterSDK.Material.Appbartheme
     /// </Summary>
     public class AppBarTheme : IDiagnosticable
     {
-        #region constructors
         public AppBarTheme(Brightness brightness = default(Brightness), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme))
         {
             this.Brightness = brightness;
@@ -388,9 +387,6 @@ namespace FlutterSDK.Material.Appbartheme
             this.ActionsIconTheme = actionsIconTheme;
             this.TextTheme = textTheme;
         }
-        #endregion
-
-        #region fields
         public virtual Brightness Brightness { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Elevation { get; set; }
@@ -398,9 +394,6 @@ namespace FlutterSDK.Material.Appbartheme
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData ActionsIconTheme { get; set; }
         public virtual FlutterSDK.Material.Texttheme.TextTheme TextTheme { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -464,7 +457,6 @@ namespace FlutterSDK.Material.Appbartheme
 
 
 
-        #endregion
     }
 
 }

@@ -316,17 +316,10 @@ namespace FlutterSDK.Gestures.Converter
     /// </Summary>
     public class PointerEventConverter
     {
-        #region constructors
         internal PointerEventConverter()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Expand the given packet of pointer data into a sequence of framework
@@ -368,7 +361,6 @@ namespace FlutterSDK.Gestures.Converter
         private double _ToLogicalPixels(double physicalPixels, double devicePixelRatio) => physicalPixels == null ? null : physicalPixels / devicePixelRatio;
 
 
-        #endregion
     }
 
 }

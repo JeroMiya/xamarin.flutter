@@ -402,22 +402,15 @@ namespace FlutterSDK.Gestures.Recognizer
     /// </Summary>
     public class GestureRecognizer : FlutterSDK.Gestures.Arena.GestureArenaMember, IDiagnosticableTreeMixin
     {
-        #region constructors
         public GestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base()
         {
             this.DebugOwner = debugOwner;
         }
-        #endregion
-
-        #region fields
         public virtual @Object DebugOwner { get; set; }
         internal virtual PointerDeviceKind _KindFilter { get; set; }
         internal virtual Dictionary<int, PointerDeviceKind> _PointerToKind { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Registers a new pointer that might be relevant to this gesture
@@ -565,7 +558,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -581,22 +573,15 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class OneSequenceGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
-        #region constructors
         public OneSequenceGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<int, FlutterSDK.Gestures.Arena.GestureArenaEntry> _Entries { get; set; }
         internal virtual HashSet<int> _TrackedPointers { get; set; }
         internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Team { get; set; }
         public virtual FlutterSDK.Gestures.Team.GestureArenaTeam Team { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void HandleNonAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -747,7 +732,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -763,7 +747,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PrimaryPointerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
-        #region constructors
         public PrimaryPointerGestureRecognizer(TimeSpan deadline = default(TimeSpan), double preAcceptSlopTolerance = default(double), double postAcceptSlopTolerance = default(double), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
@@ -771,9 +754,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.PreAcceptSlopTolerance = preAcceptSlopTolerance;
             this.PostAcceptSlopTolerance = postAcceptSlopTolerance;
         }
-        #endregion
-
-        #region fields
         public virtual TimeSpan Deadline { get; set; }
         public virtual double PreAcceptSlopTolerance { get; set; }
         public virtual double PostAcceptSlopTolerance { get; set; }
@@ -782,9 +762,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         public virtual FlutterSDK.Gestures.Recognizer.OffsetPair InitialPosition { get; set; }
         internal virtual bool _GestureAccepted { get; set; }
         internal virtual Timer _Timer { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -939,7 +916,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -952,7 +928,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class OffsetPair
     {
-        #region constructors
         public OffsetPair(FlutterBinding.UI.Offset local = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset global = default(FlutterBinding.UI.Offset))
         {
             this.Local = local;
@@ -972,15 +947,9 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Recognizer.OffsetPair Zero { get; set; }
         public virtual FlutterBinding.UI.Offset Local { get; set; }
         public virtual FlutterBinding.UI.Offset Global { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds the `other.global` to [global] and `other.local` to [local].
@@ -1004,7 +973,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 

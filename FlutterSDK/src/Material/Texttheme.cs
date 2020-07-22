@@ -517,7 +517,6 @@ namespace FlutterSDK.Material.Texttheme
     /// </Summary>
     public class TextTheme : IDiagnosticable
     {
-        #region constructors
         public TextTheme(FlutterSDK.Painting.Textstyle.TextStyle headline1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline5 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline6 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle bodyText2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle caption = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle button = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle overline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display4 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display3 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle display1 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle headline = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle title = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subhead = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle subtitle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body2 = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle body1 = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base()
         {
@@ -525,9 +524,6 @@ namespace FlutterSDK.Material.Texttheme
             this.Button = button;
             this.Overline = overline;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline1 { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline2 { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Headline3 { get; set; }
@@ -552,9 +548,6 @@ namespace FlutterSDK.Material.Texttheme
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Body2 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Body1 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this text theme but with the given fields replaced with
@@ -734,7 +727,6 @@ namespace FlutterSDK.Material.Texttheme
 
 
 
-        #endregion
     }
 
 }

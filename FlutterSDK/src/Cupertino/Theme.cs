@@ -321,21 +321,14 @@ namespace FlutterSDK.Cupertino.Theme
     /// </Summary>
     public class CupertinoTheme : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Theme.CupertinoThemeData data = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Data = data;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData Data { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Retrieves the [CupertinoThemeData] from the closest ancestor [CupertinoTheme]
@@ -394,32 +387,23 @@ namespace FlutterSDK.Cupertino.Theme
 
 
 
-        #endregion
     }
 
 
     public class _InheritedCupertinoTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _InheritedCupertinoTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Theme.CupertinoTheme theme = default(FlutterSDK.Cupertino.Theme.CupertinoTheme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Theme = theme;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Theme.CupertinoTheme Theme { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Theme._InheritedCupertinoTheme old) => Theme.Data != old.Theme.Data;
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Theme.Data != old.Theme.Data;
 
 
-        #endregion
     }
 
 
@@ -443,7 +427,6 @@ namespace FlutterSDK.Cupertino.Theme
     /// </Summary>
     public class CupertinoThemeData : IDiagnosticable
     {
-        #region constructors
         public CupertinoThemeData(Brightness brightness = default(Brightness), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryContrastingColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme = default(FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData), FlutterBinding.UI.Color barBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color))
         : base()
         {
@@ -463,9 +446,6 @@ namespace FlutterSDK.Cupertino.Theme
             instance._ScaffoldBackgroundColor = _scaffoldBackgroundColor;
             instance._Defaults = _defaults;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults _Defaults { get; set; }
         public virtual Brightness Brightness { get; set; }
         internal virtual FlutterBinding.UI.Color _PrimaryColor { get; set; }
@@ -478,9 +458,6 @@ namespace FlutterSDK.Cupertino.Theme
         public virtual FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData TextTheme { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color BarBackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns an instance of the [CupertinoThemeData] whose property getters
@@ -544,13 +521,11 @@ namespace FlutterSDK.Cupertino.Theme
 
 
 
-        #endregion
     }
 
 
     public class _NoDefaultCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
     {
-        #region constructors
         public _NoDefaultCupertinoThemeData(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData textTheme, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor)
         : base(brightness, primaryColor, primaryContrastingColor, textTheme, barBackgroundColor, scaffoldBackgroundColor, null)
         {
@@ -560,17 +535,11 @@ namespace FlutterSDK.Cupertino.Theme
             this.BarBackgroundColor = barBackgroundColor;
             this.ScaffoldBackgroundColor = scaffoldBackgroundColor;
         }
-        #endregion
-
-        #region fields
         public new FlutterBinding.UI.Color PrimaryColor { get; set; }
         public new FlutterBinding.UI.Color PrimaryContrastingColor { get; set; }
         public new FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData TextTheme { get; set; }
         public new FlutterBinding.UI.Color BarBackgroundColor { get; set; }
         public new FlutterBinding.UI.Color ScaffoldBackgroundColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Theme._NoDefaultCupertinoThemeData ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = false)
         {
@@ -588,13 +557,11 @@ namespace FlutterSDK.Cupertino.Theme
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoThemeDefaults
     {
-        #region constructors
         public _CupertinoThemeDefaults(Brightness brightness, FlutterBinding.UI.Color primaryColor, FlutterBinding.UI.Color primaryContrastingColor, FlutterBinding.UI.Color barBackgroundColor, FlutterBinding.UI.Color scaffoldBackgroundColor, FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults textThemeDefaults)
         {
             this.Brightness = brightness;
@@ -604,18 +571,12 @@ namespace FlutterSDK.Cupertino.Theme
             this.ScaffoldBackgroundColor = scaffoldBackgroundColor;
             this.TextThemeDefaults = textThemeDefaults;
         }
-        #endregion
-
-        #region fields
         public virtual Brightness Brightness { get; set; }
         public virtual FlutterBinding.UI.Color PrimaryColor { get; set; }
         public virtual FlutterBinding.UI.Color PrimaryContrastingColor { get; set; }
         public virtual FlutterBinding.UI.Color BarBackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get; set; }
         public virtual FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults TextThemeDefaults { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual FlutterSDK.Cupertino.Theme._CupertinoThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool resolveTextTheme, bool nullOk = default(bool))
         {
@@ -626,26 +587,18 @@ namespace FlutterSDK.Cupertino.Theme
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoTextThemeDefaults
     {
-        #region constructors
         public _CupertinoTextThemeDefaults(FlutterBinding.UI.Color labelColor, FlutterBinding.UI.Color inactiveGray)
         {
             this.LabelColor = labelColor;
             this.InactiveGray = inactiveGray;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
         public virtual FlutterBinding.UI.Color InactiveGray { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual FlutterSDK.Cupertino.Theme._CupertinoTextThemeDefaults ResolveFrom(FlutterSDK.Widgets.Framework.BuildContext context, bool nullOk = default(bool))
         {
@@ -663,22 +616,17 @@ namespace FlutterSDK.Cupertino.Theme
 
 
 
-        #endregion
     }
 
 
     public class _DefaultCupertinoTextThemeData : FlutterSDK.Cupertino.Texttheme.CupertinoTextThemeData
     {
-        #region constructors
         public _DefaultCupertinoTextThemeData(FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveGray = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color))
         : base(primaryColor: primaryColor)
         {
             this.LabelColor = labelColor;
             this.InactiveGray = inactiveGray;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
         public virtual FlutterBinding.UI.Color InactiveGray { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -687,10 +635,6 @@ namespace FlutterSDK.Cupertino.Theme
         public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

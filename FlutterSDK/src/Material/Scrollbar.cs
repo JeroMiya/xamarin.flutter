@@ -438,7 +438,6 @@ namespace FlutterSDK.Material.Scrollbar
     /// </Summary>
     public class Scrollbar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Scrollbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool isAlwaysShown = false)
         : base(key: key)
         {
@@ -446,31 +445,20 @@ namespace FlutterSDK.Material.Scrollbar
             this.Controller = controller;
             this.IsAlwaysShown = isAlwaysShown;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
         public virtual bool IsAlwaysShown { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Scrollbar._ScrollbarState CreateState() => new _ScrollbarState();
 
 
-        #endregion
     }
 
 
     public class _ScrollbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scrollbar.Scrollbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _ScrollbarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Scrollbar.ScrollbarPainter _MaterialPainter { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
         internal virtual FlutterBinding.UI.Color _ThemeColor { get; set; }
@@ -478,9 +466,6 @@ namespace FlutterSDK.Material.Scrollbar
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _FadeoutAnimationController { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _FadeoutOpacityAnimation { get; set; }
         internal virtual Timer _FadeoutTimer { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -609,7 +594,6 @@ namespace FlutterSDK.Material.Scrollbar
 
 
 
-        #endregion
     }
 
 }

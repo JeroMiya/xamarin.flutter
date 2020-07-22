@@ -452,20 +452,13 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InteractiveInkFeature : FlutterSDK.Material.Material.InkFeature
     {
-        #region constructors
         public InteractiveInkFeature(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, onRemoved: onRemoved)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Color _Color { get; set; }
         public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called when the user input that triggered this feature's appearance was confirmed.
@@ -568,7 +561,6 @@ namespace FlutterSDK.Material.Inkwell
 
 
 
-        #endregion
     }
 
 
@@ -587,17 +579,10 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InteractiveInkFeatureFactory
     {
-        #region constructors
         public InteractiveInkFeatureFactory()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The factory method.
@@ -610,7 +595,6 @@ namespace FlutterSDK.Material.Inkwell
             return default(InteractiveInkFeature);
         }
 
-        #endregion
     }
 
 
@@ -699,7 +683,6 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InkResponse : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public InkResponse(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHover = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool containedInkWell = false, FlutterSDK.Painting.Boxborder.BoxShape highlightShape = default(FlutterSDK.Painting.Boxborder.BoxShape), double radius = default(double), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), bool enableFeedback = true, bool excludeFromSemantics = false, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool canRequestFocus = true, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool autofocus = false)
         : base(key: key)
         {
@@ -728,9 +711,6 @@ namespace FlutterSDK.Material.Inkwell
             this.OnFocusChange = onFocusChange;
             this.Autofocus = autofocus;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
@@ -755,9 +735,6 @@ namespace FlutterSDK.Material.Inkwell
         public virtual bool Autofocus { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool CanRequestFocus { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The rectangle to use for the highlight effect and for clipping
@@ -810,18 +787,13 @@ namespace FlutterSDK.Material.Inkwell
 
 
 
-        #endregion
     }
 
 
     public class _InkResponseState<T> : FlutterSDK.Widgets.Framework.State<T>, IAutomaticKeepAliveClientMixin<T>
     {
-        #region constructors
         public _InkResponseState()
         { }
-        #endregion
-
-        #region fields
         internal virtual HashSet<FlutterSDK.Material.Inkwell.InteractiveInkFeature> _Splashes { get; set; }
         internal virtual FlutterSDK.Material.Inkwell.InteractiveInkFeature _CurrentSplash { get; set; }
         internal virtual bool _Hovering { get; set; }
@@ -831,9 +803,6 @@ namespace FlutterSDK.Material.Inkwell
         public virtual bool HighlightsExist { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HandleAction(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent)
         {
@@ -1175,7 +1144,6 @@ namespace FlutterSDK.Material.Inkwell
 
 
 
-        #endregion
     }
 
 
@@ -1271,19 +1239,11 @@ namespace FlutterSDK.Material.Inkwell
     /// </Summary>
     public class InkWell : FlutterSDK.Material.Inkwell.InkResponse
     {
-        #region constructors
         public InkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHover = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), double radius = default(double), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), bool enableFeedback = true, bool excludeFromSemantics = false, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool canRequestFocus = true, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool autofocus = false)
         : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onTapDown: onTapDown, onTapCancel: onTapCancel, onHighlightChanged: onHighlightChanged, onHover: onHover, containedInkWell: true, highlightShape: BoxShape.Rectangle, focusColor: focusColor, hoverColor: hoverColor, highlightColor: highlightColor, splashColor: splashColor, splashFactory: splashFactory, radius: radius, borderRadius: borderRadius, customBorder: customBorder, enableFeedback: enableFeedback ?? true, excludeFromSemantics: excludeFromSemantics ?? false, focusNode: focusNode, canRequestFocus: canRequestFocus ?? true, onFocusChange: onFocusChange, autofocus: autofocus ?? false)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 

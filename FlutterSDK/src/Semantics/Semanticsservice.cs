@@ -438,17 +438,10 @@ namespace FlutterSDK.Semantics.Semanticsservice
     /// </Summary>
     public class SemanticsService
     {
-        #region constructors
         internal SemanticsService()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Sends a semantic announcement.
@@ -482,7 +475,6 @@ namespace FlutterSDK.Semantics.Semanticsservice
 
 
 
-        #endregion
     }
 
 }

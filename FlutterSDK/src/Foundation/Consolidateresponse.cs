@@ -351,19 +351,12 @@ return completer.Future;
 
 public class _OutputBuffer : ByteConversionSinkBase
 {
-    #region constructors
     public _OutputBuffer()
     { }
-    #endregion
-
-    #region fields
     internal virtual List<List<int>> _Chunks { get; set; }
     internal virtual int _ContentLength { get; set; }
     internal virtual Uint8List _Bytes { get; set; }
     public virtual Uint8List Bytes { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void Add(List<int> chunk)
     {
@@ -395,7 +388,6 @@ public class _OutputBuffer : ByteConversionSinkBase
 
 
 
-    #endregion
 }
 
 }

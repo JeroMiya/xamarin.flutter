@@ -549,18 +549,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class BoxConstraintsTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Rendering.Box.BoxConstraints>
     {
-        #region constructors
         public BoxConstraintsTween(FlutterSDK.Rendering.Box.BoxConstraints begin = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Rendering.Box.BoxConstraints end = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -568,7 +561,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Rendering.Box.BoxConstraints Lerp(double t) => BoxDefaultClass.BoxConstraints.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -593,18 +585,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class DecorationTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Decoration.Decoration>
     {
-        #region constructors
         public DecorationTween(FlutterSDK.Painting.Decoration.Decoration begin = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration end = default(FlutterSDK.Painting.Decoration.Decoration))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -612,7 +597,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Painting.Decoration.Decoration Lerp(double t) => DecorationDefaultClass.Decoration.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -631,18 +615,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class EdgeInsetsTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsets>
     {
-        #region constructors
         public EdgeInsetsTween(FlutterSDK.Painting.Edgeinsets.EdgeInsets begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -650,7 +627,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Painting.Edgeinsets.EdgeInsets Lerp(double t) => EdgeinsetsDefaultClass.EdgeInsets.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -668,18 +644,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class EdgeInsetsGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry>
     {
-        #region constructors
         public EdgeInsetsGeometryTween(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry begin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry end = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -687,7 +656,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Lerp(double t) => EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -701,18 +669,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class BorderRadiusTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Borderradius.BorderRadius>
     {
-        #region constructors
         public BorderRadiusTween(FlutterSDK.Painting.Borderradius.BorderRadius begin = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius end = default(FlutterSDK.Painting.Borderradius.BorderRadius))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -720,7 +681,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Painting.Borderradius.BorderRadius Lerp(double t) => BorderradiusDefaultClass.BorderRadius.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -734,18 +694,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class BorderTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Boxborder.Border>
     {
-        #region constructors
         public BorderTween(FlutterSDK.Painting.Boxborder.Border begin = default(FlutterSDK.Painting.Boxborder.Border), FlutterSDK.Painting.Boxborder.Border end = default(FlutterSDK.Painting.Boxborder.Border))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -753,7 +706,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Painting.Boxborder.Border Lerp(double t) => BoxborderDefaultClass.Border.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -769,18 +721,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class Matrix4Tween : FlutterSDK.Animation.Tween.Tween<object>
     {
-        #region constructors
         public Matrix4Tween(Matrix4 begin = default(Matrix4), Matrix4 end = default(Matrix4))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Matrix4 Lerp(double t)
         {
@@ -802,7 +747,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -818,18 +762,11 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class TextStyleTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Textstyle.TextStyle>
     {
-        #region constructors
         public TextStyleTween(FlutterSDK.Painting.Textstyle.TextStyle begin = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle end = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -837,7 +774,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public new FlutterSDK.Painting.Textstyle.TextStyle Lerp(double t) => TextstyleDefaultClass.TextStyle.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -900,7 +836,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class ImplicitlyAnimatedWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public ImplicitlyAnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key)
         {
@@ -908,15 +843,9 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Duration = duration;
             this.OnEnd = onEnd;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
         public virtual TimeSpan Duration { get; set; }
         public virtual VoidCallback OnEnd { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget> CreateState()
         {
@@ -932,7 +861,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -950,19 +878,12 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class ImplicitlyAnimatedWidgetState<T> : FlutterSDK.Widgets.Framework.State<T>, ISingleTickerProviderStateMixin<T>
     {
-        #region constructors
         public ImplicitlyAnimatedWidgetState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1170,7 +1091,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1188,15 +1108,8 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedWidgetBaseState<T> : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<T>
     {
-        #region constructors
         public AnimatedWidgetBaseState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1217,7 +1130,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1285,7 +1197,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedContainer : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1296,9 +1207,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Transform = transform;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
@@ -1307,9 +1215,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
         public virtual Matrix4 Transform { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedContainerState CreateState() => new _AnimatedContainerState();
 
@@ -1329,18 +1234,13 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedContainerState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedContainer>
     {
-        #region constructors
         public _AnimatedContainerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Tweens.AlignmentGeometryTween _Alignment { get; set; }
         internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Padding { get; set; }
         internal virtual FlutterSDK.Widgets.Implicitanimations.DecorationTween _Decoration { get; set; }
@@ -1348,9 +1248,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         internal virtual FlutterSDK.Widgets.Implicitanimations.BoxConstraintsTween _Constraints { get; set; }
         internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Margin { get; set; }
         internal virtual FlutterSDK.Widgets.Implicitanimations.Matrix4Tween _Transform { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -1388,7 +1285,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1410,21 +1306,14 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPadding : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
             this.Padding = padding;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPaddingState CreateState() => new _AnimatedPaddingState();
 
@@ -1438,22 +1327,14 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedPaddingState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPadding>
     {
-        #region constructors
         public _AnimatedPaddingState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Implicitanimations.EdgeInsetsGeometryTween _Padding { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -1479,7 +1360,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1510,21 +1390,14 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedAlign : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedAlign(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
             this.Alignment = alignment;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedAlignState CreateState() => new _AnimatedAlignState();
 
@@ -1538,22 +1411,14 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedAlignState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedAlign>
     {
-        #region constructors
         public _AnimatedAlignState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Tweens.AlignmentGeometryTween _Alignment { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -1579,7 +1444,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1618,7 +1482,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPositioned : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedPositioned(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double left = default(double), double top = default(double), double right = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1634,9 +1497,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         {
             var instance = new AnimatedPositioned(key: key, curve: curve, duration: duration, onEnd: onEnd); instance.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual double Left { get; set; }
         public virtual double Top { get; set; }
@@ -1644,9 +1504,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public virtual double Bottom { get; set; }
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedState CreateState() => new _AnimatedPositionedState();
 
@@ -1665,27 +1522,19 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedPositionedState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPositioned>
     {
-        #region constructors
         public _AnimatedPositionedState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Left { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Top { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Right { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Bottom { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Width { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Height { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -1721,7 +1570,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1753,7 +1601,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPositionedDirectional : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedPositionedDirectional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1765,9 +1612,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Width = width;
             this.Height = height;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual double Start { get; set; }
         public virtual double Top { get; set; }
@@ -1775,9 +1619,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public virtual double Bottom { get; set; }
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPositionedDirectionalState CreateState() => new _AnimatedPositionedDirectionalState();
 
@@ -1796,27 +1637,19 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedPositionedDirectionalState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPositionedDirectional>
     {
-        #region constructors
         public _AnimatedPositionedDirectionalState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Start { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Top { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _End { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Bottom { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Width { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Height { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -1853,7 +1686,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -1917,7 +1749,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -1925,15 +1756,9 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual double Opacity { get; set; }
         public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedOpacityState CreateState() => new _AnimatedOpacityState();
 
@@ -1947,23 +1772,15 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedOpacityState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.AnimatedOpacity>
     {
-        #region constructors
         public _AnimatedOpacityState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Opacity { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -1988,7 +1805,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -2058,7 +1874,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class SliverAnimatedOpacity : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public SliverAnimatedOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), double opacity = default(double), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), bool alwaysIncludeSemantics = false)
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -2066,15 +1881,9 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
         public virtual double Opacity { get; set; }
         public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._SliverAnimatedOpacityState CreateState() => new _SliverAnimatedOpacityState();
 
@@ -2088,23 +1897,15 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _SliverAnimatedOpacityState : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidgetState<FlutterSDK.Widgets.Implicitanimations.SliverAnimatedOpacity>
     {
-        #region constructors
         public _SliverAnimatedOpacityState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Opacity { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -2129,7 +1930,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -2157,7 +1957,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedDefaultTextStyle : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedDefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -2170,9 +1969,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.TextWidthBasis = textWidthBasis;
             this.TextHeightBehavior = textHeightBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
         public virtual TextAlign TextAlign { get; set; }
@@ -2181,9 +1977,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public virtual int MaxLines { get; set; }
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedDefaultTextStyleState CreateState() => new _AnimatedDefaultTextStyleState();
 
@@ -2203,22 +1996,14 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedDefaultTextStyleState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedDefaultTextStyle>
     {
-        #region constructors
         public _AnimatedDefaultTextStyleState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Implicitanimations.TextStyleTween _Style { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -2235,7 +2020,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
@@ -2257,7 +2041,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
     /// </Summary>
     public class AnimatedPhysicalModel : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedPhysicalModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool animateColor = true, FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), bool animateShadowColor = true, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -2271,9 +2054,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
             this.ShadowColor = shadowColor;
             this.AnimateShadowColor = animateShadowColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
@@ -2283,9 +2063,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
         public virtual bool AnimateColor { get; set; }
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
         public virtual bool AnimateShadowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Implicitanimations._AnimatedPhysicalModelState CreateState() => new _AnimatedPhysicalModelState();
 
@@ -2305,25 +2082,17 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedPhysicalModelState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Widgets.Implicitanimations.AnimatedPhysicalModel>
     {
-        #region constructors
         public _AnimatedPhysicalModelState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Implicitanimations.BorderRadiusTween _BorderRadius { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _Elevation { get; set; }
         internal virtual FlutterSDK.Animation.Tween.ColorTween _Color { get; set; }
         internal virtual FlutterSDK.Animation.Tween.ColorTween _ShadowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -2343,7 +2112,6 @@ namespace FlutterSDK.Widgets.Implicitanimations
 
 
 
-        #endregion
     }
 
 }

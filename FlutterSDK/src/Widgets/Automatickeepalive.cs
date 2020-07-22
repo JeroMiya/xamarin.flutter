@@ -536,41 +536,26 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     /// </Summary>
     public class AutomaticKeepAlive : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public AutomaticKeepAlive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Automatickeepalive._AutomaticKeepAliveState CreateState() => new _AutomaticKeepAliveState();
 
 
-        #endregion
     }
 
 
     public class _AutomaticKeepAliveState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Automatickeepalive.AutomaticKeepAlive>
     {
-        #region constructors
         public _AutomaticKeepAliveState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Foundation.Changenotifier.Listenable, object> _Handles { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _Child { get; set; }
         internal virtual bool _KeepingAlive { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -742,7 +727,6 @@ namespace FlutterSDK.Widgets.Automatickeepalive
 
 
 
-        #endregion
     }
 
 
@@ -787,20 +771,12 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     /// </Summary>
     public class KeepAliveNotification : FlutterSDK.Widgets.Notificationlistener.Notification
     {
-        #region constructors
         public KeepAliveNotification(FlutterSDK.Foundation.Changenotifier.Listenable handle)
         : base()
         {
             this.Handle = handle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Changenotifier.Listenable Handle { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -816,15 +792,8 @@ namespace FlutterSDK.Widgets.Automatickeepalive
     /// </Summary>
     public class KeepAliveHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public KeepAliveHandle()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Trigger the listeners to indicate that the widget
@@ -837,7 +806,6 @@ namespace FlutterSDK.Widgets.Automatickeepalive
 
 
 
-        #endregion
     }
 
 }

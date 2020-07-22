@@ -447,7 +447,6 @@ namespace FlutterSDK.Widgets.Performanceoverlay
     /// </Summary>
     public class PerformanceOverlay : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public PerformanceOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int optionsMask = 0, int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
         : base(key: key)
         {
@@ -462,16 +461,10 @@ namespace FlutterSDK.Widgets.Performanceoverlay
             instance.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
             instance.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
         }
-        #endregion
-
-        #region fields
         public virtual int OptionsMask { get; set; }
         public virtual int RasterizerThreshold { get; set; }
         public virtual bool CheckerboardRasterCacheImages { get; set; }
         public virtual bool CheckerboardOffscreenLayers { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Performanceoverlay.RenderPerformanceOverlay CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderPerformanceOverlay(optionsMask: OptionsMask, rasterizerThreshold: RasterizerThreshold, checkerboardRasterCacheImages: CheckerboardRasterCacheImages, checkerboardOffscreenLayers: CheckerboardOffscreenLayers);
 
@@ -490,7 +483,6 @@ namespace FlutterSDK.Widgets.Performanceoverlay
 
 
 
-        #endregion
     }
 
 }

@@ -411,19 +411,12 @@ namespace FlutterSDK.Material.Chiptheme
     /// </Summary>
     public class ChipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public ChipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Chiptheme.ChipThemeData data = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the data from the closest [ChipTheme] instance that encloses
@@ -478,7 +471,6 @@ namespace FlutterSDK.Material.Chiptheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 
@@ -555,7 +547,6 @@ namespace FlutterSDK.Material.Chiptheme
     /// </Summary>
     public class ChipThemeData : IDiagnosticable
     {
-        #region constructors
         public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
         : base()
         {
@@ -609,9 +600,6 @@ namespace FlutterSDK.Material.Chiptheme
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color DeleteIconColor { get; set; }
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
@@ -630,9 +618,6 @@ namespace FlutterSDK.Material.Chiptheme
         public virtual double Elevation { get; set; }
         public virtual double PressElevation { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -705,7 +690,6 @@ namespace FlutterSDK.Material.Chiptheme
 
 
 
-        #endregion
     }
 
 }

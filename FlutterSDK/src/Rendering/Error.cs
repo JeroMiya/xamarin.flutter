@@ -448,7 +448,6 @@ namespace FlutterSDK.Rendering.Error
     /// </Summary>
     public class RenderErrorBox : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public RenderErrorBox(string message = default(string))
         {
             this.Message = message;
@@ -470,9 +469,6 @@ namespace FlutterSDK.Rendering.Error
         }
 
 
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
         internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
@@ -481,9 +477,6 @@ namespace FlutterSDK.Rendering.Error
         public virtual FlutterBinding.UI.TextStyle TextStyle { get; set; }
         public virtual ParagraphStyle ParagraphStyle { get; set; }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMaxIntrinsicWidth(double height)
         {
@@ -567,7 +560,6 @@ namespace FlutterSDK.Rendering.Error
 
 
 
-        #endregion
     }
 
 }

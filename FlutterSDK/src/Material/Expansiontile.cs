@@ -407,7 +407,6 @@ namespace FlutterSDK.Material.Expansiontile
     /// </Summary>
     public class ExpansionTile : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public ExpansionTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onExpansionChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool initiallyExpanded = false)
         : base(key: key)
         {
@@ -420,9 +419,6 @@ namespace FlutterSDK.Material.Expansiontile
             this.Trailing = trailing;
             this.InitiallyExpanded = initiallyExpanded;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
@@ -431,25 +427,17 @@ namespace FlutterSDK.Material.Expansiontile
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
         public virtual bool InitiallyExpanded { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Expansiontile._ExpansionTileState CreateState() => new _ExpansionTileState();
 
 
-        #endregion
     }
 
 
     public class _ExpansionTileState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expansiontile.ExpansionTile>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _ExpansionTileState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseOutTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseInTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _HalfTween { get; set; }
@@ -465,9 +453,6 @@ namespace FlutterSDK.Material.Expansiontile
         internal virtual FlutterSDK.Animation.Animation.Animation<Color> _IconColor { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<Color> _BackgroundColor { get; set; }
         internal virtual bool _IsExpanded { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -556,7 +541,6 @@ namespace FlutterSDK.Material.Expansiontile
 
 
 
-        #endregion
     }
 
 }

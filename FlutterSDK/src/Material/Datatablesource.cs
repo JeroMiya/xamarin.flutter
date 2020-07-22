@@ -422,18 +422,11 @@ namespace FlutterSDK.Material.Datatablesource
     /// </Summary>
     public class DataTableSource : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public DataTableSource()
         { }
-        #endregion
-
-        #region fields
         public virtual int RowCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsRowCountApproximate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int SelectedRowCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called to obtain the data about a particular row.
@@ -456,7 +449,6 @@ namespace FlutterSDK.Material.Datatablesource
             return default(DataRow);
         }
 
-        #endregion
     }
 
 }

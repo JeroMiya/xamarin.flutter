@@ -429,23 +429,15 @@ namespace FlutterSDK.Rendering.Wrap
 
     public class _RunMetrics
     {
-        #region constructors
         public _RunMetrics(double mainAxisExtent, double crossAxisExtent, int childCount)
         {
             this.MainAxisExtent = mainAxisExtent;
             this.CrossAxisExtent = crossAxisExtent;
             this.ChildCount = childCount;
         }
-        #endregion
-
-        #region fields
         public virtual double MainAxisExtent { get; set; }
         public virtual double CrossAxisExtent { get; set; }
         public virtual int ChildCount { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -454,17 +446,9 @@ namespace FlutterSDK.Rendering.Wrap
     /// </Summary>
     public class WrapParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public WrapParentData()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _RunIndex { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -486,7 +470,6 @@ namespace FlutterSDK.Rendering.Wrap
     /// </Summary>
     public class RenderWrap : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>
     {
-        #region constructors
         public RenderWrap(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Wrap.WrapAlignment alignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double spacing = 0.0, FlutterSDK.Rendering.Wrap.WrapAlignment runAlignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double runSpacing = 0.0, FlutterSDK.Rendering.Wrap.WrapCrossAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Wrap.WrapCrossAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
         : base()
         {
@@ -495,9 +478,6 @@ namespace FlutterSDK.Rendering.Wrap
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction { get; set; }
         internal virtual FlutterSDK.Rendering.Wrap.WrapAlignment _Alignment { get; set; }
         internal virtual double _Spacing { get; set; }
@@ -516,9 +496,6 @@ namespace FlutterSDK.Rendering.Wrap
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _DebugHasNecessaryDirections { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -867,7 +844,6 @@ namespace FlutterSDK.Rendering.Wrap
 
 
 
-        #endregion
     }
 
 

@@ -626,7 +626,6 @@ namespace FlutterSDK.Painting.Imageprovider
     /// </Summary>
     public class ImageConfiguration
     {
-        #region constructors
         public ImageConfiguration(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), double devicePixelRatio = default(double), Locale locale = default(Locale), TextDirection textDirection = default(TextDirection), Size size = default(Size), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform))
         {
             this.Bundle = bundle;
@@ -636,9 +635,6 @@ namespace FlutterSDK.Painting.Imageprovider
             this.Size = size;
             this.Platform = platform;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
         public virtual double DevicePixelRatio { get; set; }
         public virtual Locale Locale { get; set; }
@@ -647,9 +643,6 @@ namespace FlutterSDK.Painting.Imageprovider
         public virtual FlutterSDK.Foundation.Platform.TargetPlatform Platform { get; set; }
         public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Empty { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates an object holding the configuration information for an [ImageProvider].
@@ -674,7 +667,6 @@ namespace FlutterSDK.Painting.Imageprovider
 
 
 
-        #endregion
     }
 
 
@@ -815,17 +807,10 @@ namespace FlutterSDK.Painting.Imageprovider
     /// </Summary>
     public class ImageProvider<T>
     {
-        #region constructors
         public ImageProvider()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Resolves this image provider using the given `configuration`, returning
@@ -1104,7 +1089,6 @@ public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, 
 }
 
 
-#endregion
 }
 
 
@@ -1115,7 +1099,6 @@ public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(T key, 
 /// </Summary>
 public class AssetBundleImageKey
 {
-    #region constructors
     public AssetBundleImageKey(FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string name = default(string), double scale = default(double))
     : base()
     {
@@ -1123,16 +1106,10 @@ public class AssetBundleImageKey
         this.Name = name;
         this.Scale = scale;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
     public virtual string Name { get; set; }
     public virtual double Scale { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool Equals(@Object other)
     {
@@ -1143,7 +1120,6 @@ public class AssetBundleImageKey
 
 
 
-    #endregion
 }
 
 
@@ -1155,17 +1131,10 @@ public class AssetBundleImageKey
 /// </Summary>
 public class AssetBundleImageProvider : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey>
 {
-    #region constructors
     public AssetBundleImageProvider()
     {
 
     }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     /// <Summary>
     /// Converts a key into an [ImageStreamCompleter], and begins fetching the
@@ -1210,29 +1179,21 @@ on FlutterError{
 
 
 
-    #endregion
 }
 
 
 public class _SizeAwareCacheKey
 {
-    #region constructors
     public _SizeAwareCacheKey(@Object providerCacheKey, int width, int height)
     {
         this.ProviderCacheKey = providerCacheKey;
         this.Width = width;
         this.Height = height;
     }
-    #endregion
-
-    #region fields
     public virtual @Object ProviderCacheKey { get; set; }
     public virtual int Width { get; set; }
     public virtual int Height { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool Equals(@Object other)
     {
@@ -1242,7 +1203,6 @@ public class _SizeAwareCacheKey
 
 
 
-    #endregion
 }
 
 
@@ -1258,7 +1218,6 @@ public class _SizeAwareCacheKey
 /// </Summary>
 public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey>
 {
-    #region constructors
     public ResizeImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> imageProvider, int width = default(int), int height = default(int))
     : base()
     {
@@ -1266,15 +1225,9 @@ public class ResizeImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutt
         this.Width = width;
         this.Height = height;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageProvider { get; set; }
     public virtual int Width { get; set; }
     public virtual int Height { get; set; }
-    #endregion
-
-    #region methods
 
     /// <Summary>
     /// Composes the `provider` in a [ResizeImage] only when `cacheWidth` and
@@ -1338,7 +1291,6 @@ public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKe
 
 
 
-    #endregion
 }
 
 
@@ -1358,28 +1310,20 @@ public new Future<FlutterSDK.Painting.Imageprovider._SizeAwareCacheKey> ObtainKe
 /// </Summary>
 public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>
 {
-    #region constructors
     public NetworkImage(string url, double scale = default(double), Dictionary<string, string> headers = default(Dictionary<string, string>))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     public virtual string Url { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual double Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual Dictionary<string, string> Headers { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new FlutterSDK.Painting.Imagestream.ImageStreamCompleter Load(FlutterSDK.Painting.Imageprovider.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode)
     {
         return default(ImageStreamCompleter);
     }
 
-    #endregion
 }
 
 
@@ -1393,22 +1337,15 @@ public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flut
 /// </Summary>
 public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.FileImage>
 {
-    #region constructors
     public FileImage(File file, double scale = 1.0)
     : base()
     {
         this.File = file;
         this.Scale = scale;
     }
-    #endregion
-
-    #region fields
     public virtual File File { get; set; }
     public virtual double Scale { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new Future<FlutterSDK.Painting.Imageprovider.FileImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
     {
@@ -1455,7 +1392,6 @@ public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutter
 
 
 
-    #endregion
 }
 
 
@@ -1475,22 +1411,15 @@ public class FileImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutter
 /// </Summary>
 public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.MemoryImage>
 {
-    #region constructors
     public MemoryImage(Uint8List bytes, double scale = 1.0)
     : base()
     {
         this.Bytes = bytes;
         this.Scale = scale;
     }
-    #endregion
-
-    #region fields
     public virtual Uint8List Bytes { get; set; }
     public virtual double Scale { get; set; }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new Future<FlutterSDK.Painting.Imageprovider.MemoryImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
     {
@@ -1526,7 +1455,6 @@ public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutt
 
 
 
-    #endregion
 }
 
 
@@ -1603,7 +1531,6 @@ public class MemoryImage : FlutterSDK.Painting.Imageprovider.ImageProvider<Flutt
 /// </Summary>
 public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
 {
-    #region constructors
     public ExactAssetImage(string assetName, double scale = 1.0, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
     : base()
     {
@@ -1612,18 +1539,12 @@ public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImag
         this.Bundle = bundle;
         this.Package = package;
     }
-    #endregion
-
-    #region fields
     public virtual string AssetName { get; set; }
     public virtual double Scale { get; set; }
     public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
     public virtual string Package { get; set; }
     public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
     {
@@ -1642,23 +1563,15 @@ public class ExactAssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImag
 
 
 
-    #endregion
 }
 
 
 public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
 {
-    #region constructors
     public _ErrorImageCompleter()
     {
 
     }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     public virtual void SetError(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), object exception = default(object), StackTrace stack = default(StackTrace), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
     {
@@ -1667,7 +1580,6 @@ public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamC
 
 
 
-    #endregion
 }
 
 
@@ -1676,24 +1588,16 @@ public class _ErrorImageCompleter : FlutterSDK.Painting.Imagestream.ImageStreamC
 /// </Summary>
 public class NetworkImageLoadException : IException
 {
-    #region constructors
     public NetworkImageLoadException(int statusCode = default(int), Uri uri = default(Uri))
     : base()
     {
         this.StatusCode = statusCode;
         this.Uri = uri;
     }
-    #endregion
-
-    #region fields
     public virtual int StatusCode { get; set; }
     internal virtual string _Message { get; set; }
     public virtual Uri Uri { get; set; }
-    #endregion
 
-    #region methods
-
-    #endregion
 }
 
 }

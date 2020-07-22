@@ -388,7 +388,6 @@ namespace FlutterSDK.Material.Buttonbartheme
     /// </Summary>
     public class ButtonBarThemeData : IDiagnosticable
     {
-        #region constructors
         public ButtonBarThemeData(FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
         : base()
         {
@@ -402,9 +401,6 @@ namespace FlutterSDK.Material.Buttonbartheme
             this.LayoutBehavior = layoutBehavior;
             this.OverflowDirection = overflowDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
         public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
         public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
@@ -415,9 +411,6 @@ namespace FlutterSDK.Material.Buttonbartheme
         public virtual FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior LayoutBehavior { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -474,7 +467,6 @@ namespace FlutterSDK.Material.Buttonbartheme
 
 
 
-        #endregion
     }
 
 
@@ -498,19 +490,12 @@ namespace FlutterSDK.Material.Buttonbartheme
     /// </Summary>
     public class ButtonBarTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public ButtonBarTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData data = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the configuration [data] from the closest [ButtonBarTheme]
@@ -537,7 +522,6 @@ namespace FlutterSDK.Material.Buttonbartheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 }

@@ -409,7 +409,6 @@ namespace FlutterSDK.Material.Inkhighlight
     /// </Summary>
     public class InkHighlight : FlutterSDK.Material.Inkwell.InteractiveInkFeature
     {
-        #region constructors
         public InkHighlight(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), VoidCallback onRemoved = default(VoidCallback), TimeSpan fadeDuration = default(TimeSpan))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
         {
@@ -423,9 +422,6 @@ namespace FlutterSDK.Material.Inkhighlight
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Boxborder.BoxShape _Shape { get; set; }
         internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
         internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
@@ -435,9 +431,6 @@ namespace FlutterSDK.Material.Inkhighlight
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController { get; set; }
         internal virtual bool _Active { get; set; }
         public virtual bool Active { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Start visually emphasizing this part of the material.
@@ -531,7 +524,6 @@ namespace FlutterSDK.Material.Inkhighlight
 
 
 
-        #endregion
     }
 
 }

@@ -831,19 +831,12 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class SliderTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public SliderTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.SliderThemeData data = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Slidertheme.SliderThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the data from the closest [SliderTheme] instance that encloses
@@ -905,7 +898,6 @@ namespace FlutterSDK.Material.Slidertheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 
@@ -980,7 +972,6 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class SliderThemeData : IDiagnosticable
     {
-        #region constructors
         public SliderThemeData(double trackHeight = default(double), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledInactiveTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledInactiveTickMarkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color overlappingShapeStrokeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color overlayColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueIndicatorColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.SliderComponentShape overlayShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.SliderTickMarkShape tickMarkShape = default(FlutterSDK.Material.Slidertheme.SliderTickMarkShape), FlutterSDK.Material.Slidertheme.SliderComponentShape thumbShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.SliderTrackShape trackShape = default(FlutterSDK.Material.Slidertheme.SliderTrackShape), FlutterSDK.Material.Slidertheme.SliderComponentShape valueIndicatorShape = default(FlutterSDK.Material.Slidertheme.SliderComponentShape), FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape rangeTickMarkShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape), FlutterSDK.Material.Slidertheme.RangeSliderThumbShape rangeThumbShape = default(FlutterSDK.Material.Slidertheme.RangeSliderThumbShape), FlutterSDK.Material.Slidertheme.RangeSliderTrackShape rangeTrackShape = default(FlutterSDK.Material.Slidertheme.RangeSliderTrackShape), FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape rangeValueIndicatorShape = default(FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape), FlutterSDK.Material.Slidertheme.ShowValueIndicator showValueIndicator = default(FlutterSDK.Material.Slidertheme.ShowValueIndicator), FlutterSDK.Painting.Textstyle.TextStyle valueIndicatorTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double minThumbSeparation = default(double), FlutterSDK.Material.Slidertheme.RangeThumbSelector thumbSelector = default(FlutterSDK.Material.Slidertheme.RangeThumbSelector))
         {
             this.TrackHeight = trackHeight;
@@ -1034,9 +1025,6 @@ namespace FlutterSDK.Material.Slidertheme
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double TrackHeight { get; set; }
         public virtual FlutterBinding.UI.Color ActiveTrackColor { get; set; }
         public virtual FlutterBinding.UI.Color InactiveTrackColor { get; set; }
@@ -1065,9 +1053,6 @@ namespace FlutterSDK.Material.Slidertheme
         public virtual double MinThumbSeparation { get; set; }
         public virtual FlutterSDK.Material.Slidertheme.RangeThumbSelector ThumbSelector { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -1151,7 +1136,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -1254,19 +1238,12 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class SliderComponentShape
     {
-        #region constructors
         public SliderComponentShape()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape NoThumb { get; set; }
         public virtual FlutterSDK.Material.Slidertheme.SliderComponentShape NoOverlay { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred size of the shape, based on the given conditions.
@@ -1310,7 +1287,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1330,18 +1306,11 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class SliderTickMarkShape
     {
-        #region constructors
         public SliderTickMarkShape()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Slidertheme.SliderTickMarkShape NoTickMark { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred size of the shape.
@@ -1385,7 +1354,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1407,17 +1375,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class SliderTrackShape
     {
-        #region constructors
         public SliderTrackShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred bounds of the shape.
@@ -1474,7 +1435,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1491,17 +1451,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RangeSliderThumbShape
     {
-        #region constructors
         public RangeSliderThumbShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred size of the shape, based on the given conditions.
@@ -1546,7 +1499,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1563,17 +1515,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RangeSliderValueIndicatorShape
     {
-        #region constructors
         public RangeSliderValueIndicatorShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred size of the shape, based on the given conditions.
@@ -1637,7 +1582,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1657,17 +1601,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RangeSliderTickMarkShape
     {
-        #region constructors
         public RangeSliderTickMarkShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred size of the shape.
@@ -1707,7 +1644,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1731,17 +1667,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RangeSliderTrackShape
     {
-        #region constructors
         public RangeSliderTrackShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the preferred bounds of the shape.
@@ -1803,7 +1732,6 @@ namespace FlutterSDK.Material.Slidertheme
         {
         }
 
-        #endregion
     }
 
 
@@ -1833,18 +1761,11 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RectangularSliderTrackShape : FlutterSDK.Material.Slidertheme.SliderTrackShape, IBaseSliderTrackShape
     {
-        #region constructors
         public RectangularSliderTrackShape(double disabledThumbGapWidth = 2.0)
         {
             this.DisabledThumbGapWidth = disabledThumbGapWidth;
         }
-        #endregion
-
-        #region fields
         public virtual double DisabledThumbGapWidth { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isDiscrete = false, bool isEnabled = false)
         {
@@ -1884,7 +1805,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -1914,17 +1834,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RoundedRectSliderTrackShape : FlutterSDK.Material.Slidertheme.SliderTrackShape, IBaseSliderTrackShape
     {
-        #region constructors
         public RoundedRectSliderTrackShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset, FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset thumbCenter = default(FlutterBinding.UI.Offset), bool isDiscrete = false, bool isEnabled = false)
         {
@@ -1966,7 +1879,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -1997,17 +1909,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RectangularRangeSliderTrackShape : FlutterSDK.Material.Slidertheme.RangeSliderTrackShape
     {
-        #region constructors
         public RectangularRangeSliderTrackShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false, bool isDiscrete = false)
         {
@@ -2069,7 +1974,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -2100,17 +2004,10 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RoundedRectRangeSliderTrackShape : FlutterSDK.Material.Slidertheme.RangeSliderTrackShape
     {
-        #region constructors
         public RoundedRectRangeSliderTrackShape()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Rect GetPreferredRect(FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false, bool isDiscrete = false)
         {
@@ -2179,7 +2076,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -2205,18 +2101,11 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RoundSliderTickMarkShape : FlutterSDK.Material.Slidertheme.SliderTickMarkShape
     {
-        #region constructors
         public RoundSliderTickMarkShape(double tickMarkRadius = default(double))
         {
             this.TickMarkRadius = tickMarkRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double TickMarkRadius { get; set; }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false)
         {
@@ -2257,7 +2146,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -2283,18 +2171,11 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class RoundRangeSliderTickMarkShape : FlutterSDK.Material.Slidertheme.RangeSliderTickMarkShape
     {
-        #region constructors
         public RoundRangeSliderTickMarkShape(double tickMarkRadius = default(double))
         {
             this.TickMarkRadius = tickMarkRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double TickMarkRadius { get; set; }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = false)
         {
@@ -2337,7 +2218,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -2352,15 +2232,8 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class _EmptySliderTickMarkShape : FlutterSDK.Material.Slidertheme.SliderTickMarkShape
     {
-        #region constructors
         public _EmptySliderTickMarkShape()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool))
         {
@@ -2376,7 +2249,6 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-        #endregion
     }
 
 
@@ -2393,15 +2265,8 @@ namespace FlutterSDK.Material.Slidertheme
     /// </Summary>
     public class _EmptySliderComponentShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
     {
-        #region constructors
         public _EmptySliderComponentShape()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) => Dart:uiDefaultClass.Size.Zero;
 
@@ -2413,7 +2278,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2428,21 +2292,14 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class RoundSliderThumbShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
     {
-        #region constructors
         public RoundSliderThumbShape(double enabledThumbRadius = 10.0, double disabledThumbRadius = default(double))
         {
             this.EnabledThumbRadius = enabledThumbRadius;
             this.DisabledThumbRadius = disabledThumbRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double EnabledThumbRadius { get; set; }
         public virtual double DisabledThumbRadius { get; set; }
         internal virtual double _DisabledThumbRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(bool isEnabled, bool isDiscrete)
         {
@@ -2468,7 +2325,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2483,22 +2339,15 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class RoundRangeSliderThumbShape : FlutterSDK.Material.Slidertheme.RangeSliderThumbShape
     {
-        #region constructors
         public RoundRangeSliderThumbShape(double enabledThumbRadius = 10.0, double disabledThumbRadius = default(double))
         : base()
         {
             this.EnabledThumbRadius = enabledThumbRadius;
             this.DisabledThumbRadius = disabledThumbRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double EnabledThumbRadius { get; set; }
         public virtual double DisabledThumbRadius { get; set; }
         internal virtual double _DisabledThumbRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(bool isEnabled, bool isDiscrete)
         {
@@ -2538,7 +2387,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2561,18 +2409,11 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class RoundSliderOverlayShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
     {
-        #region constructors
         public RoundSliderOverlayShape(double overlayRadius = 24.0)
         {
             this.OverlayRadius = overlayRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double OverlayRadius { get; set; }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(bool isEnabled, bool isDiscrete)
         {
@@ -2600,7 +2441,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2615,18 +2455,11 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class PaddleSliderValueIndicatorShape : FlutterSDK.Material.Slidertheme.SliderComponentShape
     {
-        #region constructors
         public PaddleSliderValueIndicatorShape()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Slidertheme._PaddleSliderTrackShapePathPainter _PathPainter { get; set; }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter))
         {
@@ -2652,7 +2485,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2667,18 +2499,11 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class PaddleRangeSliderValueIndicatorShape : FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape
     {
-        #region constructors
         public PaddleRangeSliderValueIndicatorShape()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Slidertheme._PaddleSliderTrackShapePathPainter _PathPainter { get; set; }
-        #endregion
-
-        #region methods
 
         public new Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter))
         {
@@ -2712,20 +2537,15 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
     public class _PaddleSliderTrackShapePathPainter
     {
-        #region constructors
         public _PaddleSliderTrackShapePathPainter()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _TopLobeRadius { get; set; }
         internal virtual double _LabelTextDesignSize { get; set; }
         internal virtual double _BottomLobeRadius { get; set; }
@@ -2744,9 +2564,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
         internal virtual double _ThirtyDegrees { get; set; }
         internal virtual double _PreferredHeight { get; set; }
         internal virtual bool _DebuggingLabelLocation { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual Size GetPreferredSize(bool isEnabled, bool isDiscrete, FlutterSDK.Painting.Textpainter.TextPainter labelPainter)
         {
@@ -2876,7 +2693,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2889,21 +2705,14 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class RangeValues
     {
-        #region constructors
         public RangeValues(double start, double end)
         {
             this.Start = start;
             this.End = end;
         }
-        #endregion
-
-        #region fields
         public virtual double Start { get; set; }
         public virtual double End { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -2914,7 +2723,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 
@@ -2927,21 +2735,14 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
     /// </Summary>
     public class RangeLabels
     {
-        #region constructors
         public RangeLabels(string start, string end)
         {
             this.Start = start;
             this.End = end;
         }
-        #endregion
-
-        #region fields
         public virtual string Start { get; set; }
         public virtual string End { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -2952,7 +2753,6 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
 
 
 
-        #endregion
     }
 
 

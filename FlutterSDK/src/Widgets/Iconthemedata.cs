@@ -440,7 +440,6 @@ namespace FlutterSDK.Widgets.Iconthemedata
     /// </Summary>
     public class IconThemeData : IDiagnosticable
     {
-        #region constructors
         public IconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base()
         {
@@ -451,18 +450,12 @@ namespace FlutterSDK.Widgets.Iconthemedata
         {
             var instance = new IconThemeData();
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         internal virtual double _Opacity { get; set; }
         public virtual double Size { get; set; }
         public virtual bool IsConcrete { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this icon theme but with the given fields replaced with
@@ -545,7 +538,6 @@ namespace FlutterSDK.Widgets.Iconthemedata
 
 
 
-        #endregion
     }
 
 }

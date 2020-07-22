@@ -699,7 +699,6 @@ namespace FlutterSDK.Painting.Strutstyle
     /// </Summary>
     public class StrutStyle : IDiagnosticable
     {
-        #region constructors
         public StrutStyle(string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
         : base()
         {
@@ -716,9 +715,6 @@ namespace FlutterSDK.Painting.Strutstyle
             var instance = new StrutStyle(); instance.Leading = leading;
             instance.ForceStrutHeight = forceStrutHeight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled { get; set; }
         public virtual string FontFamily { get; set; }
         internal virtual List<string> _FontFamilyFallback { get; set; }
@@ -732,9 +728,6 @@ namespace FlutterSDK.Painting.Strutstyle
         public virtual string DebugLabel { get; set; }
         public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Describe the difference between this style and another, in terms of how
@@ -812,7 +805,6 @@ namespace FlutterSDK.Painting.Strutstyle
 
 
 
-        #endregion
     }
 
 }

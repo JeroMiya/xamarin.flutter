@@ -477,7 +477,6 @@ namespace FlutterSDK.Painting.Textspan
     /// </Summary>
     public class TextSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
-        #region constructors
         public TextSpan(string text = default(string), List<FlutterSDK.Painting.Inlinespan.InlineSpan> children = default(List<FlutterSDK.Painting.Inlinespan.InlineSpan>), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer), string semanticsLabel = default(string))
         : base(style: style)
         {
@@ -486,17 +485,11 @@ namespace FlutterSDK.Painting.Textspan
             this.Recognizer = recognizer;
             this.SemanticsLabel = semanticsLabel;
         }
-        #endregion
-
-        #region fields
         public new string Text { get; set; }
         public new List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get; set; }
         public new FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
         public virtual string SemanticsLabel { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Apply the [style], [text], and [children] of this object to the
@@ -798,7 +791,6 @@ namespace FlutterSDK.Painting.Textspan
 
 
 
-        #endregion
     }
 
 }

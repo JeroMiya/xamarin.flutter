@@ -533,16 +533,9 @@ namespace FlutterSDK.Painting.Binding
 
     public class _SystemFontsNotifier : FlutterSDK.Foundation.Changenotifier.Listenable
     {
-        #region constructors
         public _SystemFontsNotifier()
         { }
-        #endregion
-
-        #region fields
         internal virtual HashSet<object> _SystemFontsCallbacks { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void NotifyListeners()
         {
@@ -571,7 +564,6 @@ namespace FlutterSDK.Painting.Binding
 
 
 
-        #endregion
     }
 
 }

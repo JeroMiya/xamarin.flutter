@@ -466,17 +466,10 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class TickerProvider
     {
-        #region constructors
         public TickerProvider()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a ticker with the given callback.
@@ -488,7 +481,6 @@ namespace FlutterSDK.Scheduler.Ticker
             return default(Ticker);
         }
 
-        #endregion
     }
 
 
@@ -511,7 +503,6 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class Ticker
     {
-        #region constructors
         public Ticker(FlutterSDK.Scheduler.Ticker.TickerCallback _onTick, string debugLabel = default(string))
         {
             this._OnTick = _onTick;
@@ -520,9 +511,6 @@ namespace FlutterSDK.Scheduler.Ticker
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Scheduler.Ticker.TickerFuture _Future { get; set; }
         internal virtual bool _Muted { get; set; }
         internal virtual TimeSpan _StartTime { get; set; }
@@ -535,9 +523,6 @@ namespace FlutterSDK.Scheduler.Ticker
         public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Scheduled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool ShouldScheduleTick { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Starts the clock for this [Ticker]. If the ticker is not [muted], then this
@@ -727,7 +712,6 @@ namespace FlutterSDK.Scheduler.Ticker
 
 
 
-        #endregion
     }
 
 
@@ -751,7 +735,6 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class TickerFuture : IFuture<object>
     {
-        #region constructors
         internal TickerFuture()
         {
 
@@ -763,16 +746,10 @@ namespace FlutterSDK.Scheduler.Ticker
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual Completer<object> _PrimaryCompleter { get; set; }
         internal virtual Completer<object> _SecondaryCompleter { get; set; }
         internal virtual bool _Completed { get; set; }
         public virtual Future<object> OrCancel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Complete()
         {
@@ -856,7 +833,6 @@ namespace FlutterSDK.Scheduler.Ticker
 
 
 
-        #endregion
     }
 
 
@@ -866,20 +842,12 @@ namespace FlutterSDK.Scheduler.Ticker
     /// </Summary>
     public class TickerCanceled : IException
     {
-        #region constructors
         public TickerCanceled(FlutterSDK.Scheduler.Ticker.Ticker ticker = default(FlutterSDK.Scheduler.Ticker.Ticker))
         {
             this.Ticker = ticker;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Scheduler.Ticker.Ticker Ticker { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

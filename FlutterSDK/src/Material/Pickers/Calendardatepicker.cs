@@ -438,7 +438,6 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
     /// </Summary>
     public class CalendarDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CalendarDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialCalendarMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
         {
@@ -453,9 +452,6 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
         }
 
 
-        #endregion
-
-        #region fields
         public virtual DateTime InitialDate { get; set; }
         public virtual DateTime FirstDate { get; set; }
         public virtual DateTime LastDate { get; set; }
@@ -463,25 +459,17 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode InitialCalendarMode { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Calendardatepicker._CalendarDatePickerState CreateState() => new _CalendarDatePickerState();
 
 
-        #endregion
     }
 
 
     public class _CalendarDatePickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker.CalendarDatePicker>
     {
-        #region constructors
         public _CalendarDatePickerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _AnnouncedInitialDate { get; set; }
         internal virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode _Mode { get; set; }
         internal virtual DateTime _CurrentDisplayedMonthDate { get; set; }
@@ -490,9 +478,6 @@ namespace FlutterSDK.Material.Pickers.Calendardatepicker
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _YearPickerKey { get; set; }
         internal virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations _Localizations { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -625,7 +610,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
 
 
-        #endregion
     }
 
 
@@ -637,42 +621,27 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
     /// </Summary>
     public class _DatePickerModeToggleButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _DatePickerModeToggleButton(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode mode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string title = default(string), VoidCallback onTitlePressed = default(VoidCallback))
         {
             this.Mode = mode;
             this.Title = title;
             this.OnTitlePressed = onTitlePressed;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode Mode { get; set; }
         public virtual string Title { get; set; }
         public virtual VoidCallback OnTitlePressed { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButtonState CreateState() => new _DatePickerModeToggleButtonState();
 
 
-        #endregion
     }
 
 
     public class _DatePickerModeToggleButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._DatePickerModeToggleButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _DatePickerModeToggleButtonState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -724,13 +693,11 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
 
 
-        #endregion
     }
 
 
     public class _MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _MonthPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialMonth = default(DateTime), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDisplayedMonthChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
         {
@@ -743,9 +710,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.OnDisplayedMonthChanged = onDisplayedMonthChanged;
             this.SelectableDayPredicate = selectableDayPredicate;
         }
-        #endregion
-
-        #region fields
         public virtual DateTime InitialMonth { get; set; }
         public virtual DateTime CurrentDate { get; set; }
         public virtual DateTime FirstDate { get; set; }
@@ -754,25 +718,17 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDisplayedMonthChanged { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _MonthPickerState();
 
 
-        #endregion
     }
 
 
     public class _MonthPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._MonthPicker>
     {
-        #region constructors
         public _MonthPickerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual DateTime _CurrentMonth { get; set; }
         internal virtual DateTime _NextMonthDate { get; set; }
         internal virtual DateTime _PreviousMonthDate { get; set; }
@@ -781,9 +737,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
         internal virtual TextDirection _TextDirection { get; set; }
         internal virtual bool _IsDisplayingFirstMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _IsDisplayingLastMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -877,7 +830,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
 
 
-        #endregion
     }
 
 
@@ -889,7 +841,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
     /// </Summary>
     public class _DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _DayPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime displayedMonth = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate))
         : base(key: key)
         {
@@ -901,9 +852,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.OnChanged = onChanged;
             this.SelectableDayPredicate = selectableDayPredicate;
         }
-        #endregion
-
-        #region fields
         public virtual DateTime SelectedDate { get; set; }
         public virtual DateTime CurrentDate { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
@@ -911,9 +859,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
         public virtual DateTime LastDate { get; set; }
         public virtual DateTime DisplayedMonth { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -981,23 +926,15 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
 
 
-        #endregion
     }
 
 
     public class _DayPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
-        #region constructors
         public _DayPickerGridDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
         {
@@ -1015,21 +952,13 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
         public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) => false;
 
 
-        #endregion
     }
 
 
     public class _DayHeaders : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _DayHeaders()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Builds widgets showing abbreviated days of week. The first widget in the
@@ -1079,7 +1008,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
 
 
-        #endregion
     }
 
 
@@ -1088,7 +1016,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
     /// </Summary>
     public class _YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _YearPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime currentDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime initialDate = default(DateTime), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>))
         : base(key: key)
         {
@@ -1099,40 +1026,26 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
             this.SelectedDate = selectedDate;
             this.OnChanged = onChanged;
         }
-        #endregion
-
-        #region fields
         public virtual DateTime CurrentDate { get; set; }
         public virtual DateTime FirstDate { get; set; }
         public virtual DateTime LastDate { get; set; }
         public virtual DateTime InitialDate { get; set; }
         public virtual DateTime SelectedDate { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Calendardatepicker._YearPickerState CreateState() => new _YearPickerState();
 
 
-        #endregion
     }
 
 
     public class _YearPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Calendardatepicker._YearPicker>
     {
-        #region constructors
         public _YearPickerState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
         public virtual int MinYears { get; set; }
         internal virtual int _ItemCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1214,23 +1127,15 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
 
 
 
-        #endregion
     }
 
 
     public class _YearPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
-        #region constructors
         public _YearPickerGridDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
         {
@@ -1246,7 +1151,6 @@ _HandleModeChanged(_Mode==DatePickerMode.Day?DatePickerMode.Year:DatePickerMode.
         public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) => false;
 
 
-        #endregion
     }
 
 }

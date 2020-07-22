@@ -332,7 +332,6 @@ namespace FlutterSDK.Cupertino.Tabview
     /// </Summary>
     public class CupertinoTabView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoTabView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), string defaultTitle = default(string), Dictionary<string, object> routes = default(Dictionary<string, object>), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
         : base(key: key)
         {
@@ -344,9 +343,6 @@ namespace FlutterSDK.Cupertino.Tabview
             this.OnUnknownRoute = onUnknownRoute;
             this.NavigatorObservers = navigatorObservers;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
         public virtual string DefaultTitle { get; set; }
@@ -354,9 +350,6 @@ namespace FlutterSDK.Cupertino.Tabview
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnGenerateRoute { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.RouteFactory OnUnknownRoute { get; set; }
         public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> NavigatorObservers { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Tabview._CupertinoTabViewState CreateState()
         {
@@ -365,23 +358,15 @@ namespace FlutterSDK.Cupertino.Tabview
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoTabViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Tabview.CupertinoTabView>
     {
-        #region constructors
         public _CupertinoTabViewState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
         internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -460,7 +445,6 @@ namespace FlutterSDK.Cupertino.Tabview
 
 
 
-        #endregion
     }
 
 }

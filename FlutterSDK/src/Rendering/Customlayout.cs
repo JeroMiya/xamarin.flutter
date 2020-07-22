@@ -542,18 +542,10 @@ namespace FlutterSDK.Rendering.Customlayout
     /// </Summary>
     public class MultiChildLayoutParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public MultiChildLayoutParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual @Object Id { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -657,21 +649,14 @@ namespace FlutterSDK.Rendering.Customlayout
     /// </Summary>
     public class MultiChildLayoutDelegate
     {
-        #region constructors
         public MultiChildLayoutDelegate(FlutterSDK.Foundation.Changenotifier.Listenable relayout = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Relayout { get; set; }
         internal virtual Dictionary<@Object, FlutterSDK.Rendering.Box.RenderBox> _IdToChild { get; set; }
         internal virtual HashSet<FlutterSDK.Rendering.Box.RenderBox> _DebugChildrenNeedingLayout { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// True if a non-null LayoutChild was provided for the specified id.
@@ -804,7 +789,6 @@ namespace FlutterSDK.Rendering.Customlayout
         }
 
 
-        #endregion
     }
 
 
@@ -818,7 +802,6 @@ namespace FlutterSDK.Rendering.Customlayout
     /// </Summary>
     public class RenderCustomMultiChildLayoutBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
     {
-        #region constructors
         public RenderCustomMultiChildLayoutBox(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate))
         : base()
         {
@@ -827,14 +810,8 @@ namespace FlutterSDK.Rendering.Customlayout
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate _Delegate { get; set; }
         public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -948,7 +925,6 @@ namespace FlutterSDK.Rendering.Customlayout
 
 
 
-        #endregion
     }
 
 }

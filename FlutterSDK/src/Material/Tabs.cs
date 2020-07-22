@@ -451,7 +451,6 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class Tab : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Tab(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string text = default(string), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry iconMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -460,16 +459,10 @@ namespace FlutterSDK.Material.Tabs
             this.IconMargin = iconMargin;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual string Text { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry IconMargin { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Framework.Widget _BuildLabelText()
         {
@@ -515,13 +508,11 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _TabStyle : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public _TabStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), bool selected = default(bool), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: animation)
         {
@@ -532,18 +523,12 @@ namespace FlutterSDK.Material.Tabs
             this.UnselectedLabelStyle = unselectedLabelStyle;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
         public virtual bool Selected { get; set; }
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
         public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -561,25 +546,17 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _TabLabelBarRenderer : FlutterSDK.Rendering.Flex.RenderFlex
     {
-        #region constructors
         public _TabLabelBarRenderer(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), FlutterSDK.Material.Tabs._LayoutCallback onPerformLayout = default(FlutterSDK.Material.Tabs._LayoutCallback))
         : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection)
         {
             this.OnPerformLayout = onPerformLayout;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabs._LayoutCallback OnPerformLayout { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -601,25 +578,17 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _TabLabelBar : FlutterSDK.Widgets.Basic.Flex
     {
-        #region constructors
         public _TabLabelBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabs._LayoutCallback onPerformLayout = default(FlutterSDK.Material.Tabs._LayoutCallback))
         : base(key: key, children: children, direction: Axis.Horizontal, mainAxisSize: MainAxisSize.Max, mainAxisAlignment: MainAxisAlignment.Start, crossAxisAlignment: CrossAxisAlignment.Center, verticalDirection: VerticalDirection.Down)
         {
             this.OnPerformLayout = onPerformLayout;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabs._LayoutCallback OnPerformLayout { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Flex.RenderFlex CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -644,13 +613,11 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _IndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _IndicatorPainter(FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> tabKeys = default(List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>>), FlutterSDK.Material.Tabs._IndicatorPainter old = default(FlutterSDK.Material.Tabs._IndicatorPainter))
         : base(repaint: controller.Animation)
         {
@@ -662,9 +629,6 @@ namespace FlutterSDK.Material.Tabs
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
         public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
         public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
@@ -675,9 +639,6 @@ namespace FlutterSDK.Material.Tabs
         internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
         internal virtual bool _NeedsPaint { get; set; }
         public virtual int MaxTabIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void MarkNeedsPaint()
         {
@@ -794,26 +755,18 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _ChangeAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
     {
-        #region constructors
         public _ChangeAnimation(FlutterSDK.Material.Tabcontroller.TabController controller)
         {
             this.Controller = controller;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
         {
@@ -830,28 +783,20 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _DragAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
     {
-        #region constructors
         public _DragAnimation(FlutterSDK.Material.Tabcontroller.TabController controller, int index)
         {
             this.Controller = controller;
             this.Index = index;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
         public virtual int Index { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void RemoveStatusListener(FlutterSDK.Animation.Animation.AnimationStatusListener listener)
         {
@@ -868,26 +813,18 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _TabBarScrollPosition : FlutterSDK.Widgets.Scrollpositionwithsinglecontext.ScrollPositionWithSingleContext
     {
-        #region constructors
         public _TabBarScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), FlutterSDK.Material.Tabs._TabBarState tabBar = default(FlutterSDK.Material.Tabs._TabBarState))
         : base(physics: physics, context: context, initialPixels: null, oldPosition: oldPosition)
         {
             this.TabBar = tabBar;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabs._TabBarState TabBar { get; set; }
         internal virtual bool _InitialViewportDimensionWasZero { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent)
         {
@@ -905,24 +842,16 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
     public class _TabBarScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
-        #region constructors
         public _TabBarScrollController(FlutterSDK.Material.Tabs._TabBarState tabBar)
         {
             this.TabBar = tabBar;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabs._TabBarState TabBar { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition)
         {
@@ -931,7 +860,6 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
@@ -958,7 +886,6 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
     {
-        #region constructors
         public TabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> tabs = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), bool isScrollable = false, FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), double indicatorWeight = 2.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry indicatorPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>))
         : base(key: key)
         {
@@ -978,9 +905,6 @@ namespace FlutterSDK.Material.Tabs
             this.DragStartBehavior = dragStartBehavior;
             this.OnTap = onTap;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Tabs { get; set; }
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
         public virtual bool IsScrollable { get; set; }
@@ -997,25 +921,17 @@ namespace FlutterSDK.Material.Tabs
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Tabs._TabBarState CreateState() => new _TabBarState();
 
 
-        #endregion
     }
 
 
     public class _TabBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabs.TabBar>
     {
-        #region constructors
         public _TabBarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _ScrollController { get; set; }
         internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
         internal virtual FlutterSDK.Material.Tabs._IndicatorPainter _IndicatorPainter { get; set; }
@@ -1025,9 +941,6 @@ namespace FlutterSDK.Material.Tabs
         internal virtual FlutterSDK.Painting.Decoration.Decoration _Indicator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _ControllerIsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int MaxTabIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1312,7 +1225,6 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
@@ -1332,7 +1244,6 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabBarView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public TabBarView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -1341,32 +1252,21 @@ namespace FlutterSDK.Material.Tabs
             this.Physics = physics;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Tabs._TabBarViewState CreateState() => new _TabBarViewState();
 
 
-        #endregion
     }
 
 
     public class _TabBarViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Tabs.TabBarView>
     {
-        #region constructors
         public _TabBarViewState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Tabcontroller.TabController _Controller { get; set; }
         internal virtual FlutterSDK.Widgets.Pageview.PageController _PageController { get; set; }
         internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Children { get; set; }
@@ -1374,9 +1274,6 @@ namespace FlutterSDK.Material.Tabs
         internal virtual int _CurrentIndex { get; set; }
         internal virtual int _WarpUnderwayCount { get; set; }
         internal virtual bool _ControllerIsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateTabController()
         {
@@ -1530,7 +1427,6 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
@@ -1541,7 +1437,6 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabPageSelectorIndicator : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public TabPageSelectorIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), double size = default(double))
         : base(key: key)
         {
@@ -1549,15 +1444,9 @@ namespace FlutterSDK.Material.Tabs
             this.BorderColor = borderColor;
             this.Size = size;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color BorderColor { get; set; }
         public virtual double Size { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1566,7 +1455,6 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 
@@ -1581,7 +1469,6 @@ namespace FlutterSDK.Material.Tabs
     /// </Summary>
     public class TabPageSelector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public TabPageSelector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tabcontroller.TabController controller = default(FlutterSDK.Material.Tabcontroller.TabController), double indicatorSize = 12.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -1590,16 +1477,10 @@ namespace FlutterSDK.Material.Tabs
             this.Color = color;
             this.SelectedColor = selectedColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabcontroller.TabController Controller { get; set; }
         public virtual double IndicatorSize { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Framework.Widget _BuildTabIndicator(int tabIndex, FlutterSDK.Material.Tabcontroller.TabController tabController, FlutterSDK.Animation.Tween.ColorTween selectedColorTween, FlutterSDK.Animation.Tween.ColorTween previousColorTween)
         {
@@ -1659,7 +1540,6 @@ namespace FlutterSDK.Material.Tabs
 
 
 
-        #endregion
     }
 
 

@@ -484,7 +484,6 @@ namespace FlutterSDK.Widgets.Icon
     /// </Summary>
     public class Icon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Icon(FlutterSDK.Widgets.Icondata.IconData icon, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string), TextDirection textDirection = default(TextDirection))
         : base(key: key)
         {
@@ -494,17 +493,11 @@ namespace FlutterSDK.Widgets.Icon
             this.SemanticLabel = semanticLabel;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Icondata.IconData IconValue { get; set; }
         public virtual double Size { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual string SemanticLabel { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -548,7 +541,6 @@ namespace FlutterSDK.Widgets.Icon
 
 
 
-        #endregion
     }
 
 }

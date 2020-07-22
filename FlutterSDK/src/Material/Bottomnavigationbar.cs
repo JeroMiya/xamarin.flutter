@@ -469,7 +469,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
     /// </Summary>
     public class BottomNavigationBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public BottomNavigationBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, double elevation = 8.0, FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type = default(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType), FlutterBinding.UI.Color fixedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double iconSize = 24.0, FlutterBinding.UI.Color selectedItemColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedItemColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), double selectedFontSize = 14.0, double unselectedFontSize = 12.0, FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool showSelectedLabels = true, bool showUnselectedLabels = default(bool))
         : base(key: key)
         {
@@ -488,9 +487,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
             this.UnselectedLabelStyle = unselectedLabelStyle;
             this.ShowSelectedLabels = showSelectedLabels;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
         public virtual int CurrentIndex { get; set; }
@@ -509,9 +505,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         public virtual bool ShowUnselectedLabels { get; set; }
         public virtual bool ShowSelectedLabels { get; set; }
         public virtual FlutterBinding.UI.Color FixedColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType _Type(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type, List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items)
         {
@@ -539,13 +532,11 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         public new FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState CreateState() => new _BottomNavigationBarState();
 
 
-        #endregion
     }
 
 
     public class _BottomNavigationTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _BottomNavigationTile(FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType type, FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item, FlutterSDK.Animation.Animation.Animation<double> animation, double iconSize, VoidCallback onTap = default(VoidCallback), FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween), double flex = default(double), bool selected = false, FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), bool showSelectedLabels = default(bool), bool showUnselectedLabels = default(bool), string indexLabel = default(string))
         : base()
         {
@@ -565,9 +556,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
             this.ShowUnselectedLabels = showUnselectedLabels;
             this.IndexLabel = indexLabel;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBarType Type { get; set; }
         public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
@@ -583,9 +571,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         public virtual string IndexLabel { get; set; }
         public virtual bool ShowSelectedLabels { get; set; }
         public virtual bool ShowUnselectedLabels { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -619,13 +604,11 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-        #endregion
     }
 
 
     public class _TileIcon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _TileIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), double iconSize = default(double), bool selected = default(bool), FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item = default(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem), FlutterSDK.Widgets.Iconthemedata.IconThemeData selectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData unselectedIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData))
         : base(key: key)
         {
@@ -637,9 +620,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
             this.SelectedIconTheme = selectedIconTheme;
             this.UnselectedIconTheme = unselectedIconTheme;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
         public virtual double IconSize { get; set; }
@@ -647,9 +627,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item { get; set; }
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData SelectedIconTheme { get; set; }
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData UnselectedIconTheme { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -661,13 +638,11 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-        #endregion
     }
 
 
     public class _Label : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _Label(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Tween.ColorTween colorTween = default(FlutterSDK.Animation.Tween.ColorTween), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem item = default(FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem), FlutterSDK.Painting.Textstyle.TextStyle selectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), bool showSelectedLabels = default(bool), bool showUnselectedLabels = default(bool))
         : base(key: key)
         {
@@ -679,9 +654,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
             this.ShowSelectedLabels = showSelectedLabels;
             this.ShowUnselectedLabels = showUnselectedLabels;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Tween.ColorTween ColorTween { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
         public virtual FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem Item { get; set; }
@@ -689,9 +661,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
         public virtual bool ShowSelectedLabels { get; set; }
         public virtual bool ShowUnselectedLabels { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -717,26 +686,18 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-        #endregion
     }
 
 
     public class _BottomNavigationBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomnavigationbar.BottomNavigationBar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _BottomNavigationBarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Animation.Animationcontroller.AnimationController> _Controllers { get; set; }
         internal virtual List<FlutterSDK.Animation.Animations.CurvedAnimation> _Animations { get; set; }
         internal virtual Queue<FlutterSDK.Material.Bottomnavigationbar._Circle> _Circles { get; set; }
         internal virtual FlutterBinding.UI.Color _BackgroundColor { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FlexTween { get; set; }
-        #endregion
-
-        #region methods
 
         private void _ResetState()
         {
@@ -904,13 +865,11 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-        #endregion
     }
 
 
     public class _Circle
     {
-        #region constructors
         public _Circle(FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState state = default(FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState), int index = default(int), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base()
         {
@@ -923,18 +882,12 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Bottomnavigationbar._BottomNavigationBarState State { get; set; }
         public virtual int Index { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
         public virtual FlutterSDK.Animation.Animations.CurvedAnimation Animation { get; set; }
         public virtual double HorizontalLeadingOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void Dispose()
         {
@@ -943,27 +896,19 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-        #endregion
     }
 
 
     public class _RadialPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _RadialPainter(List<FlutterSDK.Material.Bottomnavigationbar._Circle> circles = default(List<FlutterSDK.Material.Bottomnavigationbar._Circle>), TextDirection textDirection = default(TextDirection))
         : base()
         {
             this.Circles = circles;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Bottomnavigationbar._Circle> Circles { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         private double _MaxRadius(FlutterBinding.UI.Offset center, Size size)
         {
@@ -1015,7 +960,6 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-        #endregion
     }
 
 

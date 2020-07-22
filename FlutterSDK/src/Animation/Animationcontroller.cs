@@ -208,7 +208,6 @@ namespace FlutterSDK.Animation.Animationcontroller
     /// </Summary>
     public class AnimationController : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
-        #region constructors
         public AnimationController(double value = default(double), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), string debugLabel = default(string), double lowerBound = 0.0, double upperBound = 1.0, FlutterSDK.Animation.Animationcontroller.AnimationBehavior animationBehavior = default(FlutterSDK.Animation.Animationcontroller.AnimationBehavior), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base()
         {
@@ -234,9 +233,6 @@ namespace FlutterSDK.Animation.Animationcontroller
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double LowerBound { get; set; }
         public virtual double UpperBound { get; set; }
         public virtual string DebugLabel { get; set; }
@@ -256,9 +252,6 @@ namespace FlutterSDK.Animation.Animationcontroller
         public virtual TimeSpan LastElapsedDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsAnimating { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Recreates the [Ticker] with the new [TickerProvider].
@@ -672,13 +665,11 @@ namespace FlutterSDK.Animation.Animationcontroller
 
 
 
-        #endregion
     }
 
 
     public class _InterpolationSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public _InterpolationSimulation(double _begin, double _end, TimeSpan duration, FlutterSDK.Animation.Curves.Curve _curve, double scale)
         : base()
         {
@@ -686,16 +677,10 @@ namespace FlutterSDK.Animation.Animationcontroller
             this._End = _end;
             this._Curve = _curve;
         }
-        #endregion
-
-        #region fields
         internal virtual double _DurationInSeconds { get; set; }
         internal virtual double _Begin { get; set; }
         internal virtual double _End { get; set; }
         internal virtual FlutterSDK.Animation.Curves.Curve _Curve { get; set; }
-        #endregion
-
-        #region methods
 
         public new double x(double timeInSeconds)
         {
@@ -718,13 +703,11 @@ namespace FlutterSDK.Animation.Animationcontroller
         public new bool IsDone(double timeInSeconds) => timeInSeconds > _DurationInSeconds;
 
 
-        #endregion
     }
 
 
     public class _RepeatingSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public _RepeatingSimulation(double initialValue, double min, double max, bool reverse, TimeSpan period, FlutterSDK.Animation.Animationcontroller._DirectionSetter directionSetter)
         : base()
         {
@@ -737,18 +720,12 @@ namespace FlutterSDK.Animation.Animationcontroller
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double Min { get; set; }
         public virtual double Max { get; set; }
         public virtual bool Reverse { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller._DirectionSetter DirectionSetter { get; set; }
         internal virtual double _PeriodInSeconds { get; set; }
         internal virtual double _InitialT { get; set; }
-        #endregion
-
-        #region methods
 
         public new double x(double timeInSeconds)
         {
@@ -779,7 +756,6 @@ namespace FlutterSDK.Animation.Animationcontroller
         public new bool IsDone(double timeInSeconds) => false;
 
 
-        #endregion
     }
 
 

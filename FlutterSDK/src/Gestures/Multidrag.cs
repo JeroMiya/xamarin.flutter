@@ -360,15 +360,11 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class MultiDragPointerState
     {
-        #region constructors
         public MultiDragPointerState(FlutterBinding.UI.Offset initialPosition)
         : base()
         {
             this.InitialPosition = initialPosition;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset InitialPosition { get; set; }
         internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
         internal virtual FlutterSDK.Gestures.Drag.Drag _Client { get; set; }
@@ -376,9 +372,6 @@ namespace FlutterSDK.Gestures.Multidrag
         internal virtual TimeSpan _LastPendingEventTimestamp { get; set; }
         internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _ArenaEntry { get; set; }
         public virtual FlutterBinding.UI.Offset PendingDelta { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _SetArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaEntry entry)
         {
@@ -538,7 +531,6 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
@@ -566,20 +558,13 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class MultiDragGestureRecognizer<T> : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
-        #region constructors
         public MultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback OnStart { get; set; }
         internal virtual Dictionary<int, T> _Pointers { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -715,24 +700,16 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
     public class _ImmediatePointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
     {
-        #region constructors
         public _ImmediatePointerState(FlutterBinding.UI.Offset initialPosition)
         : base(initialPosition)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void CheckForResolutionAfterMove()
         {
@@ -750,7 +727,6 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
@@ -774,19 +750,12 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class ImmediateMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._ImmediatePointerState>
     {
-        #region constructors
         public ImmediateMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Multidrag._ImmediatePointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -795,24 +764,16 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
     public class _HorizontalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
     {
-        #region constructors
         public _HorizontalPointerState(FlutterBinding.UI.Offset initialPosition)
         : base(initialPosition)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void CheckForResolutionAfterMove()
         {
@@ -830,7 +791,6 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
@@ -853,19 +813,12 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class HorizontalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._HorizontalPointerState>
     {
-        #region constructors
         public HorizontalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Multidrag._HorizontalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -874,24 +827,16 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
     public class _VerticalPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
     {
-        #region constructors
         public _VerticalPointerState(FlutterBinding.UI.Offset initialPosition)
         : base(initialPosition)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void CheckForResolutionAfterMove()
         {
@@ -909,7 +854,6 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
@@ -932,19 +876,12 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class VerticalMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._VerticalPointerState>
     {
-        #region constructors
         public VerticalMultiDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Multidrag._VerticalPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -953,13 +890,11 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
     public class _DelayedPointerState : FlutterSDK.Gestures.Multidrag.MultiDragPointerState
     {
-        #region constructors
         public _DelayedPointerState(FlutterBinding.UI.Offset initialPosition, TimeSpan delay)
         : base(initialPosition)
         {
@@ -968,14 +903,8 @@ namespace FlutterSDK.Gestures.Multidrag
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual Timer _Timer { get; set; }
         internal virtual FlutterSDK.Gestures.Multidrag.GestureMultiDragStartCallback _Starter { get; set; }
-        #endregion
-
-        #region methods
 
         private void _DelayPassed()
         {
@@ -1045,7 +974,6 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 
@@ -1071,20 +999,13 @@ namespace FlutterSDK.Gestures.Multidrag
     /// </Summary>
     public class DelayedMultiDragGestureRecognizer : FlutterSDK.Gestures.Multidrag.MultiDragGestureRecognizer<FlutterSDK.Gestures.Multidrag._DelayedPointerState>
     {
-        #region constructors
         public DelayedMultiDragGestureRecognizer(TimeSpan delay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
             this.Delay = delay;
         }
-        #endregion
-
-        #region fields
         public virtual TimeSpan Delay { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Multidrag._DelayedPointerState CreateNewPointerState(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -1093,7 +1014,6 @@ namespace FlutterSDK.Gestures.Multidrag
 
 
 
-        #endregion
     }
 
 }

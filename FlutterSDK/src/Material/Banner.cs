@@ -384,7 +384,6 @@ namespace FlutterSDK.Material.Banner
     /// </Summary>
     public class MaterialBanner : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public MaterialBanner(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool forceActionsBelow = false)
         : base(key: key)
         {
@@ -397,9 +396,6 @@ namespace FlutterSDK.Material.Banner
             this.LeadingPadding = leadingPadding;
             this.ForceActionsBelow = forceActionsBelow;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
@@ -408,9 +404,6 @@ namespace FlutterSDK.Material.Banner
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
         public virtual bool ForceActionsBelow { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -428,7 +421,6 @@ namespace FlutterSDK.Material.Banner
 
 
 
-        #endregion
     }
 
 }

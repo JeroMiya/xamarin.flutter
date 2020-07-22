@@ -348,7 +348,6 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoAlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoAlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollcontroller.ScrollController actionScrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), TimeSpan insetAnimationDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve))
         : base(key: key)
         {
@@ -360,9 +359,6 @@ namespace FlutterSDK.Cupertino.Dialog
             this.InsetAnimationDuration = insetAnimationDuration;
             this.InsetAnimationCurve = insetAnimationCurve;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
@@ -370,9 +366,6 @@ namespace FlutterSDK.Cupertino.Dialog
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ActionScrollController { get; set; }
         public virtual TimeSpan InsetAnimationDuration { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve InsetAnimationCurve { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Framework.Widget _BuildContent(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -411,7 +404,6 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
@@ -433,19 +425,12 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -454,7 +439,6 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
@@ -477,21 +461,14 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoPopupSurface : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoPopupSurface(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isSurfacePainted = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.IsSurfacePainted = isSurfacePainted;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool IsSurfacePainted { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -500,27 +477,19 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoDialogRenderWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public _CupertinoDialogRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget contentSection = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget actionsSection = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.ContentSection = contentSection;
             this.ActionsSection = actionsSection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget ContentSection { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget ActionsSection { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -551,28 +520,20 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoDialogRenderElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _CupertinoDialogRenderElement(FlutterSDK.Cupertino.Dialog._CupertinoDialogRenderWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _ContentElement { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Element _ActionsElement { get; set; }
         public virtual FlutterSDK.Cupertino.Dialog._CupertinoDialogRenderWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Cupertino.Dialog._RenderCupertinoDialog RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -685,21 +646,16 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _RenderCupertinoDialog : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public _RenderCupertinoDialog(FlutterSDK.Rendering.Box.RenderBox contentSection = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Box.RenderBox actionsSection = default(FlutterSDK.Rendering.Box.RenderBox), double dividerThickness = 0.0, bool isInAccessibilityMode = false, FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Box.RenderBox _ContentSection { get; set; }
         internal virtual FlutterSDK.Rendering.Box.RenderBox _ActionsSection { get; set; }
         internal virtual bool _IsInAccessibilityMode { get; set; }
@@ -710,9 +666,6 @@ namespace FlutterSDK.Cupertino.Dialog
         public virtual bool IsInAccessibilityMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _DialogWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color DividerColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
         {
@@ -980,13 +933,11 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoAlertContentSection : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _CupertinoAlertContentSection(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController))
         : base(key: key)
         {
@@ -994,15 +945,9 @@ namespace FlutterSDK.Cupertino.Dialog
             this.Content = content;
             this.ScrollController = scrollController;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1018,46 +963,30 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoAlertActionSection : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _CupertinoAlertActionSection(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController))
         : base(key: key)
         {
             this.Children = children;
             this.ScrollController = scrollController;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Dialog._CupertinoAlertActionSectionState CreateState() => new _CupertinoAlertActionSectionState();
 
 
-        #endregion
     }
 
 
     public class _CupertinoAlertActionSectionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Dialog._CupertinoAlertActionSection>
     {
-        #region constructors
         public _CupertinoAlertActionSectionState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1073,44 +1002,28 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _PressableActionButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _PressableActionButton(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Dialog._PressableActionButtonState CreateState() => new _PressableActionButtonState();
 
 
-        #endregion
     }
 
 
     public class _PressableActionButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Dialog._PressableActionButton>
     {
-        #region constructors
         public _PressableActionButtonState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _IsPressed { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1127,26 +1040,18 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _ActionButtonParentDataWidget : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Cupertino.Dialog._ActionButtonParentData>
     {
-        #region constructors
         public _ActionButtonParentDataWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isPressed = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.IsPressed = isPressed;
         }
-        #endregion
-
-        #region fields
         public virtual bool IsPressed { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
         {
@@ -1163,25 +1068,16 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _ActionButtonParentData : FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData
     {
-        #region constructors
         public _ActionButtonParentData(bool isPressed = false)
         {
             this.IsPressed = isPressed;
         }
-        #endregion
-
-        #region fields
         public virtual bool IsPressed { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1195,7 +1091,6 @@ namespace FlutterSDK.Cupertino.Dialog
     /// </Summary>
     public class CupertinoDialogAction : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoDialogAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), bool isDefaultAction = false, bool isDestructiveAction = false, FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1205,18 +1100,12 @@ namespace FlutterSDK.Cupertino.Dialog
             this.TextStyle = textStyle;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnPressed { get; set; }
         public virtual bool IsDefaultAction { get; set; }
         public virtual bool IsDestructiveAction { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private double _CalculatePadding(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1267,25 +1156,17 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoDialogActionsRenderWidget : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public _CupertinoDialogActionsRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> actionButtons = default(List<FlutterSDK.Widgets.Framework.Widget>), double dividerThickness = 0.0)
         : base(key: key, children: actionButtons)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _DividerThickness { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1308,13 +1189,11 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 
     public class _RenderCupertinoDialogActions : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
     {
-        #region constructors
         public _RenderCupertinoDialogActions(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), double dialogWidth = default(double), double dividerThickness = 0.0, FlutterBinding.UI.Color dialogColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogPressedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color))
         : base()
         {
@@ -1323,9 +1202,6 @@ namespace FlutterSDK.Cupertino.Dialog
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _DialogWidth { get; set; }
         internal virtual double _DividerThickness { get; set; }
         internal virtual SKPaint _ButtonBackgroundPaint { get; set; }
@@ -1338,9 +1214,6 @@ namespace FlutterSDK.Cupertino.Dialog
         public virtual FlutterBinding.UI.Color DividerColor { set { throw new NotImplementedException(); } }
         internal virtual Iterable<FlutterSDK.Rendering.Box.RenderBox> _PressedButtons { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _IsButtonPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -1684,7 +1557,6 @@ namespace FlutterSDK.Cupertino.Dialog
 
 
 
-        #endregion
     }
 
 

@@ -476,7 +476,6 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class Scrollable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Scrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollable.ViewportBuilder viewportBuilder = default(FlutterSDK.Widgets.Scrollable.ViewportBuilder), FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator incrementCalculator = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementCalculator), bool excludeFromSemantics = false, int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -489,9 +488,6 @@ namespace FlutterSDK.Widgets.Scrollable
             this.SemanticChildCount = semanticChildCount;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
@@ -501,9 +497,6 @@ namespace FlutterSDK.Widgets.Scrollable
         public virtual int SemanticChildCount { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollable.ScrollableState CreateState() => new ScrollableState();
 
@@ -591,27 +584,19 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 
     public class _ScrollableScope : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _ScrollableScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollable.ScrollableState scrollable = default(FlutterSDK.Widgets.Scrollable.ScrollableState), FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Scrollable = scrollable;
             this.Position = position;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollable.ScrollableState Scrollable { get; set; }
         public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Scrollable._ScrollableScope old)
         {
@@ -626,7 +611,6 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 
@@ -644,12 +628,8 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Scrollable.Scrollable>, IScrollContext, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public ScrollableState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior _Configuration { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics _Physics { get; set; }
@@ -667,9 +647,6 @@ namespace FlutterSDK.Widgets.Scrollable
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Framework.BuildContext NotificationContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Framework.BuildContext StorageContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdatePosition()
         {
@@ -939,7 +916,6 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 
@@ -961,7 +937,6 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class _ScrollSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _ScrollSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), bool allowImplicitScrolling = default(bool), int semanticChildCount = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -969,15 +944,9 @@ namespace FlutterSDK.Widgets.Scrollable
             this.AllowImplicitScrolling = allowImplicitScrolling;
             this.SemanticChildCount = semanticChildCount;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get; set; }
         public virtual bool AllowImplicitScrolling { get; set; }
         public virtual int SemanticChildCount { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollable._RenderScrollSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1000,13 +969,11 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 
     public class _RenderScrollSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _RenderScrollSemantics(FlutterSDK.Widgets.Scrollposition.ScrollPosition position = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), bool allowImplicitScrolling = default(bool), int semanticChildCount = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -1015,9 +982,6 @@ namespace FlutterSDK.Widgets.Scrollable
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
         internal virtual bool _AllowImplicitScrolling { get; set; }
         internal virtual int _SemanticChildCount { get; set; }
@@ -1025,9 +989,6 @@ namespace FlutterSDK.Widgets.Scrollable
         public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int SemanticChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -1087,7 +1048,6 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 
@@ -1098,22 +1058,14 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollIncrementDetails
     {
-        #region constructors
         public ScrollIncrementDetails(FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType), FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics))
         : base()
         {
             this.Type = type;
             this.Metrics = metrics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
         public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1127,21 +1079,14 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollIntent : FlutterSDK.Widgets.Actions.Intent
     {
-        #region constructors
         public ScrollIntent(FlutterSDK.Painting.Basictypes.AxisDirection direction = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))
         : base(ScrollableDefaultClass.ScrollAction.Key)
         {
             this.Direction = direction;
             this.Type = type;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection Direction { get; set; }
         public virtual FlutterSDK.Widgets.Scrollable.ScrollIncrementType Type { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool IsEnabled(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1150,7 +1095,6 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 
@@ -1165,19 +1109,12 @@ namespace FlutterSDK.Widgets.Scrollable
     /// </Summary>
     public class ScrollAction : FlutterSDK.Widgets.Actions.Action
     {
-        #region constructors
         public ScrollAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         private double _CalculateScrollIncrement(FlutterSDK.Widgets.Scrollable.ScrollableState state, FlutterSDK.Widgets.Scrollable.ScrollIncrementType type = default(FlutterSDK.Widgets.Scrollable.ScrollIncrementType))
         {
@@ -1257,7 +1194,6 @@ namespace FlutterSDK.Widgets.Scrollable
 
 
 
-        #endregion
     }
 
 

@@ -429,25 +429,18 @@ namespace FlutterSDK.Material.Page
     /// </Summary>
     public class MaterialPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
-        #region constructors
         public MaterialPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
         {
             this.Builder = builder;
             this.MaintainState = maintainState;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         public new bool MaintainState { get; set; }
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool CanTransitionTo(FlutterSDK.Widgets.Routes.TransitionRoute<object> nextRoute)
         {
@@ -475,7 +468,6 @@ namespace FlutterSDK.Material.Page
 
 
 
-        #endregion
     }
 
 }

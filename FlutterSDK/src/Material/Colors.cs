@@ -392,15 +392,11 @@ namespace FlutterSDK.Material.Colors
     /// </Summary>
     public class MaterialColor : FlutterSDK.Painting.Colors.ColorSwatch<int>
     {
-        #region constructors
         public MaterialColor(int primary, Dictionary<int, Color> swatch)
         : base(primary, swatch)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Shade50 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade100 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade200 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -411,10 +407,6 @@ namespace FlutterSDK.Material.Colors
         public virtual FlutterBinding.UI.Color Shade700 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade800 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade900 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -434,24 +426,16 @@ namespace FlutterSDK.Material.Colors
     /// </Summary>
     public class MaterialAccentColor : FlutterSDK.Painting.Colors.ColorSwatch<int>
     {
-        #region constructors
         public MaterialAccentColor(int primary, Dictionary<int, Color> swatch)
         : base(primary, swatch)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Shade50 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade100 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade200 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade400 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Shade700 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -562,14 +546,10 @@ namespace FlutterSDK.Material.Colors
     /// </Summary>
     public class Colors
     {
-        #region constructors
         internal Colors()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Transparent { get; set; }
         public virtual FlutterBinding.UI.Color Black { get; set; }
         public virtual FlutterBinding.UI.Color Black87 { get; set; }
@@ -659,10 +639,6 @@ namespace FlutterSDK.Material.Colors
         internal virtual int _BlueGreyPrimaryValue { get; set; }
         public virtual List<FlutterSDK.Material.Colors.MaterialColor> Primaries { get; set; }
         public virtual List<FlutterSDK.Material.Colors.MaterialAccentColor> Accents { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

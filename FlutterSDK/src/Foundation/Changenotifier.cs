@@ -550,7 +550,6 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// </Summary>
         public class Listenable
         {
-            #region constructors
             public Listenable()
             {
 
@@ -559,12 +558,6 @@ namespace FlutterSDK.Foundation.Changenotifier
             {
                 var instance = new Listenable();
             }
-            #endregion
-
-            #region fields
-            #endregion
-
-            #region methods
 
             /// <Summary>
             /// Register a closure to be called when the object notifies its listeners.
@@ -582,7 +575,6 @@ namespace FlutterSDK.Foundation.Changenotifier
             {
             }
 
-            #endregion
         }
 
 
@@ -594,36 +586,21 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// </Summary>
         public class ValueListenable<T> : FlutterSDK.Foundation.Changenotifier.Listenable
         {
-            #region constructors
             public ValueListenable()
             {
 
             }
-            #endregion
-
-            #region fields
             public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-            #endregion
-
-            #region methods
-            #endregion
         }
 
 
         public class _MergingListenable : FlutterSDK.Foundation.Changenotifier.Listenable
         {
-            #region constructors
             public _MergingListenable(List<FlutterSDK.Foundation.Changenotifier.Listenable> _children)
             {
                 this._Children = _children;
             }
-            #endregion
-
-            #region fields
             internal virtual List<FlutterSDK.Foundation.Changenotifier.Listenable> _Children { get; set; }
-            #endregion
-
-            #region methods
 
             public new void AddListener(VoidCallback listener)
             {
@@ -649,7 +626,6 @@ namespace FlutterSDK.Foundation.Changenotifier
 
 
 
-            #endregion
         }
 
 
@@ -662,21 +638,13 @@ namespace FlutterSDK.Foundation.Changenotifier
         /// </Summary>
         public class ValueNotifier<T> : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<T>
         {
-            #region constructors
             public ValueNotifier(T _value)
             {
                 this._Value = _value;
             }
-            #endregion
-
-            #region fields
             internal virtual T _Value { get; set; }
             public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-            #endregion
 
-            #region methods
-
-            #endregion
         }
 
     }

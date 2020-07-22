@@ -477,20 +477,13 @@ namespace FlutterSDK.Painting.Boxborder
     /// </Summary>
     public class BoxBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public BoxBorder()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Top { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Boxborder.BoxBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false) => null;
 
@@ -644,7 +637,6 @@ namespace FlutterSDK.Painting.Boxborder
 
 
 
-        #endregion
     }
 
 
@@ -713,7 +705,6 @@ namespace FlutterSDK.Painting.Boxborder
     /// </Summary>
     public class Border : FlutterSDK.Painting.Boxborder.BoxBorder
     {
-        #region constructors
         public Border(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
@@ -738,9 +729,6 @@ namespace FlutterSDK.Painting.Boxborder
         }
 
 
-        #endregion
-
-        #region fields
         public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
         public new FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
@@ -748,9 +736,6 @@ namespace FlutterSDK.Painting.Boxborder
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [Border] that represents the addition of the two given
@@ -896,7 +881,6 @@ namespace FlutterSDK.Painting.Boxborder
 
 
 
-        #endregion
     }
 
 
@@ -923,7 +907,6 @@ namespace FlutterSDK.Painting.Boxborder
     /// </Summary>
     public class BorderDirectional : FlutterSDK.Painting.Boxborder.BoxBorder
     {
-        #region constructors
         public BorderDirectional(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide start = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide end = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
@@ -932,9 +915,6 @@ namespace FlutterSDK.Painting.Boxborder
             this.End = end;
             this.Bottom = bottom;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide Start { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide End { get; set; }
@@ -942,9 +922,6 @@ namespace FlutterSDK.Painting.Boxborder
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [BorderDirectional] that represents the addition of the two
@@ -1119,7 +1096,6 @@ namespace FlutterSDK.Painting.Boxborder
 
 
 
-        #endregion
     }
 
 

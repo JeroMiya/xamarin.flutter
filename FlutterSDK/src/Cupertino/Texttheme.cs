@@ -316,7 +316,6 @@ namespace FlutterSDK.Cupertino.Texttheme
     /// </Summary>
     public class CupertinoTextThemeData : IDiagnosticable
     {
-        #region constructors
         public CupertinoTextThemeData(FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle actionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle tabLabelTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navLargeTitleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle navActionTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle pickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle dateTimePickerTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base()
         {
@@ -335,9 +334,6 @@ namespace FlutterSDK.Cupertino.Texttheme
             instance._PickerTextStyle = _pickerTextStyle;
             instance._DateTimePickerTextStyle = _dateTimePickerTextStyle;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Cupertino.Texttheme._TextThemeDefaultsBuilder _Defaults { get; set; }
         internal virtual FlutterBinding.UI.Color _PrimaryColor { get; set; }
         internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle { get; set; }
@@ -356,9 +352,6 @@ namespace FlutterSDK.Cupertino.Texttheme
         public virtual FlutterSDK.Painting.Textstyle.TextStyle NavActionTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a copy of the current [CupertinoTextThemeData] with all the colors
@@ -405,22 +398,17 @@ namespace FlutterSDK.Cupertino.Texttheme
 
 
 
-        #endregion
     }
 
 
     public class _TextThemeDefaultsBuilder
     {
-        #region constructors
         public _TextThemeDefaultsBuilder(FlutterBinding.UI.Color labelColor, FlutterBinding.UI.Color inactiveGrayColor)
         : base()
         {
             this.LabelColor = labelColor;
             this.InactiveGrayColor = inactiveGrayColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
         public virtual FlutterBinding.UI.Color InactiveGrayColor { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -429,9 +417,6 @@ namespace FlutterSDK.Cupertino.Texttheme
         public virtual FlutterSDK.Painting.Textstyle.TextStyle NavLargeTitleTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle PickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle DateTimePickerTextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Painting.Textstyle.TextStyle _ApplyLabelColor(FlutterSDK.Painting.Textstyle.TextStyle original, FlutterBinding.UI.Color color)
         {
@@ -458,7 +443,6 @@ namespace FlutterSDK.Cupertino.Texttheme
 
 
 
-        #endregion
     }
 
 }

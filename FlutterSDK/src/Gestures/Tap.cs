@@ -363,23 +363,15 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class TapDownDetails
     {
-        #region constructors
         public TapDownDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), PointerDeviceKind kind = default(PointerDeviceKind))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.Kind = kind;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
         public virtual PointerDeviceKind Kind { get; set; }
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -393,21 +385,13 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class TapUpDetails
     {
-        #region constructors
         public TapUpDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -445,23 +429,16 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class BaseTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
     {
-        #region constructors
         public BaseTapGestureRecognizer(@Object debugOwner = default(@Object))
         : base(deadline: ConstantsDefaultClass.KPressTimeout, debugOwner: debugOwner)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _SentTapDown { get; set; }
         internal virtual bool _WonArenaForPrimaryPointer { get; set; }
         internal virtual FlutterSDK.Gestures.Events.PointerDownEvent _Down { get; set; }
         internal virtual FlutterSDK.Gestures.Events.PointerUpEvent _Up { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// A pointer has contacted the screen, which might be the start of a tap.
@@ -684,7 +661,6 @@ namespace FlutterSDK.Gestures.Tap
 
 
 
-        #endregion
     }
 
 
@@ -712,15 +688,11 @@ namespace FlutterSDK.Gestures.Tap
     /// </Summary>
     public class TapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
     {
-        #region constructors
         public TapGestureRecognizer(@Object debugOwner = default(@Object))
         : base(debugOwner: debugOwner)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
@@ -729,9 +701,6 @@ namespace FlutterSDK.Gestures.Tap
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnSecondaryTapUp { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapCancelCallback OnSecondaryTapCancel { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -768,7 +737,6 @@ namespace FlutterSDK.Gestures.Tap
 
 
 
-        #endregion
     }
 
 }

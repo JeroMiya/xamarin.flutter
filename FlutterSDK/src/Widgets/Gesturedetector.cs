@@ -467,17 +467,10 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class GestureRecognizerFactory<T>
     {
-        #region constructors
         public GestureRecognizerFactory()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Must return an instance of T.
@@ -507,7 +500,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
 
 
-        #endregion
     }
 
 
@@ -518,21 +510,14 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class GestureRecognizerFactoryWithHandlers<T> : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<T>
     {
-        #region constructors
         public GestureRecognizerFactoryWithHandlers(FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _constructor, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _initializer)
         : base()
         {
             this._Constructor = _constructor;
             this._Initializer = _initializer;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryConstructor<T> _Constructor { get; set; }
         internal virtual FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactoryInitializer<T> _Initializer { get; set; }
-        #endregion
-
-        #region methods
 
         public new T Constructor() => _Constructor();
 
@@ -541,7 +526,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
         public new void Initializer(T instance) => _Initializer(instance);
 
 
-        #endregion
     }
 
 
@@ -613,7 +597,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class GestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public GestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onSecondaryTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSecondaryTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSecondaryTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onLongPressStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onLongPressMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback onLongPressUp = default(FlutterSDK.Gestures.Longpress.GestureLongPressUpCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onLongPressEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onVerticalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onVerticalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onVerticalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onVerticalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onHorizontalDragDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onHorizontalDragStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onHorizontalDragEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onHorizontalDragCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback onForcePressPeak = default(FlutterSDK.Gestures.Forcepress.GestureForcePressPeakCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback onForcePressUpdate = default(FlutterSDK.Gestures.Forcepress.GestureForcePressUpdateCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback onPanDown = default(FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onPanStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onPanUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onPanEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback onPanCancel = default(FlutterSDK.Gestures.Monodrag.GestureDragCancelCallback), FlutterSDK.Gestures.Scale.GestureScaleStartCallback onScaleStart = default(FlutterSDK.Gestures.Scale.GestureScaleStartCallback), FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback onScaleUpdate = default(FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback), FlutterSDK.Gestures.Scale.GestureScaleEndCallback onScaleEnd = default(FlutterSDK.Gestures.Scale.GestureScaleEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -657,9 +640,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
             this.ExcludeFromSemantics = excludeFromSemantics;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
         public virtual FlutterSDK.Gestures.Tap.GestureTapUpCallback OnTapUp { get; set; }
@@ -699,9 +679,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
         public virtual bool ExcludeFromSemantics { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -792,7 +769,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
 
 
-        #endregion
     }
 
 
@@ -840,7 +816,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class RawGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public RawGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> gestures = default(Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>>), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), bool excludeFromSemantics = false, FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate semantics = default(FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate))
         : base(key: key)
         {
@@ -850,22 +825,15 @@ namespace FlutterSDK.Widgets.Gesturedetector
             this.ExcludeFromSemantics = excludeFromSemantics;
             this.Semantics = semantics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual Dictionary<Type, FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Gestures.Recognizer.GestureRecognizer>> Gestures { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
         public virtual bool ExcludeFromSemantics { get; set; }
         public virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate Semantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState CreateState() => new RawGestureDetectorState();
 
 
-        #endregion
     }
 
 
@@ -874,18 +842,11 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class RawGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Gesturedetector.RawGestureDetector>
     {
-        #region constructors
         public RawGestureDetectorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<Type, FlutterSDK.Gestures.Recognizer.GestureRecognizer> _Recognizers { get; set; }
         internal virtual FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate _Semantics { get; set; }
         internal virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior _DefaultBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1054,25 +1015,17 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
 
 
-        #endregion
     }
 
 
     public class _GestureSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _GestureSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Gesturedetector._AssignSemantics assignSemantics = default(FlutterSDK.Widgets.Gesturedetector._AssignSemantics))
         : base(key: key, child: child)
         {
             this.AssignSemantics = assignSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Gesturedetector._AssignSemantics AssignSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1097,7 +1050,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
 
 
-        #endregion
     }
 
 
@@ -1109,17 +1061,10 @@ namespace FlutterSDK.Widgets.Gesturedetector
     /// </Summary>
     public class SemanticsGestureDelegate
     {
-        #region constructors
         public SemanticsGestureDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Assigns semantics notations to the [RenderSemanticsGestureHandler] render
@@ -1133,24 +1078,16 @@ namespace FlutterSDK.Widgets.Gesturedetector
         }
 
 
-        #endregion
     }
 
 
     public class _DefaultSemanticsGestureDelegate : FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate
     {
-        #region constructors
         public _DefaultSemanticsGestureDelegate(FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState detectorState)
         {
             this.DetectorState = detectorState;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Gesturedetector.RawGestureDetectorState DetectorState { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject)
         {
@@ -1265,7 +1202,6 @@ namespace FlutterSDK.Widgets.Gesturedetector
 
 
 
-        #endregion
     }
 
 }

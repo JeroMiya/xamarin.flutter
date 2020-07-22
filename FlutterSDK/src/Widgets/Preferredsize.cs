@@ -537,26 +537,18 @@ namespace FlutterSDK.Widgets.Preferredsize
     /// </Summary>
     public class PreferredSize : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
     {
-        #region constructors
         public PreferredSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size preferredSize = default(Size))
         : base(key: key)
         {
             this.Child = child;
             this.PreferredSizeValue = preferredSize;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public new Size PreferredSizeValue { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
 
 
-        #endregion
     }
 
 }

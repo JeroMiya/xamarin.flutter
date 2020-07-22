@@ -454,16 +454,8 @@ namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
     /// </Summary>
     public class SizeChangedLayoutNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification
     {
-        #region constructors
         public SizeChangedLayoutNotification()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -490,18 +482,11 @@ namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
     /// </Summary>
     public class SizeChangedLayoutNotifier : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SizeChangedLayoutNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sizechangedlayoutnotifier._RenderSizeChangedWithCallback CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -514,26 +499,18 @@ namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
 
 
 
-        #endregion
     }
 
 
     public class _RenderSizeChangedWithCallback : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _RenderSizeChangedWithCallback(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onLayoutChangedCallback = default(VoidCallback))
         : base(child)
         {
             this.OnLayoutChangedCallback = onLayoutChangedCallback;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnLayoutChangedCallback { get; set; }
         internal virtual Size _OldSize { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -544,7 +521,6 @@ namespace FlutterSDK.Widgets.Sizechangedlayoutnotifier
 
 
 
-        #endregion
     }
 
 }

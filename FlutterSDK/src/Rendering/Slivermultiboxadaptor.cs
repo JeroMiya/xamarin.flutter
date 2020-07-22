@@ -1046,20 +1046,12 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     /// </Summary>
     public class SliverMultiBoxAdaptorParentData : FlutterSDK.Rendering.Sliver.SliverLogicalParentData, IContainerParentDataMixin<FlutterSDK.Rendering.Box.RenderBox>, IKeepAliveParentDataMixin
     {
-        #region constructors
         public SliverMultiBoxAdaptorParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual int Index { get; set; }
         internal virtual bool _KeptAlive { get; set; }
         public virtual bool KeptAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -1092,7 +1084,6 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
     /// </Summary>
     public class RenderSliverMultiBoxAdaptor : FlutterSDK.Rendering.Sliver.RenderSliver, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData>, IRenderSliverHelpers, IRenderSliverWithKeepAliveMixin
     {
-        #region constructors
         public RenderSliverMultiBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base()
         {
@@ -1101,18 +1092,12 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager _ChildManager { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Rendering.Box.RenderBox> _KeepAliveBucket { get; set; }
         internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _DebugDanglingKeepAlives { get; set; }
         internal virtual bool _DebugChildIntegrityEnabled { get; set; }
         public virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager ChildManager { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DebugChildIntegrityEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -1646,7 +1631,6 @@ namespace FlutterSDK.Rendering.Slivermultiboxadaptor
 
 
 
-        #endregion
     }
 
 }

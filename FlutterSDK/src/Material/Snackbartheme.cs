@@ -438,7 +438,6 @@ namespace FlutterSDK.Material.Snackbartheme
     /// </Summary>
     public class SnackBarThemeData : IDiagnosticable
     {
-        #region constructors
         public SnackBarThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color actionTextColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledActionTextColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior))
         : base()
         {
@@ -450,9 +449,6 @@ namespace FlutterSDK.Material.Snackbartheme
             this.Shape = shape;
             this.Behavior = behavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color ActionTextColor { get; set; }
         public virtual FlutterBinding.UI.Color DisabledActionTextColor { get; set; }
@@ -461,9 +457,6 @@ namespace FlutterSDK.Material.Snackbartheme
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterSDK.Material.Snackbartheme.SnackBarBehavior Behavior { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -517,7 +510,6 @@ namespace FlutterSDK.Material.Snackbartheme
 
 
 
-        #endregion
     }
 
 

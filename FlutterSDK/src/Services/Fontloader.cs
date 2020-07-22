@@ -436,21 +436,14 @@ namespace FlutterSDK.Services.Fontloader
     /// </Summary>
     public class FontLoader
     {
-        #region constructors
         public FontLoader(string family)
         : base()
         {
             this.Family = family;
         }
-        #endregion
-
-        #region fields
         public virtual string Family { get; set; }
         internal virtual bool _Loaded { get; set; }
         internal virtual List<Future<Uint8List>> _FontFutures { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Registers a font asset to be loaded by this font loader.
@@ -503,7 +496,6 @@ namespace FlutterSDK.Services.Fontloader
 
 
 
-        #endregion
     }
 
 }

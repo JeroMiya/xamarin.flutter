@@ -478,20 +478,13 @@ namespace FlutterSDK.Rendering.Sliverpadding
     /// </Summary>
     public class RenderSliverEdgeInsetsPadding : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
-        #region constructors
         public RenderSliverEdgeInsetsPadding()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double BeforePadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double AfterPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double MainAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double CrossAxisPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -646,7 +639,6 @@ namespace FlutterSDK.Rendering.Sliverpadding
 
 
 
-        #endregion
     }
 
 
@@ -661,7 +653,6 @@ namespace FlutterSDK.Rendering.Sliverpadding
     /// </Summary>
     public class RenderSliverPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
     {
-        #region constructors
         public RenderSliverPadding(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -670,18 +661,12 @@ namespace FlutterSDK.Rendering.Sliverpadding
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _Padding { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Resolve()
         {
@@ -720,7 +705,6 @@ namespace FlutterSDK.Rendering.Sliverpadding
 
 
 
-        #endregion
     }
 
 }

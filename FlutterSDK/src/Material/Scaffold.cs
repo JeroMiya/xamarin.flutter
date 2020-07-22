@@ -435,7 +435,6 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class ScaffoldPrelayoutGeometry
     {
-        #region constructors
         public ScaffoldPrelayoutGeometry(Size bottomSheetSize = default(Size), double contentBottom = default(double), double contentTop = default(double), Size floatingActionButtonSize = default(Size), FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), Size scaffoldSize = default(Size), Size snackBarSize = default(Size), TextDirection textDirection = default(TextDirection))
         {
             this.BottomSheetSize = bottomSheetSize;
@@ -447,9 +446,6 @@ namespace FlutterSDK.Material.Scaffold
             this.SnackBarSize = snackBarSize;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual Size FloatingActionButtonSize { get; set; }
         public virtual Size BottomSheetSize { get; set; }
         public virtual double ContentBottom { get; set; }
@@ -458,10 +454,6 @@ namespace FlutterSDK.Material.Scaffold
         public virtual Size ScaffoldSize { get; set; }
         public virtual Size SnackBarSize { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -473,7 +465,6 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class _TransitionSnapshotFabLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _TransitionSnapshotFabLocation(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation begin, FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation end, FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator animator, double progress)
         {
             this.Begin = begin;
@@ -481,16 +472,10 @@ namespace FlutterSDK.Material.Scaffold
             this.Animator = animator;
             this.Progress = progress;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation Begin { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation End { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Animator { get; set; }
         public virtual double Progress { get; set; }
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -500,7 +485,6 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
@@ -522,20 +506,13 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class ScaffoldGeometry
     {
-        #region constructors
         public ScaffoldGeometry(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect))
         {
             this.BottomNavigationBarTop = bottomNavigationBarTop;
             this.FloatingActionButtonArea = floatingActionButtonArea;
         }
-        #endregion
-
-        #region fields
         public virtual double BottomNavigationBarTop { get; set; }
         public virtual FlutterBinding.UI.Rect FloatingActionButtonArea { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Material.Scaffold.ScaffoldGeometry _ScaleFloatingActionButton(double scaleFactor)
         {
@@ -563,29 +540,21 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
     public class _ScaffoldGeometryNotifier : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, IValueListenable<FlutterSDK.Material.Scaffold.ScaffoldGeometry>
     {
-        #region constructors
         public _ScaffoldGeometryNotifier(FlutterSDK.Material.Scaffold.ScaffoldGeometry geometry, FlutterSDK.Widgets.Framework.BuildContext context)
         : base()
         {
             this.Geometry = geometry;
             this.Context = context;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
         public virtual double FloatingActionButtonScale { get; set; }
         public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry Geometry { get; set; }
         public virtual FlutterSDK.Material.Scaffold.ScaffoldGeometry Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateWith(double bottomNavigationBarTop = default(double), FlutterBinding.UI.Rect floatingActionButtonArea = default(FlutterBinding.UI.Rect), double floatingActionButtonScale = default(double))
         {
@@ -596,28 +565,20 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
     public class _BodyBoxConstraints : FlutterSDK.Rendering.Box.BoxConstraints
     {
-        #region constructors
         public _BodyBoxConstraints(double minWidth = 0.0, double maxWidth = default(double), double minHeight = 0.0, double maxHeight = default(double), double bottomWidgetsHeight = default(double), double appBarHeight = default(double))
         : base(minWidth: minWidth, maxWidth: maxWidth, minHeight: minHeight, maxHeight: maxHeight)
         {
             this.BottomWidgetsHeight = bottomWidgetsHeight;
             this.AppBarHeight = appBarHeight;
         }
-        #endregion
-
-        #region fields
         public virtual double BottomWidgetsHeight { get; set; }
         public virtual double AppBarHeight { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -627,13 +588,11 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
     public class _BodyBuilder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _BodyBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool extendBody = default(bool), bool extendBodyBehindAppBar = default(bool), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -641,15 +600,9 @@ namespace FlutterSDK.Material.Scaffold
             this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;
             this.Body = body;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
         public virtual bool ExtendBody { get; set; }
         public virtual bool ExtendBodyBehindAppBar { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -667,13 +620,11 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
     public class _ScaffoldLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
     {
-        #region constructors
         public _ScaffoldLayout(FlutterSDK.Painting.Edgeinsets.EdgeInsets minInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), TextDirection textDirection = default(TextDirection), FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation previousFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation currentFloatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), double floatingActionButtonMoveAnimationProgress = default(double), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonMotionAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), bool isSnackBarFloating = default(bool), bool extendBody = default(bool), bool extendBodyBehindAppBar = default(bool))
         : base()
         {
@@ -688,9 +639,6 @@ namespace FlutterSDK.Material.Scaffold
             this.ExtendBody = extendBody;
             this.ExtendBodyBehindAppBar = extendBodyBehindAppBar;
         }
-        #endregion
-
-        #region fields
         public virtual bool ExtendBody { get; set; }
         public virtual bool ExtendBodyBehindAppBar { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets MinInsets { get; set; }
@@ -701,9 +649,6 @@ namespace FlutterSDK.Material.Scaffold
         public virtual double FloatingActionButtonMoveAnimationProgress { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FloatingActionButtonMotionAnimator { get; set; }
         public virtual bool IsSnackBarFloating { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout(Size size)
         {
@@ -842,7 +787,6 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
@@ -858,7 +802,6 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class _FloatingActionButtonTransition : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _FloatingActionButtonTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Animation.Animation.Animation<double> fabMoveAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator fabMotionAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier), FlutterSDK.Animation.Animationcontroller.AnimationController currentController = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
         : base(key: key)
         {
@@ -868,33 +811,22 @@ namespace FlutterSDK.Material.Scaffold
             this.GeometryNotifier = geometryNotifier;
             this.CurrentController = currentController;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> FabMoveAnimation { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator FabMotionAnimator { get; set; }
         public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController CurrentController { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Scaffold._FloatingActionButtonTransitionState CreateState() => new _FloatingActionButtonTransitionState();
 
 
-        #endregion
     }
 
 
     public class _FloatingActionButtonTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold._FloatingActionButtonTransition>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _FloatingActionButtonTransitionState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PreviousController { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _PreviousScaleAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _PreviousRotationAnimation { get; set; }
@@ -903,9 +835,6 @@ namespace FlutterSDK.Material.Scaffold
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentRotationAnimation { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _PreviousChild { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EntranceTurnTween { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1038,7 +967,6 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
@@ -1225,7 +1153,6 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class Scaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Scaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget appBar = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget floatingActionButton = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation floatingActionButtonLocation = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation), FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator floatingActionButtonAnimator = default(FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator), List<FlutterSDK.Widgets.Framework.Widget> persistentFooterButtons = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget drawer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget endDrawer = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget bottomNavigationBar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget bottomSheet = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomPadding = default(bool), bool resizeToAvoidBottomInset = default(bool), bool primary = true, FlutterSDK.Gestures.Recognizer.DragStartBehavior drawerDragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool extendBody = false, bool extendBodyBehindAppBar = false, FlutterBinding.UI.Color drawerScrimColor = default(FlutterBinding.UI.Color), double drawerEdgeDragWidth = default(double), bool drawerEnableOpenDragGesture = true, bool endDrawerEnableOpenDragGesture = true)
         : base(key: key)
         {
@@ -1251,9 +1178,6 @@ namespace FlutterSDK.Material.Scaffold
             this.DrawerEnableOpenDragGesture = drawerEnableOpenDragGesture;
             this.EndDrawerEnableOpenDragGesture = endDrawerEnableOpenDragGesture;
         }
-        #endregion
-
-        #region fields
         public virtual bool ExtendBody { get; set; }
         public virtual bool ExtendBodyBehindAppBar { get; set; }
         public virtual FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget AppBar { get; set; }
@@ -1276,9 +1200,6 @@ namespace FlutterSDK.Material.Scaffold
         public virtual bool DrawerEnableOpenDragGesture { get; set; }
         public virtual bool EndDrawerEnableOpenDragGesture { get; set; }
         public virtual bool ShouldSnackBarIgnoreFABRect { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The state from the closest instance of this class that encloses the given context.
@@ -1466,7 +1387,6 @@ namespace FlutterSDK.Material.Scaffold
         public new FlutterSDK.Material.Scaffold.ScaffoldState CreateState() => new ScaffoldState();
 
 
-        #endregion
     }
 
 
@@ -1478,12 +1398,8 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class ScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold.Scaffold>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public ScaffoldState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Material.Drawer.DrawerControllerState> _DrawerKey { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Material.Drawer.DrawerControllerState> _EndDrawerKey { get; set; }
         internal virtual double _AppBarMaxHeight { get; set; }
@@ -1513,9 +1429,6 @@ namespace FlutterSDK.Material.Scaffold
         public virtual bool IsEndDrawerOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _FloatingActionButtonVisibilityValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _ResizeToAvoidBottomInset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _DrawerOpenedCallback(bool isOpened)
         {
@@ -2253,7 +2166,6 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
@@ -2264,7 +2176,6 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class ScaffoldFeatureController<T, U>
     {
-        #region constructors
         internal ScaffoldFeatureController(T _widget, Completer<U> _completer, VoidCallback close, FlutterSDK.Widgets.Framework.StateSetter setState)
         {
             this._Widget = _widget;
@@ -2272,18 +2183,11 @@ namespace FlutterSDK.Material.Scaffold
             this.Close = close;
             this.SetState = setState;
         }
-        #endregion
-
-        #region fields
         internal virtual T _Widget { get; set; }
         internal virtual Completer<U> _Completer { get; set; }
         public virtual VoidCallback Close { get; set; }
         public virtual FlutterSDK.Widgets.Framework.StateSetter SetState { get; set; }
         public virtual Future<U> Closed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -2307,21 +2211,14 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
-        #region constructors
         public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
             this.StartingPoint = startingPoint;
             this.Curve = curve;
         }
-        #endregion
-
-        #region fields
         public virtual double StartingPoint { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        #endregion
-
-        #region methods
 
         public new double Transform(double t)
         {
@@ -2345,13 +2242,11 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
     public class _StandardBottomSheet : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _StandardBottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), bool enableDrag = true, VoidCallback onClosing = default(VoidCallback), VoidCallback onDismissed = default(VoidCallback), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool isPersistent = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(key: key)
         {
@@ -2366,9 +2261,6 @@ namespace FlutterSDK.Material.Scaffold
             this.Shape = shape;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController { get; set; }
         public virtual bool EnableDrag { get; set; }
         public virtual VoidCallback OnClosing { get; set; }
@@ -2379,29 +2271,18 @@ namespace FlutterSDK.Material.Scaffold
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Scaffold._StandardBottomSheetState CreateState() => new _StandardBottomSheetState();
 
 
-        #endregion
     }
 
 
     public class _StandardBottomSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Scaffold._StandardBottomSheet>
     {
-        #region constructors
         public _StandardBottomSheetState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.ParametricCurve<double> AnimationCurve { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -2516,7 +2397,6 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 
@@ -2531,40 +2411,25 @@ namespace FlutterSDK.Material.Scaffold
     /// </Summary>
     public class PersistentBottomSheetController<T> : FlutterSDK.Material.Scaffold.ScaffoldFeatureController<FlutterSDK.Material.Scaffold._StandardBottomSheet, T>
     {
-        #region constructors
         internal PersistentBottomSheetController(FlutterSDK.Material.Scaffold._StandardBottomSheet widget, Completer<T> completer, VoidCallback close, FlutterSDK.Widgets.Framework.StateSetter setState, bool _isLocalHistoryEntry)
         : base(widget, completer, close, setState)
         {
             this._IsLocalHistoryEntry = _isLocalHistoryEntry;
         }
-        #endregion
-
-        #region fields
         internal virtual bool _IsLocalHistoryEntry { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _ScaffoldScope : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _ScaffoldScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool hasDrawer = default(bool), FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier geometryNotifier = default(FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.HasDrawer = hasDrawer;
             this.GeometryNotifier = geometryNotifier;
         }
-        #endregion
-
-        #region fields
         public virtual bool HasDrawer { get; set; }
         public virtual FlutterSDK.Material.Scaffold._ScaffoldGeometryNotifier GeometryNotifier { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Material.Scaffold._ScaffoldScope oldWidget)
         {
@@ -2579,7 +2444,6 @@ namespace FlutterSDK.Material.Scaffold
 
 
 
-        #endregion
     }
 
 

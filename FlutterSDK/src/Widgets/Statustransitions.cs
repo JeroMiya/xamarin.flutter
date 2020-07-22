@@ -445,19 +445,12 @@ namespace FlutterSDK.Widgets.Statustransitions
     /// </Summary>
     public class StatusTransitionWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public StatusTransitionWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
         : base(key: key)
         {
             this.Animation = animation;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Override this method to build widgets that depend on the current status
@@ -472,21 +465,13 @@ namespace FlutterSDK.Widgets.Statustransitions
         public new FlutterSDK.Widgets.Statustransitions._StatusTransitionState CreateState() => new _StatusTransitionState();
 
 
-        #endregion
     }
 
 
     public class _StatusTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Statustransitions.StatusTransitionWidget>
     {
-        #region constructors
         public _StatusTransitionState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -538,7 +523,6 @@ namespace FlutterSDK.Widgets.Statustransitions
 
 
 
-        #endregion
     }
 
 }

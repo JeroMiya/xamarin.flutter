@@ -469,7 +469,6 @@ namespace FlutterSDK.Gestures.Pointerrouter
     /// </Summary>
     public class FlutterErrorDetailsForPointerRouter : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
-        #region constructors
         public FlutterErrorDetailsForPointerRouter(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Gestures.Pointerrouter.PointerRouter router = default(FlutterSDK.Gestures.Pointerrouter.PointerRouter), FlutterSDK.Gestures.Pointerrouter.PointerRoute route = default(FlutterSDK.Gestures.Pointerrouter.PointerRoute), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
         {
@@ -477,16 +476,9 @@ namespace FlutterSDK.Gestures.Pointerrouter
             this.Route = route;
             this.@event = @event;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter Router { get; set; }
         public virtual FlutterSDK.Gestures.Pointerrouter.PointerRoute Route { get; set; }
         public virtual FlutterSDK.Gestures.Events.PointerEvent @event { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

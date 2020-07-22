@@ -688,7 +688,6 @@ namespace FlutterSDK.Widgets.Focusscope
     /// </Summary>
     public class Focus : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Focus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), bool includeSemantics = true)
         : base(key: key)
         {
@@ -702,9 +701,6 @@ namespace FlutterSDK.Widgets.Focusscope
             this.SkipTraversal = skipTraversal;
             this.IncludeSemantics = includeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual string DebugLabel { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback OnKey { get; set; }
@@ -714,9 +710,6 @@ namespace FlutterSDK.Widgets.Focusscope
         public virtual bool SkipTraversal { get; set; }
         public virtual bool IncludeSemantics { get; set; }
         public virtual bool CanRequestFocus { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the [focusNode] of the [Focus] that most tightly encloses the
@@ -797,27 +790,19 @@ namespace FlutterSDK.Widgets.Focusscope
         public new FlutterSDK.Widgets.Focusscope._FocusState CreateState() => new _FocusState();
 
 
-        #endregion
     }
 
 
     public class _FocusState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focusscope.Focus>
     {
-        #region constructors
         public _FocusState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _InternalNode { get; set; }
         internal virtual bool _HasPrimaryFocus { get; set; }
         internal virtual bool _CanRequestFocus { get; set; }
         internal virtual bool _DidAutofocus { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusAttachment _FocusAttachment { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -986,7 +971,6 @@ namespace FlutterSDK.Widgets.Focusscope
 
 
 
-        #endregion
     }
 
 
@@ -1188,18 +1172,11 @@ namespace FlutterSDK.Widgets.Focusscope
     /// </Summary>
     public class FocusScope : FlutterSDK.Widgets.Focusscope.Focus
     {
-        #region constructors
         public FocusScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusScopeNode node = default(FlutterSDK.Widgets.Focusmanager.FocusScopeNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool canRequestFocus = default(bool), bool skipTraversal = default(bool), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), string debugLabel = default(string))
         : base(key: key, child: child, focusNode: node, autofocus: autofocus, onFocusChange: onFocusChange, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal, onKey: onKey, debugLabel: debugLabel)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the [FocusScopeNode] of the [FocusScope] that most tightly
@@ -1223,21 +1200,13 @@ namespace FlutterSDK.Widgets.Focusscope
         public new FlutterSDK.Widgets.Focusscope._FocusScopeState CreateState() => new _FocusScopeState();
 
 
-        #endregion
     }
 
 
     public class _FocusScopeState : FlutterSDK.Widgets.Focusscope._FocusState
     {
-        #region constructors
         public _FocusScopeState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         protected new FlutterSDK.Widgets.Focusmanager.FocusScopeNode _CreateNode()
         {
@@ -1255,25 +1224,16 @@ namespace FlutterSDK.Widgets.Focusscope
 
 
 
-        #endregion
     }
 
 
     public class _FocusMarker : FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<FlutterSDK.Widgets.Focusmanager.FocusNode>
     {
-        #region constructors
         public _FocusMarker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, notifier: node, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

@@ -703,7 +703,6 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class TextSelectionOverlay
     {
-        #region constructors
         public TextSelectionOverlay(FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Widgets.Framework.Widget debugRequiredFor = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Layer.LayerLink toolbarLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), bool handlesVisible = false, FlutterSDK.Services.Textinput.TextSelectionDelegate selectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), VoidCallback onSelectionHandleTapped = default(VoidCallback))
         : base()
         {
@@ -723,9 +722,6 @@ namespace FlutterSDK.Widgets.Textselection
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget DebugRequiredFor { get; set; }
         public virtual FlutterSDK.Rendering.Layer.LayerLink ToolbarLayerLink { get; set; }
@@ -748,9 +744,6 @@ namespace FlutterSDK.Widgets.Textselection
         public virtual bool HandlesVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HandlesAreVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool ToolbarIsVisible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Builds the handles by inserting them into the [context]'s overlay.
@@ -940,7 +933,6 @@ namespace FlutterSDK.Widgets.Textselection
 
 
 
-        #endregion
     }
 
 
@@ -949,7 +941,6 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class _TextSelectionHandleOverlay : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _TextSelectionHandleOverlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition position = default(FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Editable.RenderEditable renderObject = default(FlutterSDK.Rendering.Editable.RenderEditable), FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection> onSelectionHandleChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TextSelection>), VoidCallback onSelectionHandleTapped = default(VoidCallback), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -963,9 +954,6 @@ namespace FlutterSDK.Widgets.Textselection
             this.SelectionControls = selectionControls;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
         public virtual FlutterSDK.Widgets.Textselection._TextSelectionHandlePosition Position { get; set; }
         public virtual FlutterSDK.Rendering.Layer.LayerLink StartHandleLayerLink { get; set; }
@@ -976,31 +964,20 @@ namespace FlutterSDK.Widgets.Textselection
         public virtual FlutterSDK.Widgets.Textselection.TextSelectionControls SelectionControls { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.ValueListenable<bool> _Visibility { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlayState CreateState() => new _TextSelectionHandleOverlayState();
 
 
-        #endregion
     }
 
 
     public class _TextSelectionHandleOverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Textselection._TextSelectionHandleOverlay>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _TextSelectionHandleOverlayState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Offset _DragPosition { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1112,7 +1089,6 @@ namespace FlutterSDK.Widgets.Textselection
 
 
 
-        #endregion
     }
 
 
@@ -1138,23 +1114,16 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class TextSelectionGestureDetectorBuilder
     {
-        #region constructors
         public TextSelectionGestureDetectorBuilder(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate = default(FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate))
         : base()
         {
             this.@delegate = @delegate;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilderDelegate @delegate { get; set; }
         internal virtual bool _ShouldShowSelectionToolbar { get; set; }
         public virtual bool ShouldShowSelectionToolbar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Editabletext.EditableTextState EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Handler for [TextSelectionGestureDetector.onTapDown].
@@ -1419,7 +1388,6 @@ namespace FlutterSDK.Widgets.Textselection
 
 
 
-        #endregion
     }
 
 
@@ -1439,7 +1407,6 @@ namespace FlutterSDK.Widgets.Textselection
     /// </Summary>
     public class TextSelectionGestureDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public TextSelectionGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Gestures.Tap.GestureTapDownCallback onTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback onForcePressStart = default(FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback), FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback onForcePressEnd = default(FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback), FlutterSDK.Gestures.Tap.GestureTapUpCallback onSingleTapUp = default(FlutterSDK.Gestures.Tap.GestureTapUpCallback), FlutterSDK.Gestures.Tap.GestureTapCancelCallback onSingleTapCancel = default(FlutterSDK.Gestures.Tap.GestureTapCancelCallback), FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback onSingleLongTapStart = default(FlutterSDK.Gestures.Longpress.GestureLongPressStartCallback), FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback onSingleLongTapMoveUpdate = default(FlutterSDK.Gestures.Longpress.GestureLongPressMoveUpdateCallback), FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback onSingleLongTapEnd = default(FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback), FlutterSDK.Gestures.Tap.GestureTapDownCallback onDoubleTapDown = default(FlutterSDK.Gestures.Tap.GestureTapDownCallback), FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback onDragSelectionStart = default(FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback), FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback onDragSelectionUpdate = default(FlutterSDK.Widgets.Textselection.DragSelectionUpdateCallback), FlutterSDK.Gestures.Monodrag.GestureDragEndCallback onDragSelectionEnd = default(FlutterSDK.Gestures.Monodrag.GestureDragEndCallback), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1458,9 +1425,6 @@ namespace FlutterSDK.Widgets.Textselection
             this.Behavior = behavior;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Tap.GestureTapDownCallback OnTapDown { get; set; }
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressStartCallback OnForcePressStart { get; set; }
         public virtual FlutterSDK.Gestures.Forcepress.GestureForcePressEndCallback OnForcePressEnd { get; set; }
@@ -1475,34 +1439,23 @@ namespace FlutterSDK.Widgets.Textselection
         public virtual FlutterSDK.Gestures.Monodrag.GestureDragEndCallback OnDragSelectionEnd { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _TextSelectionGestureDetectorState();
 
 
-        #endregion
     }
 
 
     public class _TextSelectionGestureDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Textselection.TextSelectionGestureDetector>
     {
-        #region constructors
         public _TextSelectionGestureDetectorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Timer _DoubleTapTimer { get; set; }
         internal virtual FlutterBinding.UI.Offset _LastTapOffset { get; set; }
         internal virtual bool _IsDoubleTap { get; set; }
         internal virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails _LastDragStartDetails { get; set; }
         internal virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails _LastDragUpdateDetails { get; set; }
         internal virtual Timer _DragUpdateThrottleTimer { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -1757,24 +1710,16 @@ namespace FlutterSDK.Widgets.Textselection
 
 
 
-        #endregion
     }
 
 
     public class _TransparentTapGestureRecognizer : FlutterSDK.Gestures.Tap.TapGestureRecognizer
     {
-        #region constructors
         public _TransparentTapGestureRecognizer(@Object debugOwner = default(@Object))
         : base(debugOwner: debugOwner)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void RejectGesture(int pointer)
         {
@@ -1791,7 +1736,6 @@ namespace FlutterSDK.Widgets.Textselection
 
 
 
-        #endregion
     }
 
 

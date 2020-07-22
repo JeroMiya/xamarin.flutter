@@ -1348,7 +1348,6 @@ namespace FlutterSDK.Widgets.Binding
     /// </Summary>
     public class RenderObjectToWidgetAdapter<T> : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public RenderObjectToWidgetAdapter(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> container = default(FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T>), string debugShortDescription = default(string))
         : base(key: new GlobalObjectKey(container))
         {
@@ -1356,15 +1355,9 @@ namespace FlutterSDK.Widgets.Binding
             this.Container = container;
             this.DebugShortDescription = debugShortDescription;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> Container { get; set; }
         public virtual string DebugShortDescription { get; set; }
-        #endregion
-
-        #region methods
 
         public new RenderObjectToWidgetElement<T> CreateElement() => new RenderObjectToWidgetElement<T>(this);
 
@@ -1423,7 +1416,6 @@ namespace FlutterSDK.Widgets.Binding
         public new string ToStringShort() => DebugShortDescription ?? base.ToStringShort();
 
 
-        #endregion
     }
 
 
@@ -1441,23 +1433,16 @@ namespace FlutterSDK.Widgets.Binding
     /// </Summary>
     public class RenderObjectToWidgetElement<T> : FlutterSDK.Widgets.Framework.RootRenderObjectElement
     {
-        #region constructors
         public RenderObjectToWidgetElement(FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
         internal virtual @Object _RootChildSlot { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _NewWidget { get; set; }
         public virtual FlutterSDK.Widgets.Binding.RenderObjectToWidgetAdapter<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.@object.RenderObjectWithChildMixin<T> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -1558,7 +1543,6 @@ public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObjec
 
 
 
-        #endregion
     }
 
 
@@ -1569,15 +1553,8 @@ public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObjec
     /// </Summary>
     public class WidgetsFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, IPaintingBinding, ISemanticsBinding, IRendererBinding, IWidgetsBinding
     {
-        #region constructors
         public WidgetsFlutterBinding()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns an instance of the [WidgetsBinding], creating and
@@ -1600,7 +1577,6 @@ public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObjec
 
 
 
-        #endregion
     }
 
 }

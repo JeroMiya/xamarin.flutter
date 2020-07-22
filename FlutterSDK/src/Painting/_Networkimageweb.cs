@@ -434,7 +434,6 @@ namespace FlutterSDK.Painting._Networkimageweb
     /// </Summary>
     public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>, INetworkImage
     {
-        #region constructors
         public NetworkImage(string url, double scale = 1.0, Dictionary<string, string> headers = default(Dictionary<string, string>))
         : base()
         {
@@ -442,16 +441,10 @@ namespace FlutterSDK.Painting._Networkimageweb
             this.Scale = scale;
             this.Headers = headers;
         }
-        #endregion
-
-        #region fields
         public new string Url { get; set; }
         public new double Scale { get; set; }
         public new Dictionary<string, string> Headers { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Future<FlutterSDK.Painting._Networkimageweb.NetworkImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
         {
@@ -507,7 +500,6 @@ namespace FlutterSDK.Painting._Networkimageweb
 
 
 
-        #endregion
     }
 
 }

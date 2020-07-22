@@ -484,7 +484,6 @@ namespace FlutterSDK.Painting.Boxdecoration
     /// </Summary>
     public class BoxDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
-        #region constructors
         public BoxDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape))
         : base()
         {
@@ -497,9 +496,6 @@ namespace FlutterSDK.Painting.Boxdecoration
             this.BackgroundBlendMode = backgroundBlendMode;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
         public virtual FlutterSDK.Painting.Boxborder.BoxBorder Border { get; set; }
@@ -511,9 +507,6 @@ namespace FlutterSDK.Painting.Boxdecoration
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -680,7 +673,6 @@ namespace FlutterSDK.Painting.Boxdecoration
 
 
 
-        #endregion
     }
 
 
@@ -689,22 +681,15 @@ namespace FlutterSDK.Painting.Boxdecoration
     /// </Summary>
     public class _BoxDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
-        #region constructors
         public _BoxDecorationPainter(FlutterSDK.Painting.Boxdecoration.BoxDecoration _decoration, VoidCallback onChanged)
         : base(onChanged)
         {
             this._Decoration = _decoration;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration _Decoration { get; set; }
         internal virtual SKPaint _CachedBackgroundPaint { get; set; }
         internal virtual FlutterBinding.UI.Rect _RectForCachedBackgroundPaint { get; set; }
         internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
-        #endregion
-
-        #region methods
 
         private Paint _GetBackgroundPaint(FlutterBinding.UI.Rect rect, TextDirection textDirection)
         {
@@ -821,7 +806,6 @@ namespace FlutterSDK.Painting.Boxdecoration
 
 
 
-        #endregion
     }
 
 }

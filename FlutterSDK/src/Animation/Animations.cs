@@ -135,19 +135,12 @@ namespace FlutterSDK.Animation.Animations
 
     public class _AlwaysCompleteAnimation : FlutterSDK.Animation.Animation.Animation<double>
     {
-        #region constructors
         public _AlwaysCompleteAnimation()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddListener(VoidCallback listener)
         {
@@ -177,25 +170,17 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
     public class _AlwaysDismissedAnimation : FlutterSDK.Animation.Animation.Animation<double>
     {
-        #region constructors
         public _AlwaysDismissedAnimation()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddListener(VoidCallback listener)
         {
@@ -225,7 +210,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -236,19 +220,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AlwaysStoppedAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>
     {
-        #region constructors
         public AlwaysStoppedAnimation(T value)
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public new T Value { get; set; }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddListener(VoidCallback listener)
         {
@@ -285,7 +262,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -299,7 +275,6 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class ProxyAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
-        #region constructors
         public ProxyAnimation(FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
         {
 
@@ -313,18 +288,12 @@ namespace FlutterSDK.Animation.Animations
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _Status { get; set; }
         internal virtual double _Value { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Parent { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DidStartListening()
         {
@@ -352,7 +321,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -375,21 +343,14 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class ReverseAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationLazyListenerMixin, IAnimationLocalStatusListenersMixin
     {
-        #region constructors
         public ReverseAnimation(FlutterSDK.Animation.Animation.Animation<double> parent)
         : base()
         {
             this.Parent = parent;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddListener(VoidCallback listener)
         {
@@ -443,7 +404,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -502,7 +462,6 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class CurvedAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationWithParentMixin<double>
     {
-        #region constructors
         public CurvedAnimation(FlutterSDK.Animation.Animation.Animation<double> parent = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve reverseCurve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
@@ -514,18 +473,12 @@ namespace FlutterSDK.Animation.Animations
         }
 
 
-        #endregion
-
-        #region fields
         public new FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve ReverseCurve { get; set; }
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurveDirection { get; set; }
         internal virtual bool _UseForwardCurve { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateCurveDirection(FlutterSDK.Animation.Animation.AnimationStatus status)
         {
@@ -535,7 +488,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -561,7 +513,6 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class TrainHoppingAnimation : FlutterSDK.Animation.Animation.Animation<double>, IAnimationEagerListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
-        #region constructors
         public TrainHoppingAnimation(FlutterSDK.Animation.Animation.Animation<double> _currentTrain, FlutterSDK.Animation.Animation.Animation<double> _nextTrain, VoidCallback onSwitchedTrain = default(VoidCallback))
         : base()
         {
@@ -594,9 +545,6 @@ namespace FlutterSDK.Animation.Animations
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _CurrentTrain { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _NextTrain { get; set; }
         internal virtual FlutterSDK.Animation.Animations._TrainHoppingMode _Mode { get; set; }
@@ -606,9 +554,6 @@ namespace FlutterSDK.Animation.Animations
         public virtual FlutterSDK.Animation.Animation.Animation<double> CurrentTrain { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _StatusChangeHandler(FlutterSDK.Animation.Animation.AnimationStatus status)
         {
@@ -678,7 +623,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -696,24 +640,17 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class CompoundAnimation<T> : FlutterSDK.Animation.Animation.Animation<T>, IAnimationLazyListenerMixin, IAnimationLocalListenersMixin, IAnimationLocalStatusListenersMixin
     {
-        #region constructors
         public CompoundAnimation(FlutterSDK.Animation.Animation.Animation<T> first = default(FlutterSDK.Animation.Animation.Animation<T>), FlutterSDK.Animation.Animation.Animation<T> next = default(FlutterSDK.Animation.Animation.Animation<T>))
         : base()
         {
             this.First = first;
             this.Next = next;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<T> First { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<T> Next { get; set; }
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastStatus { get; set; }
         internal virtual T _LastValue { get; set; }
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DidStartListening()
         {
@@ -763,7 +700,6 @@ namespace FlutterSDK.Animation.Animations
 
 
 
-        #endregion
     }
 
 
@@ -778,20 +714,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AnimationMean : FlutterSDK.Animation.Animations.CompoundAnimation<double>
     {
-        #region constructors
         public AnimationMean(FlutterSDK.Animation.Animation.Animation<double> left = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> right = default(FlutterSDK.Animation.Animation.Animation<double>))
         : base(first: left, next: right)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -803,20 +731,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AnimationMax<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
-        #region constructors
         public AnimationMax(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
         : base(first: first, next: next)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -828,20 +748,12 @@ namespace FlutterSDK.Animation.Animations
     /// </Summary>
     public class AnimationMin<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
-        #region constructors
         public AnimationMin(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next)
         : base(first: first, next: next)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 

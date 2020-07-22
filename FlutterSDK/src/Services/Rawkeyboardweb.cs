@@ -436,7 +436,6 @@ namespace FlutterSDK.Services.Rawkeyboardweb
     /// </Summary>
     public class RawKeyEventDataWeb : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
-        #region constructors
         public RawKeyEventDataWeb(string code = default(string), string key = default(string), int metaState = default(int))
         : base()
         {
@@ -444,9 +443,6 @@ namespace FlutterSDK.Services.Rawkeyboardweb
             this.Key = key;
             this.MetaState = metaState;
         }
-        #endregion
-
-        #region fields
         public virtual string Code { get; set; }
         public virtual string Key { get; set; }
         public virtual int MetaState { get; set; }
@@ -461,9 +457,6 @@ namespace FlutterSDK.Services.Rawkeyboardweb
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsModifierPressed(FlutterSDK.Services.Rawkeyboard.ModifierKey key, FlutterSDK.Services.Rawkeyboard.KeyboardSide side = default(FlutterSDK.Services.Rawkeyboard.KeyboardSide))
         {
@@ -481,7 +474,6 @@ namespace FlutterSDK.Services.Rawkeyboardweb
 
 
 
-        #endregion
     }
 
 }

@@ -442,19 +442,11 @@ namespace FlutterSDK.Rendering.Flex
     /// </Summary>
     public class FlexParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public FlexParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual int Flex { get; set; }
         public virtual FlutterSDK.Rendering.Flex.FlexFit Fit { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -509,7 +501,6 @@ namespace FlutterSDK.Rendering.Flex
     /// </Summary>
     public class RenderFlex : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flex.FlexParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flex.FlexParentData>, IDebugOverflowIndicatorMixin
     {
-        #region constructors
         public RenderFlex(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline))
         : base()
         {
@@ -518,9 +509,6 @@ namespace FlutterSDK.Rendering.Flex
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction { get; set; }
         internal virtual FlutterSDK.Rendering.Flex.MainAxisAlignment _MainAxisAlignment { get; set; }
         internal virtual FlutterSDK.Rendering.Flex.MainAxisSize _MainAxisSize { get; set; }
@@ -538,9 +526,6 @@ namespace FlutterSDK.Rendering.Flex
         public virtual TextBaseline TextBaseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _DebugHasNecessaryDirections { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _HasOverflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -906,7 +891,6 @@ public new string ToStringShort()
 
 
 
-        #endregion
     }
 
 

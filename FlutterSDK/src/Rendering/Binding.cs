@@ -916,7 +916,6 @@ namespace FlutterSDK.Rendering.Binding
     /// </Summary>
     public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, ISemanticsBinding, IPaintingBinding, IRendererBinding
     {
-        #region constructors
         public RenderingFlutterBinding(FlutterSDK.Rendering.Box.RenderBox root = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 
@@ -925,13 +924,6 @@ namespace FlutterSDK.Rendering.Binding
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

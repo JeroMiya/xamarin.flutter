@@ -333,20 +333,12 @@ namespace FlutterSDK.Foundation.Annotations
     /// </Summary>
     public class Category
     {
-        #region constructors
         public Category(List<string> sections)
         : base()
         {
             this.Sections = sections;
         }
-        #endregion
-
-        #region fields
         public virtual List<string> Sections { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -376,20 +368,12 @@ namespace FlutterSDK.Foundation.Annotations
     /// </Summary>
     public class DocumentationIcon
     {
-        #region constructors
         public DocumentationIcon(string url)
         : base()
         {
             this.Url = url;
         }
-        #endregion
-
-        #region fields
         public virtual string Url { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -426,20 +410,12 @@ namespace FlutterSDK.Foundation.Annotations
     /// </Summary>
     public class Summary
     {
-        #region constructors
         public Summary(string text)
         : base()
         {
             this.Text = text;
         }
-        #endregion
-
-        #region fields
         public virtual string Text { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

@@ -440,7 +440,6 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
     /// </Summary>
     public class RawKeyEventDataAndroid : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
-        #region constructors
         public RawKeyEventDataAndroid(int flags = 0, int codePoint = 0, int plainCodePoint = 0, int keyCode = 0, int scanCode = 0, int metaState = 0, int eventSource = 0, int vendorId = 0, int productId = 0, int deviceId = 0, int repeatCount = 0)
         : base()
         {
@@ -456,9 +455,6 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
             this.DeviceId = deviceId;
             this.RepeatCount = repeatCount;
         }
-        #endregion
-
-        #region fields
         public virtual int Flags { get; set; }
         public virtual int CodePoint { get; set; }
         public virtual int PlainCodePoint { get; set; }
@@ -492,9 +488,6 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask)
         {
@@ -550,7 +543,6 @@ namespace FlutterSDK.Services.Rawkeyboardandroid
 
 
 
-        #endregion
     }
 
 }

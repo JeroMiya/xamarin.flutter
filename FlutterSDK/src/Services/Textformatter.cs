@@ -514,19 +514,12 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class _SimpleTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        #region constructors
         public _SimpleTextInputFormatter(FlutterSDK.Services.Textformatter.TextInputFormatFunction formatFunction)
         : base()
         {
             this.FormatFunction = formatFunction;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Textformatter.TextInputFormatFunction FormatFunction { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
         {
@@ -535,7 +528,6 @@ namespace FlutterSDK.Services.Textformatter
 
 
 
-        #endregion
     }
 
 
@@ -558,22 +550,15 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class BlacklistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        #region constructors
         public BlacklistingTextInputFormatter(Pattern blacklistedPattern, string replacementString = default(string))
         : base()
         {
             this.BlacklistedPattern = blacklistedPattern;
             this.ReplacementString = replacementString;
         }
-        #endregion
-
-        #region fields
         public virtual Pattern BlacklistedPattern { get; set; }
         public virtual string ReplacementString { get; set; }
         public virtual FlutterSDK.Services.Textformatter.BlacklistingTextInputFormatter SingleLineFormatter { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
         {
@@ -586,7 +571,6 @@ namespace FlutterSDK.Services.Textformatter
 
 
 
-        #endregion
     }
 
 
@@ -602,19 +586,12 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class LengthLimitingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        #region constructors
         public LengthLimitingTextInputFormatter(int maxLength)
         : base()
         {
             this.MaxLength = maxLength;
         }
-        #endregion
-
-        #region fields
         public virtual int MaxLength { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Truncate the given TextEditingValue to maxLength runes.
@@ -648,7 +625,6 @@ namespace FlutterSDK.Services.Textformatter
 
 
 
-        #endregion
     }
 
 
@@ -667,20 +643,13 @@ namespace FlutterSDK.Services.Textformatter
     /// </Summary>
     public class WhitelistingTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        #region constructors
         public WhitelistingTextInputFormatter(Pattern whitelistedPattern)
         : base()
         {
             this.WhitelistedPattern = whitelistedPattern;
         }
-        #endregion
-
-        #region fields
         public virtual Pattern WhitelistedPattern { get; set; }
         public virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter DigitsOnly { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
         {
@@ -693,7 +662,6 @@ namespace FlutterSDK.Services.Textformatter
 
 
 
-        #endregion
     }
 
 }

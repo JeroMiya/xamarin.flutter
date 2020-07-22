@@ -432,17 +432,10 @@ namespace FlutterSDK.Services.Systemnavigator
     /// </Summary>
     public class SystemNavigator
     {
-        #region constructors
         internal SystemNavigator()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Removes the topmost Flutter instance, presenting what was before
@@ -471,7 +464,6 @@ namespace FlutterSDK.Services.Systemnavigator
 
 
 
-        #endregion
     }
 
 }

@@ -442,7 +442,6 @@ namespace FlutterSDK.Physics.Clampedsimulation
     /// </Summary>
     public class ClampedSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public ClampedSimulation(FlutterSDK.Physics.Simulation.Simulation simulation, double xMin = default(double), double xMax = default(double), double dxMin = default(double), double dxMax = default(double))
         : base()
         {
@@ -452,17 +451,11 @@ namespace FlutterSDK.Physics.Clampedsimulation
             this.DxMin = dxMin;
             this.DxMax = dxMax;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Physics.Simulation.Simulation Simulation { get; set; }
         public virtual double XMin { get; set; }
         public virtual double XMax { get; set; }
         public virtual double DxMin { get; set; }
         public virtual double DxMax { get; set; }
-        #endregion
-
-        #region methods
 
         public new double x(double time) => Simulation.x(time).Clamp(XMin, XMax) as double;
 
@@ -475,7 +468,6 @@ namespace FlutterSDK.Physics.Clampedsimulation
         public new bool IsDone(double time) => Simulation.IsDone(time);
 
 
-        #endregion
     }
 
 }

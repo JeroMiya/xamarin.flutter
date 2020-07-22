@@ -382,7 +382,6 @@ namespace FlutterSDK.Material.Button
     /// </Summary>
     public class RawMaterialButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public RawMaterialButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = 2.0, double focusElevation = 4.0, double hoverElevation = 4.0, double highlightElevation = 8.0, double disabledElevation = 0.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), TimeSpan animationDuration = default(TimeSpan), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool enableFeedback = true)
         : base(key: key)
         {
@@ -411,9 +410,6 @@ namespace FlutterSDK.Material.Button
             this.Child = child;
             this.EnableFeedback = enableFeedback;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnPressed { get; set; }
         public virtual VoidCallback OnLongPress { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnHighlightChanged { get; set; }
@@ -440,34 +436,23 @@ namespace FlutterSDK.Material.Button
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual bool EnableFeedback { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Button._RawMaterialButtonState CreateState() => new _RawMaterialButtonState();
 
 
-        #endregion
     }
 
 
     public class _RawMaterialButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Button.RawMaterialButton>
     {
-        #region constructors
         public _RawMaterialButtonState()
         { }
-        #endregion
-
-        #region fields
         internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _States { get; set; }
         internal virtual bool _Hovered { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _Focused { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _Pressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _Disabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _EffectiveElevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateState(FlutterSDK.Material.Materialstate.MaterialState state, bool value)
         {
@@ -568,7 +553,6 @@ namespace FlutterSDK.Material.Button
 
 
 
-        #endregion
     }
 
 
@@ -581,19 +565,12 @@ namespace FlutterSDK.Material.Button
     /// </Summary>
     public class _InputPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _InputPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), Size minSize = default(Size))
         : base(key: key, child: child)
         {
             this.MinSize = minSize;
         }
-        #endregion
-
-        #region fields
         public virtual Size MinSize { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -616,26 +593,18 @@ namespace FlutterSDK.Material.Button
 
 
 
-        #endregion
     }
 
 
     public class _RenderInputPadding : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
-        #region constructors
         public _RenderInputPadding(Size _minSize, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this._MinSize = _minSize;
         }
-        #endregion
-
-        #region fields
         internal virtual Size _MinSize { get; set; }
         public virtual Size MinSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
@@ -713,7 +682,6 @@ namespace FlutterSDK.Material.Button
 
 
 
-        #endregion
     }
 
 }

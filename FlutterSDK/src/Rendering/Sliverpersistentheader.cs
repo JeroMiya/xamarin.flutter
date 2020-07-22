@@ -542,22 +542,14 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class OverScrollHeaderStretchConfiguration
     {
-        #region constructors
         public OverScrollHeaderStretchConfiguration(double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback))
         : base()
         {
             this.StretchTriggerOffset = stretchTriggerOffset;
             this.OnStretchTrigger = onStretchTrigger;
         }
-        #endregion
-
-        #region fields
         public virtual double StretchTriggerOffset { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -581,7 +573,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverPersistentHeader : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
     {
-        #region constructors
         public RenderSliverPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         {
             this.StretchConfiguration = stretchConfiguration;
@@ -589,9 +580,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _LastStretchOffset { get; set; }
         internal virtual bool _NeedsUpdateChild { get; set; }
         internal virtual double _LastShrinkOffset { get; set; }
@@ -602,9 +590,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double ChildExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool ExcludeFromSemanticsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Update the child render object if necessary.
@@ -765,7 +750,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
@@ -778,19 +762,12 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverScrollingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
-        #region constructors
         public RenderSliverScrollingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _ChildPosition { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Updates [geometry], and returns the new value for [childMainAxisPosition].
@@ -842,7 +819,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
@@ -855,18 +831,11 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
-        #region constructors
         public RenderSliverPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -889,7 +858,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         public new double ChildMainAxisPosition(FlutterSDK.Rendering.@object.RenderObject child) => 0.0;
 
 
-        #endregion
     }
 
 
@@ -907,7 +875,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class FloatingHeaderSnapConfiguration
     {
-        #region constructors
         public FloatingHeaderSnapConfiguration(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan))
         : base()
         {
@@ -915,16 +882,9 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
             this.Curve = curve;
             this.Duration = duration;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
         public virtual TimeSpan Duration { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -940,15 +900,11 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverFloatingPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPersistentHeader
     {
-        #region constructors
         public RenderSliverFloatingPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
         internal virtual double _LastActualScrollOffset { get; set; }
@@ -956,9 +912,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         internal virtual double _ChildPosition { get; set; }
         internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration { get; set; }
         public virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Detach()
         {
@@ -1087,7 +1040,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
@@ -1103,18 +1055,11 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
     /// </Summary>
     public class RenderSliverFloatingPinnedPersistentHeader : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader
     {
-        #region constructors
         public RenderSliverFloatingPinnedPersistentHeader(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double UpdateGeometry()
         {
@@ -1131,7 +1076,6 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 }

@@ -389,7 +389,6 @@ namespace FlutterSDK.Material.Colorscheme
     /// </Summary>
     public class ColorScheme : IDiagnosticable
     {
-        #region constructors
         public ColorScheme(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         : base()
         {
@@ -452,9 +451,6 @@ namespace FlutterSDK.Material.Colorscheme
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Primary { get; set; }
         public virtual FlutterBinding.UI.Color PrimaryVariant { get; set; }
         public virtual FlutterBinding.UI.Color Secondary { get; set; }
@@ -469,9 +465,6 @@ namespace FlutterSDK.Material.Colorscheme
         public virtual FlutterBinding.UI.Color OnError { get; set; }
         public virtual Brightness Brightness { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private Brightness _BrightnessFor(FlutterBinding.UI.Color color) => ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(color);
 
@@ -533,7 +526,6 @@ namespace FlutterSDK.Material.Colorscheme
 
 
 
-        #endregion
     }
 
 }

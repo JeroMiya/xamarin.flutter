@@ -448,23 +448,16 @@ namespace FlutterSDK.Services.Platformchannel
     /// </Summary>
     public class BasicMessageChannel<T>
     {
-        #region constructors
         public BasicMessageChannel(string name, FlutterSDK.Services.Messagecodec.MessageCodec<T> codec, FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
         {
             this.Name = name;
             this.Codec = codec;
         }
-        #endregion
-
-        #region fields
         public virtual string Name { get; set; }
         public virtual FlutterSDK.Services.Messagecodec.MessageCodec<T> Codec { get; set; }
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Sends the specified [message] to the platform plugins on this channel.
@@ -543,7 +536,6 @@ namespace FlutterSDK.Services.Platformchannel
 
 
 
-        #endregion
     }
 
 
@@ -568,23 +560,16 @@ namespace FlutterSDK.Services.Platformchannel
     /// </Summary>
     public class MethodChannel
     {
-        #region constructors
         public MethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
         {
             this.Name = name;
             this.Codec = codec;
         }
-        #endregion
-
-        #region fields
         public virtual string Name { get; set; }
         public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private async Future<T> _InvokeMethod<T>(string method, bool missingOk = default(bool), object arguments = default(object))
         {
@@ -899,7 +884,6 @@ catch (e)
 
 
 
-        #endregion
     }
 
 
@@ -911,18 +895,11 @@ catch (e)
     /// </Summary>
     public class OptionalMethodChannel : FlutterSDK.Services.Platformchannel.MethodChannel
     {
-        #region constructors
         public OptionalMethodChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec))
         : base(name, codec)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new async Future<T> InvokeMethod<T>(string method, object arguments = default(object))
         {
@@ -949,7 +926,6 @@ catch (e)
 
 
 
-        #endregion
     }
 
 
@@ -971,23 +947,16 @@ catch (e)
     /// </Summary>
     public class EventChannel
     {
-        #region constructors
         public EventChannel(string name, FlutterSDK.Services.Messagecodec.MethodCodec codec = default(FlutterSDK.Services.Messagecodec.MethodCodec), FlutterSDK.Services.Binarymessenger.BinaryMessenger binaryMessenger = default(FlutterSDK.Services.Binarymessenger.BinaryMessenger))
         : base()
         {
             this.Name = name;
             this.Codec = codec;
         }
-        #endregion
-
-        #region fields
         public virtual string Name { get; set; }
         public virtual FlutterSDK.Services.Messagecodec.MethodCodec Codec { get; set; }
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
         public virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger BinaryMessenger { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Sets up a broadcast stream for receiving events on this channel.
@@ -1057,7 +1026,6 @@ return controller.Stream;
 
 
 
-#endregion
 }
 
 }

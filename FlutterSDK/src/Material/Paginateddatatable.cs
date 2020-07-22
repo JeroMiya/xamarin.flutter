@@ -417,7 +417,6 @@ namespace FlutterSDK.Material.Paginateddatatable
     /// </Summary>
     public class PaginatedDataTable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public PaginatedDataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, int initialFirstRowIndex = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int rowsPerPage = default(int), List<int> availableRowsPerPage = default(List<int>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onRowsPerPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Material.Datatablesource.DataTableSource source = default(FlutterSDK.Material.Datatablesource.DataTableSource))
         : base(key: key)
         {
@@ -440,9 +439,6 @@ namespace FlutterSDK.Material.Paginateddatatable
             this.DragStartBehavior = dragStartBehavior;
             this.Source = source;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
         public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
@@ -462,14 +458,10 @@ namespace FlutterSDK.Material.Paginateddatatable
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged { get; set; }
         public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState() => new PaginatedDataTableState();
 
 
-        #endregion
     }
 
 
@@ -480,21 +472,14 @@ namespace FlutterSDK.Material.Paginateddatatable
     /// </Summary>
     public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
     {
-        #region constructors
         public PaginatedDataTableState()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _FirstRowIndex { get; set; }
         internal virtual int _RowCount { get; set; }
         internal virtual bool _RowCountApproximate { get; set; }
         internal virtual int _SelectedRowCount { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Material.Datatable.DataRow> _Rows { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _TableKey { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -695,7 +680,6 @@ if ((Widget.OnPageChanged!=null )&&(oldFirstRowIndex!=_FirstRowIndex))Widget.OnP
 
 
 
-    #endregion
 }
 
 }

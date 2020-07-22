@@ -430,7 +430,6 @@ namespace FlutterSDK.Widgets.Gridpaper
 
     public class _GridPaperPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _GridPaperPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = default(double), int divisions = default(int), int subdivisions = default(int))
         {
             this.Color = color;
@@ -438,16 +437,10 @@ namespace FlutterSDK.Widgets.Gridpaper
             this.Divisions = divisions;
             this.Subdivisions = subdivisions;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Interval { get; set; }
         public virtual int Divisions { get; set; }
         public virtual int Subdivisions { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -487,7 +480,6 @@ namespace FlutterSDK.Widgets.Gridpaper
         public new bool HitTest(FlutterBinding.UI.Offset position) => false;
 
 
-        #endregion
     }
 
 
@@ -503,7 +495,6 @@ namespace FlutterSDK.Widgets.Gridpaper
     /// </Summary>
     public class GridPaper : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public GridPaper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double interval = 100.0, int divisions = 2, int subdivisions = 5, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -513,17 +504,11 @@ namespace FlutterSDK.Widgets.Gridpaper
             this.Subdivisions = subdivisions;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Interval { get; set; }
         public virtual int Divisions { get; set; }
         public virtual int Subdivisions { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -532,7 +517,6 @@ namespace FlutterSDK.Widgets.Gridpaper
 
 
 
-        #endregion
     }
 
 }

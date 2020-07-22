@@ -441,18 +441,11 @@ namespace FlutterSDK.Rendering.Tweens
     /// </Summary>
     public class FractionalOffsetTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Fractionaloffset.FractionalOffset>
     {
-        #region constructors
         public FractionalOffsetTween(FlutterSDK.Painting.Fractionaloffset.FractionalOffset begin = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset), FlutterSDK.Painting.Fractionaloffset.FractionalOffset end = default(FlutterSDK.Painting.Fractionaloffset.FractionalOffset))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -460,7 +453,6 @@ namespace FlutterSDK.Rendering.Tweens
         public new FlutterSDK.Painting.Fractionaloffset.FractionalOffset Lerp(double t) => FractionaloffsetDefaultClass.FractionalOffset.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -479,18 +471,11 @@ namespace FlutterSDK.Rendering.Tweens
     /// </Summary>
     public class AlignmentTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.Alignment>
     {
-        #region constructors
         public AlignmentTween(FlutterSDK.Painting.Alignment.Alignment begin = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Painting.Alignment.Alignment end = default(FlutterSDK.Painting.Alignment.Alignment))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -498,7 +483,6 @@ namespace FlutterSDK.Rendering.Tweens
         public new FlutterSDK.Painting.Alignment.Alignment Lerp(double t) => AlignmentDefaultClass.Alignment.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -516,18 +500,11 @@ namespace FlutterSDK.Rendering.Tweens
     /// </Summary>
     public class AlignmentGeometryTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Painting.Alignment.AlignmentGeometry>
     {
-        #region constructors
         public AlignmentGeometryTween(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -535,7 +512,6 @@ namespace FlutterSDK.Rendering.Tweens
         public new FlutterSDK.Painting.Alignment.AlignmentGeometry Lerp(double t) => AlignmentDefaultClass.AlignmentGeometry.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 }

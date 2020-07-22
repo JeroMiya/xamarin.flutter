@@ -778,17 +778,10 @@ namespace FlutterSDK.Material.Materiallocalizations
 
     public class _MaterialLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations>
     {
-        #region constructors
         public _MaterialLocalizationsDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new bool IsSupported(Locale locale) => locale.LanguageCode == "en";
 
@@ -802,7 +795,6 @@ namespace FlutterSDK.Material.Materiallocalizations
 
 
 
-        #endregion
     }
 
 
@@ -818,14 +810,10 @@ namespace FlutterSDK.Material.Materiallocalizations
     /// </Summary>
     public class DefaultMaterialLocalizations : IMaterialLocalizations
     {
-        #region constructors
         public DefaultMaterialLocalizations()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<string> _ShortWeekdays { get; set; }
         internal virtual List<string> _Weekdays { get; set; }
         internal virtual List<string> _NarrowWeekdays { get; set; }
@@ -878,9 +866,6 @@ namespace FlutterSDK.Material.Materiallocalizations
         public virtual string ExpandedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the number of days in a month, according to the proleptic
@@ -1140,7 +1125,6 @@ namespace FlutterSDK.Material.Materiallocalizations
 
 
 
-        #endregion
     }
 
 }

@@ -590,19 +590,12 @@ namespace FlutterSDK.Services.Binding
     /// </Summary>
     public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
     {
-        #region constructors
         internal _DefaultBinaryMessenger()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<string, object> _Handlers { get; set; }
         internal virtual Dictionary<string, object> _MockHandlers { get; set; }
-        #endregion
-
-        #region methods
 
         private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
         {
@@ -688,7 +681,6 @@ finally
 
 
 
-    #endregion
 }
 
 }

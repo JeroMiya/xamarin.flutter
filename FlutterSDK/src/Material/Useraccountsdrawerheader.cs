@@ -429,21 +429,14 @@ namespace FlutterSDK.Material.Useraccountsdrawerheader
 
     public class _AccountPictures : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _AccountPictures(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
             this.CurrentAccountPicture = currentAccountPicture;
             this.OtherAccountsPictures = otherAccountsPictures;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> OtherAccountsPictures { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -455,13 +448,11 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
 
 
 
-        #endregion
     }
 
 
     public class _AccountDetails : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _AccountDetails(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onTap = default(VoidCallback), bool isOpen = default(bool), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -471,38 +462,24 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
             this.IsOpen = isOpen;
             this.ArrowColor = arrowColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget AccountName { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
         public virtual VoidCallback OnTap { get; set; }
         public virtual bool IsOpen { get; set; }
         public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Useraccountsdrawerheader._AccountDetailsState CreateState() => new _AccountDetailsState();
 
 
-        #endregion
     }
 
 
     public class _AccountDetailsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader._AccountDetails>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _AccountDetailsState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -567,27 +544,19 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
 
 
 
-        #endregion
     }
 
 
     public class _AccountDetailsLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
     {
-        #region constructors
         public _AccountDetailsLayout(TextDirection textDirection = default(TextDirection))
         {
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual string AccountName { get; set; }
         public virtual string AccountEmail { get; set; }
         public virtual string DropdownIcon { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout(Size size)
         {
@@ -654,7 +623,6 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
 
 
 
-        #endregion
     }
 
 
@@ -670,7 +638,6 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
     /// </Summary>
     public class UserAccountsDrawerHeader : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public UserAccountsDrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget currentAccountPicture = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> otherAccountsPictures = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget accountName = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget accountEmail = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDetailsPressed = default(VoidCallback), FlutterBinding.UI.Color arrowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -683,9 +650,6 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
             this.OnDetailsPressed = onDetailsPressed;
             this.ArrowColor = arrowColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget CurrentAccountPicture { get; set; }
@@ -694,29 +658,18 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
         public virtual FlutterSDK.Widgets.Framework.Widget AccountEmail { get; set; }
         public virtual VoidCallback OnDetailsPressed { get; set; }
         public virtual FlutterBinding.UI.Color ArrowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Useraccountsdrawerheader._UserAccountsDrawerHeaderState CreateState() => new _UserAccountsDrawerHeaderState();
 
 
-        #endregion
     }
 
 
     public class _UserAccountsDrawerHeaderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Useraccountsdrawerheader.UserAccountsDrawerHeader>
     {
-        #region constructors
         public _UserAccountsDrawerHeaderState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _IsOpen { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandleDetailsPressed()
         {
@@ -740,7 +693,6 @@ return new Padding(padding:EdgeInsetsDirectional.Only(start:8.0), child:new Sema
 
 
 
-        #endregion
     }
 
 }

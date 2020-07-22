@@ -403,7 +403,6 @@ namespace FlutterSDK.Material.Expandicon
     /// </Summary>
     public class ExpandIcon : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public ExpandIcon(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isExpanded = false, double size = 24.0, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onPressed = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color expandedColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -415,9 +414,6 @@ namespace FlutterSDK.Material.Expandicon
             this.DisabledColor = disabledColor;
             this.ExpandedColor = expandedColor;
         }
-        #endregion
-
-        #region fields
         public virtual bool IsExpanded { get; set; }
         public virtual double Size { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnPressed { get; set; }
@@ -425,32 +421,21 @@ namespace FlutterSDK.Material.Expandicon
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
         public virtual FlutterBinding.UI.Color ExpandedColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Expandicon._ExpandIconState CreateState() => new _ExpandIconState();
 
 
-        #endregion
     }
 
 
     public class _ExpandIconState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Expandicon.ExpandIcon>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _ExpandIconState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _IconTurns { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _IconTurnTween { get; set; }
         internal virtual FlutterBinding.UI.Color _IconColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -516,7 +501,6 @@ namespace FlutterSDK.Material.Expandicon
 
 
 
-        #endregion
     }
 
 }

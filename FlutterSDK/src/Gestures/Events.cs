@@ -422,7 +422,6 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerEvent : IDiagnosticable
     {
-        #region constructors
         public PointerEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool down = false, bool obscured = false, double pressure = 1.0, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, int platformData = 0, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerEvent original = default(FlutterSDK.Gestures.Events.PointerEvent))
         : base()
         {
@@ -452,9 +451,6 @@ namespace FlutterSDK.Gestures.Events
             this.Transform = transform;
             this.Original = original;
         }
-        #endregion
-
-        #region fields
         public virtual TimeSpan TimeStamp { get; set; }
         public virtual int Pointer { get; set; }
         public virtual PointerDeviceKind Kind { get; set; }
@@ -483,9 +479,6 @@ namespace FlutterSDK.Gestures.Events
         public virtual Matrix4 Transform { get; set; }
         public virtual FlutterSDK.Gestures.Events.PointerEvent Original { get; set; }
         public virtual double DistanceMin { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Transforms the event from the global coordinate space into the coordinate
@@ -618,7 +611,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -630,18 +622,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerAddedEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerAddedEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerAddedEvent original = default(FlutterSDK.Gestures.Events.PointerAddedEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerAddedEvent Transformed(Matrix4 transform)
         {
@@ -655,7 +640,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -667,18 +651,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerRemovedEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerRemovedEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distanceMax = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerRemovedEvent original = default(FlutterSDK.Gestures.Events.PointerRemovedEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distanceMax: distanceMax, radiusMin: radiusMin, radiusMax: radiusMax, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerRemovedEvent Transformed(Matrix4 transform)
         {
@@ -692,7 +669,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -710,18 +686,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerHoverEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerHoverEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerHoverEvent original = default(FlutterSDK.Gestures.Events.PointerHoverEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: false, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, synthesized: synthesized, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerHoverEvent Transformed(Matrix4 transform)
         {
@@ -736,7 +705,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -754,7 +722,6 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerEnterEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerEnterEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, bool down = false, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerEnterEvent original = default(FlutterSDK.Gestures.Events.PointerEnterEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: down, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, synthesized: synthesized, transform: transform, original: original)
         {
@@ -768,12 +735,6 @@ namespace FlutterSDK.Gestures.Events
         {
             var instance = new PointerEnterEvent();
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerEnterEvent Transformed(Matrix4 transform)
         {
@@ -788,7 +749,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -806,7 +766,6 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerExitEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerExitEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, bool down = false, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerExitEvent original = default(FlutterSDK.Gestures.Events.PointerExitEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: down, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, synthesized: synthesized, transform: transform, original: original)
         {
@@ -820,12 +779,6 @@ namespace FlutterSDK.Gestures.Events
         {
             var instance = new PointerExitEvent();
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerExitEvent Transformed(Matrix4 transform)
         {
@@ -840,7 +793,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -849,18 +801,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerDownEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerDownEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), int buttons = default(int), bool obscured = false, double pressure = 1.0, double pressureMin = 1.0, double pressureMax = 1.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerDownEvent original = default(FlutterSDK.Gestures.Events.PointerDownEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, buttons: buttons, down: true, obscured: obscured, pressure: pressure, pressureMin: pressureMin, pressureMax: pressureMax, distance: 0.0, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerDownEvent Transformed(Matrix4 transform)
         {
@@ -874,7 +819,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -889,18 +833,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerMoveEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerMoveEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset delta = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localDelta = default(FlutterBinding.UI.Offset), int buttons = default(int), bool obscured = false, double pressure = 1.0, double pressureMin = 1.0, double pressureMax = 1.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, int platformData = 0, bool synthesized = false, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerMoveEvent original = default(FlutterSDK.Gestures.Events.PointerMoveEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, delta: delta, localDelta: localDelta, buttons: buttons, down: true, obscured: obscured, pressure: pressure, pressureMin: pressureMin, pressureMax: pressureMax, distance: 0.0, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, platformData: platformData, synthesized: synthesized, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerMoveEvent Transformed(Matrix4 transform)
         {
@@ -915,7 +852,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -924,18 +860,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerUpEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerUpEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressure = 0.0, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerUpEvent original = default(FlutterSDK.Gestures.Events.PointerUpEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, buttons: buttons, down: false, obscured: obscured, pressure: pressure, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerUpEvent Transformed(Matrix4 transform)
         {
@@ -949,7 +878,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -962,19 +890,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerSignalEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerSignalEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerSignalEvent original = default(FlutterSDK.Gestures.Events.PointerSignalEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -986,19 +906,12 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerScrollEvent : FlutterSDK.Gestures.Events.PointerSignalEvent
     {
-        #region constructors
         public PointerScrollEvent(TimeSpan timeStamp = default(TimeSpan), PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset scrollDelta = default(FlutterBinding.UI.Offset), Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerScrollEvent original = default(FlutterSDK.Gestures.Events.PointerScrollEvent))
         : base(timeStamp: timeStamp, kind: kind, device: device, position: position, localPosition: localPosition, transform: transform, original: original)
         {
             this.ScrollDelta = scrollDelta;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset ScrollDelta { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerScrollEvent Transformed(Matrix4 transform)
         {
@@ -1021,7 +934,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 
@@ -1030,18 +942,11 @@ namespace FlutterSDK.Gestures.Events
     /// </Summary>
     public class PointerCancelEvent : FlutterSDK.Gestures.Events.PointerEvent
     {
-        #region constructors
         public PointerCancelEvent(TimeSpan timeStamp = default(TimeSpan), int pointer = 0, PointerDeviceKind kind = default(PointerDeviceKind), int device = 0, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), int buttons = 0, bool obscured = false, double pressureMin = 1.0, double pressureMax = 1.0, double distance = 0.0, double distanceMax = 0.0, double size = 0.0, double radiusMajor = 0.0, double radiusMinor = 0.0, double radiusMin = 0.0, double radiusMax = 0.0, double orientation = 0.0, double tilt = 0.0, Matrix4 transform = default(Matrix4), FlutterSDK.Gestures.Events.PointerCancelEvent original = default(FlutterSDK.Gestures.Events.PointerCancelEvent))
         : base(timeStamp: timeStamp, pointer: pointer, kind: kind, device: device, position: position, localPosition: localPosition, buttons: buttons, down: false, obscured: obscured, pressure: 0.0, pressureMin: pressureMin, pressureMax: pressureMax, distance: distance, distanceMax: distanceMax, size: size, radiusMajor: radiusMajor, radiusMinor: radiusMinor, radiusMin: radiusMin, radiusMax: radiusMax, orientation: orientation, tilt: tilt, transform: transform, original: original)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Gestures.Events.PointerCancelEvent Transformed(Matrix4 transform)
         {
@@ -1055,7 +960,6 @@ namespace FlutterSDK.Gestures.Events
 
 
 
-        #endregion
     }
 
 }

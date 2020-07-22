@@ -457,7 +457,6 @@ namespace FlutterSDK.Material.App
     /// </Summary>
     public class MaterialApp : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public MaterialApp(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> navigatorKey = default(FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState>), FlutterSDK.Widgets.Framework.Widget home = default(FlutterSDK.Widgets.Framework.Widget), Dictionary<string, object> routes = default(Dictionary<string, object>), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.App.InitialRouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.App.InitialRouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> navigatorObservers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), string title = default(string), FlutterSDK.Widgets.App.GenerateAppTitle onGenerateTitle = default(FlutterSDK.Widgets.App.GenerateAppTitle), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Themedata.ThemeData darkTheme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.App.ThemeMode themeMode = default(FlutterSDK.Material.App.ThemeMode), Locale locale = default(Locale), Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> localizationsDelegates = default(Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.App.LocaleListResolutionCallback localeListResolutionCallback = default(FlutterSDK.Widgets.App.LocaleListResolutionCallback), FlutterSDK.Widgets.App.LocaleResolutionCallback localeResolutionCallback = default(FlutterSDK.Widgets.App.LocaleResolutionCallback), Iterable<Locale> supportedLocales = default(Iterable<Locale>), bool debugShowMaterialGrid = false, bool showPerformanceOverlay = false, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false, bool showSemanticsDebugger = false, bool debugShowCheckedModeBanner = true, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>))
         : base(key: key)
         {
@@ -490,9 +489,6 @@ namespace FlutterSDK.Material.App
             this.Shortcuts = shortcuts;
             this.Actions = actions;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Navigator.NavigatorState> NavigatorKey { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Home { get; set; }
         public virtual Dictionary<string, object> Routes { get; set; }
@@ -521,28 +517,17 @@ namespace FlutterSDK.Material.App
         public virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> Shortcuts { get; set; }
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> Actions { get; set; }
         public virtual bool DebugShowMaterialGrid { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.App._MaterialAppState CreateState() => new _MaterialAppState();
 
 
-        #endregion
     }
 
 
     public class _MaterialScrollBehavior : FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior
     {
-        #region constructors
         public _MaterialScrollBehavior()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -560,24 +545,16 @@ namespace FlutterSDK.Material.App
 
 
 
-        #endregion
     }
 
 
     public class _MaterialAppState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.App.MaterialApp>
     {
-        #region constructors
         public _MaterialAppState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Heroes.HeroController _HeroController { get; set; }
         internal virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> _NavigatorObservers { get; set; }
         internal virtual Iterable<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> _LocalizationsDelegates { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -666,7 +643,6 @@ namespace FlutterSDK.Material.App
 
 
 
-        #endregion
     }
 
 

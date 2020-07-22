@@ -491,19 +491,12 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuEntry<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public PopupMenuEntry(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double Height { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Whether this entry represents a particular value.
@@ -524,7 +517,6 @@ namespace FlutterSDK.Material.Popupmenu
             return default(bool);
         }
 
-        #endregion
     }
 
 
@@ -542,19 +534,12 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuDivider : FlutterSDK.Material.Popupmenu.PopupMenuEntry<Null>
     {
-        #region constructors
         public PopupMenuDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double height = default(double))
         : base(key: key)
         {
             this.Height = height;
         }
-        #endregion
-
-        #region fields
         public new double Height { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool Represents(void value) => false;
 
@@ -563,44 +548,28 @@ namespace FlutterSDK.Material.Popupmenu
         public new FlutterSDK.Material.Popupmenu._PopupMenuDividerState CreateState() => new _PopupMenuDividerState();
 
 
-        #endregion
     }
 
 
     public class _PopupMenuDividerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Popupmenu.PopupMenuDivider>
     {
-        #region constructors
         public _PopupMenuDividerState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => new Divider(height: Widget.Height);
 
 
-        #endregion
     }
 
 
     public class _MenuItem : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _MenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Basictypes.ValueChanged<Size> onLayout = default(FlutterSDK.Foundation.Basictypes.ValueChanged<Size>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.OnLayout = onLayout;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<Size> OnLayout { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -623,25 +592,17 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
     public class _RenderMenuItem : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
-        #region constructors
         public _RenderMenuItem(FlutterSDK.Foundation.Basictypes.ValueChanged<Size> onLayout, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.OnLayout = onLayout;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<Size> OnLayout { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -662,7 +623,6 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
@@ -709,7 +669,6 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuItem<T> : FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>
     {
-        #region constructors
         public PopupMenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), bool enabled = true, double height = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -719,17 +678,11 @@ namespace FlutterSDK.Material.Popupmenu
             this.TextStyle = textStyle;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
         public virtual bool Enabled { get; set; }
         public new double Height { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool Represents(T value) => value == this.Value;
 
@@ -738,7 +691,6 @@ namespace FlutterSDK.Material.Popupmenu
         public new PopupMenuItemState<T, FlutterSDK.Material.Popupmenu.PopupMenuItem<T>> CreateState() => new PopupMenuItemState<T, PopupMenuItem<T>>();
 
 
-        #endregion
     }
 
 
@@ -762,15 +714,8 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuItemState<T, W> : FlutterSDK.Widgets.Framework.State<W>
     {
-        #region constructors
         public PopupMenuItemState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The menu item contents.
@@ -818,7 +763,6 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
@@ -888,42 +832,27 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class CheckedPopupMenuItem<T> : FlutterSDK.Material.Popupmenu.PopupMenuItem<T>
     {
-        #region constructors
         public CheckedPopupMenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), bool @checked = false, bool enabled = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, value: value, enabled: enabled, child: child)
         {
             this.@checked = @checked;
         }
-        #endregion
-
-        #region fields
         public virtual bool @checked { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new _CheckedPopupMenuItemState<T> CreateState() => new _CheckedPopupMenuItemState<T>();
 
 
-        #endregion
     }
 
 
     public class _CheckedPopupMenuItemState<T> : FlutterSDK.Material.Popupmenu.PopupMenuItemState<T, FlutterSDK.Material.Popupmenu.CheckedPopupMenuItem<T>>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CheckedPopupMenuItemState()
         { }
-        #endregion
-
-        #region fields
         internal virtual TimeSpan _FadeDuration { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -954,27 +883,19 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
     public class _PopupMenu<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _PopupMenu(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenu._PopupMenuRoute<T> route = default(FlutterSDK.Material.Popupmenu._PopupMenuRoute<T>), string semanticLabel = default(string))
         : base(key: key)
         {
             this.Route = route;
             this.SemanticLabel = semanticLabel;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Popupmenu._PopupMenuRoute<T> Route { get; set; }
         public virtual string SemanticLabel { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1012,13 +933,11 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
     public class _PopupMenuRouteLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        #region constructors
         public _PopupMenuRouteLayout(FlutterSDK.Rendering.Stack.RelativeRect position, List<Size> itemSizes, int selectedItemIndex, TextDirection textDirection)
         {
             this.Position = position;
@@ -1026,16 +945,10 @@ namespace FlutterSDK.Material.Popupmenu
             this.SelectedItemIndex = selectedItemIndex;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Position { get; set; }
         public virtual List<Size> ItemSizes { get; set; }
         public virtual int SelectedItemIndex { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
@@ -1094,13 +1007,11 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
     public class _PopupMenuRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
     {
-        #region constructors
         public _PopupMenuRoute(FlutterSDK.Rendering.Stack.RelativeRect position = default(FlutterSDK.Rendering.Stack.RelativeRect), List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>> items = default(List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>>), T initialValue = default(T), double elevation = default(double), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), string barrierLabel = default(string), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.BuildContext showMenuContext = default(FlutterSDK.Widgets.Framework.BuildContext), bool captureInheritedThemes = default(bool))
         : base()
         {
@@ -1117,9 +1028,6 @@ namespace FlutterSDK.Material.Popupmenu
             this.ShowMenuContext = showMenuContext;
             this.CaptureInheritedThemes = captureInheritedThemes;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Position { get; set; }
         public virtual List<FlutterSDK.Material.Popupmenu.PopupMenuEntry<T>> Items { get; set; }
         public virtual List<Size> ItemSizes { get; set; }
@@ -1136,9 +1044,6 @@ namespace FlutterSDK.Material.Popupmenu
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
         {
@@ -1179,7 +1084,6 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 
@@ -1238,7 +1142,6 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuButton<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public PopupMenuButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenu.PopupMenuItemBuilder<T> itemBuilder = default(FlutterSDK.Material.Popupmenu.PopupMenuItemBuilder<T>), T initialValue = default(T), FlutterSDK.Material.Popupmenu.PopupMenuItemSelected<T> onSelected = default(FlutterSDK.Material.Popupmenu.PopupMenuItemSelected<T>), FlutterSDK.Material.Popupmenu.PopupMenuCanceled onCanceled = default(FlutterSDK.Material.Popupmenu.PopupMenuCanceled), string tooltip = default(string), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool enabled = true, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool captureInheritedThemes = true)
         : base(key: key)
         {
@@ -1257,9 +1160,6 @@ namespace FlutterSDK.Material.Popupmenu
             this.Color = color;
             this.CaptureInheritedThemes = captureInheritedThemes;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Popupmenu.PopupMenuItemBuilder<T> ItemBuilder { get; set; }
         public virtual T InitialValue { get; set; }
         public virtual FlutterSDK.Material.Popupmenu.PopupMenuItemSelected<T> OnSelected { get; set; }
@@ -1274,14 +1174,10 @@ namespace FlutterSDK.Material.Popupmenu
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual bool CaptureInheritedThemes { get; set; }
-        #endregion
-
-        #region methods
 
         public new PopupMenuButtonState<T> CreateState() => new PopupMenuButtonState<T>();
 
 
-        #endregion
     }
 
 
@@ -1293,15 +1189,8 @@ namespace FlutterSDK.Material.Popupmenu
     /// </Summary>
     public class PopupMenuButtonState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Popupmenu.PopupMenuButton<T>>
     {
-        #region constructors
         public PopupMenuButtonState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// A method to show a popup menu with the items supplied to
@@ -1360,7 +1249,6 @@ namespace FlutterSDK.Material.Popupmenu
 
 
 
-        #endregion
     }
 
 }

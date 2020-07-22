@@ -394,19 +394,11 @@ namespace FlutterSDK.Material.Floatingactionbutton
 
     public class _DefaultHeroTag
     {
-        #region constructors
         public _DefaultHeroTag()
         {
 
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        #endregion
     }
 
 
@@ -496,7 +488,6 @@ namespace FlutterSDK.Material.Floatingactionbutton
     /// </Summary>
     public class FloatingActionButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public FloatingActionButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), @Object heroTag = default(@Object), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double highlightElevation = default(double), double disabledElevation = default(double), VoidCallback onPressed = default(VoidCallback), bool mini = false, FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool isExtended = false)
         : base(key: key)
         {
@@ -544,9 +535,6 @@ namespace FlutterSDK.Material.Floatingactionbutton
             instance.FocusNode = focusNode;
             instance.Autofocus = autofocus;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual string Tooltip { get; set; }
         public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
@@ -575,9 +563,6 @@ namespace FlutterSDK.Material.Floatingactionbutton
         internal virtual double _DefaultHighlightElevation { get; set; }
         internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultShape { get; set; }
         internal virtual FlutterSDK.Painting.Borders.ShapeBorder _DefaultExtendedShape { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -648,24 +633,16 @@ namespace FlutterSDK.Material.Floatingactionbutton
 
 
 
-        #endregion
     }
 
 
     public class _ChildOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _ChildOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Floatingactionbutton._RenderChildOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -688,24 +665,16 @@ namespace FlutterSDK.Material.Floatingactionbutton
 
 
 
-        #endregion
     }
 
 
     public class _RenderChildOverflowBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
-        #region constructors
         public _RenderChildOverflowBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection))
         : base(child: child, alignment: AlignmentDefaultClass.Alignment.Center, textDirection: textDirection)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height) => 0.0;
 
@@ -733,7 +702,6 @@ namespace FlutterSDK.Material.Floatingactionbutton
 
 
 
-        #endregion
     }
 
 }

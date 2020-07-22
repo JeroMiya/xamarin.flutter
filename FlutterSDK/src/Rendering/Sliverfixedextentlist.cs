@@ -493,19 +493,12 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     /// </Summary>
     public class RenderSliverFixedExtentBoxAdaptor : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
-        #region constructors
         public RenderSliverFixedExtentBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The layout offset for the child with the given index.
@@ -775,7 +768,6 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
 
 
 
-        #endregion
     }
 
 
@@ -803,21 +795,13 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     /// </Summary>
     public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
     {
-        #region constructors
         public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double itemExtent = default(double))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _ItemExtent { get; set; }
         public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

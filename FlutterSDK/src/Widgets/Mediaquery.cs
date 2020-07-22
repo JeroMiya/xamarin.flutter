@@ -492,7 +492,6 @@ namespace FlutterSDK.Widgets.Mediaquery
     /// </Summary>
     public class MediaQueryData
     {
-        #region constructors
         public MediaQueryData(Size size = default(Size), double devicePixelRatio = 1.0, double textScaleFactor = 1.0, Brightness platformBrightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double physicalDepth = default(double), bool alwaysUse24HourFormat = false, bool accessibleNavigation = false, bool invertColors = false, bool highContrast = false, bool disableAnimations = false, bool boldText = false)
         : base()
         {
@@ -516,9 +515,6 @@ namespace FlutterSDK.Widgets.Mediaquery
         {
             var instance = new MediaQueryData();
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get; set; }
         public virtual double DevicePixelRatio { get; set; }
         public virtual double TextScaleFactor { get; set; }
@@ -536,9 +532,6 @@ namespace FlutterSDK.Widgets.Mediaquery
         public virtual bool BoldText { get; set; }
         public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this media query data but with the given fields replaced
@@ -635,7 +628,6 @@ namespace FlutterSDK.Widgets.Mediaquery
 
 
 
-        #endregion
     }
 
 
@@ -665,7 +657,6 @@ namespace FlutterSDK.Widgets.Mediaquery
     /// </Summary>
     public class MediaQuery : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public MediaQuery(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Mediaquery.MediaQueryData data = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -692,13 +683,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The data from the closest instance of this class that encloses the given
@@ -786,7 +771,6 @@ namespace FlutterSDK.Widgets.Mediaquery
 
 
 
-        #endregion
     }
 
 

@@ -433,7 +433,6 @@ namespace FlutterSDK.Material.Textselection
     /// </Summary>
     public class _TextSelectionToolbar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _TextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback handleCut = default(VoidCallback), VoidCallback handleCopy = default(VoidCallback), VoidCallback handlePaste = default(VoidCallback), VoidCallback handleSelectAll = default(VoidCallback), bool isAbove = default(bool))
         : base(key: key)
         {
@@ -443,38 +442,24 @@ namespace FlutterSDK.Material.Textselection
             this.HandleSelectAll = handleSelectAll;
             this.IsAbove = isAbove;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback HandleCut { get; set; }
         public virtual VoidCallback HandleCopy { get; set; }
         public virtual VoidCallback HandlePaste { get; set; }
         public virtual VoidCallback HandleSelectAll { get; set; }
         public virtual bool IsAbove { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Textselection._TextSelectionToolbarState CreateState() => new _TextSelectionToolbarState();
 
 
-        #endregion
     }
 
 
     public class _TextSelectionToolbarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Textselection._TextSelectionToolbar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _TextSelectionToolbarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _OverflowOpen { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.UniqueKey _ContainerKey { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Material.Flatbutton.FlatButton _GetItem(VoidCallback onPressed, string label)
         {
@@ -519,25 +504,17 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
     public class _TextSelectionToolbarContainer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _TextSelectionToolbarContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool overflowOpen = default(bool))
         : base(key: key, child: child)
         {
             this.OverflowOpen = overflowOpen;
         }
-        #endregion
-
-        #region fields
         public virtual bool OverflowOpen { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Textselection._TextSelectionToolbarContainerRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -560,27 +537,19 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
     public class _TextSelectionToolbarContainerRenderBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _TextSelectionToolbarContainerRenderBox(bool overflowOpen = default(bool))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _ClosedWidth { get; set; }
         internal virtual bool _OverflowOpen { get; set; }
         public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -652,27 +621,19 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
     public class _TextSelectionToolbarItems : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public _TextSelectionToolbarItems(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isAbove = default(bool), bool overflowOpen = default(bool), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
             this.IsAbove = isAbove;
             this.OverflowOpen = overflowOpen;
         }
-        #endregion
-
-        #region fields
         public virtual bool IsAbove { get; set; }
         public virtual bool OverflowOpen { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -699,41 +660,25 @@ _OverflowOpen=!_OverflowOpen;
         public new FlutterSDK.Material.Textselection._TextSelectionToolbarItemsElement CreateElement() => new _TextSelectionToolbarItemsElement(this);
 
 
-        #endregion
     }
 
 
     public class _ToolbarParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public _ToolbarParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual bool ShouldPaint { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
     public class _TextSelectionToolbarItemsElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
     {
-        #region constructors
         public _TextSelectionToolbarItemsElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         private bool _ShouldPaint(FlutterSDK.Widgets.Framework.Element child)
         {
@@ -750,29 +695,21 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
     public class _TextSelectionToolbarItemsRenderBox : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Textselection._ToolbarParentData>
     {
-        #region constructors
         public _TextSelectionToolbarItemsRenderBox(bool isAbove = default(bool), bool overflowOpen = default(bool))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _LastIndexThatFits { get; set; }
         internal virtual bool _IsAbove { get; set; }
         internal virtual bool _OverflowOpen { get; set; }
         public virtual bool IsAbove { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool OverflowOpen { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _LayoutChildren()
         {
@@ -976,7 +913,6 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
@@ -986,22 +922,15 @@ _OverflowOpen=!_OverflowOpen;
     /// </Summary>
     public class _TextSelectionToolbarLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        #region constructors
         public _TextSelectionToolbarLayout(FlutterBinding.UI.Offset anchor, double upperBounds, bool fitsAbove)
         {
             this.Anchor = anchor;
             this.UpperBounds = upperBounds;
             this.FitsAbove = fitsAbove;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Anchor { get; set; }
         public virtual double UpperBounds { get; set; }
         public virtual bool FitsAbove { get; set; }
-        #endregion
-
-        #region methods
 
         private double _CenterOn(double position, double width, double min, double max)
         {
@@ -1050,7 +979,6 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
@@ -1059,18 +987,11 @@ _OverflowOpen=!_OverflowOpen;
     /// </Summary>
     public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _TextSelectionHandlePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         {
             this.Color = color;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -1100,21 +1021,13 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 
     public class _MaterialTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
     {
-        #region constructors
         public _MaterialTextSelectionControls()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the size of the Material handle.
@@ -1178,7 +1091,6 @@ _OverflowOpen=!_OverflowOpen;
 
 
 
-        #endregion
     }
 
 }

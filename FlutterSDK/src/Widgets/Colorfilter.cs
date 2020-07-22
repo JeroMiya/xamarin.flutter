@@ -432,19 +432,12 @@ namespace FlutterSDK.Widgets.Colorfilter
     /// </Summary>
     public class ColorFiltered : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ColorFiltered(ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key, child: child)
         {
             this.ColorFilter = colorFilter;
         }
-        #endregion
-
-        #region fields
         public virtual ColorFilter ColorFilter { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ColorFilterRenderObject(ColorFilter);
 
@@ -472,26 +465,18 @@ namespace FlutterSDK.Widgets.Colorfilter
 
 
 
-        #endregion
     }
 
 
     public class _ColorFilterRenderObject : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _ColorFilterRenderObject(ColorFilter _colorFilter)
         {
             this._ColorFilter = _colorFilter;
         }
-        #endregion
-
-        #region fields
         internal virtual ColorFilter _ColorFilter { get; set; }
         public virtual ColorFilter ColorFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -500,7 +485,6 @@ namespace FlutterSDK.Widgets.Colorfilter
 
 
 
-        #endregion
     }
 
 }

@@ -446,7 +446,6 @@ namespace FlutterSDK.Material.Divider
     /// </Summary>
     public class Divider : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Divider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double height = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -456,17 +455,11 @@ namespace FlutterSDK.Material.Divider
             this.EndIndent = endIndent;
             this.Color = color;
         }
-        #endregion
-
-        #region fields
         public virtual double Height { get; set; }
         public virtual double Thickness { get; set; }
         public virtual double Indent { get; set; }
         public virtual double EndIndent { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Computes the [BorderSide] that represents a divider..
@@ -526,7 +519,6 @@ namespace FlutterSDK.Material.Divider
 
 
 
-        #endregion
     }
 
 
@@ -547,7 +539,6 @@ namespace FlutterSDK.Material.Divider
     /// </Summary>
     public class VerticalDivider : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public VerticalDivider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -557,17 +548,11 @@ namespace FlutterSDK.Material.Divider
             this.EndIndent = endIndent;
             this.Color = color;
         }
-        #endregion
-
-        #region fields
         public virtual double Width { get; set; }
         public virtual double Thickness { get; set; }
         public virtual double Indent { get; set; }
         public virtual double EndIndent { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -581,7 +566,6 @@ namespace FlutterSDK.Material.Divider
 
 
 
-        #endregion
     }
 
 }
