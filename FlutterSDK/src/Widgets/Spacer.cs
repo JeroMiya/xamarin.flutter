@@ -466,19 +466,12 @@ namespace FlutterSDK.Widgets.Spacer
     /// </Summary>
     public class Spacer : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Spacer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1)
         : base(key: key)
         {
             this.Flex = flex;
         }
-        #endregion
-
-        #region fields
         public virtual int Flex { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -487,7 +480,6 @@ namespace FlutterSDK.Widgets.Spacer
 
 
 
-        #endregion
     }
 
 }

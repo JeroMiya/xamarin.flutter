@@ -392,7 +392,6 @@ namespace FlutterSDK.Material.Buttontheme
     /// </Summary>
     public class ButtonTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public ButtonTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), double minWidth = 88.0, double height = 36.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool alignedDropdown = false, FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -406,13 +405,7 @@ namespace FlutterSDK.Material.Buttontheme
         {
             var instance = new ButtonTheme(key: key, child: child);
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Buttontheme.ButtonThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The closest instance of this class that encloses the given context.
@@ -459,7 +452,6 @@ namespace FlutterSDK.Material.Buttontheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 
@@ -472,7 +464,6 @@ namespace FlutterSDK.Material.Buttontheme
     /// </Summary>
     public class ButtonThemeData : IDiagnosticable
     {
-        #region constructors
         public ButtonThemeData(FlutterSDK.Material.Buttontheme.ButtonTextTheme textTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double minWidth = 88.0, double height = 36.0, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), bool alignedDropdown = false, FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize))
         : base()
         {
@@ -483,9 +474,6 @@ namespace FlutterSDK.Material.Buttontheme
             this.AlignedDropdown = alignedDropdown;
             this.ColorScheme = colorScheme;
         }
-        #endregion
-
-        #region fields
         public virtual double MinWidth { get; set; }
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme TextTheme { get; set; }
@@ -505,9 +493,6 @@ namespace FlutterSDK.Material.Buttontheme
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The [button]'s overall brightness.
@@ -961,7 +946,6 @@ namespace FlutterSDK.Material.Buttontheme
 
 
 
-        #endregion
     }
 
 

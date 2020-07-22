@@ -558,7 +558,6 @@ namespace FlutterSDK.Widgets.Scrollposition
     /// </Summary>
     public class ScrollPosition : FlutterSDK.Rendering.Viewportoffset.ViewportOffset, IScrollMetrics
     {
-        #region constructors
         public ScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
         : base()
         {
@@ -571,9 +570,6 @@ namespace FlutterSDK.Widgets.Scrollposition
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontext.ScrollContext Context { get; set; }
         public virtual bool KeepScrollOffset { get; set; }
@@ -594,9 +590,6 @@ namespace FlutterSDK.Widgets.Scrollposition
         public virtual bool HaveDimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity Activity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Take any current applicable state from the given [ScrollPosition].
@@ -1266,7 +1259,6 @@ namespace FlutterSDK.Widgets.Scrollposition
 
 
 
-        #endregion
     }
 
 

@@ -876,7 +876,6 @@ namespace FlutterSDK.Painting.Imagecache
     /// </Summary>
     public class ImageCacheStatus
     {
-        #region constructors
         internal ImageCacheStatus(bool pending = false, bool keepAlive = false, bool live = false)
         : base()
         {
@@ -884,18 +883,12 @@ namespace FlutterSDK.Painting.Imagecache
             this.KeepAlive = keepAlive;
             this.Live = live;
         }
-        #endregion
-
-        #region fields
         public virtual bool Pending { get; set; }
         public virtual bool KeepAlive { get; set; }
         public virtual bool Live { get; set; }
         public virtual bool Tracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Untracked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -910,45 +903,29 @@ namespace FlutterSDK.Painting.Imagecache
 
 
 
-        #endregion
     }
 
 
     public class _CachedImage
     {
-        #region constructors
         public _CachedImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes)
         {
             this.Completer = completer;
             this.SizeBytes = sizeBytes;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
         public virtual int SizeBytes { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _LiveImage : FlutterSDK.Painting.Imagecache._CachedImage
     {
-        #region constructors
         public _LiveImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, int sizeBytes, VoidCallback handleRemove)
         : base(completer, sizeBytes)
         {
             this.HandleRemove = handleRemove;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback HandleRemove { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void RemoveListener()
         {
@@ -957,26 +934,18 @@ namespace FlutterSDK.Painting.Imagecache
 
 
 
-        #endregion
     }
 
 
     public class _PendingImage
     {
-        #region constructors
         public _PendingImage(FlutterSDK.Painting.Imagestream.ImageStreamCompleter completer, FlutterSDK.Painting.Imagestream.ImageStreamListener listener)
         {
             this.Completer = completer;
             this.Listener = listener;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get; set; }
         public virtual FlutterSDK.Painting.Imagestream.ImageStreamListener Listener { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void RemoveListener()
         {
@@ -985,7 +954,6 @@ namespace FlutterSDK.Painting.Imagecache
 
 
 
-        #endregion
     }
 
 }

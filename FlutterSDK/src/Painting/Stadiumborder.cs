@@ -442,21 +442,14 @@ namespace FlutterSDK.Painting.Stadiumborder
     /// </Summary>
     public class StadiumBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public StadiumBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
             this.Side = side;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) => new StadiumBorder(side: Side.Scale(t));
 
@@ -539,29 +532,21 @@ namespace FlutterSDK.Painting.Stadiumborder
 
 
 
-        #endregion
     }
 
 
     public class _StadiumToCircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public _StadiumToCircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), double circleness = 0.0)
         : base()
         {
             this.Side = side;
             this.Circleness = circleness;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual double Circleness { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
         {
@@ -696,13 +681,11 @@ namespace FlutterSDK.Painting.Stadiumborder
 
 
 
-        #endregion
     }
 
 
     public class _StadiumToRoundedRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public _StadiumToRoundedRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double rectness = 0.0)
         : base()
         {
@@ -710,17 +693,11 @@ namespace FlutterSDK.Painting.Stadiumborder
             this.BorderRadius = borderRadius;
             this.Rectness = rectness;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual double Rectness { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
         {
@@ -836,7 +813,6 @@ namespace FlutterSDK.Painting.Stadiumborder
 
 
 
-        #endregion
     }
 
 }

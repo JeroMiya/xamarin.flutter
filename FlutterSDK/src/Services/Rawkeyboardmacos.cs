@@ -439,7 +439,6 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
     /// </Summary>
     public class RawKeyEventDataMacOs : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
-        #region constructors
         public RawKeyEventDataMacOs(string characters = default(string), string charactersIgnoringModifiers = default(string), int keyCode = 0, int modifiers = 0)
         : base()
         {
@@ -448,9 +447,6 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
             this.KeyCode = keyCode;
             this.Modifiers = modifiers;
         }
-        #endregion
-
-        #region fields
         public virtual string Characters { get; set; }
         public virtual string CharactersIgnoringModifiers { get; set; }
         public virtual int KeyCode { get; set; }
@@ -475,9 +471,6 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask)
         {
@@ -561,7 +554,6 @@ namespace FlutterSDK.Services.Rawkeyboardmacos
 
 
 
-        #endregion
     }
 
 }

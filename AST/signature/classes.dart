@@ -6,6 +6,7 @@ import '../naming.dart';
 import 'constructors.dart';
 import 'fields.dart';
 import 'methods.dart';
+import '../config.dart';
 
 class Classes {
   static String printClass(ClassElement element) {
@@ -55,13 +56,18 @@ class Classes {
 
     code.writeln("\n{");
 
-    code.writeln("#region constructors");
+    if (Config.includeRegions) {
+      code.writeln("#region constructors");
+    }
 
     // Add constructors
     for (var constructor in element.constructors) {
       Constructors.printConstructor(code, constructor, generics);
     }
-    code.writeln("#endregion\n");
+
+    if (Config.includeRegions) {
+      code.writeln("#endregion\n");
+    }
 
     // Add fields and methods
     printFieldsAndMethods(code, element, implementWithInterface);
@@ -121,21 +127,30 @@ class Classes {
 
   static void printFieldsAndMethods(
       StringBuffer code, ClassElement element, bool implementWithInterface) {
-    code.writeln("#region fields");
+    if (Config.includeRegions) {
+      code.writeln("#region fields");
+    }
+
     // Add fields that are not already handled as implementation overrides
     for (var field in element.fields) {
       code.writeln(Fields.printField(field));
     }
-    code.writeln("#endregion\n");
 
-    code.writeln("#region methods");
+    if (Config.includeRegions) {
+      code.writeln("#endregion\n");
+
+      code.writeln("#region methods");
+    }
 
     // Add methods that are not already handled as implementation overrides
     for (var method in element.methods) {
       code.writeln(Methods.printMethod(
           method, Methods.overridesParentBaseMethod(method, element)));
     }
-    code.writeln("#endregion");
+
+    if (Config.includeRegions) {
+      code.writeln("#endregion");
+    }
   }
 
   static String printMixin(ClassElement element) {

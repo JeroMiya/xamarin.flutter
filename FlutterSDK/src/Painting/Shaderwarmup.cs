@@ -525,18 +525,11 @@ namespace FlutterSDK.Painting.Shaderwarmup
     /// </Summary>
     public class ShaderWarmUp
     {
-        #region constructors
         public ShaderWarmUp()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Trigger draw operations on a given canvas to warm up GPU shader
@@ -575,7 +568,6 @@ namespace FlutterSDK.Painting.Shaderwarmup
 
 
 
-        #endregion
     }
 
 
@@ -588,21 +580,14 @@ namespace FlutterSDK.Painting.Shaderwarmup
     /// </Summary>
     public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
     {
-        #region constructors
         public DefaultShaderWarmUp(double drawCallSpacing = 0.0, Size canvasSize = default(Size))
         {
             this.DrawCallSpacing = drawCallSpacing;
             this.CanvasSize = canvasSize;
         }
-        #endregion
-
-        #region fields
         public virtual double DrawCallSpacing { get; set; }
         public virtual Size CanvasSize { get; set; }
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Trigger common draw operations on a canvas to warm up GPU shader
@@ -670,7 +655,6 @@ canvas.Translate(0.0, DrawCallSpacing);
 
 
 
-#endregion
 }
 
 }

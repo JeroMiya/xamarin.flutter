@@ -446,18 +446,11 @@ namespace FlutterSDK.Services.Platformmessages
     /// </Summary>
     public class BinaryMessages
     {
-        #region constructors
         internal BinaryMessages()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Services.Binarymessenger.BinaryMessenger _BinaryMessenger { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Calls the handler registered for the given channel.
@@ -527,7 +520,6 @@ namespace FlutterSDK.Services.Platformmessages
 
 
 
-        #endregion
     }
 
 }

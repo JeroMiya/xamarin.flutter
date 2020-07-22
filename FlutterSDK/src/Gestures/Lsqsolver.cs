@@ -302,7 +302,6 @@ namespace FlutterSDK.Gestures.Lsqsolver
 
     public class _Vector
     {
-        #region constructors
         public _Vector(int size)
         : base()
         {
@@ -312,15 +311,9 @@ namespace FlutterSDK.Gestures.Lsqsolver
         {
             var instance = new _Vector();
         }
-        #endregion
-
-        #region fields
         internal virtual int _Offset { get; set; }
         internal virtual int _Length { get; set; }
         internal virtual List<double> _Elements { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual double IndexOfOperator(int i) => _Elements[i + _Offset];
 
@@ -347,26 +340,18 @@ namespace FlutterSDK.Gestures.Lsqsolver
         public virtual double Norm() => Math.Dart:mathDefaultClass.Sqrt(this *this );
 
 
-        #endregion
         }
 
 
         public class _Matrix
         {
-            #region constructors
             public _Matrix(int rows, int cols)
             : base()
             {
 
             }
-            #endregion
-
-            #region fields
             internal virtual int _Columns { get; set; }
             internal virtual List<double> _Elements { get; set; }
-            #endregion
-
-            #region methods
 
             public virtual double Get(int row, int col) => _Elements[row * _Columns + col];
 
@@ -383,7 +368,6 @@ namespace FlutterSDK.Gestures.Lsqsolver
             public virtual FlutterSDK.Gestures.Lsqsolver._Vector GetRow(int row) => _Vector.FromVOL(_Elements, row * _Columns, _Columns);
 
 
-            #endregion
         }
 
 
@@ -392,21 +376,13 @@ namespace FlutterSDK.Gestures.Lsqsolver
         /// </Summary>
         public class PolynomialFit
         {
-            #region constructors
             public PolynomialFit(int degree)
             : base()
             {
 
             }
-            #endregion
-
-            #region fields
             public virtual List<double> Coefficients { get; set; }
             public virtual double Confidence { get; set; }
-            #endregion
-
-            #region methods
-            #endregion
         }
 
 
@@ -415,7 +391,6 @@ namespace FlutterSDK.Gestures.Lsqsolver
         /// </Summary>
         public class LeastSquaresSolver
         {
-            #region constructors
             public LeastSquaresSolver(List<double> x, List<double> y, List<double> w)
             : base()
             {
@@ -423,15 +398,9 @@ namespace FlutterSDK.Gestures.Lsqsolver
                 this.y = y;
                 this.w = w;
             }
-            #endregion
-
-            #region fields
             public virtual List<double> x { get; set; }
             public virtual List<double> y { get; set; }
             public virtual List<double> w { get; set; }
-            #endregion
-
-            #region methods
 
             /// <Summary>
             /// Fits a polynomial of the given degree to the data points.
@@ -506,7 +475,6 @@ namespace FlutterSDK.Gestures.Lsqsolver
 
 
 
-            #endregion
         }
 
     }

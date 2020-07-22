@@ -402,7 +402,6 @@ namespace FlutterSDK.Material.Drawerheader
     /// </Summary>
     public class DrawerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public DrawerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -413,18 +412,12 @@ namespace FlutterSDK.Material.Drawerheader
             this.Curve = curve;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
         public virtual TimeSpan Duration { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -437,7 +430,6 @@ namespace FlutterSDK.Material.Drawerheader
 
 
 
-        #endregion
     }
 
 }

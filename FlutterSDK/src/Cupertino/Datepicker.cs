@@ -328,21 +328,14 @@ namespace FlutterSDK.Cupertino.Datepicker
 
     public class _DatePickerLayoutDelegate : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
     {
-        #region constructors
         public _DatePickerLayoutDelegate(List<double> columnWidths = default(List<double>), int textDirectionFactor = default(int))
         : base()
         {
             this.ColumnWidths = columnWidths;
             this.TextDirectionFactor = textDirectionFactor;
         }
-        #endregion
-
-        #region fields
         public virtual List<double> ColumnWidths { get; set; }
         public virtual int TextDirectionFactor { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout(Size size)
         {
@@ -378,7 +371,6 @@ namespace FlutterSDK.Cupertino.Datepicker
 
 
 
-        #endregion
     }
 
 
@@ -409,7 +401,6 @@ namespace FlutterSDK.Cupertino.Datepicker
     /// </Summary>
     public class CupertinoDatePicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoDatePicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateTimeChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime initialDateTime = default(DateTime), DateTime minimumDate = default(DateTime), DateTime maximumDate = default(DateTime), int minimumYear = 1, int maximumYear = default(int), int minuteInterval = 1, bool use24hFormat = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -433,9 +424,6 @@ namespace FlutterSDK.Cupertino.Datepicker
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Datepicker.CupertinoDatePickerMode Mode { get; set; }
         public virtual DateTime InitialDateTime { get; set; }
         public virtual DateTime MinimumDate { get; set; }
@@ -446,9 +434,6 @@ namespace FlutterSDK.Cupertino.Datepicker
         public virtual bool Use24hFormat { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnDateTimeChanged { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState()
         {
@@ -511,18 +496,13 @@ namespace FlutterSDK.Cupertino.Datepicker
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoDatePickerDateTimeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
     {
-        #region constructors
         public _CupertinoDatePickerDateTimeState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _KMaximumOffAxisFraction { get; set; }
         public virtual int TextDirectionFactor { get; set; }
         public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
@@ -547,9 +527,6 @@ namespace FlutterSDK.Cupertino.Datepicker
         public virtual bool IsHourRegionFlipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual DateTime SelectedDateTime { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private int _SelectedHour(int selectedAmPm, int selectedHour)
         {
@@ -924,18 +901,13 @@ public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framewor
 
 
 
-#endregion
 }
 
 
 public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoDatePicker>
 {
-    #region constructors
     public _CupertinoDatePickerDateState()
     { }
-    #endregion
-
-    #region fields
     public virtual int TextDirectionFactor { get; set; }
     public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
     public virtual FlutterSDK.Painting.Alignment.Alignment AlignCenterLeft { get; set; }
@@ -952,9 +924,6 @@ public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<
     public virtual Dictionary<int, double> EstimatedColumnWidths { get; set; }
     public virtual bool IsScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     internal virtual bool _IsCurrentDateValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void InitState()
     {
@@ -1205,7 +1174,6 @@ public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<
 
 
 
-    #endregion
 }
 
 
@@ -1230,7 +1198,6 @@ public class _CupertinoDatePickerDateState : FlutterSDK.Widgets.Framework.State<
 /// </Summary>
 public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
 {
-    #region constructors
     public CupertinoTimerPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode mode = default(FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode), TimeSpan initialTimerDuration = default(TimeSpan), int minuteInterval = 1, int secondInterval = 1, FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> onTimerDurationChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan>))
     : base(key: key)
     {
@@ -1242,9 +1209,6 @@ public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
         this.BackgroundColor = backgroundColor;
         this.OnTimerDurationChanged = onTimerDurationChanged;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Cupertino.Datepicker.CupertinoTimerPickerMode Mode { get; set; }
     public virtual TimeSpan InitialTimerDuration { get; set; }
     public virtual int MinuteInterval { get; set; }
@@ -1252,25 +1216,17 @@ public class CupertinoTimerPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<TimeSpan> OnTimerDurationChanged { get; set; }
     public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
     public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
-    #endregion
-
-    #region methods
 
     public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoTimerPickerState();
 
 
-    #endregion
 }
 
 
 public class _CupertinoTimerPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Datepicker.CupertinoTimerPicker>
 {
-    #region constructors
     public _CupertinoTimerPickerState()
     { }
-    #endregion
-
-    #region fields
     public virtual TextDirection TextDirection { get; set; }
     public virtual FlutterSDK.Cupertino.Localizations.CupertinoLocalizations Localizations { get; set; }
     public virtual int SelectedHour { get; set; }
@@ -1285,9 +1241,6 @@ public class _CupertinoTimerPickerState : FlutterSDK.Widgets.Framework.State<Flu
     public virtual double NumberLabelHeight { get; set; }
     public virtual double NumberLabelBaseline { get; set; }
     public virtual int TextDirectionFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void InitState()
     {
@@ -1525,7 +1478,6 @@ return false ;
 
 
 
-    #endregion
 }
 
 

@@ -329,7 +329,6 @@ namespace FlutterSDK.Cupertino.Picker
     /// </Summary>
     public class CupertinoPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double diameterRatio = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double offAxisFraction = 0.0, bool useMagnifier = false, double magnification = 1.0, FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController), double squeeze = default(double), double itemExtent = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onSelectedItemChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), bool looping = false)
         : base(key: key)
         {
@@ -355,9 +354,6 @@ namespace FlutterSDK.Cupertino.Picker
             instance.ItemExtent = itemExtent;
             instance.OnSelectedItemChanged = onSelectedItemChanged;
         }
-        #endregion
-
-        #region fields
         public virtual double DiameterRatio { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual double OffAxisFraction { get; set; }
@@ -368,30 +364,19 @@ namespace FlutterSDK.Cupertino.Picker
         public virtual double Squeeze { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnSelectedItemChanged { get; set; }
         public virtual FlutterSDK.Widgets.Listwheelscrollview.ListWheelChildDelegate ChildDelegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _CupertinoPickerState();
 
 
-        #endregion
     }
 
 
     public class _CupertinoPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Picker.CupertinoPicker>
     {
-        #region constructors
         public _CupertinoPickerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _LastHapticIndex { get; set; }
         internal virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController _Controller { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -475,25 +460,17 @@ namespace FlutterSDK.Cupertino.Picker
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoPickerSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _CupertinoPickerSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController scrollController = default(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController))
         : base(key: key, child: child)
         {
             this.ScrollController = scrollController;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController ScrollController { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderCupertinoPickerSemantics(ScrollController, BasicDefaultClass.Directionality.Of(context));
 
@@ -512,13 +489,11 @@ namespace FlutterSDK.Cupertino.Picker
 
 
 
-        #endregion
     }
 
 
     public class _RenderCupertinoPickerSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _RenderCupertinoPickerSemantics(FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController controller, TextDirection _textDirection)
         {
             this._TextDirection = _textDirection;
@@ -526,17 +501,11 @@ namespace FlutterSDK.Cupertino.Picker
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController _Controller { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
         internal virtual int _CurrentIndex { get; set; }
         public virtual FlutterSDK.Widgets.Listwheelscrollview.FixedExtentScrollController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HandleIncrease()
         {
@@ -612,7 +581,6 @@ namespace FlutterSDK.Cupertino.Picker
 
 
 
-        #endregion
     }
 
 }

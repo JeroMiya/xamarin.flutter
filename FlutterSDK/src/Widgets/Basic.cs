@@ -445,19 +445,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Directionality : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public Directionality(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The text direction from the closest instance of this class that encloses
@@ -495,7 +488,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -581,21 +573,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Opacity : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Opacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double opacity = default(double), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.OpacityValue = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual double OpacityValue { get; set; }
         public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -628,7 +613,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -666,21 +650,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ShaderMask : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ShaderMask(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.ShaderCallback shaderCallback = default(FlutterSDK.Rendering.Proxybox.ShaderCallback), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.ShaderCallback = shaderCallback;
             this.BlendMode = blendMode;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.ShaderCallback ShaderCallback { get; set; }
         public virtual FlutterBinding.UI.BlendMode BlendMode { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderShaderMask CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -703,7 +680,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -758,19 +734,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class BackdropFilter : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public BackdropFilter(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), ImageFilter filter = default(ImageFilter), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Filter = filter;
         }
-        #endregion
-
-        #region fields
         public virtual ImageFilter Filter { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderBackdropFilter CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -793,7 +762,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -856,7 +824,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CustomPaint : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public CustomPaint(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size size = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -866,17 +833,11 @@ namespace FlutterSDK.Widgets.Basic
             this.IsComplex = isComplex;
             this.WillChange = willChange;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get; set; }
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get; set; }
         public virtual Size Size { get; set; }
         public virtual bool IsComplex { get; set; }
         public virtual bool WillChange { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Custompaint.RenderCustomPaint CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -913,7 +874,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -960,21 +920,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipRect : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ClipRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> Clipper { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderClipRect CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1023,7 +976,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1045,7 +997,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipRRect : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ClipRRect(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<RRect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1053,15 +1004,9 @@ namespace FlutterSDK.Widgets.Basic
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> Clipper { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderClipRRect CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1097,7 +1042,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1117,21 +1061,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipOval : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ClipOval(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> Clipper { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderClipOval CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1180,7 +1117,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1204,21 +1140,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class ClipPath : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ClipPath(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Clipper = clipper;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Path> Clipper { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a shape clip.
@@ -1288,7 +1217,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1310,7 +1238,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class PhysicalModel : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public PhysicalModel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1321,18 +1248,12 @@ namespace FlutterSDK.Widgets.Basic
             this.Color = color;
             this.ShadowColor = shadowColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderPhysicalModel CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1368,7 +1289,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1388,7 +1308,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class PhysicalShape : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public PhysicalShape(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1398,17 +1317,11 @@ namespace FlutterSDK.Widgets.Basic
             this.Color = color;
             this.ShadowColor = shadowColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<Path> Clipper { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderPhysicalShape CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1443,7 +1356,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1490,7 +1402,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Transform : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Transform(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1515,16 +1426,10 @@ namespace FlutterSDK.Widgets.Basic
             instance.Alignment = alignment;
             instance.TransformHitTests = transformHitTests;
         }
-        #endregion
-
-        #region fields
         public virtual Matrix4 TransformValue { get; set; }
         public virtual FlutterBinding.UI.Offset Origin { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual bool TransformHitTests { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderTransform CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1547,7 +1452,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1573,19 +1477,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CompositedTransformTarget : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public CompositedTransformTarget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Link = link;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderLeaderLayer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1608,7 +1505,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1641,7 +1537,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CompositedTransformFollower : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public CompositedTransformFollower(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1649,15 +1544,9 @@ namespace FlutterSDK.Widgets.Basic
             this.ShowWhenUnlinked = showWhenUnlinked;
             this.Offset = offset;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get; set; }
         public virtual bool ShowWhenUnlinked { get; set; }
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderFollowerLayer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1680,7 +1569,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1697,21 +1585,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class FittedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public FittedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Fit = fit;
             this.Alignment = alignment;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderFittedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1744,7 +1625,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1769,21 +1649,14 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class FractionalTranslation : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public FractionalTranslation(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Offset translation = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Translation = translation;
             this.TransformHitTests = transformHitTests;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Translation { get; set; }
         public virtual bool TransformHitTests { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderFractionalTranslation CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1806,7 +1679,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1839,19 +1711,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class RotatedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public RotatedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int quarterTurns = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.QuarterTurns = quarterTurns;
         }
-        #endregion
-
-        #region fields
         public virtual int QuarterTurns { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Rotatedbox.RenderRotatedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderRotatedBox(quarterTurns: QuarterTurns);
 
@@ -1870,7 +1735,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -1928,19 +1792,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Padding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Padding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.PaddingValue = padding;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry PaddingValue { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderPadding CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1972,7 +1829,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -2108,7 +1964,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Align : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Align(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -2116,15 +1971,9 @@ namespace FlutterSDK.Widgets.Basic
             this.WidthFactor = widthFactor;
             this.HeightFactor = heightFactor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual double WidthFactor { get; set; }
         public virtual double HeightFactor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderPositionedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2158,7 +2007,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -2185,19 +2033,11 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class Center : FlutterSDK.Widgets.Basic.Align
     {
-        #region constructors
         public Center(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, widthFactor: widthFactor, heightFactor: heightFactor, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -2222,19 +2062,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CustomSingleChildLayout : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public CustomSingleChildLayout(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.@delegate = @delegate;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate @delegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderCustomSingleChildLayoutBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2257,7 +2090,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -2270,20 +2102,13 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class LayoutId : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Customlayout.MultiChildLayoutParentData>
     {
-        #region constructors
         public LayoutId(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), @Object id = default(@Object), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key ?? new ValueKey<object>(id), child: child)
         {
             this.Id = id;
         }
-        #endregion
-
-        #region fields
         public virtual @Object Id { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
         {
@@ -2309,7 +2134,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -2343,19 +2167,12 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class CustomMultiChildLayout : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public CustomMultiChildLayout(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate = default(FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
             this.@delegate = @delegate;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate @delegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Customlayout.RenderCustomMultiChildLayoutBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2378,7 +2195,6 @@ namespace FlutterSDK.Widgets.Basic
 
 
 
-        #endregion
     }
 
 
@@ -2431,7 +2247,6 @@ namespace FlutterSDK.Widgets.Basic
     /// </Summary>
     public class SizedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SizedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -2450,15 +2265,9 @@ namespace FlutterSDK.Widgets.Basic
         {
             var instance = new SizedBox(key: key, child: child);
         }
-        #endregion
-
-        #region fields
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
         internal virtual FlutterSDK.Rendering.Box.BoxConstraints _AdditionalConstraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderConstrainedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2521,7 +2330,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -2564,19 +2372,12 @@ else
     /// </Summary>
     public class ConstrainedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ConstrainedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Constraints = constraints;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderConstrainedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2608,7 +2409,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -2640,7 +2440,6 @@ else
     /// </Summary>
     public class UnconstrainedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public UnconstrainedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Basictypes.Axis constrainedAxis = default(FlutterSDK.Painting.Basictypes.Axis))
         : base(key: key, child: child)
         {
@@ -2648,15 +2447,9 @@ else
             this.Alignment = alignment;
             this.ConstrainedAxis = constrainedAxis;
         }
-        #endregion
-
-        #region fields
         public virtual TextDirection TextDirection { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis ConstrainedAxis { get; set; }
-        #endregion
-
-        #region methods
 
         public new void UpdateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Shiftedbox.RenderUnconstrainedBox renderObject)
         {
@@ -2686,7 +2479,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -2708,7 +2500,6 @@ else
     /// </Summary>
     public class FractionallySizedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public FractionallySizedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double widthFactor = default(double), double heightFactor = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -2716,15 +2507,9 @@ else
             this.WidthFactor = widthFactor;
             this.HeightFactor = heightFactor;
         }
-        #endregion
-
-        #region fields
         public virtual double WidthFactor { get; set; }
         public virtual double HeightFactor { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderFractionallySizedOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2758,7 +2543,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -2791,21 +2575,14 @@ else
     /// </Summary>
     public class LimitedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public LimitedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double maxWidth = default(double), double maxHeight = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.MaxWidth = maxWidth;
             this.MaxHeight = maxHeight;
         }
-        #endregion
-
-        #region fields
         public virtual double MaxWidth { get; set; }
         public virtual double MaxHeight { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderLimitedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2838,7 +2615,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -2861,7 +2637,6 @@ else
     /// </Summary>
     public class OverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public OverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double minWidth = default(double), double maxWidth = default(double), double minHeight = default(double), double maxHeight = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -2871,17 +2646,11 @@ else
             this.MinHeight = minHeight;
             this.MaxHeight = maxHeight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual double MinWidth { get; set; }
         public virtual double MaxWidth { get; set; }
         public virtual double MinHeight { get; set; }
         public virtual double MaxHeight { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderConstrainedOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2917,7 +2686,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -2938,21 +2706,14 @@ else
     /// </Summary>
     public class SizedOverflowBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SizedOverflowBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Size size = default(Size), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Size = size;
             this.Alignment = alignment;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual Size Size { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderSizedOverflowBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2985,7 +2746,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3014,19 +2774,12 @@ else
     /// </Summary>
     public class Offstage : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Offstage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool offstage = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.OffstageValue = offstage;
         }
-        #endregion
-
-        #region fields
         public virtual bool OffstageValue { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderOffstage CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderOffstage(offstage: Offstage);
 
@@ -3058,25 +2811,17 @@ else
         public new FlutterSDK.Widgets.Basic._OffstageElement CreateElement() => new _OffstageElement(this);
 
 
-        #endregion
     }
 
 
     public class _OffstageElement : FlutterSDK.Widgets.Framework.SingleChildRenderObjectElement
     {
-        #region constructors
         public _OffstageElement(FlutterSDK.Widgets.Basic.Offstage widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Basic.Offstage Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -3085,7 +2830,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3131,19 +2875,12 @@ else
     /// </Summary>
     public class AspectRatio : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public AspectRatio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double aspectRatio = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.AspectRatioValue = aspectRatio;
         }
-        #endregion
-
-        #region fields
         public virtual double AspectRatioValue { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderAspectRatio CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderAspectRatio(aspectRatio: AspectRatio);
 
@@ -3171,7 +2908,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3198,23 +2934,16 @@ else
     /// </Summary>
     public class IntrinsicWidth : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public IntrinsicWidth(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double stepWidth = default(double), double stepHeight = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.StepWidth = stepWidth;
             this.StepHeight = stepHeight;
         }
-        #endregion
-
-        #region fields
         public virtual double StepWidth { get; set; }
         public virtual double StepHeight { get; set; }
         internal virtual double _StepWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _StepHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderIntrinsicWidth CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3237,7 +2966,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3259,23 +2987,15 @@ else
     /// </Summary>
     public class IntrinsicHeight : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public IntrinsicHeight(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderIntrinsicHeight CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderIntrinsicHeight();
 
 
-        #endregion
     }
 
 
@@ -3298,21 +3018,14 @@ else
     /// </Summary>
     public class Baseline : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Baseline(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double baseline = default(double), TextBaseline baselineType = default(TextBaseline), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.BaselineValue = baseline;
             this.BaselineType = baselineType;
         }
-        #endregion
-
-        #region fields
         public virtual double BaselineValue { get; set; }
         public virtual TextBaseline BaselineType { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Shiftedbox.RenderBaseline CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3335,7 +3048,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3365,23 +3077,15 @@ else
     /// </Summary>
     public class SliverToBoxAdapter : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverToBoxAdapter(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliver.RenderSliverToBoxAdapter CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverToBoxAdapter();
 
 
-        #endregion
     }
 
 
@@ -3405,19 +3109,12 @@ else
     /// </Summary>
     public class SliverPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverPadding(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Padding = padding;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverpadding.RenderSliverPadding CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3449,7 +3146,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3476,21 +3172,14 @@ else
     /// </Summary>
     public class ListBody : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public ListBody(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
             this.MainAxis = mainAxis;
             this.Reverse = reverse;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get; set; }
         public virtual bool Reverse { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3521,7 +3210,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3644,7 +3332,6 @@ else
     /// </Summary>
     public class Stack : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public Stack(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
@@ -3653,16 +3340,10 @@ else
             this.Fit = fit;
             this.Overflow = overflow;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual TextDirection TextDirection { get; set; }
         public virtual FlutterSDK.Rendering.Stack.StackFit Fit { get; set; }
         public virtual FlutterSDK.Rendering.Stack.Overflow Overflow { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Stack.RenderStack CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3697,7 +3378,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3718,19 +3398,12 @@ else
     /// </Summary>
     public class IndexedStack : FlutterSDK.Widgets.Basic.Stack
     {
-        #region constructors
         public IndexedStack(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit sizing = default(FlutterSDK.Rendering.Stack.StackFit), int index = 0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, alignment: alignment, textDirection: textDirection, fit: sizing, children: children)
         {
             this.Index = index;
         }
-        #endregion
-
-        #region fields
         public virtual int Index { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Stack.RenderIndexedStack CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3753,7 +3426,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3795,7 +3467,6 @@ else
     /// </Summary>
     public class Positioned : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Stack.StackParentData>
     {
-        #region constructors
         public Positioned(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double left = default(double), double top = default(double), double right = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -3832,9 +3503,6 @@ else
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double Left { get; set; }
         public virtual double Top { get; set; }
         public virtual double Right { get; set; }
@@ -3842,9 +3510,6 @@ else
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
         {
@@ -3911,7 +3576,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -3951,7 +3615,6 @@ else
     /// </Summary>
     public class PositionedDirectional : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public PositionedDirectional(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double start = default(double), double top = default(double), double end = default(double), double bottom = default(double), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -3963,9 +3626,6 @@ else
             this.Height = height;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual double Start { get; set; }
         public virtual double Top { get; set; }
         public virtual double End { get; set; }
@@ -3973,9 +3633,6 @@ else
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -3984,7 +3641,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -4058,7 +3714,6 @@ else
     /// </Summary>
     public class Flex : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public Flex(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
@@ -4070,9 +3725,6 @@ else
             this.VerticalDirection = verticalDirection;
             this.TextBaseline = textBaseline;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get; set; }
         public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment MainAxisAlignment { get; set; }
         public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
@@ -4081,9 +3733,6 @@ else
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get; set; }
         public virtual TextBaseline TextBaseline { get; set; }
         internal virtual bool _NeedTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The value to pass to [RenderFlex.textDirection].
@@ -4146,7 +3795,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -4308,19 +3956,11 @@ else
     /// </Summary>
     public class Row : FlutterSDK.Widgets.Basic.Flex
     {
-        #region constructors
         public Row(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(children: children, key: key, direction: Axis.Horizontal, mainAxisAlignment: mainAxisAlignment, mainAxisSize: mainAxisSize, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -4494,19 +4134,11 @@ else
     /// </Summary>
     public class Column : FlutterSDK.Widgets.Basic.Flex
     {
-        #region constructors
         public Column(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(children: children, key: key, direction: Axis.Vertical, mainAxisAlignment: mainAxisAlignment, mainAxisSize: mainAxisSize, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -4534,22 +4166,15 @@ else
     /// </Summary>
     public class Flexible : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Flex.FlexParentData>
     {
-        #region constructors
         public Flexible(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1, FlutterSDK.Rendering.Flex.FlexFit fit = default(FlutterSDK.Rendering.Flex.FlexFit), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Flex = flex;
             this.Fit = fit;
         }
-        #endregion
-
-        #region fields
         public virtual int Flex { get; set; }
         public virtual FlutterSDK.Rendering.Flex.FlexFit Fit { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
         {
@@ -4587,7 +4212,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -4696,19 +4320,11 @@ else
     /// </Summary>
     public class Expanded : FlutterSDK.Widgets.Basic.Flexible
     {
-        #region constructors
         public Expanded(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int flex = 1, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, flex: flex, fit: FlexFit.Tight, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -4768,7 +4384,6 @@ else
     /// </Summary>
     public class Wrap : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public Wrap(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Wrap.WrapAlignment alignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double spacing = 0.0, FlutterSDK.Rendering.Wrap.WrapAlignment runAlignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double runSpacing = 0.0, FlutterSDK.Rendering.Wrap.WrapCrossAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Wrap.WrapCrossAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
@@ -4781,9 +4396,6 @@ else
             this.TextDirection = textDirection;
             this.VerticalDirection = verticalDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.Axis Direction { get; set; }
         public virtual FlutterSDK.Rendering.Wrap.WrapAlignment Alignment { get; set; }
         public virtual double Spacing { get; set; }
@@ -4792,9 +4404,6 @@ else
         public virtual FlutterSDK.Rendering.Wrap.WrapCrossAlignment CrossAxisAlignment { get; set; }
         public virtual TextDirection TextDirection { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Wrap.RenderWrap CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -4833,7 +4442,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -4996,7 +4604,6 @@ else
     /// </Summary>
     public class Flow : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public Flow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: BasicDefaultClass.RepaintBoundary.WrapAll(children))
         {
@@ -5006,13 +4613,7 @@ else
         {
             var instance = new Flow(key: key, children: children); instance.@delegate = @delegate;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Flow.RenderFlow CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderFlow(@delegate: @Delegate);
 
@@ -5031,7 +4632,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -5090,7 +4690,6 @@ else
     /// </Summary>
     public class RichText : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public RichText(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = 1.0, int maxLines = default(int), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         : base(key: key, children: _ExtractChildren(text))
         {
@@ -5106,9 +4705,6 @@ else
             this.TextWidthBasis = textWidthBasis;
             this.TextHeightBehavior = textHeightBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpan Text { get; set; }
         public virtual TextAlign TextAlign { get; set; }
         public virtual TextDirection TextDirection { get; set; }
@@ -5120,9 +4716,6 @@ else
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get; set; }
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         private List<FlutterSDK.Widgets.Framework.Widget> _ExtractChildren(FlutterSDK.Painting.Inlinespan.InlineSpan span)
         {
@@ -5183,7 +4776,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -5197,7 +4789,6 @@ else
     /// </Summary>
     public class RawImage : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public RawImage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), SKImage image = default(SKImage), double width = default(double), double height = default(double), double scale = 1.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         : base(key: key)
         {
@@ -5215,9 +4806,6 @@ else
             this.InvertColors = invertColors;
             this.FilterQuality = filterQuality;
         }
-        #endregion
-
-        #region fields
         public virtual SKImage Image { get; set; }
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
@@ -5231,9 +4819,6 @@ else
         public virtual FlutterBinding.UI.Rect CenterSlice { get; set; }
         public virtual bool MatchTextDirection { get; set; }
         public virtual bool InvertColors { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Image.RenderImage CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -5278,7 +4863,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -5334,19 +4918,12 @@ else
     /// </Summary>
     public class DefaultAssetBundle : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public DefaultAssetBundle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Bundle = bundle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The bundle from the closest instance of this class that encloses
@@ -5375,7 +4952,6 @@ else
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Bundle != oldWidget.Bundle;
 
 
-        #endregion
     }
 
 
@@ -5388,21 +4964,14 @@ else
     /// </Summary>
     public class WidgetToRenderBoxAdapter : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public WidgetToRenderBoxAdapter(FlutterSDK.Rendering.Box.RenderBox renderBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onBuild = default(VoidCallback))
         : base(key: new GlobalObjectKey(renderBox))
         {
             this.RenderBox = renderBox;
             this.OnBuild = onBuild;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Box.RenderBox RenderBox { get; set; }
         public virtual VoidCallback OnBuild { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Box.RenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => RenderBox;
 
@@ -5421,7 +4990,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -5510,7 +5078,6 @@ else
     /// </Summary>
     public class Listener : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Listener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener), FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener), FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onPointerEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onPointerExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onPointerHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener), FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener), FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -5524,9 +5091,6 @@ else
             this.OnPointerSignal = onPointerSignal;
             this.Behavior = behavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove { get; set; }
         public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnPointerEnter { get; set; }
@@ -5537,9 +5101,6 @@ else
         public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Widget _Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -5555,13 +5116,11 @@ else
 
 
 
-        #endregion
     }
 
 
     public class _PointerListener : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _PointerListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener), FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener), FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener), FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener), FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -5572,18 +5131,12 @@ else
             this.OnPointerSignal = onPointerSignal;
             this.Behavior = behavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerUpEventListener OnPointerUp { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerCancelEventListener OnPointerCancel { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderPointerListener CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -5617,7 +5170,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -5703,7 +5255,6 @@ else
     /// </Summary>
     public class MouseRegion : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public MouseRegion(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), bool opaque = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -5713,17 +5264,11 @@ else
             this.Opaque = opaque;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
         public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
         public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
         public virtual bool Opaque { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Basic._MouseRegionState CreateState() => new _MouseRegionState();
 
@@ -5742,21 +5287,13 @@ else
 
 
 
-        #endregion
     }
 
 
     public class _MouseRegionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Basic.MouseRegion>
     {
-        #region constructors
         public _MouseRegionState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public virtual void HandleExit(FlutterSDK.Gestures.Events.PointerExitEvent @event)
         {
@@ -5781,25 +5318,17 @@ else
 
 
 
-        #endregion
     }
 
 
     public class _RawMouseRegion : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _RawMouseRegion(FlutterSDK.Widgets.Basic._MouseRegionState owner)
         : base(child: owner.Widget.Child)
         {
             this.Owner = owner;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Basic._MouseRegionState Owner { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderMouseRegion CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -5825,7 +5354,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -5884,7 +5412,6 @@ else
     /// </Summary>
     public class RepaintBoundary : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public RepaintBoundary(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -5899,12 +5426,6 @@ else
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Wraps each of the given children in [RepaintBoundary]s.
@@ -5926,7 +5447,6 @@ else
         public new FlutterSDK.Rendering.Proxybox.RenderRepaintBoundary CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderRepaintBoundary();
 
 
-        #endregion
     }
 
 
@@ -5949,21 +5469,14 @@ else
     /// </Summary>
     public class IgnorePointer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public IgnorePointer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool ignoring = true, bool ignoringSemantics = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Ignoring = ignoring;
             this.IgnoringSemantics = ignoringSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual bool Ignoring { get; set; }
         public virtual bool IgnoringSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderIgnorePointer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -5996,7 +5509,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6018,21 +5530,14 @@ else
     /// </Summary>
     public class AbsorbPointer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public AbsorbPointer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool absorbing = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool ignoringSemantics = default(bool))
         : base(key: key, child: child)
         {
             this.Absorbing = absorbing;
             this.IgnoringSemantics = ignoringSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual bool Absorbing { get; set; }
         public virtual bool IgnoringSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderAbsorbPointer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -6065,7 +5570,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6079,21 +5583,14 @@ else
     /// </Summary>
     public class MetaData : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public MetaData(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), object metaData = default(object), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.MetaDataValue = metaData;
             this.Behavior = behavior;
         }
-        #endregion
-
-        #region fields
         public virtual object MetaDataValue { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderMetaData CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -6126,7 +5623,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6156,7 +5652,6 @@ else
     /// </Summary>
     public class Semantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public Semantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool container = false, bool explicitChildNodes = false, bool excludeSemantics = false, bool enabled = default(bool), bool @checked = default(bool), bool selected = default(bool), bool toggled = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool hidden = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), string onTapHint = default(string), string onLongPressHint = default(string), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
         : base()
         {
@@ -6169,16 +5664,10 @@ else
             instance.ExcludeSemantics = excludeSemantics;
             instance.Properties = properties;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
         public virtual bool Container { get; set; }
         public virtual bool ExplicitChildNodes { get; set; }
         public virtual bool ExcludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderSemanticsAnnotations CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -6223,7 +5712,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6250,23 +5738,15 @@ else
     /// </Summary>
     public class MergeSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public MergeSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderMergeSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderMergeSemantics();
 
 
-        #endregion
     }
 
 
@@ -6286,19 +5766,12 @@ else
     /// </Summary>
     public class BlockSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public BlockSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool blocking = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Blocking = blocking;
         }
-        #endregion
-
-        #region fields
         public virtual bool Blocking { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderBlockSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderBlockSemantics(blocking: Blocking);
 
@@ -6326,7 +5799,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6347,19 +5819,12 @@ else
     /// </Summary>
     public class ExcludeSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ExcludeSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool excluding = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Excluding = excluding;
         }
-        #endregion
-
-        #region fields
         public virtual bool Excluding { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderExcludeSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderExcludeSemantics(excluding: Excluding);
 
@@ -6387,7 +5852,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6427,19 +5891,12 @@ else
     /// </Summary>
     public class IndexedSemantics : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public IndexedSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int index = default(int), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Index = index;
         }
-        #endregion
-
-        #region fields
         public virtual int Index { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderIndexedSemantics CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderIndexedSemantics(index: Index);
 
@@ -6467,7 +5924,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -6478,7 +5934,6 @@ else
     /// </Summary>
     public class KeyedSubtree : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public KeyedSubtree(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -6492,13 +5947,7 @@ else
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Wrap each item in a KeyedSubtree whose key is based on the item's existing key or
@@ -6525,7 +5974,6 @@ else
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
 
 
-        #endregion
     }
 
 
@@ -6538,24 +5986,16 @@ else
     /// </Summary>
     public class Builder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Builder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder))
         : base(key: key)
         {
             this.BuilderValue = builder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder BuilderValue { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Builder(context);
 
 
-        #endregion
     }
 
 
@@ -6607,43 +6047,27 @@ else
     /// </Summary>
     public class StatefulBuilder : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public StatefulBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Basic.StatefulWidgetBuilder builder = default(FlutterSDK.Widgets.Basic.StatefulWidgetBuilder))
         : base(key: key)
         {
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Basic.StatefulWidgetBuilder Builder { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Basic._StatefulBuilderState CreateState() => new _StatefulBuilderState();
 
 
-        #endregion
     }
 
 
     public class _StatefulBuilderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Basic.StatefulBuilder>
     {
-        #region constructors
         public _StatefulBuilderState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Builder(context, SetState);
 
 
-        #endregion
     }
 
 
@@ -6653,19 +6077,12 @@ else
     /// </Summary>
     public class ColoredBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public ColoredBox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key, child: child)
         {
             this.Color = color;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Basic._RenderColoredBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -6697,26 +6114,18 @@ else
 
 
 
-        #endregion
     }
 
 
     public class _RenderColoredBox : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
-        #region constructors
         public _RenderColoredBox(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         : base(behavior: HitTestBehavior.Opaque)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Color _Color { get; set; }
         public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -6733,7 +6142,6 @@ else
 
 
 
-        #endregion
     }
 
 }

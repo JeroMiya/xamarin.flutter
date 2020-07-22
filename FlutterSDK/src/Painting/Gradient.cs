@@ -498,21 +498,13 @@ namespace FlutterSDK.Painting.Gradient
 
     public class _ColorsAndStops
     {
-        #region constructors
         public _ColorsAndStops(List<Color> colors, List<double> stops)
         {
             this.Colors = colors;
             this.Stops = stops;
         }
-        #endregion
-
-        #region fields
         public virtual List<Color> Colors { get; set; }
         public virtual List<double> Stops { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -526,17 +518,10 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class GradientTransform
     {
-        #region constructors
         public GradientTransform()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// When a [Gradient] creates its [Shader], it will call this method to
@@ -551,7 +536,6 @@ namespace FlutterSDK.Painting.Gradient
             return default(Matrix4);
         }
 
-        #endregion
     }
 
 
@@ -572,18 +556,11 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class GradientRotation : FlutterSDK.Painting.Gradient.GradientTransform
     {
-        #region constructors
         public GradientRotation(double radians)
         {
             this.Radians = radians;
         }
-        #endregion
-
-        #region fields
         public virtual double Radians { get; set; }
-        #endregion
-
-        #region methods
 
         public new Matrix4 Transform(FlutterBinding.UI.Rect bounds, TextDirection textDirection = default(TextDirection))
         {
@@ -600,7 +577,6 @@ namespace FlutterSDK.Painting.Gradient
 
 
 
-        #endregion
     }
 
 
@@ -617,7 +593,6 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class Gradient
     {
-        #region constructors
         public Gradient(List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base()
         {
@@ -625,15 +600,9 @@ namespace FlutterSDK.Painting.Gradient
             this.Stops = stops;
             this.Transform = transform;
         }
-        #endregion
-
-        #region fields
         public virtual List<Color> Colors { get; set; }
         public virtual List<double> Stops { get; set; }
         public virtual FlutterSDK.Painting.Gradient.GradientTransform Transform { get; set; }
-        #endregion
-
-        #region methods
 
         private List<double> _ImpliedStops()
         {
@@ -780,7 +749,6 @@ namespace FlutterSDK.Painting.Gradient
 
 
 
-        #endregion
     }
 
 
@@ -839,7 +807,6 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class LinearGradient : FlutterSDK.Painting.Gradient.Gradient
     {
-        #region constructors
         public LinearGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry begin = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry end = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base(colors: colors, stops: stops, transform: transform)
         {
@@ -847,16 +814,10 @@ namespace FlutterSDK.Painting.Gradient
             this.End = end;
             this.TileMode = tileMode;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Begin { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry End { get; set; }
         public virtual TileMode TileMode { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
@@ -942,7 +903,6 @@ namespace FlutterSDK.Painting.Gradient
 
 
 
-        #endregion
     }
 
 
@@ -1019,7 +979,6 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class RadialGradient : FlutterSDK.Painting.Gradient.Gradient
     {
-        #region constructors
         public RadialGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double radius = 0.5, List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Alignment.AlignmentGeometry focal = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double focalRadius = 0.0, FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base(colors: colors, stops: stops, transform: transform)
         {
@@ -1029,18 +988,12 @@ namespace FlutterSDK.Painting.Gradient
             this.Focal = focal;
             this.FocalRadius = focalRadius;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center { get; set; }
         public virtual double Radius { get; set; }
         public virtual TileMode TileMode { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Focal { get; set; }
         public virtual double FocalRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
@@ -1126,7 +1079,6 @@ namespace FlutterSDK.Painting.Gradient
 
 
 
-        #endregion
     }
 
 
@@ -1216,7 +1168,6 @@ namespace FlutterSDK.Painting.Gradient
     /// </Summary>
     public class SweepGradient : FlutterSDK.Painting.Gradient.Gradient
     {
-        #region constructors
         public SweepGradient(FlutterSDK.Painting.Alignment.AlignmentGeometry center = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), double startAngle = 0.0, double endAngle = default(double), List<Color> colors = default(List<Color>), List<double> stops = default(List<double>), TileMode tileMode = default(TileMode), FlutterSDK.Painting.Gradient.GradientTransform transform = default(FlutterSDK.Painting.Gradient.GradientTransform))
         : base(colors: colors, stops: stops, transform: transform)
         {
@@ -1225,17 +1176,11 @@ namespace FlutterSDK.Painting.Gradient
             this.EndAngle = endAngle;
             this.TileMode = tileMode;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Center { get; set; }
         public virtual double StartAngle { get; set; }
         public virtual double EndAngle { get; set; }
         public virtual TileMode TileMode { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
@@ -1320,7 +1265,6 @@ namespace FlutterSDK.Painting.Gradient
 
 
 
-        #endregion
     }
 
 }

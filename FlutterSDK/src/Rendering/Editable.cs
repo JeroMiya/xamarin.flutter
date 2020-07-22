@@ -448,23 +448,15 @@ namespace FlutterSDK.Rendering.Editable
     /// </Summary>
     public class TextSelectionPoint
     {
-        #region constructors
         public TextSelectionPoint(FlutterBinding.UI.Offset point, TextDirection direction)
         : base()
         {
             this.Point = point;
             this.Direction = direction;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Point { get; set; }
         public virtual TextDirection Direction { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -496,7 +488,6 @@ namespace FlutterSDK.Rendering.Editable
     /// </Summary>
     public class RenderEditable : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
     {
-        #region constructors
         public RenderEditable(FlutterSDK.Painting.Textspan.TextSpan text = default(FlutterSDK.Painting.Textspan.TextSpan), TextDirection textDirection = default(TextDirection), TextAlign textAlign = default(TextAlign), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>), bool hasFocus = default(bool), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), int maxLines = 1, int minLines = default(int), bool expands = false, FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), double textScaleFactor = 1.0, FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler), FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler), bool ignorePointer = false, bool readOnly = false, bool forceLine = true, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool obscureText = false, Locale locale = default(Locale), double cursorWidth = 1.0, Radius cursorRadius = default(Radius), bool paintCursorAboveText = false, FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), double devicePixelRatio = 1.0, BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), bool enableInteractiveSelection = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsets floatingCursorAddedMargin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate))
         : base()
         {
@@ -510,9 +501,6 @@ namespace FlutterSDK.Rendering.Editable
         }
 
 
-        #endregion
-
-        #region fields
         public virtual string ObscuringCharacter { get; set; }
         public virtual FlutterSDK.Rendering.Editable.SelectionChangedHandler OnSelectionChanged { get; set; }
         internal virtual double _TextLayoutLastMaxWidth { get; set; }
@@ -618,9 +606,6 @@ namespace FlutterSDK.Rendering.Editable
         internal virtual bool _HasVisualOverflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double PreferredLineHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterBinding.UI.Rect _GetCaretPrototype { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateSelectionExtentsVisibility(FlutterBinding.UI.Offset effectiveOffset)
         {
@@ -1822,7 +1807,6 @@ public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribe
 
 
 
-#endregion
 }
 
 

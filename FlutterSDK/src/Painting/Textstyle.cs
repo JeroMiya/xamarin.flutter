@@ -803,7 +803,6 @@ namespace FlutterSDK.Painting.Textstyle
     /// </Summary>
     public class TextStyle : IDiagnosticable
     {
-        #region constructors
         public TextStyle(bool inherit = true, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double fontSize = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), double letterSpacing = default(double), double wordSpacing = default(double), TextBaseline textBaseline = default(TextBaseline), double height = default(double), Locale locale = default(Locale), SKPaint foreground = default(SKPaint), SKPaint background = default(SKPaint), List<Shadow> shadows = default(List<Shadow>), List<FontFeature> fontFeatures = default(List<FontFeature>), TextDecoration decoration = default(TextDecoration), FlutterBinding.UI.Color decorationColor = default(FlutterBinding.UI.Color), TextDecorationStyle decorationStyle = default(TextDecorationStyle), double decorationThickness = default(double), string debugLabel = default(string), string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), string package = default(string))
         : base()
         {
@@ -828,9 +827,6 @@ namespace FlutterSDK.Painting.Textstyle
             this.DecorationThickness = decorationThickness;
             this.DebugLabel = debugLabel;
         }
-        #endregion
-
-        #region fields
         public virtual bool Inherit { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
@@ -857,9 +853,6 @@ namespace FlutterSDK.Painting.Textstyle
         public virtual List<FontFeature> FontFeatures { get; set; }
         public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this text style but with the given fields replaced with
@@ -1127,7 +1120,6 @@ namespace FlutterSDK.Painting.Textstyle
 
 
 
-        #endregion
     }
 
 }

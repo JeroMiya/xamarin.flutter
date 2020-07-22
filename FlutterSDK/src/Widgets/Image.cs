@@ -551,7 +551,6 @@ namespace FlutterSDK.Widgets.Image
     /// </Summary>
     public class Image : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Image(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Image.ImageFrameBuilder frameBuilder = default(FlutterSDK.Widgets.Image.ImageFrameBuilder), FlutterSDK.Widgets.Image.ImageLoadingBuilder loadingBuilder = default(FlutterSDK.Widgets.Image.ImageLoadingBuilder), FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder errorBuilder = default(FlutterSDK.Widgets.Image.ImageErrorWidgetBuilder), string semanticLabel = default(string), bool excludeFromSemantics = false, double width = default(double), double height = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, bool gaplessPlayback = false, FilterQuality filterQuality = default(FilterQuality))
         : base(key: key)
         {
@@ -646,9 +645,6 @@ namespace FlutterSDK.Widgets.Image
             instance.GaplessPlayback = gaplessPlayback;
             instance.FilterQuality = filterQuality;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> ImageValue { get; set; }
         public virtual FlutterSDK.Widgets.Image.ImageFrameBuilder FrameBuilder { get; set; }
         public virtual FlutterSDK.Widgets.Image.ImageLoadingBuilder LoadingBuilder { get; set; }
@@ -666,9 +662,6 @@ namespace FlutterSDK.Widgets.Image
         public virtual bool GaplessPlayback { get; set; }
         public virtual string SemanticLabel { get; set; }
         public virtual bool ExcludeFromSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Image._ImageState CreateState() => new _ImageState();
 
@@ -696,18 +689,13 @@ namespace FlutterSDK.Widgets.Image
 
 
 
-        #endregion
     }
 
 
     public class _ImageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Image.Image>, IWidgetsBindingObserver
     {
-        #region constructors
         public _ImageState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
         internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _ImageInfo { get; set; }
         internal virtual FlutterSDK.Painting.Imagestream.ImageChunkEvent _LoadingProgress { get; set; }
@@ -718,9 +706,6 @@ namespace FlutterSDK.Widgets.Image
         internal virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Image.Image>> _ScrollAwareContext { get; set; }
         internal virtual @Object _LastException { get; set; }
         internal virtual StackTrace _LastStack { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -936,7 +921,6 @@ namespace FlutterSDK.Widgets.Image
 
 
 
-        #endregion
     }
 
 }

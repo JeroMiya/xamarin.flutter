@@ -483,20 +483,13 @@ namespace FlutterSDK.Widgets.Widgetspan
     /// </Summary>
     public class WidgetSpan : FlutterSDK.Painting.Placeholderspan.PlaceholderSpan
     {
-        #region constructors
         public WidgetSpan(FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(alignment: alignment, baseline: baseline, style: style)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds a placeholder box to the paragraph builder if a size has been
@@ -629,7 +622,6 @@ namespace FlutterSDK.Widgets.Widgetspan
 
 
 
-        #endregion
     }
 
 }

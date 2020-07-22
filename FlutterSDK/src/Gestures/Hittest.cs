@@ -398,22 +398,14 @@ namespace FlutterSDK.Gestures.Hittest
     /// </Summary>
     public class HitTestEntry
     {
-        #region constructors
         public HitTestEntry(FlutterSDK.Gestures.Hittest.HitTestTarget target)
         {
             this.Target = target;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Hittest.HitTestTarget Target { get; set; }
         internal virtual Matrix4 _Transform { get; set; }
         public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -422,7 +414,6 @@ namespace FlutterSDK.Gestures.Hittest
     /// </Summary>
     public class HitTestResult
     {
-        #region constructors
         public HitTestResult()
         : base()
         {
@@ -432,15 +423,9 @@ namespace FlutterSDK.Gestures.Hittest
         {
             var instance = new HitTestResult();
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Gestures.Hittest.HitTestEntry> _Path { get; set; }
         internal virtual Queue<object> _Transforms { get; set; }
         public virtual Iterable<FlutterSDK.Gestures.Hittest.HitTestEntry> Path { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Add a [HitTestEntry] to the path.
@@ -530,7 +515,6 @@ namespace FlutterSDK.Gestures.Hittest
 
 
 
-        #endregion
     }
 
 }

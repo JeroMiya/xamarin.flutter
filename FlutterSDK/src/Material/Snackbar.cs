@@ -438,7 +438,6 @@ namespace FlutterSDK.Material.Snackbar
     /// </Summary>
     public class SnackBarAction : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SnackBarAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledTextColor = default(FlutterBinding.UI.Color), string label = default(string), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -447,36 +446,22 @@ namespace FlutterSDK.Material.Snackbar
             this.Label = label;
             this.OnPressed = onPressed;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
         public virtual FlutterBinding.UI.Color DisabledTextColor { get; set; }
         public virtual string Label { get; set; }
         public virtual VoidCallback OnPressed { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Snackbar._SnackBarActionState CreateState() => new _SnackBarActionState();
 
 
-        #endregion
     }
 
 
     public class _SnackBarActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBarAction>
     {
-        #region constructors
         public _SnackBarActionState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _HaveTriggeredAction { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandlePressed()
         {
@@ -503,7 +488,6 @@ namespace FlutterSDK.Material.Snackbar
 
 
 
-        #endregion
     }
 
 
@@ -534,7 +518,6 @@ namespace FlutterSDK.Material.Snackbar
     /// </Summary>
     public class SnackBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SnackBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Material.Snackbartheme.SnackBarBehavior behavior = default(FlutterSDK.Material.Snackbartheme.SnackBarBehavior), FlutterSDK.Material.Snackbar.SnackBarAction action = default(FlutterSDK.Material.Snackbar.SnackBarAction), TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), VoidCallback onVisible = default(VoidCallback))
         : base(key: key)
         {
@@ -548,9 +531,6 @@ namespace FlutterSDK.Material.Snackbar
             this.Animation = animation;
             this.OnVisible = onVisible;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual double Elevation { get; set; }
@@ -560,9 +540,6 @@ namespace FlutterSDK.Material.Snackbar
         public virtual TimeSpan Duration { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
         public virtual VoidCallback OnVisible { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates an animation controller useful for driving a snack bar's entrance and exit animation.
@@ -592,22 +569,14 @@ namespace FlutterSDK.Material.Snackbar
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar> CreateState() => new _SnackBarState();
 
 
-        #endregion
     }
 
 
     public class _SnackBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Snackbar.SnackBar>
     {
-        #region constructors
         public _SnackBarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _WasVisible { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -718,7 +687,6 @@ namespace FlutterSDK.Material.Snackbar
 
 
 
-        #endregion
     }
 
 

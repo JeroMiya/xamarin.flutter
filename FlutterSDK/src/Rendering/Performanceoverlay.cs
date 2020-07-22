@@ -445,15 +445,11 @@ namespace FlutterSDK.Rendering.Performanceoverlay
     /// </Summary>
     public class RenderPerformanceOverlay : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public RenderPerformanceOverlay(int optionsMask = 0, int rasterizerThreshold = 0, bool checkerboardRasterCacheImages = false, bool checkerboardOffscreenLayers = false)
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _OptionsMask { get; set; }
         internal virtual int _RasterizerThreshold { get; set; }
         internal virtual bool _CheckerboardRasterCacheImages { get; set; }
@@ -465,9 +461,6 @@ namespace FlutterSDK.Rendering.Performanceoverlay
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _IntrinsicHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
@@ -517,7 +510,6 @@ namespace FlutterSDK.Rendering.Performanceoverlay
 
 
 
-        #endregion
     }
 
 

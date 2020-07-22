@@ -315,7 +315,6 @@ namespace FlutterSDK.Foundation.Stackframe
     /// </Summary>
     public class StackFrame
     {
-        #region constructors
         public StackFrame(int number = default(int), int column = default(int), int line = default(int), string packageScheme = default(string), string package = default(string), string packagePath = default(string), string className = default(string), string method = default(string), bool isConstructor = false, string source = default(string))
         : base()
         {
@@ -330,9 +329,6 @@ namespace FlutterSDK.Foundation.Stackframe
             this.IsConstructor = isConstructor;
             this.Source = source;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension { get; set; }
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision { get; set; }
         internal virtual RegExp _WebNonDebugFramePattern { get; set; }
@@ -347,9 +343,6 @@ namespace FlutterSDK.Foundation.Stackframe
         public virtual string Method { get; set; }
         public virtual bool IsConstructor { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Parses a list of [StackFrame]s from a [StackTrace] object.
@@ -503,7 +496,6 @@ namespace FlutterSDK.Foundation.Stackframe
 
 
 
-        #endregion
     }
 
 }

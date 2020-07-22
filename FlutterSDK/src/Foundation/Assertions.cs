@@ -345,7 +345,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class PartialStackFrame
     {
-        #region constructors
         public PartialStackFrame(Pattern package = default(Pattern), string className = default(string), string method = default(string))
         : base()
         {
@@ -353,16 +352,10 @@ namespace FlutterSDK.Foundation.Assertions
             this.ClassName = className;
             this.Method = method;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Assertions.PartialStackFrame AsynchronousSuspension { get; set; }
         public virtual Pattern Package { get; set; }
         public virtual string ClassName { get; set; }
         public virtual string Method { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Tests whether the [StackFrame] matches the information in this
@@ -381,7 +374,6 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
-        #endregion
     }
 
 
@@ -391,17 +383,10 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class StackFilter
     {
-        #region constructors
         public StackFilter()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Filters the list of [StackFrame]s by updating corrresponding indices in
@@ -413,7 +398,6 @@ namespace FlutterSDK.Foundation.Assertions
         {
         }
 
-        #endregion
     }
 
 
@@ -431,23 +415,16 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class RepetitiveStackFrameFilter : FlutterSDK.Foundation.Assertions.StackFilter
     {
-        #region constructors
         public RepetitiveStackFrameFilter(List<FlutterSDK.Foundation.Assertions.PartialStackFrame> frames = default(List<FlutterSDK.Foundation.Assertions.PartialStackFrame>), string replacement = default(string))
         : base()
         {
             this.Frames = frames;
             this.Replacement = replacement;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Foundation.Assertions.PartialStackFrame> Frames { get; set; }
         public virtual string Replacement { get; set; }
         public virtual int NumFrames { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual List<string> _Replacements { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Filter(List<FlutterSDK.Foundation.Stackframe.StackFrame> stackFrames, List<string> reasons)
         {
@@ -487,13 +464,11 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
-        #endregion
     }
 
 
     public class _ErrorDiagnostic : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<List<@Object>>
     {
-        #region constructors
         public _ErrorDiagnostic(string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(null, new List<object>() { message }, showName: false, showSeparator: false, defaultValue: null, style: style, level: level)
         {
@@ -503,12 +478,6 @@ namespace FlutterSDK.Foundation.Assertions
         {
             var instance = new _ErrorDiagnostic(null, messageParts, showName: false, showSeparator: false, defaultValue: null, style: style, level: level);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
         {
@@ -517,7 +486,6 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
-        #endregion
     }
 
 
@@ -539,7 +507,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorDescription : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
-        #region constructors
         public ErrorDescription(string message)
         : base(message, level: DiagnosticLevel.Info)
         {
@@ -549,13 +516,6 @@ namespace FlutterSDK.Foundation.Assertions
         {
             var instance = new ErrorDescription(messageParts, level: DiagnosticLevel.Info);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -580,7 +540,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorSummary : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
-        #region constructors
         public ErrorSummary(string message)
         : base(message, level: DiagnosticLevel.Summary)
         {
@@ -590,13 +549,6 @@ namespace FlutterSDK.Foundation.Assertions
         {
             var instance = new ErrorSummary(messageParts, level: DiagnosticLevel.Summary);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -617,7 +569,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorHint : FlutterSDK.Foundation.Assertions._ErrorDiagnostic
     {
-        #region constructors
         public ErrorHint(string message)
         : base(message, level: DiagnosticLevel.Hint)
         {
@@ -627,13 +578,6 @@ namespace FlutterSDK.Foundation.Assertions
         {
             var instance = new ErrorHint(messageParts, level: DiagnosticLevel.Hint);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -643,19 +587,11 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class ErrorSpacer : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
-        #region constructors
         public ErrorSpacer()
         : base("", null, description: "", showName: false)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -666,7 +602,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class FlutterErrorDetails : IDiagnosticable
     {
-        #region constructors
         public FlutterErrorDetails(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         {
             this.Exception = exception;
@@ -677,9 +612,6 @@ namespace FlutterSDK.Foundation.Assertions
             this.InformationCollector = informationCollector;
             this.Silent = silent;
         }
-        #endregion
-
-        #region fields
         public virtual List<object> PropertiesTransformers { get; set; }
         public virtual object Exception { get; set; }
         public virtual StackTrace Stack { get; set; }
@@ -689,9 +621,6 @@ namespace FlutterSDK.Foundation.Assertions
         public virtual FlutterSDK.Foundation.Assertions.InformationCollector InformationCollector { get; set; }
         public virtual bool Silent { get; set; }
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsNode Summary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Converts the [exception] to a string.
@@ -862,7 +791,6 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
-        #endregion
     }
 
 
@@ -877,7 +805,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class FlutterError : Error, IAssertionError, IDiagnosticableTreeMixin
     {
-        #region constructors
         public FlutterError(string message)
         {
 
@@ -894,18 +821,12 @@ namespace FlutterSDK.Foundation.Assertions
         }
 
 
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Diagnostics { get; set; }
         public virtual FlutterSDK.Foundation.Assertions.FlutterExceptionHandler OnError { get; set; }
         internal virtual int _ErrorCount { get; set; }
         public virtual int WrapWidth { get; set; }
         internal virtual List<FlutterSDK.Foundation.Assertions.StackFilter> _StackFilters { get; set; }
         public virtual string Message { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Resets the count of errors used by [dumpErrorToConsole] to decide whether
@@ -1098,7 +1019,6 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
-        #endregion
     }
 
 
@@ -1108,7 +1028,6 @@ namespace FlutterSDK.Foundation.Assertions
     /// </Summary>
     public class DiagnosticsStackTrace : FlutterSDK.Foundation.Diagnostics.DiagnosticsBlock
     {
-        #region constructors
         public DiagnosticsStackTrace(string name, StackTrace stack, FlutterSDK.Foundation.Basictypes.IterableFilter<string> stackFilter = default(FlutterSDK.Foundation.Basictypes.IterableFilter<string>), bool showSeparator = true)
         : base(name: name, value: stack, properties: stack == null ? new List<DiagnosticsNode>() { } : (stackFilter ?? AssertionsDefaultClass.FlutterError.DefaultStackFilter)(stack.ToString().TrimEnd().Split('\n').ToList()).Map(_CreateStackFrame).ToList(), style: DiagnosticsTreeStyle.Flat, showSeparator: showSeparator, allowTruncate: true)
         {
@@ -1118,12 +1037,6 @@ namespace FlutterSDK.Foundation.Assertions
         {
             var instance = new DiagnosticsStackTrace(name: name, properties: new List<DiagnosticsNode>() { _CreateStackFrame(frame) }, style: DiagnosticsTreeStyle.Whitespace, showSeparator: showSeparator);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Foundation.Diagnostics.DiagnosticsNode _CreateStackFrame(string frame)
         {
@@ -1132,26 +1045,17 @@ namespace FlutterSDK.Foundation.Assertions
 
 
 
-        #endregion
     }
 
 
     public class _FlutterErrorDetailsNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Foundation.Assertions.FlutterErrorDetails>
     {
-        #region constructors
         public _FlutterErrorDetailsNode(string name = default(string), FlutterSDK.Foundation.Assertions.FlutterErrorDetails value = default(FlutterSDK.Foundation.Assertions.FlutterErrorDetails), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
         : base(name: name, value: value, style: style)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

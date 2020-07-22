@@ -307,7 +307,6 @@ namespace FlutterSDK.Cupertino.Thumbpainter
     /// </Summary>
     public class CupertinoThumbPainter
     {
-        #region constructors
         public CupertinoThumbPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
         : base()
         {
@@ -318,16 +317,10 @@ namespace FlutterSDK.Cupertino.Thumbpainter
         {
             var instance = new CupertinoThumbPainter();
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> Shadows { get; set; }
         public virtual double Radius { get; set; }
         public virtual double Extension { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Paints the thumb onto the given canvas in the given rectangle.
@@ -345,7 +338,6 @@ namespace FlutterSDK.Cupertino.Thumbpainter
 
 
 
-        #endregion
     }
 
 }

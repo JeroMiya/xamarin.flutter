@@ -600,7 +600,6 @@ namespace FlutterSDK.Rendering.Platformview
     /// </Summary>
     public class RenderAndroidView : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
     {
-        #region constructors
         public RenderAndroidView(FlutterSDK.Services.Platformviews.AndroidViewController viewController = default(FlutterSDK.Services.Platformviews.AndroidViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
         {
@@ -612,9 +611,6 @@ namespace FlutterSDK.Rendering.Platformview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Platformview._PlatformViewState _State { get; set; }
         internal virtual FlutterSDK.Services.Platformviews.AndroidViewController _ViewController { get; set; }
         internal virtual FlutterSDK.Rendering.Platformview._MotionEventsDispatcher _MotionEventsDispatcher { get; set; }
@@ -624,9 +620,6 @@ namespace FlutterSDK.Rendering.Platformview
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _OnPlatformViewCreated(int id)
         {
@@ -731,7 +724,6 @@ namespace FlutterSDK.Rendering.Platformview
 
 
 
-        #endregion
     }
 
 
@@ -761,7 +753,6 @@ namespace FlutterSDK.Rendering.Platformview
     /// </Summary>
     public class RenderUiKitView : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public RenderUiKitView(FlutterSDK.Services.Platformviews.UiKitViewController viewController = default(FlutterSDK.Services.Platformviews.UiKitViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
         {
@@ -770,9 +761,6 @@ namespace FlutterSDK.Rendering.Platformview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Services.Platformviews.UiKitViewController _ViewController { get; set; }
         public virtual FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior HitTestBehavior { get; set; }
         internal virtual FlutterSDK.Rendering.Platformview._UiKitViewGestureRecognizer _GestureRecognizer { get; set; }
@@ -781,9 +769,6 @@ namespace FlutterSDK.Rendering.Platformview
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// {@macro flutter.rendering.platformView.updateGestureRecognizers}
@@ -906,13 +891,11 @@ namespace FlutterSDK.Rendering.Platformview
 
 
 
-        #endregion
     }
 
 
     public class _UiKitViewGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
-        #region constructors
         public _UiKitViewGestureRecognizer(FlutterSDK.Services.Platformviews.UiKitViewController controller, HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizerFactories, PointerDeviceKind kind = default(PointerDeviceKind))
         : base(kind: kind)
         {
@@ -928,16 +911,10 @@ namespace FlutterSDK.Rendering.Platformview
         }
 
 
-        #endregion
-
-        #region fields
         public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizerFactories { get; set; }
         internal virtual HashSet<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer> _GestureRecognizers { get; set; }
         public virtual FlutterSDK.Services.Platformviews.UiKitViewController Controller { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -990,13 +967,11 @@ namespace FlutterSDK.Rendering.Platformview
 
 
 
-        #endregion
     }
 
 
     public class _PlatformViewGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
-        #region constructors
         public _PlatformViewGestureRecognizer(FlutterSDK.Rendering.Platformview._HandlePointerEvent handlePointerEvent, HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizerFactories, PointerDeviceKind kind = default(PointerDeviceKind))
         : base(kind: kind)
         {
@@ -1012,18 +987,12 @@ namespace FlutterSDK.Rendering.Platformview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Platformview._HandlePointerEvent _HandlePointerEvent { get; set; }
         public virtual Dictionary<int, List<FlutterSDK.Gestures.Events.PointerEvent>> CachedEvents { get; set; }
         public virtual HashSet<int> ForwardedPointers { get; set; }
         public virtual HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> GestureRecognizerFactories { get; set; }
         internal virtual HashSet<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer> _GestureRecognizers { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -1121,30 +1090,22 @@ namespace FlutterSDK.Rendering.Platformview
 
 
 
-        #endregion
     }
 
 
     public class _MotionEventsDispatcher
     {
-        #region constructors
         public _MotionEventsDispatcher(FlutterSDK.Rendering.Platformview._GlobalToLocal globalToLocal, FlutterSDK.Services.Platformviews.AndroidViewController viewController)
         {
             this.GlobalToLocal = globalToLocal;
             this.ViewController = viewController;
         }
-        #endregion
-
-        #region fields
         public virtual Dictionary<int, FlutterSDK.Services.Platformviews.AndroidPointerCoords> PointerPositions { get; set; }
         public virtual Dictionary<int, FlutterSDK.Services.Platformviews.AndroidPointerProperties> PointerProperties { get; set; }
         public virtual FlutterSDK.Rendering.Platformview._GlobalToLocal GlobalToLocal { get; set; }
         public virtual FlutterSDK.Services.Platformviews.AndroidViewController ViewController { get; set; }
         public virtual int NextPointerId { get; set; }
         public virtual int DownTimeMillis { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void HandlePointerEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
@@ -1219,7 +1180,6 @@ namespace FlutterSDK.Rendering.Platformview
         public virtual bool IsSinglePointerAction(FlutterSDK.Gestures.Events.PointerEvent @event) => !(@event is PointerDownEvent) && !(@event is PointerUpEvent);
 
 
-        #endregion
     }
 
 
@@ -1231,7 +1191,6 @@ namespace FlutterSDK.Rendering.Platformview
     /// </Summary>
     public class PlatformViewRenderBox : FlutterSDK.Rendering.Box.RenderBox, I_PlatformViewGestureMixin
     {
-        #region constructors
         public PlatformViewRenderBox(FlutterSDK.Services.Platformviews.PlatformViewController controller = default(FlutterSDK.Services.Platformviews.PlatformViewController), FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior hitTestBehavior = default(FlutterSDK.Rendering.Platformview.PlatformViewHitTestBehavior), HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>> gestureRecognizers = default(HashSet<FlutterSDK.Foundation.Basictypes.Factory<FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer>>))
         : base()
         {
@@ -1241,17 +1200,11 @@ namespace FlutterSDK.Rendering.Platformview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Services.Platformviews.PlatformViewController _Controller { get; set; }
         public virtual FlutterSDK.Services.Platformviews.PlatformViewController Controller { set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// {@macro  flutter.rendering.platformView.updateGestureRecognizers}
@@ -1294,7 +1247,6 @@ namespace FlutterSDK.Rendering.Platformview
 
 
 
-        #endregion
     }
 
 

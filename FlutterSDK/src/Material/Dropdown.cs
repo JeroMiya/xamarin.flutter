@@ -396,7 +396,6 @@ namespace FlutterSDK.Material.Dropdown
 
     public class _DropdownMenuPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _DropdownMenuPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), int elevation = default(int), int selectedIndex = default(int), FlutterSDK.Animation.Animation.Animation<double> resize = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Foundation.Basictypes.ValueGetter<double> getSelectedItemOffset = default(FlutterSDK.Foundation.Basictypes.ValueGetter<double>))
         : base(repaint: resize)
         {
@@ -406,18 +405,12 @@ namespace FlutterSDK.Material.Dropdown
             this.Resize = resize;
             this.GetSelectedItemOffset = getSelectedItemOffset;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual int Elevation { get; set; }
         public virtual int SelectedIndex { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Resize { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<double> GetSelectedItemOffset { get; set; }
         internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -444,23 +437,15 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _DropdownScrollBehavior : FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior
     {
-        #region constructors
         public _DropdownScrollBehavior()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Foundation.Platform.TargetPlatform GetPlatform(FlutterSDK.Widgets.Framework.BuildContext context) => ThemeDefaultClass.Theme.Of(context).Platform;
 
@@ -473,13 +458,11 @@ namespace FlutterSDK.Material.Dropdown
         public new FlutterSDK.Widgets.Scrollphysics.ScrollPhysics GetScrollPhysics(FlutterSDK.Widgets.Framework.BuildContext context) => new ClampingScrollPhysics();
 
 
-        #endregion
     }
 
 
     public class _DropdownMenuItemButton<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _DropdownMenuItemButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Material.Dropdown._DropdownRoute<T> route = default(FlutterSDK.Material.Dropdown._DropdownRoute<T>), FlutterBinding.UI.Rect buttonRect = default(FlutterBinding.UI.Rect), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), int itemIndex = default(int))
         : base(key: key)
         {
@@ -489,37 +472,23 @@ namespace FlutterSDK.Material.Dropdown
             this.Constraints = constraints;
             this.ItemIndex = itemIndex;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Dropdown._DropdownRoute<T> Route { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
         public virtual FlutterBinding.UI.Rect ButtonRect { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
         public virtual int ItemIndex { get; set; }
-        #endregion
-
-        #region methods
 
         public new _DropdownMenuItemButtonState<T> CreateState() => new _DropdownMenuItemButtonState<T>();
 
 
-        #endregion
     }
 
 
     public class _DropdownMenuItemButtonState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Dropdown._DropdownMenuItemButton<T>>
     {
-        #region constructors
         public _DropdownMenuItemButtonState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> _WebShortcuts { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandleFocusChange(bool focused)
         {
@@ -576,13 +545,11 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _DropdownMenu<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _DropdownMenu(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Material.Dropdown._DropdownRoute<T> route = default(FlutterSDK.Material.Dropdown._DropdownRoute<T>), FlutterBinding.UI.Rect buttonRect = default(FlutterBinding.UI.Rect), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color dropdownColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -592,38 +559,24 @@ namespace FlutterSDK.Material.Dropdown
             this.Constraints = constraints;
             this.DropdownColor = dropdownColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Dropdown._DropdownRoute<T> Route { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
         public virtual FlutterBinding.UI.Rect ButtonRect { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
         public virtual FlutterBinding.UI.Color DropdownColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new _DropdownMenuState<T> CreateState() => new _DropdownMenuState<T>();
 
 
-        #endregion
     }
 
 
     public class _DropdownMenuState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Dropdown._DropdownMenu<T>>
     {
-        #region constructors
         public _DropdownMenuState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _FadeOpacity { get; set; }
         internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Resize { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -646,28 +599,20 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _DropdownMenuRouteLayout<T> : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        #region constructors
         public _DropdownMenuRouteLayout(FlutterBinding.UI.Rect buttonRect = default(FlutterBinding.UI.Rect), FlutterSDK.Material.Dropdown._DropdownRoute<T> route = default(FlutterSDK.Material.Dropdown._DropdownRoute<T>), TextDirection textDirection = default(TextDirection))
         {
             this.ButtonRect = buttonRect;
             this.Route = route;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Rect ButtonRect { get; set; }
         public virtual FlutterSDK.Material.Dropdown._DropdownRoute<T> Route { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
@@ -699,25 +644,17 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _DropdownRouteResult<T>
     {
-        #region constructors
         public _DropdownRouteResult(T result)
         {
             this.Result = result;
         }
-        #endregion
-
-        #region fields
         public virtual T Result { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -726,13 +663,11 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _MenuLimits
     {
-        #region constructors
         public _MenuLimits(double top, double bottom, double height, double scrollOffset)
         {
             this.Top = top;
@@ -740,23 +675,15 @@ namespace FlutterSDK.Material.Dropdown
             this.Height = height;
             this.ScrollOffset = scrollOffset;
         }
-        #endregion
-
-        #region fields
         public virtual double Top { get; set; }
         public virtual double Bottom { get; set; }
         public virtual double Height { get; set; }
         public virtual double ScrollOffset { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _DropdownRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<FlutterSDK.Material.Dropdown._DropdownRouteResult<T>>
     {
-        #region constructors
         public _DropdownRoute(List<FlutterSDK.Material.Dropdown._MenuItem<T>> items = default(List<FlutterSDK.Material.Dropdown._MenuItem<T>>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Rect buttonRect = default(FlutterBinding.UI.Rect), int selectedIndex = default(int), int elevation = 8, FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), string barrierLabel = default(string), double itemHeight = default(double), FlutterBinding.UI.Color dropdownColor = default(FlutterBinding.UI.Color))
         : base()
         {
@@ -771,9 +698,6 @@ namespace FlutterSDK.Material.Dropdown
             this.ItemHeight = itemHeight;
             this.DropdownColor = dropdownColor;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Dropdown._MenuItem<T>> Items { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterBinding.UI.Rect ButtonRect { get; set; }
@@ -789,9 +713,6 @@ namespace FlutterSDK.Material.Dropdown
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
         {
@@ -854,13 +775,11 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _DropdownRoutePage<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _DropdownRoutePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Dropdown._DropdownRoute<T> route = default(FlutterSDK.Material.Dropdown._DropdownRoute<T>), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), List<FlutterSDK.Material.Dropdown._MenuItem<T>> items = default(List<FlutterSDK.Material.Dropdown._MenuItem<T>>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Rect buttonRect = default(FlutterBinding.UI.Rect), int selectedIndex = default(int), int elevation = 8, FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color dropdownColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -875,9 +794,6 @@ namespace FlutterSDK.Material.Dropdown
             this.Style = style;
             this.DropdownColor = dropdownColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Dropdown._DropdownRoute<T> Route { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
         public virtual List<FlutterSDK.Material.Dropdown._MenuItem<T>> Items { get; set; }
@@ -888,9 +804,6 @@ namespace FlutterSDK.Material.Dropdown
         public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
         public virtual FlutterBinding.UI.Color DropdownColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -913,27 +826,19 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _MenuItem<T> : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _MenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Basictypes.ValueChanged<Size> onLayout = default(FlutterSDK.Foundation.Basictypes.ValueChanged<Size>), FlutterSDK.Material.Dropdown.DropdownMenuItem<T> item = default(FlutterSDK.Material.Dropdown.DropdownMenuItem<T>))
         : base(key: key, child: item)
         {
             this.OnLayout = onLayout;
             this.Item = item;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<Size> OnLayout { get; set; }
         public virtual FlutterSDK.Material.Dropdown.DropdownMenuItem<T> Item { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -956,25 +861,17 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _RenderMenuItem : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _RenderMenuItem(FlutterSDK.Foundation.Basictypes.ValueChanged<Size> onLayout, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.OnLayout = onLayout;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<Size> OnLayout { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -984,25 +881,17 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
     public class _DropdownMenuItemContainer : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _DropdownMenuItemContainer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1011,7 +900,6 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
@@ -1023,22 +911,14 @@ namespace FlutterSDK.Material.Dropdown
     /// </Summary>
     public class DropdownMenuItem<T> : FlutterSDK.Material.Dropdown._DropdownMenuItemContainer
     {
-        #region constructors
         public DropdownMenuItem(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onTap = default(VoidCallback), T value = default(T), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.OnTap = onTap;
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnTap { get; set; }
         public virtual T Value { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1052,18 +932,11 @@ namespace FlutterSDK.Material.Dropdown
     /// </Summary>
     public class DropdownButtonHideUnderline : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public DropdownButtonHideUnderline(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns whether the underline of [DropdownButton] widgets should
@@ -1082,7 +955,6 @@ namespace FlutterSDK.Material.Dropdown
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => false;
 
 
-        #endregion
     }
 
 
@@ -1164,7 +1036,6 @@ namespace FlutterSDK.Material.Dropdown
     /// </Summary>
     public class DropdownButton<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public DropdownButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Dropdown.DropdownMenuItem<T>> items = default(List<FlutterSDK.Material.Dropdown.DropdownMenuItem<T>>), FlutterSDK.Material.Dropdown.DropdownButtonBuilder selectedItemBuilder = default(FlutterSDK.Material.Dropdown.DropdownButtonBuilder), T value = default(T), FlutterSDK.Widgets.Framework.Widget hint = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget disabledHint = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), VoidCallback onTap = default(VoidCallback), int elevation = 8, FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget underline = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color iconDisabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color iconEnabledColor = default(FlutterBinding.UI.Color), double iconSize = 24.0, bool isDense = false, bool isExpanded = false, double itemHeight = default(double), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color dropdownColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -1190,9 +1061,6 @@ namespace FlutterSDK.Material.Dropdown
             this.Autofocus = autofocus;
             this.DropdownColor = dropdownColor;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Dropdown.DropdownMenuItem<T>> Items { get; set; }
         public virtual T Value { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Hint { get; set; }
@@ -1214,25 +1082,17 @@ namespace FlutterSDK.Material.Dropdown
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
         public virtual FlutterBinding.UI.Color DropdownColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new _DropdownButtonState<T> CreateState() => new _DropdownButtonState<T>();
 
 
-        #endregion
     }
 
 
     public class _DropdownButtonState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Dropdown.DropdownButton<T>>, IWidgetsBindingObserver
     {
-        #region constructors
         public _DropdownButtonState()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _SelectedIndex { get; set; }
         internal virtual FlutterSDK.Material.Dropdown._DropdownRoute<T> _DropdownRoute { get; set; }
         internal virtual FlutterSDK.Widgets.Mediaquery.Orientation _LastOrientation { get; set; }
@@ -1246,9 +1106,6 @@ namespace FlutterSDK.Material.Dropdown
         internal virtual FlutterBinding.UI.Color _IconColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _ShowHighlight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Focusmanager.FocusNode _CreateFocusNode()
         {
@@ -1501,7 +1358,6 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 
@@ -1510,7 +1366,6 @@ namespace FlutterSDK.Material.Dropdown
     /// </Summary>
     public class DropdownButtonFormField<T> : FlutterSDK.Widgets.Form.FormField<T>
     {
-        #region constructors
         public DropdownButtonFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), List<FlutterSDK.Material.Dropdown.DropdownMenuItem<T>> items = default(List<FlutterSDK.Material.Dropdown.DropdownMenuItem<T>>), FlutterSDK.Material.Dropdown.DropdownButtonBuilder selectedItemBuilder = default(FlutterSDK.Material.Dropdown.DropdownButtonBuilder), FlutterSDK.Widgets.Framework.Widget hint = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), VoidCallback onTap = default(VoidCallback), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>), FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>), bool autovalidate = false, FlutterSDK.Widgets.Framework.Widget disabledHint = default(FlutterSDK.Widgets.Framework.Widget), int elevation = 8, FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color iconDisabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color iconEnabledColor = default(FlutterBinding.UI.Color), double iconSize = 24.0, bool isDense = true, bool isExpanded = false, double itemHeight = default(double))
         : base(key: key, onSaved: onSaved, initialValue: value, validator: validator, autovalidate: autovalidate, builder: (FormFieldState<T> field) =>
         {
@@ -1522,34 +1377,20 @@ namespace FlutterSDK.Material.Dropdown
             this.OnChanged = onChanged;
             this.Decoration = decoration;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration Decoration { get; set; }
-        #endregion
-
-        #region methods
 
         public new FormFieldState<T> CreateState() => new _DropdownButtonFormFieldState<T>();
 
 
-        #endregion
     }
 
 
     public class _DropdownButtonFormFieldState<T> : FlutterSDK.Widgets.Form.FormFieldState<T>
     {
-        #region constructors
         public _DropdownButtonFormFieldState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Dropdown.DropdownButtonFormField<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DidChange(T value)
         {
@@ -1573,7 +1414,6 @@ namespace FlutterSDK.Material.Dropdown
 
 
 
-        #endregion
     }
 
 }

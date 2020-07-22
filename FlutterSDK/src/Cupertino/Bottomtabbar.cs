@@ -332,7 +332,6 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
     /// </Summary>
     public class CupertinoTabBar : FlutterSDK.Widgets.Framework.StatelessWidget, IPreferredSizeWidget
     {
-        #region constructors
         public CupertinoTabBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> items = default(List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onTap = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int currentIndex = 0, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), double iconSize = 30.0, FlutterSDK.Painting.Boxborder.Border border = default(FlutterSDK.Painting.Boxborder.Border))
         : base(key: key)
         {
@@ -345,9 +344,6 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
             this.IconSize = iconSize;
             this.Border = border;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Bottomnavigationbaritem.BottomNavigationBarItem> Items { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnTap { get; set; }
         public virtual int CurrentIndex { get; set; }
@@ -357,9 +353,6 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
         public virtual double IconSize { get; set; }
         public virtual FlutterSDK.Painting.Boxborder.Border Border { get; set; }
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Indicates whether the tab bar is fully opaque or can have contents behind
@@ -448,7 +441,6 @@ namespace FlutterSDK.Cupertino.Bottomtabbar
 
 
 
-        #endregion
     }
 
 }

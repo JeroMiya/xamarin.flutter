@@ -437,7 +437,6 @@ namespace FlutterSDK.Widgets.Animatedsize
     /// </Summary>
     public class AnimatedSize : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public AnimatedSize(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(key: key, child: child)
         {
@@ -447,17 +446,11 @@ namespace FlutterSDK.Widgets.Animatedsize
             this.ReverseDuration = reverseDuration;
             this.Vsync = vsync;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
         public virtual TimeSpan Duration { get; set; }
         public virtual TimeSpan ReverseDuration { get; set; }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Animatedsize.RenderAnimatedSize CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -491,7 +484,6 @@ namespace FlutterSDK.Widgets.Animatedsize
 
 
 
-        #endregion
     }
 
 }

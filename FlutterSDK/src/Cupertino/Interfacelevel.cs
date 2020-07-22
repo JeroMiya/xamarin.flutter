@@ -316,19 +316,12 @@ namespace FlutterSDK.Cupertino.Interfacelevel
     /// </Summary>
     public class CupertinoUserInterfaceLevel : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public CupertinoUserInterfaceLevel(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData data = default(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevelData _Data { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Cupertino.Interfacelevel.CupertinoUserInterfaceLevel oldWidget) => oldWidget._Data != _Data;
 
@@ -365,7 +358,6 @@ namespace FlutterSDK.Cupertino.Interfacelevel
 
 
 
-        #endregion
     }
 
 

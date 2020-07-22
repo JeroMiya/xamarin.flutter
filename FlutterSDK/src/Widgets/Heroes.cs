@@ -512,7 +512,6 @@ namespace FlutterSDK.Widgets.Heroes
     /// </Summary>
     public class Hero : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Hero(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), @Object tag = default(@Object), FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween), FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder flightShuttleBuilder = default(FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder), FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder placeholderBuilder = default(FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder), bool transitionOnUserGestures = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -523,18 +522,12 @@ namespace FlutterSDK.Widgets.Heroes
             this.TransitionOnUserGestures = transitionOnUserGestures;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual @Object Tag { get; set; }
         public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder FlightShuttleBuilder { get; set; }
         public virtual FlutterSDK.Widgets.Heroes.HeroPlaceholderBuilder PlaceholderBuilder { get; set; }
         public virtual bool TransitionOnUserGestures { get; set; }
-        #endregion
-
-        #region methods
 
         private Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroState> _AllHeroesFor(FlutterSDK.Widgets.Framework.BuildContext context, bool isUserGestureTransition, FlutterSDK.Widgets.Navigator.NavigatorState navigator)
         {
@@ -604,24 +597,16 @@ namespace FlutterSDK.Widgets.Heroes
 
 
 
-        #endregion
     }
 
 
     public class _HeroState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Heroes.Hero>
     {
-        #region constructors
         public _HeroState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _Key { get; set; }
         internal virtual Size _PlaceholderSize { get; set; }
         internal virtual bool _ShouldIncludeChild { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void StartFlight(bool shouldIncludedChildInPlaceholder = false)
         {
@@ -686,13 +671,11 @@ namespace FlutterSDK.Widgets.Heroes
 
 
 
-        #endregion
     }
 
 
     public class _HeroFlightManifest
     {
-        #region constructors
         public _HeroFlightManifest(FlutterSDK.Widgets.Heroes.HeroFlightDirection type = default(FlutterSDK.Widgets.Heroes.HeroFlightDirection), FlutterSDK.Widgets.Overlay.OverlayState overlay = default(FlutterSDK.Widgets.Overlay.OverlayState), FlutterBinding.UI.Rect navigatorRect = default(FlutterBinding.UI.Rect), FlutterSDK.Widgets.Pages.PageRoute<object> fromRoute = default(FlutterSDK.Widgets.Pages.PageRoute<object>), FlutterSDK.Widgets.Pages.PageRoute<object> toRoute = default(FlutterSDK.Widgets.Pages.PageRoute<object>), FlutterSDK.Widgets.Heroes._HeroState fromHero = default(FlutterSDK.Widgets.Heroes._HeroState), FlutterSDK.Widgets.Heroes._HeroState toHero = default(FlutterSDK.Widgets.Heroes._HeroState), FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween), FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder shuttleBuilder = default(FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder), bool isUserGestureTransition = default(bool), bool isDiverted = default(bool))
         : base()
         {
@@ -708,9 +691,6 @@ namespace FlutterSDK.Widgets.Heroes
             this.IsUserGestureTransition = isUserGestureTransition;
             this.IsDiverted = isDiverted;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Heroes.HeroFlightDirection Type { get; set; }
         public virtual FlutterSDK.Widgets.Overlay.OverlayState Overlay { get; set; }
         public virtual FlutterBinding.UI.Rect NavigatorRect { get; set; }
@@ -724,17 +704,12 @@ namespace FlutterSDK.Widgets.Heroes
         public virtual bool IsDiverted { get; set; }
         public virtual @Object Tag { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
     public class _HeroFlight
     {
-        #region constructors
         public _HeroFlight(FlutterSDK.Widgets.Heroes._OnFlightEnded onFlightEnded)
         {
             this.OnFlightEnded = onFlightEnded;
@@ -743,9 +718,6 @@ namespace FlutterSDK.Widgets.Heroes
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Heroes._OnFlightEnded OnFlightEnded { get; set; }
         public virtual FlutterSDK.Animation.Tween.Tween<Rect> HeroRectTween { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Shuttle { get; set; }
@@ -755,9 +727,6 @@ namespace FlutterSDK.Widgets.Heroes
         public virtual FlutterSDK.Widgets.Overlay.OverlayEntry OverlayEntry { get; set; }
         internal virtual bool _Aborted { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ReverseTween { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Animation.Tween.Tween<Rect> _DoCreateRectTween(FlutterBinding.UI.Rect begin, FlutterBinding.UI.Rect end)
         {
@@ -902,7 +871,6 @@ namespace FlutterSDK.Widgets.Heroes
 
 
 
-        #endregion
     }
 
 
@@ -914,20 +882,13 @@ namespace FlutterSDK.Widgets.Heroes
     /// </Summary>
     public class HeroController : FlutterSDK.Widgets.Navigator.NavigatorObserver
     {
-        #region constructors
         public HeroController(FlutterSDK.Widgets.Heroes.CreateRectTween createRectTween = default(FlutterSDK.Widgets.Heroes.CreateRectTween))
         {
             this.CreateRectTween = createRectTween;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Heroes.CreateRectTween CreateRectTween { get; set; }
         internal virtual Dictionary<@Object, FlutterSDK.Widgets.Heroes._HeroFlight> _Flights { get; set; }
         internal virtual FlutterSDK.Widgets.Heroes.HeroFlightShuttleBuilder _DefaultHeroFlightShuttleBuilder { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DidPush(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
         {
@@ -1081,7 +1042,6 @@ namespace FlutterSDK.Widgets.Heroes
 
 
 
-        #endregion
     }
 
 

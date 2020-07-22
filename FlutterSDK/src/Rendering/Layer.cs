@@ -543,23 +543,15 @@ namespace FlutterSDK.Rendering.Layer
     /// </Summary>
     public class AnnotationEntry<T>
     {
-        #region constructors
         public AnnotationEntry(T annotation = default(T), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.Annotation = annotation;
             this.LocalPosition = localPosition;
         }
-        #endregion
-
-        #region fields
         public virtual T Annotation { get; set; }
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -586,12 +578,8 @@ namespace FlutterSDK.Rendering.Layer
     /// </Summary>
     public class Layer : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
     {
-        #region constructors
         public Layer()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _NeedsAddToScene { get; set; }
         internal virtual NativeEngineLayer _EngineLayer { get; set; }
         internal virtual FlutterSDK.Rendering.Layer.Layer _NextSibling { get; set; }
@@ -603,9 +591,6 @@ namespace FlutterSDK.Rendering.Layer
         public virtual NativeEngineLayer EngineLayer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Layer.Layer NextSibling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Layer.Layer PreviousSibling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Mark that this layer has changed and [addToScene] needs to be called.
@@ -895,7 +880,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -906,14 +890,10 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PictureLayer : FlutterSDK.Rendering.Layer.Layer
     {
-        #region constructors
         public PictureLayer(FlutterBinding.UI.Rect canvasBounds)
         {
             this.CanvasBounds = canvasBounds;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Rect CanvasBounds { get; set; }
         internal virtual SKPicture _Picture { get; set; }
         internal virtual bool _IsComplexHint { get; set; }
@@ -921,9 +901,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
         public virtual SKPicture Picture { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplexHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool WillChangeHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
         {
@@ -951,7 +928,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -985,7 +961,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class TextureLayer : FlutterSDK.Rendering.Layer.Layer
     {
-        #region constructors
         public TextureLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int textureId = default(int), bool freeze = false)
         : base()
         {
@@ -993,15 +968,9 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.TextureId = textureId;
             this.Freeze = freeze;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
         public virtual int TextureId { get; set; }
         public virtual bool Freeze { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
         {
@@ -1019,7 +988,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -1029,7 +997,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PlatformViewLayer : FlutterSDK.Rendering.Layer.Layer
     {
-        #region constructors
         public PlatformViewLayer(FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), int viewId = default(int), FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation hoverAnnotation = default(FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation))
         : base()
         {
@@ -1037,15 +1004,9 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.ViewId = viewId;
             this.HoverAnnotation = hoverAnnotation;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
         public virtual int ViewId { get; set; }
         public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
         {
@@ -1076,7 +1037,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -1088,7 +1048,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class PerformanceOverlayLayer : FlutterSDK.Rendering.Layer.Layer
     {
-        #region constructors
         public PerformanceOverlayLayer(FlutterBinding.UI.Rect overlayRect = default(FlutterBinding.UI.Rect), int optionsMask = default(int), int rasterizerThreshold = default(int), bool checkerboardRasterCacheImages = default(bool), bool checkerboardOffscreenLayers = default(bool))
         : base()
         {
@@ -1097,18 +1056,12 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
             this.CheckerboardRasterCacheImages = checkerboardRasterCacheImages;
             this.CheckerboardOffscreenLayers = checkerboardOffscreenLayers;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Rect _OverlayRect { get; set; }
         public virtual int OptionsMask { get; set; }
         public virtual int RasterizerThreshold { get; set; }
         public virtual bool CheckerboardRasterCacheImages { get; set; }
         public virtual bool CheckerboardOffscreenLayers { get; set; }
         public virtual FlutterBinding.UI.Rect OverlayRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
         {
@@ -1130,7 +1083,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -1143,20 +1095,13 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class ContainerLayer : FlutterSDK.Rendering.Layer.Layer
     {
-        #region constructors
         public ContainerLayer()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Layer.Layer _FirstChild { get; set; }
         internal virtual FlutterSDK.Rendering.Layer.Layer _LastChild { get; set; }
         public virtual FlutterSDK.Rendering.Layer.Layer FirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Layer.Layer LastChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasChildren { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Consider this layer as the root and build a scene (a tree of layers)
@@ -1577,7 +1522,6 @@ public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribe
 
 
 
-#endregion
 }
 
 
@@ -1594,20 +1538,13 @@ public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribe
 /// </Summary>
 public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public OffsetLayer(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
     public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
@@ -1686,7 +1623,6 @@ public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -1699,22 +1635,15 @@ public class OffsetLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class ClipRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public ClipRectLayer(FlutterBinding.UI.Rect clipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterBinding.UI.Rect _ClipRect { get; set; }
     internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
     public virtual FlutterBinding.UI.Rect ClipRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
@@ -1757,7 +1686,6 @@ public class ClipRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -1770,22 +1698,15 @@ public class ClipRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class ClipRRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public ClipRRectLayer(FlutterBinding.UI.RRect clipRRect = default(FlutterBinding.UI.RRect), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterBinding.UI.RRect _ClipRRect { get; set; }
     internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
     public virtual FlutterBinding.UI.RRect ClipRRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
@@ -1828,7 +1749,6 @@ public class ClipRRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -1841,22 +1761,15 @@ public class ClipRRectLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class ClipPathLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public ClipPathLayer(Path clipPath = default(Path), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual Path _ClipPath { get; set; }
     internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
     public virtual Path ClipPath { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
@@ -1898,7 +1811,6 @@ public class ClipPathLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -1907,20 +1819,13 @@ public class ClipPathLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class ColorFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public ColorFilterLayer(ColorFilter colorFilter = default(ColorFilter))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual ColorFilter _ColorFilter { get; set; }
     public virtual ColorFilter ColorFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -1941,7 +1846,6 @@ public class ColorFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -1950,20 +1854,13 @@ public class ColorFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class ImageFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public ImageFilterLayer(ImageFilter imageFilter = default(ImageFilter))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual ImageFilter _ImageFilter { get; set; }
     public virtual ImageFilter ImageFilter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -1984,7 +1881,6 @@ public class ImageFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -1997,23 +1893,16 @@ public class ImageFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class TransformLayer : FlutterSDK.Rendering.Layer.OffsetLayer
 {
-    #region constructors
     public TransformLayer(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base(offset: offset)
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual Matrix4 _Transform { get; set; }
     internal virtual Matrix4 _LastEffectiveTransform { get; set; }
     internal virtual Matrix4 _InvertedTransform { get; set; }
     internal virtual bool _InverseDirty { get; set; }
     public virtual object Transform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -2085,7 +1974,6 @@ public class TransformLayer : FlutterSDK.Rendering.Layer.OffsetLayer
 
 
 
-    #endregion
 }
 
 
@@ -2101,22 +1989,15 @@ public class TransformLayer : FlutterSDK.Rendering.Layer.OffsetLayer
 /// </Summary>
 public class OpacityLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public OpacityLayer(int alpha = default(int), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual int _Alpha { get; set; }
     internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
     public virtual int Alpha { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void ApplyTransform(FlutterSDK.Rendering.Layer.Layer child, Matrix4 transform)
     {
@@ -2150,7 +2031,6 @@ public class OpacityLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -2164,24 +2044,17 @@ public class OpacityLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class ShaderMaskLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public ShaderMaskLayer(SKShader shader = default(SKShader), FlutterBinding.UI.Rect maskRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual SKShader _Shader { get; set; }
     internal virtual FlutterBinding.UI.Rect _MaskRect { get; set; }
     internal virtual FlutterBinding.UI.BlendMode _BlendMode { get; set; }
     public virtual SKShader Shader { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Rect MaskRect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.BlendMode BlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -2208,7 +2081,6 @@ public class ShaderMaskLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -2217,20 +2089,13 @@ public class ShaderMaskLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class BackdropFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public BackdropFilterLayer(ImageFilter filter = default(ImageFilter))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual ImageFilter _Filter { get; set; }
     public virtual ImageFilter Filter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void AddToScene(SceneBuilder builder, FlutterBinding.UI.Offset layerOffset = default(FlutterBinding.UI.Offset))
     {
@@ -2242,7 +2107,6 @@ public class BackdropFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -2259,15 +2123,11 @@ public class BackdropFilterLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public PhysicalModelLayer(Path clipPath = default(Path), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
     : base()
     {
 
     }
-    #endregion
-
-    #region fields
     internal virtual Path _ClipPath { get; set; }
     internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
     internal virtual double _Elevation { get; set; }
@@ -2279,9 +2139,6 @@ public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     public virtual double Elevation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterBinding.UI.Color ShadowColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new bool FindAnnotations<S>(FlutterSDK.Rendering.Layer.AnnotationResult<S> result, FlutterBinding.UI.Offset localPosition, bool onlyFirst = default(bool))
     {
@@ -2326,7 +2183,6 @@ public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -2339,23 +2195,16 @@ public class PhysicalModelLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class LeaderLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public LeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
     : base()
     {
         this.Offset = offset;
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
     public virtual FlutterBinding.UI.Offset Offset { get; set; }
     internal virtual FlutterBinding.UI.Offset _LastOffset { get; set; }
     public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void Attach(@Object owner)
     {
@@ -2426,7 +2275,6 @@ public class LeaderLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -2444,7 +2292,6 @@ public class LeaderLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public FollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset unlinkedOffset = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset linkedOffset = default(FlutterBinding.UI.Offset))
     : base()
     {
@@ -2452,9 +2299,6 @@ public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
         this.UnlinkedOffset = unlinkedOffset;
         this.LinkedOffset = linkedOffset;
     }
-    #endregion
-
-    #region fields
     internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
     public virtual bool ShowWhenUnlinked { get; set; }
     public virtual FlutterBinding.UI.Offset UnlinkedOffset { get; set; }
@@ -2465,9 +2309,6 @@ public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
     internal virtual bool _InverseDirty { get; set; }
     public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual bool AlwaysNeedsAddToScene { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     private Offset _TransformOffset<S>(FlutterBinding.UI.Offset localPosition)
     {
@@ -2661,7 +2502,6 @@ public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 
@@ -2690,7 +2530,6 @@ public class FollowerLayer : FlutterSDK.Rendering.Layer.ContainerLayer
 /// </Summary>
 public class AnnotatedRegionLayer<T> : FlutterSDK.Rendering.Layer.ContainerLayer
 {
-    #region constructors
     public AnnotatedRegionLayer(T value, Size size = default(Size), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), bool opaque = false)
     : base()
     {
@@ -2698,16 +2537,10 @@ public class AnnotatedRegionLayer<T> : FlutterSDK.Rendering.Layer.ContainerLayer
         this.Size = size;
         this.Opaque = opaque;
     }
-    #endregion
-
-    #region fields
     public virtual T Value { get; set; }
     public virtual Size Size { get; set; }
     public virtual FlutterBinding.UI.Offset Offset { get; set; }
     public virtual bool Opaque { get; set; }
-    #endregion
-
-    #region methods
 
     /// <Summary>
     /// Searches the subtree for annotations of type `S` at the location
@@ -2765,7 +2598,6 @@ public class AnnotatedRegionLayer<T> : FlutterSDK.Rendering.Layer.ContainerLayer
 
 
 
-    #endregion
 }
 
 }

@@ -471,7 +471,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
     /// </Summary>
     public class FractionalOffset : FlutterSDK.Painting.Alignment.Alignment
     {
-        #region constructors
         public FractionalOffset(double dx, double dy)
         : base(dx * 2.0 - 1.0, dy * 2.0 - 1.0)
         {
@@ -493,9 +492,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopLeft { get; set; }
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopCenter { get; set; }
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopRight { get; set; }
@@ -507,9 +503,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomRight { get; set; }
         public virtual double Dx { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Dy { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other)
         {
@@ -590,7 +583,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
 
 
 
-        #endregion
     }
 
 }

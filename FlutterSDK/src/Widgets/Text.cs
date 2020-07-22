@@ -442,7 +442,6 @@ namespace FlutterSDK.Widgets.Text
     /// </Summary>
     public class DefaultTextStyle : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public DefaultTextStyle(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -458,9 +457,6 @@ namespace FlutterSDK.Widgets.Text
         {
             var instance = new DefaultTextStyle(key: key, child: null);
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
         public virtual TextAlign TextAlign { get; set; }
         public virtual bool SoftWrap { get; set; }
@@ -468,9 +464,6 @@ namespace FlutterSDK.Widgets.Text
         public virtual int MaxLines { get; set; }
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a default text style that overrides the text styles in scope at
@@ -561,7 +554,6 @@ namespace FlutterSDK.Widgets.Text
 
 
 
-        #endregion
     }
 
 
@@ -640,7 +632,6 @@ namespace FlutterSDK.Widgets.Text
     /// </Summary>
     public class Text : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Text(string data, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool softWrap = default(bool), FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), double textScaleFactor = default(double), int maxLines = default(int), string semanticsLabel = default(string), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         : base(key: key)
         {
@@ -674,9 +665,6 @@ namespace FlutterSDK.Widgets.Text
             instance.TextWidthBasis = textWidthBasis;
             instance.TextHeightBehavior = textHeightBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual string Data { get; set; }
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpan TextSpan { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
@@ -691,9 +679,6 @@ namespace FlutterSDK.Widgets.Text
         public virtual string SemanticsLabel { get; set; }
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
         public virtual TextHeightBehavior TextHeightBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -741,7 +726,6 @@ namespace FlutterSDK.Widgets.Text
 
 
 
-        #endregion
     }
 
 }

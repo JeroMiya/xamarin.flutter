@@ -403,7 +403,6 @@ namespace FlutterSDK.Material.Listtile
     /// </Summary>
     public class ListTileTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public ListTileTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool dense = false, FlutterSDK.Material.Listtile.ListTileStyle style = default(FlutterSDK.Material.Listtile.ListTileStyle), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color iconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -414,18 +413,12 @@ namespace FlutterSDK.Material.Listtile
             this.TextColor = textColor;
             this.ContentPadding = contentPadding;
         }
-        #endregion
-
-        #region fields
         public virtual bool Dense { get; set; }
         public virtual FlutterSDK.Material.Listtile.ListTileStyle Style { get; set; }
         public virtual FlutterBinding.UI.Color SelectedColor { get; set; }
         public virtual FlutterBinding.UI.Color IconColor { get; set; }
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a list tile theme that controls the color and style parameters for
@@ -487,7 +480,6 @@ namespace FlutterSDK.Material.Listtile
 
 
 
-        #endregion
     }
 
 
@@ -952,7 +944,6 @@ namespace FlutterSDK.Material.Listtile
     /// </Summary>
     public class ListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool enabled = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), bool selected = false)
         : base(key: key)
         {
@@ -968,9 +959,6 @@ namespace FlutterSDK.Material.Listtile
             this.OnLongPress = onLongPress;
             this.Selected = selected;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
@@ -982,9 +970,6 @@ namespace FlutterSDK.Material.Listtile
         public virtual FlutterSDK.Gestures.Tap.GestureTapCallback OnTap { get; set; }
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get; set; }
         public virtual bool Selected { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Add a one pixel border in between each tile. If color isn't specified the
@@ -1117,13 +1102,11 @@ namespace FlutterSDK.Material.Listtile
 
 
 
-        #endregion
     }
 
 
     public class _ListTile : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public _ListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = default(bool), bool isDense = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
         : base(key: key)
         {
@@ -1137,9 +1120,6 @@ namespace FlutterSDK.Material.Listtile
             this.TitleBaselineType = titleBaselineType;
             this.SubtitleBaselineType = subtitleBaselineType;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
@@ -1149,9 +1129,6 @@ namespace FlutterSDK.Material.Listtile
         public virtual TextDirection TextDirection { get; set; }
         public virtual TextBaseline TitleBaselineType { get; set; }
         public virtual TextBaseline SubtitleBaselineType { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Listtile._ListTileElement CreateElement() => new _ListTileElement(this);
 
@@ -1178,28 +1155,20 @@ namespace FlutterSDK.Material.Listtile
 
 
 
-        #endregion
     }
 
 
     public class _ListTileElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _ListTileElement(FlutterSDK.Material.Listtile._ListTile widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Dictionary<FlutterSDK.Material.Listtile._ListTileSlot, FlutterSDK.Widgets.Framework.Element> SlotToChild { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Material.Listtile._ListTileSlot> ChildToSlot { get; set; }
         public virtual FlutterSDK.Material.Listtile._ListTile Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Material.Listtile._RenderListTile RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -1340,21 +1309,16 @@ namespace FlutterSDK.Material.Listtile
 
 
 
-        #endregion
     }
 
 
     public class _RenderListTile : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public _RenderListTile(bool isDense = default(bool), bool isThreeLine = default(bool), TextDirection textDirection = default(TextDirection), TextBaseline titleBaselineType = default(TextBaseline), TextBaseline subtitleBaselineType = default(TextBaseline))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _MinLeadingWidth { get; set; }
         internal virtual double _HorizontalTitleGap { get; set; }
         internal virtual double _MinVerticalPadding { get; set; }
@@ -1381,9 +1345,6 @@ namespace FlutterSDK.Material.Listtile
         public virtual TextBaseline SubtitleBaselineType { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _DefaultTileHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild, FlutterSDK.Rendering.Box.RenderBox newChild, FlutterSDK.Material.Listtile._ListTileSlot slot)
         {
@@ -1707,7 +1668,6 @@ namespace FlutterSDK.Material.Listtile
 
 
 
-        #endregion
     }
 
 

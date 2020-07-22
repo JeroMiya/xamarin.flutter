@@ -316,23 +316,15 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
 
     public class _FontWeightTween : FlutterSDK.Animation.Tween.Tween<FontWeight>
     {
-        #region constructors
         public _FontWeightTween(FontWeight begin = default(FontWeight), FontWeight end = default(FontWeight))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FontWeight Lerp(double t) => Dart:uiDefaultClass.FontWeight.Lerp(Begin, End, t);
 
 
-#endregion
 }
 
 
@@ -381,7 +373,6 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
     /// </Summary>
     public class CupertinoSlidingSegmentedControl<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoSlidingSegmentedControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Dictionary<T, FlutterSDK.Widgets.Framework.Widget> children = default(Dictionary<T, FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onValueChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), T groupValue = default(T), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -392,34 +383,23 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             this.Padding = padding;
             this.BackgroundColor = backgroundColor;
         }
-        #endregion
-
-        #region fields
         public virtual Dictionary<T, FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
         public virtual T GroupValue { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnValueChanged { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        #endregion
-
-        #region methods
 
         public new _SegmentedControlState<T> CreateState() => new _SegmentedControlState<T>();
 
 
-        #endregion
     }
 
 
     public class _SegmentedControlState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T>>, ITickerProviderStateMixin<FlutterSDK.Cupertino.Slidingsegmentedcontrol.CupertinoSlidingSegmentedControl<T>>
     {
-        #region constructors
         public _SegmentedControlState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<T, FlutterSDK.Animation.Animationcontroller.AnimationController> _HighlightControllers { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<FontWeight> _HighlightTween { get; set; }
         internal virtual Dictionary<T, FlutterSDK.Animation.Animationcontroller.AnimationController> _PressControllers { get; set; }
@@ -435,9 +415,6 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
         internal virtual T _Pressed { get; set; }
         public virtual T Highlighted { set { throw new NotImplementedException(); } }
         public virtual T Pressed { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Animation.Animationcontroller.AnimationController _CreateHighlightAnimationController(bool isCompleted = false)
         {
@@ -582,13 +559,11 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
 
 
 
-        #endregion
     }
 
 
     public class _SegmentedControlRenderWidget<T> : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public _SegmentedControlRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int selectedIndex = default(int), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> state = default(FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T>))
         : base(key: key, children: children)
         {
@@ -596,15 +571,9 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             this.ThumbColor = thumbColor;
             this.State = state;
         }
-        #endregion
-
-        #region fields
         public virtual int SelectedIndex { get; set; }
         public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
         public virtual FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> State { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -622,45 +591,28 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
 
 
 
-        #endregion
     }
 
 
     public class _ChildAnimationManifest
     {
-        #region constructors
         public _ChildAnimationManifest(double opacity = 1, double separatorOpacity = default(double))
         : base()
         {
             this.Opacity = opacity;
             this.SeparatorOpacity = separatorOpacity;
         }
-        #endregion
-
-        #region fields
         public virtual double Opacity { get; set; }
         public virtual FlutterSDK.Animation.Tween.Tween<double> OpacityTween { get; set; }
         public virtual double SeparatorOpacity { get; set; }
         public virtual FlutterSDK.Animation.Tween.Tween<double> SeparatorTween { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _SegmentedControlContainerBoxParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public _SegmentedControlContainerBoxParentData()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -669,7 +621,6 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
     /// </Summary>
     public class _RenderSegmentedControl<T> : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>>
     {
-        #region constructors
         public _RenderSegmentedControl(int selectedIndex = default(int), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> state = default(FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T>))
         : base()
         {
@@ -683,9 +634,6 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Slidingsegmentedcontrol._SegmentedControlState<T> State { get; set; }
         internal virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Cupertino.Slidingsegmentedcontrol._ChildAnimationManifest> _ChildAnimations { get; set; }
         public virtual FlutterBinding.UI.Rect CurrentThumbRect { get; set; }
@@ -702,9 +650,6 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
         public virtual int PressedIndex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color ThumbColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double TotalSeparatorWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Insert(FlutterSDK.Rendering.Box.RenderBox child, FlutterSDK.Rendering.Box.RenderBox after = default(FlutterSDK.Rendering.Box.RenderBox))
         {
@@ -1176,7 +1121,6 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
 
 
 
-        #endregion
     }
 
 }

@@ -310,7 +310,6 @@ namespace FlutterSDK.Cupertino.Button
     /// </Summary>
     public class CupertinoButton : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), double minSize = default(double), double pressedOpacity = 0.4, FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), VoidCallback onPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -333,9 +332,6 @@ namespace FlutterSDK.Cupertino.Button
             instance.BorderRadius = borderRadius;
             instance.OnPressed = onPressed;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
@@ -346,9 +342,6 @@ namespace FlutterSDK.Cupertino.Button
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         internal virtual bool _Filled { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Button._CupertinoButtonState CreateState() => new _CupertinoButtonState();
 
@@ -362,27 +355,19 @@ namespace FlutterSDK.Cupertino.Button
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoButtonState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Button.CupertinoButton>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CupertinoButtonState()
         { }
-        #endregion
-
-        #region fields
         public virtual TimeSpan KFadeOutDuration { get; set; }
         public virtual TimeSpan KFadeInDuration { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _OpacityTween { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AnimationController { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
         internal virtual bool _ButtonHeldDown { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -489,7 +474,6 @@ namespace FlutterSDK.Cupertino.Button
 
 
 
-        #endregion
     }
 
 }

@@ -636,7 +636,6 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class Chip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, IDeletableChipAttributes
     {
-        #region constructors
         public Chip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDeleted = default(VoidCallback), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), string deleteButtonTooltipMessage = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -659,9 +658,6 @@ namespace FlutterSDK.Material.Chip
             this.Elevation = elevation;
             this.ShadowColor = shadowColor;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public new FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public new FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -680,9 +676,6 @@ namespace FlutterSDK.Material.Chip
         public new FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
         public new double Elevation { get; set; }
         public new FlutterBinding.UI.Color ShadowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -692,7 +685,6 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
@@ -745,7 +737,6 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class InputChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, IDeletableChipAttributes, ISelectableChipAttributes, ICheckmarkableChipAttributes, IDisabledChipAttributes, ITappableChipAttributes
     {
-        #region constructors
         public InputChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool selected = false, bool isEnabled = true, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDeleted = default(VoidCallback), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), string deleteButtonTooltipMessage = default(string), VoidCallback onPressed = default(VoidCallback), double pressElevation = default(double), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -780,9 +771,6 @@ namespace FlutterSDK.Material.Chip
             this.CheckmarkColor = checkmarkColor;
             this.AvatarBorder = avatarBorder;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public new FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public new FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -813,9 +801,6 @@ namespace FlutterSDK.Material.Chip
         public new bool ShowCheckmark { get; set; }
         public new FlutterBinding.UI.Color CheckmarkColor { get; set; }
         public new FlutterSDK.Painting.Borders.ShapeBorder AvatarBorder { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -825,7 +810,6 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
@@ -887,7 +871,6 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class ChoiceChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, ISelectableChipAttributes, IDisabledChipAttributes
     {
-        #region constructors
         public ChoiceChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), double pressElevation = default(double), bool selected = default(bool), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -914,9 +897,6 @@ namespace FlutterSDK.Material.Chip
             this.SelectedShadowColor = selectedShadowColor;
             this.AvatarBorder = avatarBorder;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public new FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public new FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -940,9 +920,6 @@ namespace FlutterSDK.Material.Chip
         public new FlutterBinding.UI.Color SelectedShadowColor { get; set; }
         public new FlutterSDK.Painting.Borders.ShapeBorder AvatarBorder { get; set; }
         public virtual bool IsEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -953,7 +930,6 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
@@ -1047,7 +1023,6 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class FilterChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, ISelectableChipAttributes, ICheckmarkableChipAttributes, IDisabledChipAttributes
     {
-        #region constructors
         public FilterChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), double pressElevation = default(double), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1076,9 +1051,6 @@ namespace FlutterSDK.Material.Chip
             this.CheckmarkColor = checkmarkColor;
             this.AvatarBorder = avatarBorder;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public new FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public new FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -1104,9 +1076,6 @@ namespace FlutterSDK.Material.Chip
         public new FlutterBinding.UI.Color CheckmarkColor { get; set; }
         public new FlutterSDK.Painting.Borders.ShapeBorder AvatarBorder { get; set; }
         public virtual bool IsEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1116,7 +1085,6 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
@@ -1171,7 +1139,6 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class ActionChip : FlutterSDK.Widgets.Framework.StatelessWidget, IChipAttributes, ITappableChipAttributes
     {
-        #region constructors
         public ActionChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), VoidCallback onPressed = default(VoidCallback), double pressElevation = default(double), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -1193,9 +1160,6 @@ namespace FlutterSDK.Material.Chip
             this.Elevation = elevation;
             this.ShadowColor = shadowColor;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public new FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public new FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -1213,9 +1177,6 @@ namespace FlutterSDK.Material.Chip
         public new FlutterSDK.Material.Themedata.MaterialTapTargetSize MaterialTapTargetSize { get; set; }
         public new double Elevation { get; set; }
         public new FlutterBinding.UI.Color ShadowColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1225,7 +1186,6 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
@@ -1263,7 +1223,6 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class RawChip : FlutterSDK.Widgets.Framework.StatefulWidget, IChipAttributes, IDeletableChipAttributes, ISelectableChipAttributes, ICheckmarkableChipAttributes, IDisabledChipAttributes, ITappableChipAttributes
     {
-        #region constructors
         public RawChip(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDeleted = default(VoidCallback), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), string deleteButtonTooltipMessage = default(string), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelected = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), double pressElevation = default(double), bool tapEnabled = true, bool selected = false, bool isEnabled = true, FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), string tooltip = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), double elevation = default(double), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = true, FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1298,9 +1257,6 @@ namespace FlutterSDK.Material.Chip
             this.CheckmarkColor = checkmarkColor;
             this.AvatarBorder = avatarBorder;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public new FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public new FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
@@ -1332,25 +1288,17 @@ namespace FlutterSDK.Material.Chip
         public new FlutterBinding.UI.Color CheckmarkColor { get; set; }
         public new FlutterSDK.Painting.Borders.ShapeBorder AvatarBorder { get; set; }
         public virtual bool TapEnabled { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Chip._RawChipState CreateState() => new _RawChipState();
 
 
-        #endregion
     }
 
 
     public class _RawChipState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Chip.RawChip>, ITickerProviderStateMixin<FlutterSDK.Material.Chip.RawChip>
     {
-        #region constructors
         public _RawChipState()
         { }
-        #endregion
-
-        #region fields
         public virtual TimeSpan PressedAnimationDuration { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController SelectController { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AvatarDrawerController { get; set; }
@@ -1371,9 +1319,6 @@ namespace FlutterSDK.Material.Chip
         public virtual bool HasAvatar { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool CanTap { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsTapping { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1654,7 +1599,6 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
@@ -1667,19 +1611,12 @@ namespace FlutterSDK.Material.Chip
     /// </Summary>
     public class _ChipRedirectingHitDetectionWidget : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _ChipRedirectingHitDetectionWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(key: key, child: child)
         {
             this.Constraints = constraints;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1702,24 +1639,16 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
     public class _RenderChipRedirectingHitDetection : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
-        #region constructors
         public _RenderChipRedirectingHitDetection(FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints)
         : base(additionalConstraints: additionalConstraints)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -1735,13 +1664,11 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
     public class _ChipRenderWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public _ChipRenderWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Chip._ChipRenderTheme theme = default(FlutterSDK.Material.Chip._ChipRenderTheme), bool value = default(bool), bool isEnabled = default(bool), FlutterSDK.Animation.Animation.Animation<double> checkmarkAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> avatarDrawerAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> deleteDrawerAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1754,9 +1681,6 @@ namespace FlutterSDK.Material.Chip
             this.EnableAnimation = enableAnimation;
             this.AvatarBorder = avatarBorder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Chip._ChipRenderTheme Theme { get; set; }
         public virtual bool Value { get; set; }
         public virtual bool IsEnabled { get; set; }
@@ -1765,9 +1689,6 @@ namespace FlutterSDK.Material.Chip
         public virtual FlutterSDK.Animation.Animation.Animation<double> DeleteDrawerAnimation { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> EnableAnimation { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder AvatarBorder { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Chip._RenderChipElement CreateElement() => new _RenderChipElement(this);
 
@@ -1794,28 +1715,20 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
     public class _RenderChipElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _RenderChipElement(FlutterSDK.Material.Chip._ChipRenderWidget chip)
         : base(chip)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Dictionary<FlutterSDK.Material.Chip._ChipSlot, FlutterSDK.Widgets.Framework.Element> SlotToChild { get; set; }
         public virtual Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Material.Chip._ChipSlot> ChildToSlot { get; set; }
         public virtual FlutterSDK.Material.Chip._ChipRenderWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Material.Chip._RenderChip RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -1953,13 +1866,11 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
     public class _ChipRenderTheme
     {
-        #region constructors
         public _ChipRenderTheme(FlutterSDK.Widgets.Framework.Widget avatar = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget deleteIcon = default(FlutterSDK.Widgets.Framework.Widget), Brightness brightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsets labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool showAvatar = default(bool), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), bool canTapBody = default(bool))
         {
             this.Avatar = avatar;
@@ -1974,9 +1885,6 @@ namespace FlutterSDK.Material.Chip
             this.CheckmarkColor = checkmarkColor;
             this.CanTapBody = canTapBody;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Avatar { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget DeleteIcon { get; set; }
@@ -1989,9 +1897,6 @@ namespace FlutterSDK.Material.Chip
         public virtual FlutterBinding.UI.Color CheckmarkColor { get; set; }
         public virtual bool CanTapBody { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -2009,13 +1914,11 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        #endregion
     }
 
 
     public class _RenderChip : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public _RenderChip(FlutterSDK.Material.Chip._ChipRenderTheme theme = default(FlutterSDK.Material.Chip._ChipRenderTheme), TextDirection textDirection = default(TextDirection), bool value = default(bool), bool isEnabled = default(bool), FlutterSDK.Animation.Animation.Animation<double> checkmarkAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> avatarDrawerAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> deleteDrawerAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Borders.ShapeBorder avatarBorder = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -2033,9 +1936,6 @@ namespace FlutterSDK.Material.Chip
         }
 
 
-        #endregion
-
-        #region fields
         public virtual Dictionary<FlutterSDK.Material.Chip._ChipSlot, FlutterSDK.Rendering.Box.RenderBox> SlotToChild { get; set; }
         public virtual Dictionary<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Material.Chip._ChipSlot> ChildToSlot { get; set; }
         public virtual bool Value { get; set; }
@@ -2064,9 +1964,6 @@ namespace FlutterSDK.Material.Chip
         public virtual bool DeleteIconShowing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterBinding.UI.Color _DisabledColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Rendering.Box.RenderBox _UpdateChild(FlutterSDK.Rendering.Box.RenderBox oldChild, FlutterSDK.Rendering.Box.RenderBox newChild, FlutterSDK.Material.Chip._ChipSlot slot)
         {
@@ -2591,28 +2488,20 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
         public new bool HitTestSelf(FlutterBinding.UI.Offset position) => DeleteButtonRect.Contains(position) || PressRect.Contains(position);
 
 
-        #endregion
     }
 
 
     public class _LocationAwareInkRippleFactory : FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory
     {
-        #region constructors
         public _LocationAwareInkRippleFactory(bool hasDeleteButton, FlutterSDK.Widgets.Framework.BuildContext chipContext, FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> deleteIconKey)
         {
             this.HasDeleteButton = hasDeleteButton;
             this.ChipContext = chipContext;
             this.DeleteIconKey = deleteIconKey;
         }
-        #endregion
-
-        #region fields
         public virtual bool HasDeleteButton { get; set; }
         public virtual FlutterSDK.Widgets.Framework.BuildContext ChipContext { get; set; }
         public virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> DeleteIconKey { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
         {
@@ -2632,7 +2521,6 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
 
 
-        #endregion
     }
 
 

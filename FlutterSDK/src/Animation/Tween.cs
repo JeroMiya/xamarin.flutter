@@ -90,17 +90,10 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class Animatable<T>
     {
-        #region constructors
         public Animatable()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value of the object at point `t`.
@@ -171,27 +164,19 @@ namespace FlutterSDK.Animation.Tween
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedEvaluation<T> : FlutterSDK.Animation.Animation.Animation<T>, IAnimationWithParentMixin<double>
     {
-        #region constructors
         public _AnimatedEvaluation(FlutterSDK.Animation.Animation.Animation<double> parent, FlutterSDK.Animation.Tween.Animatable<T> _evaluatable)
         {
             this.Parent = parent;
             this._Evaluatable = _evaluatable;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<T> _Evaluatable { get; set; }
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
 
         public new string ToStringDetails()
@@ -201,26 +186,18 @@ namespace FlutterSDK.Animation.Tween
 
 
 
-        #endregion
     }
 
 
     public class _ChainedEvaluation<T> : FlutterSDK.Animation.Tween.Animatable<T>
     {
-        #region constructors
         public _ChainedEvaluation(FlutterSDK.Animation.Tween.Animatable<double> _parent, FlutterSDK.Animation.Tween.Animatable<T> _evaluatable)
         {
             this._Parent = _parent;
             this._Evaluatable = _evaluatable;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _Parent { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<T> _Evaluatable { get; set; }
-        #endregion
-
-        #region methods
 
         public new T Transform(double t)
         {
@@ -230,7 +207,6 @@ namespace FlutterSDK.Animation.Tween
 
 
 
-        #endregion
     }
 
 
@@ -331,20 +307,13 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class Tween<T> : FlutterSDK.Animation.Tween.Animatable<T>
     {
-        #region constructors
         public Tween(T begin = default(T), T end = default(T))
         {
             this.Begin = begin;
             this.End = end;
         }
-        #endregion
-
-        #region fields
         public virtual T Begin { get; set; }
         public virtual T End { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -387,7 +356,6 @@ namespace FlutterSDK.Animation.Tween
 
 
 
-        #endregion
     }
 
 
@@ -396,24 +364,16 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class ReverseTween<T> : FlutterSDK.Animation.Tween.Tween<T>
     {
-        #region constructors
         public ReverseTween(FlutterSDK.Animation.Tween.Tween<T> parent)
         : base(begin: parent.End, end: parent.Begin)
         {
             this.Parent = parent;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Tween.Tween<T> Parent { get; set; }
-        #endregion
-
-        #region methods
 
         public new T Lerp(double t) => Parent.Lerp(1.0 - t);
 
 
-        #endregion
     }
 
 
@@ -427,18 +387,11 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class ColorTween : FlutterSDK.Animation.Tween.Tween<Color>
     {
-        #region constructors
         public ColorTween(FlutterBinding.UI.Color begin = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color end = default(FlutterBinding.UI.Color))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -446,7 +399,6 @@ namespace FlutterSDK.Animation.Tween
         public new Color Lerp(double t) => Dart:uiDefaultClass.Color.Lerp(Begin, End, t);
 
 
-#endregion
 }
 
 
@@ -460,18 +412,11 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class SizeTween : FlutterSDK.Animation.Tween.Tween<Size>
     {
-        #region constructors
         public SizeTween(Size begin = default(Size), Size end = default(Size))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -479,7 +424,6 @@ namespace FlutterSDK.Animation.Tween
         public new Size Lerp(double t) => Dart:uiDefaultClass.Size.Lerp(Begin, End, t);
 
 
-#endregion
 }
 
 
@@ -493,18 +437,11 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class RectTween : FlutterSDK.Animation.Tween.Tween<Rect>
     {
-        #region constructors
         public RectTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -512,7 +449,6 @@ namespace FlutterSDK.Animation.Tween
         public new Rect Lerp(double t) => Dart:uiDefaultClass.Rect.Lerp(Begin, End, t);
 
 
-#endregion
 }
 
 
@@ -531,23 +467,15 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class IntTween : FlutterSDK.Animation.Tween.Tween<int>
     {
-        #region constructors
         public IntTween(int begin = default(int), int end = default(int))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new int Lerp(double t) => (Begin + (End - Begin) * t).Round();
 
 
-        #endregion
     }
 
 
@@ -566,23 +494,15 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class StepTween : FlutterSDK.Animation.Tween.Tween<int>
     {
-        #region constructors
         public StepTween(int begin = default(int), int end = default(int))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new int Lerp(double t) => (Begin + (End - Begin) * t).Floor();
 
 
-        #endregion
     }
 
 
@@ -591,18 +511,11 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class ConstantTween<T> : FlutterSDK.Animation.Tween.Tween<T>
     {
-        #region constructors
         public ConstantTween(T value)
         : base(begin: value, end: value)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// This tween doesn't interpolate, it always returns the same value.
@@ -611,7 +524,6 @@ namespace FlutterSDK.Animation.Tween
 
 
 
-        #endregion
     }
 
 
@@ -645,19 +557,12 @@ namespace FlutterSDK.Animation.Tween
     /// </Summary>
     public class CurveTween : FlutterSDK.Animation.Tween.Animatable<double>
     {
-        #region constructors
         public CurveTween(FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
             this.Curve = curve;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        #endregion
-
-        #region methods
 
         public new double Transform(double t)
         {
@@ -673,7 +578,6 @@ namespace FlutterSDK.Animation.Tween
 
 
 
-        #endregion
     }
 
 }

@@ -512,14 +512,10 @@ namespace FlutterSDK.Services.Rawkeyboard
     /// </Summary>
     public class RawKeyEventData
     {
-        #region constructors
         public RawKeyEventData()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsShiftPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsAltPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -528,9 +524,6 @@ namespace FlutterSDK.Services.Rawkeyboard
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns true if the given [ModifierKey] was pressed at the time of this
@@ -561,7 +554,6 @@ namespace FlutterSDK.Services.Rawkeyboard
             return default(KeyboardSide);
         }
 
-        #endregion
     }
 
 
@@ -592,7 +584,6 @@ namespace FlutterSDK.Services.Rawkeyboard
     /// </Summary>
     public class RawKeyEvent : IDiagnosticable
     {
-        #region constructors
         public RawKeyEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
         {
             this.Data = data;
@@ -609,9 +600,6 @@ namespace FlutterSDK.Services.Rawkeyboard
         }
 
 
-        #endregion
-
-        #region fields
         public virtual string Character { get; set; }
         public virtual FlutterSDK.Services.Rawkeyboard.RawKeyEventData Data { get; set; }
         public virtual bool IsControlPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -620,9 +608,6 @@ namespace FlutterSDK.Services.Rawkeyboard
         public virtual bool IsMetaPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns true if the given [KeyboardKey] is pressed.
@@ -640,7 +625,6 @@ namespace FlutterSDK.Services.Rawkeyboard
 
 
 
-        #endregion
     }
 
 
@@ -653,19 +637,11 @@ namespace FlutterSDK.Services.Rawkeyboard
     /// </Summary>
     public class RawKeyDownEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
     {
-        #region constructors
         public RawKeyDownEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
         : base(data: data, character: character)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -678,19 +654,11 @@ namespace FlutterSDK.Services.Rawkeyboard
     /// </Summary>
     public class RawKeyUpEvent : FlutterSDK.Services.Rawkeyboard.RawKeyEvent
     {
-        #region constructors
         public RawKeyUpEvent(FlutterSDK.Services.Rawkeyboard.RawKeyEventData data = default(FlutterSDK.Services.Rawkeyboard.RawKeyEventData), string character = default(string))
         : base(data: data, character: character)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -715,7 +683,6 @@ namespace FlutterSDK.Services.Rawkeyboard
     /// </Summary>
     public class RawKeyboard
     {
-        #region constructors
         internal RawKeyboard()
         {
 
@@ -723,9 +690,6 @@ namespace FlutterSDK.Services.Rawkeyboard
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Rawkeyboard.RawKeyboard Instance { get; set; }
         internal virtual List<object> _Listeners { get; set; }
         internal virtual Dictionary<FlutterSDK.Services.Rawkeyboard._ModifierSidePair, HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey>> _ModifierKeyMap { get; set; }
@@ -734,9 +698,6 @@ namespace FlutterSDK.Services.Rawkeyboard
         internal virtual Dictionary<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey, FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> _KeysPressed { get; set; }
         public virtual HashSet<FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey> KeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual HashSet<FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey> PhysicalKeysPressed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Calls the listener every time the user presses or releases a key.
@@ -842,27 +803,19 @@ namespace FlutterSDK.Services.Rawkeyboard
         public virtual void ClearKeysPressed() => _KeysPressed.Clear();
 
 
-        #endregion
     }
 
 
     public class _ModifierSidePair
     {
-        #region constructors
         public _ModifierSidePair(FlutterSDK.Services.Rawkeyboard.ModifierKey modifier, FlutterSDK.Services.Rawkeyboard.KeyboardSide side)
         {
             this.Modifier = modifier;
             this.Side = side;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Rawkeyboard.ModifierKey Modifier { get; set; }
         public virtual FlutterSDK.Services.Rawkeyboard.KeyboardSide Side { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -872,7 +825,6 @@ namespace FlutterSDK.Services.Rawkeyboard
 
 
 
-        #endregion
     }
 
 

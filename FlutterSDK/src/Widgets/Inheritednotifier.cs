@@ -680,19 +680,12 @@ namespace FlutterSDK.Widgets.Inheritednotifier
     /// </Summary>
     public class InheritedNotifier<T> : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public InheritedNotifier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T notifier = default(T), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Notifier = notifier;
         }
-        #endregion
-
-        #region fields
         public virtual T Notifier { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> oldWidget)
         {
@@ -705,13 +698,11 @@ namespace FlutterSDK.Widgets.Inheritednotifier
         public new _InheritedNotifierElement<T> CreateElement() => new _InheritedNotifierElement<T>(this);
 
 
-        #endregion
     }
 
 
     public class _InheritedNotifierElement<T> : FlutterSDK.Widgets.Framework.InheritedElement
     {
-        #region constructors
         public _InheritedNotifierElement(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> widget)
         : base(widget)
         {
@@ -720,14 +711,8 @@ namespace FlutterSDK.Widgets.Inheritednotifier
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         public virtual FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Update(FlutterSDK.Widgets.Inheritednotifier.InheritedNotifier<T> newWidget)
         {
@@ -780,7 +765,6 @@ namespace FlutterSDK.Widgets.Inheritednotifier
 
 
 
-        #endregion
     }
 
 }

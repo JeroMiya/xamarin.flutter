@@ -342,21 +342,14 @@ namespace FlutterSDK.Foundation.Basictypes
     /// </Summary>
     public class CachingIterable<E> : IterableBase<E>
     {
-        #region constructors
         public CachingIterable(Iterator<E> _prefillIterator)
         {
             this._PrefillIterator = _prefillIterator;
         }
-        #endregion
-
-        #region fields
         internal virtual Iterator<E> _PrefillIterator { get; set; }
         internal virtual List<E> _Results { get; set; }
         public virtual Iterator<E> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int Length { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Iterable<T> Map<T>(Func<T, E> f)
         {
@@ -443,27 +436,19 @@ namespace FlutterSDK.Foundation.Basictypes
 
 
 
-        #endregion
     }
 
 
     public class _LazyListIterator<E> : IIterator<E>
     {
-        #region constructors
         public _LazyListIterator(FlutterSDK.Foundation.Basictypes.CachingIterable<E> _owner)
         : base()
         {
             this._Owner = _owner;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Foundation.Basictypes.CachingIterable<E> _Owner { get; set; }
         internal virtual int _Index { get; set; }
         public virtual E Current { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool MoveNext()
         {
@@ -475,7 +460,6 @@ namespace FlutterSDK.Foundation.Basictypes
 
 
 
-        #endregion
     }
 
 
@@ -484,22 +468,14 @@ namespace FlutterSDK.Foundation.Basictypes
     /// </Summary>
     public class Factory<T>
     {
-        #region constructors
         public Factory(FlutterSDK.Foundation.Basictypes.ValueGetter<T> constructor)
         : base()
         {
             this.Constructor = constructor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<T> Constructor { get; set; }
         public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

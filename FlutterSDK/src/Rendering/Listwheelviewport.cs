@@ -491,17 +491,9 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     /// </Summary>
     public class ListWheelParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public ListWheelParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual int Index { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -580,7 +572,6 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     /// </Summary>
     public class RenderListWheelViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listwheelviewport.ListWheelParentData>
     {
-        #region constructors
         public RenderListWheelViewport(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager childManager = default(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0, bool useMagnifier = false, double magnification = 1, double overAndUnderCenterOpacity = 1, double itemExtent = default(double), double squeeze = 1, bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
         : base()
         {
@@ -589,9 +580,6 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double DefaultDiameterRatio { get; set; }
         public virtual double DefaultPerspective { get; set; }
         public virtual string DiameterRatioZeroMessage { get; set; }
@@ -627,9 +615,6 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         internal virtual double _TopScrollMarginExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _MaxVisibleRadian { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HasScrolled()
         {
@@ -1131,7 +1116,6 @@ else
 
 
 
-        #endregion
         RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
         public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
         public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;

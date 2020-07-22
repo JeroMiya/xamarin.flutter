@@ -456,18 +456,11 @@ namespace FlutterSDK.Rendering.Sliverlist
     /// </Summary>
     public class RenderSliverList : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
-        #region constructors
         public RenderSliverList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -669,7 +662,6 @@ namespace FlutterSDK.Rendering.Sliverlist
 
 
 
-        #endregion
     }
 
 }

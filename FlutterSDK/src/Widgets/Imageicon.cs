@@ -440,7 +440,6 @@ namespace FlutterSDK.Widgets.Imageicon
     /// </Summary>
     public class ImageIcon : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public ImageIcon(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double size = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), string semanticLabel = default(string))
         : base(key: key)
         {
@@ -449,16 +448,10 @@ namespace FlutterSDK.Widgets.Imageicon
             this.Color = color;
             this.SemanticLabel = semanticLabel;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
         public virtual double Size { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual string SemanticLabel { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -484,7 +477,6 @@ namespace FlutterSDK.Widgets.Imageicon
 
 
 
-        #endregion
     }
 
 }

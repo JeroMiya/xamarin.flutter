@@ -445,7 +445,6 @@ namespace FlutterSDK.Material.Theme
     /// </Summary>
     public class Theme : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Theme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -453,16 +452,10 @@ namespace FlutterSDK.Material.Theme
             this.IsMaterialAppTheme = isMaterialAppTheme;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
         public virtual bool IsMaterialAppTheme { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual FlutterSDK.Material.Themedata.ThemeData _KFallbackTheme { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The data from the closest [Theme] instance that encloses the given
@@ -557,25 +550,17 @@ namespace FlutterSDK.Material.Theme
 
 
 
-        #endregion
     }
 
 
     public class _InheritedTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public _InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Theme.Theme theme = default(FlutterSDK.Material.Theme.Theme), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Theme = theme;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Theme.Theme Theme { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
@@ -591,7 +576,6 @@ namespace FlutterSDK.Material.Theme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Theme.Data != old.Theme.Data;
 
 
-        #endregion
     }
 
 
@@ -605,23 +589,15 @@ namespace FlutterSDK.Material.Theme
     /// </Summary>
     public class ThemeDataTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Material.Themedata.ThemeData>
     {
-        #region constructors
         public ThemeDataTween(FlutterSDK.Material.Themedata.ThemeData begin = default(FlutterSDK.Material.Themedata.ThemeData), FlutterSDK.Material.Themedata.ThemeData end = default(FlutterSDK.Material.Themedata.ThemeData))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Themedata.ThemeData Lerp(double t) => ThemedataDefaultClass.ThemeData.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -643,7 +619,6 @@ namespace FlutterSDK.Material.Theme
     /// </Summary>
     public class AnimatedTheme : FlutterSDK.Widgets.Implicitanimations.ImplicitlyAnimatedWidget
     {
-        #region constructors
         public AnimatedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Themedata.ThemeData data = default(FlutterSDK.Material.Themedata.ThemeData), bool isMaterialAppTheme = false, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), TimeSpan duration = default(TimeSpan), VoidCallback onEnd = default(VoidCallback), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, curve: curve, duration: duration, onEnd: onEnd)
         {
@@ -651,35 +626,21 @@ namespace FlutterSDK.Material.Theme
             this.IsMaterialAppTheme = isMaterialAppTheme;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Themedata.ThemeData Data { get; set; }
         public virtual bool IsMaterialAppTheme { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Theme._AnimatedThemeState CreateState() => new _AnimatedThemeState();
 
 
-        #endregion
     }
 
 
     public class _AnimatedThemeState : FlutterSDK.Widgets.Implicitanimations.AnimatedWidgetBaseState<FlutterSDK.Material.Theme.AnimatedTheme>
     {
-        #region constructors
         public _AnimatedThemeState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Theme.ThemeDataTween _Data { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ForEachTween(FlutterSDK.Widgets.Implicitanimations.TweenVisitor<object> visitor)
         {
@@ -706,7 +667,6 @@ namespace FlutterSDK.Material.Theme
 
 
 
-        #endregion
     }
 
 }

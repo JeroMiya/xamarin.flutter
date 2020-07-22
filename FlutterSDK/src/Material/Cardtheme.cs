@@ -395,7 +395,6 @@ namespace FlutterSDK.Material.Cardtheme
     /// </Summary>
     public class CardTheme : IDiagnosticable
     {
-        #region constructors
         public CardTheme(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -406,9 +405,6 @@ namespace FlutterSDK.Material.Cardtheme
             this.Margin = margin;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
@@ -416,9 +412,6 @@ namespace FlutterSDK.Material.Cardtheme
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -482,7 +475,6 @@ namespace FlutterSDK.Material.Cardtheme
 
 
 
-        #endregion
     }
 
 }

@@ -437,7 +437,6 @@ namespace FlutterSDK.Physics.Frictionsimulation
     /// </Summary>
     public class FrictionSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public FrictionSimulation(double drag, double position, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
@@ -453,17 +452,11 @@ namespace FlutterSDK.Physics.Frictionsimulation
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _Drag { get; set; }
         internal virtual double _DragLog { get; set; }
         internal virtual double _X { get; set; }
         internal virtual double _V { get; set; }
         public virtual double FinalX { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private double _DragFor(double startPosition, double endPosition, double startVelocity, double endVelocity)
         {
@@ -499,7 +492,6 @@ public virtual double TimeAtX(double x)
         public new bool IsDone(double time) => Dx(time).Abs() < Tolerance.Velocity;
 
 
-        #endregion
     }
 
 
@@ -509,21 +501,14 @@ public virtual double TimeAtX(double x)
     /// </Summary>
     public class BoundedFrictionSimulation : FlutterSDK.Physics.Frictionsimulation.FrictionSimulation
     {
-        #region constructors
         public BoundedFrictionSimulation(double drag, double position, double velocity, double _minX, double _maxX)
         : base(drag, position, velocity)
         {
             this._MinX = _minX;
             this._MaxX = _maxX;
         }
-        #endregion
-
-        #region fields
         internal virtual double _MinX { get; set; }
         internal virtual double _MaxX { get; set; }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
@@ -540,7 +525,6 @@ public virtual double TimeAtX(double x)
 
 
 
-        #endregion
     }
 
 }

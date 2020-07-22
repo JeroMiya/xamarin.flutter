@@ -519,14 +519,10 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     /// </Summary>
     public class FloatingActionButtonLocation
     {
-        #region constructors
         public FloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndFloat { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation CenterFloat { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndDocked { get; set; }
@@ -534,9 +530,6 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation StartTop { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation MiniStartTop { get; set; }
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation EndTop { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Places the [FloatingActionButton] based on the [Scaffold]'s layout.
@@ -553,23 +546,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
         }
 
 
-        #endregion
     }
 
 
     public class _CenterFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _CenterFloatFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -587,23 +572,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _EndFloatFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _EndFloatFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -621,23 +598,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _DockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _DockedFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public virtual double GetDockedY(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -654,23 +623,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _EndDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
     {
-        #region constructors
         public _EndDockedFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -681,23 +642,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _CenterDockedFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation._DockedFloatingActionButtonLocation
     {
-        #region constructors
         public _CenterDockedFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -708,23 +661,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _StartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _StartTopFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -734,23 +679,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _MiniStartTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _MiniStartTopFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -760,23 +697,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _EndTopFloatingActionButtonLocation : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonLocation
     {
-        #region constructors
         public _EndTopFloatingActionButtonLocation()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterSDK.Material.Scaffold.ScaffoldPrelayoutGeometry scaffoldGeometry)
         {
@@ -786,7 +715,6 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
@@ -810,18 +738,11 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     /// </Summary>
     public class FloatingActionButtonAnimator
     {
-        #region constructors
         public FloatingActionButtonAnimator()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator Scaling { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Gets the [FloatingActionButton]'s position relative to the origin of the
@@ -910,25 +831,17 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        #endregion
     }
 
 
     public class _ScalingFabMotionAnimator : FlutterSDK.Material.Floatingactionbuttonlocation.FloatingActionButtonAnimator
     {
-        #region constructors
         public _ScalingFabMotionAnimator()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _RotationTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThresholdCenterTween { get; set; }
-        #endregion
-
-        #region methods
 
         public new Offset GetOffset(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset), double progress = default(double))
         {
@@ -966,7 +879,6 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
         public new double GetAnimationRestart(double previousValue) => Math.Dart:mathDefaultClass.Min(1.0-previousValue, previousValue);
 
 
-#endregion
 }
 
 
@@ -978,23 +890,15 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
     /// </Summary>
     public class _AnimationSwap<T> : FlutterSDK.Animation.Animations.CompoundAnimation<T>
     {
-        #region constructors
         public _AnimationSwap(FlutterSDK.Animation.Animation.Animation<T> first, FlutterSDK.Animation.Animation.Animation<T> next, FlutterSDK.Animation.Animation.Animation<double> parent, double swapThreshold)
         : base(first: first, next: next)
         {
             this.Parent = parent;
             this.SwapThreshold = swapThreshold;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> Parent { get; set; }
         public virtual double SwapThreshold { get; set; }
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

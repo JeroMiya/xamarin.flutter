@@ -939,7 +939,6 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class TextTreeConfiguration
     {
-        #region constructors
         public TextTreeConfiguration(string prefixLineOne = default(string), string prefixOtherLines = default(string), string prefixLastChildLineOne = default(string), string prefixOtherLinesRootNode = default(string), string linkCharacter = default(string), string propertyPrefixIfChildren = default(string), string propertyPrefixNoChildren = default(string), string lineBreak = default(string), bool lineBreakProperties = true, string afterName = default(string), string afterDescriptionIfBody = default(string), string afterDescription = default(string), string beforeProperties = default(string), string afterProperties = default(string), string mandatoryAfterProperties = default(string), string propertySeparator = default(string), string bodyIndent = default(string), string footer = default(string), bool showChildren = true, bool addBlankLineIfNoChildren = true, bool isNameOnOwnLine = false, bool isBlankLineBetweenPropertiesAndChildren = true, string beforeName = default(string), string suffixLineOne = default(string), string mandatoryFooter = default(string))
         : base()
         {
@@ -969,9 +968,6 @@ namespace FlutterSDK.Foundation.Diagnostics
             this.SuffixLineOne = suffixLineOne;
             this.MandatoryFooter = mandatoryFooter;
         }
-        #endregion
-
-        #region fields
         public virtual string PrefixLineOne { get; set; }
         public virtual string SuffixLineOne { get; set; }
         public virtual string PrefixOtherLines { get; set; }
@@ -998,10 +994,6 @@ namespace FlutterSDK.Foundation.Diagnostics
         public virtual string Footer { get; set; }
         public virtual string MandatoryFooter { get; set; }
         public virtual bool IsBlankLineBetweenPropertiesAndChildren { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1016,16 +1008,12 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class _PrefixedStringBuilder
     {
-        #region constructors
         public _PrefixedStringBuilder(string prefixLineOne = default(string), string prefixOtherLines = default(string), int wrapWidth = default(int))
         : base()
         {
             this.PrefixLineOne = prefixLineOne;
             this.WrapWidth = wrapWidth;
         }
-        #endregion
-
-        #region fields
         public virtual string PrefixLineOne { get; set; }
         internal virtual string _PrefixOtherLines { get; set; }
         internal virtual string _NextPrefixOtherLines { get; set; }
@@ -1037,9 +1025,6 @@ namespace FlutterSDK.Foundation.Diagnostics
         public virtual string PrefixOtherLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool RequiresMultipleLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsCurrentLineEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void IncrementPrefixOtherLines(string suffix, bool updateCurrentLine = default(bool))
         {
@@ -1307,24 +1292,15 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
     public class _NoDefaultValue
     {
-        #region constructors
         public _NoDefaultValue()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1339,22 +1315,15 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class TextTreeRenderer
     {
-        #region constructors
         public TextTreeRenderer(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel minLevel = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), int wrapWidth = 100, int wrapWidthProperties = 65, int maxDescendentsTruncatableNode = -1)
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _WrapWidth { get; set; }
         internal virtual int _WrapWidthProperties { get; set; }
         internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel _MinLevel { get; set; }
         internal virtual int _MaxDescendentsTruncatableNode { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Text configuration to use to connect this node to a `child`.
@@ -1655,7 +1624,6 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
@@ -1673,7 +1641,6 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DiagnosticsNode
     {
-        #region constructors
         public DiagnosticsNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, string linePrefix = default(string))
         : base()
         {
@@ -1692,9 +1659,6 @@ namespace FlutterSDK.Foundation.Diagnostics
         }
 
 
-        #endregion
-
-        #region fields
         public virtual string Name { get; set; }
         public virtual bool ShowSeparator { get; set; }
         public virtual bool ShowName { get; set; }
@@ -1708,9 +1672,6 @@ namespace FlutterSDK.Foundation.Diagnostics
         public virtual bool AllowTruncate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual string _Separator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration TextTreeConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a description with a short summary of the node itself not
@@ -1845,7 +1806,6 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
@@ -1882,19 +1842,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class MessageProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
-        #region constructors
         public MessageProperty(string name, string message, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, null, description: message, style: style, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1908,19 +1860,12 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class StringProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<string>
     {
-        #region constructors
         public StringProperty(string name, string value, string description = default(string), string tooltip = default(string), bool showName = true, @Object defaultValue = default(@Object), bool quoted = true, string ifEmpty = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, description: description, defaultValue: defaultValue, tooltip: tooltip, showName: showName, ifEmpty: ifEmpty, style: style, level: level)
         {
             this.Quoted = quoted;
         }
-        #endregion
-
-        #region fields
         public virtual bool Quoted { get; set; }
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
         {
@@ -1952,13 +1897,11 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
     public class _NumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
     {
-        #region constructors
         public _NumProperty(string name, T value, string ifNull = default(string), string unit = default(string), bool showName = true, @Object defaultValue = default(@Object), string tooltip = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, level: level, style: style)
         {
@@ -1968,13 +1911,7 @@ namespace FlutterSDK.Foundation.Diagnostics
         {
             var instance = new _NumProperty<T>(name, computeValue, ifNull: ifNull, showName: showName, defaultValue: defaultValue, tooltip: tooltip, style: style, level: level); instance.Unit = unit;
         }
-        #endregion
-
-        #region fields
         public virtual string Unit { get; set; }
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
         {
@@ -2004,7 +1941,6 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
@@ -2015,7 +1951,6 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class DoubleProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<double>
     {
-        #region constructors
         public DoubleProperty(string name, double value, string ifNull = default(string), string unit = default(string), string tooltip = default(string), @Object defaultValue = default(@Object), bool showName = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, showName: showName, style: style, level: level)
         {
@@ -2025,17 +1960,10 @@ namespace FlutterSDK.Foundation.Diagnostics
         {
             var instance = new DoubleProperty(name, computeValue, showName: showName, ifNull: ifNull, unit: unit, tooltip: tooltip, defaultValue: defaultValue, level: level);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string NumberToString() => DebugDefaultClass.DebugFormatDouble(Value);
 
 
-        #endregion
     }
 
 
@@ -2046,23 +1974,15 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class IntProperty : FlutterSDK.Foundation.Diagnostics._NumProperty<int>
     {
-        #region constructors
         public IntProperty(string name, int value, string ifNull = default(string), bool showName = true, string unit = default(string), @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, ifNull: ifNull, showName: showName, unit: unit, defaultValue: defaultValue, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string NumberToString() => Value.ToString();
 
 
-        #endregion
     }
 
 
@@ -2072,18 +1992,11 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class PercentProperty : FlutterSDK.Foundation.Diagnostics.DoubleProperty
     {
-        #region constructors
         public PercentProperty(string name, double fraction, string ifNull = default(string), bool showName = true, string tooltip = default(string), string unit = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, fraction, ifNull: ifNull, showName: showName, tooltip: tooltip, unit: unit, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
         {
@@ -2102,7 +2015,6 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
@@ -2149,23 +2061,16 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class FlagProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<bool>
     {
-        #region constructors
         public FlagProperty(string name, bool value = default(bool), string ifTrue = default(string), string ifFalse = default(string), bool showName = false, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, showName: showName, defaultValue: defaultValue, level: level)
         {
             this.IfTrue = ifTrue;
             this.IfFalse = ifFalse;
         }
-        #endregion
-
-        #region fields
         public virtual string IfTrue { get; set; }
         public virtual string IfFalse { get; set; }
         public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
         {
@@ -2194,7 +2099,6 @@ namespace FlutterSDK.Foundation.Diagnostics
 
 
 
-        #endregion
     }
 
 
@@ -2208,19 +2112,12 @@ namespace FlutterSDK.Foundation.Diagnostics
     /// </Summary>
     public class IterableProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Iterable<T>>
     {
-        #region constructors
         public IterableProperty(string name, Iterable<T> value, @Object defaultValue = default(@Object), string ifNull = default(string), string ifEmpty = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, defaultValue: defaultValue, ifNull: ifNull, ifEmpty: ifEmpty, style: style, showName: showName, showSeparator: showSeparator, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
         {
@@ -2261,7 +2158,6 @@ return formattedValues.Join(DiagnosticsDefaultClass._IsSingleLine(Style)?", ":'\
 
 
 
-    #endregion
 }
 
 
@@ -2278,18 +2174,11 @@ return formattedValues.Join(DiagnosticsDefaultClass._IsSingleLine(Style)?", ":'\
 /// </Summary>
 public class EnumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
 {
-    #region constructors
     public EnumProperty(string name, T value, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, defaultValue: defaultValue, level: level)
     {
 
     }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
     {
@@ -2299,7 +2188,6 @@ public class EnumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
 
 
 
-    #endregion
 }
 
 
@@ -2329,7 +2217,6 @@ public class EnumProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
 /// </Summary>
 public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<T>
 {
-    #region constructors
     public ObjectFlagProperty(string name, T value, string ifPresent = default(string), string ifNull = default(string), bool showName = false, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, showName: showName, ifNull: ifNull, level: level)
     {
@@ -2339,15 +2226,9 @@ public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
     {
         var instance = new ObjectFlagProperty<T>(name, value, showName: false, level: level);
     }
-    #endregion
-
-    #region fields
     public virtual string IfPresent { get; set; }
     public virtual bool ShowName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
     {
@@ -2375,7 +2256,6 @@ public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
 
 
 
-    #endregion
 }
 
 
@@ -2404,19 +2284,12 @@ public class ObjectFlagProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
 /// </Summary>
 public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Dictionary<string, T>>
 {
-    #region constructors
     public FlagsSummary(string name, Dictionary<string, T> value, string ifEmpty = default(string), bool showName = true, bool showSeparator = true, FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name, value, ifEmpty: ifEmpty, showName: showName, showSeparator: showSeparator, level: level)
     {
 
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
     {
@@ -2463,7 +2336,6 @@ public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
 
 
 
-    #endregion
 }
 
 
@@ -2478,7 +2350,6 @@ public class FlagsSummary<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsProp
 /// </Summary>
 public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
 {
-    #region constructors
     public DiagnosticsProperty(string name, T value, string description = default(string), string ifNull = default(string), string ifEmpty = default(string), bool showName = true, bool showSeparator = true, @Object defaultValue = default(@Object), string tooltip = default(string), bool missingIfNull = false, string linePrefix = default(string), bool expandableValue = false, bool allowWrap = true, bool allowNameWrap = true, FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
     : base(name: name, showName: showName, showSeparator: showSeparator, style: style, linePrefix: linePrefix)
     {
@@ -2500,9 +2371,6 @@ public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnost
         instance.AllowWrap = allowWrap;
         instance.AllowNameWrap = allowNameWrap;
     }
-    #endregion
-
-    #region fields
     internal virtual string _Description { get; set; }
     public virtual bool ExpandableValue { get; set; }
     public new bool AllowWrap { get; set; }
@@ -2521,9 +2389,6 @@ public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnost
     public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual @Object Exception { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
     {
@@ -2676,7 +2541,6 @@ public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnost
 
 
 
-    #endregion
 }
 
 
@@ -2686,23 +2550,16 @@ public class DiagnosticsProperty<T> : FlutterSDK.Foundation.Diagnostics.Diagnost
 /// </Summary>
 public class DiagnosticableNode<T> : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
 {
-    #region constructors
     public DiagnosticableNode(string name = default(string), T value = default(T), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
     : base(name: name, style: style)
     {
         this.Value = value;
     }
-    #endregion
-
-    #region fields
     public new T Value { get; set; }
     internal virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder _CachedBuilder { get; set; }
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
     public virtual string EmptyBodyDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetProperties() => (ConstantsDefaultClass.KReleaseMode || ConstantsDefaultClass.KProfileMode) ? new List<DiagnosticsNode>() { } : Builder.Properties;
 
@@ -2725,7 +2582,6 @@ public class DiagnosticableNode<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
 
 
 
-    #endregion
 }
 
 
@@ -2734,18 +2590,11 @@ public class DiagnosticableNode<T> : FlutterSDK.Foundation.Diagnostics.Diagnosti
 /// </Summary>
 public class DiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Foundation.Diagnostics.DiagnosticableTree>
 {
-    #region constructors
     public DiagnosticableTreeNode(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticableTree value = default(FlutterSDK.Foundation.Diagnostics.DiagnosticableTree), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle))
     : base(name: name, value: value, style: style)
     {
 
     }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
     {
@@ -2755,7 +2604,6 @@ public class DiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.Diagnost
 
 
 
-    #endregion
 }
 
 
@@ -2765,7 +2613,6 @@ public class DiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.Diagnost
 /// </Summary>
 public class DiagnosticPropertiesBuilder
 {
-    #region constructors
     public DiagnosticPropertiesBuilder()
     : base()
     {
@@ -2775,15 +2622,9 @@ public class DiagnosticPropertiesBuilder
     {
         var instance = new DiagnosticPropertiesBuilder(); instance.Properties = properties;
     }
-    #endregion
-
-    #region fields
     public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> Properties { get; set; }
     public virtual FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle DefaultDiagnosticsTreeStyle { get; set; }
     public virtual string EmptyBodyDescription { get; set; }
-    #endregion
-
-    #region methods
 
     /// <Summary>
     /// Add a property to the list of properties.
@@ -2795,7 +2636,6 @@ public class DiagnosticPropertiesBuilder
 
 
 
-    #endregion
 }
 
 
@@ -2816,17 +2656,10 @@ public class DiagnosticPropertiesBuilder
 /// </Summary>
 public class DiagnosticableTree : IDiagnosticable
 {
-    #region constructors
     public DiagnosticableTree()
     {
 
     }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     /// <Summary>
     /// Returns a one-line detailed description of the object.
@@ -2924,7 +2757,6 @@ public class DiagnosticableTree : IDiagnosticable
     public virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribeChildren() => new List<DiagnosticsNode>() { };
 
 
-    #endregion
 }
 
 
@@ -2936,7 +2768,6 @@ public class DiagnosticableTree : IDiagnosticable
 /// </Summary>
 public class DiagnosticsBlock : FlutterSDK.Foundation.Diagnostics.DiagnosticsNode
 {
-    #region constructors
     public DiagnosticsBlock(string name = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool showName = true, bool showSeparator = true, string linePrefix = default(string), @Object value = default(@Object), string description = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel), bool allowTruncate = false, List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> children = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>), List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> properties = default(List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode>))
     : base(name: name, style: style, showName: showName && name != null, showSeparator: showSeparator, linePrefix: linePrefix)
     {
@@ -2944,18 +2775,12 @@ public class DiagnosticsBlock : FlutterSDK.Foundation.Diagnostics.DiagnosticsNod
         this.Level = level;
         this.AllowTruncate = allowTruncate;
     }
-    #endregion
-
-    #region fields
     internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _Children { get; set; }
     internal virtual List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> _Properties { get; set; }
     public new FlutterSDK.Foundation.Diagnostics.DiagnosticLevel Level { get; set; }
     internal virtual string _Description { get; set; }
     public new @Object Value { get; set; }
     public new bool AllowTruncate { get; set; }
-    #endregion
-
-    #region methods
 
     public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren() => _Children;
 
@@ -2968,27 +2793,19 @@ public class DiagnosticsBlock : FlutterSDK.Foundation.Diagnostics.DiagnosticsNod
     public new string ToDescription(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration)) => _Description;
 
 
-    #endregion
 }
 
 
 public class _DefaultDiagnosticsSerializationDelegate : IDiagnosticsSerializationDelegate
 {
-    #region constructors
     public _DefaultDiagnosticsSerializationDelegate(bool includeProperties = false, int subtreeDepth = 0)
     {
         this.IncludeProperties = includeProperties;
         this.SubtreeDepth = subtreeDepth;
     }
-    #endregion
-
-    #region fields
     public new bool IncludeProperties { get; set; }
     public new int SubtreeDepth { get; set; }
     public virtual bool ExpandPropertyValues { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new Dictionary<string, @Object> AdditionalNodeProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode node)
     {
@@ -3037,7 +2854,6 @@ public class _DefaultDiagnosticsSerializationDelegate : IDiagnosticsSerializatio
 
 
 
-    #endregion
 }
 
 

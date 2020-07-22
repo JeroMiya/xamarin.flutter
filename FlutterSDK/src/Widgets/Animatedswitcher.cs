@@ -431,7 +431,6 @@ namespace FlutterSDK.Widgets.Animatedswitcher
 
     public class _ChildEntry
     {
-        #region constructors
         public _ChildEntry(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget transition = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget widgetChild = default(FlutterSDK.Widgets.Framework.Widget))
         : base()
         {
@@ -440,18 +439,11 @@ namespace FlutterSDK.Widgets.Animatedswitcher
             this.Transition = transition;
             this.WidgetChild = widgetChild;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Transition { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget WidgetChild { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -536,7 +528,6 @@ namespace FlutterSDK.Widgets.Animatedswitcher
     /// </Summary>
     public class AnimatedSwitcher : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public AnimatedSwitcher(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve switchInCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Animation.Curves.Curve switchOutCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder transitionBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder), FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder layoutBuilder = default(FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder))
         : base(key: key)
         {
@@ -548,9 +539,6 @@ namespace FlutterSDK.Widgets.Animatedswitcher
             this.TransitionBuilder = transitionBuilder;
             this.LayoutBuilder = layoutBuilder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual TimeSpan Duration { get; set; }
         public virtual TimeSpan ReverseDuration { get; set; }
@@ -558,9 +546,6 @@ namespace FlutterSDK.Widgets.Animatedswitcher
         public virtual FlutterSDK.Animation.Curves.Curve SwitchOutCurve { get; set; }
         public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherTransitionBuilder TransitionBuilder { get; set; }
         public virtual FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcherLayoutBuilder LayoutBuilder { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Animatedswitcher._AnimatedSwitcherState CreateState() => new _AnimatedSwitcherState();
 
@@ -609,25 +594,17 @@ namespace FlutterSDK.Widgets.Animatedswitcher
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedSwitcherState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedswitcher.AnimatedSwitcher>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _AnimatedSwitcherState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Animatedswitcher._ChildEntry _CurrentEntry { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Animatedswitcher._ChildEntry> _OutgoingEntries { get; set; }
         internal virtual List<FlutterSDK.Widgets.Framework.Widget> _OutgoingWidgets { get; set; }
         internal virtual int _ChildNumber { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -771,7 +748,6 @@ namespace FlutterSDK.Widgets.Animatedswitcher
 
 
 
-        #endregion
     }
 
 }

@@ -501,16 +501,12 @@ namespace FlutterSDK.Material.Search
     /// </Summary>
     public class SearchDelegate<T>
     {
-        #region constructors
         public SearchDelegate(string searchFieldLabel = default(string), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction))
         {
             this.SearchFieldLabel = searchFieldLabel;
             this.KeyboardType = keyboardType;
             this.TextInputAction = textInputAction;
         }
-        #endregion
-
-        #region fields
         public virtual string SearchFieldLabel { get; set; }
         public virtual FlutterSDK.Services.Textinput.TextInputType KeyboardType { get; set; }
         public virtual FlutterSDK.Services.Textinput.TextInputAction TextInputAction { get; set; }
@@ -522,9 +518,6 @@ namespace FlutterSDK.Material.Search
         public virtual string Query { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.Animation<double> TransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterSDK.Material.Search._SearchBody _CurrentBody { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Suggestions shown in the body of the search page while the user types a
@@ -692,13 +685,11 @@ namespace FlutterSDK.Material.Search
 
 
 
-        #endregion
     }
 
 
     public class _SearchPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
-        #region constructors
         public _SearchPageRoute(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>))
         : base()
         {
@@ -708,17 +699,11 @@ namespace FlutterSDK.Material.Search
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
         public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildTransitions(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
@@ -756,46 +741,30 @@ namespace FlutterSDK.Material.Search
 
 
 
-        #endregion
     }
 
 
     public class _SearchPage<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _SearchPage(FlutterSDK.Material.Search.SearchDelegate<T> @delegate = default(FlutterSDK.Material.Search.SearchDelegate<T>), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>))
         {
             this.@delegate = @delegate;
             this.Animation = animation;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Search.SearchDelegate<T> @delegate { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> CreateState() => new _SearchPageState<T>();
 
 
-        #endregion
     }
 
 
     public class _SearchPageState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Search._SearchPage<T>>
     {
-        #region constructors
         public _SearchPageState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -911,7 +880,6 @@ namespace FlutterSDK.Material.Search
 
 
 
-        #endregion
     }
 
 

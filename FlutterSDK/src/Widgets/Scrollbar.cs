@@ -463,7 +463,6 @@ namespace FlutterSDK.Widgets.Scrollbar
     /// </Summary>
     public class ScrollbarPainter : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, ICustomPainter
     {
-        #region constructors
         public ScrollbarPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), double thickness = default(double), FlutterSDK.Animation.Animation.Animation<double> fadeoutOpacityAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double mainAxisMargin = 0.0, double crossAxisMargin = 0.0, Radius radius = default(Radius), double minLength = default(double), double minOverscrollLength = default(double))
         : base()
         {
@@ -477,9 +476,6 @@ namespace FlutterSDK.Widgets.Scrollbar
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Color _Color { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
         public virtual double Thickness { get; set; }
@@ -505,9 +501,6 @@ namespace FlutterSDK.Widgets.Scrollbar
         internal virtual double _TrackExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _TotalContentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Update with new [ScrollMetrics]. The scrollbar will show and redraw itself
@@ -675,7 +668,6 @@ namespace FlutterSDK.Widgets.Scrollbar
         public new bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => false;
 
 
-        #endregion
         CustomPainter _CustomPainterInstance = new CustomPainter();
         public void AddListener(VoidCallback listener) => _CustomPainterInstance.AddListener(listener);
         public void RemoveListener(VoidCallback listener) => _CustomPainterInstance.RemoveListener(listener);

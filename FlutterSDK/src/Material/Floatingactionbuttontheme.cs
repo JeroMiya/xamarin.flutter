@@ -412,7 +412,6 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
     /// </Summary>
     public class FloatingActionButtonThemeData : IDiagnosticable
     {
-        #region constructors
         public FloatingActionButtonThemeData(FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), double elevation = default(double), double focusElevation = default(double), double hoverElevation = default(double), double disabledElevation = default(double), double highlightElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         {
             this.ForegroundColor = foregroundColor;
@@ -427,9 +426,6 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
             this.HighlightElevation = highlightElevation;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color FocusColor { get; set; }
@@ -442,9 +438,6 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
         public virtual double HighlightElevation { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -504,7 +497,6 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
 
 
 
-        #endregion
     }
 
 }

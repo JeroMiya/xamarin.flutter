@@ -439,7 +439,6 @@ namespace FlutterSDK.Material.Tabbartheme
     /// </Summary>
     public class TabBarTheme : IDiagnosticable
     {
-        #region constructors
         public TabBarTheme(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Indicator = indicator;
@@ -450,9 +449,6 @@ namespace FlutterSDK.Material.Tabbartheme
             this.UnselectedLabelColor = unselectedLabelColor;
             this.UnselectedLabelStyle = unselectedLabelStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
         public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
@@ -461,9 +457,6 @@ namespace FlutterSDK.Material.Tabbartheme
         public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -515,7 +508,6 @@ namespace FlutterSDK.Material.Tabbartheme
 
 
 
-        #endregion
     }
 
 }

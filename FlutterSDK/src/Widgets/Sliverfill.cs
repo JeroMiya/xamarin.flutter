@@ -448,7 +448,6 @@ namespace FlutterSDK.Widgets.Sliverfill
     /// </Summary>
     public class SliverFillViewport : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SliverFillViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double viewportFraction = 1.0, bool padEnds = true)
         : base(key: key)
         {
@@ -456,15 +455,9 @@ namespace FlutterSDK.Widgets.Sliverfill
             this.ViewportFraction = viewportFraction;
             this.PadEnds = padEnds;
         }
-        #endregion
-
-        #region fields
         public virtual double ViewportFraction { get; set; }
         public virtual bool PadEnds { get; set; }
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -473,25 +466,17 @@ namespace FlutterSDK.Widgets.Sliverfill
 
 
 
-        #endregion
     }
 
 
     public class _SliverFillViewportRenderObjectWidget : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
-        #region constructors
         public _SliverFillViewportRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double viewportFraction = 1.0)
         : base(key: key, @delegate: @delegate)
         {
             this.ViewportFraction = viewportFraction;
         }
-        #endregion
-
-        #region fields
         public virtual double ViewportFraction { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -515,25 +500,17 @@ namespace FlutterSDK.Widgets.Sliverfill
 
 
 
-        #endregion
     }
 
 
     public class _SliverFractionalPadding : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _SliverFractionalPadding(double viewportFraction = 0, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(child: sliver)
         {
             this.ViewportFraction = viewportFraction;
         }
-        #endregion
-
-        #region fields
         public virtual double ViewportFraction { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderSliverFractionalPadding(viewportFraction: ViewportFraction);
 
@@ -552,29 +529,21 @@ namespace FlutterSDK.Widgets.Sliverfill
 
 
 
-        #endregion
     }
 
 
     public class _RenderSliverFractionalPadding : FlutterSDK.Rendering.Sliverpadding.RenderSliverEdgeInsetsPadding
     {
-        #region constructors
         public _RenderSliverFractionalPadding(double viewportFraction = 0)
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Sliver.SliverConstraints _LastResolvedConstraints { get; set; }
         internal virtual double _ViewportFraction { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets _ResolvedPadding { get; set; }
         public virtual double ViewportFraction { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets ResolvedPadding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _MarkNeedsResolution()
         {
@@ -606,7 +575,6 @@ namespace FlutterSDK.Widgets.Sliverfill
 
 
 
-        #endregion
     }
 
 
@@ -833,7 +801,6 @@ namespace FlutterSDK.Widgets.Sliverfill
     /// </Summary>
     public class SliverFillRemaining : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SliverFillRemaining(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool hasScrollBody = true, bool fillOverscroll = false)
         : base(key: key)
         {
@@ -841,15 +808,9 @@ namespace FlutterSDK.Widgets.Sliverfill
             this.HasScrollBody = hasScrollBody;
             this.FillOverscroll = fillOverscroll;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual bool HasScrollBody { get; set; }
         public virtual bool FillOverscroll { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -872,73 +833,48 @@ namespace FlutterSDK.Widgets.Sliverfill
 
 
 
-        #endregion
     }
 
 
     public class _SliverFillRemainingWithScrollable : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _SliverFillRemainingWithScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemainingWithScrollable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverFillRemainingWithScrollable();
 
 
-        #endregion
     }
 
 
     public class _SliverFillRemainingWithoutScrollable : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _SliverFillRemainingWithoutScrollable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemaining CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverFillRemaining();
 
 
-        #endregion
     }
 
 
     public class _SliverFillRemainingAndOverscroll : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _SliverFillRemainingAndOverscroll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverfill.RenderSliverFillRemainingAndOverscroll CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverFillRemainingAndOverscroll();
 
 
-        #endregion
     }
 
 }

@@ -498,7 +498,6 @@ namespace FlutterSDK.Widgets.Form
     /// </Summary>
     public class Form : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Form(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool autovalidate = false, FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback), VoidCallback onChanged = default(VoidCallback))
         : base(key: key)
         {
@@ -507,16 +506,10 @@ namespace FlutterSDK.Widgets.Form
             this.OnWillPop = onWillPop;
             this.OnChanged = onChanged;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual bool Autovalidate { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
         public virtual VoidCallback OnChanged { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the closest [FormState] which encloses the given context.
@@ -540,7 +533,6 @@ namespace FlutterSDK.Widgets.Form
         public new FlutterSDK.Widgets.Form.FormState CreateState() => new FormState();
 
 
-        #endregion
     }
 
 
@@ -554,17 +546,10 @@ namespace FlutterSDK.Widgets.Form
     /// </Summary>
     public class FormState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.Form>
     {
-        #region constructors
         public FormState()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _Generation { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Form.FormFieldState<object>> _Fields { get; set; }
-        #endregion
-
-        #region methods
 
         private void _FieldDidChange()
         {
@@ -665,34 +650,25 @@ namespace FlutterSDK.Widgets.Form
 
 
 
-        #endregion
     }
 
 
     public class _FormScope : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _FormScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Form.FormState formState = default(FlutterSDK.Widgets.Form.FormState), int generation = default(int))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Form.FormState _FormState { get; set; }
         internal virtual int _Generation { get; set; }
         public virtual FlutterSDK.Widgets.Form.Form Form { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Form._FormScope old) => _Generation != old._Generation;
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => _Generation != old._Generation;
 
 
-        #endregion
     }
 
 
@@ -721,7 +697,6 @@ namespace FlutterSDK.Widgets.Form
     /// </Summary>
     public class FormField<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public FormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Form.FormFieldBuilder<T> builder = default(FlutterSDK.Widgets.Form.FormFieldBuilder<T>), FlutterSDK.Widgets.Form.FormFieldSetter<T> onSaved = default(FlutterSDK.Widgets.Form.FormFieldSetter<T>), FlutterSDK.Widgets.Form.FormFieldValidator<T> validator = default(FlutterSDK.Widgets.Form.FormFieldValidator<T>), T initialValue = default(T), bool autovalidate = false, bool enabled = true)
         : base(key: key)
         {
@@ -732,23 +707,16 @@ namespace FlutterSDK.Widgets.Form
             this.Autovalidate = autovalidate;
             this.Enabled = enabled;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Form.FormFieldSetter<T> OnSaved { get; set; }
         public virtual FlutterSDK.Widgets.Form.FormFieldValidator<T> Validator { get; set; }
         public virtual FlutterSDK.Widgets.Form.FormFieldBuilder<T> Builder { get; set; }
         public virtual T InitialValue { get; set; }
         public virtual bool Autovalidate { get; set; }
         public virtual bool Enabled { get; set; }
-        #endregion
-
-        #region methods
 
         public new FormFieldState<T> CreateState() => new FormFieldState<T>();
 
 
-        #endregion
     }
 
 
@@ -758,21 +726,14 @@ namespace FlutterSDK.Widgets.Form
     /// </Summary>
     public class FormFieldState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Form.FormField<T>>
     {
-        #region constructors
         public FormFieldState()
         { }
-        #endregion
-
-        #region fields
         internal virtual T _Value { get; set; }
         internal virtual string _ErrorText { get; set; }
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string ErrorText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsValid { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Calls the [FormField]'s onSaved method with the current value.
@@ -895,7 +856,6 @@ namespace FlutterSDK.Widgets.Form
 
 
 
-        #endregion
     }
 
 }

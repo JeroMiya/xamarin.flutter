@@ -458,7 +458,6 @@ namespace FlutterSDK.Material.Refreshindicator
     /// </Summary>
     public class RefreshIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public RefreshIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double displacement = 40.0, FlutterSDK.Material.Refreshindicator.RefreshCallback onRefresh = default(FlutterSDK.Material.Refreshindicator.RefreshCallback), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), string semanticsLabel = default(string), string semanticsValue = default(string), double strokeWidth = 2.0)
         : base(key: key)
         {
@@ -472,9 +471,6 @@ namespace FlutterSDK.Material.Refreshindicator
             this.SemanticsValue = semanticsValue;
             this.StrokeWidth = strokeWidth;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual double Displacement { get; set; }
         public virtual FlutterSDK.Material.Refreshindicator.RefreshCallback OnRefresh { get; set; }
@@ -484,14 +480,10 @@ namespace FlutterSDK.Material.Refreshindicator
         public virtual string SemanticsLabel { get; set; }
         public virtual string SemanticsValue { get; set; }
         public virtual double StrokeWidth { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Refreshindicator.RefreshIndicatorState CreateState() => new RefreshIndicatorState();
 
 
-        #endregion
     }
 
 
@@ -501,12 +493,8 @@ namespace FlutterSDK.Material.Refreshindicator
     /// </Summary>
     public class RefreshIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Refreshindicator.RefreshIndicator>, ITickerProviderStateMixin<FlutterSDK.Material.Refreshindicator.RefreshIndicator>
     {
-        #region constructors
         public RefreshIndicatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ScaleController { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _PositionFactor { get; set; }
@@ -520,9 +508,6 @@ namespace FlutterSDK.Material.Refreshindicator
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ThreeQuarterTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _KDragSizeFactorLimitTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _OneToZeroTween { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -768,7 +753,6 @@ namespace FlutterSDK.Material.Refreshindicator
 
 
 
-        #endregion
     }
 
 

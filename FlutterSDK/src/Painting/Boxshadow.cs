@@ -444,20 +444,13 @@ namespace FlutterSDK.Painting.Boxshadow
     /// </Summary>
     public class BoxShadow : Shadow
     {
-        #region constructors
         public BoxShadow(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double blurRadius = 0.0, double spreadRadius = 0.0)
         : base(color: color, offset: offset, blurRadius: blurRadius)
         {
             this.SpreadRadius = spreadRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double SpreadRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Create the [Paint] object that corresponds to this shadow description.
@@ -539,7 +532,6 @@ namespace FlutterSDK.Painting.Boxshadow
 
 
 
-        #endregion
     }
 
 }

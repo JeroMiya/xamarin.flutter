@@ -443,7 +443,6 @@ namespace FlutterSDK.Material.Tooltiptheme
     /// </Summary>
     public class TooltipThemeData : IDiagnosticable
     {
-        #region constructors
         public TooltipThemeData(double height = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double verticalOffset = default(double), bool preferBelow = default(bool), bool excludeFromSemantics = default(bool), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), TimeSpan waitDuration = default(TimeSpan), TimeSpan showDuration = default(TimeSpan))
         {
             this.Height = height;
@@ -457,9 +456,6 @@ namespace FlutterSDK.Material.Tooltiptheme
             this.WaitDuration = waitDuration;
             this.ShowDuration = showDuration;
         }
-        #endregion
-
-        #region fields
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
@@ -471,9 +467,6 @@ namespace FlutterSDK.Material.Tooltiptheme
         public virtual TimeSpan WaitDuration { get; set; }
         public virtual TimeSpan ShowDuration { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -531,7 +524,6 @@ namespace FlutterSDK.Material.Tooltiptheme
 
 
 
-        #endregion
     }
 
 
@@ -569,19 +561,12 @@ namespace FlutterSDK.Material.Tooltiptheme
     /// </Summary>
     public class TooltipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public TooltipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Tooltiptheme.TooltipThemeData data = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tooltiptheme.TooltipThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the [data] from the closest [TooltipTheme] ancestor. If there is
@@ -617,7 +602,6 @@ namespace FlutterSDK.Material.Tooltiptheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 }

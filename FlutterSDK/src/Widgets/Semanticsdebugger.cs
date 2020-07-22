@@ -437,43 +437,28 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
     /// </Summary>
     public class SemanticsDebugger : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SemanticsDebugger(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(key: key)
         {
             this.Child = child;
             this.LabelStyle = labelStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerState CreateState() => new _SemanticsDebuggerState();
 
 
-        #endregion
     }
 
 
     public class _SemanticsDebuggerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Semanticsdebugger.SemanticsDebugger>, IWidgetsBindingObserver
     {
-        #region constructors
         public _SemanticsDebuggerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Semanticsdebugger._SemanticsClient _Client { get; set; }
         internal virtual FlutterBinding.UI.Offset _LastPointerDownLocation { get; set; }
         internal virtual FlutterSDK.Rendering.@object.PipelineOwner _PipelineOwner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -618,13 +603,11 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
 
 
 
-        #endregion
     }
 
 
     public class _SemanticsClient : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public _SemanticsClient(FlutterSDK.Rendering.@object.PipelineOwner pipelineOwner)
         {
 
@@ -632,14 +615,8 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.@object.SemanticsHandle _SemanticsHandle { get; set; }
         public virtual int Generation { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -659,13 +636,11 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
 
 
 
-        #endregion
     }
 
 
     public class _SemanticsDebuggerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _SemanticsDebuggerPainter(FlutterSDK.Rendering.@object.PipelineOwner owner, int generation, FlutterBinding.UI.Offset pointerPosition, double devicePixelRatio, FlutterSDK.Painting.Textstyle.TextStyle labelStyle)
         {
             this.Owner = owner;
@@ -674,18 +649,12 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
             this.DevicePixelRatio = devicePixelRatio;
             this.LabelStyle = labelStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.@object.PipelineOwner Owner { get; set; }
         public virtual int Generation { get; set; }
         public virtual FlutterBinding.UI.Offset PointerPosition { get; set; }
         public virtual double DevicePixelRatio { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
         internal virtual FlutterSDK.Semantics.Semantics.SemanticsNode _RootSemanticsNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -860,7 +829,6 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
 
 
 
-        #endregion
     }
 
 }

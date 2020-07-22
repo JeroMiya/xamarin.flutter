@@ -488,18 +488,11 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class PlatformViewsRegistry
     {
-        #region constructors
         internal static PlatformViewsRegistry _Instance()
         {
             var instance = new PlatformViewsRegistry();
         }
-        #endregion
-
-        #region fields
         internal virtual int _NextPlatformViewId { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Allocates a unique identifier for a platform view.
@@ -513,7 +506,6 @@ namespace FlutterSDK.Services.Platformviews
         public virtual int GetNextPlatformViewId() => _NextPlatformViewId++;
 
 
-        #endregion
     }
 
 
@@ -524,7 +516,6 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class PlatformViewsService
     {
-        #region constructors
         internal PlatformViewsService()
         {
 
@@ -532,15 +523,9 @@ namespace FlutterSDK.Services.Platformviews
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _ServiceInstance { get; set; }
         internal virtual Dictionary<int, object> _FocusCallbacks { get; set; }
         internal virtual FlutterSDK.Services.Platformviews.PlatformViewsService _Instance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private Future<object> _OnMethodCall(FlutterSDK.Services.Messagecodec.MethodCall call)
         {
@@ -633,7 +618,6 @@ namespace FlutterSDK.Services.Platformviews
 
 
 
-        #endregion
     }
 
 
@@ -644,16 +628,12 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidPointerProperties
     {
-        #region constructors
         public AndroidPointerProperties(int id = default(int), int toolType = default(int))
         : base()
         {
             this.Id = id;
             this.ToolType = toolType;
         }
-        #endregion
-
-        #region fields
         public virtual int Id { get; set; }
         public virtual int ToolType { get; set; }
         public virtual int KToolTypeUnknown { get; set; }
@@ -661,15 +641,11 @@ namespace FlutterSDK.Services.Platformviews
         public virtual int KToolTypeStylus { get; set; }
         public virtual int KToolTypeMouse { get; set; }
         public virtual int KToolTypeEraser { get; set; }
-        #endregion
-
-        #region methods
 
         private List<int> _AsList() => new List<int>() { Id, ToolType };
 
 
 
-        #endregion
     }
 
 
@@ -680,7 +656,6 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidPointerCoords
     {
-        #region constructors
         public AndroidPointerCoords(double orientation = default(double), double pressure = default(double), double size = default(double), double toolMajor = default(double), double toolMinor = default(double), double touchMajor = default(double), double touchMinor = default(double), double x = default(double), double y = default(double))
         : base()
         {
@@ -694,9 +669,6 @@ namespace FlutterSDK.Services.Platformviews
             this.x = x;
             this.y = y;
         }
-        #endregion
-
-        #region fields
         public virtual double Orientation { get; set; }
         public virtual double Pressure { get; set; }
         public virtual double Size { get; set; }
@@ -706,9 +678,6 @@ namespace FlutterSDK.Services.Platformviews
         public virtual double TouchMinor { get; set; }
         public virtual double x { get; set; }
         public virtual double y { get; set; }
-        #endregion
-
-        #region methods
 
         private List<double> _AsList()
         {
@@ -718,7 +687,6 @@ namespace FlutterSDK.Services.Platformviews
 
 
 
-        #endregion
     }
 
 
@@ -727,7 +695,6 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidMotionEvent
     {
-        #region constructors
         public AndroidMotionEvent(int downTime = default(int), int eventTime = default(int), int action = default(int), int pointerCount = default(int), List<FlutterSDK.Services.Platformviews.AndroidPointerProperties> pointerProperties = default(List<FlutterSDK.Services.Platformviews.AndroidPointerProperties>), List<FlutterSDK.Services.Platformviews.AndroidPointerCoords> pointerCoords = default(List<FlutterSDK.Services.Platformviews.AndroidPointerCoords>), int metaState = default(int), int buttonState = default(int), double xPrecision = default(double), double yPrecision = default(double), int deviceId = default(int), int edgeFlags = default(int), int source = default(int), int flags = default(int))
         : base()
         {
@@ -746,9 +713,6 @@ namespace FlutterSDK.Services.Platformviews
             this.Source = source;
             this.Flags = flags;
         }
-        #endregion
-
-        #region fields
         public virtual int DownTime { get; set; }
         public virtual int EventTime { get; set; }
         public virtual int Action { get; set; }
@@ -763,9 +727,6 @@ namespace FlutterSDK.Services.Platformviews
         public virtual int EdgeFlags { get; set; }
         public virtual int Source { get; set; }
         public virtual int Flags { get; set; }
-        #endregion
-
-        #region methods
 
         private List<object> _AsList(int viewId)
         {
@@ -775,7 +736,6 @@ namespace FlutterSDK.Services.Platformviews
 
 
 
-        #endregion
     }
 
 
@@ -786,15 +746,11 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class AndroidViewController
     {
-        #region constructors
         internal AndroidViewController(int id, string viewType, object creationParams, FlutterSDK.Services.Messagecodec.MessageCodec<object> creationParamsCodec, TextDirection layoutDirection)
         : base()
         {
             this.Id = id;
         }
-        #endregion
-
-        #region fields
         public virtual int KActionDown { get; set; }
         public virtual int KActionUp { get; set; }
         public virtual int KActionMove { get; set; }
@@ -813,9 +769,6 @@ namespace FlutterSDK.Services.Platformviews
         internal virtual List<object> _PlatformViewCreatedCallbacks { get; set; }
         public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsCreated { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds a callback that will get invoke after the platform view has been
@@ -969,7 +922,6 @@ namespace FlutterSDK.Services.Platformviews
 
 
 
-        #endregion
     }
 
 
@@ -980,21 +932,14 @@ namespace FlutterSDK.Services.Platformviews
     /// </Summary>
     public class UiKitViewController
     {
-        #region constructors
         internal UiKitViewController(int id, TextDirection layoutDirection)
         : base()
         {
             this.Id = id;
         }
-        #endregion
-
-        #region fields
         public virtual int Id { get; set; }
         internal virtual bool _DebugDisposed { get; set; }
         internal virtual TextDirection _LayoutDirection { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Sets the layout direction for the iOS UIView.
@@ -1057,7 +1002,6 @@ namespace FlutterSDK.Services.Platformviews
 
 
 
-        #endregion
     }
 
 

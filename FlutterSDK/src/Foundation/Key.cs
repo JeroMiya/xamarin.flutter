@@ -375,7 +375,6 @@ namespace FlutterSDK.Foundation.Key
     /// </Summary>
     public class Key
     {
-        #region constructors
         public Key(string value)
         : base()
         {
@@ -385,13 +384,6 @@ namespace FlutterSDK.Foundation.Key
         {
             var instance = new Key();
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -407,19 +399,11 @@ namespace FlutterSDK.Foundation.Key
     /// </Summary>
     public class LocalKey : FlutterSDK.Foundation.Key.Key
     {
-        #region constructors
         public LocalKey()
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -441,19 +425,12 @@ namespace FlutterSDK.Foundation.Key
     /// </Summary>
     public class ValueKey<T> : FlutterSDK.Foundation.Key.LocalKey
     {
-        #region constructors
         public ValueKey(T value)
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -464,7 +441,6 @@ namespace FlutterSDK.Foundation.Key
 
 
 
-        #endregion
     }
 
 }

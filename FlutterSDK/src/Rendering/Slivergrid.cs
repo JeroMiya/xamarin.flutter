@@ -499,7 +499,6 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridGeometry
     {
-        #region constructors
         public SliverGridGeometry(double scrollOffset = default(double), double crossAxisOffset = default(double), double mainAxisExtent = default(double), double crossAxisExtent = default(double))
         {
             this.ScrollOffset = scrollOffset;
@@ -507,17 +506,11 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.MainAxisExtent = mainAxisExtent;
             this.CrossAxisExtent = crossAxisExtent;
         }
-        #endregion
-
-        #region fields
         public virtual double ScrollOffset { get; set; }
         public virtual double CrossAxisOffset { get; set; }
         public virtual double MainAxisExtent { get; set; }
         public virtual double CrossAxisExtent { get; set; }
         public virtual double TrailingScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a tight [BoxConstraints] that forces the child to have the
@@ -531,7 +524,6 @@ namespace FlutterSDK.Rendering.Slivergrid
 
 
 
-        #endregion
     }
 
 
@@ -559,17 +551,10 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridLayout
     {
-        #region constructors
         public SliverGridLayout()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The minimum child index that is visible at (or after) this scroll offset.
@@ -609,7 +594,6 @@ namespace FlutterSDK.Rendering.Slivergrid
             return default(double);
         }
 
-        #endregion
     }
 
 
@@ -637,7 +621,6 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridRegularTileLayout : FlutterSDK.Rendering.Slivergrid.SliverGridLayout
     {
-        #region constructors
         public SliverGridRegularTileLayout(int crossAxisCount = default(int), double mainAxisStride = default(double), double crossAxisStride = default(double), double childMainAxisExtent = default(double), double childCrossAxisExtent = default(double), bool reverseCrossAxis = default(bool))
         : base()
         {
@@ -648,18 +631,12 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.ChildCrossAxisExtent = childCrossAxisExtent;
             this.ReverseCrossAxis = reverseCrossAxis;
         }
-        #endregion
-
-        #region fields
         public virtual int CrossAxisCount { get; set; }
         public virtual double MainAxisStride { get; set; }
         public virtual double CrossAxisStride { get; set; }
         public virtual double ChildMainAxisExtent { get; set; }
         public virtual double ChildCrossAxisExtent { get; set; }
         public virtual bool ReverseCrossAxis { get; set; }
-        #endregion
-
-        #region methods
 
         public new int GetMinChildIndexForScrollOffset(double scrollOffset)
         {
@@ -711,7 +688,6 @@ namespace FlutterSDK.Rendering.Slivergrid
 
 
 
-        #endregion
     }
 
 
@@ -737,17 +713,10 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridDelegate
     {
-        #region constructors
         public SliverGridDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns information about the size and position of the tiles in the grid.
@@ -771,7 +740,6 @@ namespace FlutterSDK.Rendering.Slivergrid
             return default(bool);
         }
 
-        #endregion
     }
 
 
@@ -798,7 +766,6 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridDelegateWithFixedCrossAxisCount : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
-        #region constructors
         public SliverGridDelegateWithFixedCrossAxisCount(int crossAxisCount = default(int), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
         : base()
         {
@@ -807,16 +774,10 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.CrossAxisSpacing = crossAxisSpacing;
             this.ChildAspectRatio = childAspectRatio;
         }
-        #endregion
-
-        #region fields
         public virtual int CrossAxisCount { get; set; }
         public virtual double MainAxisSpacing { get; set; }
         public virtual double CrossAxisSpacing { get; set; }
         public virtual double ChildAspectRatio { get; set; }
-        #endregion
-
-        #region methods
 
         private bool _DebugAssertIsValid()
         {
@@ -855,7 +816,6 @@ namespace FlutterSDK.Rendering.Slivergrid
 
 
 
-        #endregion
     }
 
 
@@ -888,7 +848,6 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridDelegateWithMaxCrossAxisExtent : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
-        #region constructors
         public SliverGridDelegateWithMaxCrossAxisExtent(double maxCrossAxisExtent = default(double), double mainAxisSpacing = 0.0, double crossAxisSpacing = 0.0, double childAspectRatio = 1.0)
         : base()
         {
@@ -897,16 +856,10 @@ namespace FlutterSDK.Rendering.Slivergrid
             this.CrossAxisSpacing = crossAxisSpacing;
             this.ChildAspectRatio = childAspectRatio;
         }
-        #endregion
-
-        #region fields
         public virtual double MaxCrossAxisExtent { get; set; }
         public virtual double MainAxisSpacing { get; set; }
         public virtual double CrossAxisSpacing { get; set; }
         public virtual double ChildAspectRatio { get; set; }
-        #endregion
-
-        #region methods
 
         private bool _DebugAssertIsValid()
         {
@@ -946,7 +899,6 @@ namespace FlutterSDK.Rendering.Slivergrid
 
 
 
-        #endregion
     }
 
 
@@ -955,18 +907,10 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class SliverGridParentData : FlutterSDK.Rendering.Slivermultiboxadaptor.SliverMultiBoxAdaptorParentData
     {
-        #region constructors
         public SliverGridParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual double CrossAxisOffset { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -986,20 +930,13 @@ namespace FlutterSDK.Rendering.Slivergrid
     /// </Summary>
     public class RenderSliverGrid : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
-        #region constructors
         public RenderSliverGrid(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate _GridDelegate { get; set; }
         public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -1131,7 +1068,6 @@ namespace FlutterSDK.Rendering.Slivergrid
 
 
 
-        #endregion
     }
 
 }

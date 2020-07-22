@@ -383,23 +383,16 @@ namespace FlutterSDK.Material.Bottomappbartheme
     /// </Summary>
     public class BottomAppBarTheme : IDiagnosticable
     {
-        #region constructors
         public BottomAppBarTheme(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
         {
             this.Color = color;
             this.Elevation = elevation;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -460,7 +453,6 @@ namespace FlutterSDK.Material.Bottomappbartheme
 
 
 
-        #endregion
     }
 
 }

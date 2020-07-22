@@ -493,18 +493,11 @@ namespace FlutterSDK.Physics.Simulation
     /// </Summary>
     public class Simulation
     {
-        #region constructors
         public Simulation(FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         {
             this.Tolerance = tolerance;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Physics.Tolerance.Tolerance Tolerance { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The position of the object in the simulation at the given time.
@@ -533,7 +526,6 @@ namespace FlutterSDK.Physics.Simulation
         }
 
 
-        #endregion
     }
 
 }

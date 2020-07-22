@@ -440,18 +440,11 @@ namespace FlutterSDK.Painting.Matrixutils
     /// </Summary>
     public class MatrixUtils
     {
-        #region constructors
         internal MatrixUtils()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<float> _MinMax { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the given [transform] matrix as an [Offset], if the matrix is
@@ -808,7 +801,6 @@ namespace FlutterSDK.Painting.Matrixutils
 
 
 
-        #endregion
     }
 
 
@@ -817,18 +809,11 @@ namespace FlutterSDK.Painting.Matrixutils
     /// </Summary>
     public class TransformProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<object>
     {
-        #region constructors
         public TransformProperty(string name, Matrix4 value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, showName: showName, defaultValue: defaultValue, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new string ValueToString(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration parentConfiguration = default(FlutterSDK.Foundation.Diagnostics.TextTreeConfiguration))
         {
@@ -843,7 +828,6 @@ namespace FlutterSDK.Painting.Matrixutils
 
 
 
-        #endregion
     }
 
 }

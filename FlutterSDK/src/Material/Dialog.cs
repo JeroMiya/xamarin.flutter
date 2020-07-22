@@ -427,7 +427,6 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class Dialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Dialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), TimeSpan insetAnimationDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve insetAnimationCurve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -440,9 +439,6 @@ namespace FlutterSDK.Material.Dialog
             this.Shape = shape;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual double Elevation { get; set; }
         public virtual TimeSpan InsetAnimationDuration { get; set; }
@@ -453,9 +449,6 @@ namespace FlutterSDK.Material.Dialog
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         internal virtual FlutterSDK.Painting.Roundedrectangleborder.RoundedRectangleBorder _DefaultDialogShape { get; set; }
         internal virtual double _DefaultElevation { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -466,7 +459,6 @@ namespace FlutterSDK.Material.Dialog
 
 
 
-        #endregion
     }
 
 
@@ -543,7 +535,6 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class AlertDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public AlertDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry actionsPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Basictypes.VerticalDirection actionsOverflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double actionsOverflowButtonSpacing = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Edgeinsets.EdgeInsets insetPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), bool scrollable = false)
         : base(key: key)
         {
@@ -566,9 +557,6 @@ namespace FlutterSDK.Material.Dialog
             this.Shape = shape;
             this.Scrollable = scrollable;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
@@ -587,9 +575,6 @@ namespace FlutterSDK.Material.Dialog
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual bool Scrollable { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -625,7 +610,6 @@ namespace FlutterSDK.Material.Dialog
 
 
 
-        #endregion
     }
 
 
@@ -663,7 +647,6 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class SimpleDialogOption : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SimpleDialogOption(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -671,15 +654,9 @@ namespace FlutterSDK.Material.Dialog
             this.Padding = padding;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnPressed { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -688,7 +665,6 @@ namespace FlutterSDK.Material.Dialog
 
 
 
-        #endregion
     }
 
 
@@ -765,7 +741,6 @@ namespace FlutterSDK.Material.Dialog
     /// </Summary>
     public class SimpleDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SimpleDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry titlePadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), string semanticLabel = default(string), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -778,9 +753,6 @@ namespace FlutterSDK.Material.Dialog
             this.SemanticLabel = semanticLabel;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry TitlePadding { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
@@ -789,9 +761,6 @@ namespace FlutterSDK.Material.Dialog
         public virtual double Elevation { get; set; }
         public virtual string SemanticLabel { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -810,7 +779,6 @@ namespace FlutterSDK.Material.Dialog
 
 
 
-        #endregion
     }
 
 }

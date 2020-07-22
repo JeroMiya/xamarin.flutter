@@ -310,7 +310,6 @@ namespace FlutterSDK.Foundation.Serialization
     /// </Summary>
     public class WriteBuffer
     {
-        #region constructors
         public WriteBuffer()
         {
 
@@ -320,15 +319,9 @@ namespace FlutterSDK.Foundation.Serialization
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual Uint8Buffer _Buffer { get; set; }
         internal virtual ByteData _EightBytes { get; set; }
         internal virtual Uint8List _EightBytesAsList { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Write a Uint8 into the buffer.
@@ -474,7 +467,6 @@ namespace FlutterSDK.Foundation.Serialization
 
 
 
-        #endregion
     }
 
 
@@ -485,21 +477,14 @@ namespace FlutterSDK.Foundation.Serialization
     /// </Summary>
     public class ReadBuffer
     {
-        #region constructors
         public ReadBuffer(ByteData data)
         : base()
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual ByteData Data { get; set; }
         internal virtual int _Position { get; set; }
         public virtual bool HasRemaining { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Reads a Uint8 from the buffer.
@@ -641,7 +626,6 @@ namespace FlutterSDK.Foundation.Serialization
 
 
 
-        #endregion
     }
 
 }

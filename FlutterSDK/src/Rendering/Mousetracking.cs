@@ -440,22 +440,15 @@ namespace FlutterSDK.Rendering.Mousetracking
     /// </Summary>
     public class MouseTrackerAnnotation : IDiagnosticable
     {
-        #region constructors
         public MouseTrackerAnnotation(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener))
         {
             this.OnEnter = onEnter;
             this.OnHover = onHover;
             this.OnExit = onExit;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener OnEnter { get; set; }
         public virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener OnHover { get; set; }
         public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
@@ -465,29 +458,21 @@ namespace FlutterSDK.Rendering.Mousetracking
 
 
 
-        #endregion
     }
 
 
     public class _MouseState
     {
-        #region constructors
         public _MouseState(FlutterSDK.Gestures.Events.PointerEvent initialEvent = default(FlutterSDK.Gestures.Events.PointerEvent))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> _Annotations { get; set; }
         internal virtual FlutterSDK.Gestures.Events.PointerEvent _LatestEvent { get; set; }
         public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> Annotations { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Gestures.Events.PointerEvent LatestEvent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int Device { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> ReplaceAnnotations(LinkedHashSet<FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation> value)
         {
@@ -499,7 +484,6 @@ namespace FlutterSDK.Rendering.Mousetracking
 
 
 
-        #endregion
     }
 
 
@@ -532,7 +516,6 @@ namespace FlutterSDK.Rendering.Mousetracking
     /// </Summary>
     public class MouseTracker : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public MouseTracker(FlutterSDK.Gestures.Pointerrouter.PointerRouter _router, FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder annotationFinder)
         : base()
         {
@@ -542,9 +525,6 @@ namespace FlutterSDK.Rendering.Mousetracking
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Mousetracking.MouseDetectorAnnotationFinder AnnotationFinder { get; set; }
         internal virtual FlutterSDK.Gestures.Pointerrouter.PointerRouter _Router { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Rendering.Mousetracking._MouseState> _MouseStates { get; set; }
@@ -552,9 +532,6 @@ namespace FlutterSDK.Rendering.Mousetracking
         internal virtual bool _HasScheduledPostFrameCheck { get; set; }
         internal virtual bool _DuringBuildPhase { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool MouseIsConnected { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -742,7 +719,6 @@ namespace FlutterSDK.Rendering.Mousetracking
 
 
 
-        #endregion
     }
 
 }

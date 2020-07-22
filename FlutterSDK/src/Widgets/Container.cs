@@ -515,21 +515,14 @@ namespace FlutterSDK.Widgets.Container
     /// </Summary>
     public class DecoratedBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public DecoratedBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Decoration = decoration;
             this.Position = position;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderDecoratedBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -572,7 +565,6 @@ namespace FlutterSDK.Widgets.Container
 
 
 
-        #endregion
     }
 
 
@@ -707,7 +699,6 @@ namespace FlutterSDK.Widgets.Container
     /// </Summary>
     public class Container : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Container(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Decoration.Decoration foregroundDecoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), Matrix4 transform = default(Matrix4), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(key: key)
         {
@@ -721,9 +712,6 @@ namespace FlutterSDK.Widgets.Container
             this.Child = child;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
@@ -735,9 +723,6 @@ namespace FlutterSDK.Widgets.Container
         public virtual Matrix4 Transform { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -786,7 +771,6 @@ namespace FlutterSDK.Widgets.Container
 
 
 
-        #endregion
     }
 
 
@@ -795,20 +779,13 @@ namespace FlutterSDK.Widgets.Container
     /// </Summary>
     public class _DecorationClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
     {
-        #region constructors
         public _DecorationClipper(TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration))
         : base()
         {
             this.Decoration = decoration;
         }
-        #endregion
-
-        #region fields
         public virtual TextDirection TextDirection { get; set; }
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
-        #endregion
-
-        #region methods
 
         public new Path GetClip(Size size)
         {
@@ -825,7 +802,6 @@ namespace FlutterSDK.Widgets.Container
 
 
 
-        #endregion
     }
 
 }

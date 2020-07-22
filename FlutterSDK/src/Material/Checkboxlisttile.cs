@@ -605,7 +605,6 @@ namespace FlutterSDK.Material.Checkboxlisttile
     /// </Summary>
     public class CheckboxListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CheckboxListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false, FlutterSDK.Material.Listtile.ListTileControlAffinity controlAffinity = default(FlutterSDK.Material.Listtile.ListTileControlAffinity))
         : base(key: key)
         {
@@ -621,9 +620,6 @@ namespace FlutterSDK.Material.Checkboxlisttile
             this.Selected = selected;
             this.ControlAffinity = controlAffinity;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
@@ -635,9 +631,6 @@ namespace FlutterSDK.Material.Checkboxlisttile
         public virtual bool Dense { get; set; }
         public virtual bool Selected { get; set; }
         public virtual FlutterSDK.Material.Listtile.ListTileControlAffinity ControlAffinity { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -653,7 +646,6 @@ namespace FlutterSDK.Material.Checkboxlisttile
 
 
 
-        #endregion
     }
 
 }

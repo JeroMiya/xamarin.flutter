@@ -394,17 +394,10 @@ namespace FlutterSDK.Material.Elevationoverlay
     /// </Summary>
     public class ElevationOverlay
     {
-        #region constructors
         internal ElevationOverlay()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Applies an elevation overlay color to a surface color to indicate
@@ -456,7 +449,6 @@ namespace FlutterSDK.Material.Elevationoverlay
 
 
 
-        #endregion
     }
 
 }

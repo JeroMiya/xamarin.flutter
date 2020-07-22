@@ -405,7 +405,6 @@ namespace FlutterSDK.Material.Checkbox
     /// </Summary>
     public class Checkbox : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Checkbox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -421,9 +420,6 @@ namespace FlutterSDK.Material.Checkbox
             this.FocusNode = focusNode;
             this.Autofocus = autofocus;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
@@ -436,32 +432,21 @@ namespace FlutterSDK.Material.Checkbox
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
         public virtual double Width { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Checkbox._CheckboxState CreateState() => new _CheckboxState();
 
 
-        #endregion
     }
 
 
     public class _CheckboxState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Checkbox.Checkbox>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CheckboxState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
         internal virtual bool _Focused { get; set; }
         internal virtual bool _Hovering { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -543,13 +528,11 @@ namespace FlutterSDK.Material.Checkbox
 
 
 
-        #endregion
     }
 
 
     public class _CheckboxRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _CheckboxRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), bool hasFocus = default(bool), bool hovering = default(bool))
         : base(key: key)
         {
@@ -566,9 +549,6 @@ namespace FlutterSDK.Material.Checkbox
             this.HasFocus = hasFocus;
             this.Hovering = hovering;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual bool Tristate { get; set; }
         public virtual bool HasFocus { get; set; }
@@ -581,9 +561,6 @@ namespace FlutterSDK.Material.Checkbox
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Checkbox._RenderCheckbox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderCheckbox(value: Value, tristate: Tristate, activeColor: ActiveColor, checkColor: CheckColor, inactiveColor: InactiveColor, focusColor: FocusColor, hoverColor: HoverColor, onChanged: OnChanged, vsync: Vsync, additionalConstraints: AdditionalConstraints, hasFocus: HasFocus, hovering: Hovering);
 
@@ -602,27 +579,19 @@ namespace FlutterSDK.Material.Checkbox
 
 
 
-        #endregion
     }
 
 
     public class _RenderCheckbox : FlutterSDK.Material.Toggleable.RenderToggleable
     {
-        #region constructors
         public _RenderCheckbox(bool value = default(bool), bool tristate = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(value: value, tristate: tristate, activeColor: activeColor, inactiveColor: inactiveColor, focusColor: focusColor, hoverColor: hoverColor, onChanged: onChanged, additionalConstraints: additionalConstraints, vsync: vsync, hasFocus: hasFocus, hovering: hovering)
         {
             this.CheckColor = checkColor;
         }
-        #endregion
-
-        #region fields
         internal virtual bool _OldValue { get; set; }
         public virtual FlutterBinding.UI.Color CheckColor { get; set; }
         public virtual bool Value { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -761,7 +730,6 @@ namespace FlutterSDK.Material.Checkbox
 
 
 
-        #endregion
     }
 
 }

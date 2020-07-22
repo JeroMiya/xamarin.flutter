@@ -459,22 +459,15 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageInfo
     {
-        #region constructors
         public ImageInfo(SKImage image = default(SKImage), double scale = 1.0)
         : base()
         {
             this.Image = image;
             this.Scale = scale;
         }
-        #endregion
-
-        #region fields
         public virtual SKImage Image { get; set; }
         public virtual double Scale { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
 
         public new bool Equals(@Object other)
@@ -485,7 +478,6 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        #endregion
     }
 
 
@@ -503,7 +495,6 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageStreamListener
     {
-        #region constructors
         public ImageStreamListener(FlutterSDK.Painting.Imagestream.ImageListener onImage, FlutterSDK.Painting.Imagestream.ImageChunkListener onChunk = default(FlutterSDK.Painting.Imagestream.ImageChunkListener), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener))
         : base()
         {
@@ -511,16 +502,10 @@ namespace FlutterSDK.Painting.Imagestream
             this.OnChunk = onChunk;
             this.OnError = onError;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Imagestream.ImageListener OnImage { get; set; }
         public virtual FlutterSDK.Painting.Imagestream.ImageChunkListener OnChunk { get; set; }
         public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -530,7 +515,6 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        #endregion
     }
 
 
@@ -547,21 +531,14 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageChunkEvent : IDiagnosticable
     {
-        #region constructors
         public ImageChunkEvent(int cumulativeBytesLoaded = default(int), int expectedTotalBytes = default(int))
         : base()
         {
             this.CumulativeBytesLoaded = cumulativeBytesLoaded;
             this.ExpectedTotalBytes = expectedTotalBytes;
         }
-        #endregion
-
-        #region fields
         public virtual int CumulativeBytesLoaded { get; set; }
         public virtual int ExpectedTotalBytes { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
@@ -572,7 +549,6 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        #endregion
     }
 
 
@@ -601,21 +577,14 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageStream : IDiagnosticable
     {
-        #region constructors
         public ImageStream()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter _Completer { get; set; }
         internal virtual List<FlutterSDK.Painting.Imagestream.ImageStreamListener> _Listeners { get; set; }
         public virtual FlutterSDK.Painting.Imagestream.ImageStreamCompleter Completer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual @Object Key { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Assigns a particular [ImageStreamCompleter] to this [ImageStream].
@@ -708,7 +677,6 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        #endregion
     }
 
 
@@ -722,20 +690,13 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class ImageStreamCompleter : IDiagnosticable
     {
-        #region constructors
         public ImageStreamCompleter()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Painting.Imagestream.ImageStreamListener> _Listeners { get; set; }
         internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _CurrentImage { get; set; }
         internal virtual FlutterSDK.Foundation.Assertions.FlutterErrorDetails _CurrentError { get; set; }
         internal virtual List<object> _OnLastListenerRemovedCallbacks { get; set; }
         public virtual bool HasListeners { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds a listener callback that is called whenever a new concrete [ImageInfo]
@@ -938,7 +899,6 @@ namespace FlutterSDK.Painting.Imagestream
 
 
 
-        #endregion
     }
 
 
@@ -948,7 +908,6 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class OneFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
     {
-        #region constructors
         public OneFrameImageStreamCompleter(Future<FlutterSDK.Painting.Imagestream.ImageInfo> image, FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
         : base()
         {
@@ -961,13 +920,6 @@ namespace FlutterSDK.Painting.Imagestream
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1007,7 +959,6 @@ namespace FlutterSDK.Painting.Imagestream
     /// </Summary>
     public class MultiFrameImageStreamCompleter : FlutterSDK.Painting.Imagestream.ImageStreamCompleter
     {
-        #region constructors
         public MultiFrameImageStreamCompleter(Future<SKCodec> codec = default(Future<SKCodec>), double scale = default(double), Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents = default(Stream<FlutterSDK.Painting.Imagestream.ImageChunkEvent>), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector))
         : base()
         {
@@ -1042,9 +993,6 @@ namespace FlutterSDK.Painting.Imagestream
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual SKCodec _Codec { get; set; }
         internal virtual double _Scale { get; set; }
         internal virtual FlutterSDK.Foundation.Assertions.InformationCollector _InformationCollector { get; set; }
@@ -1054,9 +1002,6 @@ namespace FlutterSDK.Painting.Imagestream
         internal virtual int _FramesEmitted { get; set; }
         internal virtual Timer _Timer { get; set; }
         internal virtual bool _FrameCallbackScheduled { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandleCodecReady(SKCodec codec)
         {
@@ -1187,7 +1132,6 @@ public new void AddListener(FlutterSDK.Painting.Imagestream.ImageStreamListener 
 
 
 
-        #endregion
     }
 
 }

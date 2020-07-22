@@ -523,7 +523,6 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class HSVColor
     {
-        #region constructors
         public static HSVColor FromAHSV(double alpha, double hue, double saturation, double value)
         {
             var instance = new HSVColor(); instance.Alpha = alpha;
@@ -547,17 +546,11 @@ namespace FlutterSDK.Painting.Colors
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double Alpha { get; set; }
         public virtual double Hue { get; set; }
         public virtual double Saturation { get; set; }
         public virtual double Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a copy of this color with the [alpha] parameter replaced with the
@@ -668,7 +661,6 @@ namespace FlutterSDK.Painting.Colors
 
 
 
-        #endregion
     }
 
 
@@ -696,7 +688,6 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class HSLColor
     {
-        #region constructors
         public static HSLColor FromAHSL(double alpha, double hue, double saturation, double lightness)
         {
             var instance = new HSLColor(); instance.Alpha = alpha;
@@ -721,17 +712,11 @@ namespace FlutterSDK.Painting.Colors
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double Alpha { get; set; }
         public virtual double Hue { get; set; }
         public virtual double Saturation { get; set; }
         public virtual double Lightness { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a copy of this color with the alpha parameter replaced with the
@@ -852,7 +837,6 @@ namespace FlutterSDK.Painting.Colors
 
 
 
-        #endregion
     }
 
 
@@ -870,20 +854,13 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class ColorSwatch<T> : Color
     {
-        #region constructors
         public ColorSwatch(int primary, Dictionary<T, Color> _swatch)
         : base(primary)
         {
             this._Swatch = _swatch;
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<T, Color> _Swatch { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns an element of the swatch table.
@@ -902,7 +879,6 @@ namespace FlutterSDK.Painting.Colors
 
 
 
-        #endregion
     }
 
 
@@ -911,18 +887,11 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class ColorProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color>
     {
-        #region constructors
         public ColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, defaultValue: defaultValue, showName: showName, style: style, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
         {
@@ -937,7 +906,6 @@ namespace FlutterSDK.Painting.Colors
 
 
 
-        #endregion
     }
 
 }

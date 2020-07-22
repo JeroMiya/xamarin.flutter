@@ -646,18 +646,11 @@ namespace FlutterSDK.Widgets.Sliver
     /// </Summary>
     public class SliverChildDelegate
     {
-        #region constructors
         public SliverChildDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the child with the given index.
@@ -757,25 +750,16 @@ namespace FlutterSDK.Widgets.Sliver
 
 
 
-        #endregion
     }
 
 
     public class _SaltedValueKey : FlutterSDK.Foundation.Key.ValueKey<FlutterSDK.Foundation.Key.Key>
     {
-        #region constructors
         public _SaltedValueKey(FlutterSDK.Foundation.Key.Key key)
         : base(key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -887,7 +871,6 @@ namespace FlutterSDK.Widgets.Sliver
     /// </Summary>
     public class SliverChildBuilderDelegate : FlutterSDK.Widgets.Sliver.SliverChildDelegate
     {
-        #region constructors
         public SliverChildBuilderDelegate(FlutterSDK.Widgets.Framework.IndexedWidgetBuilder builder, FlutterSDK.Widgets.Sliver.ChildIndexGetter findChildIndexCallback = default(FlutterSDK.Widgets.Sliver.ChildIndexGetter), int childCount = default(int), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, FlutterSDK.Widgets.Sliver.SemanticIndexCallback semanticIndexCallback = default(FlutterSDK.Widgets.Sliver.SemanticIndexCallback), int semanticIndexOffset = 0)
         : base()
         {
@@ -900,9 +883,6 @@ namespace FlutterSDK.Widgets.Sliver
             this.SemanticIndexCallback = semanticIndexCallback;
             this.SemanticIndexOffset = semanticIndexOffset;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.IndexedWidgetBuilder Builder { get; set; }
         public virtual int ChildCount { get; set; }
         public virtual bool AddAutomaticKeepAlives { get; set; }
@@ -912,9 +892,6 @@ namespace FlutterSDK.Widgets.Sliver
         public virtual FlutterSDK.Widgets.Sliver.SemanticIndexCallback SemanticIndexCallback { get; set; }
         public virtual FlutterSDK.Widgets.Sliver.ChildIndexGetter FindChildIndexCallback { get; set; }
         public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new int FindIndexByKey(FlutterSDK.Foundation.Key.Key key)
         {
@@ -971,7 +948,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildDelegate oldDelegate) => true;
 
 
-        #endregion
     }
 
 
@@ -1030,7 +1006,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverChildListDelegate : FlutterSDK.Widgets.Sliver.SliverChildDelegate
     {
-        #region constructors
         public SliverChildListDelegate(List<FlutterSDK.Widgets.Framework.Widget> children, bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, FlutterSDK.Widgets.Sliver.SemanticIndexCallback semanticIndexCallback = default(FlutterSDK.Widgets.Sliver.SemanticIndexCallback), int semanticIndexOffset = 0)
         : base()
         {
@@ -1050,9 +1025,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
             instance.SemanticIndexCallback = semanticIndexCallback;
             instance.SemanticIndexOffset = semanticIndexOffset;
         }
-        #endregion
-
-        #region fields
         public virtual bool AddAutomaticKeepAlives { get; set; }
         public virtual bool AddRepaintBoundaries { get; set; }
         public virtual bool AddSemanticIndexes { get; set; }
@@ -1062,9 +1034,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         internal virtual Dictionary<FlutterSDK.Foundation.Key.Key, int> _KeyToIndex { get; set; }
         internal virtual bool _IsConstantInstance { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int EstimatedChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private int _FindChildIndex(FlutterSDK.Foundation.Key.Key key)
         {
@@ -1160,7 +1129,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1169,25 +1137,17 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverWithKeepAliveWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public SliverWithKeepAliveWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverWithKeepAliveMixin CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             return default(RenderSliverWithKeepAliveMixin);
         }
 
-        #endregion
     }
 
 
@@ -1202,19 +1162,12 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverMultiBoxAdaptorWidget : FlutterSDK.Widgets.Sliver.SliverWithKeepAliveWidget
     {
-        #region constructors
         public SliverMultiBoxAdaptorWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate))
         : base(key: key)
         {
             this.@delegate = @delegate;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorElement CreateElement() => new SliverMultiBoxAdaptorElement(this);
 
@@ -1255,7 +1208,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1291,18 +1243,11 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverList : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
-        #region constructors
         public SliverList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate))
         : base(key: key, @delegate: @delegate)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverlist.RenderSliverList CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1312,7 +1257,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1364,19 +1308,12 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverFixedExtentList : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
-        #region constructors
         public SliverFixedExtentList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), double itemExtent = default(double))
         : base(key: key, @delegate: @delegate)
         {
             this.ItemExtent = itemExtent;
         }
-        #endregion
-
-        #region fields
         public virtual double ItemExtent { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentList CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1400,7 +1337,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1456,7 +1392,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverGrid : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
-        #region constructors
         public SliverGrid(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate))
         : base(key: key, @delegate: @delegate)
         {
@@ -1470,13 +1405,7 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         {
             var instance = new SliverGrid(key: key, @delegate: new SliverChildListDelegate(children));
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Slivergrid.RenderSliverGrid CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1508,7 +1437,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1520,15 +1448,11 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverMultiBoxAdaptorElement : FlutterSDK.Widgets.Framework.RenderObjectElement, IRenderSliverBoxChildManager
     {
-        #region constructors
         public SliverMultiBoxAdaptorElement(FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<int, FlutterSDK.Widgets.Framework.Widget> _ChildWidgets { get; set; }
         internal virtual SplayTreeMap<int, FlutterSDK.Widgets.Framework.Element> _ChildElements { get; set; }
         internal virtual FlutterSDK.Rendering.Box.RenderBox _CurrentBeforeChild { get; set; }
@@ -1537,9 +1461,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         public virtual FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int ChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Update(FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget newWidget)
         {
@@ -1885,7 +1806,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1934,21 +1854,14 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverOpacity : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverOpacity(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double opacity = default(double), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual double Opacity { get; set; }
         public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxysliver.RenderSliverOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1981,7 +1894,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -1999,21 +1911,14 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverIgnorePointer : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverIgnorePointer(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool ignoring = true, bool ignoringSemantics = default(bool), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Ignoring = ignoring;
             this.IgnoringSemantics = ignoringSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual bool Ignoring { get; set; }
         public virtual bool IgnoringSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxysliver.RenderSliverIgnorePointer CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2046,7 +1951,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -2065,19 +1969,12 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class SliverOffstage : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverOffstage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool offstage = true, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Offstage = offstage;
         }
-        #endregion
-
-        #region fields
         public virtual bool Offstage { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxysliver.RenderSliverOffstage CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new RenderSliverOffstage(offstage: Offstage);
 
@@ -2109,25 +2006,17 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         public new FlutterSDK.Widgets.Sliver._SliverOffstageElement CreateElement() => new _SliverOffstageElement(this);
 
 
-        #endregion
     }
 
 
     public class _SliverOffstageElement : FlutterSDK.Widgets.Framework.SingleChildRenderObjectElement
     {
-        #region constructors
         public _SliverOffstageElement(FlutterSDK.Widgets.Sliver.SliverOffstage widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Sliver.SliverOffstage Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -2136,7 +2025,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 
@@ -2164,20 +2052,13 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
     /// </Summary>
     public class KeepAlive : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Slivermultiboxadaptor.KeepAliveParentDataMixin>
     {
-        #region constructors
         public KeepAlive(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool keepAlive = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.KeepAliveValue = keepAlive;
         }
-        #endregion
-
-        #region fields
         public virtual bool KeepAliveValue { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
         {
@@ -2207,7 +2088,6 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
 
 
 
-        #endregion
     }
 
 }

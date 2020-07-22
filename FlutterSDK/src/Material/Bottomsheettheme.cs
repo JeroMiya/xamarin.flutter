@@ -387,7 +387,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
     /// </Summary>
     public class BottomSheetThemeData : IDiagnosticable
     {
-        #region constructors
         public BottomSheetThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         {
             this.BackgroundColor = backgroundColor;
@@ -397,9 +396,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
             this.Shape = shape;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterBinding.UI.Color ModalBackgroundColor { get; set; }
@@ -407,9 +403,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -463,7 +456,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
 
 
 
-        #endregion
     }
 
 }

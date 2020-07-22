@@ -102,21 +102,14 @@ namespace FlutterSDK.Animation.Animation
     /// </Summary>
     public class Animation<T> : FlutterSDK.Foundation.Changenotifier.Listenable, IValueListenable<T>
     {
-        #region constructors
         public Animation()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.AnimationStatus Status { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsDismissed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsCompleted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Calls the listener every time the value of the animation changes.
@@ -272,7 +265,6 @@ namespace FlutterSDK.Animation.Animation
 
 
 
-        #endregion
     }
 
 

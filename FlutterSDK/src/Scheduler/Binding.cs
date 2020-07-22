@@ -1356,7 +1356,6 @@ public new void InitServiceExtensions()
 
         public class _TaskEntry<T>
         {
-            #region constructors
             public _TaskEntry(FlutterSDK.Scheduler.Binding.TaskCallback<T> task, int priority, string debugLabel, Flow flow)
             {
                 this.Task = task;
@@ -1368,18 +1367,12 @@ public new void InitServiceExtensions()
             }
 
 
-            #endregion
-
-            #region fields
             public virtual FlutterSDK.Scheduler.Binding.TaskCallback<T> Task { get; set; }
             public virtual int Priority { get; set; }
             public virtual string DebugLabel { get; set; }
             public virtual Flow Flow { get; set; }
             public virtual StackTrace DebugStack { get; set; }
             public virtual Completer<T> Completer { get; set; }
-            #endregion
-
-            #region methods
 
             public virtual void Run()
             {
@@ -1400,13 +1393,11 @@ public new void InitServiceExtensions()
 
 
 
-            #endregion
         }
 
 
         public class _FrameCallbackEntry
         {
-            #region constructors
             public _FrameCallbackEntry(FlutterSDK.Scheduler.Binding.FrameCallback callback, bool rescheduling = false)
             {
                 this.Callback = callback;
@@ -1414,16 +1405,9 @@ public new void InitServiceExtensions()
             }
 
 
-            #endregion
-
-            #region fields
             public virtual FlutterSDK.Scheduler.Binding.FrameCallback Callback { get; set; }
             public virtual StackTrace DebugCurrentCallbackStack { get; set; }
             public virtual StackTrace DebugStack { get; set; }
-            #endregion
-
-            #region methods
-            #endregion
         }
 
 

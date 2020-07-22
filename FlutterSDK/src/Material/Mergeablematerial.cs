@@ -412,20 +412,12 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MergeableMaterialItem
     {
-        #region constructors
         public MergeableMaterialItem(FlutterSDK.Foundation.Key.LocalKey key)
         : base()
         {
             this.Key = key;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -437,21 +429,13 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MaterialSlice : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
     {
-        #region constructors
         public MaterialSlice(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -462,21 +446,13 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MaterialGap : FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem
     {
-        #region constructors
         public MaterialGap(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), double size = 16.0)
         : base(key)
         {
             this.Size = size;
         }
-        #endregion
-
-        #region fields
         public virtual double Size { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -505,7 +481,6 @@ namespace FlutterSDK.Material.Mergeablematerial
     /// </Summary>
     public class MergeableMaterial : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public MergeableMaterial(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), int elevation = 2, bool hasDividers = false, List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> children = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>))
         : base(key: key)
         {
@@ -514,16 +489,10 @@ namespace FlutterSDK.Material.Mergeablematerial
             this.HasDividers = hasDividers;
             this.Children = children;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Children { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis MainAxis { get; set; }
         public virtual int Elevation { get; set; }
         public virtual bool HasDividers { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
@@ -538,13 +507,11 @@ namespace FlutterSDK.Material.Mergeablematerial
         public new FlutterSDK.Material.Mergeablematerial._MergeableMaterialState CreateState() => new _MergeableMaterialState();
 
 
-        #endregion
     }
 
 
     public class _AnimationTuple
     {
-        #region constructors
         public _AnimationTuple(FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController), FlutterSDK.Animation.Animations.CurvedAnimation startAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation), FlutterSDK.Animation.Animations.CurvedAnimation endAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation), FlutterSDK.Animation.Animations.CurvedAnimation gapAnimation = default(FlutterSDK.Animation.Animations.CurvedAnimation), double gapStart = 0.0)
         {
             this.Controller = controller;
@@ -553,34 +520,20 @@ namespace FlutterSDK.Material.Mergeablematerial
             this.GapAnimation = gapAnimation;
             this.GapStart = gapStart;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
         public virtual FlutterSDK.Animation.Animations.CurvedAnimation StartAnimation { get; set; }
         public virtual FlutterSDK.Animation.Animations.CurvedAnimation EndAnimation { get; set; }
         public virtual FlutterSDK.Animation.Animations.CurvedAnimation GapAnimation { get; set; }
         public virtual double GapStart { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _MergeableMaterialState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Mergeablematerial.MergeableMaterial>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _MergeableMaterialState()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> _Children { get; set; }
         internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, FlutterSDK.Material.Mergeablematerial._AnimationTuple> _AnimationTuples { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1006,26 +959,18 @@ namespace FlutterSDK.Material.Mergeablematerial
 
 
 
-        #endregion
     }
 
 
     public class _MergeableMaterialSliceKey : FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>
     {
-        #region constructors
         public _MergeableMaterialSliceKey(FlutterSDK.Foundation.Key.LocalKey value)
         : base()
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -1035,27 +980,19 @@ namespace FlutterSDK.Material.Mergeablematerial
 
 
 
-        #endregion
     }
 
 
     public class _MergeableMaterialListBody : FlutterSDK.Widgets.Basic.ListBody
     {
-        #region constructors
         public _MergeableMaterialListBody(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Basictypes.Axis mainAxis = default(FlutterSDK.Painting.Basictypes.Axis), List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> items = default(List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem>), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
         : base(children: children, mainAxis: mainAxis)
         {
             this.Items = items;
             this.BoxShadows = boxShadows;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Mergeablematerial.MergeableMaterialItem> Items { get; set; }
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadows { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1088,25 +1025,17 @@ namespace FlutterSDK.Material.Mergeablematerial
 
 
 
-        #endregion
     }
 
 
     public class _RenderMergeableMaterialListBody : FlutterSDK.Rendering.Listbody.RenderListBody
     {
-        #region constructors
         public _RenderMergeableMaterialListBody(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>))
         : base(children: children, axisDirection: axisDirection)
         {
             this.BoxShadows = boxShadows;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Painting.Boxshadow.BoxShadow> BoxShadows { get; set; }
-        #endregion
-
-        #region methods
 
         private void _PaintShadows(Canvas canvas, FlutterBinding.UI.Rect rect)
         {
@@ -1139,7 +1068,6 @@ namespace FlutterSDK.Material.Mergeablematerial
 
 
 
-        #endregion
     }
 
 }

@@ -626,7 +626,6 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
     /// </Summary>
     public class SingleChildScrollView : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SingleChildScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -638,9 +637,6 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
             this.Child = child;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
         public virtual bool Reverse { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
@@ -649,9 +645,6 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Painting.Basictypes.AxisDirection _GetDirection(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -677,27 +670,19 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
 
 
 
-        #endregion
     }
 
 
     public class _SingleChildViewport : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _SingleChildViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.AxisDirection = axisDirection;
             this.Offset = offset;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Singlechildscrollview._RenderSingleChildViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -720,13 +705,11 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
 
 
 
-        #endregion
     }
 
 
     public class _RenderSingleChildViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public _RenderSingleChildViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double cacheExtent = default(double), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base()
         {
@@ -735,9 +718,6 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
         internal virtual double _CacheExtent { get; set; }
@@ -750,9 +730,6 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
         internal virtual double _MinScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _MaxScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterBinding.UI.Offset _PaintOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HasScrolled()
         {
@@ -993,7 +970,6 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
 
 
 
-        #endregion
         RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
         public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
         public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;

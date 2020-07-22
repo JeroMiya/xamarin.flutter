@@ -452,20 +452,12 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class TableCellParentData : FlutterSDK.Rendering.Box.BoxParentData
     {
-        #region constructors
         public TableCellParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
         public virtual int x { get; set; }
         public virtual int y { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -482,17 +474,10 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class TableColumnWidth
     {
-        #region constructors
         public TableColumnWidth()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The smallest width that the column can have.
@@ -544,7 +529,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -560,19 +544,12 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class IntrinsicColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
-        #region constructors
         public IntrinsicColumnWidth(double flex = default(double))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _Flex { get; set; }
-        #endregion
-
-        #region methods
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
@@ -598,7 +575,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -609,19 +585,12 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class FixedColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
-        #region constructors
         public FixedColumnWidth(double value)
         : base()
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
-        #endregion
-
-        #region methods
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
@@ -639,7 +608,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -650,19 +618,12 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class FractionColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
-        #region constructors
         public FractionColumnWidth(double value)
         : base()
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
-        #endregion
-
-        #region methods
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
@@ -682,7 +643,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -697,19 +657,12 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class FlexColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
-        #region constructors
         public FlexColumnWidth(double value = 1.0)
         : base()
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
-        #endregion
-
-        #region methods
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
@@ -735,7 +688,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -753,20 +705,13 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class MaxColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
-        #region constructors
         public MaxColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a, FlutterSDK.Rendering.Table.TableColumnWidth b)
         {
             this.a = a;
             this.b = b;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth a { get; set; }
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth b { get; set; }
-        #endregion
-
-        #region methods
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
@@ -796,7 +741,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -814,20 +758,13 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class MinColumnWidth : FlutterSDK.Rendering.Table.TableColumnWidth
     {
-        #region constructors
         public MinColumnWidth(FlutterSDK.Rendering.Table.TableColumnWidth a, FlutterSDK.Rendering.Table.TableColumnWidth b)
         {
             this.a = a;
             this.b = b;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth a { get; set; }
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth b { get; set; }
-        #endregion
-
-        #region methods
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
@@ -857,7 +794,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 
@@ -866,7 +802,6 @@ namespace FlutterSDK.Rendering.Table
     /// </Summary>
     public class RenderTable : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public RenderTable(int columns = default(int), int rows = default(int), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), List<FlutterSDK.Painting.Decoration.Decoration> rowDecorations = default(List<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline), List<List<FlutterSDK.Rendering.Box.RenderBox>> children = default(List<List<FlutterSDK.Rendering.Box.RenderBox>>))
         : base()
         {
@@ -885,9 +820,6 @@ namespace FlutterSDK.Rendering.Table
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _Children { get; set; }
         internal virtual int _Columns { get; set; }
         internal virtual int _Rows { get; set; }
@@ -913,9 +845,6 @@ namespace FlutterSDK.Rendering.Table
         public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextBaseline TextBaseline { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Determines how the width of column with the given index is determined.
@@ -1641,7 +1570,6 @@ namespace FlutterSDK.Rendering.Table
 
 
 
-        #endregion
     }
 
 

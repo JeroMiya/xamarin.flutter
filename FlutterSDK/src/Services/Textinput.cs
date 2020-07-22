@@ -540,7 +540,6 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInputType
     {
-        #region constructors
         internal TextInputType(int index)
         : base()
         {
@@ -551,9 +550,6 @@ namespace FlutterSDK.Services.Textinput
             var instance = new TextInputType(); instance.Signed = signed;
             instance.@decimal = @decimal;
         }
-        #endregion
-
-        #region fields
         public virtual int Index { get; set; }
         public virtual bool Signed { get; set; }
         public virtual bool @decimal { get; set; }
@@ -569,9 +565,6 @@ namespace FlutterSDK.Services.Textinput
         internal virtual List<string> _Names { get; set; }
         internal virtual string _Name { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a representation of this object as a JSON object.
@@ -592,7 +585,6 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        #endregion
     }
 
 
@@ -616,7 +608,6 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInputConfiguration
     {
-        #region constructors
         public TextInputConfiguration(FlutterSDK.Services.Textinput.TextInputType inputType = default(FlutterSDK.Services.Textinput.TextInputType), bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, string actionLabel = default(string), FlutterSDK.Services.Textinput.TextInputAction inputAction = default(FlutterSDK.Services.Textinput.TextInputAction), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization))
         : base()
         {
@@ -629,9 +620,6 @@ namespace FlutterSDK.Services.Textinput
             this.KeyboardAppearance = keyboardAppearance;
             this.TextCapitalization = textCapitalization;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Textinput.TextInputType InputType { get; set; }
         public virtual bool ObscureText { get; set; }
         public virtual bool Autocorrect { get; set; }
@@ -642,9 +630,6 @@ namespace FlutterSDK.Services.Textinput
         public virtual FlutterSDK.Services.Textinput.TextInputAction InputAction { get; set; }
         public virtual FlutterSDK.Services.Textinput.TextCapitalization TextCapitalization { get; set; }
         public virtual Brightness KeyboardAppearance { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a representation of this object as a JSON object.
@@ -656,7 +641,6 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        #endregion
     }
 
 
@@ -665,22 +649,14 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class RawFloatingCursorPoint
     {
-        #region constructors
         public RawFloatingCursorPoint(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Services.Textinput.FloatingCursorDragState state = default(FlutterSDK.Services.Textinput.FloatingCursorDragState))
         : base()
         {
             this.Offset = offset;
             this.State = state;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
         public virtual FlutterSDK.Services.Textinput.FloatingCursorDragState State { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -689,7 +665,6 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextEditingValue
     {
-        #region constructors
         public TextEditingValue(string text = default(string), FlutterSDK.Services.Textediting.TextSelection selection = default(FlutterSDK.Services.Textediting.TextSelection), TextRange composing = default(TextRange))
         : base()
         {
@@ -704,17 +679,11 @@ namespace FlutterSDK.Services.Textinput
         }
 
 
-        #endregion
-
-        #region fields
         public virtual string Text { get; set; }
         public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get; set; }
         public virtual TextRange Composing { get; set; }
         public virtual FlutterSDK.Services.Textinput.TextEditingValue Empty { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a representation of this object as a JSON object.
@@ -747,7 +716,6 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        #endregion
     }
 
 
@@ -760,18 +728,11 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInputClient
     {
-        #region constructors
         public TextInputClient()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Textinput.TextEditingValue CurrentTextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Requests that this client update its editing state to the given value.
@@ -806,7 +767,6 @@ namespace FlutterSDK.Services.Textinput
         {
         }
 
-        #endregion
     }
 
 
@@ -819,24 +779,17 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInputConnection
     {
-        #region constructors
         internal TextInputConnection(FlutterSDK.Services.Textinput.TextInputClient _client)
         : base()
         {
             this._Client = _client;
         }
-        #endregion
-
-        #region fields
         internal virtual Size _CachedSize { get; set; }
         internal virtual Matrix4 _CachedTransform { get; set; }
         internal virtual int _NextId { get; set; }
         internal virtual int _Id { get; set; }
         internal virtual FlutterSDK.Services.Textinput.TextInputClient _Client { get; set; }
         public virtual bool Attached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Resets the internal ID counter for testing purposes.
@@ -950,7 +903,6 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        #endregion
     }
 
 
@@ -959,7 +911,6 @@ namespace FlutterSDK.Services.Textinput
     /// </Summary>
     public class TextInput
     {
-        #region constructors
         internal TextInput()
         {
 
@@ -968,9 +919,6 @@ namespace FlutterSDK.Services.Textinput
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Services.Textinput.TextInput _Instance { get; set; }
         internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _AndroidSupportedInputActions { get; set; }
         internal virtual List<FlutterSDK.Services.Textinput.TextInputAction> _IOSSupportedInputActions { get; set; }
@@ -978,9 +926,6 @@ namespace FlutterSDK.Services.Textinput
         internal virtual FlutterSDK.Services.Textinput.TextInputConnection _CurrentConnection { get; set; }
         internal virtual FlutterSDK.Services.Textinput.TextInputConfiguration _CurrentConfiguration { get; set; }
         internal virtual bool _HidePending { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Set the [MethodChannel] used to communicate with the system's text input
@@ -1133,7 +1078,6 @@ namespace FlutterSDK.Services.Textinput
 
 
 
-        #endregion
     }
 
 

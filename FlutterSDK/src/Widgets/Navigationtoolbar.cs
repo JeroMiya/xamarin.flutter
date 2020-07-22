@@ -443,7 +443,6 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
     /// </Summary>
     public class NavigationToolbar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public NavigationToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget middle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget), bool centerMiddle = true, double middleSpacing = default(double))
         : base(key: key)
         {
@@ -453,18 +452,12 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
             this.CenterMiddle = centerMiddle;
             this.MiddleSpacing = middleSpacing;
         }
-        #endregion
-
-        #region fields
         public virtual double KMiddleSpacing { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Middle { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
         public virtual bool CenterMiddle { get; set; }
         public virtual double MiddleSpacing { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -475,13 +468,11 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
 
 
 
-        #endregion
     }
 
 
     public class _ToolbarLayout : FlutterSDK.Rendering.Customlayout.MultiChildLayoutDelegate
     {
-        #region constructors
         public _ToolbarLayout(bool centerMiddle = default(bool), double middleSpacing = default(double), TextDirection textDirection = default(TextDirection))
         : base()
         {
@@ -489,15 +480,9 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
             this.MiddleSpacing = middleSpacing;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual bool CenterMiddle { get; set; }
         public virtual double MiddleSpacing { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout(Size size)
         {
@@ -560,7 +545,6 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
 
 
 
-        #endregion
     }
 
 

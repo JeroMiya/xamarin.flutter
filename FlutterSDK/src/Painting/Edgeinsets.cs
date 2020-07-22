@@ -485,14 +485,10 @@ namespace FlutterSDK.Painting.Edgeinsets
     /// </Summary>
     public class EdgeInsetsGeometry
     {
-        #region constructors
         public EdgeInsetsGeometry()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Infinity { get; set; }
         internal virtual double _Bottom { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _End { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -506,9 +502,6 @@ namespace FlutterSDK.Painting.Edgeinsets
         public virtual Size CollapsedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The total offset in the given direction.
@@ -739,7 +732,6 @@ namespace FlutterSDK.Painting.Edgeinsets
 
 
 
-        #endregion
     }
 
 
@@ -792,7 +784,6 @@ namespace FlutterSDK.Painting.Edgeinsets
     /// </Summary>
     public class EdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
     {
-        #region constructors
         public static EdgeInsets FromLTRB(double left, double top, double right, double bottom)
         {
             var instance = new EdgeInsets(); instance.Left = left;
@@ -819,9 +810,6 @@ namespace FlutterSDK.Painting.Edgeinsets
         {
             var instance = new EdgeInsets();
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Zero { get; set; }
         public virtual double Left { get; set; }
         public virtual double Top { get; set; }
@@ -838,9 +826,6 @@ namespace FlutterSDK.Painting.Edgeinsets
         public virtual FlutterBinding.UI.Offset BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a new rect that is bigger than the given rect in each direction by
@@ -1024,7 +1009,6 @@ namespace FlutterSDK.Painting.Edgeinsets
 
 
 
-        #endregion
     }
 
 
@@ -1043,7 +1027,6 @@ namespace FlutterSDK.Painting.Edgeinsets
     /// </Summary>
     public class EdgeInsetsDirectional : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
     {
-        #region constructors
         public static EdgeInsetsDirectional FromSTEB(double start, double top, double end, double bottom)
         {
             var instance = new EdgeInsetsDirectional(); instance.Start = start;
@@ -1058,9 +1041,6 @@ namespace FlutterSDK.Painting.Edgeinsets
             instance.End = end;
             instance.Bottom = bottom;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Zero { get; set; }
         public virtual double Start { get; set; }
         public virtual double Top { get; set; }
@@ -1074,9 +1054,6 @@ namespace FlutterSDK.Painting.Edgeinsets
         internal virtual double _Right { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Subtract(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry other)
         {
@@ -1207,13 +1184,11 @@ namespace FlutterSDK.Painting.Edgeinsets
 
 
 
-        #endregion
     }
 
 
     public class _MixedEdgeInsets : FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry
     {
-        #region constructors
         public static _MixedEdgeInsets FromLRSETB(double _left, double _right, double _start, double _end, double _top, double _bottom)
         {
             var instance = new _MixedEdgeInsets(); instance._Left = _left;
@@ -1223,9 +1198,6 @@ namespace FlutterSDK.Painting.Edgeinsets
             instance._Top = _top;
             instance._Bottom = _bottom;
         }
-        #endregion
-
-        #region fields
         internal new double _Left { get; set; }
         internal new double _Right { get; set; }
         internal new double _Start { get; set; }
@@ -1233,9 +1205,6 @@ namespace FlutterSDK.Painting.Edgeinsets
         internal new double _Top { get; set; }
         internal new double _Bottom { get; set; }
         public virtual bool IsNonNegative { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Edgeinsets._MixedEdgeInsets Unary()
         {
@@ -1286,7 +1255,6 @@ namespace FlutterSDK.Painting.Edgeinsets
 
 
 
-        #endregion
     }
 
 }

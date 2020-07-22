@@ -459,17 +459,10 @@ namespace FlutterSDK.Material.Feedback
     /// </Summary>
     public class Feedback
     {
-        #region constructors
         internal Feedback()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Provides platform-specific feedback for a tap.
@@ -570,7 +563,6 @@ namespace FlutterSDK.Material.Feedback
         private FlutterSDK.Foundation.Platform.TargetPlatform _Platform(FlutterSDK.Widgets.Framework.BuildContext context) => ThemeDefaultClass.Theme.Of(context).Platform;
 
 
-        #endregion
     }
 
 }

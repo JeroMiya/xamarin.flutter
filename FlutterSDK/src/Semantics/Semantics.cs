@@ -960,20 +960,12 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsTag
     {
-        #region constructors
         public SemanticsTag(string name)
         {
             this.Name = name;
         }
-        #endregion
-
-        #region fields
         public virtual string Name { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -1003,7 +995,6 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class CustomSemanticsAction
     {
-        #region constructors
         public CustomSemanticsAction(string label = default(string))
         : base()
         {
@@ -1014,9 +1005,6 @@ namespace FlutterSDK.Semantics.Semantics
             var instance = new CustomSemanticsAction(); instance.Hint = hint;
             instance.Action = action;
         }
-        #endregion
-
-        #region fields
         public virtual string Label { get; set; }
         public virtual string Hint { get; set; }
         public virtual SemanticsAction Action { get; set; }
@@ -1024,9 +1012,6 @@ namespace FlutterSDK.Semantics.Semantics
         internal virtual Dictionary<int, FlutterSDK.Semantics.Semantics.CustomSemanticsAction> _Actions { get; set; }
         internal virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, int> _Ids { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -1067,7 +1052,6 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
-        #endregion
     }
 
 
@@ -1083,7 +1067,6 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsData : IDiagnosticable
     {
-        #region constructors
         public SemanticsData(int flags = default(int), int actions = default(int), string label = default(string), string increasedValue = default(string), string value = default(string), string decreasedValue = default(string), string hint = default(string), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), double elevation = default(double), double thickness = default(double), FlutterSDK.Services.Textediting.TextSelection textSelection = default(FlutterSDK.Services.Textediting.TextSelection), int scrollIndex = default(int), int scrollChildCount = default(int), double scrollPosition = default(double), double scrollExtentMax = default(double), double scrollExtentMin = default(double), int platformViewId = default(int), int maxValueLength = default(int), int currentValueLength = default(int), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>), Matrix4 transform = default(Matrix4), List<int> customSemanticsActionIds = default(List<int>))
         : base()
         {
@@ -1111,9 +1094,6 @@ namespace FlutterSDK.Semantics.Semantics
             this.Transform = transform;
             this.CustomSemanticsActionIds = customSemanticsActionIds;
         }
-        #endregion
-
-        #region fields
         public virtual int Flags { get; set; }
         public virtual int Actions { get; set; }
         public virtual string Label { get; set; }
@@ -1138,9 +1118,6 @@ namespace FlutterSDK.Semantics.Semantics
         public virtual double Thickness { get; set; }
         public virtual List<int> CustomSemanticsActionIds { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Whether [flags] contains the given flag.
@@ -1216,25 +1193,17 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
-        #endregion
     }
 
 
     public class _SemanticsDiagnosticableNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableNode<FlutterSDK.Semantics.Semantics.SemanticsNode>
     {
-        #region constructors
         public _SemanticsDiagnosticableNode(string name = default(string), FlutterSDK.Semantics.Semantics.SemanticsNode value = default(FlutterSDK.Semantics.Semantics.SemanticsNode), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder childOrder = default(FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder))
         : base(name: name, value: value, style: style)
         {
             this.ChildOrder = childOrder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Semantics.Semantics.DebugSemanticsDumpOrder ChildOrder { get; set; }
-        #endregion
-
-        #region methods
 
         public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> GetChildren()
         {
@@ -1244,7 +1213,6 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
-        #endregion
     }
 
 
@@ -1256,23 +1224,16 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsHintOverrides : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
-        #region constructors
         public SemanticsHintOverrides(string onTapHint = default(string), string onLongPressHint = default(string))
         : base()
         {
             this.OnTapHint = onTapHint;
             this.OnLongPressHint = onLongPressHint;
         }
-        #endregion
-
-        #region fields
         public virtual string OnTapHint { get; set; }
         public virtual string OnLongPressHint { get; set; }
         public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -1292,7 +1253,6 @@ namespace FlutterSDK.Semantics.Semantics
 
 
 
-        #endregion
     }
 
 
@@ -1305,7 +1265,6 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsProperties : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
-        #region constructors
         public SemanticsProperties(bool enabled = default(bool), bool @checked = default(bool), bool selected = default(bool), bool toggled = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool hidden = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
         {
             this.Enabled = enabled;
@@ -1358,9 +1317,6 @@ namespace FlutterSDK.Semantics.Semantics
             this.OnDismiss = onDismiss;
             this.CustomSemanticsActions = customSemanticsActions;
         }
-        #endregion
-
-        #region fields
         public virtual bool Enabled { get; set; }
         public virtual bool @checked { get; set; }
         public virtual bool Toggled { get; set; }
@@ -1410,9 +1366,6 @@ namespace FlutterSDK.Semantics.Semantics
         public virtual VoidCallback OnDidLoseAccessibilityFocus { get; set; }
         public virtual VoidCallback OnDismiss { get; set; }
         public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> CustomSemanticsActions { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
@@ -1433,7 +1386,6 @@ namespace FlutterSDK.Semantics.Semantics
         public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "SemanticsProperties");
 
 
-        #endregion
     }
 
 
@@ -1447,7 +1399,6 @@ namespace FlutterSDK.Semantics.Semantics
     /// </Summary>
     public class SemanticsNode : FlutterSDK.Foundation.Node.AbstractNode, IDiagnosticableTreeMixin
     {
-        #region constructors
         public SemanticsNode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), VoidCallback showOnScreen = default(VoidCallback))
         : base()
         {
@@ -1460,9 +1411,6 @@ namespace FlutterSDK.Semantics.Semantics
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual int _MaxFrameworkAccessibilityIdentifier { get; set; }
         internal virtual int _LastIdentifier { get; set; }
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
@@ -1539,9 +1487,6 @@ namespace FlutterSDK.Semantics.Semantics
         public virtual int PlatformViewId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int MaxValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int CurrentValueLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private int _GenerateNewId()
         {
@@ -2207,7 +2152,6 @@ public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> DebugListChild
 
 
 
-#endregion
 }
 
 
@@ -2223,7 +2167,6 @@ public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> DebugListChild
 /// </Summary>
 public class _BoxEdge : IComparable<FlutterSDK.Semantics.Semantics._BoxEdge>
 {
-    #region constructors
     public _BoxEdge(bool isLeadingEdge = default(bool), double offset = default(double), FlutterSDK.Semantics.Semantics.SemanticsNode node = default(FlutterSDK.Semantics.Semantics.SemanticsNode))
     : base()
     {
@@ -2231,15 +2174,9 @@ public class _BoxEdge : IComparable<FlutterSDK.Semantics.Semantics._BoxEdge>
         this.Offset = offset;
         this.Node = node;
     }
-    #endregion
-
-    #region fields
     public virtual bool IsLeadingEdge { get; set; }
     public virtual double Offset { get; set; }
     public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
-    #endregion
-
-    #region methods
 
     public new int CompareTo(FlutterSDK.Semantics.Semantics._BoxEdge other)
     {
@@ -2248,7 +2185,6 @@ public class _BoxEdge : IComparable<FlutterSDK.Semantics.Semantics._BoxEdge>
 
 
 
-    #endregion
 }
 
 
@@ -2260,22 +2196,15 @@ public class _BoxEdge : IComparable<FlutterSDK.Semantics.Semantics._BoxEdge>
 /// </Summary>
 public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._SemanticsSortGroup>
 {
-    #region constructors
     public _SemanticsSortGroup(double startOffset = default(double), TextDirection textDirection = default(TextDirection))
     : base()
     {
         this.StartOffset = startOffset;
         this.TextDirection = textDirection;
     }
-    #endregion
-
-    #region fields
     public virtual double StartOffset { get; set; }
     public virtual TextDirection TextDirection { get; set; }
     public virtual List<FlutterSDK.Semantics.Semantics.SemanticsNode> Nodes { get; set; }
-    #endregion
-
-    #region methods
 
     public new int CompareTo(FlutterSDK.Semantics.Semantics._SemanticsSortGroup other)
     {
@@ -2426,7 +2355,6 @@ public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._Se
 
 
 
-    #endregion
 }
 
 
@@ -2441,7 +2369,6 @@ public class _SemanticsSortGroup : Comparable<FlutterSDK.Semantics.Semantics._Se
 /// </Summary>
 public class _TraversalSortNode : IComparable<FlutterSDK.Semantics.Semantics._TraversalSortNode>
 {
-    #region constructors
     public _TraversalSortNode(FlutterSDK.Semantics.Semantics.SemanticsNode node = default(FlutterSDK.Semantics.Semantics.SemanticsNode), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), int position = default(int))
     : base()
     {
@@ -2449,15 +2376,9 @@ public class _TraversalSortNode : IComparable<FlutterSDK.Semantics.Semantics._Tr
         this.SortKey = sortKey;
         this.Position = position;
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Semantics.Semantics.SemanticsNode Node { get; set; }
     public virtual FlutterSDK.Semantics.Semantics.SemanticsSortKey SortKey { get; set; }
     public virtual int Position { get; set; }
-    #endregion
-
-    #region methods
 
     public new int CompareTo(FlutterSDK.Semantics.Semantics._TraversalSortNode other)
     {
@@ -2471,7 +2392,6 @@ public class _TraversalSortNode : IComparable<FlutterSDK.Semantics.Semantics._Tr
 
 
 
-    #endregion
 }
 
 
@@ -2485,19 +2405,12 @@ public class _TraversalSortNode : IComparable<FlutterSDK.Semantics.Semantics._Tr
 /// </Summary>
 public class SemanticsOwner : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
 {
-    #region constructors
     public SemanticsOwner()
     { }
-    #endregion
-
-    #region fields
     internal virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsNode> _DirtyNodes { get; set; }
     internal virtual Dictionary<int, FlutterSDK.Semantics.Semantics.SemanticsNode> _Nodes { get; set; }
     internal virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsNode> _DetachedNodes { get; set; }
     public virtual FlutterSDK.Semantics.Semantics.SemanticsNode RootSemanticsNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new void Dispose()
     {
@@ -2675,7 +2588,6 @@ public class SemanticsOwner : FlutterSDK.Foundation.Changenotifier.ChangeNotifie
 
 
 
-    #endregion
 }
 
 
@@ -2699,18 +2611,11 @@ public class SemanticsOwner : FlutterSDK.Foundation.Changenotifier.ChangeNotifie
 /// </Summary>
 public class SemanticsSortKey : IComparable<FlutterSDK.Semantics.Semantics.SemanticsSortKey>, IDiagnosticable
 {
-    #region constructors
     public SemanticsSortKey(string name = default(string))
     {
         this.Name = name;
     }
-    #endregion
-
-    #region fields
     public virtual string Name { get; set; }
-    #endregion
-
-    #region methods
 
     public new int CompareTo(FlutterSDK.Semantics.Semantics.SemanticsSortKey other)
     {
@@ -2760,7 +2665,6 @@ public class SemanticsSortKey : IComparable<FlutterSDK.Semantics.Semantics.Seman
 
 
 
-    #endregion
 }
 
 
@@ -2786,19 +2690,12 @@ public class SemanticsSortKey : IComparable<FlutterSDK.Semantics.Semantics.Seman
 /// </Summary>
 public class OrdinalSortKey : FlutterSDK.Semantics.Semantics.SemanticsSortKey
 {
-    #region constructors
     public OrdinalSortKey(double order, string name = default(string))
     : base(name: name)
     {
         this.Order = order;
     }
-    #endregion
-
-    #region fields
     public virtual double Order { get; set; }
-    #endregion
-
-    #region methods
 
     public new int DoCompare(FlutterSDK.Semantics.Semantics.OrdinalSortKey other)
     {
@@ -2824,7 +2721,6 @@ public class OrdinalSortKey : FlutterSDK.Semantics.Semantics.SemanticsSortKey
 
 
 
-    #endregion
 }
 
 

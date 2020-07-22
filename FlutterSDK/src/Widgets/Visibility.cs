@@ -462,7 +462,6 @@ namespace FlutterSDK.Widgets.Visibility
     /// </Summary>
     public class Visibility : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Visibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacement = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
         : base(key: key)
         {
@@ -475,9 +474,6 @@ namespace FlutterSDK.Widgets.Visibility
             this.MaintainSemantics = maintainSemantics;
             this.MaintainInteractivity = maintainInteractivity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Replacement { get; set; }
         public virtual bool Visible { get; set; }
@@ -486,9 +482,6 @@ namespace FlutterSDK.Widgets.Visibility
         public virtual bool MaintainSize { get; set; }
         public virtual bool MaintainSemantics { get; set; }
         public virtual bool MaintainInteractivity { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -534,7 +527,6 @@ namespace FlutterSDK.Widgets.Visibility
 
 
 
-        #endregion
     }
 
 
@@ -567,7 +559,6 @@ namespace FlutterSDK.Widgets.Visibility
     /// </Summary>
     public class SliverVisibility : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SliverVisibility(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget replacementSliver = default(FlutterSDK.Widgets.Framework.Widget), bool visible = true, bool maintainState = false, bool maintainAnimation = false, bool maintainSize = false, bool maintainSemantics = false, bool maintainInteractivity = false)
         : base(key: key)
         {
@@ -580,9 +571,6 @@ namespace FlutterSDK.Widgets.Visibility
             this.MaintainSemantics = maintainSemantics;
             this.MaintainInteractivity = maintainInteractivity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget ReplacementSliver { get; set; }
         public virtual bool Visible { get; set; }
@@ -591,9 +579,6 @@ namespace FlutterSDK.Widgets.Visibility
         public virtual bool MaintainSize { get; set; }
         public virtual bool MaintainSemantics { get; set; }
         public virtual bool MaintainInteractivity { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -639,7 +624,6 @@ namespace FlutterSDK.Widgets.Visibility
 
 
 
-        #endregion
     }
 
 }

@@ -421,17 +421,10 @@ namespace FlutterSDK.Material.Inkripple
 
     public class _InkRippleFactory : FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory
     {
-        #region constructors
         public _InkRippleFactory()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
         {
@@ -440,7 +433,6 @@ namespace FlutterSDK.Material.Inkripple
 
 
 
-        #endregion
     }
 
 
@@ -470,7 +462,6 @@ namespace FlutterSDK.Material.Inkripple
     /// </Summary>
     public class InkRipple : FlutterSDK.Material.Inkwell.InteractiveInkFeature
     {
-        #region constructors
         public InkRipple(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
         {
@@ -492,9 +483,6 @@ namespace FlutterSDK.Material.Inkripple
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Offset _Position { get; set; }
         internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
         internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
@@ -510,9 +498,6 @@ namespace FlutterSDK.Material.Inkripple
         public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseCurveTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FadeOutIntervalTween { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Confirm()
         {
@@ -565,7 +550,6 @@ namespace FlutterSDK.Material.Inkripple
 
 
 
-        #endregion
     }
 
 }

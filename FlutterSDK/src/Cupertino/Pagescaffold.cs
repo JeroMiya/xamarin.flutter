@@ -345,7 +345,6 @@ namespace FlutterSDK.Cupertino.Pagescaffold
     /// </Summary>
     public class CupertinoPageScaffold : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoPageScaffold(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget navigationBar = default(FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), bool resizeToAvoidBottomInset = true, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -354,36 +353,22 @@ namespace FlutterSDK.Cupertino.Pagescaffold
             this.ResizeToAvoidBottomInset = resizeToAvoidBottomInset;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Pagescaffold.ObstructingPreferredSizeWidget NavigationBar { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual bool ResizeToAvoidBottomInset { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Pagescaffold._CupertinoPageScaffoldState CreateState() => new _CupertinoPageScaffoldState();
 
 
-        #endregion
     }
 
 
     public class _CupertinoPageScaffoldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Pagescaffold.CupertinoPageScaffold>
     {
-        #region constructors
         public _CupertinoPageScaffoldState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _PrimaryScrollController { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandleStatusBarTap()
         {
@@ -428,7 +413,6 @@ namespace FlutterSDK.Cupertino.Pagescaffold
 
 
 
-        #endregion
     }
 
 }

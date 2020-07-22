@@ -309,19 +309,12 @@ namespace FlutterSDK.Gestures.Eager
     /// </Summary>
     public class EagerGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
-        #region constructors
         public EagerGestureRecognizer(PointerDeviceKind kind = default(PointerDeviceKind))
         : base(kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -346,7 +339,6 @@ namespace FlutterSDK.Gestures.Eager
 
 
 
-        #endregion
     }
 
 }

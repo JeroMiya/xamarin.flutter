@@ -460,19 +460,12 @@ namespace FlutterSDK.Widgets.Texture
     /// </Summary>
     public class Texture : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public Texture(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int textureId = default(int))
         : base(key: key)
         {
             this.TextureId = textureId;
         }
-        #endregion
-
-        #region fields
         public virtual int TextureId { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Texture.TextureBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new TextureBox(textureId: TextureId);
 
@@ -491,7 +484,6 @@ namespace FlutterSDK.Widgets.Texture
 
 
 
-        #endregion
     }
 
 }

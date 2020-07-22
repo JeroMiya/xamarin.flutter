@@ -558,20 +558,13 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
-        #region constructors
         public NetworkAssetBundle(Uri baseUrl)
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Uri _BaseUrl { get; set; }
         internal virtual HttpClient _HttpClient { get; set; }
-        #endregion
-
-        #region methods
 
         private Uri _UrlFromKey(string key) => _BaseUrl.Resolve(key);
 
@@ -606,7 +599,6 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        #endregion
     }
 
 
@@ -622,17 +614,10 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
-        #region constructors
         public CachingAssetBundle()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<string, Future<string>> _StringCache { get; set; }
         internal virtual Dictionary<string, Future<object>> _StructuredDataCache { get; set; }
-        #endregion
-
-        #region methods
 
         public new Future<string> LoadString(string key, bool cache = true)
         {
@@ -694,7 +679,6 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        #endregion
     }
 
 
@@ -703,15 +687,8 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
     {
-        #region constructors
         public PlatformAssetBundle()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new async Future<ByteData> Load(string key)
         {
@@ -723,7 +700,6 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        #endregion
     }
 
 }

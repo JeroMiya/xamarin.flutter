@@ -364,7 +364,6 @@ namespace FlutterSDK.Foundation._Isolatesio
 
     public class _IsolateConfiguration<Q, R>
     {
-        #region constructors
         public _IsolateConfiguration(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, SendPort resultPort, string debugLabel, int flowId)
         {
             this.Callback = callback;
@@ -373,22 +372,15 @@ namespace FlutterSDK.Foundation._Isolatesio
             this.DebugLabel = debugLabel;
             this.FlowId = flowId;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> Callback { get; set; }
         public virtual Q Message { get; set; }
         public virtual SendPort ResultPort { get; set; }
         public virtual string DebugLabel { get; set; }
         public virtual int FlowId { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual FutureOr<R> Apply() => Callback(Message);
 
 
-        #endregion
     }
 
 }

@@ -597,18 +597,11 @@ namespace FlutterSDK.Widgets.Inheritedtheme
     /// </Summary>
     public class InheritedTheme : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public InheritedTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Return a copy of this inherited theme with the specified [child].
@@ -662,27 +655,19 @@ namespace FlutterSDK.Widgets.Inheritedtheme
 
 
 
-        #endregion
     }
 
 
     public class _CaptureAll : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _CaptureAll(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> themes = default(List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Themes = themes;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Inheritedtheme.InheritedTheme> Themes { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -693,7 +678,6 @@ namespace FlutterSDK.Widgets.Inheritedtheme
 
 
 
-        #endregion
     }
 
 }

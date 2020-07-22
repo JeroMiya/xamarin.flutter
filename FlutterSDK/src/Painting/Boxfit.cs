@@ -459,21 +459,13 @@ namespace FlutterSDK.Painting.Boxfit
     /// </Summary>
     public class FittedSizes
     {
-        #region constructors
         public FittedSizes(Size source, Size destination)
         {
             this.Source = source;
             this.Destination = destination;
         }
-        #endregion
-
-        #region fields
         public virtual Size Source { get; set; }
         public virtual Size Destination { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 

@@ -589,21 +589,14 @@ namespace FlutterSDK.Widgets.Tickerprovider
     /// </Summary>
     public class TickerMode : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public TickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Enabled = enabled;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool Enabled { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Whether tickers in the given subtree should be enabled or disabled.
@@ -645,25 +638,17 @@ namespace FlutterSDK.Widgets.Tickerprovider
 
 
 
-        #endregion
     }
 
 
     public class _EffectiveTickerMode : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _EffectiveTickerMode(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Enabled = enabled;
         }
-        #endregion
-
-        #region fields
         public virtual bool Enabled { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Tickerprovider._EffectiveTickerMode oldWidget) => Enabled != oldWidget.Enabled;
 
@@ -679,25 +664,17 @@ namespace FlutterSDK.Widgets.Tickerprovider
 
 
 
-        #endregion
     }
 
 
     public class _WidgetTicker : FlutterSDK.Scheduler.Ticker.Ticker
     {
-        #region constructors
         public _WidgetTicker(FlutterSDK.Scheduler.Ticker.TickerCallback onTick, FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _creator, string debugLabel = default(string))
         : base(onTick, debugLabel: debugLabel)
         {
             this._Creator = _creator;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Tickerprovider.TickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget> _Creator { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -707,7 +684,6 @@ namespace FlutterSDK.Widgets.Tickerprovider
 
 
 
-        #endregion
     }
 
 }

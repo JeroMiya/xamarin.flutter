@@ -518,18 +518,11 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderAbstractViewport : FlutterSDK.Rendering.@object.RenderObject
     {
-        #region constructors
         internal RenderAbstractViewport()
         {
             null;
 
-#endregion
-
-            #region fields
-        public virtual double DefaultCacheExtent { get; set; }
-        #endregion
-
-        #region methods
+public virtual double DefaultCacheExtent { get; set; }
 
         /// <Summary>
         /// Returns the [RenderAbstractViewport] that most tightly encloses the given
@@ -586,7 +579,6 @@ namespace FlutterSDK.Rendering.Viewport
             return default(RevealedOffset);
         }
 
-        #endregion
     }
 
 
@@ -599,23 +591,15 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RevealedOffset
     {
-        #region constructors
         public RevealedOffset(double offset = default(double), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect))
         : base()
         {
             this.Offset = offset;
             this.Rect = rect;
         }
-        #endregion
-
-        #region fields
         public virtual double Offset { get; set; }
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -642,15 +626,11 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderViewportBase<ParentDataClass> : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Sliver.RenderSliver, ParentDataClass>
     {
-        #region constructors
         public RenderViewportBase(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _CrossAxisDirection { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
@@ -668,9 +648,6 @@ namespace FlutterSDK.Rendering.Viewport
         public virtual int IndexOfFirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInPaintOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInHitTestOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -1304,7 +1281,6 @@ namespace FlutterSDK.Rendering.Viewport
 
 
 
-        #endregion
         RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
         public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
         public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
@@ -1346,7 +1322,6 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverPhysicalContainerParentData>
     {
-        #region constructors
         public RenderViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double anchor = 0.0, List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>), FlutterSDK.Rendering.Sliver.RenderSliver center = default(FlutterSDK.Rendering.Sliver.RenderSliver), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset, cacheExtent: cacheExtent, cacheExtentStyle: cacheExtentStyle)
         {
@@ -1356,9 +1331,6 @@ namespace FlutterSDK.Rendering.Viewport
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Semantics.Semantics.SemanticsTag UseTwoPaneSemantics { get; set; }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsTag ExcludeFromScrolling { get; set; }
         internal virtual double _Anchor { get; set; }
@@ -1374,9 +1346,6 @@ namespace FlutterSDK.Rendering.Viewport
         public virtual int IndexOfFirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInPaintOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInHitTestOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -1590,7 +1559,6 @@ namespace FlutterSDK.Rendering.Viewport
 
 
 
-        #endregion
     }
 
 
@@ -1623,7 +1591,6 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderShrinkWrappingViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverLogicalContainerParentData>
     {
-        #region constructors
         public RenderShrinkWrappingViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset)
         {
@@ -1632,9 +1599,6 @@ namespace FlutterSDK.Rendering.Viewport
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _MaxScrollExtent { get; set; }
         internal virtual double _ShrinkWrapExtent { get; set; }
         internal virtual bool _HasVisualOverflow { get; set; }
@@ -1642,9 +1606,6 @@ namespace FlutterSDK.Rendering.Viewport
         public virtual int IndexOfFirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInPaintOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInHitTestOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -1814,7 +1775,6 @@ namespace FlutterSDK.Rendering.Viewport
         public new string LabelForChild(int index) => $"'child {index}'";
 
 
-        #endregion
     }
 
 

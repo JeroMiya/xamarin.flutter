@@ -439,21 +439,13 @@ namespace FlutterSDK.Services.Systemchrome
     /// </Summary>
     public class ApplicationSwitcherDescription
     {
-        #region constructors
         public ApplicationSwitcherDescription(string label = default(string), int primaryColor = default(int))
         {
             this.Label = label;
             this.PrimaryColor = primaryColor;
         }
-        #endregion
-
-        #region fields
         public virtual string Label { get; set; }
         public virtual int PrimaryColor { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -464,7 +456,6 @@ namespace FlutterSDK.Services.Systemchrome
     /// </Summary>
     public class SystemUiOverlayStyle
     {
-        #region constructors
         public SystemUiOverlayStyle(FlutterBinding.UI.Color systemNavigationBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color systemNavigationBarDividerColor = default(FlutterBinding.UI.Color), Brightness systemNavigationBarIconBrightness = default(Brightness), FlutterBinding.UI.Color statusBarColor = default(FlutterBinding.UI.Color), Brightness statusBarBrightness = default(Brightness), Brightness statusBarIconBrightness = default(Brightness))
         {
             this.SystemNavigationBarColor = systemNavigationBarColor;
@@ -474,9 +465,6 @@ namespace FlutterSDK.Services.Systemchrome
             this.StatusBarBrightness = statusBarBrightness;
             this.StatusBarIconBrightness = statusBarIconBrightness;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color SystemNavigationBarColor { get; set; }
         public virtual FlutterBinding.UI.Color SystemNavigationBarDividerColor { get; set; }
         public virtual Brightness SystemNavigationBarIconBrightness { get; set; }
@@ -486,9 +474,6 @@ namespace FlutterSDK.Services.Systemchrome
         public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Light { get; set; }
         public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle Dark { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Convert this event to a map for serialization.
@@ -521,7 +506,6 @@ namespace FlutterSDK.Services.Systemchrome
 
 
 
-        #endregion
     }
 
 
@@ -531,20 +515,13 @@ namespace FlutterSDK.Services.Systemchrome
     /// </Summary>
     public class SystemChrome
     {
-        #region constructors
         internal SystemChrome()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _PendingStyle { get; set; }
         internal virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle _LatestStyle { get; set; }
         public virtual FlutterSDK.Services.Systemchrome.SystemUiOverlayStyle LatestStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Specifies the set of orientations the application interface can
@@ -755,7 +732,6 @@ namespace FlutterSDK.Services.Systemchrome
 
 
 
-        #endregion
     }
 
 

@@ -301,21 +301,14 @@ namespace FlutterSDK.Cupertino.Refresh
 
     public class _CupertinoSliverRefresh : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _CupertinoSliverRefresh(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double refreshIndicatorLayoutExtent = 0.0, bool hasLayoutExtent = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.RefreshIndicatorLayoutExtent = refreshIndicatorLayoutExtent;
             this.HasLayoutExtent = hasLayoutExtent;
         }
-        #endregion
-
-        #region fields
         public virtual double RefreshIndicatorLayoutExtent { get; set; }
         public virtual bool HasLayoutExtent { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Refresh._RenderCupertinoSliverRefresh CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -338,13 +331,11 @@ namespace FlutterSDK.Cupertino.Refresh
 
 
 
-        #endregion
     }
 
 
     public class _RenderCupertinoSliverRefresh : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public _RenderCupertinoSliverRefresh(double refreshIndicatorExtent = default(double), bool hasLayoutExtent = default(bool), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base()
         {
@@ -353,17 +344,11 @@ namespace FlutterSDK.Cupertino.Refresh
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _RefreshIndicatorExtent { get; set; }
         internal virtual bool _HasLayoutExtent { get; set; }
         public virtual double LayoutExtentOffsetCompensation { get; set; }
         public virtual double RefreshIndicatorLayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasLayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -413,7 +398,6 @@ namespace FlutterSDK.Cupertino.Refresh
 
 
 
-        #endregion
     }
 
 
@@ -471,7 +455,6 @@ namespace FlutterSDK.Cupertino.Refresh
     /// </Summary>
     public class CupertinoSliverRefreshControl : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoSliverRefreshControl(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double refreshTriggerPullDistance = default(double), double refreshIndicatorExtent = default(double), FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder builder = default(FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder), FlutterSDK.Cupertino.Refresh.RefreshCallback onRefresh = default(FlutterSDK.Cupertino.Refresh.RefreshCallback))
         : base(key: key)
         {
@@ -480,18 +463,12 @@ namespace FlutterSDK.Cupertino.Refresh
             this.Builder = builder;
             this.OnRefresh = onRefresh;
         }
-        #endregion
-
-        #region fields
         public virtual double RefreshTriggerPullDistance { get; set; }
         public virtual double RefreshIndicatorExtent { get; set; }
         public virtual FlutterSDK.Cupertino.Refresh.RefreshControlIndicatorBuilder Builder { get; set; }
         public virtual FlutterSDK.Cupertino.Refresh.RefreshCallback OnRefresh { get; set; }
         internal virtual double _DefaultRefreshTriggerPullDistance { get; set; }
         internal virtual double _DefaultRefreshIndicatorExtent { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Retrieve the current state of the CupertinoSliverRefreshControl. The same as the
@@ -524,26 +501,18 @@ namespace FlutterSDK.Cupertino.Refresh
         public new FlutterSDK.Cupertino.Refresh._CupertinoSliverRefreshControlState CreateState() => new _CupertinoSliverRefreshControlState();
 
 
-        #endregion
     }
 
 
     public class _CupertinoSliverRefreshControlState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Refresh.CupertinoSliverRefreshControl>
     {
-        #region constructors
         public _CupertinoSliverRefreshControlState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _InactiveResetOverscrollFraction { get; set; }
         public virtual FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode RefreshState { get; set; }
         public virtual Future<object> RefreshTask { get; set; }
         public virtual double LatestIndicatorBoxExtent { get; set; }
         public virtual bool HasSliverLayoutExtent { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -679,7 +648,6 @@ namespace FlutterSDK.Cupertino.Refresh
 
 
 
-        #endregion
     }
 
 

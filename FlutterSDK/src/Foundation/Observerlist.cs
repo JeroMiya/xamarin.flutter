@@ -321,21 +321,14 @@ namespace FlutterSDK.Foundation.Observerlist
     /// </Summary>
     public class ObserverList<T> : Iterable<T>
     {
-        #region constructors
         public ObserverList()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<T> _List { get; set; }
         internal virtual bool _IsDirty { get; set; }
         internal virtual HashSet<T> _Set { get; set; }
         public virtual Iterator<T> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds an item to the end of this list.
@@ -390,7 +383,6 @@ namespace FlutterSDK.Foundation.Observerlist
 
 
 
-        #endregion
     }
 
 
@@ -412,19 +404,12 @@ namespace FlutterSDK.Foundation.Observerlist
     /// </Summary>
     public class HashedObserverList<T> : Iterable<T>
     {
-        #region constructors
         public HashedObserverList()
         { }
-        #endregion
-
-        #region fields
         internal virtual LinkedHashMap<T, int> _Map { get; set; }
         public virtual Iterator<T> Iterator { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds an item to the end of this list.
@@ -472,7 +457,6 @@ namespace FlutterSDK.Foundation.Observerlist
         public new bool Contains(@Object element) => _Map.ContainsKey(element);
 
 
-        #endregion
     }
 
 }

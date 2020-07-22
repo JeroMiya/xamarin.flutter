@@ -536,7 +536,6 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class ScrollView : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public ScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double anchor = 0.0, double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         : base(key: key)
         {
@@ -551,9 +550,6 @@ namespace FlutterSDK.Widgets.Scrollview
             this.DragStartBehavior = dragStartBehavior;
             this.KeyboardDismissBehavior = keyboardDismissBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
         public virtual bool Reverse { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
@@ -566,9 +562,6 @@ namespace FlutterSDK.Widgets.Scrollview
         public virtual int SemanticChildCount { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         public virtual FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior KeyboardDismissBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the [AxisDirection] in which the scroll view scrolls.
@@ -679,7 +672,6 @@ namespace FlutterSDK.Widgets.Scrollview
 
 
 
-        #endregion
     }
 
 
@@ -800,24 +792,16 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class CustomScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
     {
-        #region constructors
         public CustomScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double anchor = 0.0, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, center: center, anchor: anchor, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior)
         {
             this.Slivers = slivers;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Slivers { get; set; }
-        #endregion
-
-        #region methods
 
         public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context) => Slivers;
 
 
-        #endregion
     }
 
 
@@ -833,19 +817,12 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class BoxScrollView : FlutterSDK.Widgets.Scrollview.ScrollView
     {
-        #region constructors
         public BoxScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double cacheExtent = default(double), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior)
         {
             this.Padding = padding;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        #endregion
-
-        #region methods
 
         public new List<FlutterSDK.Widgets.Framework.Widget> BuildSlivers(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -888,7 +865,6 @@ namespace FlutterSDK.Widgets.Scrollview
 
 
 
-        #endregion
     }
 
 
@@ -1174,7 +1150,6 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class ListView : FlutterSDK.Widgets.Scrollview.BoxScrollView
     {
-        #region constructors
         public ListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), double itemExtent = default(double), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior keyboardDismissBehavior = default(FlutterSDK.Widgets.Scrollview.ScrollViewKeyboardDismissBehavior))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior)
         {
@@ -1193,14 +1168,8 @@ namespace FlutterSDK.Widgets.Scrollview
             var instance = new ListView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount); instance.ItemExtent = itemExtent;
             instance.ChildrenDelegate = childrenDelegate;
         }
-        #endregion
-
-        #region fields
         public virtual double ItemExtent { get; set; }
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1231,7 +1200,6 @@ namespace FlutterSDK.Widgets.Scrollview
 
 
 
-        #endregion
     }
 
 
@@ -1429,7 +1397,6 @@ namespace FlutterSDK.Widgets.Scrollview
     /// </Summary>
     public class GridView : FlutterSDK.Widgets.Scrollview.BoxScrollView
     {
-        #region constructors
         public GridView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Rendering.Slivergrid.SliverGridDelegate gridDelegate = default(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate), bool addAutomaticKeepAlives = true, bool addRepaintBoundaries = true, bool addSemanticIndexes = true, double cacheExtent = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), int semanticChildCount = default(int))
         : base(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount ?? children.Count)
         {
@@ -1452,14 +1419,8 @@ namespace FlutterSDK.Widgets.Scrollview
         {
             var instance = new GridView(key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, semanticChildCount: semanticChildCount ?? children.Count, dragStartBehavior: dragStartBehavior);
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Slivergrid.SliverGridDelegate GridDelegate { get; set; }
         public virtual FlutterSDK.Widgets.Sliver.SliverChildDelegate ChildrenDelegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildChildLayout(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1468,7 +1429,6 @@ namespace FlutterSDK.Widgets.Scrollview
 
 
 
-        #endregion
     }
 
 

@@ -447,14 +447,10 @@ namespace FlutterSDK.Material.Icons
     /// </Summary>
     public class Icons
     {
-        #region constructors
         internal Icons()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Icondata.IconData Threesixty { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Threedrotation { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Fourk { get; set; }
@@ -1440,10 +1436,6 @@ namespace FlutterSDK.Material.Icons
         public virtual FlutterSDK.Widgets.Icondata.IconData Zoomin { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Zoomout { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData Zoomoutmap { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

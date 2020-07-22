@@ -404,7 +404,6 @@ namespace FlutterSDK.Material.Dialogtheme
     /// </Summary>
     public class DialogTheme : IDiagnosticable
     {
-        #region constructors
         public DialogTheme(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle titleTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.BackgroundColor = backgroundColor;
@@ -413,18 +412,12 @@ namespace FlutterSDK.Material.Dialogtheme
             this.TitleTextStyle = titleTextStyle;
             this.ContentTextStyle = contentTextStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TitleTextStyle { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -487,7 +480,6 @@ namespace FlutterSDK.Material.Dialogtheme
 
 
 
-        #endregion
     }
 
 }

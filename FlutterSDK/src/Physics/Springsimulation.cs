@@ -470,7 +470,6 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class SpringDescription
     {
-        #region constructors
         public SpringDescription(double mass = default(double), double stiffness = default(double), double damping = default(double))
         {
             this.Mass = mass;
@@ -482,17 +481,10 @@ namespace FlutterSDK.Physics.Springsimulation
             var instance = new SpringDescription(); instance.Mass = mass;
             instance.Stiffness = stiffness;
         }
-        #endregion
-
-        #region fields
         public virtual double Mass { get; set; }
         public virtual double Stiffness { get; set; }
         public virtual double Damping { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -503,21 +495,14 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class SpringSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public SpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _EndPosition { get; set; }
         internal virtual FlutterSDK.Physics.Springsimulation._SpringSolution _Solution { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time) => _EndPosition + _Solution.x(time);
 
@@ -535,7 +520,6 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
 
-        #endregion
     }
 
 
@@ -545,29 +529,20 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class ScrollSpringSimulation : FlutterSDK.Physics.Springsimulation.SpringSimulation
     {
-        #region constructors
         public ScrollSpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(spring, start, end, velocity, tolerance: tolerance)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double x(double time) => IsDone(time) ? _EndPosition : base.x(time);
 
 
-        #endregion
     }
 
 
     public class _CriticalSolution : I_SpringSolution
     {
-        #region constructors
         public _CriticalSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
@@ -582,16 +557,10 @@ namespace FlutterSDK.Physics.Springsimulation
         {
             var instance = new _CriticalSolution();
         }
-        #endregion
-
-        #region fields
         internal virtual double _R { get; set; }
         internal virtual double _C1 { get; set; }
         internal virtual double _C2 { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
@@ -609,13 +578,11 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
 
-        #endregion
     }
 
 
     public class _OverdampedSolution : I_SpringSolution
     {
-        #region constructors
         public _OverdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
@@ -632,17 +599,11 @@ namespace FlutterSDK.Physics.Springsimulation
         {
             var instance = new _OverdampedSolution();
         }
-        #endregion
-
-        #region fields
         internal virtual double _R1 { get; set; }
         internal virtual double _R2 { get; set; }
         internal virtual double _C1 { get; set; }
         internal virtual double _C2 { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
@@ -659,13 +620,11 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
 
-        #endregion
     }
 
 
     public class _UnderdampedSolution : I_SpringSolution
     {
-        #region constructors
         public _UnderdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
@@ -681,17 +640,11 @@ namespace FlutterSDK.Physics.Springsimulation
         {
             var instance = new _UnderdampedSolution();
         }
-        #endregion
-
-        #region fields
         internal virtual double _W { get; set; }
         internal virtual double _R { get; set; }
         internal virtual double _C1 { get; set; }
         internal virtual double _C2 { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
@@ -711,7 +664,6 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
 
-        #endregion
     }
 
 

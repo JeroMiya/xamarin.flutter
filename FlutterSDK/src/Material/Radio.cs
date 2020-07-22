@@ -488,7 +488,6 @@ namespace FlutterSDK.Material.Radio
     /// </Summary>
     public class Radio<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Radio(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), T groupValue = default(T), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -503,9 +502,6 @@ namespace FlutterSDK.Material.Radio
             this.FocusNode = focusNode;
             this.Autofocus = autofocus;
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
         public virtual T GroupValue { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
@@ -516,32 +512,21 @@ namespace FlutterSDK.Material.Radio
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
-        #endregion
-
-        #region methods
 
         public new _RadioState<T> CreateState() => new _RadioState<T>();
 
 
-        #endregion
     }
 
 
     public class _RadioState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Radio.Radio<T>>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _RadioState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
         internal virtual bool _Focused { get; set; }
         internal virtual bool _Hovering { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -639,13 +624,11 @@ namespace FlutterSDK.Material.Radio
 
 
 
-        #endregion
     }
 
 
     public class _RadioRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _RadioRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool selected = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = default(bool), bool hovering = default(bool))
         : base(key: key)
         {
@@ -660,9 +643,6 @@ namespace FlutterSDK.Material.Radio
             this.HasFocus = hasFocus;
             this.Hovering = hovering;
         }
-        #endregion
-
-        #region fields
         public virtual bool Selected { get; set; }
         public virtual bool HasFocus { get; set; }
         public virtual bool Hovering { get; set; }
@@ -673,9 +653,6 @@ namespace FlutterSDK.Material.Radio
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Radio._RenderRadio CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderRadio(value: Selected, activeColor: ActiveColor, inactiveColor: InactiveColor, focusColor: FocusColor, hoverColor: HoverColor, onChanged: OnChanged, vsync: Vsync, additionalConstraints: AdditionalConstraints, hasFocus: HasFocus, hovering: Hovering);
 
@@ -694,24 +671,16 @@ namespace FlutterSDK.Material.Radio
 
 
 
-        #endregion
     }
 
 
     public class _RenderRadio : FlutterSDK.Material.Toggleable.RenderToggleable
     {
-        #region constructors
         public _RenderRadio(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = default(bool), bool hovering = default(bool))
         : base(value: value, tristate: false, activeColor: activeColor, inactiveColor: inactiveColor, focusColor: focusColor, hoverColor: hoverColor, onChanged: onChanged, additionalConstraints: additionalConstraints, vsync: vsync, hasFocus: hasFocus, hovering: hovering)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -740,7 +709,6 @@ namespace FlutterSDK.Material.Radio
 
 
 
-        #endregion
     }
 
 }

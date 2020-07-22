@@ -569,39 +569,24 @@ namespace FlutterSDK.Widgets.Pagestorage
     /// </Summary>
     public class PageStorageKey<T> : FlutterSDK.Foundation.Key.ValueKey<T>
     {
-        #region constructors
         public PageStorageKey(T value)
         : base(value)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _StorageEntryIdentifier
     {
-        #region constructors
         public _StorageEntryIdentifier(List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> keys)
         : base()
         {
             this.Keys = keys;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Pagestorage.PageStorageKey<object>> Keys { get; set; }
         public virtual bool IsNotEmpty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -612,7 +597,6 @@ namespace FlutterSDK.Widgets.Pagestorage
 
 
 
-        #endregion
     }
 
 
@@ -621,21 +605,14 @@ namespace FlutterSDK.Widgets.Pagestorage
     /// </Summary>
     public class PageStorage : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public PageStorage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Pagestorage.PageStorageBucket bucket = default(FlutterSDK.Widgets.Pagestorage.PageStorageBucket), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Bucket = bucket;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Pagestorage.PageStorageBucket Bucket { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The bucket from the closest instance of this class that encloses the given context.
@@ -660,7 +637,6 @@ namespace FlutterSDK.Widgets.Pagestorage
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
 
 
-        #endregion
     }
 
 }

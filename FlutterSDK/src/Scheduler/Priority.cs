@@ -432,23 +432,16 @@ namespace FlutterSDK.Scheduler.Priority
     /// </Summary>
     public class Priority
     {
-        #region constructors
         internal Priority(int _value)
         {
             this._Value = _value;
         }
-        #endregion
-
-        #region fields
         internal virtual int _Value { get; set; }
         public virtual FlutterSDK.Scheduler.Priority.Priority Idle { get; set; }
         public virtual FlutterSDK.Scheduler.Priority.Priority Animation { get; set; }
         public virtual FlutterSDK.Scheduler.Priority.Priority Touch { get; set; }
         public virtual int KMaxOffset { get; set; }
         public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a priority relative to this priority.
@@ -480,7 +473,6 @@ namespace FlutterSDK.Scheduler.Priority
         public virtual FlutterSDK.Scheduler.Priority.Priority SubtractOperator(int offset) => this + (-offset);
 
 
-        #endregion
     }
 
 }

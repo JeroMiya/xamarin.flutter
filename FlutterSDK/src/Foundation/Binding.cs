@@ -361,7 +361,6 @@ namespace FlutterSDK.Foundation.Binding
     /// </Summary>
     public class BindingBase
     {
-        #region constructors
         public BindingBase()
         {
 
@@ -377,17 +376,11 @@ namespace FlutterSDK.Foundation.Binding
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _DebugInitialized { get; set; }
         internal virtual bool _DebugServiceExtensionsRegistered { get; set; }
         internal virtual int _LockCount { get; set; }
         public virtual Window Window { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Locked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The initialization method. Subclasses override this method to hook into
@@ -810,7 +803,6 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-    #endregion
 }
 
 }

@@ -479,21 +479,14 @@ namespace FlutterSDK.Painting.Placeholderspan
     /// </Summary>
     public class PlaceholderSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
-        #region constructors
         public PlaceholderSpan(PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(style: style)
         {
             this.Alignment = alignment;
             this.Baseline = baseline;
         }
-        #endregion
-
-        #region fields
         public virtual PlaceholderAlignment Alignment { get; set; }
         public virtual TextBaseline Baseline { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// [PlaceholderSpan]s are flattened to a `0xFFFC` object replacement character in the
@@ -560,7 +553,6 @@ namespace FlutterSDK.Painting.Placeholderspan
 
 
 
-        #endregion
     }
 
 }

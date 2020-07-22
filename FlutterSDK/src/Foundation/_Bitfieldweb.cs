@@ -306,7 +306,6 @@ namespace FlutterSDK.Foundation._Bitfieldweb
     /// </Summary>
     public class BitField<T> : IBitField<T>
     {
-        #region constructors
         public BitField(int length)
         {
 
@@ -315,12 +314,6 @@ namespace FlutterSDK.Foundation._Bitfieldweb
         {
             var instance = new BitField<T>();
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new bool IndexOfOperator(T index)
         {
@@ -345,7 +338,6 @@ namespace FlutterSDK.Foundation._Bitfieldweb
 
 
 
-        #endregion
     }
 
 }

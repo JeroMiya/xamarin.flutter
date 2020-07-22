@@ -438,7 +438,6 @@ namespace FlutterSDK.Rendering.Image
     /// </Summary>
     public class RenderImage : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public RenderImage(SKImage image = default(SKImage), double width = default(double), double height = default(double), double scale = 1.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.BlendMode colorBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), bool matchTextDirection = false, TextDirection textDirection = default(TextDirection), bool invertColors = false, FilterQuality filterQuality = default(FilterQuality))
         : base()
         {
@@ -447,9 +446,6 @@ namespace FlutterSDK.Rendering.Image
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
         internal virtual bool _FlipHorizontally { get; set; }
         internal virtual SKImage _Image { get; set; }
@@ -481,9 +477,6 @@ namespace FlutterSDK.Rendering.Image
         public virtual bool InvertColors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool MatchTextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Resolve()
         {
@@ -615,7 +608,6 @@ namespace FlutterSDK.Rendering.Image
 
 
 
-        #endregion
     }
 
 }

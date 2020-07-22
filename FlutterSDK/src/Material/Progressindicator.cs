@@ -451,7 +451,6 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class ProgressIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public ProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key)
         {
@@ -461,17 +460,11 @@ namespace FlutterSDK.Material.Progressindicator
             this.SemanticsLabel = semanticsLabel;
             this.SemanticsValue = semanticsValue;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Color> ValueColor { get; set; }
         public virtual string SemanticsLabel { get; set; }
         public virtual string SemanticsValue { get; set; }
-        #endregion
-
-        #region methods
 
         private Color _GetBackgroundColor(FlutterSDK.Widgets.Framework.BuildContext context) => BackgroundColor ?? ThemeDefaultClass.Theme.Of(context).BackgroundColor;
 
@@ -503,13 +496,11 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 
     public class _LinearProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _LinearProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double animationValue = default(double), TextDirection textDirection = default(TextDirection))
         : base()
         {
@@ -519,9 +510,6 @@ namespace FlutterSDK.Material.Progressindicator
             this.AnimationValue = animationValue;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color ValueColor { get; set; }
         public virtual double Value { get; set; }
@@ -531,9 +519,6 @@ namespace FlutterSDK.Material.Progressindicator
         public virtual FlutterSDK.Animation.Curves.Curve Line1Tail { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Line2Head { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Line2Tail { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -580,7 +565,6 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 
@@ -611,38 +595,23 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class LinearProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
-        #region constructors
         public LinearProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Progressindicator._LinearProgressIndicatorState CreateState() => new _LinearProgressIndicatorState();
 
 
-        #endregion
     }
 
 
     public class _LinearProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.LinearProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _LinearProgressIndicatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -693,13 +662,11 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 
     public class _CircularProgressIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _CircularProgressIndicatorPainter(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double))
         : base()
         {
@@ -712,9 +679,6 @@ namespace FlutterSDK.Material.Progressindicator
             this.RotationValue = rotationValue;
             this.StrokeWidth = strokeWidth;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color ValueColor { get; set; }
         public virtual double Value { get; set; }
@@ -729,9 +693,6 @@ namespace FlutterSDK.Material.Progressindicator
         internal virtual double _Epsilon { get; set; }
         internal virtual double _Sweep { get; set; }
         internal virtual double _StartAngle { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -762,7 +723,6 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 
@@ -794,39 +754,24 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class CircularProgressIndicator : FlutterSDK.Material.Progressindicator.ProgressIndicator
     {
-        #region constructors
         public CircularProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 4.0, string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
         {
             this.StrokeWidth = strokeWidth;
         }
-        #endregion
-
-        #region fields
         public virtual double StrokeWidth { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState CreateState() => new _CircularProgressIndicatorState();
 
 
-        #endregion
     }
 
 
     public class _CircularProgressIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Progressindicator.CircularProgressIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CircularProgressIndicatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -884,25 +829,17 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 
     public class _RefreshProgressIndicatorPainter : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorPainter
     {
-        #region constructors
         public _RefreshProgressIndicatorPainter(FlutterBinding.UI.Color valueColor = default(FlutterBinding.UI.Color), double value = default(double), double headValue = default(double), double tailValue = default(double), int stepValue = default(int), double rotationValue = default(double), double strokeWidth = default(double), double arrowheadScale = default(double))
         : base(valueColor: valueColor, value: value, headValue: headValue, tailValue: tailValue, stepValue: stepValue, rotationValue: rotationValue, strokeWidth: strokeWidth)
         {
             this.ArrowheadScale = arrowheadScale;
         }
-        #endregion
-
-        #region fields
         public virtual double ArrowheadScale { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void PaintArrowhead(Canvas canvas, Size size)
         {
@@ -936,7 +873,6 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 
@@ -957,38 +893,23 @@ namespace FlutterSDK.Material.Progressindicator
     /// </Summary>
     public class RefreshProgressIndicator : FlutterSDK.Material.Progressindicator.CircularProgressIndicator
     {
-        #region constructors
         public RefreshProgressIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Animation.Animation.Animation<Color> valueColor = default(FlutterSDK.Animation.Animation.Animation<Color>), double strokeWidth = 2.0, string semanticsLabel = default(string), string semanticsValue = default(string))
         : base(key: key, value: value, backgroundColor: backgroundColor, valueColor: valueColor, strokeWidth: strokeWidth, semanticsLabel: semanticsLabel, semanticsValue: semanticsValue)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Progressindicator._RefreshProgressIndicatorState CreateState() => new _RefreshProgressIndicatorState();
 
 
-        #endregion
     }
 
 
     public class _RefreshProgressIndicatorState : FlutterSDK.Material.Progressindicator._CircularProgressIndicatorState
     {
-        #region constructors
         public _RefreshProgressIndicatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _IndicatorSize { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1007,7 +928,6 @@ namespace FlutterSDK.Material.Progressindicator
 
 
 
-        #endregion
     }
 
 }

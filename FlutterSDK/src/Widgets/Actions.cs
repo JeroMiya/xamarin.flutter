@@ -495,20 +495,13 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class Intent : IDiagnosticable
     {
-        #region constructors
         public Intent(FlutterSDK.Foundation.Key.LocalKey key)
         : base()
         {
             this.Key = key;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Actions.Intent DoNothing { get; set; }
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns true if the associated action is able to be executed in the
@@ -528,7 +521,6 @@ namespace FlutterSDK.Widgets.Actions
 
 
 
-        #endregion
     }
 
 
@@ -555,19 +547,12 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class Action : IDiagnosticable
     {
-        #region constructors
         public Action(FlutterSDK.Foundation.Key.LocalKey intentKey)
         : base()
         {
             this.IntentKey = intentKey;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey IntentKey { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called when the action is to be performed.
@@ -596,7 +581,6 @@ namespace FlutterSDK.Widgets.Actions
 
 
 
-        #endregion
     }
 
 
@@ -615,24 +599,16 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class CallbackAction : FlutterSDK.Widgets.Actions.Action
     {
-        #region constructors
         public CallbackAction(FlutterSDK.Foundation.Key.LocalKey intentKey, FlutterSDK.Widgets.Actions.OnInvokeCallback onInvoke = default(FlutterSDK.Widgets.Actions.OnInvokeCallback))
         : base(intentKey)
         {
             this.OnInvoke = onInvoke;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Actions.OnInvokeCallback OnInvoke { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) => OnInvoke.OnInvoke(node, intent);
 
 
-        #endregion
     }
 
 
@@ -641,17 +617,10 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class ActionDispatcher : IDiagnosticable
     {
-        #region constructors
         public ActionDispatcher()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Invokes the given action, optionally without regard for the currently
@@ -680,7 +649,6 @@ namespace FlutterSDK.Widgets.Actions
 
 
 
-        #endregion
     }
 
 
@@ -702,21 +670,14 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class Actions : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public Actions(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Actions.ActionDispatcher dispatcher = default(FlutterSDK.Widgets.Actions.ActionDispatcher), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Dispatcher = dispatcher;
             this.ActionsValue = actions;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Actions.ActionDispatcher Dispatcher { get; set; }
         public virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> ActionsValue { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Actions.ActionDispatcher _FindDispatcher(FlutterSDK.Widgets.Framework.Element element)
         {
@@ -848,7 +809,6 @@ namespace FlutterSDK.Widgets.Actions
 
 
 
-        #endregion
     }
 
 
@@ -1005,7 +965,6 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class FocusableActionDetector : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public FocusableActionDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool enabled = true, FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent> shortcuts = default(Dictionary<FlutterSDK.Widgets.Shortcuts.LogicalKeySet, FlutterSDK.Widgets.Actions.Intent>), Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> actions = default(Dictionary<FlutterSDK.Foundation.Key.LocalKey, object>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowFocusHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onShowHoverHighlight = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onFocusChange = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -1019,9 +978,6 @@ namespace FlutterSDK.Widgets.Actions
             this.OnFocusChange = onFocusChange;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool Enabled { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
@@ -1031,31 +987,20 @@ namespace FlutterSDK.Widgets.Actions
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnShowHoverHighlight { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnFocusChange { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Actions._FocusableActionDetectorState CreateState() => new _FocusableActionDetectorState();
 
 
-        #endregion
     }
 
 
     public class _FocusableActionDetectorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Actions.FocusableActionDetector>
     {
-        #region constructors
         public _FocusableActionDetectorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _CanShowHighlight { get; set; }
         internal virtual bool _Hovering { get; set; }
         internal virtual bool _Focused { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1217,7 +1162,6 @@ namespace FlutterSDK.Widgets.Actions
 
 
 
-        #endregion
     }
 
 
@@ -1230,19 +1174,12 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class DoNothingAction : FlutterSDK.Widgets.Actions.Action
     {
-        #region constructors
         public DoNothingAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent)
         {
@@ -1250,7 +1187,6 @@ namespace FlutterSDK.Widgets.Actions
 
 
 
-        #endregion
     }
 
 
@@ -1263,20 +1199,12 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class ActivateAction : FlutterSDK.Widgets.Actions.Action
     {
-        #region constructors
         public ActivateAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1288,20 +1216,12 @@ namespace FlutterSDK.Widgets.Actions
     /// </Summary>
     public class SelectAction : FlutterSDK.Widgets.Actions.Action
     {
-        #region constructors
         public SelectAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

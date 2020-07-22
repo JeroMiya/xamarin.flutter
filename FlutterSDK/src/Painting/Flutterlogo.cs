@@ -431,7 +431,6 @@ namespace FlutterSDK.Painting.Flutterlogo
     /// </Summary>
     public class FlutterLogoDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
-        #region constructors
         public FlutterLogoDecoration(FlutterBinding.UI.Color lightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle style = default(FlutterSDK.Painting.Flutterlogo.FlutterLogoStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsets margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets))
         : base()
         {
@@ -451,9 +450,6 @@ namespace FlutterSDK.Painting.Flutterlogo
             this._Position = _position;
             this._Opacity = _opacity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color LightColor { get; set; }
         public virtual FlutterBinding.UI.Color DarkColor { get; set; }
         public virtual FlutterBinding.UI.Color TextColor { get; set; }
@@ -464,9 +460,6 @@ namespace FlutterSDK.Painting.Flutterlogo
         internal virtual bool _InTransition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool DebugAssertIsValid()
         {
@@ -579,7 +572,6 @@ namespace FlutterSDK.Painting.Flutterlogo
 
 
 
-        #endregion
     }
 
 
@@ -588,7 +580,6 @@ namespace FlutterSDK.Painting.Flutterlogo
     /// </Summary>
     public class _FlutterLogoPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
-        #region constructors
         public _FlutterLogoPainter(FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration _config)
         : base(null)
         {
@@ -597,15 +588,9 @@ namespace FlutterSDK.Painting.Flutterlogo
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Flutterlogo.FlutterLogoDecoration _Config { get; set; }
         internal virtual FlutterSDK.Painting.Textpainter.TextPainter _TextPainter { get; set; }
         internal virtual FlutterBinding.UI.Rect _TextBoundingRect { get; set; }
-        #endregion
-
-        #region methods
 
         private void _PrepareText()
         {
@@ -775,7 +760,6 @@ namespace FlutterSDK.Painting.Flutterlogo
 
 
 
-        #endregion
     }
 
 

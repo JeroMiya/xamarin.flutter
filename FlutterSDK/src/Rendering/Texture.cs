@@ -458,23 +458,16 @@ namespace FlutterSDK.Rendering.Texture
     /// </Summary>
     public class TextureBox : FlutterSDK.Rendering.Box.RenderBox
     {
-        #region constructors
         public TextureBox(int textureId = default(int))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _TextureId { get; set; }
         public virtual int TextureId { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void PerformResize()
         {
@@ -496,7 +489,6 @@ namespace FlutterSDK.Rendering.Texture
 
 
 
-        #endregion
     }
 
 }
