@@ -3583,7 +3583,7 @@ namespace FlutterSDK.Widgets.Navigator
                     routeJsonable["settings"] = settingsJsonable;
                 }
 
-                Developer.Dart.DeveloperDefaultClass.PostEvent("Flutter.Navigation", new Dictionary<string, object> { { "route", routeJsonable } });
+                Dart.Developer.DeveloperDefaultClass.PostEvent("Flutter.Navigation", new Dictionary<string, object> { { "route", routeJsonable } });
             }
 
             _CancelActivePointers();

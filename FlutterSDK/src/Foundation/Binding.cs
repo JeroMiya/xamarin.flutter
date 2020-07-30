@@ -364,15 +364,15 @@ namespace FlutterSDK.Foundation.Binding
         public BindingBase()
         {
 
-            Developer.Dart.DeveloperDefaultClass.Timeline.StartSync("Framework initialization");
+            Dart.Developer.DeveloperDefaultClass.Timeline.StartSync("Framework initialization");
 
             InitInstances();
 
 
             InitServiceExtensions();
 
-            Developer.Dart.DeveloperDefaultClass.PostEvent("Flutter.FrameworkInitialization", new Dictionary<string, string> { });
-            Developer.Dart.DeveloperDefaultClass.Timeline.FinishSync();
+            Dart.Developer.DeveloperDefaultClass.PostEvent("Flutter.FrameworkInitialization", new Dictionary<string, string> { });
+            Dart.Developer.DeveloperDefaultClass.Timeline.FinishSync();
         }
 
 
@@ -455,7 +455,7 @@ namespace FlutterSDK.Foundation.Binding
         /// </Summary>
         public virtual Future<object> LockEvents(Func<Future> callback)
         {
-            Developer.Dart.DeveloperDefaultClass.Timeline.StartSync("Lock events");
+            Dart.Developer.DeveloperDefaultClass.Timeline.StartSync("Lock events");
 
             _LockCount += 1;
             Future<void> future = callback();
@@ -465,7 +465,7 @@ namespace FlutterSDK.Foundation.Binding
                 _LockCount -= 1;
                 if (!Locked)
                 {
-                    Developer.Dart.DeveloperDefaultClass.Timeline.FinishSync();
+                    Dart.Developer.DeveloperDefaultClass.Timeline.FinishSync();
                     Unlocked();
                 }
 
@@ -664,7 +664,7 @@ namespace FlutterSDK.Foundation.Binding
         /// </Summary>
         public virtual void PostEvent(string eventKind, Dictionary<string, object> eventData)
         {
-            Developer.Dart.DeveloperDefaultClass.PostEvent(eventKind, eventData);
+            Dart.Developer.DeveloperDefaultClass.PostEvent(eventKind, eventData);
         }
 
 
@@ -763,7 +763,7 @@ namespace FlutterSDK.Foundation.Binding
 
 
             string methodName = $"'ext.flutter.{name}'";
-            Developer.Dart.DeveloperDefaultClass.RegisterExtension(methodName, async (string method, Dictionary<string, string> parameters) =>
+            Dart.Developer.DeveloperDefaultClass.RegisterExtension(methodName, async (string method, Dictionary<string, string> parameters) =>
             {
 
 
@@ -788,12 +788,12 @@ namespace FlutterSDK.Foundation.Binding
             {
                 result["type"] = "_extensionType";
                 result["method"] = method;
-                return Developer.Dart.DeveloperDefaultClass.ServiceExtensionResponse.Result(Dart.ConvertDefaultClass.Json.Encode(result));
+                return Dart.Developer.DeveloperDefaultClass.ServiceExtensionResponse.Result(Dart.ConvertDefaultClass.Json.Encode(result));
             }
             else
             {
                 AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: caughtException, stack: caughtStack, context: new ErrorDescription($"'during a service extension callback for "{ method }"'")));
-                return Developer.Dart.DeveloperDefaultClass.ServiceExtensionResponse.Error(Developer.Dart.DeveloperDefaultClass.ServiceExtensionResponse.ExtensionError, Dart.ConvertDefaultClass.Json.Encode(new Dictionary<string, string> { { "exception", caughtException.ToString() }{ "stack", caughtStack.ToString() }{ "method", method } }));
+                return Dart.Developer.DeveloperDefaultClass.ServiceExtensionResponse.Error(Developer.Dart.DeveloperDefaultClass.ServiceExtensionResponse.ExtensionError, Dart.ConvertDefaultClass.Json.Encode(new Dictionary<string, string> { { "exception", caughtException.ToString() }{ "stack", caughtStack.ToString() }{ "method", method } }));
             }
 
         }

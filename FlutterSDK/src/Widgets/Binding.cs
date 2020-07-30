@@ -941,8 +941,8 @@ namespace FlutterSDK.Widgets.Binding
 
                     if (!ConstantsDefaultClass.KReleaseMode)
                     {
-                        Developer.Dart.DeveloperDefaultClass.Timeline.InstantSync("Rasterized first useful frame");
-                        Developer.Dart.DeveloperDefaultClass.PostEvent("Flutter.FirstFrame", new Dictionary<string, object> { });
+                        Dart.Developer.DeveloperDefaultClass.Timeline.InstantSync("Rasterized first useful frame");
+                        Dart.Developer.DeveloperDefaultClass.PostEvent("Flutter.FirstFrame", new Dictionary<string, object> { });
                     }
 
                     BindingDefaultClass.SchedulerBinding.Instance.RemoveTimingsCallback(firstFrameCallback);
@@ -968,7 +968,7 @@ namespace FlutterSDK.Widgets.Binding
             {
                 if (_NeedToReportFirstFrame && SendFramesToEngine)
                 {
-                    Developer.Dart.DeveloperDefaultClass.Timeline.InstantSync("Widgets built first useful frame");
+                    Dart.Developer.DeveloperDefaultClass.Timeline.InstantSync("Widgets built first useful frame");
                 }
 
             }

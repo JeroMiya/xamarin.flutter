@@ -1218,7 +1218,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
                     }
 
                     Selection.CurrentElement = object;
-                    Developer.Dart.DeveloperDefaultClass.Inspect(Selection.CurrentElement);
+                    Dart.Developer.DeveloperDefaultClass.Inspect(Selection.CurrentElement);
                 }
                 else
                 {
@@ -1228,7 +1228,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
                     }
 
                     Selection.Current = object as RenderObject;
-                    Developer.Dart.DeveloperDefaultClass.Inspect(Selection.Current);
+                    Dart.Developer.DeveloperDefaultClass.Inspect(Selection.Current);
                 }
 
                 if (SelectionChangedCallback != null)
@@ -1891,7 +1891,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
         /// </Summary>
         public virtual void PostEvent(string eventKind, Dictionary<@Object, @Object> eventData)
         {
-            Developer.Dart.DeveloperDefaultClass.PostEvent(eventKind, eventData);
+            Dart.Developer.DeveloperDefaultClass.PostEvent(eventKind, eventData);
         }
 
 
@@ -3144,7 +3144,7 @@ namespace FlutterSDK.Widgets.Widgetinspector
                 _InspectAt(_LastPointerLocation);
                 if (Selection != null)
                 {
-                    Developer.Dart.DeveloperDefaultClass.Inspect(Selection.Current);
+                    Dart.Developer.DeveloperDefaultClass.Inspect(Selection.Current);
                 }
 
             }
