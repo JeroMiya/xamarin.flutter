@@ -453,7 +453,7 @@ namespace FlutterSDK.Services.Textformatter
 
             }
 
-            return new TextEditingValue(text: manipulatedText, selection: manipulatedSelection ?? TextSelection.Collapsed(offset: -1), composing: manipulatedText == value.Text ? value.Composing : Dart:uiDefaultClass.TextRange.Empty);
+            return new TextEditingValue(text: manipulatedText, selection: manipulatedSelection ?? TextSelection.Collapsed(offset: -1), composing: manipulatedText == value.Text ? value.Composing : Dart.UiDefaultClass.TextRange.Empty);
         }
 
 
@@ -598,11 +598,11 @@ namespace FlutterSDK.Services.Textformatter
         /// </Summary>
         public virtual FlutterSDK.Services.Textinput.TextEditingValue Truncate(FlutterSDK.Services.Textinput.TextEditingValue value, int maxLength)
         {
-            TextSelection newSelection = value.Selection.CopyWith(baseOffset: Math.Dart:mathDefaultClass.Min(value.Selection.Start, maxLength), extentOffset: Math.Dart:mathDefaultClass.Min(value.Selection.End, maxLength));
+            TextSelection newSelection = value.Selection.CopyWith(baseOffset: Dart.Math.MathDefaultClass.Min(value.Selection.Start, maxLength), extentOffset: Dart.Math.MathDefaultClass.Min(value.Selection.End, maxLength));
             RuneIterator iterator = new RuneIterator(value.Text);
             if (iterator.MoveNext()) for (int count = 0; count < maxLength; ++count) if (!iterator.MoveNext()) break;
             string truncated = value.Text.Substring(0, iterator.RawIndex);
-            return new TextEditingValue(text: truncated, selection: newSelection, composing: Dart:uiDefaultClass.TextRange.Empty);
+            return new TextEditingValue(text: truncated, selection: newSelection, composing: Dart.UiDefaultClass.TextRange.Empty);
         }
 
 

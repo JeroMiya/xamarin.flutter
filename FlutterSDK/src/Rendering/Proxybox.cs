@@ -674,7 +674,7 @@ namespace FlutterSDK.Rendering.Proxybox
         private void _UpdateOpacity()
         {
             int oldAlpha = _Alpha;
-            _Alpha = Ui.Dart:uiDefaultClass.Color.GetAlphaFromOpacity(_Opacity.Value);
+            _Alpha = Dart.UI.UiDefaultClass.Color.GetAlphaFromOpacity(_Opacity.Value);
             if (oldAlpha != _Alpha)
             {
                 bool didNeedCompositing = _CurrentlyNeedsCompositing;
@@ -909,7 +909,7 @@ namespace FlutterSDK.Rendering.Proxybox
             }
             else
             {
-                Size = _AdditionalConstraints.Enforce(constraints).Constrain(Dart: uiDefaultClass.Size.Zero);
+                Size = _AdditionalConstraints.Enforce(constraints).Constrain(Dart.UI.UiDefaultClass.Size.Zero);
             }
 
         }
@@ -981,7 +981,7 @@ namespace FlutterSDK.Rendering.Proxybox
             }
             else
             {
-                Size = _LimitConstraints(Constraints).Constrain(Dart: uiDefaultClass.Size.Zero);
+                Size = _LimitConstraints(Constraints).Constrain(Dart.UI.UiDefaultClass.Size.Zero);
             }
 
         }
@@ -992,8 +992,8 @@ namespace FlutterSDK.Rendering.Proxybox
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
-            properties.Add(new DoubleProperty("maxWidth", MaxWidth, defaultValue: Dart:coreDefaultClass.Double.Infinity));
-            properties.Add(new DoubleProperty("maxHeight", MaxHeight, defaultValue: Dart:coreDefaultClass.Double.Infinity));
+            properties.Add(new DoubleProperty("maxWidth", MaxWidth, defaultValue: Dart.CoreDefaultClass.Double.Infinity));
+            properties.Add(new DoubleProperty("maxHeight", MaxHeight, defaultValue: Dart.CoreDefaultClass.Double.Infinity));
         }
 
 
@@ -1206,7 +1206,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMinIntrinsicHeight(double width)
         {
             if (Child == null) return 0.0;
-            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
 
             double height = Child.GetMinIntrinsicHeight(width);
             return _ApplyStep(height, _StepHeight);
@@ -1218,7 +1218,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMaxIntrinsicHeight(double width)
         {
             if (Child == null) return 0.0;
-            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
 
             double height = Child.GetMaxIntrinsicHeight(width);
             return _ApplyStep(height, _StepHeight);
@@ -1294,7 +1294,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMinIntrinsicWidth(double height)
         {
             if (Child == null) return 0.0;
-            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity);
+            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity);
 
             return Child.GetMinIntrinsicWidth(height);
         }
@@ -1305,7 +1305,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMaxIntrinsicWidth(double height)
         {
             if (Child == null) return 0.0;
-            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity);
+            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity);
 
             return Child.GetMaxIntrinsicWidth(height);
         }
@@ -1465,7 +1465,7 @@ namespace FlutterSDK.Rendering.Proxybox
             {
 
                 Layer = (Layer == null ? new ShaderMaskLayer() : Layer);
-                ..Shader = _ShaderCallback(Dart: uiDefaultClass.Offset.Zero & Size)..MaskRect = offset & Size..BlendMode = _BlendMode;
+                ..Shader = _ShaderCallback(Dart.UI.UiDefaultClass.Offset.Zero & Size)..MaskRect = offset & Size..BlendMode = _BlendMode;
                 context.PushLayer(Layer, base.Paint, offset);
             }
             else
@@ -1573,28 +1573,28 @@ namespace FlutterSDK.Rendering.Proxybox
         /// same size as the RenderObject (e.g. it's a rounded rectangle
         /// with very small arcs in the corners), then this may be adequate.
         /// </Summary>
-        public virtual Rect GetApproximateClipRect(Size size) => Dart:uiDefaultClass.Offset.Zero&size;
+        public virtual Rect GetApproximateClipRect(Size size) => Dart.UiDefaultClass.Offset.Zero & size;
 
 
 
-/// <Summary>
-/// Called whenever a new instance of the custom clipper delegate class is
-/// provided to the clip object, or any time that a new clip object is created
-/// with a new instance of the custom painter delegate class (which amounts to
-/// the same thing, because the latter is implemented in terms of the former).
-///
-/// If the new instance represents different information than the old
-/// instance, then the method should return true, otherwise it should return
-/// false.
-///
-/// If the method returns false, then the [getClip] call might be optimized
-/// away.
-///
-/// It's possible that the [getClip] method will get called even if
-/// [shouldReclip] returns false or if the [shouldReclip] method is never
-/// called at all (e.g. if the box changes size).
-/// </Summary>
-public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper)
+        /// <Summary>
+        /// Called whenever a new instance of the custom clipper delegate class is
+        /// provided to the clip object, or any time that a new clip object is created
+        /// with a new instance of the custom painter delegate class (which amounts to
+        /// the same thing, because the latter is implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [getClip] call might be optimized
+        /// away.
+        ///
+        /// It's possible that the [getClip] method will get called even if
+        /// [shouldReclip] returns false or if the [shouldReclip] method is never
+        /// called at all (e.g. if the box changes size).
+        /// </Summary>
+        public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper)
         {
             return default(bool);
         }
@@ -1622,7 +1622,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         /// </Summary>
         public new Path GetClip(Size size)
         {
-            return Shape.GetOuterPath(Dart: uiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
+            return Shape.GetOuterPath(Dart.UI.UiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
         }
 
 
@@ -1711,7 +1711,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            return _Clipper?.GetApproximateClipRect(Size) ?? Dart:uiDefaultClass.Offset.Zero & Size;
+            return _Clipper?.GetApproximateClipRect(Size) ?? Dart.UiDefaultClass.Offset.Zero & Size;
         }
 
 
@@ -1963,7 +1963,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (Child != null)
             {
                 _UpdateClip();
-                Layer = context.PushClipPath(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _Clip, base.Paint, clipBehavior: ClipBehavior, oldLayer: Layer as ClipPathLayer);
+                Layer = context.PushClipPath(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _Clip, base.Paint, clipBehavior: ClipBehavior, oldLayer: Layer as ClipPathLayer);
             }
             else
             {
@@ -2505,8 +2505,8 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
                 FittedSizes sizes = BoxfitDefaultClass.ApplyBoxFit(_Fit, childSize, Size);
                 double scaleX = sizes.Destination.Width / sizes.Source.Width;
                 double scaleY = sizes.Destination.Height / sizes.Source.Height;
-                Rect sourceRect = _ResolvedAlignment.Inscribe(sizes.Source, Dart: uiDefaultClass.Offset.Zero & childSize);
-                Rect destinationRect = _ResolvedAlignment.Inscribe(sizes.Destination, Dart: uiDefaultClass.Offset.Zero & Size);
+                Rect sourceRect = _ResolvedAlignment.Inscribe(sizes.Source, Dart.UI.UiDefaultClass.Offset.Zero & childSize);
+                Rect destinationRect = _ResolvedAlignment.Inscribe(sizes.Destination, Dart.UI.UiDefaultClass.Offset.Zero & Size);
                 _HasVisualOverflow = sourceRect.Width < childSize.Width || sourceRect.Height < childSize.Height;
 
                 _Transform = Matrix4.TranslationValues(destinationRect.Left, destinationRect.Top, 0.0);
@@ -2536,7 +2536,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             _UpdatePaintData();
             if (Child != null)
             {
-                if (_HasVisualOverflow) ((TransformLayer)Layer) = context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintChildWithTransform, oldLayer: ((TransformLayer)Layer) is ClipRectLayer ? ((TransformLayer)Layer) as ClipRectLayer : null); else ((TransformLayer)Layer) = _PaintChildWithTransform(context, offset);
+                if (_HasVisualOverflow) ((TransformLayer)Layer) = context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintChildWithTransform, oldLayer: ((TransformLayer)Layer) is ClipRectLayer ? ((TransformLayer)Layer) as ClipRectLayer : null); else ((TransformLayer)Layer) = _PaintChildWithTransform(context, offset);
             }
 
         }
@@ -3018,7 +3018,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         {
 
             OffsetLayer offsetLayer = Layer as OffsetLayer;
-            return offsetLayer.ToImage(Dart: uiDefaultClass.Offset.Zero & Size, pixelRatio: pixelRatio);
+            return offsetLayer.ToImage(Dart.UI.UiDefaultClass.Offset.Zero & Size, pixelRatio: pixelRatio);
         }
 
 
@@ -3361,18 +3361,18 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
             base.DescribeSemanticsConfiguration(config);
-            if (OnTap != null && _IsValidAction(Dart: uiDefaultClass.SemanticsAction.Tap)) config.OnTap = OnTap;
-            if (OnLongPress != null && _IsValidAction(Dart: uiDefaultClass.SemanticsAction.LongPress)) config.OnLongPress = OnLongPress;
+            if (OnTap != null && _IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.Tap)) config.OnTap = OnTap;
+            if (OnLongPress != null && _IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.LongPress)) config.OnLongPress = OnLongPress;
             if (OnHorizontalDragUpdate != null)
             {
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollRight)) config.OnScrollRight = _PerformSemanticScrollRight;
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollLeft)) config.OnScrollLeft = _PerformSemanticScrollLeft;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollRight)) config.OnScrollRight = _PerformSemanticScrollRight;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollLeft)) config.OnScrollLeft = _PerformSemanticScrollLeft;
             }
 
             if (OnVerticalDragUpdate != null)
             {
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollUp)) config.OnScrollUp = _PerformSemanticScrollUp;
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollDown)) config.OnScrollDown = _PerformSemanticScrollDown;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollUp)) config.OnScrollUp = _PerformSemanticScrollUp;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollDown)) config.OnScrollDown = _PerformSemanticScrollDown;
             }
 
         }
@@ -3393,7 +3393,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnHorizontalDragUpdate != null)
             {
                 double primaryDelta = Size.Width * -ScrollFactor;
-                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3406,7 +3406,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnHorizontalDragUpdate != null)
             {
                 double primaryDelta = Size.Width * ScrollFactor;
-                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3419,7 +3419,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnVerticalDragUpdate != null)
             {
                 double primaryDelta = Size.Height * -ScrollFactor;
-                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3432,7 +3432,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnVerticalDragUpdate != null)
             {
                 double primaryDelta = Size.Height * ScrollFactor;
-                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3984,7 +3984,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
                 ..Link = Link..Offset = offset;
             }
 
-            context.PushLayer(Layer, base.Paint, Dart: uiDefaultClass.Offset.Zero);
+            context.PushLayer(Layer, base.Paint, Dart.UI.UiDefaultClass.Offset.Zero);
 
         }
 
@@ -4095,7 +4095,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
                 ..Link = Link..ShowWhenUnlinked = ShowWhenUnlinked..LinkedOffset = this.Offset..UnlinkedOffset = offset;
             }
 
-            context.PushLayer(Layer, base.Paint, Dart: uiDefaultClass.Offset.Zero, childPaintBounds: Rect.FromLTRB(Dart: coreDefaultClass.Double.NegativeInfinity, Dart: coreDefaultClass.Double.NegativeInfinity, Dart: coreDefaultClass.Double.Infinity, Dart: coreDefaultClass.Double.Infinity));
+            context.PushLayer(Layer, base.Paint, Dart.UI.UiDefaultClass.Offset.Zero, childPaintBounds: Rect.FromLTRB(Dart.CoreDefaultClass.Double.NegativeInfinity, Dart.CoreDefaultClass.Double.NegativeInfinity, Dart.CoreDefaultClass.Double.Infinity, Dart.CoreDefaultClass.Double.Infinity));
         }
 
 

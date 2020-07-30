@@ -491,7 +491,7 @@ namespace FlutterSDK.Rendering.Sliverfill
         public new void PerformLayout()
         {
             SliverConstraints constraints = this.Constraints;
-            double extent = constraints.RemainingPaintExtent - Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0);
+            double extent = constraints.RemainingPaintExtent - Dart.Math.MathDefaultClass.Min(constraints.Overlap, 0.0);
             if (Child != null) Child.Layout(constraints.AsBoxConstraints(minExtent: extent, maxExtent: extent));
             double paintedChildSize = CalculatePaintOffset(constraints, from: 0.0, to: extent);
 
@@ -543,7 +543,7 @@ namespace FlutterSDK.Rendering.Sliverfill
             {
                 double childExtent = default(double);
                 switch (constraints.Axis) { case Axis.Horizontal: childExtent = Child.GetMaxIntrinsicWidth(constraints.CrossAxisExtent); break; case Axis.Vertical: childExtent = Child.GetMaxIntrinsicHeight(constraints.CrossAxisExtent); break; }
-                extent = Math.Dart:mathDefaultClass.Max(extent, childExtent);
+                extent = Dart.Math.MathDefaultClass.Max(extent, childExtent);
                 Child.Layout(constraints.AsBoxConstraints(minExtent: extent, maxExtent: extent));
             }
 
@@ -594,13 +594,13 @@ namespace FlutterSDK.Rendering.Sliverfill
         {
             SliverConstraints constraints = this.Constraints;
             double extent = constraints.ViewportMainAxisExtent - constraints.PrecedingScrollExtent;
-            double maxExtent = constraints.RemainingPaintExtent - Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0);
+            double maxExtent = constraints.RemainingPaintExtent - Dart.Math.MathDefaultClass.Min(constraints.Overlap, 0.0);
             if (Child != null)
             {
                 double childExtent = default(double);
                 switch (constraints.Axis) { case Axis.Horizontal: childExtent = Child.GetMaxIntrinsicWidth(constraints.CrossAxisExtent); break; case Axis.Vertical: childExtent = Child.GetMaxIntrinsicHeight(constraints.CrossAxisExtent); break; }
-                extent = Math.Dart:mathDefaultClass.Max(extent, childExtent);
-                maxExtent = Math.Dart:mathDefaultClass.Max(extent, maxExtent);
+                extent = Dart.Math.MathDefaultClass.Max(extent, childExtent);
+                maxExtent = Dart.Math.MathDefaultClass.Max(extent, maxExtent);
                 Child.Layout(constraints.AsBoxConstraints(minExtent: extent, maxExtent: maxExtent));
             }
 
@@ -608,7 +608,7 @@ namespace FlutterSDK.Rendering.Sliverfill
             double paintedChildSize = CalculatePaintOffset(constraints, from: 0.0, to: extent);
 
 
-            Geometry = new SliverGeometry(scrollExtent: extent, paintExtent: Math.Dart:mathDefaultClass.Min(maxExtent, constraints.RemainingPaintExtent), maxPaintExtent: maxExtent, hasVisualOverflow: extent > constraints.RemainingPaintExtent || constraints.ScrollOffset > 0.0);
+            Geometry = new SliverGeometry(scrollExtent: extent, paintExtent: Dart.Math.MathDefaultClass.Min(maxExtent, constraints.RemainingPaintExtent), maxPaintExtent: maxExtent, hasVisualOverflow: extent > constraints.RemainingPaintExtent || constraints.ScrollOffset > 0.0);
             if (Child != null) SetChildParentData(Child, constraints, Geometry);
         }
 

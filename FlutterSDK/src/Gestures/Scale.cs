@@ -444,8 +444,8 @@ namespace FlutterSDK.Gestures.Scale
             double nfy = _CurrentLine.PointerStartLocation.Dy;
             double nsx = _CurrentLine.PointerEndLocation.Dx;
             double nsy = _CurrentLine.PointerEndLocation.Dy;
-            double angle1 = Math.Dart:mathDefaultClass.Atan2(fy - sy, fx - sx);
-            double angle2 = Math.Dart:mathDefaultClass.Atan2(nfy - nsy, nfx - nsx);
+            double angle1 = Dart.Math.MathDefaultClass.Atan2(fy - sy, fx - sx);
+            double angle2 = Dart.Math.MathDefaultClass.Atan2(nfy - nsy, nfx - nsx);
             return angle2 - angle1;
         }
 
@@ -516,9 +516,9 @@ namespace FlutterSDK.Gestures.Scale
         private void _Update()
         {
             int count = _PointerLocations.Keys.Length;
-            Offset focalPoint = Dart:uiDefaultClass.Offset.Zero;
+            Offset focalPoint = Dart.UiDefaultClass.Offset.Zero;
             foreach (int pointer in _PointerLocations.Keys) focalPoint += _PointerLocations[pointer];
-            _CurrentFocalPoint = count > 0 ? focalPoint / count.ToDouble() : Dart:uiDefaultClass.Offset.Zero;
+            _CurrentFocalPoint = count > 0 ? focalPoint / count.ToDouble() : Dart.UiDefaultClass.Offset.Zero;
             double totalDeviation = 0.0;
             double totalHorizontalDeviation = 0.0;
             double totalVerticalDeviation = 0.0;

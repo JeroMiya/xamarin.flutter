@@ -1050,7 +1050,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
             foreach (_NestedScrollPosition position in _InnerPositions)
             {
                 if (!position.HaveDimensions) return;
-                maxInnerExtent = Math.Dart:mathDefaultClass.Max(maxInnerExtent, position.MaxScrollExtent - position.MinScrollExtent);
+                maxInnerExtent = Dart.Math.MathDefaultClass.Max(maxInnerExtent, position.MaxScrollExtent - position.MinScrollExtent);
             }
 
             _OuterPosition.UpdateCanDrag(maxInnerExtent);
@@ -1070,7 +1070,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
                 return innerActivity;
             }
             );
-            await Dart:asyncDefaultClass.Future.Wait(resultFutures);
+            await Dart.AsyncDefaultClass.Future.Wait(resultFutures);
         }
 
 
@@ -1150,7 +1150,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
                 foreach (_NestedScrollPosition position in innerPositions)
                 {
                     double overscroll = position.ApplyClampedDragUpdate(delta);
-                    outerDelta = Math.Dart:mathDefaultClass.Max(outerDelta, overscroll);
+                    outerDelta = Dart.Math.MathDefaultClass.Max(outerDelta, overscroll);
                     overscrolls.Add(overscroll);
                 }
 
@@ -1304,8 +1304,8 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         public virtual double ApplyClampedDragUpdate(double delta)
         {
 
-            double min = delta < 0.0 ? -Dart : coreDefaultClass.Double.Infinity:Math.Dart:mathDefaultClass.Min(MinScrollExtent, Pixels);
-            double max = delta > 0.0 ? Dart : coreDefaultClass.Double.Infinity:Math.Dart:mathDefaultClass.Max(MaxScrollExtent, Pixels);
+            double min = delta < 0.0 ? -Dart.CoreDefaultClass.Double.Infinity : Dart.Math.MathDefaultClass.Min(MinScrollExtent, Pixels);
+            double max = delta > 0.0 ? Dart.CoreDefaultClass.Double.Infinity : Dart.Math.MathDefaultClass.Max(MaxScrollExtent, Pixels);
             double oldPixels = Pixels;
             double newPixels = (Pixels - delta).Clamp(min, max) as double;
             double clampedDelta = newPixels - Pixels;
@@ -1751,7 +1751,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
             Child.Layout(Constraints, parentUsesSize: true);
             SliverGeometry childLayoutGeometry = Child.Geometry;
-            Geometry = new SliverGeometry(scrollExtent: childLayoutGeometry.ScrollExtent - childLayoutGeometry.MaxScrollObstructionExtent, paintExtent: childLayoutGeometry.PaintExtent, paintOrigin: childLayoutGeometry.PaintOrigin, layoutExtent: Math.Dart:mathDefaultClass.Max(0, childLayoutGeometry.PaintExtent - childLayoutGeometry.MaxScrollObstructionExtent), maxPaintExtent: childLayoutGeometry.MaxPaintExtent, maxScrollObstructionExtent: childLayoutGeometry.MaxScrollObstructionExtent, hitTestExtent: childLayoutGeometry.HitTestExtent, visible: childLayoutGeometry.Visible, hasVisualOverflow: childLayoutGeometry.HasVisualOverflow, scrollOffsetCorrection: childLayoutGeometry.ScrollOffsetCorrection);
+            Geometry = new SliverGeometry(scrollExtent: childLayoutGeometry.ScrollExtent - childLayoutGeometry.MaxScrollObstructionExtent, paintExtent: childLayoutGeometry.PaintExtent, paintOrigin: childLayoutGeometry.PaintOrigin, layoutExtent: Dart.Math.MathDefaultClass.Max(0, childLayoutGeometry.PaintExtent - childLayoutGeometry.MaxScrollObstructionExtent), maxPaintExtent: childLayoutGeometry.MaxPaintExtent, maxScrollObstructionExtent: childLayoutGeometry.MaxScrollObstructionExtent, hitTestExtent: childLayoutGeometry.HitTestExtent, visible: childLayoutGeometry.Visible, hasVisualOverflow: childLayoutGeometry.HasVisualOverflow, scrollOffsetCorrection: childLayoutGeometry.ScrollOffsetCorrection);
             Handle._SetExtents(childLayoutGeometry.MaxScrollObstructionExtent, childLayoutGeometry.MaxScrollObstructionExtent);
         }
 
@@ -1900,8 +1900,8 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         {
             _CurrentLayoutExtent = Handle.LayoutExtent;
             _CurrentMaxExtent = Handle.LayoutExtent;
-            double clampedLayoutExtent = Math.Dart:mathDefaultClass.Min(_CurrentLayoutExtent - Constraints.ScrollOffset, Constraints.RemainingPaintExtent);
-            Geometry = new SliverGeometry(scrollExtent: _CurrentLayoutExtent, paintExtent: Math.Dart:mathDefaultClass.Max(0.0, clampedLayoutExtent), maxPaintExtent: _CurrentMaxExtent);
+            double clampedLayoutExtent = Dart.Math.MathDefaultClass.Min(_CurrentLayoutExtent - Constraints.ScrollOffset, Constraints.RemainingPaintExtent);
+            Geometry = new SliverGeometry(scrollExtent: _CurrentLayoutExtent, paintExtent: Dart.Math.MathDefaultClass.Max(0.0, clampedLayoutExtent), maxPaintExtent: _CurrentMaxExtent);
         }
 
 

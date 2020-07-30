@@ -520,12 +520,13 @@ namespace FlutterSDK.Gestures.Monodrag
                 TimeSpan timestamp = _LastPendingEventTimestamp;
                 Matrix4 transform = _LastTransform;
                 Offset localUpdateDelta = default(Offset);
-                switch (DragStartBehavior) { case DragStartBehavior.Start: _InitialPosition = _InitialPosition + delta; localUpdateDelta = Dart:uiDefaultClass.Offset.Zero; break; case DragStartBehavior.Down: localUpdateDelta = _GetDeltaForDetails(delta.Local); break; }
+                switch (DragStartBehavior) { case DragStartBehavior.Start: _InitialPosition = _InitialPosition + delta; localUpdateDelta = Dart.UiDefaultClass.Offset.Zero; break; case DragStartBehavior.Down: localUpdateDelta = _GetDeltaForDetails(delta.Local); break; }
                 _PendingDragOffset = RecognizerDefaultClass.OffsetPair.Zero;
                 _LastPendingEventTimestamp = null;
                 _LastTransform = null;
                 _CheckStart(timestamp);
-                if (localUpdateDelta != Dart:uiDefaultClass.Offset.Zero && OnUpdate != null ){
+                if (localUpdateDelta != Dart.UiDefaultClass.Offset.Zero && OnUpdate != null)
+                {
                     Matrix4 localToGlobal = transform != null ? Matrix4.TryInvert(transform) : null;
                     Offset correctedLocalPosition = _InitialPosition.Local + localUpdateDelta;
                     Offset globalUpdateDelta = EventsDefaultClass.PointerEvent.TransformDeltaViaPositions(untransformedEndPosition: correctedLocalPosition, untransformedDelta: localUpdateDelta, transform: localToGlobal);

@@ -1991,7 +1991,7 @@ namespace FlutterSDK.Widgets.Implicitanimations
             properties.Add(new EnumProperty<TextOverflow>("overflow", Overflow, defaultValue: null));
             properties.Add(new IntProperty("maxLines", MaxLines, defaultValue: null));
             properties.Add(new EnumProperty<TextWidthBasis>("textWidthBasis", TextWidthBasis, defaultValue: TextWidthBasis.Parent));
-            properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Dart.UI.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
         }
 
 

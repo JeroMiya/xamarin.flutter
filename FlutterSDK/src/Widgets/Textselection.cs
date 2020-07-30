@@ -913,7 +913,7 @@ namespace FlutterSDK.Widgets.Textselection
         {
             if (SelectionControls == null) return new Container();
             List<TextSelectionPoint> endpoints = RenderObject.GetEndpointsForSelection(_Selection);
-            Rect editingRegion = Rect.FromPoints(RenderObject.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero), RenderObject.LocalToGlobal(RenderObject.Size.BottomRight(Dart: uiDefaultClass.Offset.Zero)));
+            Rect editingRegion = Rect.FromPoints(RenderObject.LocalToGlobal(Dart.UI.UiDefaultClass.Offset.Zero), RenderObject.LocalToGlobal(RenderObject.Size.BottomRight(Dart.UI.UiDefaultClass.Offset.Zero)));
             bool isMultiline = endpoints.Last().Point.Dy - endpoints.First.Point.Dy > RenderObject.PreferredLineHeight / 2;
             double midX = isMultiline ? editingRegion.Width / 2 : (endpoints.First.Point.Dx + endpoints.Last().Point.Dx) / 2;
             Offset midpoint = new Offset(midX, endpoints[0].Point.Dy - RenderObject.PreferredLineHeight);
@@ -927,7 +927,7 @@ namespace FlutterSDK.Widgets.Textselection
         {
             TextPosition textPosition = default(TextPosition);
             switch (position) { case _TextSelectionHandlePosition.Start: textPosition = newSelection.Base; break; case _TextSelectionHandlePosition.End: textPosition = newSelection.Extent; break; }
-            SelectionDelegate.TextEditingValue = _Value.CopyWith(selection: newSelection, composing: Dart:uiDefaultClass.TextRange.Empty);
+            SelectionDelegate.TextEditingValue = _Value.CopyWith(selection: newSelection, composing: Dart.UI.UiDefaultClass.TextRange.Empty);
             SelectionDelegate.BringIntoView(textPosition);
         }
 
@@ -1072,7 +1072,7 @@ namespace FlutterSDK.Widgets.Textselection
             Size handleSize = Widget.SelectionControls.GetHandleSize(Widget.RenderObject.PreferredLineHeight);
             Rect handleRect = Rect.FromLTWH(-handleAnchor.Dx, -handleAnchor.Dy, handleSize.Width, handleSize.Height);
             Rect interactiveRect = handleRect.ExpandToInclude(Rect.FromCircle(center: handleRect.Center, radius: ConstantsDefaultClass.KMinInteractiveDimension / 2));
-            RelativeRect padding = RelativeRect.FromLTRB(Math.Dart:mathDefaultClass.Max((interactiveRect.Width - handleRect.Width) / 2, 0), Math.Dart:mathDefaultClass.Max((interactiveRect.Height - handleRect.Height) / 2, 0), Math.Dart:mathDefaultClass.Max((interactiveRect.Width - handleRect.Width) / 2, 0), Math.Dart:mathDefaultClass.Max((interactiveRect.Height - handleRect.Height) / 2, 0));
+            RelativeRect padding = RelativeRect.FromLTRB(Dart.Math.MathDefaultClass.Max((interactiveRect.Width - handleRect.Width) / 2, 0), Dart.Math.MathDefaultClass.Max((interactiveRect.Height - handleRect.Height) / 2, 0), Dart.Math.MathDefaultClass.Max((interactiveRect.Width - handleRect.Width) / 2, 0), Dart.Math.MathDefaultClass.Max((interactiveRect.Height - handleRect.Height) / 2, 0));
             return new CompositedTransformFollower(link: layerLink, offset: interactiveRect.TopLeft, showWhenUnlinked: false, child: new FadeTransition(opacity: _Opacity, child: new Container(alignment: AlignmentDefaultClass.Alignment.TopLeft, width: interactiveRect.Width, height: interactiveRect.Height, child: new GestureDetector(behavior: HitTestBehavior.Translucent, dragStartBehavior: Widget.DragStartBehavior, onPanStart: _HandleDragStart, onPanUpdate: _HandleDragUpdate, onTap: _HandleTap, child: new Padding(padding: EdgeInsets.Only(left: padding.Left, top: padding.Top, right: padding.Right, bottom: padding.Bottom), child: Widget.SelectionControls.BuildHandle(context, type, Widget.RenderObject.PreferredLineHeight))))));
         }
 

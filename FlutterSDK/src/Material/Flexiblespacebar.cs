@@ -593,7 +593,7 @@ namespace FlutterSDK.Material.Flexiblespacebar
                 double t = (1.0 - (settings.CurrentExtent - settings.MinExtent) / deltaExtent).Clamp(0.0, 1.0) as double;
                 if (Widget.Background != null)
                 {
-                    double fadeStart = Math.Dart:mathDefaultClass.Max(0.0, 1.0 - ConstantsDefaultClass.KToolbarHeight / deltaExtent);
+                    double fadeStart = Dart.Math.MathDefaultClass.Max(0.0, 1.0 - ConstantsDefaultClass.KToolbarHeight / deltaExtent);
                     double fadeEnd = 1.0;
 
                     double opacity = 1.0 - new Interval(fadeStart, fadeEnd).Transform(t);
@@ -609,7 +609,7 @@ namespace FlutterSDK.Material.Flexiblespacebar
                         if (Widget.StretchModes.Contains(StretchMode.BlurBackground) && constraints.MaxHeight > settings.MaxExtent)
                         {
                             double blurAmount = (constraints.MaxHeight - settings.MaxExtent) / 10;
-                            children.Add(Positioned.Fill(child: new BackdropFilter(child: new Container(color: ColorsDefaultClass.Colors.Transparent), filter: Ui.Dart:uiDefaultClass.ImageFilter.Blur(sigmaX: blurAmount, sigmaY: blurAmount))));
+                            children.Add(Positioned.Fill(child: new BackdropFilter(child: new Container(color: ColorsDefaultClass.Colors.Transparent), filter: Dart.UI.ImageFilter.Blur(sigmaX: blurAmount, sigmaY: blurAmount))));
                         }
 
                     }

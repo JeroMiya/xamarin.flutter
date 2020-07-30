@@ -719,7 +719,7 @@ namespace FlutterSDK.Material.Outlinebutton
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is _OutlineBorder && other.Side == Side && other.Shape == Shape;
         }

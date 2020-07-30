@@ -480,7 +480,7 @@ namespace FlutterSDK.Material.Snackbartheme
         public virtual FlutterSDK.Material.Snackbartheme.SnackBarThemeData Lerp(FlutterSDK.Material.Snackbartheme.SnackBarThemeData a, FlutterSDK.Material.Snackbartheme.SnackBarThemeData b, double t)
         {
 
-            return new SnackBarThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), actionTextColor: Dart:uiDefaultClass.Color.Lerp(a?.ActionTextColor, b?.ActionTextColor, t), disabledActionTextColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledActionTextColor, b?.DisabledActionTextColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), behavior: t < 0.5 ? a.Behavior : b.Behavior);
+            return new SnackBarThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), actionTextColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ActionTextColor, b?.ActionTextColor, t), disabledActionTextColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.DisabledActionTextColor, b?.DisabledActionTextColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), behavior: t < 0.5 ? a.Behavior : b.Behavior);
         }
 
 
@@ -488,7 +488,7 @@ namespace FlutterSDK.Material.Snackbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is SnackBarThemeData && other.BackgroundColor == BackgroundColor && other.ActionTextColor == ActionTextColor && other.DisabledActionTextColor == DisabledActionTextColor && other.ContentTextStyle == ContentTextStyle && other.Elevation == Elevation && other.Shape == Shape && other.Behavior == Behavior;
         }

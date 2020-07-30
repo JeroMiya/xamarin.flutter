@@ -507,7 +507,7 @@ namespace FlutterSDK.Material.Inkhighlight
         {
             Paint paint = new Paint()..Color = Color.WithAlpha(_Alpha.Value);
             Offset originOffset = MatrixutilsDefaultClass.MatrixUtils.GetAsTranslation(transform);
-            Rect rect = _RectCallback != null ? _RectCallback() : Dart:uiDefaultClass.Offset.Zero & ReferenceBox.Size;
+            Rect rect = _RectCallback != null ? _RectCallback() : Dart.UiDefaultClass.Offset.Zero & ReferenceBox.Size;
             if (originOffset == null)
             {
                 canvas.Save();

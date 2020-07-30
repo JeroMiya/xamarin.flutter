@@ -522,7 +522,7 @@ namespace FlutterSDK.Material.Scaffold
                 return new ScaffoldGeometry(bottomNavigationBarTop: BottomNavigationBarTop);
             }
 
-            Rect scaledButton = Dart:uiDefaultClass.Rect.Lerp(FloatingActionButtonArea.Center & Dart:uiDefaultClass.Size.Zero, FloatingActionButtonArea, scaleFactor);
+            Rect scaledButton = Dart.UI.UiDefaultClass.Rect.Lerp(FloatingActionButtonArea.Center & Dart.UiDefaultClass.Size.Zero, FloatingActionButtonArea, scaleFactor);
             return CopyWith(floatingActionButtonArea: scaledButton);
         }
 
@@ -611,8 +611,8 @@ namespace FlutterSDK.Material.Scaffold
             {
                 _BodyBoxConstraints bodyConstraints = constraints as _BodyBoxConstraints;
                 MediaQueryData metrics = MediaqueryDefaultClass.MediaQuery.Of(context);
-                double bottom = ExtendBody ? Math.Dart : mathDefaultClass.Max(metrics.Padding.Bottom, bodyConstraints.BottomWidgetsHeight):metrics.Padding.Bottom;
-                double top = ExtendBodyBehindAppBar ? Math.Dart : mathDefaultClass.Max(metrics.Padding.Top, bodyConstraints.AppBarHeight):metrics.Padding.Top;
+                double bottom = ExtendBody ? Dart.Math.MathDefaultClass.Max(metrics.Padding.Bottom, bodyConstraints.BottomWidgetsHeight) : metrics.Padding.Bottom;
+                double top = ExtendBodyBehindAppBar ? Dart.Math.MathDefaultClass.Max(metrics.Padding.Top, bodyConstraints.AppBarHeight) : metrics.Padding.Top;
                 return new MediaQuery(data: metrics.CopyWith(padding: metrics.Padding.CopyWith(top: top, bottom: bottom)), child: Body);
             }
             );
@@ -662,7 +662,7 @@ namespace FlutterSDK.Material.Scaffold
             {
                 appBarHeight = LayoutChild(_ScaffoldSlot.AppBar, fullWidthConstraints).Height;
                 contentTop = ExtendBodyBehindAppBar ? 0.0 : appBarHeight;
-                PositionChild(_ScaffoldSlot.AppBar, Dart: uiDefaultClass.Offset.Zero);
+                PositionChild(_ScaffoldSlot.AppBar, Dart.UI.UiDefaultClass.Offset.Zero);
             }
 
             double bottomNavigationBarTop = default(double);
@@ -670,22 +670,22 @@ namespace FlutterSDK.Material.Scaffold
             {
                 double bottomNavigationBarHeight = LayoutChild(_ScaffoldSlot.BottomNavigationBar, fullWidthConstraints).Height;
                 bottomWidgetsHeight += bottomNavigationBarHeight;
-                bottomNavigationBarTop = Math.Dart:mathDefaultClass.Max(0.0, bottom - bottomWidgetsHeight);
+                bottomNavigationBarTop = Dart.Math.MathDefaultClass.Max(0.0, bottom - bottomWidgetsHeight);
                 PositionChild(_ScaffoldSlot.BottomNavigationBar, new Offset(0.0, bottomNavigationBarTop));
             }
 
             if (HasChild(_ScaffoldSlot.PersistentFooter))
             {
-                BoxConstraints footerConstraints = new BoxConstraints(maxWidth: fullWidthConstraints.MaxWidth, maxHeight: Math.Dart:mathDefaultClass.Max(0.0, bottom - bottomWidgetsHeight - contentTop));
+                BoxConstraints footerConstraints = new BoxConstraints(maxWidth: fullWidthConstraints.MaxWidth, maxHeight: Dart.Math.MathDefaultClass.Max(0.0, bottom - bottomWidgetsHeight - contentTop));
                 double persistentFooterHeight = LayoutChild(_ScaffoldSlot.PersistentFooter, footerConstraints).Height;
                 bottomWidgetsHeight += persistentFooterHeight;
-                PositionChild(_ScaffoldSlot.PersistentFooter, new Offset(0.0, Math.Dart:mathDefaultClass.Max(0.0, bottom - bottomWidgetsHeight)));
+                PositionChild(_ScaffoldSlot.PersistentFooter, new Offset(0.0, Dart.Math.MathDefaultClass.Max(0.0, bottom - bottomWidgetsHeight)));
             }
 
-            double contentBottom = Math.Dart:mathDefaultClass.Max(0.0, bottom - Math.Dart:mathDefaultClass.Max(MinInsets.Bottom, bottomWidgetsHeight));
+            double contentBottom = Dart.Math.MathDefaultClass.Max(0.0, bottom - Dart.Math.MathDefaultClass.Max(MinInsets.Bottom, bottomWidgetsHeight));
             if (HasChild(_ScaffoldSlot.Body))
             {
-                double bodyMaxHeight = Math.Dart:mathDefaultClass.Max(0.0, contentBottom - contentTop);
+                double bodyMaxHeight = Dart.Math.MathDefaultClass.Max(0.0, contentBottom - contentTop);
                 if (ExtendBody)
                 {
                     bodyMaxHeight += bottomWidgetsHeight;
@@ -698,13 +698,13 @@ namespace FlutterSDK.Material.Scaffold
                 PositionChild(_ScaffoldSlot.Body, new Offset(0.0, contentTop));
             }
 
-            Size bottomSheetSize = Dart:uiDefaultClass.Size.Zero;
-            Size snackBarSize = Dart:uiDefaultClass.Size.Zero;
+            Size bottomSheetSize = Dart.UiDefaultClass.Size.Zero;
+            Size snackBarSize = Dart.UiDefaultClass.Size.Zero;
             if (HasChild(_ScaffoldSlot.BodyScrim))
             {
                 BoxConstraints bottomSheetScrimConstraints = new BoxConstraints(maxWidth: fullWidthConstraints.MaxWidth, maxHeight: contentBottom);
                 LayoutChild(_ScaffoldSlot.BodyScrim, bottomSheetScrimConstraints);
-                PositionChild(_ScaffoldSlot.BodyScrim, Dart: uiDefaultClass.Offset.Zero);
+                PositionChild(_ScaffoldSlot.BodyScrim, Dart.UI.UiDefaultClass.Offset.Zero);
             }
 
             if (HasChild(_ScaffoldSlot.SnackBar) && !IsSnackBarFloating)
@@ -714,7 +714,7 @@ namespace FlutterSDK.Material.Scaffold
 
             if (HasChild(_ScaffoldSlot.BottomSheet))
             {
-                BoxConstraints bottomSheetConstraints = new BoxConstraints(maxWidth: fullWidthConstraints.MaxWidth, maxHeight: Math.Dart:mathDefaultClass.Max(0.0, contentBottom - contentTop));
+                BoxConstraints bottomSheetConstraints = new BoxConstraints(maxWidth: fullWidthConstraints.MaxWidth, maxHeight: Dart.Math.MathDefaultClass.Max(0.0, contentBottom - contentTop));
                 bottomSheetSize = LayoutChild(_ScaffoldSlot.BottomSheet, bottomSheetConstraints);
                 PositionChild(_ScaffoldSlot.BottomSheet, new Offset((size.Width - bottomSheetSize.Width) / 2.0, contentBottom - bottomSheetSize.Height));
             }
@@ -733,14 +733,15 @@ namespace FlutterSDK.Material.Scaffold
 
             if (HasChild(_ScaffoldSlot.SnackBar))
             {
-                if (snackBarSize == Dart:uiDefaultClass.Size.Zero){
+                if (snackBarSize == Dart.UiDefaultClass.Size.Zero)
+                {
                     snackBarSize = LayoutChild(_ScaffoldSlot.SnackBar, fullWidthConstraints);
                 }
 
                 double snackBarYOffsetBase = default(double);
                 if (ScaffoldDefaultClass.Scaffold.ShouldSnackBarIgnoreFABRect)
                 {
-                    if (floatingActionButtonRect.Size != Dart:uiDefaultClass.Size.Zero && IsSnackBarFloating)snackBarYOffsetBase = floatingActionButtonRect.Top;else snackBarYOffsetBase = contentBottom;
+                    if (floatingActionButtonRect.Size != Dart.UiDefaultClass.Size.Zero && IsSnackBarFloating) snackBarYOffsetBase = floatingActionButtonRect.Top; else snackBarYOffsetBase = contentBottom;
                 }
                 else
                 {
@@ -753,19 +754,19 @@ namespace FlutterSDK.Material.Scaffold
             if (HasChild(_ScaffoldSlot.StatusBar))
             {
                 LayoutChild(_ScaffoldSlot.StatusBar, fullWidthConstraints.Tighten(height: MinInsets.Top));
-                PositionChild(_ScaffoldSlot.StatusBar, Dart: uiDefaultClass.Offset.Zero);
+                PositionChild(_ScaffoldSlot.StatusBar, Dart.UI.UiDefaultClass.Offset.Zero);
             }
 
             if (HasChild(_ScaffoldSlot.Drawer))
             {
                 LayoutChild(_ScaffoldSlot.Drawer, BoxConstraints.Tight(size));
-                PositionChild(_ScaffoldSlot.Drawer, Dart: uiDefaultClass.Offset.Zero);
+                PositionChild(_ScaffoldSlot.Drawer, Dart.UI.UiDefaultClass.Offset.Zero);
             }
 
             if (HasChild(_ScaffoldSlot.EndDrawer))
             {
                 LayoutChild(_ScaffoldSlot.EndDrawer, BoxConstraints.Tight(size));
-                PositionChild(_ScaffoldSlot.EndDrawer, Dart: uiDefaultClass.Offset.Zero);
+                PositionChild(_ScaffoldSlot.EndDrawer, Dart.UI.UiDefaultClass.Offset.Zero);
             }
 
             GeometryNotifier._UpdateWith(bottomNavigationBarTop: bottomNavigationBarTop, floatingActionButtonArea: floatingActionButtonRect);
@@ -954,7 +955,7 @@ namespace FlutterSDK.Material.Scaffold
 
         private void _OnProgressChanged()
         {
-            _UpdateGeometryScale(Math.Dart:mathDefaultClass.Max(_PreviousScaleAnimation.Value, _CurrentScaleAnimation.Value));
+            _UpdateGeometryScale(Dart.Math.MathDefaultClass.Max(_PreviousScaleAnimation.Value, _CurrentScaleAnimation.Value));
         }
 
 
@@ -2236,7 +2237,7 @@ namespace FlutterSDK.Material.Scaffold
 
             double curveProgress = (t - StartingPoint) / (1 - StartingPoint);
             double transformed = Curve.Transform(curveProgress);
-            return Dart:uiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
+            return Dart.UI.UiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
         }
 
 
@@ -2354,7 +2355,7 @@ namespace FlutterSDK.Material.Scaffold
             if (extentRemaining < ScaffoldDefaultClass._KBottomSheetDominatesPercentage)
             {
                 scaffold._FloatingActionButtonVisibilityValue = extentRemaining * ScaffoldDefaultClass._KBottomSheetDominatesPercentage * 10;
-                scaffold.ShowBodyScrim(true, Math.Dart:mathDefaultClass.Max(ScaffoldDefaultClass._KMinBottomSheetScrimOpacity, ScaffoldDefaultClass._KMaxBottomSheetScrimOpacity - scaffold._FloatingActionButtonVisibilityValue));
+                scaffold.ShowBodyScrim(true, Dart.Math.MathDefaultClass.Max(ScaffoldDefaultClass._KMinBottomSheetScrimOpacity, ScaffoldDefaultClass._KMaxBottomSheetScrimOpacity - scaffold._FloatingActionButtonVisibilityValue));
             }
             else
             {

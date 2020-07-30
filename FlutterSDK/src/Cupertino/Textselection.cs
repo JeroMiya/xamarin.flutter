@@ -426,7 +426,7 @@ namespace FlutterSDK.Cupertino.Textselection
             new Path().LineTo(arrowTipX - TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
             new Path().LineTo(arrowTipX + TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
             new Path().Close();
-            return Dart:uiDefaultClass.Path.Combine(PathOperation.Union, rrect, arrow);
+            return Dart.UI.UiDefaultClass.Path.Combine(PathOperation.Union, rrect, arrow);
         }
 
 
@@ -440,7 +440,7 @@ namespace FlutterSDK.Cupertino.Textselection
             }
 
             _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
-            context.PushClipPath(NeedsCompositing, offset + childParentData.Offset, Dart: uiDefaultClass.Offset.Zero & Child.Size, _ClipPath(), (PaintingContext innerContext, Offset innerOffset) => =>innerContext.PaintChild(Child, innerOffset));
+            context.PushClipPath(NeedsCompositing, offset + childParentData.Offset, Dart.UI.UiDefaultClass.Offset.Zero & Child.Size, _ClipPath(), (PaintingContext innerContext, Offset innerOffset) => =>innerContext.PaintChild(Child, innerOffset));
         }
 
 
@@ -560,7 +560,7 @@ namespace FlutterSDK.Cupertino.Textselection
                 case TextSelectionHandleType.Right:
                     return new Transform(transform: Matrix4.Identity();
                     Matrix4.Identity().Translate(desiredSize.Width / 2, desiredSize.Height / 2);
-                    Matrix4.Identity().RotateZ(Math.Dart:mathDefaultClass.Pi);
+                    Matrix4.Identity().RotateZ(Math.Dart.MathDefaultClass.Pi);
                     Matrix4.Identity().Translate(-desiredSize.Width / 2, -desiredSize.Height / 2), child: handle);
                 case TextSelectionHandleType.Collapsed: return new SizedBox();
             }

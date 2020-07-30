@@ -432,7 +432,7 @@ namespace FlutterSDK.Painting.Paintutilities
             canvas.Save();
             canvas.Translate(start.Dx, start.Dy);
             end = end - start;
-            canvas.Rotate(Math.Dart:mathDefaultClass.Atan2(end.Dy, end.Dx));
+            canvas.Rotate(Dart.Math.MathDefaultClass.Atan2(end.Dy, end.Dx));
             double length = end.Distance;
             double spacing = length / (zigs * 2.0);
             Path path = new Path();

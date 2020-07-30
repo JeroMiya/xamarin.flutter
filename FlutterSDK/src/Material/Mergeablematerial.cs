@@ -715,7 +715,7 @@ namespace FlutterSDK.Material.Mergeablematerial
                                 }
 
                                 _InsertChild(startOld, newChildren[startNew]);
-                                _AnimationTuples[newChildren[startNew].Key]..GapStart = gapSizeSum..Controller.Forward();
+                                _AnimationTuples[newChildren[startNew].Key]..GapStart = gapSizeSum.Controller.Forward(;
                                 j += 1;
                             }
                             else
@@ -856,16 +856,16 @@ namespace FlutterSDK.Material.Mergeablematerial
 
 
             Radius cardRadius = MaterialDefaultClass.KMaterialEdges[MaterialType.Card].TopLeft;
-            Radius startRadius = Dart:uiDefaultClass.Radius.Zero;
-            Radius endRadius = Dart:uiDefaultClass.Radius.Zero;
+            Radius startRadius = Dart.UiDefaultClass.Radius.Zero;
+            Radius endRadius = Dart.UiDefaultClass.Radius.Zero;
             if (index > 0 && _Children[index - 1] is MaterialGap)
             {
-                startRadius = Dart:uiDefaultClass.Radius.Lerp(Dart: uiDefaultClass.Radius.Zero, cardRadius, _AnimationTuples[((MaterialGap)_Children[index - 1]).Key].StartAnimation.Value);
+                startRadius = Dart.UI.UiDefaultClass.Radius.Lerp(Dart.UiDefaultClass.Radius.Zero, cardRadius, _AnimationTuples[((MaterialGap)_Children[index - 1]).Key].StartAnimation.Value);
             }
 
             if (index < _Children.Count - 2 && _Children[index + 1] is MaterialGap)
             {
-                endRadius = Dart:uiDefaultClass.Radius.Lerp(Dart: uiDefaultClass.Radius.Zero, cardRadius, _AnimationTuples[((MaterialGap)_Children[index + 1]).Key].EndAnimation.Value);
+                endRadius = Dart.UI.UiDefaultClass.Radius.Lerp(Dart.UiDefaultClass.Radius.Zero, cardRadius, _AnimationTuples[((MaterialGap)_Children[index + 1]).Key].EndAnimation.Value);
             }
 
             if (Widget.MainAxis == Axis.Vertical)
@@ -885,7 +885,7 @@ namespace FlutterSDK.Material.Mergeablematerial
         private double _GetGapSize(int index)
         {
             MaterialGap gap = _Children[index] as MaterialGap;
-            return Dart:uiDefaultClass.LerpDouble(_AnimationTuples[gap.Key].GapStart, gap.Size, _AnimationTuples[gap.Key].GapAnimation.Value);
+            return Dart.UI.UiDefaultClass.LerpDouble(_AnimationTuples[gap.Key].GapStart, gap.Size, _AnimationTuples[gap.Key].GapAnimation.Value);
         }
 
 

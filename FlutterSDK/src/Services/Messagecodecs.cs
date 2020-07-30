@@ -470,7 +470,7 @@ namespace FlutterSDK.Services.Messagecodecs
         public new string DecodeMessage(ByteData message)
         {
             if (message == null) return null;
-            return Dart:convertDefaultClass.Utf8.Decoder.Convert(message.Buffer.AsUint8List(message.OffsetInBytes, message.LengthInBytes));
+            return Dart.ConvertDefaultClass.Utf8.Decoder.Convert(message.Buffer.AsUint8List(message.OffsetInBytes, message.LengthInBytes));
         }
 
 
@@ -479,7 +479,7 @@ namespace FlutterSDK.Services.Messagecodecs
         public new ByteData EncodeMessage(string message)
         {
             if (message == null) return null;
-            Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(message);
+            Uint8List encoded = Dart.ConvertDefaultClass.Utf8.Encoder.Convert(message);
             return encoded.Buffer.AsByteData();
         }
 
@@ -518,7 +518,7 @@ namespace FlutterSDK.Services.Messagecodecs
         public new ByteData EncodeMessage(object message)
         {
             if (message == null) return null;
-            return new StringCodec().EncodeMessage(Dart: convertDefaultClass.Json.Encode(message));
+            return new StringCodec().EncodeMessage(Dart.ConvertDefaultClass.Json.Encode(message));
         }
 
 
@@ -527,7 +527,7 @@ namespace FlutterSDK.Services.Messagecodecs
         public new object DecodeMessage(ByteData message)
         {
             if (message == null) return message;
-            return Dart:convertDefaultClass.Json.Decode(new StringCodec().DecodeMessage(message));
+            return Dart.ConvertDefaultClass.Json.Decode(new StringCodec().DecodeMessage(message));
         }
 
 
@@ -767,7 +767,7 @@ namespace FlutterSDK.Services.Messagecodecs
             else if (value is string)
             {
                 buffer.PutUint8(_ValueString);
-                Uint8List bytes = Dart:convertDefaultClass.Utf8.Encoder.Convert(((String)value));
+                Uint8List bytes = Dart.ConvertDefaultClass.Utf8.Encoder.Convert(((String)value));
                 WriteSize(buffer, bytes.Count);
                 buffer.PutUint8List(bytes);
             }
@@ -850,7 +850,7 @@ namespace FlutterSDK.Services.Messagecodecs
         /// </Summary>
         public virtual object ReadValueOfType(int type, FlutterSDK.Foundation.Serialization.ReadBuffer buffer)
         {
-            switch (type) { case _ValueNull: return null; case _ValueTrue: return true; case _ValueFalse: return false; case _ValueInt32: return buffer.GetInt32(); case _ValueInt64: return buffer.GetInt64(); case _ValueFloat64: return buffer.GetFloat64(); case _ValueLargeInt: case _ValueString: int length = ReadSize(buffer); return Dart:convertDefaultClass.Utf8.Decoder.Convert(buffer.GetUint8List(length)); case _ValueUint8List: int length = ReadSize(buffer); return buffer.GetUint8List(length); case _ValueInt32List: int length = ReadSize(buffer); return buffer.GetInt32List(length); case _ValueInt64List: int length = ReadSize(buffer); return buffer.GetInt64List(length); case _ValueFloat64List: int length = ReadSize(buffer); return buffer.GetFloat64List(length); case _ValueList: int length = ReadSize(buffer); object result = new List<object>(length); for (int i = 0; i < length; i++) result[i] = ReadValue(buffer); return result; case _ValueMap: int length = ReadSize(buffer); object result = new Dictionary<object, object> { }; for (int i = 0; i < length; i++) result[ReadValue(buffer)] = ReadValue(buffer); return result; default: throw new FormatException("Message corrupted"); }
+            switch (type) { case _ValueNull: return null; case _ValueTrue: return true; case _ValueFalse: return false; case _ValueInt32: return buffer.GetInt32(); case _ValueInt64: return buffer.GetInt64(); case _ValueFloat64: return buffer.GetFloat64(); case _ValueLargeInt: case _ValueString: int length = ReadSize(buffer); return Dart.ConvertDefaultClass.Utf8.Decoder.Convert(buffer.GetUint8List(length)); case _ValueUint8List: int length = ReadSize(buffer); return buffer.GetUint8List(length); case _ValueInt32List: int length = ReadSize(buffer); return buffer.GetInt32List(length); case _ValueInt64List: int length = ReadSize(buffer); return buffer.GetInt64List(length); case _ValueFloat64List: int length = ReadSize(buffer); return buffer.GetFloat64List(length); case _ValueList: int length = ReadSize(buffer); object result = new List<object>(length); for (int i = 0; i < length; i++) result[i] = ReadValue(buffer); return result; case _ValueMap: int length = ReadSize(buffer); object result = new Dictionary<object, object> { }; for (int i = 0; i < length; i++) result[ReadValue(buffer)] = ReadValue(buffer); return result; default: throw new FormatException("Message corrupted"); }
         }
 
 

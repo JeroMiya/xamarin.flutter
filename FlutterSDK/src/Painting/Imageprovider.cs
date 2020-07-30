@@ -930,7 +930,7 @@ namespace FlutterSDK.Painting.Imageprovider
                 didError = true;
             }
 
-            Zone dangerZone = Dart:asyncDefaultClass.Zone.Current.Fork(specification: new ZoneSpecification(handleUncaughtError: (Zone zone, ZoneDelegate delegate, Zone parent, object error, StackTrace stackTrace) => {
+            Zone dangerZone = Dart.AsyncDefaultClass.Zone.Current.Fork(specification: new ZoneSpecification(handleUncaughtError: (Zone zone, ZoneDelegate delegate, Zone parent, object error, StackTrace stackTrace) => {
                 HandleError(error, stackTrace);
             }
 ));

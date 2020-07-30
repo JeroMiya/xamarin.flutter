@@ -523,7 +523,7 @@ namespace FlutterSDK.Material.Progressindicator
         public new void Paint(Canvas canvas, Size size)
         {
             Paint paint = new Paint()..Color = BackgroundColor..Style = PaintingStyle.Fill;
-            canvas.DrawRect(Dart: uiDefaultClass.Offset.Zero & size, paint);
+            canvas.DrawRect(Dart.UI.UiDefaultClass.Offset.Zero & size, paint);
             paint.Color = ValueColor;
             void DrawBar(double x, double width)
             {
@@ -643,7 +643,7 @@ namespace FlutterSDK.Material.Progressindicator
 
         private FlutterSDK.Widgets.Framework.Widget _BuildIndicator(FlutterSDK.Widgets.Framework.BuildContext context, double animationValue, TextDirection textDirection)
         {
-            return Widget._BuildSemanticsWrapper(context: context, child: new Container(constraints: new BoxConstraints(minWidth: Dart:coreDefaultClass.Double.Infinity, minHeight: ProgressindicatorDefaultClass._KLinearProgressIndicatorHeight), child: new CustomPaint(painter: new _LinearProgressIndicatorPainter(backgroundColor: Widget._GetBackgroundColor(context), valueColor: Widget._GetValueColor(context), value: Widget.Value, animationValue: animationValue, textDirection: textDirection))));
+            return Widget._BuildSemanticsWrapper(context: context, child: new Container(constraints: new BoxConstraints(minWidth: Dart.CoreDefaultClass.Double.Infinity, minHeight: ProgressindicatorDefaultClass._KLinearProgressIndicatorHeight), child: new CustomPaint(painter: new _LinearProgressIndicatorPainter(backgroundColor: Widget._GetBackgroundColor(context), valueColor: Widget._GetValueColor(context), value: Widget.Value, animationValue: animationValue, textDirection: textDirection))));
         }
 
 
@@ -700,11 +700,11 @@ namespace FlutterSDK.Material.Progressindicator
             if (BackgroundColor != null)
             {
                 Paint backgroundPaint = new Paint()..Color = BackgroundColor..StrokeWidth = StrokeWidth..Style = PaintingStyle.Stroke;
-                canvas.DrawArc(Dart: uiDefaultClass.Offset.Zero & size, 0, _Sweep, false, backgroundPaint);
+                canvas.DrawArc(Dart.UI.UiDefaultClass.Offset.Zero & size, 0, _Sweep, false, backgroundPaint);
             }
 
             if (Value == null) paint.StrokeCap = StrokeCap.Square;
-            canvas.DrawArc(Dart: uiDefaultClass.Offset.Zero & size, ArcStart, ArcSweep, false, paint);
+            canvas.DrawArc(Dart.UI.UiDefaultClass.Offset.Zero & size, ArcStart, ArcSweep, false, paint);
         }
 
 
@@ -844,8 +844,8 @@ namespace FlutterSDK.Material.Progressindicator
         public virtual void PaintArrowhead(Canvas canvas, Size size)
         {
             double arcEnd = ArcStart + ArcSweep;
-            double ux = Math.Dart:mathDefaultClass.Cos(arcEnd);
-            double uy = Math.Dart:mathDefaultClass.Sin(arcEnd);
+            double ux = Dart.Math.MathDefaultClass.Cos(arcEnd);
+            double uy = Dart.Math.MathDefaultClass.Sin(arcEnd);
 
             double radius = size.Width / 2.0;
             double arrowheadPointX = radius + ux * radius + -uy * StrokeWidth * 2.0 * ArrowheadScale;

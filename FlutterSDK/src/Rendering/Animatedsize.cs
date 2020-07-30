@@ -611,7 +611,7 @@ namespace FlutterSDK.Rendering.Animatedsize
         {
             if (Child != null && _HasVisualOverflow)
             {
-                Rect rect = Dart:uiDefaultClass.Offset.Zero & Size;
+                Rect rect = Dart.UiDefaultClass.Offset.Zero & Size;
                 context.PushClipRect(NeedsCompositing, offset, rect, base.Paint);
             }
             else

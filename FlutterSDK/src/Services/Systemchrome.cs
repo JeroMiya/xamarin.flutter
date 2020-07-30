@@ -716,18 +716,18 @@ namespace FlutterSDK.Services.Systemchrome
             }
 
             _PendingStyle = style;
-        Dart: asyncDefaultClass.ScheduleMicrotask(() =>
-        {
-
-            if (_PendingStyle != _LatestStyle)
+            Dart.AsyncDefaultClass.ScheduleMicrotask(() =>
             {
-                SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setSystemUIOverlayStyle", _PendingStyle._ToMap());
-                _LatestStyle = _PendingStyle;
-            }
 
-            _PendingStyle = null;
-        }
-         );
+                if (_PendingStyle != _LatestStyle)
+                {
+                    SystemchannelsDefaultClass.SystemChannels.Platform.InvokeMethod("SystemChrome.setSystemUIOverlayStyle", _PendingStyle._ToMap());
+                    _LatestStyle = _PendingStyle;
+                }
+
+                _PendingStyle = null;
+            }
+            );
         }
 
 

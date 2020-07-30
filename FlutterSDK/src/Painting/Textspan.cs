@@ -711,7 +711,7 @@ namespace FlutterSDK.Painting.Textspan
 
         public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return RenderComparison.Identical;
             if (other.GetType() != GetType()) return RenderComparison.Layout;
             TextSpan textSpan = other as TextSpan;
             if (textSpan.Text != Text || Children?.Count != textSpan.Children?.Count || (Style == null) != (textSpan.Style == null)) return RenderComparison.Layout;
@@ -742,7 +742,7 @@ namespace FlutterSDK.Painting.Textspan
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             if (base != other) return false;
             return other is TextSpan && other.Text == Text && other.Recognizer == Recognizer && other.SemanticsLabel == SemanticsLabel && CollectionsDefaultClass.ListEquals(other.Children, Children);

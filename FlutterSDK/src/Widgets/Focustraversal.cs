@@ -793,7 +793,7 @@ namespace FlutterSDK.Widgets.Focustraversal
                     {
                         sorted = sorted.Reversed.ToList();
                     }
-                    Rect band = Rect.FromLTRB(focusedChild.Rect.Left, -Dart:coreDefaultClass.Double.Infinity, focusedChild.Rect.Right, Dart: coreDefaultClass.Double.Infinity); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
+                    Rect band = Rect.FromLTRB(focusedChild.Rect.Left, -Dart.CoreDefaultClass.Double.Infinity, focusedChild.Rect.Right, Dart.CoreDefaultClass.Double.Infinity); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
                     {
                         found = inBand.First;
                         break;
@@ -822,7 +822,7 @@ namespace FlutterSDK.Widgets.Focustraversal
                     {
                         sorted = sorted.Reversed.ToList();
                     }
-                    Rect band = Rect.FromLTRB(-Dart:coreDefaultClass.Double.Infinity, focusedChild.Rect.Top, Dart: coreDefaultClass.Double.Infinity, focusedChild.Rect.Bottom); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
+                    Rect band = Rect.FromLTRB(-Dart.CoreDefaultClass.Double.Infinity, focusedChild.Rect.Top, Dart.CoreDefaultClass.Double.Infinity, focusedChild.Rect.Bottom); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
                     {
                         found = inBand.First;
                         break;
@@ -1447,7 +1447,7 @@ namespace FlutterSDK.Widgets.Focustraversal
             _ReadingOrderSortData topmost = candidates.First;
             List<_ReadingOrderSortData> InBand(_ReadingOrderSortData current, Iterable<_ReadingOrderSortData> candidates)
             {
-                Rect band = Rect.FromLTRB(Dart: coreDefaultClass.Double.NegativeInfinity, current.Rect.Top, Dart: coreDefaultClass.Double.Infinity, current.Rect.Bottom);
+                Rect band = Rect.FromLTRB(Dart.CoreDefaultClass.Double.NegativeInfinity, current.Rect.Top, Dart.CoreDefaultClass.Double.Infinity, current.Rect.Bottom);
                 return candidates.Where((_ReadingOrderSortData item) =>
                 {
                     return !item.Rect.Intersect(band).IsEmpty();

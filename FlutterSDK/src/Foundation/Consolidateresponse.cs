@@ -310,7 +310,7 @@ namespace FlutterSDK.Foundation.Consolidateresponse
                 case HttpClientResponseCompressionState.Compressed:
                     if (autoUncompress)
                     {
-                        sink = Dart:ioDefaultClass.Gzip.Decoder.StartChunkedConversion(output);
+                        sink = Dart.IoDefaultClass.Gzip.Decoder.StartChunkedConversion(output);
                     }
                     break;
                 case HttpClientResponseCompressionState.Decompressed: expectedContentLength = null; break;

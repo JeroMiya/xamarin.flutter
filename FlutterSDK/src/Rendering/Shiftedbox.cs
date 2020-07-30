@@ -643,7 +643,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
             _Resolve();
             double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
             double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
-            if (Child != null) return Child.GetMinIntrinsicWidth(Math.Dart:mathDefaultClass.Max(0.0, height - totalVerticalPadding)) + totalHorizontalPadding;
+            if (Child != null) return Child.GetMinIntrinsicWidth(Dart.Math.MathDefaultClass.Max(0.0, height - totalVerticalPadding)) + totalHorizontalPadding;
             return totalHorizontalPadding;
         }
 
@@ -655,7 +655,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
             _Resolve();
             double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
             double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
-            if (Child != null) return Child.GetMaxIntrinsicWidth(Math.Dart:mathDefaultClass.Max(0.0, height - totalVerticalPadding)) + totalHorizontalPadding;
+            if (Child != null) return Child.GetMaxIntrinsicWidth(Dart.Math.MathDefaultClass.Max(0.0, height - totalVerticalPadding)) + totalHorizontalPadding;
             return totalHorizontalPadding;
         }
 
@@ -667,7 +667,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
             _Resolve();
             double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
             double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
-            if (Child != null) return Child.GetMinIntrinsicHeight(Math.Dart:mathDefaultClass.Max(0.0, width - totalHorizontalPadding)) + totalVerticalPadding;
+            if (Child != null) return Child.GetMinIntrinsicHeight(Dart.Math.MathDefaultClass.Max(0.0, width - totalHorizontalPadding)) + totalVerticalPadding;
             return totalVerticalPadding;
         }
 
@@ -679,7 +679,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
             _Resolve();
             double totalHorizontalPadding = _ResolvedPadding.Left + _ResolvedPadding.Right;
             double totalVerticalPadding = _ResolvedPadding.Top + _ResolvedPadding.Bottom;
-            if (Child != null) return Child.GetMaxIntrinsicHeight(Math.Dart:mathDefaultClass.Max(0.0, width - totalHorizontalPadding)) + totalVerticalPadding;
+            if (Child != null) return Child.GetMaxIntrinsicHeight(Dart.Math.MathDefaultClass.Max(0.0, width - totalHorizontalPadding)) + totalVerticalPadding;
             return totalVerticalPadding;
         }
 
@@ -831,17 +831,17 @@ namespace FlutterSDK.Rendering.Shiftedbox
         public new void PerformLayout()
         {
             BoxConstraints constraints = this.Constraints;
-            bool shrinkWrapWidth = _WidthFactor != null || constraints.MaxWidth == Dart:coreDefaultClass.Double.Infinity;
-            bool shrinkWrapHeight = _HeightFactor != null || constraints.MaxHeight == Dart:coreDefaultClass.Double.Infinity;
+            bool shrinkWrapWidth = _WidthFactor != null || constraints.MaxWidth == Dart.CoreDefaultClass.Double.Infinity;
+            bool shrinkWrapHeight = _HeightFactor != null || constraints.MaxHeight == Dart.CoreDefaultClass.Double.Infinity;
             if (Child != null)
             {
                 Child.Layout(constraints.Loosen(), parentUsesSize: true);
-                Size = constraints.Constrain(new Size(shrinkWrapWidth ? Child.Size.Width * (_widthFactor == default(double) ? 1.0 : _widthFactor) : Dart:coreDefaultClass.Double.Infinity, shrinkWrapHeight ? Child.Size.Height * (_heightFactor == default(double) ? 1.0 : _heightFactor) : Dart:coreDefaultClass.Double.Infinity));
+                Size = constraints.Constrain(new Size(shrinkWrapWidth ? Child.Size.Width * (_widthFactor == default(double) ? 1.0 : _widthFactor) : Dart.CoreDefaultClass.Double.Infinity, shrinkWrapHeight ? Child.Size.Height * (_heightFactor == default(double) ? 1.0 : _heightFactor) : Dart.CoreDefaultClass.Double.Infinity));
                 AlignChild();
             }
             else
             {
-                Size = constraints.Constrain(new Size(shrinkWrapWidth ? 0.0 : Dart:coreDefaultClass.Double.Infinity, shrinkWrapHeight ? 0.0 : Dart:coreDefaultClass.Double.Infinity));
+                Size = constraints.Constrain(new Size(shrinkWrapWidth ? 0.0 : Dart.CoreDefaultClass.Double.Infinity, shrinkWrapHeight ? 0.0 : Dart.CoreDefaultClass.Double.Infinity));
             }
 
         }
@@ -1020,14 +1020,14 @@ namespace FlutterSDK.Rendering.Shiftedbox
                 Size = constraints.Constrain(Child.Size);
                 AlignChild();
                 BoxParentData childParentData = Child.ParentData as BoxParentData;
-                _OverflowContainerRect = Dart:uiDefaultClass.Offset.Zero & Size;
+                _OverflowContainerRect = Dart.UiDefaultClass.Offset.Zero & Size;
                 _OverflowChildRect = childParentData.Offset & Child.Size;
             }
             else
             {
                 Size = constraints.Smallest;
-                _OverflowContainerRect = Dart:uiDefaultClass.Rect.Zero;
-                _OverflowChildRect = Dart:uiDefaultClass.Rect.Zero;
+                _OverflowContainerRect = Dart.UiDefaultClass.Rect.Zero;
+                _OverflowChildRect = Dart.UiDefaultClass.Rect.Zero;
             }
 
             _IsOverflowing = RelativeRect.FromRect(_OverflowContainerRect, _OverflowChildRect).HasInsets;
@@ -1045,7 +1045,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
                 return;
             }
 
-            context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, base.Paint);
+            context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, base.Paint);
 
         }
 
@@ -1054,7 +1054,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            return _IsOverflowing ? Dart : uiDefaultClass.Offset.Zero & Size:null;
+            return _IsOverflowing ? Dart.UiDefaultClass.Offset.Zero & Size : null;
         }
 
 
@@ -1296,7 +1296,7 @@ namespace FlutterSDK.Rendering.Shiftedbox
             }
             else
             {
-                Size = Constraints.Constrain(_GetInnerConstraints(Constraints).Constrain(Dart: uiDefaultClass.Size.Zero));
+                Size = Constraints.Constrain(_GetInnerConstraints(Constraints).Constrain(Dart.UI.UiDefaultClass.Size.Zero));
             }
 
         }
@@ -1386,32 +1386,32 @@ namespace FlutterSDK.Rendering.Shiftedbox
         ///
         /// Defaults to positioning the child in the upper left corner of the parent.
         /// </Summary>
-        public virtual Offset GetPositionForChild(Size size, Size childSize) => Dart:uiDefaultClass.Offset.Zero;
+        public virtual Offset GetPositionForChild(Size size, Size childSize) => Dart.UiDefaultClass.Offset.Zero;
 
 
 
-/// <Summary>
-/// Called whenever a new instance of the custom layout delegate class is
-/// provided to the [RenderCustomSingleChildLayoutBox] object, or any time
-/// that a new [CustomSingleChildLayout] object is created with a new instance
-/// of the custom layout delegate class (which amounts to the same thing,
-/// because the latter is implemented in terms of the former).
-///
-/// If the new instance represents different information than the old
-/// instance, then the method should return true, otherwise it should return
-/// false.
-///
-/// If the method returns false, then the [getSize],
-/// [getConstraintsForChild], and [getPositionForChild] calls might be
-/// optimized away.
-///
-/// It's possible that the layout methods will get called even if
-/// [shouldRelayout] returns false (e.g. if an ancestor changed its layout).
-/// It's also possible that the layout method will get called
-/// without [shouldRelayout] being called at all (e.g. if the parent changes
-/// size).
-/// </Summary>
-public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
+        /// <Summary>
+        /// Called whenever a new instance of the custom layout delegate class is
+        /// provided to the [RenderCustomSingleChildLayoutBox] object, or any time
+        /// that a new [CustomSingleChildLayout] object is created with a new instance
+        /// of the custom layout delegate class (which amounts to the same thing,
+        /// because the latter is implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [getSize],
+        /// [getConstraintsForChild], and [getPositionForChild] calls might be
+        /// optimized away.
+        ///
+        /// It's possible that the layout methods will get called even if
+        /// [shouldRelayout] returns false (e.g. if an ancestor changed its layout).
+        /// It's also possible that the layout method will get called
+        /// without [shouldRelayout] being called at all (e.g. if the parent changes
+        /// size).
+        /// </Summary>
+        public virtual bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate)
         {
             return default(bool);
         }

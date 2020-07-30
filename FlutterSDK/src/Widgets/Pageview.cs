@@ -678,7 +678,7 @@ namespace FlutterSDK.Widgets.Pageview
 
         public virtual double GetPageFromPixels(double pixels, double viewportDimension)
         {
-            double actual = Math.Dart:mathDefaultClass.Max(0.0, pixels - _InitialPageOffset) / Math.Dart:mathDefaultClass.Max(1.0, viewportDimension * ViewportFraction);
+            double actual = Dart.Math.MathDefaultClass.Max(0.0, pixels - _InitialPageOffset) / Dart.Math.MathDefaultClass.Max(1.0, viewportDimension * ViewportFraction);
             double round = actual.RoundToDouble();
             if ((actual - round).Abs() < ConstantsDefaultClass.PrecisionErrorTolerance)
             {
@@ -742,7 +742,7 @@ namespace FlutterSDK.Widgets.Pageview
         public new bool ApplyContentDimensions(double minScrollExtent, double maxScrollExtent)
         {
             double newMinScrollExtent = minScrollExtent + _InitialPageOffset;
-            return base.ApplyContentDimensions(newMinScrollExtent, Math.Dart:mathDefaultClass.Max(newMinScrollExtent, maxScrollExtent - _InitialPageOffset));
+            return base.ApplyContentDimensions(newMinScrollExtent, Dart.Math.MathDefaultClass.Max(newMinScrollExtent, maxScrollExtent - _InitialPageOffset));
         }
 
 

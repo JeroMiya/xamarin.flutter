@@ -399,7 +399,7 @@ namespace FlutterSDK.Material.Inksplash
                 return rectCallback;
             }
 
-            if (containedInkWell) return () => =>Dart: uiDefaultClass.Offset.Zero & referenceBox.Size;
+            if (containedInkWell) return () => =>Dart.UiDefaultClass.Offset.Zero & referenceBox.Size;
             return null;
         }
 
@@ -420,11 +420,11 @@ namespace FlutterSDK.Material.Inksplash
 
         internal static double _GetSplashRadiusForPositionInSize(Size bounds, FlutterBinding.UI.Offset position)
         {
-            double d1 = (position - bounds.TopLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            double d2 = (position - bounds.TopRight(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            double d3 = (position - bounds.BottomLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            double d4 = (position - bounds.BottomRight(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            return Math.Dart:mathDefaultClass.Max(Math.Dart:mathDefaultClass.Max(d1, d2), Math.Dart:mathDefaultClass.Max(d3, d4)).CeilToDouble();
+            double d1 = (position - bounds.TopLeft(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            double d2 = (position - bounds.TopRight(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            double d3 = (position - bounds.BottomLeft(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            double d4 = (position - bounds.BottomRight(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            return Dart.Math.MathDefaultClass.Max(Dart.Math.MathDefaultClass.Max(d1, d2), Dart.Math.MathDefaultClass.Max(d3, d4)).CeilToDouble();
         }
 
 
@@ -544,7 +544,7 @@ namespace FlutterSDK.Material.Inksplash
         {
             Paint paint = new Paint()..Color = Color.WithAlpha(_Alpha.Value);
             Offset center = _Position;
-            if (_RepositionToReferenceBox) center = Dart:uiDefaultClass.Offset.Lerp(center, ReferenceBox.Size.Center(Dart: uiDefaultClass.Offset.Zero), _RadiusController.Value);
+            if (_RepositionToReferenceBox) center = Dart.UI.UiDefaultClass.Offset.Lerp(center, ReferenceBox.Size.Center(Dart.UI.UiDefaultClass.Offset.Zero), _RadiusController.Value);
             PaintInkCircle(canvas: canvas, transform: transform, paint: paint, center: center, textDirection: _TextDirection, radius: _Radius.Value, customBorder: _CustomBorder, borderRadius: _BorderRadius, clipCallback: _ClipCallback);
         }
 

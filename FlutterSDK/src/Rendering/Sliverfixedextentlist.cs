@@ -553,7 +553,7 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
         /// </Summary>
         public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent)
         {
-            return itemExtent > 0.0 ? Math.Dart : mathDefaultClass.Max(0, (scrollOffset / itemExtent).Ceil() - 1):0;
+            return itemExtent > 0.0 ? Dart.Math.MathDefaultClass.Max(0, (scrollOffset / itemExtent).Ceil() - 1) : 0;
         }
 
 
@@ -723,7 +723,7 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
                 trailingChildWithLayout = FirstChild;
             }
 
-            double estimatedMaxScrollOffset = Dart:coreDefaultClass.Double.Infinity;
+            double estimatedMaxScrollOffset = Dart.CoreDefaultClass.Double.Infinity;
             for (int index = IndexOf(trailingChildWithLayout) + 1; targetLastIndex == null || index <= targetLastIndex; ++index)
             {
                 RenderBox child = ChildAfter(trailingChildWithLayout);
@@ -756,7 +756,7 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
 
 
 
-            estimatedMaxScrollOffset = Math.Dart:mathDefaultClass.Min(estimatedMaxScrollOffset, EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset));
+            estimatedMaxScrollOffset = Dart.Math.MathDefaultClass.Min(estimatedMaxScrollOffset, EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset));
             double paintExtent = CalculatePaintOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
             double cacheExtent = CalculateCacheOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
             double targetEndScrollOffsetForPaint = constraints.ScrollOffset + constraints.RemainingPaintExtent;

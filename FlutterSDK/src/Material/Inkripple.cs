@@ -401,7 +401,7 @@ namespace FlutterSDK.Material.Inkripple
                 return rectCallback;
             }
 
-            if (containedInkWell) return () => =>Dart: uiDefaultClass.Offset.Zero & referenceBox.Size;
+            if (containedInkWell) return () => =>Dart.UiDefaultClass.Offset.Zero & referenceBox.Size;
             return null;
         }
 
@@ -410,9 +410,9 @@ namespace FlutterSDK.Material.Inkripple
         internal static double _GetTargetRadius(FlutterSDK.Rendering.Box.RenderBox referenceBox, bool containedInkWell, FlutterSDK.Material.Material.RectCallback rectCallback, FlutterBinding.UI.Offset position)
         {
             Size size = rectCallback != null ? rectCallback().Size : referenceBox.Size;
-            double d1 = size.BottomRight(Dart: uiDefaultClass.Offset.Zero).Distance;
-            double d2 = (size.TopRight(Dart: uiDefaultClass.Offset.Zero) - size.BottomLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            return Math.Dart:mathDefaultClass.Max(d1, d2) / 2.0;
+            double d1 = size.BottomRight(Dart.UI.UiDefaultClass.Offset.Zero).Distance;
+            double d2 = (size.TopRight(Dart.UI.UiDefaultClass.Offset.Zero) - size.BottomLeft(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            return Dart.Math.MathDefaultClass.Max(d1, d2) / 2.0;
         }
 
 
@@ -544,7 +544,7 @@ namespace FlutterSDK.Material.Inkripple
         {
             int alpha = _FadeInController.IsAnimating ? _FadeIn.Value : _FadeOut.Value;
             Paint paint = new Paint()..Color = Color.WithAlpha(alpha);
-            Offset center = Dart:uiDefaultClass.Offset.Lerp(_Position, ReferenceBox.Size.Center(Dart: uiDefaultClass.Offset.Zero), CurvesDefaultClass.Curves.Ease.Transform(_RadiusController.Value));
+            Offset center = Dart.UI.UiDefaultClass.Offset.Lerp(_Position, ReferenceBox.Size.Center(Dart.UI.UiDefaultClass.Offset.Zero), CurvesDefaultClass.Curves.Ease.Transform(_RadiusController.Value));
             PaintInkCircle(canvas: canvas, transform: transform, paint: paint, center: center, textDirection: _TextDirection, radius: _Radius.Value, customBorder: _CustomBorder, borderRadius: _BorderRadius, clipCallback: _ClipCallback);
         }
 

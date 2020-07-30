@@ -554,7 +554,7 @@ namespace FlutterSDK.Rendering.Table
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
             double result = 0.0;
-            foreach (RenderBox cell in cells) result = Math.Dart:mathDefaultClass.Max(result, cell.GetMinIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity));
+            foreach (RenderBox cell in cells) result = Dart.Math.MathDefaultClass.Max(result, cell.GetMinIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity));
             return result;
         }
 
@@ -564,7 +564,7 @@ namespace FlutterSDK.Rendering.Table
         public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
             double result = 0.0;
-            foreach (RenderBox cell in cells) result = Math.Dart:mathDefaultClass.Max(result, cell.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity));
+            foreach (RenderBox cell in cells) result = Dart.Math.MathDefaultClass.Max(result, cell.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity));
             return result;
         }
 
@@ -715,7 +715,7 @@ namespace FlutterSDK.Rendering.Table
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
-            return Math.Dart:mathDefaultClass.Max(a.MinIntrinsicWidth(cells, containerWidth), b.MinIntrinsicWidth(cells, containerWidth));
+            return Dart.Math.MathDefaultClass.Max(a.MinIntrinsicWidth(cells, containerWidth), b.MinIntrinsicWidth(cells, containerWidth));
         }
 
 
@@ -723,7 +723,7 @@ namespace FlutterSDK.Rendering.Table
 
         public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
-            return Math.Dart:mathDefaultClass.Max(a.MaxIntrinsicWidth(cells, containerWidth), b.MaxIntrinsicWidth(cells, containerWidth));
+            return Dart.Math.MathDefaultClass.Max(a.MaxIntrinsicWidth(cells, containerWidth), b.MaxIntrinsicWidth(cells, containerWidth));
         }
 
 
@@ -735,7 +735,7 @@ namespace FlutterSDK.Rendering.Table
             if (aFlex == null) return b.Flex(cells);
             double bFlex = b.Flex(cells);
             if (bFlex == null) return null;
-            return Math.Dart:mathDefaultClass.Max(aFlex, bFlex);
+            return Dart.Math.MathDefaultClass.Max(aFlex, bFlex);
         }
 
 
@@ -768,7 +768,7 @@ namespace FlutterSDK.Rendering.Table
 
         public new double MinIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
-            return Math.Dart:mathDefaultClass.Min(a.MinIntrinsicWidth(cells, containerWidth), b.MinIntrinsicWidth(cells, containerWidth));
+            return Dart.Math.MathDefaultClass.Min(a.MinIntrinsicWidth(cells, containerWidth), b.MinIntrinsicWidth(cells, containerWidth));
         }
 
 
@@ -776,7 +776,7 @@ namespace FlutterSDK.Rendering.Table
 
         public new double MaxIntrinsicWidth(Iterable<FlutterSDK.Rendering.Box.RenderBox> cells, double containerWidth)
         {
-            return Math.Dart:mathDefaultClass.Min(a.MaxIntrinsicWidth(cells, containerWidth), b.MaxIntrinsicWidth(cells, containerWidth));
+            return Dart.Math.MathDefaultClass.Min(a.MaxIntrinsicWidth(cells, containerWidth), b.MaxIntrinsicWidth(cells, containerWidth));
         }
 
 
@@ -788,7 +788,7 @@ namespace FlutterSDK.Rendering.Table
             if (aFlex == null) return b.Flex(cells);
             double bFlex = b.Flex(cells);
             if (bFlex == null) return null;
-            return Math.Dart:mathDefaultClass.Min(aFlex, bFlex);
+            return Dart.Math.MathDefaultClass.Min(aFlex, bFlex);
         }
 
 
@@ -1068,7 +1068,7 @@ namespace FlutterSDK.Rendering.Table
             {
                 TableColumnWidth columnWidth = _ColumnWidths[x] ?? DefaultColumnWidth;
                 Iterable<RenderBox> columnCells = Column(x);
-                totalMinWidth += columnWidth.MinIntrinsicWidth(columnCells, Dart: coreDefaultClass.Double.Infinity);
+                totalMinWidth += columnWidth.MinIntrinsicWidth(columnCells, Dart.CoreDefaultClass.Double.Infinity);
             }
 
             return totalMinWidth;
@@ -1085,7 +1085,7 @@ namespace FlutterSDK.Rendering.Table
             {
                 TableColumnWidth columnWidth = _ColumnWidths[x] ?? DefaultColumnWidth;
                 Iterable<RenderBox> columnCells = Column(x);
-                totalMaxWidth += columnWidth.MaxIntrinsicWidth(columnCells, Dart: coreDefaultClass.Double.Infinity);
+                totalMaxWidth += columnWidth.MaxIntrinsicWidth(columnCells, Dart.CoreDefaultClass.Double.Infinity);
             }
 
             return totalMaxWidth;
@@ -1106,7 +1106,7 @@ namespace FlutterSDK.Rendering.Table
                 {
                     int xy = x + y * Columns;
                     RenderBox child = _Children[xy];
-                    if (child != null) rowHeight = Math.Dart:mathDefaultClass.Max(rowHeight, child.GetMaxIntrinsicHeight(widths[x]));
+                    if (child != null) rowHeight = Dart.Math.MathDefaultClass.Max(rowHeight, child.GetMaxIntrinsicHeight(widths[x]));
                 }
 
                 rowTop += rowHeight;
@@ -1400,18 +1400,18 @@ namespace FlutterSDK.Rendering.Table
                             case TableCellVerticalAlignment.Baseline:
                                 child.Layout(BoxConstraints.TightFor(width: widths[x]), parentUsesSize: true); double childBaseline = child.GetDistanceToBaseline(TextBaseline, onlyReal: true); if (childBaseline != null)
                                 {
-                                    beforeBaselineDistance = Math.Dart:mathDefaultClass.Max(beforeBaselineDistance, childBaseline);
-                                    afterBaselineDistance = Math.Dart:mathDefaultClass.Max(afterBaselineDistance, child.Size.Height - childBaseline);
+                                    beforeBaselineDistance = Dart.Math.MathDefaultClass.Max(beforeBaselineDistance, childBaseline);
+                                    afterBaselineDistance = Dart.Math.MathDefaultClass.Max(afterBaselineDistance, child.Size.Height - childBaseline);
                                     baselines[x] = childBaseline;
                                     haveBaseline = true;
                                 }
                                 else
                                 {
-                                    rowHeight = Math.Dart:mathDefaultClass.Max(rowHeight, child.Size.Height);
+                                    rowHeight = Dart.Math.MathDefaultClass.Max(rowHeight, child.Size.Height);
                                     childParentData.Offset = new Offset(positions[x], rowTop);
                                 }
                                 break;
-                            case TableCellVerticalAlignment.Top: case TableCellVerticalAlignment.Middle: case TableCellVerticalAlignment.Bottom: child.Layout(BoxConstraints.TightFor(width: widths[x]), parentUsesSize: true); rowHeight = Math.Dart:mathDefaultClass.Max(rowHeight, child.Size.Height); break;
+                            case TableCellVerticalAlignment.Top: case TableCellVerticalAlignment.Middle: case TableCellVerticalAlignment.Bottom: child.Layout(BoxConstraints.TightFor(width: widths[x]), parentUsesSize: true); rowHeight = Dart.Math.MathDefaultClass.Max(rowHeight, child.Size.Height); break;
                             case TableCellVerticalAlignment.Fill: break;
                         }
                     }
@@ -1421,7 +1421,7 @@ namespace FlutterSDK.Rendering.Table
                 if (haveBaseline)
                 {
                     if (y == 0) _BaselineDistance = beforeBaselineDistance;
-                    rowHeight = Math.Dart:mathDefaultClass.Max(rowHeight, beforeBaselineDistance + afterBaselineDistance);
+                    rowHeight = Dart.Math.MathDefaultClass.Max(rowHeight, beforeBaselineDistance + afterBaselineDistance);
                 }
 
                 for (int x = 0; x < columns; x += 1)

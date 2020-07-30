@@ -441,7 +441,7 @@ namespace FlutterSDK.Material.Buttontheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             ButtonTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : ButtonTheme.FromButtonThemeData(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : ButtonTheme.FromButtonThemeData(data: Data, child: child);
         }
 
 

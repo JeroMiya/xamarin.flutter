@@ -428,11 +428,12 @@ namespace FlutterSDK.Animation.Animationcontroller
             }
             else if (target == Value)
             {
-                simulationDuration = Dart:coreDefaultClass.Duration.Zero;
+                simulationDuration = Dart.CoreDefaultClass.Duration.Zero;
             }
 
             Stop();
-            if (simulationDuration == Dart:coreDefaultClass.Duration.Zero){
+            if (simulationDuration == Dart.CoreDefaultClass.Duration.Zero)
+            {
                 if (Value != target)
                 {
                     _Value = target.Clamp(LowerBound, UpperBound) as double;
@@ -561,7 +562,7 @@ namespace FlutterSDK.Animation.Animationcontroller
 
 
             _Simulation = simulation;
-            _LastElapsedDuration = Dart:coreDefaultClass.Duration.Zero;
+            _LastElapsedDuration = Dart.CoreDefaultClass.Duration.Zero;
             _Value = simulation.x(0.0).Clamp(LowerBound, UpperBound) as double;
             TickerFuture result = _Ticker.Start();
             _Status = (_Direction == _AnimationDirection.Forward) ? AnimationStatus.Forward : AnimationStatus.Reverse;
@@ -638,7 +639,7 @@ namespace FlutterSDK.Animation.Animationcontroller
         private void _Tick(TimeSpan elapsed)
         {
             _LastElapsedDuration = elapsed;
-            double elapsedInSeconds = elapsed.InMicroseconds().ToDouble() / Dart:coreDefaultClass.Duration.MicrosecondsPerSecond;
+            double elapsedInSeconds = elapsed.InMicroseconds().ToDouble() / Dart.CoreDefaultClass.Duration.MicrosecondsPerSecond;
 
             _Value = _Simulation.x(elapsedInSeconds).Clamp(LowerBound, UpperBound) as double;
             if (_Simulation.IsDone(elapsedInSeconds))
@@ -736,12 +737,12 @@ namespace FlutterSDK.Animation.Animationcontroller
             if (Reverse && _isPlayingReverse)
             {
                 DirectionSetter(_AnimationDirection.Reverse);
-                return Ui.Dart:uiDefaultClass.LerpDouble(Max, Min, t);
+                return Dart.UI.UiDefaultClass.LerpDouble(Max, Min, t);
             }
             else
             {
                 DirectionSetter(_AnimationDirection.Forward);
-                return Ui.Dart:uiDefaultClass.LerpDouble(Min, Max, t);
+                return Dart.UI.UiDefaultClass.LerpDouble(Min, Max, t);
             }
 
         }

@@ -595,7 +595,7 @@ namespace FlutterSDK.Painting.Imageresolution
         private Future<Dictionary<string, List<string>>> _ManifestParser(string jsonData)
         {
             if (jsonData == null) return new SynchronousFuture<Dictionary<string, List<string>>>(null);
-            Dictionary<string, object> parsedJson = Dart:convertDefaultClass.Json.Decode(jsonData) as Dictionary<string, object>;
+            Dictionary<string, object> parsedJson = Dart.ConvertDefaultClass.Json.Decode(jsonData) as Dictionary<string, object>;
             Iterable<string> keys = parsedJson.Keys;
             Dictionary<string, List<string>> parsedManifest = Dictionary<string, List<string>>.FromIterables(keys, keys.Map((string key) => =>List<string>.From(parsedJson[key] as List<object>)));
             return new SynchronousFuture<Dictionary<string, List<string>>>(parsedManifest);
@@ -635,7 +635,7 @@ namespace FlutterSDK.Painting.Imageresolution
                 return _NaturalResolution;
             }
 
-            Uri assetUri = Dart:coreDefaultClass.Uri.Parse(key);
+            Uri assetUri = Dart.CoreDefaultClass.Uri.Parse(key);
             string directoryPath = "";
             if (assetUri.PathSegments.Count > 1)
             {
@@ -643,7 +643,7 @@ namespace FlutterSDK.Painting.Imageresolution
             }
 
             Match match = _ExtractRatioRegExp.FirstMatch(directoryPath);
-            if (match != null && match.GroupCount > 0) return Dart:coreDefaultClass.Double.Parse(match.Group(1));
+            if (match != null && match.GroupCount > 0) return Dart.CoreDefaultClass.Double.Parse(match.Group(1));
             return _NaturalResolution;
         }
 

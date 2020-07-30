@@ -651,7 +651,7 @@ namespace FlutterSDK.Material.Datatable
             }
 
             label = new Row(textDirection: numeric ? TextDirection.Rtl : null, children: new List<Widget>() { label,  /* ...ArrowWithPadding() */});
-            label = new Container(padding: padding, height: HeadingRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new AnimatedDefaultTextStyle(style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.W500, fontSize: _HeadingFontSize, height: Math.Dart:mathDefaultClass.Min(1.0, HeadingRowHeight / _HeadingFontSize), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ((onSort != null && sorted) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.Black54) : ((onSort != null && sorted) ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.White70)), softWrap: false, duration: _SortArrowAnimationDuration, child: label));
+            label = new Container(padding: padding, height: HeadingRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new AnimatedDefaultTextStyle(style: new TextStyle(fontWeight: Dart.UiDefaultClass.FontWeight.W500, fontSize: _HeadingFontSize, height: Dart.Math.MathDefaultClass.Min(1.0, HeadingRowHeight / _HeadingFontSize), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ((onSort != null && sorted) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.Black54) : ((onSort != null && sorted) ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.White70)), softWrap: false, duration: _SortArrowAnimationDuration, child: label));
             if (tooltip != null)
             {
                 label = new Tooltip(message: tooltip, child: label);
@@ -826,7 +826,7 @@ namespace FlutterSDK.Material.Datatable
                     if (offset != null) return rect.Shift(-offset);
                 }
 
-                return Dart:uiDefaultClass.Rect.Zero;
+                return Dart.UiDefaultClass.Rect.Zero;
             }
             ;
         }
@@ -888,7 +888,7 @@ namespace FlutterSDK.Material.Datatable
             _OrientationAnimation = _OrientationController.Drive(_TurnTween);
             _OrientationController.Drive(_TurnTween).AddListener(_Rebuild);
             _OrientationController.Drive(_TurnTween).AddStatusListener(_ResetOrientationAnimation);
-            if (Widget.Visible) _OrientationOffset = Widget.Down ? 0.0 : Math.Dart:mathDefaultClass.Pi;
+            if (Widget.Visible) _OrientationOffset = Widget.Down ? 0.0 : Math.Dart.MathDefaultClass.Pi;
         }
 
 
@@ -910,7 +910,7 @@ namespace FlutterSDK.Material.Datatable
             if (status == AnimationStatus.Completed)
             {
 
-                _OrientationOffset += Math.Dart:mathDefaultClass.Pi;
+                _OrientationOffset += Math.Dart.MathDefaultClass.Pi;
                 _OrientationController.Value = 0.0;
             }
 
@@ -930,7 +930,7 @@ namespace FlutterSDK.Material.Datatable
                 {
                     _OrientationController.Stop();
                     _OrientationController.Value = 0.0;
-                    _OrientationOffset = newDown ? 0.0 : Math.Dart:mathDefaultClass.Pi;
+                    _OrientationOffset = newDown ? 0.0 : Math.Dart.MathDefaultClass.Pi;
                     skipArrow = true;
                 }
 

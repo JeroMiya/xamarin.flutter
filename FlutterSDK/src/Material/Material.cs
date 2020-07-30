@@ -733,7 +733,7 @@ namespace FlutterSDK.Material.Material
                 Canvas canvas = context.Canvas;
                 canvas.Save();
                 canvas.Translate(offset.Dx, offset.Dy);
-                canvas.ClipRect(Dart: uiDefaultClass.Offset.Zero & Size);
+                canvas.ClipRect(Dart.UI.UiDefaultClass.Offset.Zero & Size);
                 foreach (InkFeature inkFeature in _InkFeatures) inkFeature._Paint(canvas);
                 canvas.Restore();
             }
@@ -988,7 +988,7 @@ namespace FlutterSDK.Material.Material
 
         public new void Paint(Canvas canvas, Size size)
         {
-            Border.Paint(canvas, Dart: uiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
+            Border.Paint(canvas, Dart.UI.UiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
         }
 
 

@@ -571,7 +571,7 @@ namespace FlutterSDK.Painting.Stadiumborder
 
             if (a is _StadiumToCircleBorder)
             {
-                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToCircleBorder)a).Side, Side, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_StadiumToCircleBorder)a).Circleness, Circleness, t));
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToCircleBorder)a).Side, Side, t), circleness: Dart.UI.UiDefaultClass.LerpDouble(((_StadiumToCircleBorder)a).Circleness, Circleness, t));
             }
 
             return base.LerpFrom(a, t);
@@ -595,7 +595,7 @@ namespace FlutterSDK.Painting.Stadiumborder
 
             if (b is _StadiumToCircleBorder)
             {
-                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToCircleBorder)b).Side, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_StadiumToCircleBorder)b).Circleness, t));
+                return new _StadiumToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToCircleBorder)b).Side, t), circleness: Dart.UI.UiDefaultClass.LerpDouble(Circleness, ((_StadiumToCircleBorder)b).Circleness, t));
             }
 
             return base.LerpTo(b, t);
@@ -722,7 +722,7 @@ namespace FlutterSDK.Painting.Stadiumborder
 
             if (a is _StadiumToRoundedRectangleBorder)
             {
-                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToRoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(((_StadiumToRoundedRectangleBorder)a).BorderRadius, BorderRadius, t), rectness: Ui.Dart:uiDefaultClass.LerpDouble(((_StadiumToRoundedRectangleBorder)a).Rectness, Rectness, t));
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_StadiumToRoundedRectangleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(((_StadiumToRoundedRectangleBorder)a).BorderRadius, BorderRadius, t), rectness: Dart.UI.UiDefaultClass.LerpDouble(((_StadiumToRoundedRectangleBorder)a).Rectness, Rectness, t));
             }
 
             return base.LerpFrom(a, t);
@@ -746,7 +746,7 @@ namespace FlutterSDK.Painting.Stadiumborder
 
             if (b is _StadiumToRoundedRectangleBorder)
             {
-                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToRoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, ((_StadiumToRoundedRectangleBorder)b).BorderRadius, t), rectness: Ui.Dart:uiDefaultClass.LerpDouble(Rectness, ((_StadiumToRoundedRectangleBorder)b).Rectness, t));
+                return new _StadiumToRoundedRectangleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_StadiumToRoundedRectangleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadius.Lerp(BorderRadius, ((_StadiumToRoundedRectangleBorder)b).BorderRadius, t), rectness: Dart.UI.UiDefaultClass.LerpDouble(Rectness, ((_StadiumToRoundedRectangleBorder)b).Rectness, t));
             }
 
             return base.LerpTo(b, t);

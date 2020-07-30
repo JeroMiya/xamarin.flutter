@@ -705,7 +705,7 @@ public new void InitServiceExtensions()
 
             if (_HasRequestedAnEventLoopCallback) return;
             _HasRequestedAnEventLoopCallback = true;
-        Dart: asyncDefaultClass.Timer.Run(_RunTasks);
+            Dart.AsyncDefaultClass.Timer.Run(_RunTasks);
         }
 
 
@@ -1062,27 +1062,27 @@ public new void InitServiceExtensions()
         {
             if (_WarmUpFrame || SchedulerPhase != SchedulerPhase.Idle) return;
             _WarmUpFrame = true;
-        Dart: developerDefaultClass.Timeline.StartSync("Warm-up frame");
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Warm-up frame");
             bool hadScheduledFrame = _HasScheduledFrame;
-        Dart: asyncDefaultClass.Timer.Run(() =>
-        {
+            Dart.AsyncDefaultClass.Timer.Run(() =>
+            {
 
-            HandleBeginFrame(null);
-        }
-         );
-        Dart: asyncDefaultClass.Timer.Run(() =>
-        {
+                HandleBeginFrame(null);
+            }
+            );
+            Dart.AsyncDefaultClass.Timer.Run(() =>
+            {
 
-            HandleDrawFrame();
-            ResetEpoch();
-            _WarmUpFrame = false;
-            if (hadScheduledFrame) ScheduleFrame();
-        }
-         );
+                HandleDrawFrame();
+                ResetEpoch();
+                _WarmUpFrame = false;
+                if (hadScheduledFrame) ScheduleFrame();
+            }
+            );
             LockEvents(async () =>
             {
                 await EndOfFrame;
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
             );
         }
@@ -1130,7 +1130,7 @@ public new void InitServiceExtensions()
         /// </Summary>
         private TimeSpan _AdjustForEpoch(TimeSpan rawTimeStamp)
         {
-            TimeSpan rawDurationSinceEpoch = _FirstRawTimeStampInEpoch == null ? Dart : coreDefaultClass.Duration.Zero:rawTimeStamp - _FirstRawTimeStampInEpoch;
+            TimeSpan rawDurationSinceEpoch = _FirstRawTimeStampInEpoch == null ? Dart.CoreDefaultClass.Duration.Zero : rawTimeStamp - _FirstRawTimeStampInEpoch;
             return new TimeSpan(microseconds: (rawDurationSinceEpoch.InMicroseconds() / BindingDefaultClass.TimeDilation).Round() + _EpochStart.InMicroseconds());
         }
 
@@ -1193,7 +1193,7 @@ public new void InitServiceExtensions()
         /// </Summary>
         public virtual void HandleBeginFrame(TimeSpan rawTimeStamp)
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Frame", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Frame", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             _FirstRawTimeStampInEpoch = (_FirstRawTimeStampInEpoch == null ? rawTimeStamp : _FirstRawTimeStampInEpoch);
             _CurrentFrameTimeStamp = _AdjustForEpoch(rawTimeStamp ?? _LastRawTimeStamp);
             if (rawTimeStamp != null) _LastRawTimeStamp = rawTimeStamp;
@@ -1202,7 +1202,7 @@ public new void InitServiceExtensions()
             _HasScheduledFrame = false;
             try
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Animate", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Animate", arguments: DebugDefaultClass.TimelineWhitelistArguments);
                 _SchedulerPhase = SchedulerPhase.TransientCallbacks;
                 Dictionary<int, _FrameCallbackEntry> callbacks = _TransientCallbacks;
                 _TransientCallbacks = new Dictionary<int, _FrameCallbackEntry> { };
@@ -1237,7 +1237,7 @@ public new void InitServiceExtensions()
         public virtual void HandleDrawFrame()
         {
 
-        Dart: developerDefaultClass.Timeline.FinishSync();
+            Dart.DeveloperDefaultClass.Timeline.FinishSync();
             try
             {
                 _SchedulerPhase = SchedulerPhase.PersistentCallbacks;
@@ -1250,7 +1250,7 @@ public new void InitServiceExtensions()
             finally
             {
                 _SchedulerPhase = SchedulerPhase.Idle;
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
 
                 _CurrentFrameTimeStamp = null;
             }
@@ -1271,11 +1271,11 @@ public new void InitServiceExtensions()
         private void _DebugDescribeTimeStamp(TimeSpan timeStamp, StringBuffer buffer)
         {
             if (timeStamp.InDays > 0) buffer.Write($"'{timeStamp.InDays}d '");
-            if (timeStamp.InHours > 0) buffer.Write($"'{timeStamp.InHours - timeStamp.InDays * Dart:coreDefaultClass.Duration.HoursPerDay}h '");
-            if (timeStamp.InMinutes > 0) buffer.Write($"'{timeStamp.InMinutes - timeStamp.InHours * Dart:coreDefaultClass.Duration.MinutesPerHour}m '");
-            if (timeStamp.InSeconds > 0) buffer.Write($"'{timeStamp.InSeconds - timeStamp.InMinutes * Dart:coreDefaultClass.Duration.SecondsPerMinute}s '");
-            buffer.Write($"'{timeStamp.InMilliseconds - timeStamp.InSeconds * Dart:coreDefaultClass.Duration.MillisecondsPerSecond}'");
-            int microseconds = timeStamp.InMicroseconds() - timeStamp.InMilliseconds * Dart:coreDefaultClass.Duration.MicrosecondsPerMillisecond;
+            if (timeStamp.InHours > 0) buffer.Write($"'{timeStamp.InHours - timeStamp.InDays * Dart.CoreDefaultClass.Duration.HoursPerDay}h '");
+            if (timeStamp.InMinutes > 0) buffer.Write($"'{timeStamp.InMinutes - timeStamp.InHours * Dart.CoreDefaultClass.Duration.MinutesPerHour}m '");
+            if (timeStamp.InSeconds > 0) buffer.Write($"'{timeStamp.InSeconds - timeStamp.InMinutes * Dart.CoreDefaultClass.Duration.SecondsPerMinute}s '");
+            buffer.Write($"'{timeStamp.InMilliseconds - timeStamp.InSeconds * Dart.CoreDefaultClass.Duration.MillisecondsPerSecond}'");
+            int microseconds = timeStamp.InMicroseconds() - timeStamp.InMilliseconds * Dart.CoreDefaultClass.Duration.MicrosecondsPerMillisecond;
             if (microseconds > 0) buffer.Write($"'.{microseconds.ToString().PadLeft(3, '0')}'");
             buffer.Write("ms");
         }
@@ -1378,11 +1378,11 @@ public new void InitServiceExtensions()
             {
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.TimeSync(DebugLabel ?? "Scheduled Task", () =>
-                {
-                    Completer.Complete(Task());
-                }
-                 , flow: Flow != null ? Dart : developerDefaultClass.Flow.Step(Flow.Id):null);
+                    Dart.DeveloperDefaultClass.Timeline.TimeSync(DebugLabel ?? "Scheduled Task", () =>
+                    {
+                        Completer.Complete(Task());
+                    }
+                    , flow: Flow != null ? Dart.DeveloperDefaultClass.Flow.Step(Flow.Id) : null);
                 }
                 else
                 {

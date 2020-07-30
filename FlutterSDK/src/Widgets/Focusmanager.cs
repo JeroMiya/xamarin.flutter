@@ -1484,7 +1484,8 @@ namespace FlutterSDK.Widgets.Focusmanager
                 primaryFocus = scope.FocusedChild;
             }
 
-            if (Dart:coreDefaultClass.Identical(primaryFocus, this)){
+            if (Dart.CoreDefaultClass.Identical(primaryFocus, this))
+            {
                 if (((FocusScopeNode)primaryFocus).CanRequestFocus)
                 {
                     _SetAsFocusedChildForScope();
@@ -1492,7 +1493,7 @@ namespace FlutterSDK.Widgets.Focusmanager
                 }
 
             }
-else
+            else
             {
                 primaryFocus._DoRequestFocus(findFirstFocus: findFirstFocus);
             }
@@ -1599,7 +1600,7 @@ else
 
         private void _UpdateHighlightMode()
         {
-            _LastInteractionWasTouch = (_LastInteractionWasTouch == null ? Dart : ioDefaultClass.Platform.IsAndroid || Dart:ioDefaultClass.Platform.IsIOS || !BindingDefaultClass.WidgetsBinding.Instance.MouseTracker.MouseIsConnected : _LastInteractionWasTouch );
+            _LastInteractionWasTouch = (_LastInteractionWasTouch == null ? Dart.IoDefaultClass.Platform.IsAndroid || Dart.IoDefaultClass.Platform.IsIOS || !BindingDefaultClass.WidgetsBinding.Instance.MouseTracker.MouseIsConnected : _LastInteractionWasTouch);
             FocusHighlightMode newMode = default(FocusHighlightMode);
             switch (HighlightStrategy)
             {
@@ -1776,7 +1777,7 @@ else
                 }
 
                 _HaveScheduledUpdate = true;
-            Dart: asyncDefaultClass.ScheduleMicrotask(_ApplyFocusChange);
+                Dart.AsyncDefaultClass.ScheduleMicrotask(_ApplyFocusChange);
             }
 
 

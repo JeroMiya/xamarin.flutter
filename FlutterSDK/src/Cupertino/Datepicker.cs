@@ -348,7 +348,7 @@ namespace FlutterSDK.Cupertino.Datepicker
                 double childWidth = ColumnWidths[index] + DatepickerDefaultClass._KDatePickerPadSize * 2;
                 if (index == 0 || index == ColumnWidths.Count - 1) childWidth += remainingWidth / 2;
 
-                LayoutChild(index, BoxConstraints.Tight(new Size(Math.Dart:mathDefaultClass.Max(0.0, childWidth), size.Height)));
+                LayoutChild(index, BoxConstraints.Tight(new Size(Dart.Math.MathDefaultClass.Max(0.0, childWidth), size.Height)));
                 PositionChild(index, new Offset(currentHorizontalOffset, 0.0));
                 currentHorizontalOffset += childWidth;
             }
@@ -1300,7 +1300,7 @@ public class _CupertinoTimerPickerState : FlutterSDK.Widgets.Framework.State<Flu
     {
         TextPainter.TextDirection = TextDirection;
         TextStyle textStyle = _TextStyleFrom(Context);
-        double maxWidth = Dart:coreDefaultClass.Double.NegativeInfinity;
+        double maxWidth = Dart.CoreDefaultClass.Double.NegativeInfinity;
         string widestNumber = default(string);
         foreach (string input in Numbers)
         {
@@ -1327,7 +1327,7 @@ public class _CupertinoTimerPickerState : FlutterSDK.Widgets.Framework.State<Flu
     private FlutterSDK.Widgets.Framework.Widget _BuildLabel(string text, FlutterSDK.Painting.Edgeinsets.EdgeInsetsDirectional pickerPadding)
     {
         EdgeInsetsDirectional padding = EdgeInsetsDirectional.Only(start: NumberLabelWidth + DatepickerDefaultClass._KTimerPickerLabelPadSize + pickerPadding.Start);
-        return new IgnorePointer(child: new Container(alignment: AlignmentDefaultClass.AlignmentDirectional.CenterStart.Resolve(TextDirection), padding: padding.Resolve(TextDirection), child: new SizedBox(height: NumberLabelHeight, child: new Baseline(baseline: NumberLabelBaseline, baselineType: TextBaseline.Alphabetic, child: new Text(text, style: new TextStyle(fontSize: DatepickerDefaultClass._KTimerPickerLabelFontSize, fontWeight: Dart:uiDefaultClass.FontWeight.W600), maxLines: 1, softWrap: false)))));
+        return new IgnorePointer(child: new Container(alignment: AlignmentDefaultClass.AlignmentDirectional.CenterStart.Resolve(TextDirection), padding: padding.Resolve(TextDirection), child: new SizedBox(height: NumberLabelHeight, child: new Baseline(baseline: NumberLabelBaseline, baselineType: TextBaseline.Alphabetic, child: new Text(text, style: new TextStyle(fontSize: DatepickerDefaultClass._KTimerPickerLabelFontSize, fontWeight: Dart.UiDefaultClass.FontWeight.W600), maxLines: 1, softWrap: false)))));
     }
 
 

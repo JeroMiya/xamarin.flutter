@@ -435,7 +435,7 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
 
         internal static double _ClipOffsetToScrollableRange(double offset, double minScrollExtent, double maxScrollExtent)
         {
-            return Math.Dart:mathDefaultClass.Min(Math.Dart:mathDefaultClass.Max(offset, minScrollExtent), maxScrollExtent);
+            return Dart.Math.MathDefaultClass.Min(Dart.Math.MathDefaultClass.Max(offset, minScrollExtent), maxScrollExtent);
         }
 
 
@@ -729,7 +729,7 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
                 return;
             }
 
-            await Dart:asyncDefaultClass.Future.Wait(new List<Future<void>>() { });
+            await Dart.AsyncDefaultClass.Future.Wait(new List<Future<void>>() { });
         }
 
 
@@ -895,12 +895,12 @@ namespace FlutterSDK.Widgets.Listwheelscrollview
             }
 
             Simulation testFrictionSimulation = base.CreateBallisticSimulation(metrics, velocity);
-            if (testFrictionSimulation != null && (testFrictionSimulation.x(Dart: coreDefaultClass.Double.Infinity) == metrics.MinScrollExtent || testFrictionSimulation.x(Dart: coreDefaultClass.Double.Infinity) == metrics.MaxScrollExtent))
+            if (testFrictionSimulation != null && (testFrictionSimulation.x(Dart.CoreDefaultClass.Double.Infinity) == metrics.MinScrollExtent || testFrictionSimulation.x(Dart.CoreDefaultClass.Double.Infinity) == metrics.MaxScrollExtent))
             {
                 return base.CreateBallisticSimulation(metrics, velocity);
             }
 
-            int settlingItemIndex = ListwheelscrollviewDefaultClass._GetItemFromOffset(offset: testFrictionSimulation?.x(Dart: coreDefaultClass.Double.Infinity) ?? metrics.Pixels, itemExtent: metrics.ItemExtent, minScrollExtent: metrics.MinScrollExtent, maxScrollExtent: metrics.MaxScrollExtent);
+            int settlingItemIndex = ListwheelscrollviewDefaultClass._GetItemFromOffset(offset: testFrictionSimulation?.x(Dart.CoreDefaultClass.Double.Infinity) ?? metrics.Pixels, itemExtent: metrics.ItemExtent, minScrollExtent: metrics.MinScrollExtent, maxScrollExtent: metrics.MaxScrollExtent);
             double settlingPixels = settlingItemIndex * metrics.ItemExtent;
             if (velocity.Abs() < Tolerance.Velocity && (settlingPixels - metrics.Pixels).Abs() < Tolerance.Distance)
             {

@@ -595,7 +595,7 @@ namespace FlutterSDK.Painting.Shapedecoration
                 if (t == 1.0) return b;
             }
 
-            return new ShapeDecoration(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), gradient: GradientDefaultClass.Gradient.Lerp(a?.Gradient, b?.Gradient, t), image: t < 0.5 ? a.Image : b.Image, shadows: BoxshadowDefaultClass.BoxShadow.LerpList(a?.Shadows, b?.Shadows, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
+            return new ShapeDecoration(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), gradient: GradientDefaultClass.Gradient.Lerp(a?.Gradient, b?.Gradient, t), image: t < 0.5 ? a.Image : b.Image, shadows: BoxshadowDefaultClass.BoxShadow.LerpList(a?.Shadows, b?.Shadows, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
         }
 
 
@@ -603,7 +603,7 @@ namespace FlutterSDK.Painting.Shapedecoration
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is ShapeDecoration && other.Color == Color && other.Gradient == Gradient && other.Image == Image && other.Shadows == Shadows && other.Shape == Shape;
         }
@@ -627,7 +627,7 @@ namespace FlutterSDK.Painting.Shapedecoration
 
         public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection))
         {
-            return Shape.GetOuterPath(Dart: uiDefaultClass.Offset.Zero & size, textDirection: textDirection).Contains(position);
+            return Shape.GetOuterPath(Dart.UI.UiDefaultClass.Offset.Zero & size, textDirection: textDirection).Contains(position);
         }
 
 

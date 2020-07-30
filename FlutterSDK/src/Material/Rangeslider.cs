@@ -562,8 +562,8 @@ namespace FlutterSDK.Material.Rangeslider
             OverlayController = new AnimationController(duration: ConstantsDefaultClass.KRadialReactionDuration, vsync: this);
             ValueIndicatorController = new AnimationController(duration: ValueIndicatorAnimationDuration, vsync: this);
             EnableController = new AnimationController(duration: EnableAnimationDuration, vsync: this, value: Widget.OnChanged != null ? 1.0 : 0.0);
-            StartPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.Start));
-            EndPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.End));
+            StartPositionController = new AnimationController(duration: Dart.CoreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.Start));
+            EndPositionController = new AnimationController(duration: Dart.CoreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.End));
         }
 
 
@@ -639,11 +639,11 @@ namespace FlutterSDK.Material.Rangeslider
 
 
 
-        private double _Lerp(double value) => Ui.Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
+        private double _Lerp(double value) => Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
 
 
 
-private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
+        private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
         {
             return new RangeValues(_Lerp(values.Start), _Lerp(values.End));
         }
@@ -1005,11 +1005,11 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
                 double minThumbSeparationValue = IsDiscrete ? 0 : SliderTheme.MinThumbSeparation / _TrackRect.Width;
                 if (_LastThumbSelection == Thumb.Start)
                 {
-                    _NewValues = new RangeValues(Math.Dart:mathDefaultClass.Min(currentDragValue, currentValues.End - minThumbSeparationValue), currentValues.End);
+                    _NewValues = new RangeValues(Dart.Math.MathDefaultClass.Min(currentDragValue, currentValues.End - minThumbSeparationValue), currentValues.End);
                 }
                 else if (_LastThumbSelection == Thumb.End)
                 {
-                    _NewValues = new RangeValues(currentValues.Start, Math.Dart:mathDefaultClass.Max(currentDragValue, currentValues.Start + minThumbSeparationValue));
+                    _NewValues = new RangeValues(currentValues.Start, Dart.Math.MathDefaultClass.Max(currentDragValue, currentValues.Start + minThumbSeparationValue));
                 }
 
                 OnChanged(_NewValues);
@@ -1118,17 +1118,17 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
 
 
 
-        public new double ComputeMinIntrinsicHeight(double width) => Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMinIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new double ComputeMaxIntrinsicHeight(double width) => Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMaxIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new void PerformResize()
+        public new void PerformResize()
         {
-            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
+            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
         }
 
 

@@ -823,7 +823,7 @@ namespace FlutterSDK.Material.Appbar
         {
             double visibleMainHeight = MaxExtent - shrinkOffset - TopPadding;
             double toolbarOpacity = !Pinned || (Floating && Bottom != null) ? ((visibleMainHeight - _BottomHeight) / ConstantsDefaultClass.KToolbarHeight).Clamp(0.0, 1.0) as double : 1.0;
-            Widget appBar = FlexiblespacebarDefaultClass.FlexibleSpaceBar.CreateSettings(minExtent: MinExtent, maxExtent: MaxExtent, currentExtent: Math.Dart:mathDefaultClass.Max(MinExtent, MaxExtent - shrinkOffset), toolbarOpacity: toolbarOpacity, child: new AppBar(leading: Leading, automaticallyImplyLeading: AutomaticallyImplyLeading, title: Title, actions: Actions, flexibleSpace: (Title == null && FlexibleSpace != null && !ExcludeHeaderSemantics) ? new Semantics(child: FlexibleSpace, header: true) : FlexibleSpace, bottom: Bottom, elevation: ForceElevated || overlapsContent || (Pinned && shrinkOffset > MaxExtent - MinExtent) ? elevation == default(double) ? 4.0 : elevation : 0.0, backgroundColor: BackgroundColor, brightness: Brightness, iconTheme: IconTheme, actionsIconTheme: ActionsIconTheme, textTheme: TextTheme, primary: Primary, centerTitle: CenterTitle, excludeHeaderSemantics: ExcludeHeaderSemantics, titleSpacing: TitleSpacing, shape: Shape, toolbarOpacity: toolbarOpacity, bottomOpacity: Pinned ? 1.0 : ((visibleMainHeight / _BottomHeight).Clamp(0.0, 1.0) as double)));
+            Widget appBar = FlexiblespacebarDefaultClass.FlexibleSpaceBar.CreateSettings(minExtent: MinExtent, maxExtent: MaxExtent, currentExtent: Dart.Math.MathDefaultClass.Max(MinExtent, MaxExtent - shrinkOffset), toolbarOpacity: toolbarOpacity, child: new AppBar(leading: Leading, automaticallyImplyLeading: AutomaticallyImplyLeading, title: Title, actions: Actions, flexibleSpace: (Title == null && FlexibleSpace != null && !ExcludeHeaderSemantics) ? new Semantics(child: FlexibleSpace, header: true) : FlexibleSpace, bottom: Bottom, elevation: ForceElevated || overlapsContent || (Pinned && shrinkOffset > MaxExtent - MinExtent) ? elevation == default(double) ? 4.0 : elevation : 0.0, backgroundColor: BackgroundColor, brightness: Brightness, iconTheme: IconTheme, actionsIconTheme: ActionsIconTheme, textTheme: TextTheme, primary: Primary, centerTitle: CenterTitle, excludeHeaderSemantics: ExcludeHeaderSemantics, titleSpacing: TitleSpacing, shape: Shape, toolbarOpacity: toolbarOpacity, bottomOpacity: Pinned ? 1.0 : ((visibleMainHeight / _BottomHeight).Clamp(0.0, 1.0) as double)));
             return Floating ? new _FloatingAppBar(child: appBar) : appBar;
         }
 
@@ -1105,7 +1105,7 @@ namespace FlutterSDK.Material.Appbar
         public new void PerformLayout()
         {
             BoxConstraints constraints = this.Constraints;
-            BoxConstraints innerConstraints = constraints.CopyWith(maxHeight: Dart:coreDefaultClass.Double.Infinity);
+            BoxConstraints innerConstraints = constraints.CopyWith(maxHeight: Dart.CoreDefaultClass.Double.Infinity);
             Child.Layout(innerConstraints, parentUsesSize: true);
             Size = constraints.Constrain(Child.Size);
             AlignChild();

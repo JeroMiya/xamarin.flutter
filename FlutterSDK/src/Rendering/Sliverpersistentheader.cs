@@ -642,7 +642,7 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
         public virtual void LayoutChild(double scrollOffset, double maxExtent, bool overlapsContent = false)
         {
 
-            double shrinkOffset = Math.Dart:mathDefaultClass.Min(scrollOffset, maxExtent);
+            double shrinkOffset = Dart.Math.MathDefaultClass.Min(scrollOffset, maxExtent);
             if (_NeedsUpdateChild || _LastShrinkOffset != shrinkOffset || _LastOverlapsContent != overlapsContent)
             {
                 InvokeLayoutCallback((SliverConstraints constraints) =>
@@ -660,7 +660,7 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
             double stretchOffset = 0.0;
             if (StretchConfiguration != null && ChildMainAxisPosition(Child) == 0.0) stretchOffset += Constraints.Overlap.Abs();
-            Child?.Layout(Constraints.AsBoxConstraints(maxExtent: Math.Dart:mathDefaultClass.Max(MinExtent, maxExtent - shrinkOffset) + stretchOffset), parentUsesSize: true);
+            Child?.Layout(Constraints.AsBoxConstraints(maxExtent: Dart.Math.MathDefaultClass.Max(MinExtent, maxExtent - shrinkOffset) + stretchOffset), parentUsesSize: true);
             if (StretchConfiguration != null && StretchConfiguration.OnStretchTrigger != null && stretchOffset >= StretchConfiguration.StretchTriggerOffset && _LastStretchOffset <= StretchConfiguration.StretchTriggerOffset)
             {
                 StretchConfiguration.OnStretchTrigger();
@@ -784,8 +784,8 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
 
             double maxExtent = this.MaxExtent;
             double paintExtent = maxExtent - Constraints.ScrollOffset;
-            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
-            return stretchOffset > 0 ? 0.0 : Math.Dart:mathDefaultClass.Min(0.0, paintExtent - ChildExtent);
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Dart.Math.MathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
+            return stretchOffset > 0 ? 0.0 : Dart.Math.MathDefaultClass.Min(0.0, paintExtent - ChildExtent);
         }
 
 
@@ -797,7 +797,7 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
             double maxExtent = this.MaxExtent;
             LayoutChild(constraints.ScrollOffset, maxExtent);
             double paintExtent = maxExtent - constraints.ScrollOffset;
-            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent, hasVisualOverflow: true);
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Dart.Math.MathDefaultClass.Min(constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent, hasVisualOverflow: true);
             _ChildPosition = UpdateGeometry();
         }
 
@@ -844,10 +844,10 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
             bool overlapsContent = constraints.Overlap > 0.0;
             ExcludeFromSemanticsScrolling = overlapsContent || (constraints.ScrollOffset > maxExtent - MinExtent);
             LayoutChild(constraints.ScrollOffset, maxExtent, overlapsContent: overlapsContent);
-            double effectiveRemainingPaintExtent = Math.Dart:mathDefaultClass.Max(0, constraints.RemainingPaintExtent - constraints.Overlap);
+            double effectiveRemainingPaintExtent = Dart.Math.MathDefaultClass.Max(0, constraints.RemainingPaintExtent - constraints.Overlap);
             double layoutExtent = (maxExtent - constraints.ScrollOffset).Clamp(0.0, effectiveRemainingPaintExtent) as double;
             double stretchOffset = StretchConfiguration != null ? constraints.Overlap.Abs() : 0.0;
-            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: constraints.Overlap, paintExtent: Math.Dart:mathDefaultClass.Min(ChildExtent, effectiveRemainingPaintExtent), layoutExtent: layoutExtent, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: MinExtent, cacheExtent: layoutExtent > 0.0 ? -constraints.CacheOrigin + layoutExtent : layoutExtent, hasVisualOverflow: true);
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: constraints.Overlap, paintExtent: Dart.Math.MathDefaultClass.Min(ChildExtent, effectiveRemainingPaintExtent), layoutExtent: layoutExtent, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: MinExtent, cacheExtent: layoutExtent > 0.0 ? -constraints.CacheOrigin + layoutExtent : layoutExtent, hasVisualOverflow: true);
         }
 
 
@@ -939,8 +939,8 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
             double maxExtent = this.MaxExtent;
             double paintExtent = maxExtent - _EffectiveScrollOffset;
             double layoutExtent = maxExtent - Constraints.ScrollOffset;
-            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, layoutExtent: layoutExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
-            return stretchOffset > 0 ? 0.0 : Math.Dart:mathDefaultClass.Min(0.0, paintExtent - ChildExtent);
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Dart.Math.MathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: paintExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, layoutExtent: layoutExtent.Clamp(0.0, Constraints.RemainingPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, hasVisualOverflow: true);
+            return stretchOffset > 0 ? 0.0 : Dart.Math.MathDefaultClass.Min(0.0, paintExtent - ChildExtent);
         }
 
 
@@ -1070,7 +1070,7 @@ namespace FlutterSDK.Rendering.Sliverpersistentheader
             double clampedPaintExtent = paintExtent.Clamp(minAllowedExtent, Constraints.RemainingPaintExtent) as double;
             double layoutExtent = maxExtent - Constraints.ScrollOffset;
             double stretchOffset = StretchConfiguration != null ? Constraints.Overlap.Abs() : 0.0;
-            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Math.Dart:mathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: clampedPaintExtent, layoutExtent: layoutExtent.Clamp(0.0, clampedPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: maxExtent, hasVisualOverflow: true);
+            Geometry = new SliverGeometry(scrollExtent: maxExtent, paintOrigin: Dart.Math.MathDefaultClass.Min(Constraints.Overlap, 0.0), paintExtent: clampedPaintExtent, layoutExtent: layoutExtent.Clamp(0.0, clampedPaintExtent) as double, maxPaintExtent: maxExtent + stretchOffset, maxScrollObstructionExtent: maxExtent, hasVisualOverflow: true);
             return 0.0;
         }
 

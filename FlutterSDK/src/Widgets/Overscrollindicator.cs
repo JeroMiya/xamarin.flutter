@@ -741,7 +741,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             _GlowOpacityTween.Begin = _State == _GlowState.Idle ? 0.3 : _GlowOpacity.Value;
             _GlowOpacityTween.End = (velocity * _VelocityGlowFactor).Clamp(_GlowOpacityTween.Begin, _MaxOpacity) as double;
             _GlowSizeTween.Begin = _GlowSize.Value;
-            _GlowSizeTween.End = Math.Dart:mathDefaultClass.Min(0.025 + 7.5e-7 * velocity * velocity, 1.0);
+            _GlowSizeTween.End = Dart.Math.MathDefaultClass.Min(0.025 + 7.5e-7 * velocity * velocity, 1.0);
             _GlowController.Duration = new TimeSpan(milliseconds: (0.15 + velocity * 0.02).Round());
             _GlowController.Forward(from: 0.0);
             _Displacement = 0.5;
@@ -769,10 +769,10 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             _PullRecedeTimer?.Cancel();
             _PullDistance += overscroll / 200.0;
             _GlowOpacityTween.Begin = _GlowOpacity.Value;
-            _GlowOpacityTween.End = Math.Dart:mathDefaultClass.Min(_GlowOpacity.Value + overscroll / extent * _PullOpacityGlowFactor, _MaxOpacity);
-            double height = Math.Dart:mathDefaultClass.Min(extent, crossExtent * _WidthToHeightFactor);
+            _GlowOpacityTween.End = Dart.Math.MathDefaultClass.Min(_GlowOpacity.Value + overscroll / extent * _PullOpacityGlowFactor, _MaxOpacity);
+            double height = Dart.Math.MathDefaultClass.Min(extent, crossExtent * _WidthToHeightFactor);
             _GlowSizeTween.Begin = _GlowSize.Value;
-            _GlowSizeTween.End = Math.Dart:mathDefaultClass.Max(1.0 - 1.0 / (0.7 * Math.Dart:mathDefaultClass.Sqrt(_PullDistance * height)), _GlowSize.Value);
+            _GlowSizeTween.End = Dart.Math.MathDefaultClass.Max(1.0 - 1.0 / (0.7 * Dart.Math.MathDefaultClass.Sqrt(_PullDistance * height)), _GlowSize.Value);
             _DisplacementTarget = crossAxisOffset / crossExtent;
             if (_DisplacementTarget != _Displacement)
             {
@@ -850,7 +850,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             if (_DisplacementTickerLastElapsed != null)
             {
                 double t = (elapsed.InMicroseconds() - _DisplacementTickerLastElapsed.InMicroseconds()).ToDouble();
-                _Displacement = _DisplacementTarget - (_DisplacementTarget - _Displacement) * Math.Dart:mathDefaultClass.Pow(2.0, -t / _CrossAxisHalfTime.InMicroseconds());
+                _Displacement = _DisplacementTarget - (_DisplacementTarget - _Displacement) * Dart.Math.MathDefaultClass.Pow(2.0, -t / _CrossAxisHalfTime.InMicroseconds());
                 NotifyListeners();
             }
 
@@ -874,7 +874,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             if (_GlowOpacity.Value == 0.0) return;
             double baseGlowScale = size.Width > size.Height ? size.Height / size.Width : 1.0;
             double radius = size.Width * 3.0 / 2.0;
-            double height = Math.Dart:mathDefaultClass.Min(size.Height, size.Width * _WidthToHeightFactor);
+            double height = Dart.Math.MathDefaultClass.Min(size.Height, size.Width * _WidthToHeightFactor);
             double scaleY = _GlowSize.Value * baseGlowScale;
             Rect rect = Rect.FromLTWH(0.0, 0.0, size.Width, height);
             Offset center = new Offset((size.Width / 2.0) * (0.5 + _Displacement), height - radius);

@@ -379,7 +379,7 @@ namespace FlutterSDK.Gestures.Velocitytracker
 
             }
 
-            return new VelocityEstimate(pixelsPerSecond: Dart:uiDefaultClass.Offset.Zero, confidence: 1.0, duration: newestSample.Time - oldestSample.Time, offset: newestSample.Point - oldestSample.Point);
+            return new VelocityEstimate(pixelsPerSecond: Dart.UiDefaultClass.Offset.Zero, confidence: 1.0, duration: newestSample.Time - oldestSample.Time, offset: newestSample.Point - oldestSample.Point);
         }
 
 
@@ -397,7 +397,7 @@ namespace FlutterSDK.Gestures.Velocitytracker
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity()
         {
             VelocityEstimate estimate = GetVelocityEstimate();
-            if (estimate == null || estimate.PixelsPerSecond == Dart:uiDefaultClass.Offset.Zero)return VelocitytrackerDefaultClass.Velocity.Zero;
+            if (estimate == null || estimate.PixelsPerSecond == Dart.UiDefaultClass.Offset.Zero) return VelocitytrackerDefaultClass.Velocity.Zero;
             return new Velocity(pixelsPerSecond: estimate.PixelsPerSecond);
         }
 

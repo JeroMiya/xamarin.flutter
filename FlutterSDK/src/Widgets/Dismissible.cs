@@ -632,7 +632,7 @@ namespace FlutterSDK.Widgets.Dismissible
         private void _UpdateMoveAnimation()
         {
             double end = _DragExtent.Sign;
-            _MoveAnimation = _MoveController.Drive(new Tween<Offset>(begin: Dart:uiDefaultClass.Offset.Zero, end: _DirectionIsXAxis ? new Offset(end, Widget.CrossAxisEndOffset) : new Offset(Widget.CrossAxisEndOffset, end)));
+            _MoveAnimation = _MoveController.Drive(new Tween<Offset>(begin: Dart.UI.UiDefaultClass.Offset.Zero, end: _DirectionIsXAxis ? new Offset(end, Widget.CrossAxisEndOffset) : new Offset(Widget.CrossAxisEndOffset, end)));
         }
 
 

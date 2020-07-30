@@ -510,7 +510,7 @@ namespace FlutterSDK.Widgets.Navigationtoolbar
 
             if (HasChild(_ToolbarSlot.Middle))
             {
-                double maxWidth = Math.Dart:mathDefaultClass.Max(size.Width - leadingWidth - trailingWidth - MiddleSpacing * 2.0, 0.0);
+                double maxWidth = Dart.Math.MathDefaultClass.Max(size.Width - leadingWidth - trailingWidth - MiddleSpacing * 2.0, 0.0);
                 BoxConstraints constraints = BoxConstraints.Loose(size).CopyWith(maxWidth: maxWidth);
                 Size middleSize = LayoutChild(_ToolbarSlot.Middle, constraints);
                 double middleStartMargin = leadingWidth + MiddleSpacing;

@@ -899,7 +899,7 @@ namespace FlutterSDK.Widgets.Transitions
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             double turnsValue = Turns.Value;
-            Matrix4 transform = Matrix4.RotationZ(turnsValue * Math.Dart:mathDefaultClass.Pi * 2.0);
+            Matrix4 transform = Matrix4.RotationZ(turnsValue * Dart.Math.MathDefaultClass.Pi * 2.0);
             return new Transform(transform: transform, alignment: Alignment, child: Child);
         }
 
@@ -954,7 +954,7 @@ namespace FlutterSDK.Widgets.Transitions
         {
             AlignmentDirectional alignment = default(AlignmentDirectional);
             if (Axis == Axis.Vertical) alignment = new AlignmentDirectional(-1.0, AxisAlignment); else alignment = new AlignmentDirectional(AxisAlignment, -1.0);
-            return new ClipRect(child: new Align(alignment: alignment, heightFactor: Axis == Axis.Vertical ? Math.Dart : mathDefaultClass.Max(SizeFactor.Value, 0.0):null, widthFactor: Axis == Axis.Horizontal ? Math.Dart : mathDefaultClass.Max(SizeFactor.Value, 0.0):null, child: Child));
+            return new ClipRect(child: new Align(alignment: alignment, heightFactor: Axis == Axis.Vertical ? Dart.Math.MathDefaultClass.Max(SizeFactor.Value, 0.0) : null, widthFactor: Axis == Axis.Horizontal ? Dart.Math.MathDefaultClass.Max(SizeFactor.Value, 0.0) : null, child: Child));
         }
 
 

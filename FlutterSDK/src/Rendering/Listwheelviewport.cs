@@ -677,7 +677,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             RenderBox child = FirstChild;
             while (child != null)
             {
-                extent = Math.Dart:mathDefaultClass.Max(extent, childSize(child));
+                extent = Dart.Math.MathDefaultClass.Max(extent, childSize(child));
                 child = ChildAfter(child);
             }
 
@@ -891,7 +891,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             {
                 if (_ClipToSize && _ShouldClipAtCurrentOffset())
                 {
-                    context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintVisibleChildren);
+                    context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintVisibleChildren);
                 }
                 else
                 {
@@ -933,7 +933,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             Offset untransformedPaintingCoordinates = offset + new Offset(layoutOffset.Dx, _GetUntransformedPaintingCoordinateY(layoutOffset.Dy));
             double fractionalY = (untransformedPaintingCoordinates.Dy + _ItemExtent / 2.0) / Size.Height;
             double angle = -(fractionalY - 0.5) * 2.0 * _MaxVisibleRadian / Squeeze;
-            if (angle > Math.Dart:mathDefaultClass.Pi / 2.0 || angle < -Math.Dart:mathDefaultClass.Pi / 2.0)return;
+            if (angle > Math.Dart.MathDefaultClass.Pi / 2.0 || angle < -Math.Dart.MathDefaultClass.Pi / 2.0) return;
             Matrix4 transform = MatrixutilsDefaultClass.MatrixUtils.CreateCylindricalProjectionTransform(radius: Size.Height * _DiameterRatio / 2.0, angle: angle, perspective: _Perspective);
             Offset offsetToCenter = new Offset(untransformedPaintingCoordinates.Dx, -_TopScrollMarginExtent);
             bool shouldApplyOffCenterDim = OverAndUnderCenterOpacity < 1;
@@ -1066,7 +1066,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         {
             if (child != null && _ShouldClipAtCurrentOffset())
             {
-                return Dart:uiDefaultClass.Offset.Zero & Size;
+                return Dart.UiDefaultClass.Offset.Zero & Size;
             }
 
             return null;
@@ -1100,10 +1100,11 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             if (descendant != null)
             {
                 RevealedOffset revealedOffset = GetOffsetToReveal(descendant, 0.5, rect: rect);
-                if (duration == Dart:coreDefaultClass.Duration.Zero){
+                if (duration == Dart.CoreDefaultClass.Duration.Zero)
+                {
                     Offset.JumpTo(revealedOffset.Offset);
                 }
-else
+                else
                 {
                     Offset.AnimateTo(revealedOffset.Offset, duration: duration, curve: curve);
                 }

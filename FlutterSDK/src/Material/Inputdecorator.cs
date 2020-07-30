@@ -405,7 +405,7 @@ namespace FlutterSDK.Material.Inputdecorator
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is _InputBorderGap && other.Start == Start && other.Extent == Extent;
         }
@@ -456,7 +456,7 @@ namespace FlutterSDK.Material.Inputdecorator
         public new void Paint(Canvas canvas, Size size)
         {
             InputBorder borderValue = Border.Evaluate(BorderAnimation);
-            Rect canvasRect = Dart:uiDefaultClass.Offset.Zero & size;
+            Rect canvasRect = Dart.UiDefaultClass.Offset.Zero & size;
             Color blendedFillColor = BlendedColor;
             if (blendedFillColor.Alpha > 0)
             {
@@ -841,7 +841,7 @@ namespace FlutterSDK.Material.Inputdecorator
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is _Decoration && other.ContentPadding == ContentPadding && other.IsCollapsed == IsCollapsed && other.FloatingLabelHeight == FloatingLabelHeight && other.FloatingLabelProgress == FloatingLabelProgress && other.Border == Border && other.BorderGap == BorderGap && other.AlignLabelWithHint == AlignLabelWithHint && other.IsDense == IsDense && other.VisualDensity == VisualDensity && other.Icon == Icon && other.Input == Input && other.Label == Label && other.Hint == Hint && other.Prefix == Prefix && other.Suffix == Suffix && other.PrefixIcon == PrefixIcon && other.SuffixIcon == SuffixIcon && other.HelperError == HelperError && other.Counter == Counter && other.Container == Container;
         }
@@ -1067,11 +1067,11 @@ namespace FlutterSDK.Material.Inputdecorator
 
 
 
-        private Size _BoxSize(FlutterSDK.Rendering.Box.RenderBox box) => box == null ? Dart : uiDefaultClass.Size.Zero:box.Size;
+        private Size _BoxSize(FlutterSDK.Rendering.Box.RenderBox box) => box == null ? Dart.UiDefaultClass.Size.Zero : box.Size;
 
 
 
-private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Rendering.Box.RenderBox box) => box.ParentData as BoxParentData;
+        private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Rendering.Box.RenderBox box) => box.ParentData as BoxParentData;
 
 
 
@@ -1101,38 +1101,38 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             boxToBaseline[Icon] = _LayoutLineBox(Icon, boxConstraints);
             boxToBaseline[PrefixIcon] = _LayoutLineBox(PrefixIcon, boxConstraints);
             boxToBaseline[SuffixIcon] = _LayoutLineBox(SuffixIcon, boxConstraints);
-            double inputWidth = Math.Dart:mathDefaultClass.Max(0.0, Constraints.MaxWidth - (_BoxSize(Icon).Width + ContentPadding.Left + _BoxSize(PrefixIcon).Width + _BoxSize(Prefix).Width + _BoxSize(Suffix).Width + _BoxSize(SuffixIcon).Width + ContentPadding.Right));
+            double inputWidth = Dart.Math.MathDefaultClass.Max(0.0, Constraints.MaxWidth - (_BoxSize(Icon).Width + ContentPadding.Left + _BoxSize(PrefixIcon).Width + _BoxSize(Prefix).Width + _BoxSize(Suffix).Width + _BoxSize(SuffixIcon).Width + ContentPadding.Right));
             boxToBaseline[Label] = _LayoutLineBox(Label, boxConstraints.CopyWith(maxWidth: inputWidth));
             boxToBaseline[Hint] = _LayoutLineBox(Hint, boxConstraints.CopyWith(minWidth: inputWidth, maxWidth: inputWidth));
             boxToBaseline[Counter] = _LayoutLineBox(Counter, boxConstraints);
-            boxToBaseline[HelperError] = _LayoutLineBox(HelperError, boxConstraints.CopyWith(maxWidth: Math.Dart:mathDefaultClass.Max(0.0, boxConstraints.MaxWidth - _BoxSize(Icon).Width - _BoxSize(Counter).Width - ContentPadding.Horizontal)));
+            boxToBaseline[HelperError] = _LayoutLineBox(HelperError, boxConstraints.CopyWith(maxWidth: Dart.Math.MathDefaultClass.Max(0.0, boxConstraints.MaxWidth - _BoxSize(Icon).Width - _BoxSize(Counter).Width - ContentPadding.Horizontal)));
             double labelHeight = Label == null ? 0 : Decoration.FloatingLabelHeight;
-            double topHeight = Decoration.Border.IsOutline ? Math.Dart : mathDefaultClass.Max(labelHeight - boxToBaseline[Label], 0):labelHeight;
+            double topHeight = Decoration.Border.IsOutline ? Dart.Math.MathDefaultClass.Max(labelHeight - boxToBaseline[Label], 0) : labelHeight;
             double counterHeight = Counter == null ? 0 : boxToBaseline[Counter] + SubtextGap;
             bool helperErrorExists = HelperError?.Size != null && HelperError.Size.Height > 0;
             double helperErrorHeight = !helperErrorExists ? 0 : HelperError.Size.Height + SubtextGap;
-            double bottomHeight = Math.Dart:mathDefaultClass.Max(counterHeight, helperErrorHeight);
+            double bottomHeight = Dart.Math.MathDefaultClass.Max(counterHeight, helperErrorHeight);
             boxToBaseline[Input] = _LayoutLineBox(Input, boxConstraints.Deflate(EdgeInsets.Only(top: ContentPadding.Top + topHeight, bottom: ContentPadding.Bottom + bottomHeight)).CopyWith(minWidth: inputWidth, maxWidth: inputWidth));
             double hintHeight = Hint == null ? 0 : Hint.Size.Height;
             double inputDirectHeight = Input == null ? 0 : Input.Size.Height;
-            double inputHeight = Math.Dart:mathDefaultClass.Max(hintHeight, inputDirectHeight);
-            double inputInternalBaseline = Math.Dart:mathDefaultClass.Max(boxToBaseline[Input], boxToBaseline[Hint]);
+            double inputHeight = Dart.Math.MathDefaultClass.Max(hintHeight, inputDirectHeight);
+            double inputInternalBaseline = Dart.Math.MathDefaultClass.Max(boxToBaseline[Input], boxToBaseline[Hint]);
             double prefixHeight = Prefix == null ? 0 : Prefix.Size.Height;
             double suffixHeight = Suffix == null ? 0 : Suffix.Size.Height;
-            double fixHeight = Math.Dart:mathDefaultClass.Max(boxToBaseline[Prefix], boxToBaseline[Suffix]);
-            double fixAboveInput = Math.Dart:mathDefaultClass.Max(0, fixHeight - inputInternalBaseline);
-            double fixBelowBaseline = Math.Dart:mathDefaultClass.Max(prefixHeight - boxToBaseline[Prefix], suffixHeight - boxToBaseline[Suffix]);
-            double fixBelowInput = Math.Dart:mathDefaultClass.Max(0, fixBelowBaseline - (inputHeight - inputInternalBaseline));
+            double fixHeight = Dart.Math.MathDefaultClass.Max(boxToBaseline[Prefix], boxToBaseline[Suffix]);
+            double fixAboveInput = Dart.Math.MathDefaultClass.Max(0, fixHeight - inputInternalBaseline);
+            double fixBelowBaseline = Dart.Math.MathDefaultClass.Max(prefixHeight - boxToBaseline[Prefix], suffixHeight - boxToBaseline[Suffix]);
+            double fixBelowInput = Dart.Math.MathDefaultClass.Max(0, fixBelowBaseline - (inputHeight - inputInternalBaseline));
             Offset densityOffset = Decoration.VisualDensity.BaseSizeAdjustment;
             double prefixIconHeight = PrefixIcon == null ? 0 : PrefixIcon.Size.Height;
             double suffixIconHeight = SuffixIcon == null ? 0 : SuffixIcon.Size.Height;
-            double fixIconHeight = Math.Dart:mathDefaultClass.Max(prefixIconHeight, suffixIconHeight);
-            double contentHeight = Math.Dart:mathDefaultClass.Max(fixIconHeight, topHeight + ContentPadding.Top + fixAboveInput + inputHeight + fixBelowInput + ContentPadding.Bottom + densityOffset.Dy);
+            double fixIconHeight = Dart.Math.MathDefaultClass.Max(prefixIconHeight, suffixIconHeight);
+            double contentHeight = Dart.Math.MathDefaultClass.Max(fixIconHeight, topHeight + ContentPadding.Top + fixAboveInput + inputHeight + fixBelowInput + ContentPadding.Bottom + densityOffset.Dy);
             double minContainerHeight = Decoration.IsDense || Expands ? 0.0 : ConstantsDefaultClass.KMinInteractiveDimension + densityOffset.Dy;
             double maxContainerHeight = boxConstraints.MaxHeight - bottomHeight + densityOffset.Dy;
-            double containerHeight = Expands ? maxContainerHeight : Math.Dart:mathDefaultClass.Min(Math.Dart:mathDefaultClass.Max(contentHeight, minContainerHeight), maxContainerHeight);
+            double containerHeight = Expands ? maxContainerHeight : Dart.Math.MathDefaultClass.Min(Dart.Math.MathDefaultClass.Max(contentHeight, minContainerHeight), maxContainerHeight);
             double interactiveAdjustment = minContainerHeight > contentHeight ? (minContainerHeight - contentHeight) / 2.0 : 0.0;
-            double overflow = Math.Dart:mathDefaultClass.Max(0, contentHeight - maxContainerHeight);
+            double overflow = Dart.Math.MathDefaultClass.Max(0, contentHeight - maxContainerHeight);
             double textAlignVerticalFactor = (TextAlignVertical.y + 1.0) / 2.0;
             double baselineAdjustment = fixAboveInput - overflow * (1 - textAlignVerticalFactor);
             double topInputBaseline = ContentPadding.Top + topHeight + inputInternalBaseline + baselineAdjustment + interactiveAdjustment;
@@ -1161,8 +1161,8 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                 subtextHelperHeight = helperErrorHeight;
             }
 
-            double subtextBaseline = Math.Dart:mathDefaultClass.Max(subtextCounterBaseline, subtextHelperBaseline);
-            double subtextHeight = Math.Dart:mathDefaultClass.Max(subtextCounterHeight, subtextHelperHeight);
+            double subtextBaseline = Dart.Math.MathDefaultClass.Max(subtextCounterBaseline, subtextHelperBaseline);
+            double subtextHeight = Dart.Math.MathDefaultClass.Max(subtextCounterHeight, subtextHelperHeight);
             return new _RenderDecorationLayout(boxToBaseline: boxToBaseline, containerHeight: containerHeight, inputBaseline: inputBaseline, outlineBaseline: outlineBaseline, subtextBaseline: subtextBaseline, subtextHeight: subtextHeight);
         }
 
@@ -1196,7 +1196,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
-            return _MinWidth(Icon, height) + ContentPadding.Left + _MinWidth(PrefixIcon, height) + _MinWidth(Prefix, height) + Math.Dart:mathDefaultClass.Max(_MinWidth(Input, height), _MinWidth(Hint, height)) + _MinWidth(Suffix, height) + _MinWidth(SuffixIcon, height) + ContentPadding.Right;
+            return _MinWidth(Icon, height) + ContentPadding.Left + _MinWidth(PrefixIcon, height) + _MinWidth(Prefix, height) + Dart.Math.MathDefaultClass.Max(_MinWidth(Input, height), _MinWidth(Hint, height)) + _MinWidth(Suffix, height) + _MinWidth(SuffixIcon, height) + ContentPadding.Right;
         }
 
 
@@ -1204,7 +1204,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         public new double ComputeMaxIntrinsicWidth(double height)
         {
-            return _MaxWidth(Icon, height) + ContentPadding.Left + _MaxWidth(PrefixIcon, height) + _MaxWidth(Prefix, height) + Math.Dart:mathDefaultClass.Max(_MaxWidth(Input, height), _MaxWidth(Hint, height)) + _MaxWidth(Suffix, height) + _MaxWidth(SuffixIcon, height) + ContentPadding.Right;
+            return _MaxWidth(Icon, height) + ContentPadding.Left + _MaxWidth(PrefixIcon, height) + _MaxWidth(Prefix, height) + Dart.Math.MathDefaultClass.Max(_MaxWidth(Input, height), _MaxWidth(Hint, height)) + _MaxWidth(Suffix, height) + _MaxWidth(SuffixIcon, height) + ContentPadding.Right;
         }
 
 
@@ -1216,7 +1216,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             foreach (RenderBox box in boxes)
             {
                 if (box == null) continue;
-                height = Math.Dart:mathDefaultClass.Max(_MinHeight(box, width), height);
+                height = Dart.Math.MathDefaultClass.Max(_MinHeight(box, width), height);
             }
 
             return height;
@@ -1415,10 +1415,10 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                 double t = Decoration.FloatingLabelProgress;
                 bool isOutlineBorder = Decoration.Border != null && Decoration.Border.IsOutline;
                 double floatingY = isOutlineBorder ? -labelHeight * 0.25 : ContentPadding.Top;
-                double scale = Dart:uiDefaultClass.LerpDouble(1.0, 0.75, t);
+                double scale = Dart.UI.UiDefaultClass.LerpDouble(1.0, 0.75, t);
                 double dx = default(double);
                 switch (TextDirection) { case TextDirection.Rtl: dx = labelOffset.Dx + Label.Size.Width * (1.0 - scale); break; case TextDirection.Ltr: dx = labelOffset.Dx; break; }
-                double dy = Dart:uiDefaultClass.LerpDouble(0.0, floatingY - labelOffset.Dy, t);
+                double dy = Dart.UI.UiDefaultClass.LerpDouble(0.0, floatingY - labelOffset.Dy, t);
                 _LabelTransform = Matrix4.Identity();
                 Matrix4.Identity().Translate(dx, labelOffset.Dy + dy);
                 Matrix4.Identity().Scale(scale);
@@ -1924,7 +1924,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             if (IsHovering)
             {
                 Color hoverColor = Decoration.HoverColor ?? themeData.InputDecorationTheme?.HoverColor ?? themeData.HoverColor;
-                return Dart:uiDefaultClass.Color.AlphaBlend(hoverColor.WithOpacity(0.12), enabledColor);
+                return Dart.UI.UiDefaultClass.Color.AlphaBlend(hoverColor.WithOpacity(0.12), enabledColor);
             }
 
             return enabledColor;
@@ -2340,7 +2340,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is InputDecoration && other.Icon == Icon && other.LabelText == LabelText && other.LabelStyle == LabelStyle && other.HelperText == HelperText && other.HelperStyle == HelperStyle && other.HelperMaxLines == HelperMaxLines && other.HintText == HintText && other.HintStyle == HintStyle && other.HintMaxLines == HintMaxLines && other.ErrorText == ErrorText && other.ErrorStyle == ErrorStyle && other.ErrorMaxLines == ErrorMaxLines && other.HasFloatingPlaceholder == HasFloatingPlaceholder && other.FloatingLabelBehavior == FloatingLabelBehavior && other.IsDense == IsDense && other.ContentPadding == ContentPadding && other.IsCollapsed == IsCollapsed && other.PrefixIcon == PrefixIcon && other.Prefix == Prefix && other.PrefixText == PrefixText && other.PrefixStyle == PrefixStyle && other.PrefixIconConstraints == PrefixIconConstraints && other.SuffixIcon == SuffixIcon && other.Suffix == Suffix && other.SuffixText == SuffixText && other.SuffixStyle == SuffixStyle && other.SuffixIconConstraints == SuffixIconConstraints && other.Counter == Counter && other.CounterText == CounterText && other.CounterStyle == CounterStyle && other.Filled == Filled && other.FillColor == FillColor && other.FocusColor == FocusColor && other.HoverColor == HoverColor && other.ErrorBorder == ErrorBorder && other.FocusedBorder == FocusedBorder && other.FocusedErrorBorder == FocusedErrorBorder && other.DisabledBorder == DisabledBorder && other.EnabledBorder == EnabledBorder && other.Border == Border && other.Enabled == Enabled && other.SemanticCounterText == SemanticCounterText && other.AlignLabelWithHint == AlignLabelWithHint;
         }
@@ -2434,7 +2434,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is InputDecorationTheme && other.LabelStyle == LabelStyle && other.HelperStyle == HelperStyle && other.HelperMaxLines == HelperMaxLines && other.HintStyle == HintStyle && other.ErrorStyle == ErrorStyle && other.ErrorMaxLines == ErrorMaxLines && other.IsDense == IsDense && other.ContentPadding == ContentPadding && other.IsCollapsed == IsCollapsed && other.PrefixStyle == PrefixStyle && other.SuffixStyle == SuffixStyle && other.CounterStyle == CounterStyle && other.FloatingLabelBehavior == FloatingLabelBehavior && other.Filled == Filled && other.FillColor == FillColor && other.FocusColor == FocusColor && other.HoverColor == HoverColor && other.ErrorBorder == ErrorBorder && other.FocusedBorder == FocusedBorder && other.FocusedErrorBorder == FocusedErrorBorder && other.DisabledBorder == DisabledBorder && other.EnabledBorder == EnabledBorder && other.Border == Border && other.AlignLabelWithHint == AlignLabelWithHint && other.DisabledBorder == DisabledBorder;
         }

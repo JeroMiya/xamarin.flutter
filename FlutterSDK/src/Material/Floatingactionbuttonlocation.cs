@@ -564,8 +564,8 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
             double fabHeight = scaffoldGeometry.FloatingActionButtonSize.Height;
             double snackBarHeight = scaffoldGeometry.SnackBarSize.Height;
             double fabY = contentBottom - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin;
-            if (snackBarHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
-            if (bottomSheetHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+            if (snackBarHeight > 0.0) fabY = Dart.Math.MathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
+            if (bottomSheetHeight > 0.0) fabY = Dart.Math.MathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
             return new Offset(fabX, fabY);
         }
 
@@ -590,8 +590,8 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
             double fabHeight = scaffoldGeometry.FloatingActionButtonSize.Height;
             double snackBarHeight = scaffoldGeometry.SnackBarSize.Height;
             double fabY = contentBottom - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin;
-            if (snackBarHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
-            if (bottomSheetHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+            if (snackBarHeight > 0.0) fabY = Dart.Math.MathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
+            if (bottomSheetHeight > 0.0) fabY = Dart.Math.MathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
             return new Offset(fabX, fabY);
         }
 
@@ -615,10 +615,10 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
             double fabHeight = scaffoldGeometry.FloatingActionButtonSize.Height;
             double snackBarHeight = scaffoldGeometry.SnackBarSize.Height;
             double fabY = contentBottom - fabHeight / 2.0;
-            if (snackBarHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
-            if (bottomSheetHeight > 0.0) fabY = Math.Dart:mathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
+            if (snackBarHeight > 0.0) fabY = Dart.Math.MathDefaultClass.Min(fabY, contentBottom - snackBarHeight - fabHeight - FloatingactionbuttonlocationDefaultClass.KFloatingActionButtonMargin);
+            if (bottomSheetHeight > 0.0) fabY = Dart.Math.MathDefaultClass.Min(fabY, contentBottom - bottomSheetHeight - fabHeight / 2.0);
             double maxFabY = scaffoldGeometry.ScaffoldSize.Height - fabHeight;
-            return Math.Dart:mathDefaultClass.Min(maxFabY, fabY);
+            return Dart.Math.MathDefaultClass.Min(maxFabY, fabY);
         }
 
 
@@ -876,10 +876,10 @@ namespace FlutterSDK.Material.Floatingactionbuttonlocation
 
 
 
-        public new double GetAnimationRestart(double previousValue) => Math.Dart:mathDefaultClass.Min(1.0-previousValue, previousValue);
+        public new double GetAnimationRestart(double previousValue) => Dart.Math.MathDefaultClass.Min(1.0 - previousValue, previousValue);
 
 
-}
+    }
 
 
     /// <Summary>

@@ -783,7 +783,7 @@ namespace FlutterSDK.Rendering.Flow
                 BoxConstraints innerConstraints = _Delegate.GetConstraintsForChild(i, constraints);
                 child.Layout(innerConstraints, parentUsesSize: true);
                 FlowParentData childParentData = child.ParentData as FlowParentData;
-                childParentData.Offset = Dart:uiDefaultClass.Offset.Zero;
+                childParentData.Offset = Dart.UiDefaultClass.Offset.Zero;
                 child = childParentData.NextSibling;
                 i += 1;
             }
@@ -822,7 +822,7 @@ namespace FlutterSDK.Rendering.Flow
             }
             else
             {
-                _PaintingContext.PushOpacity(_PaintingOffset, Ui.Dart:uiDefaultClass.Color.GetAlphaFromOpacity(opacity), (PaintingContext context, Offset offset) =>
+                _PaintingContext.PushOpacity(_PaintingOffset, Dart.UI.UiDefaultClass.Color.GetAlphaFromOpacity(opacity), (PaintingContext context, Offset offset) =>
                 {
                     context.PushTransform(NeedsCompositing, offset, transform, Painter);
                 }
@@ -862,7 +862,7 @@ namespace FlutterSDK.Rendering.Flow
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintWithDelegate);
+            context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintWithDelegate);
         }
 
 

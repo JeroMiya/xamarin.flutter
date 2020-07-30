@@ -447,7 +447,7 @@ namespace FlutterSDK.Cupertino.Actionsheet
             TextStyle style = ActionsheetDefaultClass._KActionSheetActionStyle.CopyWith(color: IsDestructiveAction ? ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.SystemRed, context) : ThemeDefaultClass.CupertinoTheme.Of(context).PrimaryColor);
             if (IsDefaultAction)
             {
-                style = style.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600);
+                style = style.CopyWith(fontWeight: Dart.UI.UiDefaultClass.FontWeight.W600);
             }
 
             return new GestureDetector(onTap: OnPressed, behavior: HitTestBehavior.Opaque, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: ActionsheetDefaultClass._KButtonHeight), child: new Semantics(button: true, child: new Container(alignment: AlignmentDefaultClass.Alignment.Center, padding: EdgeInsets.Symmetric(vertical: 16.0, horizontal: 10.0), child: new DefaultTextStyle(style: style, child: Child, textAlign: TextAlign.Center)))));
@@ -973,12 +973,12 @@ namespace FlutterSDK.Cupertino.Actionsheet
             List<Widget> titleContentGroup = new List<Widget>() { };
             if (Title != null)
             {
-                titleContentGroup.Add(new Padding(padding: EdgeInsets.Only(left: ActionsheetDefaultClass._KContentHorizontalPadding, right: ActionsheetDefaultClass._KContentHorizontalPadding, bottom: ActionsheetDefaultClass._KContentVerticalPadding, top: ActionsheetDefaultClass._KContentVerticalPadding), child: new DefaultTextStyle(style: Message == null ? ActionsheetDefaultClass._KActionSheetContentStyle : ActionsheetDefaultClass._KActionSheetContentStyle.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600), textAlign: TextAlign.Center, child: Title)));
+                titleContentGroup.Add(new Padding(padding: EdgeInsets.Only(left: ActionsheetDefaultClass._KContentHorizontalPadding, right: ActionsheetDefaultClass._KContentHorizontalPadding, bottom: ActionsheetDefaultClass._KContentVerticalPadding, top: ActionsheetDefaultClass._KContentVerticalPadding), child: new DefaultTextStyle(style: Message == null ? ActionsheetDefaultClass._KActionSheetContentStyle : ActionsheetDefaultClass._KActionSheetContentStyle.CopyWith(fontWeight: Dart.UI.UiDefaultClass.FontWeight.W600), textAlign: TextAlign.Center, child: Title)));
             }
 
             if (Message != null)
             {
-                titleContentGroup.Add(new Padding(padding: EdgeInsets.Only(left: ActionsheetDefaultClass._KContentHorizontalPadding, right: ActionsheetDefaultClass._KContentHorizontalPadding, bottom: Title == null ? ActionsheetDefaultClass._KContentVerticalPadding : 22.0, top: Title == null ? ActionsheetDefaultClass._KContentVerticalPadding : 0.0), child: new DefaultTextStyle(style: Title == null ? ActionsheetDefaultClass._KActionSheetContentStyle.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600) : ActionsheetDefaultClass._KActionSheetContentStyle, textAlign: TextAlign.Center, child: Message)));
+                titleContentGroup.Add(new Padding(padding: EdgeInsets.Only(left: ActionsheetDefaultClass._KContentHorizontalPadding, right: ActionsheetDefaultClass._KContentHorizontalPadding, bottom: Title == null ? ActionsheetDefaultClass._KContentVerticalPadding : 22.0, top: Title == null ? ActionsheetDefaultClass._KContentVerticalPadding : 0.0), child: new DefaultTextStyle(style: Title == null ? ActionsheetDefaultClass._KActionSheetContentStyle.CopyWith(fontWeight: Dart.UI.UiDefaultClass.FontWeight.W600) : ActionsheetDefaultClass._KActionSheetContentStyle, textAlign: TextAlign.Center, child: Message)));
             }
 
             if (titleContentGroup.IsEmpty())
@@ -1257,7 +1257,7 @@ namespace FlutterSDK.Cupertino.Actionsheet
 
         public new void PerformLayout()
         {
-            BoxConstraints perButtonConstraints = Constraints.CopyWith(minHeight: 0.0, maxHeight: Dart:coreDefaultClass.Double.Infinity);
+            BoxConstraints perButtonConstraints = Constraints.CopyWith(minHeight: 0.0, maxHeight: Dart.CoreDefaultClass.Double.Infinity);
             RenderBox child = FirstChild;
             int index = 0;
             double verticalOffset = 0.0;
@@ -1332,7 +1332,7 @@ namespace FlutterSDK.Cupertino.Actionsheet
                     dividersPath.AddRect(dividerRect);
                 }
 
-                accumulatingOffset += (isDividerPresent ? dividerOffset : Dart:uiDefaultClass.Offset.Zero)+new Offset(0.0, child.Size.Height);
+                accumulatingOffset += (isDividerPresent ? dividerOffset : Dart.UiDefaultClass.Offset.Zero) + new Offset(0.0, child.Size.Height);
                 prevChild = child;
                 child = ChildAfter(child);
             }

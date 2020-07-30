@@ -871,8 +871,8 @@ namespace FlutterSDK.Material.Switch
             double currentValue = Position.Value;
             double visualPosition = default(double);
             switch (TextDirection) { case TextDirection.Rtl: visualPosition = 1.0 - currentValue; break; case TextDirection.Ltr: visualPosition = currentValue; break; }
-            Color trackColor = isEnabled ? Dart : uiDefaultClass.Color.Lerp(InactiveTrackColor, ActiveTrackColor, currentValue):InactiveTrackColor;
-            Color thumbColor = isEnabled ? Dart : uiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, currentValue):InactiveColor;
+            Color trackColor = isEnabled ? Dart.UI.UiDefaultClass.Color.Lerp(InactiveTrackColor, ActiveTrackColor, currentValue) : InactiveTrackColor;
+            Color thumbColor = isEnabled ? Dart.UI.UiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, currentValue) : InactiveColor;
             ImageProvider thumbImage = isEnabled ? (currentValue < 0.5 ? InactiveThumbImage : ActiveThumbImage) : InactiveThumbImage;
             ImageErrorListener thumbErrorListener = isEnabled ? (currentValue < 0.5 ? OnInactiveThumbImageError : OnActiveThumbImageError) : OnInactiveThumbImageError;
             Paint paint = new Paint()..Color = trackColor;

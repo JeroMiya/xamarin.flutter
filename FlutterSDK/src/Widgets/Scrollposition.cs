@@ -899,7 +899,7 @@ namespace FlutterSDK.Widgets.Scrollposition
         {
             SemanticsAction forward = default(SemanticsAction);
             SemanticsAction backward = default(SemanticsAction);
-            switch (AxisDirection) { case AxisDirection.Up: forward = Dart:uiDefaultClass.SemanticsAction.ScrollDown; backward = Dart:uiDefaultClass.SemanticsAction.ScrollUp; break; case AxisDirection.Right: forward = Dart:uiDefaultClass.SemanticsAction.ScrollLeft; backward = Dart:uiDefaultClass.SemanticsAction.ScrollRight; break; case AxisDirection.Down: forward = Dart:uiDefaultClass.SemanticsAction.ScrollUp; backward = Dart:uiDefaultClass.SemanticsAction.ScrollDown; break; case AxisDirection.Left: forward = Dart:uiDefaultClass.SemanticsAction.ScrollRight; backward = Dart:uiDefaultClass.SemanticsAction.ScrollLeft; break; }
+            switch (AxisDirection) { case AxisDirection.Up: forward = Dart.UiDefaultClass.SemanticsAction.ScrollDown; backward = Dart.UiDefaultClass.SemanticsAction.ScrollUp; break; case AxisDirection.Right: forward = Dart.UiDefaultClass.SemanticsAction.ScrollLeft; backward = Dart.UiDefaultClass.SemanticsAction.ScrollRight; break; case AxisDirection.Down: forward = Dart.UiDefaultClass.SemanticsAction.ScrollUp; backward = Dart.UiDefaultClass.SemanticsAction.ScrollDown; break; case AxisDirection.Left: forward = Dart.UiDefaultClass.SemanticsAction.ScrollRight; backward = Dart.UiDefaultClass.SemanticsAction.ScrollLeft; break; }
             HashSet<SemanticsAction> actions = new Dictionary<SemanticsAction> { };
             if (Pixels > MinScrollExtent) actions.Add(backward);
             if (Pixels < MaxScrollExtent) actions.Add(forward);
@@ -997,7 +997,8 @@ namespace FlutterSDK.Widgets.Scrollposition
                     break;
             }
             if (target == Pixels) return Future<void>.Value();
-            if (duration == Dart:coreDefaultClass.Duration.Zero){
+            if (duration == Dart.CoreDefaultClass.Duration.Zero)
+            {
                 JumpTo(target);
                 return Future<void>.Value();
             }

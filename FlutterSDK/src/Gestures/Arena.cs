@@ -566,7 +566,7 @@ namespace FlutterSDK.Gestures.Arena
 
             if (state.Members.Count == 1)
             {
-            Dart: asyncDefaultClass.ScheduleMicrotask(() => =>_ResolveByDefault(pointer, state));
+                Dart.AsyncDefaultClass.ScheduleMicrotask(() => =>_ResolveByDefault(pointer, state));
             }
             else if (state.Members.IsEmpty())
             {

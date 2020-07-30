@@ -447,12 +447,12 @@ namespace FlutterSDK.Widgets.Scrollsimulation
             if (position < LeadingExtent)
             {
                 _SpringSimulation = _UnderscrollSimulation(position, velocity);
-                _SpringTime = Dart:coreDefaultClass.Double.NegativeInfinity;
+                _SpringTime = Dart.CoreDefaultClass.Double.NegativeInfinity;
             }
             else if (position > TrailingExtent)
             {
                 _SpringSimulation = _OverscrollSimulation(position, velocity);
-                _SpringTime = Dart:coreDefaultClass.Double.NegativeInfinity;
+                _SpringTime = Dart.CoreDefaultClass.Double.NegativeInfinity;
             }
             else
             {
@@ -461,18 +461,18 @@ namespace FlutterSDK.Widgets.Scrollsimulation
                 if (velocity > 0.0 && finalX > TrailingExtent)
                 {
                     _SpringTime = _FrictionSimulation.TimeAtX(TrailingExtent);
-                    _SpringSimulation = _OverscrollSimulation(TrailingExtent, Math.Dart:mathDefaultClass.Min(_FrictionSimulation.Dx(_SpringTime), MaxSpringTransferVelocity));
+                    _SpringSimulation = _OverscrollSimulation(TrailingExtent, Dart.Math.MathDefaultClass.Min(_FrictionSimulation.Dx(_SpringTime), MaxSpringTransferVelocity));
 
                 }
                 else if (velocity < 0.0 && finalX < LeadingExtent)
                 {
                     _SpringTime = _FrictionSimulation.TimeAtX(LeadingExtent);
-                    _SpringSimulation = _UnderscrollSimulation(LeadingExtent, Math.Dart:mathDefaultClass.Min(_FrictionSimulation.Dx(_SpringTime), MaxSpringTransferVelocity));
+                    _SpringSimulation = _UnderscrollSimulation(LeadingExtent, Dart.Math.MathDefaultClass.Min(_FrictionSimulation.Dx(_SpringTime), MaxSpringTransferVelocity));
 
                 }
                 else
                 {
-                    _SpringTime = Dart:coreDefaultClass.Double.Infinity;
+                    _SpringTime = Dart.CoreDefaultClass.Double.Infinity;
                 }
 
             }
@@ -580,8 +580,8 @@ namespace FlutterSDK.Widgets.Scrollsimulation
         private double _FlingDuration(double velocity)
         {
             double scaledFriction = Friction * _DecelerationForFriction(0.84);
-            double deceleration = Math.Dart:mathDefaultClass.Log(0.35 * velocity.Abs() / scaledFriction);
-            return Math.Dart:mathDefaultClass.Exp(deceleration / (_KDecelerationRate - 1.0));
+            double deceleration = Dart.Math.MathDefaultClass.Log(0.35 * velocity.Abs() / scaledFriction);
+            return Dart.Math.MathDefaultClass.Exp(deceleration / (_KDecelerationRate - 1.0));
         }
 
 

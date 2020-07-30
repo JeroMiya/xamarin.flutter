@@ -556,7 +556,7 @@ namespace FlutterSDK.Rendering.Flex
                     if (flex > 0)
                     {
                         double flexFraction = childSize(child, extent) / _GetFlex(child);
-                        maxFlexFractionSoFar = Math.Dart:mathDefaultClass.Max(maxFlexFractionSoFar, flexFraction);
+                        maxFlexFractionSoFar = Dart.Math.MathDefaultClass.Max(maxFlexFractionSoFar, flexFraction);
                     }
                     else
                     {
@@ -584,21 +584,21 @@ namespace FlutterSDK.Rendering.Flex
                     double crossSize = default(double);
                     if (flex == 0)
                     {
-                        switch (_Direction) { case Axis.Horizontal: mainSize = child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity); crossSize = childSize(child, mainSize); break; case Axis.Vertical: mainSize = child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity); crossSize = childSize(child, mainSize); break; }
+                        switch (_Direction) { case Axis.Horizontal: mainSize = child.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity); crossSize = childSize(child, mainSize); break; case Axis.Vertical: mainSize = child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity); crossSize = childSize(child, mainSize); break; }
                         inflexibleSpace += mainSize;
-                        maxCrossSize = Math.Dart:mathDefaultClass.Max(maxCrossSize, crossSize);
+                        maxCrossSize = Dart.Math.MathDefaultClass.Max(maxCrossSize, crossSize);
                     }
 
                     FlexParentData childParentData = child.ParentData as FlexParentData;
                     child = childParentData.NextSibling;
                 }
 
-                double spacePerFlex = Math.Dart:mathDefaultClass.Max(0.0, (availableMainSpace - inflexibleSpace) / totalFlex);
+                double spacePerFlex = Dart.Math.MathDefaultClass.Max(0.0, (availableMainSpace - inflexibleSpace) / totalFlex);
                 child = FirstChild;
                 while (child != null)
                 {
                     int flex = _GetFlex(child);
-                    if (flex > 0) maxCrossSize = Math.Dart:mathDefaultClass.Max(maxCrossSize, childSize(child, spacePerFlex * flex));
+                    if (flex > 0) maxCrossSize = Dart.Math.MathDefaultClass.Max(maxCrossSize, childSize(child, spacePerFlex * flex));
                     FlexParentData childParentData = child.ParentData as FlexParentData;
                     child = childParentData.NextSibling;
                 }
@@ -696,7 +696,7 @@ namespace FlutterSDK.Rendering.Flex
             int totalChildren = 0;
 
             double maxMainSize = _Direction == Axis.Horizontal ? constraints.MaxWidth : constraints.MaxHeight;
-            bool canFlex = maxMainSize < Dart:coreDefaultClass.Double.Infinity;
+            bool canFlex = maxMainSize < Dart.CoreDefaultClass.Double.Infinity;
             double crossSize = 0.0;
             double allocatedSize = 0.0;
             RenderBox child = FirstChild;
@@ -726,19 +726,19 @@ namespace FlutterSDK.Rendering.Flex
 
                     child.Layout(innerConstraints, parentUsesSize: true);
                     allocatedSize += _GetMainSize(child);
-                    crossSize = Math.Dart:mathDefaultClass.Max(crossSize, _GetCrossSize(child));
+                    crossSize = Dart.Math.MathDefaultClass.Max(crossSize, _GetCrossSize(child));
                 }
 
 
                 child = childParentData.NextSibling;
             }
 
-            double freeSpace = Math.Dart:mathDefaultClass.Max(0.0, (canFlex ? maxMainSize : 0.0) - allocatedSize);
+            double freeSpace = Dart.Math.MathDefaultClass.Max(0.0, (canFlex ? maxMainSize : 0.0) - allocatedSize);
             double allocatedFlexSpace = 0.0;
             double maxBaselineDistance = 0.0;
             if (totalFlex > 0 || CrossAxisAlignment == CrossAxisAlignment.Baseline)
             {
-                double spacePerFlex = canFlex && totalFlex > 0 ? (freeSpace / totalFlex) : Dart:coreDefaultClass.Double.Nan;
+                double spacePerFlex = canFlex && totalFlex > 0 ? (freeSpace / totalFlex) : Dart.CoreDefaultClass.Double.Nan;
                 child = FirstChild;
                 double maxSizeAboveBaseline = 0;
                 double maxSizeBelowBaseline = 0;
@@ -747,7 +747,7 @@ namespace FlutterSDK.Rendering.Flex
                     int flex = _GetFlex(child);
                     if (flex > 0)
                     {
-                        double maxChildExtent = canFlex ? (child == lastFlexChild ? (freeSpace - allocatedFlexSpace) : spacePerFlex * flex) : Dart:coreDefaultClass.Double.Infinity;
+                        double maxChildExtent = canFlex ? (child == lastFlexChild ? (freeSpace - allocatedFlexSpace) : spacePerFlex * flex) : Dart.CoreDefaultClass.Double.Infinity;
                         double minChildExtent = default(double);
                         switch (_GetFit(child)) { case FlexFit.Tight: minChildExtent = maxChildExtent; break; case FlexFit.Loose: minChildExtent = 0.0; break; }
 
@@ -766,7 +766,7 @@ namespace FlutterSDK.Rendering.Flex
 
                         allocatedSize += childSize;
                         allocatedFlexSpace += maxChildExtent;
-                        crossSize = Math.Dart:mathDefaultClass.Max(crossSize, _GetCrossSize(child));
+                        crossSize = Dart.Math.MathDefaultClass.Max(crossSize, _GetCrossSize(child));
                     }
 
                     if (CrossAxisAlignment == CrossAxisAlignment.Baseline)
@@ -775,9 +775,9 @@ namespace FlutterSDK.Rendering.Flex
                         double distance = child.GetDistanceToBaseline(TextBaseline, onlyReal: true);
                         if (distance != null)
                         {
-                            maxBaselineDistance = Math.Dart:mathDefaultClass.Max(maxBaselineDistance, distance);
-                            maxSizeAboveBaseline = Math.Dart:mathDefaultClass.Max(distance, maxSizeAboveBaseline);
-                            maxSizeBelowBaseline = Math.Dart:mathDefaultClass.Max(child.Size.Height - distance, maxSizeBelowBaseline);
+                            maxBaselineDistance = Dart.Math.MathDefaultClass.Max(maxBaselineDistance, distance);
+                            maxSizeAboveBaseline = Dart.Math.MathDefaultClass.Max(distance, maxSizeAboveBaseline);
+                            maxSizeBelowBaseline = Dart.Math.MathDefaultClass.Max(child.Size.Height - distance, maxSizeBelowBaseline);
                             crossSize = maxSizeAboveBaseline + maxSizeBelowBaseline;
                         }
 
@@ -794,8 +794,8 @@ namespace FlutterSDK.Rendering.Flex
             double actualSizeDelta = default(double);
             switch (_Direction) { case Axis.Horizontal: Size = constraints.Constrain(new Size(idealSize, crossSize)); actualSize = Size.Width; crossSize = Size.Height; break; case Axis.Vertical: Size = constraints.Constrain(new Size(crossSize, idealSize)); actualSize = Size.Height; crossSize = Size.Width; break; }
             actualSizeDelta = actualSize - allocatedSize;
-            _Overflow = Math.Dart:mathDefaultClass.Max(0.0, -actualSizeDelta);
-            double remainingSpace = Math.Dart:mathDefaultClass.Max(0.0, actualSizeDelta);
+            _Overflow = Dart.Math.MathDefaultClass.Max(0.0, -actualSizeDelta);
+            double remainingSpace = Dart.Math.MathDefaultClass.Max(0.0, actualSizeDelta);
             double leadingSpace = default(double);
             double betweenSpace = default(double);
             bool flipMainAxis = !(FlexDefaultClass._StartIsTopLeft(Direction, TextDirection, VerticalDirection) ?? true);
@@ -856,18 +856,18 @@ namespace FlutterSDK.Rendering.Flex
             }
 
             if (Size.IsEmpty()) return;
-            context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, DefaultPaint);
+            context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, DefaultPaint);
 
         }
 
 
 
 
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasOverflow ? Dart.UiDefaultClass.Offset.Zero & Size : null;
 
 
 
-public new string ToStringShort()
+        public new string ToStringShort()
         {
             string header = base.ToStringShort();
             if (_Overflow is double && _HasOverflow) header += " OVERFLOWING";

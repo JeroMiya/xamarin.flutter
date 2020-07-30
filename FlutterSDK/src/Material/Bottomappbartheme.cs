@@ -427,7 +427,7 @@ namespace FlutterSDK.Material.Bottomappbartheme
         public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b, double t)
         {
 
-            return new BottomAppBarTheme(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: t < 0.5 ? a?.Shape : b?.Shape);
+            return new BottomAppBarTheme(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: t < 0.5 ? a?.Shape : b?.Shape);
         }
 
 
@@ -435,7 +435,7 @@ namespace FlutterSDK.Material.Bottomappbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BottomAppBarTheme && other.Color == Color && other.Elevation == Elevation && other.Shape == Shape;
         }

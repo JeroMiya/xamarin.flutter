@@ -851,7 +851,7 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
         private bool _ShouldClipAtPaintOffset(FlutterBinding.UI.Offset paintOffset)
         {
 
-            return paintOffset < Dart:uiDefaultClass.Offset.Zero || !(Dart: uiDefaultClass.Offset.Zero & Size).Contains((paintOffset & Child.Size).BottomRight);
+            return paintOffset < Dart.UiDefaultClass.Offset.Zero || !(Dart.UI.UiDefaultClass.Offset.Zero & Size).Contains((paintOffset & Child.Size).BottomRight);
         }
 
 
@@ -869,7 +869,7 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
 
                 if (_ShouldClipAtPaintOffset(paintOffset))
                 {
-                    context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintContents);
+                    context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, PaintContents);
                 }
                 else
                 {
@@ -901,7 +901,7 @@ namespace FlutterSDK.Widgets.Singlechildscrollview
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            if (child != null && _ShouldClipAtPaintOffset(_PaintOffset)) return Dart:uiDefaultClass.Offset.Zero & Size;
+            if (child != null && _ShouldClipAtPaintOffset(_PaintOffset)) return Dart.UiDefaultClass.Offset.Zero & Size;
             return null;
         }
 

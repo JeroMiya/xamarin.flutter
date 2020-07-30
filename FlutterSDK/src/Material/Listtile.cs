@@ -461,7 +461,7 @@ namespace FlutterSDK.Material.Listtile
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             ListTileTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new ListTileTheme(dense: Dense, style: Style, selectedColor: SelectedColor, iconColor: IconColor, textColor: TextColor, contentPadding: ContentPadding, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new ListTileTheme(dense: Dense, style: Style, selectedColor: SelectedColor, iconColor: IconColor, textColor: TextColor, contentPadding: ContentPadding, child: child);
         }
 
 
@@ -1445,8 +1445,8 @@ namespace FlutterSDK.Material.Listtile
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
-            double leadingWidth = Leading != null ? Math.Dart : mathDefaultClass.Max(Leading.GetMinIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap:0.0;
-            return leadingWidth + Math.Dart:mathDefaultClass.Max(_MinWidth(Title, height), _MinWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
+            double leadingWidth = Leading != null ? Dart.Math.MathDefaultClass.Max(Leading.GetMinIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap : 0.0;
+            return leadingWidth + Dart.Math.MathDefaultClass.Max(_MinWidth(Title, height), _MinWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
         }
 
 
@@ -1454,8 +1454,8 @@ namespace FlutterSDK.Material.Listtile
 
         public new double ComputeMaxIntrinsicWidth(double height)
         {
-            double leadingWidth = Leading != null ? Math.Dart : mathDefaultClass.Max(Leading.GetMaxIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap:0.0;
-            return leadingWidth + Math.Dart:mathDefaultClass.Max(_MaxWidth(Title, height), _MaxWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
+            double leadingWidth = Leading != null ? Dart.Math.MathDefaultClass.Max(Leading.GetMaxIntrinsicWidth(height), _MinLeadingWidth) + _HorizontalTitleGap : 0.0;
+            return leadingWidth + Dart.Math.MathDefaultClass.Max(_MaxWidth(Title, height), _MaxWidth(Subtitle, height)) + _MaxWidth(Trailing, height);
         }
 
 
@@ -1463,7 +1463,7 @@ namespace FlutterSDK.Material.Listtile
 
         public new double ComputeMinIntrinsicHeight(double width)
         {
-            return Math.Dart:mathDefaultClass.Max(_DefaultTileHeight, Title.GetMinIntrinsicHeight(width) + (Subtitle?.GetMinIntrinsicHeight(width) ?? 0.0));
+            return Dart.Math.MathDefaultClass.Max(_DefaultTileHeight, Title.GetMinIntrinsicHeight(width) + (Subtitle?.GetMinIntrinsicHeight(width) ?? 0.0));
         }
 
 
@@ -1497,7 +1497,7 @@ namespace FlutterSDK.Material.Listtile
 
         private Size _LayoutBox(FlutterSDK.Rendering.Box.RenderBox box, FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
-            if (box == null) return Dart:uiDefaultClass.Size.Zero;
+            if (box == null) return Dart.UiDefaultClass.Size.Zero;
             box.Layout(constraints, parentUsesSize: true);
             return box.Size;
         }
@@ -1530,7 +1530,7 @@ namespace FlutterSDK.Material.Listtile
             Size trailingSize = _LayoutBox(Trailing, iconConstraints);
 
 
-            double titleStart = hasLeading ? Math.Dart : mathDefaultClass.Max(_MinLeadingWidth, leadingSize.Width) + _HorizontalTitleGap:0.0;
+            double titleStart = hasLeading ? Dart.Math.MathDefaultClass.Max(_MinLeadingWidth, leadingSize.Width) + _HorizontalTitleGap : 0.0;
             BoxConstraints textConstraints = looseConstraints.Tighten(width: tileWidth - titleStart - (hasTrailing ? trailingSize.Width + _HorizontalTitleGap : 0.0));
             Size titleSize = _LayoutBox(Title, textConstraints);
             Size subtitleSize = _LayoutBox(Subtitle, textConstraints);
@@ -1557,7 +1557,7 @@ namespace FlutterSDK.Material.Listtile
             double subtitleY = default(double);
             if (!hasSubtitle)
             {
-                tileHeight = Math.Dart:mathDefaultClass.Max(defaultTileHeight, titleSize.Height + 2.0 * _MinVerticalPadding);
+                tileHeight = Dart.Math.MathDefaultClass.Max(defaultTileHeight, titleSize.Height + 2.0 * _MinVerticalPadding);
                 titleY = (tileHeight - titleSize.Height) / 2.0;
             }
             else
@@ -1591,7 +1591,7 @@ namespace FlutterSDK.Material.Listtile
             }
             else
             {
-                leadingY = Math.Dart:mathDefaultClass.Min((tileHeight - leadingSize.Height) / 2.0, 16.0);
+                leadingY = Dart.Math.MathDefaultClass.Min((tileHeight - leadingSize.Height) / 2.0, 16.0);
                 trailingY = (tileHeight - trailingSize.Height) / 2.0;
             }
 

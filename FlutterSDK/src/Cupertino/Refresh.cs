@@ -368,7 +368,7 @@ namespace FlutterSDK.Cupertino.Refresh
             Child.Layout(constraints.AsBoxConstraints(maxExtent: layoutExtent + overscrolledExtent), parentUsesSize: true);
             if (active)
             {
-                Geometry = new SliverGeometry(scrollExtent: layoutExtent, paintOrigin: -overscrolledExtent - constraints.ScrollOffset, paintExtent: Dart:mathDefaultClass.Max(Dart: mathDefaultClass.Max(Child.Size.Height, layoutExtent) - constraints.ScrollOffset, 0.0), maxPaintExtent: Dart:mathDefaultClass.Max(Dart: mathDefaultClass.Max(Child.Size.Height, layoutExtent) - constraints.ScrollOffset, 0.0), layoutExtent: Dart:mathDefaultClass.Max(layoutExtent - constraints.ScrollOffset, 0.0));
+                Geometry = new SliverGeometry(scrollExtent: layoutExtent, paintOrigin: -overscrolledExtent - constraints.ScrollOffset, paintExtent: Dart.Math.MathDefaultClass.Max(Dart.Math.MathDefaultClass.Max(Child.Size.Height, layoutExtent) - constraints.ScrollOffset, 0.0), maxPaintExtent: Dart.Math.MathDefaultClass.Max(Dart.Math.MathDefaultClass.Max(Child.Size.Height, layoutExtent) - constraints.ScrollOffset, 0.0), layoutExtent: Dart.Math.MathDefaultClass.Max(layoutExtent - constraints.ScrollOffset, 0.0));
             }
             else
             {
@@ -492,7 +492,7 @@ namespace FlutterSDK.Cupertino.Refresh
         public virtual FlutterSDK.Widgets.Framework.Widget BuildSimpleRefreshIndicator(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Cupertino.Refresh.RefreshIndicatorMode refreshState, double pulledExtent, double refreshTriggerPullDistance, double refreshIndicatorExtent)
         {
             Curve opacityCurve = new Interval(0.4, 0.8, curve: CurvesDefaultClass.Curves.EaseInOut);
-            return new Align(alignment: AlignmentDefaultClass.Alignment.BottomCenter, child: new Padding(padding: EdgeInsets.Only(bottom: 16.0), child: refreshState == RefreshIndicatorMode.Drag ? new Opacity(opacity: opacityCurve.Transform(Dart: mathDefaultClass.Min(pulledExtent / refreshTriggerPullDistance, 1.0)), child: new Icon(IconsDefaultClass.CupertinoIcons.Down_arrow, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.InactiveGray, context), size: 36.0)) : new Opacity(opacity: opacityCurve.Transform(Dart: mathDefaultClass.Min(pulledExtent / refreshIndicatorExtent, 1.0)), child: new CupertinoActivityIndicator(radius: 14.0))));
+            return new Align(alignment: AlignmentDefaultClass.Alignment.BottomCenter, child: new Padding(padding: EdgeInsets.Only(bottom: 16.0), child: refreshState == RefreshIndicatorMode.Drag ? new Opacity(opacity: opacityCurve.Transform(Dart.Math.MathDefaultClass.Min(pulledExtent / refreshTriggerPullDistance, 1.0)), child: new Icon(IconsDefaultClass.CupertinoIcons.Down_arrow, color: ColorsDefaultClass.CupertinoDynamicColor.Resolve(ColorsDefaultClass.CupertinoColors.InactiveGray, context), size: 36.0)) : new Opacity(opacity: opacityCurve.Transform(Dart.Math.MathDefaultClass.Min(pulledExtent / refreshIndicatorExtent, 1.0)), child: new CupertinoActivityIndicator(radius: 14.0))));
         }
 
 

@@ -540,7 +540,7 @@ namespace FlutterSDK.Material.Tabs
             TextStyle textStyle = Selected ? TextstyleDefaultClass.TextStyle.Lerp(defaultStyle, defaultUnselectedStyle, animation.Value) : TextstyleDefaultClass.TextStyle.Lerp(defaultUnselectedStyle, defaultStyle, animation.Value);
             Color selectedColor = LabelColor ?? tabBarTheme.LabelColor ?? themeData.PrimaryTextTheme.BodyText1.Color;
             Color unselectedColor = UnselectedLabelColor ?? tabBarTheme.UnselectedLabelColor ?? selectedColor.WithAlpha(0xB2);
-            Color color = Selected ? Dart : uiDefaultClass.Color.Lerp(selectedColor, unselectedColor, animation.Value):Dart: uiDefaultClass.Color.Lerp(unselectedColor, selectedColor, animation.Value);
+            Color color = Selected ? Dart.UI.UiDefaultClass.Color.Lerp(selectedColor, unselectedColor, animation.Value) : Dart.UI.UiDefaultClass.Color.Lerp(unselectedColor, selectedColor, animation.Value);
             return new DefaultTextStyle(style: textStyle.CopyWith(color: color), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(size: 24.0, color: color), child: Child));
         }
 
@@ -707,7 +707,7 @@ namespace FlutterSDK.Material.Tabs
             if (Controller.IndexIsChanging)
             {
                 Rect targetRect = IndicatorRect(size, Controller.Index);
-                _CurrentRect = Dart:uiDefaultClass.Rect.Lerp(targetRect, _CurrentRect ?? targetRect, TabsDefaultClass._IndexChangeProgress(Controller));
+                _CurrentRect = Dart.UI.UiDefaultClass.Rect.Lerp(targetRect, _CurrentRect ?? targetRect, TabsDefaultClass._IndexChangeProgress(Controller));
             }
             else
             {
@@ -717,7 +717,7 @@ namespace FlutterSDK.Material.Tabs
                 Rect next = currentIndex < MaxTabIndex ? IndicatorRect(size, currentIndex + 1) : null;
                 double index = Controller.Index.ToDouble();
                 double value = Controller.Animation.Value;
-                if (value == index - 1.0) _CurrentRect = previous ?? middle; else if (value == index + 1.0) _CurrentRect = next ?? middle; else if (value == index) _CurrentRect = middle; else if (value < index) _CurrentRect = previous == null ? middle : Dart:uiDefaultClass.Rect.Lerp(middle, previous, index - value);else _CurrentRect = next == null ? middle : Dart:uiDefaultClass.Rect.Lerp(middle, next, value - index);
+                if (value == index - 1.0) _CurrentRect = previous ?? middle; else if (value == index + 1.0) _CurrentRect = next ?? middle; else if (value == index) _CurrentRect = middle; else if (value < index) _CurrentRect = previous == null ? middle : Dart.UI.UiDefaultClass.Rect.Lerp(middle, previous, index - value); else _CurrentRect = next == null ? middle : Dart.UI.UiDefaultClass.Rect.Lerp(middle, next, value - index);
             }
 
 
@@ -1083,7 +1083,7 @@ namespace FlutterSDK.Material.Tabs
             double index = _Controller.Index.ToDouble();
             double value = _Controller.Animation.Value;
             double offset = default(double);
-            if (value == index - 1.0) offset = leadingPosition == default(double) ? middlePosition : leadingPosition; else if (value == index + 1.0) offset = trailingPosition == default(double) ? middlePosition : trailingPosition; else if (value == index) offset = middlePosition; else if (value < index) offset = leadingPosition == null ? middlePosition : Dart:uiDefaultClass.LerpDouble(middlePosition, leadingPosition, index - value);else offset = trailingPosition == null ? middlePosition : Dart:uiDefaultClass.LerpDouble(middlePosition, trailingPosition, value - index);
+            if (value == index - 1.0) offset = leadingPosition == default(double) ? middlePosition : leadingPosition; else if (value == index + 1.0) offset = trailingPosition == default(double) ? middlePosition : trailingPosition; else if (value == index) offset = middlePosition; else if (value < index) offset = leadingPosition == null ? middlePosition : Dart.UI.UiDefaultClass.LerpDouble(middlePosition, leadingPosition, index - value); else offset = trailingPosition == null ? middlePosition : Dart.UI.UiDefaultClass.LerpDouble(middlePosition, trailingPosition, value - index);
             _ScrollController.JumpTo(offset);
         }
 

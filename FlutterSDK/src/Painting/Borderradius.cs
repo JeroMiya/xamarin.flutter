@@ -636,7 +636,7 @@ namespace FlutterSDK.Painting.Borderradius
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BorderRadiusGeometry && other._TopLeft == _TopLeft && other._TopRight == _TopRight && other._BottomLeft == _BottomLeft && other._BottomRight == _BottomRight && other._TopStart == _TopStart && other._TopEnd == _TopEnd && other._BottomStart == _BottomStart && other._BottomEnd == _BottomEnd;
         }
@@ -817,7 +817,7 @@ namespace FlutterSDK.Painting.Borderradius
             if (a == null && b == null) return null;
             if (a == null) return b * t;
             if (b == null) return a * (1.0 - t);
-            return BorderRadius.Only(topLeft: Dart:uiDefaultClass.Radius.Lerp(a.TopLeft, b.TopLeft, t), topRight: Dart:uiDefaultClass.Radius.Lerp(a.TopRight, b.TopRight, t), bottomLeft: Dart:uiDefaultClass.Radius.Lerp(a.BottomLeft, b.BottomLeft, t), bottomRight: Dart:uiDefaultClass.Radius.Lerp(a.BottomRight, b.BottomRight, t));
+            return BorderRadius.Only(topLeft: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopLeft, b.TopLeft, t), topRight: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopRight, b.TopRight, t), bottomLeft: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomLeft, b.BottomLeft, t), bottomRight: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomRight, b.BottomRight, t));
         }
 
 
@@ -992,7 +992,7 @@ namespace FlutterSDK.Painting.Borderradius
             if (a == null && b == null) return null;
             if (a == null) return b * t;
             if (b == null) return a * (1.0 - t);
-            return BorderRadiusDirectional.Only(topStart: Dart:uiDefaultClass.Radius.Lerp(a.TopStart, b.TopStart, t), topEnd: Dart:uiDefaultClass.Radius.Lerp(a.TopEnd, b.TopEnd, t), bottomStart: Dart:uiDefaultClass.Radius.Lerp(a.BottomStart, b.BottomStart, t), bottomEnd: Dart:uiDefaultClass.Radius.Lerp(a.BottomEnd, b.BottomEnd, t));
+            return BorderRadiusDirectional.Only(topStart: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopStart, b.TopStart, t), topEnd: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopEnd, b.TopEnd, t), bottomStart: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomStart, b.BottomStart, t), bottomEnd: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomEnd, b.BottomEnd, t));
         }
 
 

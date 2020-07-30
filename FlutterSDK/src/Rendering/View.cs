@@ -637,11 +637,11 @@ namespace FlutterSDK.Rendering.View
         /// </Summary>
         public virtual void CompositeFrame()
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Compositing", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Compositing", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
-                Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
-                Ui.Dart:uiDefaultClass.Scene scene = Layer.BuildScene(builder);
+                Dart.UI.SceneBuilder builder = new Ui.SceneBuilder();
+                Dart.UI.Scene scene = Layer.BuildScene(builder);
                 if (AutomaticSystemUiAdjustment) _UpdateSystemChrome();
                 _Window.Render(scene);
                 scene.Dispose();
@@ -649,7 +649,7 @@ namespace FlutterSDK.Rendering.View
             }
             finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }

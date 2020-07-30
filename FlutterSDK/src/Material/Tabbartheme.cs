@@ -493,7 +493,7 @@ namespace FlutterSDK.Material.Tabbartheme
 
 
 
-            return new TabBarTheme(indicator: DecorationDefaultClass.Decoration.Lerp(a.Indicator, b.Indicator, t), indicatorSize: t < 0.5 ? a.IndicatorSize : b.IndicatorSize, labelColor: Dart:uiDefaultClass.Color.Lerp(a.LabelColor, b.LabelColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a.LabelPadding, b.LabelPadding, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.LabelStyle, b.LabelStyle, t), unselectedLabelColor: Dart:uiDefaultClass.Color.Lerp(a.UnselectedLabelColor, b.UnselectedLabelColor, t), unselectedLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.UnselectedLabelStyle, b.UnselectedLabelStyle, t));
+            return new TabBarTheme(indicator: DecorationDefaultClass.Decoration.Lerp(a.Indicator, b.Indicator, t), indicatorSize: t < 0.5 ? a.IndicatorSize : b.IndicatorSize, labelColor: Dart.UI.UiDefaultClass.Color.Lerp(a.LabelColor, b.LabelColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a.LabelPadding, b.LabelPadding, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.LabelStyle, b.LabelStyle, t), unselectedLabelColor: Dart.UI.UiDefaultClass.Color.Lerp(a.UnselectedLabelColor, b.UnselectedLabelColor, t), unselectedLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.UnselectedLabelStyle, b.UnselectedLabelStyle, t));
         }
 
 
@@ -501,7 +501,7 @@ namespace FlutterSDK.Material.Tabbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is TabBarTheme && other.Indicator == Indicator && other.IndicatorSize == IndicatorSize && other.LabelColor == LabelColor && other.LabelPadding == LabelPadding && other.LabelStyle == LabelStyle && other.UnselectedLabelColor == UnselectedLabelColor && other.UnselectedLabelStyle == UnselectedLabelStyle;
         }

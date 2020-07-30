@@ -486,7 +486,7 @@ namespace FlutterSDK.Painting.Decorationimage
 
             if (centerSlice == null)
             {
-                Rect sourceRect = alignment.Inscribe(sourceSize, Dart: uiDefaultClass.Offset.Zero & inputSize);
+                Rect sourceRect = alignment.Inscribe(sourceSize, Dart.UI.UiDefaultClass.Offset.Zero & inputSize);
                 if (repeat == ImageRepeat.NoRepeat)
                 {
                     canvas.DrawImageRect(image, sourceRect, destinationRect, paint);
@@ -594,7 +594,7 @@ namespace FlutterSDK.Painting.Decorationimage
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is DecorationImage && other.Image == Image && other.ColorFilter == ColorFilter && other.Fit == Fit && other.Alignment == Alignment && other.CenterSlice == CenterSlice && other.Repeat == Repeat && other.MatchTextDirection == MatchTextDirection;
         }

@@ -396,10 +396,10 @@ namespace FlutterSDK.Animation.Tween
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
         /// </Summary>
-        public new Color Lerp(double t) => Dart:uiDefaultClass.Color.Lerp(Begin, End, t);
+        public new Color Lerp(double t) => Dart.UI.UiDefaultClass.Color.Lerp(Begin, End, t);
 
 
-}
+    }
 
 
     /// <Summary>
@@ -421,10 +421,10 @@ namespace FlutterSDK.Animation.Tween
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
         /// </Summary>
-        public new Size Lerp(double t) => Dart:uiDefaultClass.Size.Lerp(Begin, End, t);
+        public new Size Lerp(double t) => Dart.UI.UiDefaultClass.Size.Lerp(Begin, End, t);
 
 
-}
+    }
 
 
     /// <Summary>
@@ -446,10 +446,10 @@ namespace FlutterSDK.Animation.Tween
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
         /// </Summary>
-        public new Rect Lerp(double t) => Dart:uiDefaultClass.Rect.Lerp(Begin, End, t);
+        public new Rect Lerp(double t) => Dart.UI.UiDefaultClass.Rect.Lerp(Begin, End, t);
 
 
-}
+    }
 
 
     /// <Summary>

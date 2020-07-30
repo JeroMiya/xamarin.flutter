@@ -471,13 +471,13 @@ namespace FlutterSDK.Rendering.Debugoverflowindicator
             if (overflow.Left > 0.0)
             {
                 Rect markerRect = Rect.FromLTWH(0.0, 0.0, containerRect.Width * _IndicatorFraction, containerRect.Height);
-                regions.Add(new _OverflowRegionData(rect: markerRect, label: $"'LEFT OVERFLOWED BY {_FormatPixels(overflow.Left)} PIXELS'", labelOffset: markerRect.CenterLeft + new Offset(_IndicatorFontSizePixels + _IndicatorLabelPaddingPixels, 0.0), rotation: Math.Dart:mathDefaultClass.Pi / 2.0, side: _OverflowSide.Left));
+                regions.Add(new _OverflowRegionData(rect: markerRect, label: $"'LEFT OVERFLOWED BY {_FormatPixels(overflow.Left)} PIXELS'", labelOffset: markerRect.CenterLeft + new Offset(_IndicatorFontSizePixels + _IndicatorLabelPaddingPixels, 0.0), rotation: Dart.Math.MathDefaultClass.Pi / 2.0, side: _OverflowSide.Left));
             }
 
             if (overflow.Right > 0.0)
             {
                 Rect markerRect = Rect.FromLTWH(containerRect.Width * (1.0 - _IndicatorFraction), 0.0, containerRect.Width * _IndicatorFraction, containerRect.Height);
-                regions.Add(new _OverflowRegionData(rect: markerRect, label: $"'RIGHT OVERFLOWED BY {_FormatPixels(overflow.Right)} PIXELS'", labelOffset: markerRect.CenterRight - new Offset(_IndicatorFontSizePixels + _IndicatorLabelPaddingPixels, 0.0), rotation: -Math.Dart:mathDefaultClass.Pi / 2.0, side: _OverflowSide.Right));
+                regions.Add(new _OverflowRegionData(rect: markerRect, label: $"'RIGHT OVERFLOWED BY {_FormatPixels(overflow.Right)} PIXELS'", labelOffset: markerRect.CenterRight - new Offset(_IndicatorFontSizePixels + _IndicatorLabelPaddingPixels, 0.0), rotation: -Dart.Math.MathDefaultClass.Pi / 2.0, side: _OverflowSide.Right));
             }
 
             if (overflow.Top > 0.0)

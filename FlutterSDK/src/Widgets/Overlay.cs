@@ -1039,7 +1039,7 @@ namespace FlutterSDK.Widgets.Overlay
                     candidate += childParentData.Offset.Dy;
                     if (result != null)
                     {
-                        result = Math.Dart:mathDefaultClass.Min(result, candidate);
+                        result = Dart.Math.MathDefaultClass.Min(result, candidate);
                     }
                     else
                     {
@@ -1142,7 +1142,7 @@ namespace FlutterSDK.Widgets.Overlay
         {
             if (_HasVisualOverflow)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+                context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, PaintStack);
             }
             else
             {
@@ -1169,11 +1169,11 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart.UiDefaultClass.Offset.Zero & Size : null;
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
             properties.Add(new IntProperty("skipCount", SkipCount));

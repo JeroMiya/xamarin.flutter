@@ -645,7 +645,7 @@ namespace FlutterSDK.Painting.Textpainter
             _NeedsLayout = false;
             if (_Paragraph == null)
             {
-                Ui.Dart:uiDefaultClass.ParagraphBuilder builder = new Ui.ParagraphBuilder(_CreateParagraphStyle());
+                Dart.UI.ParagraphBuilder builder = new Ui.ParagraphBuilder(_CreateParagraphStyle());
                 _Text.Build(builder, textScaleFactor: TextScaleFactor, dimensions: _PlaceholderDimensions);
                 _InlinePlaceholderScales = builder.PlaceholderScales;
                 _Paragraph = builder.Build();
@@ -740,7 +740,7 @@ namespace FlutterSDK.Painting.Textpainter
         private Rect _GetRectFromUpstream(int offset, FlutterBinding.UI.Rect caretPrototype)
         {
             string flattenedText = _Text.ToPlainText(includePlaceholders: false);
-            int prevCodeUnit = _Text.CodeUnitAt(Dart: mathDefaultClass.Max(0, offset - 1));
+            int prevCodeUnit = _Text.CodeUnitAt(Dart.Math.MathDefaultClass.Max(0, offset - 1));
             if (prevCodeUnit == null) return null;
             bool needsSearch = _IsUtf16Surrogate(prevCodeUnit) || _Text.CodeUnitAt(offset) == _ZwjUtf16 || _IsUnicodeDirectionality(prevCodeUnit);
             int graphemeClusterLength = needsSearch ? 2 : 1;
@@ -774,7 +774,7 @@ namespace FlutterSDK.Painting.Textpainter
 
                 double caretEnd = box.End;
                 double dx = box.Direction == TextDirection.Rtl ? caretEnd - caretPrototype.Width : caretEnd;
-                return Rect.FromLTRB(Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
+                return Rect.FromLTRB(Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
             }
 
             return null;
@@ -786,7 +786,7 @@ namespace FlutterSDK.Painting.Textpainter
         private Rect _GetRectFromDownstream(int offset, FlutterBinding.UI.Rect caretPrototype)
         {
             string flattenedText = _Text.ToPlainText(includePlaceholders: false);
-            int nextCodeUnit = _Text.CodeUnitAt(Dart: mathDefaultClass.Min(offset, flattenedText == null ? 0 : flattenedText.Length - 1));
+            int nextCodeUnit = _Text.CodeUnitAt(Dart.Math.MathDefaultClass.Min(offset, flattenedText == null ? 0 : flattenedText.Length - 1));
             if (nextCodeUnit == null) return null;
             bool needsSearch = _IsUtf16Surrogate(nextCodeUnit) || nextCodeUnit == _ZwjUtf16 || _IsUnicodeDirectionality(nextCodeUnit);
             int graphemeClusterLength = needsSearch ? 2 : 1;
@@ -814,7 +814,7 @@ namespace FlutterSDK.Painting.Textpainter
                 TextBox box = boxes.Last();
                 double caretStart = box.Start;
                 double dx = box.Direction == TextDirection.Rtl ? caretStart - caretPrototype.Width : caretStart;
-                return Rect.FromLTRB(Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
+                return Rect.FromLTRB(Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
             }
 
             return null;

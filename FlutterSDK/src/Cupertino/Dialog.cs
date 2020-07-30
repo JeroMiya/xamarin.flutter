@@ -395,7 +395,7 @@ namespace FlutterSDK.Cupertino.Dialog
             CupertinoLocalizations localizations = LocalizationsDefaultClass.CupertinoLocalizations.Of(context);
             bool isInAccessibilityMode = DialogDefaultClass._IsInAccessibilityMode(context);
             double textScaleFactor = MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor;
-            return new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Elevated, child: new MediaQuery(data: MediaqueryDefaultClass.MediaQuery.Of(context).CopyWith(textScaleFactor: Math.Dart:mathDefaultClass.Max(textScaleFactor, 1.0)), child: new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+            return new CupertinoUserInterfaceLevel(data: CupertinoUserInterfaceLevelData.Elevated, child: new MediaQuery(data: MediaqueryDefaultClass.MediaQuery.Of(context).CopyWith(textScaleFactor: Dart.Math.MathDefaultClass.Max(textScaleFactor, 1.0)), child: new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
             {
                 return new AnimatedPadding(padding: MediaqueryDefaultClass.MediaQuery.Of(context).ViewInsets + EdgeInsets.Symmetric(horizontal: 40.0, vertical: 24.0), duration: InsetAnimationDuration, curve: InsetAnimationCurve, child: MediaQuery.RemoveViewInsets(removeLeft: true, removeTop: true, removeRight: true, removeBottom: true, context: context, child: new Center(child: new Container(margin: EdgeInsets.Symmetric(vertical: DialogDefaultClass._KEdgePadding), width: isInAccessibilityMode ? DialogDefaultClass._KAccessibilityCupertinoDialogWidth : DialogDefaultClass._KCupertinoDialogWidth, child: new CupertinoPopupSurface(isSurfacePainted: false, child: new Semantics(namesRoute: true, scopesRoute: true, explicitChildNodes: true, label: localizations.AlertDialogLabel, child: new _CupertinoDialogRenderWidget(contentSection: _BuildContent(context), actionsSection: _BuildActions())))))));
             }
@@ -1122,7 +1122,7 @@ namespace FlutterSDK.Cupertino.Dialog
             double textScaleFactor = MediaqueryDefaultClass.MediaQuery.TextScaleFactorOf(context);
             double fontSizeRatio = (textScaleFactor * textStyle.FontSize) / DialogDefaultClass._KMinButtonFontSize;
             double padding = _CalculatePadding(context);
-            return new IntrinsicHeight(child: new SizedBox(width: Dart:coreDefaultClass.Double.Infinity, child: new FittedBox(fit: BoxFit.ScaleDown, child: new ConstrainedBox(constraints: new BoxConstraints(maxWidth: fontSizeRatio * (dialogWidth - (2 * padding))), child: new Semantics(button: true, onTap: OnPressed, child: new DefaultTextStyle(style: textStyle, textAlign: TextAlign.Center, overflow: TextOverflow.Ellipsis, maxLines: 1, child: content))))));
+            return new IntrinsicHeight(child: new SizedBox(width: Dart.CoreDefaultClass.Double.Infinity, child: new FittedBox(fit: BoxFit.ScaleDown, child: new ConstrainedBox(constraints: new BoxConstraints(maxWidth: fontSizeRatio * (dialogWidth - (2 * padding))), child: new Semantics(button: true, onTap: OnPressed, child: new DefaultTextStyle(style: textStyle, textAlign: TextAlign.Center, overflow: TextOverflow.Ellipsis, maxLines: 1, child: content))))));
         }
 
 
@@ -1142,7 +1142,7 @@ namespace FlutterSDK.Cupertino.Dialog
             style = style.Merge(TextStyle);
             if (IsDefaultAction)
             {
-                style = style.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W600);
+                style = style.CopyWith(fontWeight: Dart.UI.UiDefaultClass.FontWeight.W600);
             }
 
             if (!Enabled)
@@ -1286,7 +1286,7 @@ namespace FlutterSDK.Cupertino.Dialog
             else
             {
                 double perButtonWidth = (width - DividerThickness) / 2.0;
-                minHeight = Math.Dart:mathDefaultClass.Max(FirstChild.GetMinIntrinsicHeight(perButtonWidth), LastChild.GetMinIntrinsicHeight(perButtonWidth));
+                minHeight = Dart.Math.MathDefaultClass.Max(FirstChild.GetMinIntrinsicHeight(perButtonWidth), LastChild.GetMinIntrinsicHeight(perButtonWidth));
             }
 
             return minHeight;
@@ -1320,7 +1320,7 @@ namespace FlutterSDK.Cupertino.Dialog
                 if (_IsSingleButtonRow(width))
                 {
                     double perButtonWidth = (width - DividerThickness) / 2.0;
-                    maxHeight = Math.Dart:mathDefaultClass.Max(FirstChild.GetMaxIntrinsicHeight(perButtonWidth), LastChild.GetMaxIntrinsicHeight(perButtonWidth));
+                    maxHeight = Dart.Math.MathDefaultClass.Max(FirstChild.GetMaxIntrinsicHeight(perButtonWidth), LastChild.GetMaxIntrinsicHeight(perButtonWidth));
                 }
                 else
                 {
@@ -1366,7 +1366,7 @@ namespace FlutterSDK.Cupertino.Dialog
             }
             else if (ChildCount == 2)
             {
-                double sideBySideWidth = FirstChild.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity) + DividerThickness + LastChild.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+                double sideBySideWidth = FirstChild.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity) + DividerThickness + LastChild.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
                 isSingleButtonRow = sideBySideWidth <= width;
             }
             else
@@ -1392,19 +1392,19 @@ namespace FlutterSDK.Cupertino.Dialog
                 }
                 else
                 {
-                    BoxConstraints perButtonConstraints = new BoxConstraints(minWidth: (constraints.MinWidth - DividerThickness) / 2.0, maxWidth: (constraints.MaxWidth - DividerThickness) / 2.0, minHeight: 0.0, maxHeight: Dart:coreDefaultClass.Double.Infinity);
+                    BoxConstraints perButtonConstraints = new BoxConstraints(minWidth: (constraints.MinWidth - DividerThickness) / 2.0, maxWidth: (constraints.MaxWidth - DividerThickness) / 2.0, minHeight: 0.0, maxHeight: Dart.CoreDefaultClass.Double.Infinity);
                     FirstChild.Layout(perButtonConstraints, parentUsesSize: true);
                     LastChild.Layout(perButtonConstraints, parentUsesSize: true);
 
                     MultiChildLayoutParentData secondButtonParentData = LastChild.ParentData as MultiChildLayoutParentData;
                     secondButtonParentData.Offset = new Offset(FirstChild.Size.Width + DividerThickness, 0.0);
-                    Size = constraints.Constrain(new Size(DialogWidth, Math.Dart:mathDefaultClass.Max(FirstChild.Size.Height, LastChild.Size.Height)));
+                    Size = constraints.Constrain(new Size(DialogWidth, Dart.Math.MathDefaultClass.Max(FirstChild.Size.Height, LastChild.Size.Height)));
                 }
 
             }
             else
             {
-                BoxConstraints perButtonConstraints = constraints.CopyWith(minHeight: 0.0, maxHeight: Dart:coreDefaultClass.Double.Infinity);
+                BoxConstraints perButtonConstraints = constraints.CopyWith(minHeight: 0.0, maxHeight: Dart.CoreDefaultClass.Double.Infinity);
                 RenderBox child = FirstChild;
                 int index = 0;
                 double verticalOffset = 0.0;
@@ -1452,7 +1452,7 @@ namespace FlutterSDK.Cupertino.Dialog
 
         private void _DrawButtonBackgroundsAndDividersSingleRow(Canvas canvas, FlutterBinding.UI.Offset offset)
         {
-            Rect verticalDivider = ChildCount == 2 && !_IsButtonPressed ? Rect.FromLTWH(offset.Dx + FirstChild.Size.Width, offset.Dy, DividerThickness, Math.Dart: mathDefaultClass.Max(FirstChild.Size.Height, LastChild.Size.Height)):Dart: uiDefaultClass.Rect.Zero;
+            Rect verticalDivider = ChildCount == 2 && !_IsButtonPressed ? Rect.FromLTWH(offset.Dx + FirstChild.Size.Width, offset.Dy, DividerThickness, Dart.Math.MathDefaultClass.Max(FirstChild.Size.Height, LastChild.Size.Height)) : Dart.UiDefaultClass.Rect.Zero;
             List<Rect> pressedButtonRects = _PressedButtons.Map((RenderBox pressedButton) =>
             {
                 MultiChildLayoutParentData buttonParentData = pressedButton.ParentData as MultiChildLayoutParentData;
@@ -1522,7 +1522,7 @@ namespace FlutterSDK.Cupertino.Dialog
                     dividersPath.AddRect(dividerRect);
                 }
 
-                accumulatingOffset += (isDividerPresent ? dividerOffset : Dart:uiDefaultClass.Offset.Zero)+new Offset(0.0, child.Size.Height);
+                accumulatingOffset += (isDividerPresent ? dividerOffset : Dart.UiDefaultClass.Offset.Zero) + new Offset(0.0, child.Size.Height);
                 prevChild = child;
                 child = ChildAfter(child);
             }

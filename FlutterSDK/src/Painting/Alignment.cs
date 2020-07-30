@@ -573,7 +573,7 @@ namespace FlutterSDK.Painting.Alignment
             if (b == null) return a * (1.0 - t);
             if (a is Alignment && b is Alignment) return AlignmentDefaultClass.Alignment.Lerp(a, b, t);
             if (a is AlignmentDirectional && b is AlignmentDirectional) return AlignmentDefaultClass.AlignmentDirectional.Lerp(a, b, t);
-            return new _MixedAlignment(Ui.Dart:uiDefaultClass.LerpDouble(a._X, b._X, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Start, b._Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Y, b._Y, t));
+            return new _MixedAlignment(Dart.UI.UiDefaultClass.LerpDouble(a._X, b._X, t), Dart.UI.UiDefaultClass.LerpDouble(a._Start, b._Start, t), Dart.UI.UiDefaultClass.LerpDouble(a._Y, b._Y, t));
         }
 
 
@@ -826,9 +826,9 @@ namespace FlutterSDK.Painting.Alignment
         {
 
             if (a == null && b == null) return null;
-            if (a == null) return new Alignment(Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.x, t), Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.y, t));
-            if (b == null) return new Alignment(Ui.Dart:uiDefaultClass.LerpDouble(a.x, 0.0, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, 0.0, t));
-            return new Alignment(Ui.Dart:uiDefaultClass.LerpDouble(a.x, b.x, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, b.y, t));
+            if (a == null) return new Alignment(Dart.UI.UiDefaultClass.LerpDouble(0.0, b.x, t), Dart.UI.UiDefaultClass.LerpDouble(0.0, b.y, t));
+            if (b == null) return new Alignment(Dart.UI.UiDefaultClass.LerpDouble(a.x, 0.0, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, 0.0, t));
+            return new Alignment(Dart.UI.UiDefaultClass.LerpDouble(a.x, b.x, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, b.y, t));
         }
 
 
@@ -991,9 +991,9 @@ namespace FlutterSDK.Painting.Alignment
         {
 
             if (a == null && b == null) return null;
-            if (a == null) return new AlignmentDirectional(Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.Start, t), Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.y, t));
-            if (b == null) return new AlignmentDirectional(Ui.Dart:uiDefaultClass.LerpDouble(a.Start, 0.0, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, 0.0, t));
-            return new AlignmentDirectional(Ui.Dart:uiDefaultClass.LerpDouble(a.Start, b.Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, b.y, t));
+            if (a == null) return new AlignmentDirectional(Dart.UI.UiDefaultClass.LerpDouble(0.0, b.Start, t), Dart.UI.UiDefaultClass.LerpDouble(0.0, b.y, t));
+            if (b == null) return new AlignmentDirectional(Dart.UI.UiDefaultClass.LerpDouble(a.Start, 0.0, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, 0.0, t));
+            return new AlignmentDirectional(Dart.UI.UiDefaultClass.LerpDouble(a.Start, b.Start, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, b.y, t));
         }
 
 

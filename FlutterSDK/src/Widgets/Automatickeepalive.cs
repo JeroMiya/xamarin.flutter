@@ -685,19 +685,19 @@ namespace FlutterSDK.Widgets.Automatickeepalive
                     else
                     {
                         _KeepingAlive = false;
-                    Dart: asyncDefaultClass.ScheduleMicrotask(() =>
-                    {
-                        if (Mounted && _Handles.IsEmpty())
+                        Dart.AsyncDefaultClass.ScheduleMicrotask(() =>
                         {
-                            SetState(() =>
+                            if (Mounted && _Handles.IsEmpty())
                             {
+                                SetState(() =>
+                                {
 
+                                }
+                                );
                             }
-                            );
-                        }
 
-                    }
-                     );
+                        }
+                        );
                     }
 
                 }

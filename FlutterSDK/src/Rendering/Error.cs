@@ -455,7 +455,7 @@ namespace FlutterSDK.Rendering.Error
             {
                 if (Message != "")
                 {
-                    Ui.Dart:uiDefaultClass.ParagraphBuilder builder = new Ui.ParagraphBuilder(ParagraphStyle);
+                    Dart.UI.ParagraphBuilder builder = new Ui.ParagraphBuilder(ParagraphStyle);
                     builder.PushStyle(TextStyle);
                     builder.AddText(Message);
                     _Paragraph = builder.Build();
@@ -518,7 +518,7 @@ namespace FlutterSDK.Rendering.Error
 
         private TextStyle _InitTextStyle()
         {
-            Ui.Dart:uiDefaultClass.TextStyle result = new Ui.TextStyle(color: new Color(0xFF303030), fontFamily: "sans-serif", fontSize: 18.0);
+            Dart.UI.TextStyle result = new Ui.TextStyle(color: new Color(0xFF303030), fontFamily: "sans-serif", fontSize: 18.0);
 
             return result;
         }

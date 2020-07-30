@@ -416,7 +416,7 @@ namespace FlutterSDK.Material.Bannertheme
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Lerp(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData a, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData b, double t)
         {
 
-            return new MaterialBannerThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), leadingPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LeadingPadding, b?.LeadingPadding, t));
+            return new MaterialBannerThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), leadingPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LeadingPadding, b?.LeadingPadding, t));
         }
 
 
@@ -424,7 +424,7 @@ namespace FlutterSDK.Material.Bannertheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is MaterialBannerThemeData && other.BackgroundColor == BackgroundColor && other.ContentTextStyle == ContentTextStyle && other.Padding == Padding && other.LeadingPadding == LeadingPadding;
         }
@@ -487,7 +487,7 @@ namespace FlutterSDK.Material.Bannertheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             MaterialBannerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new MaterialBannerTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new MaterialBannerTheme(data: Data, child: child);
         }
 
 

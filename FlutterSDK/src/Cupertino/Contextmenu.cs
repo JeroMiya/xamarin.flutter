@@ -425,7 +425,7 @@ namespace FlutterSDK.Cupertino.Contextmenu
                 _ChildHidden = true;
             }
             );
-            _Route = new _ContextMenuRoute<void>(actions: Widget.Actions, barrierLabel: "Dismiss", filter: Ui.Dart:uiDefaultClass.ImageFilter.Blur(sigmaX: 5.0, sigmaY: 5.0), contextMenuLocation: _ContextMenuLocation, previousChildRect: _DecoyChildEndRect, builder: (BuildContext context, Animation<double> animation) =>
+            _Route = new _ContextMenuRoute<void>(actions: Widget.Actions, barrierLabel: "Dismiss", filter: Dart.UI.ImageFilter.Blur(sigmaX: 5.0, sigmaY: 5.0), contextMenuLocation: _ContextMenuLocation, previousChildRect: _DecoyChildEndRect, builder: (BuildContext context, Animation<double> animation) =>
             {
                 if (Widget.PreviewBuilder == null)
                 {
@@ -880,7 +880,7 @@ _OpenController.Reset();
         private double _GetScale(FlutterSDK.Widgets.Mediaquery.Orientation orientation, double maxDragDistance, double dy)
         {
             double dyDirectional = dy <= 0.0 ? dy : -dy;
-            return Math.Dart:mathDefaultClass.Max(_KMinScale, (maxDragDistance + dyDirectional) / maxDragDistance);
+            return Dart.Math.MathDefaultClass.Max(_KMinScale, (maxDragDistance + dyDirectional) / maxDragDistance);
         }
 
 
@@ -889,7 +889,7 @@ _OpenController.Reset();
         private void _OnPanStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
         {
             _MoveController.Value = 1.0;
-            _SetDragOffset(Dart: uiDefaultClass.Offset.Zero);
+            _SetDragOffset(Dart.UI.UiDefaultClass.Offset.Zero);
         }
 
 
@@ -991,7 +991,7 @@ _OpenController.Reset();
             SetState(() =>
             {
                 _DragOffset = dragOffset;
-                _MoveAnimation = new Tween<Offset>(begin: Dart:uiDefaultClass.Offset.Zero, end: new Offset(endX.Clamp(-_KPadding, _KPadding) as double, endY)).Animate(new CurvedAnimation(parent: _MoveController, curve: CurvesDefaultClass.Curves.ElasticIn));
+                _MoveAnimation = new Tween<Offset>(begin: Dart.UI.UiDefaultClass.Offset.Zero, end: new Offset(endX.Clamp(-_KPadding, _KPadding) as double, endY)).Animate(new CurvedAnimation(parent: _MoveController, curve: CurvesDefaultClass.Curves.ElasticIn));
                 if (_LastScale <= _KSheetScaleThreshold && _SheetController.Status != AnimationStatus.Forward && _SheetScaleAnimation.Value != 0.0)
                 {
                     _SheetController.Forward();
@@ -1051,7 +1051,7 @@ _OpenController.Reset();
             _SheetController = new AnimationController(duration: new TimeSpan(milliseconds: 100), reverseDuration: new TimeSpan(milliseconds: 300), vsync: this);
             _SheetScaleAnimation = new Tween<double>(begin: 1.0, end: 0.0).Animate(new CurvedAnimation(parent: _SheetController, curve: CurvesDefaultClass.Curves.Linear, reverseCurve: CurvesDefaultClass.Curves.EaseInBack));
             _SheetOpacityAnimation = new Tween<double>(begin: 1.0, end: 0.0).Animate(_SheetController);
-            _SetDragOffset(Dart: uiDefaultClass.Offset.Zero);
+            _SetDragOffset(Dart.UI.UiDefaultClass.Offset.Zero);
         }
 
 

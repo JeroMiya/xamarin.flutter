@@ -748,7 +748,7 @@ namespace FlutterSDK.Material.Tabcontroller
                 int previousIndex = _Controller.PreviousIndex;
                 if (_Controller.Index >= Widget.Length)
                 {
-                    newIndex = Math.Dart:mathDefaultClass.Max(0, Widget.Length - 1);
+                    newIndex = Dart.Math.MathDefaultClass.Max(0, Widget.Length - 1);
                     previousIndex = _Controller.Index;
                 }
 

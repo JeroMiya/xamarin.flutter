@@ -789,13 +789,13 @@ public virtual double DefaultCacheExtent { get; set; }
             while (child != null)
             {
                 double sliverScrollOffset = scrollOffset <= 0.0 ? 0.0 : scrollOffset;
-                double correctedCacheOrigin = Math.Dart:mathDefaultClass.Max(cacheOrigin, -sliverScrollOffset);
+                double correctedCacheOrigin = Dart.Math.MathDefaultClass.Max(cacheOrigin, -sliverScrollOffset);
                 double cacheExtentCorrection = cacheOrigin - correctedCacheOrigin;
 
 
 
 
-                child.Layout(new SliverConstraints(axisDirection: AxisDirection, growthDirection: growthDirection, userScrollDirection: adjustedUserScrollDirection, scrollOffset: sliverScrollOffset, precedingScrollExtent: precedingScrollExtent, overlap: maxPaintOffset - layoutOffset, remainingPaintExtent: Math.Dart:mathDefaultClass.Max(0.0, remainingPaintExtent - layoutOffset + initialLayoutOffset), crossAxisExtent: crossAxisExtent, crossAxisDirection: CrossAxisDirection, viewportMainAxisExtent: mainAxisExtent, remainingCacheExtent: Math.Dart:mathDefaultClass.Max(0.0, remainingCacheExtent + cacheExtentCorrection), cacheOrigin: correctedCacheOrigin), parentUsesSize: true);
+                child.Layout(new SliverConstraints(axisDirection: AxisDirection, growthDirection: growthDirection, userScrollDirection: adjustedUserScrollDirection, scrollOffset: sliverScrollOffset, precedingScrollExtent: precedingScrollExtent, overlap: maxPaintOffset - layoutOffset, remainingPaintExtent: Dart.Math.MathDefaultClass.Max(0.0, remainingPaintExtent - layoutOffset + initialLayoutOffset), crossAxisExtent: crossAxisExtent, crossAxisDirection: CrossAxisDirection, viewportMainAxisExtent: mainAxisExtent, remainingCacheExtent: Dart.Math.MathDefaultClass.Max(0.0, remainingCacheExtent + cacheExtentCorrection), cacheOrigin: correctedCacheOrigin), parentUsesSize: true);
                 SliverGeometry childLayoutGeometry = child.Geometry;
 
                 if (childLayoutGeometry.ScrollOffsetCorrection != null) return childLayoutGeometry.ScrollOffsetCorrection;
@@ -809,14 +809,14 @@ public virtual double DefaultCacheExtent { get; set; }
                     UpdateChildLayoutOffset(child, -scrollOffset + initialLayoutOffset, growthDirection);
                 }
 
-                maxPaintOffset = Math.Dart:mathDefaultClass.Max(effectiveLayoutOffset + childLayoutGeometry.PaintExtent, maxPaintOffset);
+                maxPaintOffset = Dart.Math.MathDefaultClass.Max(effectiveLayoutOffset + childLayoutGeometry.PaintExtent, maxPaintOffset);
                 scrollOffset -= childLayoutGeometry.ScrollExtent;
                 precedingScrollExtent += childLayoutGeometry.ScrollExtent;
                 layoutOffset += childLayoutGeometry.LayoutExtent;
                 if (childLayoutGeometry.CacheExtent != 0.0)
                 {
                     remainingCacheExtent -= childLayoutGeometry.CacheExtent - cacheExtentCorrection;
-                    cacheOrigin = Math.Dart:mathDefaultClass.Min(correctedCacheOrigin + childLayoutGeometry.CacheExtent, 0.0);
+                    cacheOrigin = Dart.Math.MathDefaultClass.Min(correctedCacheOrigin + childLayoutGeometry.CacheExtent, 0.0);
                 }
 
                 UpdateOutOfBandData(growthDirection, childLayoutGeometry);
@@ -831,7 +831,7 @@ public virtual double DefaultCacheExtent { get; set; }
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.Sliver.RenderSliver child)
         {
-            Rect viewportClip = Dart:uiDefaultClass.Offset.Zero & Size;
+            Rect viewportClip = Dart.UiDefaultClass.Offset.Zero & Size;
             if (child.Constraints.Overlap == 0 || !child.Constraints.ViewportMainAxisExtent.IsFinite())
             {
                 return viewportClip;
@@ -850,7 +850,7 @@ public virtual double DefaultCacheExtent { get; set; }
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            Rect viewportClip = Dart:uiDefaultClass.Offset.Zero & Size;
+            Rect viewportClip = Dart.UiDefaultClass.Offset.Zero & Size;
             if (child.Constraints.Overlap == 0 || !child.Constraints.ViewportMainAxisExtent.IsFinite())
             {
                 return viewportClip;
@@ -902,7 +902,7 @@ public virtual double DefaultCacheExtent { get; set; }
             if (FirstChild == null) return;
             if (HasVisualOverflow)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintContents);
+                context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintContents);
             }
             else
             {
@@ -1394,7 +1394,7 @@ public virtual double DefaultCacheExtent { get; set; }
                 }
                 else
                 {
-                    if (Offset.ApplyContentDimensions(Math.Dart:mathDefaultClass.Min(0.0, _MinScrollExtent + mainAxisExtent * Anchor), Math.Dart:mathDefaultClass.Max(0.0, _MaxScrollExtent - mainAxisExtent * (1.0 - Anchor)))) break;
+                    if (Offset.ApplyContentDimensions(Dart.Math.MathDefaultClass.Min(0.0, _MinScrollExtent + mainAxisExtent * Anchor), Dart.Math.MathDefaultClass.Max(0.0, _MaxScrollExtent - mainAxisExtent * (1.0 - Anchor)))) break;
                 }
 
                 count += 1;
@@ -1427,11 +1427,11 @@ public virtual double DefaultCacheExtent { get; set; }
             RenderSliver leadingNegativeChild = ChildBefore(Center);
             if (leadingNegativeChild != null)
             {
-                double result = LayoutChildSequence(child: leadingNegativeChild, scrollOffset: Math.Dart:mathDefaultClass.Max(mainAxisExtent, centerOffset) - mainAxisExtent, overlap: 0.0, layoutOffset: forwardDirectionRemainingPaintExtent, remainingPaintExtent: reverseDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Reverse, advance: ChildBefore, remainingCacheExtent: reverseDirectionRemainingCacheExtent, cacheOrigin: (mainAxisExtent - centerOffset).Clamp(-_CalculatedCacheExtent, 0.0) as double);
+                double result = LayoutChildSequence(child: leadingNegativeChild, scrollOffset: Dart.Math.MathDefaultClass.Max(mainAxisExtent, centerOffset) - mainAxisExtent, overlap: 0.0, layoutOffset: forwardDirectionRemainingPaintExtent, remainingPaintExtent: reverseDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Reverse, advance: ChildBefore, remainingCacheExtent: reverseDirectionRemainingCacheExtent, cacheOrigin: (mainAxisExtent - centerOffset).Clamp(-_CalculatedCacheExtent, 0.0) as double);
                 if (result != 0.0) return -result;
             }
 
-            return LayoutChildSequence(child: Center, scrollOffset: Math.Dart:mathDefaultClass.Max(0.0, -centerOffset), overlap: leadingNegativeChild == null ? Math.Dart : mathDefaultClass.Min(0.0, -centerOffset):0.0, layoutOffset: centerOffset >= mainAxisExtent ? centerOffset : reverseDirectionRemainingPaintExtent, remainingPaintExtent: forwardDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: forwardDirectionRemainingCacheExtent, cacheOrigin: centerOffset.Clamp(-_CalculatedCacheExtent, 0.0) as double);
+            return LayoutChildSequence(child: Center, scrollOffset: Dart.Math.MathDefaultClass.Max(0.0, -centerOffset), overlap: leadingNegativeChild == null ? Dart.Math.MathDefaultClass.Min(0.0, -centerOffset) : 0.0, layoutOffset: centerOffset >= mainAxisExtent ? centerOffset : reverseDirectionRemainingPaintExtent, remainingPaintExtent: forwardDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: forwardDirectionRemainingCacheExtent, cacheOrigin: centerOffset.Clamp(-_CalculatedCacheExtent, 0.0) as double);
         }
 
 
@@ -1655,7 +1655,7 @@ public virtual double DefaultCacheExtent { get; set; }
                 {
                     switch (Axis) { case Axis.Vertical: effectiveExtent = constraints.ConstrainHeight(_ShrinkWrapExtent); break; case Axis.Horizontal: effectiveExtent = constraints.ConstrainWidth(_ShrinkWrapExtent); break; }
                     bool didAcceptViewportDimension = Offset.ApplyViewportDimension(effectiveExtent);
-                    bool didAcceptContentDimension = Offset.ApplyContentDimensions(0.0, Math.Dart:mathDefaultClass.Max(0.0, _MaxScrollExtent - effectiveExtent));
+                    bool didAcceptContentDimension = Offset.ApplyContentDimensions(0.0, Dart.Math.MathDefaultClass.Max(0.0, _MaxScrollExtent - effectiveExtent));
                     if (didAcceptViewportDimension && didAcceptContentDimension) break;
                 }
 
@@ -1677,7 +1677,7 @@ public virtual double DefaultCacheExtent { get; set; }
             _MaxScrollExtent = 0.0;
             _ShrinkWrapExtent = 0.0;
             _HasVisualOverflow = false;
-            return LayoutChildSequence(child: FirstChild, scrollOffset: Math.Dart:mathDefaultClass.Max(0.0, correctedOffset), overlap: Math.Dart:mathDefaultClass.Min(0.0, correctedOffset), layoutOffset: 0.0, remainingPaintExtent: mainAxisExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: mainAxisExtent + 2 * CacheExtent, cacheOrigin: -CacheExtent);
+            return LayoutChildSequence(child: FirstChild, scrollOffset: Dart.Math.MathDefaultClass.Max(0.0, correctedOffset), overlap: Dart.Math.MathDefaultClass.Min(0.0, correctedOffset), layoutOffset: 0.0, remainingPaintExtent: mainAxisExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: mainAxisExtent + 2 * CacheExtent, cacheOrigin: -CacheExtent);
         }
 
 

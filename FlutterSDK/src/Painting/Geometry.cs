@@ -436,7 +436,7 @@ namespace FlutterSDK.Painting.Geometry
             bool fitsAbove = target.Dy - verticalOffset - childSize.Height >= margin;
             bool tooltipBelow = preferBelow ? fitsBelow || !fitsAbove : !(fitsAbove || !fitsBelow);
             double y = default(double);
-            if (tooltipBelow) y = Math.Dart:mathDefaultClass.Min(target.Dy + verticalOffset, size.Height - margin);else y = Math.Dart:mathDefaultClass.Max(target.Dy - verticalOffset - childSize.Height, margin);
+            if (tooltipBelow) y = Dart.Math.MathDefaultClass.Min(target.Dy + verticalOffset, size.Height - margin); else y = Dart.Math.MathDefaultClass.Max(target.Dy - verticalOffset - childSize.Height, margin);
             double x = default(double);
             if (size.Width - margin * 2.0 < childSize.Width)
             {

@@ -529,7 +529,7 @@ namespace FlutterSDK.Widgets.Editabletext
                 return new TextSpan(style: style, text: Text);
             }
 
-            TextStyle composingStyle = style.Merge(new TextStyle(decoration: Dart:uiDefaultClass.TextDecoration.Underline));
+            TextStyle composingStyle = style.Merge(new TextStyle(decoration: Dart.UI.UiDefaultClass.TextDecoration.Underline));
             return new TextSpan(style: style, children: new List<TextSpan>() { new TextSpan(text: Value.Composing.TextBefore(Value.Text)), new TextSpan(style: composingStyle, text: Value.Composing.TextInside(Value.Text)), new TextSpan(text: Value.Composing.TextAfter(Value.Text)) });
         }
 
@@ -569,7 +569,7 @@ namespace FlutterSDK.Widgets.Editabletext
         /// </Summary>
         public virtual void ClearComposing()
         {
-            Value = Value.CopyWith(composing: Dart:uiDefaultClass.TextRange.Empty);
+            Value = Value.CopyWith(composing: Dart.UI.UiDefaultClass.TextRange.Empty);
         }
 
 
@@ -1070,8 +1070,8 @@ namespace FlutterSDK.Widgets.Editabletext
             else
             {
                 double lerpValue = _FloatingCursorResetController.Value;
-                double lerpX = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dx, finalPosition.Dx, lerpValue);
-                double lerpY = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dy, finalPosition.Dy, lerpValue);
+                double lerpX = Dart.UI.UiDefaultClass.LerpDouble(_LastBoundedOffset.Dx, finalPosition.Dx, lerpValue);
+                double lerpY = Dart.UI.UiDefaultClass.LerpDouble(_LastBoundedOffset.Dy, finalPosition.Dy, lerpValue);
                 RenderEditable.SetFloatingCursor(FloatingCursorDragState.Update, new Offset(lerpX, lerpY), _LastTextPosition, resetLerpValue: lerpValue);
             }
 
@@ -1337,10 +1337,10 @@ namespace FlutterSDK.Widgets.Editabletext
                 if (_SelectionOverlay?.SelectionControls != null)
                 {
                     double handleHeight = _SelectionOverlay.SelectionControls.GetHandleSize(RenderEditable.PreferredLineHeight).Height;
-                    double interactiveHandleHeight = Math.Dart:mathDefaultClass.Max(handleHeight, ConstantsDefaultClass.KMinInteractiveDimension);
+                    double interactiveHandleHeight = Dart.Math.MathDefaultClass.Max(handleHeight, ConstantsDefaultClass.KMinInteractiveDimension);
                     Offset anchor = _SelectionOverlay.SelectionControls.GetHandleAnchor(TextSelectionHandleType.Collapsed, RenderEditable.PreferredLineHeight);
                     double handleCenter = handleHeight / 2 - anchor.Dy;
-                    bottomSpacing = Math.Dart:mathDefaultClass.Max(handleCenter + interactiveHandleHeight / 2, bottomSpacing);
+                    bottomSpacing = Dart.Math.MathDefaultClass.Max(handleCenter + interactiveHandleHeight / 2, bottomSpacing);
                 }
 
                 Rect inflatedRect = Rect.FromLTRB(newCaretRect.Left - Widget.ScrollPadding.Left, newCaretRect.Top - Widget.ScrollPadding.Top, newCaretRect.Right + Widget.ScrollPadding.Right, newCaretRect.Bottom + bottomSpacing);

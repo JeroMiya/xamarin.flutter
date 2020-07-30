@@ -486,7 +486,7 @@ namespace FlutterSDK.Services.Assetbundle
             if (data == null) throw new FlutterError($"'Unable to load asset: {key}'");
             if (data.LengthInBytes < 10 * 1024)
             {
-                return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
+                return Dart.ConvertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
             }
 
             return IsolatesDefaultClass.Compute(_Utf8decode, data, debugLabel: $"'UTF8 decode for "{ key}
@@ -498,7 +498,7 @@ namespace FlutterSDK.Services.Assetbundle
 
         private string _Utf8decode(ByteData data)
         {
-            return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
+            return Dart.ConvertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
         }
 
 
@@ -574,7 +574,7 @@ namespace FlutterSDK.Services.Assetbundle
         {
             HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
             HttpResponseMessage response = await request.Close();
-            if (response.StatusCode != Dart:internalDefaultClass.HttpStatus.Ok)throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode) });
+            if (response.StatusCode != Dart._InternalDefaultClass.HttpStatus.Ok) throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode) });
             Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response);
             return bytes.Buffer.AsByteData();
         }
@@ -692,7 +692,7 @@ namespace FlutterSDK.Services.Assetbundle
 
         public new async Future<ByteData> Load(string key)
         {
-            Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart:coreDefaultClass.Uri.EncodeFull(key)).Path);
+            Uint8List encoded = Dart.ConvertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart.CoreDefaultClass.Uri.EncodeFull(key)).Path);
             ByteData asset = await BinarymessengerDefaultClass.DefaultBinaryMessenger.Send("flutter/assets", encoded.Buffer.AsByteData());
             if (asset == null) throw new FlutterError($"'Unable to load asset: {key}'");
             return asset;

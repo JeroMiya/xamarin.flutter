@@ -477,7 +477,7 @@ namespace FlutterSDK.Painting.Circleborder
         public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
             return new Path();
-            new Path().AddOval(Rect.FromCircle(center: rect.Center, radius: Math.Dart:mathDefaultClass.Max(0.0, rect.ShortestSide / 2.0 - Side.Width)));
+            new Path().AddOval(Rect.FromCircle(center: rect.Center, radius: Dart.Math.MathDefaultClass.Max(0.0, rect.ShortestSide / 2.0 - Side.Width)));
         }
 
 

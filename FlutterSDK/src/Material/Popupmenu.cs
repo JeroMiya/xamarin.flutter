@@ -608,7 +608,7 @@ namespace FlutterSDK.Material.Popupmenu
         {
             if (Child == null)
             {
-                Size = Dart:uiDefaultClass.Size.Zero;
+                Size = Dart.UiDefaultClass.Size.Zero;
             }
             else
             {
@@ -617,7 +617,7 @@ namespace FlutterSDK.Material.Popupmenu
             }
 
             BoxParentData childParentData = Child.ParentData as BoxParentData;
-            childParentData.Offset = Dart:uiDefaultClass.Offset.Zero;
+            childParentData.Offset = Dart.UiDefaultClass.Offset.Zero;
             OnLayout(Size);
         }
 
@@ -1207,7 +1207,7 @@ namespace FlutterSDK.Material.Popupmenu
             PopupMenuThemeData popupMenuTheme = PopupmenuthemeDefaultClass.PopupMenuTheme.Of(Context);
             RenderBox button = Context.FindRenderObject() as RenderBox;
             RenderBox overlay = OverlayDefaultClass.Overlay.Of(Context).Context.FindRenderObject() as RenderBox;
-            RelativeRect position = RelativeRect.FromRect(Rect.FromPoints(button.LocalToGlobal(Widget.Offset, ancestor: overlay), button.LocalToGlobal(button.Size.BottomRight(Dart: uiDefaultClass.Offset.Zero), ancestor: overlay)), Dart: uiDefaultClass.Offset.Zero & overlay.Size);
+            RelativeRect position = RelativeRect.FromRect(Rect.FromPoints(button.LocalToGlobal(Widget.Offset, ancestor: overlay), button.LocalToGlobal(button.Size.BottomRight(Dart.UI.UiDefaultClass.Offset.Zero), ancestor: overlay)), Dart.UiDefaultClass.Offset.Zero & overlay.Size);
             List<PopupMenuEntry<T>> items = Widget.ItemBuilder(Context);
             if (items.IsNotEmpty)
             {

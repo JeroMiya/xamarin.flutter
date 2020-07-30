@@ -504,11 +504,11 @@ namespace FlutterSDK.Rendering.Sliverpadding
             double crossAxisPadding = this.CrossAxisPadding;
             if (Child == null)
             {
-                Geometry = new SliverGeometry(scrollExtent: mainAxisPadding, paintExtent: Math.Dart:mathDefaultClass.Min(mainAxisPadding, constraints.RemainingPaintExtent), maxPaintExtent: mainAxisPadding);
+                Geometry = new SliverGeometry(scrollExtent: mainAxisPadding, paintExtent: Dart.Math.MathDefaultClass.Min(mainAxisPadding, constraints.RemainingPaintExtent), maxPaintExtent: mainAxisPadding);
                 return;
             }
 
-            Child.Layout(constraints.CopyWith(scrollOffset: Math.Dart:mathDefaultClass.Max(0.0, constraints.ScrollOffset - beforePadding), cacheOrigin: Math.Dart:mathDefaultClass.Min(0.0, constraints.CacheOrigin + beforePadding), overlap: 0.0, remainingPaintExtent: constraints.RemainingPaintExtent - CalculatePaintOffset(constraints, from: 0.0, to: beforePadding), remainingCacheExtent: constraints.RemainingCacheExtent - CalculateCacheOffset(constraints, from: 0.0, to: beforePadding), crossAxisExtent: Math.Dart:mathDefaultClass.Max(0.0, constraints.CrossAxisExtent - crossAxisPadding), precedingScrollExtent: beforePadding + constraints.PrecedingScrollExtent), parentUsesSize: true);
+            Child.Layout(constraints.CopyWith(scrollOffset: Dart.Math.MathDefaultClass.Max(0.0, constraints.ScrollOffset - beforePadding), cacheOrigin: Dart.Math.MathDefaultClass.Min(0.0, constraints.CacheOrigin + beforePadding), overlap: 0.0, remainingPaintExtent: constraints.RemainingPaintExtent - CalculatePaintOffset(constraints, from: 0.0, to: beforePadding), remainingCacheExtent: constraints.RemainingCacheExtent - CalculateCacheOffset(constraints, from: 0.0, to: beforePadding), crossAxisExtent: Dart.Math.MathDefaultClass.Max(0.0, constraints.CrossAxisExtent - crossAxisPadding), precedingScrollExtent: beforePadding + constraints.PrecedingScrollExtent), parentUsesSize: true);
             SliverGeometry childLayoutGeometry = Child.Geometry;
             if (childLayoutGeometry.ScrollOffsetCorrection != null)
             {
@@ -522,8 +522,8 @@ namespace FlutterSDK.Rendering.Sliverpadding
             double beforePaddingCacheExtent = CalculateCacheOffset(constraints, from: 0.0, to: beforePadding);
             double afterPaddingCacheExtent = CalculateCacheOffset(constraints, from: beforePadding + childLayoutGeometry.ScrollExtent, to: mainAxisPadding + childLayoutGeometry.ScrollExtent);
             double mainAxisPaddingCacheExtent = afterPaddingCacheExtent + beforePaddingCacheExtent;
-            double paintExtent = Math.Dart:mathDefaultClass.Min(beforePaddingPaintExtent + Math.Dart:mathDefaultClass.Max(childLayoutGeometry.PaintExtent, childLayoutGeometry.LayoutExtent + afterPaddingPaintExtent), constraints.RemainingPaintExtent);
-            Geometry = new SliverGeometry(scrollExtent: mainAxisPadding + childLayoutGeometry.ScrollExtent, paintExtent: paintExtent, layoutExtent: Math.Dart:mathDefaultClass.Min(mainAxisPaddingPaintExtent + childLayoutGeometry.LayoutExtent, paintExtent), cacheExtent: Math.Dart:mathDefaultClass.Min(mainAxisPaddingCacheExtent + childLayoutGeometry.CacheExtent, constraints.RemainingCacheExtent), maxPaintExtent: mainAxisPadding + childLayoutGeometry.MaxPaintExtent, hitTestExtent: Math.Dart:mathDefaultClass.Max(mainAxisPaddingPaintExtent + childLayoutGeometry.PaintExtent, beforePaddingPaintExtent + childLayoutGeometry.HitTestExtent), hasVisualOverflow: childLayoutGeometry.HasVisualOverflow);
+            double paintExtent = Dart.Math.MathDefaultClass.Min(beforePaddingPaintExtent + Dart.Math.MathDefaultClass.Max(childLayoutGeometry.PaintExtent, childLayoutGeometry.LayoutExtent + afterPaddingPaintExtent), constraints.RemainingPaintExtent);
+            Geometry = new SliverGeometry(scrollExtent: mainAxisPadding + childLayoutGeometry.ScrollExtent, paintExtent: paintExtent, layoutExtent: Dart.Math.MathDefaultClass.Min(mainAxisPaddingPaintExtent + childLayoutGeometry.LayoutExtent, paintExtent), cacheExtent: Dart.Math.MathDefaultClass.Min(mainAxisPaddingCacheExtent + childLayoutGeometry.CacheExtent, constraints.RemainingCacheExtent), maxPaintExtent: mainAxisPadding + childLayoutGeometry.MaxPaintExtent, hitTestExtent: Dart.Math.MathDefaultClass.Max(mainAxisPaddingPaintExtent + childLayoutGeometry.PaintExtent, beforePaddingPaintExtent + childLayoutGeometry.HitTestExtent), hasVisualOverflow: childLayoutGeometry.HasVisualOverflow);
             SliverPhysicalParentData childParentData = Child.ParentData as SliverPhysicalParentData;
 
 

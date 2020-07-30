@@ -301,12 +301,12 @@ namespace FlutterSDK.Foundation._Isolatesio
         internal static async Future<R> Compute<Q, R>(FlutterSDK.Foundation.Isolates.ComputeCallback<Q, R> callback, Q message, string debugLabel = default(string))
         {
             debugLabel = (debugLabel == null ? ConstantsDefaultClass.KReleaseMode ? "compute" : callback.ToString() : debugLabel);
-            Flow flow = Dart:developerDefaultClass.Flow.Begin();
-        Dart: developerDefaultClass.Timeline.StartSync($"'{debugLabel}: start'", flow: flow);
+            Flow flow = Dart.DeveloperDefaultClass.Flow.Begin();
+            Dart.DeveloperDefaultClass.Timeline.StartSync($"'{debugLabel}: start'", flow: flow);
             ReceivePort resultPort = new ReceivePort();
             ReceivePort errorPort = new ReceivePort();
-        Dart: developerDefaultClass.Timeline.FinishSync();
-            Isolate isolate = await Dart:isolateDefaultClass.Isolate.Spawn(_IsolatesioDefaultClass._Spawn, new _IsolateConfiguration<Q, FutureOr<R>>(callback, message, resultPort.SendPort, debugLabel, flow.Id), errorsAreFatal: true, onExit: resultPort.SendPort, onError: errorPort.SendPort);
+            Dart.DeveloperDefaultClass.Timeline.FinishSync();
+            Isolate isolate = await Dart.IsolateDefaultClass.Isolate.Spawn(_IsolatesioDefaultClass._Spawn, new _IsolateConfiguration<Q, FutureOr<R>>(callback, message, resultPort.SendPort, debugLabel, flow.Id), errorsAreFatal: true, onExit: resultPort.SendPort, onError: errorPort.SendPort);
             Completer<R> result = new Completer<R>();
             errorPort.Listen((object errorData) =>
             {
@@ -316,7 +316,7 @@ namespace FlutterSDK.Foundation._Isolatesio
                 StackTrace stack = StackTrace.FromString(errorData[1] as string);
                 if (result.IsCompleted)
                 {
-                Dart: asyncDefaultClass.Zone.Current.HandleUncaughtError(exception, stack);
+                    Dart.AsyncDefaultClass.Zone.Current.HandleUncaughtError(exception, stack);
                 }
                 else
                 {
@@ -332,11 +332,11 @@ namespace FlutterSDK.Foundation._Isolatesio
             }
             );
             await result.Future;
-        Dart: developerDefaultClass.Timeline.StartSync($"'{debugLabel}: end'", flow: Dart:developerDefaultClass.Flow.End(flow.Id));
+            Dart.DeveloperDefaultClass.Timeline.StartSync($"'{debugLabel}: end'", flow: Dart.DeveloperDefaultClass.Flow.End(flow.Id));
             resultPort.Close();
             errorPort.Close();
             isolate.Kill();
-        Dart: developerDefaultClass.Timeline.FinishSync();
+            Dart.DeveloperDefaultClass.Timeline.FinishSync();
             return result.Future;
         }
 
@@ -345,17 +345,17 @@ namespace FlutterSDK.Foundation._Isolatesio
         internal static async Future<object> _Spawn<Q, R>(FlutterSDK.Foundation._Isolatesio._IsolateConfiguration<Q, FutureOr<R>> configuration)
         {
             R result = default(R);
-            await Dart:developerDefaultClass.Timeline.TimeSync(configuration.DebugLabel, async () =>
+            await Dart.DeveloperDefaultClass.Timeline.TimeSync(configuration.DebugLabel, async () =>
             {
                 FutureOr<R> applicationResult = await configuration.Apply();
                 result = await applicationResult;
             }
-            , flow: Dart:developerDefaultClass.Flow.Step(configuration.FlowId));
-        Dart: developerDefaultClass.Timeline.TimeSync($"'{configuration.DebugLabel}: returning result'", () =>
-        {
-            configuration.ResultPort.Send(result);
-        }
-         , flow: Dart:developerDefaultClass.Flow.Step(configuration.FlowId));
+            , flow: Dart.DeveloperDefaultClass.Flow.Step(configuration.FlowId));
+            Dart.DeveloperDefaultClass.Timeline.TimeSync($"'{configuration.DebugLabel}: returning result'", () =>
+            {
+                configuration.ResultPort.Send(result);
+            }
+            , flow: Dart.DeveloperDefaultClass.Flow.Step(configuration.FlowId));
         }
 
 

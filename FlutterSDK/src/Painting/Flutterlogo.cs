@@ -503,7 +503,7 @@ namespace FlutterSDK.Painting.Flutterlogo
 
             if (t == 0.0) return a;
             if (t == 1.0) return b;
-            return FlutterLogoDecoration._(Dart: uiDefaultClass.Color.Lerp(a.LightColor, b.LightColor, t), Dart: uiDefaultClass.Color.Lerp(a.DarkColor, b.DarkColor, t), Dart: uiDefaultClass.Color.Lerp(a.TextColor, b.TextColor, t), t < 0.5 ? a.Style : b.Style, EdgeinsetsDefaultClass.EdgeInsets.Lerp(a.Margin, b.Margin, t), a._Position + (b._Position - a._Position) * t, (a._Opacity + (b._Opacity - a._Opacity) * t).Clamp(0.0, 1.0) as double);
+            return FlutterLogoDecoration._(Dart.UI.UiDefaultClass.Color.Lerp(a.LightColor, b.LightColor, t), Dart.UI.UiDefaultClass.Color.Lerp(a.DarkColor, b.DarkColor, t), Dart.UI.UiDefaultClass.Color.Lerp(a.TextColor, b.TextColor, t), t < 0.5 ? a.Style : b.Style, EdgeinsetsDefaultClass.EdgeInsets.Lerp(a.Margin, b.Margin, t), a._Position + (b._Position - a._Position) * t, (a._Opacity + (b._Opacity - a._Opacity) * t).Clamp(0.0, 1.0) as double);
         }
 
 
@@ -555,7 +555,7 @@ namespace FlutterSDK.Painting.Flutterlogo
         public new bool Equals(@Object other)
         {
 
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is FlutterLogoDecoration && other.LightColor == LightColor && other.DarkColor == DarkColor && other.TextColor == TextColor && other._Position == _Position && other._Opacity == _Opacity;
         }
 
@@ -595,9 +595,9 @@ namespace FlutterSDK.Painting.Flutterlogo
         private void _PrepareText()
         {
             string kLabel = "Flutter";
-            _TextPainter = new TextPainter(text: new TextSpan(text: kLabel, style: new TextStyle(color: _Config.TextColor, fontFamily: "Roboto", fontSize: 100.0 * 350.0 / 247.0, fontWeight: Dart:uiDefaultClass.FontWeight.W300, textBaseline: TextBaseline.Alphabetic)), textDirection: TextDirection.Ltr);
+            _TextPainter = new TextPainter(text: new TextSpan(text: kLabel, style: new TextStyle(color: _Config.TextColor, fontFamily: "Roboto", fontSize: 100.0 * 350.0 / 247.0, fontWeight: Dart.UiDefaultClass.FontWeight.W300, textBaseline: TextBaseline.Alphabetic)), textDirection: TextDirection.Ltr);
             _TextPainter.Layout();
-            Ui.Dart:uiDefaultClass.TextBox textSize = _TextPainter.GetBoxesForSelection(new TextSelection(baseOffset: 0, extentOffset: kLabel.Length)).Single();
+            Dart.UI.TextBox textSize = _TextPainter.GetBoxesForSelection(new TextSelection(baseOffset: 0, extentOffset: kLabel.Length)).Single();
             _TextBoundingRect = Rect.FromLTRB(textSize.Left, textSize.Top, textSize.Right, textSize.Bottom);
         }
 
@@ -613,9 +613,9 @@ namespace FlutterSDK.Painting.Flutterlogo
             Paint lightPaint = new Paint()..Color = _Config.LightColor.WithOpacity(0.8);
             Paint mediumPaint = new Paint()..Color = _Config.LightColor;
             Paint darkPaint = new Paint()..Color = _Config.DarkColor;
-            Ui.Dart:uiDefaultClass.Gradient triangleGradient = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(87.2623 + 37.9092, 28.8384 + 123.4389), new Offset(42.9205 + 37.9092, 35.0952 + 123.4389), new List<Color>() { new Color(0xBFFFFFFF), new Color(0xBFFCFCFC), new Color(0xBFF4F4F4), new Color(0xBFE5E5E5), new Color(0xBFD1D1D1), new Color(0xBFB6B6B6), new Color(0xBF959595), new Color(0xBF6E6E6E), new Color(0xBF616161) }, new List<double>() { 0.2690, 0.4093, 0.4972, 0.5708, 0.6364, 0.6968, 0.7533, 0.8058, 0.8219 });
+            Dart.UI.Gradient triangleGradient = Dart.UI.Gradient.Linear(new Offset(87.2623 + 37.9092, 28.8384 + 123.4389), new Offset(42.9205 + 37.9092, 35.0952 + 123.4389), new List<Color>() { new Color(0xBFFFFFFF), new Color(0xBFFCFCFC), new Color(0xBFF4F4F4), new Color(0xBFE5E5E5), new Color(0xBFD1D1D1), new Color(0xBFB6B6B6), new Color(0xBF959595), new Color(0xBF6E6E6E), new Color(0xBF616161) }, new List<double>() { 0.2690, 0.4093, 0.4972, 0.5708, 0.6364, 0.6968, 0.7533, 0.8058, 0.8219 });
             Paint trianglePaint = new Paint()..Shader = triangleGradient..BlendMode = BlendMode.Multiply;
-            Ui.Dart:uiDefaultClass.Gradient rectangleGradient = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(62.3643 + 37.9092, 40.135 + 123.4389), new Offset(54.0376 + 37.9092, 31.8083 + 123.4389), new List<Color>() { new Color(0x80FFFFFF), new Color(0x80FCFCFC), new Color(0x80F4F4F4), new Color(0x80E5E5E5), new Color(0x80D1D1D1), new Color(0x80B6B6B6), new Color(0x80959595), new Color(0x806E6E6E), new Color(0x80616161) }, new List<double>() { 0.4588, 0.5509, 0.6087, 0.6570, 0.7001, 0.7397, 0.7768, 0.8113, 0.8219 });
+            Dart.UI.Gradient rectangleGradient = Dart.UI.Gradient.Linear(new Offset(62.3643 + 37.9092, 40.135 + 123.4389), new Offset(54.0376 + 37.9092, 31.8083 + 123.4389), new List<Color>() { new Color(0x80FFFFFF), new Color(0x80FCFCFC), new Color(0x80F4F4F4), new Color(0x80E5E5E5), new Color(0x80D1D1D1), new Color(0x80B6B6B6), new Color(0x80959595), new Color(0x806E6E6E), new Color(0x80616161) }, new List<double>() { 0.4588, 0.5509, 0.6087, 0.6570, 0.7001, 0.7397, 0.7768, 0.8113, 0.8219 });
             Paint rectanglePaint = new Paint()..Shader = rectangleGradient..BlendMode = BlendMode.Multiply;
             Path topBeam = new Path();
             new Path().MoveTo(37.7, 128.9);
@@ -696,7 +696,7 @@ namespace FlutterSDK.Painting.Flutterlogo
                 logoTargetSquare = centerSquare;
             }
 
-            Rect logoSquare = Dart:uiDefaultClass.Rect.Lerp(centerSquare, logoTargetSquare, _Config._Position.Abs());
+            Rect logoSquare = Dart.UI.UiDefaultClass.Rect.Lerp(centerSquare, logoTargetSquare, _Config._Position.Abs());
             if (_Config._Opacity < 1.0)
             {
                 canvas.SaveLayer(offset & canvasSize, new Paint()..ColorFilter = ColorFilter.Mode(new Color(0xFFFFFFFF).WithOpacity(_Config._Opacity), BlendMode.Modulate));
@@ -710,7 +710,7 @@ namespace FlutterSDK.Painting.Flutterlogo
                     double scale = fontSize / 100.0;
                     double finalLeftTextPosition = (256.4 / 820.0) * rect.Width - (32.0 / 350.0) * fontSize;
                     double initialLeftTextPosition = rect.Width / 2.0 - _TextBoundingRect.Width * scale;
-                    Offset textOffset = new Offset(rect.Left + Ui.Dart:uiDefaultClass.LerpDouble(initialLeftTextPosition, finalLeftTextPosition, _Config._Position), rect.Top + (rect.Height - _TextBoundingRect.Height * scale) / 2.0);
+                    Offset textOffset = new Offset(rect.Left + Dart.UI.UiDefaultClass.LerpDouble(initialLeftTextPosition, finalLeftTextPosition, _Config._Position), rect.Top + (rect.Height - _TextBoundingRect.Height * scale) / 2.0);
                     canvas.Save();
                     if (_Config._Position < 1.0)
                     {
@@ -725,7 +725,7 @@ namespace FlutterSDK.Painting.Flutterlogo
 
                     canvas.Translate(textOffset.Dx, textOffset.Dy);
                     canvas.Scale(scale, scale);
-                    _TextPainter.Paint(canvas, Dart: uiDefaultClass.Offset.Zero);
+                    _TextPainter.Paint(canvas, Dart.UI.UiDefaultClass.Offset.Zero);
                     canvas.Restore();
                 }
                 else if (_Config._Position < 0.0)
@@ -743,10 +743,10 @@ namespace FlutterSDK.Painting.Flutterlogo
 
                     canvas.Translate(logoTargetSquare.Center.Dx - (_TextBoundingRect.Width * scale / 2.0), logoTargetSquare.Bottom);
                     canvas.Scale(scale, scale);
-                    _TextPainter.Paint(canvas, Dart: uiDefaultClass.Offset.Zero);
+                    _TextPainter.Paint(canvas, Dart.UI.UiDefaultClass.Offset.Zero);
                     if (_Config._Position > -1.0)
                     {
-                        canvas.DrawRect(_TextBoundingRect.Inflate(_TextBoundingRect.Width * 0.5), new Paint()..BlendMode = BlendMode.Modulate..Shader = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(_TextBoundingRect.Width * -0.5, 0.0), new Offset(_TextBoundingRect.Width * 1.5, 0.0), new List<Color>() { new Color(0xFFFFFFFF), new Color(0xFFFFFFFF), new Color(0x00FFFFFF), new Color(0x00FFFFFF) }, new List<double>() { 0.0, Math.Dart:mathDefaultClass.Max(0.0, _Config._Position.Abs() - 0.1), Math.Dart:mathDefaultClass.Min(_Config._Position.Abs() + 0.1, 1.0), 1.0 }));
+                        canvas.DrawRect(_TextBoundingRect.Inflate(_TextBoundingRect.Width * 0.5), new Paint()..BlendMode = BlendMode.Modulate..Shader = Dart.UI.Gradient.Linear(new Offset(_TextBoundingRect.Width * -0.5, 0.0), new Offset(_TextBoundingRect.Width * 1.5, 0.0), new List<Color>() { new Color(0xFFFFFFFF), new Color(0xFFFFFFFF), new Color(0x00FFFFFF), new Color(0x00FFFFFF) }, new List<double>() { 0.0, Dart.Math.MathDefaultClass.Max(0.0, _Config._Position.Abs() - 0.1), Dart.Math.MathDefaultClass.Min(_Config._Position.Abs() + 0.1, 1.0), 1.0 }));
                     }
 
                     canvas.Restore();

@@ -641,7 +641,7 @@ namespace FlutterSDK.Cupertino.Localizations
 
         public new string DatePickerMediumDate(DateTime date)
         {
-            return $"'{_ShortWeekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday]} '" + $"'{_ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January]} '" + $"'{date.Day.ToString().PadRight(2)}'";
+            return $"'{_ShortWeekdays[date.Weekday - Dart.CoreDefaultClass.DateTime.Monday]} '" + $"'{_ShortMonths[date.Month - Dart.CoreDefaultClass.DateTime.January]} '" + $"'{date.Day.ToString().PadRight(2)}'";
         }
 
 

@@ -441,7 +441,7 @@ namespace FlutterSDK.Material.Dividertheme
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a, FlutterSDK.Material.Dividertheme.DividerThemeData b, double t)
         {
 
-            return new DividerThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), space: Dart:uiDefaultClass.LerpDouble(a?.Space, b?.Space, t), thickness: Dart:uiDefaultClass.LerpDouble(a?.Thickness, b?.Thickness, t), indent: Dart:uiDefaultClass.LerpDouble(a?.Indent, b?.Indent, t), endIndent: Dart:uiDefaultClass.LerpDouble(a?.EndIndent, b?.EndIndent, t));
+            return new DividerThemeData(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), space: Dart.UI.UiDefaultClass.LerpDouble(a?.Space, b?.Space, t), thickness: Dart.UI.UiDefaultClass.LerpDouble(a?.Thickness, b?.Thickness, t), indent: Dart.UI.UiDefaultClass.LerpDouble(a?.Indent, b?.Indent, t), endIndent: Dart.UI.UiDefaultClass.LerpDouble(a?.EndIndent, b?.EndIndent, t));
         }
 
 
@@ -449,7 +449,7 @@ namespace FlutterSDK.Material.Dividertheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is DividerThemeData && other.Color == Color && other.Space == Space && other.Thickness == Thickness && other.Indent == Indent && other.EndIndent == EndIndent;
         }
@@ -511,7 +511,7 @@ namespace FlutterSDK.Material.Dividertheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             DividerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new DividerTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new DividerTheme(data: Data, child: child);
         }
 
 

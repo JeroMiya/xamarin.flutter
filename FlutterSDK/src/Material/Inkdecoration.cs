@@ -650,7 +650,7 @@ namespace FlutterSDK.Material.Inkdecoration
             {
                 canvas.Save();
                 canvas.Transform(transform.Storage);
-                _Painter.Paint(canvas, Dart: uiDefaultClass.Offset.Zero, sizedConfiguration);
+                _Painter.Paint(canvas, Dart.UI.UiDefaultClass.Offset.Zero, sizedConfiguration);
                 canvas.Restore();
             }
             else

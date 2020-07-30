@@ -301,7 +301,7 @@ namespace FlutterSDK.Foundation.Assertions
         internal static void DebugPrintStack(StackTrace stackTrace = default(StackTrace), string label = default(string), int maxFrames = default(int))
         {
             if (label != null) PrintDefaultClass.DebugPrint(label);
-            stackTrace = (stackTrace == null ? Dart : coreDefaultClass.StackTrace.Current : stackTrace );
+            stackTrace = (stackTrace == null ? Dart.CoreDefaultClass.StackTrace.Current : stackTrace);
             Iterable<string> lines = stackTrace.ToString().TrimEnd().Split('\n').ToList();
             if (ConstantsDefaultClass.KIsWeb && lines.IsNotEmpty)
             {

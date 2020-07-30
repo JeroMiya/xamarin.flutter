@@ -809,7 +809,7 @@ namespace FlutterSDK.Material.Bottomsheet
 
             double curveProgress = (t - StartingPoint) / (1 - StartingPoint);
             double transformed = Curve.Transform(curveProgress);
-            return Dart:uiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
+            return Dart.UI.UiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
         }
 
 

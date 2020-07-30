@@ -442,7 +442,7 @@ namespace FlutterSDK.Widgets.Placeholder
         public new void Paint(Canvas canvas, Size size)
         {
             Paint paint = new Paint()..Color = Color..Style = PaintingStyle.Stroke..StrokeWidth = StrokeWidth;
-            Rect rect = Dart:uiDefaultClass.Offset.Zero & size;
+            Rect rect = Dart.UiDefaultClass.Offset.Zero & size;
             Path path = new Path();
             new Path().AddRect(rect);
             new Path().AddPolygon(new List<Offset>() { rect.TopRight, rect.BottomLeft }, false);
@@ -503,7 +503,7 @@ namespace FlutterSDK.Widgets.Placeholder
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new LimitedBox(maxWidth: FallbackWidth, maxHeight: FallbackHeight, child: new CustomPaint(size: Dart:uiDefaultClass.Size.Infinite, foregroundPainter: new _PlaceholderPainter(color: Color, strokeWidth: StrokeWidth)));
+            return new LimitedBox(maxWidth: FallbackWidth, maxHeight: FallbackHeight, child: new CustomPaint(size: Dart.UiDefaultClass.Size.Infinite, foregroundPainter: new _PlaceholderPainter(color: Color, strokeWidth: StrokeWidth)));
         }
 
 

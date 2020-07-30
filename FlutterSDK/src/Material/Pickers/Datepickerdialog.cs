@@ -576,7 +576,7 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
             MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
             Orientation orientation = MediaqueryDefaultClass.MediaQuery.Of(context).Orientation;
             TextTheme textTheme = theme.TextTheme;
-            double textScaleFactor = Math.Dart:mathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, 1.3);
+            double textScaleFactor = Dart.Math.MathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, 1.3);
             string dateText = _SelectedDate != null ? localizations.FormatMediumDate(_SelectedDate) : "Date";
             Color dateColor = colorScheme.Brightness == Brightness.Light ? colorScheme.OnPrimary : colorScheme.OnSurface;
             TextStyle dateStyle = orientation == Orientation.Landscape ? textTheme.Headline5?.CopyWith(color: dateColor) : textTheme.Headline4?.CopyWith(color: dateColor);

@@ -472,7 +472,7 @@ namespace FlutterSDK.Painting._Networkimageio
             try
             {
 
-                Uri resolved = Dart:coreDefaultClass.Uri.Base.Resolve(key.Url);
+                Uri resolved = Dart.CoreDefaultClass.Uri.Base.Resolve(key.Url);
                 HttpClientRequest request = await _HttpClient.GetUrl(resolved);
                 Headers?.ForEach((string name, string value) =>
                 {
@@ -480,7 +480,8 @@ namespace FlutterSDK.Painting._Networkimageio
                 }
                 );
                 HttpResponseMessage response = await request.Close();
-                if (response.StatusCode != Dart:internalDefaultClass.HttpStatus.Ok){
+                if (response.StatusCode != Dart._InternalDefaultClass.HttpStatus.Ok)
+                {
                     BindingDefaultClass.PaintingBinding.Instance.ImageCache.Evict(key);
                     throw new Image_provider.NetworkImageLoadException(statusCode: response.StatusCode, uri: resolved);
                 }

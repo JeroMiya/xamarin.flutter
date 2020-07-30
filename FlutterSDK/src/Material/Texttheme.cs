@@ -698,7 +698,7 @@ namespace FlutterSDK.Material.Texttheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is TextTheme && Headline1 == other.Headline1 && Headline2 == other.Headline2 && Headline3 == other.Headline3 && Headline4 == other.Headline4 && Headline5 == other.Headline5 && Headline6 == other.Headline6 && Subtitle1 == other.Subtitle1 && Subtitle2 == other.Subtitle2 && BodyText1 == other.BodyText1 && BodyText2 == other.BodyText2 && Caption == other.Caption && Button == other.Button && Overline == other.Overline;
         }

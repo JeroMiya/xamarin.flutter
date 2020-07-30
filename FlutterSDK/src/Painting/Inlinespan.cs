@@ -864,7 +864,7 @@ namespace FlutterSDK.Painting.Inlinespan
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is InlineSpan && other.Style == Style;
         }

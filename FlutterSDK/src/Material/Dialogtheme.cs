@@ -452,7 +452,7 @@ namespace FlutterSDK.Material.Dialogtheme
         public virtual FlutterSDK.Material.Dialogtheme.DialogTheme Lerp(FlutterSDK.Material.Dialogtheme.DialogTheme a, FlutterSDK.Material.Dialogtheme.DialogTheme b, double t)
         {
 
-            return new DialogTheme(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), titleTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TitleTextStyle, b?.TitleTextStyle, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t));
+            return new DialogTheme(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), titleTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TitleTextStyle, b?.TitleTextStyle, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t));
         }
 
 
@@ -460,7 +460,7 @@ namespace FlutterSDK.Material.Dialogtheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is DialogTheme && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.Shape == Shape && other.TitleTextStyle == TitleTextStyle && other.ContentTextStyle == ContentTextStyle;
         }

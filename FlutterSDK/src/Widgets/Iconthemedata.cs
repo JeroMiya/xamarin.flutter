@@ -513,7 +513,7 @@ namespace FlutterSDK.Widgets.Iconthemedata
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Lerp(FlutterSDK.Widgets.Iconthemedata.IconThemeData a, FlutterSDK.Widgets.Iconthemedata.IconThemeData b, double t)
         {
 
-            return new IconThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), opacity: Ui.Dart:uiDefaultClass.LerpDouble(a?.Opacity, b?.Opacity, t), size: Ui.Dart:uiDefaultClass.LerpDouble(a?.Size, b?.Size, t));
+            return new IconThemeData(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), opacity: Dart.UI.UiDefaultClass.LerpDouble(a?.Opacity, b?.Opacity, t), size: Dart.UI.UiDefaultClass.LerpDouble(a?.Size, b?.Size, t));
         }
 
 

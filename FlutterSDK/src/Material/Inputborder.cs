@@ -571,7 +571,7 @@ namespace FlutterSDK.Material.Inputborder
         public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
             return new Path();
-            new Path().AddRect(Rect.FromLTWH(rect.Left, rect.Top, rect.Width, Math.Dart:mathDefaultClass.Max(0.0, rect.Height - BorderSide.Width)));
+            new Path().AddRect(Rect.FromLTWH(rect.Left, rect.Top, rect.Width, Dart.Math.MathDefaultClass.Max(0.0, rect.Height - BorderSide.Width)));
         }
 
 
@@ -620,7 +620,7 @@ namespace FlutterSDK.Material.Inputborder
         /// </Summary>
         public new void Paint(Canvas canvas, FlutterBinding.UI.Rect rect, double gapStart = default(double), double gapExtent = 0.0, double gapPercentage = 0.0, TextDirection textDirection = default(TextDirection))
         {
-            if (BorderRadius.BottomLeft != Dart:uiDefaultClass.Radius.Zero || BorderRadius.BottomRight != Dart:uiDefaultClass.Radius.Zero)canvas.ClipPath(GetOuterPath(rect, textDirection: textDirection));
+            if (BorderRadius.BottomLeft != Dart.UiDefaultClass.Radius.Zero || BorderRadius.BottomRight != Dart.UiDefaultClass.Radius.Zero) canvas.ClipPath(GetOuterPath(rect, textDirection: textDirection));
             canvas.DrawLine(rect.BottomLeft, rect.BottomRight, BorderSide.ToPaint());
         }
 
@@ -629,7 +629,7 @@ namespace FlutterSDK.Material.Inputborder
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is InputBorder && other.BorderSide == BorderSide;
         }
@@ -745,13 +745,13 @@ namespace FlutterSDK.Material.Inputborder
             Rect trCorner = Rect.FromLTWH(scaledRRect.Right - scaledRRect.TrRadiusX * 2.0, scaledRRect.Top, scaledRRect.TrRadiusX * 2.0, scaledRRect.TrRadiusY * 2.0);
             Rect brCorner = Rect.FromLTWH(scaledRRect.Right - scaledRRect.BrRadiusX * 2.0, scaledRRect.Bottom - scaledRRect.BrRadiusY * 2.0, scaledRRect.BrRadiusX * 2.0, scaledRRect.BrRadiusY * 2.0);
             Rect blCorner = Rect.FromLTWH(scaledRRect.Left, scaledRRect.Bottom - scaledRRect.BlRadiusY * 2.0, scaledRRect.BlRadiusX * 2.0, scaledRRect.BlRadiusX * 2.0);
-            double cornerArcSweep = Math.Dart:mathDefaultClass.Pi / 2.0;
-            double tlCornerArcSweep = start < scaledRRect.TlRadiusX ? Math.Dart : mathDefaultClass.Asin((start / scaledRRect.TlRadiusX).Clamp(-1.0, 1.0)):Math.Dart:mathDefaultClass.Pi / 2.0;
+            double cornerArcSweep = Math.Dart.MathDefaultClass.Pi / 2.0;
+            double tlCornerArcSweep = start < scaledRRect.TlRadiusX ? Dart.Math.MathDefaultClass.Asin((start / scaledRRect.TlRadiusX).Clamp(-1.0, 1.0)) : Math.Dart.MathDefaultClass.Pi / 2.0;
             Path path = new Path();
-            new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi, tlCornerArcSweep);
+            new Path().AddArc(tlCorner, Math.Dart.MathDefaultClass.Pi, tlCornerArcSweep);
             new Path().MoveTo(scaledRRect.Left + scaledRRect.TlRadiusX, scaledRRect.Top);
             if (start > scaledRRect.TlRadiusX) path.LineTo(scaledRRect.Left + start, scaledRRect.Top);
-            double trCornerArcStart = (3 * Math.Dart:mathDefaultClass.Pi)/ 2.0;
+            double trCornerArcStart = (3 * Math.Dart.MathDefaultClass.Pi) / 2.0;
             double trCornerArcSweep = cornerArcSweep;
             if (start + extent < scaledRRect.Width - scaledRRect.TrRadiusX)
             {
@@ -763,7 +763,7 @@ namespace FlutterSDK.Material.Inputborder
             else if (start + extent < scaledRRect.Width)
             {
                 double dx = scaledRRect.Width - (start + extent);
-                double sweep = Math.Dart:mathDefaultClass.Acos(dx / scaledRRect.TrRadiusX);
+                double sweep = Dart.Math.MathDefaultClass.Acos(dx / scaledRRect.TrRadiusX);
                 path.AddArc(trCorner, trCornerArcStart + sweep, trCornerArcSweep - sweep);
             }
 
@@ -772,7 +772,7 @@ namespace FlutterSDK.Material.Inputborder
             path.LineTo(scaledRRect.Right, scaledRRect.Bottom - scaledRRect.BrRadiusY);
             path.AddArc(brCorner, 0.0, cornerArcSweep);
             path.LineTo(scaledRRect.Left + scaledRRect.BlRadiusX, scaledRRect.Bottom);
-            path.AddArc(blCorner, Math.Dart:mathDefaultClass.Pi / 2.0, cornerArcSweep);
+            path.AddArc(blCorner, Math.Dart.MathDefaultClass.Pi / 2.0, cornerArcSweep);
             path.LineTo(scaledRRect.Left, scaledRRect.Top + scaledRRect.TlRadiusY);
         }
 
@@ -803,8 +803,8 @@ namespace FlutterSDK.Material.Inputborder
             }
             else
             {
-                double extent = Dart:uiDefaultClass.LerpDouble(0.0, gapExtent + GapPadding * 2.0, gapPercentage);
-                switch (textDirection) { case TextDirection.Rtl: Path path = _GapBorderPath(canvas, center, Math.Dart:mathDefaultClass.Max(0.0, gapStart + GapPadding - extent), extent); canvas.DrawPath(path, paint); break; case TextDirection.Ltr: Path path = _GapBorderPath(canvas, center, Math.Dart:mathDefaultClass.Max(0.0, gapStart - GapPadding), extent); canvas.DrawPath(path, paint); break; }
+                double extent = Dart.UI.UiDefaultClass.LerpDouble(0.0, gapExtent + GapPadding * 2.0, gapPercentage);
+                switch (textDirection) { case TextDirection.Rtl: Path path = _GapBorderPath(canvas, center, Dart.Math.MathDefaultClass.Max(0.0, gapStart + GapPadding - extent), extent); canvas.DrawPath(path, paint); break; case TextDirection.Ltr: Path path = _GapBorderPath(canvas, center, Dart.Math.MathDefaultClass.Max(0.0, gapStart - GapPadding), extent); canvas.DrawPath(path, paint); break; }
             }
 
         }
@@ -814,7 +814,7 @@ namespace FlutterSDK.Material.Inputborder
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is OutlineInputBorder && other.BorderSide == BorderSide && other.BorderRadius == BorderRadius && other.GapPadding == GapPadding;
         }

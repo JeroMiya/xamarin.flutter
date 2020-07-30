@@ -417,10 +417,10 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
 
         public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
         {
-            int columnCount = Dart:coreDefaultClass.DateTime.DaysPerWeek;
+            int columnCount = Dart.CoreDefaultClass.DateTime.DaysPerWeek;
             double tileWidth = constraints.CrossAxisExtent / columnCount;
             double viewTileHeight = constraints.ViewportMainAxisExtent / (DatepickerdeprecatedDefaultClass._KMaxDayPickerRowCount + 1);
-            double tileHeight = Math.Dart:mathDefaultClass.Max(DatepickerdeprecatedDefaultClass._KDayPickerRowHeight, viewTileHeight);
+            double tileHeight = Dart.Math.MathDefaultClass.Max(DatepickerdeprecatedDefaultClass._KDayPickerRowHeight, viewTileHeight);
             return new SliverGridRegularTileLayout(crossAxisCount: columnCount, mainAxisStride: tileHeight, crossAxisStride: tileWidth, childMainAxisExtent: tileHeight, childCrossAxisExtent: tileWidth, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
         }
 
@@ -521,7 +521,8 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
         /// </Summary>
         public virtual int GetDaysInMonth(int year, int month)
         {
-            if (month == Dart:coreDefaultClass.DateTime.February){
+            if (month == Dart.CoreDefaultClass.DateTime.February)
+            {
                 bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
                 if (isLeapYear) return 29;
                 return 28;

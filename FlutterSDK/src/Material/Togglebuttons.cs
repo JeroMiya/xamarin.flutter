@@ -1050,7 +1050,7 @@ namespace FlutterSDK.Material.Togglebuttons
             Offset bottomRight = Size.BottomRight(offset);
             Rect outer = Rect.FromLTRB(offset.Dx, offset.Dy, bottomRight.Dx, bottomRight.Dy);
             Rect center = outer.Deflate(HorizontalBorderSide.Width / 2.0);
-            double sweepAngle = Math.Dart:mathDefaultClass.Pi / 2.0;
+            double sweepAngle = Math.Dart.MathDefaultClass.Pi / 2.0;
             RRect rrect = RRect.FromRectAndCorners(center, topLeft: BorderRadius.TopLeft, topRight: BorderRadius.TopRight, bottomLeft: BorderRadius.BottomLeft, bottomRight: BorderRadius.BottomRight).ScaleRadii();
             Rect tlCorner = Rect.FromLTWH(rrect.Left, rrect.Top, rrect.TlRadiusX * 2.0, rrect.TlRadiusY * 2.0);
             Rect blCorner = Rect.FromLTWH(rrect.Left, rrect.Bottom - (rrect.BlRadiusY * 2.0), rrect.BlRadiusX * 2.0, rrect.BlRadiusY * 2.0);
@@ -1070,7 +1070,7 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path endingPath = new Path();
                         new Path().MoveTo(rrect.Left + HorizontalBorderSide.Width / 2.0, rrect.Top);
                         new Path().LineTo(rrect.Right - rrect.TrRadiusX, rrect.Top);
-                        new Path().AddArc(trCorner, Math.Dart:mathDefaultClass.Pi * 3.0 / 2.0, sweepAngle);
+                        new Path().AddArc(trCorner, Math.Dart.MathDefaultClass.Pi * 3.0 / 2.0, sweepAngle);
                         new Path().LineTo(rrect.Right, rrect.Bottom - rrect.BrRadiusY);
                         new Path().AddArc(brCorner, 0, sweepAngle);
                         new Path().LineTo(rrect.Left + HorizontalBorderSide.Width / 2.0, rrect.Bottom);
@@ -1081,9 +1081,9 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path leadingPath = new Path();
                         new Path().MoveTo(outer.Right, rrect.Bottom);
                         new Path().LineTo(rrect.Left + rrect.BlRadiusX, rrect.Bottom);
-                        new Path().AddArc(blCorner, Math.Dart:mathDefaultClass.Pi / 2.0, sweepAngle);
+                        new Path().AddArc(blCorner, Math.Dart.MathDefaultClass.Pi / 2.0, sweepAngle);
                         new Path().LineTo(rrect.Left, rrect.Top + rrect.TlRadiusY);
-                        new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi, sweepAngle);
+                        new Path().AddArc(tlCorner, Math.Dart.MathDefaultClass.Pi, sweepAngle);
                         new Path().LineTo(outer.Right, rrect.Top);
                         context.Canvas.DrawPath(leadingPath, leadingPaint);
                     }
@@ -1113,9 +1113,9 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path endingPath = new Path();
                         new Path().MoveTo(rrect.Right - HorizontalBorderSide.Width / 2.0, rrect.Top);
                         new Path().LineTo(rrect.Left + rrect.TlRadiusX, rrect.Top);
-                        new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi * 3.0 / 2.0, -sweepAngle);
+                        new Path().AddArc(tlCorner, Math.Dart.MathDefaultClass.Pi * 3.0 / 2.0, -sweepAngle);
                         new Path().LineTo(rrect.Left, rrect.Bottom - rrect.BlRadiusY);
-                        new Path().AddArc(blCorner, Math.Dart:mathDefaultClass.Pi, -sweepAngle);
+                        new Path().AddArc(blCorner, Math.Dart.MathDefaultClass.Pi, -sweepAngle);
                         new Path().LineTo(rrect.Right - HorizontalBorderSide.Width / 2.0, rrect.Bottom);
                         context.Canvas.DrawPath(endingPath, endingPaint);
                     }
@@ -1124,7 +1124,7 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path leadingPath = new Path();
                         new Path().MoveTo(outer.Left, rrect.Bottom);
                         new Path().LineTo(rrect.Right - rrect.BrRadiusX, rrect.Bottom);
-                        new Path().AddArc(brCorner, Math.Dart:mathDefaultClass.Pi / 2.0, -sweepAngle);
+                        new Path().AddArc(brCorner, Math.Dart.MathDefaultClass.Pi / 2.0, -sweepAngle);
                         new Path().LineTo(rrect.Right, rrect.Top + rrect.TrRadiusY);
                         new Path().AddArc(trCorner, 0, -sweepAngle);
                         new Path().LineTo(outer.Left, rrect.Top);

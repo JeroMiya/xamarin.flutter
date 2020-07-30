@@ -701,7 +701,7 @@ namespace FlutterSDK.Painting.Edgeinsets
             if (b == null) return a * (1.0 - t);
             if (a is EdgeInsets && b is EdgeInsets) return EdgeinsetsDefaultClass.EdgeInsets.Lerp(a, b, t);
             if (a is EdgeInsetsDirectional && b is EdgeInsetsDirectional) return EdgeinsetsDefaultClass.EdgeInsetsDirectional.Lerp(a, b, t);
-            return _MixedEdgeInsets.FromLRSETB(Ui.Dart:uiDefaultClass.LerpDouble(a._Left, b._Left, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Right, b._Right, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Start, b._Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a._End, b._End, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Top, b._Top, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Bottom, b._Bottom, t));
+            return _MixedEdgeInsets.FromLRSETB(Dart.UI.UiDefaultClass.LerpDouble(a._Left, b._Left, t), Dart.UI.UiDefaultClass.LerpDouble(a._Right, b._Right, t), Dart.UI.UiDefaultClass.LerpDouble(a._Start, b._Start, t), Dart.UI.UiDefaultClass.LerpDouble(a._End, b._End, t), Dart.UI.UiDefaultClass.LerpDouble(a._Top, b._Top, t), Dart.UI.UiDefaultClass.LerpDouble(a._Bottom, b._Bottom, t));
         }
 
 
@@ -988,7 +988,7 @@ namespace FlutterSDK.Painting.Edgeinsets
             if (a == null && b == null) return null;
             if (a == null) return b * t;
             if (b == null) return a * (1.0 - t);
-            return EdgeInsets.FromLTRB(Ui.Dart:uiDefaultClass.LerpDouble(a.Left, b.Left, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Top, b.Top, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Right, b.Right, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+            return EdgeInsets.FromLTRB(Dart.UI.UiDefaultClass.LerpDouble(a.Left, b.Left, t), Dart.UI.UiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart.UI.UiDefaultClass.LerpDouble(a.Right, b.Right, t), Dart.UI.UiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
         }
 
 
@@ -1169,7 +1169,7 @@ namespace FlutterSDK.Painting.Edgeinsets
             if (a == null && b == null) return null;
             if (a == null) return b * t;
             if (b == null) return a * (1.0 - t);
-            return EdgeInsetsDirectional.FromSTEB(Ui.Dart:uiDefaultClass.LerpDouble(a.Start, b.Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Top, b.Top, t), Ui.Dart:uiDefaultClass.LerpDouble(a.End, b.End, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+            return EdgeInsetsDirectional.FromSTEB(Dart.UI.UiDefaultClass.LerpDouble(a.Start, b.Start, t), Dart.UI.UiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart.UI.UiDefaultClass.LerpDouble(a.End, b.End, t), Dart.UI.UiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
         }
 
 

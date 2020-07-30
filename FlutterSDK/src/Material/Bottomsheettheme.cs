@@ -427,7 +427,7 @@ namespace FlutterSDK.Material.Bottomsheettheme
         {
 
             if (a == null && b == null) return null;
-            return new BottomSheetThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), modalBackgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.ModalBackgroundColor, b?.ModalBackgroundColor, t), modalElevation: Dart:uiDefaultClass.LerpDouble(a?.ModalElevation, b?.ModalElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior);
+            return new BottomSheetThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), modalBackgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ModalBackgroundColor, b?.ModalBackgroundColor, t), modalElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.ModalElevation, b?.ModalElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior);
         }
 
 
@@ -435,7 +435,7 @@ namespace FlutterSDK.Material.Bottomsheettheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BottomSheetThemeData && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.ModalBackgroundColor == ModalBackgroundColor && other.ModalElevation == ModalElevation && other.Shape == Shape && other.ClipBehavior == ClipBehavior;
         }

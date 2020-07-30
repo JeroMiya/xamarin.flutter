@@ -651,7 +651,7 @@ namespace FlutterSDK.Rendering.Slivergrid
             if (MainAxisStride > 0.0)
             {
                 int mainAxisCount = (scrollOffset / MainAxisStride).Ceil();
-                return Math.Dart:mathDefaultClass.Max(0, CrossAxisCount * mainAxisCount - 1);
+                return Dart.Math.MathDefaultClass.Max(0, CrossAxisCount * mainAxisCount - 1);
             }
 
             return 0;
@@ -1013,7 +1013,7 @@ namespace FlutterSDK.Rendering.Slivergrid
                 childParentData.CrossAxisOffset = gridGeometry.CrossAxisOffset;
 
                 trailingChildWithLayout = (trailingChildWithLayout == null ? child : trailingChildWithLayout);
-                trailingScrollOffset = Math.Dart:mathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
+                trailingScrollOffset = Dart.Math.MathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
             }
 
             if (trailingChildWithLayout == null)
@@ -1050,7 +1050,7 @@ namespace FlutterSDK.Rendering.Slivergrid
                 childParentData.LayoutOffset = gridGeometry.ScrollOffset;
                 childParentData.CrossAxisOffset = gridGeometry.CrossAxisOffset;
 
-                trailingScrollOffset = Math.Dart:mathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
+                trailingScrollOffset = Dart.Math.MathDefaultClass.Max(trailingScrollOffset, gridGeometry.TrailingScrollOffset);
             }
 
             int lastIndex = IndexOf(LastChild);
