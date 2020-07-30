@@ -518,18 +518,11 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderAbstractViewport : FlutterSDK.Rendering.@object.RenderObject
     {
-        #region constructors
         internal RenderAbstractViewport()
         {
             null;
 
-#endregion
-
-            #region fields
-        public virtual double DefaultCacheExtent { get; set; }
-        #endregion
-
-        #region methods
+public virtual double DefaultCacheExtent { get; set; }
 
         /// <Summary>
         /// Returns the [RenderAbstractViewport] that most tightly encloses the given
@@ -586,7 +579,6 @@ namespace FlutterSDK.Rendering.Viewport
             return default(RevealedOffset);
         }
 
-        #endregion
     }
 
 
@@ -599,23 +591,15 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RevealedOffset
     {
-        #region constructors
         public RevealedOffset(double offset = default(double), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect))
         : base()
         {
             this.Offset = offset;
             this.Rect = rect;
         }
-        #endregion
-
-        #region fields
         public virtual double Offset { get; set; }
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -642,15 +626,11 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderViewportBase<ParentDataClass> : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Sliver.RenderSliver, ParentDataClass>
     {
-        #region constructors
         public RenderViewportBase(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _AxisDirection { get; set; }
         internal virtual FlutterSDK.Painting.Basictypes.AxisDirection _CrossAxisDirection { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset _Offset { get; set; }
@@ -668,9 +648,6 @@ namespace FlutterSDK.Rendering.Viewport
         public virtual int IndexOfFirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInPaintOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInHitTestOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -812,13 +789,13 @@ namespace FlutterSDK.Rendering.Viewport
             while (child != null)
             {
                 double sliverScrollOffset = scrollOffset <= 0.0 ? 0.0 : scrollOffset;
-                double correctedCacheOrigin = Math.Dart:mathDefaultClass.Max(cacheOrigin, -sliverScrollOffset);
+                double correctedCacheOrigin = Dart.Math.MathDefaultClass.Max(cacheOrigin, -sliverScrollOffset);
                 double cacheExtentCorrection = cacheOrigin - correctedCacheOrigin;
 
 
 
 
-                child.Layout(new SliverConstraints(axisDirection: AxisDirection, growthDirection: growthDirection, userScrollDirection: adjustedUserScrollDirection, scrollOffset: sliverScrollOffset, precedingScrollExtent: precedingScrollExtent, overlap: maxPaintOffset - layoutOffset, remainingPaintExtent: Math.Dart:mathDefaultClass.Max(0.0, remainingPaintExtent - layoutOffset + initialLayoutOffset), crossAxisExtent: crossAxisExtent, crossAxisDirection: CrossAxisDirection, viewportMainAxisExtent: mainAxisExtent, remainingCacheExtent: Math.Dart:mathDefaultClass.Max(0.0, remainingCacheExtent + cacheExtentCorrection), cacheOrigin: correctedCacheOrigin), parentUsesSize: true);
+                child.Layout(new SliverConstraints(axisDirection: AxisDirection, growthDirection: growthDirection, userScrollDirection: adjustedUserScrollDirection, scrollOffset: sliverScrollOffset, precedingScrollExtent: precedingScrollExtent, overlap: maxPaintOffset - layoutOffset, remainingPaintExtent: Dart.Math.MathDefaultClass.Max(0.0, remainingPaintExtent - layoutOffset + initialLayoutOffset), crossAxisExtent: crossAxisExtent, crossAxisDirection: CrossAxisDirection, viewportMainAxisExtent: mainAxisExtent, remainingCacheExtent: Dart.Math.MathDefaultClass.Max(0.0, remainingCacheExtent + cacheExtentCorrection), cacheOrigin: correctedCacheOrigin), parentUsesSize: true);
                 SliverGeometry childLayoutGeometry = child.Geometry;
 
                 if (childLayoutGeometry.ScrollOffsetCorrection != null) return childLayoutGeometry.ScrollOffsetCorrection;
@@ -832,14 +809,14 @@ namespace FlutterSDK.Rendering.Viewport
                     UpdateChildLayoutOffset(child, -scrollOffset + initialLayoutOffset, growthDirection);
                 }
 
-                maxPaintOffset = Math.Dart:mathDefaultClass.Max(effectiveLayoutOffset + childLayoutGeometry.PaintExtent, maxPaintOffset);
+                maxPaintOffset = Dart.Math.MathDefaultClass.Max(effectiveLayoutOffset + childLayoutGeometry.PaintExtent, maxPaintOffset);
                 scrollOffset -= childLayoutGeometry.ScrollExtent;
                 precedingScrollExtent += childLayoutGeometry.ScrollExtent;
                 layoutOffset += childLayoutGeometry.LayoutExtent;
                 if (childLayoutGeometry.CacheExtent != 0.0)
                 {
                     remainingCacheExtent -= childLayoutGeometry.CacheExtent - cacheExtentCorrection;
-                    cacheOrigin = Math.Dart:mathDefaultClass.Min(correctedCacheOrigin + childLayoutGeometry.CacheExtent, 0.0);
+                    cacheOrigin = Dart.Math.MathDefaultClass.Min(correctedCacheOrigin + childLayoutGeometry.CacheExtent, 0.0);
                 }
 
                 UpdateOutOfBandData(growthDirection, childLayoutGeometry);
@@ -854,7 +831,7 @@ namespace FlutterSDK.Rendering.Viewport
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.Sliver.RenderSliver child)
         {
-            Rect viewportClip = Dart:uiDefaultClass.Offset.Zero & Size;
+            Rect viewportClip = Dart.UiDefaultClass.Offset.Zero & Size;
             if (child.Constraints.Overlap == 0 || !child.Constraints.ViewportMainAxisExtent.IsFinite())
             {
                 return viewportClip;
@@ -873,7 +850,7 @@ namespace FlutterSDK.Rendering.Viewport
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            Rect viewportClip = Dart:uiDefaultClass.Offset.Zero & Size;
+            Rect viewportClip = Dart.UiDefaultClass.Offset.Zero & Size;
             if (child.Constraints.Overlap == 0 || !child.Constraints.ViewportMainAxisExtent.IsFinite())
             {
                 return viewportClip;
@@ -925,7 +902,7 @@ namespace FlutterSDK.Rendering.Viewport
             if (FirstChild == null) return;
             if (HasVisualOverflow)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintContents);
+                context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintContents);
             }
             else
             {
@@ -1304,7 +1281,6 @@ namespace FlutterSDK.Rendering.Viewport
 
 
 
-        #endregion
         RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
         public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
         public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;
@@ -1346,7 +1322,6 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverPhysicalContainerParentData>
     {
-        #region constructors
         public RenderViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double anchor = 0.0, List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>), FlutterSDK.Rendering.Sliver.RenderSliver center = default(FlutterSDK.Rendering.Sliver.RenderSliver), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset, cacheExtent: cacheExtent, cacheExtentStyle: cacheExtentStyle)
         {
@@ -1356,9 +1331,6 @@ namespace FlutterSDK.Rendering.Viewport
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Semantics.Semantics.SemanticsTag UseTwoPaneSemantics { get; set; }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsTag ExcludeFromScrolling { get; set; }
         internal virtual double _Anchor { get; set; }
@@ -1374,9 +1346,6 @@ namespace FlutterSDK.Rendering.Viewport
         public virtual int IndexOfFirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInPaintOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInHitTestOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -1425,7 +1394,7 @@ namespace FlutterSDK.Rendering.Viewport
                 }
                 else
                 {
-                    if (Offset.ApplyContentDimensions(Math.Dart:mathDefaultClass.Min(0.0, _MinScrollExtent + mainAxisExtent * Anchor), Math.Dart:mathDefaultClass.Max(0.0, _MaxScrollExtent - mainAxisExtent * (1.0 - Anchor)))) break;
+                    if (Offset.ApplyContentDimensions(Dart.Math.MathDefaultClass.Min(0.0, _MinScrollExtent + mainAxisExtent * Anchor), Dart.Math.MathDefaultClass.Max(0.0, _MaxScrollExtent - mainAxisExtent * (1.0 - Anchor)))) break;
                 }
 
                 count += 1;
@@ -1458,11 +1427,11 @@ namespace FlutterSDK.Rendering.Viewport
             RenderSliver leadingNegativeChild = ChildBefore(Center);
             if (leadingNegativeChild != null)
             {
-                double result = LayoutChildSequence(child: leadingNegativeChild, scrollOffset: Math.Dart:mathDefaultClass.Max(mainAxisExtent, centerOffset) - mainAxisExtent, overlap: 0.0, layoutOffset: forwardDirectionRemainingPaintExtent, remainingPaintExtent: reverseDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Reverse, advance: ChildBefore, remainingCacheExtent: reverseDirectionRemainingCacheExtent, cacheOrigin: (mainAxisExtent - centerOffset).Clamp(-_CalculatedCacheExtent, 0.0) as double);
+                double result = LayoutChildSequence(child: leadingNegativeChild, scrollOffset: Dart.Math.MathDefaultClass.Max(mainAxisExtent, centerOffset) - mainAxisExtent, overlap: 0.0, layoutOffset: forwardDirectionRemainingPaintExtent, remainingPaintExtent: reverseDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Reverse, advance: ChildBefore, remainingCacheExtent: reverseDirectionRemainingCacheExtent, cacheOrigin: (mainAxisExtent - centerOffset).Clamp(-_CalculatedCacheExtent, 0.0) as double);
                 if (result != 0.0) return -result;
             }
 
-            return LayoutChildSequence(child: Center, scrollOffset: Math.Dart:mathDefaultClass.Max(0.0, -centerOffset), overlap: leadingNegativeChild == null ? Math.Dart : mathDefaultClass.Min(0.0, -centerOffset):0.0, layoutOffset: centerOffset >= mainAxisExtent ? centerOffset : reverseDirectionRemainingPaintExtent, remainingPaintExtent: forwardDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: forwardDirectionRemainingCacheExtent, cacheOrigin: centerOffset.Clamp(-_CalculatedCacheExtent, 0.0) as double);
+            return LayoutChildSequence(child: Center, scrollOffset: Dart.Math.MathDefaultClass.Max(0.0, -centerOffset), overlap: leadingNegativeChild == null ? Dart.Math.MathDefaultClass.Min(0.0, -centerOffset) : 0.0, layoutOffset: centerOffset >= mainAxisExtent ? centerOffset : reverseDirectionRemainingPaintExtent, remainingPaintExtent: forwardDirectionRemainingPaintExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: forwardDirectionRemainingCacheExtent, cacheOrigin: centerOffset.Clamp(-_CalculatedCacheExtent, 0.0) as double);
         }
 
 
@@ -1590,7 +1559,6 @@ namespace FlutterSDK.Rendering.Viewport
 
 
 
-        #endregion
     }
 
 
@@ -1623,7 +1591,6 @@ namespace FlutterSDK.Rendering.Viewport
     /// </Summary>
     public class RenderShrinkWrappingViewport : FlutterSDK.Rendering.Viewport.RenderViewportBase<FlutterSDK.Rendering.Sliver.SliverLogicalContainerParentData>
     {
-        #region constructors
         public RenderShrinkWrappingViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset)
         {
@@ -1632,9 +1599,6 @@ namespace FlutterSDK.Rendering.Viewport
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _MaxScrollExtent { get; set; }
         internal virtual double _ShrinkWrapExtent { get; set; }
         internal virtual bool _HasVisualOverflow { get; set; }
@@ -1642,9 +1606,6 @@ namespace FlutterSDK.Rendering.Viewport
         public virtual int IndexOfFirstChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInPaintOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.Sliver.RenderSliver> ChildrenInHitTestOrder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -1694,7 +1655,7 @@ namespace FlutterSDK.Rendering.Viewport
                 {
                     switch (Axis) { case Axis.Vertical: effectiveExtent = constraints.ConstrainHeight(_ShrinkWrapExtent); break; case Axis.Horizontal: effectiveExtent = constraints.ConstrainWidth(_ShrinkWrapExtent); break; }
                     bool didAcceptViewportDimension = Offset.ApplyViewportDimension(effectiveExtent);
-                    bool didAcceptContentDimension = Offset.ApplyContentDimensions(0.0, Math.Dart:mathDefaultClass.Max(0.0, _MaxScrollExtent - effectiveExtent));
+                    bool didAcceptContentDimension = Offset.ApplyContentDimensions(0.0, Dart.Math.MathDefaultClass.Max(0.0, _MaxScrollExtent - effectiveExtent));
                     if (didAcceptViewportDimension && didAcceptContentDimension) break;
                 }
 
@@ -1716,7 +1677,7 @@ namespace FlutterSDK.Rendering.Viewport
             _MaxScrollExtent = 0.0;
             _ShrinkWrapExtent = 0.0;
             _HasVisualOverflow = false;
-            return LayoutChildSequence(child: FirstChild, scrollOffset: Math.Dart:mathDefaultClass.Max(0.0, correctedOffset), overlap: Math.Dart:mathDefaultClass.Min(0.0, correctedOffset), layoutOffset: 0.0, remainingPaintExtent: mainAxisExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: mainAxisExtent + 2 * CacheExtent, cacheOrigin: -CacheExtent);
+            return LayoutChildSequence(child: FirstChild, scrollOffset: Dart.Math.MathDefaultClass.Max(0.0, correctedOffset), overlap: Dart.Math.MathDefaultClass.Min(0.0, correctedOffset), layoutOffset: 0.0, remainingPaintExtent: mainAxisExtent, mainAxisExtent: mainAxisExtent, crossAxisExtent: crossAxisExtent, growthDirection: GrowthDirection.Forward, advance: ChildAfter, remainingCacheExtent: mainAxisExtent + 2 * CacheExtent, cacheOrigin: -CacheExtent);
         }
 
 
@@ -1814,7 +1775,6 @@ namespace FlutterSDK.Rendering.Viewport
         public new string LabelForChild(int index) => $"'child {index}'";
 
 
-        #endregion
     }
 
 

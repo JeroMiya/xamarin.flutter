@@ -310,7 +310,6 @@ namespace FlutterSDK.Foundation.Serialization
     /// </Summary>
     public class WriteBuffer
     {
-        #region constructors
         public WriteBuffer()
         {
 
@@ -320,15 +319,9 @@ namespace FlutterSDK.Foundation.Serialization
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual Uint8Buffer _Buffer { get; set; }
         internal virtual ByteData _EightBytes { get; set; }
         internal virtual Uint8List _EightBytesAsList { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Write a Uint8 into the buffer.
@@ -346,7 +339,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual void PutUint16(int value, Endian endian = default(Endian))
         {
-            _EightBytes.SetUint16(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _EightBytes.SetUint16(0, value, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Buffer.AddAll(_EightBytesAsList, 0, 2);
         }
 
@@ -358,7 +351,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual void PutUint32(int value, Endian endian = default(Endian))
         {
-            _EightBytes.SetUint32(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _EightBytes.SetUint32(0, value, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Buffer.AddAll(_EightBytesAsList, 0, 4);
         }
 
@@ -370,7 +363,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual void PutInt32(int value, Endian endian = default(Endian))
         {
-            _EightBytes.SetInt32(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _EightBytes.SetInt32(0, value, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Buffer.AddAll(_EightBytesAsList, 0, 4);
         }
 
@@ -382,7 +375,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual void PutInt64(int value, Endian endian = default(Endian))
         {
-            _EightBytes.SetInt64(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _EightBytes.SetInt64(0, value, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Buffer.AddAll(_EightBytesAsList, 0, 8);
         }
 
@@ -395,7 +388,7 @@ namespace FlutterSDK.Foundation.Serialization
         public virtual void PutFloat64(double value, Endian endian = default(Endian))
         {
             _AlignTo(8);
-            _EightBytes.SetFloat64(0, value, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            _EightBytes.SetFloat64(0, value, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Buffer.AddAll(_EightBytesAsList);
         }
 
@@ -474,7 +467,6 @@ namespace FlutterSDK.Foundation.Serialization
 
 
 
-        #endregion
     }
 
 
@@ -485,21 +477,14 @@ namespace FlutterSDK.Foundation.Serialization
     /// </Summary>
     public class ReadBuffer
     {
-        #region constructors
         public ReadBuffer(ByteData data)
         : base()
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual ByteData Data { get; set; }
         internal virtual int _Position { get; set; }
         public virtual bool HasRemaining { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Reads a Uint8 from the buffer.
@@ -517,7 +502,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual int GetUint16(Endian endian = default(Endian))
         {
-            int value = Data.GetUint16(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            int value = Data.GetUint16(_Position, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Position += 2;
             return value;
         }
@@ -530,7 +515,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual int GetUint32(Endian endian = default(Endian))
         {
-            int value = Data.GetUint32(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            int value = Data.GetUint32(_Position, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Position += 4;
             return value;
         }
@@ -543,7 +528,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual int GetInt32(Endian endian = default(Endian))
         {
-            int value = Data.GetInt32(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            int value = Data.GetInt32(_Position, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Position += 4;
             return value;
         }
@@ -556,7 +541,7 @@ namespace FlutterSDK.Foundation.Serialization
         /// </Summary>
         public virtual int GetInt64(Endian endian = default(Endian))
         {
-            int value = Data.GetInt64(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            int value = Data.GetInt64(_Position, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Position += 8;
             return value;
         }
@@ -570,7 +555,7 @@ namespace FlutterSDK.Foundation.Serialization
         public virtual double GetFloat64(Endian endian = default(Endian))
         {
             _AlignTo(8);
-            double value = Data.GetFloat64(_Position, endian ?? Dart:typeddataDefaultClass.Endian.Host);
+            double value = Data.GetFloat64(_Position, endian ?? Dart.TypeddataDefaultClass.Endian.Host);
             _Position += 8;
             return value;
         }
@@ -641,7 +626,6 @@ namespace FlutterSDK.Foundation.Serialization
 
 
 
-        #endregion
     }
 
 }

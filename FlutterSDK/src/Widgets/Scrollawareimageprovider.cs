@@ -462,21 +462,14 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
     /// </Summary>
     public class ScrollAwareImageProvider<T> : FlutterSDK.Painting.Imageprovider.ImageProvider<T>
     {
-        #region constructors
         public ScrollAwareImageProvider(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> context = default(FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>), FlutterSDK.Painting.Imageprovider.ImageProvider<T> imageProvider = default(FlutterSDK.Painting.Imageprovider.ImageProvider<T>))
         : base()
         {
             this.Context = context;
             this.ImageProvider = imageProvider;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Disposablebuildcontext.DisposableBuildContext<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> Context { get; set; }
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<T> ImageProvider { get; set; }
-        #endregion
-
-        #region methods
 
         public new void ResolveStreamForKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration, FlutterSDK.Painting.Imagestream.ImageStream stream, T key, FlutterSDK.Painting.Imagestream.ImageErrorListener handleError)
         {
@@ -495,7 +488,7 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
             {
                 BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback((_) =>
                 {
-                Dart: asyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
+                    Dart.AsyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
                 }
                 );
                 return;
@@ -514,7 +507,6 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
         public new Future<T> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration) => ImageProvider.ObtainKey(configuration);
 
 
-        #endregion
     }
 
 }

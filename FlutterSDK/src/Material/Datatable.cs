@@ -390,7 +390,6 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataColumn
     {
-        #region constructors
         public DataColumn(FlutterSDK.Widgets.Framework.Widget label = default(FlutterSDK.Widgets.Framework.Widget), string tooltip = default(string), bool numeric = false, FlutterSDK.Material.Datatable.DataColumnSortCallback onSort = default(FlutterSDK.Material.Datatable.DataColumnSortCallback))
         : base()
         {
@@ -399,18 +398,11 @@ namespace FlutterSDK.Material.Datatable
             this.Numeric = numeric;
             this.OnSort = onSort;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Label { get; set; }
         public virtual string Tooltip { get; set; }
         public virtual bool Numeric { get; set; }
         public virtual FlutterSDK.Material.Datatable.DataColumnSortCallback OnSort { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -426,7 +418,6 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataRow
     {
-        #region constructors
         public DataRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), bool selected = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onSelectChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), List<FlutterSDK.Material.Datatable.DataCell> cells = default(List<FlutterSDK.Material.Datatable.DataCell>))
         : base()
         {
@@ -441,18 +432,11 @@ namespace FlutterSDK.Material.Datatable
             instance.OnSelectChanged = onSelectChanged;
             instance.Cells = cells;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnSelectChanged { get; set; }
         public virtual bool Selected { get; set; }
         public virtual List<FlutterSDK.Material.Datatable.DataCell> Cells { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -465,7 +449,6 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataCell
     {
-        #region constructors
         public DataCell(FlutterSDK.Widgets.Framework.Widget child, bool placeholder = false, bool showEditIcon = false, VoidCallback onTap = default(VoidCallback))
         : base()
         {
@@ -474,19 +457,12 @@ namespace FlutterSDK.Material.Datatable
             this.ShowEditIcon = showEditIcon;
             this.OnTap = onTap;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Datatable.DataCell Empty { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual bool Placeholder { get; set; }
         public virtual bool ShowEditIcon { get; set; }
         public virtual VoidCallback OnTap { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -578,7 +554,6 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class DataTable : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public DataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, double dividerThickness = 1.0, List<FlutterSDK.Material.Datatable.DataRow> rows = default(List<FlutterSDK.Material.Datatable.DataRow>))
         : base(key: key)
         {
@@ -594,9 +569,6 @@ namespace FlutterSDK.Material.Datatable
             this.DividerThickness = dividerThickness;
             this.Rows = rows;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
         public virtual int SortColumnIndex { get; set; }
         public virtual bool SortAscending { get; set; }
@@ -616,9 +588,6 @@ namespace FlutterSDK.Material.Datatable
         internal virtual FlutterBinding.UI.Color _Grey300Opacity { get; set; }
         public virtual double DividerThickness { get; set; }
         internal virtual bool _DebugInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private int _InitOnlyTextColumn(List<FlutterSDK.Material.Datatable.DataColumn> columns)
         {
@@ -682,7 +651,7 @@ namespace FlutterSDK.Material.Datatable
             }
 
             label = new Row(textDirection: numeric ? TextDirection.Rtl : null, children: new List<Widget>() { label,  /* ...ArrowWithPadding() */});
-            label = new Container(padding: padding, height: HeadingRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new AnimatedDefaultTextStyle(style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.W500, fontSize: _HeadingFontSize, height: Math.Dart:mathDefaultClass.Min(1.0, HeadingRowHeight / _HeadingFontSize), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ((onSort != null && sorted) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.Black54) : ((onSort != null && sorted) ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.White70)), softWrap: false, duration: _SortArrowAnimationDuration, child: label));
+            label = new Container(padding: padding, height: HeadingRowHeight, alignment: numeric ? AlignmentDefaultClass.Alignment.CenterRight : AlignmentDefaultClass.AlignmentDirectional.CenterStart, child: new AnimatedDefaultTextStyle(style: new TextStyle(fontWeight: Dart.UiDefaultClass.FontWeight.W500, fontSize: _HeadingFontSize, height: Dart.Math.MathDefaultClass.Min(1.0, HeadingRowHeight / _HeadingFontSize), color: (ThemeDefaultClass.Theme.Of(context).Brightness == Brightness.Light) ? ((onSort != null && sorted) ? ColorsDefaultClass.Colors.Black87 : ColorsDefaultClass.Colors.Black54) : ((onSort != null && sorted) ? ColorsDefaultClass.Colors.White : ColorsDefaultClass.Colors.White70)), softWrap: false, duration: _SortArrowAnimationDuration, child: label));
             if (tooltip != null)
             {
                 label = new Tooltip(message: tooltip, child: label);
@@ -805,7 +774,6 @@ namespace FlutterSDK.Material.Datatable
 
 
 
-        #endregion
     }
 
 
@@ -826,18 +794,11 @@ namespace FlutterSDK.Material.Datatable
     /// </Summary>
     public class TableRowInkWell : FlutterSDK.Material.Inkwell.InkResponse
     {
-        #region constructors
         public TableRowInkWell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Tap.GestureTapCallback onDoubleTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onHighlightChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>))
         : base(key: key, child: child, onTap: onTap, onDoubleTap: onDoubleTap, onLongPress: onLongPress, onHighlightChanged: onHighlightChanged, containedInkWell: true, highlightShape: BoxShape.Rectangle)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Material.RectCallback GetRectCallback(FlutterSDK.Rendering.Box.RenderBox referenceBox)
         {
@@ -865,7 +826,7 @@ namespace FlutterSDK.Material.Datatable
                     if (offset != null) return rect.Shift(-offset);
                 }
 
-                return Dart:uiDefaultClass.Rect.Zero;
+                return Dart.UiDefaultClass.Rect.Zero;
             }
             ;
         }
@@ -881,13 +842,11 @@ namespace FlutterSDK.Material.Datatable
 
 
 
-        #endregion
     }
 
 
     public class _SortArrow : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _SortArrow(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool visible = default(bool), bool down = default(bool), TimeSpan duration = default(TimeSpan))
         : base(key: key)
         {
@@ -895,31 +854,20 @@ namespace FlutterSDK.Material.Datatable
             this.Down = down;
             this.Duration = duration;
         }
-        #endregion
-
-        #region fields
         public virtual bool Visible { get; set; }
         public virtual bool Down { get; set; }
         public virtual TimeSpan Duration { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Datatable._SortArrowState CreateState() => new _SortArrowState();
 
 
-        #endregion
     }
 
 
     public class _SortArrowState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Datatable._SortArrow>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _SortArrowState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OpacityController { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _OrientationController { get; set; }
@@ -929,9 +877,6 @@ namespace FlutterSDK.Material.Datatable
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _TurnTween { get; set; }
         internal virtual double _ArrowIconBaselineOffset { get; set; }
         internal virtual double _ArrowIconSize { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -943,7 +888,7 @@ namespace FlutterSDK.Material.Datatable
             _OrientationAnimation = _OrientationController.Drive(_TurnTween);
             _OrientationController.Drive(_TurnTween).AddListener(_Rebuild);
             _OrientationController.Drive(_TurnTween).AddStatusListener(_ResetOrientationAnimation);
-            if (Widget.Visible) _OrientationOffset = Widget.Down ? 0.0 : Math.Dart:mathDefaultClass.Pi;
+            if (Widget.Visible) _OrientationOffset = Widget.Down ? 0.0 : Math.Dart.MathDefaultClass.Pi;
         }
 
 
@@ -965,7 +910,7 @@ namespace FlutterSDK.Material.Datatable
             if (status == AnimationStatus.Completed)
             {
 
-                _OrientationOffset += Math.Dart:mathDefaultClass.Pi;
+                _OrientationOffset += Math.Dart.MathDefaultClass.Pi;
                 _OrientationController.Value = 0.0;
             }
 
@@ -985,7 +930,7 @@ namespace FlutterSDK.Material.Datatable
                 {
                     _OrientationController.Stop();
                     _OrientationController.Value = 0.0;
-                    _OrientationOffset = newDown ? 0.0 : Math.Dart:mathDefaultClass.Pi;
+                    _OrientationOffset = newDown ? 0.0 : Math.Dart.MathDefaultClass.Pi;
                     skipArrow = true;
                 }
 
@@ -1037,7 +982,6 @@ namespace FlutterSDK.Material.Datatable
 
 
 
-        #endregion
     }
 
 }

@@ -473,7 +473,6 @@ namespace FlutterSDK.Material.Toggleable
     /// </Summary>
     public class RenderToggleable : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
-        #region constructors
         public RenderToggleable(bool value = default(bool), bool tristate = false, FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), bool hasFocus = false, bool hovering = false)
         : base(additionalConstraints: additionalConstraints)
         {
@@ -494,9 +493,6 @@ namespace FlutterSDK.Material.Toggleable
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _PositionController { get; set; }
         internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Position { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _ReactionController { get; set; }
@@ -535,9 +531,6 @@ namespace FlutterSDK.Material.Toggleable
         public virtual FlutterBinding.UI.Color ReactionColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
         {
@@ -641,8 +634,8 @@ namespace FlutterSDK.Material.Toggleable
         {
             if (!_Reaction.IsDismissed || !_ReactionFocusFade.IsDismissed || !_ReactionHoverFade.IsDismissed)
             {
-                Paint reactionPaint = new Paint()..Color = Dart:uiDefaultClass.Color.Lerp(Dart: uiDefaultClass.Color.Lerp(ActiveColor.WithAlpha(ConstantsDefaultClass.KRadialReactionAlpha), HoverColor, _ReactionHoverFade.Value), FocusColor, _ReactionFocusFade.Value);
-                Offset center = Dart:uiDefaultClass.Offset.Lerp(_DownPosition ?? origin, origin, _Reaction.Value);
+                Paint reactionPaint = new Paint()..Color = Dart.UI.UiDefaultClass.Color.Lerp(Dart.UI.UiDefaultClass.Color.Lerp(ActiveColor.WithAlpha(ConstantsDefaultClass.KRadialReactionAlpha), HoverColor, _ReactionHoverFade.Value), FocusColor, _ReactionFocusFade.Value);
+                Offset center = Dart.UI.UiDefaultClass.Offset.Lerp(_DownPosition ?? origin, origin, _Reaction.Value);
                 double reactionRadius = HasFocus || Hovering ? ConstantsDefaultClass.KRadialReactionRadius : ToggleableDefaultClass._KRadialReactionRadiusTween.Evaluate(_Reaction);
                 if (reactionRadius > 0.0)
                 {
@@ -675,7 +668,6 @@ namespace FlutterSDK.Material.Toggleable
 
 
 
-        #endregion
     }
 
 }

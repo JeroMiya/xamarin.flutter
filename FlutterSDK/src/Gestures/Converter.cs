@@ -316,17 +316,10 @@ namespace FlutterSDK.Gestures.Converter
     /// </Summary>
     public class PointerEventConverter
     {
-        #region constructors
         internal PointerEventConverter()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Expand the given packet of pointer data into a sequence of framework
@@ -339,7 +332,8 @@ namespace FlutterSDK.Gestures.Converter
         /// </Summary>
         public virtual Iterable<FlutterSDK.Gestures.Events.PointerEvent> Expand(Iterable<PointerData> data, double devicePixelRatio)
         {
-            foreach (Ui.Dart:uiDefaultClass.PointerData datum  in data){
+            foreach (Dart.UI.PointerData datum in data)
+            {
                 Offset position = new Offset(datum.PhysicalX, datum.PhysicalY) / devicePixelRatio;
                 Offset delta = new Offset(datum.PhysicalDeltaX, datum.PhysicalDeltaY) / devicePixelRatio;
                 double radiusMinor = _ToLogicalPixels(datum.RadiusMinor, devicePixelRatio);
@@ -368,7 +362,6 @@ namespace FlutterSDK.Gestures.Converter
         private double _ToLogicalPixels(double physicalPixels, double devicePixelRatio) => physicalPixels == null ? null : physicalPixels / devicePixelRatio;
 
 
-        #endregion
     }
 
 }

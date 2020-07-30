@@ -420,20 +420,13 @@ namespace FlutterSDK.Material.Selectabletext
 
     public class _TextSpanEditingController : FlutterSDK.Widgets.Editabletext.TextEditingController
     {
-        #region constructors
         public _TextSpanEditingController(FlutterSDK.Painting.Textspan.TextSpan textSpan = default(FlutterSDK.Painting.Textspan.TextSpan))
         : base(text: textSpan.ToPlainText())
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Textspan.TextSpan _TextSpan { get; set; }
         public virtual string Text { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Textspan.TextSpan BuildTextSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), bool withComposing = default(bool))
         {
@@ -442,25 +435,17 @@ namespace FlutterSDK.Material.Selectabletext
 
 
 
-        #endregion
     }
 
 
     public class _SelectableTextSelectionGestureDetectorBuilder : FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilder
     {
-        #region constructors
         public _SelectableTextSelectionGestureDetectorBuilder(FlutterSDK.Material.Selectabletext._SelectableTextState state = default(FlutterSDK.Material.Selectabletext._SelectableTextState))
         : base(@delegate: state)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Selectabletext._SelectableTextState _State { get; set; }
-        #endregion
-
-        #region methods
 
         public new void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details)
         {
@@ -519,7 +504,6 @@ namespace FlutterSDK.Material.Selectabletext
 
 
 
-        #endregion
     }
 
 
@@ -582,7 +566,6 @@ namespace FlutterSDK.Material.Selectabletext
     /// </Summary>
     public class SelectableText : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SelectableText(string data, FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = default(double), bool showCursor = false, bool autofocus = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), int minLines = default(int), int maxLines = default(int), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis))
         : base(key: key)
         {
@@ -628,9 +611,6 @@ namespace FlutterSDK.Material.Selectabletext
             instance.ScrollPhysics = scrollPhysics;
             instance.TextWidthBasis = textWidthBasis;
         }
-        #endregion
-
-        #region fields
         public virtual string Data { get; set; }
         public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
@@ -653,9 +633,6 @@ namespace FlutterSDK.Material.Selectabletext
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
         public virtual FlutterSDK.Painting.Textpainter.TextWidthBasis TextWidthBasis { get; set; }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Selectabletext._SelectableTextState CreateState() => new _SelectableTextState();
 
@@ -683,18 +660,13 @@ namespace FlutterSDK.Material.Selectabletext
 
 
 
-        #endregion
     }
 
 
     public class _SelectableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Selectabletext.SelectableText>, ITextSelectionGestureDetectorBuilderDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _SelectableTextState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Selectabletext._TextSpanEditingController _Controller { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
         internal virtual bool _ShowSelectionHandles { get; set; }
@@ -705,9 +677,6 @@ namespace FlutterSDK.Material.Selectabletext
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _EffectiveFocusNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool WantKeepAlive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -821,7 +790,7 @@ namespace FlutterSDK.Material.Selectabletext
             DefaultTextStyle defaultTextStyle = TextDefaultClass.DefaultTextStyle.Of(context);
             TextStyle effectiveTextStyle = Widget.Style;
             if (Widget.Style == null || Widget.Style.Inherit) effectiveTextStyle = defaultTextStyle.Style.Merge(Widget.Style);
-            if (MediaqueryDefaultClass.MediaQuery.BoldTextOverride(context)) effectiveTextStyle = effectiveTextStyle.Merge(new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold));
+            if (MediaqueryDefaultClass.MediaQuery.BoldTextOverride(context)) effectiveTextStyle = effectiveTextStyle.Merge(new TextStyle(fontWeight: Dart.UI.UiDefaultClass.FontWeight.Bold));
             Widget child = new RepaintBoundary(child: new EditableText(key: EditableTextKey, style: effectiveTextStyle, readOnly: true, textWidthBasis: Widget.TextWidthBasis ?? defaultTextStyle.TextWidthBasis, showSelectionHandles: _ShowSelectionHandles, showCursor: Widget.ShowCursor, controller: _Controller, focusNode: focusNode, strutStyle: Widget.StrutStyle ?? new StrutStyle(), textAlign: Widget.TextAlign ?? defaultTextStyle.TextAlign ?? TextAlign.Start, textDirection: Widget.TextDirection, textScaleFactor: Widget.TextScaleFactor, autofocus: Widget.Autofocus, forceLine: false, toolbarOptions: Widget.ToolbarOptions, minLines: Widget.MinLines, maxLines: Widget.MaxLines ?? defaultTextStyle.MaxLines, selectionColor: themeData.TextSelectionColor, selectionControls: Widget.SelectionEnabled ? textSelectionControls : null, onSelectionChanged: _HandleSelectionChanged, onSelectionHandleTapped: _HandleSelectionHandleTapped, rendererIgnoresPointer: true, cursorWidth: Widget.CursorWidth, cursorRadius: cursorRadius, cursorColor: cursorColor, cursorOpacityAnimates: cursorOpacityAnimates, cursorOffset: cursorOffset, paintCursorAboveText: paintCursorAboveText, backgroundCursorColor: ColorsDefaultClass.CupertinoColors.InactiveGray, enableInteractiveSelection: Widget.EnableInteractiveSelection, dragStartBehavior: Widget.DragStartBehavior, scrollPhysics: Widget.ScrollPhysics));
             return new Semantics(onTap: () =>
             {
@@ -837,7 +806,6 @@ namespace FlutterSDK.Material.Selectabletext
 
 
 
-        #endregion
     }
 
 }

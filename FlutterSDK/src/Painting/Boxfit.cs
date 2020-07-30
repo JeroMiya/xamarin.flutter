@@ -426,7 +426,7 @@ namespace FlutterSDK.Painting.Boxfit
     {
         internal static FlutterSDK.Painting.Boxfit.FittedSizes ApplyBoxFit(FlutterSDK.Painting.Boxfit.BoxFit fit, Size inputSize, Size outputSize)
         {
-            if (inputSize.Height <= 0.0 || inputSize.Width <= 0.0 || outputSize.Height <= 0.0 || outputSize.Width <= 0.0) return new FittedSizes(Dart: uiDefaultClass.Size.Zero, Dart: uiDefaultClass.Size.Zero);
+            if (inputSize.Height <= 0.0 || inputSize.Width <= 0.0 || outputSize.Height <= 0.0 || outputSize.Width <= 0.0) return new FittedSizes(Dart.UiDefaultClass.Size.Zero, Dart.UiDefaultClass.Size.Zero);
             Size sourceSize destinationSize = default(Size);
             switch (fit)
             {
@@ -444,7 +444,7 @@ namespace FlutterSDK.Painting.Boxfit
                     destinationSize = outputSize; break;
                 case BoxFit.FitWidth: sourceSize = new Size(inputSize.Width, inputSize.Width * outputSize.Height / outputSize.Width); destinationSize = new Size(outputSize.Width, sourceSize.Height * outputSize.Width / sourceSize.Width); break;
                 case BoxFit.FitHeight: sourceSize = new Size(inputSize.Height * outputSize.Width / outputSize.Height, inputSize.Height); destinationSize = new Size(sourceSize.Width * outputSize.Height / sourceSize.Height, outputSize.Height); break;
-                case BoxFit.None: sourceSize = new Size(Math.Dart:mathDefaultClass.Min(inputSize.Width, outputSize.Width), Math.Dart:mathDefaultClass.Min(inputSize.Height, outputSize.Height)); destinationSize = sourceSize; break;
+                case BoxFit.None: sourceSize = new Size(Dart.Math.MathDefaultClass.Min(inputSize.Width, outputSize.Width), Dart.Math.MathDefaultClass.Min(inputSize.Height, outputSize.Height)); destinationSize = sourceSize; break;
                 case BoxFit.ScaleDown: sourceSize = inputSize; destinationSize = inputSize; double aspectRatio = inputSize.Width / inputSize.Height; if (destinationSize.Height > outputSize.Height) destinationSize = new Size(outputSize.Height * aspectRatio, outputSize.Height); if (destinationSize.Width > outputSize.Width) destinationSize = new Size(outputSize.Width, outputSize.Width / aspectRatio); break;
             }
             return new FittedSizes(sourceSize, destinationSize);
@@ -459,21 +459,13 @@ namespace FlutterSDK.Painting.Boxfit
     /// </Summary>
     public class FittedSizes
     {
-        #region constructors
         public FittedSizes(Size source, Size destination)
         {
             this.Source = source;
             this.Destination = destination;
         }
-        #endregion
-
-        #region fields
         public virtual Size Source { get; set; }
         public virtual Size Destination { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 

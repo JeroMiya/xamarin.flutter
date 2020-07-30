@@ -434,7 +434,6 @@ namespace FlutterSDK.Painting._Networkimageweb
     /// </Summary>
     public class NetworkImage : FlutterSDK.Painting.Imageprovider.ImageProvider<FlutterSDK.Painting.Imageprovider.NetworkImage>, INetworkImage
     {
-        #region constructors
         public NetworkImage(string url, double scale = 1.0, Dictionary<string, string> headers = default(Dictionary<string, string>))
         : base()
         {
@@ -442,16 +441,10 @@ namespace FlutterSDK.Painting._Networkimageweb
             this.Scale = scale;
             this.Headers = headers;
         }
-        #endregion
-
-        #region fields
         public new string Url { get; set; }
         public new double Scale { get; set; }
         public new Dictionary<string, string> Headers { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Future<FlutterSDK.Painting._Networkimageweb.NetworkImage> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
         {
@@ -483,12 +476,12 @@ namespace FlutterSDK.Painting._Networkimageweb
         private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageweb.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents)
         {
 
-            Uri resolved = Dart:coreDefaultClass.Uri.Base.Resolve(key.Url);
+            Uri resolved = Dart.CoreDefaultClass.Uri.Base.Resolve(key.Url);
             return Ui.WebOnlyInstantiateImageCodecFromUrl(resolved, ChunkCallback: (int bytes, int total) =>
             {
                 chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: bytes, expectedTotalBytes: total));
             }
-            ) as Future<Ui.Dart:uiDefaultClass.Codec>;
+            ) as Future<Dart.UI.Codec>;
         }
 
 
@@ -507,7 +500,6 @@ namespace FlutterSDK.Painting._Networkimageweb
 
 
 
-        #endregion
     }
 
 }

@@ -649,7 +649,6 @@ namespace FlutterSDK.Material.Switchlisttile
     /// </Summary>
     public class SwitchListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SwitchListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry contentPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false)
         : base(key: key)
         {
@@ -687,9 +686,6 @@ namespace FlutterSDK.Material.Switchlisttile
             instance.Secondary = secondary;
             instance.Selected = selected;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
@@ -706,9 +702,6 @@ namespace FlutterSDK.Material.Switchlisttile
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry ContentPadding { get; set; }
         public virtual bool Selected { get; set; }
         internal virtual FlutterSDK.Material.Switchlisttile._SwitchListTileType _SwitchListTileType { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -723,7 +716,6 @@ namespace FlutterSDK.Material.Switchlisttile
 
 
 
-        #endregion
     }
 
 

@@ -445,14 +445,10 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class ScrollPhysics
     {
-        #region constructors
         public ScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         {
             this.Parent = parent;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Parent { get; set; }
         internal virtual FlutterSDK.Physics.Springsimulation.SpringDescription _KDefaultSpring { get; set; }
         internal virtual FlutterSDK.Physics.Tolerance.Tolerance _KDefaultTolerance { get; set; }
@@ -463,9 +459,6 @@ namespace FlutterSDK.Widgets.Scrollphysics
         public virtual double MaxFlingVelocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double DragStartDistanceMotionThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// If [parent] is null then return ancestor, otherwise recursively build a
@@ -709,7 +702,6 @@ namespace FlutterSDK.Widgets.Scrollphysics
 
 
 
-        #endregion
     }
 
 
@@ -729,20 +721,13 @@ namespace FlutterSDK.Widgets.Scrollphysics
     /// </Summary>
     public class BouncingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
-        #region constructors
         public BouncingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double MinFlingVelocity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double DragStartDistanceMotionThreshold { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollphysics.BouncingScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
         {
@@ -762,18 +747,18 @@ namespace FlutterSDK.Widgets.Scrollphysics
         /// as more of the area past the edge is dragged in (represented by an increasing
         /// `overscrollFraction` which starts at 0 when there is no overscroll).
         /// </Summary>
-        public virtual double FrictionFactor(double overscrollFraction) => 0.52 * Math.Dart:mathDefaultClass.Pow(1-overscrollFraction, 2);
+        public virtual double FrictionFactor(double overscrollFraction) => 0.52 * Dart.Math.MathDefaultClass.Pow(1 - overscrollFraction, 2);
 
 
 
-public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double offset)
+        public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double offset)
         {
 
 
             if (!position.OutOfRange) return offset;
-            double overscrollPastStart = Math.Dart:mathDefaultClass.Max(position.MinScrollExtent - position.Pixels, 0.0);
-            double overscrollPastEnd = Math.Dart:mathDefaultClass.Max(position.Pixels - position.MaxScrollExtent, 0.0);
-            double overscrollPast = Math.Dart:mathDefaultClass.Max(overscrollPastStart, overscrollPastEnd);
+            double overscrollPastStart = Dart.Math.MathDefaultClass.Max(position.MinScrollExtent - position.Pixels, 0.0);
+            double overscrollPastEnd = Dart.Math.MathDefaultClass.Max(position.Pixels - position.MaxScrollExtent, 0.0);
+            double overscrollPast = Dart.Math.MathDefaultClass.Max(overscrollPastStart, overscrollPastEnd);
             bool easing = (overscrollPastStart > 0.0 && offset < 0.0) || (overscrollPastEnd > 0.0 && offset > 0.0);
             double friction = easing ? FrictionFactor((overscrollPast - offset.Abs()) / position.ViewportDimension) : FrictionFactor(overscrollPast / position.ViewportDimension);
             double direction = offset.Sign;
@@ -828,12 +813,11 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
         /// </Summary>
         public new double CarriedMomentum(double existingVelocity)
         {
-            return existingVelocity.Sign * Math.Dart:mathDefaultClass.Min(0.000816 * Math.Dart:mathDefaultClass.Pow(existingVelocity.Abs(), 1.967).ToDouble(), 40000.0);
+            return existingVelocity.Sign * Dart.Math.MathDefaultClass.Min(0.000816 * Dart.Math.MathDefaultClass.Pow(existingVelocity.Abs(), 1.967).ToDouble(), 40000.0);
         }
 
 
 
-        #endregion
     }
 
 
@@ -856,18 +840,11 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
     /// </Summary>
     public class ClampingScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
-        #region constructors
         public ClampingScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollphysics.ClampingScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
         {
@@ -899,7 +876,7 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
                 if (position.Pixels > position.MaxScrollExtent) end = position.MaxScrollExtent;
                 if (position.Pixels < position.MinScrollExtent) end = position.MinScrollExtent;
 
-                return new ScrollSpringSimulation(Spring, position.Pixels, end, Math.Dart:mathDefaultClass.Min(0.0, velocity), tolerance: tolerance);
+                return new ScrollSpringSimulation(Spring, position.Pixels, end, Dart.Math.MathDefaultClass.Min(0.0, velocity), tolerance: tolerance);
             }
 
             if (velocity.Abs() < tolerance.Velocity) return null;
@@ -910,7 +887,6 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
 
 
 
-        #endregion
     }
 
 
@@ -932,18 +908,11 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
     /// </Summary>
     public class AlwaysScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
-        #region constructors
         public AlwaysScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollphysics.AlwaysScrollableScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
         {
@@ -956,7 +925,6 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
         public new bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position) => true;
 
 
-        #endregion
     }
 
 
@@ -974,19 +942,12 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
     /// </Summary>
     public class NeverScrollableScrollPhysics : FlutterSDK.Widgets.Scrollphysics.ScrollPhysics
     {
-        #region constructors
         public NeverScrollableScrollPhysics(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics parent = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(parent: parent)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollphysics.NeverScrollableScrollPhysics ApplyTo(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ancestor)
         {
@@ -999,7 +960,6 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
         public new bool ShouldAcceptUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position) => false;
 
 
-        #endregion
     }
 
 }

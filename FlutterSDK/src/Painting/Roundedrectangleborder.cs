@@ -443,23 +443,16 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
     /// </Summary>
     public class RoundedRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public RoundedRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
         {
             this.Side = side;
             this.BorderRadius = borderRadius;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
         {
@@ -557,13 +550,11 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
 
 
 
-        #endregion
     }
 
 
     public class _RoundedRectangleToCircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public _RoundedRectangleToCircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), double circleness = default(double))
         : base()
         {
@@ -571,17 +562,11 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
             this.BorderRadius = borderRadius;
             this.Circleness = circleness;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
         public virtual double Circleness { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
         {
@@ -606,7 +591,7 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
 
             if (a is _RoundedRectangleToCircleBorder)
             {
-                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_RoundedRectangleToCircleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((_RoundedRectangleToCircleBorder)a).BorderRadius, BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_RoundedRectangleToCircleBorder)a).Circleness, Circleness, t));
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_RoundedRectangleToCircleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((_RoundedRectangleToCircleBorder)a).BorderRadius, BorderRadius, t), circleness: Dart.UI.UiDefaultClass.LerpDouble(((_RoundedRectangleToCircleBorder)a).Circleness, Circleness, t));
             }
 
             return base.LerpFrom(a, t);
@@ -629,7 +614,7 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
 
             if (b is _RoundedRectangleToCircleBorder)
             {
-                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_RoundedRectangleToCircleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((_RoundedRectangleToCircleBorder)b).BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_RoundedRectangleToCircleBorder)b).Circleness, t));
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_RoundedRectangleToCircleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((_RoundedRectangleToCircleBorder)b).BorderRadius, t), circleness: Dart.UI.UiDefaultClass.LerpDouble(Circleness, ((_RoundedRectangleToCircleBorder)b).Circleness, t));
             }
 
             return base.LerpTo(b, t);
@@ -717,7 +702,6 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
 
 
 
-        #endregion
     }
 
 }

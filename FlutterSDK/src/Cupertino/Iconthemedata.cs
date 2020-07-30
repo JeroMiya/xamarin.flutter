@@ -303,18 +303,11 @@ namespace FlutterSDK.Cupertino.Iconthemedata
     /// </Summary>
     public class CupertinoIconThemeData : FlutterSDK.Widgets.Iconthemedata.IconThemeData, IDiagnosticable
     {
-        #region constructors
         public CupertinoIconThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double opacity = default(double), double size = default(double))
         : base(color: color, opacity: opacity, size: size)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called by [IconTheme.of] to resolve [color] against the given [BuildContext].
@@ -348,7 +341,6 @@ namespace FlutterSDK.Cupertino.Iconthemedata
 
 
 
-        #endregion
     }
 
 }

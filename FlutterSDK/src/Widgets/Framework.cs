@@ -2103,19 +2103,11 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class UniqueKey : FlutterSDK.Foundation.Key.LocalKey
     {
-        #region constructors
         public UniqueKey()
         {
 
         }
-        #endregion
 
-        #region fields
-        #endregion
-
-        #region methods
-
-        #endregion
     }
 
 
@@ -2133,30 +2125,22 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class ObjectKey : FlutterSDK.Foundation.Key.LocalKey
     {
-        #region constructors
         public ObjectKey(@Object value)
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual @Object Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
             if (other.GetType() != GetType()) return false;
-            return other is ObjectKey && Dart:coreDefaultClass.Identical(other.Value, Value);
+            return other is ObjectKey && Dart.CoreDefaultClass.Identical(other.Value, Value);
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -2187,7 +2171,6 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class GlobalKey<T> : FlutterSDK.Foundation.Key.Key
     {
-        #region constructors
         public GlobalKey(string debugLabel = default(string))
         {
             new LabeledGlobalKey<T>(debugLabel);
@@ -2196,19 +2179,13 @@ namespace FlutterSDK.Widgets.Framework
             {
                 var instance = new GlobalKey<T>();
             }
-#endregion
-
-            #region fields
-        internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>, FlutterSDK.Widgets.Framework.Element> _Registry { get; set; }
+internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>, FlutterSDK.Widgets.Framework.Element> _Registry { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Framework.Element> _DebugIllFatedElements { get; set; }
         internal virtual Dictionary<FlutterSDK.Widgets.Framework.Element, Dictionary<FlutterSDK.Widgets.Framework.Element, FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>>> _DebugReservations { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Element _CurrentElement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Framework.BuildContext CurrentContext { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Framework.Widget CurrentWidget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual T CurrentState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _DebugRemoveReservationFor(FlutterSDK.Widgets.Framework.Element parent, FlutterSDK.Widgets.Framework.Element child)
         {
@@ -2259,7 +2236,6 @@ namespace FlutterSDK.Widgets.Framework
 
 
 
-        #endregion
     }
 
 
@@ -2271,21 +2247,13 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class LabeledGlobalKey<T> : FlutterSDK.Widgets.Framework.GlobalKey<T>
     {
-        #region constructors
         public LabeledGlobalKey(string _debugLabel)
         : base()
         {
             this._DebugLabel = _debugLabel;
         }
-        #endregion
-
-        #region fields
         internal virtual string _DebugLabel { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -2315,31 +2283,23 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class GlobalObjectKey<T> : FlutterSDK.Widgets.Framework.GlobalKey<T>
     {
-        #region constructors
         public GlobalObjectKey(@Object value)
         : base()
         {
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual @Object Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
             if (other.GetType() != GetType()) return false;
-            return other is GlobalObjectKey<T> && Dart:coreDefaultClass.Identical(other.Value, Value);
+            return other is GlobalObjectKey<T> && Dart.CoreDefaultClass.Identical(other.Value, Value);
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -2350,17 +2310,10 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class TypeMatcher<T>
     {
-        #region constructors
         public TypeMatcher()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns true if the given object is of type `T`.
@@ -2368,7 +2321,6 @@ namespace FlutterSDK.Widgets.Framework
         public virtual bool Check(object @object) => object is T;
 
 
-        #endregion
     }
 
 
@@ -2410,19 +2362,12 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class Widget : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
-        #region constructors
         public Widget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         {
             this.Key = key;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Inflates this configuration to a concrete instance.
@@ -2491,7 +2436,6 @@ namespace FlutterSDK.Widgets.Framework
 
 
 
-        #endregion
     }
 
 
@@ -2610,18 +2554,11 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class StatelessWidget : FlutterSDK.Widgets.Framework.Widget
     {
-        #region constructors
         public StatelessWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [StatelessElement] to manage this widget's location in the tree.
@@ -2675,7 +2612,6 @@ namespace FlutterSDK.Widgets.Framework
             return default(Widget);
         }
 
-        #endregion
     }
 
 
@@ -2868,18 +2804,11 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class StatefulWidget : FlutterSDK.Widgets.Framework.Widget
     {
-        #region constructors
         public StatefulWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [StatefulElement] to manage this widget's location in the tree.
@@ -2914,7 +2843,6 @@ namespace FlutterSDK.Widgets.Framework
             return default(State);
         }
 
-        #endregion
     }
 
 
@@ -3011,21 +2939,14 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class State<T> : IDiagnosticable
     {
-        #region constructors
         public State()
         { }
-        #endregion
-
-        #region fields
         internal virtual T _Widget { get; set; }
         internal virtual FlutterSDK.Widgets.Framework._StateLifecycle _DebugLifecycleState { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.StatefulElement _Element { get; set; }
         public virtual T Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Mounted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Verifies that the [State] that was created is one that expects to be
@@ -3382,7 +3303,6 @@ namespace FlutterSDK.Widgets.Framework
 
 
 
-        #endregion
     }
 
 
@@ -3408,20 +3328,12 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class ProxyWidget : FlutterSDK.Widgets.Framework.Widget
     {
-        #region constructors
         public ProxyWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -3482,19 +3394,12 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class ParentDataWidget<T> : FlutterSDK.Widgets.Framework.ProxyWidget
     {
-        #region constructors
         public ParentDataWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new ParentDataElement<T> CreateElement() => new ParentDataElement<T>(this);
 
@@ -3592,7 +3497,6 @@ namespace FlutterSDK.Widgets.Framework
         public virtual bool DebugCanApplyOutOfTurn() => false;
 
 
-        #endregion
     }
 
 
@@ -3667,18 +3571,11 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class InheritedWidget : FlutterSDK.Widgets.Framework.ProxyWidget
     {
-        #region constructors
         public InheritedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.InheritedElement CreateElement() => new InheritedElement(this);
 
@@ -3703,7 +3600,6 @@ namespace FlutterSDK.Widgets.Framework
             return default(bool);
         }
 
-        #endregion
     }
 
 
@@ -3714,18 +3610,11 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class RenderObjectWidget : FlutterSDK.Widgets.Framework.Widget
     {
-        #region constructors
         public RenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// RenderObjectWidgets always inflate to a [RenderObjectElement] subclass.
@@ -3782,7 +3671,6 @@ namespace FlutterSDK.Widgets.Framework
 
 
 
-        #endregion
     }
 
 
@@ -3792,23 +3680,15 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class LeafRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public LeafRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key))
         : base(key: key)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.LeafRenderObjectElement CreateElement() => new LeafRenderObjectElement(this);
 
 
-        #endregion
     }
 
 
@@ -3824,24 +3704,16 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class SingleChildRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public SingleChildRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.SingleChildRenderObjectElement CreateElement() => new SingleChildRenderObjectElement(this);
 
 
-        #endregion
     }
 
 
@@ -3863,24 +3735,16 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class MultiChildRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public MultiChildRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
             this.Children = children;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement CreateElement() => new MultiChildRenderObjectElement(this);
 
 
-        #endregion
     }
 
 
@@ -3904,14 +3768,10 @@ namespace FlutterSDK.Widgets.Framework
     /// </Summary>
     public class BuildOwner
     {
-        #region constructors
         public BuildOwner(VoidCallback onBuildScheduled = default(VoidCallback))
         {
             this.OnBuildScheduled = onBuildScheduled;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnBuildScheduled { get; set; }
         internal virtual FlutterSDK.Widgets.Framework._InactiveElements _InactiveElements { get; set; }
         internal virtual List<FlutterSDK.Widgets.Framework.Element> _DirtyElements { get; set; }
@@ -3925,9 +3785,6 @@ namespace FlutterSDK.Widgets.Framework
         internal virtual bool _DebugIsInBuildScope { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _DebugStateLocked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DebugBuilding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds an element to the dirty elements list so that it will be rebuilt
@@ -4020,7 +3877,7 @@ namespace FlutterSDK.Widgets.Framework
 
 
 
-            Dart: developerDefaultClass.Timeline.StartSync("Build", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Build", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
                 _ScheduledFlushDirtyElements = true;
@@ -4091,7 +3948,7 @@ finally
                 _DirtyElements.Clear();
                 _ScheduledFlushDirtyElements = false;
                 _DirtyElementsNeedsResorting = null;
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
 
 
             }
@@ -4134,7 +3991,7 @@ finally
         /// </Summary>
         public virtual void FinalizeTree()
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Finalize tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Finalize tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
                 LockState(() =>
@@ -4149,7 +4006,7 @@ finally
             }
 finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
@@ -4167,7 +4024,7 @@ finally
         /// </Summary>
         public virtual void Reassemble(FlutterSDK.Widgets.Framework.Element root)
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Dirty Element Tree");
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Dirty Element Tree");
             try
             {
 
@@ -4176,14 +4033,13 @@ finally
             }
             finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
 
 
 
-        #endregion
     }
 
 
@@ -4241,15 +4097,11 @@ finally
     /// </Summary>
     public class Element : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree, IBuildContext
     {
-        #region constructors
         public Element(FlutterSDK.Widgets.Framework.Widget widget)
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _Parent { get; set; }
         internal virtual int _CachedHash { get; set; }
         internal virtual int _NextHashCode { get; set; }
@@ -4275,15 +4127,12 @@ finally
         public virtual FlutterSDK.Rendering.@object.RenderObject RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Dirty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        public new bool Equals(@Object other) => Dart:coreDefaultClass.Identical(this , other);
+        public new bool Equals(@Object other) => Dart.CoreDefaultClass.Identical(this, other);
 
 
 
-private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Framework.Element b)
+        private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Framework.Element b)
         {
             if (a.Depth < b.Depth) return -1;
             if (b.Depth < a.Depth) return 1;
@@ -5408,25 +5257,17 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
         {
         }
 
-        #endregion
     }
 
 
     public class _ElementDiagnosticableTreeNode : FlutterSDK.Foundation.Diagnostics.DiagnosticableTreeNode
     {
-        #region constructors
         public _ElementDiagnosticableTreeNode(string name = default(string), FlutterSDK.Widgets.Framework.Element value = default(FlutterSDK.Widgets.Framework.Element), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), bool stateful = false)
         : base(name: name, value: value, style: style)
         {
             this.Stateful = stateful;
         }
-        #endregion
-
-        #region fields
         public virtual bool Stateful { get; set; }
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
         {
@@ -5439,7 +5280,6 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
 
 
 
-        #endregion
     }
 
 
@@ -5495,7 +5335,6 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
     /// </Summary>
     public class ErrorWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public ErrorWidget(@Object exception)
         : base(key: new UniqueKey())
         {
@@ -5505,15 +5344,9 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
         {
             var instance = new ErrorWidget(key: new UniqueKey()); instance.Message = message;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.ErrorWidgetBuilder Builder { get; set; }
         public virtual string Message { get; set; }
         internal virtual FlutterSDK.Foundation.Assertions.FlutterError _FlutterError { get; set; }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Framework.Widget _DefaultErrorWidgetBuilder(FlutterSDK.Foundation.Assertions.FlutterErrorDetails details)
         {
@@ -5554,7 +5387,6 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
 
 
 
-        #endregion
     }
 
 
@@ -5568,21 +5400,14 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
     /// </Summary>
     public class ComponentElement : FlutterSDK.Widgets.Framework.Element
     {
-        #region constructors
         public ComponentElement(FlutterSDK.Widgets.Framework.Widget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
         internal virtual bool _DebugDoingBuild { get; set; }
         public virtual bool DebugDoingBuild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
         {
@@ -5614,7 +5439,7 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
         /// </Summary>
         public new void PerformRebuild()
         {
-            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart: developerDefaultClass.Timeline.StartSync($"'{Widget.GetType()}'", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart.DeveloperDefaultClass.Timeline.StartSync($"'{Widget.GetType()}'", arguments: DebugDefaultClass.TimelineWhitelistArguments);
 
             Widget built = default(Widget);
             try
@@ -5652,7 +5477,7 @@ finally
                 _Child = UpdateChild(null, built, Slot);
             }
 
-            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart: developerDefaultClass.Timeline.FinishSync();
+            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
 
@@ -5686,7 +5511,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -5695,19 +5519,12 @@ finally
     /// </Summary>
     public class StatelessElement : FlutterSDK.Widgets.Framework.ComponentElement
     {
-        #region constructors
         public StatelessElement(FlutterSDK.Widgets.Framework.StatelessWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.StatelessWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build() => Widget.Build(this);
 
@@ -5732,7 +5549,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -5741,7 +5557,6 @@ finally
     /// </Summary>
     public class StatefulElement : FlutterSDK.Widgets.Framework.ComponentElement
     {
-        #region constructors
         public StatefulElement(FlutterSDK.Widgets.Framework.StatefulWidget widget)
         : base(widget)
         {
@@ -5755,15 +5570,9 @@ finally
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> _State { get; set; }
         internal virtual bool _DidChangeDependencies { get; set; }
         public virtual FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget> State { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build() => _State.Build(this);
 
@@ -5935,7 +5744,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -5944,19 +5752,12 @@ finally
     /// </Summary>
     public class ProxyElement : FlutterSDK.Widgets.Framework.ComponentElement
     {
-        #region constructors
         public ProxyElement(FlutterSDK.Widgets.Framework.ProxyWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.ProxyWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build() => Widget.Child;
 
@@ -6016,7 +5817,6 @@ finally
         {
         }
 
-        #endregion
     }
 
 
@@ -6025,19 +5825,12 @@ finally
     /// </Summary>
     public class ParentDataElement<T> : FlutterSDK.Widgets.Framework.ProxyElement
     {
-        #region constructors
         public ParentDataElement(FlutterSDK.Widgets.Framework.ParentDataWidget<T> widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.ParentDataWidget<T> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _ApplyParentData(FlutterSDK.Widgets.Framework.ParentDataWidget<T> widget)
         {
@@ -6113,7 +5906,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -6122,20 +5914,13 @@ finally
     /// </Summary>
     public class InheritedElement : FlutterSDK.Widgets.Framework.ProxyElement
     {
-        #region constructors
         public InheritedElement(FlutterSDK.Widgets.Framework.InheritedWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Widgets.Framework.Element, @Object> _Dependents { get; set; }
         public virtual FlutterSDK.Widgets.Framework.InheritedWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         protected new void _UpdateInheritance()
         {
@@ -6343,7 +6128,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -6517,24 +6301,17 @@ finally
     /// </Summary>
     public class RenderObjectElement : FlutterSDK.Widgets.Framework.Element
     {
-        #region constructors
         public RenderObjectElement(FlutterSDK.Widgets.Framework.RenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.@object.RenderObject _RenderObject { get; set; }
         internal virtual bool _DebugDoingBuild { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.RenderObjectElement _AncestorRenderObjectElement { get; set; }
         public virtual FlutterSDK.Widgets.Framework.RenderObjectWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.@object.RenderObject RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DebugDoingBuild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Widgets.Framework.RenderObjectElement _FindAncestorRenderObjectElement()
         {
@@ -6925,7 +6702,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -6937,18 +6713,11 @@ finally
     /// </Summary>
     public class RootRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public RootRenderObjectElement(FlutterSDK.Widgets.Framework.RenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Set the owner of the element. The owner will be propagated to all the
@@ -6979,7 +6748,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -6988,18 +6756,11 @@ finally
     /// </Summary>
     public class LeafRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public LeafRenderObjectElement(FlutterSDK.Widgets.Framework.LeafRenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void ForgetChild(FlutterSDK.Widgets.Framework.Element child)
         {
@@ -7041,7 +6802,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -7056,20 +6816,13 @@ finally
     /// </Summary>
     public class SingleChildRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public SingleChildRenderObjectElement(FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
         public virtual FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -7146,7 +6899,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -7167,22 +6919,15 @@ finally
     /// </Summary>
     public class MultiChildRenderObjectElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public MultiChildRenderObjectElement(FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Framework.Element> _Children { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Framework.Element> _ForgottenChildren { get; set; }
         public virtual FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Widgets.Framework.Element> Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, FlutterSDK.Widgets.Framework.IndexedSlot<FlutterSDK.Widgets.Framework.Element> slot)
         {
@@ -7294,7 +7039,6 @@ finally
 
 
 
-        #endregion
     }
 
 
@@ -7306,20 +7050,12 @@ finally
     /// </Summary>
     public class DebugCreator
     {
-        #region constructors
         public DebugCreator(FlutterSDK.Widgets.Framework.Element element)
         {
             this.Element = element;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Element Element { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -7340,21 +7076,14 @@ finally
     /// </Summary>
     public class IndexedSlot<T>
     {
-        #region constructors
         public IndexedSlot(int index, T value)
         {
             this.Index = index;
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
         public virtual int Index { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -7364,7 +7093,6 @@ finally
 
 
 
-        #endregion
     }
 
 

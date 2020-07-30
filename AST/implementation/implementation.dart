@@ -705,6 +705,19 @@ class Implementation {
     return csharp;
   }
 
+  static String hackFixDartlibIdentifiers(String brokenIdentifier) {
+    if (brokenIdentifier.startsWith('.')) {
+      brokenIdentifier =
+          brokenIdentifier.substring(1, brokenIdentifier.length - 1);
+    }
+    return brokenIdentifier
+        .replaceFirst('Ui.Dart.', 'Dart.UI.')
+        .replaceFirst('Math.Dart.', 'Dart.Math.')
+        .replaceFirst('Developer.Dart', 'Dart.Developer')
+        .replaceFirst('Dart.UiDefaultClass', 'Dart.UI.UiDefaultClass')
+        .replaceFirst('Dart.MathDefaultClass', 'Dart.Math.MathDefaultClass');
+  }
+
   static String processMethodInvocation(MethodInvocation invocation) {
     var csharp = "";
 
@@ -731,6 +744,10 @@ class Implementation {
       for (var entity in invocation.childEntities) {
         csharp += processEntity(entity);
       }
+
+      // HACK: this is here to fix places where the dart code uses an
+      // 'as' import.
+      csharp = hackFixDartlibIdentifiers(csharp);
 
       // Change all Split's to return a List instead of array
       if (invocation.methodName.name == 'split') csharp += '.ToList()';
@@ -928,7 +945,11 @@ class Implementation {
     var csharp = '';
     if (name.toString().toLowerCase().contains('valuechanged')) name = name;
     for (var entity in name.childEntities) csharp += processEntity(entity);
-    return csharp;
+    return hackFixDartlibIdentifiers(csharp)
+        // HACK: for the dart lib identifiers, it's adding *DefaultClass when it shouldn't
+        .replaceFirst('CoreDefaultClass.', '')
+        .replaceFirst('UiDefaultClass.', '')
+        .replaceFirst('MathDefaultClass.', '');
   }
 
   static String fieldBody(PropertyAccessorElement element) {

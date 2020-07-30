@@ -486,7 +486,7 @@ namespace FlutterSDK.Services.Assetbundle
             if (data == null) throw new FlutterError($"'Unable to load asset: {key}'");
             if (data.LengthInBytes < 10 * 1024)
             {
-                return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
+                return Dart.ConvertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
             }
 
             return IsolatesDefaultClass.Compute(_Utf8decode, data, debugLabel: $"'UTF8 decode for "{ key}
@@ -498,7 +498,7 @@ namespace FlutterSDK.Services.Assetbundle
 
         private string _Utf8decode(ByteData data)
         {
-            return Dart:convertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
+            return Dart.ConvertDefaultClass.Utf8.Decode(data.Buffer.AsUint8List());
         }
 
 
@@ -558,20 +558,13 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class NetworkAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
-        #region constructors
         public NetworkAssetBundle(Uri baseUrl)
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Uri _BaseUrl { get; set; }
         internal virtual HttpClient _HttpClient { get; set; }
-        #endregion
-
-        #region methods
 
         private Uri _UrlFromKey(string key) => _BaseUrl.Resolve(key);
 
@@ -581,7 +574,7 @@ namespace FlutterSDK.Services.Assetbundle
         {
             HttpClientRequest request = await _HttpClient.GetUrl(_UrlFromKey(key));
             HttpResponseMessage response = await request.Close();
-            if (response.StatusCode != Dart:internalDefaultClass.HttpStatus.Ok)throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode) });
+            if (response.StatusCode != Dart._InternalDefaultClass.HttpStatus.Ok) throw FlutterError.FromParts(new List<DiagnosticsNode>() { new ErrorSummary($"'Unable to load asset: {key}'"), new IntProperty("HTTP status code", response.StatusCode) });
             Uint8List bytes = await ConsolidateresponseDefaultClass.ConsolidateHttpClientResponseBytes(response);
             return bytes.Buffer.AsByteData();
         }
@@ -606,7 +599,6 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        #endregion
     }
 
 
@@ -622,17 +614,10 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class CachingAssetBundle : FlutterSDK.Services.Assetbundle.AssetBundle
     {
-        #region constructors
         public CachingAssetBundle()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<string, Future<string>> _StringCache { get; set; }
         internal virtual Dictionary<string, Future<object>> _StructuredDataCache { get; set; }
-        #endregion
-
-        #region methods
 
         public new Future<string> LoadString(string key, bool cache = true)
         {
@@ -694,7 +679,6 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        #endregion
     }
 
 
@@ -703,19 +687,12 @@ namespace FlutterSDK.Services.Assetbundle
     /// </Summary>
     public class PlatformAssetBundle : FlutterSDK.Services.Assetbundle.CachingAssetBundle
     {
-        #region constructors
         public PlatformAssetBundle()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new async Future<ByteData> Load(string key)
         {
-            Uint8List encoded = Dart:convertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart:coreDefaultClass.Uri.EncodeFull(key)).Path);
+            Uint8List encoded = Dart.ConvertDefaultClass.Utf8.Encoder.Convert(new Uri(path: Dart.CoreDefaultClass.Uri.EncodeFull(key)).Path);
             ByteData asset = await BinarymessengerDefaultClass.DefaultBinaryMessenger.Send("flutter/assets", encoded.Buffer.AsByteData());
             if (asset == null) throw new FlutterError($"'Unable to load asset: {key}'");
             return asset;
@@ -723,7 +700,6 @@ namespace FlutterSDK.Services.Assetbundle
 
 
 
-        #endregion
     }
 
 }

@@ -446,7 +446,6 @@ namespace FlutterSDK.Widgets.Modalbarrier
     /// </Summary>
     public class ModalBarrier : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public ModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool dismissible = true, string semanticsLabel = default(string), bool barrierSemanticsDismissible = true)
         : base(key: key)
         {
@@ -455,16 +454,10 @@ namespace FlutterSDK.Widgets.Modalbarrier
             this.SemanticsLabel = semanticsLabel;
             this.BarrierSemanticsDismissible = barrierSemanticsDismissible;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual bool Dismissible { get; set; }
         public virtual bool BarrierSemanticsDismissible { get; set; }
         public virtual string SemanticsLabel { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -483,7 +476,6 @@ namespace FlutterSDK.Widgets.Modalbarrier
 
 
 
-        #endregion
     }
 
 
@@ -507,7 +499,6 @@ namespace FlutterSDK.Widgets.Modalbarrier
     /// </Summary>
     public class AnimatedModalBarrier : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public AnimatedModalBarrier(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Color> color = default(FlutterSDK.Animation.Animation.Animation<Color>), bool dismissible = true, string semanticsLabel = default(string), bool barrierSemanticsDismissible = default(bool))
         : base(key: key, listenable: color)
         {
@@ -515,16 +506,10 @@ namespace FlutterSDK.Widgets.Modalbarrier
             this.SemanticsLabel = semanticsLabel;
             this.BarrierSemanticsDismissible = barrierSemanticsDismissible;
         }
-        #endregion
-
-        #region fields
         public virtual bool Dismissible { get; set; }
         public virtual string SemanticsLabel { get; set; }
         public virtual bool BarrierSemanticsDismissible { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Color> Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -533,26 +518,18 @@ namespace FlutterSDK.Widgets.Modalbarrier
 
 
 
-        #endregion
     }
 
 
     public class _AnyTapGestureRecognizer : FlutterSDK.Gestures.Tap.BaseTapGestureRecognizer
     {
-        #region constructors
         public _AnyTapGestureRecognizer(@Object debugOwner = default(@Object))
         : base(debugOwner: debugOwner)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnAnyTapUp { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -584,24 +561,16 @@ namespace FlutterSDK.Widgets.Modalbarrier
 
 
 
-        #endregion
     }
 
 
     public class _ModalBarrierSemanticsDelegate : FlutterSDK.Widgets.Gesturedetector.SemanticsGestureDelegate
     {
-        #region constructors
         public _ModalBarrierSemanticsDelegate(VoidCallback onDismiss = default(VoidCallback))
         {
             this.OnDismiss = onDismiss;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnDismiss { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AssignSemantics(FlutterSDK.Rendering.Proxybox.RenderSemanticsGestureHandler renderObject)
         {
@@ -610,24 +579,16 @@ namespace FlutterSDK.Widgets.Modalbarrier
 
 
 
-        #endregion
     }
 
 
     public class _AnyTapGestureRecognizerFactory : FlutterSDK.Widgets.Gesturedetector.GestureRecognizerFactory<FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer>
     {
-        #region constructors
         public _AnyTapGestureRecognizerFactory(VoidCallback onAnyTapUp = default(VoidCallback))
         {
             this.OnAnyTapUp = onAnyTapUp;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnAnyTapUp { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Modalbarrier._AnyTapGestureRecognizer Constructor() => new _AnyTapGestureRecognizer();
 
@@ -640,27 +601,19 @@ namespace FlutterSDK.Widgets.Modalbarrier
 
 
 
-        #endregion
     }
 
 
     public class _ModalBarrierGestureDetector : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _ModalBarrierGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), VoidCallback onDismiss = default(VoidCallback))
         : base(key: key)
         {
             this.Child = child;
             this.OnDismiss = onDismiss;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual VoidCallback OnDismiss { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -670,7 +623,6 @@ namespace FlutterSDK.Widgets.Modalbarrier
 
 
 
-        #endregion
     }
 
 }

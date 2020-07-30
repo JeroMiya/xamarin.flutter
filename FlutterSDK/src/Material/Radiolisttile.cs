@@ -692,7 +692,6 @@ namespace FlutterSDK.Material.Radiolisttile
     /// </Summary>
     public class RadioListTile<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public RadioListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T value = default(T), T groupValue = default(T), FlutterSDK.Foundation.Basictypes.ValueChanged<T> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<T>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), bool isThreeLine = false, bool dense = default(bool), FlutterSDK.Widgets.Framework.Widget secondary = default(FlutterSDK.Widgets.Framework.Widget), bool selected = false, FlutterSDK.Material.Listtile.ListTileControlAffinity controlAffinity = default(FlutterSDK.Material.Listtile.ListTileControlAffinity))
         : base(key: key)
         {
@@ -708,9 +707,6 @@ namespace FlutterSDK.Material.Radiolisttile
             this.Selected = selected;
             this.ControlAffinity = controlAffinity;
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
         public virtual T GroupValue { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<T> OnChanged { get; set; }
@@ -723,9 +719,6 @@ namespace FlutterSDK.Material.Radiolisttile
         public virtual bool Selected { get; set; }
         public virtual FlutterSDK.Material.Listtile.ListTileControlAffinity ControlAffinity { get; set; }
         public virtual bool @checked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -741,7 +734,6 @@ namespace FlutterSDK.Material.Radiolisttile
 
 
 
-        #endregion
     }
 
 }

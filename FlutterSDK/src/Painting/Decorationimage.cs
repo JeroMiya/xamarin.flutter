@@ -486,7 +486,7 @@ namespace FlutterSDK.Painting.Decorationimage
 
             if (centerSlice == null)
             {
-                Rect sourceRect = alignment.Inscribe(sourceSize, Dart: uiDefaultClass.Offset.Zero & inputSize);
+                Rect sourceRect = alignment.Inscribe(sourceSize, Dart.UI.UiDefaultClass.Offset.Zero & inputSize);
                 if (repeat == ImageRepeat.NoRepeat)
                 {
                     canvas.DrawImageRect(image, sourceRect, destinationRect, paint);
@@ -554,7 +554,6 @@ namespace FlutterSDK.Painting.Decorationimage
     /// </Summary>
     public class DecorationImage
     {
-        #region constructors
         public DecorationImage(FlutterSDK.Painting.Imageprovider.ImageProvider<object> image = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), ColorFilter colorFilter = default(ColorFilter), FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterBinding.UI.Rect centerSlice = default(FlutterBinding.UI.Rect), FlutterSDK.Painting.Decorationimage.ImageRepeat repeat = default(FlutterSDK.Painting.Decorationimage.ImageRepeat), bool matchTextDirection = false)
         : base()
         {
@@ -567,9 +566,6 @@ namespace FlutterSDK.Painting.Decorationimage
             this.Repeat = repeat;
             this.MatchTextDirection = matchTextDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> Image { get; set; }
         public virtual FlutterSDK.Painting.Imagestream.ImageErrorListener OnError { get; set; }
         public virtual ColorFilter ColorFilter { get; set; }
@@ -579,9 +575,6 @@ namespace FlutterSDK.Painting.Decorationimage
         public virtual FlutterSDK.Painting.Decorationimage.ImageRepeat Repeat { get; set; }
         public virtual bool MatchTextDirection { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [DecorationImagePainter] for this [DecorationImage].
@@ -601,7 +594,7 @@ namespace FlutterSDK.Painting.Decorationimage
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is DecorationImage && other.Image == Image && other.ColorFilter == ColorFilter && other.Fit == Fit && other.Alignment == Alignment && other.CenterSlice == CenterSlice && other.Repeat == Repeat && other.MatchTextDirection == MatchTextDirection;
         }
@@ -609,7 +602,6 @@ namespace FlutterSDK.Painting.Decorationimage
 
 
 
-        #endregion
     }
 
 
@@ -628,23 +620,16 @@ namespace FlutterSDK.Painting.Decorationimage
     /// </Summary>
     public class DecorationImagePainter
     {
-        #region constructors
         internal DecorationImagePainter(FlutterSDK.Painting.Decorationimage.DecorationImage _details, VoidCallback _onChanged)
         : base()
         {
             this._Details = _details;
             this._OnChanged = _onChanged;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Decorationimage.DecorationImage _Details { get; set; }
         internal virtual VoidCallback _OnChanged { get; set; }
         internal virtual FlutterSDK.Painting.Imagestream.ImageStream _ImageStream { get; set; }
         internal virtual FlutterSDK.Painting.Imagestream.ImageInfo _Image { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Draw the image onto the given canvas.
@@ -723,7 +708,6 @@ namespace FlutterSDK.Painting.Decorationimage
 
 
 
-        #endregion
     }
 
 

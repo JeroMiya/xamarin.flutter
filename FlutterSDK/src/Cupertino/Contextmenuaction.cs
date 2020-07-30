@@ -306,7 +306,6 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
     /// </Summary>
     public class CupertinoContextMenuAction : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoContextMenuAction(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool isDefaultAction = false, bool isDestructiveAction = false, VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Icondata.IconData trailingIcon = default(FlutterSDK.Widgets.Icondata.IconData))
         : base(key: key)
         {
@@ -316,33 +315,22 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
             this.OnPressed = onPressed;
             this.TrailingIcon = trailingIcon;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual bool IsDefaultAction { get; set; }
         public virtual bool IsDestructiveAction { get; set; }
         public virtual VoidCallback OnPressed { get; set; }
         public virtual FlutterSDK.Widgets.Icondata.IconData TrailingIcon { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Contextmenuaction._CupertinoContextMenuActionState CreateState() => new _CupertinoContextMenuActionState();
 
 
-        #endregion
     }
 
 
     public class _CupertinoContextMenuActionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Contextmenuaction.CupertinoContextMenuAction>
     {
-        #region constructors
         public _CupertinoContextMenuActionState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Color _KBackgroundColor { get; set; }
         internal virtual FlutterBinding.UI.Color _KBackgroundColorPressed { get; set; }
         internal virtual double _KButtonHeight { get; set; }
@@ -350,9 +338,6 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _GlobalKey { get; set; }
         internal virtual bool _IsPressed { get; set; }
         internal virtual FlutterSDK.Painting.Textstyle.TextStyle _TextStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void OnTapDown(FlutterSDK.Gestures.Tap.TapDownDetails details)
         {
@@ -397,7 +382,6 @@ namespace FlutterSDK.Cupertino.Contextmenuaction
 
 
 
-        #endregion
     }
 
 }

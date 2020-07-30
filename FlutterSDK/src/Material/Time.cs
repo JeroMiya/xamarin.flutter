@@ -463,7 +463,6 @@ namespace FlutterSDK.Material.Time
     /// </Summary>
     public class TimeOfDay
     {
-        #region constructors
         public TimeOfDay(int hour = default(int), int minute = default(int))
         {
             this.Hour = hour;
@@ -480,9 +479,6 @@ namespace FlutterSDK.Material.Time
         }
 
 
-        #endregion
-
-        #region fields
         public virtual int HoursPerDay { get; set; }
         public virtual int HoursPerPeriod { get; set; }
         public virtual int MinutesPerHour { get; set; }
@@ -492,9 +488,6 @@ namespace FlutterSDK.Material.Time
         public virtual int HourOfPeriod { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int PeriodOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a new TimeOfDay with the hour and/or minute replaced.
@@ -533,7 +526,6 @@ namespace FlutterSDK.Material.Time
 
 
 
-        #endregion
     }
 
 

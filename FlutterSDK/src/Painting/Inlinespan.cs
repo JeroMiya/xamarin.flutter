@@ -505,19 +505,12 @@ namespace FlutterSDK.Painting.Inlinespan
     /// </Summary>
     public class Accumulator
     {
-        #region constructors
         public Accumulator(int _value = 0)
         {
             this._Value = _value;
         }
-        #endregion
-
-        #region fields
         internal virtual int _Value { get; set; }
         public virtual int Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Increases the [value] by the `addend`.
@@ -530,7 +523,6 @@ namespace FlutterSDK.Painting.Inlinespan
 
 
 
-        #endregion
     }
 
 
@@ -545,7 +537,6 @@ namespace FlutterSDK.Painting.Inlinespan
     /// </Summary>
     public class InlineSpanSemanticsInformation
     {
-        #region constructors
         public InlineSpanSemanticsInformation(string text, bool isPlaceholder = false, string semanticsLabel = default(string), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer))
         : base()
         {
@@ -554,9 +545,6 @@ namespace FlutterSDK.Painting.Inlinespan
             this.SemanticsLabel = semanticsLabel;
             this.Recognizer = recognizer;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Inlinespan.InlineSpanSemanticsInformation Placeholder { get; set; }
         public virtual string Text { get; set; }
         public virtual string SemanticsLabel { get; set; }
@@ -564,9 +552,6 @@ namespace FlutterSDK.Painting.Inlinespan
         public virtual bool IsPlaceholder { get; set; }
         public virtual bool RequiresOwnNode { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -576,7 +561,6 @@ namespace FlutterSDK.Painting.Inlinespan
 
 
 
-        #endregion
     }
 
 
@@ -627,22 +611,15 @@ namespace FlutterSDK.Painting.Inlinespan
     /// </Summary>
     public class InlineSpan : FlutterSDK.Foundation.Diagnostics.DiagnosticableTree
     {
-        #region constructors
         public InlineSpan(FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Style = style;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textstyle.TextStyle Style { get; set; }
         public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Apply the properties of this object to the given [ParagraphBuilder], from
@@ -887,7 +864,7 @@ namespace FlutterSDK.Painting.Inlinespan
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is InlineSpan && other.Style == Style;
         }
@@ -908,7 +885,6 @@ namespace FlutterSDK.Painting.Inlinespan
 
 
 
-        #endregion
     }
 
 }

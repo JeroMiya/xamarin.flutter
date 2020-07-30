@@ -272,17 +272,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ParametricCurve<T>
     {
-        #region constructors
         public ParametricCurve()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value of the curve at point `t`.
@@ -318,7 +311,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -343,18 +335,11 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
-        #region constructors
         public Curve()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.Curve Flipped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value of the curve at point `t`.
@@ -381,7 +366,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -392,22 +376,14 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class _Linear : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         internal _Linear()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t) => t;
 
 
-        #endregion
     }
 
 
@@ -421,19 +397,12 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class SawTooth : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public SawTooth(int count)
         : base()
         {
             this.Count = count;
         }
-        #endregion
-
-        #region fields
         public virtual int Count { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -444,7 +413,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -461,7 +429,6 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Interval : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public Interval(double begin, double end, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
@@ -469,15 +436,9 @@ namespace FlutterSDK.Animation.Curves
             this.End = end;
             this.Curve = curve;
         }
-        #endregion
-
-        #region fields
         public virtual double Begin { get; set; }
         public virtual double End { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -494,7 +455,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -505,19 +465,12 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Threshold : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public Threshold(double threshold)
         : base()
         {
             this.ThresholdValue = threshold;
         }
-        #endregion
-
-        #region fields
         public virtual double ThresholdValue { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -528,7 +481,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -556,7 +508,6 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Cubic : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public Cubic(double a, double b, double c, double d)
         : base()
         {
@@ -565,17 +516,11 @@ namespace FlutterSDK.Animation.Curves
             this.c = c;
             this.d = d;
         }
-        #endregion
-
-        #region fields
         public virtual double a { get; set; }
         public virtual double b { get; set; }
         public virtual double c { get; set; }
         public virtual double d { get; set; }
         internal virtual double _CubicErrorBound { get; set; }
-        #endregion
-
-        #region methods
 
         private double _EvaluateCubic(double a, double b, double m)
         {
@@ -602,7 +547,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -729,18 +673,11 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curve2D : FlutterSDK.Animation.Curves.ParametricCurve<Offset>
     {
-        #region constructors
         public Curve2D()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual int SamplingSeed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Generates a list of samples with a recursive subdivision until a tolerance
@@ -769,7 +706,7 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-            Math.Dart:mathDefaultClass.Random rand = new Math.Random(SamplingSeed);
+            Dart.Math.Random rand = new Math.Random(SamplingSeed);
             bool IsFlat(Offset p, Offset q, Offset r)
             {
                 Offset pr = p - r;
@@ -843,7 +780,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -858,23 +794,15 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curve2DSample
     {
-        #region constructors
         public Curve2DSample(double t, FlutterBinding.UI.Offset value)
         : base()
         {
             this.t = t;
             this.Value = value;
         }
-        #endregion
-
-        #region fields
         public virtual double t { get; set; }
         public virtual FlutterBinding.UI.Offset Value { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -905,7 +833,6 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class CatmullRomSpline : FlutterSDK.Animation.Curves.Curve2D
     {
-        #region constructors
         public CatmullRomSpline(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0, FlutterBinding.UI.Offset startHandle = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endHandle = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -915,18 +842,12 @@ namespace FlutterSDK.Animation.Curves
         {
             var instance = new CatmullRomSpline();
         }
-        #endregion
-
-        #region fields
         internal virtual List<List<Offset>> _CubicSegments { get; set; }
         internal virtual List<Offset> _ControlPoints { get; set; }
         internal virtual FlutterBinding.UI.Offset _StartHandle { get; set; }
         internal virtual FlutterBinding.UI.Offset _EndHandle { get; set; }
         internal virtual double _Tension { get; set; }
         public virtual int SamplingSeed { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private List<List<Offset>> _ComputeSegments(List<FlutterBinding.UI.Offset> controlPoints, double tension, FlutterBinding.UI.Offset startHandle = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset endHandle = default(FlutterBinding.UI.Offset))
         {
@@ -942,9 +863,9 @@ namespace FlutterSDK.Animation.Curves
                 Offset diffCurve10 = curve[1] - curve[0];
                 Offset diffCurve21 = curve[2] - curve[1];
                 Offset diffCurve32 = curve[3] - curve[2];
-                double t01 = Math.Dart:mathDefaultClass.Pow(diffCurve10.Distance, alpha).ToDouble();
-                double t12 = Math.Dart:mathDefaultClass.Pow(diffCurve21.Distance, alpha).ToDouble();
-                double t23 = Math.Dart:mathDefaultClass.Pow(diffCurve32.Distance, alpha).ToDouble();
+                double t01 = Dart.Math.MathDefaultClass.Pow(diffCurve10.Distance, alpha).ToDouble();
+                double t12 = Dart.Math.MathDefaultClass.Pow(diffCurve21.Distance, alpha).ToDouble();
+                double t23 = Dart.Math.MathDefaultClass.Pow(diffCurve32.Distance, alpha).ToDouble();
                 Offset m1 = (diffCurve21 + (diffCurve10 / t01 - (curve[2] - curve[0]) / (t01 + t12)) * t12) * reverseTension;
                 Offset m2 = (diffCurve21 + (diffCurve32 / t23 - (curve[3] - curve[1]) / (t12 + t23)) * t12) * reverseTension;
                 Offset sumM12 = m1 + m2;
@@ -998,7 +919,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -1027,7 +947,6 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class CatmullRomCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public CatmullRomCurve(List<FlutterBinding.UI.Offset> controlPoints, double tension = 0.0)
         : base()
         {
@@ -1039,20 +958,14 @@ namespace FlutterSDK.Animation.Curves
             var instance = new CatmullRomCurve(); instance.ControlPoints = controlPoints;
             instance.Tension = tension;
         }
-        #endregion
-
-        #region fields
         internal virtual List<string> _DebugAssertReasons { get; set; }
         internal virtual List<FlutterSDK.Animation.Curves.Curve2DSample> _PrecomputedSamples { get; set; }
         public virtual List<Offset> ControlPoints { get; set; }
         public virtual double Tension { get; set; }
-        #endregion
-
-        #region methods
 
         private List<FlutterSDK.Animation.Curves.Curve2DSample> _ComputeSamples(List<FlutterBinding.UI.Offset> controlPoints, double tension)
         {
-            return CatmullRomSpline.Precompute(new List<Offset>() { Dart:uiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) }, tension: tension).GenerateSamples(start: 0.0, end: 1.0, tolerance: 1e-12).ToList();
+            return CatmullRomSpline.Precompute(new List<Offset>() { Dart.UI.UiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) }, tension: tension).GenerateSamples(start: 0.0, end: 1.0, tolerance: 1e-12).ToList();
         }
 
 
@@ -1088,11 +1001,11 @@ namespace FlutterSDK.Animation.Curves
                 return false;
             }
 
-            controlPoints = new List<Offset>() { Dart:uiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) };
+            controlPoints = new List<Offset>() { Dart.UiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) };
             Offset startHandle = controlPoints[0] * 2.0 - controlPoints[1];
             Offset endHandle = controlPoints.Last() * 2.0 - controlPoints[controlPoints.Count - 2];
             controlPoints = new List<Offset>() { startHandle,  /* ...controlPoints */, endHandle };
-            double lastX = -Dart:coreDefaultClass.Double.Infinity;
+            double lastX = -Dart.CoreDefaultClass.Double.Infinity;
             for (int i = 0; i < controlPoints.Count; ++i)
             {
                 if (i > 1 && i < controlPoints.Count - 2 && (controlPoints[i].Dx <= 0.0 || controlPoints[i].Dx >= 1.0))
@@ -1111,7 +1024,7 @@ namespace FlutterSDK.Animation.Curves
             }
 
             bool success = true;
-            lastX = -Dart:coreDefaultClass.Double.Infinity;
+            lastX = -Dart.CoreDefaultClass.Double.Infinity;
             double tolerance = 1e-3;
             CatmullRomSpline testSpline = new CatmullRomSpline(controlPoints, tension: tension);
             double start = testSpline.FindInverse(0.0);
@@ -1198,12 +1111,11 @@ namespace FlutterSDK.Animation.Curves
             }
 
             double t2 = (t - startValue.Dx) / (endValue.Dx - startValue.Dx);
-            return Dart:uiDefaultClass.LerpDouble(startValue.Dy, endValue.Dy, t2);
+            return Dart.UI.UiDefaultClass.LerpDouble(startValue.Dy, endValue.Dy, t2);
         }
 
 
 
-        #endregion
     }
 
 
@@ -1229,25 +1141,17 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class FlippedCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public FlippedCurve(FlutterSDK.Animation.Curves.Curve curve)
         : base()
         {
             this.Curve = curve;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t) => 1.0 - Curve.Transform(1.0 - t);
 
 
 
-        #endregion
     }
 
 
@@ -1262,17 +1166,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class _DecelerateCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         internal _DecelerateCurve()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -1282,7 +1179,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -1293,17 +1189,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class _BounceInCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         internal _BounceInCurve()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -1312,7 +1201,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -1323,17 +1211,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class _BounceOutCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         internal _BounceOutCurve()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -1342,7 +1223,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -1353,17 +1233,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class _BounceInOutCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         internal _BounceInOutCurve()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
@@ -1372,7 +1245,6 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-        #endregion
     }
 
 
@@ -1386,30 +1258,22 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ElasticInCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public ElasticInCurve(double period = 0.4)
         {
             this.Period = period;
         }
-        #endregion
-
-        #region fields
         public virtual double Period { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
             double s = Period / 4.0;
             t = t - 1.0;
-            return -Math.Dart:mathDefaultClass.Pow(2.0, 10.0 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period) as double;
+            return -Dart.Math.MathDefaultClass.Pow(2.0, 10.0 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period) as double;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -1423,29 +1287,21 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ElasticOutCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public ElasticOutCurve(double period = 0.4)
         {
             this.Period = period;
         }
-        #endregion
-
-        #region fields
         public virtual double Period { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
             double s = Period / 4.0;
-            return Math.Dart:mathDefaultClass.Pow(2.0, -10 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period)+1.0 as double;
+            return Dart.Math.MathDefaultClass.Pow(2.0, -10 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period) + 1.0 as double;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -1460,30 +1316,22 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class ElasticInOutCurve : FlutterSDK.Animation.Curves.Curve
     {
-        #region constructors
         public ElasticInOutCurve(double period = 0.4)
         {
             this.Period = period;
         }
-        #endregion
-
-        #region fields
         public virtual double Period { get; set; }
-        #endregion
-
-        #region methods
 
         public new double TransformInternal(double t)
         {
             double s = Period / 4.0;
             t = 2.0 * t - 1.0;
-            if (t < 0.0) return -0.5 * Math.Dart:mathDefaultClass.Pow(2.0, 10.0 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period);else return Math.Dart:mathDefaultClass.Pow(2.0, -10.0 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period)*0.5 + 1.0 as double;
+            if (t < 0.0) return -0.5 * Dart.Math.MathDefaultClass.Pow(2.0, 10.0 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period); else return Dart.Math.MathDefaultClass.Pow(2.0, -10.0 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period) * 0.5 + 1.0 as double;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -1536,14 +1384,10 @@ namespace FlutterSDK.Animation.Curves
     /// </Summary>
     public class Curves
     {
-        #region constructors
         internal Curves()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.Curve Linear { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Decelerate { get; set; }
         public virtual FlutterSDK.Animation.Curves.Cubic FastLinearToSlowEaseIn { get; set; }
@@ -1585,10 +1429,6 @@ namespace FlutterSDK.Animation.Curves
         public virtual FlutterSDK.Animation.Curves.ElasticInCurve ElasticIn { get; set; }
         public virtual FlutterSDK.Animation.Curves.ElasticOutCurve ElasticOut { get; set; }
         public virtual FlutterSDK.Animation.Curves.ElasticInOutCurve ElasticInOut { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

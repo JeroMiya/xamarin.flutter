@@ -552,23 +552,15 @@ namespace FlutterSDK.Services.Messagecodec
     /// </Summary>
     public class MethodCall
     {
-        #region constructors
         public MethodCall(string method, object arguments = default(object))
         : base()
         {
             this.Method = method;
             this.Arguments = arguments;
         }
-        #endregion
-
-        #region fields
         public virtual string Method { get; set; }
         public virtual object Arguments { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -589,7 +581,6 @@ namespace FlutterSDK.Services.Messagecodec
     /// </Summary>
     public class PlatformException : IException
     {
-        #region constructors
         public PlatformException(string code = default(string), string message = default(string), object details = default(object))
         : base()
         {
@@ -597,17 +588,10 @@ namespace FlutterSDK.Services.Messagecodec
             this.Message = message;
             this.Details = details;
         }
-        #endregion
-
-        #region fields
         public virtual string Code { get; set; }
         public virtual string Message { get; set; }
         public virtual object Details { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -625,20 +609,12 @@ namespace FlutterSDK.Services.Messagecodec
     /// </Summary>
     public class MissingPluginException : IException
     {
-        #region constructors
         public MissingPluginException(string message = default(string))
         {
             this.Message = message;
         }
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

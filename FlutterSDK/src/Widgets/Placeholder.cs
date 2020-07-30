@@ -431,25 +431,18 @@ namespace FlutterSDK.Widgets.Placeholder
 
     public class _PlaceholderPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _PlaceholderPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double strokeWidth = default(double))
         {
             this.Color = color;
             this.StrokeWidth = strokeWidth;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double StrokeWidth { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
             Paint paint = new Paint()..Color = Color..Style = PaintingStyle.Stroke..StrokeWidth = StrokeWidth;
-            Rect rect = Dart:uiDefaultClass.Offset.Zero & size;
+            Rect rect = Dart.UiDefaultClass.Offset.Zero & size;
             Path path = new Path();
             new Path().AddRect(rect);
             new Path().AddPolygon(new List<Offset>() { rect.TopRight, rect.BottomLeft }, false);
@@ -477,7 +470,6 @@ namespace FlutterSDK.Widgets.Placeholder
         public new bool HitTest(FlutterBinding.UI.Offset position) => false;
 
 
-        #endregion
     }
 
 
@@ -496,7 +488,6 @@ namespace FlutterSDK.Widgets.Placeholder
     /// </Summary>
     public class Placeholder : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public Placeholder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double strokeWidth = 2.0, double fallbackWidth = 400.0, double fallbackHeight = 400.0)
         : base(key: key)
         {
@@ -505,25 +496,18 @@ namespace FlutterSDK.Widgets.Placeholder
             this.FallbackWidth = fallbackWidth;
             this.FallbackHeight = fallbackHeight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double StrokeWidth { get; set; }
         public virtual double FallbackWidth { get; set; }
         public virtual double FallbackHeight { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new LimitedBox(maxWidth: FallbackWidth, maxHeight: FallbackHeight, child: new CustomPaint(size: Dart:uiDefaultClass.Size.Infinite, foregroundPainter: new _PlaceholderPainter(color: Color, strokeWidth: StrokeWidth)));
+            return new LimitedBox(maxWidth: FallbackWidth, maxHeight: FallbackHeight, child: new CustomPaint(size: Dart.UiDefaultClass.Size.Infinite, foregroundPainter: new _PlaceholderPainter(color: Color, strokeWidth: StrokeWidth)));
         }
 
 
 
-        #endregion
     }
 
 }

@@ -383,23 +383,16 @@ namespace FlutterSDK.Material.Bottomappbartheme
     /// </Summary>
     public class BottomAppBarTheme : IDiagnosticable
     {
-        #region constructors
         public BottomAppBarTheme(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Notchedshapes.NotchedShape shape = default(FlutterSDK.Painting.Notchedshapes.NotchedShape))
         {
             this.Color = color;
             this.Elevation = elevation;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Painting.Notchedshapes.NotchedShape Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -434,7 +427,7 @@ namespace FlutterSDK.Material.Bottomappbartheme
         public virtual FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme Lerp(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme a, FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme b, double t)
         {
 
-            return new BottomAppBarTheme(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: t < 0.5 ? a?.Shape : b?.Shape);
+            return new BottomAppBarTheme(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), shape: t < 0.5 ? a?.Shape : b?.Shape);
         }
 
 
@@ -442,7 +435,7 @@ namespace FlutterSDK.Material.Bottomappbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BottomAppBarTheme && other.Color == Color && other.Elevation == Elevation && other.Shape == Shape;
         }
@@ -460,7 +453,6 @@ namespace FlutterSDK.Material.Bottomappbartheme
 
 
 
-        #endregion
     }
 
 }

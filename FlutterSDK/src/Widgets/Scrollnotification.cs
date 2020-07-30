@@ -570,20 +570,13 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollNotification : FlutterSDK.Widgets.Notificationlistener.LayoutChangedNotification, IViewportNotificationMixin
     {
-        #region constructors
         public ScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext))
         {
             this.Metrics = metrics;
             this.Context = context;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics Metrics { get; set; }
         public virtual FlutterSDK.Widgets.Framework.BuildContext Context { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillDescription(List<string> description)
         {
@@ -593,7 +586,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
 
 
-        #endregion
     }
 
 
@@ -607,19 +599,12 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollStartNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
-        #region constructors
         public ScrollStartNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragStartDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragStartDetails))
         : base(metrics: metrics, context: context)
         {
             this.DragDetails = dragDetails;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Dragdetails.DragStartDetails DragDetails { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillDescription(List<string> description)
         {
@@ -629,7 +614,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
 
 
-        #endregion
     }
 
 
@@ -645,21 +629,14 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollUpdateNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
-        #region constructors
         public ScrollUpdateNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double scrollDelta = default(double))
         : base(metrics: metrics, context: context)
         {
             this.DragDetails = dragDetails;
             this.ScrollDelta = scrollDelta;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
         public virtual double ScrollDelta { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillDescription(List<string> description)
         {
@@ -670,7 +647,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
 
 
-        #endregion
     }
 
 
@@ -687,7 +663,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class OverscrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
-        #region constructors
         public OverscrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragUpdateDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails), double overscroll = default(double), double velocity = 0.0)
         : base(metrics: metrics, context: context)
         {
@@ -695,15 +670,9 @@ namespace FlutterSDK.Widgets.Scrollnotification
             this.Overscroll = overscroll;
             this.Velocity = velocity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Dragdetails.DragUpdateDetails DragDetails { get; set; }
         public virtual double Overscroll { get; set; }
         public virtual double Velocity { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillDescription(List<string> description)
         {
@@ -715,7 +684,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
 
 
-        #endregion
     }
 
 
@@ -729,19 +697,12 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class ScrollEndNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
-        #region constructors
         public ScrollEndNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Gestures.Dragdetails.DragEndDetails dragDetails = default(FlutterSDK.Gestures.Dragdetails.DragEndDetails))
         : base(metrics: metrics, context: context)
         {
             this.DragDetails = dragDetails;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Dragdetails.DragEndDetails DragDetails { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillDescription(List<string> description)
         {
@@ -751,7 +712,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
 
 
-        #endregion
     }
 
 
@@ -765,19 +725,12 @@ namespace FlutterSDK.Widgets.Scrollnotification
     /// </Summary>
     public class UserScrollNotification : FlutterSDK.Widgets.Scrollnotification.ScrollNotification
     {
-        #region constructors
         public UserScrollNotification(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics metrics = default(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics), FlutterSDK.Widgets.Framework.BuildContext context = default(FlutterSDK.Widgets.Framework.BuildContext), FlutterSDK.Rendering.Viewportoffset.ScrollDirection direction = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection))
         : base(metrics: metrics, context: context)
         {
             this.Direction = direction;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection Direction { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillDescription(List<string> description)
         {
@@ -787,7 +740,6 @@ namespace FlutterSDK.Widgets.Scrollnotification
 
 
 
-        #endregion
     }
 
 }

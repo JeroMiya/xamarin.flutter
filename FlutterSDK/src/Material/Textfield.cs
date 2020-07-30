@@ -425,19 +425,12 @@ namespace FlutterSDK.Material.Textfield
 
     public class _TextFieldSelectionGestureDetectorBuilder : FlutterSDK.Widgets.Textselection.TextSelectionGestureDetectorBuilder
     {
-        #region constructors
         public _TextFieldSelectionGestureDetectorBuilder(FlutterSDK.Material.Textfield._TextFieldState state = default(FlutterSDK.Material.Textfield._TextFieldState))
         : base(@delegate: state)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Textfield._TextFieldState _State { get; set; }
-        #endregion
-
-        #region methods
 
         public new void OnForcePressStart(FlutterSDK.Gestures.Forcepress.ForcePressDetails details)
         {
@@ -497,7 +490,6 @@ namespace FlutterSDK.Material.Textfield
 
 
 
-        #endregion
     }
 
 
@@ -631,7 +623,6 @@ namespace FlutterSDK.Material.Textfield
     /// </Summary>
     public class TextField : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public TextField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Material.Inputdecorator.InputDecoration decoration = default(FlutterSDK.Material.Inputdecorator.InputDecoration), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), TextAlign textAlign = default(TextAlign), FlutterSDK.Painting.Alignment.TextAlignVertical textAlignVertical = default(FlutterSDK.Painting.Alignment.TextAlignVertical), TextDirection textDirection = default(TextDirection), bool readOnly = false, FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions), bool showCursor = default(bool), bool autofocus = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, int maxLines = 1, int minLines = default(int), bool expands = false, int maxLength = default(int), bool maxLengthEnforced = true, FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool enabled = default(bool), double cursorWidth = 2.0, Radius cursorRadius = default(Radius), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Material.Textfield.InputCounterWidgetBuilder buildCounter = default(FlutterSDK.Material.Textfield.InputCounterWidgetBuilder), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics))
         : base(key: key)
         {
@@ -675,9 +666,6 @@ namespace FlutterSDK.Material.Textfield
             this.ScrollController = scrollController;
             this.ScrollPhysics = scrollPhysics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual FlutterSDK.Material.Inputdecorator.InputDecoration Decoration { get; set; }
@@ -723,9 +711,6 @@ namespace FlutterSDK.Material.Textfield
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Textfield._TextFieldState CreateState() => new _TextFieldState();
 
@@ -768,18 +753,13 @@ namespace FlutterSDK.Material.Textfield
 
 
 
-        #endregion
     }
 
 
     public class _TextFieldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Textfield.TextField>, ITextSelectionGestureDetectorBuilderDelegate
     {
-        #region constructors
         public _TextFieldState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _FocusNode { get; set; }
         internal virtual bool _IsHovering { get; set; }
@@ -794,9 +774,6 @@ namespace FlutterSDK.Material.Textfield
         internal virtual bool _IsEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual int _CurrentLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterSDK.Widgets.Editabletext.EditableTextState _EditableText { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Material.Inputdecorator.InputDecoration _GetEffectiveDecoration()
         {
@@ -1005,7 +982,6 @@ namespace FlutterSDK.Material.Textfield
 
 
 
-        #endregion
     }
 
 }

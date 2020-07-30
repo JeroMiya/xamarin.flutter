@@ -778,17 +778,10 @@ namespace FlutterSDK.Material.Materiallocalizations
 
     public class _MaterialLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Material.Materiallocalizations.MaterialLocalizations>
     {
-        #region constructors
         public _MaterialLocalizationsDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new bool IsSupported(Locale locale) => locale.LanguageCode == "en";
 
@@ -802,7 +795,6 @@ namespace FlutterSDK.Material.Materiallocalizations
 
 
 
-        #endregion
     }
 
 
@@ -818,14 +810,10 @@ namespace FlutterSDK.Material.Materiallocalizations
     /// </Summary>
     public class DefaultMaterialLocalizations : IMaterialLocalizations
     {
-        #region constructors
         public DefaultMaterialLocalizations()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<string> _ShortWeekdays { get; set; }
         internal virtual List<string> _Weekdays { get; set; }
         internal virtual List<string> _NarrowWeekdays { get; set; }
@@ -878,9 +866,6 @@ namespace FlutterSDK.Material.Materiallocalizations
         public virtual string ExpandedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string CollapsedIconTapHint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string RefreshIndicatorSemanticLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the number of days in a month, according to the proleptic
@@ -891,7 +876,8 @@ namespace FlutterSDK.Material.Materiallocalizations
         /// </Summary>
         private int _GetDaysInMonth(int year, int month)
         {
-            if (month == Dart:coreDefaultClass.DateTime.February){
+            if (month == Dart.CoreDefaultClass.DateTime.February)
+            {
                 bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
                 if (isLeapYear) return 29;
                 return 28;
@@ -953,7 +939,7 @@ namespace FlutterSDK.Material.Materiallocalizations
 
         public new string FormatShortDate(DateTime date)
         {
-            string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
+            string month = _ShortMonths[date.Month - Dart.CoreDefaultClass.DateTime.January];
             return $"'{month} {date.Day}, {date.Year}'";
         }
 
@@ -962,8 +948,8 @@ namespace FlutterSDK.Material.Materiallocalizations
 
         public new string FormatMediumDate(DateTime date)
         {
-            string day = _ShortWeekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday];
-            string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
+            string day = _ShortWeekdays[date.Weekday - Dart.CoreDefaultClass.DateTime.Monday];
+            string month = _ShortMonths[date.Month - Dart.CoreDefaultClass.DateTime.January];
             return $"'{day}, {month} {date.Day}'";
         }
 
@@ -972,8 +958,8 @@ namespace FlutterSDK.Material.Materiallocalizations
 
         public new string FormatFullDate(DateTime date)
         {
-            string month = _Months[date.Month - Dart:coreDefaultClass.DateTime.January];
-            return $"'{_Weekdays[date.Weekday - Dart:coreDefaultClass.DateTime.Monday]}, {month} {date.Day}, {date.Year}'";
+            string month = _Months[date.Month - Dart.CoreDefaultClass.DateTime.January];
+            return $"'{_Weekdays[date.Weekday - Dart.CoreDefaultClass.DateTime.Monday]}, {month} {date.Day}, {date.Year}'";
         }
 
 
@@ -982,7 +968,7 @@ namespace FlutterSDK.Material.Materiallocalizations
         public new string FormatMonthYear(DateTime date)
         {
             string year = FormatYear(date);
-            string month = _Months[date.Month - Dart:coreDefaultClass.DateTime.January];
+            string month = _Months[date.Month - Dart.CoreDefaultClass.DateTime.January];
             return $"'{month} {year}'";
         }
 
@@ -991,7 +977,7 @@ namespace FlutterSDK.Material.Materiallocalizations
 
         public new string FormatShortMonthDay(DateTime date)
         {
-            string month = _ShortMonths[date.Month - Dart:coreDefaultClass.DateTime.January];
+            string month = _ShortMonths[date.Month - Dart.CoreDefaultClass.DateTime.January];
             return $"'{month} {date.Day}'";
         }
 
@@ -1006,19 +992,19 @@ namespace FlutterSDK.Material.Materiallocalizations
                 return null;
             }
 
-            int year = Dart:coreDefaultClass.Int.TryParse(inputParts[2], radix: 10);
+            int year = Dart.CoreDefaultClass.Int.TryParse(inputParts[2], radix: 10);
             if (year == null || year < 1)
             {
                 return null;
             }
 
-            int month = Dart:coreDefaultClass.Int.TryParse(inputParts[0], radix: 10);
+            int month = Dart.CoreDefaultClass.Int.TryParse(inputParts[0], radix: 10);
             if (month == null || month < 1 || month > 12)
             {
                 return null;
             }
 
-            int day = Dart:coreDefaultClass.Int.TryParse(inputParts[1], radix: 10);
+            int day = Dart.CoreDefaultClass.Int.TryParse(inputParts[1], radix: 10);
             if (day == null || day < 1 || day > _GetDaysInMonth(year, month))
             {
                 return null;
@@ -1140,7 +1126,6 @@ namespace FlutterSDK.Material.Materiallocalizations
 
 
 
-        #endregion
     }
 
 }

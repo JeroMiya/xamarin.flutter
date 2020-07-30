@@ -381,7 +381,6 @@ namespace FlutterSDK.Material.Bannertheme
     /// </Summary>
     public class MaterialBannerThemeData : IDiagnosticable
     {
-        #region constructors
         public MaterialBannerThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle contentTextStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry leadingPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         {
             this.BackgroundColor = backgroundColor;
@@ -389,17 +388,11 @@ namespace FlutterSDK.Material.Bannertheme
             this.Padding = padding;
             this.LeadingPadding = leadingPadding;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle ContentTextStyle { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry LeadingPadding { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -423,7 +416,7 @@ namespace FlutterSDK.Material.Bannertheme
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Lerp(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData a, FlutterSDK.Material.Bannertheme.MaterialBannerThemeData b, double t)
         {
 
-            return new MaterialBannerThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), leadingPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LeadingPadding, b?.LeadingPadding, t));
+            return new MaterialBannerThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), contentTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.ContentTextStyle, b?.ContentTextStyle, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), leadingPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LeadingPadding, b?.LeadingPadding, t));
         }
 
 
@@ -431,7 +424,7 @@ namespace FlutterSDK.Material.Bannertheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is MaterialBannerThemeData && other.BackgroundColor == BackgroundColor && other.ContentTextStyle == ContentTextStyle && other.Padding == Padding && other.LeadingPadding == LeadingPadding;
         }
@@ -450,7 +443,6 @@ namespace FlutterSDK.Material.Bannertheme
 
 
 
-        #endregion
     }
 
 
@@ -463,19 +455,12 @@ namespace FlutterSDK.Material.Bannertheme
     /// </Summary>
     public class MaterialBannerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public MaterialBannerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData data = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Bannertheme.MaterialBannerThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The closest instance of this class's [data] value that encloses the given
@@ -502,7 +487,7 @@ namespace FlutterSDK.Material.Bannertheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             MaterialBannerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new MaterialBannerTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new MaterialBannerTheme(data: Data, child: child);
         }
 
 
@@ -513,7 +498,6 @@ namespace FlutterSDK.Material.Bannertheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 }

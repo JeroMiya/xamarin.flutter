@@ -508,19 +508,12 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class StreamBuilderBase<T, S> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public StreamBuilderBase(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Stream<T> stream = default(Stream<T>))
         : base(key: key)
         {
             this.Stream = stream;
         }
-        #endregion
-
-        #region fields
         public virtual Stream<T> Stream { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the initial summary of stream interaction, typically representing
@@ -598,7 +591,6 @@ namespace FlutterSDK.Widgets.Async
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>> CreateState() => new _StreamBuilderBaseState<T, S>();
 
 
-        #endregion
     }
 
 
@@ -607,17 +599,10 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class _StreamBuilderBaseState<T, S> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.StreamBuilderBase<T, S>>
     {
-        #region constructors
         public _StreamBuilderBaseState()
         { }
-        #endregion
-
-        #region fields
         internal virtual StreamSubscription<T> _Subscription { get; set; }
         internal virtual S _Summary { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -710,7 +695,6 @@ namespace FlutterSDK.Widgets.Async
 
 
 
-        #endregion
     }
 
 
@@ -727,7 +711,6 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class AsyncSnapshot<T>
     {
-        #region constructors
         internal AsyncSnapshot(FlutterSDK.Widgets.Async.ConnectionState connectionState, T data, @Object error)
         : base()
         {
@@ -747,9 +730,6 @@ namespace FlutterSDK.Widgets.Async
         {
             var instance = new AsyncSnapshot<T>();
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Async.ConnectionState ConnectionState { get; set; }
         public virtual T Data { get; set; }
         public virtual @Object Error { get; set; }
@@ -757,9 +737,6 @@ namespace FlutterSDK.Widgets.Async
         public virtual bool HasData { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasError { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a snapshot like this one, but in the specified [state].
@@ -774,13 +751,12 @@ namespace FlutterSDK.Widgets.Async
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is AsyncSnapshot<T> && other.ConnectionState == ConnectionState && other.Data == Data && other.Error == Error;
         }
 
 
 
-        #endregion
     }
 
 
@@ -950,21 +926,14 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class StreamBuilder<T> : FlutterSDK.Widgets.Async.StreamBuilderBase<T, FlutterSDK.Widgets.Async.AsyncSnapshot<T>>
     {
-        #region constructors
         public StreamBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), T initialData = default(T), Stream<T> stream = default(Stream<T>), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
         : base(key: key, stream: stream)
         {
             this.InitialData = initialData;
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
         public virtual T InitialData { get; set; }
-        #endregion
-
-        #region methods
 
         public new AsyncSnapshot<T> Initial() => AsyncSnapshot<T>.WithData(ConnectionState.None, InitialData);
 
@@ -1001,7 +970,6 @@ namespace FlutterSDK.Widgets.Async
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Async.AsyncSnapshot<T> currentSummary) => Builder(context, currentSummary);
 
 
-        #endregion
     }
 
 
@@ -1145,7 +1113,6 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class FutureBuilder<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public FutureBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Future<T> future = default(Future<T>), T initialData = default(T), FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> builder = default(FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T>))
         : base(key: key)
         {
@@ -1153,20 +1120,13 @@ namespace FlutterSDK.Widgets.Async
             this.InitialData = initialData;
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual Future<T> Future { get; set; }
         public virtual FlutterSDK.Widgets.Async.AsyncWidgetBuilder<T> Builder { get; set; }
         public virtual T InitialData { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>> CreateState() => new _FutureBuilderState<T>();
 
 
-        #endregion
     }
 
 
@@ -1175,17 +1135,10 @@ namespace FlutterSDK.Widgets.Async
     /// </Summary>
     public class _FutureBuilderState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Async.FutureBuilder<T>>
     {
-        #region constructors
         public _FutureBuilderState()
         { }
-        #endregion
-
-        #region fields
         internal virtual @Object _ActiveCallbackIdentity { get; set; }
         internal virtual FlutterSDK.Widgets.Async.AsyncSnapshot<T> _Snapshot { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1275,7 +1228,6 @@ namespace FlutterSDK.Widgets.Async
 
 
 
-        #endregion
     }
 
 

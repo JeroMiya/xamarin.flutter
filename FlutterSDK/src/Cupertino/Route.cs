@@ -370,7 +370,6 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class CupertinoPageRoute<T> : FlutterSDK.Widgets.Pages.PageRoute<T>
     {
-        #region constructors
         public CupertinoPageRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), string title = default(string), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), bool maintainState = true, bool fullscreenDialog = false)
         : base(settings: settings, fullscreenDialog: fullscreenDialog)
         {
@@ -378,9 +377,6 @@ namespace FlutterSDK.Cupertino.Route
             this.Title = title;
             this.MaintainState = maintainState;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         public virtual string Title { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<string> _PreviousTitle { get; set; }
@@ -392,9 +388,6 @@ namespace FlutterSDK.Cupertino.Route
         public virtual bool PopGestureInProgress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool PopGestureEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DidChangePrevious(FlutterSDK.Widgets.Navigator.Route<object> previousRoute)
         {
@@ -515,7 +508,6 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 
@@ -527,22 +519,15 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class CupertinoPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool linearTransition = default(bool))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PrimaryPositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> _PrimaryShadowAnimation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -553,7 +538,6 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 
@@ -565,21 +549,14 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class CupertinoFullscreenDialogTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CupertinoFullscreenDialogTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> primaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryRouteAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), bool linearTransition = default(bool))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _SecondaryPositionAnimation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -590,7 +567,6 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 
@@ -609,7 +585,6 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class _CupertinoBackGestureDetector<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _CupertinoBackGestureDetector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Basictypes.ValueGetter<bool> enabledCallback = default(FlutterSDK.Foundation.Basictypes.ValueGetter<bool>), FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>> onStartPopGesture = default(FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -617,36 +592,22 @@ namespace FlutterSDK.Cupertino.Route
             this.OnStartPopGesture = onStartPopGesture;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<bool> EnabledCallback { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueGetter<_CupertinoBackGestureController<T>> OnStartPopGesture { get; set; }
-        #endregion
-
-        #region methods
 
         public new _CupertinoBackGestureDetectorState<T> CreateState() => new _CupertinoBackGestureDetectorState<T>();
 
 
-        #endregion
     }
 
 
     public class _CupertinoBackGestureDetectorState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Route._CupertinoBackGestureDetector<T>>
     {
-        #region constructors
         public _CupertinoBackGestureDetectorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Cupertino.Route._CupertinoBackGestureController<T> _BackGestureController { get; set; }
         internal virtual FlutterSDK.Gestures.Monodrag.HorizontalDragGestureRecognizer _Recognizer { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -728,13 +689,12 @@ namespace FlutterSDK.Cupertino.Route
         {
 
             double dragAreaWidth = BasicDefaultClass.Directionality.Of(context) == TextDirection.Ltr ? MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Left : MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Right;
-            dragAreaWidth = Dart:mathDefaultClass.Max(dragAreaWidth, RouteDefaultClass._KBackGestureWidth);
+            dragAreaWidth = Dart.Math.MathDefaultClass.Max(dragAreaWidth, RouteDefaultClass._KBackGestureWidth);
             return new Stack(fit: StackFit.Passthrough, children: new List<Widget>() { Widget.Child, new PositionedDirectional(start: 0.0, width: dragAreaWidth, top: 0.0, bottom: 0.0, child: new Listener(onPointerDown: _HandlePointerDown, behavior: HitTestBehavior.Translucent)) });
         }
 
 
 
-        #endregion
     }
 
 
@@ -754,7 +714,6 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class _CupertinoBackGestureController<T>
     {
-        #region constructors
         public _CupertinoBackGestureController(FlutterSDK.Widgets.Navigator.NavigatorState navigator = default(FlutterSDK.Widgets.Navigator.NavigatorState), FlutterSDK.Animation.Animationcontroller.AnimationController controller = default(FlutterSDK.Animation.Animationcontroller.AnimationController))
         : base()
         {
@@ -764,14 +723,8 @@ namespace FlutterSDK.Cupertino.Route
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.NavigatorState Navigator { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The drag gesture has changed by [fractionalDelta]. The total range of the
@@ -796,7 +749,7 @@ namespace FlutterSDK.Cupertino.Route
             if (velocity.Abs() >= RouteDefaultClass._KMinFlingVelocity) animateForward = velocity <= 0; else animateForward = Controller.Value > 0.5;
             if (animateForward)
             {
-                int droppedPageForwardAnimationTime = Dart:mathDefaultClass.Min(Dart: uiDefaultClass.LerpDouble(RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, 0, Controller.Value).Floor(), RouteDefaultClass._KMaxPageBackAnimationTime);
+                int droppedPageForwardAnimationTime = Dart.Math.MathDefaultClass.Min(Dart.UI.UiDefaultClass.LerpDouble(RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, 0, Controller.Value).Floor(), RouteDefaultClass._KMaxPageBackAnimationTime);
                 Controller.AnimateTo(1.0, duration: new TimeSpan(milliseconds: droppedPageForwardAnimationTime), curve: animationCurve);
             }
             else
@@ -804,7 +757,7 @@ namespace FlutterSDK.Cupertino.Route
                 Navigator.Pop();
                 if (Controller.IsAnimating)
                 {
-                    int droppedPageBackAnimationTime = Dart:uiDefaultClass.LerpDouble(0, RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, Controller.Value).Floor();
+                    int droppedPageBackAnimationTime = Dart.UI.UiDefaultClass.LerpDouble(0, RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, Controller.Value).Floor();
                     Controller.AnimateBack(0.0, duration: new TimeSpan(milliseconds: droppedPageBackAnimationTime), curve: animationCurve);
                 }
 
@@ -830,26 +783,18 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoEdgeShadowDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
-        #region constructors
         public _CupertinoEdgeShadowDecoration(FlutterSDK.Painting.Gradient.LinearGradient edgeGradient = default(FlutterSDK.Painting.Gradient.LinearGradient))
         {
             this.EdgeGradient = edgeGradient;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration None { get; set; }
         public virtual FlutterSDK.Painting.Gradient.LinearGradient EdgeGradient { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration Lerp(FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration a, FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration b, double t)
         {
@@ -904,7 +849,6 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 
@@ -913,19 +857,12 @@ namespace FlutterSDK.Cupertino.Route
     /// </Summary>
     public class _CupertinoEdgeShadowPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
-        #region constructors
         public _CupertinoEdgeShadowPainter(FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration _decoration, VoidCallback onChange)
         : base(onChange)
         {
             this._Decoration = _decoration;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Cupertino.Route._CupertinoEdgeShadowDecoration _Decoration { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, FlutterBinding.UI.Offset offset, FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
         {
@@ -942,13 +879,11 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoModalPopupRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
     {
-        #region constructors
         public _CupertinoModalPopupRoute(FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), string barrierLabel = default(string), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool semanticsDismissible = default(bool), ImageFilter filter = default(ImageFilter), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(filter: filter, settings: settings)
         {
@@ -959,9 +894,6 @@ namespace FlutterSDK.Cupertino.Route
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         internal virtual bool _SemanticsDismissible { get; set; }
         public new string BarrierLabel { get; set; }
@@ -971,9 +903,6 @@ namespace FlutterSDK.Cupertino.Route
         public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SemanticsDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Animation.Animation.Animation<double> CreateAnimation()
         {
@@ -1001,7 +930,6 @@ namespace FlutterSDK.Cupertino.Route
 
 
 
-        #endregion
     }
 
 }

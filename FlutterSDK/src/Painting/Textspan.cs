@@ -477,7 +477,6 @@ namespace FlutterSDK.Painting.Textspan
     /// </Summary>
     public class TextSpan : FlutterSDK.Painting.Inlinespan.InlineSpan
     {
-        #region constructors
         public TextSpan(string text = default(string), List<FlutterSDK.Painting.Inlinespan.InlineSpan> children = default(List<FlutterSDK.Painting.Inlinespan.InlineSpan>), FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Gestures.Recognizer.GestureRecognizer recognizer = default(FlutterSDK.Gestures.Recognizer.GestureRecognizer), string semanticsLabel = default(string))
         : base(style: style)
         {
@@ -486,17 +485,11 @@ namespace FlutterSDK.Painting.Textspan
             this.Recognizer = recognizer;
             this.SemanticsLabel = semanticsLabel;
         }
-        #endregion
-
-        #region fields
         public new string Text { get; set; }
         public new List<FlutterSDK.Painting.Inlinespan.InlineSpan> Children { get; set; }
         public new FlutterSDK.Gestures.Recognizer.GestureRecognizer Recognizer { get; set; }
         public virtual string SemanticsLabel { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Apply the [style], [text], and [children] of this object to the
@@ -718,7 +711,7 @@ namespace FlutterSDK.Painting.Textspan
 
         public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return RenderComparison.Identical;
             if (other.GetType() != GetType()) return RenderComparison.Layout;
             TextSpan textSpan = other as TextSpan;
             if (textSpan.Text != Text || Children?.Count != textSpan.Children?.Count || (Style == null) != (textSpan.Style == null)) return RenderComparison.Layout;
@@ -749,7 +742,7 @@ namespace FlutterSDK.Painting.Textspan
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             if (base != other) return false;
             return other is TextSpan && other.Text == Text && other.Recognizer == Recognizer && other.SemanticsLabel == SemanticsLabel && CollectionsDefaultClass.ListEquals(other.Children, Children);
@@ -798,7 +791,6 @@ namespace FlutterSDK.Painting.Textspan
 
 
 
-        #endregion
     }
 
 }

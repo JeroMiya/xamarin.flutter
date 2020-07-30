@@ -655,20 +655,13 @@ namespace FlutterSDK.Rendering.Custompaint
     /// </Summary>
     public class CustomPainter : FlutterSDK.Foundation.Changenotifier.Listenable
     {
-        #region constructors
         public CustomPainter(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
         public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Register a closure to be notified when it is time to repaint.
@@ -810,7 +803,6 @@ namespace FlutterSDK.Rendering.Custompaint
 
 
 
-        #endregion
     }
 
 
@@ -832,7 +824,6 @@ namespace FlutterSDK.Rendering.Custompaint
     /// </Summary>
     public class CustomPainterSemantics
     {
-        #region constructors
         public CustomPainterSemantics(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Rect rect = default(FlutterBinding.UI.Rect), FlutterSDK.Semantics.Semantics.SemanticsProperties properties = default(FlutterSDK.Semantics.Semantics.SemanticsProperties), Matrix4 transform = default(Matrix4), HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> tags = default(HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag>))
         : base()
         {
@@ -842,18 +833,11 @@ namespace FlutterSDK.Rendering.Custompaint
             this.Transform = transform;
             this.Tags = tags;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.Key Key { get; set; }
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
         public virtual Matrix4 Transform { get; set; }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsProperties Properties { get; set; }
         public virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> Tags { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -886,16 +870,12 @@ namespace FlutterSDK.Rendering.Custompaint
     /// </Summary>
     public class RenderCustomPaint : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderCustomPaint(FlutterSDK.Rendering.Custompaint.CustomPainter painter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), FlutterSDK.Rendering.Custompaint.CustomPainter foregroundPainter = default(FlutterSDK.Rendering.Custompaint.CustomPainter), Size preferredSize = default(Size), bool isComplex = false, bool willChange = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.IsComplex = isComplex;
             this.WillChange = willChange;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _Painter { get; set; }
         internal virtual FlutterSDK.Rendering.Custompaint.CustomPainter _ForegroundPainter { get; set; }
         internal virtual Size _PreferredSize { get; set; }
@@ -908,9 +888,6 @@ namespace FlutterSDK.Rendering.Custompaint
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter Painter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Custompaint.CustomPainter ForegroundPainter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Size PreferredSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _DidUpdatePainter(FlutterSDK.Rendering.Custompaint.CustomPainter newPainter, FlutterSDK.Rendering.Custompaint.CustomPainter oldPainter)
         {
@@ -1004,7 +981,7 @@ namespace FlutterSDK.Rendering.Custompaint
             int debugPreviousCanvasSaveCount = default(int);
             canvas.Save();
 
-            if (offset != Dart:uiDefaultClass.Offset.Zero)canvas.Translate(offset.Dx, offset.Dy);
+            if (offset != Dart.UiDefaultClass.Offset.Zero) canvas.Translate(offset.Dx, offset.Dy);
             painter.Paint(canvas, Size);
 
             canvas.Restore();
@@ -1473,7 +1450,6 @@ namespace FlutterSDK.Rendering.Custompaint
 
 
 
-        #endregion
     }
 
 }

@@ -437,43 +437,28 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
     /// </Summary>
     public class SemanticsDebugger : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SemanticsDebugger(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         : base(key: key)
         {
             this.Child = child;
             this.LabelStyle = labelStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Semanticsdebugger._SemanticsDebuggerState CreateState() => new _SemanticsDebuggerState();
 
 
-        #endregion
     }
 
 
     public class _SemanticsDebuggerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Semanticsdebugger.SemanticsDebugger>, IWidgetsBindingObserver
     {
-        #region constructors
         public _SemanticsDebuggerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Semanticsdebugger._SemanticsClient _Client { get; set; }
         internal virtual FlutterBinding.UI.Offset _LastPointerDownLocation { get; set; }
         internal virtual FlutterSDK.Rendering.@object.PipelineOwner _PipelineOwner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -544,7 +529,7 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
         private void _HandleTap()
         {
 
-            _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.Tap);
+            _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.Tap);
             SetState(() =>
             {
                 _LastPointerDownLocation = null;
@@ -558,7 +543,7 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
         private void _HandleLongPress()
         {
 
-            _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.LongPress);
+            _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.LongPress);
             SetState(() =>
             {
                 _LastPointerDownLocation = null;
@@ -578,19 +563,19 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
             {
                 if (vx.Sign < 0)
                 {
-                    _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.Decrease);
-                    _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollLeft);
+                    _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.Decrease);
+                    _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.ScrollLeft);
                 }
                 else
                 {
-                    _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.Increase);
-                    _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollRight);
+                    _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.Increase);
+                    _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.ScrollRight);
                 }
 
             }
             else
             {
-                if (vy.Sign < 0) _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollUp); else _PerformAction(_LastPointerDownLocation, Dart: uiDefaultClass.SemanticsAction.ScrollDown);
+                if (vy.Sign < 0) _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.ScrollUp); else _PerformAction(_LastPointerDownLocation, Dart.UI.UiDefaultClass.SemanticsAction.ScrollDown);
             }
 
             SetState(() =>
@@ -618,13 +603,11 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
 
 
 
-        #endregion
     }
 
 
     public class _SemanticsClient : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public _SemanticsClient(FlutterSDK.Rendering.@object.PipelineOwner pipelineOwner)
         {
 
@@ -632,14 +615,8 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.@object.SemanticsHandle _SemanticsHandle { get; set; }
         public virtual int Generation { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -659,13 +636,11 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
 
 
 
-        #endregion
     }
 
 
     public class _SemanticsDebuggerPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _SemanticsDebuggerPainter(FlutterSDK.Rendering.@object.PipelineOwner owner, int generation, FlutterBinding.UI.Offset pointerPosition, double devicePixelRatio, FlutterSDK.Painting.Textstyle.TextStyle labelStyle)
         {
             this.Owner = owner;
@@ -674,18 +649,12 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
             this.DevicePixelRatio = devicePixelRatio;
             this.LabelStyle = labelStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.@object.PipelineOwner Owner { get; set; }
         public virtual int Generation { get; set; }
         public virtual FlutterBinding.UI.Offset PointerPosition { get; set; }
         public virtual double DevicePixelRatio { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle LabelStyle { get; set; }
         internal virtual FlutterSDK.Semantics.Semantics.SemanticsNode _RootSemanticsNode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -725,19 +694,19 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
             SemanticsData data = node.GetSemanticsData();
             List<string> annotations = new List<string>() { };
             bool wantsTap = false;
-            if (data.HasFlag(Dart: uiDefaultClass.SemanticsFlag.HasCheckedState))
+            if (data.HasFlag(Dart.UI.UiDefaultClass.SemanticsFlag.HasCheckedState))
             {
-                annotations.Add(data.HasFlag(Dart: uiDefaultClass.SemanticsFlag.IsChecked) ? "checked" : "unchecked");
+                annotations.Add(data.HasFlag(Dart.UI.UiDefaultClass.SemanticsFlag.IsChecked) ? "checked" : "unchecked");
                 wantsTap = true;
             }
 
-            if (data.HasFlag(Dart: uiDefaultClass.SemanticsFlag.IsTextField))
+            if (data.HasFlag(Dart.UI.UiDefaultClass.SemanticsFlag.IsTextField))
             {
                 annotations.Add("textfield");
                 wantsTap = true;
             }
 
-            if (data.HasAction(Dart: uiDefaultClass.SemanticsAction.Tap))
+            if (data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.Tap))
             {
                 if (!wantsTap) annotations.Add("button");
             }
@@ -746,9 +715,9 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
                 if (wantsTap) annotations.Add("disabled");
             }
 
-            if (data.HasAction(Dart: uiDefaultClass.SemanticsAction.LongPress)) annotations.Add("long-pressable");
-            bool isScrollable = data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollLeft) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollRight) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollUp) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.ScrollDown);
-            bool isAdjustable = data.HasAction(Dart: uiDefaultClass.SemanticsAction.Increase) || data.HasAction(Dart: uiDefaultClass.SemanticsAction.Decrease);
+            if (data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.LongPress)) annotations.Add("long-pressable");
+            bool isScrollable = data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollLeft) || data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollRight) || data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollUp) || data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollDown);
+            bool isAdjustable = data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.Increase) || data.HasAction(Dart.UI.UiDefaultClass.SemanticsAction.Decrease);
             if (isScrollable) annotations.Add("scrollable");
             if (isAdjustable) annotations.Add("adjustable");
 
@@ -809,7 +778,7 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
             int childrenDepth = 0;
             node.VisitChildren((SemanticsNode child) =>
             {
-                childrenDepth = Math.Dart:mathDefaultClass.Max(childrenDepth, _FindDepth(child));
+                childrenDepth = Dart.Math.MathDefaultClass.Max(childrenDepth, _FindDepth(child));
                 return true;
             }
             );
@@ -860,7 +829,6 @@ namespace FlutterSDK.Widgets.Semanticsdebugger
 
 
 
-        #endregion
     }
 
 }

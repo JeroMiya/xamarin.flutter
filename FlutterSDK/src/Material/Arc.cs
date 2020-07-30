@@ -400,15 +400,11 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialPointArcTween : FlutterSDK.Animation.Tween.Tween<Offset>
     {
-        #region constructors
         public MaterialPointArcTween(FlutterBinding.UI.Offset begin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset end = default(FlutterBinding.UI.Offset))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         internal virtual FlutterBinding.UI.Offset _Center { get; set; }
         internal virtual double _Radius { get; set; }
@@ -420,9 +416,6 @@ namespace FlutterSDK.Material.Arc
         public virtual double EndAngle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset Begin { set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Initialize()
         {
@@ -433,7 +426,7 @@ namespace FlutterSDK.Material.Arc
             double deltaY = delta.Dy.Abs();
             double distanceFromAtoB = delta.Distance;
             Offset c = new Offset(End.Dx, Begin.Dy);
-            double SweepAngle() => 2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
+            double SweepAngle() => 2.0 * Dart.Math.MathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
             if (deltaX > ArcDefaultClass._KOnAxisDelta && deltaY > ArcDefaultClass._KOnAxisDelta)
             {
                 if (deltaX < deltaY)
@@ -447,8 +440,8 @@ namespace FlutterSDK.Material.Arc
                     }
                     else
                     {
-                        _BeginAngle = Math.Dart:mathDefaultClass.Pi + SweepAngle() * (End.Dy - Begin.Dy).Sign;
-                        _EndAngle = Math.Dart:mathDefaultClass.Pi;
+                        _BeginAngle = Math.Dart.MathDefaultClass.Pi + SweepAngle() * (End.Dy - Begin.Dy).Sign;
+                        _EndAngle = Math.Dart.MathDefaultClass.Pi;
                     }
 
                 }
@@ -458,12 +451,12 @@ namespace FlutterSDK.Material.Arc
                     _Center = new Offset(Begin.Dx, Begin.Dy + (End.Dy - Begin.Dy).Sign * _Radius);
                     if (Begin.Dy < End.Dy)
                     {
-                        _BeginAngle = -Math.Dart:mathDefaultClass.Pi / 2.0;
+                        _BeginAngle = -Math.Dart.MathDefaultClass.Pi / 2.0;
                         _EndAngle = _BeginAngle + SweepAngle() * (End.Dx - Begin.Dx).Sign;
                     }
                     else
                     {
-                        _BeginAngle = Math.Dart:mathDefaultClass.Pi / 2.0;
+                        _BeginAngle = Math.Dart.MathDefaultClass.Pi / 2.0;
                         _EndAngle = _BeginAngle + SweepAngle() * (Begin.Dx - End.Dx).Sign;
                     }
 
@@ -489,37 +482,28 @@ namespace FlutterSDK.Material.Arc
             if (_Dirty) _Initialize();
             if (t == 0.0) return Begin;
             if (t == 1.0) return End;
-            if (_BeginAngle == null || _EndAngle == null) return Dart:uiDefaultClass.Offset.Lerp(Begin, End, t);
-            double angle = Dart:uiDefaultClass.LerpDouble(_BeginAngle, _EndAngle, t);
-            double x = Math.Dart:mathDefaultClass.Cos(angle) * _Radius;
-            double y = Math.Dart:mathDefaultClass.Sin(angle) * _Radius;
+            if (_BeginAngle == null || _EndAngle == null) return Dart.UI.UiDefaultClass.Offset.Lerp(Begin, End, t);
+            double angle = Dart.UI.UiDefaultClass.LerpDouble(_BeginAngle, _EndAngle, t);
+            double x = Dart.Math.MathDefaultClass.Cos(angle) * _Radius;
+            double y = Dart.Math.MathDefaultClass.Sin(angle) * _Radius;
             return _Center + new Offset(x, y);
         }
 
 
 
 
-        #endregion
     }
 
 
     public class _Diagonal
     {
-        #region constructors
         public _Diagonal(FlutterSDK.Material.Arc._CornerId beginId, FlutterSDK.Material.Arc._CornerId endId)
         {
             this.BeginId = beginId;
             this.EndId = endId;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Arc._CornerId BeginId { get; set; }
         public virtual FlutterSDK.Material.Arc._CornerId EndId { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -546,15 +530,11 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialRectArcTween : FlutterSDK.Animation.Tween.RectTween
     {
-        #region constructors
         public MaterialRectArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _BeginArc { get; set; }
         internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _EndArc { get; set; }
@@ -562,9 +542,6 @@ namespace FlutterSDK.Material.Arc
         public virtual FlutterSDK.Material.Arc.MaterialPointArcTween EndArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Initialize()
         {
@@ -593,7 +570,7 @@ namespace FlutterSDK.Material.Arc
         private Offset _CornerFor(FlutterBinding.UI.Rect rect, FlutterSDK.Material.Arc._CornerId id)
         {
             switch (id) { case _CornerId.TopLeft: return rect.TopLeft; case _CornerId.TopRight: return rect.TopRight; case _CornerId.BottomLeft: return rect.BottomLeft; case _CornerId.BottomRight: return rect.BottomRight; }
-            return Dart:uiDefaultClass.Offset.Zero;
+            return Dart.UiDefaultClass.Offset.Zero;
         }
 
 
@@ -610,7 +587,6 @@ namespace FlutterSDK.Material.Arc
 
 
 
-        #endregion
     }
 
 
@@ -634,23 +610,16 @@ namespace FlutterSDK.Material.Arc
     /// </Summary>
     public class MaterialRectCenterArcTween : FlutterSDK.Animation.Tween.RectTween
     {
-        #region constructors
         public MaterialRectCenterArcTween(FlutterBinding.UI.Rect begin = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect end = default(FlutterBinding.UI.Rect))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Dirty { get; set; }
         internal virtual FlutterSDK.Material.Arc.MaterialPointArcTween _CenterArc { get; set; }
         public virtual FlutterSDK.Material.Arc.MaterialPointArcTween CenterArc { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect Begin { set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect End { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Initialize()
         {
@@ -669,15 +638,14 @@ namespace FlutterSDK.Material.Arc
             if (t == 0.0) return Begin;
             if (t == 1.0) return End;
             Offset center = _CenterArc.Lerp(t);
-            double width = Dart:uiDefaultClass.LerpDouble(Begin.Width, End.Width, t);
-            double height = Dart:uiDefaultClass.LerpDouble(Begin.Height, End.Height, t);
+            double width = Dart.UI.UiDefaultClass.LerpDouble(Begin.Width, End.Width, t);
+            double height = Dart.UI.UiDefaultClass.LerpDouble(Begin.Height, End.Height, t);
             return Rect.FromLTWH(center.Dx - width / 2.0, center.Dy - height / 2.0, width, height);
         }
 
 
 
 
-        #endregion
     }
 
 

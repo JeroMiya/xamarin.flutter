@@ -439,7 +439,6 @@ namespace FlutterSDK.Rendering.Stack
     /// </Summary>
     public class RelativeRect
     {
-        #region constructors
         public static RelativeRect FromLTRB(double left, double top, double right, double bottom)
         {
             var instance = new RelativeRect(); instance.Left = left;
@@ -461,9 +460,6 @@ namespace FlutterSDK.Rendering.Stack
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Fill { get; set; }
         public virtual double Left { get; set; }
         public virtual double Top { get; set; }
@@ -471,9 +467,6 @@ namespace FlutterSDK.Rendering.Stack
         public virtual double Bottom { get; set; }
         public virtual bool HasInsets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a new rectangle object translated by the given offset.
@@ -513,7 +506,7 @@ namespace FlutterSDK.Rendering.Stack
         /// </Summary>
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Intersect(FlutterSDK.Rendering.Stack.RelativeRect other)
         {
-            return RelativeRect.FromLTRB(Math.Dart:mathDefaultClass.Max(Left, other.Left), Math.Dart:mathDefaultClass.Max(Top, other.Top), Math.Dart:mathDefaultClass.Max(Right, other.Right), Math.Dart:mathDefaultClass.Max(Bottom, other.Bottom));
+            return RelativeRect.FromLTRB(Dart.Math.MathDefaultClass.Max(Left, other.Left), Dart.Math.MathDefaultClass.Max(Top, other.Top), Dart.Math.MathDefaultClass.Max(Right, other.Right), Dart.Math.MathDefaultClass.Max(Bottom, other.Bottom));
         }
 
 
@@ -568,7 +561,7 @@ namespace FlutterSDK.Rendering.Stack
                 return RelativeRect.FromLTRB(b.Left * k, b.Top * k, b.Right * k, b.Bottom * k);
             }
 
-            return RelativeRect.FromLTRB(Dart: uiDefaultClass.LerpDouble(a.Left, b.Left, t), Dart: uiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart: uiDefaultClass.LerpDouble(a.Right, b.Right, t), Dart: uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+            return RelativeRect.FromLTRB(Dart.UI.UiDefaultClass.LerpDouble(a.Left, b.Left, t), Dart.UI.UiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart.UI.UiDefaultClass.LerpDouble(a.Right, b.Right, t), Dart.UI.UiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
         }
 
 
@@ -576,14 +569,13 @@ namespace FlutterSDK.Rendering.Stack
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is RelativeRect && other.Left == Left && other.Top == Top && other.Right == Right && other.Bottom == Bottom;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -592,12 +584,8 @@ namespace FlutterSDK.Rendering.Stack
     /// </Summary>
     public class StackParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public StackParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual double Top { get; set; }
         public virtual double Right { get; set; }
         public virtual double Bottom { get; set; }
@@ -606,11 +594,7 @@ namespace FlutterSDK.Rendering.Stack
         public virtual double Height { get; set; }
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsPositioned { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -654,7 +638,6 @@ namespace FlutterSDK.Rendering.Stack
     /// </Summary>
     public class RenderStack : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
     {
-        #region constructors
         public RenderStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Stack.StackFit fit = default(FlutterSDK.Rendering.Stack.StackFit), FlutterSDK.Rendering.Stack.Overflow overflow = default(FlutterSDK.Rendering.Stack.Overflow))
         : base()
         {
@@ -663,9 +646,6 @@ namespace FlutterSDK.Rendering.Stack
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _HasVisualOverflow { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
@@ -676,9 +656,6 @@ namespace FlutterSDK.Rendering.Stack
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Stack.StackFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Stack.Overflow Overflow { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -722,7 +699,7 @@ namespace FlutterSDK.Rendering.Stack
             while (child != null)
             {
                 StackParentData childParentData = child.ParentData as StackParentData;
-                if (!childParentData.IsPositioned) extent = Math.Dart:mathDefaultClass.Max(extent, mainChildSizeGetter(child));
+                if (!childParentData.IsPositioned) extent = Dart.Math.MathDefaultClass.Max(extent, mainChildSizeGetter(child));
 
                 child = childParentData.NextSibling;
             }
@@ -853,8 +830,8 @@ namespace FlutterSDK.Rendering.Stack
                     hasNonPositionedChildren = true;
                     child.Layout(nonPositionedConstraints, parentUsesSize: true);
                     Size childSize = child.Size;
-                    width = Math.Dart:mathDefaultClass.Max(width, childSize.Width);
-                    height = Math.Dart:mathDefaultClass.Max(height, childSize.Height);
+                    width = Dart.Math.MathDefaultClass.Max(width, childSize.Width);
+                    height = Dart.Math.MathDefaultClass.Max(height, childSize.Height);
                 }
 
                 child = childParentData.NextSibling;
@@ -920,7 +897,7 @@ namespace FlutterSDK.Rendering.Stack
         {
             if (_Overflow == Overflow.Clip && _HasVisualOverflow)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+                context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, PaintStack);
             }
             else
             {
@@ -932,11 +909,11 @@ namespace FlutterSDK.Rendering.Stack
 
 
 
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart.UiDefaultClass.Offset.Zero & Size : null;
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
             properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment));
@@ -947,7 +924,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 
@@ -960,20 +936,13 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
     /// </Summary>
     public class RenderIndexedStack : FlutterSDK.Rendering.Stack.RenderStack
     {
-        #region constructors
         public RenderIndexedStack(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), int index = 0)
         : base(children: children, alignment: alignment, textDirection: textDirection)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _Index { get; set; }
         public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
         {
@@ -1039,7 +1008,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 

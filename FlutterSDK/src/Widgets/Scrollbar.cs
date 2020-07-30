@@ -463,7 +463,6 @@ namespace FlutterSDK.Widgets.Scrollbar
     /// </Summary>
     public class ScrollbarPainter : FlutterSDK.Foundation.Changenotifier.ChangeNotifier, ICustomPainter
     {
-        #region constructors
         public ScrollbarPainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), double thickness = default(double), FlutterSDK.Animation.Animation.Animation<double> fadeoutOpacityAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double mainAxisMargin = 0.0, double crossAxisMargin = 0.0, Radius radius = default(Radius), double minLength = default(double), double minOverscrollLength = default(double))
         : base()
         {
@@ -477,9 +476,6 @@ namespace FlutterSDK.Widgets.Scrollbar
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Color _Color { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
         public virtual double Thickness { get; set; }
@@ -505,9 +501,6 @@ namespace FlutterSDK.Widgets.Scrollbar
         internal virtual double _TrackExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _TotalContentExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Custompaint.SemanticsBuilderCallback SemanticsBuilder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Update with new [ScrollMetrics]. The scrollbar will show and redraw itself
@@ -553,9 +546,9 @@ namespace FlutterSDK.Widgets.Scrollbar
         private double _ThumbExtent()
         {
             double fractionVisible = ((_LastMetrics.ExtentInside - _MainAxisPadding) / (_TotalContentExtent - _MainAxisPadding)).Clamp(0.0, 1.0) as double;
-            double thumbExtent = Math.Dart:mathDefaultClass.Max(Math.Dart:mathDefaultClass.Min(_TrackExtent, MinOverscrollLength), _TrackExtent * fractionVisible);
+            double thumbExtent = Dart.Math.MathDefaultClass.Max(Dart.Math.MathDefaultClass.Min(_TrackExtent, MinOverscrollLength), _TrackExtent * fractionVisible);
             double fractionOverscrolled = 1.0 - _LastMetrics.ExtentInside / _LastMetrics.ViewportDimension;
-            double safeMinLength = Math.Dart:mathDefaultClass.Min(MinLength, _TrackExtent);
+            double safeMinLength = Dart.Math.MathDefaultClass.Min(MinLength, _TrackExtent);
             double newMinLength = (_BeforeExtent > 0 && _AfterExtent > 0) ? safeMinLength : safeMinLength * (1.0 - fractionOverscrolled.Clamp(0.0, 0.2) / 0.2);
             return thumbExtent.Clamp(newMinLength, _TrackExtent) as double;
         }
@@ -675,7 +668,6 @@ namespace FlutterSDK.Widgets.Scrollbar
         public new bool ShouldRebuildSemantics(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => false;
 
 
-        #endregion
         CustomPainter _CustomPainterInstance = new CustomPainter();
         public void AddListener(VoidCallback listener) => _CustomPainterInstance.AddListener(listener);
         public void RemoveListener(VoidCallback listener) => _CustomPainterInstance.RemoveListener(listener);

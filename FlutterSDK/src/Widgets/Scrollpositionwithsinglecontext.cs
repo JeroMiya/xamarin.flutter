@@ -451,7 +451,6 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
     /// </Summary>
     public class ScrollPositionWithSingleContext : FlutterSDK.Widgets.Scrollposition.ScrollPosition, IScrollActivityDelegate
     {
-        #region constructors
         public ScrollPositionWithSingleContext(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
         : base(physics: physics, context: context, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel)
         {
@@ -462,17 +461,11 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _HeldPreviousVelocity { get; set; }
         internal virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection _UserScrollDirection { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollactivity.ScrollDragController _CurrentDrag { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double SetPixels(double newPixels)
         {
@@ -689,7 +682,6 @@ namespace FlutterSDK.Widgets.Scrollpositionwithsinglecontext
 
 
 
-        #endregion
     }
 
 }

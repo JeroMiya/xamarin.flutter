@@ -440,41 +440,26 @@ namespace FlutterSDK.Widgets.Willpopscope
     /// </Summary>
     public class WillPopScope : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public WillPopScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Navigator.WillPopCallback onWillPop = default(FlutterSDK.Widgets.Navigator.WillPopCallback))
         : base(key: key)
         {
             this.Child = child;
             this.OnWillPop = onWillPop;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.WillPopCallback OnWillPop { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Willpopscope._WillPopScopeState CreateState() => new _WillPopScopeState();
 
 
-        #endregion
     }
 
 
     public class _WillPopScopeState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Willpopscope.WillPopScope>
     {
-        #region constructors
         public _WillPopScopeState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Routes.ModalRoute<object> _Route { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DidChangeDependencies()
         {
@@ -514,7 +499,6 @@ namespace FlutterSDK.Widgets.Willpopscope
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Child;
 
 
-        #endregion
     }
 
 }

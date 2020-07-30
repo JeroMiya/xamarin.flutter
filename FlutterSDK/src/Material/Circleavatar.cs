@@ -425,7 +425,6 @@ namespace FlutterSDK.Material.Circleavatar
     /// </Summary>
     public class CircleAvatar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public CircleAvatar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> backgroundImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onBackgroundImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterBinding.UI.Color foregroundColor = default(FlutterBinding.UI.Color), double radius = default(double), double minRadius = default(double), double maxRadius = default(double))
         : base(key: key)
         {
@@ -438,9 +437,6 @@ namespace FlutterSDK.Material.Circleavatar
             this.MinRadius = minRadius;
             this.MaxRadius = maxRadius;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color ForegroundColor { get; set; }
@@ -454,9 +450,6 @@ namespace FlutterSDK.Material.Circleavatar
         internal virtual double _DefaultMaxRadius { get; set; }
         internal virtual double _MinDiameter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _MaxDiameter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -480,7 +473,6 @@ namespace FlutterSDK.Material.Circleavatar
 
 
 
-        #endregion
     }
 
 }

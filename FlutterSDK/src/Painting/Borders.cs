@@ -576,7 +576,6 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class BorderSide
     {
-        #region constructors
         public BorderSide(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double width = 1.0, FlutterSDK.Painting.Borders.BorderStyle style = default(FlutterSDK.Painting.Borders.BorderStyle))
         : base()
         {
@@ -584,17 +583,11 @@ namespace FlutterSDK.Painting.Borders
             this.Width = width;
             this.Style = style;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Width { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderStyle Style { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide None { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [BorderSide] that represents the addition of the two given
@@ -660,7 +653,7 @@ namespace FlutterSDK.Painting.Borders
         public virtual FlutterSDK.Painting.Borders.BorderSide Scale(double t)
         {
 
-            return new BorderSide(color: Color, width: Math.Dart:mathDefaultClass.Max(0.0, Width * t), style: t <= 0.0 ? BorderStyle.None : Style);
+            return new BorderSide(color: Color, width: Dart.Math.MathDefaultClass.Max(0.0, Width * t), style: t <= 0.0 ? BorderStyle.None : Style);
         }
 
 
@@ -717,17 +710,17 @@ namespace FlutterSDK.Painting.Borders
 
             if (t == 0.0) return a;
             if (t == 1.0) return b;
-            double width = Ui.Dart:uiDefaultClass.LerpDouble(a.Width, b.Width, t);
+            double width = Dart.UI.UiDefaultClass.LerpDouble(a.Width, b.Width, t);
             if (width < 0.0) return BordersDefaultClass.BorderSide.None;
             if (a.Style == b.Style)
             {
-                return new BorderSide(color: Dart:uiDefaultClass.Color.Lerp(a.Color, b.Color, t), width: width, style: a.Style);
+                return new BorderSide(color: Dart.UI.UiDefaultClass.Color.Lerp(a.Color, b.Color, t), width: width, style: a.Style);
             }
 
             Color colorA colorB = default(Color);
             switch (a.Style) { case BorderStyle.Solid: colorA = a.Color; break; case BorderStyle.None: colorA = a.Color.WithAlpha(0x00); break; }
             switch (b.Style) { case BorderStyle.Solid: colorB = b.Color; break; case BorderStyle.None: colorB = b.Color.WithAlpha(0x00); break; }
-            return new BorderSide(color: Dart:uiDefaultClass.Color.Lerp(colorA, colorB, t), width: width, style: BorderStyle.Solid);
+            return new BorderSide(color: Dart.UI.UiDefaultClass.Color.Lerp(colorA, colorB, t), width: width, style: BorderStyle.Solid);
         }
 
 
@@ -735,7 +728,7 @@ namespace FlutterSDK.Painting.Borders
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BorderSide && other.Color == Color && other.Width == Width && other.Style == Style;
         }
@@ -743,7 +736,6 @@ namespace FlutterSDK.Painting.Borders
 
 
 
-        #endregion
     }
 
 
@@ -765,18 +757,11 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class ShapeBorder
     {
-        #region constructors
         public ShapeBorder()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Attempts to create a new object that represents the amalgamation of `this`
@@ -1002,7 +987,6 @@ namespace FlutterSDK.Painting.Borders
         }
 
 
-        #endregion
     }
 
 
@@ -1013,21 +997,14 @@ namespace FlutterSDK.Painting.Borders
     /// </Summary>
     public class _CompoundBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public _CompoundBorder(List<FlutterSDK.Painting.Borders.ShapeBorder> borders)
         : base()
         {
             this.Borders = borders;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Painting.Borders.ShapeBorder> Borders { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Add(FlutterSDK.Painting.Borders.ShapeBorder other, bool reversed = false)
         {
@@ -1082,7 +1059,7 @@ namespace FlutterSDK.Painting.Borders
             List<ShapeBorder> aList = a is _CompoundBorder ? a.Borders : new List<ShapeBorder>() { a };
             List<ShapeBorder> bList = b is _CompoundBorder ? b.Borders : new List<ShapeBorder>() { b };
             List<ShapeBorder> results = new List<ShapeBorder>() { };
-            int length = Math.Dart:mathDefaultClass.Max(aList.Count, bList.Count);
+            int length = Dart.Math.MathDefaultClass.Max(aList.Count, bList.Count);
             for (int index = 0; index < length; index += 1)
             {
                 ShapeBorder localA = index < aList.Count ? aList[index] : null;
@@ -1140,7 +1117,7 @@ namespace FlutterSDK.Painting.Borders
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is _CompoundBorder && CollectionsDefaultClass.ListEquals(other.Borders, Borders);
         }
@@ -1148,7 +1125,6 @@ namespace FlutterSDK.Painting.Borders
 
 
 
-        #endregion
     }
 
 

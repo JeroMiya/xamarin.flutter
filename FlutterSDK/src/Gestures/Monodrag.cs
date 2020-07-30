@@ -371,15 +371,11 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class DragGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
-        #region constructors
         public DragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(debugOwner: debugOwner, kind: kind)
         {
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragDownCallback OnDown { get; set; }
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragStartCallback OnStart { get; set; }
@@ -398,9 +394,6 @@ namespace FlutterSDK.Gestures.Monodrag
         internal virtual double _GlobalDistanceMoved { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Gestures.Velocitytracker.VelocityTracker> _VelocityTrackers { get; set; }
         internal virtual bool _HasSufficientGlobalDistanceToAccept { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Determines if a gesture is a fling or not based on velocity.
@@ -527,12 +520,13 @@ namespace FlutterSDK.Gestures.Monodrag
                 TimeSpan timestamp = _LastPendingEventTimestamp;
                 Matrix4 transform = _LastTransform;
                 Offset localUpdateDelta = default(Offset);
-                switch (DragStartBehavior) { case DragStartBehavior.Start: _InitialPosition = _InitialPosition + delta; localUpdateDelta = Dart:uiDefaultClass.Offset.Zero; break; case DragStartBehavior.Down: localUpdateDelta = _GetDeltaForDetails(delta.Local); break; }
+                switch (DragStartBehavior) { case DragStartBehavior.Start: _InitialPosition = _InitialPosition + delta; localUpdateDelta = Dart.UiDefaultClass.Offset.Zero; break; case DragStartBehavior.Down: localUpdateDelta = _GetDeltaForDetails(delta.Local); break; }
                 _PendingDragOffset = RecognizerDefaultClass.OffsetPair.Zero;
                 _LastPendingEventTimestamp = null;
                 _LastTransform = null;
                 _CheckStart(timestamp);
-                if (localUpdateDelta != Dart:uiDefaultClass.Offset.Zero && OnUpdate != null ){
+                if (localUpdateDelta != Dart.UiDefaultClass.Offset.Zero && OnUpdate != null)
+                {
                     Matrix4 localToGlobal = transform != null ? Matrix4.TryInvert(transform) : null;
                     Offset correctedLocalPosition = _InitialPosition.Local + localUpdateDelta;
                     Offset globalUpdateDelta = EventsDefaultClass.PointerEvent.TransformDeltaViaPositions(untransformedEndPosition: correctedLocalPosition, untransformedDelta: localUpdateDelta, transform: localToGlobal);
@@ -678,7 +672,6 @@ namespace FlutterSDK.Gestures.Monodrag
 
 
 
-        #endregion
     }
 
 
@@ -696,20 +689,13 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class VerticalDragGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
-        #region constructors
         public VerticalDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _HasSufficientGlobalDistanceToAccept { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.VelocityEstimate estimate)
         {
@@ -728,7 +714,6 @@ namespace FlutterSDK.Gestures.Monodrag
         protected new double _GetPrimaryValueFromOffset(FlutterBinding.UI.Offset value) => value.Dy;
 
 
-        #endregion
     }
 
 
@@ -746,20 +731,13 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class HorizontalDragGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
-        #region constructors
         public HorizontalDragGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _HasSufficientGlobalDistanceToAccept { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.VelocityEstimate estimate)
         {
@@ -778,7 +756,6 @@ namespace FlutterSDK.Gestures.Monodrag
         protected new double _GetPrimaryValueFromOffset(FlutterBinding.UI.Offset value) => value.Dx;
 
 
-        #endregion
     }
 
 
@@ -795,20 +772,13 @@ namespace FlutterSDK.Gestures.Monodrag
     /// </Summary>
     public class PanGestureRecognizer : FlutterSDK.Gestures.Monodrag.DragGestureRecognizer
     {
-        #region constructors
         public PanGestureRecognizer(@Object debugOwner = default(@Object))
         : base(debugOwner: debugOwner)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _HasSufficientGlobalDistanceToAccept { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsFlingGesture(FlutterSDK.Gestures.Velocitytracker.VelocityEstimate estimate)
         {
@@ -827,7 +797,6 @@ namespace FlutterSDK.Gestures.Monodrag
         protected new double _GetPrimaryValueFromOffset(FlutterBinding.UI.Offset value) => null;
 
 
-        #endregion
     }
 
 

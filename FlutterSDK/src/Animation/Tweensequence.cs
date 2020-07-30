@@ -98,7 +98,6 @@ namespace FlutterSDK.Animation.Tweensequence
     /// </Summary>
     public class TweenSequence<T> : FlutterSDK.Animation.Tween.Animatable<T>
     {
-        #region constructors
         public TweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> items)
         : base()
         {
@@ -118,14 +117,8 @@ namespace FlutterSDK.Animation.Tweensequence
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<T>> _Items { get; set; }
         internal virtual List<FlutterSDK.Animation.Tweensequence._Interval> _Intervals { get; set; }
-        #endregion
-
-        #region methods
 
         private T _EvaluateAt(double t, int index)
         {
@@ -153,7 +146,6 @@ namespace FlutterSDK.Animation.Tweensequence
 
 
 
-        #endregion
     }
 
 
@@ -169,23 +161,15 @@ namespace FlutterSDK.Animation.Tweensequence
     /// </Summary>
     public class FlippedTweenSequence : FlutterSDK.Animation.Tweensequence.TweenSequence<double>
     {
-        #region constructors
         public FlippedTweenSequence(List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> items)
         : base(items)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double Transform(double t) => 1 - base.Transform(1 - t);
 
 
-        #endregion
     }
 
 
@@ -194,42 +178,27 @@ namespace FlutterSDK.Animation.Tweensequence
     /// </Summary>
     public class TweenSequenceItem<T>
     {
-        #region constructors
         public TweenSequenceItem(FlutterSDK.Animation.Tween.Animatable<T> tween = default(FlutterSDK.Animation.Tween.Animatable<T>), double weight = default(double))
         : base()
         {
             this.Tween = tween;
             this.Weight = weight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Tween.Animatable<T> Tween { get; set; }
         public virtual double Weight { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _Interval
     {
-        #region constructors
         public _Interval(double start, double end)
         : base()
         {
             this.Start = start;
             this.End = end;
         }
-        #endregion
-
-        #region fields
         public virtual double Start { get; set; }
         public virtual double End { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual bool Contains(double t) => t >= Start && t < End;
 
@@ -239,7 +208,6 @@ namespace FlutterSDK.Animation.Tweensequence
 
 
 
-        #endregion
     }
 
 }

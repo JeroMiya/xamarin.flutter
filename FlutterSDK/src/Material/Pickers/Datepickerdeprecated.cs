@@ -410,24 +410,17 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
 
     public class _DayPickerGridDelegate : FlutterSDK.Rendering.Slivergrid.SliverGridDelegate
     {
-        #region constructors
         public _DayPickerGridDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Slivergrid.SliverGridLayout GetLayout(FlutterSDK.Rendering.Sliver.SliverConstraints constraints)
         {
-            int columnCount = Dart:coreDefaultClass.DateTime.DaysPerWeek;
+            int columnCount = Dart.CoreDefaultClass.DateTime.DaysPerWeek;
             double tileWidth = constraints.CrossAxisExtent / columnCount;
             double viewTileHeight = constraints.ViewportMainAxisExtent / (DatepickerdeprecatedDefaultClass._KMaxDayPickerRowCount + 1);
-            double tileHeight = Math.Dart:mathDefaultClass.Max(DatepickerdeprecatedDefaultClass._KDayPickerRowHeight, viewTileHeight);
+            double tileHeight = Dart.Math.MathDefaultClass.Max(DatepickerdeprecatedDefaultClass._KDayPickerRowHeight, viewTileHeight);
             return new SliverGridRegularTileLayout(crossAxisCount: columnCount, mainAxisStride: tileHeight, crossAxisStride: tileWidth, childMainAxisExtent: tileHeight, childCrossAxisExtent: tileWidth, reverseCrossAxis: BasictypesDefaultClass.AxisDirectionIsReversed(constraints.CrossAxisDirection));
         }
 
@@ -439,7 +432,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
         public new bool ShouldRelayout(FlutterSDK.Rendering.Slivergrid.SliverGridDelegate oldDelegate) => false;
 
 
-        #endregion
     }
 
 
@@ -462,7 +454,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     /// </Summary>
     public class DayPicker : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public DayPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime selectedDate = default(DateTime), DateTime currentDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), DateTime displayedMonth = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -475,9 +466,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
             this.SelectableDayPredicate = selectableDayPredicate;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual DateTime SelectedDate { get; set; }
         public virtual DateTime CurrentDate { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
@@ -487,9 +475,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
         internal virtual List<int> _DaysInMonth { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Builds widgets showing abbreviated days of week. The first widget in the
@@ -536,7 +521,8 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
         /// </Summary>
         public virtual int GetDaysInMonth(int year, int month)
         {
-            if (month == Dart:coreDefaultClass.DateTime.February){
+            if (month == Dart.CoreDefaultClass.DateTime.February)
+            {
                 bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
                 if (isLeapYear) return 29;
                 return 28;
@@ -651,7 +637,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
 
 
 
-        #endregion
     }
 
 
@@ -674,7 +659,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
     /// </Summary>
     public class MonthPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public MonthPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -685,34 +669,23 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
             this.SelectableDayPredicate = selectableDayPredicate;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual DateTime SelectedDate { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
         public virtual DateTime FirstDate { get; set; }
         public virtual DateTime LastDate { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate SelectableDayPredicate { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Datepickerdeprecated._MonthPickerState CreateState() => new _MonthPickerState();
 
 
-        #endregion
     }
 
 
     public class _MonthPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Datepickerdeprecated.MonthPicker>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _MonthPickerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _ChevronOpacityTween { get; set; }
         public virtual FlutterSDK.Material.Materiallocalizations.MaterialLocalizations Localizations { get; set; }
         public virtual TextDirection TextDirection { get; set; }
@@ -726,9 +699,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdeprecated
         internal virtual DateTime _NextMonthDate { get; set; }
         internal virtual bool _IsDisplayingFirstMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _IsDisplayingLastMonth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -884,28 +854,19 @@ return false ;
 
 
 
-        #endregion
     }
 
 
     public class _MonthPickerSortKey : FlutterSDK.Semantics.Semantics.OrdinalSortKey
     {
-        #region constructors
         public _MonthPickerSortKey(double order)
         : base(order)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Pickers.Datepickerdeprecated._MonthPickerSortKey PreviousMonth { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickerdeprecated._MonthPickerSortKey NextMonth { get; set; }
         public virtual FlutterSDK.Material.Pickers.Datepickerdeprecated._MonthPickerSortKey Calendar { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -927,7 +888,6 @@ return false ;
     /// </Summary>
     public class YearPicker : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public YearPicker(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime selectedDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -937,38 +897,24 @@ return false ;
             this.LastDate = lastDate;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual DateTime SelectedDate { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> OnChanged { get; set; }
         public virtual DateTime FirstDate { get; set; }
         public virtual DateTime LastDate { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Datepickerdeprecated._YearPickerState CreateState() => new _YearPickerState();
 
 
-        #endregion
     }
 
 
     public class _YearPickerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Datepickerdeprecated.YearPicker>
     {
-        #region constructors
         public _YearPickerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _ItemExtent { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1000,7 +946,6 @@ return false ;
 
 
 
-        #endregion
     }
 
 }

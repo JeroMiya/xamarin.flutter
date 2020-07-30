@@ -322,21 +322,14 @@ namespace FlutterSDK.Cupertino.Textselection
     /// </Summary>
     public class CupertinoTextSelectionToolbar : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         internal CupertinoTextSelectionToolbar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double barTopY = default(double), double arrowTipX = default(double), bool isArrowPointingDown = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _BarTopY { get; set; }
         internal virtual double _ArrowTipX { get; set; }
         internal virtual bool _IsArrowPointingDown { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Textselection._ToolbarRenderBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _ToolbarRenderBox(_BarTopY, _ArrowTipX, _IsArrowPointingDown, null);
 
@@ -355,30 +348,20 @@ namespace FlutterSDK.Cupertino.Textselection
 
 
 
-        #endregion
     }
 
 
     public class _ToolbarParentData : FlutterSDK.Rendering.Box.BoxParentData
     {
-        #region constructors
         public _ToolbarParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual double ArrowXOffsetFromCenter { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
     public class _ToolbarRenderBox : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
-        #region constructors
         public _ToolbarRenderBox(double _barTopY, double _arrowTipX, bool _isArrowPointingDown, FlutterSDK.Rendering.Box.RenderBox child)
         : base(child)
         {
@@ -386,9 +369,6 @@ namespace FlutterSDK.Cupertino.Textselection
             this._ArrowTipX = _arrowTipX;
             this._IsArrowPointingDown = _isArrowPointingDown;
         }
-        #endregion
-
-        #region fields
         internal virtual double _BarTopY { get; set; }
         internal virtual double _ArrowTipX { get; set; }
         internal virtual bool _IsArrowPointingDown { get; set; }
@@ -398,9 +378,6 @@ namespace FlutterSDK.Cupertino.Textselection
         public virtual double BarTopY { set { throw new NotImplementedException(); } }
         public virtual double ArrowTipX { set { throw new NotImplementedException(); } }
         public virtual bool IsArrowPointingDown { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -449,7 +426,7 @@ namespace FlutterSDK.Cupertino.Textselection
             new Path().LineTo(arrowTipX - TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
             new Path().LineTo(arrowTipX + TextselectionDefaultClass._KToolbarArrowSize.Width / 2, arrowBottomY);
             new Path().Close();
-            return Dart:uiDefaultClass.Path.Combine(PathOperation.Union, rrect, arrow);
+            return Dart.UI.UiDefaultClass.Path.Combine(PathOperation.Union, rrect, arrow);
         }
 
 
@@ -463,7 +440,7 @@ namespace FlutterSDK.Cupertino.Textselection
             }
 
             _ToolbarParentData childParentData = Child.ParentData as _ToolbarParentData;
-            context.PushClipPath(NeedsCompositing, offset + childParentData.Offset, Dart: uiDefaultClass.Offset.Zero & Child.Size, _ClipPath(), (PaintingContext innerContext, Offset innerOffset) => =>innerContext.PaintChild(Child, innerOffset));
+            context.PushClipPath(NeedsCompositing, offset + childParentData.Offset, Dart.UI.UiDefaultClass.Offset.Zero & Child.Size, _ClipPath(), (PaintingContext innerContext, Offset innerOffset) => =>innerContext.PaintChild(Child, innerOffset));
         }
 
 
@@ -476,7 +453,6 @@ namespace FlutterSDK.Cupertino.Textselection
 
 
 
-        #endregion
     }
 
 
@@ -485,18 +461,11 @@ namespace FlutterSDK.Cupertino.Textselection
     /// </Summary>
     public class _TextSelectionHandlePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _TextSelectionHandlePainter(FlutterBinding.UI.Color color)
         {
             this.Color = color;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -518,21 +487,13 @@ namespace FlutterSDK.Cupertino.Textselection
         public new bool ShouldRepaint(FlutterSDK.Rendering.Custompaint.CustomPainter oldDelegate) => Color != oldPainter.Color;
 
 
-        #endregion
     }
 
 
     public class _CupertinoTextSelectionControls : FlutterSDK.Widgets.Textselection.TextSelectionControls
     {
-        #region constructors
         public _CupertinoTextSelectionControls()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the size of the Cupertino handle.
@@ -599,7 +560,7 @@ namespace FlutterSDK.Cupertino.Textselection
                 case TextSelectionHandleType.Right:
                     return new Transform(transform: Matrix4.Identity();
                     Matrix4.Identity().Translate(desiredSize.Width / 2, desiredSize.Height / 2);
-                    Matrix4.Identity().RotateZ(Math.Dart:mathDefaultClass.Pi);
+                    Matrix4.Identity().RotateZ(Math.Dart.MathDefaultClass.Pi);
                     Matrix4.Identity().Translate(-desiredSize.Width / 2, -desiredSize.Height / 2), child: handle);
                 case TextSelectionHandleType.Collapsed: return new SizedBox();
             }
@@ -623,7 +584,6 @@ namespace FlutterSDK.Cupertino.Textselection
 
 
 
-        #endregion
     }
 
 }

@@ -310,41 +310,26 @@ namespace FlutterSDK.Cupertino.Activityindicator
     /// </Summary>
     public class CupertinoActivityIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoActivityIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool animating = true, double radius = default(double))
         : base(key: key)
         {
             this.Animating = animating;
             this.Radius = radius;
         }
-        #endregion
-
-        #region fields
         public virtual bool Animating { get; set; }
         public virtual double Radius { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Activityindicator._CupertinoActivityIndicatorState CreateState() => new _CupertinoActivityIndicatorState();
 
 
-        #endregion
     }
 
 
     public class _CupertinoActivityIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Activityindicator.CupertinoActivityIndicator>, ISingleTickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CupertinoActivityIndicatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -385,28 +370,20 @@ namespace FlutterSDK.Cupertino.Activityindicator
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoActivityIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _CupertinoActivityIndicatorPainter(FlutterSDK.Animation.Animation.Animation<double> position = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), double radius = default(double))
         : base(repaint: position)
         {
             this.Position = position;
             this.ActiveColor = activeColor;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> Position { get; set; }
         public virtual FlutterBinding.UI.RRect TickFundamentalRRect { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Paint(Canvas canvas, Size size)
         {
@@ -441,7 +418,6 @@ namespace FlutterSDK.Cupertino.Activityindicator
 
 
 
-        #endregion
     }
 
 }

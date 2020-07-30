@@ -497,7 +497,6 @@ namespace FlutterSDK.Widgets.Scrollmetrics
     /// </Summary>
     public class FixedScrollMetrics : FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics
     {
-        #region constructors
         public FixedScrollMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection))
         {
             this.MinScrollExtent = minScrollExtent;
@@ -506,19 +505,12 @@ namespace FlutterSDK.Widgets.Scrollmetrics
             this.ViewportDimension = viewportDimension;
             this.AxisDirection = axisDirection;
         }
-        #endregion
-
-        #region fields
         public new double MinScrollExtent { get; set; }
         public new double MaxScrollExtent { get; set; }
         public new double Pixels { get; set; }
         public new double ViewportDimension { get; set; }
         public new FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

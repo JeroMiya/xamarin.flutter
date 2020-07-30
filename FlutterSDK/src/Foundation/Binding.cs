@@ -298,7 +298,7 @@ namespace FlutterSDK.Foundation.Binding
     {
         internal static async Future<object> _ExitApplication()
         {
-        Dart: ioDefaultClass.Exit(0);
+            Dart.IoDefaultClass.Exit(0);
         }
 
 
@@ -361,33 +361,26 @@ namespace FlutterSDK.Foundation.Binding
     /// </Summary>
     public class BindingBase
     {
-        #region constructors
         public BindingBase()
         {
 
-            Developer.Dart:developerDefaultClass.Timeline.StartSync("Framework initialization");
+            Dart.Developer.DeveloperDefaultClass.Timeline.StartSync("Framework initialization");
 
             InitInstances();
 
 
             InitServiceExtensions();
 
-            Developer.Dart:developerDefaultClass.PostEvent("Flutter.FrameworkInitialization", new Dictionary<string, string> { });
-            Developer.Dart:developerDefaultClass.Timeline.FinishSync();
+            Dart.Developer.DeveloperDefaultClass.PostEvent("Flutter.FrameworkInitialization", new Dictionary<string, string> { });
+            Dart.Developer.DeveloperDefaultClass.Timeline.FinishSync();
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _DebugInitialized { get; set; }
         internal virtual bool _DebugServiceExtensionsRegistered { get; set; }
         internal virtual int _LockCount { get; set; }
         public virtual Window Window { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Locked { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The initialization method. Subclasses override this method to hook into
@@ -437,7 +430,7 @@ namespace FlutterSDK.Foundation.Binding
                 RegisterSignalServiceExtension(name: "exit", callback: BindingDefaultClass._ExitApplication);
                 RegisterServiceExtension(name: "saveCompilationTrace", callback: async (Dictionary<string, string> parameters) =>
                 {
-                    return new Dictionary<string, object> { { "value", Ui.Dart:uiDefaultClass.SaveCompilationTrace() } };
+                    return new Dictionary<string, object> { { "value", Dart.UI.UiDefaultClass.SaveCompilationTrace() } };
                 }
                 );
             }
@@ -462,7 +455,7 @@ namespace FlutterSDK.Foundation.Binding
         /// </Summary>
         public virtual Future<object> LockEvents(Func<Future> callback)
         {
-            Developer.Dart:developerDefaultClass.Timeline.StartSync("Lock events");
+            Dart.Developer.DeveloperDefaultClass.Timeline.StartSync("Lock events");
 
             _LockCount += 1;
             Future<void> future = callback();
@@ -472,7 +465,7 @@ namespace FlutterSDK.Foundation.Binding
                 _LockCount -= 1;
                 if (!Locked)
                 {
-                    Developer.Dart:developerDefaultClass.Timeline.FinishSync();
+                    Dart.Developer.DeveloperDefaultClass.Timeline.FinishSync();
                     Unlocked();
                 }
 
@@ -631,7 +624,7 @@ namespace FlutterSDK.Foundation.Binding
             {
                 if (parameters.ContainsKey(name))
                 {
-                    await setter(Dart: coreDefaultClass.Double.Parse(parameters[name]));
+                    await setter(Dart.CoreDefaultClass.Double.Parse(parameters[name]));
                     _PostExtensionStateChangedEvent(name, (await getter()).ToString());
                 }
 
@@ -671,7 +664,7 @@ namespace FlutterSDK.Foundation.Binding
         /// </Summary>
         public virtual void PostEvent(string eventKind, Dictionary<string, object> eventData)
         {
-            Developer.Dart:developerDefaultClass.PostEvent(eventKind, eventData);
+            Dart.Developer.DeveloperDefaultClass.PostEvent(eventKind, eventData);
         }
 
 
@@ -770,13 +763,13 @@ namespace FlutterSDK.Foundation.Binding
 
 
             string methodName = $"'ext.flutter.{name}'";
-            Developer.Dart:developerDefaultClass.RegisterExtension(methodName, async (string method, Dictionary<string, string> parameters) =>
+            Dart.Developer.DeveloperDefaultClass.RegisterExtension(methodName, async (string method, Dictionary<string, string> parameters) =>
             {
 
 
             await DebugDefaultClass.DebugInstrumentAction("Wait for outer event loop", () =>
             {
-                return Future<void>.Delayed(Dart: coreDefaultClass.Duration.Zero);
+                return Future<void>.Delayed(Dart.CoreDefaultClass.Duration.Zero);
             }
             );
             object caughtException = default(object);
@@ -795,12 +788,12 @@ namespace FlutterSDK.Foundation.Binding
             {
                 result["type"] = "_extensionType";
                 result["method"] = method;
-                return Developer.Dart:developerDefaultClass.ServiceExtensionResponse.Result(Dart: convertDefaultClass.Json.Encode(result));
+                return Dart.Developer.DeveloperDefaultClass.ServiceExtensionResponse.Result(Dart.ConvertDefaultClass.Json.Encode(result));
             }
             else
             {
                 AssertionsDefaultClass.FlutterError.ReportError(new FlutterErrorDetails(exception: caughtException, stack: caughtStack, context: new ErrorDescription($"'during a service extension callback for "{ method }"'")));
-                return Developer.Dart:developerDefaultClass.ServiceExtensionResponse.Error(Developer.Dart:developerDefaultClass.ServiceExtensionResponse.ExtensionError, Dart: convertDefaultClass.Json.Encode(new Dictionary<string, string> { { "exception", caughtException.ToString() }{ "stack", caughtStack.ToString() }{ "method", method } }));
+                return Dart.Developer.DeveloperDefaultClass.ServiceExtensionResponse.Error(Developer.Dart.DeveloperDefaultClass.ServiceExtensionResponse.ExtensionError, Dart.ConvertDefaultClass.Json.Encode(new Dictionary<string, string> { { "exception", caughtException.ToString() }{ "stack", caughtStack.ToString() }{ "method", method } }));
             }
 
         }
@@ -810,7 +803,6 @@ namespace FlutterSDK.Foundation.Binding
 
 
 
-    #endregion
 }
 
 }

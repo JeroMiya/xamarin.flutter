@@ -504,7 +504,6 @@ namespace FlutterSDK.Widgets.Editabletext
     /// </Summary>
     public class TextEditingController : FlutterSDK.Foundation.Changenotifier.ValueNotifier<FlutterSDK.Services.Textinput.TextEditingValue>
     {
-        #region constructors
         public TextEditingController(string text = default(string))
         : base(text == null ? TextinputDefaultClass.TextEditingValue.Empty : new TextEditingValue(text: text))
         {
@@ -514,14 +513,8 @@ namespace FlutterSDK.Widgets.Editabletext
         {
             var instance = new TextEditingController(value ?? TextinputDefaultClass.TextEditingValue.Empty);
         }
-        #endregion
-
-        #region fields
         public virtual string Text { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Textediting.TextSelection Selection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Builds [TextSpan] from current editing value.
@@ -536,7 +529,7 @@ namespace FlutterSDK.Widgets.Editabletext
                 return new TextSpan(style: style, text: Text);
             }
 
-            TextStyle composingStyle = style.Merge(new TextStyle(decoration: Dart:uiDefaultClass.TextDecoration.Underline));
+            TextStyle composingStyle = style.Merge(new TextStyle(decoration: Dart.UI.UiDefaultClass.TextDecoration.Underline));
             return new TextSpan(style: style, children: new List<TextSpan>() { new TextSpan(text: Value.Composing.TextBefore(Value.Text)), new TextSpan(style: composingStyle, text: Value.Composing.TextInside(Value.Text)), new TextSpan(text: Value.Composing.TextAfter(Value.Text)) });
         }
 
@@ -576,7 +569,7 @@ namespace FlutterSDK.Widgets.Editabletext
         /// </Summary>
         public virtual void ClearComposing()
         {
-            Value = Value.CopyWith(composing: Dart:uiDefaultClass.TextRange.Empty);
+            Value = Value.CopyWith(composing: Dart.UI.UiDefaultClass.TextRange.Empty);
         }
 
 
@@ -592,7 +585,6 @@ namespace FlutterSDK.Widgets.Editabletext
 
 
 
-        #endregion
     }
 
 
@@ -609,7 +601,6 @@ namespace FlutterSDK.Widgets.Editabletext
     /// </Summary>
     public class ToolbarOptions
     {
-        #region constructors
         public ToolbarOptions(bool copy = false, bool cut = false, bool paste = false, bool selectAll = false)
         : base()
         {
@@ -618,17 +609,10 @@ namespace FlutterSDK.Widgets.Editabletext
             this.Paste = paste;
             this.SelectAll = selectAll;
         }
-        #endregion
-
-        #region fields
         public virtual bool Copy { get; set; }
         public virtual bool Cut { get; set; }
         public virtual bool Paste { get; set; }
         public virtual bool SelectAll { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -691,7 +675,6 @@ namespace FlutterSDK.Widgets.Editabletext
     /// </Summary>
     public class EditableText : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public EditableText(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Editabletext.TextEditingController controller = default(FlutterSDK.Widgets.Editabletext.TextEditingController), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool readOnly = false, bool obscureText = false, bool autocorrect = true, FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = true, FlutterSDK.Painting.Textstyle.TextStyle style = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), double textScaleFactor = default(double), int maxLines = 1, int minLines = default(int), bool expands = false, bool forceLine = true, FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool autofocus = false, bool showCursor = default(bool), bool showSelectionHandles = false, FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Textselection.TextSelectionControls selectionControls = default(FlutterSDK.Widgets.Textselection.TextSelectionControls), FlutterSDK.Services.Textinput.TextInputType keyboardType = default(FlutterSDK.Services.Textinput.TextInputType), FlutterSDK.Services.Textinput.TextInputAction textInputAction = default(FlutterSDK.Services.Textinput.TextInputAction), FlutterSDK.Services.Textinput.TextCapitalization textCapitalization = default(FlutterSDK.Services.Textinput.TextCapitalization), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), VoidCallback onEditingComplete = default(VoidCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<string> onSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<string>), FlutterSDK.Widgets.Editabletext.SelectionChangedCallback onSelectionChanged = default(FlutterSDK.Widgets.Editabletext.SelectionChangedCallback), VoidCallback onSelectionHandleTapped = default(VoidCallback), List<FlutterSDK.Services.Textformatter.TextInputFormatter> inputFormatters = default(List<FlutterSDK.Services.Textformatter.TextInputFormatter>), bool rendererIgnoresPointer = false, double cursorWidth = 2.0, Radius cursorRadius = default(Radius), bool cursorOpacityAnimates = false, FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), bool paintCursorAboveText = false, BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), FlutterSDK.Painting.Edgeinsets.EdgeInsets scrollPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), Brightness keyboardAppearance = default(Brightness), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool enableInteractiveSelection = true, FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics scrollPhysics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Editabletext.ToolbarOptions toolbarOptions = default(FlutterSDK.Widgets.Editabletext.ToolbarOptions))
         : base(key: key)
         {
@@ -740,9 +723,6 @@ namespace FlutterSDK.Widgets.Editabletext
             this.ScrollPhysics = scrollPhysics;
             this.ToolbarOptions = toolbarOptions;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Editabletext.TextEditingController Controller { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool ObscureText { get; set; }
@@ -796,9 +776,6 @@ namespace FlutterSDK.Widgets.Editabletext
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics ScrollPhysics { get; set; }
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle StrutStyle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SelectionEnabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Editabletext.EditableTextState CreateState() => new EditableTextState();
 
@@ -830,7 +807,6 @@ namespace FlutterSDK.Widgets.Editabletext
 
 
 
-        #endregion
     }
 
 
@@ -839,12 +815,8 @@ namespace FlutterSDK.Widgets.Editabletext
     /// </Summary>
     public class EditableTextState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Editabletext.EditableText>, ITextInputClient, ITextSelectionDelegate, IAutomaticKeepAliveClientMixin<FlutterSDK.Widgets.Editabletext.EditableText>, IWidgetsBindingObserver, ITickerProviderStateMixin<FlutterSDK.Widgets.Editabletext.EditableText>
     {
-        #region constructors
         public EditableTextState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Timer _CursorTimer { get; set; }
         internal virtual bool _TargetCursorVisibility { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> _CursorVisibilityNotifier { get; set; }
@@ -896,9 +868,6 @@ namespace FlutterSDK.Widgets.Editabletext
         public virtual FlutterSDK.Rendering.Editable.RenderEditable RenderEditable { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Textinput.TextEditingValue TextEditingValue { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _DevicePixelRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1101,8 +1070,8 @@ namespace FlutterSDK.Widgets.Editabletext
             else
             {
                 double lerpValue = _FloatingCursorResetController.Value;
-                double lerpX = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dx, finalPosition.Dx, lerpValue);
-                double lerpY = Ui.Dart:uiDefaultClass.LerpDouble(_LastBoundedOffset.Dy, finalPosition.Dy, lerpValue);
+                double lerpX = Dart.UI.UiDefaultClass.LerpDouble(_LastBoundedOffset.Dx, finalPosition.Dx, lerpValue);
+                double lerpY = Dart.UI.UiDefaultClass.LerpDouble(_LastBoundedOffset.Dy, finalPosition.Dy, lerpValue);
                 RenderEditable.SetFloatingCursor(FloatingCursorDragState.Update, new Offset(lerpX, lerpY), _LastTextPosition, resetLerpValue: lerpValue);
             }
 
@@ -1368,10 +1337,10 @@ namespace FlutterSDK.Widgets.Editabletext
                 if (_SelectionOverlay?.SelectionControls != null)
                 {
                     double handleHeight = _SelectionOverlay.SelectionControls.GetHandleSize(RenderEditable.PreferredLineHeight).Height;
-                    double interactiveHandleHeight = Math.Dart:mathDefaultClass.Max(handleHeight, ConstantsDefaultClass.KMinInteractiveDimension);
+                    double interactiveHandleHeight = Dart.Math.MathDefaultClass.Max(handleHeight, ConstantsDefaultClass.KMinInteractiveDimension);
                     Offset anchor = _SelectionOverlay.SelectionControls.GetHandleAnchor(TextSelectionHandleType.Collapsed, RenderEditable.PreferredLineHeight);
                     double handleCenter = handleHeight / 2 - anchor.Dy;
-                    bottomSpacing = Math.Dart:mathDefaultClass.Max(handleCenter + interactiveHandleHeight / 2, bottomSpacing);
+                    bottomSpacing = Dart.Math.MathDefaultClass.Max(handleCenter + interactiveHandleHeight / 2, bottomSpacing);
                 }
 
                 Rect inflatedRect = Rect.FromLTRB(newCaretRect.Left - Widget.ScrollPadding.Left, newCaretRect.Top - Widget.ScrollPadding.Top, newCaretRect.Right + Widget.ScrollPadding.Right, newCaretRect.Bottom + bottomSpacing);
@@ -1701,13 +1670,11 @@ namespace FlutterSDK.Widgets.Editabletext
 
 
 
-        #endregion
     }
 
 
     public class _Editable : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _Editable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Textspan.TextSpan textSpan = default(FlutterSDK.Painting.Textspan.TextSpan), FlutterSDK.Services.Textinput.TextEditingValue value = default(FlutterSDK.Services.Textinput.TextEditingValue), FlutterSDK.Rendering.Layer.LayerLink startHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Layer.LayerLink endHandleLayerLink = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundCursorColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool> showCursor = default(FlutterSDK.Foundation.Changenotifier.ValueNotifier<bool>), bool forceLine = default(bool), bool readOnly = default(bool), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), bool hasFocus = default(bool), int maxLines = default(int), int minLines = default(int), bool expands = default(bool), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterBinding.UI.Color selectionColor = default(FlutterBinding.UI.Color), double textScaleFactor = default(double), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), Locale locale = default(Locale), bool obscureText = default(bool), bool autocorrect = default(bool), FlutterSDK.Services.Textinput.SmartDashesType smartDashesType = default(FlutterSDK.Services.Textinput.SmartDashesType), FlutterSDK.Services.Textinput.SmartQuotesType smartQuotesType = default(FlutterSDK.Services.Textinput.SmartQuotesType), bool enableSuggestions = default(bool), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Rendering.Editable.SelectionChangedHandler onSelectionChanged = default(FlutterSDK.Rendering.Editable.SelectionChangedHandler), FlutterSDK.Rendering.Editable.CaretChangedHandler onCaretChanged = default(FlutterSDK.Rendering.Editable.CaretChangedHandler), bool rendererIgnoresPointer = false, double cursorWidth = default(double), Radius cursorRadius = default(Radius), FlutterBinding.UI.Offset cursorOffset = default(FlutterBinding.UI.Offset), bool paintCursorAboveText = default(bool), BoxHeightStyle selectionHeightStyle = default(BoxHeightStyle), BoxWidthStyle selectionWidthStyle = default(BoxWidthStyle), bool enableInteractiveSelection = true, FlutterSDK.Services.Textinput.TextSelectionDelegate textSelectionDelegate = default(FlutterSDK.Services.Textinput.TextSelectionDelegate), double devicePixelRatio = default(double))
         : base(key: key)
         {
@@ -1750,9 +1717,6 @@ namespace FlutterSDK.Widgets.Editabletext
             this.TextSelectionDelegate = textSelectionDelegate;
             this.DevicePixelRatio = devicePixelRatio;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Textspan.TextSpan TextSpan { get; set; }
         public virtual FlutterSDK.Services.Textinput.TextEditingValue Value { get; set; }
         public virtual FlutterBinding.UI.Color CursorColor { get; set; }
@@ -1791,9 +1755,6 @@ namespace FlutterSDK.Widgets.Editabletext
         public virtual bool EnableInteractiveSelection { get; set; }
         public virtual FlutterSDK.Services.Textinput.TextSelectionDelegate TextSelectionDelegate { get; set; }
         public virtual double DevicePixelRatio { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Editable.RenderEditable CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1816,21 +1777,16 @@ namespace FlutterSDK.Widgets.Editabletext
 
 
 
-        #endregion
     }
 
 
     public class _WhitespaceDirectionalityFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        #region constructors
         public _WhitespaceDirectionalityFormatter(TextDirection textDirection = default(TextDirection))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual RegExp _LtrRegExp { get; set; }
         internal virtual RegExp _RtlRegExp { get; set; }
         internal virtual RegExp _WhitespaceRegExp { get; set; }
@@ -1839,9 +1795,6 @@ namespace FlutterSDK.Widgets.Editabletext
         internal virtual bool _HasOpposingDirection { get; set; }
         internal virtual int _Rlm { get; set; }
         internal virtual int _Lrm { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
         {
@@ -1959,7 +1912,6 @@ namespace FlutterSDK.Widgets.Editabletext
 
 
 
-        #endregion
     }
 
 }

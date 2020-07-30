@@ -412,7 +412,6 @@ namespace FlutterSDK.Material.Buttonbar
     /// </Summary>
     public class ButtonBar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public ButtonBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Flex.MainAxisAlignment alignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Material.Buttontheme.ButtonTextTheme buttonTextTheme = default(FlutterSDK.Material.Buttontheme.ButtonTextTheme), double buttonMinWidth = default(double), double buttonHeight = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry buttonPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), bool buttonAlignedDropdown = default(bool), FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior layoutBehavior = default(FlutterSDK.Material.Buttontheme.ButtonBarLayoutBehavior), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), double overflowButtonSpacing = default(double), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
@@ -428,9 +427,6 @@ namespace FlutterSDK.Material.Buttonbar
             this.OverflowButtonSpacing = overflowButtonSpacing;
             this.Children = children;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Flex.MainAxisAlignment Alignment { get; set; }
         public virtual FlutterSDK.Rendering.Flex.MainAxisSize MainAxisSize { get; set; }
         public virtual FlutterSDK.Material.Buttontheme.ButtonTextTheme ButtonTextTheme { get; set; }
@@ -442,9 +438,6 @@ namespace FlutterSDK.Material.Buttonbar
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection OverflowDirection { get; set; }
         public virtual double OverflowButtonSpacing { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -464,7 +457,6 @@ namespace FlutterSDK.Material.Buttonbar
 
 
 
-        #endregion
     }
 
 
@@ -486,19 +478,12 @@ namespace FlutterSDK.Material.Buttonbar
     /// </Summary>
     public class _ButtonBarRow : FlutterSDK.Widgets.Basic.Flex
     {
-        #region constructors
         public _ButtonBarRow(List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection overflowDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
         : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: overflowDirection, textBaseline: textBaseline)
         {
             this.OverflowButtonSpacing = overflowButtonSpacing;
         }
-        #endregion
-
-        #region fields
         public virtual double OverflowButtonSpacing { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Buttonbar._RenderButtonBarRow CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -521,7 +506,6 @@ namespace FlutterSDK.Material.Buttonbar
 
 
 
-        #endregion
     }
 
 
@@ -543,21 +527,14 @@ namespace FlutterSDK.Material.Buttonbar
     /// </Summary>
     public class _RenderButtonBarRow : FlutterSDK.Rendering.Flex.RenderFlex
     {
-        #region constructors
         public _RenderButtonBarRow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Flex.MainAxisSize mainAxisSize = default(FlutterSDK.Rendering.Flex.MainAxisSize), FlutterSDK.Rendering.Flex.MainAxisAlignment mainAxisAlignment = default(FlutterSDK.Rendering.Flex.MainAxisAlignment), FlutterSDK.Rendering.Flex.CrossAxisAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Flex.CrossAxisAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection), TextBaseline textBaseline = default(TextBaseline), double overflowButtonSpacing = default(double))
         : base(children: children, direction: direction, mainAxisSize: mainAxisSize, mainAxisAlignment: mainAxisAlignment, crossAxisAlignment: crossAxisAlignment, textDirection: textDirection, verticalDirection: verticalDirection, textBaseline: textBaseline)
         {
             this.OverflowButtonSpacing = overflowButtonSpacing;
         }
-        #endregion
-
-        #region fields
         internal virtual bool _HasCheckedLayoutWidth { get; set; }
         public virtual double OverflowButtonSpacing { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -591,7 +568,6 @@ namespace FlutterSDK.Material.Buttonbar
 
 
 
-        #endregion
     }
 
 }

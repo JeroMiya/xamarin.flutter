@@ -433,7 +433,6 @@ namespace FlutterSDK.Material.Popupmenutheme
     /// </Summary>
     public class PopupMenuThemeData : IDiagnosticable
     {
-        #region constructors
         public PopupMenuThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), double elevation = default(double), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Color = color;
@@ -441,17 +440,11 @@ namespace FlutterSDK.Material.Popupmenutheme
             this.Elevation = elevation;
             this.TextStyle = textStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -476,7 +469,7 @@ namespace FlutterSDK.Material.Popupmenutheme
         {
 
             if (a == null && b == null) return null;
-            return new PopupMenuThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+            return new PopupMenuThemeData(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
         }
 
 
@@ -484,7 +477,7 @@ namespace FlutterSDK.Material.Popupmenutheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is PopupMenuThemeData && other.Elevation == Elevation && other.Color == Color && other.Shape == Shape && other.TextStyle == TextStyle;
         }
@@ -503,7 +496,6 @@ namespace FlutterSDK.Material.Popupmenutheme
 
 
 
-        #endregion
     }
 
 
@@ -516,19 +508,12 @@ namespace FlutterSDK.Material.Popupmenutheme
     /// </Summary>
     public class PopupMenuTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public PopupMenuTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData data = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The closest instance of this class's [data] value that encloses the given
@@ -553,7 +538,7 @@ namespace FlutterSDK.Material.Popupmenutheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             PopupMenuTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new PopupMenuTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new PopupMenuTheme(data: Data, child: child);
         }
 
 
@@ -564,7 +549,6 @@ namespace FlutterSDK.Material.Popupmenutheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 }

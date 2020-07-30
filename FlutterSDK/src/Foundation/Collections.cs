@@ -300,7 +300,7 @@ namespace FlutterSDK.Foundation.Collections
         {
             if (a == null) return b == null;
             if (b == null || a.Length != b.Length) return false;
-            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            if (Dart.CoreDefaultClass.Identical(a, b)) return true;
             foreach (T value in a)
             {
                 if (!b.Contains(value)) return false;
@@ -315,7 +315,7 @@ namespace FlutterSDK.Foundation.Collections
         {
             if (a == null) return b == null;
             if (b == null || a.Count != b.Count) return false;
-            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            if (Dart.CoreDefaultClass.Identical(a, b)) return true;
             for (int index = 0; index < a.Count; index += 1)
             {
                 if (a[index] != b[index]) return false;
@@ -330,7 +330,7 @@ namespace FlutterSDK.Foundation.Collections
         {
             if (a == null) return b == null;
             if (b == null || a.Length != b.Length) return false;
-            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            if (Dart.CoreDefaultClass.Identical(a, b)) return true;
             foreach (T key in a.Keys)
             {
                 if (!b.ContainsKey(key) || b[key] != a[key])

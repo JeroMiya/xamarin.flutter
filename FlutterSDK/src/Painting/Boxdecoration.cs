@@ -484,7 +484,6 @@ namespace FlutterSDK.Painting.Boxdecoration
     /// </Summary>
     public class BoxDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
-        #region constructors
         public BoxDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Boxborder.BoxBorder border = default(FlutterSDK.Painting.Boxborder.BoxBorder), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry), List<FlutterSDK.Painting.Boxshadow.BoxShadow> boxShadow = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), FlutterBinding.UI.BlendMode backgroundBlendMode = default(FlutterBinding.UI.BlendMode), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape))
         : base()
         {
@@ -497,9 +496,6 @@ namespace FlutterSDK.Painting.Boxdecoration
             this.BackgroundBlendMode = backgroundBlendMode;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
         public virtual FlutterSDK.Painting.Boxborder.BoxBorder Border { get; set; }
@@ -511,9 +507,6 @@ namespace FlutterSDK.Painting.Boxdecoration
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -559,7 +552,7 @@ namespace FlutterSDK.Painting.Boxdecoration
         /// </Summary>
         public virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration Scale(double factor)
         {
-            return new BoxDecoration(color: Dart:uiDefaultClass.Color.Lerp(null, Color, factor), image: Image, border: BoxborderDefaultClass.BoxBorder.Lerp(null, Border, factor), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(null, BorderRadius, factor), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(null, BoxShadow, factor), gradient: Gradient?.Scale(factor), shape: Shape);
+            return new BoxDecoration(color: Dart.UI.UiDefaultClass.Color.Lerp(null, Color, factor), image: Image, border: BoxborderDefaultClass.BoxBorder.Lerp(null, Border, factor), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(null, BorderRadius, factor), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(null, BoxShadow, factor), gradient: Gradient?.Scale(factor), shape: Shape);
         }
 
 
@@ -618,7 +611,7 @@ namespace FlutterSDK.Painting.Boxdecoration
             if (b == null) return a.Scale(1.0 - t);
             if (t == 0.0) return a;
             if (t == 1.0) return b;
-            return new BoxDecoration(color: Dart:uiDefaultClass.Color.Lerp(a.Color, b.Color, t), image: t < 0.5 ? a.Image : b.Image, border: BoxborderDefaultClass.BoxBorder.Lerp(a.Border, b.Border, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(a.BorderRadius, b.BorderRadius, t), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(a.BoxShadow, b.BoxShadow, t), gradient: GradientDefaultClass.Gradient.Lerp(a.Gradient, b.Gradient, t), shape: t < 0.5 ? a.Shape : b.Shape);
+            return new BoxDecoration(color: Dart.UI.UiDefaultClass.Color.Lerp(a.Color, b.Color, t), image: t < 0.5 ? a.Image : b.Image, border: BoxborderDefaultClass.BoxBorder.Lerp(a.Border, b.Border, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(a.BorderRadius, b.BorderRadius, t), boxShadow: BoxshadowDefaultClass.BoxShadow.LerpList(a.BoxShadow, b.BoxShadow, t), gradient: GradientDefaultClass.Gradient.Lerp(a.Gradient, b.Gradient, t), shape: t < 0.5 ? a.Shape : b.Shape);
         }
 
 
@@ -626,7 +619,7 @@ namespace FlutterSDK.Painting.Boxdecoration
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BoxDecoration && other.Color == Color && other.Image == Image && other.Border == Border && other.BorderRadius == BorderRadius && other.BoxShadow == BoxShadow && other.Gradient == Gradient && other.Shape == Shape;
         }
@@ -659,11 +652,11 @@ namespace FlutterSDK.Painting.Boxdecoration
                 case BoxShape.Rectangle:
                     if (BorderRadius != null)
                     {
-                        RRect bounds = BorderRadius.Resolve(textDirection).ToRRect(Dart: uiDefaultClass.Offset.Zero & size);
+                        RRect bounds = BorderRadius.Resolve(textDirection).ToRRect(Dart.UI.UiDefaultClass.Offset.Zero & size);
                         return bounds.Contains(position);
                     }
                     return true;
-                case BoxShape.Circle: Offset center = size.Center(Dart: uiDefaultClass.Offset.Zero); double distance = (position - center).Distance; return distance <= Math.Dart:mathDefaultClass.Min(size.Width, size.Height) / 2.0;
+                case BoxShape.Circle: Offset center = size.Center(Dart.UI.UiDefaultClass.Offset.Zero); double distance = (position - center).Distance; return distance <= Dart.Math.MathDefaultClass.Min(size.Width, size.Height) / 2.0;
             }
 
             return null;
@@ -680,7 +673,6 @@ namespace FlutterSDK.Painting.Boxdecoration
 
 
 
-        #endregion
     }
 
 
@@ -689,22 +681,15 @@ namespace FlutterSDK.Painting.Boxdecoration
     /// </Summary>
     public class _BoxDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
-        #region constructors
         public _BoxDecorationPainter(FlutterSDK.Painting.Boxdecoration.BoxDecoration _decoration, VoidCallback onChanged)
         : base(onChanged)
         {
             this._Decoration = _decoration;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Boxdecoration.BoxDecoration _Decoration { get; set; }
         internal virtual SKPaint _CachedBackgroundPaint { get; set; }
         internal virtual FlutterBinding.UI.Rect _RectForCachedBackgroundPaint { get; set; }
         internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
-        #endregion
-
-        #region methods
 
         private Paint _GetBackgroundPaint(FlutterBinding.UI.Rect rect, TextDirection textDirection)
         {
@@ -821,7 +806,6 @@ namespace FlutterSDK.Painting.Boxdecoration
 
 
 
-        #endregion
     }
 
 }

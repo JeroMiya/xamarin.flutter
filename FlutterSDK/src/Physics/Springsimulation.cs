@@ -470,7 +470,6 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class SpringDescription
     {
-        #region constructors
         public SpringDescription(double mass = default(double), double stiffness = default(double), double damping = default(double))
         {
             this.Mass = mass;
@@ -482,17 +481,10 @@ namespace FlutterSDK.Physics.Springsimulation
             var instance = new SpringDescription(); instance.Mass = mass;
             instance.Stiffness = stiffness;
         }
-        #endregion
-
-        #region fields
         public virtual double Mass { get; set; }
         public virtual double Stiffness { get; set; }
         public virtual double Damping { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -503,21 +495,14 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class SpringSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public SpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _EndPosition { get; set; }
         internal virtual FlutterSDK.Physics.Springsimulation._SpringSolution _Solution { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time) => _EndPosition + _Solution.x(time);
 
@@ -535,7 +520,6 @@ namespace FlutterSDK.Physics.Springsimulation
 
 
 
-        #endregion
     }
 
 
@@ -545,29 +529,20 @@ namespace FlutterSDK.Physics.Springsimulation
     /// </Summary>
     public class ScrollSpringSimulation : FlutterSDK.Physics.Springsimulation.SpringSimulation
     {
-        #region constructors
         public ScrollSpringSimulation(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double start, double end, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(spring, start, end, velocity, tolerance: tolerance)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double x(double time) => IsDone(time) ? _EndPosition : base.x(time);
 
 
-        #endregion
     }
 
 
     public class _CriticalSolution : I_SpringSolution
     {
-        #region constructors
         public _CriticalSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
@@ -582,20 +557,14 @@ namespace FlutterSDK.Physics.Springsimulation
         {
             var instance = new _CriticalSolution();
         }
-        #endregion
-
-        #region fields
         internal virtual double _R { get; set; }
         internal virtual double _C1 { get; set; }
         internal virtual double _C2 { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
-            return (_C1 + _C2 * time) * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time);
+            return (_C1 + _C2 * time) * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time);
         }
 
 
@@ -603,25 +572,23 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double Dx(double time)
         {
-            double power = Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time) as double;
+            double power = Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time) as double;
             return _R * (_C1 + _C2 * time) * power + _C2 * power;
         }
 
 
 
-        #endregion
     }
 
 
     public class _OverdampedSolution : I_SpringSolution
     {
-        #region constructors
         public _OverdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
             double cmk = spring.Damping * spring.Damping - 4 * spring.Mass * spring.Stiffness;
-            double r1 = (-spring.Damping - Math.Dart:mathDefaultClass.Sqrt(cmk))/ (2.0 * spring.Mass);
-            double r2 = (-spring.Damping + Math.Dart:mathDefaultClass.Sqrt(cmk))/ (2.0 * spring.Mass);
+            double r1 = (-spring.Damping - Dart.Math.MathDefaultClass.Sqrt(cmk)) / (2.0 * spring.Mass);
+            double r2 = (-spring.Damping + Dart.Math.MathDefaultClass.Sqrt(cmk)) / (2.0 * spring.Mass);
             double c2 = (velocity - r1 * distance) / (r2 - r1);
             double c1 = distance - c2;
             return _OverdampedSolution.WithArgs(r1, r2, c1, c2);
@@ -632,21 +599,15 @@ namespace FlutterSDK.Physics.Springsimulation
         {
             var instance = new _OverdampedSolution();
         }
-        #endregion
-
-        #region fields
         internal virtual double _R1 { get; set; }
         internal virtual double _R2 { get; set; }
         internal virtual double _C1 { get; set; }
         internal virtual double _C2 { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
-            return _C1 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R1 * time) + _C2 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R2 * time);
+            return _C1 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R1 * time) + _C2 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R2 * time);
         }
 
 
@@ -654,22 +615,20 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double Dx(double time)
         {
-            return _C1 * _R1 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R1 * time) + _C2 * _R2 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R2 * time);
+            return _C1 * _R1 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R1 * time) + _C2 * _R2 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R2 * time);
         }
 
 
 
-        #endregion
     }
 
 
     public class _UnderdampedSolution : I_SpringSolution
     {
-        #region constructors
         public _UnderdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
-            double w = Math.Dart:mathDefaultClass.Sqrt(4.0 * spring.Mass * spring.Stiffness - spring.Damping * spring.Damping) / (2.0 * spring.Mass);
+            double w = Dart.Math.MathDefaultClass.Sqrt(4.0 * spring.Mass * spring.Stiffness - spring.Damping * spring.Damping) / (2.0 * spring.Mass);
             double r = -(spring.Damping / 2.0 * spring.Mass);
             double c1 = distance;
             double c2 = (velocity - r * distance) / w;
@@ -681,21 +640,15 @@ namespace FlutterSDK.Physics.Springsimulation
         {
             var instance = new _UnderdampedSolution();
         }
-        #endregion
-
-        #region fields
         internal virtual double _W { get; set; }
         internal virtual double _R { get; set; }
         internal virtual double _C1 { get; set; }
         internal virtual double _C2 { get; set; }
         public virtual FlutterSDK.Physics.Springsimulation.SpringType Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
-            return (Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time) as double)*(_C1 * Math.Dart:mathDefaultClass.Cos(_W * time) + _C2 * Math.Dart:mathDefaultClass.Sin(_W * time));
+            return (Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time) as double) * (_C1 * Dart.Math.MathDefaultClass.Cos(_W * time) + _C2 * Dart.Math.MathDefaultClass.Sin(_W * time));
         }
 
 
@@ -703,15 +656,14 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double Dx(double time)
         {
-            double power = Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time) as double;
-            double cosine = Math.Dart:mathDefaultClass.Cos(_W * time);
-            double sine = Math.Dart:mathDefaultClass.Sin(_W * time);
+            double power = Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time) as double;
+            double cosine = Dart.Math.MathDefaultClass.Cos(_W * time);
+            double sine = Dart.Math.MathDefaultClass.Sin(_W * time);
             return power * (_C2 * _W * cosine - _C1 * _W * sine) + _R * power * (_C2 * sine + _C1 * cosine);
         }
 
 
 
-        #endregion
     }
 
 

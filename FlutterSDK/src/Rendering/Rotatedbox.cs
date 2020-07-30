@@ -437,7 +437,6 @@ namespace FlutterSDK.Rendering.Rotatedbox
     /// </Summary>
     public class RenderRotatedBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public RenderRotatedBox(int quarterTurns = default(int), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base()
         {
@@ -446,16 +445,10 @@ namespace FlutterSDK.Rendering.Rotatedbox
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual int _QuarterTurns { get; set; }
         internal virtual Matrix4 _PaintTransform { get; set; }
         public virtual int QuarterTurns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _IsVertical { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
@@ -560,7 +553,6 @@ namespace FlutterSDK.Rendering.Rotatedbox
 
 
 
-        #endregion
     }
 
 }

@@ -491,17 +491,9 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     /// </Summary>
     public class ListWheelParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public ListWheelParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual int Index { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -580,7 +572,6 @@ namespace FlutterSDK.Rendering.Listwheelviewport
     /// </Summary>
     public class RenderListWheelViewport : FlutterSDK.Rendering.Box.RenderBox, IRenderAbstractViewport, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Listwheelviewport.ListWheelParentData>
     {
-        #region constructors
         public RenderListWheelViewport(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager childManager = default(FlutterSDK.Rendering.Listwheelviewport.ListWheelChildManager), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double diameterRatio = default(double), double perspective = default(double), double offAxisFraction = 0, bool useMagnifier = false, double magnification = 1, double overAndUnderCenterOpacity = 1, double itemExtent = default(double), double squeeze = 1, bool clipToSize = true, bool renderChildrenOutsideViewport = false, List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>))
         : base()
         {
@@ -589,9 +580,6 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double DefaultDiameterRatio { get; set; }
         public virtual double DefaultPerspective { get; set; }
         public virtual string DiameterRatioZeroMessage { get; set; }
@@ -627,9 +615,6 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         internal virtual double _TopScrollMarginExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _MaxVisibleRadian { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HasScrolled()
         {
@@ -692,7 +677,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             RenderBox child = FirstChild;
             while (child != null)
             {
-                extent = Math.Dart:mathDefaultClass.Max(extent, childSize(child));
+                extent = Dart.Math.MathDefaultClass.Max(extent, childSize(child));
                 child = ChildAfter(child);
             }
 
@@ -906,7 +891,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             {
                 if (_ClipToSize && _ShouldClipAtCurrentOffset())
                 {
-                    context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintVisibleChildren);
+                    context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintVisibleChildren);
                 }
                 else
                 {
@@ -948,7 +933,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             Offset untransformedPaintingCoordinates = offset + new Offset(layoutOffset.Dx, _GetUntransformedPaintingCoordinateY(layoutOffset.Dy));
             double fractionalY = (untransformedPaintingCoordinates.Dy + _ItemExtent / 2.0) / Size.Height;
             double angle = -(fractionalY - 0.5) * 2.0 * _MaxVisibleRadian / Squeeze;
-            if (angle > Math.Dart:mathDefaultClass.Pi / 2.0 || angle < -Math.Dart:mathDefaultClass.Pi / 2.0)return;
+            if (angle > Math.Dart.MathDefaultClass.Pi / 2.0 || angle < -Math.Dart.MathDefaultClass.Pi / 2.0) return;
             Matrix4 transform = MatrixutilsDefaultClass.MatrixUtils.CreateCylindricalProjectionTransform(radius: Size.Height * _DiameterRatio / 2.0, angle: angle, perspective: _Perspective);
             Offset offsetToCenter = new Offset(untransformedPaintingCoordinates.Dx, -_TopScrollMarginExtent);
             bool shouldApplyOffCenterDim = OverAndUnderCenterOpacity < 1;
@@ -1081,7 +1066,7 @@ namespace FlutterSDK.Rendering.Listwheelviewport
         {
             if (child != null && _ShouldClipAtCurrentOffset())
             {
-                return Dart:uiDefaultClass.Offset.Zero & Size;
+                return Dart.UiDefaultClass.Offset.Zero & Size;
             }
 
             return null;
@@ -1115,10 +1100,11 @@ namespace FlutterSDK.Rendering.Listwheelviewport
             if (descendant != null)
             {
                 RevealedOffset revealedOffset = GetOffsetToReveal(descendant, 0.5, rect: rect);
-                if (duration == Dart:coreDefaultClass.Duration.Zero){
+                if (duration == Dart.CoreDefaultClass.Duration.Zero)
+                {
                     Offset.JumpTo(revealedOffset.Offset);
                 }
-else
+                else
                 {
                     Offset.AnimateTo(revealedOffset.Offset, duration: duration, curve: curve);
                 }
@@ -1131,7 +1117,6 @@ else
 
 
 
-        #endregion
         RenderAbstractViewport _RenderAbstractViewportInstance = new RenderAbstractViewport();
         public FlutterSDK.Rendering.Viewport.RenderAbstractViewport Of(FlutterSDK.Rendering.@object.RenderObject @object) => _RenderAbstractViewportInstance.Of(@object);
         public double DefaultCacheExtent => _RenderAbstractViewportInstance.DefaultCacheExtent;

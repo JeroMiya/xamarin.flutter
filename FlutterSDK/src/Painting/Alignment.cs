@@ -464,21 +464,14 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class AlignmentGeometry
     {
-        #region constructors
         public AlignmentGeometry()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Y { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the sum of two [AlignmentGeometry] objects.
@@ -580,7 +573,7 @@ namespace FlutterSDK.Painting.Alignment
             if (b == null) return a * (1.0 - t);
             if (a is Alignment && b is Alignment) return AlignmentDefaultClass.Alignment.Lerp(a, b, t);
             if (a is AlignmentDirectional && b is AlignmentDirectional) return AlignmentDefaultClass.AlignmentDirectional.Lerp(a, b, t);
-            return new _MixedAlignment(Ui.Dart:uiDefaultClass.LerpDouble(a._X, b._X, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Start, b._Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a._Y, b._Y, t));
+            return new _MixedAlignment(Dart.UI.UiDefaultClass.LerpDouble(a._X, b._X, t), Dart.UI.UiDefaultClass.LerpDouble(a._Start, b._Start, t), Dart.UI.UiDefaultClass.LerpDouble(a._Y, b._Y, t));
         }
 
 
@@ -611,7 +604,6 @@ namespace FlutterSDK.Painting.Alignment
 
 
 
-        #endregion
     }
 
 
@@ -659,16 +651,12 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class Alignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
-        #region constructors
         public Alignment(double x, double y)
         : base()
         {
             this.x = x;
             this.y = y;
         }
-        #endregion
-
-        #region fields
         public virtual double x { get; set; }
         public virtual double y { get; set; }
         public virtual FlutterSDK.Painting.Alignment.Alignment TopLeft { get; set; }
@@ -683,9 +671,6 @@ namespace FlutterSDK.Painting.Alignment
         internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Y { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other)
         {
@@ -841,9 +826,9 @@ namespace FlutterSDK.Painting.Alignment
         {
 
             if (a == null && b == null) return null;
-            if (a == null) return new Alignment(Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.x, t), Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.y, t));
-            if (b == null) return new Alignment(Ui.Dart:uiDefaultClass.LerpDouble(a.x, 0.0, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, 0.0, t));
-            return new Alignment(Ui.Dart:uiDefaultClass.LerpDouble(a.x, b.x, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, b.y, t));
+            if (a == null) return new Alignment(Dart.UI.UiDefaultClass.LerpDouble(0.0, b.x, t), Dart.UI.UiDefaultClass.LerpDouble(0.0, b.y, t));
+            if (b == null) return new Alignment(Dart.UI.UiDefaultClass.LerpDouble(a.x, 0.0, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, 0.0, t));
+            return new Alignment(Dart.UI.UiDefaultClass.LerpDouble(a.x, b.x, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, b.y, t));
         }
 
 
@@ -870,7 +855,6 @@ namespace FlutterSDK.Painting.Alignment
 
 
 
-        #endregion
     }
 
 
@@ -889,16 +873,12 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class AlignmentDirectional : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
-        #region constructors
         public AlignmentDirectional(double start, double y)
         : base()
         {
             this.Start = start;
             this.y = y;
         }
-        #endregion
-
-        #region fields
         public virtual double Start { get; set; }
         public virtual double y { get; set; }
         public virtual FlutterSDK.Painting.Alignment.AlignmentDirectional TopStart { get; set; }
@@ -913,9 +893,6 @@ namespace FlutterSDK.Painting.Alignment
         internal virtual double _X { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Start { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _Y { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Alignment.AlignmentGeometry Add(FlutterSDK.Painting.Alignment.AlignmentGeometry other)
         {
@@ -1014,9 +991,9 @@ namespace FlutterSDK.Painting.Alignment
         {
 
             if (a == null && b == null) return null;
-            if (a == null) return new AlignmentDirectional(Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.Start, t), Ui.Dart:uiDefaultClass.LerpDouble(0.0, b.y, t));
-            if (b == null) return new AlignmentDirectional(Ui.Dart:uiDefaultClass.LerpDouble(a.Start, 0.0, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, 0.0, t));
-            return new AlignmentDirectional(Ui.Dart:uiDefaultClass.LerpDouble(a.Start, b.Start, t), Ui.Dart:uiDefaultClass.LerpDouble(a.y, b.y, t));
+            if (a == null) return new AlignmentDirectional(Dart.UI.UiDefaultClass.LerpDouble(0.0, b.Start, t), Dart.UI.UiDefaultClass.LerpDouble(0.0, b.y, t));
+            if (b == null) return new AlignmentDirectional(Dart.UI.UiDefaultClass.LerpDouble(a.Start, 0.0, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, 0.0, t));
+            return new AlignmentDirectional(Dart.UI.UiDefaultClass.LerpDouble(a.Start, b.Start, t), Dart.UI.UiDefaultClass.LerpDouble(a.y, b.y, t));
         }
 
 
@@ -1049,28 +1026,20 @@ namespace FlutterSDK.Painting.Alignment
 
 
 
-        #endregion
     }
 
 
     public class _MixedAlignment : FlutterSDK.Painting.Alignment.AlignmentGeometry
     {
-        #region constructors
         public _MixedAlignment(double _x, double _start, double _y)
         {
             this._X = _x;
             this._Start = _start;
             this._Y = _y;
         }
-        #endregion
-
-        #region fields
         internal new double _X { get; set; }
         internal new double _Start { get; set; }
         internal new double _Y { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Alignment._MixedAlignment Unary()
         {
@@ -1121,7 +1090,6 @@ namespace FlutterSDK.Painting.Alignment
 
 
 
-        #endregion
     }
 
 
@@ -1144,24 +1112,16 @@ namespace FlutterSDK.Painting.Alignment
     /// </Summary>
     public class TextAlignVertical
     {
-        #region constructors
         public TextAlignVertical(double y = default(double))
         : base()
         {
             this.y = y;
         }
-        #endregion
-
-        #region fields
         public virtual double y { get; set; }
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Top { get; set; }
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Center { get; set; }
         public virtual FlutterSDK.Painting.Alignment.TextAlignVertical Bottom { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

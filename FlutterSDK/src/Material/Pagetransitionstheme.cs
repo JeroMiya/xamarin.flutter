@@ -424,24 +424,17 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
     public class _FadeUpwardsPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _FadeUpwardsPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> routeAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _BottomUpTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _FastOutSlowInTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Animatable<double> _EaseInTween { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<Offset> _PositionAnimation { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _OpacityAnimation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -450,13 +443,11 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
     public class _OpenUpwardsPageTransition : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _OpenUpwardsPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -464,9 +455,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
             this.SecondaryAnimation = secondaryAnimation;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _PrimaryTranslationTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<Offset> _SecondaryTranslationTween { get; set; }
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _ScrimOpacityTween { get; set; }
@@ -474,9 +462,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -503,13 +488,11 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
     public class _ZoomPageTransition : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _ZoomPageTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> animation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -517,9 +500,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
             this.SecondaryAnimation = secondaryAnimation;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Tween.Tween<double> _ScrimOpacityTween { get; set; }
         public virtual List<FlutterSDK.Animation.Tweensequence.TweenSequenceItem<double>> FastOutExtraSlowInTweenSequenceItems { get; set; }
         internal virtual FlutterSDK.Animation.Tweensequence.TweenSequence<double> _ScaleCurveSequence { get; set; }
@@ -527,31 +507,20 @@ namespace FlutterSDK.Material.Pagetransitionstheme
         public virtual FlutterSDK.Animation.Animation.Animation<double> Animation { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pagetransitionstheme._ZoomPageTransitionState CreateState() => new _ZoomPageTransitionState();
 
 
-        #endregion
     }
 
 
     public class _ZoomPageTransitionState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pagetransitionstheme._ZoomPageTransition>
     {
-        #region constructors
         public __ZoomPageTransitionState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _CurrentAnimationStatus { get; set; }
         internal virtual FlutterSDK.Animation.Animation.AnimationStatus _LastAnimationStatus { get; set; }
         internal virtual bool _TransitionWasInterrupted { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -607,7 +576,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
@@ -631,17 +599,10 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class PageTransitionsBuilder
     {
-        #region constructors
         public PageTransitionsBuilder()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Wraps the child with one or more transition widgets which define how [route]
@@ -657,7 +618,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
             return default(Widget);
         }
 
-        #endregion
     }
 
 
@@ -679,17 +639,10 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class FadeUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
-        #region constructors
         public FadeUpwardsPageTransitionsBuilder()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
@@ -698,7 +651,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
@@ -717,17 +669,10 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class OpenUpwardsPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
-        #region constructors
         public OpenUpwardsPageTransitionsBuilder()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
@@ -736,7 +681,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
@@ -755,17 +699,10 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class ZoomPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
-        #region constructors
         public ZoomPageTransitionsBuilder()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
@@ -774,7 +711,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
@@ -792,17 +728,10 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class CupertinoPageTransitionsBuilder : FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder
     {
-        #region constructors
         public CupertinoPageTransitionsBuilder()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildTransitions<T>(FlutterSDK.Widgets.Pages.PageRoute<T> route, FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation, FlutterSDK.Widgets.Framework.Widget child)
         {
@@ -811,7 +740,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 
@@ -838,22 +766,15 @@ namespace FlutterSDK.Material.Pagetransitionstheme
     /// </Summary>
     public class PageTransitionsTheme : IDiagnosticable
     {
-        #region constructors
         public PageTransitionsTheme(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> builders = default(Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder>))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _DefaultBuilders { get; set; }
         internal virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> _Builders { get; set; }
         public virtual Dictionary<FlutterSDK.Foundation.Platform.TargetPlatform, FlutterSDK.Material.Pagetransitionstheme.PageTransitionsBuilder> Builders { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Delegates to the builder for the current [ThemeData.platform]
@@ -882,9 +803,9 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
-            if (other is PageTransitionsTheme && Dart:coreDefaultClass.Identical(Builders, other.Builders))return true;
+            if (other is PageTransitionsTheme && Dart.CoreDefaultClass.Identical(Builders, other.Builders)) return true;
             return other is PageTransitionsTheme && CollectionsDefaultClass.ListEquals(_All(other.Builders), _All(Builders));
         }
 
@@ -899,7 +820,6 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
 
 
-        #endregion
     }
 
 }

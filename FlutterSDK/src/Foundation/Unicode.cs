@@ -312,14 +312,10 @@ namespace FlutterSDK.Foundation.Unicode
     /// </Summary>
     public class Unicode
     {
-        #region constructors
         internal Unicode()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string LRE { get; set; }
         public virtual string RLE { get; set; }
         public virtual string PDF { get; set; }
@@ -332,10 +328,6 @@ namespace FlutterSDK.Foundation.Unicode
         public virtual string LRM { get; set; }
         public virtual string RLM { get; set; }
         public virtual string ALM { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

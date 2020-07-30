@@ -399,7 +399,7 @@ namespace FlutterSDK.Material.Inksplash
                 return rectCallback;
             }
 
-            if (containedInkWell) return () => =>Dart: uiDefaultClass.Offset.Zero & referenceBox.Size;
+            if (containedInkWell) return () => =>Dart.UiDefaultClass.Offset.Zero & referenceBox.Size;
             return null;
         }
 
@@ -420,11 +420,11 @@ namespace FlutterSDK.Material.Inksplash
 
         internal static double _GetSplashRadiusForPositionInSize(Size bounds, FlutterBinding.UI.Offset position)
         {
-            double d1 = (position - bounds.TopLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            double d2 = (position - bounds.TopRight(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            double d3 = (position - bounds.BottomLeft(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            double d4 = (position - bounds.BottomRight(Dart: uiDefaultClass.Offset.Zero)).Distance;
-            return Math.Dart:mathDefaultClass.Max(Math.Dart:mathDefaultClass.Max(d1, d2), Math.Dart:mathDefaultClass.Max(d3, d4)).CeilToDouble();
+            double d1 = (position - bounds.TopLeft(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            double d2 = (position - bounds.TopRight(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            double d3 = (position - bounds.BottomLeft(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            double d4 = (position - bounds.BottomRight(Dart.UI.UiDefaultClass.Offset.Zero)).Distance;
+            return Dart.Math.MathDefaultClass.Max(Dart.Math.MathDefaultClass.Max(d1, d2), Dart.Math.MathDefaultClass.Max(d3, d4)).CeilToDouble();
         }
 
 
@@ -433,17 +433,10 @@ namespace FlutterSDK.Material.Inksplash
 
     public class _InkSplashFactory : FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory
     {
-        #region constructors
         public _InkSplashFactory()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Inkwell.InteractiveInkFeature Create(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), TextDirection textDirection = default(TextDirection), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
         {
@@ -452,7 +445,6 @@ namespace FlutterSDK.Material.Inksplash
 
 
 
-        #endregion
     }
 
 
@@ -480,7 +472,6 @@ namespace FlutterSDK.Material.Inksplash
     /// </Summary>
     public class InkSplash : FlutterSDK.Material.Inkwell.InteractiveInkFeature
     {
-        #region constructors
         public InkSplash(FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection), FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), bool containedInkWell = false, FlutterSDK.Material.Material.RectCallback rectCallback = default(FlutterSDK.Material.Material.RectCallback), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borders.ShapeBorder customBorder = default(FlutterSDK.Painting.Borders.ShapeBorder), double radius = default(double), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, color: color, onRemoved: onRemoved)
         {
@@ -498,9 +489,6 @@ namespace FlutterSDK.Material.Inksplash
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Offset _Position { get; set; }
         internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
         internal virtual FlutterSDK.Painting.Borders.ShapeBorder _CustomBorder { get; set; }
@@ -513,9 +501,6 @@ namespace FlutterSDK.Material.Inksplash
         internal virtual FlutterSDK.Animation.Animation.Animation<int> _Alpha { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _AlphaController { get; set; }
         public virtual FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory SplashFactory { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Confirm()
         {
@@ -559,13 +544,12 @@ namespace FlutterSDK.Material.Inksplash
         {
             Paint paint = new Paint()..Color = Color.WithAlpha(_Alpha.Value);
             Offset center = _Position;
-            if (_RepositionToReferenceBox) center = Dart:uiDefaultClass.Offset.Lerp(center, ReferenceBox.Size.Center(Dart: uiDefaultClass.Offset.Zero), _RadiusController.Value);
+            if (_RepositionToReferenceBox) center = Dart.UI.UiDefaultClass.Offset.Lerp(center, ReferenceBox.Size.Center(Dart.UI.UiDefaultClass.Offset.Zero), _RadiusController.Value);
             PaintInkCircle(canvas: canvas, transform: transform, paint: paint, center: center, textDirection: _TextDirection, radius: _Radius.Value, customBorder: _CustomBorder, borderRadius: _BorderRadius, clipCallback: _ClipCallback);
         }
 
 
 
-        #endregion
     }
 
 }

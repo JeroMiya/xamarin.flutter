@@ -562,18 +562,11 @@ namespace FlutterSDK.Material.Materialstate
     /// </Summary>
     public class MaterialStateColor : Color, IMaterialStateProperty<Color>
     {
-        #region constructors
         public MaterialStateColor(int defaultValue)
         : base(defaultValue)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a [MaterialStateColor] from a [MaterialPropertyResolver<Color>]
@@ -598,7 +591,6 @@ namespace FlutterSDK.Material.Materialstate
             return default(Color);
         }
 
-        #endregion
     }
 
 
@@ -613,47 +605,31 @@ namespace FlutterSDK.Material.Materialstate
     /// </Summary>
     public class _MaterialStateColor : FlutterSDK.Material.Materialstate.MaterialStateColor
     {
-        #region constructors
         public _MaterialStateColor(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _resolve)
         : base(_resolve(_DefaultStates).Value)
         {
             this._Resolve = _resolve;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<Color> _Resolve { get; set; }
         internal virtual HashSet<FlutterSDK.Material.Materialstate.MaterialState> _DefaultStates { get; set; }
-        #endregion
-
-        #region methods
 
         public new Color Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => _Resolve(states);
 
 
-        #endregion
     }
 
 
     public class _MaterialStateProperty<T> : IMaterialStateProperty<T>
     {
-        #region constructors
         public _MaterialStateProperty(FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> _resolve)
         {
             this._Resolve = _resolve;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Materialstate.MaterialPropertyResolver<T> _Resolve { get; set; }
-        #endregion
-
-        #region methods
 
         public new T Resolve(HashSet<FlutterSDK.Material.Materialstate.MaterialState> states) => _Resolve(states);
 
 
-        #endregion
     }
 
 

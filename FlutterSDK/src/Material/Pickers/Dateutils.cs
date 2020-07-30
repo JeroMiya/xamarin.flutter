@@ -444,7 +444,8 @@ namespace FlutterSDK.Material.Pickers.Dateutils
 
         internal static int GetDaysInMonth(int year, int month)
         {
-            if (month == Dart:coreDefaultClass.DateTime.February){
+            if (month == Dart.CoreDefaultClass.DateTime.February)
+            {
                 bool isLeapYear = (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0);
                 if (isLeapYear) return 29;
                 return 28;

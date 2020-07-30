@@ -464,7 +464,6 @@ namespace FlutterSDK.Widgets.Viewport
     /// </Summary>
     public class Viewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public Viewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double anchor = 0.0, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), double cacheExtent = default(double), FlutterSDK.Rendering.Viewport.CacheExtentStyle cacheExtentStyle = default(FlutterSDK.Rendering.Viewport.CacheExtentStyle), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: slivers)
         {
@@ -476,9 +475,6 @@ namespace FlutterSDK.Widgets.Viewport
             this.CacheExtent = cacheExtent;
             this.CacheExtentStyle = cacheExtentStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
         public virtual double Anchor { get; set; }
@@ -486,9 +482,6 @@ namespace FlutterSDK.Widgets.Viewport
         public virtual FlutterSDK.Foundation.Key.Key Center { get; set; }
         public virtual double CacheExtent { get; set; }
         public virtual FlutterSDK.Rendering.Viewport.CacheExtentStyle CacheExtentStyle { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Given a [BuildContext] and an [AxisDirection], determine the correct cross
@@ -555,26 +548,18 @@ namespace FlutterSDK.Widgets.Viewport
 
 
 
-        #endregion
     }
 
 
     public class _ViewportElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
     {
-        #region constructors
         public _ViewportElement(FlutterSDK.Widgets.Viewport.Viewport widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Viewport.Viewport Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewport.RenderViewport RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
         {
@@ -633,7 +618,6 @@ namespace FlutterSDK.Widgets.Viewport
 
 
 
-        #endregion
     }
 
 
@@ -666,7 +650,6 @@ namespace FlutterSDK.Widgets.Viewport
     /// </Summary>
     public class ShrinkWrappingViewport : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public ShrinkWrappingViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: slivers)
         {
@@ -674,15 +657,9 @@ namespace FlutterSDK.Widgets.Viewport
             this.CrossAxisDirection = crossAxisDirection;
             this.Offset = offset;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection CrossAxisDirection { get; set; }
         public virtual FlutterSDK.Rendering.Viewportoffset.ViewportOffset Offset { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Viewport.RenderShrinkWrappingViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -716,7 +693,6 @@ namespace FlutterSDK.Widgets.Viewport
 
 
 
-        #endregion
     }
 
 }

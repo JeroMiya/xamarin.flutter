@@ -451,23 +451,16 @@ namespace FlutterSDK.Painting.Continuousrectangleborder
     /// </Summary>
     public class ContinuousRectangleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public ContinuousRectangleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadiusGeometry borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry))
         : base()
         {
             this.Side = side;
             this.BorderRadius = borderRadius;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusGeometry BorderRadius { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t)
         {
@@ -519,14 +512,14 @@ namespace FlutterSDK.Painting.Continuousrectangleborder
             double right = rrect.Right;
             double top = rrect.Top;
             double bottom = rrect.Bottom;
-            double tlRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TlRadiusX));
-            double tlRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TlRadiusY));
-            double trRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TrRadiusX));
-            double trRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TrRadiusY));
-            double blRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BlRadiusX));
-            double blRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BlRadiusY));
-            double brRadiusX = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BrRadiusX));
-            double brRadiusY = Math.Dart:mathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BrRadiusY));
+            double tlRadiusX = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TlRadiusX));
+            double tlRadiusY = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TlRadiusY));
+            double trRadiusX = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TrRadiusX));
+            double trRadiusY = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.TrRadiusY));
+            double blRadiusX = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BlRadiusX));
+            double blRadiusY = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BlRadiusY));
+            double brRadiusX = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BrRadiusX));
+            double brRadiusY = Dart.Math.MathDefaultClass.Max(0.0, _ClampToShortest(rrect, rrect.BrRadiusY));
             return new Path();
             new Path().MoveTo(left, top + tlRadiusX);
             new Path().CubicTo(left, top, left, top, left + tlRadiusY, top);
@@ -576,7 +569,6 @@ namespace FlutterSDK.Painting.Continuousrectangleborder
 
 
 
-        #endregion
     }
 
 }

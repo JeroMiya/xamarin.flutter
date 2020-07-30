@@ -429,7 +429,6 @@ namespace FlutterSDK.Material.Bottomsheet
     /// </Summary>
     public class BottomSheet : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public BottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animationcontroller.AnimationController animationController = default(FlutterSDK.Animation.Animationcontroller.AnimationController), bool enableDrag = true, FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler onDragStart = default(FlutterSDK.Material.Bottomsheet.BottomSheetDragStartHandler), FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler onDragEnd = default(FlutterSDK.Material.Bottomsheet.BottomSheetDragEndHandler), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), VoidCallback onClosing = default(VoidCallback), FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder))
         : base(key: key)
         {
@@ -444,9 +443,6 @@ namespace FlutterSDK.Material.Bottomsheet
             this.OnClosing = onClosing;
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController AnimationController { get; set; }
         public virtual VoidCallback OnClosing { get; set; }
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
@@ -457,9 +453,6 @@ namespace FlutterSDK.Material.Bottomsheet
         public virtual double Elevation { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Bottomsheet._BottomSheetState CreateState() => new _BottomSheetState();
 
@@ -480,24 +473,16 @@ namespace FlutterSDK.Material.Bottomsheet
 
 
 
-        #endregion
     }
 
 
     public class _BottomSheetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomsheet.BottomSheet>
     {
-        #region constructors
         public _BottomSheetState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _ChildKey { get; set; }
         internal virtual double _ChildHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _DismissUnderway { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details)
         {
@@ -591,26 +576,18 @@ namespace FlutterSDK.Material.Bottomsheet
 
 
 
-        #endregion
     }
 
 
     public class _ModalBottomSheetLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        #region constructors
         public _ModalBottomSheetLayout(double progress, bool isScrollControlled)
         {
             this.Progress = progress;
             this.IsScrollControlled = isScrollControlled;
         }
-        #endregion
-
-        #region fields
         public virtual double Progress { get; set; }
         public virtual bool IsScrollControlled { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
@@ -641,13 +618,11 @@ namespace FlutterSDK.Material.Bottomsheet
 
 
 
-        #endregion
     }
 
 
     public class _ModalBottomSheet<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _ModalBottomSheet(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T> route = default(FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T>), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), bool isScrollControlled = false, bool enableDrag = true)
         : base(key: key)
         {
@@ -659,9 +634,6 @@ namespace FlutterSDK.Material.Bottomsheet
             this.IsScrollControlled = isScrollControlled;
             this.EnableDrag = enableDrag;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Bottomsheet._ModalBottomSheetRoute<T> Route { get; set; }
         public virtual bool IsScrollControlled { get; set; }
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
@@ -669,29 +641,18 @@ namespace FlutterSDK.Material.Bottomsheet
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual bool EnableDrag { get; set; }
-        #endregion
-
-        #region methods
 
         public new _ModalBottomSheetState<T> CreateState() => new _ModalBottomSheetState<T>();
 
 
-        #endregion
     }
 
 
     public class _ModalBottomSheetState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Bottomsheet._ModalBottomSheet<T>>
     {
-        #region constructors
         public _ModalBottomSheetState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Curves.ParametricCurve<double> AnimationCurve { get; set; }
-        #endregion
-
-        #region methods
 
         private string _GetRouteLabel(FlutterSDK.Material.Materiallocalizations.MaterialLocalizations localizations)
         {
@@ -743,13 +704,11 @@ namespace FlutterSDK.Material.Bottomsheet
 
 
 
-        #endregion
     }
 
 
     public class _ModalBottomSheetRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
     {
-        #region constructors
         public _ModalBottomSheetRoute(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), string barrierLabel = default(string), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color modalBarrierColor = default(FlutterBinding.UI.Color), bool isDismissible = true, bool enableDrag = true, bool isScrollControlled = default(bool), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(settings: settings)
         {
@@ -765,9 +724,6 @@ namespace FlutterSDK.Material.Bottomsheet
             this.EnableDrag = enableDrag;
             this.IsScrollControlled = isScrollControlled;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         public virtual FlutterSDK.Material.Themedata.ThemeData Theme { get; set; }
         public virtual bool IsScrollControlled { get; set; }
@@ -784,9 +740,6 @@ namespace FlutterSDK.Material.Bottomsheet
         public virtual TimeSpan ReverseTransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool BarrierDismissible { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Animation.Animationcontroller.AnimationController CreateAnimationController()
         {
@@ -808,7 +761,6 @@ namespace FlutterSDK.Material.Bottomsheet
 
 
 
-        #endregion
     }
 
 
@@ -832,21 +784,14 @@ namespace FlutterSDK.Material.Bottomsheet
     /// </Summary>
     public class _BottomSheetSuspendedCurve : FlutterSDK.Animation.Curves.ParametricCurve<double>
     {
-        #region constructors
         public _BottomSheetSuspendedCurve(double startingPoint, FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve))
         : base()
         {
             this.StartingPoint = startingPoint;
             this.Curve = curve;
         }
-        #endregion
-
-        #region fields
         public virtual double StartingPoint { get; set; }
         public virtual FlutterSDK.Animation.Curves.Curve Curve { get; set; }
-        #endregion
-
-        #region methods
 
         public new double Transform(double t)
         {
@@ -864,13 +809,12 @@ namespace FlutterSDK.Material.Bottomsheet
 
             double curveProgress = (t - StartingPoint) / (1 - StartingPoint);
             double transformed = Curve.Transform(curveProgress);
-            return Dart:uiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
+            return Dart.UI.UiDefaultClass.LerpDouble(StartingPoint, 1, transformed);
         }
 
 
 
 
-        #endregion
     }
 
 }

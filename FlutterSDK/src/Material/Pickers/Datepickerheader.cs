@@ -423,7 +423,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
     /// </Summary>
     public class DatePickerHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public DatePickerHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string helpText = default(string), string titleText = default(string), string titleSemanticsLabel = default(string), FlutterSDK.Painting.Textstyle.TextStyle titleStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Widgets.Mediaquery.Orientation orientation = default(FlutterSDK.Widgets.Mediaquery.Orientation), bool isShort = false, FlutterSDK.Widgets.Icondata.IconData icon = default(FlutterSDK.Widgets.Icondata.IconData), string iconTooltip = default(string), VoidCallback onIconPressed = default(VoidCallback))
         : base(key: key)
         {
@@ -437,9 +436,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
             this.IconTooltip = iconTooltip;
             this.OnIconPressed = onIconPressed;
         }
-        #endregion
-
-        #region fields
         public virtual string HelpText { get; set; }
         public virtual string TitleText { get; set; }
         public virtual string TitleSemanticsLabel { get; set; }
@@ -449,9 +445,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
         public virtual FlutterSDK.Widgets.Icondata.IconData Icon { get; set; }
         public virtual string IconTooltip { get; set; }
         public virtual VoidCallback OnIconPressed { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -471,7 +464,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerheader
 
 
 
-        #endregion
     }
 
 }

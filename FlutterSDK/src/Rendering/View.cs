@@ -432,20 +432,13 @@ namespace FlutterSDK.Rendering.View
     /// </Summary>
     public class ViewConfiguration
     {
-        #region constructors
         public ViewConfiguration(Size size = default(Size), double devicePixelRatio = 1.0)
         {
             this.Size = size;
             this.DevicePixelRatio = devicePixelRatio;
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get; set; }
         public virtual double DevicePixelRatio { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a transformation matrix that applies the [devicePixelRatio].
@@ -458,7 +451,6 @@ namespace FlutterSDK.Rendering.View
 
 
 
-        #endregion
     }
 
 
@@ -471,7 +463,6 @@ namespace FlutterSDK.Rendering.View
     /// </Summary>
     public class RenderView : FlutterSDK.Rendering.@object.RenderObject, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public RenderView(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.View.ViewConfiguration configuration = default(FlutterSDK.Rendering.View.ViewConfiguration), Window window = default(Window))
         : base()
         {
@@ -480,9 +471,6 @@ namespace FlutterSDK.Rendering.View
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual Size _Size { get; set; }
         internal virtual FlutterSDK.Rendering.View.ViewConfiguration _Configuration { get; set; }
         internal virtual Window _Window { get; set; }
@@ -493,9 +481,6 @@ namespace FlutterSDK.Rendering.View
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Bootstrap the rendering pipeline by scheduling the first frame.
@@ -652,11 +637,11 @@ namespace FlutterSDK.Rendering.View
         /// </Summary>
         public virtual void CompositeFrame()
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Compositing", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Compositing", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
-                Ui.Dart:uiDefaultClass.SceneBuilder builder = new Ui.SceneBuilder();
-                Ui.Dart:uiDefaultClass.Scene scene = Layer.BuildScene(builder);
+                Dart.UI.SceneBuilder builder = new Ui.SceneBuilder();
+                Dart.UI.Scene scene = Layer.BuildScene(builder);
                 if (AutomaticSystemUiAdjustment) _UpdateSystemChrome();
                 _Window.Render(scene);
                 scene.Dispose();
@@ -664,7 +649,7 @@ namespace FlutterSDK.Rendering.View
             }
             finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
@@ -702,7 +687,6 @@ namespace FlutterSDK.Rendering.View
 
 
 
-        #endregion
     }
 
 }

@@ -450,7 +450,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
 
     public class _DatePickerDialog : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _DatePickerDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode initialEntryMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string cancelText = default(string), string confirmText = default(string), string helpText = default(string), FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode initialCalendarMode = default(FlutterSDK.Material.Pickers.Datepickercommon.DatePickerMode), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string))
         : base(key: key)
         {
@@ -471,9 +470,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
         }
 
 
-        #endregion
-
-        #region fields
         public virtual DateTime InitialDate { get; set; }
         public virtual DateTime FirstDate { get; set; }
         public virtual DateTime LastDate { get; set; }
@@ -487,33 +483,22 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
         public virtual string ErrorInvalidText { get; set; }
         public virtual string FieldHintText { get; set; }
         public virtual string FieldLabelText { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Datepickerdialog._DatePickerDialogState CreateState() => new _DatePickerDialogState();
 
 
-        #endregion
     }
 
 
     public class _DatePickerDialogState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Datepickerdialog._DatePickerDialog>
     {
-        #region constructors
         public _DatePickerDialogState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Pickers.Datepickercommon.DatePickerEntryMode _EntryMode { get; set; }
         internal virtual DateTime _SelectedDate { get; set; }
         internal virtual bool _AutoValidate { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _CalendarPickerKey { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Form.FormState> _FormKey { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -591,7 +576,7 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
             MaterialLocalizations localizations = MateriallocalizationsDefaultClass.MaterialLocalizations.Of(context);
             Orientation orientation = MediaqueryDefaultClass.MediaQuery.Of(context).Orientation;
             TextTheme textTheme = theme.TextTheme;
-            double textScaleFactor = Math.Dart:mathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, 1.3);
+            double textScaleFactor = Dart.Math.MathDefaultClass.Min(MediaqueryDefaultClass.MediaQuery.Of(context).TextScaleFactor, 1.3);
             string dateText = _SelectedDate != null ? localizations.FormatMediumDate(_SelectedDate) : "Date";
             Color dateColor = colorScheme.Brightness == Brightness.Light ? colorScheme.OnPrimary : colorScheme.OnSurface;
             TextStyle dateStyle = orientation == Orientation.Landscape ? textTheme.Headline5?.CopyWith(color: dateColor) : textTheme.Headline4?.CopyWith(color: dateColor);
@@ -613,7 +598,6 @@ namespace FlutterSDK.Material.Pickers.Datepickerdialog
 
 
 
-        #endregion
     }
 
 }

@@ -511,44 +511,29 @@ namespace FlutterSDK.Widgets.Layoutbuilder
     /// </Summary>
     public class ConstrainedLayoutBuilder<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public ConstrainedLayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Func<Widget, BuildContext, ConstraintType> builder = default(Func<Widget, BuildContext, ConstraintType>))
         : base(key: key)
         {
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual Func<Widget, BuildContext, ConstraintType> Builder { get; set; }
-        #endregion
-
-        #region methods
 
         public new _LayoutBuilderElement<ConstraintType> CreateElement() => new _LayoutBuilderElement<ConstraintType>(this);
 
 
-        #endregion
     }
 
 
     public class _LayoutBuilderElement<ConstraintType> : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _LayoutBuilderElement(FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _Child { get; set; }
         public virtual FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<ConstraintType> Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Layoutbuilder.RenderConstrainedLayoutBuilder<ConstraintType, FlutterSDK.Rendering.@object.RenderObject> RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -688,7 +673,6 @@ public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObjec
 
 
 
-#endregion
 }
 
 
@@ -717,38 +701,23 @@ public new void RemoveChildRenderObject(FlutterSDK.Rendering.@object.RenderObjec
 /// </Summary>
 public class LayoutBuilder : FlutterSDK.Widgets.Layoutbuilder.ConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints>
 {
-    #region constructors
     public LayoutBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder builder = default(FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder))
     : base(key: key, builder: builder)
     {
 
     }
-    #endregion
-
-    #region fields
     public virtual FlutterSDK.Widgets.Layoutbuilder.LayoutWidgetBuilder Builder { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-    #endregion
-
-    #region methods
 
     public new FlutterSDK.Widgets.Layoutbuilder._RenderLayoutBuilder CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderLayoutBuilder();
 
 
-    #endregion
 }
 
 
 public class _RenderLayoutBuilder : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderConstrainedLayoutBuilder<FlutterSDK.Rendering.Box.BoxConstraints, FlutterSDK.Rendering.Box.RenderBox>
 {
-    #region constructors
     public _RenderLayoutBuilder()
     { }
-    #endregion
-
-    #region fields
-    #endregion
-
-    #region methods
 
     public new double ComputeMinIntrinsicWidth(double height)
     {
@@ -829,7 +798,6 @@ public class _RenderLayoutBuilder : FlutterSDK.Rendering.Box.RenderBox, IRenderO
 
 
 
-    #endregion
 }
 
 }

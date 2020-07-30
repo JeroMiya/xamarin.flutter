@@ -302,7 +302,6 @@ namespace FlutterSDK.Gestures.Lsqsolver
 
     public class _Vector
     {
-        #region constructors
         public _Vector(int size)
         : base()
         {
@@ -312,15 +311,9 @@ namespace FlutterSDK.Gestures.Lsqsolver
         {
             var instance = new _Vector();
         }
-        #endregion
-
-        #region fields
         internal virtual int _Offset { get; set; }
         internal virtual int _Length { get; set; }
         internal virtual List<double> _Elements { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual double IndexOfOperator(int i) => _Elements[i + _Offset];
 
@@ -344,169 +337,144 @@ namespace FlutterSDK.Gestures.Lsqsolver
 
 
 
-        public virtual double Norm() => Math.Dart:mathDefaultClass.Sqrt(this *this );
+        public virtual double Norm() => Dart.Math.MathDefaultClass.Sqrt(this * this);
 
-
-        #endregion
-        }
-
-
-        public class _Matrix
-        {
-            #region constructors
-            public _Matrix(int rows, int cols)
-            : base()
-            {
-
-            }
-            #endregion
-
-            #region fields
-            internal virtual int _Columns { get; set; }
-            internal virtual List<double> _Elements { get; set; }
-            #endregion
-
-            #region methods
-
-            public virtual double Get(int row, int col) => _Elements[row * _Columns + col];
-
-
-
-            public virtual void Set(int row, int col, double value)
-            {
-                _Elements[row * _Columns + col] = value;
-            }
-
-
-
-
-            public virtual FlutterSDK.Gestures.Lsqsolver._Vector GetRow(int row) => _Vector.FromVOL(_Elements, row * _Columns, _Columns);
-
-
-            #endregion
-        }
-
-
-        /// <Summary>
-        /// An nth degree polynomial fit to a dataset.
-        /// </Summary>
-        public class PolynomialFit
-        {
-            #region constructors
-            public PolynomialFit(int degree)
-            : base()
-            {
-
-            }
-            #endregion
-
-            #region fields
-            public virtual List<double> Coefficients { get; set; }
-            public virtual double Confidence { get; set; }
-            #endregion
-
-            #region methods
-            #endregion
-        }
-
-
-        /// <Summary>
-        /// Uses the least-squares algorithm to fit a polynomial to a set of data.
-        /// </Summary>
-        public class LeastSquaresSolver
-        {
-            #region constructors
-            public LeastSquaresSolver(List<double> x, List<double> y, List<double> w)
-            : base()
-            {
-                this.x = x;
-                this.y = y;
-                this.w = w;
-            }
-            #endregion
-
-            #region fields
-            public virtual List<double> x { get; set; }
-            public virtual List<double> y { get; set; }
-            public virtual List<double> w { get; set; }
-            #endregion
-
-            #region methods
-
-            /// <Summary>
-            /// Fits a polynomial of the given degree to the data points.
-            /// </Summary>
-            public virtual FlutterSDK.Gestures.Lsqsolver.PolynomialFit Solve(int degree)
-            {
-                if (degree > x.Count) return null;
-                PolynomialFit result = new PolynomialFit(degree);
-                int m = x.Count;
-                int n = degree + 1;
-                _Matrix a = new _Matrix(n, m);
-                for (int h = 0; h < m; h += 1)
-                {
-                    a.Set(0, h, w[h]);
-                    for (int i = 1; i < n; i += 1) a.Set(i, h, a.Get(i - 1, h) * x[h]);
-                }
-
-                _Matrix q = new _Matrix(n, m);
-                _Matrix r = new _Matrix(n, n);
-                for (int j = 0; j < n; j += 1)
-                {
-                    for (int h = 0; h < m; h += 1) q.Set(j, h, a.Get(j, h));
-                    for (int i = 0; i < j; i += 1)
-                    {
-                        double dot = q.GetRow(j) * q.GetRow(i);
-                        for (int h = 0; h < m; h += 1) q.Set(j, h, q.Get(j, h) - dot * q.Get(i, h));
-                    }
-
-                    double norm = q.GetRow(j).Norm();
-                    if (norm < ConstantsDefaultClass.PrecisionErrorTolerance)
-                    {
-                        return null;
-                    }
-
-                    double inverseNorm = 1.0 / norm;
-                    for (int h = 0; h < m; h += 1) q.Set(j, h, q.Get(j, h) * inverseNorm);
-                    for (int i = 0; i < n; i += 1) r.Set(j, i, i < j ? 0.0 : q.GetRow(j) * a.GetRow(i));
-                }
-
-                _Vector wy = new _Vector(m);
-                for (int h = 0; h < m; h += 1) wy[h] = y[h] * w[h];
-                for (int i = n - 1; i >= 0; i -= 1)
-                {
-                    result.Coefficients[i] = q.GetRow(i) * wy;
-                    for (int j = n - 1; j > i; j -= 1) result.Coefficients[i] -= r.Get(i, j) * result.Coefficients[j];
-                    result.Coefficients[i] /= r.Get(i, i);
-                }
-
-                double yMean = 0.0;
-                for (int h = 0; h < m; h += 1) yMean += y[h];
-                yMean /= m;
-                double sumSquaredError = 0.0;
-                double sumSquaredTotal = 0.0;
-                for (int h = 0; h < m; h += 1)
-                {
-                    double term = 1.0;
-                    double err = y[h] - result.Coefficients[0];
-                    for (int i = 1; i < n; i += 1)
-                    {
-                        term *= x[h];
-                        err -= term * result.Coefficients[i];
-                    }
-
-                    sumSquaredError += w[h] * w[h] * err * err;
-                    double v = y[h] - yMean;
-                    sumSquaredTotal += w[h] * w[h] * v * v;
-                }
-
-                result.Confidence = sumSquaredTotal <= ConstantsDefaultClass.PrecisionErrorTolerance ? 1.0 : 1.0 - (sumSquaredError / sumSquaredTotal);
-                return result;
-            }
-
-
-
-            #endregion
-        }
 
     }
+
+
+    public class _Matrix
+    {
+        public _Matrix(int rows, int cols)
+        : base()
+        {
+
+        }
+        internal virtual int _Columns { get; set; }
+        internal virtual List<double> _Elements { get; set; }
+
+        public virtual double Get(int row, int col) => _Elements[row * _Columns + col];
+
+
+
+        public virtual void Set(int row, int col, double value)
+        {
+            _Elements[row * _Columns + col] = value;
+        }
+
+
+
+
+        public virtual FlutterSDK.Gestures.Lsqsolver._Vector GetRow(int row) => _Vector.FromVOL(_Elements, row * _Columns, _Columns);
+
+
+    }
+
+
+    /// <Summary>
+    /// An nth degree polynomial fit to a dataset.
+    /// </Summary>
+    public class PolynomialFit
+    {
+        public PolynomialFit(int degree)
+        : base()
+        {
+
+        }
+        public virtual List<double> Coefficients { get; set; }
+        public virtual double Confidence { get; set; }
+    }
+
+
+    /// <Summary>
+    /// Uses the least-squares algorithm to fit a polynomial to a set of data.
+    /// </Summary>
+    public class LeastSquaresSolver
+    {
+        public LeastSquaresSolver(List<double> x, List<double> y, List<double> w)
+        : base()
+        {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+        }
+        public virtual List<double> x { get; set; }
+        public virtual List<double> y { get; set; }
+        public virtual List<double> w { get; set; }
+
+        /// <Summary>
+        /// Fits a polynomial of the given degree to the data points.
+        /// </Summary>
+        public virtual FlutterSDK.Gestures.Lsqsolver.PolynomialFit Solve(int degree)
+        {
+            if (degree > x.Count) return null;
+            PolynomialFit result = new PolynomialFit(degree);
+            int m = x.Count;
+            int n = degree + 1;
+            _Matrix a = new _Matrix(n, m);
+            for (int h = 0; h < m; h += 1)
+            {
+                a.Set(0, h, w[h]);
+                for (int i = 1; i < n; i += 1) a.Set(i, h, a.Get(i - 1, h) * x[h]);
+            }
+
+            _Matrix q = new _Matrix(n, m);
+            _Matrix r = new _Matrix(n, n);
+            for (int j = 0; j < n; j += 1)
+            {
+                for (int h = 0; h < m; h += 1) q.Set(j, h, a.Get(j, h));
+                for (int i = 0; i < j; i += 1)
+                {
+                    double dot = q.GetRow(j) * q.GetRow(i);
+                    for (int h = 0; h < m; h += 1) q.Set(j, h, q.Get(j, h) - dot * q.Get(i, h));
+                }
+
+                double norm = q.GetRow(j).Norm();
+                if (norm < ConstantsDefaultClass.PrecisionErrorTolerance)
+                {
+                    return null;
+                }
+
+                double inverseNorm = 1.0 / norm;
+                for (int h = 0; h < m; h += 1) q.Set(j, h, q.Get(j, h) * inverseNorm);
+                for (int i = 0; i < n; i += 1) r.Set(j, i, i < j ? 0.0 : q.GetRow(j) * a.GetRow(i));
+            }
+
+            _Vector wy = new _Vector(m);
+            for (int h = 0; h < m; h += 1) wy[h] = y[h] * w[h];
+            for (int i = n - 1; i >= 0; i -= 1)
+            {
+                result.Coefficients[i] = q.GetRow(i) * wy;
+                for (int j = n - 1; j > i; j -= 1) result.Coefficients[i] -= r.Get(i, j) * result.Coefficients[j];
+                result.Coefficients[i] /= r.Get(i, i);
+            }
+
+            double yMean = 0.0;
+            for (int h = 0; h < m; h += 1) yMean += y[h];
+            yMean /= m;
+            double sumSquaredError = 0.0;
+            double sumSquaredTotal = 0.0;
+            for (int h = 0; h < m; h += 1)
+            {
+                double term = 1.0;
+                double err = y[h] - result.Coefficients[0];
+                for (int i = 1; i < n; i += 1)
+                {
+                    term *= x[h];
+                    err -= term * result.Coefficients[i];
+                }
+
+                sumSquaredError += w[h] * w[h] * err * err;
+                double v = y[h] - yMean;
+                sumSquaredTotal += w[h] * w[h] * v * v;
+            }
+
+            result.Confidence = sumSquaredTotal <= ConstantsDefaultClass.PrecisionErrorTolerance ? 1.0 : 1.0 - (sumSquaredError / sumSquaredTotal);
+            return result;
+        }
+
+
+
+    }
+
+}

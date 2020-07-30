@@ -480,7 +480,6 @@ namespace FlutterSDK.Material.Slider
     /// </Summary>
     public class Slider : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Slider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), string label = default(string), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
         : base(key: key)
         {
@@ -510,9 +509,6 @@ namespace FlutterSDK.Material.Slider
             instance.InactiveColor = inactiveColor;
             instance.SemanticFormatterCallback = semanticFormatterCallback;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
@@ -525,9 +521,6 @@ namespace FlutterSDK.Material.Slider
         public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
         public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback { get; set; }
         internal virtual FlutterSDK.Material.Slider._SliderType _SliderType { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Slider._SliderState CreateState() => new _SliderState();
 
@@ -551,18 +544,13 @@ namespace FlutterSDK.Material.Slider
 
 
 
-        #endregion
     }
 
 
     public class _SliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Slider.Slider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _SliderState()
         { }
-        #endregion
-
-        #region fields
         public virtual TimeSpan EnableAnimationDuration { get; set; }
         public virtual TimeSpan ValueIndicatorAnimationDuration { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController { get; set; }
@@ -577,9 +565,6 @@ namespace FlutterSDK.Material.Slider
         internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultThumbShape { get; set; }
         internal virtual FlutterSDK.Material.Slidertheme.SliderComponentShape _DefaultValueIndicatorShape { get; set; }
         internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -587,7 +572,7 @@ namespace FlutterSDK.Material.Slider
             OverlayController = new AnimationController(duration: ConstantsDefaultClass.KRadialReactionDuration, vsync: this);
             ValueIndicatorController = new AnimationController(duration: ValueIndicatorAnimationDuration, vsync: this);
             EnableController = new AnimationController(duration: EnableAnimationDuration, vsync: this);
-            PositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this);
+            PositionController = new AnimationController(duration: Dart.CoreDefaultClass.Duration.Zero, vsync: this);
             EnableController.Value = Widget.OnChanged != null ? 1.0 : 0.0;
             PositionController.Value = _Unlerp(Widget.Value);
         }
@@ -694,18 +679,16 @@ namespace FlutterSDK.Material.Slider
 
         private FlutterSDK.Widgets.Framework.Widget _BuildCupertinoSlider(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new SizedBox(width: Dart:coreDefaultClass.Double.Infinity, child: new CupertinoSlider(value: Widget.Value, onChanged: Widget.OnChanged, onChangeStart: Widget.OnChangeStart, onChangeEnd: Widget.OnChangeEnd, min: Widget.Min, max: Widget.Max, divisions: Widget.Divisions, activeColor: Widget.ActiveColor));
+            return new SizedBox(width: Dart.CoreDefaultClass.Double.Infinity, child: new CupertinoSlider(value: Widget.Value, onChanged: Widget.OnChanged, onChangeStart: Widget.OnChangeStart, onChangeEnd: Widget.OnChangeEnd, min: Widget.Min, max: Widget.Max, divisions: Widget.Divisions, activeColor: Widget.ActiveColor));
         }
 
 
 
-        #endregion
     }
 
 
     public class _SliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _SliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), int divisions = default(int), string label = default(string), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Widgets.Mediaquery.MediaQueryData mediaQueryData = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Material.Slider._SliderState state = default(FlutterSDK.Material.Slider._SliderState), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback))
         : base(key: key)
         {
@@ -720,9 +703,6 @@ namespace FlutterSDK.Material.Slider
             this.State = state;
             this.SemanticFormatterCallback = semanticFormatterCallback;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
         public virtual int Divisions { get; set; }
         public virtual string Label { get; set; }
@@ -733,9 +713,6 @@ namespace FlutterSDK.Material.Slider
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
         public virtual FlutterSDK.Material.Slider.SemanticFormatterCallback SemanticFormatterCallback { get; set; }
         public virtual FlutterSDK.Material.Slider._SliderState State { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Slider._RenderSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -758,13 +735,11 @@ namespace FlutterSDK.Material.Slider
 
 
 
-        #endregion
     }
 
 
     public class _RenderSlider : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
     {
-        #region constructors
         public _RenderSlider(double value = default(double), int divisions = default(int), string label = default(string), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Widgets.Mediaquery.MediaQueryData mediaQueryData = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Material.Slider.SemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slider.SemanticFormatterCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Material.Slider._SliderState state = default(FlutterSDK.Material.Slider._SliderState), TextDirection textDirection = default(TextDirection))
         : base()
         {
@@ -780,9 +755,6 @@ namespace FlutterSDK.Material.Slider
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual TimeSpan _PositionAnimationDuration { get; set; }
         internal virtual TimeSpan _MinimumInteractionTime { get; set; }
         internal virtual double _MinPreferredTrackWidth { get; set; }
@@ -828,9 +800,6 @@ namespace FlutterSDK.Material.Slider
         internal virtual double _AdjustmentUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateLabelPainter()
         {
@@ -1042,17 +1011,17 @@ namespace FlutterSDK.Material.Slider
 
 
 
-        public new double ComputeMinIntrinsicHeight(double width) => Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMinIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new double ComputeMaxIntrinsicHeight(double width) => Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMaxIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new void PerformResize()
+        public new void PerformResize()
         {
-            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
+            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
         }
 
 
@@ -1157,7 +1126,6 @@ public new void PerformResize()
 
 
 
-        #endregion
     }
 
 

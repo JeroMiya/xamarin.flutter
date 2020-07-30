@@ -485,7 +485,6 @@ namespace FlutterSDK.Rendering.Viewportoffset
     /// </Summary>
     public class ViewportOffset : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public ViewportOffset()
         {
 
@@ -498,15 +497,9 @@ namespace FlutterSDK.Rendering.Viewportoffset
         {
             var instance = new ViewportOffset();
         }
-        #endregion
-
-        #region fields
         public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called when the viewport's extents are established.
@@ -632,11 +625,12 @@ namespace FlutterSDK.Rendering.Viewportoffset
         public virtual Future<object> MoveTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), bool clamp = default(bool))
         {
 
-            if (duration == null || duration == Dart:coreDefaultClass.Duration.Zero){
+            if (duration == null || duration == Dart.CoreDefaultClass.Duration.Zero)
+            {
                 JumpTo(to);
                 return Future<void>.Value();
             }
-else
+            else
             {
                 return AnimateTo(to, duration: duration, curve: curve ?? CurvesDefaultClass.Curves.Ease);
             }
@@ -665,13 +659,11 @@ else
 
 
 
-        #endregion
     }
 
 
     public class _FixedViewportOffset : FlutterSDK.Rendering.Viewportoffset.ViewportOffset
     {
-        #region constructors
         public _FixedViewportOffset(double _pixels)
         {
             this._Pixels = _pixels;
@@ -680,16 +672,10 @@ else
         {
             var instance = new _FixedViewportOffset();
         }
-        #endregion
-
-        #region fields
         internal virtual double _Pixels { get; set; }
         public virtual double Pixels { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool ApplyViewportDimension(double viewportDimension) => true;
 
@@ -720,7 +706,6 @@ else
 
 
 
-        #endregion
     }
 
 

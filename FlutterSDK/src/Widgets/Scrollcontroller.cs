@@ -464,16 +464,12 @@ namespace FlutterSDK.Widgets.Scrollcontroller
     /// </Summary>
     public class ScrollController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public ScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
         : base()
         {
             this.KeepScrollOffset = keepScrollOffset;
             this.DebugLabel = debugLabel;
         }
-        #endregion
-
-        #region fields
         internal virtual double _InitialScrollOffset { get; set; }
         public virtual bool KeepScrollOffset { get; set; }
         public virtual string DebugLabel { get; set; }
@@ -483,9 +479,6 @@ namespace FlutterSDK.Widgets.Scrollcontroller
         public virtual bool HasClients { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Animates the position from its current value to the given value.
@@ -523,7 +516,7 @@ namespace FlutterSDK.Widgets.Scrollcontroller
 
             List<Future<void>> animations = new List<Future<void>>(_Positions.Count);
             for (int i = 0; i < _Positions.Count; i += 1) animations[i] = _Positions[i].AnimateTo(offset, duration: duration, curve: curve);
-            return Dart:asyncDefaultClass.Future.Wait(animations).Then((List<void> _) => =>null);
+            return Dart.AsyncDefaultClass.Future.Wait(animations).Then((List<void> _) => =>null);
         }
 
 
@@ -662,7 +655,6 @@ namespace FlutterSDK.Widgets.Scrollcontroller
 
 
 
-        #endregion
     }
 
 
@@ -707,23 +699,16 @@ namespace FlutterSDK.Widgets.Scrollcontroller
     /// </Summary>
     public class TrackingScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
-        #region constructors
         public TrackingScrollController(double initialScrollOffset = 0.0, bool keepScrollOffset = true, string debugLabel = default(string))
         : base(initialScrollOffset: initialScrollOffset, keepScrollOffset: keepScrollOffset, debugLabel: debugLabel)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Widgets.Scrollposition.ScrollPosition, object> _PositionToListener { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _LastUpdated { get; set; }
         internal virtual double _LastUpdatedOffset { get; set; }
         public virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition MostRecentlyUpdatedPosition { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double InitialScrollOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Attach(FlutterSDK.Widgets.Scrollposition.ScrollPosition position)
         {
@@ -767,7 +752,6 @@ namespace FlutterSDK.Widgets.Scrollcontroller
 
 
 
-        #endregion
     }
 
 }

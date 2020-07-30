@@ -325,7 +325,6 @@ namespace FlutterSDK.Cupertino.Slider
     /// </Summary>
     public class CupertinoSlider : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public CupertinoSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), double min = 0.0, double max = 1.0, int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color))
         : base(key: key)
         {
@@ -339,9 +338,6 @@ namespace FlutterSDK.Cupertino.Slider
             this.ActiveColor = activeColor;
             this.ThumbColor = thumbColor;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChanged { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
@@ -351,9 +347,6 @@ namespace FlutterSDK.Cupertino.Slider
         public virtual int Divisions { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
         public virtual FlutterBinding.UI.Color ThumbColor { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Slider._CupertinoSliderState CreateState() => new _CupertinoSliderState();
 
@@ -369,26 +362,18 @@ namespace FlutterSDK.Cupertino.Slider
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Cupertino.Slider.CupertinoSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CupertinoSliderState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         private void _HandleChanged(double value)
         {
 
-            double lerpValue = Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
+            double lerpValue = Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
             if (lerpValue != Widget.Value)
             {
                 Widget.OnChanged(lerpValue);
@@ -402,7 +387,7 @@ namespace FlutterSDK.Cupertino.Slider
         private void _HandleDragStart(double value)
         {
 
-            Widget.OnChangeStart(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
+            Widget.OnChangeStart(Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
         }
 
 
@@ -411,7 +396,7 @@ namespace FlutterSDK.Cupertino.Slider
         private void _HandleDragEnd(double value)
         {
 
-            Widget.OnChangeEnd(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
+            Widget.OnChangeEnd(Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
         }
 
 
@@ -424,13 +409,11 @@ namespace FlutterSDK.Cupertino.Slider
 
 
 
-        #endregion
     }
 
 
     public class _CupertinoSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _CupertinoSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double value = default(double), int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(key: key)
         {
@@ -443,9 +426,6 @@ namespace FlutterSDK.Cupertino.Slider
             this.OnChangeEnd = onChangeEnd;
             this.Vsync = vsync;
         }
-        #endregion
-
-        #region fields
         public virtual double Value { get; set; }
         public virtual int Divisions { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
@@ -454,9 +434,6 @@ namespace FlutterSDK.Cupertino.Slider
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeStart { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<double> OnChangeEnd { get; set; }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Cupertino.Slider._RenderCupertinoSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -479,13 +456,11 @@ namespace FlutterSDK.Cupertino.Slider
 
 
 
-        #endregion
     }
 
 
     public class _RenderCupertinoSlider : FlutterSDK.Rendering.Proxybox.RenderConstrainedBox
     {
-        #region constructors
         public _RenderCupertinoSlider(double value = default(double), int divisions = default(int), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color thumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color trackColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Foundation.Basictypes.ValueChanged<double> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<double>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TextDirection textDirection = default(TextDirection))
         : base(additionalConstraints: BoxConstraints.TightFor(width: SliderDefaultClass._KSliderWidth, height: SliderDefaultClass._KSliderHeight))
         {
@@ -497,9 +472,6 @@ namespace FlutterSDK.Cupertino.Slider
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _Value { get; set; }
         internal virtual int _Divisions { get; set; }
         internal virtual FlutterBinding.UI.Color _ActiveColor { get; set; }
@@ -525,9 +497,6 @@ namespace FlutterSDK.Cupertino.Slider
         internal virtual double _ThumbCenter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsInteractive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HandleDragStart(FlutterSDK.Gestures.Dragdetails.DragStartDetails details) => _StartInteraction(details.GlobalPosition);
 
@@ -537,7 +506,7 @@ namespace FlutterSDK.Cupertino.Slider
         {
             if (IsInteractive)
             {
-                double extent = Math.Dart:mathDefaultClass.Max(SliderDefaultClass._KPadding, Size.Width - 2.0 * (SliderDefaultClass._KPadding + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
+                double extent = Dart.Math.MathDefaultClass.Max(SliderDefaultClass._KPadding, Size.Width - 2.0 * (SliderDefaultClass._KPadding + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
                 double valueDelta = details.PrimaryDelta / extent;
                 switch (TextDirection) { case TextDirection.Rtl: _CurrentDragValue -= valueDelta; break; case TextDirection.Ltr: _CurrentDragValue += valueDelta; break; }
                 OnChanged(_DiscretizedCurrentDragValue);
@@ -666,7 +635,6 @@ namespace FlutterSDK.Cupertino.Slider
 
 
 
-        #endregion
     }
 
 }

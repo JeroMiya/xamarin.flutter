@@ -644,19 +644,12 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class AnimatedWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public AnimatedWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable listenable = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base(key: key)
         {
             this.Listenable = listenable;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Changenotifier.Listenable Listenable { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Override this method to build widgets that depend on the state of the
@@ -683,21 +676,13 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
     public class _AnimatedState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Transitions.AnimatedWidget>
     {
-        #region constructors
         public _AnimatedState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -745,7 +730,6 @@ namespace FlutterSDK.Widgets.Transitions
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Build(context);
 
 
-        #endregion
     }
 
 
@@ -822,7 +806,6 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class SlideTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public SlideTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Offset> position = default(FlutterSDK.Animation.Animation.Animation<Offset>), bool transformHitTests = true, TextDirection textDirection = default(TextDirection), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: position)
         {
@@ -830,16 +813,10 @@ namespace FlutterSDK.Widgets.Transitions
             this.TextDirection = textDirection;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual TextDirection TextDirection { get; set; }
         public virtual bool TransformHitTests { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Offset> Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -850,7 +827,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -872,22 +848,15 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class ScaleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public ScaleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> scale = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: scale)
         {
             this.Alignment = alignment;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Scale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -899,7 +868,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -918,33 +886,25 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class RotationTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public RotationTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> turns = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Painting.Alignment.Alignment alignment = default(FlutterSDK.Painting.Alignment.Alignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: turns)
         {
             this.Alignment = alignment;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Alignment.Alignment Alignment { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> Turns { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             double turnsValue = Turns.Value;
-            Matrix4 transform = Matrix4.RotationZ(turnsValue * Math.Dart:mathDefaultClass.Pi * 2.0);
+            Matrix4 transform = Matrix4.RotationZ(turnsValue * Dart.Math.MathDefaultClass.Pi * 2.0);
             return new Transform(transform: transform, alignment: Alignment, child: Child);
         }
 
 
 
-        #endregion
     }
 
 
@@ -978,7 +938,6 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class SizeTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public SizeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Animation.Animation.Animation<double> sizeFactor = default(FlutterSDK.Animation.Animation.Animation<double>), double axisAlignment = 0.0, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: sizeFactor)
         {
@@ -986,27 +945,20 @@ namespace FlutterSDK.Widgets.Transitions
             this.AxisAlignment = axisAlignment;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get; set; }
         public virtual double AxisAlignment { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<double> SizeFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             AlignmentDirectional alignment = default(AlignmentDirectional);
             if (Axis == Axis.Vertical) alignment = new AlignmentDirectional(-1.0, AxisAlignment); else alignment = new AlignmentDirectional(AxisAlignment, -1.0);
-            return new ClipRect(child: new Align(alignment: alignment, heightFactor: Axis == Axis.Vertical ? Math.Dart : mathDefaultClass.Max(SizeFactor.Value, 0.0):null, widthFactor: Axis == Axis.Horizontal ? Math.Dart : mathDefaultClass.Max(SizeFactor.Value, 0.0):null, child: Child));
+            return new ClipRect(child: new Align(alignment: alignment, heightFactor: Axis == Axis.Vertical ? Dart.Math.MathDefaultClass.Max(SizeFactor.Value, 0.0) : null, widthFactor: Axis == Axis.Horizontal ? Dart.Math.MathDefaultClass.Max(SizeFactor.Value, 0.0) : null, child: Child));
         }
 
 
 
-        #endregion
     }
 
 
@@ -1031,21 +983,14 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class FadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public FadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
         public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxybox.RenderAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1078,7 +1023,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1148,21 +1092,14 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class SliverFadeTransition : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverFadeTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver)
         {
             this.Opacity = opacity;
             this.AlwaysIncludeSemantics = alwaysIncludeSemantics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<double> Opacity { get; set; }
         public virtual bool AlwaysIncludeSemantics { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Proxysliver.RenderSliverAnimatedOpacity CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1195,7 +1132,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1209,18 +1145,11 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class RelativeRectTween : FlutterSDK.Animation.Tween.Tween<FlutterSDK.Rendering.Stack.RelativeRect>
     {
-        #region constructors
         public RelativeRectTween(FlutterSDK.Rendering.Stack.RelativeRect begin = default(FlutterSDK.Rendering.Stack.RelativeRect), FlutterSDK.Rendering.Stack.RelativeRect end = default(FlutterSDK.Rendering.Stack.RelativeRect))
         : base(begin: begin, end: end)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the value this variable has at the given animation clock value.
@@ -1228,7 +1157,6 @@ namespace FlutterSDK.Widgets.Transitions
         public new FlutterSDK.Rendering.Stack.RelativeRect Lerp(double t) => StackDefaultClass.RelativeRect.Lerp(Begin, End, t);
 
 
-        #endregion
     }
 
 
@@ -1260,20 +1188,13 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class PositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public PositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> rect = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: rect)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Rendering.Stack.RelativeRect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1282,7 +1203,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1312,22 +1232,15 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class RelativePositionedTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public RelativePositionedTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<Rect> rect = default(FlutterSDK.Animation.Animation.Animation<Rect>), Size size = default(Size), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: rect)
         {
             this.Size = size;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<Rect> Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1337,7 +1250,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1357,7 +1269,6 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class DecoratedBoxTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public DecoratedBoxTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> decoration = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration>), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: decoration)
         {
@@ -1365,15 +1276,9 @@ namespace FlutterSDK.Widgets.Transitions
             this.Position = position;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Decoration.Decoration> Decoration { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1382,7 +1287,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1408,7 +1312,6 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class AlignTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public AlignTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> alignment = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), double widthFactor = default(double), double heightFactor = default(double))
         : base(key: key, listenable: alignment)
         {
@@ -1416,16 +1319,10 @@ namespace FlutterSDK.Widgets.Transitions
             this.WidthFactor = widthFactor;
             this.HeightFactor = heightFactor;
         }
-        #endregion
-
-        #region fields
         public virtual double WidthFactor { get; set; }
         public virtual double HeightFactor { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Alignment.AlignmentGeometry> Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1434,7 +1331,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1451,7 +1347,6 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class DefaultTextStyleTransition : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public DefaultTextStyleTransition(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> style = default(FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), TextAlign textAlign = default(TextAlign), bool softWrap = true, FlutterSDK.Rendering.Paragraph.TextOverflow overflow = default(FlutterSDK.Rendering.Paragraph.TextOverflow), int maxLines = default(int))
         : base(key: key, listenable: style)
         {
@@ -1461,18 +1356,12 @@ namespace FlutterSDK.Widgets.Transitions
             this.Overflow = overflow;
             this.MaxLines = maxLines;
         }
-        #endregion
-
-        #region fields
         public virtual TextAlign TextAlign { get; set; }
         public virtual bool SoftWrap { get; set; }
         public virtual FlutterSDK.Rendering.Paragraph.TextOverflow Overflow { get; set; }
         public virtual int MaxLines { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Animation.Animation.Animation<FlutterSDK.Painting.Textstyle.TextStyle> Style { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1481,7 +1370,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 
@@ -1568,21 +1456,14 @@ namespace FlutterSDK.Widgets.Transitions
     /// </Summary>
     public class AnimatedBuilder : FlutterSDK.Widgets.Transitions.AnimatedWidget
     {
-        #region constructors
         public AnimatedBuilder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Foundation.Changenotifier.Listenable animation = default(FlutterSDK.Foundation.Changenotifier.Listenable), FlutterSDK.Widgets.Framework.TransitionBuilder builder = default(FlutterSDK.Widgets.Framework.TransitionBuilder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, listenable: animation)
         {
             this.Builder = builder;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.TransitionBuilder Builder { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1591,7 +1472,6 @@ namespace FlutterSDK.Widgets.Transitions
 
 
 
-        #endregion
     }
 
 }

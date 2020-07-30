@@ -434,21 +434,14 @@ namespace FlutterSDK.Material.Tabindicator
     /// </Summary>
     public class UnderlineTabIndicator : FlutterSDK.Painting.Decoration.Decoration
     {
-        #region constructors
         public UnderlineTabIndicator(FlutterSDK.Painting.Borders.BorderSide borderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry insets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base()
         {
             this.BorderSide = borderSide;
             this.Insets = insets;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Decoration.Decoration LerpFrom(FlutterSDK.Painting.Decoration.Decoration a, double t)
         {
@@ -483,27 +476,19 @@ namespace FlutterSDK.Material.Tabindicator
 
 
 
-        #endregion
     }
 
 
     public class _UnderlinePainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
-        #region constructors
         public _UnderlinePainter(FlutterSDK.Material.Tabindicator.UnderlineTabIndicator decoration, VoidCallback onChanged)
         : base(onChanged)
         {
             this.Decoration = decoration;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Tabindicator.UnderlineTabIndicator Decoration { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide BorderSide { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Insets { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private Rect _IndicatorRectFor(FlutterBinding.UI.Rect rect, TextDirection textDirection)
         {
@@ -529,7 +514,6 @@ namespace FlutterSDK.Material.Tabindicator
 
 
 
-        #endregion
     }
 
 }

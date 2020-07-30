@@ -437,21 +437,14 @@ namespace FlutterSDK.Widgets.Annotatedregion
     /// </Summary>
     public class AnnotatedRegion<T> : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public AnnotatedRegion(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), T value = default(T), bool sized = true)
         : base(key: key, child: child)
         {
             this.Value = value;
             this.Sized = sized;
         }
-        #endregion
-
-        #region fields
         public virtual T Value { get; set; }
         public virtual bool Sized { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.@object.RenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -468,7 +461,6 @@ namespace FlutterSDK.Widgets.Annotatedregion
 
 
 
-        #endregion
     }
 
 }

@@ -417,7 +417,6 @@ namespace FlutterSDK.Material.Paginateddatatable
     /// </Summary>
     public class PaginatedDataTable : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public PaginatedDataTable(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), List<FlutterSDK.Material.Datatable.DataColumn> columns = default(List<FlutterSDK.Material.Datatable.DataColumn>), int sortColumnIndex = default(int), bool sortAscending = true, FlutterSDK.Foundation.Basictypes.ValueSetter<bool> onSelectAll = default(FlutterSDK.Foundation.Basictypes.ValueSetter<bool>), double dataRowHeight = default(double), double headingRowHeight = 56.0, double horizontalMargin = 24.0, double columnSpacing = 56.0, bool showCheckboxColumn = true, int initialFirstRowIndex = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), int rowsPerPage = default(int), List<int> availableRowsPerPage = default(List<int>), FlutterSDK.Foundation.Basictypes.ValueChanged<int> onRowsPerPageChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterSDK.Material.Datatablesource.DataTableSource source = default(FlutterSDK.Material.Datatablesource.DataTableSource))
         : base(key: key)
         {
@@ -440,9 +439,6 @@ namespace FlutterSDK.Material.Paginateddatatable
             this.DragStartBehavior = dragStartBehavior;
             this.Source = source;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Actions { get; set; }
         public virtual List<FlutterSDK.Material.Datatable.DataColumn> Columns { get; set; }
@@ -462,14 +458,10 @@ namespace FlutterSDK.Material.Paginateddatatable
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<int> OnRowsPerPageChanged { get; set; }
         public virtual FlutterSDK.Material.Datatablesource.DataTableSource Source { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Paginateddatatable.PaginatedDataTableState CreateState() => new PaginatedDataTableState();
 
 
-        #endregion
     }
 
 
@@ -480,21 +472,14 @@ namespace FlutterSDK.Material.Paginateddatatable
     /// </Summary>
     public class PaginatedDataTableState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Paginateddatatable.PaginatedDataTable>
     {
-        #region constructors
         public PaginatedDataTableState()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _FirstRowIndex { get; set; }
         internal virtual int _RowCount { get; set; }
         internal virtual bool _RowCountApproximate { get; set; }
         internal virtual int _SelectedRowCount { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Material.Datatable.DataRow> _Rows { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _TableKey { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -629,7 +614,7 @@ if ((Widget.OnPageChanged!=null )&&(oldFirstRowIndex!=_FirstRowIndex))Widget.OnP
 
     private void _HandlePrevious()
     {
-        PageTo(Math.Dart:mathDefaultClass.Max(_FirstRowIndex - Widget.RowsPerPage, 0));
+        PageTo(Dart.Math.MathDefaultClass.Max(_FirstRowIndex - Widget.RowsPerPage, 0));
     }
 
 
@@ -688,14 +673,13 @@ if ((Widget.OnPageChanged!=null )&&(oldFirstRowIndex!=_FirstRowIndex))Widget.OnP
         footerWidgets.AddAll(new List<Widget>() { new Container(width: 32.0), new Text(localizations.PageRowsInfoTitle(_FirstRowIndex + 1, _FirstRowIndex + Widget.RowsPerPage, _RowCount, _RowCountApproximate)), new Container(width: 32.0), new IconButton(icon: new Icon(IconsDefaultClass.Icons.Chevron_left), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, tooltip: localizations.PreviousPageTooltip, onPressed: _FirstRowIndex <= 0 ? null : _HandlePrevious), new Container(width: 24.0), new IconButton(icon: new Icon(IconsDefaultClass.Icons.Chevron_right), padding: EdgeinsetsDefaultClass.EdgeInsets.Zero, tooltip: localizations.NextPageTooltip, onPressed: (!_RowCountApproximate && (_FirstRowIndex + Widget.RowsPerPage >= _RowCount)) ? null : _HandleNext), new Container(width: 14.0) });
         return new LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
         {
-            return new Card(semanticContainer: false, child: new Column(crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { new Semantics(container: true, child: new DefaultTextStyle(style: _SelectedRowCount > 0 ? themeData.TextTheme.Subtitle1.CopyWith(color: themeData.AccentColor) : themeData.TextTheme.Headline6.CopyWith(fontWeight: Dart:uiDefaultClass.FontWeight.W400), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(opacity: 0.54), child: new Ink(height: 64.0, color: _SelectedRowCount > 0 ? themeData.SecondaryHeaderColor : null, child: new Padding(padding: EdgeInsetsDirectional.Only(start: startPadding, end: 14.0), child: new Row(mainAxisAlignment: MainAxisAlignment.End, children: headerWidgets)))))), new SingleChildScrollView(scrollDirection: Axis.Horizontal, dragStartBehavior: Widget.DragStartBehavior, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: constraints.MinWidth), child: new DataTable(key: _TableKey, columns: Widget.Columns, sortColumnIndex: Widget.SortColumnIndex, sortAscending: Widget.SortAscending, onSelectAll: Widget.OnSelectAll, dataRowHeight: Widget.DataRowHeight, headingRowHeight: Widget.HeadingRowHeight, horizontalMargin: Widget.HorizontalMargin, columnSpacing: Widget.ColumnSpacing, rows: _GetRows(_FirstRowIndex, Widget.RowsPerPage)))), new DefaultTextStyle(style: footerTextStyle, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(opacity: 0.54), child: new Container(height: 56.0, child: new SingleChildScrollView(dragStartBehavior: Widget.DragStartBehavior, scrollDirection: Axis.Horizontal, reverse: true, child: new Row(children: footerWidgets))))) }));
+            return new Card(semanticContainer: false, child: new Column(crossAxisAlignment: CrossAxisAlignment.Stretch, children: new List<Widget>() { new Semantics(container: true, child: new DefaultTextStyle(style: _SelectedRowCount > 0 ? themeData.TextTheme.Subtitle1.CopyWith(color: themeData.AccentColor) : themeData.TextTheme.Headline6.CopyWith(fontWeight: Dart.UI.UiDefaultClass.FontWeight.W400), child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(opacity: 0.54), child: new Ink(height: 64.0, color: _SelectedRowCount > 0 ? themeData.SecondaryHeaderColor : null, child: new Padding(padding: EdgeInsetsDirectional.Only(start: startPadding, end: 14.0), child: new Row(mainAxisAlignment: MainAxisAlignment.End, children: headerWidgets)))))), new SingleChildScrollView(scrollDirection: Axis.Horizontal, dragStartBehavior: Widget.DragStartBehavior, child: new ConstrainedBox(constraints: new BoxConstraints(minWidth: constraints.MinWidth), child: new DataTable(key: _TableKey, columns: Widget.Columns, sortColumnIndex: Widget.SortColumnIndex, sortAscending: Widget.SortAscending, onSelectAll: Widget.OnSelectAll, dataRowHeight: Widget.DataRowHeight, headingRowHeight: Widget.HeadingRowHeight, horizontalMargin: Widget.HorizontalMargin, columnSpacing: Widget.ColumnSpacing, rows: _GetRows(_FirstRowIndex, Widget.RowsPerPage)))), new DefaultTextStyle(style: footerTextStyle, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(opacity: 0.54), child: new Container(height: 56.0, child: new SingleChildScrollView(dragStartBehavior: Widget.DragStartBehavior, scrollDirection: Axis.Horizontal, reverse: true, child: new Row(children: footerWidgets))))) }));
         }
         );
     }
 
 
 
-    #endregion
 }
 
 }

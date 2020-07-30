@@ -314,18 +314,11 @@ namespace FlutterSDK.Foundation.Synchronousfuture
     /// </Summary>
     public class SynchronousFuture<T> : IFuture<T>
     {
-        #region constructors
         public SynchronousFuture(T _value)
         {
             this._Value = _value;
         }
-        #endregion
-
-        #region fields
         internal virtual T _Value { get; set; }
-        #endregion
-
-        #region methods
 
         public new Stream<T> AsStream()
         {
@@ -376,7 +369,6 @@ namespace FlutterSDK.Foundation.Synchronousfuture
 
 
 
-            #endregion
         }
 
     }

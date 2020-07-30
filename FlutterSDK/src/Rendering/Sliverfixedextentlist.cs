@@ -493,19 +493,12 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     /// </Summary>
     public class RenderSliverFixedExtentBoxAdaptor : FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverMultiBoxAdaptor
     {
-        #region constructors
         public RenderSliverFixedExtentBoxAdaptor(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The layout offset for the child with the given index.
@@ -560,7 +553,7 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
         /// </Summary>
         public virtual int GetMaxChildIndexForScrollOffset(double scrollOffset, double itemExtent)
         {
-            return itemExtent > 0.0 ? Math.Dart : mathDefaultClass.Max(0, (scrollOffset / itemExtent).Ceil() - 1):0;
+            return itemExtent > 0.0 ? Dart.Math.MathDefaultClass.Max(0, (scrollOffset / itemExtent).Ceil() - 1) : 0;
         }
 
 
@@ -730,7 +723,7 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
                 trailingChildWithLayout = FirstChild;
             }
 
-            double estimatedMaxScrollOffset = Dart:coreDefaultClass.Double.Infinity;
+            double estimatedMaxScrollOffset = Dart.CoreDefaultClass.Double.Infinity;
             for (int index = IndexOf(trailingChildWithLayout) + 1; targetLastIndex == null || index <= targetLastIndex; ++index)
             {
                 RenderBox child = ChildAfter(trailingChildWithLayout);
@@ -763,7 +756,7 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
 
 
 
-            estimatedMaxScrollOffset = Math.Dart:mathDefaultClass.Min(estimatedMaxScrollOffset, EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset));
+            estimatedMaxScrollOffset = Dart.Math.MathDefaultClass.Min(estimatedMaxScrollOffset, EstimateMaxScrollOffset(constraints, firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset));
             double paintExtent = CalculatePaintOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
             double cacheExtent = CalculateCacheOffset(constraints, from: leadingScrollOffset, to: trailingScrollOffset);
             double targetEndScrollOffsetForPaint = constraints.ScrollOffset + constraints.RemainingPaintExtent;
@@ -775,7 +768,6 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
 
 
 
-        #endregion
     }
 
 
@@ -803,21 +795,13 @@ namespace FlutterSDK.Rendering.Sliverfixedextentlist
     /// </Summary>
     public class RenderSliverFixedExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
     {
-        #region constructors
         public RenderSliverFixedExtentList(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager childManager = default(FlutterSDK.Rendering.Slivermultiboxadaptor.RenderSliverBoxChildManager), double itemExtent = default(double))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _ItemExtent { get; set; }
         public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

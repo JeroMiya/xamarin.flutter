@@ -404,7 +404,6 @@ namespace FlutterSDK.Material.Gridtilebar
     /// </Summary>
     public class GridTileBar : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public GridTileBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget trailing = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -414,17 +413,11 @@ namespace FlutterSDK.Material.Gridtilebar
             this.Subtitle = subtitle;
             this.Trailing = trailing;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Trailing { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -438,7 +431,6 @@ namespace FlutterSDK.Material.Gridtilebar
 
 
 
-        #endregion
     }
 
 }

@@ -674,7 +674,7 @@ namespace FlutterSDK.Rendering.Proxybox
         private void _UpdateOpacity()
         {
             int oldAlpha = _Alpha;
-            _Alpha = Ui.Dart:uiDefaultClass.Color.GetAlphaFromOpacity(_Opacity.Value);
+            _Alpha = Dart.UI.UiDefaultClass.Color.GetAlphaFromOpacity(_Opacity.Value);
             if (oldAlpha != _Alpha)
             {
                 bool didNeedCompositing = _CurrentlyNeedsCompositing;
@@ -776,7 +776,6 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderProxyBox : FlutterSDK.Rendering.Box.RenderBox, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public RenderProxyBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 
@@ -784,13 +783,6 @@ namespace FlutterSDK.Rendering.Proxybox
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -800,19 +792,12 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderProxyBoxWithHitTestBehavior : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderProxyBoxWithHitTestBehavior(FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.Behavior = behavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.HitTestBehavior Behavior { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -841,7 +826,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -859,20 +843,13 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderConstrainedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderConstrainedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Box.BoxConstraints _AdditionalConstraints { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
@@ -932,7 +909,7 @@ namespace FlutterSDK.Rendering.Proxybox
             }
             else
             {
-                Size = _AdditionalConstraints.Enforce(constraints).Constrain(Dart: uiDefaultClass.Size.Zero);
+                Size = _AdditionalConstraints.Enforce(constraints).Constrain(Dart.UI.UiDefaultClass.Size.Zero);
             }
 
         }
@@ -957,7 +934,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -977,22 +953,15 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderLimitedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderLimitedBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double maxWidth = default(double), double maxHeight = default(double))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _MaxWidth { get; set; }
         internal virtual double _MaxHeight { get; set; }
         public virtual double MaxWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double MaxHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private FlutterSDK.Rendering.Box.BoxConstraints _LimitConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
@@ -1012,7 +981,7 @@ namespace FlutterSDK.Rendering.Proxybox
             }
             else
             {
-                Size = _LimitConstraints(Constraints).Constrain(Dart: uiDefaultClass.Size.Zero);
+                Size = _LimitConstraints(Constraints).Constrain(Dart.UI.UiDefaultClass.Size.Zero);
             }
 
         }
@@ -1023,13 +992,12 @@ namespace FlutterSDK.Rendering.Proxybox
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
-            properties.Add(new DoubleProperty("maxWidth", MaxWidth, defaultValue: Dart:coreDefaultClass.Double.Infinity));
-            properties.Add(new DoubleProperty("maxHeight", MaxHeight, defaultValue: Dart:coreDefaultClass.Double.Infinity));
+            properties.Add(new DoubleProperty("maxWidth", MaxWidth, defaultValue: Dart.CoreDefaultClass.Double.Infinity));
+            properties.Add(new DoubleProperty("maxHeight", MaxHeight, defaultValue: Dart.CoreDefaultClass.Double.Infinity));
         }
 
 
 
-        #endregion
     }
 
 
@@ -1063,20 +1031,13 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderAspectRatio : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderAspectRatio(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double aspectRatio = default(double))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _AspectRatio { get; set; }
         public virtual double AspectRatio { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
@@ -1182,7 +1143,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -1205,22 +1165,15 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderIntrinsicWidth : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderIntrinsicWidth(double stepWidth = default(double), double stepHeight = default(double), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _StepWidth { get; set; }
         internal virtual double _StepHeight { get; set; }
         public virtual double StepWidth { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double StepHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private double _ApplyStep(double input, double step)
         {
@@ -1253,7 +1206,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMinIntrinsicHeight(double width)
         {
             if (Child == null) return 0.0;
-            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
 
             double height = Child.GetMinIntrinsicHeight(width);
             return _ApplyStep(height, _StepHeight);
@@ -1265,7 +1218,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMaxIntrinsicHeight(double width)
         {
             if (Child == null) return 0.0;
-            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+            if (!width.IsFinite()) width = ComputeMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
 
             double height = Child.GetMaxIntrinsicHeight(width);
             return _ApplyStep(height, _StepHeight);
@@ -1315,7 +1268,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -1333,23 +1285,16 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderIntrinsicHeight : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderIntrinsicHeight(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
             if (Child == null) return 0.0;
-            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity);
+            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity);
 
             return Child.GetMinIntrinsicWidth(height);
         }
@@ -1360,7 +1305,7 @@ namespace FlutterSDK.Rendering.Proxybox
         public new double ComputeMaxIntrinsicWidth(double height)
         {
             if (Child == null) return 0.0;
-            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity);
+            if (!height.IsFinite()) height = Child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity);
 
             return Child.GetMaxIntrinsicWidth(height);
         }
@@ -1400,7 +1345,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -1417,24 +1361,17 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _Alpha { get; set; }
         internal virtual double _Opacity { get; set; }
         internal virtual bool _AlwaysIncludeSemantics { get; set; }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -1479,7 +1416,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -1491,7 +1427,6 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderAnimatedOpacity : FlutterSDK.Rendering.Proxybox.RenderProxyBox, IRenderProxyBoxMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public RenderAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -1501,13 +1436,6 @@ namespace FlutterSDK.Rendering.Proxybox
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1519,24 +1447,17 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderShaderMask : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderShaderMask(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.ShaderCallback shaderCallback = default(FlutterSDK.Rendering.Proxybox.ShaderCallback), FlutterBinding.UI.BlendMode blendMode = default(FlutterBinding.UI.BlendMode))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Proxybox.ShaderCallback _ShaderCallback { get; set; }
         internal virtual FlutterBinding.UI.BlendMode _BlendMode { get; set; }
         public virtual FlutterSDK.Rendering.Layer.ShaderMaskLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Proxybox.ShaderCallback ShaderCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.BlendMode BlendMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -1544,7 +1465,7 @@ namespace FlutterSDK.Rendering.Proxybox
             {
 
                 Layer = (Layer == null ? new ShaderMaskLayer() : Layer);
-                ..Shader = _ShaderCallback(Dart: uiDefaultClass.Offset.Zero & Size)..MaskRect = offset & Size..BlendMode = _BlendMode;
+                ..Shader = _ShaderCallback(Dart.UI.UiDefaultClass.Offset.Zero & Size)..MaskRect = offset & Size..BlendMode = _BlendMode;
                 context.PushLayer(Layer, base.Paint, offset);
             }
             else
@@ -1556,7 +1477,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -1568,22 +1488,15 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class RenderBackdropFilter : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderBackdropFilter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), ImageFilter filter = default(ImageFilter))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual ImageFilter _Filter { get; set; }
         public virtual FlutterSDK.Rendering.Layer.BackdropFilterLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual ImageFilter Filter { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -1603,7 +1516,6 @@ namespace FlutterSDK.Rendering.Proxybox
 
 
 
-        #endregion
     }
 
 
@@ -1634,19 +1546,12 @@ namespace FlutterSDK.Rendering.Proxybox
     /// </Summary>
     public class CustomClipper<T>
     {
-        #region constructors
         public CustomClipper(FlutterSDK.Foundation.Changenotifier.Listenable reclip = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Reclip { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a description of the clip given that the render object being
@@ -1668,34 +1573,33 @@ namespace FlutterSDK.Rendering.Proxybox
         /// same size as the RenderObject (e.g. it's a rounded rectangle
         /// with very small arcs in the corners), then this may be adequate.
         /// </Summary>
-        public virtual Rect GetApproximateClipRect(Size size) => Dart:uiDefaultClass.Offset.Zero&size;
+        public virtual Rect GetApproximateClipRect(Size size) => Dart.UiDefaultClass.Offset.Zero & size;
 
 
 
-/// <Summary>
-/// Called whenever a new instance of the custom clipper delegate class is
-/// provided to the clip object, or any time that a new clip object is created
-/// with a new instance of the custom painter delegate class (which amounts to
-/// the same thing, because the latter is implemented in terms of the former).
-///
-/// If the new instance represents different information than the old
-/// instance, then the method should return true, otherwise it should return
-/// false.
-///
-/// If the method returns false, then the [getClip] call might be optimized
-/// away.
-///
-/// It's possible that the [getClip] method will get called even if
-/// [shouldReclip] returns false or if the [shouldReclip] method is never
-/// called at all (e.g. if the box changes size).
-/// </Summary>
-public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper)
+        /// <Summary>
+        /// Called whenever a new instance of the custom clipper delegate class is
+        /// provided to the clip object, or any time that a new clip object is created
+        /// with a new instance of the custom painter delegate class (which amounts to
+        /// the same thing, because the latter is implemented in terms of the former).
+        ///
+        /// If the new instance represents different information than the old
+        /// instance, then the method should return true, otherwise it should return
+        /// false.
+        ///
+        /// If the method returns false, then the [getClip] call might be optimized
+        /// away.
+        ///
+        /// It's possible that the [getClip] method will get called even if
+        /// [shouldReclip] returns false or if the [shouldReclip] method is never
+        /// called at all (e.g. if the box changes size).
+        /// </Summary>
+        public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> oldClipper)
         {
             return default(bool);
         }
 
 
-        #endregion
     }
 
 
@@ -1704,28 +1608,21 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class ShapeBorderClipper : FlutterSDK.Rendering.Proxybox.CustomClipper<Path>
     {
-        #region constructors
         public ShapeBorderClipper(FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), TextDirection textDirection = default(TextDirection))
         : base()
         {
             this.Shape = shape;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the outer path of [shape] as the clip.
         /// </Summary>
         public new Path GetClip(Size size)
         {
-            return Shape.GetOuterPath(Dart: uiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
+            return Shape.GetOuterPath(Dart.UI.UiDefaultClass.Offset.Zero & size, textDirection: TextDirection);
         }
 
 
@@ -1740,21 +1637,16 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
     public class _RenderCustomClip<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public _RenderCustomClip(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Proxybox.CustomClipper<T> _Clipper { get; set; }
         internal virtual T _Clip { get; set; }
         internal virtual FlutterBinding.UI.Clip _ClipBehavior { get; set; }
@@ -1763,9 +1655,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterSDK.Rendering.Proxybox.CustomClipper<T> Clipper { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual T _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
         {
@@ -1822,7 +1711,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
         public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child)
         {
-            return _Clipper?.GetApproximateClipRect(Size) ?? Dart:uiDefaultClass.Offset.Zero & Size;
+            return _Clipper?.GetApproximateClipRect(Size) ?? Dart.UiDefaultClass.Offset.Zero & Size;
         }
 
 
@@ -1835,7 +1724,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -1848,19 +1736,12 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderClipRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
     {
-        #region constructors
         public RenderClipRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Rect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -1901,7 +1782,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -1914,7 +1794,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderClipRRect : FlutterSDK.Rendering.Proxybox._RenderCustomClip<RRect>
     {
-        #region constructors
         public RenderClipRRect(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Rendering.Proxybox.CustomClipper<RRect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<RRect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
@@ -1923,15 +1802,9 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterBinding.UI.RRect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -1972,7 +1845,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -1985,21 +1857,14 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderClipOval : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Rect>
     {
-        #region constructors
         public RenderClipOval(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Rect> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Rect>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Rect _CachedRect { get; set; }
         internal virtual Path _CachedPath { get; set; }
         internal virtual FlutterBinding.UI.Rect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private Path _GetClipPath(FlutterBinding.UI.Rect rect)
         {
@@ -2053,7 +1918,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2072,19 +1936,12 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderClipPath : FlutterSDK.Rendering.Proxybox._RenderCustomClip<Path>
     {
-        #region constructors
         public RenderClipPath(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         : base(child: child, clipper: clipper, clipBehavior: clipBehavior)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Path _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -2106,7 +1963,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (Child != null)
             {
                 _UpdateClip();
-                Layer = context.PushClipPath(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _Clip, base.Paint, clipBehavior: ClipBehavior, oldLayer: Layer as ClipPathLayer);
+                Layer = context.PushClipPath(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _Clip, base.Paint, clipBehavior: ClipBehavior, oldLayer: Layer as ClipPathLayer);
             }
             else
             {
@@ -2125,7 +1982,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2137,15 +1993,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class _RenderPhysicalModelBase<T> : FlutterSDK.Rendering.Proxybox._RenderCustomClip<T>
     {
-        #region constructors
         public _RenderPhysicalModelBase(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), double elevation = default(double), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Rendering.Proxybox.CustomClipper<T> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<T>))
         : base(child: child, clipBehavior: clipBehavior, clipper: clipper)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _Elevation { get; set; }
         internal virtual FlutterBinding.UI.Color _ShadowColor { get; set; }
         internal virtual FlutterBinding.UI.Color _Color { get; set; }
@@ -2153,9 +2005,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterBinding.UI.Color ShadowColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -2176,7 +2025,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2188,24 +2036,17 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderPhysicalModel : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<RRect>
     {
-        #region constructors
         public RenderPhysicalModel(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Painting.Boxborder.BoxShape shape = default(FlutterSDK.Painting.Boxborder.BoxShape), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(clipBehavior: clipBehavior, child: child, elevation: elevation, color: color, shadowColor: shadowColor)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Boxborder.BoxShape _Shape { get; set; }
         internal virtual FlutterSDK.Painting.Borderradius.BorderRadius _BorderRadius { get; set; }
         public virtual FlutterSDK.Rendering.Layer.PhysicalModelLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Boxborder.BoxShape Shape { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterBinding.UI.RRect _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -2257,7 +2098,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2273,20 +2113,13 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderPhysicalShape : FlutterSDK.Rendering.Proxybox._RenderPhysicalModelBase<Path>
     {
-        #region constructors
         public RenderPhysicalShape(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Proxybox.CustomClipper<Path> clipper = default(FlutterSDK.Rendering.Proxybox.CustomClipper<Path>), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), double elevation = 0.0, FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color))
         : base(child: child, elevation: elevation, color: color, shadowColor: shadowColor, clipper: clipper, clipBehavior: clipBehavior)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Layer.PhysicalModelLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Path _DefaultClip { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -2335,7 +2168,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2344,15 +2176,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderDecoratedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderDecoratedBox(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Rendering.Proxybox.DecorationPosition position = default(FlutterSDK.Rendering.Proxybox.DecorationPosition), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
         internal virtual FlutterSDK.Painting.Decoration.Decoration _Decoration { get; set; }
         internal virtual FlutterSDK.Rendering.Proxybox.DecorationPosition _Position { get; set; }
@@ -2360,9 +2188,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Proxybox.DecorationPosition Position { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Detach()
         {
@@ -2419,7 +2244,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2428,7 +2252,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderTransform : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderTransform(Matrix4 transform = default(Matrix4), FlutterBinding.UI.Offset origin = default(FlutterBinding.UI.Offset), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), bool transformHitTests = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -2440,9 +2263,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Offset _Origin { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
@@ -2453,9 +2273,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual object Transform { set { throw new NotImplementedException(); } }
         internal virtual object _EffectiveTransform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Sets the transform to the identity matrix.
@@ -2605,7 +2422,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2614,15 +2430,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderFittedBox : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderFittedBox(FlutterSDK.Painting.Boxfit.BoxFit fit = default(FlutterSDK.Painting.Boxfit.BoxFit), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
         internal virtual FlutterSDK.Painting.Boxfit.BoxFit _Fit { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.AlignmentGeometry _Alignment { get; set; }
@@ -2632,9 +2444,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterSDK.Painting.Boxfit.BoxFit Fit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Alignment.AlignmentGeometry Alignment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _Resolve()
         {
@@ -2696,8 +2505,8 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
                 FittedSizes sizes = BoxfitDefaultClass.ApplyBoxFit(_Fit, childSize, Size);
                 double scaleX = sizes.Destination.Width / sizes.Source.Width;
                 double scaleY = sizes.Destination.Height / sizes.Source.Height;
-                Rect sourceRect = _ResolvedAlignment.Inscribe(sizes.Source, Dart: uiDefaultClass.Offset.Zero & childSize);
-                Rect destinationRect = _ResolvedAlignment.Inscribe(sizes.Destination, Dart: uiDefaultClass.Offset.Zero & Size);
+                Rect sourceRect = _ResolvedAlignment.Inscribe(sizes.Source, Dart.UI.UiDefaultClass.Offset.Zero & childSize);
+                Rect destinationRect = _ResolvedAlignment.Inscribe(sizes.Destination, Dart.UI.UiDefaultClass.Offset.Zero & Size);
                 _HasVisualOverflow = sourceRect.Width < childSize.Width || sourceRect.Height < childSize.Height;
 
                 _Transform = Matrix4.TranslationValues(destinationRect.Left, destinationRect.Top, 0.0);
@@ -2727,7 +2536,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             _UpdatePaintData();
             if (Child != null)
             {
-                if (_HasVisualOverflow) ((TransformLayer)Layer) = context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintChildWithTransform, oldLayer: ((TransformLayer)Layer) is ClipRectLayer ? ((TransformLayer)Layer) as ClipRectLayer : null); else ((TransformLayer)Layer) = _PaintChildWithTransform(context, offset);
+                if (_HasVisualOverflow) ((TransformLayer)Layer) = context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintChildWithTransform, oldLayer: ((TransformLayer)Layer) is ClipRectLayer ? ((TransformLayer)Layer) as ClipRectLayer : null); else ((TransformLayer)Layer) = _PaintChildWithTransform(context, offset);
             }
 
         }
@@ -2791,7 +2600,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2808,21 +2616,14 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderFractionalTranslation : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderFractionalTranslation(FlutterBinding.UI.Offset translation = default(FlutterBinding.UI.Offset), bool transformHitTests = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
             this.TransformHitTests = transformHitTests;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Offset _Translation { get; set; }
         public virtual bool TransformHitTests { get; set; }
         public virtual FlutterBinding.UI.Offset Translation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -2881,7 +2682,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2901,7 +2701,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderPointerListener : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
-        #region constructors
         public RenderPointerListener(FlutterSDK.Rendering.Proxybox.PointerDownEventListener onPointerDown = default(FlutterSDK.Rendering.Proxybox.PointerDownEventListener), FlutterSDK.Rendering.Proxybox.PointerMoveEventListener onPointerMove = default(FlutterSDK.Rendering.Proxybox.PointerMoveEventListener), FlutterSDK.Rendering.Proxybox.PointerUpEventListener onPointerUp = default(FlutterSDK.Rendering.Proxybox.PointerUpEventListener), FlutterSDK.Rendering.Proxybox.PointerCancelEventListener onPointerCancel = default(FlutterSDK.Rendering.Proxybox.PointerCancelEventListener), FlutterSDK.Rendering.Proxybox.PointerSignalEventListener onPointerSignal = default(FlutterSDK.Rendering.Proxybox.PointerSignalEventListener), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(behavior: behavior, child: child)
         {
@@ -2911,17 +2710,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             this.OnPointerCancel = onPointerCancel;
             this.OnPointerSignal = onPointerSignal;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Proxybox.PointerDownEventListener OnPointerDown { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerMoveEventListener OnPointerMove { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerUpEventListener OnPointerUp { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerCancelEventListener OnPointerCancel { get; set; }
         public virtual FlutterSDK.Rendering.Proxybox.PointerSignalEventListener OnPointerSignal { get; set; }
-        #endregion
-
-        #region methods
 
         public new void PerformResize()
         {
@@ -2952,7 +2745,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -2978,7 +2770,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderMouseRegion : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderMouseRegion(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener onEnter = default(FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener), FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener onHover = default(FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener), FlutterSDK.Rendering.Mousetracking.PointerExitEventListener onExit = default(FlutterSDK.Rendering.Mousetracking.PointerExitEventListener), bool opaque = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -2987,9 +2778,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Opaque { get; set; }
         internal virtual FlutterSDK.Rendering.Mousetracking.PointerEnterEventListener _OnEnter { get; set; }
         internal virtual FlutterSDK.Rendering.Mousetracking.PointerHoverEventListener _OnHover { get; set; }
@@ -3002,9 +2790,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterSDK.Rendering.Mousetracking.PointerExitEventListener OnExit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Mousetracking.MouseTrackerAnnotation HoverAnnotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool NeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HandleEnter(FlutterSDK.Gestures.Events.PointerEnterEvent @event)
         {
@@ -3125,7 +2910,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3158,23 +2942,16 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderRepaintBoundary : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderRepaintBoundary(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _DebugSymmetricPaintCount { get; set; }
         internal virtual int _DebugAsymmetricPaintCount { get; set; }
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int DebugSymmetricPaintCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int DebugAsymmetricPaintCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Capture an image of the current state of this render object and its
@@ -3241,7 +3018,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         {
 
             OffsetLayer offsetLayer = Layer as OffsetLayer;
-            return offsetLayer.ToImage(Dart: uiDefaultClass.Offset.Zero & Size, pixelRatio: pixelRatio);
+            return offsetLayer.ToImage(Dart.UI.UiDefaultClass.Offset.Zero & Size, pixelRatio: pixelRatio);
         }
 
 
@@ -3279,7 +3056,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3302,7 +3078,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderIgnorePointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderIgnorePointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool ignoring = true, bool ignoringSemantics = default(bool))
         : base(child)
         {
@@ -3311,17 +3086,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Ignoring { get; set; }
         internal virtual bool _IgnoringSemantics { get; set; }
         public virtual bool Ignoring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -3348,7 +3117,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3359,21 +3127,14 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderOffstage : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderOffstage(bool offstage = true, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Offstage { get; set; }
         public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
@@ -3488,7 +3249,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3508,23 +3268,16 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderAbsorbPointer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderAbsorbPointer(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool absorbing = true, bool ignoringSemantics = default(bool))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Absorbing { get; set; }
         internal virtual bool _IgnoringSemantics { get; set; }
         public virtual bool Absorbing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Box.BoxHitTestResult result, FlutterBinding.UI.Offset position = default(FlutterBinding.UI.Offset))
         {
@@ -3551,7 +3304,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3565,19 +3317,12 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderMetaData : FlutterSDK.Rendering.Proxybox.RenderProxyBoxWithHitTestBehavior
     {
-        #region constructors
         public RenderMetaData(object metaData = default(object), FlutterSDK.Rendering.Proxybox.HitTestBehavior behavior = default(FlutterSDK.Rendering.Proxybox.HitTestBehavior), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(behavior: behavior, child: child)
         {
             this.MetaData = metaData;
         }
-        #endregion
-
-        #region fields
         public virtual object MetaData { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
@@ -3587,7 +3332,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3597,15 +3341,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderSemanticsGestureHandler : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderSemanticsGestureHandler(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Gestures.Tap.GestureTapCallback onTap = default(FlutterSDK.Gestures.Tap.GestureTapCallback), FlutterSDK.Gestures.Longpress.GestureLongPressCallback onLongPress = default(FlutterSDK.Gestures.Longpress.GestureLongPressCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onHorizontalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback onVerticalDragUpdate = default(FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback), double scrollFactor = 0.8)
         : base(child)
         {
             this.ScrollFactor = scrollFactor;
         }
-        #endregion
-
-        #region fields
         internal virtual HashSet<SemanticsAction> _ValidActions { get; set; }
         internal virtual FlutterSDK.Gestures.Tap.GestureTapCallback _OnTap { get; set; }
         internal virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback _OnLongPress { get; set; }
@@ -3617,25 +3357,22 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressCallback OnLongPress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnHorizontalDragUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Gestures.Dragdetails.GestureDragUpdateCallback OnVerticalDragUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
             base.DescribeSemanticsConfiguration(config);
-            if (OnTap != null && _IsValidAction(Dart: uiDefaultClass.SemanticsAction.Tap)) config.OnTap = OnTap;
-            if (OnLongPress != null && _IsValidAction(Dart: uiDefaultClass.SemanticsAction.LongPress)) config.OnLongPress = OnLongPress;
+            if (OnTap != null && _IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.Tap)) config.OnTap = OnTap;
+            if (OnLongPress != null && _IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.LongPress)) config.OnLongPress = OnLongPress;
             if (OnHorizontalDragUpdate != null)
             {
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollRight)) config.OnScrollRight = _PerformSemanticScrollRight;
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollLeft)) config.OnScrollLeft = _PerformSemanticScrollLeft;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollRight)) config.OnScrollRight = _PerformSemanticScrollRight;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollLeft)) config.OnScrollLeft = _PerformSemanticScrollLeft;
             }
 
             if (OnVerticalDragUpdate != null)
             {
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollUp)) config.OnScrollUp = _PerformSemanticScrollUp;
-                if (_IsValidAction(Dart: uiDefaultClass.SemanticsAction.ScrollDown)) config.OnScrollDown = _PerformSemanticScrollDown;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollUp)) config.OnScrollUp = _PerformSemanticScrollUp;
+                if (_IsValidAction(Dart.UI.UiDefaultClass.SemanticsAction.ScrollDown)) config.OnScrollDown = _PerformSemanticScrollDown;
             }
 
         }
@@ -3656,7 +3393,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnHorizontalDragUpdate != null)
             {
                 double primaryDelta = Size.Width * -ScrollFactor;
-                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3669,7 +3406,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnHorizontalDragUpdate != null)
             {
                 double primaryDelta = Size.Width * ScrollFactor;
-                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnHorizontalDragUpdate(new DragUpdateDetails(delta: new Offset(primaryDelta, 0.0), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3682,7 +3419,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnVerticalDragUpdate != null)
             {
                 double primaryDelta = Size.Height * -ScrollFactor;
-                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3695,7 +3432,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
             if (OnVerticalDragUpdate != null)
             {
                 double primaryDelta = Size.Height * ScrollFactor;
-                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart: uiDefaultClass.Offset.Zero))));
+                OnVerticalDragUpdate(new DragUpdateDetails(delta: new Offset(0.0, primaryDelta), primaryDelta: primaryDelta, globalPosition: LocalToGlobal(Size.Center(Dart.UI.UiDefaultClass.Offset.Zero))));
             }
 
         }
@@ -3713,7 +3450,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -3722,15 +3458,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderSemanticsAnnotations : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderSemanticsAnnotations(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool container = false, bool explicitChildNodes = default(bool), bool excludeSemantics = false, bool enabled = default(bool), bool @checked = default(bool), bool toggled = default(bool), bool selected = default(bool), bool button = default(bool), bool link = default(bool), bool header = default(bool), bool textField = default(bool), bool readOnly = default(bool), bool focusable = default(bool), bool focused = default(bool), bool inMutuallyExclusiveGroup = default(bool), bool obscured = default(bool), bool multiline = default(bool), bool scopesRoute = default(bool), bool namesRoute = default(bool), bool hidden = default(bool), bool image = default(bool), bool liveRegion = default(bool), int maxValueLength = default(int), int currentValueLength = default(int), string label = default(string), string value = default(string), string increasedValue = default(string), string decreasedValue = default(string), string hint = default(string), FlutterSDK.Semantics.Semantics.SemanticsHintOverrides hintOverrides = default(FlutterSDK.Semantics.Semantics.SemanticsHintOverrides), TextDirection textDirection = default(TextDirection), FlutterSDK.Semantics.Semantics.SemanticsSortKey sortKey = default(FlutterSDK.Semantics.Semantics.SemanticsSortKey), VoidCallback onTap = default(VoidCallback), VoidCallback onDismiss = default(VoidCallback), VoidCallback onLongPress = default(VoidCallback), VoidCallback onScrollLeft = default(VoidCallback), VoidCallback onScrollRight = default(VoidCallback), VoidCallback onScrollUp = default(VoidCallback), VoidCallback onScrollDown = default(VoidCallback), VoidCallback onIncrease = default(VoidCallback), VoidCallback onDecrease = default(VoidCallback), VoidCallback onCopy = default(VoidCallback), VoidCallback onCut = default(VoidCallback), VoidCallback onPaste = default(VoidCallback), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByCharacter = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorForwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.MoveCursorHandler onMoveCursorBackwardByWord = default(FlutterSDK.Semantics.Semantics.MoveCursorHandler), FlutterSDK.Semantics.Semantics.SetSelectionHandler onSetSelection = default(FlutterSDK.Semantics.Semantics.SetSelectionHandler), VoidCallback onDidGainAccessibilityFocus = default(VoidCallback), VoidCallback onDidLoseAccessibilityFocus = default(VoidCallback), Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> customSemanticsActions = default(Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object>))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Container { get; set; }
         internal virtual bool _ExplicitChildNodes { get; set; }
         internal virtual bool _ExcludeSemantics { get; set; }
@@ -3835,9 +3567,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual VoidCallback OnDidGainAccessibilityFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual VoidCallback OnDidLoseAccessibilityFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Dictionary<FlutterSDK.Semantics.Semantics.CustomSemanticsAction, object> CustomSemanticsActions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
         {
@@ -4068,7 +3797,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4081,20 +3809,13 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderBlockSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderBlockSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool blocking = true)
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _Blocking { get; set; }
         public virtual bool Blocking { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -4113,7 +3834,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4128,18 +3848,11 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderMergeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderMergeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -4149,7 +3862,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4164,7 +3876,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderExcludeSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderExcludeSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), bool excluding = true)
         : base(child)
         {
@@ -4173,14 +3884,8 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Excluding { get; set; }
         public virtual bool Excluding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void VisitChildrenForSemantics(FlutterSDK.Rendering.@object.RenderObjectVisitor visitor)
         {
@@ -4199,7 +3904,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4217,20 +3921,13 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderIndexedSemantics : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderIndexedSemantics(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), int index = default(int))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual int _Index { get; set; }
         public virtual int Index { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -4250,7 +3947,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4264,7 +3960,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderLeaderLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderLeaderLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -4273,15 +3968,9 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
         public virtual FlutterSDK.Rendering.Layer.LayerLink Link { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -4295,7 +3984,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
                 ..Link = Link..Offset = offset;
             }
 
-            context.PushLayer(Layer, base.Paint, Dart: uiDefaultClass.Offset.Zero);
+            context.PushLayer(Layer, base.Paint, Dart.UI.UiDefaultClass.Offset.Zero);
 
         }
 
@@ -4310,7 +3999,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4331,7 +4019,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderFollowerLayer : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderFollowerLayer(FlutterSDK.Rendering.Layer.LayerLink link = default(FlutterSDK.Rendering.Layer.LayerLink), bool showWhenUnlinked = true, FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -4342,9 +4029,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Layer.LayerLink _Link { get; set; }
         internal virtual bool _ShowWhenUnlinked { get; set; }
         internal virtual FlutterBinding.UI.Offset _Offset { get; set; }
@@ -4353,9 +4037,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
         public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Layer.FollowerLayer Layer { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Detach()
         {
@@ -4414,7 +4095,7 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
                 ..Link = Link..ShowWhenUnlinked = ShowWhenUnlinked..LinkedOffset = this.Offset..UnlinkedOffset = offset;
             }
 
-            context.PushLayer(Layer, base.Paint, Dart: uiDefaultClass.Offset.Zero, childPaintBounds: Rect.FromLTRB(Dart: coreDefaultClass.Double.NegativeInfinity, Dart: coreDefaultClass.Double.NegativeInfinity, Dart: coreDefaultClass.Double.Infinity, Dart: coreDefaultClass.Double.Infinity));
+            context.PushLayer(Layer, base.Paint, Dart.UI.UiDefaultClass.Offset.Zero, childPaintBounds: Rect.FromLTRB(Dart.CoreDefaultClass.Double.NegativeInfinity, Dart.CoreDefaultClass.Double.NegativeInfinity, Dart.CoreDefaultClass.Double.Infinity, Dart.CoreDefaultClass.Double.Infinity));
         }
 
 
@@ -4445,7 +4126,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 
@@ -4459,23 +4139,16 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
     /// </Summary>
     public class RenderAnnotatedRegion<T> : FlutterSDK.Rendering.Proxybox.RenderProxyBox
     {
-        #region constructors
         public RenderAnnotatedRegion(T value = default(T), bool sized = default(bool), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual T _Value { get; set; }
         internal virtual bool _Sized { get; set; }
         public new bool AlwaysNeedsCompositing { get; set; }
         public virtual T Value { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Sized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -4485,7 +4158,6 @@ public virtual bool ShouldReclip(FlutterSDK.Rendering.Proxybox.CustomClipper<T> 
 
 
 
-        #endregion
     }
 
 

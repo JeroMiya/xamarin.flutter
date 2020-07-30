@@ -447,7 +447,6 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
     /// </Summary>
     public class RawKeyboardListener : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public RawKeyboardListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> onKey = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -456,16 +455,10 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
             this.OnKey = onKey;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RawKeyEvent> OnKey { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Rawkeyboardlistener._RawKeyboardListenerState CreateState() => new _RawKeyboardListenerState();
 
@@ -479,22 +472,14 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
 
 
 
-        #endregion
     }
 
 
     public class _RawKeyboardListenerState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Rawkeyboardlistener.RawKeyboardListener>
     {
-        #region constructors
         public _RawKeyboardListenerState()
         { }
-        #endregion
-
-        #region fields
         internal virtual bool _Listening { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -572,7 +557,6 @@ namespace FlutterSDK.Widgets.Rawkeyboardlistener
 
 
 
-        #endregion
     }
 
 }

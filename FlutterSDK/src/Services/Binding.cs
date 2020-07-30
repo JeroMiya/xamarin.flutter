@@ -491,18 +491,18 @@ namespace FlutterSDK.Services.Binding
         private async Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> _AddLicenses()
         {
             Completer<string> rawLicenses = new Completer<string>();
-        Dart: asyncDefaultClass.Timer.Run(async () =>
-        {
-            rawLicenses.Complete(AssetbundleDefaultClass.RootBundle.LoadString("LICENSE", cache: false));
-        }
-         );
+            Dart.AsyncDefaultClass.Timer.Run(async () =>
+            {
+                rawLicenses.Complete(AssetbundleDefaultClass.RootBundle.LoadString("LICENSE", cache: false));
+            }
+            );
             await rawLicenses.Future;
             Completer<List<LicenseEntry>> parsedLicenses = new Completer<List<LicenseEntry>>();
-        Dart: asyncDefaultClass.Timer.Run(async () =>
-        {
-            parsedLicenses.Complete(IsolatesDefaultClass.Compute(_ParseLicenses, await rawLicenses.Future, debugLabel: "parseLicenses"));
-        }
-         );
+            Dart.AsyncDefaultClass.Timer.Run(async () =>
+            {
+                parsedLicenses.Complete(IsolatesDefaultClass.Compute(_ParseLicenses, await rawLicenses.Future, debugLabel: "parseLicenses"));
+            }
+            );
             await parsedLicenses.Future;
             foreach (var enumItem in (Stream<LicenseEntry>.FromIterable(await parsedLicenses.Future))) { yield return enumItem; }
         }
@@ -590,24 +590,17 @@ namespace FlutterSDK.Services.Binding
     /// </Summary>
     public class _DefaultBinaryMessenger : FlutterSDK.Services.Binarymessenger.BinaryMessenger
     {
-        #region constructors
         internal _DefaultBinaryMessenger()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<string, object> _Handlers { get; set; }
         internal virtual Dictionary<string, object> _MockHandlers { get; set; }
-        #endregion
-
-        #region methods
 
         private Future<ByteData> _SendPlatformMessage(string channel, ByteData message)
         {
             Completer<ByteData> completer = new Completer<ByteData>();
-            Ui.Dart:uiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
+            Dart.UI.UiDefaultClass.Window.SendPlatformMessage(channel, message, (ByteData reply) =>
             {
             try
             {
@@ -637,7 +630,7 @@ return completer.Future;
             }
             else
             {
-                Ui.Dart:uiDefaultClass.ChannelBuffers.Push(channel, data, callback);
+                Dart.UI.UiDefaultClass.ChannelBuffers.Push(channel, data, callback);
                 callback = null;
             }
 
@@ -672,10 +665,11 @@ finally
     public new void SetMessageHandler(string channel, FlutterSDK.Services.Binarymessenger.MessageHandler handler)
     {
         if (handler == null) _Handlers.Remove(channel); else _Handlers[channel] = handler;
-        Ui.Dart:uiDefaultClass.ChannelBuffers.Drain(channel, async(ByteData data, Ui.Dart:uiDefaultClass.PlatformMessageResponseCallback callback) => {
+        Dart.UI.UiDefaultClass.ChannelBuffers.Drain(channel, async (ByteData data, Dart.UI.PlatformMessageResponseCallback callback) =>
+        {
             await HandlePlatformMessage(channel, data, callback);
         }
-);
+        );
     }
 
 
@@ -688,7 +682,6 @@ finally
 
 
 
-    #endregion
 }
 
 }

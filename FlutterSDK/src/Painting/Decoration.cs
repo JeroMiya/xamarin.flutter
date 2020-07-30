@@ -483,19 +483,12 @@ namespace FlutterSDK.Painting.Decoration
     /// </Summary>
     public class Decoration : IDiagnosticable
     {
-        #region constructors
         public Decoration()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new string ToStringShort() => ObjectDefaultClass.ObjectRuntimeType(this, "Decoration");
 
@@ -640,7 +633,6 @@ namespace FlutterSDK.Painting.Decoration
         public virtual Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection) => null;
 
 
-        #endregion
     }
 
 
@@ -656,18 +648,11 @@ namespace FlutterSDK.Painting.Decoration
     /// </Summary>
     public class BoxPainter
     {
-        #region constructors
         public BoxPainter(VoidCallback onChanged = default(VoidCallback))
         {
             this.OnChanged = onChanged;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnChanged { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Paints the [Decoration] for which this object was created on the
@@ -714,7 +699,6 @@ namespace FlutterSDK.Painting.Decoration
 
 
 
-        #endregion
     }
 
 }

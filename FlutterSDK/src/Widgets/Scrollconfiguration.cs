@@ -438,17 +438,10 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
     /// </Summary>
     public class ScrollBehavior
     {
-        #region constructors
         public ScrollBehavior()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The platform whose scroll physics should be implemented.
@@ -506,7 +499,6 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
 
 
 
-        #endregion
     }
 
 
@@ -518,19 +510,12 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
     /// </Summary>
     public class ScrollConfiguration : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public ScrollConfiguration(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior behavior = default(FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Behavior = behavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollconfiguration.ScrollBehavior Behavior { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The [ScrollBehavior] for [Scrollable] widgets in the given [BuildContext].
@@ -571,7 +556,6 @@ namespace FlutterSDK.Widgets.Scrollconfiguration
 
 
 
-        #endregion
     }
 
 }

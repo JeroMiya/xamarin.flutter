@@ -395,7 +395,6 @@ namespace FlutterSDK.Material.Cardtheme
     /// </Summary>
     public class CardTheme : IDiagnosticable
     {
-        #region constructors
         public CardTheme(FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry margin = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -406,9 +405,6 @@ namespace FlutterSDK.Material.Cardtheme
             this.Margin = margin;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterBinding.UI.Color ShadowColor { get; set; }
@@ -416,9 +412,6 @@ namespace FlutterSDK.Material.Cardtheme
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Margin { get; set; }
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -453,7 +446,7 @@ namespace FlutterSDK.Material.Cardtheme
         public virtual FlutterSDK.Material.Cardtheme.CardTheme Lerp(FlutterSDK.Material.Cardtheme.CardTheme a, FlutterSDK.Material.Cardtheme.CardTheme b, double t)
         {
 
-            return new CardTheme(clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior, color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shadowColor: Dart:uiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), margin: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Margin, b?.Margin, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
+            return new CardTheme(clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior, color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shadowColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), margin: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Margin, b?.Margin, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
         }
 
 
@@ -461,7 +454,7 @@ namespace FlutterSDK.Material.Cardtheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is CardTheme && other.ClipBehavior == ClipBehavior && other.Color == Color && other.ShadowColor == ShadowColor && other.Elevation == Elevation && other.Margin == Margin && other.Shape == Shape;
         }
@@ -482,7 +475,6 @@ namespace FlutterSDK.Material.Cardtheme
 
 
 
-        #endregion
     }
 
 }

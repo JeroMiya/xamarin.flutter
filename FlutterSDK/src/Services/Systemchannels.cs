@@ -432,14 +432,10 @@ namespace FlutterSDK.Services.Systemchannels
     /// </Summary>
     public class SystemChannels
     {
-        #region constructors
         internal SystemChannels()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Services.Platformchannel.MethodChannel Navigation { get; set; }
         public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platform { get; set; }
         public virtual FlutterSDK.Services.Platformchannel.MethodChannel TextInput { get; set; }
@@ -449,10 +445,6 @@ namespace FlutterSDK.Services.Systemchannels
         public virtual FlutterSDK.Services.Platformchannel.BasicMessageChannel<object> Accessibility { get; set; }
         public virtual FlutterSDK.Services.Platformchannel.MethodChannel Platformviews { get; set; }
         public virtual FlutterSDK.Services.Platformchannel.MethodChannel Skia { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

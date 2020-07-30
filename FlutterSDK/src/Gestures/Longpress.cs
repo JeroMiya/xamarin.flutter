@@ -316,21 +316,13 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressStartDetails
     {
-        #region constructors
         public LongPressStartDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -345,24 +337,16 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressMoveUpdateDetails
     {
-        #region constructors
         public LongPressMoveUpdateDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset offsetFromOrigin = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localOffsetFromOrigin = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.OffsetFromOrigin = offsetFromOrigin;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
         public virtual FlutterBinding.UI.Offset OffsetFromOrigin { get; set; }
         public virtual FlutterBinding.UI.Offset LocalOffsetFromOrigin { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -377,23 +361,15 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressEndDetails
     {
-        #region constructors
         public LongPressEndDetails(FlutterBinding.UI.Offset globalPosition = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localPosition = default(FlutterBinding.UI.Offset), FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
         : base()
         {
             this.GlobalPosition = globalPosition;
             this.Velocity = velocity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset GlobalPosition { get; set; }
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -412,15 +388,11 @@ namespace FlutterSDK.Gestures.Longpress
     /// </Summary>
     public class LongPressGestureRecognizer : FlutterSDK.Gestures.Recognizer.PrimaryPointerGestureRecognizer
     {
-        #region constructors
         public LongPressGestureRecognizer(TimeSpan duration = default(TimeSpan), double postAcceptSlopTolerance = default(double), PointerDeviceKind kind = default(PointerDeviceKind), @Object debugOwner = default(@Object))
         : base(deadline: duration ?? ConstantsDefaultClass.KLongPressTimeout, postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _LongPressAccepted { get; set; }
         internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LongPressOrigin { get; set; }
         internal virtual int _InitialButtons { get; set; }
@@ -431,9 +403,6 @@ namespace FlutterSDK.Gestures.Longpress
         public virtual FlutterSDK.Gestures.Longpress.GestureLongPressEndCallback OnLongPressEnd { get; set; }
         internal virtual FlutterSDK.Gestures.Velocitytracker.VelocityTracker _VelocityTracker { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerDownEvent @event)
         {
@@ -583,7 +552,6 @@ namespace FlutterSDK.Gestures.Longpress
 
 
 
-        #endregion
     }
 
 }

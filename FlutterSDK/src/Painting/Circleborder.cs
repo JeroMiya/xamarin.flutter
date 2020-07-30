@@ -443,21 +443,14 @@ namespace FlutterSDK.Painting.Circleborder
     /// </Summary>
     public class CircleBorder : FlutterSDK.Painting.Borders.ShapeBorder
     {
-        #region constructors
         public CircleBorder(FlutterSDK.Painting.Borders.BorderSide side = default(FlutterSDK.Painting.Borders.BorderSide))
         : base()
         {
             this.Side = side;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Side { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borders.ShapeBorder Scale(double t) => new CircleBorder(side: Side.Scale(t));
 
@@ -484,7 +477,7 @@ namespace FlutterSDK.Painting.Circleborder
         public new Path GetInnerPath(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
             return new Path();
-            new Path().AddOval(Rect.FromCircle(center: rect.Center, radius: Math.Dart:mathDefaultClass.Max(0.0, rect.ShortestSide / 2.0 - Side.Width)));
+            new Path().AddOval(Rect.FromCircle(center: rect.Center, radius: Dart.Math.MathDefaultClass.Max(0.0, rect.ShortestSide / 2.0 - Side.Width)));
         }
 
 
@@ -516,7 +509,6 @@ namespace FlutterSDK.Painting.Circleborder
 
 
 
-        #endregion
     }
 
 }

@@ -464,7 +464,7 @@ namespace FlutterSDK.Widgets.Localizations
             }
 
             if (pendingList == null) return new SynchronousFuture<Dictionary<Type, object>>(output);
-            return Dart:asyncDefaultClass.Future.Wait(pendingList.Map((_Pending p) => =>p.FutureValue)).Then((List<object> values) =>
+            return Dart.AsyncDefaultClass.Future.Wait(pendingList.Map((_Pending p) => =>p.FutureValue)).Then((List<object> values) =>
             {
 
                 for (int i = 0; i < values.Count; i += 1)
@@ -549,21 +549,13 @@ namespace FlutterSDK.Widgets.Localizations
 
     public class _Pending
     {
-        #region constructors
         public _Pending(FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate, Future<object> futureValue)
         {
             this.@delegate = @delegate;
             this.FutureValue = futureValue;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object> @delegate { get; set; }
         public virtual Future<object> FutureValue { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -578,18 +570,11 @@ namespace FlutterSDK.Widgets.Localizations
     /// </Summary>
     public class LocalizationsDelegate<T>
     {
-        #region constructors
         public LocalizationsDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Type Type { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Whether resources for the given locale can be loaded by this delegate.
@@ -631,23 +616,15 @@ namespace FlutterSDK.Widgets.Localizations
         }
 
 
-        #endregion
     }
 
 
     public class _WidgetsLocalizationsDelegate : FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations>
     {
-        #region constructors
         public _WidgetsLocalizationsDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new bool IsSupported(Locale locale) => true;
 
@@ -661,7 +638,6 @@ namespace FlutterSDK.Widgets.Localizations
 
 
 
-        #endregion
     }
 
 
@@ -677,19 +653,12 @@ namespace FlutterSDK.Widgets.Localizations
     /// </Summary>
     public class DefaultWidgetsLocalizations : IWidgetsLocalizations
     {
-        #region constructors
         public DefaultWidgetsLocalizations()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Localizations.LocalizationsDelegate<FlutterSDK.Widgets.Localizations.WidgetsLocalizations> @delegate { get; set; }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates an object that provides US English resource values for the
@@ -707,13 +676,11 @@ namespace FlutterSDK.Widgets.Localizations
 
 
 
-        #endregion
     }
 
 
     public class _LocalizationsScope : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _LocalizationsScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), FlutterSDK.Widgets.Localizations._LocalizationsState localizationsState = default(FlutterSDK.Widgets.Localizations._LocalizationsState), Dictionary<Type, object> typeToResources = default(Dictionary<Type, object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -721,15 +688,9 @@ namespace FlutterSDK.Widgets.Localizations
             this.LocalizationsState = localizationsState;
             this.TypeToResources = typeToResources;
         }
-        #endregion
-
-        #region fields
         public virtual Locale Locale { get; set; }
         public virtual FlutterSDK.Widgets.Localizations._LocalizationsState LocalizationsState { get; set; }
         public virtual Dictionary<Type, object> TypeToResources { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Localizations._LocalizationsScope old)
         {
@@ -744,7 +705,6 @@ namespace FlutterSDK.Widgets.Localizations
 
 
 
-        #endregion
     }
 
 
@@ -842,7 +802,6 @@ namespace FlutterSDK.Widgets.Localizations
     /// </Summary>
     public class Localizations : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Localizations(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), Locale locale = default(Locale), List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> delegates = default(List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -859,15 +818,9 @@ namespace FlutterSDK.Widgets.Localizations
         }
 
 
-        #endregion
-
-        #region fields
         public virtual Locale Locale { get; set; }
         public virtual List<FlutterSDK.Widgets.Localizations.LocalizationsDelegate<object>> Delegates { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The locale of the Localizations widget for the widget tree that
@@ -942,26 +895,18 @@ namespace FlutterSDK.Widgets.Localizations
 
 
 
-        #endregion
     }
 
 
     public class _LocalizationsState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Localizations.Localizations>
     {
-        #region constructors
         public _LocalizationsState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _LocalizedResourcesScopeKey { get; set; }
         internal virtual Dictionary<Type, object> _TypeToResources { get; set; }
         internal virtual Locale _Locale { get; set; }
         public virtual Locale Locale { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual TextDirection _TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1062,7 +1007,6 @@ namespace FlutterSDK.Widgets.Localizations
 
 
 
-        #endregion
     }
 
 }

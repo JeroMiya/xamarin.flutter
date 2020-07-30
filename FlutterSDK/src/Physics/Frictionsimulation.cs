@@ -437,7 +437,6 @@ namespace FlutterSDK.Physics.Frictionsimulation
     /// </Summary>
     public class FrictionSimulation : FlutterSDK.Physics.Simulation.Simulation
     {
-        #region constructors
         public FrictionSimulation(double drag, double position, double velocity, FlutterSDK.Physics.Tolerance.Tolerance tolerance = default(FlutterSDK.Physics.Tolerance.Tolerance))
         : base(tolerance: tolerance)
         {
@@ -453,44 +452,38 @@ namespace FlutterSDK.Physics.Frictionsimulation
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual double _Drag { get; set; }
         internal virtual double _DragLog { get; set; }
         internal virtual double _X { get; set; }
         internal virtual double _V { get; set; }
         public virtual double FinalX { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private double _DragFor(double startPosition, double endPosition, double startVelocity, double endVelocity)
         {
-            return Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, (startVelocity - endVelocity) / (startPosition - endPosition)) as double;
+            return Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, (startVelocity - endVelocity) / (startPosition - endPosition)) as double;
         }
 
 
 
 
-        public new double x(double time) => _X + _V * Math.Dart:mathDefaultClass.Pow(_Drag, time)/_DragLog-_V/_DragLog;
+        public new double x(double time) => _X + _V * Dart.Math.MathDefaultClass.Pow(_Drag, time) / _DragLog - _V / _DragLog;
 
 
 
-public new double Dx(double time) => _V * Math.Dart:mathDefaultClass.Pow(_Drag, time);
+        public new double Dx(double time) => _V * Dart.Math.MathDefaultClass.Pow(_Drag, time);
 
 
 
-/// <Summary>
-/// The time at which the value of `x(time)` will equal [x].
-///
-/// Returns `double.infinity` if the simulation will never reach [x].
-/// </Summary>
-public virtual double TimeAtX(double x)
+        /// <Summary>
+        /// The time at which the value of `x(time)` will equal [x].
+        ///
+        /// Returns `double.infinity` if the simulation will never reach [x].
+        /// </Summary>
+        public virtual double TimeAtX(double x)
         {
             if (x == _X) return 0.0;
-            if (_V == 0.0 || (_V > 0 ? (x < _X || x > FinalX) : (x > _X || x < FinalX))) return Dart:coreDefaultClass.Double.Infinity;
-            return Math.Dart:mathDefaultClass.Log(_DragLog * (x - _X) / _V + 1.0) / _DragLog;
+            if (_V == 0.0 || (_V > 0 ? (x < _X || x > FinalX) : (x > _X || x < FinalX))) return Dart.CoreDefaultClass.Double.Infinity;
+            return Dart.Math.MathDefaultClass.Log(_DragLog * (x - _X) / _V + 1.0) / _DragLog;
         }
 
 
@@ -499,7 +492,6 @@ public virtual double TimeAtX(double x)
         public new bool IsDone(double time) => Dx(time).Abs() < Tolerance.Velocity;
 
 
-        #endregion
     }
 
 
@@ -509,21 +501,14 @@ public virtual double TimeAtX(double x)
     /// </Summary>
     public class BoundedFrictionSimulation : FlutterSDK.Physics.Frictionsimulation.FrictionSimulation
     {
-        #region constructors
         public BoundedFrictionSimulation(double drag, double position, double velocity, double _minX, double _maxX)
         : base(drag, position, velocity)
         {
             this._MinX = _minX;
             this._MaxX = _maxX;
         }
-        #endregion
-
-        #region fields
         internal virtual double _MinX { get; set; }
         internal virtual double _MaxX { get; set; }
-        #endregion
-
-        #region methods
 
         public new double x(double time)
         {
@@ -540,7 +525,6 @@ public virtual double TimeAtX(double x)
 
 
 
-        #endregion
     }
 
 }

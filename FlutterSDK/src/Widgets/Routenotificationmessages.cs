@@ -434,17 +434,10 @@ namespace FlutterSDK.Widgets.Routenotificationmessages
     /// </Summary>
     public class RouteNotificationMessages
     {
-        #region constructors
         internal RouteNotificationMessages()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// When the engine is Web notify the platform for a route change.
@@ -479,7 +472,6 @@ namespace FlutterSDK.Widgets.Routenotificationmessages
 
 
 
-        #endregion
     }
 
 }

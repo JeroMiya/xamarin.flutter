@@ -525,18 +525,11 @@ namespace FlutterSDK.Painting.Shaderwarmup
     /// </Summary>
     public class ShaderWarmUp
     {
-        #region constructors
         public ShaderWarmUp()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Trigger draw operations on a given canvas to warm up GPU shader
@@ -563,10 +556,10 @@ namespace FlutterSDK.Painting.Shaderwarmup
         /// </Summary>
         public virtual async Future<object> Execute()
         {
-            Ui.Dart:uiDefaultClass.PictureRecorder recorder = new Ui.PictureRecorder();
-            Ui.Dart:uiDefaultClass.Canvas canvas = new Ui.Canvas(recorder);
+            Dart.UI.PictureRecorder recorder = new Ui.PictureRecorder();
+            Dart.UI.Canvas canvas = new Ui.Canvas(recorder);
             await WarmUpOnCanvas(canvas);
-            Ui.Dart:uiDefaultClass.Picture picture = recorder.EndRecording();
+            Dart.UI.Picture picture = recorder.EndRecording();
             TimelineTask shaderWarmUpTask = new TimelineTask();
             shaderWarmUpTask.Start("Warm-up shader");
             await picture.ToImage(Size.Width.Ceil(), Size.Height.Ceil());
@@ -575,7 +568,6 @@ namespace FlutterSDK.Painting.Shaderwarmup
 
 
 
-        #endregion
     }
 
 
@@ -588,21 +580,14 @@ namespace FlutterSDK.Painting.Shaderwarmup
     /// </Summary>
     public class DefaultShaderWarmUp : FlutterSDK.Painting.Shaderwarmup.ShaderWarmUp
     {
-        #region constructors
         public DefaultShaderWarmUp(double drawCallSpacing = 0.0, Size canvasSize = default(Size))
         {
             this.DrawCallSpacing = drawCallSpacing;
             this.CanvasSize = canvasSize;
         }
-        #endregion
-
-        #region fields
         public virtual double DrawCallSpacing { get; set; }
         public virtual Size CanvasSize { get; set; }
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Trigger common draw operations on a canvas to warm up GPU shader
@@ -610,67 +595,68 @@ namespace FlutterSDK.Painting.Shaderwarmup
         /// </Summary>
         public new async Future<object> WarmUpOnCanvas(Canvas canvas)
         {
-            Ui.Dart:uiDefaultClass.RRect rrect = Ui.Dart:uiDefaultClass.RRect.FromLTRBXY(20.0, 20.0, 60.0, 60.0, 10.0, 10.0);
-            Ui.Dart:uiDefaultClass.Path rrectPath = new Ui.Path();
+            Dart.UI.RRect rrect = Dart.UI.RRect.FromLTRBXY(20.0, 20.0, 60.0, 60.0, 10.0, 10.0);
+            Dart.UI.Path rrectPath = new Ui.Path();
             new Ui.Path().AddRRect(rrect);
-            Ui.Dart:uiDefaultClass.Path circlePath = new Ui.Path();
-            new Ui.Path().AddOval(Ui.Dart:uiDefaultClass.Rect.FromCircle(center: new Ui.Dart:uiDefaultClass.Offset(40.0, 40.0), radius: 20.0));
-            Ui.Dart:uiDefaultClass.Path path = new Ui.Path();
+            Dart.UI.Path circlePath = new Ui.Path();
+            new Ui.Path().AddOval(Dart.UI.Rect.FromCircle(center: new Dart.UI.Offset(40.0, 40.0), radius: 20.0));
+            Dart.UI.Path path = new Ui.Path();
             path.MoveTo(20.0, 60.0);
             path.QuadraticBezierTo(60.0, 20.0, 60.0, 60.0);
             path.Close();
             path.MoveTo(60.0, 20.0);
             path.QuadraticBezierTo(60.0, 60.0, 20.0, 60.0);
-            Ui.Dart:uiDefaultClass.Path convexPath = new Ui.Path();
+            Dart.UI.Path convexPath = new Ui.Path();
             convexPath.MoveTo(20.0, 30.0);
             convexPath.LineTo(40.0, 20.0);
             convexPath.LineTo(60.0, 30.0);
             convexPath.LineTo(60.0, 60.0);
             convexPath.LineTo(20.0, 60.0);
             convexPath.Close();
-            List < Ui.Dart:uiDefaultClass.Path > paths = new List<Ui.Dart:uiDefaultClass.Path>() { rrectPath, circlePath, path, convexPath };
-            List < Ui.Dart:uiDefaultClass.Paint > paints = new List<Ui.Dart:uiDefaultClass.Paint>() { new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = false..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 10, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 0.1 };
+            List<Dart.UI.Path> paths = new List<Dart.UI.Path>() { rrectPath, circlePath, path, convexPath };
+            List<Dart.UI.Paint> paints = new List<Dart.UI.Paint>() { new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = false..Style = Ui.PaintingStyle.Fill, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 10, new Ui.Paint()..IsAntiAlias = true..Style = Ui.PaintingStyle.Stroke..StrokeWidth = 0.1 };
             for (int i = 0; i < paths.Count; i += 1)
             {
                 canvas.Save();
-                foreach (Ui.Dart:uiDefaultClass.Paint paint  in paints){
-                canvas.DrawPath(paths[i], paint);
+                foreach (Dart.UI.Paint paint in paints)
+                {
+                    canvas.DrawPath(paths[i], paint);
+                    canvas.Translate(DrawCallSpacing, 0.0);
+                }
+
+                canvas.Restore();
+                canvas.Translate(0.0, DrawCallSpacing);
+            }
+
+            Dart.UI.Color black = new Ui.Color(0xFF000000);
+            canvas.Save();
+            canvas.DrawShadow(rrectPath, black, 10.0, true);
+            canvas.Translate(DrawCallSpacing, 0.0);
+            canvas.DrawShadow(rrectPath, black, 10.0, false);
+            canvas.Restore();
+            canvas.Translate(0.0, DrawCallSpacing);
+            Dart.UI.ParagraphBuilder paragraphBuilder = new Ui.ParagraphBuilder(new Ui.ParagraphStyle(textDirection: Ui.TextDirection.Ltr));
+            new Ui.ParagraphBuilder(new Ui.ParagraphStyle(textDirection: Ui.TextDirection.Ltr)).PushStyle(new Ui.TextStyle(color: black));
+            new Ui.ParagraphBuilder(new Ui.ParagraphStyle(textDirection: Ui.TextDirection.Ltr)).AddText('_');
+            Dart.UI.Paragraph paragraph = paragraphBuilder.Build();
+            paragraphBuilder.Build().Layout(new Dart.UI.ParagraphConstraints(width: 60.0));
+            canvas.DrawParagraph(paragraph, new Dart.UI.Offset(20.0, 20.0));
+            foreach (double fraction in new List<double>() { 0.0, 0.5 })
+            {
+                ;
+                canvas.Save();
+                canvas.Translate(fraction, fraction);
+                canvas.ClipRRect(Dart.UI.RRect.FromLTRBR(8, 8, 328, 248, Dart.UI.Radius.Circular(16)));
+                canvas.DrawRect(Dart.UI.Rect.FromLTRB(10, 10, 320, 240), new Ui.Paint());
+                canvas.Restore();
                 canvas.Translate(DrawCallSpacing, 0.0);
             }
 
-            canvas.Restore();
             canvas.Translate(0.0, DrawCallSpacing);
         }
 
-        Ui.Dart:uiDefaultClass.Color black = new Ui.Color(0xFF000000);
-        canvas.Save();
-canvas.DrawShadow(rrectPath, black, 10.0, true );
-canvas.Translate(DrawCallSpacing, 0.0);
-canvas.DrawShadow(rrectPath, black, 10.0, false );
-canvas.Restore();
-canvas.Translate(0.0, DrawCallSpacing);
-Ui.Dart:uiDefaultClass.ParagraphBuilder paragraphBuilder = new Ui.ParagraphBuilder(new Ui.ParagraphStyle(textDirection: Ui.TextDirection.Ltr));
-        new Ui.ParagraphBuilder(new Ui.ParagraphStyle(textDirection:Ui.TextDirection.Ltr)).PushStyle(new Ui.TextStyle(color:black));
-new Ui.ParagraphBuilder(new Ui.ParagraphStyle(textDirection:Ui.TextDirection.Ltr)).AddText('_');
-        Ui.Dart:uiDefaultClass.Paragraph paragraph = paragraphBuilder.Build();
-        paragraphBuilder.Build().Layout(new Ui.Dart:uiDefaultClass.ParagraphConstraints(width:60.0));
-canvas.DrawParagraph(paragraph, new Ui.Dart:uiDefaultClass.Offset(20.0, 20.0));
-foreach(double fraction  in new List<double>(){0.0, 0.5}){
-;
-canvas.Save();
-canvas.Translate(fraction, fraction);
-canvas.ClipRRect(Ui.Dart:uiDefaultClass.RRect.FromLTRBR(8, 8, 328, 248, Ui.Dart:uiDefaultClass.Radius.Circular(16)));
-canvas.DrawRect(Ui.Dart:uiDefaultClass.Rect.FromLTRB(10, 10, 320, 240), new Ui.Paint());
-canvas.Restore();
-canvas.Translate(DrawCallSpacing, 0.0);
-}
-
-canvas.Translate(0.0, DrawCallSpacing);
-}
 
 
-
-#endregion
-}
+    }
 
 }

@@ -842,21 +842,14 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class OverlayRoute<T> : FlutterSDK.Widgets.Navigator.Route<T>
     {
-        #region constructors
         public OverlayRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(settings: settings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _OverlayEntries { get; set; }
         public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> OverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool FinishedWhenPopped { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Subclasses should override this getter to return the builders for the overlay.
@@ -896,7 +889,6 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
@@ -905,15 +897,11 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class TransitionRoute<T> : FlutterSDK.Widgets.Routes.OverlayRoute<T>
     {
-        #region constructors
         public TransitionRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(settings: settings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Completer<T> _TransitionCompleter { get; set; }
         internal virtual FlutterSDK.Animation.Animation.Animation<double> _Animation { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
@@ -929,9 +917,6 @@ namespace FlutterSDK.Widgets.Routes
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Called to create the animation controller that will drive the transitions to
@@ -1252,7 +1237,6 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
@@ -1261,19 +1245,12 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class LocalHistoryEntry
     {
-        #region constructors
         public LocalHistoryEntry(VoidCallback onRemove = default(VoidCallback))
         {
             this.OnRemove = onRemove;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnRemove { get; set; }
         internal virtual FlutterSDK.Widgets.Routes.LocalHistoryRoute<object> _Owner { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Remove this entry from the history of its associated [LocalHistoryRoute].
@@ -1294,13 +1271,11 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
     public class _ModalScopeStatus : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _ModalScopeStatus(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool isCurrent = default(bool), bool canPop = default(bool), FlutterSDK.Widgets.Navigator.Route<object> route = default(FlutterSDK.Widgets.Navigator.Route<object>), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -1308,15 +1283,9 @@ namespace FlutterSDK.Widgets.Routes
             this.CanPop = canPop;
             this.Route = route;
         }
-        #endregion
-
-        #region fields
         public virtual bool IsCurrent { get; set; }
         public virtual bool CanPop { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Routes._ModalScopeStatus old)
         {
@@ -1341,48 +1310,32 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
     public class _ModalScope<T> : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _ModalScope(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Routes.ModalRoute<T> route = default(FlutterSDK.Widgets.Routes.ModalRoute<T>))
         : base(key: key)
         {
             this.Route = route;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Routes.ModalRoute<T> Route { get; set; }
-        #endregion
-
-        #region methods
 
         public new _ModalScopeState<T> CreateState() => new _ModalScopeState<T>();
 
 
-        #endregion
     }
 
 
     public class _ModalScopeState<T> : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Routes._ModalScope<T>>
     {
-        #region constructors
         public _ModalScopeState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Widget _Page { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Listenable { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode FocusScopeNode { get; set; }
         internal virtual bool _ShouldIgnoreFocusRequest { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1477,7 +1430,6 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
@@ -1493,15 +1445,11 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class ModalRoute<T> : FlutterSDK.Widgets.Routes.TransitionRoute<T>, ILocalHistoryRoute<T>
     {
-        #region constructors
         public ModalRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
         : base(settings: settings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual ImageFilter _Filter { get; set; }
         internal virtual bool _Offstage { get; set; }
         internal virtual FlutterSDK.Animation.Animations.ProxyAnimation _AnimationProxy { get; set; }
@@ -1524,9 +1472,6 @@ namespace FlutterSDK.Widgets.Routes
         public virtual FlutterSDK.Animation.Animation.Animation<double> SecondaryAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasScopedWillPopCallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool CanPop { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the modal route most closely associated with the given context.
@@ -1987,7 +1932,6 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
@@ -1996,21 +1940,13 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class PopupRoute<T> : FlutterSDK.Widgets.Routes.ModalRoute<T>
     {
-        #region constructors
         public PopupRoute(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings), ImageFilter filter = default(ImageFilter))
         : base(filter: filter, settings: settings)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -2091,16 +2027,9 @@ namespace FlutterSDK.Widgets.Routes
     /// </Summary>
     public class RouteObserver<R> : FlutterSDK.Widgets.Navigator.NavigatorObserver
     {
-        #region constructors
         public RouteObserver()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<R, HashSet<FlutterSDK.Widgets.Routes.RouteAware>> _Listeners { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Subscribe [routeAware] to be informed about changes to [route].
@@ -2195,21 +2124,16 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 
     public class _DialogRoute<T> : FlutterSDK.Widgets.Routes.PopupRoute<T>
     {
-        #region constructors
         public _DialogRoute(FlutterSDK.Widgets.Routes.RoutePageBuilder pageBuilder = default(FlutterSDK.Widgets.Routes.RoutePageBuilder), bool barrierDismissible = true, string barrierLabel = default(string), FlutterBinding.UI.Color barrierColor = default(FlutterBinding.UI.Color), TimeSpan transitionDuration = default(TimeSpan), FlutterSDK.Widgets.Routes.RouteTransitionsBuilder transitionBuilder = default(FlutterSDK.Widgets.Routes.RouteTransitionsBuilder), FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base(settings: settings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Routes.RoutePageBuilder _PageBuilder { get; set; }
         internal virtual bool _BarrierDismissible { get; set; }
         internal virtual string _BarrierLabel { get; set; }
@@ -2220,9 +2144,6 @@ namespace FlutterSDK.Widgets.Routes
         public virtual string BarrierLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color BarrierColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TimeSpan TransitionDuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildPage(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Animation.Animation.Animation<double> animation, FlutterSDK.Animation.Animation.Animation<double> secondaryAnimation)
         {
@@ -2244,7 +2165,6 @@ namespace FlutterSDK.Widgets.Routes
 
 
 
-        #endregion
     }
 
 }

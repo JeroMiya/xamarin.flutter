@@ -435,19 +435,12 @@ namespace FlutterSDK.Widgets.Icontheme
     /// </Summary>
     public class IconTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public IconTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Iconthemedata.IconThemeData data = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Iconthemedata.IconThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates an icon theme that controls the color, opacity, and size of
@@ -506,7 +499,7 @@ namespace FlutterSDK.Widgets.Icontheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             IconTheme iconTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, iconTheme) ? child : new IconTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, iconTheme) ? child : new IconTheme(data: Data, child: child);
         }
 
 
@@ -520,7 +513,6 @@ namespace FlutterSDK.Widgets.Icontheme
 
 
 
-        #endregion
     }
 
 }

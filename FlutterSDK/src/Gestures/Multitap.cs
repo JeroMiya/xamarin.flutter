@@ -311,7 +311,6 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class _CountdownZoned
     {
-        #region constructors
         public _CountdownZoned(TimeSpan duration = default(TimeSpan))
         : base()
         {
@@ -320,14 +319,8 @@ namespace FlutterSDK.Gestures.Multitap
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Timeout { get; set; }
         public virtual bool Timeout { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _OnTimeout()
         {
@@ -336,7 +329,6 @@ namespace FlutterSDK.Gestures.Multitap
 
 
 
-        #endregion
     }
 
 
@@ -346,24 +338,17 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class _TapTracker
     {
-        #region constructors
         public _TapTracker(FlutterSDK.Gestures.Events.PointerDownEvent @event = default(FlutterSDK.Gestures.Events.PointerDownEvent), FlutterSDK.Gestures.Arena.GestureArenaEntry entry = default(FlutterSDK.Gestures.Arena.GestureArenaEntry), TimeSpan doubleTapMinTime = default(TimeSpan))
         : base()
         {
             this.Entry = entry;
         }
-        #endregion
-
-        #region fields
         public virtual int Pointer { get; set; }
         public virtual FlutterSDK.Gestures.Arena.GestureArenaEntry Entry { get; set; }
         internal virtual FlutterBinding.UI.Offset _InitialGlobalPosition { get; set; }
         public virtual int InitialButtons { get; set; }
         internal virtual FlutterSDK.Gestures.Multitap._CountdownZoned _DoubleTapMinTimeCountdown { get; set; }
         internal virtual bool _IsTrackingPointer { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void StartTrackingPointer(FlutterSDK.Gestures.Pointerrouter.PointerRoute route, Matrix4 transform)
         {
@@ -415,7 +400,6 @@ namespace FlutterSDK.Gestures.Multitap
 
 
 
-        #endregion
     }
 
 
@@ -429,23 +413,16 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class DoubleTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
-        #region constructors
         public DoubleTapGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Multitap.GestureDoubleTapCallback OnDoubleTap { get; set; }
         internal virtual Timer _DoubleTapTimer { get; set; }
         internal virtual FlutterSDK.Gestures.Multitap._TapTracker _FirstTap { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapTracker> _Trackers { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool IsPointerAllowed(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
@@ -641,7 +618,6 @@ namespace FlutterSDK.Gestures.Multitap
 
 
 
-        #endregion
     }
 
 
@@ -652,13 +628,13 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class _TapGesture : FlutterSDK.Gestures.Multitap._TapTracker
     {
-        #region constructors
         public _TapGesture(FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer gestureRecognizer = default(FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer), FlutterSDK.Gestures.Events.PointerEvent @event = default(FlutterSDK.Gestures.Events.PointerEvent), TimeSpan longTapDelay = default(TimeSpan))
         : base(@event: @event as PointerDownEvent, entry: BindingDefaultClass.GestureBinding.Instance.GestureArena.Add(@event.Pointer, gestureRecognizer), doubleTapMinTime: ConstantsDefaultClass.KDoubleTapMinTime)
         {
             this.GestureRecognizer = gestureRecognizer;
             StartTrackingPointer(HandleEvent, @event.Transform);
-            if (longTapDelay > Dart:coreDefaultClass.Duration.Zero){
+            if (longTapDelay > Dart.CoreDefaultClass.Duration.Zero)
+            {
                 _Timer = new Timer(longTapDelay, () =>
                 {
                     _Timer = null;
@@ -670,17 +646,11 @@ namespace FlutterSDK.Gestures.Multitap
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Multitap.MultiTapGestureRecognizer GestureRecognizer { get; set; }
         internal virtual bool _WonArena { get; set; }
         internal virtual Timer _Timer { get; set; }
         internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _LastPosition { get; set; }
         internal virtual FlutterSDK.Gestures.Recognizer.OffsetPair _FinalPosition { get; set; }
-        #endregion
-
-        #region methods
 
         public virtual void HandleEvent(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
@@ -748,7 +718,6 @@ namespace FlutterSDK.Gestures.Multitap
 
 
 
-        #endregion
     }
 
 
@@ -765,15 +734,11 @@ namespace FlutterSDK.Gestures.Multitap
     /// </Summary>
     public class MultiTapGestureRecognizer : FlutterSDK.Gestures.Recognizer.GestureRecognizer
     {
-        #region constructors
         public MultiTapGestureRecognizer(TimeSpan longTapDelay = default(TimeSpan), @Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
             this.LongTapDelay = longTapDelay;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnTapDown { get; set; }
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapUpCallback OnTapUp { get; set; }
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapCallback OnTap { get; set; }
@@ -782,9 +747,6 @@ namespace FlutterSDK.Gestures.Multitap
         public virtual FlutterSDK.Gestures.Multitap.GestureMultiTapDownCallback OnLongTapDown { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Gestures.Multitap._TapGesture> _GestureMap { get; set; }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddAllowedPointer(FlutterSDK.Gestures.Events.PointerEvent @event)
         {
@@ -867,7 +829,6 @@ namespace FlutterSDK.Gestures.Multitap
 
 
 
-        #endregion
     }
 
 }

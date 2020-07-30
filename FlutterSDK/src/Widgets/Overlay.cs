@@ -471,15 +471,11 @@ namespace FlutterSDK.Widgets.Overlay
     /// </Summary>
     public class OverlayEntry
     {
-        #region constructors
         public OverlayEntry(FlutterSDK.Widgets.Framework.WidgetBuilder builder = default(FlutterSDK.Widgets.Framework.WidgetBuilder), bool opaque = false, bool maintainState = false)
         : base()
         {
             this.Builder = builder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.WidgetBuilder Builder { get; set; }
         internal virtual bool _Opaque { get; set; }
         internal virtual bool _MaintainState { get; set; }
@@ -487,9 +483,6 @@ namespace FlutterSDK.Widgets.Overlay
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState> _Key { get; set; }
         public virtual bool Opaque { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool MaintainState { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Remove this entry from the overlay.
@@ -540,46 +533,30 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        #endregion
     }
 
 
     public class _OverlayEntryWidget : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _OverlayEntryWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Overlay.OverlayEntry entry = default(FlutterSDK.Widgets.Overlay.OverlayEntry), bool tickerEnabled = true)
         : base(key: key)
         {
             this.Entry = entry;
             this.TickerEnabled = tickerEnabled;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Overlay.OverlayEntry Entry { get; set; }
         public virtual bool TickerEnabled { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Overlay._OverlayEntryWidgetState CreateState() => new _OverlayEntryWidgetState();
 
 
-        #endregion
     }
 
 
     public class _OverlayEntryWidgetState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay._OverlayEntryWidget>
     {
-        #region constructors
         public _OverlayEntryWidgetState()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -599,7 +576,6 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        #endregion
     }
 
 
@@ -624,19 +600,12 @@ namespace FlutterSDK.Widgets.Overlay
     /// </Summary>
     public class Overlay : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Overlay(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Overlay.OverlayEntry> initialEntries = default(List<FlutterSDK.Widgets.Overlay.OverlayEntry>))
         : base(key: key)
         {
             this.InitialEntries = initialEntries;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> InitialEntries { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The state from the closest instance of this class that encloses the given context.
@@ -670,7 +639,6 @@ namespace FlutterSDK.Widgets.Overlay
         public new FlutterSDK.Widgets.Overlay.OverlayState CreateState() => new OverlayState();
 
 
-        #endregion
     }
 
 
@@ -682,16 +650,9 @@ namespace FlutterSDK.Widgets.Overlay
     /// </Summary>
     public class OverlayState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overlay.Overlay>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public OverlayState()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Overlay.OverlayEntry> _Entries { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -902,7 +863,6 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        #endregion
     }
 
 
@@ -914,19 +874,12 @@ namespace FlutterSDK.Widgets.Overlay
     /// </Summary>
     public class _Theatre : FlutterSDK.Widgets.Framework.MultiChildRenderObjectWidget
     {
-        #region constructors
         public _Theatre(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), int skipCount = 0, List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key, children: children)
         {
             this.SkipCount = skipCount;
         }
-        #endregion
-
-        #region fields
         public virtual int SkipCount { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Overlay._TheatreElement CreateElement() => new _TheatreElement(this);
 
@@ -962,26 +915,18 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        #endregion
     }
 
 
     public class _TheatreElement : FlutterSDK.Widgets.Framework.MultiChildRenderObjectElement
     {
-        #region constructors
         public _TheatreElement(FlutterSDK.Widgets.Overlay._Theatre widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Overlay._Theatre Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Overlay._RenderTheatre RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DebugVisitOnstageChildren(FlutterSDK.Widgets.Framework.ElementVisitor visitor)
         {
@@ -991,13 +936,11 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        #endregion
     }
 
 
     public class _RenderTheatre : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Stack.StackParentData>
     {
-        #region constructors
         public _RenderTheatre(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), TextDirection textDirection = default(TextDirection), int skipCount = 0)
         : base()
         {
@@ -1006,9 +949,6 @@ namespace FlutterSDK.Widgets.Overlay
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _HasVisualOverflow { get; set; }
         internal virtual FlutterSDK.Painting.Alignment.Alignment _ResolvedAlignment { get; set; }
         internal virtual TextDirection _TextDirection { get; set; }
@@ -1019,9 +959,6 @@ namespace FlutterSDK.Widgets.Overlay
         internal virtual FlutterSDK.Rendering.Box.RenderBox _LastOnstageChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual int _OnstageChildCount { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -1102,7 +1039,7 @@ namespace FlutterSDK.Widgets.Overlay
                     candidate += childParentData.Offset.Dy;
                     if (result != null)
                     {
-                        result = Math.Dart:mathDefaultClass.Min(result, candidate);
+                        result = Dart.Math.MathDefaultClass.Min(result, candidate);
                     }
                     else
                     {
@@ -1205,7 +1142,7 @@ namespace FlutterSDK.Widgets.Overlay
         {
             if (_HasVisualOverflow)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+                context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, PaintStack);
             }
             else
             {
@@ -1232,11 +1169,11 @@ namespace FlutterSDK.Widgets.Overlay
 
 
 
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart.UiDefaultClass.Offset.Zero & Size : null;
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
             properties.Add(new IntProperty("skipCount", SkipCount));
@@ -1281,7 +1218,6 @@ public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.Diagnostic
 
 
 
-        #endregion
     }
 
 }

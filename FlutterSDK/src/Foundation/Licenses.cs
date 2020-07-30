@@ -322,22 +322,14 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseParagraph
     {
-        #region constructors
         public LicenseParagraph(string text, int indent)
         {
             this.Text = text;
             this.Indent = indent;
         }
-        #endregion
-
-        #region fields
         public virtual string Text { get; set; }
         public virtual int Indent { get; set; }
         public virtual int CenteredIndent { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -351,20 +343,12 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseEntry
     {
-        #region constructors
         public LicenseEntry()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual Iterable<string> Packages { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -428,22 +412,14 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseEntryWithLineBreaks : FlutterSDK.Foundation.Licenses.LicenseEntry
     {
-        #region constructors
         public LicenseEntryWithLineBreaks(List<string> packages, string text)
         {
             this.Packages = packages;
             this.Text = text;
         }
-        #endregion
-
-        #region fields
         public new List<string> Packages { get; set; }
         public virtual string Text { get; set; }
         public virtual Iterable<FlutterSDK.Foundation.Licenses.LicenseParagraph> Paragraphs { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -476,19 +452,12 @@ namespace FlutterSDK.Foundation.Licenses
     /// </Summary>
     public class LicenseRegistry
     {
-        #region constructors
         internal LicenseRegistry()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<object> _Collectors { get; set; }
         public virtual Stream<FlutterSDK.Foundation.Licenses.LicenseEntry> Licenses { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Adds licenses to the registry.
@@ -519,7 +488,6 @@ namespace FlutterSDK.Foundation.Licenses
 
 
 
-        #endregion
     }
 
 

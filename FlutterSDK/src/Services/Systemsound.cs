@@ -433,17 +433,10 @@ namespace FlutterSDK.Services.Systemsound
     /// </Summary>
     public class SystemSound
     {
-        #region constructors
         internal SystemSound()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Play the specified system sound. If that sound is not present on the
@@ -456,7 +449,6 @@ namespace FlutterSDK.Services.Systemsound
 
 
 
-        #endregion
     }
 
 

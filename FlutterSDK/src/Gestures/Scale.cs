@@ -317,22 +317,14 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleStartDetails
     {
-        #region constructors
         public ScaleStartDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.FocalPoint = focalPoint;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
         public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -341,7 +333,6 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleUpdateDetails
     {
-        #region constructors
         public ScaleUpdateDetails(FlutterBinding.UI.Offset focalPoint = default(FlutterBinding.UI.Offset), FlutterBinding.UI.Offset localFocalPoint = default(FlutterBinding.UI.Offset), double scale = 1.0, double horizontalScale = 1.0, double verticalScale = 1.0, double rotation = 0.0)
         : base()
         {
@@ -351,20 +342,13 @@ namespace FlutterSDK.Gestures.Scale
             this.VerticalScale = verticalScale;
             this.Rotation = rotation;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset FocalPoint { get; set; }
         public virtual FlutterBinding.UI.Offset LocalFocalPoint { get; set; }
         public virtual double Scale { get; set; }
         public virtual double HorizontalScale { get; set; }
         public virtual double VerticalScale { get; set; }
         public virtual double Rotation { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -373,21 +357,13 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleEndDetails
     {
-        #region constructors
         public ScaleEndDetails(FlutterSDK.Gestures.Velocitytracker.Velocity velocity = default(FlutterSDK.Gestures.Velocitytracker.Velocity))
         : base()
         {
             this.Velocity = velocity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Velocity { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -399,7 +375,6 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class _LineBetweenPointers
     {
-        #region constructors
         public _LineBetweenPointers(FlutterBinding.UI.Offset pointerStartLocation = default(FlutterBinding.UI.Offset), int pointerStartId = 0, FlutterBinding.UI.Offset pointerEndLocation = default(FlutterBinding.UI.Offset), int pointerEndId = 1)
         : base()
         {
@@ -408,17 +383,10 @@ namespace FlutterSDK.Gestures.Scale
             this.PointerEndLocation = pointerEndLocation;
             this.PointerEndId = pointerEndId;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset PointerStartLocation { get; set; }
         public virtual int PointerStartId { get; set; }
         public virtual FlutterBinding.UI.Offset PointerEndLocation { get; set; }
         public virtual int PointerEndId { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -433,15 +401,11 @@ namespace FlutterSDK.Gestures.Scale
     /// </Summary>
     public class ScaleGestureRecognizer : FlutterSDK.Gestures.Recognizer.OneSequenceGestureRecognizer
     {
-        #region constructors
         public ScaleGestureRecognizer(@Object debugOwner = default(@Object), PointerDeviceKind kind = default(PointerDeviceKind))
         : base(debugOwner: debugOwner, kind: kind)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Scale.GestureScaleStartCallback OnStart { get; set; }
         public virtual FlutterSDK.Gestures.Scale.GestureScaleUpdateCallback OnUpdate { get; set; }
         public virtual FlutterSDK.Gestures.Scale.GestureScaleEndCallback OnEnd { get; set; }
@@ -464,9 +428,6 @@ namespace FlutterSDK.Gestures.Scale
         internal virtual double _HorizontalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _VerticalScaleFactor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual string DebugDescription { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private double _ComputeRotationFactor()
         {
@@ -483,8 +444,8 @@ namespace FlutterSDK.Gestures.Scale
             double nfy = _CurrentLine.PointerStartLocation.Dy;
             double nsx = _CurrentLine.PointerEndLocation.Dx;
             double nsy = _CurrentLine.PointerEndLocation.Dy;
-            double angle1 = Math.Dart:mathDefaultClass.Atan2(fy - sy, fx - sx);
-            double angle2 = Math.Dart:mathDefaultClass.Atan2(nfy - nsy, nfx - nsx);
+            double angle1 = Dart.Math.MathDefaultClass.Atan2(fy - sy, fx - sx);
+            double angle2 = Dart.Math.MathDefaultClass.Atan2(nfy - nsy, nfx - nsx);
             return angle2 - angle1;
         }
 
@@ -555,9 +516,9 @@ namespace FlutterSDK.Gestures.Scale
         private void _Update()
         {
             int count = _PointerLocations.Keys.Length;
-            Offset focalPoint = Dart:uiDefaultClass.Offset.Zero;
+            Offset focalPoint = Dart.UiDefaultClass.Offset.Zero;
             foreach (int pointer in _PointerLocations.Keys) focalPoint += _PointerLocations[pointer];
-            _CurrentFocalPoint = count > 0 ? focalPoint / count.ToDouble() : Dart:uiDefaultClass.Offset.Zero;
+            _CurrentFocalPoint = count > 0 ? focalPoint / count.ToDouble() : Dart.UiDefaultClass.Offset.Zero;
             double totalDeviation = 0.0;
             double totalHorizontalDeviation = 0.0;
             double totalVerticalDeviation = 0.0;
@@ -721,7 +682,6 @@ namespace FlutterSDK.Gestures.Scale
 
 
 
-        #endregion
     }
 
 

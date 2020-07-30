@@ -433,26 +433,18 @@ namespace FlutterSDK.Physics.Tolerance
     /// </Summary>
     public class Tolerance
     {
-        #region constructors
         public Tolerance(double distance = default(double), double time = default(double), double velocity = default(double))
         {
             this.Distance = distance;
             this.Time = time;
             this.Velocity = velocity;
         }
-        #endregion
-
-        #region fields
         internal virtual double _EpsilonDefault { get; set; }
         public virtual FlutterSDK.Physics.Tolerance.Tolerance DefaultTolerance { get; set; }
         public virtual double Distance { get; set; }
         public virtual double Time { get; set; }
         public virtual double Velocity { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

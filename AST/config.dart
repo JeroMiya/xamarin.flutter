@@ -5,6 +5,7 @@ class Config {
   static bool includeMethodImplementations = true;
   static bool includeConstructorImplementations = true;
   static bool includeFieldImplementations = true;
+  static bool includeRegions = false;
   static bool isTestbed = false;
 
   // Path to the flutter src directory

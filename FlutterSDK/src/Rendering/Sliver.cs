@@ -1090,7 +1090,6 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverConstraints : FlutterSDK.Rendering.@object.Constraints
     {
-        #region constructors
         public SliverConstraints(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection = default(FlutterSDK.Rendering.Sliver.GrowthDirection), FlutterSDK.Rendering.Viewportoffset.ScrollDirection userScrollDirection = default(FlutterSDK.Rendering.Viewportoffset.ScrollDirection), double scrollOffset = default(double), double precedingScrollExtent = default(double), double overlap = default(double), double remainingPaintExtent = default(double), double crossAxisExtent = default(double), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double viewportMainAxisExtent = default(double), double remainingCacheExtent = default(double), double cacheOrigin = default(double))
         : base()
         {
@@ -1107,9 +1106,6 @@ namespace FlutterSDK.Rendering.Sliver
             this.RemainingCacheExtent = remainingCacheExtent;
             this.CacheOrigin = cacheOrigin;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual FlutterSDK.Rendering.Sliver.GrowthDirection GrowthDirection { get; set; }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get; set; }
@@ -1127,9 +1123,6 @@ namespace FlutterSDK.Rendering.Sliver
         public virtual bool IsTight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsNormalized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -1174,7 +1167,7 @@ namespace FlutterSDK.Rendering.Sliver
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (!(other is SliverConstraints)) return false;
 
             return other is SliverConstraints && other.AxisDirection == AxisDirection && other.GrowthDirection == GrowthDirection && other.ScrollOffset == ScrollOffset && other.Overlap == Overlap && other.RemainingPaintExtent == RemainingPaintExtent && other.CrossAxisExtent == CrossAxisExtent && other.CrossAxisDirection == CrossAxisDirection && other.ViewportMainAxisExtent == ViewportMainAxisExtent && other.RemainingCacheExtent == RemainingCacheExtent && other.CacheOrigin == CacheOrigin;
@@ -1183,7 +1176,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 
@@ -1195,7 +1187,6 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverGeometry : IDiagnosticable
     {
-        #region constructors
         public SliverGeometry(double scrollExtent = 0.0, double paintExtent = 0.0, double paintOrigin = 0.0, double layoutExtent = default(double), double maxPaintExtent = 0.0, double maxScrollObstructionExtent = 0.0, double hitTestExtent = default(double), bool visible = default(bool), bool hasVisualOverflow = false, double scrollOffsetCorrection = default(double), double cacheExtent = default(double))
         : base()
         {
@@ -1207,9 +1198,6 @@ namespace FlutterSDK.Rendering.Sliver
             this.HasVisualOverflow = hasVisualOverflow;
             this.ScrollOffsetCorrection = scrollOffsetCorrection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Sliver.SliverGeometry Zero { get; set; }
         public virtual double ScrollExtent { get; set; }
         public virtual double PaintOrigin { get; set; }
@@ -1222,9 +1210,6 @@ namespace FlutterSDK.Rendering.Sliver
         public virtual bool HasVisualOverflow { get; set; }
         public virtual double ScrollOffsetCorrection { get; set; }
         public virtual double CacheExtent { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Asserts that this geometry is internally consistent.
@@ -1277,7 +1262,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 
@@ -1289,7 +1273,6 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverHitTestResult : FlutterSDK.Gestures.Hittest.HitTestResult
     {
-        #region constructors
         public SliverHitTestResult()
         : base()
         {
@@ -1299,12 +1282,6 @@ namespace FlutterSDK.Rendering.Sliver
         {
             var instance = new SliverHitTestResult(result);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Transforms `mainAxisPosition` and `crossAxisPosition` to the local
@@ -1351,7 +1328,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 
@@ -1363,24 +1339,16 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverHitTestEntry : FlutterSDK.Gestures.Hittest.HitTestEntry
     {
-        #region constructors
         public SliverHitTestEntry(FlutterSDK.Rendering.Sliver.RenderSliver target, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
         : base(target)
         {
             this.MainAxisPosition = mainAxisPosition;
             this.CrossAxisPosition = crossAxisPosition;
         }
-        #endregion
-
-        #region fields
         public virtual double MainAxisPosition { get; set; }
         public virtual double CrossAxisPosition { get; set; }
         public virtual FlutterSDK.Rendering.Sliver.RenderSliver Target { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -1394,18 +1362,10 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverLogicalParentData : FlutterSDK.Rendering.@object.ParentData
     {
-        #region constructors
         public SliverLogicalParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual double LayoutOffset { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -1415,16 +1375,8 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverLogicalContainerParentData : FlutterSDK.Rendering.Sliver.SliverLogicalParentData, IContainerParentDataMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
-        #region constructors
         public SliverLogicalContainerParentData()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1441,16 +1393,9 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverPhysicalParentData : FlutterSDK.Rendering.@object.ParentData
     {
-        #region constructors
         public SliverPhysicalParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset PaintOffset { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Apply the [paintOffset] to the given [transform].
@@ -1466,7 +1411,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 
@@ -1476,16 +1420,8 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class SliverPhysicalContainerParentData : FlutterSDK.Rendering.Sliver.SliverPhysicalParentData, IContainerParentDataMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
-        #region constructors
         public SliverPhysicalContainerParentData()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1630,21 +1566,14 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class RenderSliver : FlutterSDK.Rendering.@object.RenderObject
     {
-        #region constructors
         public RenderSliver()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Sliver.SliverGeometry _Geometry { get; set; }
         public virtual FlutterSDK.Rendering.Sliver.SliverConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Sliver.SliverGeometry Geometry { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double CenterOffsetAdjustment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DebugResetSize()
         {
@@ -1965,7 +1894,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 
@@ -1983,7 +1911,6 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class RenderSliverSingleBoxAdapter : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Box.RenderBox>, IRenderSliverHelpers
     {
-        #region constructors
         public RenderSliverSingleBoxAdapter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 
@@ -1991,12 +1918,6 @@ namespace FlutterSDK.Rendering.Sliver
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -2070,7 +1991,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 
@@ -2090,18 +2010,11 @@ namespace FlutterSDK.Rendering.Sliver
     /// </Summary>
     public class RenderSliverToBoxAdapter : FlutterSDK.Rendering.Sliver.RenderSliverSingleBoxAdapter
     {
-        #region constructors
         public RenderSliverToBoxAdapter(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -2126,7 +2039,6 @@ namespace FlutterSDK.Rendering.Sliver
 
 
 
-        #endregion
     }
 
 

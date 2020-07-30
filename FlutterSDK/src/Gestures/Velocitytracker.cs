@@ -379,7 +379,7 @@ namespace FlutterSDK.Gestures.Velocitytracker
 
             }
 
-            return new VelocityEstimate(pixelsPerSecond: Dart:uiDefaultClass.Offset.Zero, confidence: 1.0, duration: newestSample.Time - oldestSample.Time, offset: newestSample.Point - oldestSample.Point);
+            return new VelocityEstimate(pixelsPerSecond: Dart.UiDefaultClass.Offset.Zero, confidence: 1.0, duration: newestSample.Time - oldestSample.Time, offset: newestSample.Point - oldestSample.Point);
         }
 
 
@@ -397,7 +397,7 @@ namespace FlutterSDK.Gestures.Velocitytracker
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity GetVelocity()
         {
             VelocityEstimate estimate = GetVelocityEstimate();
-            if (estimate == null || estimate.PixelsPerSecond == Dart:uiDefaultClass.Offset.Zero)return VelocitytrackerDefaultClass.Velocity.Zero;
+            if (estimate == null || estimate.PixelsPerSecond == Dart.UiDefaultClass.Offset.Zero) return VelocitytrackerDefaultClass.Velocity.Zero;
             return new Velocity(pixelsPerSecond: estimate.PixelsPerSecond);
         }
 
@@ -427,21 +427,14 @@ namespace FlutterSDK.Gestures.Velocitytracker
     /// </Summary>
     public class Velocity
     {
-        #region constructors
         public Velocity(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset))
         : base()
         {
             this.PixelsPerSecond = pixelsPerSecond;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Gestures.Velocitytracker.Velocity Zero { get; set; }
         public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Return the negation of a velocity.
@@ -505,7 +498,6 @@ namespace FlutterSDK.Gestures.Velocitytracker
 
 
 
-        #endregion
     }
 
 
@@ -526,7 +518,6 @@ namespace FlutterSDK.Gestures.Velocitytracker
     /// </Summary>
     public class VelocityEstimate
     {
-        #region constructors
         public VelocityEstimate(FlutterBinding.UI.Offset pixelsPerSecond = default(FlutterBinding.UI.Offset), double confidence = default(double), TimeSpan duration = default(TimeSpan), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset))
         : base()
         {
@@ -535,40 +526,25 @@ namespace FlutterSDK.Gestures.Velocitytracker
             this.Duration = duration;
             this.Offset = offset;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset PixelsPerSecond { get; set; }
         public virtual double Confidence { get; set; }
         public virtual TimeSpan Duration { get; set; }
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
     public class _PointAtTime
     {
-        #region constructors
         public _PointAtTime(FlutterBinding.UI.Offset point, TimeSpan time)
         : base()
         {
             this.Point = point;
             this.Time = time;
         }
-        #endregion
-
-        #region fields
         public virtual TimeSpan Time { get; set; }
         public virtual FlutterBinding.UI.Offset Point { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 }

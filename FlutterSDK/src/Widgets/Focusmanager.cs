@@ -495,20 +495,13 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusAttachment
     {
-        #region constructors
         internal FocusAttachment(FlutterSDK.Widgets.Focusmanager.FocusNode _node)
         : base()
         {
             this._Node = _node;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _Node { get; set; }
         public virtual bool IsAttached { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Detaches the [FocusNode] this attachment point is associated with from the
@@ -580,7 +573,6 @@ namespace FlutterSDK.Widgets.Focusmanager
 
 
 
-        #endregion
     }
 
 
@@ -823,7 +815,6 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusNode : IDiagnosticableTreeMixin, IChangeNotifier
     {
-        #region constructors
         public FocusNode(string debugLabel = default(string), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), bool skipTraversal = false, bool canRequestFocus = true)
         : base()
         {
@@ -832,9 +823,6 @@ namespace FlutterSDK.Widgets.Focusmanager
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _SkipTraversal { get; set; }
         internal virtual bool _CanRequestFocus { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.BuildContext _Context { get; set; }
@@ -867,9 +855,6 @@ namespace FlutterSDK.Widgets.Focusmanager
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset Offset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Removes the focus on this node by moving the primary focus to another node.
@@ -1371,7 +1356,6 @@ namespace FlutterSDK.Widgets.Focusmanager
 
 
 
-        #endregion
     }
 
 
@@ -1405,22 +1389,15 @@ namespace FlutterSDK.Widgets.Focusmanager
     /// </Summary>
     public class FocusScopeNode : FlutterSDK.Widgets.Focusmanager.FocusNode
     {
-        #region constructors
         public FocusScopeNode(string debugLabel = default(string), FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback onKey = default(FlutterSDK.Widgets.Focusmanager.FocusOnKeyCallback), bool skipTraversal = false, bool canRequestFocus = true)
         : base(debugLabel: debugLabel, onKey: onKey, canRequestFocus: canRequestFocus, skipTraversal: skipTraversal)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> _FocusedChildren { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode NearestScope { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsFirstFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusedChild { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Make the given [scope] the active child scope for this scope.
@@ -1507,7 +1484,8 @@ namespace FlutterSDK.Widgets.Focusmanager
                 primaryFocus = scope.FocusedChild;
             }
 
-            if (Dart:coreDefaultClass.Identical(primaryFocus, this)){
+            if (Dart.CoreDefaultClass.Identical(primaryFocus, this))
+            {
                 if (((FocusScopeNode)primaryFocus).CanRequestFocus)
                 {
                     _SetAsFocusedChildForScope();
@@ -1515,7 +1493,7 @@ namespace FlutterSDK.Widgets.Focusmanager
                 }
 
             }
-else
+            else
             {
                 primaryFocus._DoRequestFocus(findFirstFocus: findFirstFocus);
             }
@@ -1543,7 +1521,6 @@ else
 
 
 
-        #endregion
     }
 
 
@@ -1598,7 +1575,6 @@ else
     /// </Summary>
     public class FocusManager : IDiagnosticableTreeMixin, IChangeNotifier
     {
-        #region constructors
         public FocusManager()
         {
 
@@ -1608,9 +1584,6 @@ else
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _LastInteractionWasTouch { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusHighlightStrategy _HighlightStrategy { get; set; }
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusHighlightMode _HighlightMode { get; set; }
@@ -1624,13 +1597,10 @@ else
         public virtual FlutterSDK.Widgets.Focusmanager.FocusHighlightStrategy HighlightStrategy { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusHighlightMode HighlightMode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode PrimaryFocus { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateHighlightMode()
         {
-            _LastInteractionWasTouch = (_LastInteractionWasTouch == null ? Dart : ioDefaultClass.Platform.IsAndroid || Dart:ioDefaultClass.Platform.IsIOS || !BindingDefaultClass.WidgetsBinding.Instance.MouseTracker.MouseIsConnected : _LastInteractionWasTouch );
+            _LastInteractionWasTouch = (_LastInteractionWasTouch == null ? Dart.IoDefaultClass.Platform.IsAndroid || Dart.IoDefaultClass.Platform.IsIOS || !BindingDefaultClass.WidgetsBinding.Instance.MouseTracker.MouseIsConnected : _LastInteractionWasTouch);
             FocusHighlightMode newMode = default(FocusHighlightMode);
             switch (HighlightStrategy)
             {
@@ -1807,7 +1777,7 @@ else
                 }
 
                 _HaveScheduledUpdate = true;
-            Dart: asyncDefaultClass.ScheduleMicrotask(_ApplyFocusChange);
+                Dart.AsyncDefaultClass.ScheduleMicrotask(_ApplyFocusChange);
             }
 
 
@@ -1889,7 +1859,6 @@ public new List<FlutterSDK.Foundation.Diagnostics.DiagnosticsNode> DebugDescribe
 
 
 
-        #endregion
     }
 
 

@@ -334,7 +334,7 @@ namespace FlutterSDK.Material.About
         internal static string _DefaultApplicationName(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             Title ancestorTitle = context.FindAncestorWidgetOfExactType();
-            return ancestorTitle?.Title ?? Dart:ioDefaultClass.Platform.ResolvedExecutable.Split(Dart: ioDefaultClass.Platform.PathSeparator).ToList().Last();
+            return ancestorTitle?.Title ?? Dart.IoDefaultClass.Platform.ResolvedExecutable.Split(Dart.IoDefaultClass.Platform.PathSeparator).ToList().Last();
         }
 
 
@@ -441,7 +441,6 @@ namespace FlutterSDK.Material.About
     /// </Summary>
     public class AboutListTile : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public AboutListTile(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> aboutBoxChildren = default(List<FlutterSDK.Widgets.Framework.Widget>), bool dense = default(bool))
         : base(key: key)
         {
@@ -454,9 +453,6 @@ namespace FlutterSDK.Material.About
             this.AboutBoxChildren = aboutBoxChildren;
             this.Dense = dense;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Icon { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual string ApplicationName { get; set; }
@@ -465,9 +461,6 @@ namespace FlutterSDK.Material.About
         public virtual string ApplicationLegalese { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> AboutBoxChildren { get; set; }
         public virtual bool Dense { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -482,7 +475,6 @@ namespace FlutterSDK.Material.About
 
 
 
-        #endregion
     }
 
 
@@ -504,7 +496,6 @@ namespace FlutterSDK.Material.About
     /// </Summary>
     public class AboutDialog : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public AboutDialog(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         : base(key: key)
         {
@@ -514,17 +505,11 @@ namespace FlutterSDK.Material.About
             this.ApplicationLegalese = applicationLegalese;
             this.Children = children;
         }
-        #endregion
-
-        #region fields
         public virtual string ApplicationName { get; set; }
         public virtual string ApplicationVersion { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
         public virtual string ApplicationLegalese { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -543,7 +528,6 @@ NavigatorDefaultClass.Navigator.Pop(context);
 
 
 
-        #endregion
     }
 
 
@@ -560,7 +544,6 @@ NavigatorDefaultClass.Navigator.Pop(context);
     /// </Summary>
     public class LicensePage : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public LicensePage(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), string applicationName = default(string), string applicationVersion = default(string), FlutterSDK.Widgets.Framework.Widget applicationIcon = default(FlutterSDK.Widgets.Framework.Widget), string applicationLegalese = default(string))
         : base(key: key)
         {
@@ -569,37 +552,23 @@ NavigatorDefaultClass.Navigator.Pop(context);
             this.ApplicationIcon = applicationIcon;
             this.ApplicationLegalese = applicationLegalese;
         }
-        #endregion
-
-        #region fields
         public virtual string ApplicationName { get; set; }
         public virtual string ApplicationVersion { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget ApplicationIcon { get; set; }
         public virtual string ApplicationLegalese { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.About._LicensePageState CreateState() => new _LicensePageState();
 
 
-        #endregion
     }
 
 
     public class _LicensePageState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.About.LicensePage>
     {
-        #region constructors
         public _LicensePageState()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Framework.Widget> _Licenses { get; set; }
         internal virtual bool _Loaded { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -631,12 +600,12 @@ NavigatorDefaultClass.Navigator.Pop(context);
                 SetState(() =>
                 {
                     _Licenses.Add(new Padding(padding: EdgeInsets.Symmetric(vertical: 18.0), child: new Text("🍀‬", textAlign: TextAlign.Center)));
-                    _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                    _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart.UI.UiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
                     foreach (LicenseParagraph paragraph in paragraphs)
                     {
                         if (paragraph.Indent == LicensesDefaultClass.LicenseParagraph.CenteredIndent)
                         {
-                            _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                            _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart.UI.UiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
                         }
                         else
                         {
@@ -673,7 +642,6 @@ NavigatorDefaultClass.Navigator.Pop(context);
 
 
 
-        #endregion
     }
 
 }

@@ -315,7 +315,6 @@ namespace FlutterSDK.Foundation.Stackframe
     /// </Summary>
     public class StackFrame
     {
-        #region constructors
         public StackFrame(int number = default(int), int column = default(int), int line = default(int), string packageScheme = default(string), string package = default(string), string packagePath = default(string), string className = default(string), string method = default(string), bool isConstructor = false, string source = default(string))
         : base()
         {
@@ -330,9 +329,6 @@ namespace FlutterSDK.Foundation.Stackframe
             this.IsConstructor = isConstructor;
             this.Source = source;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame AsynchronousSuspension { get; set; }
         public virtual FlutterSDK.Foundation.Stackframe.StackFrame StackOverFlowElision { get; set; }
         internal virtual RegExp _WebNonDebugFramePattern { get; set; }
@@ -347,9 +343,6 @@ namespace FlutterSDK.Foundation.Stackframe
         public virtual string Method { get; set; }
         public virtual bool IsConstructor { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Parses a list of [StackFrame]s from a [StackTrace] object.
@@ -405,12 +398,12 @@ namespace FlutterSDK.Foundation.Stackframe
             if (hasPackage)
             {
                 packageScheme = "package";
-                Uri packageUri = Dart:coreDefaultClass.Uri.Parse(match.Group(1));
+                Uri packageUri = Dart.CoreDefaultClass.Uri.Parse(match.Group(1));
                 package = packageUri.PathSegments[0];
                 packagePath = packageUri.Path.ReplaceFirst(packageUri.PathSegments[0] + '/', "");
             }
 
-            return new StackFrame(number: -1, packageScheme: packageScheme, package: package, packagePath: packagePath, line: Dart:coreDefaultClass.Int.Parse(match.Group(2)), column: Dart:coreDefaultClass.Int.Parse(match.Group(3)), className: "<unknown>", method: match.Group(4), source: line);
+            return new StackFrame(number: -1, packageScheme: packageScheme, package: package, packagePath: packagePath, line: Dart.CoreDefaultClass.Int.Parse(match.Group(2)), column: Dart.CoreDefaultClass.Int.Parse(match.Group(3)), className: "<unknown>", method: match.Group(4), source: line);
         }
 
 
@@ -479,7 +472,7 @@ namespace FlutterSDK.Foundation.Stackframe
                 method = parts[1];
             }
 
-            Uri packageUri = Dart:coreDefaultClass.Uri.Parse(match.Group(3));
+            Uri packageUri = Dart.CoreDefaultClass.Uri.Parse(match.Group(3));
             string package = "<unknown>";
             string packagePath = packageUri.Path;
             if (packageUri.Scheme == "dart" || packageUri.Scheme == "package")
@@ -488,7 +481,7 @@ namespace FlutterSDK.Foundation.Stackframe
                 packagePath = packageUri.Path.ReplaceFirst(packageUri.PathSegments[0] + '/', "");
             }
 
-            return new StackFrame(number: Dart:coreDefaultClass.Int.Parse(match.Group(1)), className: className, method: method, packageScheme: packageUri.Scheme, package: package, packagePath: packagePath, line: match.Group(4) == null ? -1 : Dart:coreDefaultClass.Int.Parse(match.Group(4)), column: match.Group(5) == null ? -1 : Dart:coreDefaultClass.Int.Parse(match.Group(5)), isConstructor: isConstructor, source: line);
+            return new StackFrame(number: Dart.CoreDefaultClass.Int.Parse(match.Group(1)), className: className, method: method, packageScheme: packageUri.Scheme, package: package, packagePath: packagePath, line: match.Group(4) == null ? -1 : Dart.CoreDefaultClass.Int.Parse(match.Group(4)), column: match.Group(5) == null ? -1 : Dart.CoreDefaultClass.Int.Parse(match.Group(5)), isConstructor: isConstructor, source: line);
         }
 
 
@@ -503,7 +496,6 @@ namespace FlutterSDK.Foundation.Stackframe
 
 
 
-        #endregion
     }
 
 }

@@ -318,14 +318,10 @@ namespace FlutterSDK.Cupertino.Colors
     /// </Summary>
     public class CupertinoColors
     {
-        #region constructors
         internal CupertinoColors()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveBlue { get; set; }
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveGreen { get; set; }
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor ActiveOrange { get; set; }
@@ -369,10 +365,6 @@ namespace FlutterSDK.Cupertino.Colors
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Separator { get; set; }
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor OpaqueSeparator { get; set; }
         public virtual FlutterSDK.Cupertino.Colors.CupertinoDynamicColor Link { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -482,7 +474,6 @@ namespace FlutterSDK.Cupertino.Colors
     /// </Summary>
     public class CupertinoDynamicColor : Color, IDiagnosticable
     {
-        #region constructors
         public CupertinoDynamicColor(string debugLabel = default(string), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color elevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highContrastElevatedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color darkHighContrastElevatedColor = default(FlutterBinding.UI.Color))
         : base()
         {
@@ -511,9 +502,6 @@ namespace FlutterSDK.Cupertino.Colors
             this._DebugResolveContext = _debugResolveContext;
             this._DebugLabel = _debugLabel;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Color _EffectiveColor { get; set; }
         internal virtual string _DebugLabel { get; set; }
         internal virtual FlutterSDK.Widgets.Framework.Element _DebugResolveContext { get; set; }
@@ -530,9 +518,6 @@ namespace FlutterSDK.Cupertino.Colors
         internal virtual bool _IsHighContrastDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _IsInterfaceElevationDependent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Resolves the given [Color] by calling [resolveFrom].
@@ -602,7 +587,7 @@ namespace FlutterSDK.Cupertino.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is CupertinoDynamicColor && other.Value == Value && other.Color == Color && other.DarkColor == DarkColor && other.HighContrastColor == HighContrastColor && other.DarkHighContrastColor == DarkHighContrastColor && other.ElevatedColor == ElevatedColor && other.DarkElevatedColor == DarkElevatedColor && other.HighContrastElevatedColor == HighContrastElevatedColor && other.DarkHighContrastElevatedColor == DarkHighContrastElevatedColor;
         }
@@ -628,7 +613,6 @@ namespace FlutterSDK.Cupertino.Colors
 
 
 
-        #endregion
     }
 
 }

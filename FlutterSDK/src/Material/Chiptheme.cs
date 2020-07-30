@@ -411,19 +411,12 @@ namespace FlutterSDK.Material.Chiptheme
     /// </Summary>
     public class ChipTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public ChipTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Chiptheme.ChipThemeData data = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Chiptheme.ChipThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the data from the closest [ChipTheme] instance that encloses
@@ -467,7 +460,7 @@ namespace FlutterSDK.Material.Chiptheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             ChipTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new ChipTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new ChipTheme(data: Data, child: child);
         }
 
 
@@ -478,7 +471,6 @@ namespace FlutterSDK.Material.Chiptheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 
@@ -555,7 +547,6 @@ namespace FlutterSDK.Material.Chiptheme
     /// </Summary>
     public class ChipThemeData : IDiagnosticable
     {
-        #region constructors
         public ChipThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color deleteIconColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondarySelectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color shadowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedShadowColor = default(FlutterBinding.UI.Color), bool showCheckmark = default(bool), FlutterBinding.UI.Color checkmarkColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Painting.Textstyle.TextStyle secondaryLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), Brightness brightness = default(Brightness), double elevation = default(double), double pressElevation = default(double))
         : base()
         {
@@ -609,9 +600,6 @@ namespace FlutterSDK.Material.Chiptheme
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual FlutterBinding.UI.Color DeleteIconColor { get; set; }
         public virtual FlutterBinding.UI.Color DisabledColor { get; set; }
@@ -630,9 +618,6 @@ namespace FlutterSDK.Material.Chiptheme
         public virtual double Elevation { get; set; }
         public virtual double PressElevation { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -657,7 +642,7 @@ namespace FlutterSDK.Material.Chiptheme
         {
 
             if (a == null && b == null) return null;
-            return new ChipThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), deleteIconColor: Dart:uiDefaultClass.Color.Lerp(a?.DeleteIconColor, b?.DeleteIconColor, t), disabledColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledColor, b?.DisabledColor, t), selectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedColor, b?.SelectedColor, t), secondarySelectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SecondarySelectedColor, b?.SecondarySelectedColor, t), shadowColor: Dart:uiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), selectedShadowColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedShadowColor, b?.SelectedShadowColor, t), checkmarkColor: Dart:uiDefaultClass.Color.Lerp(a?.CheckmarkColor, b?.CheckmarkColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LabelPadding, b?.LabelPadding, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.LabelStyle, b?.LabelStyle, t), secondaryLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SecondaryLabelStyle, b?.SecondaryLabelStyle, t), brightness: t < 0.5 ? a?.Brightness ?? Brightness.Light : b?.Brightness ?? Brightness.Light, elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), pressElevation: Dart:uiDefaultClass.LerpDouble(a?.PressElevation, b?.PressElevation, t));
+            return new ChipThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), deleteIconColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.DeleteIconColor, b?.DeleteIconColor, t), disabledColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.DisabledColor, b?.DisabledColor, t), selectedColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SelectedColor, b?.SelectedColor, t), secondarySelectedColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SecondarySelectedColor, b?.SecondarySelectedColor, t), shadowColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), selectedShadowColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SelectedShadowColor, b?.SelectedShadowColor, t), checkmarkColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.CheckmarkColor, b?.CheckmarkColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LabelPadding, b?.LabelPadding, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.LabelStyle, b?.LabelStyle, t), secondaryLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SecondaryLabelStyle, b?.SecondaryLabelStyle, t), brightness: t < 0.5 ? a?.Brightness ?? Brightness.Light : b?.Brightness ?? Brightness.Light, elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), pressElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.PressElevation, b?.PressElevation, t));
         }
 
 
@@ -665,7 +650,8 @@ namespace FlutterSDK.Material.Chiptheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other)){
+            if (Dart.CoreDefaultClass.Identical(this, other))
+            {
                 return true;
             }
 
@@ -705,7 +691,6 @@ namespace FlutterSDK.Material.Chiptheme
 
 
 
-        #endregion
     }
 
 }

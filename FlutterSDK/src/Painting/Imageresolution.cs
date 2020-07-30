@@ -538,7 +538,6 @@ namespace FlutterSDK.Painting.Imageresolution
     /// </Summary>
     public class AssetImage : FlutterSDK.Painting.Imageprovider.AssetBundleImageProvider
     {
-        #region constructors
         public AssetImage(string assetName, FlutterSDK.Services.Assetbundle.AssetBundle bundle = default(FlutterSDK.Services.Assetbundle.AssetBundle), string package = default(string))
         : base()
         {
@@ -546,9 +545,6 @@ namespace FlutterSDK.Painting.Imageresolution
             this.Bundle = bundle;
             this.Package = package;
         }
-        #endregion
-
-        #region fields
         public virtual string AssetName { get; set; }
         public virtual FlutterSDK.Services.Assetbundle.AssetBundle Bundle { get; set; }
         public virtual string Package { get; set; }
@@ -556,9 +552,6 @@ namespace FlutterSDK.Painting.Imageresolution
         internal virtual RegExp _ExtractRatioRegExp { get; set; }
         public virtual string KeyName { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Future<FlutterSDK.Painting.Imageprovider.AssetBundleImageKey> ObtainKey(FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration)
         {
@@ -602,7 +595,7 @@ namespace FlutterSDK.Painting.Imageresolution
         private Future<Dictionary<string, List<string>>> _ManifestParser(string jsonData)
         {
             if (jsonData == null) return new SynchronousFuture<Dictionary<string, List<string>>>(null);
-            Dictionary<string, object> parsedJson = Dart:convertDefaultClass.Json.Decode(jsonData) as Dictionary<string, object>;
+            Dictionary<string, object> parsedJson = Dart.ConvertDefaultClass.Json.Decode(jsonData) as Dictionary<string, object>;
             Iterable<string> keys = parsedJson.Keys;
             Dictionary<string, List<string>> parsedManifest = Dictionary<string, List<string>>.FromIterables(keys, keys.Map((string key) => =>List<string>.From(parsedJson[key] as List<object>)));
             return new SynchronousFuture<Dictionary<string, List<string>>>(parsedManifest);
@@ -642,7 +635,7 @@ namespace FlutterSDK.Painting.Imageresolution
                 return _NaturalResolution;
             }
 
-            Uri assetUri = Dart:coreDefaultClass.Uri.Parse(key);
+            Uri assetUri = Dart.CoreDefaultClass.Uri.Parse(key);
             string directoryPath = "";
             if (assetUri.PathSegments.Count > 1)
             {
@@ -650,7 +643,7 @@ namespace FlutterSDK.Painting.Imageresolution
             }
 
             Match match = _ExtractRatioRegExp.FirstMatch(directoryPath);
-            if (match != null && match.GroupCount > 0) return Dart:coreDefaultClass.Double.Parse(match.Group(1));
+            if (match != null && match.GroupCount > 0) return Dart.CoreDefaultClass.Double.Parse(match.Group(1));
             return _NaturalResolution;
         }
 
@@ -666,7 +659,6 @@ namespace FlutterSDK.Painting.Imageresolution
 
 
 
-        #endregion
     }
 
 }

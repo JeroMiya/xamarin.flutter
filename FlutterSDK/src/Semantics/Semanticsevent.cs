@@ -452,18 +452,11 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class SemanticsEvent
     {
-        #region constructors
         public SemanticsEvent(string type)
         {
             this.Type = type;
         }
-        #endregion
-
-        #region fields
         public virtual string Type { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Converts this event to a Map that can be encoded with
@@ -491,7 +484,6 @@ namespace FlutterSDK.Semantics.Semanticsevent
         }
 
 
-        #endregion
     }
 
 
@@ -509,21 +501,14 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class AnnounceSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        #region constructors
         public AnnounceSemanticsEvent(string message, TextDirection textDirection)
         : base("announce")
         {
             this.Message = message;
             this.TextDirection = textDirection;
         }
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
         public virtual TextDirection TextDirection { get; set; }
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, object> GetDataMap()
         {
@@ -532,7 +517,6 @@ namespace FlutterSDK.Semantics.Semanticsevent
 
 
 
-        #endregion
     }
 
 
@@ -543,19 +527,12 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class TooltipSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        #region constructors
         public TooltipSemanticsEvent(string message)
         : base("tooltip")
         {
             this.Message = message;
         }
-        #endregion
-
-        #region fields
         public virtual string Message { get; set; }
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, object> GetDataMap()
         {
@@ -564,7 +541,6 @@ namespace FlutterSDK.Semantics.Semanticsevent
 
 
 
-        #endregion
     }
 
 
@@ -576,23 +552,15 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class LongPressSemanticsEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        #region constructors
         public LongPressSemanticsEvent()
         : base("longPress")
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
 
 
-        #endregion
     }
 
 
@@ -604,23 +572,15 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class TapSemanticEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        #region constructors
         public TapSemanticEvent()
         : base("tap")
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
 
 
-        #endregion
     }
 
 
@@ -642,23 +602,15 @@ namespace FlutterSDK.Semantics.Semanticsevent
     /// </Summary>
     public class UpdateLiveRegionEvent : FlutterSDK.Semantics.Semanticsevent.SemanticsEvent
     {
-        #region constructors
         public UpdateLiveRegionEvent()
         : base("updateLiveRegion")
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, object> GetDataMap() => new Dictionary<string, object> { };
 
 
-        #endregion
     }
 
 }

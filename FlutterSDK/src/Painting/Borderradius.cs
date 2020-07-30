@@ -465,14 +465,10 @@ namespace FlutterSDK.Painting.Borderradius
     /// </Summary>
     public class BorderRadiusGeometry
     {
-        #region constructors
         public BorderRadiusGeometry()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual Radius _TopLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -482,9 +478,6 @@ namespace FlutterSDK.Painting.Borderradius
         internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the difference between two [BorderRadiusGeometry] objects.
@@ -643,14 +636,13 @@ namespace FlutterSDK.Painting.Borderradius
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BorderRadiusGeometry && other._TopLeft == _TopLeft && other._TopRight == _TopRight && other._BottomLeft == _BottomLeft && other._BottomRight == _BottomRight && other._TopStart == _TopStart && other._TopEnd == _TopEnd && other._BottomStart == _BottomStart && other._BottomEnd == _BottomEnd;
         }
 
 
 
-        #endregion
     }
 
 
@@ -667,7 +659,6 @@ namespace FlutterSDK.Painting.Borderradius
     /// </Summary>
     public class BorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
-        #region constructors
         public static BorderRadius All(Radius radius)
         {
             var instance = new BorderRadius();
@@ -691,9 +682,6 @@ namespace FlutterSDK.Painting.Borderradius
             instance.BottomLeft = bottomLeft;
             instance.BottomRight = bottomRight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius Zero { get; set; }
         public virtual Radius TopLeft { get; set; }
         public virtual Radius TopRight { get; set; }
@@ -707,9 +695,6 @@ namespace FlutterSDK.Painting.Borderradius
         internal virtual Radius _TopEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _BottomStart { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _BottomEnd { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates an [RRect] from the current border radius and a [Rect].
@@ -832,7 +817,7 @@ namespace FlutterSDK.Painting.Borderradius
             if (a == null && b == null) return null;
             if (a == null) return b * t;
             if (b == null) return a * (1.0 - t);
-            return BorderRadius.Only(topLeft: Dart:uiDefaultClass.Radius.Lerp(a.TopLeft, b.TopLeft, t), topRight: Dart:uiDefaultClass.Radius.Lerp(a.TopRight, b.TopRight, t), bottomLeft: Dart:uiDefaultClass.Radius.Lerp(a.BottomLeft, b.BottomLeft, t), bottomRight: Dart:uiDefaultClass.Radius.Lerp(a.BottomRight, b.BottomRight, t));
+            return BorderRadius.Only(topLeft: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopLeft, b.TopLeft, t), topRight: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopRight, b.TopRight, t), bottomLeft: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomLeft, b.BottomLeft, t), bottomRight: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomRight, b.BottomRight, t));
         }
 
 
@@ -841,7 +826,6 @@ namespace FlutterSDK.Painting.Borderradius
         public new FlutterSDK.Painting.Borderradius.BorderRadius Resolve(TextDirection direction) => this;
 
 
-        #endregion
     }
 
 
@@ -861,7 +845,6 @@ namespace FlutterSDK.Painting.Borderradius
     /// </Summary>
     public class BorderRadiusDirectional : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
-        #region constructors
         public static BorderRadiusDirectional All(Radius radius)
         {
             var instance = new BorderRadiusDirectional();
@@ -885,9 +868,6 @@ namespace FlutterSDK.Painting.Borderradius
             instance.BottomStart = bottomStart;
             instance.BottomEnd = bottomEnd;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borderradius.BorderRadiusDirectional Zero { get; set; }
         public virtual Radius TopStart { get; set; }
         public virtual Radius TopEnd { get; set; }
@@ -901,9 +881,6 @@ namespace FlutterSDK.Painting.Borderradius
         internal virtual Radius _TopRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _BottomLeft { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Radius _BottomRight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borderradius.BorderRadiusGeometry Subtract(FlutterSDK.Painting.Borderradius.BorderRadiusGeometry other)
         {
@@ -1015,7 +992,7 @@ namespace FlutterSDK.Painting.Borderradius
             if (a == null && b == null) return null;
             if (a == null) return b * t;
             if (b == null) return a * (1.0 - t);
-            return BorderRadiusDirectional.Only(topStart: Dart:uiDefaultClass.Radius.Lerp(a.TopStart, b.TopStart, t), topEnd: Dart:uiDefaultClass.Radius.Lerp(a.TopEnd, b.TopEnd, t), bottomStart: Dart:uiDefaultClass.Radius.Lerp(a.BottomStart, b.BottomStart, t), bottomEnd: Dart:uiDefaultClass.Radius.Lerp(a.BottomEnd, b.BottomEnd, t));
+            return BorderRadiusDirectional.Only(topStart: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopStart, b.TopStart, t), topEnd: Dart.UI.UiDefaultClass.Radius.Lerp(a.TopEnd, b.TopEnd, t), bottomStart: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomStart, b.BottomStart, t), bottomEnd: Dart.UI.UiDefaultClass.Radius.Lerp(a.BottomEnd, b.BottomEnd, t));
         }
 
 
@@ -1030,13 +1007,11 @@ namespace FlutterSDK.Painting.Borderradius
 
 
 
-        #endregion
     }
 
 
     public class _MixedBorderRadius : FlutterSDK.Painting.Borderradius.BorderRadiusGeometry
     {
-        #region constructors
         public _MixedBorderRadius(Radius _topLeft, Radius _topRight, Radius _bottomLeft, Radius _bottomRight, Radius _topStart, Radius _topEnd, Radius _bottomStart, Radius _bottomEnd)
         {
             this._TopLeft = _topLeft;
@@ -1048,9 +1023,6 @@ namespace FlutterSDK.Painting.Borderradius
             this._BottomStart = _bottomStart;
             this._BottomEnd = _bottomEnd;
         }
-        #endregion
-
-        #region fields
         internal new Radius _TopLeft { get; set; }
         internal new Radius _TopRight { get; set; }
         internal new Radius _BottomLeft { get; set; }
@@ -1059,9 +1031,6 @@ namespace FlutterSDK.Painting.Borderradius
         internal new Radius _TopEnd { get; set; }
         internal new Radius _BottomStart { get; set; }
         internal new Radius _BottomEnd { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Borderradius._MixedBorderRadius Unary()
         {
@@ -1115,7 +1084,6 @@ namespace FlutterSDK.Painting.Borderradius
 
 
 
-        #endregion
     }
 
 }

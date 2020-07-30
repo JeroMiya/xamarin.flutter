@@ -387,7 +387,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
     /// </Summary>
     public class BottomSheetThemeData : IDiagnosticable
     {
-        #region constructors
         public BottomSheetThemeData(FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), double elevation = default(double), FlutterBinding.UI.Color modalBackgroundColor = default(FlutterBinding.UI.Color), double modalElevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Clip clipBehavior = default(FlutterBinding.UI.Clip))
         {
             this.BackgroundColor = backgroundColor;
@@ -397,9 +396,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
             this.Shape = shape;
             this.ClipBehavior = clipBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color BackgroundColor { get; set; }
         public virtual double Elevation { get; set; }
         public virtual FlutterBinding.UI.Color ModalBackgroundColor { get; set; }
@@ -407,9 +403,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
         public virtual FlutterSDK.Painting.Borders.ShapeBorder Shape { get; set; }
         public virtual FlutterBinding.UI.Clip ClipBehavior { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -434,7 +427,7 @@ namespace FlutterSDK.Material.Bottomsheettheme
         {
 
             if (a == null && b == null) return null;
-            return new BottomSheetThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), modalBackgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.ModalBackgroundColor, b?.ModalBackgroundColor, t), modalElevation: Dart:uiDefaultClass.LerpDouble(a?.ModalElevation, b?.ModalElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior);
+            return new BottomSheetThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), modalBackgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ModalBackgroundColor, b?.ModalBackgroundColor, t), modalElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.ModalElevation, b?.ModalElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), clipBehavior: t < 0.5 ? a?.ClipBehavior : b?.ClipBehavior);
         }
 
 
@@ -442,7 +435,7 @@ namespace FlutterSDK.Material.Bottomsheettheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BottomSheetThemeData && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.ModalBackgroundColor == ModalBackgroundColor && other.ModalElevation == ModalElevation && other.Shape == Shape && other.ClipBehavior == ClipBehavior;
         }
@@ -463,7 +456,6 @@ namespace FlutterSDK.Material.Bottomsheettheme
 
 
 
-        #endregion
     }
 
 }

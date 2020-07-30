@@ -492,7 +492,6 @@ namespace FlutterSDK.Widgets.Mediaquery
     /// </Summary>
     public class MediaQueryData
     {
-        #region constructors
         public MediaQueryData(Size size = default(Size), double devicePixelRatio = 1.0, double textScaleFactor = 1.0, Brightness platformBrightness = default(Brightness), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets systemGestureInsets = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Painting.Edgeinsets.EdgeInsets viewPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), double physicalDepth = default(double), bool alwaysUse24HourFormat = false, bool accessibleNavigation = false, bool invertColors = false, bool highContrast = false, bool disableAnimations = false, bool boldText = false)
         : base()
         {
@@ -516,9 +515,6 @@ namespace FlutterSDK.Widgets.Mediaquery
         {
             var instance = new MediaQueryData();
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get; set; }
         public virtual double DevicePixelRatio { get; set; }
         public virtual double TextScaleFactor { get; set; }
@@ -536,9 +532,6 @@ namespace FlutterSDK.Widgets.Mediaquery
         public virtual bool BoldText { get; set; }
         public virtual FlutterSDK.Widgets.Mediaquery.Orientation Orientation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this media query data but with the given fields replaced
@@ -572,7 +565,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemovePadding(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false)
         {
             if (!(removeLeft || removeTop || removeRight || removeBottom)) return this;
-            return new MediaQueryData(size: Size, devicePixelRatio: DevicePixelRatio, textScaleFactor: TextScaleFactor, platformBrightness: PlatformBrightness, padding: Padding.CopyWith(left: removeLeft ? 0.0 : null, top: removeTop ? 0.0 : null, right: removeRight ? 0.0 : null, bottom: removeBottom ? 0.0 : null), viewPadding: ViewPadding.CopyWith(left: removeLeft ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Left - Padding.Left):null, top: removeTop ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Top - Padding.Top):null, right: removeRight ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Right - Padding.Right):null, bottom: removeBottom ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Bottom - Padding.Bottom):null), viewInsets: ViewInsets, alwaysUse24HourFormat: AlwaysUse24HourFormat, highContrast: HighContrast, disableAnimations: DisableAnimations, invertColors: InvertColors, accessibleNavigation: AccessibleNavigation, boldText: BoldText);
+            return new MediaQueryData(size: Size, devicePixelRatio: DevicePixelRatio, textScaleFactor: TextScaleFactor, platformBrightness: PlatformBrightness, padding: Padding.CopyWith(left: removeLeft ? 0.0 : null, top: removeTop ? 0.0 : null, right: removeRight ? 0.0 : null, bottom: removeBottom ? 0.0 : null), viewPadding: ViewPadding.CopyWith(left: removeLeft ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Left - Padding.Left) : null, top: removeTop ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Top - Padding.Top) : null, right: removeRight ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Right - Padding.Right) : null, bottom: removeBottom ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Bottom - Padding.Bottom) : null), viewInsets: ViewInsets, alwaysUse24HourFormat: AlwaysUse24HourFormat, highContrast: HighContrast, disableAnimations: DisableAnimations, invertColors: InvertColors, accessibleNavigation: AccessibleNavigation, boldText: BoldText);
         }
 
 
@@ -596,7 +589,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData RemoveViewInsets(bool removeLeft = false, bool removeTop = false, bool removeRight = false, bool removeBottom = false)
         {
             if (!(removeLeft || removeTop || removeRight || removeBottom)) return this;
-            return new MediaQueryData(size: Size, devicePixelRatio: DevicePixelRatio, textScaleFactor: TextScaleFactor, platformBrightness: PlatformBrightness, padding: Padding, viewPadding: ViewPadding.CopyWith(left: removeLeft ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Left - ViewInsets.Left):null, top: removeTop ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Top - ViewInsets.Top):null, right: removeRight ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Right - ViewInsets.Right):null, bottom: removeBottom ? Math.Dart : mathDefaultClass.Max(0.0, ViewPadding.Bottom - ViewInsets.Bottom):null), viewInsets: ViewInsets.CopyWith(left: removeLeft ? 0.0 : null, top: removeTop ? 0.0 : null, right: removeRight ? 0.0 : null, bottom: removeBottom ? 0.0 : null), alwaysUse24HourFormat: AlwaysUse24HourFormat, highContrast: HighContrast, disableAnimations: DisableAnimations, invertColors: InvertColors, accessibleNavigation: AccessibleNavigation, boldText: BoldText);
+            return new MediaQueryData(size: Size, devicePixelRatio: DevicePixelRatio, textScaleFactor: TextScaleFactor, platformBrightness: PlatformBrightness, padding: Padding, viewPadding: ViewPadding.CopyWith(left: removeLeft ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Left - ViewInsets.Left) : null, top: removeTop ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Top - ViewInsets.Top) : null, right: removeRight ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Right - ViewInsets.Right) : null, bottom: removeBottom ? Dart.Math.MathDefaultClass.Max(0.0, ViewPadding.Bottom - ViewInsets.Bottom) : null), viewInsets: ViewInsets.CopyWith(left: removeLeft ? 0.0 : null, top: removeTop ? 0.0 : null, right: removeRight ? 0.0 : null, bottom: removeBottom ? 0.0 : null), alwaysUse24HourFormat: AlwaysUse24HourFormat, highContrast: HighContrast, disableAnimations: DisableAnimations, invertColors: InvertColors, accessibleNavigation: AccessibleNavigation, boldText: BoldText);
         }
 
 
@@ -635,7 +628,6 @@ namespace FlutterSDK.Widgets.Mediaquery
 
 
 
-        #endregion
     }
 
 
@@ -665,7 +657,6 @@ namespace FlutterSDK.Widgets.Mediaquery
     /// </Summary>
     public class MediaQuery : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public MediaQuery(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Mediaquery.MediaQueryData data = default(FlutterSDK.Widgets.Mediaquery.MediaQueryData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
@@ -692,13 +683,7 @@ namespace FlutterSDK.Widgets.Mediaquery
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Mediaquery.MediaQueryData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The data from the closest instance of this class that encloses the given
@@ -786,7 +771,6 @@ namespace FlutterSDK.Widgets.Mediaquery
 
 
 
-        #endregion
     }
 
 

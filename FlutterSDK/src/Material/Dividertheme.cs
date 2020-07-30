@@ -404,7 +404,6 @@ namespace FlutterSDK.Material.Dividertheme
     /// </Summary>
     public class DividerThemeData : IDiagnosticable
     {
-        #region constructors
         public DividerThemeData(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), double space = default(double), double thickness = default(double), double indent = default(double), double endIndent = default(double))
         {
             this.Color = color;
@@ -413,18 +412,12 @@ namespace FlutterSDK.Material.Dividertheme
             this.Indent = indent;
             this.EndIndent = endIndent;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual double Space { get; set; }
         public virtual double Thickness { get; set; }
         public virtual double Indent { get; set; }
         public virtual double EndIndent { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object with the given fields replaced with the
@@ -448,7 +441,7 @@ namespace FlutterSDK.Material.Dividertheme
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Lerp(FlutterSDK.Material.Dividertheme.DividerThemeData a, FlutterSDK.Material.Dividertheme.DividerThemeData b, double t)
         {
 
-            return new DividerThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), space: Dart:uiDefaultClass.LerpDouble(a?.Space, b?.Space, t), thickness: Dart:uiDefaultClass.LerpDouble(a?.Thickness, b?.Thickness, t), indent: Dart:uiDefaultClass.LerpDouble(a?.Indent, b?.Indent, t), endIndent: Dart:uiDefaultClass.LerpDouble(a?.EndIndent, b?.EndIndent, t));
+            return new DividerThemeData(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), space: Dart.UI.UiDefaultClass.LerpDouble(a?.Space, b?.Space, t), thickness: Dart.UI.UiDefaultClass.LerpDouble(a?.Thickness, b?.Thickness, t), indent: Dart.UI.UiDefaultClass.LerpDouble(a?.Indent, b?.Indent, t), endIndent: Dart.UI.UiDefaultClass.LerpDouble(a?.EndIndent, b?.EndIndent, t));
         }
 
 
@@ -456,7 +449,7 @@ namespace FlutterSDK.Material.Dividertheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is DividerThemeData && other.Color == Color && other.Space == Space && other.Thickness == Thickness && other.Indent == Indent && other.EndIndent == EndIndent;
         }
@@ -476,7 +469,6 @@ namespace FlutterSDK.Material.Dividertheme
 
 
 
-        #endregion
     }
 
 
@@ -487,19 +479,12 @@ namespace FlutterSDK.Material.Dividertheme
     /// </Summary>
     public class DividerTheme : FlutterSDK.Widgets.Inheritedtheme.InheritedTheme
     {
-        #region constructors
         public DividerTheme(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Dividertheme.DividerThemeData data = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Data = data;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Dividertheme.DividerThemeData Data { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The closest instance of this class's [data] value that encloses the given
@@ -526,7 +511,7 @@ namespace FlutterSDK.Material.Dividertheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             DividerTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new DividerTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new DividerTheme(data: Data, child: child);
         }
 
 
@@ -537,7 +522,6 @@ namespace FlutterSDK.Material.Dividertheme
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => Data != oldWidget.Data;
 
 
-        #endregion
     }
 
 }

@@ -561,7 +561,6 @@ namespace FlutterSDK.Material.Togglebuttons
     /// </Summary>
     public class ToggleButtons : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public ToggleButtons(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), List<bool> isSelected = default(List<bool>), Action<int> onPressed = default(Action<int>), FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), List<FlutterSDK.Widgets.Focusmanager.FocusNode> focusNodes = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>), bool renderBorder = true, FlutterBinding.UI.Color borderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedBorderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledBorderColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), double borderWidth = default(double))
         : base(key: key)
         {
@@ -586,9 +585,6 @@ namespace FlutterSDK.Material.Togglebuttons
             this.BorderRadius = borderRadius;
             this.BorderWidth = borderWidth;
         }
-        #endregion
-
-        #region fields
         internal virtual double _DefaultBorderWidth { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
         public virtual List<bool> IsSelected { get; set; }
@@ -610,9 +606,6 @@ namespace FlutterSDK.Material.Togglebuttons
         public virtual FlutterBinding.UI.Color DisabledBorderColor { get; set; }
         public virtual double BorderWidth { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
-        #endregion
-
-        #region methods
 
         private bool _IsFirstIndex(int index, int length, TextDirection textDirection)
         {
@@ -783,7 +776,6 @@ namespace FlutterSDK.Material.Togglebuttons
 
 
 
-        #endregion
     }
 
 
@@ -794,7 +786,6 @@ namespace FlutterSDK.Material.Togglebuttons
     /// </Summary>
     public class _ToggleButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public _ToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool selected = false, FlutterSDK.Painting.Textstyle.TextStyle textStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color selectedColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color fillColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), FlutterSDK.Painting.Borderradius.BorderRadius clipRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), bool isFirstButton = default(bool), bool isLastButton = default(bool), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -820,9 +811,6 @@ namespace FlutterSDK.Material.Togglebuttons
             this.IsLastButton = isLastButton;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool Selected { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle TextStyle { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
@@ -844,9 +832,6 @@ namespace FlutterSDK.Material.Togglebuttons
         public virtual bool IsFirstButton { get; set; }
         public virtual bool IsLastButton { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -897,13 +882,11 @@ namespace FlutterSDK.Material.Togglebuttons
 
 
 
-        #endregion
     }
 
 
     public class _SelectToggleButton : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _SelectToggleButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Painting.Borders.BorderSide leadingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide trailingBorderSide = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borderradius.BorderRadius borderRadius = default(FlutterSDK.Painting.Borderradius.BorderRadius), bool isFirstButton = default(bool), bool isLastButton = default(bool))
         : base(key: key, child: child)
         {
@@ -914,18 +897,12 @@ namespace FlutterSDK.Material.Togglebuttons
             this.IsFirstButton = isFirstButton;
             this.IsLastButton = isLastButton;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide LeadingBorderSide { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide HorizontalBorderSide { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide TrailingBorderSide { get; set; }
         public virtual FlutterSDK.Painting.Borderradius.BorderRadius BorderRadius { get; set; }
         public virtual bool IsFirstButton { get; set; }
         public virtual bool IsLastButton { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Togglebuttons._SelectToggleButtonRenderObject CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _SelectToggleButtonRenderObject(LeadingBorderSide, HorizontalBorderSide, TrailingBorderSide, BorderRadius, IsFirstButton, IsLastButton, BasicDefaultClass.Directionality.Of(context));
 
@@ -944,13 +921,11 @@ namespace FlutterSDK.Material.Togglebuttons
 
 
 
-        #endregion
     }
 
 
     public class _SelectToggleButtonRenderObject : FlutterSDK.Rendering.Shiftedbox.RenderShiftedBox
     {
-        #region constructors
         public _SelectToggleButtonRenderObject(FlutterSDK.Painting.Borders.BorderSide _leadingBorderSide, FlutterSDK.Painting.Borders.BorderSide _horizontalBorderSide, FlutterSDK.Painting.Borders.BorderSide _trailingBorderSide, FlutterSDK.Painting.Borderradius.BorderRadius _borderRadius, bool _isFirstButton, bool _isLastButton, TextDirection _textDirection, FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child)
         {
@@ -962,9 +937,6 @@ namespace FlutterSDK.Material.Togglebuttons
             this._IsLastButton = _isLastButton;
             this._TextDirection = _textDirection;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Borders.BorderSide _LeadingBorderSide { get; set; }
         internal virtual FlutterSDK.Painting.Borders.BorderSide _HorizontalBorderSide { get; set; }
         internal virtual FlutterSDK.Painting.Borders.BorderSide _TrailingBorderSide { get; set; }
@@ -979,9 +951,6 @@ namespace FlutterSDK.Material.Togglebuttons
         public virtual bool IsFirstButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsLastButton { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private double _MaxHeight(FlutterSDK.Rendering.Box.RenderBox box, double width)
         {
@@ -1081,7 +1050,7 @@ namespace FlutterSDK.Material.Togglebuttons
             Offset bottomRight = Size.BottomRight(offset);
             Rect outer = Rect.FromLTRB(offset.Dx, offset.Dy, bottomRight.Dx, bottomRight.Dy);
             Rect center = outer.Deflate(HorizontalBorderSide.Width / 2.0);
-            double sweepAngle = Math.Dart:mathDefaultClass.Pi / 2.0;
+            double sweepAngle = Math.Dart.MathDefaultClass.Pi / 2.0;
             RRect rrect = RRect.FromRectAndCorners(center, topLeft: BorderRadius.TopLeft, topRight: BorderRadius.TopRight, bottomLeft: BorderRadius.BottomLeft, bottomRight: BorderRadius.BottomRight).ScaleRadii();
             Rect tlCorner = Rect.FromLTWH(rrect.Left, rrect.Top, rrect.TlRadiusX * 2.0, rrect.TlRadiusY * 2.0);
             Rect blCorner = Rect.FromLTWH(rrect.Left, rrect.Bottom - (rrect.BlRadiusY * 2.0), rrect.BlRadiusX * 2.0, rrect.BlRadiusY * 2.0);
@@ -1101,7 +1070,7 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path endingPath = new Path();
                         new Path().MoveTo(rrect.Left + HorizontalBorderSide.Width / 2.0, rrect.Top);
                         new Path().LineTo(rrect.Right - rrect.TrRadiusX, rrect.Top);
-                        new Path().AddArc(trCorner, Math.Dart:mathDefaultClass.Pi * 3.0 / 2.0, sweepAngle);
+                        new Path().AddArc(trCorner, Math.Dart.MathDefaultClass.Pi * 3.0 / 2.0, sweepAngle);
                         new Path().LineTo(rrect.Right, rrect.Bottom - rrect.BrRadiusY);
                         new Path().AddArc(brCorner, 0, sweepAngle);
                         new Path().LineTo(rrect.Left + HorizontalBorderSide.Width / 2.0, rrect.Bottom);
@@ -1112,9 +1081,9 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path leadingPath = new Path();
                         new Path().MoveTo(outer.Right, rrect.Bottom);
                         new Path().LineTo(rrect.Left + rrect.BlRadiusX, rrect.Bottom);
-                        new Path().AddArc(blCorner, Math.Dart:mathDefaultClass.Pi / 2.0, sweepAngle);
+                        new Path().AddArc(blCorner, Math.Dart.MathDefaultClass.Pi / 2.0, sweepAngle);
                         new Path().LineTo(rrect.Left, rrect.Top + rrect.TlRadiusY);
-                        new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi, sweepAngle);
+                        new Path().AddArc(tlCorner, Math.Dart.MathDefaultClass.Pi, sweepAngle);
                         new Path().LineTo(outer.Right, rrect.Top);
                         context.Canvas.DrawPath(leadingPath, leadingPaint);
                     }
@@ -1144,9 +1113,9 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path endingPath = new Path();
                         new Path().MoveTo(rrect.Right - HorizontalBorderSide.Width / 2.0, rrect.Top);
                         new Path().LineTo(rrect.Left + rrect.TlRadiusX, rrect.Top);
-                        new Path().AddArc(tlCorner, Math.Dart:mathDefaultClass.Pi * 3.0 / 2.0, -sweepAngle);
+                        new Path().AddArc(tlCorner, Math.Dart.MathDefaultClass.Pi * 3.0 / 2.0, -sweepAngle);
                         new Path().LineTo(rrect.Left, rrect.Bottom - rrect.BlRadiusY);
-                        new Path().AddArc(blCorner, Math.Dart:mathDefaultClass.Pi, -sweepAngle);
+                        new Path().AddArc(blCorner, Math.Dart.MathDefaultClass.Pi, -sweepAngle);
                         new Path().LineTo(rrect.Right - HorizontalBorderSide.Width / 2.0, rrect.Bottom);
                         context.Canvas.DrawPath(endingPath, endingPaint);
                     }
@@ -1155,7 +1124,7 @@ namespace FlutterSDK.Material.Togglebuttons
                         Path leadingPath = new Path();
                         new Path().MoveTo(outer.Left, rrect.Bottom);
                         new Path().LineTo(rrect.Right - rrect.BrRadiusX, rrect.Bottom);
-                        new Path().AddArc(brCorner, Math.Dart:mathDefaultClass.Pi / 2.0, -sweepAngle);
+                        new Path().AddArc(brCorner, Math.Dart.MathDefaultClass.Pi / 2.0, -sweepAngle);
                         new Path().LineTo(rrect.Right, rrect.Top + rrect.TrRadiusY);
                         new Path().AddArc(trCorner, 0, -sweepAngle);
                         new Path().LineTo(outer.Left, rrect.Top);
@@ -1181,7 +1150,6 @@ namespace FlutterSDK.Material.Togglebuttons
 
 
 
-        #endregion
     }
 
 }

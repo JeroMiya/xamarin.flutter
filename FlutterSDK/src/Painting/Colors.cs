@@ -523,7 +523,6 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class HSVColor
     {
-        #region constructors
         public static HSVColor FromAHSV(double alpha, double hue, double saturation, double value)
         {
             var instance = new HSVColor(); instance.Alpha = alpha;
@@ -537,8 +536,8 @@ namespace FlutterSDK.Painting.Colors
             double red = color.Red / 0xFF;
             double green = color.Green / 0xFF;
             double blue = color.Blue / 0xFF;
-            double max = Math.Dart:mathDefaultClass.Max(red, Math.Dart:mathDefaultClass.Max(green, blue));
-            double min = Math.Dart:mathDefaultClass.Min(red, Math.Dart:mathDefaultClass.Min(green, blue));
+            double max = Dart.Math.MathDefaultClass.Max(red, Dart.Math.MathDefaultClass.Max(green, blue));
+            double min = Dart.Math.MathDefaultClass.Min(red, Dart.Math.MathDefaultClass.Min(green, blue));
             double delta = max - min;
             double alpha = color.Alpha / 0xFF;
             double hue = ColorsDefaultClass._GetHue(red, green, blue, max, delta);
@@ -547,17 +546,11 @@ namespace FlutterSDK.Painting.Colors
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double Alpha { get; set; }
         public virtual double Hue { get; set; }
         public virtual double Saturation { get; set; }
         public virtual double Value { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a copy of this color with the [alpha] parameter replaced with the
@@ -653,7 +646,7 @@ namespace FlutterSDK.Painting.Colors
             if (a == null && b == null) return null;
             if (a == null) return b._ScaleAlpha(t);
             if (b == null) return a._ScaleAlpha(1.0 - t);
-            return HSVColor.FromAHSV(Dart: uiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart: uiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Value, b.Value, t).Clamp(0.0, 1.0) as double);
+            return HSVColor.FromAHSV(Dart.UI.UiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart.UI.UiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Value, b.Value, t).Clamp(0.0, 1.0) as double);
         }
 
 
@@ -661,14 +654,13 @@ namespace FlutterSDK.Painting.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is HSVColor && other.Alpha == Alpha && other.Hue == Hue && other.Saturation == Saturation && other.Value == Value;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -696,7 +688,6 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class HSLColor
     {
-        #region constructors
         public static HSLColor FromAHSL(double alpha, double hue, double saturation, double lightness)
         {
             var instance = new HSLColor(); instance.Alpha = alpha;
@@ -710,8 +701,8 @@ namespace FlutterSDK.Painting.Colors
             double red = color.Red / 0xFF;
             double green = color.Green / 0xFF;
             double blue = color.Blue / 0xFF;
-            double max = Math.Dart:mathDefaultClass.Max(red, Math.Dart:mathDefaultClass.Max(green, blue));
-            double min = Math.Dart:mathDefaultClass.Min(red, Math.Dart:mathDefaultClass.Min(green, blue));
+            double max = Dart.Math.MathDefaultClass.Max(red, Dart.Math.MathDefaultClass.Max(green, blue));
+            double min = Dart.Math.MathDefaultClass.Min(red, Dart.Math.MathDefaultClass.Min(green, blue));
             double delta = max - min;
             double alpha = color.Alpha / 0xFF;
             double hue = ColorsDefaultClass._GetHue(red, green, blue, max, delta);
@@ -721,17 +712,11 @@ namespace FlutterSDK.Painting.Colors
         }
 
 
-        #endregion
-
-        #region fields
         public virtual double Alpha { get; set; }
         public virtual double Hue { get; set; }
         public virtual double Saturation { get; set; }
         public virtual double Lightness { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns a copy of this color with the alpha parameter replaced with the
@@ -837,7 +822,7 @@ namespace FlutterSDK.Painting.Colors
             if (a == null && b == null) return null;
             if (a == null) return b._ScaleAlpha(t);
             if (b == null) return a._ScaleAlpha(1.0 - t);
-            return HSLColor.FromAHSL(Dart: uiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart: uiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Lightness, b.Lightness, t).Clamp(0.0, 1.0) as double);
+            return HSLColor.FromAHSL(Dart.UI.UiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart.UI.UiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Lightness, b.Lightness, t).Clamp(0.0, 1.0) as double);
         }
 
 
@@ -845,14 +830,13 @@ namespace FlutterSDK.Painting.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is HSLColor && other.Alpha == Alpha && other.Hue == Hue && other.Saturation == Saturation && other.Lightness == Lightness;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -870,20 +854,13 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class ColorSwatch<T> : Color
     {
-        #region constructors
         public ColorSwatch(int primary, Dictionary<T, Color> _swatch)
         : base(primary)
         {
             this._Swatch = _swatch;
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<T, Color> _Swatch { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns an element of the swatch table.
@@ -894,7 +871,7 @@ namespace FlutterSDK.Painting.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return base == other && other is ColorSwatch<T> && other._Swatch == _Swatch;
         }
@@ -902,7 +879,6 @@ namespace FlutterSDK.Painting.Colors
 
 
 
-        #endregion
     }
 
 
@@ -911,18 +887,11 @@ namespace FlutterSDK.Painting.Colors
     /// </Summary>
     public class ColorProperty : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<Color>
     {
-        #region constructors
         public ColorProperty(string name, FlutterBinding.UI.Color value, bool showName = true, @Object defaultValue = default(@Object), FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle style = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsTreeStyle), FlutterSDK.Foundation.Diagnostics.DiagnosticLevel level = default(FlutterSDK.Foundation.Diagnostics.DiagnosticLevel))
         : base(name, value, defaultValue: defaultValue, showName: showName, style: style, level: level)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Dictionary<string, @Object> ToJsonMap(FlutterSDK.Foundation.Diagnostics.DiagnosticsSerializationDelegate @delegate)
         {
@@ -937,7 +906,6 @@ namespace FlutterSDK.Painting.Colors
 
 
 
-        #endregion
     }
 
 }

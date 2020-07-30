@@ -439,7 +439,6 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
     /// </Summary>
     public class RawKeyEventDataFuchsia : FlutterSDK.Services.Rawkeyboard.RawKeyEventData
     {
-        #region constructors
         public RawKeyEventDataFuchsia(int hidUsage = 0, int codePoint = 0, int modifiers = 0)
         : base()
         {
@@ -447,9 +446,6 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
             this.CodePoint = codePoint;
             this.Modifiers = modifiers;
         }
-        #endregion
-
-        #region fields
         public virtual int HidUsage { get; set; }
         public virtual int CodePoint { get; set; }
         public virtual int Modifiers { get; set; }
@@ -470,9 +466,6 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
         public virtual string KeyLabel { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.LogicalKeyboardKey LogicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Services.Keyboardkey.PhysicalKeyboardKey PhysicalKey { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private bool _IsLeftRightModifierPressed(FlutterSDK.Services.Rawkeyboard.KeyboardSide side, int anyMask, int leftMask, int rightMask)
         {
@@ -527,7 +520,6 @@ namespace FlutterSDK.Services.Rawkeyboardfuchsia
 
 
 
-        #endregion
     }
 
 }

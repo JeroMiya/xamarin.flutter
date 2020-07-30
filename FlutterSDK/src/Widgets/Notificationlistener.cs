@@ -467,17 +467,10 @@ namespace FlutterSDK.Widgets.Notificationlistener
     /// </Summary>
     public class Notification
     {
-        #region constructors
         public Notification()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Applied to each ancestor of the [dispatch] target.
@@ -541,7 +534,6 @@ namespace FlutterSDK.Widgets.Notificationlistener
 
 
 
-        #endregion
     }
 
 
@@ -555,21 +547,14 @@ namespace FlutterSDK.Widgets.Notificationlistener
     /// </Summary>
     public class NotificationListener<T> : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public NotificationListener(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> onNotification = default(FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T>))
         : base(key: key)
         {
             this.Child = child;
             this.OnNotification = onNotification;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Notificationlistener.NotificationListenerCallback<T> OnNotification { get; set; }
-        #endregion
-
-        #region methods
 
         private bool _Dispatch(FlutterSDK.Widgets.Notificationlistener.Notification notification, FlutterSDK.Widgets.Framework.Element element)
         {
@@ -588,7 +573,6 @@ namespace FlutterSDK.Widgets.Notificationlistener
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Child;
 
 
-        #endregion
     }
 
 
@@ -624,16 +608,8 @@ namespace FlutterSDK.Widgets.Notificationlistener
     /// </Summary>
     public class LayoutChangedNotification : FlutterSDK.Widgets.Notificationlistener.Notification
     {
-        #region constructors
         public LayoutChangedNotification()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

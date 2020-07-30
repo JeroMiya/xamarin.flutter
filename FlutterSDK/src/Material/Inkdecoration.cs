@@ -490,7 +490,6 @@ namespace FlutterSDK.Material.Inkdecoration
     /// </Summary>
     public class Ink : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Ink(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), double width = default(double), double height = default(double), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -506,18 +505,12 @@ namespace FlutterSDK.Material.Inkdecoration
             instance.Height = height;
             instance.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
         public virtual double Width { get; set; }
         public virtual double Height { get; set; }
         internal virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry _PaddingIncludingDecoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
@@ -532,22 +525,14 @@ namespace FlutterSDK.Material.Inkdecoration
         public new FlutterSDK.Material.Inkdecoration._InkState CreateState() => new _InkState();
 
 
-        #endregion
     }
 
 
     public class _InkState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Inkdecoration.Ink>
     {
-        #region constructors
         public _InkState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Inkdecoration.InkDecoration _Ink { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandleRemoved()
         {
@@ -602,7 +587,6 @@ namespace FlutterSDK.Material.Inkdecoration
 
 
 
-        #endregion
     }
 
 
@@ -625,7 +609,6 @@ namespace FlutterSDK.Material.Inkdecoration
     /// </Summary>
     public class InkDecoration : FlutterSDK.Material.Material.InkFeature
     {
-        #region constructors
         public InkDecoration(FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Material.Material.MaterialInkController controller = default(FlutterSDK.Material.Material.MaterialInkController), FlutterSDK.Rendering.Box.RenderBox referenceBox = default(FlutterSDK.Rendering.Box.RenderBox), VoidCallback onRemoved = default(VoidCallback))
         : base(controller: controller, referenceBox: referenceBox, onRemoved: onRemoved)
         {
@@ -635,17 +618,11 @@ namespace FlutterSDK.Material.Inkdecoration
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Decoration.BoxPainter _Painter { get; set; }
         internal virtual FlutterSDK.Painting.Decoration.Decoration _Decoration { get; set; }
         internal virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration _Configuration { get; set; }
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Imageprovider.ImageConfiguration Configuration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _HandleChanged()
         {
@@ -673,7 +650,7 @@ namespace FlutterSDK.Material.Inkdecoration
             {
                 canvas.Save();
                 canvas.Transform(transform.Storage);
-                _Painter.Paint(canvas, Dart: uiDefaultClass.Offset.Zero, sizedConfiguration);
+                _Painter.Paint(canvas, Dart.UI.UiDefaultClass.Offset.Zero, sizedConfiguration);
                 canvas.Restore();
             }
             else
@@ -685,7 +662,6 @@ namespace FlutterSDK.Material.Inkdecoration
 
 
 
-        #endregion
     }
 
 }

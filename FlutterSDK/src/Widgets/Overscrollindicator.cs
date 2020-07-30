@@ -489,7 +489,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
     /// </Summary>
     public class GlowingOverscrollIndicator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public GlowingOverscrollIndicator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool showLeading = true, bool showTrailing = true, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate notificationPredicate = default(FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -500,9 +499,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             this.NotificationPredicate = notificationPredicate;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool ShowLeading { get; set; }
         public virtual bool ShowTrailing { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
@@ -510,9 +506,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
         public virtual FlutterSDK.Widgets.Scrollnotification.ScrollNotificationPredicate NotificationPredicate { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Overscrollindicator._GlowingOverscrollIndicatorState CreateState() => new _GlowingOverscrollIndicatorState();
 
@@ -546,26 +539,18 @@ namespace FlutterSDK.Widgets.Overscrollindicator
 
 
 
-        #endregion
     }
 
 
     public class _GlowingOverscrollIndicatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Overscrollindicator.GlowingOverscrollIndicator>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _GlowingOverscrollIndicatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowController _LeadingController { get; set; }
         internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowController _TrailingController { get; set; }
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _LeadingAndTrailingListener { get; set; }
         internal virtual Type _LastNotificationType { get; set; }
         internal virtual Dictionary<bool, bool> _Accepted { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -683,13 +668,11 @@ namespace FlutterSDK.Widgets.Overscrollindicator
 
 
 
-        #endregion
     }
 
 
     public class _GlowController : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public _GlowController(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Basictypes.Axis axis = default(FlutterSDK.Painting.Basictypes.Axis))
         : base()
         {
@@ -704,9 +687,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Overscrollindicator._GlowState _State { get; set; }
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _GlowControllerValue { get; set; }
         internal virtual Timer _PullRecedeTimer { get; set; }
@@ -735,9 +715,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
         internal virtual double _MaxVelocity { get; set; }
         public virtual FlutterBinding.UI.Color Color { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Basictypes.Axis Axis { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Dispose()
         {
@@ -764,7 +741,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             _GlowOpacityTween.Begin = _State == _GlowState.Idle ? 0.3 : _GlowOpacity.Value;
             _GlowOpacityTween.End = (velocity * _VelocityGlowFactor).Clamp(_GlowOpacityTween.Begin, _MaxOpacity) as double;
             _GlowSizeTween.Begin = _GlowSize.Value;
-            _GlowSizeTween.End = Math.Dart:mathDefaultClass.Min(0.025 + 7.5e-7 * velocity * velocity, 1.0);
+            _GlowSizeTween.End = Dart.Math.MathDefaultClass.Min(0.025 + 7.5e-7 * velocity * velocity, 1.0);
             _GlowController.Duration = new TimeSpan(milliseconds: (0.15 + velocity * 0.02).Round());
             _GlowController.Forward(from: 0.0);
             _Displacement = 0.5;
@@ -792,10 +769,10 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             _PullRecedeTimer?.Cancel();
             _PullDistance += overscroll / 200.0;
             _GlowOpacityTween.Begin = _GlowOpacity.Value;
-            _GlowOpacityTween.End = Math.Dart:mathDefaultClass.Min(_GlowOpacity.Value + overscroll / extent * _PullOpacityGlowFactor, _MaxOpacity);
-            double height = Math.Dart:mathDefaultClass.Min(extent, crossExtent * _WidthToHeightFactor);
+            _GlowOpacityTween.End = Dart.Math.MathDefaultClass.Min(_GlowOpacity.Value + overscroll / extent * _PullOpacityGlowFactor, _MaxOpacity);
+            double height = Dart.Math.MathDefaultClass.Min(extent, crossExtent * _WidthToHeightFactor);
             _GlowSizeTween.Begin = _GlowSize.Value;
-            _GlowSizeTween.End = Math.Dart:mathDefaultClass.Max(1.0 - 1.0 / (0.7 * Math.Dart:mathDefaultClass.Sqrt(_PullDistance * height)), _GlowSize.Value);
+            _GlowSizeTween.End = Dart.Math.MathDefaultClass.Max(1.0 - 1.0 / (0.7 * Dart.Math.MathDefaultClass.Sqrt(_PullDistance * height)), _GlowSize.Value);
             _DisplacementTarget = crossAxisOffset / crossExtent;
             if (_DisplacementTarget != _Displacement)
             {
@@ -873,7 +850,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             if (_DisplacementTickerLastElapsed != null)
             {
                 double t = (elapsed.InMicroseconds() - _DisplacementTickerLastElapsed.InMicroseconds()).ToDouble();
-                _Displacement = _DisplacementTarget - (_DisplacementTarget - _Displacement) * Math.Dart:mathDefaultClass.Pow(2.0, -t / _CrossAxisHalfTime.InMicroseconds());
+                _Displacement = _DisplacementTarget - (_DisplacementTarget - _Displacement) * Dart.Math.MathDefaultClass.Pow(2.0, -t / _CrossAxisHalfTime.InMicroseconds());
                 NotifyListeners();
             }
 
@@ -897,7 +874,7 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             if (_GlowOpacity.Value == 0.0) return;
             double baseGlowScale = size.Width > size.Height ? size.Height / size.Width : 1.0;
             double radius = size.Width * 3.0 / 2.0;
-            double height = Math.Dart:mathDefaultClass.Min(size.Height, size.Width * _WidthToHeightFactor);
+            double height = Dart.Math.MathDefaultClass.Min(size.Height, size.Width * _WidthToHeightFactor);
             double scaleY = _GlowSize.Value * baseGlowScale;
             Rect rect = Rect.FromLTWH(0.0, 0.0, size.Width, height);
             Offset center = new Offset((size.Width / 2.0) * (0.5 + _Displacement), height - radius);
@@ -911,13 +888,11 @@ namespace FlutterSDK.Widgets.Overscrollindicator
 
 
 
-        #endregion
     }
 
 
     public class _GlowingOverscrollIndicatorPainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _GlowingOverscrollIndicatorPainter(FlutterSDK.Widgets.Overscrollindicator._GlowController leadingController = default(FlutterSDK.Widgets.Overscrollindicator._GlowController), FlutterSDK.Widgets.Overscrollindicator._GlowController trailingController = default(FlutterSDK.Widgets.Overscrollindicator._GlowController), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base(repaint: repaint)
         {
@@ -925,16 +900,10 @@ namespace FlutterSDK.Widgets.Overscrollindicator
             this.TrailingController = trailingController;
             this.AxisDirection = axisDirection;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController LeadingController { get; set; }
         public virtual FlutterSDK.Widgets.Overscrollindicator._GlowController TrailingController { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get; set; }
         public virtual double PiOver2 { get; set; }
-        #endregion
-
-        #region methods
 
         private void _PaintSide(Canvas canvas, Size size, FlutterSDK.Widgets.Overscrollindicator._GlowController controller, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, FlutterSDK.Rendering.Sliver.GrowthDirection growthDirection)
         {
@@ -967,7 +936,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
 
 
 
-        #endregion
     }
 
 
@@ -984,19 +952,12 @@ namespace FlutterSDK.Widgets.Overscrollindicator
     /// </Summary>
     public class OverscrollIndicatorNotification : FlutterSDK.Widgets.Notificationlistener.Notification, IViewportNotificationMixin
     {
-        #region constructors
         public OverscrollIndicatorNotification(bool leading = default(bool))
         {
             this.Leading = leading;
         }
-        #endregion
-
-        #region fields
         public virtual bool Leading { get; set; }
         internal virtual bool _Accepted { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Call this method if the glow should be prevented.
@@ -1017,7 +978,6 @@ namespace FlutterSDK.Widgets.Overscrollindicator
 
 
 
-        #endregion
     }
 
 

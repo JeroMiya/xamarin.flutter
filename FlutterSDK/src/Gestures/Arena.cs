@@ -566,7 +566,7 @@ namespace FlutterSDK.Gestures.Arena
 
             if (state.Members.Count == 1)
             {
-            Dart: asyncDefaultClass.ScheduleMicrotask(() => =>_ResolveByDefault(pointer, state));
+                Dart.AsyncDefaultClass.ScheduleMicrotask(() => =>_ResolveByDefault(pointer, state));
             }
             else if (state.Members.IsEmpty())
             {
@@ -654,22 +654,15 @@ namespace FlutterSDK.Gestures.Arena
     /// </Summary>
     public class GestureArenaEntry
     {
-        #region constructors
         internal GestureArenaEntry(FlutterSDK.Gestures.Arena.GestureArenaManager _arena, int _pointer, FlutterSDK.Gestures.Arena.GestureArenaMember _member)
         {
             this._Arena = _arena;
             this._Pointer = _pointer;
             this._Member = _member;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Gestures.Arena.GestureArenaManager _Arena { get; set; }
         internal virtual int _Pointer { get; set; }
         internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Call this member to claim victory (with accepted) or admit defeat (with rejected).
@@ -684,7 +677,6 @@ namespace FlutterSDK.Gestures.Arena
 
 
 
-        #endregion
     }
 
 

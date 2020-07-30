@@ -455,7 +455,6 @@ namespace FlutterSDK.Widgets.Safearea
     /// </Summary>
     public class SafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool maintainBottomViewPadding = false, FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -467,9 +466,6 @@ namespace FlutterSDK.Widgets.Safearea
             this.MaintainBottomViewPadding = maintainBottomViewPadding;
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual bool Left { get; set; }
         public virtual bool Top { get; set; }
         public virtual bool Right { get; set; }
@@ -477,9 +473,6 @@ namespace FlutterSDK.Widgets.Safearea
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
         public virtual bool MaintainBottomViewPadding { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -487,7 +480,7 @@ namespace FlutterSDK.Widgets.Safearea
             MediaQueryData data = MediaqueryDefaultClass.MediaQuery.Of(context);
             EdgeInsets padding = data.Padding;
             if (data.Padding.Bottom == 0.0 && data.ViewInsets.Bottom != 0.0 && MaintainBottomViewPadding) padding = padding.CopyWith(bottom: data.ViewPadding.Bottom);
-            return new Padding(padding: EdgeInsets.Only(left: Math.Dart:mathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Math.Dart:mathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Math.Dart:mathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Math.Dart:mathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), child: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Child));
+            return new Padding(padding: EdgeInsets.Only(left: Dart.Math.MathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Dart.Math.MathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Dart.Math.MathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Dart.Math.MathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), child: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Child));
         }
 
 
@@ -504,7 +497,6 @@ namespace FlutterSDK.Widgets.Safearea
 
 
 
-        #endregion
     }
 
 
@@ -532,7 +524,6 @@ namespace FlutterSDK.Widgets.Safearea
     /// </Summary>
     public class SliverSafeArea : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SliverSafeArea(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool left = true, bool top = true, bool right = true, bool bottom = true, FlutterSDK.Painting.Edgeinsets.EdgeInsets minimum = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
@@ -543,24 +534,18 @@ namespace FlutterSDK.Widgets.Safearea
             this.Minimum = minimum;
             this.Sliver = sliver;
         }
-        #endregion
-
-        #region fields
         public virtual bool Left { get; set; }
         public virtual bool Top { get; set; }
         public virtual bool Right { get; set; }
         public virtual bool Bottom { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Minimum { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Sliver { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
 
             EdgeInsets padding = MediaqueryDefaultClass.MediaQuery.Of(context).Padding;
-            return new SliverPadding(padding: EdgeInsets.Only(left: Math.Dart:mathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Math.Dart:mathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Math.Dart:mathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Math.Dart:mathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), sliver: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Sliver));
+            return new SliverPadding(padding: EdgeInsets.Only(left: Dart.Math.MathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Dart.Math.MathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Dart.Math.MathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Dart.Math.MathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), sliver: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Sliver));
         }
 
 
@@ -577,7 +562,6 @@ namespace FlutterSDK.Widgets.Safearea
 
 
 
-        #endregion
     }
 
 }

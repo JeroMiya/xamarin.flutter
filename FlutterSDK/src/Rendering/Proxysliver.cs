@@ -478,7 +478,6 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderProxySliver : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
-        #region constructors
         public RenderProxySliver(FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         {
 
@@ -486,12 +485,6 @@ namespace FlutterSDK.Rendering.Proxysliver
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -554,7 +547,6 @@ namespace FlutterSDK.Rendering.Proxysliver
 
 
 
-        #endregion
     }
 
 
@@ -572,7 +564,6 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
-        #region constructors
         public RenderSliverOpacity(double opacity = 1.0, bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -581,18 +572,12 @@ namespace FlutterSDK.Rendering.Proxysliver
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual int _Alpha { get; set; }
         internal virtual double _Opacity { get; set; }
         internal virtual bool _AlwaysIncludeSemantics { get; set; }
         public virtual bool AlwaysNeedsCompositing { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Opacity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AlwaysIncludeSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
@@ -637,7 +622,6 @@ namespace FlutterSDK.Rendering.Proxysliver
 
 
 
-        #endregion
     }
 
 
@@ -655,7 +639,6 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverIgnorePointer : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
-        #region constructors
         public RenderSliverIgnorePointer(FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver), bool ignoring = true, bool ignoringSemantics = default(bool))
         : base()
         {
@@ -664,17 +647,11 @@ namespace FlutterSDK.Rendering.Proxysliver
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Ignoring { get; set; }
         internal virtual bool _IgnoringSemantics { get; set; }
         public virtual bool Ignoring { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _EffectiveIgnoringSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterSDK.Rendering.Sliver.SliverHitTestResult result, double mainAxisPosition = default(double), double crossAxisPosition = default(double))
         {
@@ -701,7 +678,6 @@ namespace FlutterSDK.Rendering.Proxysliver
 
 
 
-        #endregion
     }
 
 
@@ -712,7 +688,6 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverOffstage : FlutterSDK.Rendering.Proxysliver.RenderProxySliver
     {
-        #region constructors
         public RenderSliverOffstage(bool offstage = true, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -721,14 +696,8 @@ namespace FlutterSDK.Rendering.Proxysliver
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual bool _Offstage { get; set; }
         public virtual bool Offstage { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -791,7 +760,6 @@ namespace FlutterSDK.Rendering.Proxysliver
 
 
 
-        #endregion
     }
 
 
@@ -803,7 +771,6 @@ namespace FlutterSDK.Rendering.Proxysliver
     /// </Summary>
     public class RenderSliverAnimatedOpacity : FlutterSDK.Rendering.Proxysliver.RenderProxySliver, IRenderAnimatedOpacityMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
-        #region constructors
         public RenderSliverAnimatedOpacity(FlutterSDK.Animation.Animation.Animation<double> opacity = default(FlutterSDK.Animation.Animation.Animation<double>), bool alwaysIncludeSemantics = false, FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -814,13 +781,6 @@ namespace FlutterSDK.Rendering.Proxysliver
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

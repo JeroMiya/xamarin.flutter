@@ -440,7 +440,6 @@ namespace FlutterSDK.Rendering.Animatedsize
     /// </Summary>
     public class RenderAnimatedSize : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
-        #region constructors
         public RenderAnimatedSize(FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), TimeSpan duration = default(TimeSpan), TimeSpan reverseDuration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox))
         : base(child: child, alignment: alignment, textDirection: textDirection)
         {
@@ -455,9 +454,6 @@ namespace FlutterSDK.Rendering.Animatedsize
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Animation.Animationcontroller.AnimationController _Controller { get; set; }
         internal virtual FlutterSDK.Animation.Animations.CurvedAnimation _Animation { get; set; }
         internal virtual FlutterSDK.Animation.Tween.SizeTween _SizeTween { get; set; }
@@ -472,9 +468,6 @@ namespace FlutterSDK.Rendering.Animatedsize
         public virtual bool IsAnimating { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual Size _AnimatedSize { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Detach()
         {
@@ -618,7 +611,7 @@ namespace FlutterSDK.Rendering.Animatedsize
         {
             if (Child != null && _HasVisualOverflow)
             {
-                Rect rect = Dart:uiDefaultClass.Offset.Zero & Size;
+                Rect rect = Dart.UiDefaultClass.Offset.Zero & Size;
                 context.PushClipRect(NeedsCompositing, offset, rect, base.Paint);
             }
             else
@@ -630,7 +623,6 @@ namespace FlutterSDK.Rendering.Animatedsize
 
 
 
-        #endregion
     }
 
 

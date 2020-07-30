@@ -827,14 +827,14 @@ namespace FlutterSDK.Rendering.Binding
         public new async Future<object> PerformReassemble()
         {
             await base.PerformReassemble();
-        Dart: developerDefaultClass.Timeline.StartSync("Dirty Render Tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Dirty Render Tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
                 RenderView.Reassemble();
             }
             finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
             ScheduleWarmUpFrame();
@@ -916,7 +916,6 @@ namespace FlutterSDK.Rendering.Binding
     /// </Summary>
     public class RenderingFlutterBinding : FlutterSDK.Foundation.Binding.BindingBase, IGestureBinding, IServicesBinding, ISchedulerBinding, ISemanticsBinding, IPaintingBinding, IRendererBinding
     {
-        #region constructors
         public RenderingFlutterBinding(FlutterSDK.Rendering.Box.RenderBox root = default(FlutterSDK.Rendering.Box.RenderBox))
         {
 
@@ -925,13 +924,6 @@ namespace FlutterSDK.Rendering.Binding
         }
 
 
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

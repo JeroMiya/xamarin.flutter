@@ -433,7 +433,6 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
     /// </Summary>
     public class InputDatePickerFormField : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public InputDatePickerFormField(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), DateTime initialDate = default(DateTime), DateTime firstDate = default(DateTime), DateTime lastDate = default(DateTime), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateSubmitted = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime> onDateSaved = default(FlutterSDK.Foundation.Basictypes.ValueChanged<DateTime>), FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate selectableDayPredicate = default(FlutterSDK.Material.Pickers.Datepickercommon.SelectableDayPredicate), string errorFormatText = default(string), string errorInvalidText = default(string), string fieldHintText = default(string), string fieldLabelText = default(string), bool autofocus = false)
         : base(key: key)
         {
@@ -452,9 +451,6 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
         }
 
 
-        #endregion
-
-        #region fields
         public virtual DateTime InitialDate { get; set; }
         public virtual DateTime FirstDate { get; set; }
         public virtual DateTime LastDate { get; set; }
@@ -466,32 +462,21 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
         public virtual string FieldHintText { get; set; }
         public virtual string FieldLabelText { get; set; }
         public virtual bool Autofocus { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Pickers.Inputdatepicker._InputDatePickerFormFieldState CreateState() => new _InputDatePickerFormFieldState();
 
 
-        #endregion
     }
 
 
     public class _InputDatePickerFormFieldState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Pickers.Inputdatepicker.InputDatePickerFormField>
     {
-        #region constructors
         public _InputDatePickerFormFieldState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Editabletext.TextEditingController _Controller { get; set; }
         internal virtual DateTime _SelectedDate { get; set; }
         internal virtual string _InputText { get; set; }
         internal virtual bool _AutoSelected { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -618,25 +603,17 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
 
 
 
-        #endregion
     }
 
 
     public class _DateTextInputFormatter : FlutterSDK.Services.Textformatter.TextInputFormatter
     {
-        #region constructors
         public _DateTextInputFormatter(string separator)
         {
             this.Separator = separator;
         }
-        #endregion
-
-        #region fields
         public virtual string Separator { get; set; }
         internal virtual FlutterSDK.Services.Textformatter.WhitelistingTextInputFormatter _FilterFormatter { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Services.Textinput.TextEditingValue FormatEditUpdate(FlutterSDK.Services.Textinput.TextEditingValue oldValue, FlutterSDK.Services.Textinput.TextEditingValue newValue)
         {
@@ -646,7 +623,6 @@ namespace FlutterSDK.Material.Pickers.Inputdatepicker
 
 
 
-        #endregion
     }
 
 }

@@ -439,7 +439,6 @@ namespace FlutterSDK.Material.Tabbartheme
     /// </Summary>
     public class TabBarTheme : IDiagnosticable
     {
-        #region constructors
         public TabBarTheme(FlutterSDK.Painting.Decoration.Decoration indicator = default(FlutterSDK.Painting.Decoration.Decoration), FlutterSDK.Material.Tabs.TabBarIndicatorSize indicatorSize = default(FlutterSDK.Material.Tabs.TabBarIndicatorSize), FlutterBinding.UI.Color labelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry labelPadding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Textstyle.TextStyle labelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle), FlutterBinding.UI.Color unselectedLabelColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Textstyle.TextStyle unselectedLabelStyle = default(FlutterSDK.Painting.Textstyle.TextStyle))
         {
             this.Indicator = indicator;
@@ -450,9 +449,6 @@ namespace FlutterSDK.Material.Tabbartheme
             this.UnselectedLabelColor = unselectedLabelColor;
             this.UnselectedLabelStyle = unselectedLabelStyle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Decoration.Decoration Indicator { get; set; }
         public virtual FlutterSDK.Material.Tabs.TabBarIndicatorSize IndicatorSize { get; set; }
         public virtual FlutterBinding.UI.Color LabelColor { get; set; }
@@ -461,9 +457,6 @@ namespace FlutterSDK.Material.Tabbartheme
         public virtual FlutterBinding.UI.Color UnselectedLabelColor { get; set; }
         public virtual FlutterSDK.Painting.Textstyle.TextStyle UnselectedLabelStyle { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this object but with the given fields replaced with the
@@ -500,7 +493,7 @@ namespace FlutterSDK.Material.Tabbartheme
 
 
 
-            return new TabBarTheme(indicator: DecorationDefaultClass.Decoration.Lerp(a.Indicator, b.Indicator, t), indicatorSize: t < 0.5 ? a.IndicatorSize : b.IndicatorSize, labelColor: Dart:uiDefaultClass.Color.Lerp(a.LabelColor, b.LabelColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a.LabelPadding, b.LabelPadding, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.LabelStyle, b.LabelStyle, t), unselectedLabelColor: Dart:uiDefaultClass.Color.Lerp(a.UnselectedLabelColor, b.UnselectedLabelColor, t), unselectedLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.UnselectedLabelStyle, b.UnselectedLabelStyle, t));
+            return new TabBarTheme(indicator: DecorationDefaultClass.Decoration.Lerp(a.Indicator, b.Indicator, t), indicatorSize: t < 0.5 ? a.IndicatorSize : b.IndicatorSize, labelColor: Dart.UI.UiDefaultClass.Color.Lerp(a.LabelColor, b.LabelColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a.LabelPadding, b.LabelPadding, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.LabelStyle, b.LabelStyle, t), unselectedLabelColor: Dart.UI.UiDefaultClass.Color.Lerp(a.UnselectedLabelColor, b.UnselectedLabelColor, t), unselectedLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a.UnselectedLabelStyle, b.UnselectedLabelStyle, t));
         }
 
 
@@ -508,14 +501,13 @@ namespace FlutterSDK.Material.Tabbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is TabBarTheme && other.Indicator == Indicator && other.IndicatorSize == IndicatorSize && other.LabelColor == LabelColor && other.LabelPadding == LabelPadding && other.LabelStyle == LabelStyle && other.UnselectedLabelColor == UnselectedLabelColor && other.UnselectedLabelStyle == UnselectedLabelStyle;
         }
 
 
 
-        #endregion
     }
 
 }

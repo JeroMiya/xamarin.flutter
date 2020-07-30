@@ -435,19 +435,11 @@ namespace FlutterSDK.Services.Clipboard
     /// </Summary>
     public class ClipboardData
     {
-        #region constructors
         public ClipboardData(string text = default(string))
         {
             this.Text = text;
         }
-        #endregion
-
-        #region fields
         public virtual string Text { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -456,18 +448,11 @@ namespace FlutterSDK.Services.Clipboard
     /// </Summary>
     public class Clipboard
     {
-        #region constructors
         internal Clipboard()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual string KTextPlain { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Stores the given clipboard data on the clipboard.
@@ -498,7 +483,6 @@ namespace FlutterSDK.Services.Clipboard
 
 
 
-        #endregion
     }
 
 }

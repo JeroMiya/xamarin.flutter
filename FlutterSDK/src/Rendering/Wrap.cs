@@ -429,23 +429,15 @@ namespace FlutterSDK.Rendering.Wrap
 
     public class _RunMetrics
     {
-        #region constructors
         public _RunMetrics(double mainAxisExtent, double crossAxisExtent, int childCount)
         {
             this.MainAxisExtent = mainAxisExtent;
             this.CrossAxisExtent = crossAxisExtent;
             this.ChildCount = childCount;
         }
-        #endregion
-
-        #region fields
         public virtual double MainAxisExtent { get; set; }
         public virtual double CrossAxisExtent { get; set; }
         public virtual int ChildCount { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -454,17 +446,9 @@ namespace FlutterSDK.Rendering.Wrap
     /// </Summary>
     public class WrapParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public WrapParentData()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _RunIndex { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -486,7 +470,6 @@ namespace FlutterSDK.Rendering.Wrap
     /// </Summary>
     public class RenderWrap : FlutterSDK.Rendering.Box.RenderBox, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Wrap.WrapParentData>
     {
-        #region constructors
         public RenderWrap(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Painting.Basictypes.Axis direction = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Rendering.Wrap.WrapAlignment alignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double spacing = 0.0, FlutterSDK.Rendering.Wrap.WrapAlignment runAlignment = default(FlutterSDK.Rendering.Wrap.WrapAlignment), double runSpacing = 0.0, FlutterSDK.Rendering.Wrap.WrapCrossAlignment crossAxisAlignment = default(FlutterSDK.Rendering.Wrap.WrapCrossAlignment), TextDirection textDirection = default(TextDirection), FlutterSDK.Painting.Basictypes.VerticalDirection verticalDirection = default(FlutterSDK.Painting.Basictypes.VerticalDirection))
         : base()
         {
@@ -495,9 +478,6 @@ namespace FlutterSDK.Rendering.Wrap
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Basictypes.Axis _Direction { get; set; }
         internal virtual FlutterSDK.Rendering.Wrap.WrapAlignment _Alignment { get; set; }
         internal virtual double _Spacing { get; set; }
@@ -516,9 +496,6 @@ namespace FlutterSDK.Rendering.Wrap
         public virtual TextDirection TextDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Basictypes.VerticalDirection VerticalDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _DebugHasNecessaryDirections { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -545,7 +522,7 @@ namespace FlutterSDK.Rendering.Wrap
             RenderBox child = FirstChild;
             while (child != null)
             {
-                double childWidth = child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+                double childWidth = child.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
                 double childHeight = child.GetMaxIntrinsicHeight(childWidth);
                 if (runWidth + childWidth > width)
                 {
@@ -558,7 +535,7 @@ namespace FlutterSDK.Rendering.Wrap
                 }
 
                 runWidth += childWidth;
-                runHeight = Math.Dart:mathDefaultClass.Max(runHeight, childHeight);
+                runHeight = Dart.Math.MathDefaultClass.Max(runHeight, childHeight);
                 if (childCount > 0) runWidth += Spacing;
                 childCount += 1;
                 child = ChildAfter(child);
@@ -582,7 +559,7 @@ namespace FlutterSDK.Rendering.Wrap
             RenderBox child = FirstChild;
             while (child != null)
             {
-                double childHeight = child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity);
+                double childHeight = child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity);
                 double childWidth = child.GetMaxIntrinsicWidth(childHeight);
                 if (runHeight + childHeight > height)
                 {
@@ -595,7 +572,7 @@ namespace FlutterSDK.Rendering.Wrap
                 }
 
                 runHeight += childHeight;
-                runWidth = Math.Dart:mathDefaultClass.Max(runWidth, childWidth);
+                runWidth = Dart.Math.MathDefaultClass.Max(runWidth, childWidth);
                 if (childCount > 0) runHeight += Spacing;
                 childCount += 1;
                 child = ChildAfter(child);
@@ -615,7 +592,7 @@ namespace FlutterSDK.Rendering.Wrap
                 case Axis.Horizontal:
                     double width = 0.0; RenderBox child = FirstChild; while (child != null)
                     {
-                        width = Math.Dart:mathDefaultClass.Max(width, child.GetMinIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity));
+                        width = Dart.Math.MathDefaultClass.Max(width, child.GetMinIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity));
                         child = ChildAfter(child);
                     }
                     return width;
@@ -634,7 +611,7 @@ namespace FlutterSDK.Rendering.Wrap
                 case Axis.Horizontal:
                     double width = 0.0; RenderBox child = FirstChild; while (child != null)
                     {
-                        width += child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity);
+                        width += child.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity);
                         child = ChildAfter(child);
                     }
                     return width;
@@ -654,7 +631,7 @@ namespace FlutterSDK.Rendering.Wrap
                 case Axis.Vertical:
                     double height = 0.0; RenderBox child = FirstChild; while (child != null)
                     {
-                        height = Math.Dart:mathDefaultClass.Max(height, child.GetMinIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity));
+                        height = Dart.Math.MathDefaultClass.Max(height, child.GetMinIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity));
                         child = ChildAfter(child);
                     }
                     return height;
@@ -673,7 +650,7 @@ namespace FlutterSDK.Rendering.Wrap
                 case Axis.Vertical:
                     double height = 0.0; RenderBox child = FirstChild; while (child != null)
                     {
-                        height += child.GetMaxIntrinsicHeight(Dart: coreDefaultClass.Double.Infinity);
+                        height += child.GetMaxIntrinsicHeight(Dart.CoreDefaultClass.Double.Infinity);
                         child = ChildAfter(child);
                     }
                     return height;
@@ -713,7 +690,7 @@ namespace FlutterSDK.Rendering.Wrap
         private Offset _GetOffset(double mainAxisOffset, double crossAxisOffset)
         {
             switch (Direction) { case Axis.Horizontal: return new Offset(mainAxisOffset, crossAxisOffset); case Axis.Vertical: return new Offset(crossAxisOffset, mainAxisOffset); }
-            return Dart:uiDefaultClass.Offset.Zero;
+            return Dart.UiDefaultClass.Offset.Zero;
         }
 
 
@@ -763,7 +740,7 @@ namespace FlutterSDK.Rendering.Wrap
                 double childCrossAxisExtent = _GetCrossAxisExtent(child);
                 if (childCount > 0 && runMainAxisExtent + spacing + childMainAxisExtent > mainAxisLimit)
                 {
-                    mainAxisExtent = Math.Dart:mathDefaultClass.Max(mainAxisExtent, runMainAxisExtent);
+                    mainAxisExtent = Dart.Math.MathDefaultClass.Max(mainAxisExtent, runMainAxisExtent);
                     crossAxisExtent += runCrossAxisExtent;
                     if (runMetrics.IsNotEmpty) crossAxisExtent += runSpacing;
                     runMetrics.Add(new _RunMetrics(runMainAxisExtent, runCrossAxisExtent, childCount));
@@ -774,7 +751,7 @@ namespace FlutterSDK.Rendering.Wrap
 
                 runMainAxisExtent += childMainAxisExtent;
                 if (childCount > 0) runMainAxisExtent += spacing;
-                runCrossAxisExtent = Math.Dart:mathDefaultClass.Max(runCrossAxisExtent, childCrossAxisExtent);
+                runCrossAxisExtent = Dart.Math.MathDefaultClass.Max(runCrossAxisExtent, childCrossAxisExtent);
                 childCount += 1;
                 WrapParentData childParentData = child.ParentData as WrapParentData;
                 childParentData._RunIndex = runMetrics.Count;
@@ -783,7 +760,7 @@ namespace FlutterSDK.Rendering.Wrap
 
             if (childCount > 0)
             {
-                mainAxisExtent = Math.Dart:mathDefaultClass.Max(mainAxisExtent, runMainAxisExtent);
+                mainAxisExtent = Dart.Math.MathDefaultClass.Max(mainAxisExtent, runMainAxisExtent);
                 crossAxisExtent += runCrossAxisExtent;
                 if (runMetrics.IsNotEmpty) crossAxisExtent += runSpacing;
                 runMetrics.Add(new _RunMetrics(runMainAxisExtent, runCrossAxisExtent, childCount));
@@ -795,7 +772,7 @@ namespace FlutterSDK.Rendering.Wrap
             double containerCrossAxisExtent = 0.0;
             switch (Direction) { case Axis.Horizontal: Size = constraints.Constrain(new Size(mainAxisExtent, crossAxisExtent)); containerMainAxisExtent = Size.Width; containerCrossAxisExtent = Size.Height; break; case Axis.Vertical: Size = constraints.Constrain(new Size(crossAxisExtent, mainAxisExtent)); containerMainAxisExtent = Size.Height; containerCrossAxisExtent = Size.Width; break; }
             _HasVisualOverflow = containerMainAxisExtent < mainAxisExtent || containerCrossAxisExtent < crossAxisExtent;
-            double crossAxisFreeSpace = Math.Dart:mathDefaultClass.Max(0.0, containerCrossAxisExtent - crossAxisExtent);
+            double crossAxisFreeSpace = Dart.Math.MathDefaultClass.Max(0.0, containerCrossAxisExtent - crossAxisExtent);
             double runLeadingSpace = 0.0;
             double runBetweenSpace = 0.0;
             switch (RunAlignment) { case WrapAlignment.Start: break; case WrapAlignment.End: runLeadingSpace = crossAxisFreeSpace; break; case WrapAlignment.Center: runLeadingSpace = crossAxisFreeSpace / 2.0; break; case WrapAlignment.SpaceBetween: runBetweenSpace = runCount > 1 ? crossAxisFreeSpace / (runCount - 1) : 0.0; break; case WrapAlignment.SpaceAround: runBetweenSpace = crossAxisFreeSpace / runCount; runLeadingSpace = runBetweenSpace / 2.0; break; case WrapAlignment.SpaceEvenly: runBetweenSpace = crossAxisFreeSpace / (runCount + 1); runLeadingSpace = runBetweenSpace; break; }
@@ -808,7 +785,7 @@ namespace FlutterSDK.Rendering.Wrap
                 double runMainAxisExtent = metrics.MainAxisExtent;
                 double runCrossAxisExtent = metrics.CrossAxisExtent;
                 int childCount = metrics.ChildCount;
-                double mainAxisFreeSpace = Math.Dart:mathDefaultClass.Max(0.0, containerMainAxisExtent - runMainAxisExtent);
+                double mainAxisFreeSpace = Dart.Math.MathDefaultClass.Max(0.0, containerMainAxisExtent - runMainAxisExtent);
                 double childLeadingSpace = 0.0;
                 double childBetweenSpace = 0.0;
                 switch (Alignment) { case WrapAlignment.Start: break; case WrapAlignment.End: childLeadingSpace = mainAxisFreeSpace; break; case WrapAlignment.Center: childLeadingSpace = mainAxisFreeSpace / 2.0; break; case WrapAlignment.SpaceBetween: childBetweenSpace = childCount > 1 ? mainAxisFreeSpace / (childCount - 1) : 0.0; break; case WrapAlignment.SpaceAround: childBetweenSpace = mainAxisFreeSpace / childCount; childLeadingSpace = childBetweenSpace / 2.0; break; case WrapAlignment.SpaceEvenly: childBetweenSpace = mainAxisFreeSpace / (childCount + 1); childLeadingSpace = childBetweenSpace; break; }
@@ -846,7 +823,7 @@ namespace FlutterSDK.Rendering.Wrap
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            if (_HasVisualOverflow) context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, DefaultPaint); else DefaultPaint(context, offset);
+            if (_HasVisualOverflow) context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, DefaultPaint); else DefaultPaint(context, offset);
         }
 
 
@@ -867,7 +844,6 @@ namespace FlutterSDK.Rendering.Wrap
 
 
 
-        #endregion
     }
 
 

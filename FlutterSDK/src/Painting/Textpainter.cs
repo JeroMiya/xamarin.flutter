@@ -445,7 +445,6 @@ namespace FlutterSDK.Painting.Textpainter
     /// </Summary>
     public class PlaceholderDimensions
     {
-        #region constructors
         public PlaceholderDimensions(Size size = default(Size), PlaceholderAlignment alignment = default(PlaceholderAlignment), TextBaseline baseline = default(TextBaseline), double baselineOffset = default(double))
         : base()
         {
@@ -454,18 +453,11 @@ namespace FlutterSDK.Painting.Textpainter
             this.Baseline = baseline;
             this.BaselineOffset = baselineOffset;
         }
-        #endregion
-
-        #region fields
         public virtual Size Size { get; set; }
         public virtual PlaceholderAlignment Alignment { get; set; }
         public virtual double BaselineOffset { get; set; }
         public virtual TextBaseline Baseline { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -476,21 +468,13 @@ namespace FlutterSDK.Painting.Textpainter
     /// </Summary>
     public class _CaretMetrics
     {
-        #region constructors
         public _CaretMetrics(FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double fullHeight = default(double))
         {
             this.Offset = offset;
             this.FullHeight = fullHeight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
         public virtual double FullHeight { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -515,15 +499,11 @@ namespace FlutterSDK.Painting.Textpainter
     /// </Summary>
     public class TextPainter
     {
-        #region constructors
         public TextPainter(FlutterSDK.Painting.Inlinespan.InlineSpan text = default(FlutterSDK.Painting.Inlinespan.InlineSpan), TextAlign textAlign = default(TextAlign), TextDirection textDirection = default(TextDirection), double textScaleFactor = 1.0, int maxLines = default(int), string ellipsis = default(string), Locale locale = default(Locale), FlutterSDK.Painting.Strutstyle.StrutStyle strutStyle = default(FlutterSDK.Painting.Strutstyle.StrutStyle), FlutterSDK.Painting.Textpainter.TextWidthBasis textWidthBasis = default(FlutterSDK.Painting.Textpainter.TextWidthBasis), TextHeightBehavior textHeightBehavior = default(TextHeightBehavior))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Paragraph _Paragraph { get; set; }
         internal virtual bool _NeedsLayout { get; set; }
         internal virtual FlutterSDK.Painting.Inlinespan.InlineSpan _Text { get; set; }
@@ -566,9 +546,6 @@ namespace FlutterSDK.Painting.Textpainter
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DidExceedMaxLines { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual FlutterBinding.UI.Offset _EmptyOffset { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Marks this text painter's layout information as dirty and removes cached
@@ -668,7 +645,7 @@ namespace FlutterSDK.Painting.Textpainter
             _NeedsLayout = false;
             if (_Paragraph == null)
             {
-                Ui.Dart:uiDefaultClass.ParagraphBuilder builder = new Ui.ParagraphBuilder(_CreateParagraphStyle());
+                Dart.UI.ParagraphBuilder builder = new Ui.ParagraphBuilder(_CreateParagraphStyle());
                 _Text.Build(builder, textScaleFactor: TextScaleFactor, dimensions: _PlaceholderDimensions);
                 _InlinePlaceholderScales = builder.PlaceholderScales;
                 _Paragraph = builder.Build();
@@ -763,7 +740,7 @@ namespace FlutterSDK.Painting.Textpainter
         private Rect _GetRectFromUpstream(int offset, FlutterBinding.UI.Rect caretPrototype)
         {
             string flattenedText = _Text.ToPlainText(includePlaceholders: false);
-            int prevCodeUnit = _Text.CodeUnitAt(Dart: mathDefaultClass.Max(0, offset - 1));
+            int prevCodeUnit = _Text.CodeUnitAt(Dart.Math.MathDefaultClass.Max(0, offset - 1));
             if (prevCodeUnit == null) return null;
             bool needsSearch = _IsUtf16Surrogate(prevCodeUnit) || _Text.CodeUnitAt(offset) == _ZwjUtf16 || _IsUnicodeDirectionality(prevCodeUnit);
             int graphemeClusterLength = needsSearch ? 2 : 1;
@@ -797,7 +774,7 @@ namespace FlutterSDK.Painting.Textpainter
 
                 double caretEnd = box.End;
                 double dx = box.Direction == TextDirection.Rtl ? caretEnd - caretPrototype.Width : caretEnd;
-                return Rect.FromLTRB(Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
+                return Rect.FromLTRB(Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
             }
 
             return null;
@@ -809,7 +786,7 @@ namespace FlutterSDK.Painting.Textpainter
         private Rect _GetRectFromDownstream(int offset, FlutterBinding.UI.Rect caretPrototype)
         {
             string flattenedText = _Text.ToPlainText(includePlaceholders: false);
-            int nextCodeUnit = _Text.CodeUnitAt(Dart: mathDefaultClass.Min(offset, flattenedText == null ? 0 : flattenedText.Length - 1));
+            int nextCodeUnit = _Text.CodeUnitAt(Dart.Math.MathDefaultClass.Min(offset, flattenedText == null ? 0 : flattenedText.Length - 1));
             if (nextCodeUnit == null) return null;
             bool needsSearch = _IsUtf16Surrogate(nextCodeUnit) || nextCodeUnit == _ZwjUtf16 || _IsUnicodeDirectionality(nextCodeUnit);
             int graphemeClusterLength = needsSearch ? 2 : 1;
@@ -837,7 +814,7 @@ namespace FlutterSDK.Painting.Textpainter
                 TextBox box = boxes.Last();
                 double caretStart = box.Start;
                 double dx = box.Direction == TextDirection.Rtl ? caretStart - caretPrototype.Width : caretStart;
-                return Rect.FromLTRB(Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart: mathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
+                return Rect.FromLTRB(Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Top, Dart.Math.MathDefaultClass.Min(dx, _Paragraph.Width), box.Bottom);
             }
 
             return null;
@@ -994,7 +971,6 @@ namespace FlutterSDK.Painting.Textpainter
 
 
 
-        #endregion
     }
 
 

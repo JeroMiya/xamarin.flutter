@@ -505,7 +505,6 @@ namespace FlutterSDK.Material.Themedata
     /// </Summary>
     public class ThemeData : IDiagnosticable
     {
-        #region constructors
         public ThemeData(Brightness brightness = default(Brightness), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Material.Colors.MaterialColor primarySwatch = default(FlutterSDK.Material.Colors.MaterialColor), FlutterBinding.UI.Color primaryColor = default(FlutterBinding.UI.Color), Brightness primaryColorBrightness = default(Brightness), FlutterBinding.UI.Color primaryColorLight = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryColorDark = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color accentColor = default(FlutterBinding.UI.Color), Brightness accentColorBrightness = default(Brightness), FlutterBinding.UI.Color canvasColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color scaffoldBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color bottomAppBarColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cardColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dividerColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory splashFactory = default(FlutterSDK.Material.Inkwell.InteractiveInkFeatureFactory), FlutterBinding.UI.Color selectedRowColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color unselectedWidgetColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color buttonColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Buttontheme.ButtonThemeData buttonTheme = default(FlutterSDK.Material.Buttontheme.ButtonThemeData), FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData toggleButtonsTheme = default(FlutterSDK.Material.Togglebuttonstheme.ToggleButtonsThemeData), FlutterBinding.UI.Color secondaryHeaderColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color cursorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color textSelectionHandleColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color dialogBackgroundColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color indicatorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hintColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color errorColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color toggleableActiveColor = default(FlutterBinding.UI.Color), string fontFamily = default(string), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme primaryTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Texttheme.TextTheme accentTextTheme = default(FlutterSDK.Material.Texttheme.TextTheme), FlutterSDK.Material.Inputdecorator.InputDecorationTheme inputDecorationTheme = default(FlutterSDK.Material.Inputdecorator.InputDecorationTheme), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData primaryIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData accentIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Tabbartheme.TabBarTheme tabBarTheme = default(FlutterSDK.Material.Tabbartheme.TabBarTheme), FlutterSDK.Material.Tooltiptheme.TooltipThemeData tooltipTheme = default(FlutterSDK.Material.Tooltiptheme.TooltipThemeData), FlutterSDK.Material.Cardtheme.CardTheme cardTheme = default(FlutterSDK.Material.Cardtheme.CardTheme), FlutterSDK.Material.Chiptheme.ChipThemeData chipTheme = default(FlutterSDK.Material.Chiptheme.ChipThemeData), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), bool applyElevationOverlayColor = default(bool), FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme pageTransitionsTheme = default(FlutterSDK.Material.Pagetransitionstheme.PageTransitionsTheme), FlutterSDK.Material.Appbartheme.AppBarTheme appBarTheme = default(FlutterSDK.Material.Appbartheme.AppBarTheme), FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme bottomAppBarTheme = default(FlutterSDK.Material.Bottomappbartheme.BottomAppBarTheme), FlutterSDK.Material.Colorscheme.ColorScheme colorScheme = default(FlutterSDK.Material.Colorscheme.ColorScheme), FlutterSDK.Material.Dialogtheme.DialogTheme dialogTheme = default(FlutterSDK.Material.Dialogtheme.DialogTheme), FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData floatingActionButtonTheme = default(FlutterSDK.Material.Floatingactionbuttontheme.FloatingActionButtonThemeData), FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData navigationRailTheme = default(FlutterSDK.Material.Navigationrailtheme.NavigationRailThemeData), FlutterSDK.Material.Typography.Typography typography = default(FlutterSDK.Material.Typography.Typography), FlutterSDK.Cupertino.Theme.CupertinoThemeData cupertinoOverrideTheme = default(FlutterSDK.Cupertino.Theme.CupertinoThemeData), FlutterSDK.Material.Snackbartheme.SnackBarThemeData snackBarTheme = default(FlutterSDK.Material.Snackbartheme.SnackBarThemeData), FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData bottomSheetTheme = default(FlutterSDK.Material.Bottomsheettheme.BottomSheetThemeData), FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData popupMenuTheme = default(FlutterSDK.Material.Popupmenutheme.PopupMenuThemeData), FlutterSDK.Material.Bannertheme.MaterialBannerThemeData bannerTheme = default(FlutterSDK.Material.Bannertheme.MaterialBannerThemeData), FlutterSDK.Material.Dividertheme.DividerThemeData dividerTheme = default(FlutterSDK.Material.Dividertheme.DividerThemeData), FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData buttonBarTheme = default(FlutterSDK.Material.Buttonbartheme.ButtonBarThemeData))
         {
 
@@ -681,10 +680,7 @@ namespace FlutterSDK.Material.Themedata
                 {
                     var instance = new ThemeData(); ThemeData.Light();
 
-#endregion
-
-                    #region fields
-        public virtual Brightness Brightness { get; set; }
+public virtual Brightness Brightness { get; set; }
         public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
         public virtual FlutterBinding.UI.Color PrimaryColor { get; set; }
         public virtual Brightness PrimaryColorBrightness { get; set; }
@@ -751,9 +747,6 @@ namespace FlutterSDK.Material.Themedata
         internal virtual int _LocalizedThemeDataCacheSize { get; set; }
         internal virtual FlutterSDK.Material.Themedata._FifoCache<FlutterSDK.Material.Themedata._IdentityThemeDataCacheKey, FlutterSDK.Material.Themedata.ThemeData> _LocalizedThemeDataCache { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this theme but with the given fields replaced with the new values.
@@ -820,7 +813,7 @@ namespace FlutterSDK.Material.Themedata
 
 
 
-            return ThemeData.Raw(brightness: t < 0.5 ? a.Brightness : b.Brightness, visualDensity: ThemedataDefaultClass.VisualDensity.Lerp(a.VisualDensity, b.VisualDensity, t), primaryColor: Dart:uiDefaultClass.Color.Lerp(a.PrimaryColor, b.PrimaryColor, t), primaryColorBrightness: t < 0.5 ? a.PrimaryColorBrightness : b.PrimaryColorBrightness, primaryColorLight: Dart:uiDefaultClass.Color.Lerp(a.PrimaryColorLight, b.PrimaryColorLight, t), primaryColorDark: Dart:uiDefaultClass.Color.Lerp(a.PrimaryColorDark, b.PrimaryColorDark, t), canvasColor: Dart:uiDefaultClass.Color.Lerp(a.CanvasColor, b.CanvasColor, t), accentColor: Dart:uiDefaultClass.Color.Lerp(a.AccentColor, b.AccentColor, t), accentColorBrightness: t < 0.5 ? a.AccentColorBrightness : b.AccentColorBrightness, scaffoldBackgroundColor: Dart:uiDefaultClass.Color.Lerp(a.ScaffoldBackgroundColor, b.ScaffoldBackgroundColor, t), bottomAppBarColor: Dart:uiDefaultClass.Color.Lerp(a.BottomAppBarColor, b.BottomAppBarColor, t), cardColor: Dart:uiDefaultClass.Color.Lerp(a.CardColor, b.CardColor, t), dividerColor: Dart:uiDefaultClass.Color.Lerp(a.DividerColor, b.DividerColor, t), focusColor: Dart:uiDefaultClass.Color.Lerp(a.FocusColor, b.FocusColor, t), hoverColor: Dart:uiDefaultClass.Color.Lerp(a.HoverColor, b.HoverColor, t), highlightColor: Dart:uiDefaultClass.Color.Lerp(a.HighlightColor, b.HighlightColor, t), splashColor: Dart:uiDefaultClass.Color.Lerp(a.SplashColor, b.SplashColor, t), splashFactory: t < 0.5 ? a.SplashFactory : b.SplashFactory, selectedRowColor: Dart:uiDefaultClass.Color.Lerp(a.SelectedRowColor, b.SelectedRowColor, t), unselectedWidgetColor: Dart:uiDefaultClass.Color.Lerp(a.UnselectedWidgetColor, b.UnselectedWidgetColor, t), disabledColor: Dart:uiDefaultClass.Color.Lerp(a.DisabledColor, b.DisabledColor, t), buttonTheme: t < 0.5 ? a.ButtonTheme : b.ButtonTheme, toggleButtonsTheme: TogglebuttonsthemeDefaultClass.ToggleButtonsThemeData.Lerp(a.ToggleButtonsTheme, b.ToggleButtonsTheme, t), buttonColor: Dart:uiDefaultClass.Color.Lerp(a.ButtonColor, b.ButtonColor, t), secondaryHeaderColor: Dart:uiDefaultClass.Color.Lerp(a.SecondaryHeaderColor, b.SecondaryHeaderColor, t), textSelectionColor: Dart:uiDefaultClass.Color.Lerp(a.TextSelectionColor, b.TextSelectionColor, t), cursorColor: Dart:uiDefaultClass.Color.Lerp(a.CursorColor, b.CursorColor, t), textSelectionHandleColor: Dart:uiDefaultClass.Color.Lerp(a.TextSelectionHandleColor, b.TextSelectionHandleColor, t), backgroundColor: Dart:uiDefaultClass.Color.Lerp(a.BackgroundColor, b.BackgroundColor, t), dialogBackgroundColor: Dart:uiDefaultClass.Color.Lerp(a.DialogBackgroundColor, b.DialogBackgroundColor, t), indicatorColor: Dart:uiDefaultClass.Color.Lerp(a.IndicatorColor, b.IndicatorColor, t), hintColor: Dart:uiDefaultClass.Color.Lerp(a.HintColor, b.HintColor, t), errorColor: Dart:uiDefaultClass.Color.Lerp(a.ErrorColor, b.ErrorColor, t), toggleableActiveColor: Dart:uiDefaultClass.Color.Lerp(a.ToggleableActiveColor, b.ToggleableActiveColor, t), textTheme: TextthemeDefaultClass.TextTheme.Lerp(a.TextTheme, b.TextTheme, t), primaryTextTheme: TextthemeDefaultClass.TextTheme.Lerp(a.PrimaryTextTheme, b.PrimaryTextTheme, t), accentTextTheme: TextthemeDefaultClass.TextTheme.Lerp(a.AccentTextTheme, b.AccentTextTheme, t), inputDecorationTheme: t < 0.5 ? a.InputDecorationTheme : b.InputDecorationTheme, iconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a.IconTheme, b.IconTheme, t), primaryIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a.PrimaryIconTheme, b.PrimaryIconTheme, t), accentIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a.AccentIconTheme, b.AccentIconTheme, t), sliderTheme: SliderthemeDefaultClass.SliderThemeData.Lerp(a.SliderTheme, b.SliderTheme, t), tabBarTheme: TabbarthemeDefaultClass.TabBarTheme.Lerp(a.TabBarTheme, b.TabBarTheme, t), tooltipTheme: TooltipthemeDefaultClass.TooltipThemeData.Lerp(a.TooltipTheme, b.TooltipTheme, t), cardTheme: CardthemeDefaultClass.CardTheme.Lerp(a.CardTheme, b.CardTheme, t), chipTheme: ChipthemeDefaultClass.ChipThemeData.Lerp(a.ChipTheme, b.ChipTheme, t), platform: t < 0.5 ? a.Platform : b.Platform, materialTapTargetSize: t < 0.5 ? a.MaterialTapTargetSize : b.MaterialTapTargetSize, applyElevationOverlayColor: t < 0.5 ? a.ApplyElevationOverlayColor : b.ApplyElevationOverlayColor, pageTransitionsTheme: t < 0.5 ? a.PageTransitionsTheme : b.PageTransitionsTheme, appBarTheme: AppbarthemeDefaultClass.AppBarTheme.Lerp(a.AppBarTheme, b.AppBarTheme, t), bottomAppBarTheme: BottomappbarthemeDefaultClass.BottomAppBarTheme.Lerp(a.BottomAppBarTheme, b.BottomAppBarTheme, t), colorScheme: ColorschemeDefaultClass.ColorScheme.Lerp(a.ColorScheme, b.ColorScheme, t), dialogTheme: DialogthemeDefaultClass.DialogTheme.Lerp(a.DialogTheme, b.DialogTheme, t), floatingActionButtonTheme: FloatingactionbuttonthemeDefaultClass.FloatingActionButtonThemeData.Lerp(a.FloatingActionButtonTheme, b.FloatingActionButtonTheme, t), navigationRailTheme: NavigationrailthemeDefaultClass.NavigationRailThemeData.Lerp(a.NavigationRailTheme, b.NavigationRailTheme, t), typography: TypographyDefaultClass.Typography.Lerp(a.Typography, b.Typography, t), cupertinoOverrideTheme: t < 0.5 ? a.CupertinoOverrideTheme : b.CupertinoOverrideTheme, snackBarTheme: SnackbarthemeDefaultClass.SnackBarThemeData.Lerp(a.SnackBarTheme, b.SnackBarTheme, t), bottomSheetTheme: BottomsheetthemeDefaultClass.BottomSheetThemeData.Lerp(a.BottomSheetTheme, b.BottomSheetTheme, t), popupMenuTheme: PopupmenuthemeDefaultClass.PopupMenuThemeData.Lerp(a.PopupMenuTheme, b.PopupMenuTheme, t), bannerTheme: BannerthemeDefaultClass.MaterialBannerThemeData.Lerp(a.BannerTheme, b.BannerTheme, t), dividerTheme: DividerthemeDefaultClass.DividerThemeData.Lerp(a.DividerTheme, b.DividerTheme, t), buttonBarTheme: ButtonbarthemeDefaultClass.ButtonBarThemeData.Lerp(a.ButtonBarTheme, b.ButtonBarTheme, t));
+            return ThemeData.Raw(brightness: t < 0.5 ? a.Brightness : b.Brightness, visualDensity: ThemedataDefaultClass.VisualDensity.Lerp(a.VisualDensity, b.VisualDensity, t), primaryColor: Dart.UI.UiDefaultClass.Color.Lerp(a.PrimaryColor, b.PrimaryColor, t), primaryColorBrightness: t < 0.5 ? a.PrimaryColorBrightness : b.PrimaryColorBrightness, primaryColorLight: Dart.UI.UiDefaultClass.Color.Lerp(a.PrimaryColorLight, b.PrimaryColorLight, t), primaryColorDark: Dart.UI.UiDefaultClass.Color.Lerp(a.PrimaryColorDark, b.PrimaryColorDark, t), canvasColor: Dart.UI.UiDefaultClass.Color.Lerp(a.CanvasColor, b.CanvasColor, t), accentColor: Dart.UI.UiDefaultClass.Color.Lerp(a.AccentColor, b.AccentColor, t), accentColorBrightness: t < 0.5 ? a.AccentColorBrightness : b.AccentColorBrightness, scaffoldBackgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ScaffoldBackgroundColor, b.ScaffoldBackgroundColor, t), bottomAppBarColor: Dart.UI.UiDefaultClass.Color.Lerp(a.BottomAppBarColor, b.BottomAppBarColor, t), cardColor: Dart.UI.UiDefaultClass.Color.Lerp(a.CardColor, b.CardColor, t), dividerColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DividerColor, b.DividerColor, t), focusColor: Dart.UI.UiDefaultClass.Color.Lerp(a.FocusColor, b.FocusColor, t), hoverColor: Dart.UI.UiDefaultClass.Color.Lerp(a.HoverColor, b.HoverColor, t), highlightColor: Dart.UI.UiDefaultClass.Color.Lerp(a.HighlightColor, b.HighlightColor, t), splashColor: Dart.UI.UiDefaultClass.Color.Lerp(a.SplashColor, b.SplashColor, t), splashFactory: t < 0.5 ? a.SplashFactory : b.SplashFactory, selectedRowColor: Dart.UI.UiDefaultClass.Color.Lerp(a.SelectedRowColor, b.SelectedRowColor, t), unselectedWidgetColor: Dart.UI.UiDefaultClass.Color.Lerp(a.UnselectedWidgetColor, b.UnselectedWidgetColor, t), disabledColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DisabledColor, b.DisabledColor, t), buttonTheme: t < 0.5 ? a.ButtonTheme : b.ButtonTheme, toggleButtonsTheme: TogglebuttonsthemeDefaultClass.ToggleButtonsThemeData.Lerp(a.ToggleButtonsTheme, b.ToggleButtonsTheme, t), buttonColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ButtonColor, b.ButtonColor, t), secondaryHeaderColor: Dart.UI.UiDefaultClass.Color.Lerp(a.SecondaryHeaderColor, b.SecondaryHeaderColor, t), textSelectionColor: Dart.UI.UiDefaultClass.Color.Lerp(a.TextSelectionColor, b.TextSelectionColor, t), cursorColor: Dart.UI.UiDefaultClass.Color.Lerp(a.CursorColor, b.CursorColor, t), textSelectionHandleColor: Dart.UI.UiDefaultClass.Color.Lerp(a.TextSelectionHandleColor, b.TextSelectionHandleColor, t), backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a.BackgroundColor, b.BackgroundColor, t), dialogBackgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DialogBackgroundColor, b.DialogBackgroundColor, t), indicatorColor: Dart.UI.UiDefaultClass.Color.Lerp(a.IndicatorColor, b.IndicatorColor, t), hintColor: Dart.UI.UiDefaultClass.Color.Lerp(a.HintColor, b.HintColor, t), errorColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ErrorColor, b.ErrorColor, t), toggleableActiveColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ToggleableActiveColor, b.ToggleableActiveColor, t), textTheme: TextthemeDefaultClass.TextTheme.Lerp(a.TextTheme, b.TextTheme, t), primaryTextTheme: TextthemeDefaultClass.TextTheme.Lerp(a.PrimaryTextTheme, b.PrimaryTextTheme, t), accentTextTheme: TextthemeDefaultClass.TextTheme.Lerp(a.AccentTextTheme, b.AccentTextTheme, t), inputDecorationTheme: t < 0.5 ? a.InputDecorationTheme : b.InputDecorationTheme, iconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a.IconTheme, b.IconTheme, t), primaryIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a.PrimaryIconTheme, b.PrimaryIconTheme, t), accentIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a.AccentIconTheme, b.AccentIconTheme, t), sliderTheme: SliderthemeDefaultClass.SliderThemeData.Lerp(a.SliderTheme, b.SliderTheme, t), tabBarTheme: TabbarthemeDefaultClass.TabBarTheme.Lerp(a.TabBarTheme, b.TabBarTheme, t), tooltipTheme: TooltipthemeDefaultClass.TooltipThemeData.Lerp(a.TooltipTheme, b.TooltipTheme, t), cardTheme: CardthemeDefaultClass.CardTheme.Lerp(a.CardTheme, b.CardTheme, t), chipTheme: ChipthemeDefaultClass.ChipThemeData.Lerp(a.ChipTheme, b.ChipTheme, t), platform: t < 0.5 ? a.Platform : b.Platform, materialTapTargetSize: t < 0.5 ? a.MaterialTapTargetSize : b.MaterialTapTargetSize, applyElevationOverlayColor: t < 0.5 ? a.ApplyElevationOverlayColor : b.ApplyElevationOverlayColor, pageTransitionsTheme: t < 0.5 ? a.PageTransitionsTheme : b.PageTransitionsTheme, appBarTheme: AppbarthemeDefaultClass.AppBarTheme.Lerp(a.AppBarTheme, b.AppBarTheme, t), bottomAppBarTheme: BottomappbarthemeDefaultClass.BottomAppBarTheme.Lerp(a.BottomAppBarTheme, b.BottomAppBarTheme, t), colorScheme: ColorschemeDefaultClass.ColorScheme.Lerp(a.ColorScheme, b.ColorScheme, t), dialogTheme: DialogthemeDefaultClass.DialogTheme.Lerp(a.DialogTheme, b.DialogTheme, t), floatingActionButtonTheme: FloatingactionbuttonthemeDefaultClass.FloatingActionButtonThemeData.Lerp(a.FloatingActionButtonTheme, b.FloatingActionButtonTheme, t), navigationRailTheme: NavigationrailthemeDefaultClass.NavigationRailThemeData.Lerp(a.NavigationRailTheme, b.NavigationRailTheme, t), typography: TypographyDefaultClass.Typography.Lerp(a.Typography, b.Typography, t), cupertinoOverrideTheme: t < 0.5 ? a.CupertinoOverrideTheme : b.CupertinoOverrideTheme, snackBarTheme: SnackbarthemeDefaultClass.SnackBarThemeData.Lerp(a.SnackBarTheme, b.SnackBarTheme, t), bottomSheetTheme: BottomsheetthemeDefaultClass.BottomSheetThemeData.Lerp(a.BottomSheetTheme, b.BottomSheetTheme, t), popupMenuTheme: PopupmenuthemeDefaultClass.PopupMenuThemeData.Lerp(a.PopupMenuTheme, b.PopupMenuTheme, t), bannerTheme: BannerthemeDefaultClass.MaterialBannerThemeData.Lerp(a.BannerTheme, b.BannerTheme, t), dividerTheme: DividerthemeDefaultClass.DividerThemeData.Lerp(a.DividerTheme, b.DividerTheme, t), buttonBarTheme: ButtonbarthemeDefaultClass.ButtonBarThemeData.Lerp(a.ButtonBarTheme, b.ButtonBarTheme, t));
         }
 
 
@@ -903,7 +896,6 @@ namespace FlutterSDK.Material.Themedata
 
 
 
-        #endregion
     }
 
 
@@ -936,7 +928,6 @@ namespace FlutterSDK.Material.Themedata
     /// </Summary>
     public class MaterialBasedCupertinoThemeData : FlutterSDK.Cupertino.Theme.CupertinoThemeData
     {
-        #region constructors
         public MaterialBasedCupertinoThemeData(FlutterSDK.Material.Themedata.ThemeData materialTheme = default(FlutterSDK.Material.Themedata.ThemeData))
         : base()
         {
@@ -948,18 +939,12 @@ namespace FlutterSDK.Material.Themedata
             this._MaterialTheme = _materialTheme;
             this._CupertinoOverrideTheme = _cupertinoOverrideTheme;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Themedata.ThemeData _MaterialTheme { get; set; }
         internal virtual FlutterSDK.Cupertino.Theme.CupertinoThemeData _CupertinoOverrideTheme { get; set; }
         public virtual Brightness Brightness { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color PrimaryColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color PrimaryContrastingColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Color ScaffoldBackgroundColor { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Copies the [ThemeData]'s `cupertinoOverrideTheme`.
@@ -989,36 +974,27 @@ namespace FlutterSDK.Material.Themedata
 
 
 
-        #endregion
     }
 
 
     public class _IdentityThemeDataCacheKey
     {
-        #region constructors
         public _IdentityThemeDataCacheKey(FlutterSDK.Material.Themedata.ThemeData baseTheme, FlutterSDK.Material.Texttheme.TextTheme localTextGeometry)
         {
             this.BaseTheme = baseTheme;
             this.LocalTextGeometry = localTextGeometry;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Themedata.ThemeData BaseTheme { get; set; }
         public virtual FlutterSDK.Material.Texttheme.TextTheme LocalTextGeometry { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
-            return other is _IdentityThemeDataCacheKey && Dart:coreDefaultClass.Identical(other.BaseTheme, BaseTheme) && Dart:coreDefaultClass.Identical(other.LocalTextGeometry, LocalTextGeometry);
+            return other is _IdentityThemeDataCacheKey && Dart.CoreDefaultClass.Identical(other.BaseTheme, BaseTheme) && Dart.CoreDefaultClass.Identical(other.LocalTextGeometry, LocalTextGeometry);
         }
 
 
 
-        #endregion
     }
 
 
@@ -1031,20 +1007,13 @@ namespace FlutterSDK.Material.Themedata
     /// </Summary>
     public class _FifoCache<K, V>
     {
-        #region constructors
         public _FifoCache(int _maximumSize)
         : base()
         {
             this._MaximumSize = _maximumSize;
         }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<K, V> _Cache { get; set; }
         internal virtual int _MaximumSize { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the previously cached value for the given key, if available;
@@ -1064,7 +1033,6 @@ namespace FlutterSDK.Material.Themedata
 
 
 
-        #endregion
     }
 
 
@@ -1093,16 +1061,12 @@ namespace FlutterSDK.Material.Themedata
     /// </Summary>
     public class VisualDensity : IDiagnosticable
     {
-        #region constructors
         public VisualDensity(double horizontal = 0.0, double vertical = 0.0)
         : base()
         {
             this.Horizontal = horizontal;
             this.Vertical = vertical;
         }
-        #endregion
-
-        #region fields
         public virtual double MinimumDensity { get; set; }
         public virtual double MaximumDensity { get; set; }
         public virtual FlutterSDK.Material.Themedata.VisualDensity Standard { get; set; }
@@ -1113,9 +1077,6 @@ namespace FlutterSDK.Material.Themedata
         public virtual FlutterSDK.Material.Themedata.VisualDensity AdaptivePlatformDensity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Offset BaseSizeAdjustment { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Copy the current [VisualDensity] with the given values replacing the
@@ -1134,7 +1095,7 @@ namespace FlutterSDK.Material.Themedata
         /// </Summary>
         public virtual FlutterSDK.Material.Themedata.VisualDensity Lerp(FlutterSDK.Material.Themedata.VisualDensity a, FlutterSDK.Material.Themedata.VisualDensity b, double t)
         {
-            return new VisualDensity(horizontal: Dart:uiDefaultClass.LerpDouble(a.Horizontal, b.Horizontal, t), vertical: Dart:uiDefaultClass.LerpDouble(a.Horizontal, b.Horizontal, t));
+            return new VisualDensity(horizontal: Dart.UI.UiDefaultClass.LerpDouble(a.Horizontal, b.Horizontal, t), vertical: Dart.UI.UiDefaultClass.LerpDouble(a.Horizontal, b.Horizontal, t));
         }
 
 
@@ -1147,7 +1108,7 @@ namespace FlutterSDK.Material.Themedata
         public virtual FlutterSDK.Rendering.Box.BoxConstraints EffectiveConstraints(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
 
-            return constraints.CopyWith(minWidth: (constraints.MinWidth + BaseSizeAdjustment.Dx).Clamp(0.0, Dart: coreDefaultClass.Double.Infinity).ToDouble(), minHeight: (constraints.MinHeight + BaseSizeAdjustment.Dy).Clamp(0.0, Dart: coreDefaultClass.Double.Infinity).ToDouble());
+            return constraints.CopyWith(minWidth: (constraints.MinWidth + BaseSizeAdjustment.Dx).Clamp(0.0, Dart.CoreDefaultClass.Double.Infinity).ToDouble(), minHeight: (constraints.MinHeight + BaseSizeAdjustment.Dy).Clamp(0.0, Dart.CoreDefaultClass.Double.Infinity).ToDouble());
         }
 
 
@@ -1183,7 +1144,6 @@ namespace FlutterSDK.Material.Themedata
 
 
 
-        #endregion
     }
 
 

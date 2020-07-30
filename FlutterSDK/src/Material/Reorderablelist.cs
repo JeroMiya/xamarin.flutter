@@ -426,7 +426,6 @@ namespace FlutterSDK.Material.Reorderablelist
     /// </Summary>
     public class ReorderableListView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public ReorderableListView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Material.Reorderablelist.ReorderCallback onReorder = default(FlutterSDK.Material.Reorderablelist.ReorderCallback), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), bool reverse = false)
         : base(key: key)
         {
@@ -438,9 +437,6 @@ namespace FlutterSDK.Material.Reorderablelist
             this.Padding = padding;
             this.Reverse = reverse;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
@@ -448,30 +444,19 @@ namespace FlutterSDK.Material.Reorderablelist
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
         public virtual bool Reverse { get; set; }
         public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Reorderablelist._ReorderableListViewState CreateState() => new _ReorderableListViewState();
 
 
-        #endregion
     }
 
 
     public class _ReorderableListViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Reorderablelist.ReorderableListView>
     {
-        #region constructors
         public _ReorderableListViewState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>> _OverlayKey { get; set; }
         internal virtual FlutterSDK.Widgets.Overlay.OverlayEntry _ListOverlayEntry { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -493,13 +478,11 @@ namespace FlutterSDK.Material.Reorderablelist
 
 
 
-        #endregion
     }
 
 
     public class _ReorderableListContent : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _ReorderableListContent(FlutterSDK.Widgets.Framework.Widget header = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Scrollcontroller.ScrollController scrollController = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), FlutterSDK.Painting.Edgeinsets.EdgeInsets padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsets), FlutterSDK.Material.Reorderablelist.ReorderCallback onReorder = default(FlutterSDK.Material.Reorderablelist.ReorderCallback), bool reverse = default(bool))
         {
             this.Header = header;
@@ -510,9 +493,6 @@ namespace FlutterSDK.Material.Reorderablelist
             this.OnReorder = onReorder;
             this.Reverse = reverse;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Header { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController ScrollController { get; set; }
@@ -520,25 +500,17 @@ namespace FlutterSDK.Material.Reorderablelist
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Padding { get; set; }
         public virtual FlutterSDK.Material.Reorderablelist.ReorderCallback OnReorder { get; set; }
         public virtual bool Reverse { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Reorderablelist._ReorderableListContentState CreateState() => new _ReorderableListContentState();
 
 
-        #endregion
     }
 
 
     public class _ReorderableListContentState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Reorderablelist._ReorderableListContent>, ITickerProviderStateMixin<FlutterSDK.Material.Reorderablelist._ReorderableListContent>
     {
-        #region constructors
         public _ReorderableListContentState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _DefaultDropAreaExtent { get; set; }
         internal virtual double _DropAreaMargin { get; set; }
         internal virtual TimeSpan _ReorderAnimationDuration { get; set; }
@@ -554,9 +526,6 @@ namespace FlutterSDK.Material.Reorderablelist
         internal virtual int _NextIndex { get; set; }
         internal virtual bool _Scrolling { get; set; }
         internal virtual double _DropAreaExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -632,8 +601,8 @@ namespace FlutterSDK.Material.Reorderablelist
 
             double margin = _DropAreaExtent;
             double scrollOffset = _ScrollController.Offset;
-            double topOffset = Dart:mathDefaultClass.Max(_ScrollController.Position.MinScrollExtent, viewport.GetOffsetToReveal(contextObject, 0.0).Offset - margin);
-            double bottomOffset = Dart:mathDefaultClass.Min(_ScrollController.Position.MaxScrollExtent, viewport.GetOffsetToReveal(contextObject, 1.0).Offset + margin);
+            double topOffset = Dart.Math.MathDefaultClass.Max(_ScrollController.Position.MinScrollExtent, viewport.GetOffsetToReveal(contextObject, 0.0).Offset - margin);
+            double bottomOffset = Dart.Math.MathDefaultClass.Min(_ScrollController.Position.MaxScrollExtent, viewport.GetOffsetToReveal(contextObject, 1.0).Offset + margin);
             bool onScreen = scrollOffset <= topOffset && scrollOffset >= bottomOffset;
             if (!onScreen)
             {
@@ -802,7 +771,6 @@ namespace FlutterSDK.Material.Reorderablelist
 
 
 
-        #endregion
     }
 
 }

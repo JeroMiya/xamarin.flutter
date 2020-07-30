@@ -456,19 +456,12 @@ namespace FlutterSDK.Widgets.Sliverprototypeextentlist
     /// </Summary>
     public class SliverPrototypeExtentList : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorWidget
     {
-        #region constructors
         public SliverPrototypeExtentList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliver.SliverChildDelegate @delegate = default(FlutterSDK.Widgets.Sliver.SliverChildDelegate), FlutterSDK.Widgets.Framework.Widget prototypeItem = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, @delegate: @delegate)
         {
             this.PrototypeItem = prototypeItem;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget PrototypeItem { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -482,28 +475,20 @@ namespace FlutterSDK.Widgets.Sliverprototypeextentlist
         public new FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement CreateElement() => new _SliverPrototypeExtentListElement(this);
 
 
-        #endregion
     }
 
 
     public class _SliverPrototypeExtentListElement : FlutterSDK.Widgets.Sliver.SliverMultiBoxAdaptorElement
     {
-        #region constructors
         public _SliverPrototypeExtentListElement(FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.Element _Prototype { get; set; }
         internal virtual @Object _PrototypeSlot { get; set; }
         public virtual FlutterSDK.Widgets.Sliverprototypeextentlist.SliverPrototypeExtentList Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Sliverprototypeextentlist._RenderSliverPrototypeExtentList RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InsertChildRenderObject(FlutterSDK.Rendering.@object.RenderObject child, object slot)
         {
@@ -593,27 +578,19 @@ namespace FlutterSDK.Widgets.Sliverprototypeextentlist
 
 
 
-        #endregion
     }
 
 
     public class _RenderSliverPrototypeExtentList : FlutterSDK.Rendering.Sliverfixedextentlist.RenderSliverFixedExtentBoxAdaptor
     {
-        #region constructors
         public _RenderSliverPrototypeExtentList(FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement childManager = default(FlutterSDK.Widgets.Sliverprototypeextentlist._SliverPrototypeExtentListElement))
         : base(childManager: childManager)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Box.RenderBox _Child { get; set; }
         public virtual FlutterSDK.Rendering.Box.RenderBox Child { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double ItemExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
@@ -666,7 +643,6 @@ namespace FlutterSDK.Widgets.Sliverprototypeextentlist
 
 
 
-        #endregion
     }
 
 }

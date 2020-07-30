@@ -937,7 +937,7 @@ namespace FlutterSDK.Rendering.Box
                 if (candidate != null)
                 {
                     candidate += childParentData.Offset.Dy;
-                    if (result != null) result = Math.Dart:mathDefaultClass.Min(result, candidate);else result = candidate;
+                    if (result != null) result = Dart.Math.MathDefaultClass.Min(result, candidate); else result = candidate;
                 }
 
                 child = childParentData.NextSibling;
@@ -1426,22 +1426,14 @@ namespace FlutterSDK.Rendering.Box
 
     public class _DebugSize : Size
     {
-        #region constructors
         public _DebugSize(Size source, FlutterSDK.Rendering.Box.RenderBox _owner, bool _canBeUsedByParent)
         : base(source)
         {
             this._Owner = _owner;
             this._CanBeUsedByParent = _canBeUsedByParent;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Box.RenderBox _Owner { get; set; }
         internal virtual bool _CanBeUsedByParent { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1512,7 +1504,6 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxConstraints : FlutterSDK.Rendering.@object.Constraints
     {
-        #region constructors
         public BoxConstraints(double minWidth = 0.0, double maxWidth = default(double), double minHeight = 0.0, double maxHeight = default(double))
         : base()
         {
@@ -1541,9 +1532,6 @@ namespace FlutterSDK.Rendering.Box
         {
             var instance = new BoxConstraints();
         }
-        #endregion
-
-        #region fields
         public virtual double MinWidth { get; set; }
         public virtual double MaxWidth { get; set; }
         public virtual double MinHeight { get; set; }
@@ -1560,9 +1548,6 @@ namespace FlutterSDK.Rendering.Box
         public virtual bool HasInfiniteHeight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsNormalized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this box constraints but with the given fields replaced with the new values.
@@ -1584,9 +1569,9 @@ namespace FlutterSDK.Rendering.Box
 
             double horizontal = edges.Horizontal;
             double vertical = edges.Vertical;
-            double deflatedMinWidth = Math.Dart:mathDefaultClass.Max(0.0, MinWidth - horizontal);
-            double deflatedMinHeight = Math.Dart:mathDefaultClass.Max(0.0, MinHeight - vertical);
-            return new BoxConstraints(minWidth: deflatedMinWidth, maxWidth: Math.Dart:mathDefaultClass.Max(deflatedMinWidth, MaxWidth - horizontal), minHeight: deflatedMinHeight, maxHeight: Math.Dart:mathDefaultClass.Max(deflatedMinHeight, MaxHeight - vertical));
+            double deflatedMinWidth = Dart.Math.MathDefaultClass.Max(0.0, MinWidth - horizontal);
+            double deflatedMinHeight = Dart.Math.MathDefaultClass.Max(0.0, MinHeight - vertical);
+            return new BoxConstraints(minWidth: deflatedMinWidth, maxWidth: Dart.Math.MathDefaultClass.Max(deflatedMinWidth, MaxWidth - horizontal), minHeight: deflatedMinHeight, maxHeight: Dart.Math.MathDefaultClass.Max(deflatedMinHeight, MaxHeight - vertical));
         }
 
 
@@ -1845,7 +1830,7 @@ namespace FlutterSDK.Rendering.Box
 
 
 
-            return new BoxConstraints(minWidth: a.MinWidth.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MinWidth, b.MinWidth, t):Dart: coreDefaultClass.Double.Infinity, maxWidth: a.MaxWidth.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MaxWidth, b.MaxWidth, t):Dart: coreDefaultClass.Double.Infinity, minHeight: a.MinHeight.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MinHeight, b.MinHeight, t):Dart: coreDefaultClass.Double.Infinity, maxHeight: a.MaxHeight.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MaxHeight, b.MaxHeight, t):Dart: coreDefaultClass.Double.Infinity);
+            return new BoxConstraints(minWidth: a.MinWidth.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MinWidth, b.MinWidth, t) : Dart.CoreDefaultClass.Double.Infinity, maxWidth: a.MaxWidth.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MaxWidth, b.MaxWidth, t) : Dart.CoreDefaultClass.Double.Infinity, minHeight: a.MinHeight.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MinHeight, b.MinHeight, t) : Dart.CoreDefaultClass.Double.Infinity, maxHeight: a.MaxHeight.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MaxHeight, b.MaxHeight, t) : Dart.CoreDefaultClass.Double.Infinity);
         }
 
 
@@ -1880,7 +1865,7 @@ namespace FlutterSDK.Rendering.Box
         public new bool Equals(@Object other)
         {
 
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
 
             return other is BoxConstraints && other.MinWidth == MinWidth && other.MaxWidth == MaxWidth && other.MinHeight == MinHeight && other.MaxHeight == MaxHeight;
@@ -1889,7 +1874,6 @@ namespace FlutterSDK.Rendering.Box
 
 
 
-        #endregion
     }
 
 
@@ -1901,7 +1885,6 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxHitTestResult : FlutterSDK.Gestures.Hittest.HitTestResult
     {
-        #region constructors
         public BoxHitTestResult()
         : base()
         {
@@ -1911,12 +1894,6 @@ namespace FlutterSDK.Rendering.Box
         {
             var instance = new BoxHitTestResult(result);
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Transforms `position` to the local coordinate system of a child for
@@ -2071,7 +2048,6 @@ namespace FlutterSDK.Rendering.Box
 
 
 
-        #endregion
     }
 
 
@@ -2080,22 +2056,14 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxHitTestEntry : FlutterSDK.Gestures.Hittest.HitTestEntry
     {
-        #region constructors
         public BoxHitTestEntry(FlutterSDK.Rendering.Box.RenderBox target, FlutterBinding.UI.Offset localPosition)
         : base(target)
         {
             this.LocalPosition = localPosition;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset LocalPosition { get; set; }
         public virtual FlutterSDK.Rendering.Box.RenderBox Target { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -2104,18 +2072,10 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class BoxParentData : FlutterSDK.Rendering.@object.ParentData
     {
-        #region constructors
         public BoxParentData()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Offset Offset { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
@@ -2128,36 +2088,21 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class ContainerBoxParentData<ChildType> : FlutterSDK.Rendering.Box.BoxParentData, IContainerParentDataMixin<ChildType>
     {
-        #region constructors
         public ContainerBoxParentData()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _IntrinsicDimensionsCacheEntry
     {
-        #region constructors
         public _IntrinsicDimensionsCacheEntry(FlutterSDK.Rendering.Box._IntrinsicDimension dimension, double argument)
         {
             this.Dimension = dimension;
             this.Argument = argument;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Box._IntrinsicDimension Dimension { get; set; }
         public virtual double Argument { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new bool Equals(@Object other)
         {
@@ -2166,7 +2111,6 @@ namespace FlutterSDK.Rendering.Box
 
 
 
-        #endregion
     }
 
 
@@ -2581,12 +2525,8 @@ namespace FlutterSDK.Rendering.Box
     /// </Summary>
     public class RenderBox : FlutterSDK.Rendering.@object.RenderObject
     {
-        #region constructors
         public RenderBox()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Rendering.Box._IntrinsicDimensionsCacheEntry, double> _CachedIntrinsicDimensions { get; set; }
         internal virtual Size _Size { get; set; }
         internal virtual Dictionary<TextBaseline, double> _CachedBaselines { get; set; }
@@ -2597,9 +2537,6 @@ namespace FlutterSDK.Rendering.Box
         public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect PaintBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.@object.RenderObject child)
         {
@@ -3265,7 +3202,7 @@ namespace FlutterSDK.Rendering.Box
         {
             Matrix4 transform = GetTransformTo(ancestor);
             double det = transform.Invert();
-            if (det == 0.0) return Dart:uiDefaultClass.Offset.Zero;
+            if (det == 0.0) return Dart.UiDefaultClass.Offset.Zero;
             Vector3 n = Vector3(0.0, 0.0, 1.0);
             Vector3 i = transform.PerspectiveTransform(Vector3(0.0, 0.0, 0.0));
             Vector3 d = transform.PerspectiveTransform(Vector3(0.0, 0.0, 1.0)) - i;
@@ -3406,7 +3343,6 @@ namespace FlutterSDK.Rendering.Box
 
 
 
-        #endregion
     }
 
 

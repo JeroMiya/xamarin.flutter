@@ -501,21 +501,14 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
     /// </Summary>
     public class SliverPersistentHeaderDelegate
     {
-        #region constructors
         public SliverPersistentHeaderDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration SnapConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The widget to place inside the [SliverPersistentHeader].
@@ -561,7 +554,6 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
             return default(bool);
         }
 
-        #endregion
     }
 
 
@@ -577,7 +569,6 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
     /// </Summary>
     public class SliverPersistentHeader : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public SliverPersistentHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate), bool pinned = false, bool floating = false)
         : base(key: key)
         {
@@ -585,15 +576,9 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
             this.Pinned = pinned;
             this.Floating = floating;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate { get; set; }
         public virtual bool Pinned { get; set; }
         public virtual bool Floating { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -617,27 +602,19 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _SliverPersistentHeaderElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _SliverPersistentHeaderElement(FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderRenderObjectWidget widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Element Child { get; set; }
         public virtual FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderRenderObjectWidget Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Sliverpersistentheader._RenderSliverPersistentHeaderForWidgetsMixin RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
         {
@@ -749,25 +726,17 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _SliverPersistentHeaderRenderObjectWidget : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public _SliverPersistentHeaderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate))
         : base(key: key)
         {
             this.@delegate = @delegate;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderElement CreateElement() => new _SliverPersistentHeaderElement(this);
 
@@ -787,24 +756,16 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _SliverScrollingPersistentHeader : FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderRenderObjectWidget
     {
-        #region constructors
         public _SliverScrollingPersistentHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate))
         : base(key: key, @delegate: @delegate)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliverpersistentheader._RenderSliverPersistentHeaderForWidgetsMixin CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -813,42 +774,26 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _RenderSliverScrollingPersistentHeaderForWidgets : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverScrollingPersistentHeader, I_RenderSliverPersistentHeaderForWidgetsMixin
     {
-        #region constructors
         public _RenderSliverScrollingPersistentHeaderForWidgets(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _SliverPinnedPersistentHeader : FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderRenderObjectWidget
     {
-        #region constructors
         public _SliverPinnedPersistentHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate))
         : base(key: key, @delegate: @delegate)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliverpersistentheader._RenderSliverPersistentHeaderForWidgetsMixin CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -857,42 +802,26 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _RenderSliverPinnedPersistentHeaderForWidgets : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverPinnedPersistentHeader, I_RenderSliverPersistentHeaderForWidgetsMixin
     {
-        #region constructors
         public _RenderSliverPinnedPersistentHeaderForWidgets(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _SliverFloatingPersistentHeader : FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderRenderObjectWidget
     {
-        #region constructors
         public _SliverFloatingPersistentHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate))
         : base(key: key, @delegate: @delegate)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliverpersistentheader._RenderSliverPersistentHeaderForWidgetsMixin CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -917,42 +846,26 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _RenderSliverFloatingPinnedPersistentHeaderForWidgets : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPinnedPersistentHeader, I_RenderSliverPersistentHeaderForWidgetsMixin
     {
-        #region constructors
         public _RenderSliverFloatingPinnedPersistentHeaderForWidgets(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _SliverFloatingPinnedPersistentHeader : FlutterSDK.Widgets.Sliverpersistentheader._SliverPersistentHeaderRenderObjectWidget
     {
-        #region constructors
         public _SliverFloatingPinnedPersistentHeader(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate @delegate = default(FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate))
         : base(key: key, @delegate: @delegate)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Sliverpersistentheader._RenderSliverPersistentHeaderForWidgetsMixin CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -977,25 +890,16 @@ namespace FlutterSDK.Widgets.Sliverpersistentheader
 
 
 
-        #endregion
     }
 
 
     public class _RenderSliverFloatingPersistentHeaderForWidgets : FlutterSDK.Rendering.Sliverpersistentheader.RenderSliverFloatingPersistentHeader, I_RenderSliverPersistentHeaderForWidgetsMixin
     {
-        #region constructors
         public _RenderSliverFloatingPersistentHeaderForWidgets(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration))
         : base(child: child, snapConfiguration: snapConfiguration, stretchConfiguration: stretchConfiguration)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

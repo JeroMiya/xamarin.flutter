@@ -436,21 +436,14 @@ namespace FlutterSDK.Services.Fontloader
     /// </Summary>
     public class FontLoader
     {
-        #region constructors
         public FontLoader(string family)
         : base()
         {
             this.Family = family;
         }
-        #endregion
-
-        #region fields
         public virtual string Family { get; set; }
         internal virtual bool _Loaded { get; set; }
         internal virtual List<Future<Uint8List>> _FontFutures { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Registers a font asset to be loaded by this font loader.
@@ -484,7 +477,7 @@ namespace FlutterSDK.Services.Fontloader
             if (_Loaded) throw new StateError("FontLoader is already loaded");
             _Loaded = true;
             Iterable<Future<void>> loadFutures = _FontFutures.Map((Future<Uint8List> f) => =>f.Then((Uint8List list) => =>LoadFont(list, Family)));
-            return Dart:asyncDefaultClass.Future.Wait(loadFutures.ToList());
+            return Dart.AsyncDefaultClass.Future.Wait(loadFutures.ToList());
         }
 
 
@@ -498,12 +491,11 @@ namespace FlutterSDK.Services.Fontloader
         /// </Summary>
         public virtual Future<object> LoadFont(Uint8List list, string family)
         {
-            return Dart:uiDefaultClass.LoadFontFromList(list, fontFamily: family);
+            return Dart.UI.UiDefaultClass.LoadFontFromList(list, fontFamily: family);
         }
 
 
 
-        #endregion
     }
 
 }

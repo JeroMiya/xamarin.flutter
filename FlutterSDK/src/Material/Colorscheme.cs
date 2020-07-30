@@ -389,7 +389,6 @@ namespace FlutterSDK.Material.Colorscheme
     /// </Summary>
     public class ColorScheme : IDiagnosticable
     {
-        #region constructors
         public ColorScheme(FlutterBinding.UI.Color primary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color primaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color secondaryVariant = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color surface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color background = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color error = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onPrimary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSecondary = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onSurface = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onBackground = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color onError = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness))
         : base()
         {
@@ -452,9 +451,6 @@ namespace FlutterSDK.Material.Colorscheme
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Primary { get; set; }
         public virtual FlutterBinding.UI.Color PrimaryVariant { get; set; }
         public virtual FlutterBinding.UI.Color Secondary { get; set; }
@@ -469,9 +465,6 @@ namespace FlutterSDK.Material.Colorscheme
         public virtual FlutterBinding.UI.Color OnError { get; set; }
         public virtual Brightness Brightness { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private Brightness _BrightnessFor(FlutterBinding.UI.Color color) => ThemedataDefaultClass.ThemeData.EstimateBrightnessForColor(color);
 
@@ -496,7 +489,7 @@ namespace FlutterSDK.Material.Colorscheme
         /// </Summary>
         public virtual FlutterSDK.Material.Colorscheme.ColorScheme Lerp(FlutterSDK.Material.Colorscheme.ColorScheme a, FlutterSDK.Material.Colorscheme.ColorScheme b, double t)
         {
-            return new ColorScheme(primary: Dart:uiDefaultClass.Color.Lerp(a.Primary, b.Primary, t), primaryVariant: Dart:uiDefaultClass.Color.Lerp(a.PrimaryVariant, b.PrimaryVariant, t), secondary: Dart:uiDefaultClass.Color.Lerp(a.Secondary, b.Secondary, t), secondaryVariant: Dart:uiDefaultClass.Color.Lerp(a.SecondaryVariant, b.SecondaryVariant, t), surface: Dart:uiDefaultClass.Color.Lerp(a.Surface, b.Surface, t), background: Dart:uiDefaultClass.Color.Lerp(a.Background, b.Background, t), error: Dart:uiDefaultClass.Color.Lerp(a.Error, b.Error, t), onPrimary: Dart:uiDefaultClass.Color.Lerp(a.OnPrimary, b.OnPrimary, t), onSecondary: Dart:uiDefaultClass.Color.Lerp(a.OnSecondary, b.OnSecondary, t), onSurface: Dart:uiDefaultClass.Color.Lerp(a.OnSurface, b.OnSurface, t), onBackground: Dart:uiDefaultClass.Color.Lerp(a.OnBackground, b.OnBackground, t), onError: Dart:uiDefaultClass.Color.Lerp(a.OnError, b.OnError, t), brightness: t < 0.5 ? a.Brightness : b.Brightness);
+            return new ColorScheme(primary: Dart.UI.UiDefaultClass.Color.Lerp(a.Primary, b.Primary, t), primaryVariant: Dart.UI.UiDefaultClass.Color.Lerp(a.PrimaryVariant, b.PrimaryVariant, t), secondary: Dart.UI.UiDefaultClass.Color.Lerp(a.Secondary, b.Secondary, t), secondaryVariant: Dart.UI.UiDefaultClass.Color.Lerp(a.SecondaryVariant, b.SecondaryVariant, t), surface: Dart.UI.UiDefaultClass.Color.Lerp(a.Surface, b.Surface, t), background: Dart.UI.UiDefaultClass.Color.Lerp(a.Background, b.Background, t), error: Dart.UI.UiDefaultClass.Color.Lerp(a.Error, b.Error, t), onPrimary: Dart.UI.UiDefaultClass.Color.Lerp(a.OnPrimary, b.OnPrimary, t), onSecondary: Dart.UI.UiDefaultClass.Color.Lerp(a.OnSecondary, b.OnSecondary, t), onSurface: Dart.UI.UiDefaultClass.Color.Lerp(a.OnSurface, b.OnSurface, t), onBackground: Dart.UI.UiDefaultClass.Color.Lerp(a.OnBackground, b.OnBackground, t), onError: Dart.UI.UiDefaultClass.Color.Lerp(a.OnError, b.OnError, t), brightness: t < 0.5 ? a.Brightness : b.Brightness);
         }
 
 
@@ -504,7 +497,7 @@ namespace FlutterSDK.Material.Colorscheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is ColorScheme && other.Primary == Primary && other.PrimaryVariant == PrimaryVariant && other.Secondary == Secondary && other.SecondaryVariant == SecondaryVariant && other.Surface == Surface && other.Background == Background && other.Error == Error && other.OnPrimary == OnPrimary && other.OnSecondary == OnSecondary && other.OnSurface == OnSurface && other.OnBackground == OnBackground && other.OnError == OnError && other.Brightness == Brightness;
         }
@@ -533,7 +526,6 @@ namespace FlutterSDK.Material.Colorscheme
 
 
 
-        #endregion
     }
 
 }

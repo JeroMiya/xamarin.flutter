@@ -576,7 +576,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class NestedScrollView : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public NestedScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewHeaderSliversBuilder headerSliverBuilder = default(FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewHeaderSliversBuilder), FlutterSDK.Widgets.Framework.Widget body = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(key: key)
         {
@@ -588,9 +587,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
             this.Body = body;
             this.DragStartBehavior = dragStartBehavior;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController Controller { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
         public virtual bool Reverse { get; set; }
@@ -598,9 +594,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         public virtual FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewHeaderSliversBuilder HeaderSliverBuilder { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Body { get; set; }
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the [SliverOverlapAbsorberHandle] of the nearest ancestor
@@ -633,7 +626,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         public new FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewState CreateState() => new NestedScrollViewState();
 
 
-        #endregion
     }
 
 
@@ -682,20 +674,13 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class NestedScrollViewState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Nestedscrollview.NestedScrollView>
     {
-        #region constructors
         public NestedScrollViewState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle _AbsorberHandle { get; set; }
         internal virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator _Coordinator { get; set; }
         internal virtual bool _LastHasScrolledBody { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController InnerController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController OuterController { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -763,25 +748,17 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _NestedScrollViewCustomScrollView : FlutterSDK.Widgets.Scrollview.CustomScrollView
     {
-        #region constructors
         public _NestedScrollViewCustomScrollView(FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior))
         : base(scrollDirection: scrollDirection, reverse: reverse, physics: physics, controller: controller, slivers: slivers, dragStartBehavior: dragStartBehavior)
         {
             this.Handle = handle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget BuildViewport(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset, FlutterSDK.Painting.Basictypes.AxisDirection axisDirection, List<FlutterSDK.Widgets.Framework.Widget> slivers)
         {
@@ -791,38 +768,28 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _InheritedNestedScrollView : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _InheritedNestedScrollView(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewState state = default(FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewState), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.State = state;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewState State { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Nestedscrollview._InheritedNestedScrollView old) => State != old.State;
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => State != old.State;
 
 
-        #endregion
     }
 
 
     public class _NestedScrollMetrics : FlutterSDK.Widgets.Scrollmetrics.FixedScrollMetrics
     {
-        #region constructors
         public _NestedScrollMetrics(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double minRange = default(double), double maxRange = default(double), double correctionOffset = default(double))
         : base(minScrollExtent: minScrollExtent, maxScrollExtent: maxScrollExtent, pixels: pixels, viewportDimension: viewportDimension, axisDirection: axisDirection)
         {
@@ -830,15 +797,9 @@ namespace FlutterSDK.Widgets.Nestedscrollview
             this.MaxRange = maxRange;
             this.CorrectionOffset = correctionOffset;
         }
-        #endregion
-
-        #region fields
         public virtual double MinRange { get; set; }
         public virtual double MaxRange { get; set; }
         public virtual double CorrectionOffset { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Nestedscrollview._NestedScrollMetrics CopyWith(double minScrollExtent = default(double), double maxScrollExtent = default(double), double pixels = default(double), double viewportDimension = default(double), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double minRange = default(double), double maxRange = default(double), double correctionOffset = default(double))
         {
@@ -847,13 +808,11 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _NestedScrollCoordinator : IScrollActivityDelegate, IScrollHoldController
     {
-        #region constructors
         public _NestedScrollCoordinator(FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewState _state, FlutterSDK.Widgets.Scrollcontroller.ScrollController _parent, VoidCallback _onHasScrolledBodyChanged)
         {
             this._State = _state;
@@ -865,9 +824,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Nestedscrollview.NestedScrollViewState _State { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _Parent { get; set; }
         internal virtual VoidCallback _OnHasScrolledBodyChanged { get; set; }
@@ -881,9 +837,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         public virtual bool HasScrolledBody { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void UpdateShadow()
         {
@@ -1097,7 +1050,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
             foreach (_NestedScrollPosition position in _InnerPositions)
             {
                 if (!position.HaveDimensions) return;
-                maxInnerExtent = Math.Dart:mathDefaultClass.Max(maxInnerExtent, position.MaxScrollExtent - position.MinScrollExtent);
+                maxInnerExtent = Dart.Math.MathDefaultClass.Max(maxInnerExtent, position.MaxScrollExtent - position.MinScrollExtent);
             }
 
             _OuterPosition.UpdateCanDrag(maxInnerExtent);
@@ -1117,7 +1070,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
                 return innerActivity;
             }
             );
-            await Dart:asyncDefaultClass.Future.Wait(resultFutures);
+            await Dart.AsyncDefaultClass.Future.Wait(resultFutures);
         }
 
 
@@ -1197,7 +1150,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
                 foreach (_NestedScrollPosition position in innerPositions)
                 {
                     double overscroll = position.ApplyClampedDragUpdate(delta);
-                    outerDelta = Math.Dart:mathDefaultClass.Max(outerDelta, overscroll);
+                    outerDelta = Dart.Math.MathDefaultClass.Max(outerDelta, overscroll);
                     overscrolls.Add(overscroll);
                 }
 
@@ -1243,26 +1196,18 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _NestedScrollController : FlutterSDK.Widgets.Scrollcontroller.ScrollController
     {
-        #region constructors
         public _NestedScrollController(FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator coordinator, double initialScrollOffset = 0.0, string debugLabel = default(string))
         : base(initialScrollOffset: initialScrollOffset, debugLabel: debugLabel)
         {
             this.Coordinator = coordinator;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator Coordinator { get; set; }
         public virtual Iterable<FlutterSDK.Widgets.Nestedscrollview._NestedScrollPosition> NestedPositions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Scrollposition.ScrollPosition CreateScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics, FlutterSDK.Widgets.Scrollcontext.ScrollContext context, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition)
         {
@@ -1307,13 +1252,11 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _NestedScrollPosition : FlutterSDK.Widgets.Scrollposition.ScrollPosition, IScrollActivityDelegate
     {
-        #region constructors
         public _NestedScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), double initialPixels = 0.0, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string), FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator coordinator = default(FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator))
         : base(physics: physics, context: context, oldPosition: oldPosition, debugLabel: debugLabel)
         {
@@ -1325,17 +1268,11 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator Coordinator { get; set; }
         internal virtual FlutterSDK.Widgets.Scrollcontroller.ScrollController _Parent { get; set; }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Painting.Basictypes.AxisDirection AxisDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Viewportoffset.ScrollDirection UserScrollDirection { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void SetParent(FlutterSDK.Widgets.Scrollcontroller.ScrollController value)
         {
@@ -1367,8 +1304,8 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         public virtual double ApplyClampedDragUpdate(double delta)
         {
 
-            double min = delta < 0.0 ? -Dart : coreDefaultClass.Double.Infinity:Math.Dart:mathDefaultClass.Min(MinScrollExtent, Pixels);
-            double max = delta > 0.0 ? Dart : coreDefaultClass.Double.Infinity:Math.Dart:mathDefaultClass.Max(MaxScrollExtent, Pixels);
+            double min = delta < 0.0 ? -Dart.CoreDefaultClass.Double.Infinity : Dart.Math.MathDefaultClass.Min(MinScrollExtent, Pixels);
+            double max = delta > 0.0 ? Dart.CoreDefaultClass.Double.Infinity : Dart.Math.MathDefaultClass.Max(MaxScrollExtent, Pixels);
             double oldPixels = Pixels;
             double newPixels = (Pixels - delta).Clamp(min, max) as double;
             double clampedDelta = newPixels - Pixels;
@@ -1541,26 +1478,18 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _NestedInnerBallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.BallisticScrollActivity
     {
-        #region constructors
         public _NestedInnerBallisticScrollActivity(FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator coordinator, FlutterSDK.Widgets.Nestedscrollview._NestedScrollPosition position, FlutterSDK.Physics.Simulation.Simulation simulation, FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
         : base(position, simulation, vsync)
         {
             this.Coordinator = coordinator;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator Coordinator { get; set; }
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollPosition @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ResetActivity()
         {
@@ -1585,28 +1514,20 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
     public class _NestedOuterBallisticScrollActivity : FlutterSDK.Widgets.Scrollactivity.BallisticScrollActivity
     {
-        #region constructors
         public _NestedOuterBallisticScrollActivity(FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator coordinator, FlutterSDK.Widgets.Nestedscrollview._NestedScrollPosition position, FlutterSDK.Widgets.Nestedscrollview._NestedScrollMetrics metrics, FlutterSDK.Physics.Simulation.Simulation simulation, FlutterSDK.Scheduler.Ticker.TickerProvider vsync)
         : base(position, simulation, vsync)
         {
             this.Coordinator = coordinator;
             this.Metrics = metrics;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollCoordinator Coordinator { get; set; }
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollMetrics Metrics { get; set; }
         public virtual FlutterSDK.Widgets.Nestedscrollview._NestedScrollPosition @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ResetActivity()
         {
@@ -1661,7 +1582,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -1692,20 +1612,13 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class SliverOverlapAbsorberHandle : FlutterSDK.Foundation.Changenotifier.ChangeNotifier
     {
-        #region constructors
         public SliverOverlapAbsorberHandle()
         { }
-        #endregion
-
-        #region fields
         internal virtual int _Writers { get; set; }
         internal virtual double _LayoutExtent { get; set; }
         internal virtual double _ScrollExtent { get; set; }
         public virtual double LayoutExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double ScrollExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _SetExtents(double layoutValue, double scrollValue)
         {
@@ -1721,7 +1634,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -1741,19 +1653,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class SliverOverlapAbsorber : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverOverlapAbsorber(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver ?? child)
         {
             this.Handle = handle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Nestedscrollview.RenderSliverOverlapAbsorber CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1785,7 +1690,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -1800,7 +1704,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class RenderSliverOverlapAbsorber : FlutterSDK.Rendering.Sliver.RenderSliver, IRenderObjectWithChildMixin<FlutterSDK.Rendering.Sliver.RenderSliver>
     {
-        #region constructors
         public RenderSliverOverlapAbsorber(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Rendering.Sliver.RenderSliver child = default(FlutterSDK.Rendering.Sliver.RenderSliver), FlutterSDK.Rendering.Sliver.RenderSliver sliver = default(FlutterSDK.Rendering.Sliver.RenderSliver))
         : base()
         {
@@ -1809,14 +1712,8 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle _Handle { get; set; }
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
         {
@@ -1854,7 +1751,7 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
             Child.Layout(Constraints, parentUsesSize: true);
             SliverGeometry childLayoutGeometry = Child.Geometry;
-            Geometry = new SliverGeometry(scrollExtent: childLayoutGeometry.ScrollExtent - childLayoutGeometry.MaxScrollObstructionExtent, paintExtent: childLayoutGeometry.PaintExtent, paintOrigin: childLayoutGeometry.PaintOrigin, layoutExtent: Math.Dart:mathDefaultClass.Max(0, childLayoutGeometry.PaintExtent - childLayoutGeometry.MaxScrollObstructionExtent), maxPaintExtent: childLayoutGeometry.MaxPaintExtent, maxScrollObstructionExtent: childLayoutGeometry.MaxScrollObstructionExtent, hitTestExtent: childLayoutGeometry.HitTestExtent, visible: childLayoutGeometry.Visible, hasVisualOverflow: childLayoutGeometry.HasVisualOverflow, scrollOffsetCorrection: childLayoutGeometry.ScrollOffsetCorrection);
+            Geometry = new SliverGeometry(scrollExtent: childLayoutGeometry.ScrollExtent - childLayoutGeometry.MaxScrollObstructionExtent, paintExtent: childLayoutGeometry.PaintExtent, paintOrigin: childLayoutGeometry.PaintOrigin, layoutExtent: Dart.Math.MathDefaultClass.Max(0, childLayoutGeometry.PaintExtent - childLayoutGeometry.MaxScrollObstructionExtent), maxPaintExtent: childLayoutGeometry.MaxPaintExtent, maxScrollObstructionExtent: childLayoutGeometry.MaxScrollObstructionExtent, hitTestExtent: childLayoutGeometry.HitTestExtent, visible: childLayoutGeometry.Visible, hasVisualOverflow: childLayoutGeometry.HasVisualOverflow, scrollOffsetCorrection: childLayoutGeometry.ScrollOffsetCorrection);
             Handle._SetExtents(childLayoutGeometry.MaxScrollObstructionExtent, childLayoutGeometry.MaxScrollObstructionExtent);
         }
 
@@ -1893,7 +1790,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -1912,19 +1808,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class SliverOverlapInjector : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public SliverOverlapInjector(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget sliver = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: sliver ?? child)
         {
             this.Handle = handle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Nestedscrollview.RenderSliverOverlapInjector CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1956,7 +1845,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -1971,22 +1859,15 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class RenderSliverOverlapInjector : FlutterSDK.Rendering.Sliver.RenderSliver
     {
-        #region constructors
         public RenderSliverOverlapInjector(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual double _CurrentLayoutExtent { get; set; }
         internal virtual double _CurrentMaxExtent { get; set; }
         internal virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle _Handle { get; set; }
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Attach(FlutterSDK.Rendering.@object.PipelineOwner owner)
         {
@@ -2019,8 +1900,8 @@ namespace FlutterSDK.Widgets.Nestedscrollview
         {
             _CurrentLayoutExtent = Handle.LayoutExtent;
             _CurrentMaxExtent = Handle.LayoutExtent;
-            double clampedLayoutExtent = Math.Dart:mathDefaultClass.Min(_CurrentLayoutExtent - Constraints.ScrollOffset, Constraints.RemainingPaintExtent);
-            Geometry = new SliverGeometry(scrollExtent: _CurrentLayoutExtent, paintExtent: Math.Dart:mathDefaultClass.Max(0.0, clampedLayoutExtent), maxPaintExtent: _CurrentMaxExtent);
+            double clampedLayoutExtent = Dart.Math.MathDefaultClass.Min(_CurrentLayoutExtent - Constraints.ScrollOffset, Constraints.RemainingPaintExtent);
+            Geometry = new SliverGeometry(scrollExtent: _CurrentLayoutExtent, paintExtent: Dart.Math.MathDefaultClass.Max(0.0, clampedLayoutExtent), maxPaintExtent: _CurrentMaxExtent);
         }
 
 
@@ -2042,7 +1923,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -2054,19 +1934,12 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class NestedScrollViewViewport : FlutterSDK.Widgets.Viewport.Viewport
     {
-        #region constructors
         public NestedScrollViewViewport(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), double anchor = 0.0, FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), FlutterSDK.Foundation.Key.Key center = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Framework.Widget> slivers = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle))
         : base(key: key, axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, anchor: anchor, offset: offset, center: center, slivers: slivers)
         {
             this.Handle = handle;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Nestedscrollview.RenderNestedScrollViewViewport CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -2098,7 +1971,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 
@@ -2110,20 +1982,13 @@ namespace FlutterSDK.Widgets.Nestedscrollview
     /// </Summary>
     public class RenderNestedScrollViewViewport : FlutterSDK.Rendering.Viewport.RenderViewport
     {
-        #region constructors
         public RenderNestedScrollViewViewport(FlutterSDK.Painting.Basictypes.AxisDirection axisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Painting.Basictypes.AxisDirection crossAxisDirection = default(FlutterSDK.Painting.Basictypes.AxisDirection), FlutterSDK.Rendering.Viewportoffset.ViewportOffset offset = default(FlutterSDK.Rendering.Viewportoffset.ViewportOffset), double anchor = 0.0, List<FlutterSDK.Rendering.Sliver.RenderSliver> children = default(List<FlutterSDK.Rendering.Sliver.RenderSliver>), FlutterSDK.Rendering.Sliver.RenderSliver center = default(FlutterSDK.Rendering.Sliver.RenderSliver), FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle handle = default(FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle))
         : base(axisDirection: axisDirection, crossAxisDirection: crossAxisDirection, offset: offset, anchor: anchor, children: children, center: center)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle _Handle { get; set; }
         public virtual FlutterSDK.Widgets.Nestedscrollview.SliverOverlapAbsorberHandle Handle { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void MarkNeedsLayout()
         {
@@ -2142,7 +2007,6 @@ namespace FlutterSDK.Widgets.Nestedscrollview
 
 
 
-        #endregion
     }
 
 

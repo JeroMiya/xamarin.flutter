@@ -435,17 +435,10 @@ namespace FlutterSDK.Services.Hapticfeedback
     /// </Summary>
     public class HapticFeedback
     {
-        #region constructors
         internal HapticFeedback()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Provides vibration haptic feedback to the user for a short duration.
@@ -531,7 +524,6 @@ namespace FlutterSDK.Services.Hapticfeedback
 
 
 
-        #endregion
     }
 
 }

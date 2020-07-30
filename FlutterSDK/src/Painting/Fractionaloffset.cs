@@ -471,7 +471,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
     /// </Summary>
     public class FractionalOffset : FlutterSDK.Painting.Alignment.Alignment
     {
-        #region constructors
         public FractionalOffset(double dx, double dy)
         : base(dx * 2.0 - 1.0, dy * 2.0 - 1.0)
         {
@@ -493,9 +492,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopLeft { get; set; }
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopCenter { get; set; }
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset TopRight { get; set; }
@@ -507,9 +503,6 @@ namespace FlutterSDK.Painting.Fractionaloffset
         public virtual FlutterSDK.Painting.Fractionaloffset.FractionalOffset BottomRight { get; set; }
         public virtual double Dx { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double Dy { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Painting.Alignment.Alignment Unary(FlutterSDK.Painting.Alignment.Alignment other)
         {
@@ -582,15 +575,14 @@ namespace FlutterSDK.Painting.Fractionaloffset
         {
 
             if (a == null && b == null) return null;
-            if (a == null) return new FractionalOffset(Ui.Dart:uiDefaultClass.LerpDouble(0.5, b.Dx, t), Ui.Dart:uiDefaultClass.LerpDouble(0.5, b.Dy, t));
-            if (b == null) return new FractionalOffset(Ui.Dart:uiDefaultClass.LerpDouble(a.Dx, 0.5, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Dy, 0.5, t));
-            return new FractionalOffset(Ui.Dart:uiDefaultClass.LerpDouble(a.Dx, b.Dx, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Dy, b.Dy, t));
+            if (a == null) return new FractionalOffset(Dart.UI.UiDefaultClass.LerpDouble(0.5, b.Dx, t), Dart.UI.UiDefaultClass.LerpDouble(0.5, b.Dy, t));
+            if (b == null) return new FractionalOffset(Dart.UI.UiDefaultClass.LerpDouble(a.Dx, 0.5, t), Dart.UI.UiDefaultClass.LerpDouble(a.Dy, 0.5, t));
+            return new FractionalOffset(Dart.UI.UiDefaultClass.LerpDouble(a.Dx, b.Dx, t), Dart.UI.UiDefaultClass.LerpDouble(a.Dy, b.Dy, t));
         }
 
 
 
 
-        #endregion
     }
 
 }

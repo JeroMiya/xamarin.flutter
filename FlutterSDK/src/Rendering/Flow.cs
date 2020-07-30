@@ -520,19 +520,12 @@ namespace FlutterSDK.Rendering.Flow
     /// </Summary>
     public class FlowDelegate
     {
-        #region constructors
         public FlowDelegate(FlutterSDK.Foundation.Changenotifier.Listenable repaint = default(FlutterSDK.Foundation.Changenotifier.Listenable))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Foundation.Changenotifier.Listenable _Repaint { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Override to control the size of the container for the children.
@@ -623,7 +616,6 @@ namespace FlutterSDK.Rendering.Flow
         }
 
 
-        #endregion
     }
 
 
@@ -638,17 +630,9 @@ namespace FlutterSDK.Rendering.Flow
     /// </Summary>
     public class FlowParentData : FlutterSDK.Rendering.Box.ContainerBoxParentData<FlutterSDK.Rendering.Box.RenderBox>
     {
-        #region constructors
         public FlowParentData()
         { }
-        #endregion
-
-        #region fields
         internal virtual Matrix4 _Transform { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -680,7 +664,6 @@ namespace FlutterSDK.Rendering.Flow
     /// </Summary>
     public class RenderFlow : FlutterSDK.Rendering.Box.RenderBox, IFlowPaintingContext, IContainerRenderObjectMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>, IRenderBoxContainerDefaultsMixin<FlutterSDK.Rendering.Box.RenderBox, FlutterSDK.Rendering.Flow.FlowParentData>
     {
-        #region constructors
         public RenderFlow(List<FlutterSDK.Rendering.Box.RenderBox> children = default(List<FlutterSDK.Rendering.Box.RenderBox>), FlutterSDK.Rendering.Flow.FlowDelegate @delegate = default(FlutterSDK.Rendering.Flow.FlowDelegate))
         : base()
         {
@@ -689,9 +672,6 @@ namespace FlutterSDK.Rendering.Flow
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Flow.FlowDelegate _Delegate { get; set; }
         internal virtual List<FlutterSDK.Rendering.Box.RenderBox> _RandomAccessChildren { get; set; }
         internal virtual List<int> _LastPaintOrder { get; set; }
@@ -699,9 +679,6 @@ namespace FlutterSDK.Rendering.Flow
         internal virtual FlutterBinding.UI.Offset _PaintingOffset { get; set; }
         public virtual FlutterSDK.Rendering.Flow.FlowDelegate @delegate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsRepaintBoundary { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void SetupParentData(FlutterSDK.Rendering.Box.RenderBox child)
         {
@@ -806,7 +783,7 @@ namespace FlutterSDK.Rendering.Flow
                 BoxConstraints innerConstraints = _Delegate.GetConstraintsForChild(i, constraints);
                 child.Layout(innerConstraints, parentUsesSize: true);
                 FlowParentData childParentData = child.ParentData as FlowParentData;
-                childParentData.Offset = Dart:uiDefaultClass.Offset.Zero;
+                childParentData.Offset = Dart.UiDefaultClass.Offset.Zero;
                 child = childParentData.NextSibling;
                 i += 1;
             }
@@ -845,7 +822,7 @@ namespace FlutterSDK.Rendering.Flow
             }
             else
             {
-                _PaintingContext.PushOpacity(_PaintingOffset, Ui.Dart:uiDefaultClass.Color.GetAlphaFromOpacity(opacity), (PaintingContext context, Offset offset) =>
+                _PaintingContext.PushOpacity(_PaintingOffset, Dart.UI.UiDefaultClass.Color.GetAlphaFromOpacity(opacity), (PaintingContext context, Offset offset) =>
                 {
                     context.PushTransform(NeedsCompositing, offset, transform, Painter);
                 }
@@ -885,7 +862,7 @@ namespace FlutterSDK.Rendering.Flow
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, _PaintWithDelegate);
+            context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, _PaintWithDelegate);
         }
 
 
@@ -933,7 +910,6 @@ namespace FlutterSDK.Rendering.Flow
 
 
 
-        #endregion
     }
 
 }

@@ -801,15 +801,11 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class Route<T>
     {
-        #region constructors
         public Route(FlutterSDK.Widgets.Navigator.RouteSettings settings = default(FlutterSDK.Widgets.Navigator.RouteSettings))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Navigator.NavigatorState _Navigator { get; set; }
         internal virtual FlutterSDK.Widgets.Navigator.RouteSettings _Settings { get; set; }
         internal virtual Completer<T> _PopCompleter { get; set; }
@@ -822,9 +818,6 @@ namespace FlutterSDK.Widgets.Navigator
         public virtual bool IsCurrent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsFirst { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsActive { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateSettings(FlutterSDK.Widgets.Navigator.RouteSettings newSettings)
         {
@@ -1115,7 +1108,6 @@ namespace FlutterSDK.Widgets.Navigator
 
 
 
-        #endregion
     }
 
 
@@ -1124,20 +1116,13 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class RouteSettings
     {
-        #region constructors
         public RouteSettings(string name = default(string), @Object arguments = default(@Object))
         {
             this.Name = name;
             this.Arguments = arguments;
         }
-        #endregion
-
-        #region fields
         public virtual string Name { get; set; }
         public virtual @Object Arguments { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this route settings object with the given fields
@@ -1151,7 +1136,6 @@ namespace FlutterSDK.Widgets.Navigator
 
 
 
-        #endregion
     }
 
 
@@ -1170,19 +1154,12 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class Page<T> : FlutterSDK.Widgets.Navigator.RouteSettings
     {
-        #region constructors
         public Page(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), string name = default(string), @Object arguments = default(@Object))
         : base(name: name, arguments: arguments)
         {
             this.Key = key;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Whether this page can be updated with the [other] page.
@@ -1209,7 +1186,6 @@ namespace FlutterSDK.Widgets.Navigator
         }
 
 
-        #endregion
     }
 
 
@@ -1221,19 +1197,12 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class CustomBuilderPage<T> : FlutterSDK.Widgets.Navigator.Page<T>
     {
-        #region constructors
         public CustomBuilderPage(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Widgets.Navigator.RouteBuilder<T> routeBuilder = default(FlutterSDK.Widgets.Navigator.RouteBuilder<T>), string name = default(string), @Object arguments = default(@Object))
         : base(key: key, name: name, arguments: arguments)
         {
             this.RouteBuilder = routeBuilder;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Navigator.RouteBuilder<T> RouteBuilder { get; set; }
-        #endregion
-
-        #region methods
 
         public new Route<T> CreateRoute(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1244,7 +1213,6 @@ namespace FlutterSDK.Widgets.Navigator
 
 
 
-        #endregion
     }
 
 
@@ -1310,17 +1278,10 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class TransitionDelegate<T>
     {
-        #region constructors
         public TransitionDelegate()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         private Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> _Transition(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
         {
@@ -1405,7 +1366,6 @@ namespace FlutterSDK.Widgets.Navigator
             return default(Iterable<RouteTransitionRecord>);
         }
 
-        #endregion
     }
 
 
@@ -1421,18 +1381,11 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class DefaultTransitionDelegate<T> : FlutterSDK.Widgets.Navigator.TransitionDelegate<T>
     {
-        #region constructors
         public DefaultTransitionDelegate()
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Iterable<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> Resolve(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord> newPageRouteHistory = default(List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord> locationToExitingPageRoute = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, FlutterSDK.Widgets.Navigator.RouteTransitionRecord>), Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>> pageRouteToPagelessRoutes = default(Dictionary<FlutterSDK.Widgets.Navigator.RouteTransitionRecord, List<FlutterSDK.Widgets.Navigator.RouteTransitionRecord>>))
         {
@@ -1502,7 +1455,6 @@ namespace FlutterSDK.Widgets.Navigator
 
 
 
-        #endregion
     }
 
 
@@ -1891,7 +1843,6 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class Navigator : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Navigator(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Navigator.Page<object>> pages = default(List<FlutterSDK.Widgets.Navigator.Page<object>>), FlutterSDK.Widgets.Navigator.PopPageCallback onPopPage = default(FlutterSDK.Widgets.Navigator.PopPageCallback), string initialRoute = default(string), FlutterSDK.Widgets.Navigator.RouteListFactory onGenerateInitialRoutes = default(FlutterSDK.Widgets.Navigator.RouteListFactory), FlutterSDK.Widgets.Navigator.RouteFactory onGenerateRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.RouteFactory onUnknownRoute = default(FlutterSDK.Widgets.Navigator.RouteFactory), FlutterSDK.Widgets.Navigator.TransitionDelegate<object> transitionDelegate = default(FlutterSDK.Widgets.Navigator.TransitionDelegate<object>), List<FlutterSDK.Widgets.Navigator.NavigatorObserver> observers = default(List<FlutterSDK.Widgets.Navigator.NavigatorObserver>))
         : base(key: key)
         {
@@ -1904,9 +1855,6 @@ namespace FlutterSDK.Widgets.Navigator
             this.TransitionDelegate = transitionDelegate;
             this.Observers = observers;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Navigator.Page<object>> Pages { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.PopPageCallback OnPopPage { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.TransitionDelegate<object> TransitionDelegate { get; set; }
@@ -1916,9 +1864,6 @@ namespace FlutterSDK.Widgets.Navigator
         public virtual List<FlutterSDK.Widgets.Navigator.NavigatorObserver> Observers { get; set; }
         public virtual string DefaultRouteName { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.RouteListFactory OnGenerateInitialRoutes { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Push a named route onto the navigator that most tightly encloses the given
@@ -2725,21 +2670,16 @@ namespace FlutterSDK.Widgets.Navigator
         public new FlutterSDK.Widgets.Navigator.NavigatorState CreateState() => new NavigatorState();
 
 
-        #endregion
     }
 
 
     public class _RouteEntry : FlutterSDK.Widgets.Navigator.RouteTransitionRecord
     {
-        #region constructors
         public _RouteEntry(FlutterSDK.Widgets.Navigator.Route<object> route, FlutterSDK.Widgets.Navigator._RouteLifecycle initialState = default(FlutterSDK.Widgets.Navigator._RouteLifecycle))
         : base()
         {
             this.Route = route;
         }
-        #endregion
-
-        #region fields
         public new FlutterSDK.Widgets.Navigator.Route<object> Route { get; set; }
         public virtual FlutterSDK.Widgets.Navigator._RouteLifecycle CurrentState { get; set; }
         public virtual FlutterSDK.Widgets.Navigator.Route<object> LastAnnouncedPreviousRoute { get; set; }
@@ -2756,9 +2696,6 @@ namespace FlutterSDK.Widgets.Navigator
         public virtual bool SuitableForAnnouncement { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SuitableForTransitionAnimation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsEntering { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual bool CanUpdateFrom(FlutterSDK.Widgets.Navigator.Page<object> page)
         {
@@ -3017,7 +2954,6 @@ namespace FlutterSDK.Widgets.Navigator
 
 
 
-        #endregion
     }
 
 
@@ -3026,12 +2962,8 @@ namespace FlutterSDK.Widgets.Navigator
     /// </Summary>
     public class NavigatorState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Navigator.Navigator>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public NavigatorState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Overlay.OverlayState> _OverlayKey { get; set; }
         internal virtual List<FlutterSDK.Widgets.Navigator._RouteEntry> _History { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusScopeNode FocusScopeNode { get; set; }
@@ -3045,9 +2977,6 @@ namespace FlutterSDK.Widgets.Navigator
         internal virtual Iterable<FlutterSDK.Widgets.Overlay.OverlayEntry> _AllRouteOverlayEntries { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual int _UserGesturesInProgress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool UserGestureInProgress { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -3648,13 +3577,13 @@ namespace FlutterSDK.Widgets.Navigator
                     Dictionary<string, object> settingsJsonable = new Dictionary<string, object> { { "name", settings.Name } };
                     if (settings.Arguments != null)
                     {
-                        settingsJsonable["arguments"] = Dart:convertDefaultClass.JsonEncode(settings.Arguments, toEncodable: (object object) => =>$"'{object}'");
+                        settingsJsonable["arguments"] = Dart.ConvertDefaultClass.JsonEncode(settings.Arguments, toEncodable: (object object) => =>$"'{object}'");
                     }
 
                     routeJsonable["settings"] = settingsJsonable;
                 }
 
-                Developer.Dart:developerDefaultClass.PostEvent("Flutter.Navigation", new Dictionary<string, object> { { "route", routeJsonable } });
+                Dart.Developer.DeveloperDefaultClass.PostEvent("Flutter.Navigation", new Dictionary<string, object> { { "route", routeJsonable } });
             }
 
             _CancelActivePointers();
@@ -4132,7 +4061,6 @@ namespace FlutterSDK.Widgets.Navigator
 
 
 
-        #endregion
     }
 
 

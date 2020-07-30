@@ -558,7 +558,6 @@ namespace FlutterSDK.Widgets.Scrollposition
     /// </Summary>
     public class ScrollPosition : FlutterSDK.Rendering.Viewportoffset.ViewportOffset, IScrollMetrics
     {
-        #region constructors
         public ScrollPosition(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Widgets.Scrollcontext.ScrollContext context = default(FlutterSDK.Widgets.Scrollcontext.ScrollContext), bool keepScrollOffset = true, FlutterSDK.Widgets.Scrollposition.ScrollPosition oldPosition = default(FlutterSDK.Widgets.Scrollposition.ScrollPosition), string debugLabel = default(string))
         : base()
         {
@@ -571,9 +570,6 @@ namespace FlutterSDK.Widgets.Scrollposition
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
         public virtual FlutterSDK.Widgets.Scrollcontext.ScrollContext Context { get; set; }
         public virtual bool KeepScrollOffset { get; set; }
@@ -594,9 +590,6 @@ namespace FlutterSDK.Widgets.Scrollposition
         public virtual bool HaveDimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AllowImplicitScrolling { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Widgets.Scrollactivity.ScrollActivity Activity { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Take any current applicable state from the given [ScrollPosition].
@@ -906,7 +899,7 @@ namespace FlutterSDK.Widgets.Scrollposition
         {
             SemanticsAction forward = default(SemanticsAction);
             SemanticsAction backward = default(SemanticsAction);
-            switch (AxisDirection) { case AxisDirection.Up: forward = Dart:uiDefaultClass.SemanticsAction.ScrollDown; backward = Dart:uiDefaultClass.SemanticsAction.ScrollUp; break; case AxisDirection.Right: forward = Dart:uiDefaultClass.SemanticsAction.ScrollLeft; backward = Dart:uiDefaultClass.SemanticsAction.ScrollRight; break; case AxisDirection.Down: forward = Dart:uiDefaultClass.SemanticsAction.ScrollUp; backward = Dart:uiDefaultClass.SemanticsAction.ScrollDown; break; case AxisDirection.Left: forward = Dart:uiDefaultClass.SemanticsAction.ScrollRight; backward = Dart:uiDefaultClass.SemanticsAction.ScrollLeft; break; }
+            switch (AxisDirection) { case AxisDirection.Up: forward = Dart.UiDefaultClass.SemanticsAction.ScrollDown; backward = Dart.UiDefaultClass.SemanticsAction.ScrollUp; break; case AxisDirection.Right: forward = Dart.UiDefaultClass.SemanticsAction.ScrollLeft; backward = Dart.UiDefaultClass.SemanticsAction.ScrollRight; break; case AxisDirection.Down: forward = Dart.UiDefaultClass.SemanticsAction.ScrollUp; backward = Dart.UiDefaultClass.SemanticsAction.ScrollDown; break; case AxisDirection.Left: forward = Dart.UiDefaultClass.SemanticsAction.ScrollRight; backward = Dart.UiDefaultClass.SemanticsAction.ScrollLeft; break; }
             HashSet<SemanticsAction> actions = new Dictionary<SemanticsAction> { };
             if (Pixels > MinScrollExtent) actions.Add(backward);
             if (Pixels < MaxScrollExtent) actions.Add(forward);
@@ -1004,7 +997,8 @@ namespace FlutterSDK.Widgets.Scrollposition
                     break;
             }
             if (target == Pixels) return Future<void>.Value();
-            if (duration == Dart:coreDefaultClass.Duration.Zero){
+            if (duration == Dart.CoreDefaultClass.Duration.Zero)
+            {
                 JumpTo(target);
                 return Future<void>.Value();
             }
@@ -1266,7 +1260,6 @@ namespace FlutterSDK.Widgets.Scrollposition
 
 
 
-        #endregion
     }
 
 

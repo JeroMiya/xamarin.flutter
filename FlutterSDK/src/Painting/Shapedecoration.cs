@@ -471,7 +471,6 @@ namespace FlutterSDK.Painting.Shapedecoration
     /// </Summary>
     public class ShapeDecoration : FlutterSDK.Painting.Decoration.Decoration
     {
-        #region constructors
         public ShapeDecoration(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Decorationimage.DecorationImage image = default(FlutterSDK.Painting.Decorationimage.DecorationImage), FlutterSDK.Painting.Gradient.Gradient gradient = default(FlutterSDK.Painting.Gradient.Gradient), List<FlutterSDK.Painting.Boxshadow.BoxShadow> shadows = default(List<FlutterSDK.Painting.Boxshadow.BoxShadow>), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -515,9 +514,6 @@ namespace FlutterSDK.Painting.Shapedecoration
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
         public virtual FlutterSDK.Painting.Gradient.Gradient Gradient { get; set; }
         public virtual FlutterSDK.Painting.Decorationimage.DecorationImage Image { get; set; }
@@ -526,9 +522,6 @@ namespace FlutterSDK.Painting.Shapedecoration
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsComplex { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Path GetClipPath(FlutterBinding.UI.Rect rect, TextDirection textDirection)
         {
@@ -602,7 +595,7 @@ namespace FlutterSDK.Painting.Shapedecoration
                 if (t == 1.0) return b;
             }
 
-            return new ShapeDecoration(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), gradient: GradientDefaultClass.Gradient.Lerp(a?.Gradient, b?.Gradient, t), image: t < 0.5 ? a.Image : b.Image, shadows: BoxshadowDefaultClass.BoxShadow.LerpList(a?.Shadows, b?.Shadows, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
+            return new ShapeDecoration(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), gradient: GradientDefaultClass.Gradient.Lerp(a?.Gradient, b?.Gradient, t), image: t < 0.5 ? a.Image : b.Image, shadows: BoxshadowDefaultClass.BoxShadow.LerpList(a?.Shadows, b?.Shadows, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
         }
 
 
@@ -610,7 +603,7 @@ namespace FlutterSDK.Painting.Shapedecoration
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is ShapeDecoration && other.Color == Color && other.Gradient == Gradient && other.Image == Image && other.Shadows == Shadows && other.Shape == Shape;
         }
@@ -634,7 +627,7 @@ namespace FlutterSDK.Painting.Shapedecoration
 
         public new bool HitTest(Size size, FlutterBinding.UI.Offset position, TextDirection textDirection = default(TextDirection))
         {
-            return Shape.GetOuterPath(Dart: uiDefaultClass.Offset.Zero & size, textDirection: textDirection).Contains(position);
+            return Shape.GetOuterPath(Dart.UI.UiDefaultClass.Offset.Zero & size, textDirection: textDirection).Contains(position);
         }
 
 
@@ -648,7 +641,6 @@ namespace FlutterSDK.Painting.Shapedecoration
 
 
 
-        #endregion
     }
 
 
@@ -657,15 +649,11 @@ namespace FlutterSDK.Painting.Shapedecoration
     /// </Summary>
     public class _ShapeDecorationPainter : FlutterSDK.Painting.Decoration.BoxPainter
     {
-        #region constructors
         public _ShapeDecorationPainter(FlutterSDK.Painting.Shapedecoration.ShapeDecoration _decoration, VoidCallback onChanged)
         : base(onChanged)
         {
             this._Decoration = _decoration;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Shapedecoration.ShapeDecoration _Decoration { get; set; }
         internal virtual FlutterBinding.UI.Rect _LastRect { get; set; }
         internal virtual TextDirection _LastTextDirection { get; set; }
@@ -676,9 +664,6 @@ namespace FlutterSDK.Painting.Shapedecoration
         internal virtual List<Path> _ShadowPaths { get; set; }
         internal virtual List<Paint> _ShadowPaints { get; set; }
         internal virtual FlutterSDK.Painting.Decorationimage.DecorationImagePainter _ImagePainter { get; set; }
-        #endregion
-
-        #region methods
 
         private void _Precache(FlutterBinding.UI.Rect rect, TextDirection textDirection)
         {
@@ -772,7 +757,6 @@ namespace FlutterSDK.Painting.Shapedecoration
 
 
 
-        #endregion
     }
 
 }

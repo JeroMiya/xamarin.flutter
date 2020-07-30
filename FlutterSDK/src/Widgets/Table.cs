@@ -439,44 +439,28 @@ namespace FlutterSDK.Widgets.Table
     /// </Summary>
     public class TableRow
     {
-        #region constructors
         public TableRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), FlutterSDK.Painting.Decoration.Decoration decoration = default(FlutterSDK.Painting.Decoration.Decoration), List<FlutterSDK.Widgets.Framework.Widget> children = default(List<FlutterSDK.Widgets.Framework.Widget>))
         {
             this.Key = key;
             this.Decoration = decoration;
             this.Children = children;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
         public virtual FlutterSDK.Painting.Decoration.Decoration Decoration { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Widget> Children { get; set; }
-        #endregion
 
-        #region methods
-
-        #endregion
     }
 
 
     public class _TableElementRow
     {
-        #region constructors
         public _TableElementRow(FlutterSDK.Foundation.Key.LocalKey key = default(FlutterSDK.Foundation.Key.LocalKey), List<FlutterSDK.Widgets.Framework.Element> children = default(List<FlutterSDK.Widgets.Framework.Element>))
         {
             this.Key = key;
             this.Children = children;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
         public virtual List<FlutterSDK.Widgets.Framework.Element> Children { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -501,7 +485,6 @@ namespace FlutterSDK.Widgets.Table
     /// </Summary>
     public class Table : FlutterSDK.Widgets.Framework.RenderObjectWidget
     {
-        #region constructors
         public Table(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Widgets.Table.TableRow> children = default(List<FlutterSDK.Widgets.Table.TableRow>), Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> columnWidths = default(Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth>), FlutterSDK.Rendering.Table.TableColumnWidth defaultColumnWidth = default(FlutterSDK.Rendering.Table.TableColumnWidth), TextDirection textDirection = default(TextDirection), FlutterSDK.Rendering.Tableborder.TableBorder border = default(FlutterSDK.Rendering.Tableborder.TableBorder), FlutterSDK.Rendering.Table.TableCellVerticalAlignment defaultVerticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), TextBaseline textBaseline = default(TextBaseline))
         : base(key: key)
         {
@@ -516,9 +499,6 @@ namespace FlutterSDK.Widgets.Table
         }
 
 
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Table.TableRow> Children { get; set; }
         public virtual Dictionary<int, FlutterSDK.Rendering.Table.TableColumnWidth> ColumnWidths { get; set; }
         public virtual FlutterSDK.Rendering.Table.TableColumnWidth DefaultColumnWidth { get; set; }
@@ -527,9 +507,6 @@ namespace FlutterSDK.Widgets.Table
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment DefaultVerticalAlignment { get; set; }
         public virtual TextBaseline TextBaseline { get; set; }
         internal virtual List<FlutterSDK.Painting.Decoration.Decoration> _RowDecorations { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Table._TableElement CreateElement() => new _TableElement(this);
 
@@ -563,28 +540,20 @@ namespace FlutterSDK.Widgets.Table
 
 
 
-        #endregion
     }
 
 
     public class _TableElement : FlutterSDK.Widgets.Framework.RenderObjectElement
     {
-        #region constructors
         public _TableElement(FlutterSDK.Widgets.Table.Table widget)
         : base(widget)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Table._TableElementRow> _Children { get; set; }
         internal virtual HashSet<FlutterSDK.Widgets.Framework.Element> _ForgottenChildren { get; set; }
         public virtual FlutterSDK.Widgets.Table.Table Widget { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Rendering.Table.RenderTable RenderObject { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Mount(FlutterSDK.Widgets.Framework.Element parent, object newSlot)
         {
@@ -766,7 +735,6 @@ namespace FlutterSDK.Widgets.Table
 
 
 
-        #endregion
     }
 
 
@@ -780,20 +748,13 @@ namespace FlutterSDK.Widgets.Table
     /// </Summary>
     public class TableCell : FlutterSDK.Widgets.Framework.ParentDataWidget<FlutterSDK.Rendering.Table.TableCellParentData>
     {
-        #region constructors
         public TableCell(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Rendering.Table.TableCellVerticalAlignment verticalAlignment = default(FlutterSDK.Rendering.Table.TableCellVerticalAlignment), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.VerticalAlignment = verticalAlignment;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.Table.TableCellVerticalAlignment VerticalAlignment { get; set; }
         public virtual Type DebugTypicalAncestorWidgetClass { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void ApplyParentData(FlutterSDK.Rendering.@object.RenderObject renderObject)
         {
@@ -818,7 +779,6 @@ namespace FlutterSDK.Widgets.Table
 
 
 
-        #endregion
     }
 
 }

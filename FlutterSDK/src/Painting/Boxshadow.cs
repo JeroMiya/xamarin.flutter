@@ -444,20 +444,13 @@ namespace FlutterSDK.Painting.Boxshadow
     /// </Summary>
     public class BoxShadow : Shadow
     {
-        #region constructors
         public BoxShadow(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Offset offset = default(FlutterBinding.UI.Offset), double blurRadius = 0.0, double spreadRadius = 0.0)
         : base(color: color, offset: offset, blurRadius: blurRadius)
         {
             this.SpreadRadius = spreadRadius;
         }
-        #endregion
-
-        #region fields
         public virtual double SpreadRadius { get; set; }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Create the [Paint] object that corresponds to this shadow description.
@@ -503,7 +496,7 @@ namespace FlutterSDK.Painting.Boxshadow
             if (a == null && b == null) return null;
             if (a == null) return b.Scale(t);
             if (b == null) return a.Scale(1.0 - t);
-            return new BoxShadow(color: Dart:uiDefaultClass.Color.Lerp(a.Color, b.Color, t), offset: Dart:uiDefaultClass.Offset.Lerp(a.Offset, b.Offset, t), blurRadius: Ui.Dart:uiDefaultClass.LerpDouble(a.BlurRadius, b.BlurRadius, t), spreadRadius: Ui.Dart:uiDefaultClass.LerpDouble(a.SpreadRadius, b.SpreadRadius, t));
+            return new BoxShadow(color: Dart.UI.UiDefaultClass.Color.Lerp(a.Color, b.Color, t), offset: Dart.UI.UiDefaultClass.Offset.Lerp(a.Offset, b.Offset, t), blurRadius: Dart.UI.UiDefaultClass.LerpDouble(a.BlurRadius, b.BlurRadius, t), spreadRadius: Dart.UI.UiDefaultClass.LerpDouble(a.SpreadRadius, b.SpreadRadius, t));
         }
 
 
@@ -522,7 +515,7 @@ namespace FlutterSDK.Painting.Boxshadow
             if (a == null && b == null) return null;
             a = (a == null ? new List<BoxShadow>() { } : a);
             b = (b == null ? new List<BoxShadow>() { } : b);
-            int commonLength = Math.Dart:mathDefaultClass.Min(a.Count, b.Count);
+            int commonLength = Dart.Math.MathDefaultClass.Min(a.Count, b.Count);
             return new List<BoxShadow>() { };
         }
 
@@ -531,7 +524,7 @@ namespace FlutterSDK.Painting.Boxshadow
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BoxShadow && other.Color == Color && other.Offset == Offset && other.BlurRadius == BlurRadius && other.SpreadRadius == SpreadRadius;
         }
@@ -539,7 +532,6 @@ namespace FlutterSDK.Painting.Boxshadow
 
 
 
-        #endregion
     }
 
 }

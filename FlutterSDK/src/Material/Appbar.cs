@@ -360,17 +360,10 @@ namespace FlutterSDK.Material.Appbar
 
     public class _ToolbarContainerLayout : FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate
     {
-        #region constructors
         public _ToolbarContainerLayout()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
@@ -401,7 +394,6 @@ namespace FlutterSDK.Material.Appbar
         public new bool ShouldRelayout(FlutterSDK.Rendering.Shiftedbox.SingleChildLayoutDelegate oldDelegate) => false;
 
 
-        #endregion
     }
 
 
@@ -518,7 +510,6 @@ namespace FlutterSDK.Material.Appbar
     /// </Summary>
     public class AppBar : FlutterSDK.Widgets.Framework.StatefulWidget, IPreferredSizeWidget
     {
-        #region constructors
         public AppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = true, bool centerTitle = default(bool), bool excludeHeaderSemantics = false, double titleSpacing = default(double), double toolbarOpacity = 1.0, double bottomOpacity = 1.0)
         : base(key: key)
         {
@@ -542,9 +533,6 @@ namespace FlutterSDK.Material.Appbar
             this.ToolbarOpacity = toolbarOpacity;
             this.BottomOpacity = bottomOpacity;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual bool AutomaticallyImplyLeading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
@@ -565,9 +553,6 @@ namespace FlutterSDK.Material.Appbar
         public virtual double ToolbarOpacity { get; set; }
         public virtual double BottomOpacity { get; set; }
         public new Size PreferredSize { get; set; }
-        #endregion
-
-        #region methods
 
         private bool _GetEffectiveCenterTitle(FlutterSDK.Material.Themedata.ThemeData theme)
         {
@@ -583,22 +568,14 @@ namespace FlutterSDK.Material.Appbar
         public new FlutterSDK.Material.Appbar._AppBarState CreateState() => new _AppBarState();
 
 
-        #endregion
     }
 
 
     public class _AppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar.AppBar>
     {
-        #region constructors
         public _AppBarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual double _DefaultElevation { get; set; }
-        #endregion
-
-        #region methods
 
         private void _HandleDrawerButton()
         {
@@ -714,45 +691,29 @@ namespace FlutterSDK.Material.Appbar
 
 
 
-        #endregion
     }
 
 
     public class _FloatingAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public _FloatingAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Appbar._FloatingAppBarState CreateState() => new _FloatingAppBarState();
 
 
-        #endregion
     }
 
 
     public class _FloatingAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar._FloatingAppBar>
     {
-        #region constructors
         public _FloatingAppBarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Scrollposition.ScrollPosition _Position { get; set; }
-        #endregion
-
-        #region methods
 
         public new void DidChangeDependencies()
         {
@@ -795,13 +756,11 @@ namespace FlutterSDK.Material.Appbar
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context) => Widget.Child;
 
 
-        #endregion
     }
 
 
     public class _SliverAppBarDelegate : FlutterSDK.Widgets.Sliverpersistentheader.SliverPersistentHeaderDelegate
     {
-        #region constructors
         public _SliverAppBarDelegate(FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = default(bool), FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), bool forceElevated = default(bool), FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = default(bool), bool centerTitle = default(bool), bool excludeHeaderSemantics = default(bool), double titleSpacing = default(double), double expandedHeight = default(double), double collapsedHeight = default(double), double topPadding = default(double), bool floating = default(bool), bool pinned = default(bool), FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration snapConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration), FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration stretchConfiguration = default(FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base()
         {
@@ -831,9 +790,6 @@ namespace FlutterSDK.Material.Appbar
             this.StretchConfiguration = stretchConfiguration;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual bool AutomaticallyImplyLeading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
@@ -862,15 +818,12 @@ namespace FlutterSDK.Material.Appbar
         public new FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration StretchConfiguration { get; set; }
         public virtual double MinExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual double MaxExtent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context, double shrinkOffset, bool overlapsContent)
         {
             double visibleMainHeight = MaxExtent - shrinkOffset - TopPadding;
             double toolbarOpacity = !Pinned || (Floating && Bottom != null) ? ((visibleMainHeight - _BottomHeight) / ConstantsDefaultClass.KToolbarHeight).Clamp(0.0, 1.0) as double : 1.0;
-            Widget appBar = FlexiblespacebarDefaultClass.FlexibleSpaceBar.CreateSettings(minExtent: MinExtent, maxExtent: MaxExtent, currentExtent: Math.Dart:mathDefaultClass.Max(MinExtent, MaxExtent - shrinkOffset), toolbarOpacity: toolbarOpacity, child: new AppBar(leading: Leading, automaticallyImplyLeading: AutomaticallyImplyLeading, title: Title, actions: Actions, flexibleSpace: (Title == null && FlexibleSpace != null && !ExcludeHeaderSemantics) ? new Semantics(child: FlexibleSpace, header: true) : FlexibleSpace, bottom: Bottom, elevation: ForceElevated || overlapsContent || (Pinned && shrinkOffset > MaxExtent - MinExtent) ? elevation == default(double) ? 4.0 : elevation : 0.0, backgroundColor: BackgroundColor, brightness: Brightness, iconTheme: IconTheme, actionsIconTheme: ActionsIconTheme, textTheme: TextTheme, primary: Primary, centerTitle: CenterTitle, excludeHeaderSemantics: ExcludeHeaderSemantics, titleSpacing: TitleSpacing, shape: Shape, toolbarOpacity: toolbarOpacity, bottomOpacity: Pinned ? 1.0 : ((visibleMainHeight / _BottomHeight).Clamp(0.0, 1.0) as double)));
+            Widget appBar = FlexiblespacebarDefaultClass.FlexibleSpaceBar.CreateSettings(minExtent: MinExtent, maxExtent: MaxExtent, currentExtent: Dart.Math.MathDefaultClass.Max(MinExtent, MaxExtent - shrinkOffset), toolbarOpacity: toolbarOpacity, child: new AppBar(leading: Leading, automaticallyImplyLeading: AutomaticallyImplyLeading, title: Title, actions: Actions, flexibleSpace: (Title == null && FlexibleSpace != null && !ExcludeHeaderSemantics) ? new Semantics(child: FlexibleSpace, header: true) : FlexibleSpace, bottom: Bottom, elevation: ForceElevated || overlapsContent || (Pinned && shrinkOffset > MaxExtent - MinExtent) ? elevation == default(double) ? 4.0 : elevation : 0.0, backgroundColor: BackgroundColor, brightness: Brightness, iconTheme: IconTheme, actionsIconTheme: ActionsIconTheme, textTheme: TextTheme, primary: Primary, centerTitle: CenterTitle, excludeHeaderSemantics: ExcludeHeaderSemantics, titleSpacing: TitleSpacing, shape: Shape, toolbarOpacity: toolbarOpacity, bottomOpacity: Pinned ? 1.0 : ((visibleMainHeight / _BottomHeight).Clamp(0.0, 1.0) as double)));
             return Floating ? new _FloatingAppBar(child: appBar) : appBar;
         }
 
@@ -891,7 +844,6 @@ namespace FlutterSDK.Material.Appbar
 
 
 
-        #endregion
     }
 
 
@@ -977,7 +929,6 @@ namespace FlutterSDK.Material.Appbar
     /// </Summary>
     public class SliverAppBar : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SliverAppBar(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget leading = default(FlutterSDK.Widgets.Framework.Widget), bool automaticallyImplyLeading = true, FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), List<FlutterSDK.Widgets.Framework.Widget> actions = default(List<FlutterSDK.Widgets.Framework.Widget>), FlutterSDK.Widgets.Framework.Widget flexibleSpace = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget bottom = default(FlutterSDK.Widgets.Preferredsize.PreferredSizeWidget), double elevation = default(double), bool forceElevated = false, FlutterBinding.UI.Color backgroundColor = default(FlutterBinding.UI.Color), Brightness brightness = default(Brightness), FlutterSDK.Widgets.Iconthemedata.IconThemeData iconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Widgets.Iconthemedata.IconThemeData actionsIconTheme = default(FlutterSDK.Widgets.Iconthemedata.IconThemeData), FlutterSDK.Material.Texttheme.TextTheme textTheme = default(FlutterSDK.Material.Texttheme.TextTheme), bool primary = true, bool centerTitle = default(bool), bool excludeHeaderSemantics = false, double titleSpacing = default(double), double expandedHeight = default(double), bool floating = false, bool pinned = false, bool snap = false, bool stretch = false, double stretchTriggerOffset = 100.0, FlutterSDK.Foundation.Basictypes.AsyncCallback onStretchTrigger = default(FlutterSDK.Foundation.Basictypes.AsyncCallback), FlutterSDK.Painting.Borders.ShapeBorder shape = default(FlutterSDK.Painting.Borders.ShapeBorder))
         : base(key: key)
         {
@@ -1007,9 +958,6 @@ namespace FlutterSDK.Material.Appbar
             this.OnStretchTrigger = onStretchTrigger;
             this.Shape = shape;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Leading { get; set; }
         public virtual bool AutomaticallyImplyLeading { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
@@ -1035,30 +983,19 @@ namespace FlutterSDK.Material.Appbar
         public virtual bool Stretch { get; set; }
         public virtual double StretchTriggerOffset { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.AsyncCallback OnStretchTrigger { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Appbar._SliverAppBarState CreateState() => new _SliverAppBarState();
 
 
-        #endregion
     }
 
 
     public class _SliverAppBarState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Appbar.SliverAppBar>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _SliverAppBarState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Sliverpersistentheader.FloatingHeaderSnapConfiguration _SnapConfiguration { get; set; }
         internal virtual FlutterSDK.Rendering.Sliverpersistentheader.OverScrollHeaderStretchConfiguration _StretchConfiguration { get; set; }
-        #endregion
-
-        #region methods
 
         private void _UpdateSnapConfiguration()
         {
@@ -1122,24 +1059,16 @@ namespace FlutterSDK.Material.Appbar
 
 
 
-        #endregion
     }
 
 
     public class _AppBarTitleBox : FlutterSDK.Widgets.Framework.SingleChildRenderObjectWidget
     {
-        #region constructors
         public _AppBarTitleBox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Appbar._RenderAppBarTitleBox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1162,29 +1091,21 @@ namespace FlutterSDK.Material.Appbar
 
 
 
-        #endregion
     }
 
 
     public class _RenderAppBarTitleBox : FlutterSDK.Rendering.Shiftedbox.RenderAligningShiftedBox
     {
-        #region constructors
         public _RenderAppBarTitleBox(FlutterSDK.Rendering.Box.RenderBox child = default(FlutterSDK.Rendering.Box.RenderBox), TextDirection textDirection = default(TextDirection))
         : base(child: child, alignment: AlignmentDefaultClass.Alignment.Center, textDirection: textDirection)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new void PerformLayout()
         {
             BoxConstraints constraints = this.Constraints;
-            BoxConstraints innerConstraints = constraints.CopyWith(maxHeight: Dart:coreDefaultClass.Double.Infinity);
+            BoxConstraints innerConstraints = constraints.CopyWith(maxHeight: Dart.CoreDefaultClass.Double.Infinity);
             Child.Layout(innerConstraints, parentUsesSize: true);
             Size = constraints.Constrain(Child.Size);
             AlignChild();
@@ -1192,7 +1113,6 @@ namespace FlutterSDK.Material.Appbar
 
 
 
-        #endregion
     }
 
 }

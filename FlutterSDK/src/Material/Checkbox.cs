@@ -405,7 +405,6 @@ namespace FlutterSDK.Material.Checkbox
     /// </Summary>
     public class Checkbox : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Checkbox(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = false, FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -421,9 +420,6 @@ namespace FlutterSDK.Material.Checkbox
             this.FocusNode = focusNode;
             this.Autofocus = autofocus;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
@@ -436,32 +432,21 @@ namespace FlutterSDK.Material.Checkbox
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
         public virtual double Width { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Checkbox._CheckboxState CreateState() => new _CheckboxState();
 
 
-        #endregion
     }
 
 
     public class _CheckboxState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Checkbox.Checkbox>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _CheckboxState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
         internal virtual bool _Focused { get; set; }
         internal virtual bool _Hovering { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -543,13 +528,11 @@ namespace FlutterSDK.Material.Checkbox
 
 
 
-        #endregion
     }
 
 
     public class _CheckboxRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _CheckboxRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), bool tristate = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), bool hasFocus = default(bool), bool hovering = default(bool))
         : base(key: key)
         {
@@ -566,9 +549,6 @@ namespace FlutterSDK.Material.Checkbox
             this.HasFocus = hasFocus;
             this.Hovering = hovering;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual bool Tristate { get; set; }
         public virtual bool HasFocus { get; set; }
@@ -581,9 +561,6 @@ namespace FlutterSDK.Material.Checkbox
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterSDK.Scheduler.Ticker.TickerProvider Vsync { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints AdditionalConstraints { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Checkbox._RenderCheckbox CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context) => new _RenderCheckbox(value: Value, tristate: Tristate, activeColor: ActiveColor, checkColor: CheckColor, inactiveColor: InactiveColor, focusColor: FocusColor, hoverColor: HoverColor, onChanged: OnChanged, vsync: Vsync, additionalConstraints: AdditionalConstraints, hasFocus: HasFocus, hovering: Hovering);
 
@@ -602,27 +579,19 @@ namespace FlutterSDK.Material.Checkbox
 
 
 
-        #endregion
     }
 
 
     public class _RenderCheckbox : FlutterSDK.Material.Toggleable.RenderToggleable
     {
-        #region constructors
         public _RenderCheckbox(bool value = default(bool), bool tristate = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color checkColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Scheduler.Ticker.TickerProvider vsync = default(FlutterSDK.Scheduler.Ticker.TickerProvider))
         : base(value: value, tristate: tristate, activeColor: activeColor, inactiveColor: inactiveColor, focusColor: focusColor, hoverColor: hoverColor, onChanged: onChanged, additionalConstraints: additionalConstraints, vsync: vsync, hasFocus: hasFocus, hovering: hovering)
         {
             this.CheckColor = checkColor;
         }
-        #endregion
-
-        #region fields
         internal virtual bool _OldValue { get; set; }
         public virtual FlutterBinding.UI.Color CheckColor { get; set; }
         public virtual bool Value { set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void DescribeSemanticsConfiguration(FlutterSDK.Semantics.Semantics.SemanticsConfiguration config)
         {
@@ -646,7 +615,7 @@ namespace FlutterSDK.Material.Checkbox
 
         private Color _ColorAt(double t)
         {
-            return OnChanged == null ? InactiveColor : (t >= 0.25 ? ActiveColor : Dart:uiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, t * 4.0));
+            return OnChanged == null ? InactiveColor : (t >= 0.25 ? ActiveColor : Dart.UI.UiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, t * 4.0));
         }
 
 
@@ -664,7 +633,7 @@ namespace FlutterSDK.Material.Checkbox
         {
 
             double size = outer.Width;
-            RRect inner = outer.Deflate(Math.Dart:mathDefaultClass.Min(size / 2.0, CheckboxDefaultClass._KStrokeWidth + size * t));
+            RRect inner = outer.Deflate(Dart.Math.MathDefaultClass.Min(size / 2.0, CheckboxDefaultClass._KStrokeWidth + size * t));
             canvas.DrawDRRect(outer, inner, paint);
         }
 
@@ -681,14 +650,14 @@ namespace FlutterSDK.Material.Checkbox
             if (t < 0.5)
             {
                 double strokeT = t * 2.0;
-                Offset drawMid = Dart:uiDefaultClass.Offset.Lerp(start, mid, strokeT);
+                Offset drawMid = Dart.UI.UiDefaultClass.Offset.Lerp(start, mid, strokeT);
                 path.MoveTo(origin.Dx + start.Dx, origin.Dy + start.Dy);
                 path.LineTo(origin.Dx + drawMid.Dx, origin.Dy + drawMid.Dy);
             }
             else
             {
                 double strokeT = (t - 0.5) * 2.0;
-                Offset drawEnd = Dart:uiDefaultClass.Offset.Lerp(mid, end, strokeT);
+                Offset drawEnd = Dart.UI.UiDefaultClass.Offset.Lerp(mid, end, strokeT);
                 path.MoveTo(origin.Dx + start.Dx, origin.Dy + start.Dy);
                 path.LineTo(origin.Dx + mid.Dx, origin.Dy + mid.Dy);
                 path.LineTo(origin.Dx + drawEnd.Dx, origin.Dy + drawEnd.Dy);
@@ -706,8 +675,8 @@ namespace FlutterSDK.Material.Checkbox
             Offset start = new Offset(CheckboxDefaultClass._KEdgeSize * 0.2, CheckboxDefaultClass._KEdgeSize * 0.5);
             Offset mid = new Offset(CheckboxDefaultClass._KEdgeSize * 0.5, CheckboxDefaultClass._KEdgeSize * 0.5);
             Offset end = new Offset(CheckboxDefaultClass._KEdgeSize * 0.8, CheckboxDefaultClass._KEdgeSize * 0.5);
-            Offset drawStart = Dart:uiDefaultClass.Offset.Lerp(start, mid, 1.0 - t);
-            Offset drawEnd = Dart:uiDefaultClass.Offset.Lerp(mid, end, t);
+            Offset drawStart = Dart.UI.UiDefaultClass.Offset.Lerp(start, mid, 1.0 - t);
+            Offset drawEnd = Dart.UI.UiDefaultClass.Offset.Lerp(mid, end, t);
             canvas.DrawLine(origin + drawStart, origin + drawEnd, paint);
         }
 
@@ -717,7 +686,7 @@ namespace FlutterSDK.Material.Checkbox
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
             Canvas canvas = context.Canvas;
-            PaintRadialReaction(canvas, offset, Size.Center(Dart: uiDefaultClass.Offset.Zero));
+            PaintRadialReaction(canvas, offset, Size.Center(Dart.UI.UiDefaultClass.Offset.Zero));
             Paint strokePaint = _CreateStrokePaint();
             Offset origin = offset + (Size / 2.0 - Size.Square(CheckboxDefaultClass._KEdgeSize) / 2.0 as Offset);
             AnimationStatus status = Position.Status;
@@ -761,7 +730,6 @@ namespace FlutterSDK.Material.Checkbox
 
 
 
-        #endregion
     }
 
 }

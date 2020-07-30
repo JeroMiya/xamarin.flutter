@@ -438,7 +438,6 @@ namespace FlutterSDK.Material.Stepper
     /// </Summary>
     public class Step
     {
-        #region constructors
         public Step(FlutterSDK.Widgets.Framework.Widget title = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget subtitle = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Widgets.Framework.Widget content = default(FlutterSDK.Widgets.Framework.Widget), FlutterSDK.Material.Stepper.StepState state = default(FlutterSDK.Material.Stepper.StepState), bool isActive = false)
         : base()
         {
@@ -448,18 +447,11 @@ namespace FlutterSDK.Material.Stepper
             this.State = state;
             this.IsActive = isActive;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Title { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Subtitle { get; set; }
         public virtual FlutterSDK.Widgets.Framework.Widget Content { get; set; }
         public virtual FlutterSDK.Material.Stepper.StepState State { get; set; }
         public virtual bool IsActive { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -480,7 +472,6 @@ namespace FlutterSDK.Material.Stepper
     /// </Summary>
     public class Stepper : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Stepper(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), List<FlutterSDK.Material.Stepper.Step> steps = default(List<FlutterSDK.Material.Stepper.Step>), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), FlutterSDK.Material.Stepper.StepperType type = default(FlutterSDK.Material.Stepper.StepperType), int currentStep = 0, FlutterSDK.Foundation.Basictypes.ValueChanged<int> onStepTapped = default(FlutterSDK.Foundation.Basictypes.ValueChanged<int>), VoidCallback onStepContinue = default(VoidCallback), VoidCallback onStepCancel = default(VoidCallback), FlutterSDK.Widgets.Framework.ControlsWidgetBuilder controlsBuilder = default(FlutterSDK.Widgets.Framework.ControlsWidgetBuilder))
         : base(key: key)
         {
@@ -493,9 +484,6 @@ namespace FlutterSDK.Material.Stepper
             this.OnStepCancel = onStepCancel;
             this.ControlsBuilder = controlsBuilder;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Material.Stepper.Step> Steps { get; set; }
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
         public virtual FlutterSDK.Material.Stepper.StepperType Type { get; set; }
@@ -504,30 +492,19 @@ namespace FlutterSDK.Material.Stepper
         public virtual VoidCallback OnStepContinue { get; set; }
         public virtual VoidCallback OnStepCancel { get; set; }
         public virtual FlutterSDK.Widgets.Framework.ControlsWidgetBuilder ControlsBuilder { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Stepper._StepperState CreateState() => new _StepperState();
 
 
-        #endregion
     }
 
 
     public class _StepperState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Stepper.Stepper>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _StepperState()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Framework.StatefulWidget>>> _Keys { get; set; }
         internal virtual Dictionary<int, FlutterSDK.Material.Stepper.StepState> _OldStates { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -741,24 +718,16 @@ namespace FlutterSDK.Material.Stepper
 
 
 
-        #endregion
     }
 
 
     public class _TrianglePainter : FlutterSDK.Rendering.Custompaint.CustomPainter
     {
-        #region constructors
         public _TrianglePainter(FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color))
         {
             this.Color = color;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterBinding.UI.Color Color { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool HitTest(FlutterBinding.UI.Offset point) => true;
 
@@ -790,7 +759,6 @@ namespace FlutterSDK.Material.Stepper
 
 
 
-        #endregion
     }
 
 

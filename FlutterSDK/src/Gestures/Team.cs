@@ -344,20 +344,13 @@ namespace FlutterSDK.Gestures.Team
 
     public class _CombiningGestureArenaEntry : IGestureArenaEntry
     {
-        #region constructors
         public _CombiningGestureArenaEntry(FlutterSDK.Gestures.Team._CombiningGestureArenaMember _combiner, FlutterSDK.Gestures.Arena.GestureArenaMember _member)
         {
             this._Combiner = _combiner;
             this._Member = _member;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Gestures.Team._CombiningGestureArenaMember _Combiner { get; set; }
         internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Member { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Resolve(FlutterSDK.Gestures.Arena.GestureDisposition disposition)
         {
@@ -366,30 +359,22 @@ namespace FlutterSDK.Gestures.Team
 
 
 
-        #endregion
     }
 
 
     public class _CombiningGestureArenaMember : FlutterSDK.Gestures.Arena.GestureArenaMember
     {
-        #region constructors
         public _CombiningGestureArenaMember(FlutterSDK.Gestures.Team.GestureArenaTeam _owner, int _pointer)
         {
             this._Owner = _owner;
             this._Pointer = _pointer;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Gestures.Team.GestureArenaTeam _Owner { get; set; }
         internal virtual List<FlutterSDK.Gestures.Arena.GestureArenaMember> _Members { get; set; }
         internal virtual int _Pointer { get; set; }
         internal virtual bool _Resolved { get; set; }
         internal virtual FlutterSDK.Gestures.Arena.GestureArenaMember _Winner { get; set; }
         internal virtual FlutterSDK.Gestures.Arena.GestureArenaEntry _Entry { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AcceptGesture(int pointer)
         {
@@ -461,7 +446,6 @@ namespace FlutterSDK.Gestures.Team
 
 
 
-        #endregion
     }
 
 }

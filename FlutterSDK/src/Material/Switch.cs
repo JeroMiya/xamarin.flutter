@@ -452,7 +452,6 @@ namespace FlutterSDK.Material.Switch
     /// </Summary>
     public class Switch : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public Switch(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveThumbColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Material.Themedata.MaterialTapTargetSize materialTapTargetSize = default(FlutterSDK.Material.Themedata.MaterialTapTargetSize), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false)
         : base(key: key)
         {
@@ -492,9 +491,6 @@ namespace FlutterSDK.Material.Switch
             instance.FocusNode = focusNode;
             instance.Autofocus = autofocus;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<bool> OnChanged { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
@@ -512,9 +508,6 @@ namespace FlutterSDK.Material.Switch
         public virtual FlutterBinding.UI.Color HoverColor { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
         public virtual bool Autofocus { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Switch._SwitchState CreateState() => new _SwitchState();
 
@@ -529,25 +522,17 @@ namespace FlutterSDK.Material.Switch
 
 
 
-        #endregion
     }
 
 
     public class _SwitchState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Switch.Switch>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _SwitchState()
         { }
-        #endregion
-
-        #region fields
         internal virtual Dictionary<FlutterSDK.Foundation.Key.LocalKey, object> _ActionMap { get; set; }
         internal virtual bool _Focused { get; set; }
         internal virtual bool _Hovering { get; set; }
         public virtual bool Enabled { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -693,13 +678,11 @@ namespace FlutterSDK.Material.Switch
 
 
 
-        #endregion
     }
 
 
     public class _SwitchRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _SwitchRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Material.Switch._SwitchState state = default(FlutterSDK.Material.Switch._SwitchState))
         : base(key: key)
         {
@@ -722,9 +705,6 @@ namespace FlutterSDK.Material.Switch
             this.Hovering = hovering;
             this.State = state;
         }
-        #endregion
-
-        #region fields
         public virtual bool Value { get; set; }
         public virtual FlutterBinding.UI.Color ActiveColor { get; set; }
         public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
@@ -743,9 +723,6 @@ namespace FlutterSDK.Material.Switch
         public virtual bool HasFocus { get; set; }
         public virtual bool Hovering { get; set; }
         public virtual FlutterSDK.Material.Switch._SwitchState State { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Switch._RenderSwitch CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -768,13 +745,11 @@ namespace FlutterSDK.Material.Switch
 
 
 
-        #endregion
     }
 
 
     public class _RenderSwitch : FlutterSDK.Material.Toggleable.RenderToggleable
     {
-        #region constructors
         public _RenderSwitch(bool value = default(bool), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageProvider<object> activeThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onActiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterSDK.Painting.Imageprovider.ImageProvider<object> inactiveThumbImage = default(FlutterSDK.Painting.Imageprovider.ImageProvider<object>), FlutterSDK.Painting.Imagestream.ImageErrorListener onInactiveThumbImageError = default(FlutterSDK.Painting.Imagestream.ImageErrorListener), FlutterBinding.UI.Color activeTrackColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveTrackColor = default(FlutterBinding.UI.Color), FlutterSDK.Painting.Imageprovider.ImageConfiguration configuration = default(FlutterSDK.Painting.Imageprovider.ImageConfiguration), FlutterSDK.Rendering.Box.BoxConstraints additionalConstraints = default(FlutterSDK.Rendering.Box.BoxConstraints), TextDirection textDirection = default(TextDirection), FlutterSDK.Foundation.Basictypes.ValueChanged<bool> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<bool>), FlutterSDK.Gestures.Recognizer.DragStartBehavior dragStartBehavior = default(FlutterSDK.Gestures.Recognizer.DragStartBehavior), bool hasFocus = default(bool), bool hovering = default(bool), FlutterSDK.Material.Switch._SwitchState state = default(FlutterSDK.Material.Switch._SwitchState))
         : base(value: value, tristate: false, activeColor: activeColor, inactiveColor: inactiveColor, hoverColor: hoverColor, focusColor: focusColor, onChanged: onChanged, additionalConstraints: additionalConstraints, hasFocus: hasFocus, hovering: hovering, vsync: state)
         {
@@ -783,9 +758,6 @@ namespace FlutterSDK.Material.Switch
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _ActiveThumbImage { get; set; }
         internal virtual FlutterSDK.Painting.Imagestream.ImageErrorListener _OnActiveThumbImageError { get; set; }
         internal virtual FlutterSDK.Painting.Imageprovider.ImageProvider<object> _InactiveThumbImage { get; set; }
@@ -813,9 +785,6 @@ namespace FlutterSDK.Material.Switch
         public virtual FlutterSDK.Gestures.Recognizer.DragStartBehavior DragStartBehavior { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Value { set { throw new NotImplementedException(); } }
         internal virtual double _TrackInnerLength { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void Detach()
         {
@@ -902,8 +871,8 @@ namespace FlutterSDK.Material.Switch
             double currentValue = Position.Value;
             double visualPosition = default(double);
             switch (TextDirection) { case TextDirection.Rtl: visualPosition = 1.0 - currentValue; break; case TextDirection.Ltr: visualPosition = currentValue; break; }
-            Color trackColor = isEnabled ? Dart : uiDefaultClass.Color.Lerp(InactiveTrackColor, ActiveTrackColor, currentValue):InactiveTrackColor;
-            Color thumbColor = isEnabled ? Dart : uiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, currentValue):InactiveColor;
+            Color trackColor = isEnabled ? Dart.UI.UiDefaultClass.Color.Lerp(InactiveTrackColor, ActiveTrackColor, currentValue) : InactiveTrackColor;
+            Color thumbColor = isEnabled ? Dart.UI.UiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, currentValue) : InactiveColor;
             ImageProvider thumbImage = isEnabled ? (currentValue < 0.5 ? InactiveThumbImage : ActiveThumbImage) : InactiveThumbImage;
             ImageErrorListener thumbErrorListener = isEnabled ? (currentValue < 0.5 ? OnInactiveThumbImageError : OnActiveThumbImageError) : OnInactiveThumbImageError;
             Paint paint = new Paint()..Color = trackColor;
@@ -939,7 +908,6 @@ namespace FlutterSDK.Material.Switch
 
 
 
-        #endregion
     }
 
 

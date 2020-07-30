@@ -793,7 +793,7 @@ namespace FlutterSDK.Widgets.Focustraversal
                     {
                         sorted = sorted.Reversed.ToList();
                     }
-                    Rect band = Rect.FromLTRB(focusedChild.Rect.Left, -Dart:coreDefaultClass.Double.Infinity, focusedChild.Rect.Right, Dart: coreDefaultClass.Double.Infinity); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
+                    Rect band = Rect.FromLTRB(focusedChild.Rect.Left, -Dart.CoreDefaultClass.Double.Infinity, focusedChild.Rect.Right, Dart.CoreDefaultClass.Double.Infinity); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
                     {
                         found = inBand.First;
                         break;
@@ -822,7 +822,7 @@ namespace FlutterSDK.Widgets.Focustraversal
                     {
                         sorted = sorted.Reversed.ToList();
                     }
-                    Rect band = Rect.FromLTRB(-Dart:coreDefaultClass.Double.Infinity, focusedChild.Rect.Top, Dart: coreDefaultClass.Double.Infinity, focusedChild.Rect.Bottom); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
+                    Rect band = Rect.FromLTRB(-Dart.CoreDefaultClass.Double.Infinity, focusedChild.Rect.Top, Dart.CoreDefaultClass.Double.Infinity, focusedChild.Rect.Bottom); Iterable<FocusNode> inBand = sorted.Where((FocusNode node) => =>!node.Rect.Intersect(band).IsEmpty()); if (inBand.IsNotEmpty)
                     {
                         found = inBand.First;
                         break;
@@ -867,22 +867,14 @@ namespace FlutterSDK.Widgets.Focustraversal
 
     public class _FocusTraversalGroupInfo
     {
-        #region constructors
         public _FocusTraversalGroupInfo(FlutterSDK.Widgets.Focustraversal._FocusTraversalGroupMarker marker, FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy defaultPolicy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy), List<FlutterSDK.Widgets.Focusmanager.FocusNode> members = default(List<FlutterSDK.Widgets.Focusmanager.FocusNode>))
         : base()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode GroupNode { get; set; }
         public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy { get; set; }
         public virtual List<FlutterSDK.Widgets.Focusmanager.FocusNode> Members { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -916,17 +908,10 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class FocusTraversalPolicy : IDiagnosticable
     {
-        #region constructors
         public FocusTraversalPolicy()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the node that should receive focus if there is no current focus
@@ -1211,47 +1196,30 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
     public class _DirectionalPolicyDataEntry
     {
-        #region constructors
         public _DirectionalPolicyDataEntry(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction = default(FlutterSDK.Widgets.Focustraversal.TraversalDirection), FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode))
         : base()
         {
             this.Direction = direction;
             this.Node = node;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focustraversal.TraversalDirection Direction { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
     public class _DirectionalPolicyData
     {
-        #region constructors
         public _DirectionalPolicyData(List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry> history = default(List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry>))
         : base()
         {
             this.History = history;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Focustraversal._DirectionalPolicyDataEntry> History { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1276,42 +1244,27 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class WidgetOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
     {
-        #region constructors
         public WidgetOrderTraversalPolicy()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants) => descendants;
 
 
-        #endregion
     }
 
 
     public class _ReadingOrderSortData : IDiagnosticable
     {
-        #region constructors
         public _ReadingOrderSortData(FlutterSDK.Widgets.Focusmanager.FocusNode node)
         : base()
         {
             this.Node = node;
         }
-        #endregion
-
-        #region fields
         public virtual TextDirection Directionality { get; set; }
         public virtual FlutterBinding.UI.Rect Rect { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node { get; set; }
         internal virtual List<FlutterSDK.Widgets.Basic.Directionality> _DirectionalAncestors { get; set; }
         public virtual Iterable<FlutterSDK.Widgets.Basic.Directionality> DirectionalAncestors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private TextDirection _FindDirectionality(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -1369,29 +1322,21 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
     public class _ReadingOrderDirectionalGroupData : IDiagnosticable
     {
-        #region constructors
         public _ReadingOrderDirectionalGroupData(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> members)
         {
             this.Members = members;
         }
-        #endregion
-
-        #region fields
         public virtual List<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> Members { get; set; }
         internal virtual FlutterBinding.UI.Rect _Rect { get; set; }
         internal virtual List<FlutterSDK.Widgets.Basic.Directionality> _MemberAncestors { get; set; }
         public virtual TextDirection Directionality { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual List<FlutterSDK.Widgets.Basic.Directionality> MemberAncestors { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public virtual void SortWithDirectionality(List<FlutterSDK.Widgets.Focustraversal._ReadingOrderDirectionalGroupData> list, TextDirection directionality)
         {
@@ -1422,7 +1367,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
@@ -1455,15 +1399,8 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class ReadingOrderTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
     {
-        #region constructors
         public ReadingOrderTraversalPolicy()
         { }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         private List<FlutterSDK.Widgets.Focustraversal._ReadingOrderDirectionalGroupData> _CollectDirectionalityGroups(Iterable<FlutterSDK.Widgets.Focustraversal._ReadingOrderSortData> candidates)
         {
@@ -1510,7 +1447,7 @@ namespace FlutterSDK.Widgets.Focustraversal
             _ReadingOrderSortData topmost = candidates.First;
             List<_ReadingOrderSortData> InBand(_ReadingOrderSortData current, Iterable<_ReadingOrderSortData> candidates)
             {
-                Rect band = Rect.FromLTRB(Dart: coreDefaultClass.Double.NegativeInfinity, current.Rect.Top, Dart: coreDefaultClass.Double.Infinity, current.Rect.Bottom);
+                Rect band = Rect.FromLTRB(Dart.CoreDefaultClass.Double.NegativeInfinity, current.Rect.Top, Dart.CoreDefaultClass.Double.Infinity, current.Rect.Bottom);
                 return candidates.Where((_ReadingOrderSortData item) =>
                 {
                     return !item.Rect.Intersect(band).IsEmpty();
@@ -1567,7 +1504,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
@@ -1598,17 +1534,10 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class FocusOrder : IComparable<FlutterSDK.Widgets.Focustraversal.FocusOrder>, IDiagnosticable
     {
-        #region constructors
         public FocusOrder()
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Compares this object to another [Comparable].
@@ -1648,7 +1577,6 @@ namespace FlutterSDK.Widgets.Focustraversal
             return default(int);
         }
 
-        #endregion
     }
 
 
@@ -1666,19 +1594,12 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class NumericFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
     {
-        #region constructors
         public NumericFocusOrder(double order)
         : base()
         {
             this.Order = order;
         }
-        #endregion
-
-        #region fields
         public virtual double Order { get; set; }
-        #endregion
-
-        #region methods
 
         public new int DoCompare(FlutterSDK.Widgets.Focustraversal.NumericFocusOrder other) => Order.CompareTo(other.Order);
 
@@ -1694,7 +1615,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
@@ -1716,19 +1636,12 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class LexicalFocusOrder : FlutterSDK.Widgets.Focustraversal.FocusOrder
     {
-        #region constructors
         public LexicalFocusOrder(string order)
         : base()
         {
             this.Order = order;
         }
-        #endregion
-
-        #region fields
         public virtual string Order { get; set; }
-        #endregion
-
-        #region methods
 
         public new int DoCompare(FlutterSDK.Widgets.Focustraversal.LexicalFocusOrder other) => Order.CompareTo(other.Order);
 
@@ -1744,28 +1657,19 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
     public class _OrderedFocusInfo
     {
-        #region constructors
         public _OrderedFocusInfo(FlutterSDK.Widgets.Focusmanager.FocusNode node = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Focustraversal.FocusOrder order = default(FlutterSDK.Widgets.Focustraversal.FocusOrder))
         : base()
         {
             this.Node = node;
             this.Order = order;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode Node { get; set; }
         public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Order { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -1860,18 +1764,11 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class OrderedTraversalPolicy : FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy, IDirectionalFocusTraversalPolicyMixin
     {
-        #region constructors
         public OrderedTraversalPolicy(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy secondary = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy))
         {
             this.Secondary = secondary;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Secondary { get; set; }
-        #endregion
-
-        #region methods
 
         public new Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> SortDescendants(Iterable<FlutterSDK.Widgets.Focusmanager.FocusNode> descendants)
         {
@@ -1904,7 +1801,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
@@ -1919,19 +1815,12 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class FocusTraversalOrder : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public FocusTraversalOrder(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focustraversal.FocusOrder order = default(FlutterSDK.Widgets.Focustraversal.FocusOrder), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key, child: child)
         {
             this.Order = order;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focustraversal.FocusOrder Order { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Finds the [FocusOrder] in the nearest ancestor [FocusTraversalOrder] widget.
@@ -1969,7 +1858,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
@@ -2149,20 +2037,13 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class FocusTraversalGroup : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public FocusTraversalGroup(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy policy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(key: key)
         {
             this.Child = child;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Framework.Widget Child { get; set; }
         public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Returns the focus policy set by the [FocusTraversalGroup] that most
@@ -2200,22 +2081,14 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
     public class _FocusTraversalGroupState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Focustraversal.FocusTraversalGroup>
     {
-        #region constructors
         public _FocusTraversalGroupState()
         { }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -2242,50 +2115,34 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
     public class _FocusTraversalGroupMarker : FlutterSDK.Widgets.Framework.InheritedWidget
     {
-        #region constructors
         public _FocusTraversalGroupMarker(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy policy = default(FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), FlutterSDK.Widgets.Framework.Widget child = default(FlutterSDK.Widgets.Framework.Widget))
         : base(child: child)
         {
             this.Policy = policy;
             this.FocusNode = focusNode;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focustraversal.FocusTraversalPolicy Policy { get; set; }
         public virtual FlutterSDK.Widgets.Focusmanager.FocusNode FocusNode { get; set; }
-        #endregion
-
-        #region methods
 
         public new bool UpdateShouldNotify(FlutterSDK.Widgets.Framework.InheritedWidget oldWidget) => false;
 
 
-        #endregion
     }
 
 
     public class _RequestFocusActionBase : FlutterSDK.Widgets.Actions.Action
     {
-        #region constructors
         public _RequestFocusActionBase(FlutterSDK.Foundation.Key.LocalKey name)
         : base(name)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Focusmanager.FocusNode _PreviousFocus { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent)
         {
@@ -2304,7 +2161,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 
@@ -2333,24 +2189,16 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class RequestFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
-        #region constructors
         public RequestFocusAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) => FocustraversalDefaultClass._FocusAndEnsureVisible(node);
 
 
-        #endregion
     }
 
 
@@ -2363,24 +2211,16 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class NextFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
-        #region constructors
         public NextFocusAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) => node.NextFocus();
 
 
-        #endregion
     }
 
 
@@ -2394,24 +2234,16 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class PreviousFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
-        #region constructors
         public PreviousFocusAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Actions.Intent intent) => node.PreviousFocus();
 
 
-        #endregion
     }
 
 
@@ -2426,22 +2258,14 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class DirectionalFocusIntent : FlutterSDK.Widgets.Actions.Intent
     {
-        #region constructors
         public DirectionalFocusIntent(FlutterSDK.Widgets.Focustraversal.TraversalDirection direction, bool ignoreTextFields = true)
         : base(FocustraversalDefaultClass.DirectionalFocusAction.Key)
         {
             this.Direction = direction;
             this.IgnoreTextFields = ignoreTextFields;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Focustraversal.TraversalDirection Direction { get; set; }
         public virtual bool IgnoreTextFields { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -2456,19 +2280,12 @@ namespace FlutterSDK.Widgets.Focustraversal
     /// </Summary>
     public class DirectionalFocusAction : FlutterSDK.Widgets.Focustraversal._RequestFocusActionBase
     {
-        #region constructors
         public DirectionalFocusAction()
         : base(Key)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Foundation.Key.LocalKey Key { get; set; }
-        #endregion
-
-        #region methods
 
         public new void Invoke(FlutterSDK.Widgets.Focusmanager.FocusNode node, FlutterSDK.Widgets.Focustraversal.DirectionalFocusIntent intent)
         {
@@ -2491,7 +2308,6 @@ namespace FlutterSDK.Widgets.Focustraversal
 
 
 
-        #endregion
     }
 
 

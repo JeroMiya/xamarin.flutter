@@ -479,7 +479,6 @@ namespace FlutterSDK.Material.Rangeslider
     /// </Summary>
     public class RangeSlider : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public RangeSlider(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), double min = 0.0, double max = 1.0, int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterBinding.UI.Color activeColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color inactiveColor = default(FlutterBinding.UI.Color), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
         : base(key: key)
         {
@@ -495,9 +494,6 @@ namespace FlutterSDK.Material.Rangeslider
             this.InactiveColor = inactiveColor;
             this.SemanticFormatterCallback = semanticFormatterCallback;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChanged { get; set; }
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeStart { get; set; }
@@ -510,9 +506,6 @@ namespace FlutterSDK.Material.Rangeslider
         public virtual FlutterBinding.UI.Color InactiveColor { get; set; }
         public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
         internal virtual double _MinTouchTargetWidth { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Rangeslider._RangeSliderState CreateState() => new _RangeSliderState();
 
@@ -538,18 +531,13 @@ namespace FlutterSDK.Material.Rangeslider
 
 
 
-        #endregion
     }
 
 
     public class _RangeSliderState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Material.Rangeslider.RangeSlider>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public _RangeSliderState()
         { }
-        #endregion
-
-        #region fields
         public virtual TimeSpan EnableAnimationDuration { get; set; }
         public virtual TimeSpan ValueIndicatorAnimationDuration { get; set; }
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController OverlayController { get; set; }
@@ -567,9 +555,6 @@ namespace FlutterSDK.Material.Rangeslider
         internal virtual FlutterSDK.Material.Slidertheme.RangeSliderValueIndicatorShape _DefaultValueIndicatorShape { get; set; }
         internal virtual FlutterSDK.Material.Slidertheme.ShowValueIndicator _DefaultShowValueIndicator { get; set; }
         internal virtual double _DefaultMinThumbSeparation { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -577,8 +562,8 @@ namespace FlutterSDK.Material.Rangeslider
             OverlayController = new AnimationController(duration: ConstantsDefaultClass.KRadialReactionDuration, vsync: this);
             ValueIndicatorController = new AnimationController(duration: ValueIndicatorAnimationDuration, vsync: this);
             EnableController = new AnimationController(duration: EnableAnimationDuration, vsync: this, value: Widget.OnChanged != null ? 1.0 : 0.0);
-            StartPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.Start));
-            EndPositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.End));
+            StartPositionController = new AnimationController(duration: Dart.CoreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.Start));
+            EndPositionController = new AnimationController(duration: Dart.CoreDefaultClass.Duration.Zero, vsync: this, value: _Unlerp(Widget.Values.End));
         }
 
 
@@ -654,11 +639,11 @@ namespace FlutterSDK.Material.Rangeslider
 
 
 
-        private double _Lerp(double value) => Ui.Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
+        private double _Lerp(double value) => Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
 
 
 
-private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
+        private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.Material.Slidertheme.RangeValues values)
         {
             return new RangeValues(_Lerp(values.Start), _Lerp(values.End));
         }
@@ -696,13 +681,11 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
 
 
 
-        #endregion
     }
 
 
     public class _RangeSliderRenderObjectWidget : FlutterSDK.Widgets.Framework.LeafRenderObjectWidget
     {
-        #region constructors
         public _RangeSliderRenderObjectWidget(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback))
         : base(key: key)
         {
@@ -717,9 +700,6 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
             this.State = state;
             this.SemanticFormatterCallback = semanticFormatterCallback;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Material.Slidertheme.RangeValues Values { get; set; }
         public virtual int Divisions { get; set; }
         public virtual FlutterSDK.Material.Slidertheme.RangeLabels Labels { get; set; }
@@ -730,9 +710,6 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
         public virtual FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> OnChangeEnd { get; set; }
         public virtual FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback SemanticFormatterCallback { get; set; }
         public virtual FlutterSDK.Material.Rangeslider._RangeSliderState State { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Material.Rangeslider._RenderRangeSlider CreateRenderObject(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -755,13 +732,11 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
 
 
 
-        #endregion
     }
 
 
     public class _RenderRangeSlider : FlutterSDK.Rendering.Box.RenderBox, IRelayoutWhenSystemFontsChangeMixin
     {
-        #region constructors
         public _RenderRangeSlider(FlutterSDK.Material.Slidertheme.RangeValues values = default(FlutterSDK.Material.Slidertheme.RangeValues), int divisions = default(int), FlutterSDK.Material.Slidertheme.RangeLabels labels = default(FlutterSDK.Material.Slidertheme.RangeLabels), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), FlutterSDK.Material.Themedata.ThemeData theme = default(FlutterSDK.Material.Themedata.ThemeData), double textScaleFactor = default(double), FlutterSDK.Foundation.Platform.TargetPlatform platform = default(FlutterSDK.Foundation.Platform.TargetPlatform), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChanged = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback semanticFormatterCallback = default(FlutterSDK.Material.Slidertheme.RangeSemanticFormatterCallback), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeStart = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues> onChangeEnd = default(FlutterSDK.Foundation.Basictypes.ValueChanged<RangeValues>), FlutterSDK.Material.Rangeslider._RangeSliderState state = default(FlutterSDK.Material.Rangeslider._RangeSliderState), TextDirection textDirection = default(TextDirection))
         : base()
         {
@@ -777,9 +752,6 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Material.Slidertheme.Thumb _LastThumbSelection { get; set; }
         internal virtual TimeSpan _PositionAnimationDuration { get; set; }
         internal virtual double _MinPreferredTrackWidth { get; set; }
@@ -832,9 +804,6 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
         internal virtual double _AdjustmentUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool SizedByParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual double _SemanticActionUnit { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _UpdateLabelPainters()
         {
@@ -1036,11 +1005,11 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
                 double minThumbSeparationValue = IsDiscrete ? 0 : SliderTheme.MinThumbSeparation / _TrackRect.Width;
                 if (_LastThumbSelection == Thumb.Start)
                 {
-                    _NewValues = new RangeValues(Math.Dart:mathDefaultClass.Min(currentDragValue, currentValues.End - minThumbSeparationValue), currentValues.End);
+                    _NewValues = new RangeValues(Dart.Math.MathDefaultClass.Min(currentDragValue, currentValues.End - minThumbSeparationValue), currentValues.End);
                 }
                 else if (_LastThumbSelection == Thumb.End)
                 {
-                    _NewValues = new RangeValues(currentValues.Start, Math.Dart:mathDefaultClass.Max(currentDragValue, currentValues.Start + minThumbSeparationValue));
+                    _NewValues = new RangeValues(currentValues.Start, Dart.Math.MathDefaultClass.Max(currentDragValue, currentValues.Start + minThumbSeparationValue));
                 }
 
                 OnChanged(_NewValues);
@@ -1149,17 +1118,17 @@ private FlutterSDK.Material.Slidertheme.RangeValues _LerpRangeValues(FlutterSDK.
 
 
 
-        public new double ComputeMinIntrinsicHeight(double width) => Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMinIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new double ComputeMaxIntrinsicHeight(double width) => Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMaxIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new void PerformResize()
+        public new void PerformResize()
         {
-            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Math.Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
+            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
         }
 
 
@@ -1330,7 +1299,6 @@ public new void PerformResize()
 
 
 
-        #endregion
     }
 
 }

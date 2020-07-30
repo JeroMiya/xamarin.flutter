@@ -437,7 +437,6 @@ namespace FlutterSDK.Rendering.Tableborder
     /// </Summary>
     public class TableBorder
     {
-        #region constructors
         public TableBorder(FlutterSDK.Painting.Borders.BorderSide top = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide right = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide bottom = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide left = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide horizontalInside = default(FlutterSDK.Painting.Borders.BorderSide), FlutterSDK.Painting.Borders.BorderSide verticalInside = default(FlutterSDK.Painting.Borders.BorderSide))
         {
             this.Top = top;
@@ -462,9 +461,6 @@ namespace FlutterSDK.Rendering.Tableborder
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Borders.BorderSide Top { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide Right { get; set; }
         public virtual FlutterSDK.Painting.Borders.BorderSide Bottom { get; set; }
@@ -474,9 +470,6 @@ namespace FlutterSDK.Rendering.Tableborder
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsets Dimensions { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsUniform { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Creates a copy of this border but with the widths scaled by the factor `t`.
@@ -609,7 +602,7 @@ namespace FlutterSDK.Rendering.Tableborder
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is TableBorder && other.Top == Top && other.Right == Right && other.Bottom == Bottom && other.Left == Left && other.HorizontalInside == HorizontalInside && other.VerticalInside == VerticalInside;
         }
@@ -617,7 +610,6 @@ namespace FlutterSDK.Rendering.Tableborder
 
 
 
-        #endregion
     }
 
 }

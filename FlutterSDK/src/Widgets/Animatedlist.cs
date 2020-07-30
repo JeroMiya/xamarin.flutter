@@ -432,7 +432,6 @@ namespace FlutterSDK.Widgets.Animatedlist
 
     public class _ActiveItem : IComparable<FlutterSDK.Widgets.Animatedlist._ActiveItem>
     {
-        #region constructors
         public static _ActiveItem Incoming(FlutterSDK.Animation.Animationcontroller.AnimationController controller, int itemIndex)
         {
             var instance = new _ActiveItem(); instance.Controller = controller;
@@ -448,20 +447,13 @@ namespace FlutterSDK.Widgets.Animatedlist
         {
             var instance = new _ActiveItem(); instance.ItemIndex = itemIndex;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Animation.Animationcontroller.AnimationController Controller { get; set; }
         public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListRemovedItemBuilder RemovedItemBuilder { get; set; }
         public virtual int ItemIndex { get; set; }
-        #endregion
-
-        #region methods
 
         public new int CompareTo(FlutterSDK.Widgets.Animatedlist._ActiveItem other) => ItemIndex - other.ItemIndex;
 
 
-        #endregion
     }
 
 
@@ -696,7 +688,6 @@ namespace FlutterSDK.Widgets.Animatedlist
     /// </Summary>
     public class AnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public AnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder), int initialItemCount = 0, FlutterSDK.Painting.Basictypes.Axis scrollDirection = default(FlutterSDK.Painting.Basictypes.Axis), bool reverse = false, FlutterSDK.Widgets.Scrollcontroller.ScrollController controller = default(FlutterSDK.Widgets.Scrollcontroller.ScrollController), bool primary = default(bool), FlutterSDK.Widgets.Scrollphysics.ScrollPhysics physics = default(FlutterSDK.Widgets.Scrollphysics.ScrollPhysics), bool shrinkWrap = false, FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry))
         : base(key: key)
         {
@@ -710,9 +701,6 @@ namespace FlutterSDK.Widgets.Animatedlist
             this.ShrinkWrap = shrinkWrap;
             this.Padding = padding;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder { get; set; }
         public virtual int InitialItemCount { get; set; }
         public virtual FlutterSDK.Painting.Basictypes.Axis ScrollDirection { get; set; }
@@ -722,9 +710,6 @@ namespace FlutterSDK.Widgets.Animatedlist
         public virtual FlutterSDK.Widgets.Scrollphysics.ScrollPhysics Physics { get; set; }
         public virtual bool ShrinkWrap { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The state from the closest instance of this class that encloses the given
@@ -752,7 +737,6 @@ namespace FlutterSDK.Widgets.Animatedlist
         public new FlutterSDK.Widgets.Animatedlist.AnimatedListState CreateState() => new AnimatedListState();
 
 
-        #endregion
     }
 
 
@@ -784,16 +768,9 @@ namespace FlutterSDK.Widgets.Animatedlist
     /// </Summary>
     public class AnimatedListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedlist.AnimatedList>, ITickerProviderStateMixin<FlutterSDK.Widgets.Animatedlist.AnimatedList>
     {
-        #region constructors
         public AnimatedListState()
         { }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState> _SliverAnimatedListKey { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Insert an item at [index] and start an animation that will be passed
@@ -839,7 +816,6 @@ namespace FlutterSDK.Widgets.Animatedlist
 
 
 
-        #endregion
     }
 
 
@@ -1095,21 +1071,14 @@ namespace FlutterSDK.Widgets.Animatedlist
     /// </Summary>
     public class SliverAnimatedList : FlutterSDK.Widgets.Framework.StatefulWidget
     {
-        #region constructors
         public SliverAnimatedList(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder itemBuilder = default(FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder), int initialItemCount = 0)
         : base(key: key)
         {
             this.ItemBuilder = itemBuilder;
             this.InitialItemCount = initialItemCount;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Widgets.Animatedlist.AnimatedListItemBuilder ItemBuilder { get; set; }
         public virtual int InitialItemCount { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Animatedlist.SliverAnimatedListState CreateState() => new SliverAnimatedListState();
 
@@ -1137,7 +1106,6 @@ namespace FlutterSDK.Widgets.Animatedlist
 
 
 
-        #endregion
     }
 
 
@@ -1169,18 +1137,11 @@ namespace FlutterSDK.Widgets.Animatedlist
     /// </Summary>
     public class SliverAnimatedListState : FlutterSDK.Widgets.Framework.State<FlutterSDK.Widgets.Animatedlist.SliverAnimatedList>, ITickerProviderStateMixin<FlutterSDK.Widgets.Framework.StatefulWidget>
     {
-        #region constructors
         public SliverAnimatedListState()
         { }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Widgets.Animatedlist._ActiveItem> _IncomingItems { get; set; }
         internal virtual List<FlutterSDK.Widgets.Animatedlist._ActiveItem> _OutgoingItems { get; set; }
         internal virtual int _ItemsCount { get; set; }
-        #endregion
-
-        #region methods
 
         public new void InitState()
         {
@@ -1378,7 +1339,6 @@ namespace FlutterSDK.Widgets.Animatedlist
 
 
 
-        #endregion
     }
 
 }

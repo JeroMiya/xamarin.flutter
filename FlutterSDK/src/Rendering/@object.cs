@@ -1372,16 +1372,12 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class PaintingContext : FlutterSDK.Painting.Clip.ClipContext
     {
-        #region constructors
         public PaintingContext(FlutterSDK.Rendering.Layer.ContainerLayer _containerLayer, FlutterBinding.UI.Rect estimatedBounds)
         : base()
         {
             this._ContainerLayer = _containerLayer;
             this.EstimatedBounds = estimatedBounds;
         }
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.Layer.ContainerLayer _ContainerLayer { get; set; }
         public virtual FlutterBinding.UI.Rect EstimatedBounds { get; set; }
         internal virtual FlutterSDK.Rendering.Layer.PictureLayer _CurrentLayer { get; set; }
@@ -1389,9 +1385,6 @@ namespace FlutterSDK.Rendering.@object
         internal virtual Canvas _Canvas { get; set; }
         internal virtual bool _IsRecording { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Canvas Canvas { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Repaint the given render object.
@@ -1436,7 +1429,7 @@ namespace FlutterSDK.Rendering.@object
 
 
             childContext = (childContext == null ? new PaintingContext(child._Layer, child.PaintBounds) : childContext);
-            child._PaintWithContext(childContext, Dart: uiDefaultClass.Offset.Zero);
+            child._PaintWithContext(childContext, Dart.UI.UiDefaultClass.Offset.Zero);
 
             childContext.StopRecordingIfNeeded();
         }
@@ -1932,14 +1925,13 @@ namespace FlutterSDK.Rendering.@object
         {
             OpacityLayer layer = oldLayer ?? new OpacityLayer();
             ..Alpha = alpha..Offset = offset;
-            PushLayer(layer, painter, Dart: uiDefaultClass.Offset.Zero);
+            PushLayer(layer, painter, Dart.UI.UiDefaultClass.Offset.Zero);
             return layer;
         }
 
 
 
 
-        #endregion
     }
 
 
@@ -1993,19 +1985,12 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class Constraints
     {
-        #region constructors
         public Constraints()
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool IsTight { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool IsNormalized { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Asserts that the constraints are valid.
@@ -2038,7 +2023,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -2062,7 +2046,6 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class SemanticsHandle
     {
-        #region constructors
         internal SemanticsHandle(FlutterSDK.Rendering.@object.PipelineOwner _owner, VoidCallback listener)
         : base()
         {
@@ -2072,14 +2055,8 @@ namespace FlutterSDK.Rendering.@object
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterSDK.Rendering.@object.PipelineOwner _Owner { get; set; }
         public virtual VoidCallback Listener { get; set; }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Closes the semantics handle and stops calling [listener] when the
@@ -2103,7 +2080,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -2140,16 +2116,12 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class PipelineOwner
     {
-        #region constructors
         public PipelineOwner(VoidCallback onNeedVisualUpdate = default(VoidCallback), VoidCallback onSemanticsOwnerCreated = default(VoidCallback), VoidCallback onSemanticsOwnerDisposed = default(VoidCallback))
         {
             this.OnNeedVisualUpdate = onNeedVisualUpdate;
             this.OnSemanticsOwnerCreated = onSemanticsOwnerCreated;
             this.OnSemanticsOwnerDisposed = onSemanticsOwnerDisposed;
         }
-        #endregion
-
-        #region fields
         public virtual VoidCallback OnNeedVisualUpdate { get; set; }
         public virtual VoidCallback OnSemanticsOwnerCreated { get; set; }
         public virtual VoidCallback OnSemanticsOwnerDisposed { get; set; }
@@ -2169,9 +2141,6 @@ namespace FlutterSDK.Rendering.@object
         public virtual bool DebugDoingPaint { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsOwner SemanticsOwner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int DebugOutstandingSemanticsHandles { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Calls [onNeedVisualUpdate] if [onNeedVisualUpdate] is not null.
@@ -2200,7 +2169,7 @@ namespace FlutterSDK.Rendering.@object
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Layout", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Layout", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             }
 
 
@@ -2223,7 +2192,7 @@ namespace FlutterSDK.Rendering.@object
 
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.FinishSync();
+                    Dart.DeveloperDefaultClass.Timeline.FinishSync();
                 }
 
             }
@@ -2262,7 +2231,7 @@ namespace FlutterSDK.Rendering.@object
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Compositing bits");
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Compositing bits");
             }
 
             _NodesNeedingCompositingBitsUpdate.Sort((RenderObject a, RenderObject b) => =>a.Depth - b.Depth);
@@ -2274,7 +2243,7 @@ namespace FlutterSDK.Rendering.@object
             _NodesNeedingCompositingBitsUpdate.Clear();
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
@@ -2295,7 +2264,7 @@ namespace FlutterSDK.Rendering.@object
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Paint", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Paint", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             }
 
 
@@ -2328,7 +2297,7 @@ namespace FlutterSDK.Rendering.@object
 
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.FinishSync();
+                    Dart.DeveloperDefaultClass.Timeline.FinishSync();
                 }
 
             }
@@ -2402,7 +2371,7 @@ namespace FlutterSDK.Rendering.@object
             if (_SemanticsOwner == null) return;
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Semantics");
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Semantics");
             }
 
 
@@ -2425,7 +2394,7 @@ namespace FlutterSDK.Rendering.@object
 
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.FinishSync();
+                    Dart.DeveloperDefaultClass.Timeline.FinishSync();
                 }
 
             }
@@ -2434,7 +2403,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -2552,7 +2520,6 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class RenderObject : FlutterSDK.Foundation.Node.AbstractNode, IHitTestTarget, IDiagnosticableTreeMixin
     {
-        #region constructors
         public RenderObject()
         {
 
@@ -2560,9 +2527,6 @@ namespace FlutterSDK.Rendering.@object
         }
 
 
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.@object.ParentData ParentData { get; set; }
         public virtual object DebugCreator { get; set; }
         internal virtual bool _DebugDoingThisResize { get; set; }
@@ -2605,9 +2569,6 @@ namespace FlutterSDK.Rendering.@object
         internal virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration _SemanticsConfiguration { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterBinding.UI.Rect SemanticBounds { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsNode DebugSemantics { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Cause the entire subtree rooted at the given [RenderObject] to be marked
@@ -4076,7 +4037,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4086,20 +4046,12 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class FlutterErrorDetailsForRendering : FlutterSDK.Foundation.Assertions.FlutterErrorDetails
     {
-        #region constructors
         public FlutterErrorDetailsForRendering(object exception = default(object), StackTrace stack = default(StackTrace), string library = default(string), FlutterSDK.Foundation.Diagnostics.DiagnosticsNode context = default(FlutterSDK.Foundation.Diagnostics.DiagnosticsNode), FlutterSDK.Rendering.@object.RenderObject renderObject = default(FlutterSDK.Rendering.@object.RenderObject), FlutterSDK.Foundation.Assertions.InformationCollector informationCollector = default(FlutterSDK.Foundation.Assertions.InformationCollector), bool silent = false)
         : base(exception: exception, stack: stack, library: library, context: context, informationCollector: informationCollector, silent: silent)
         {
             this.RenderObject = renderObject;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Rendering.@object.RenderObject RenderObject { get; set; }
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 
@@ -4115,21 +4067,14 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _SemanticsFragment
     {
-        #region constructors
         public _SemanticsFragment(bool dropsSemanticsOfPreviousSiblings = default(bool))
         : base()
         {
             this.DropsSemanticsOfPreviousSiblings = dropsSemanticsOfPreviousSiblings;
         }
-        #endregion
-
-        #region fields
         public virtual bool DropsSemanticsOfPreviousSiblings { get; set; }
         public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Incorporate the fragments of children into this fragment.
@@ -4138,7 +4083,6 @@ namespace FlutterSDK.Rendering.@object
         {
         }
 
-        #endregion
     }
 
 
@@ -4151,19 +4095,12 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _ContainerSemanticsFragment : FlutterSDK.Rendering.@object._SemanticsFragment
     {
-        #region constructors
         public _ContainerSemanticsFragment(bool dropsSemanticsOfPreviousSiblings = default(bool))
         : base(dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
         {
 
         }
-        #endregion
-
-        #region fields
         public new List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get; set; }
-        #endregion
-
-        #region methods
 
         public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
         {
@@ -4172,7 +4109,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4186,24 +4122,17 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _InterestingSemanticsFragment : FlutterSDK.Rendering.@object._SemanticsFragment
     {
-        #region constructors
         public _InterestingSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
         : base(dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Rendering.@object.RenderObject> _AncestorChain { get; set; }
         internal virtual HashSet<FlutterSDK.Semantics.Semantics.SemanticsTag> _TagsForChildren { get; set; }
         public virtual FlutterSDK.Rendering.@object.RenderObject Owner { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool HasConfigForParent { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> InterestingFragments { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// The children to be added to the parent.
@@ -4278,7 +4207,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4291,20 +4219,13 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _RootSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
     {
-        #region constructors
         public _RootSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
         : base(owner: owner, dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual List<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> _Children { get; set; }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
         {
@@ -4347,7 +4268,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4373,15 +4293,11 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _SwitchableSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
     {
-        #region constructors
         public _SwitchableSemanticsFragment(bool mergeIntoParent = default(bool), FlutterSDK.Semantics.Semantics.SemanticsConfiguration config = default(FlutterSDK.Semantics.Semantics.SemanticsConfiguration), FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject), bool dropsSemanticsOfPreviousSiblings = default(bool))
         : base(owner: owner, dropsSemanticsOfPreviousSiblings: dropsSemanticsOfPreviousSiblings)
         {
 
         }
-        #endregion
-
-        #region fields
         internal virtual bool _MergeIntoParent { get; set; }
         internal virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration _Config { get; set; }
         internal virtual bool _IsConfigWritable { get; set; }
@@ -4389,9 +4305,6 @@ namespace FlutterSDK.Rendering.@object
         internal virtual bool _IsExplicit { get; set; }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         internal virtual bool _NeedsGeometryUpdate { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new Iterable<FlutterSDK.Semantics.Semantics.SemanticsNode> CompileChildren(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), double elevationAdjustment = default(double))
         {
@@ -4482,7 +4395,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4497,20 +4409,13 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _AbortingSemanticsFragment : FlutterSDK.Rendering.@object._InterestingSemanticsFragment
     {
-        #region constructors
         public _AbortingSemanticsFragment(FlutterSDK.Rendering.@object.RenderObject owner = default(FlutterSDK.Rendering.@object.RenderObject))
         : base(owner: owner, dropsSemanticsOfPreviousSiblings: false)
         {
 
         }
-        #endregion
-
-        #region fields
         public virtual bool AbortsWalk { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual FlutterSDK.Semantics.Semantics.SemanticsConfiguration Config { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         public new void AddAll(Iterable<FlutterSDK.Rendering.@object._InterestingSemanticsFragment> fragments)
         {
@@ -4534,7 +4439,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4546,7 +4450,6 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class _SemanticsGeometry
     {
-        #region constructors
         public _SemanticsGeometry(FlutterBinding.UI.Rect parentSemanticsClipRect = default(FlutterBinding.UI.Rect), FlutterBinding.UI.Rect parentPaintClipRect = default(FlutterBinding.UI.Rect), List<FlutterSDK.Rendering.@object.RenderObject> ancestors = default(List<FlutterSDK.Rendering.@object.RenderObject>))
         {
 
@@ -4554,9 +4457,6 @@ namespace FlutterSDK.Rendering.@object
         }
 
 
-        #endregion
-
-        #region fields
         internal virtual FlutterBinding.UI.Rect _PaintClipRect { get; set; }
         internal virtual FlutterBinding.UI.Rect _SemanticsClipRect { get; set; }
         internal virtual Matrix4 _Transform { get; set; }
@@ -4569,9 +4469,6 @@ namespace FlutterSDK.Rendering.@object
         public virtual FlutterBinding.UI.Rect Rect { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool DropFromTree { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool MarkAsHidden { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         private void _ComputeValues(FlutterBinding.UI.Rect parentSemanticsClipRect, FlutterBinding.UI.Rect parentPaintClipRect, List<FlutterSDK.Rendering.@object.RenderObject> ancestors)
         {
@@ -4621,7 +4518,7 @@ namespace FlutterSDK.Rendering.@object
         {
 
             if (rect == null) return null;
-            if (rect.IsEmpty() || transform.IsZero()) return Dart:uiDefaultClass.Rect.Zero;
+            if (rect.IsEmpty() || transform.IsZero()) return Dart.UiDefaultClass.Rect.Zero;
             return MatrixutilsDefaultClass.MatrixUtils.InverseTransformRect(transform, rect);
         }
 
@@ -4661,7 +4558,6 @@ namespace FlutterSDK.Rendering.@object
 
 
 
-        #endregion
     }
 
 
@@ -4674,19 +4570,11 @@ namespace FlutterSDK.Rendering.@object
     /// </Summary>
     public class DiagnosticsDebugCreator : FlutterSDK.Foundation.Diagnostics.DiagnosticsProperty<@Object>
     {
-        #region constructors
         public DiagnosticsDebugCreator(@Object value)
         : base("debugCreator", value, level: DiagnosticLevel.Hidden)
         {
 
         }
-        #endregion
-
-        #region fields
-        #endregion
-
-        #region methods
-        #endregion
     }
 
 }

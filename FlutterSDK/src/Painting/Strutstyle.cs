@@ -699,7 +699,6 @@ namespace FlutterSDK.Painting.Strutstyle
     /// </Summary>
     public class StrutStyle : IDiagnosticable
     {
-        #region constructors
         public StrutStyle(string fontFamily = default(string), List<string> fontFamilyFallback = default(List<string>), double fontSize = default(double), double height = default(double), double leading = default(double), FontWeight fontWeight = default(FontWeight), FontStyle fontStyle = default(FontStyle), bool forceStrutHeight = default(bool), string debugLabel = default(string), string package = default(string))
         : base()
         {
@@ -716,9 +715,6 @@ namespace FlutterSDK.Painting.Strutstyle
             var instance = new StrutStyle(); instance.Leading = leading;
             instance.ForceStrutHeight = forceStrutHeight;
         }
-        #endregion
-
-        #region fields
         public virtual FlutterSDK.Painting.Strutstyle.StrutStyle Disabled { get; set; }
         public virtual string FontFamily { get; set; }
         internal virtual List<string> _FontFamilyFallback { get; set; }
@@ -732,9 +728,6 @@ namespace FlutterSDK.Painting.Strutstyle
         public virtual string DebugLabel { get; set; }
         public virtual List<string> FontFamilyFallback { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual int HashCode { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
-        #endregion
-
-        #region methods
 
         /// <Summary>
         /// Describe the difference between this style and another, in terms of how
@@ -746,7 +739,7 @@ namespace FlutterSDK.Painting.Strutstyle
         /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Strutstyle.StrutStyle other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return RenderComparison.Identical;
             if (FontFamily != other.FontFamily || FontSize != other.FontSize || FontWeight != other.FontWeight || FontStyle != other.FontStyle || Height != other.Height || Leading != other.Leading || ForceStrutHeight != other.ForceStrutHeight || !CollectionsDefaultClass.ListEquals(FontFamilyFallback, other.FontFamilyFallback)) return RenderComparison.Layout;
             return RenderComparison.Identical;
         }
@@ -775,7 +768,7 @@ namespace FlutterSDK.Painting.Strutstyle
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is StrutStyle && other.FontFamily == FontFamily && other.FontSize == FontSize && other.FontWeight == FontWeight && other.FontStyle == FontStyle && other.Height == Height && other.Leading == Leading && other.ForceStrutHeight == ForceStrutHeight;
         }
@@ -812,7 +805,6 @@ namespace FlutterSDK.Painting.Strutstyle
 
 
 
-        #endregion
     }
 
 }

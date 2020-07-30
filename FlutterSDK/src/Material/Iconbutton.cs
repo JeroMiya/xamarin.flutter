@@ -497,7 +497,6 @@ namespace FlutterSDK.Material.Iconbutton
     /// </Summary>
     public class IconButton : FlutterSDK.Widgets.Framework.StatelessWidget
     {
-        #region constructors
         public IconButton(FlutterSDK.Foundation.Key.Key key = default(FlutterSDK.Foundation.Key.Key), double iconSize = 24.0, FlutterSDK.Material.Themedata.VisualDensity visualDensity = default(FlutterSDK.Material.Themedata.VisualDensity), FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry padding = default(FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry), FlutterSDK.Painting.Alignment.AlignmentGeometry alignment = default(FlutterSDK.Painting.Alignment.AlignmentGeometry), FlutterSDK.Widgets.Framework.Widget icon = default(FlutterSDK.Widgets.Framework.Widget), FlutterBinding.UI.Color color = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color focusColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color hoverColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color highlightColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color splashColor = default(FlutterBinding.UI.Color), FlutterBinding.UI.Color disabledColor = default(FlutterBinding.UI.Color), VoidCallback onPressed = default(VoidCallback), FlutterSDK.Widgets.Focusmanager.FocusNode focusNode = default(FlutterSDK.Widgets.Focusmanager.FocusNode), bool autofocus = false, string tooltip = default(string), bool enableFeedback = true, FlutterSDK.Rendering.Box.BoxConstraints constraints = default(FlutterSDK.Rendering.Box.BoxConstraints))
         : base(key: key)
         {
@@ -519,9 +518,6 @@ namespace FlutterSDK.Material.Iconbutton
             this.EnableFeedback = enableFeedback;
             this.Constraints = constraints;
         }
-        #endregion
-
-        #region fields
         public virtual double IconSize { get; set; }
         public virtual FlutterSDK.Material.Themedata.VisualDensity VisualDensity { get; set; }
         public virtual FlutterSDK.Painting.Edgeinsets.EdgeInsetsGeometry Padding { get; set; }
@@ -539,9 +535,6 @@ namespace FlutterSDK.Material.Iconbutton
         public virtual string Tooltip { get; set; }
         public virtual bool EnableFeedback { get; set; }
         public virtual FlutterSDK.Rendering.Box.BoxConstraints Constraints { get; set; }
-        #endregion
-
-        #region methods
 
         public new FlutterSDK.Widgets.Framework.Widget Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
@@ -558,7 +551,7 @@ namespace FlutterSDK.Material.Iconbutton
                 result = new Tooltip(message: Tooltip, child: result);
             }
 
-            return new Semantics(button: true, enabled: OnPressed != null, child: new InkResponse(focusNode: FocusNode, autofocus: Autofocus, canRequestFocus: OnPressed != null, onTap: OnPressed, enableFeedback: EnableFeedback, child: result, focusColor: FocusColor ?? ThemeDefaultClass.Theme.Of(context).FocusColor, hoverColor: HoverColor ?? ThemeDefaultClass.Theme.Of(context).HoverColor, highlightColor: HighlightColor ?? ThemeDefaultClass.Theme.Of(context).HighlightColor, splashColor: SplashColor ?? ThemeDefaultClass.Theme.Of(context).SplashColor, radius: Math.Dart:mathDefaultClass.Max(MaterialDefaultClass.Material.DefaultSplashRadius, (IconSize + Math.Dart:mathDefaultClass.Min(Padding.Horizontal, Padding.Vertical)) * 0.7)));
+            return new Semantics(button: true, enabled: OnPressed != null, child: new InkResponse(focusNode: FocusNode, autofocus: Autofocus, canRequestFocus: OnPressed != null, onTap: OnPressed, enableFeedback: EnableFeedback, child: result, focusColor: FocusColor ?? ThemeDefaultClass.Theme.Of(context).FocusColor, hoverColor: HoverColor ?? ThemeDefaultClass.Theme.Of(context).HoverColor, highlightColor: HighlightColor ?? ThemeDefaultClass.Theme.Of(context).HighlightColor, splashColor: SplashColor ?? ThemeDefaultClass.Theme.Of(context).SplashColor, radius: Dart.Math.MathDefaultClass.Max(MaterialDefaultClass.Material.DefaultSplashRadius, (IconSize + Dart.Math.MathDefaultClass.Min(Padding.Horizontal, Padding.Vertical)) * 0.7)));
         }
 
 
@@ -582,7 +575,6 @@ namespace FlutterSDK.Material.Iconbutton
 
 
 
-        #endregion
     }
 
 }
