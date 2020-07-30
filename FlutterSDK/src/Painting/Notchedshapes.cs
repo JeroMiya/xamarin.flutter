@@ -517,11 +517,11 @@ namespace FlutterSDK.Painting.Notchedshapes
             double r = notchRadius;
             double a = -1.0 * r - s2;
             double b = host.Top - guest.Center.Dy;
-            double n2 = Math.Dart:mathDefaultClass.Sqrt(b * b * r * r * (a * a + b * b - r * r));
+            double n2 = Dart.Math.MathDefaultClass.Sqrt(b * b * r * r * (a * a + b * b - r * r));
             double p2xA = ((a * r * r) - n2) / (a * a + b * b);
             double p2xB = ((a * r * r) + n2) / (a * a + b * b);
-            double p2yA = Math.Dart:mathDefaultClass.Sqrt(r * r - p2xA * p2xA);
-            double p2yB = Math.Dart:mathDefaultClass.Sqrt(r * r - p2xB * p2xB);
+            double p2yA = Dart.Math.MathDefaultClass.Sqrt(r * r - p2xA * p2xA);
+            double p2yB = Dart.Math.MathDefaultClass.Sqrt(r * r - p2xB * p2xB);
             List<Offset> p = new List<Offset>(6);
             p[0] = new Offset(a - s1, b);
             p[1] = new Offset(a, b);
@@ -572,7 +572,7 @@ namespace FlutterSDK.Painting.Notchedshapes
             if (Guest != null && guestRect != null)
             {
                 Path guestPath = Guest.GetOuterPath(guestRect);
-                return Dart:uiDefaultClass.Path.Combine(PathOperation.Difference, hostPath, guestPath);
+                return Dart.UI.UiDefaultClass.Path.Combine(PathOperation.Difference, hostPath, guestPath);
             }
 
             return hostPath;

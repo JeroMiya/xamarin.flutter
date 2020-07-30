@@ -476,12 +476,12 @@ namespace FlutterSDK.Painting._Networkimageweb
         private Future<SKCodec> _LoadAsync(FlutterSDK.Painting._Networkimageweb.NetworkImage key, FlutterSDK.Painting.Imageprovider.DecoderCallback decode, StreamController<FlutterSDK.Painting.Imagestream.ImageChunkEvent> chunkEvents)
         {
 
-            Uri resolved = Dart:coreDefaultClass.Uri.Base.Resolve(key.Url);
+            Uri resolved = Dart.CoreDefaultClass.Uri.Base.Resolve(key.Url);
             return Ui.WebOnlyInstantiateImageCodecFromUrl(resolved, ChunkCallback: (int bytes, int total) =>
             {
                 chunkEvents.Add(new ImageChunkEvent(cumulativeBytesLoaded: bytes, expectedTotalBytes: total));
             }
-            ) as Future<Ui.Dart:uiDefaultClass.Codec>;
+            ) as Future<Dart.UI.Codec>;
         }
 
 

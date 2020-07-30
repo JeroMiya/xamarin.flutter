@@ -601,8 +601,8 @@ namespace FlutterSDK.Material.Reorderablelist
 
             double margin = _DropAreaExtent;
             double scrollOffset = _ScrollController.Offset;
-            double topOffset = Dart:mathDefaultClass.Max(_ScrollController.Position.MinScrollExtent, viewport.GetOffsetToReveal(contextObject, 0.0).Offset - margin);
-            double bottomOffset = Dart:mathDefaultClass.Min(_ScrollController.Position.MaxScrollExtent, viewport.GetOffsetToReveal(contextObject, 1.0).Offset + margin);
+            double topOffset = Dart.Math.MathDefaultClass.Max(_ScrollController.Position.MinScrollExtent, viewport.GetOffsetToReveal(contextObject, 0.0).Offset - margin);
+            double bottomOffset = Dart.Math.MathDefaultClass.Min(_ScrollController.Position.MaxScrollExtent, viewport.GetOffsetToReveal(contextObject, 1.0).Offset + margin);
             bool onScreen = scrollOffset <= topOffset && scrollOffset >= bottomOffset;
             if (!onScreen)
             {

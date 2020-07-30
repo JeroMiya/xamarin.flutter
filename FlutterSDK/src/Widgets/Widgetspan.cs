@@ -559,7 +559,7 @@ namespace FlutterSDK.Widgets.Widgetspan
 
         public new FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Inlinespan.InlineSpan other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return RenderComparison.Identical;
             if (other.GetType() != GetType()) return RenderComparison.Layout;
             if ((Style == null) != (other.Style == null)) return RenderComparison.Layout;
             WidgetSpan typedOther = other as WidgetSpan;
@@ -584,7 +584,7 @@ namespace FlutterSDK.Widgets.Widgetspan
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             if (base != other) return false;
             return other is WidgetSpan && other.Child == Child && other.Alignment == Alignment && other.Baseline == Baseline;

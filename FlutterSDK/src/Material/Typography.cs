@@ -575,7 +575,7 @@ namespace FlutterSDK.Material.Typography
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is Typography && other.Black == Black && other.White == White && other.EnglishLike == EnglishLike && other.Dense == Dense && other.Tall == Tall;
         }

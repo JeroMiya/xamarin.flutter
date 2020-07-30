@@ -803,9 +803,9 @@ namespace FlutterSDK.Material.Pagetransitionstheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
-            if (other is PageTransitionsTheme && Dart:coreDefaultClass.Identical(Builders, other.Builders))return true;
+            if (other is PageTransitionsTheme && Dart.CoreDefaultClass.Identical(Builders, other.Builders)) return true;
             return other is PageTransitionsTheme && CollectionsDefaultClass.ListEquals(_All(other.Builders), _All(Builders));
         }
 

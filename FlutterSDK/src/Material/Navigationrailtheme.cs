@@ -466,7 +466,7 @@ namespace FlutterSDK.Material.Navigationrailtheme
         {
 
             if (a == null && b == null) return null;
-            return new NavigationRailThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), unselectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.UnselectedLabelTextStyle, b?.UnselectedLabelTextStyle, t), selectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SelectedLabelTextStyle, b?.SelectedLabelTextStyle, t), unselectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.UnselectedIconTheme, b?.UnselectedIconTheme, t), selectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.SelectedIconTheme, b?.SelectedIconTheme, t), groupAlignment: Dart:uiDefaultClass.LerpDouble(a?.GroupAlignment, b?.GroupAlignment, t), labelType: t < 0.5 ? a?.LabelType : b?.LabelType);
+            return new NavigationRailThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), unselectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.UnselectedLabelTextStyle, b?.UnselectedLabelTextStyle, t), selectedLabelTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SelectedLabelTextStyle, b?.SelectedLabelTextStyle, t), unselectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.UnselectedIconTheme, b?.UnselectedIconTheme, t), selectedIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.SelectedIconTheme, b?.SelectedIconTheme, t), groupAlignment: Dart.UI.UiDefaultClass.LerpDouble(a?.GroupAlignment, b?.GroupAlignment, t), labelType: t < 0.5 ? a?.LabelType : b?.LabelType);
         }
 
 
@@ -474,7 +474,7 @@ namespace FlutterSDK.Material.Navigationrailtheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is NavigationRailThemeData && other.BackgroundColor == BackgroundColor && other.Elevation == Elevation && other.UnselectedLabelTextStyle == UnselectedLabelTextStyle && other.SelectedLabelTextStyle == SelectedLabelTextStyle && other.UnselectedIconTheme == UnselectedIconTheme && other.SelectedIconTheme == SelectedIconTheme && other.GroupAlignment == GroupAlignment && other.LabelType == LabelType;
         }
@@ -541,7 +541,7 @@ namespace FlutterSDK.Material.Navigationrailtheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             NavigationRailTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new NavigationRailTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new NavigationRailTheme(data: Data, child: child);
         }
 
 

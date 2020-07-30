@@ -491,7 +491,7 @@ namespace FlutterSDK.Material.Tooltiptheme
         {
             if (a == null && b == null) return null;
 
-            return new TooltipThemeData(height: Dart:uiDefaultClass.LerpDouble(a?.Height, b?.Height, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), margin: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Margin, b?.Margin, t), verticalOffset: Dart:uiDefaultClass.LerpDouble(a?.VerticalOffset, b?.VerticalOffset, t), preferBelow: t < 0.5 ? a.PreferBelow : b.PreferBelow, excludeFromSemantics: t < 0.5 ? a.ExcludeFromSemantics : b.ExcludeFromSemantics, decoration: DecorationDefaultClass.Decoration.Lerp(a?.Decoration, b?.Decoration, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+            return new TooltipThemeData(height: Dart.UI.UiDefaultClass.LerpDouble(a?.Height, b?.Height, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), margin: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Margin, b?.Margin, t), verticalOffset: Dart.UI.UiDefaultClass.LerpDouble(a?.VerticalOffset, b?.VerticalOffset, t), preferBelow: t < 0.5 ? a.PreferBelow : b.PreferBelow, excludeFromSemantics: t < 0.5 ? a.ExcludeFromSemantics : b.ExcludeFromSemantics, decoration: DecorationDefaultClass.Decoration.Lerp(a?.Decoration, b?.Decoration, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
         }
 
 
@@ -499,7 +499,7 @@ namespace FlutterSDK.Material.Tooltiptheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is TooltipThemeData && other.Height == Height && other.Padding == Padding && other.Margin == Margin && other.VerticalOffset == VerticalOffset && other.PreferBelow == PreferBelow && other.ExcludeFromSemantics == ExcludeFromSemantics && other.Decoration == Decoration && other.TextStyle == TextStyle && other.WaitDuration == WaitDuration && other.ShowDuration == ShowDuration;
         }
@@ -591,7 +591,7 @@ namespace FlutterSDK.Material.Tooltiptheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             TooltipTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new TooltipTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new TooltipTheme(data: Data, child: child);
         }
 
 

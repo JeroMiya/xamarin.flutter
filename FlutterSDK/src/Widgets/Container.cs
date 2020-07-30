@@ -789,7 +789,7 @@ namespace FlutterSDK.Widgets.Container
 
         public new Path GetClip(Size size)
         {
-            return Decoration.GetClipPath(Dart: uiDefaultClass.Offset.Zero & size, TextDirection);
+            return Decoration.GetClipPath(Dart.UI.UiDefaultClass.Offset.Zero & size, TextDirection);
         }
 
 

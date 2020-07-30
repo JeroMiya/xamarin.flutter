@@ -565,7 +565,7 @@ namespace FlutterSDK.Material.Theme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             _InheritedTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new Theme(data: Theme.Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new Theme(data: Theme.Data, child: child);
         }
 
 

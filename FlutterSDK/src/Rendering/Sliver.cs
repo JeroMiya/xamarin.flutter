@@ -1167,7 +1167,7 @@ namespace FlutterSDK.Rendering.Sliver
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (!(other is SliverConstraints)) return false;
 
             return other is SliverConstraints && other.AxisDirection == AxisDirection && other.GrowthDirection == GrowthDirection && other.ScrollOffset == ScrollOffset && other.Overlap == Overlap && other.RemainingPaintExtent == RemainingPaintExtent && other.CrossAxisExtent == CrossAxisExtent && other.CrossAxisDirection == CrossAxisDirection && other.ViewportMainAxisExtent == ViewportMainAxisExtent && other.RemainingCacheExtent == RemainingCacheExtent && other.CacheOrigin == CacheOrigin;

@@ -625,11 +625,12 @@ namespace FlutterSDK.Rendering.Viewportoffset
         public virtual Future<object> MoveTo(double to, TimeSpan duration = default(TimeSpan), FlutterSDK.Animation.Curves.Curve curve = default(FlutterSDK.Animation.Curves.Curve), bool clamp = default(bool))
         {
 
-            if (duration == null || duration == Dart:coreDefaultClass.Duration.Zero){
+            if (duration == null || duration == Dart.CoreDefaultClass.Duration.Zero)
+            {
                 JumpTo(to);
                 return Future<void>.Value();
             }
-else
+            else
             {
                 return AnimateTo(to, duration: duration, curve: curve ?? CurvesDefaultClass.Curves.Ease);
             }

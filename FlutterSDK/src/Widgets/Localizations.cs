@@ -464,7 +464,7 @@ namespace FlutterSDK.Widgets.Localizations
             }
 
             if (pendingList == null) return new SynchronousFuture<Dictionary<Type, object>>(output);
-            return Dart:asyncDefaultClass.Future.Wait(pendingList.Map((_Pending p) => =>p.FutureValue)).Then((List<object> values) =>
+            return Dart.AsyncDefaultClass.Future.Wait(pendingList.Map((_Pending p) => =>p.FutureValue)).Then((List<object> values) =>
             {
 
                 for (int i = 0; i < values.Count; i += 1)

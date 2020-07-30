@@ -494,7 +494,7 @@ namespace FlutterSDK.Painting.Matrixutils
         /// </Summary>
         public virtual bool MatrixEquals(Matrix4 a, Matrix4 b)
         {
-            if (Dart:coreDefaultClass.Identical(a, b))return true;
+            if (Dart.CoreDefaultClass.Identical(a, b)) return true;
 
             if (a == null) return IsIdentity(b);
             if (b == null) return IsIdentity(a);

@@ -536,8 +536,8 @@ namespace FlutterSDK.Painting.Colors
             double red = color.Red / 0xFF;
             double green = color.Green / 0xFF;
             double blue = color.Blue / 0xFF;
-            double max = Math.Dart:mathDefaultClass.Max(red, Math.Dart:mathDefaultClass.Max(green, blue));
-            double min = Math.Dart:mathDefaultClass.Min(red, Math.Dart:mathDefaultClass.Min(green, blue));
+            double max = Dart.Math.MathDefaultClass.Max(red, Dart.Math.MathDefaultClass.Max(green, blue));
+            double min = Dart.Math.MathDefaultClass.Min(red, Dart.Math.MathDefaultClass.Min(green, blue));
             double delta = max - min;
             double alpha = color.Alpha / 0xFF;
             double hue = ColorsDefaultClass._GetHue(red, green, blue, max, delta);
@@ -646,7 +646,7 @@ namespace FlutterSDK.Painting.Colors
             if (a == null && b == null) return null;
             if (a == null) return b._ScaleAlpha(t);
             if (b == null) return a._ScaleAlpha(1.0 - t);
-            return HSVColor.FromAHSV(Dart: uiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart: uiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Value, b.Value, t).Clamp(0.0, 1.0) as double);
+            return HSVColor.FromAHSV(Dart.UI.UiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart.UI.UiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Value, b.Value, t).Clamp(0.0, 1.0) as double);
         }
 
 
@@ -654,7 +654,7 @@ namespace FlutterSDK.Painting.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is HSVColor && other.Alpha == Alpha && other.Hue == Hue && other.Saturation == Saturation && other.Value == Value;
         }
 
@@ -701,8 +701,8 @@ namespace FlutterSDK.Painting.Colors
             double red = color.Red / 0xFF;
             double green = color.Green / 0xFF;
             double blue = color.Blue / 0xFF;
-            double max = Math.Dart:mathDefaultClass.Max(red, Math.Dart:mathDefaultClass.Max(green, blue));
-            double min = Math.Dart:mathDefaultClass.Min(red, Math.Dart:mathDefaultClass.Min(green, blue));
+            double max = Dart.Math.MathDefaultClass.Max(red, Dart.Math.MathDefaultClass.Max(green, blue));
+            double min = Dart.Math.MathDefaultClass.Min(red, Dart.Math.MathDefaultClass.Min(green, blue));
             double delta = max - min;
             double alpha = color.Alpha / 0xFF;
             double hue = ColorsDefaultClass._GetHue(red, green, blue, max, delta);
@@ -822,7 +822,7 @@ namespace FlutterSDK.Painting.Colors
             if (a == null && b == null) return null;
             if (a == null) return b._ScaleAlpha(t);
             if (b == null) return a._ScaleAlpha(1.0 - t);
-            return HSLColor.FromAHSL(Dart: uiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart: uiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart: uiDefaultClass.LerpDouble(a.Lightness, b.Lightness, t).Clamp(0.0, 1.0) as double);
+            return HSLColor.FromAHSL(Dart.UI.UiDefaultClass.LerpDouble(a.Alpha, b.Alpha, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Hue, b.Hue, t) % 360.0, Dart.UI.UiDefaultClass.LerpDouble(a.Saturation, b.Saturation, t).Clamp(0.0, 1.0) as double, Dart.UI.UiDefaultClass.LerpDouble(a.Lightness, b.Lightness, t).Clamp(0.0, 1.0) as double);
         }
 
 
@@ -830,7 +830,7 @@ namespace FlutterSDK.Painting.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is HSLColor && other.Alpha == Alpha && other.Hue == Hue && other.Saturation == Saturation && other.Lightness == Lightness;
         }
 
@@ -871,7 +871,7 @@ namespace FlutterSDK.Painting.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return base == other && other is ColorSwatch<T> && other._Swatch == _Swatch;
         }

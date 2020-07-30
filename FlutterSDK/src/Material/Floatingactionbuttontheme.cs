@@ -462,7 +462,7 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
         {
 
             if (a == null && b == null) return null;
-            return new FloatingActionButtonThemeData(foregroundColor: Dart:uiDefaultClass.Color.Lerp(a?.ForegroundColor, b?.ForegroundColor, t), backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), focusColor: Dart:uiDefaultClass.Color.Lerp(a?.FocusColor, b?.FocusColor, t), hoverColor: Dart:uiDefaultClass.Color.Lerp(a?.HoverColor, b?.HoverColor, t), splashColor: Dart:uiDefaultClass.Color.Lerp(a?.SplashColor, b?.SplashColor, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), focusElevation: Dart:uiDefaultClass.LerpDouble(a?.FocusElevation, b?.FocusElevation, t), hoverElevation: Dart:uiDefaultClass.LerpDouble(a?.HoverElevation, b?.HoverElevation, t), disabledElevation: Dart:uiDefaultClass.LerpDouble(a?.DisabledElevation, b?.DisabledElevation, t), highlightElevation: Dart:uiDefaultClass.LerpDouble(a?.HighlightElevation, b?.HighlightElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
+            return new FloatingActionButtonThemeData(foregroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ForegroundColor, b?.ForegroundColor, t), backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), focusColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.FocusColor, b?.FocusColor, t), hoverColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.HoverColor, b?.HoverColor, t), splashColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SplashColor, b?.SplashColor, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), focusElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.FocusElevation, b?.FocusElevation, t), hoverElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.HoverElevation, b?.HoverElevation, t), disabledElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.DisabledElevation, b?.DisabledElevation, t), highlightElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.HighlightElevation, b?.HighlightElevation, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t));
         }
 
 
@@ -470,7 +470,7 @@ namespace FlutterSDK.Material.Floatingactionbuttontheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is FloatingActionButtonThemeData && other.ForegroundColor == ForegroundColor && other.BackgroundColor == BackgroundColor && other.FocusColor == FocusColor && other.HoverColor == HoverColor && other.SplashColor == SplashColor && other.Elevation == Elevation && other.FocusElevation == FocusElevation && other.HoverElevation == HoverElevation && other.DisabledElevation == DisabledElevation && other.HighlightElevation == HighlightElevation && other.Shape == Shape;
         }

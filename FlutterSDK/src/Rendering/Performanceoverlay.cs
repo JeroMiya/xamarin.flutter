@@ -496,7 +496,7 @@ namespace FlutterSDK.Rendering.Performanceoverlay
 
         public new void PerformResize()
         {
-            Size = Constraints.Constrain(new Size(Dart: coreDefaultClass.Double.Infinity, _IntrinsicHeight));
+            Size = Constraints.Constrain(new Size(Dart.CoreDefaultClass.Double.Infinity, _IntrinsicHeight));
         }
 
 

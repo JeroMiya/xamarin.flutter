@@ -981,7 +981,7 @@ namespace FlutterSDK.Rendering.Custompaint
             int debugPreviousCanvasSaveCount = default(int);
             canvas.Save();
 
-            if (offset != Dart:uiDefaultClass.Offset.Zero)canvas.Translate(offset.Dx, offset.Dy);
+            if (offset != Dart.UiDefaultClass.Offset.Zero) canvas.Translate(offset.Dx, offset.Dy);
             painter.Paint(canvas, Size);
 
             canvas.Restore();

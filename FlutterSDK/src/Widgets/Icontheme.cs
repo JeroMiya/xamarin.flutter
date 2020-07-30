@@ -499,7 +499,7 @@ namespace FlutterSDK.Widgets.Icontheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             IconTheme iconTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, iconTheme) ? child : new IconTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, iconTheme) ? child : new IconTheme(data: Data, child: child);
         }
 
 

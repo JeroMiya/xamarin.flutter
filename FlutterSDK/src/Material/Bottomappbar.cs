@@ -461,7 +461,7 @@ namespace FlutterSDK.Material.Bottomappbar
         public new Path GetClip(Size size)
         {
             Rect button = Geometry.Value.FloatingActionButtonArea?.Translate(0.0, Geometry.Value.BottomNavigationBarTop * -1.0);
-            return Shape.GetOuterPath(Dart: uiDefaultClass.Offset.Zero & size, button?.Inflate(NotchMargin));
+            return Shape.GetOuterPath(Dart.UI.UiDefaultClass.Offset.Zero & size, button?.Inflate(NotchMargin));
         }
 
 

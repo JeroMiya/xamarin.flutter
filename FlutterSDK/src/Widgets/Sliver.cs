@@ -1681,7 +1681,7 @@ public new bool ShouldRebuild(FlutterSDK.Widgets.Sliver.SliverChildBuilderDelega
         public new double EstimateMaxScrollOffset(FlutterSDK.Rendering.Sliver.SliverConstraints constraints, int firstIndex = default(int), int lastIndex = default(int), double leadingScrollOffset = default(double), double trailingScrollOffset = default(double))
         {
             int childCount = this.ChildCount;
-            if (childCount == null) return Dart:coreDefaultClass.Double.Infinity;
+            if (childCount == null) return Dart.CoreDefaultClass.Double.Infinity;
             return Widget.EstimateMaxScrollOffset(constraints, firstIndex, lastIndex, leadingScrollOffset, trailingScrollOffset) ?? _ExtrapolateMaxScrollOffset(firstIndex, lastIndex, leadingScrollOffset, trailingScrollOffset, childCount);
         }
 

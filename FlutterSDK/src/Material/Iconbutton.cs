@@ -551,7 +551,7 @@ namespace FlutterSDK.Material.Iconbutton
                 result = new Tooltip(message: Tooltip, child: result);
             }
 
-            return new Semantics(button: true, enabled: OnPressed != null, child: new InkResponse(focusNode: FocusNode, autofocus: Autofocus, canRequestFocus: OnPressed != null, onTap: OnPressed, enableFeedback: EnableFeedback, child: result, focusColor: FocusColor ?? ThemeDefaultClass.Theme.Of(context).FocusColor, hoverColor: HoverColor ?? ThemeDefaultClass.Theme.Of(context).HoverColor, highlightColor: HighlightColor ?? ThemeDefaultClass.Theme.Of(context).HighlightColor, splashColor: SplashColor ?? ThemeDefaultClass.Theme.Of(context).SplashColor, radius: Math.Dart:mathDefaultClass.Max(MaterialDefaultClass.Material.DefaultSplashRadius, (IconSize + Math.Dart:mathDefaultClass.Min(Padding.Horizontal, Padding.Vertical)) * 0.7)));
+            return new Semantics(button: true, enabled: OnPressed != null, child: new InkResponse(focusNode: FocusNode, autofocus: Autofocus, canRequestFocus: OnPressed != null, onTap: OnPressed, enableFeedback: EnableFeedback, child: result, focusColor: FocusColor ?? ThemeDefaultClass.Theme.Of(context).FocusColor, hoverColor: HoverColor ?? ThemeDefaultClass.Theme.Of(context).HoverColor, highlightColor: HighlightColor ?? ThemeDefaultClass.Theme.Of(context).HighlightColor, splashColor: SplashColor ?? ThemeDefaultClass.Theme.Of(context).SplashColor, radius: Dart.Math.MathDefaultClass.Max(MaterialDefaultClass.Material.DefaultSplashRadius, (IconSize + Dart.Math.MathDefaultClass.Min(Padding.Horizontal, Padding.Vertical)) * 0.7)));
         }
 
 

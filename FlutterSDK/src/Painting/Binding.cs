@@ -479,7 +479,7 @@ namespace FlutterSDK.Painting.Binding
         {
 
 
-            return Ui.Dart:uiDefaultClass.InstantiateImageCodec(bytes, targetWidth: cacheWidth, targetHeight: cacheHeight);
+            return Dart.UI.UiDefaultClass.InstantiateImageCodec(bytes, targetWidth: cacheWidth, targetHeight: cacheHeight);
         }
 
 

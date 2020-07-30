@@ -1195,7 +1195,7 @@ namespace FlutterSDK.Widgets.Scrollview
 
         private int _ComputeActualChildCount(int itemCount)
         {
-            return Math.Dart:mathDefaultClass.Max(0, itemCount * 2 - 1);
+            return Dart.Math.MathDefaultClass.Max(0, itemCount * 2 - 1);
         }
 
 

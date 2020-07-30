@@ -435,7 +435,7 @@ namespace FlutterSDK.Material.Buttonbartheme
         {
 
             if (a == null && b == null) return null;
-            return new ButtonBarThemeData(alignment: t < 0.5 ? a.Alignment : b.Alignment, mainAxisSize: t < 0.5 ? a.MainAxisSize : b.MainAxisSize, buttonTextTheme: t < 0.5 ? a.ButtonTextTheme : b.ButtonTextTheme, buttonMinWidth: Dart:uiDefaultClass.LerpDouble(a?.ButtonMinWidth, b?.ButtonMinWidth, t), buttonHeight: Dart:uiDefaultClass.LerpDouble(a?.ButtonHeight, b?.ButtonHeight, t), buttonPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.ButtonPadding, b?.ButtonPadding, t), buttonAlignedDropdown: t < 0.5 ? a.ButtonAlignedDropdown : b.ButtonAlignedDropdown, layoutBehavior: t < 0.5 ? a.LayoutBehavior : b.LayoutBehavior, overflowDirection: t < 0.5 ? a.OverflowDirection : b.OverflowDirection);
+            return new ButtonBarThemeData(alignment: t < 0.5 ? a.Alignment : b.Alignment, mainAxisSize: t < 0.5 ? a.MainAxisSize : b.MainAxisSize, buttonTextTheme: t < 0.5 ? a.ButtonTextTheme : b.ButtonTextTheme, buttonMinWidth: Dart.UI.UiDefaultClass.LerpDouble(a?.ButtonMinWidth, b?.ButtonMinWidth, t), buttonHeight: Dart.UI.UiDefaultClass.LerpDouble(a?.ButtonHeight, b?.ButtonHeight, t), buttonPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.ButtonPadding, b?.ButtonPadding, t), buttonAlignedDropdown: t < 0.5 ? a.ButtonAlignedDropdown : b.ButtonAlignedDropdown, layoutBehavior: t < 0.5 ? a.LayoutBehavior : b.LayoutBehavior, overflowDirection: t < 0.5 ? a.OverflowDirection : b.OverflowDirection);
         }
 
 
@@ -443,7 +443,7 @@ namespace FlutterSDK.Material.Buttonbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is ButtonBarThemeData && other.Alignment == Alignment && other.MainAxisSize == MainAxisSize && other.ButtonTextTheme == ButtonTextTheme && other.ButtonMinWidth == ButtonMinWidth && other.ButtonHeight == ButtonHeight && other.ButtonPadding == ButtonPadding && other.ButtonAlignedDropdown == ButtonAlignedDropdown && other.LayoutBehavior == LayoutBehavior && other.OverflowDirection == OverflowDirection;
         }

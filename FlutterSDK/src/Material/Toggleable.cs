@@ -634,8 +634,8 @@ namespace FlutterSDK.Material.Toggleable
         {
             if (!_Reaction.IsDismissed || !_ReactionFocusFade.IsDismissed || !_ReactionHoverFade.IsDismissed)
             {
-                Paint reactionPaint = new Paint()..Color = Dart:uiDefaultClass.Color.Lerp(Dart: uiDefaultClass.Color.Lerp(ActiveColor.WithAlpha(ConstantsDefaultClass.KRadialReactionAlpha), HoverColor, _ReactionHoverFade.Value), FocusColor, _ReactionFocusFade.Value);
-                Offset center = Dart:uiDefaultClass.Offset.Lerp(_DownPosition ?? origin, origin, _Reaction.Value);
+                Paint reactionPaint = new Paint()..Color = Dart.UI.UiDefaultClass.Color.Lerp(Dart.UI.UiDefaultClass.Color.Lerp(ActiveColor.WithAlpha(ConstantsDefaultClass.KRadialReactionAlpha), HoverColor, _ReactionHoverFade.Value), FocusColor, _ReactionFocusFade.Value);
+                Offset center = Dart.UI.UiDefaultClass.Offset.Lerp(_DownPosition ?? origin, origin, _Reaction.Value);
                 double reactionRadius = HasFocus || Hovering ? ConstantsDefaultClass.KRadialReactionRadius : ToggleableDefaultClass._KRadialReactionRadiusTween.Evaluate(_Reaction);
                 if (reactionRadius > 0.0)
                 {

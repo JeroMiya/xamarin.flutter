@@ -2135,7 +2135,7 @@ namespace FlutterSDK.Widgets.Framework
         public new bool Equals(@Object other)
         {
             if (other.GetType() != GetType()) return false;
-            return other is ObjectKey && Dart:coreDefaultClass.Identical(other.Value, Value);
+            return other is ObjectKey && Dart.CoreDefaultClass.Identical(other.Value, Value);
         }
 
 
@@ -2294,7 +2294,7 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
         public new bool Equals(@Object other)
         {
             if (other.GetType() != GetType()) return false;
-            return other is GlobalObjectKey<T> && Dart:coreDefaultClass.Identical(other.Value, Value);
+            return other is GlobalObjectKey<T> && Dart.CoreDefaultClass.Identical(other.Value, Value);
         }
 
 
@@ -3877,7 +3877,7 @@ internal virtual Dictionary<FlutterSDK.Widgets.Framework.GlobalKey<FlutterSDK.Wi
 
 
 
-            Dart: developerDefaultClass.Timeline.StartSync("Build", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Build", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
                 _ScheduledFlushDirtyElements = true;
@@ -3948,7 +3948,7 @@ finally
                 _DirtyElements.Clear();
                 _ScheduledFlushDirtyElements = false;
                 _DirtyElementsNeedsResorting = null;
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
 
 
             }
@@ -3991,7 +3991,7 @@ finally
         /// </Summary>
         public virtual void FinalizeTree()
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Finalize tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Finalize tree", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             try
             {
                 LockState(() =>
@@ -4006,7 +4006,7 @@ finally
             }
 finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
@@ -4024,7 +4024,7 @@ finally
         /// </Summary>
         public virtual void Reassemble(FlutterSDK.Widgets.Framework.Element root)
         {
-        Dart: developerDefaultClass.Timeline.StartSync("Dirty Element Tree");
+            Dart.DeveloperDefaultClass.Timeline.StartSync("Dirty Element Tree");
             try
             {
 
@@ -4033,7 +4033,7 @@ finally
             }
             finally
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
@@ -4128,11 +4128,11 @@ finally
         public virtual Size Size { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
         public virtual bool Dirty { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        public new bool Equals(@Object other) => Dart:coreDefaultClass.Identical(this , other);
+        public new bool Equals(@Object other) => Dart.CoreDefaultClass.Identical(this, other);
 
 
 
-private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Framework.Element b)
+        private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Framework.Element b)
         {
             if (a.Depth < b.Depth) return -1;
             if (b.Depth < a.Depth) return 1;
@@ -5439,7 +5439,7 @@ private int _Sort(FlutterSDK.Widgets.Framework.Element a, FlutterSDK.Widgets.Fra
         /// </Summary>
         public new void PerformRebuild()
         {
-            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart: developerDefaultClass.Timeline.StartSync($"'{Widget.GetType()}'", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart.DeveloperDefaultClass.Timeline.StartSync($"'{Widget.GetType()}'", arguments: DebugDefaultClass.TimelineWhitelistArguments);
 
             Widget built = default(Widget);
             try
@@ -5477,7 +5477,7 @@ finally
                 _Child = UpdateChild(null, built, Slot);
             }
 
-            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart: developerDefaultClass.Timeline.FinishSync();
+            if (!ConstantsDefaultClass.KReleaseMode && DebugDefaultClass.DebugProfileBuildsEnabled) Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
 

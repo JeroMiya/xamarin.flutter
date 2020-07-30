@@ -334,7 +334,7 @@ namespace FlutterSDK.Material.About
         internal static string _DefaultApplicationName(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             Title ancestorTitle = context.FindAncestorWidgetOfExactType();
-            return ancestorTitle?.Title ?? Dart:ioDefaultClass.Platform.ResolvedExecutable.Split(Dart: ioDefaultClass.Platform.PathSeparator).ToList().Last();
+            return ancestorTitle?.Title ?? Dart.IoDefaultClass.Platform.ResolvedExecutable.Split(Dart.IoDefaultClass.Platform.PathSeparator).ToList().Last();
         }
 
 
@@ -600,12 +600,12 @@ NavigatorDefaultClass.Navigator.Pop(context);
                 SetState(() =>
                 {
                     _Licenses.Add(new Padding(padding: EdgeInsets.Symmetric(vertical: 18.0), child: new Text("🍀‬", textAlign: TextAlign.Center)));
-                    _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                    _Licenses.Add(new Container(decoration: new BoxDecoration(border: new Border(bottom: new BorderSide(width: 0.0))), child: new Text(license.Packages.Join(", "), style: new TextStyle(fontWeight: Dart.UI.UiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
                     foreach (LicenseParagraph paragraph in paragraphs)
                     {
                         if (paragraph.Indent == LicensesDefaultClass.LicenseParagraph.CenteredIndent)
                         {
-                            _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
+                            _Licenses.Add(new Padding(padding: EdgeInsets.Only(top: 16.0), child: new Text(paragraph.Text, style: new TextStyle(fontWeight: Dart.UI.UiDefaultClass.FontWeight.Bold), textAlign: TextAlign.Center)));
                         }
                         else
                         {

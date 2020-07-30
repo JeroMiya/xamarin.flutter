@@ -642,16 +642,16 @@ namespace FlutterSDK.Cupertino.Switch
             double currentReactionValue = _State._Reaction.Value;
             double visualPosition = default(double);
             switch (TextDirection) { case TextDirection.Rtl: visualPosition = 1.0 - currentValue; break; case TextDirection.Ltr: visualPosition = currentValue; break; }
-            Paint paint = new Paint()..Color = Dart:uiDefaultClass.Color.Lerp(TrackColor, ActiveColor, currentValue);
+            Paint paint = new Paint()..Color = Dart.UI.UiDefaultClass.Color.Lerp(TrackColor, ActiveColor, currentValue);
             Rect trackRect = Rect.FromLTWH(offset.Dx + (Size.Width - SwitchDefaultClass._KTrackWidth) / 2.0, offset.Dy + (Size.Height - SwitchDefaultClass._KTrackHeight) / 2.0, SwitchDefaultClass._KTrackWidth, SwitchDefaultClass._KTrackHeight);
             RRect trackRRect = RRect.FromRectAndRadius(trackRect, Radius.Circular(SwitchDefaultClass._KTrackRadius));
             canvas.DrawRRect(trackRRect, paint);
             double currentThumbExtension = ThumbpainterDefaultClass.CupertinoThumbPainter.Extension * currentReactionValue;
-            double thumbLeft = Dart:uiDefaultClass.LerpDouble(trackRect.Left + SwitchDefaultClass._KTrackInnerStart - ThumbpainterDefaultClass.CupertinoThumbPainter.Radius, trackRect.Left + SwitchDefaultClass._KTrackInnerEnd - ThumbpainterDefaultClass.CupertinoThumbPainter.Radius - currentThumbExtension, visualPosition);
-            double thumbRight = Dart:uiDefaultClass.LerpDouble(trackRect.Left + SwitchDefaultClass._KTrackInnerStart + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius + currentThumbExtension, trackRect.Left + SwitchDefaultClass._KTrackInnerEnd + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius, visualPosition);
+            double thumbLeft = Dart.UI.UiDefaultClass.LerpDouble(trackRect.Left + SwitchDefaultClass._KTrackInnerStart - ThumbpainterDefaultClass.CupertinoThumbPainter.Radius, trackRect.Left + SwitchDefaultClass._KTrackInnerEnd - ThumbpainterDefaultClass.CupertinoThumbPainter.Radius - currentThumbExtension, visualPosition);
+            double thumbRight = Dart.UI.UiDefaultClass.LerpDouble(trackRect.Left + SwitchDefaultClass._KTrackInnerStart + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius + currentThumbExtension, trackRect.Left + SwitchDefaultClass._KTrackInnerEnd + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius, visualPosition);
             double thumbCenterY = offset.Dy + Size.Height / 2.0;
             Rect thumbBounds = Rect.FromLTRB(thumbLeft, thumbCenterY - ThumbpainterDefaultClass.CupertinoThumbPainter.Radius, thumbRight, thumbCenterY + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius);
-            context.PushClipRRect(NeedsCompositing, Dart: uiDefaultClass.Offset.Zero, thumbBounds, trackRRect, (PaintingContext innerContext, Offset offset) =>
+            context.PushClipRRect(NeedsCompositing, Dart.UI.UiDefaultClass.Offset.Zero, thumbBounds, trackRRect, (PaintingContext innerContext, Offset offset) =>
             {
                 CupertinoThumbPainter.SwitchThumb().Paint(innerContext.Canvas, thumbBounds);
             }

@@ -464,7 +464,7 @@ namespace FlutterSDK.Painting.Imagecache
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.clear", arguments: new Dictionary<string, object> { { "pendingImages", _PendingImages.Length }{ "keepAliveImages", _Cache.Length }{ "liveImages", _LiveImages.Length }{ "currentSizeInBytes", _CurrentSizeBytes } });
+                Dart.DeveloperDefaultClass.Timeline.InstantSync("ImageCache.clear", arguments: new Dictionary<string, object> { { "pendingImages", _PendingImages.Length }{ "keepAliveImages", _Cache.Length }{ "liveImages", _LiveImages.Length }{ "currentSizeInBytes", _CurrentSizeBytes } });
             }
 
             _Cache.Clear();
@@ -528,7 +528,7 @@ namespace FlutterSDK.Painting.Imagecache
             {
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "pending" } });
+                    Dart.DeveloperDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "pending" } });
                 }
 
                 pendingImage.RemoveListener();
@@ -540,7 +540,7 @@ namespace FlutterSDK.Painting.Imagecache
             {
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "keepAlive" }{ "sizeiInBytes", image.SizeBytes } });
+                    Dart.DeveloperDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "keepAlive" }{ "sizeiInBytes", image.SizeBytes } });
                 }
 
                 _CurrentSizeBytes -= image.SizeBytes;
@@ -549,7 +549,7 @@ namespace FlutterSDK.Painting.Imagecache
 
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "miss" } });
+                Dart.DeveloperDefaultClass.Timeline.InstantSync("ImageCache.evict", arguments: new Dictionary<string, object> { { "type", "miss" } });
             }
 
             return false;

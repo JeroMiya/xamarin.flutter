@@ -564,7 +564,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double x(double time)
         {
-            return (_C1 + _C2 * time) * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time);
+            return (_C1 + _C2 * time) * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time);
         }
 
 
@@ -572,7 +572,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double Dx(double time)
         {
-            double power = Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time) as double;
+            double power = Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time) as double;
             return _R * (_C1 + _C2 * time) * power + _C2 * power;
         }
 
@@ -587,8 +587,8 @@ namespace FlutterSDK.Physics.Springsimulation
         {
 
             double cmk = spring.Damping * spring.Damping - 4 * spring.Mass * spring.Stiffness;
-            double r1 = (-spring.Damping - Math.Dart:mathDefaultClass.Sqrt(cmk))/ (2.0 * spring.Mass);
-            double r2 = (-spring.Damping + Math.Dart:mathDefaultClass.Sqrt(cmk))/ (2.0 * spring.Mass);
+            double r1 = (-spring.Damping - Dart.Math.MathDefaultClass.Sqrt(cmk)) / (2.0 * spring.Mass);
+            double r2 = (-spring.Damping + Dart.Math.MathDefaultClass.Sqrt(cmk)) / (2.0 * spring.Mass);
             double c2 = (velocity - r1 * distance) / (r2 - r1);
             double c1 = distance - c2;
             return _OverdampedSolution.WithArgs(r1, r2, c1, c2);
@@ -607,7 +607,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double x(double time)
         {
-            return _C1 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R1 * time) + _C2 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R2 * time);
+            return _C1 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R1 * time) + _C2 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R2 * time);
         }
 
 
@@ -615,7 +615,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double Dx(double time)
         {
-            return _C1 * _R1 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R1 * time) + _C2 * _R2 * Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R2 * time);
+            return _C1 * _R1 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R1 * time) + _C2 * _R2 * Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R2 * time);
         }
 
 
@@ -628,7 +628,7 @@ namespace FlutterSDK.Physics.Springsimulation
         public _UnderdampedSolution(FlutterSDK.Physics.Springsimulation.SpringDescription spring, double distance, double velocity)
         {
 
-            double w = Math.Dart:mathDefaultClass.Sqrt(4.0 * spring.Mass * spring.Stiffness - spring.Damping * spring.Damping) / (2.0 * spring.Mass);
+            double w = Dart.Math.MathDefaultClass.Sqrt(4.0 * spring.Mass * spring.Stiffness - spring.Damping * spring.Damping) / (2.0 * spring.Mass);
             double r = -(spring.Damping / 2.0 * spring.Mass);
             double c1 = distance;
             double c2 = (velocity - r * distance) / w;
@@ -648,7 +648,7 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double x(double time)
         {
-            return (Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time) as double)*(_C1 * Math.Dart:mathDefaultClass.Cos(_W * time) + _C2 * Math.Dart:mathDefaultClass.Sin(_W * time));
+            return (Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time) as double) * (_C1 * Dart.Math.MathDefaultClass.Cos(_W * time) + _C2 * Dart.Math.MathDefaultClass.Sin(_W * time));
         }
 
 
@@ -656,9 +656,9 @@ namespace FlutterSDK.Physics.Springsimulation
 
         public new double Dx(double time)
         {
-            double power = Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.e, _R * time) as double;
-            double cosine = Math.Dart:mathDefaultClass.Cos(_W * time);
-            double sine = Math.Dart:mathDefaultClass.Sin(_W * time);
+            double power = Dart.Math.MathDefaultClass.Pow(Math.Dart.Math.MathDefaultClass.e, _R * time) as double;
+            double cosine = Dart.Math.MathDefaultClass.Cos(_W * time);
+            double sine = Dart.Math.MathDefaultClass.Sin(_W * time);
             return power * (_C2 * _W * cosine - _C1 * _W * sine) + _R * power * (_C2 * sine + _C1 * cosine);
         }
 

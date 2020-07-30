@@ -591,7 +591,7 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
 
             if (a is _RoundedRectangleToCircleBorder)
             {
-                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_RoundedRectangleToCircleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((_RoundedRectangleToCircleBorder)a).BorderRadius, BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(((_RoundedRectangleToCircleBorder)a).Circleness, Circleness, t));
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(((_RoundedRectangleToCircleBorder)a).Side, Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(((_RoundedRectangleToCircleBorder)a).BorderRadius, BorderRadius, t), circleness: Dart.UI.UiDefaultClass.LerpDouble(((_RoundedRectangleToCircleBorder)a).Circleness, Circleness, t));
             }
 
             return base.LerpFrom(a, t);
@@ -614,7 +614,7 @@ namespace FlutterSDK.Painting.Roundedrectangleborder
 
             if (b is _RoundedRectangleToCircleBorder)
             {
-                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_RoundedRectangleToCircleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((_RoundedRectangleToCircleBorder)b).BorderRadius, t), circleness: Ui.Dart:uiDefaultClass.LerpDouble(Circleness, ((_RoundedRectangleToCircleBorder)b).Circleness, t));
+                return new _RoundedRectangleToCircleBorder(side: BordersDefaultClass.BorderSide.Lerp(Side, ((_RoundedRectangleToCircleBorder)b).Side, t), borderRadius: BorderradiusDefaultClass.BorderRadiusGeometry.Lerp(BorderRadius, ((_RoundedRectangleToCircleBorder)b).BorderRadius, t), circleness: Dart.UI.UiDefaultClass.LerpDouble(Circleness, ((_RoundedRectangleToCircleBorder)b).Circleness, t));
             }
 
             return base.LerpTo(b, t);

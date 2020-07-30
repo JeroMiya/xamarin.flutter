@@ -435,7 +435,7 @@ namespace FlutterSDK.Painting.Gradient
             if (t >= stops.Last()) return colors.Last();
             int index = stops.LastIndexWhere((double s) => =>s <= t);
 
-            return Dart:uiDefaultClass.Color.Lerp(colors[index], colors[index + 1], (t - stops[index]) / (stops[index + 1] - stops[index]));
+            return Dart.UI.UiDefaultClass.Color.Lerp(colors[index], colors[index + 1], (t - stops[index]) / (stops[index + 1] - stops[index]));
         }
 
 
@@ -450,7 +450,7 @@ namespace FlutterSDK.Painting.Gradient
             new SplayTreeSet<double>().AddAll(aStops);
             new SplayTreeSet<double>().AddAll(bStops);
             List<double> interpolatedStops = stops.ToList(growable: false);
-            List<Color> interpolatedColors = interpolatedStops.Map((double stop) => =>Dart: uiDefaultClass.Color.Lerp(GradientDefaultClass._Sample(aColors, aStops, stop), GradientDefaultClass._Sample(bColors, bStops, stop), t)).ToList(growable: false);
+            List<Color> interpolatedColors = interpolatedStops.Map((double stop) => =>Dart.UI.UiDefaultClass.Color.Lerp(GradientDefaultClass._Sample(aColors, aStops, stop), GradientDefaultClass._Sample(bColors, bStops, stop), t)).ToList(growable: false);
             return new _ColorsAndStops(interpolatedColors, interpolatedStops);
         }
 
@@ -565,8 +565,8 @@ namespace FlutterSDK.Painting.Gradient
         public new Matrix4 Transform(FlutterBinding.UI.Rect bounds, TextDirection textDirection = default(TextDirection))
         {
 
-            double sinRadians = Math.Dart:mathDefaultClass.Sin(Radians);
-            double oneMinusCosRadians = 1 - Math.Dart:mathDefaultClass.Cos(Radians);
+            double sinRadians = Dart.Math.MathDefaultClass.Sin(Radians);
+            double oneMinusCosRadians = 1 - Dart.Math.MathDefaultClass.Cos(Radians);
             Offset center = bounds.Center;
             double originX = sinRadians * center.Dy + oneMinusCosRadians * center.Dx;
             double originY = -sinRadians * center.Dx + oneMinusCosRadians * center.Dy;
@@ -821,7 +821,7 @@ namespace FlutterSDK.Painting.Gradient
 
         public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
-            return Ui.Dart:uiDefaultClass.Gradient.Linear(Begin.Resolve(textDirection).WithinRect(rect), End.Resolve(textDirection).WithinRect(rect), Colors, _ImpliedStops(), TileMode, _ResolveTransform(rect, textDirection));
+            return Dart.UI.Gradient.Linear(Begin.Resolve(textDirection).WithinRect(rect), End.Resolve(textDirection).WithinRect(rect), Colors, _ImpliedStops(), TileMode, _ResolveTransform(rect, textDirection));
         }
 
 
@@ -835,7 +835,7 @@ namespace FlutterSDK.Painting.Gradient
         /// </Summary>
         public new FlutterSDK.Painting.Gradient.LinearGradient Scale(double factor)
         {
-            return new LinearGradient(begin: Begin, end: End, colors: Colors.Map((Color color) => =>Dart: uiDefaultClass.Color.Lerp(null, color, factor)).ToList(), stops: Stops, tileMode: TileMode);
+            return new LinearGradient(begin: Begin, end: End, colors: Colors.Map((Color color) => =>Dart.UI.UiDefaultClass.Color.Lerp(null, color, factor)).ToList(), stops: Stops, tileMode: TileMode);
         }
 
 
@@ -895,7 +895,7 @@ namespace FlutterSDK.Painting.Gradient
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is LinearGradient && other.Begin == Begin && other.End == End && other.TileMode == TileMode && CollectionsDefaultClass.ListEquals(other.Colors, Colors) && CollectionsDefaultClass.ListEquals(other.Stops, Stops);
         }
@@ -997,7 +997,7 @@ namespace FlutterSDK.Painting.Gradient
 
         public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
-            return Ui.Dart:uiDefaultClass.Gradient.Radial(Center.Resolve(textDirection).WithinRect(rect), Radius * rect.ShortestSide, Colors, _ImpliedStops(), TileMode, _ResolveTransform(rect, textDirection), Focal == null ? null : Focal.Resolve(textDirection).WithinRect(rect), FocalRadius * rect.ShortestSide);
+            return Dart.UI.Gradient.Radial(Center.Resolve(textDirection).WithinRect(rect), Radius * rect.ShortestSide, Colors, _ImpliedStops(), TileMode, _ResolveTransform(rect, textDirection), Focal == null ? null : Focal.Resolve(textDirection).WithinRect(rect), FocalRadius * rect.ShortestSide);
         }
 
 
@@ -1011,7 +1011,7 @@ namespace FlutterSDK.Painting.Gradient
         /// </Summary>
         public new FlutterSDK.Painting.Gradient.RadialGradient Scale(double factor)
         {
-            return new RadialGradient(center: Center, radius: Radius, colors: Colors.Map((Color color) => =>Dart: uiDefaultClass.Color.Lerp(null, color, factor)).ToList(), stops: Stops, tileMode: TileMode, focal: Focal, focalRadius: FocalRadius);
+            return new RadialGradient(center: Center, radius: Radius, colors: Colors.Map((Color color) => =>Dart.UI.UiDefaultClass.Color.Lerp(null, color, factor)).ToList(), stops: Stops, tileMode: TileMode, focal: Focal, focalRadius: FocalRadius);
         }
 
 
@@ -1063,7 +1063,7 @@ namespace FlutterSDK.Painting.Gradient
             if (a == null) return b.Scale(t);
             if (b == null) return a.Scale(1.0 - t);
             _ColorsAndStops interpolated = GradientDefaultClass._InterpolateColorsAndStops(a.Colors, a._ImpliedStops(), b.Colors, b._ImpliedStops(), t);
-            return new RadialGradient(center: AlignmentDefaultClass.AlignmentGeometry.Lerp(a.Center, b.Center, t), radius: Math.Dart:mathDefaultClass.Max(0.0, Ui.Dart:uiDefaultClass.LerpDouble(a.Radius, b.Radius, t)), colors: interpolated.Colors, stops: interpolated.Stops, tileMode: t < 0.5 ? a.TileMode : b.TileMode, focal: AlignmentDefaultClass.AlignmentGeometry.Lerp(a.Focal, b.Focal, t), focalRadius: Math.Dart:mathDefaultClass.Max(0.0, Ui.Dart:uiDefaultClass.LerpDouble(a.FocalRadius, b.FocalRadius, t)));
+            return new RadialGradient(center: AlignmentDefaultClass.AlignmentGeometry.Lerp(a.Center, b.Center, t), radius: Dart.Math.MathDefaultClass.Max(0.0, Dart.UI.UiDefaultClass.LerpDouble(a.Radius, b.Radius, t)), colors: interpolated.Colors, stops: interpolated.Stops, tileMode: t < 0.5 ? a.TileMode : b.TileMode, focal: AlignmentDefaultClass.AlignmentGeometry.Lerp(a.Focal, b.Focal, t), focalRadius: Dart.Math.MathDefaultClass.Max(0.0, Dart.UI.UiDefaultClass.LerpDouble(a.FocalRadius, b.FocalRadius, t)));
         }
 
 
@@ -1071,7 +1071,7 @@ namespace FlutterSDK.Painting.Gradient
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is RadialGradient && other.Center == Center && other.Radius == Radius && other.TileMode == TileMode && CollectionsDefaultClass.ListEquals(other.Colors, Colors) && CollectionsDefaultClass.ListEquals(other.Stops, Stops) && other.Focal == Focal && other.FocalRadius == FocalRadius;
         }
@@ -1184,7 +1184,7 @@ namespace FlutterSDK.Painting.Gradient
 
         public new SKShader CreateShader(FlutterBinding.UI.Rect rect, TextDirection textDirection = default(TextDirection))
         {
-            return Ui.Dart:uiDefaultClass.Gradient.Sweep(Center.Resolve(textDirection).WithinRect(rect), Colors, _ImpliedStops(), TileMode, StartAngle, EndAngle, _ResolveTransform(rect, textDirection));
+            return Dart.UI.Gradient.Sweep(Center.Resolve(textDirection).WithinRect(rect), Colors, _ImpliedStops(), TileMode, StartAngle, EndAngle, _ResolveTransform(rect, textDirection));
         }
 
 
@@ -1198,7 +1198,7 @@ namespace FlutterSDK.Painting.Gradient
         /// </Summary>
         public new FlutterSDK.Painting.Gradient.SweepGradient Scale(double factor)
         {
-            return new SweepGradient(center: Center, startAngle: StartAngle, endAngle: EndAngle, colors: Colors.Map((Color color) => =>Dart: uiDefaultClass.Color.Lerp(null, color, factor)).ToList(), stops: Stops, tileMode: TileMode);
+            return new SweepGradient(center: Center, startAngle: StartAngle, endAngle: EndAngle, colors: Colors.Map((Color color) => =>Dart.UI.UiDefaultClass.Color.Lerp(null, color, factor)).ToList(), stops: Stops, tileMode: TileMode);
         }
 
 
@@ -1249,7 +1249,7 @@ namespace FlutterSDK.Painting.Gradient
             if (a == null) return b.Scale(t);
             if (b == null) return a.Scale(1.0 - t);
             _ColorsAndStops interpolated = GradientDefaultClass._InterpolateColorsAndStops(a.Colors, a._ImpliedStops(), b.Colors, b._ImpliedStops(), t);
-            return new SweepGradient(center: AlignmentDefaultClass.AlignmentGeometry.Lerp(a.Center, b.Center, t), startAngle: Math.Dart:mathDefaultClass.Max(0.0, Ui.Dart:uiDefaultClass.LerpDouble(a.StartAngle, b.StartAngle, t)), endAngle: Math.Dart:mathDefaultClass.Max(0.0, Ui.Dart:uiDefaultClass.LerpDouble(a.EndAngle, b.EndAngle, t)), colors: interpolated.Colors, stops: interpolated.Stops, tileMode: t < 0.5 ? a.TileMode : b.TileMode);
+            return new SweepGradient(center: AlignmentDefaultClass.AlignmentGeometry.Lerp(a.Center, b.Center, t), startAngle: Dart.Math.MathDefaultClass.Max(0.0, Dart.UI.UiDefaultClass.LerpDouble(a.StartAngle, b.StartAngle, t)), endAngle: Dart.Math.MathDefaultClass.Max(0.0, Dart.UI.UiDefaultClass.LerpDouble(a.EndAngle, b.EndAngle, t)), colors: interpolated.Colors, stops: interpolated.Stops, tileMode: t < 0.5 ? a.TileMode : b.TileMode);
         }
 
 
@@ -1257,7 +1257,7 @@ namespace FlutterSDK.Painting.Gradient
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is SweepGradient && other.Center == Center && other.StartAngle == StartAngle && other.EndAngle == EndAngle && other.TileMode == TileMode && CollectionsDefaultClass.ListEquals(other.Colors, Colors) && CollectionsDefaultClass.ListEquals(other.Stops, Stops);
         }

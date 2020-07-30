@@ -710,7 +710,7 @@ namespace FlutterSDK.Services.Textinput
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is TextEditingValue && other.Text == Text && other.Selection == Selection && other.Composing == Composing;
         }
 
@@ -1025,12 +1025,12 @@ namespace FlutterSDK.Services.Textinput
         {
             if (_HidePending) return;
             _HidePending = true;
-        Dart: asyncDefaultClass.ScheduleMicrotask(() =>
-        {
-            _HidePending = false;
-            if (_CurrentConnection == null) _Channel.InvokeMethod("TextInput.hide");
-        }
-         );
+            Dart.AsyncDefaultClass.ScheduleMicrotask(() =>
+            {
+                _HidePending = false;
+                if (_CurrentConnection == null) _Channel.InvokeMethod("TextInput.hide");
+            }
+            );
         }
 
 

@@ -751,7 +751,7 @@ namespace FlutterSDK.Widgets.Async
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is AsyncSnapshot<T> && other.ConnectionState == ConnectionState && other.Data == Data && other.Error == Error;
         }
 

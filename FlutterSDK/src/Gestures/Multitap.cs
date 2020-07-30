@@ -633,7 +633,8 @@ namespace FlutterSDK.Gestures.Multitap
         {
             this.GestureRecognizer = gestureRecognizer;
             StartTrackingPointer(HandleEvent, @event.Transform);
-            if (longTapDelay > Dart:coreDefaultClass.Duration.Zero){
+            if (longTapDelay > Dart.CoreDefaultClass.Duration.Zero)
+            {
                 _Timer = new Timer(longTapDelay, () =>
                 {
                     _Timer = null;

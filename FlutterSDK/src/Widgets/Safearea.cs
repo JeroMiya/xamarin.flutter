@@ -480,7 +480,7 @@ namespace FlutterSDK.Widgets.Safearea
             MediaQueryData data = MediaqueryDefaultClass.MediaQuery.Of(context);
             EdgeInsets padding = data.Padding;
             if (data.Padding.Bottom == 0.0 && data.ViewInsets.Bottom != 0.0 && MaintainBottomViewPadding) padding = padding.CopyWith(bottom: data.ViewPadding.Bottom);
-            return new Padding(padding: EdgeInsets.Only(left: Math.Dart:mathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Math.Dart:mathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Math.Dart:mathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Math.Dart:mathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), child: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Child));
+            return new Padding(padding: EdgeInsets.Only(left: Dart.Math.MathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Dart.Math.MathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Dart.Math.MathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Dart.Math.MathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), child: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Child));
         }
 
 
@@ -545,7 +545,7 @@ namespace FlutterSDK.Widgets.Safearea
         {
 
             EdgeInsets padding = MediaqueryDefaultClass.MediaQuery.Of(context).Padding;
-            return new SliverPadding(padding: EdgeInsets.Only(left: Math.Dart:mathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Math.Dart:mathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Math.Dart:mathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Math.Dart:mathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), sliver: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Sliver));
+            return new SliverPadding(padding: EdgeInsets.Only(left: Dart.Math.MathDefaultClass.Max(Left ? padding.Left : 0.0, Minimum.Left), top: Dart.Math.MathDefaultClass.Max(Top ? padding.Top : 0.0, Minimum.Top), right: Dart.Math.MathDefaultClass.Max(Right ? padding.Right : 0.0, Minimum.Right), bottom: Dart.Math.MathDefaultClass.Max(Bottom ? padding.Bottom : 0.0, Minimum.Bottom)), sliver: MediaQuery.RemovePadding(context: context, removeLeft: Left, removeTop: Top, removeRight: Right, removeBottom: Bottom, child: Sliver));
         }
 
 

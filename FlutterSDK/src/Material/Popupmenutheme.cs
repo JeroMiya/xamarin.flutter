@@ -469,7 +469,7 @@ namespace FlutterSDK.Material.Popupmenutheme
         {
 
             if (a == null && b == null) return null;
-            return new PopupMenuThemeData(color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
+            return new PopupMenuThemeData(color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), textStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.TextStyle, b?.TextStyle, t));
         }
 
 
@@ -477,7 +477,7 @@ namespace FlutterSDK.Material.Popupmenutheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is PopupMenuThemeData && other.Elevation == Elevation && other.Color == Color && other.Shape == Shape && other.TextStyle == TextStyle;
         }
@@ -538,7 +538,7 @@ namespace FlutterSDK.Material.Popupmenutheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             PopupMenuTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new PopupMenuTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new PopupMenuTheme(data: Data, child: child);
         }
 
 

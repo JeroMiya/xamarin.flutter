@@ -747,18 +747,18 @@ namespace FlutterSDK.Widgets.Scrollphysics
         /// as more of the area past the edge is dragged in (represented by an increasing
         /// `overscrollFraction` which starts at 0 when there is no overscroll).
         /// </Summary>
-        public virtual double FrictionFactor(double overscrollFraction) => 0.52 * Math.Dart:mathDefaultClass.Pow(1-overscrollFraction, 2);
+        public virtual double FrictionFactor(double overscrollFraction) => 0.52 * Dart.Math.MathDefaultClass.Pow(1 - overscrollFraction, 2);
 
 
 
-public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double offset)
+        public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.ScrollMetrics position, double offset)
         {
 
 
             if (!position.OutOfRange) return offset;
-            double overscrollPastStart = Math.Dart:mathDefaultClass.Max(position.MinScrollExtent - position.Pixels, 0.0);
-            double overscrollPastEnd = Math.Dart:mathDefaultClass.Max(position.Pixels - position.MaxScrollExtent, 0.0);
-            double overscrollPast = Math.Dart:mathDefaultClass.Max(overscrollPastStart, overscrollPastEnd);
+            double overscrollPastStart = Dart.Math.MathDefaultClass.Max(position.MinScrollExtent - position.Pixels, 0.0);
+            double overscrollPastEnd = Dart.Math.MathDefaultClass.Max(position.Pixels - position.MaxScrollExtent, 0.0);
+            double overscrollPast = Dart.Math.MathDefaultClass.Max(overscrollPastStart, overscrollPastEnd);
             bool easing = (overscrollPastStart > 0.0 && offset < 0.0) || (overscrollPastEnd > 0.0 && offset > 0.0);
             double friction = easing ? FrictionFactor((overscrollPast - offset.Abs()) / position.ViewportDimension) : FrictionFactor(overscrollPast / position.ViewportDimension);
             double direction = offset.Sign;
@@ -813,7 +813,7 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
         /// </Summary>
         public new double CarriedMomentum(double existingVelocity)
         {
-            return existingVelocity.Sign * Math.Dart:mathDefaultClass.Min(0.000816 * Math.Dart:mathDefaultClass.Pow(existingVelocity.Abs(), 1.967).ToDouble(), 40000.0);
+            return existingVelocity.Sign * Dart.Math.MathDefaultClass.Min(0.000816 * Dart.Math.MathDefaultClass.Pow(existingVelocity.Abs(), 1.967).ToDouble(), 40000.0);
         }
 
 
@@ -876,7 +876,7 @@ public new double ApplyPhysicsToUserOffset(FlutterSDK.Widgets.Scrollmetrics.Scro
                 if (position.Pixels > position.MaxScrollExtent) end = position.MaxScrollExtent;
                 if (position.Pixels < position.MinScrollExtent) end = position.MinScrollExtent;
 
-                return new ScrollSpringSimulation(Spring, position.Pixels, end, Math.Dart:mathDefaultClass.Min(0.0, velocity), tolerance: tolerance);
+                return new ScrollSpringSimulation(Spring, position.Pixels, end, Dart.Math.MathDefaultClass.Min(0.0, velocity), tolerance: tolerance);
             }
 
             if (velocity.Abs() < tolerance.Velocity) return null;

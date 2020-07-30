@@ -704,7 +704,7 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childWidth = child.GetMinIntrinsicWidth(height);
-                minWidth = Math.Dart:mathDefaultClass.Max(minWidth, childWidth);
+                minWidth = Dart.Math.MathDefaultClass.Max(minWidth, childWidth);
                 child = childParentData.NextSibling;
             }
 
@@ -722,7 +722,7 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childWidth = child.GetMaxIntrinsicWidth(height);
-                maxWidth = Math.Dart:mathDefaultClass.Max(maxWidth, childWidth);
+                maxWidth = Dart.Math.MathDefaultClass.Max(maxWidth, childWidth);
                 child = childParentData.NextSibling;
             }
 
@@ -740,7 +740,7 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childHeight = child.GetMinIntrinsicHeight(width);
-                minHeight = Math.Dart:mathDefaultClass.Max(minHeight, childHeight);
+                minHeight = Dart.Math.MathDefaultClass.Max(minHeight, childHeight);
                 child = childParentData.NextSibling;
             }
 
@@ -758,7 +758,7 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childHeight = child.GetMaxIntrinsicHeight(width);
-                maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, childHeight);
+                maxHeight = Dart.Math.MathDefaultClass.Max(maxHeight, childHeight);
                 child = childParentData.NextSibling;
             }
 
@@ -839,15 +839,15 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
             double childWidth = constraints.MinWidth / ChildCount;
             foreach (RenderBox child in GetChildrenAsList())
             {
-                childWidth = Math.Dart:mathDefaultClass.Max(childWidth, child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity));
+                childWidth = Dart.Math.MathDefaultClass.Max(childWidth, child.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity));
             }
 
-            childWidth = Math.Dart:mathDefaultClass.Min(childWidth, constraints.MaxWidth / ChildCount);
+            childWidth = Dart.Math.MathDefaultClass.Min(childWidth, constraints.MaxWidth / ChildCount);
             RenderBox child = FirstChild;
             while (child != null)
             {
                 double boxHeight = child.GetMaxIntrinsicHeight(childWidth);
-                maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, boxHeight);
+                maxHeight = Dart.Math.MathDefaultClass.Max(maxHeight, boxHeight);
                 child = ChildAfter(child);
             }
 
@@ -904,7 +904,7 @@ namespace FlutterSDK.Cupertino.Segmentedcontrol
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 if (childParentData.SurroundingRect.Contains(position))
                 {
-                    Offset center = (Dart: uiDefaultClass.Offset.Zero & child.Size).Center;
+                    Offset center = (Dart.UiDefaultClass.Offset.Zero & child.Size).Center;
                     return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: center, hitTest: (BoxHitTestResult result, Offset position) =>
                     {
 

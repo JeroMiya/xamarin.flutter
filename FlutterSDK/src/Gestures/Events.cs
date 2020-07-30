@@ -505,9 +505,9 @@ namespace FlutterSDK.Gestures.Events
             base.DebugFillProperties(properties);
             properties.Add(new DiagnosticsProperty<Offset>("position", Position));
             properties.Add(new DiagnosticsProperty<Offset>("localPosition", LocalPosition, defaultValue: Position, level: DiagnosticLevel.Debug));
-            properties.Add(new DiagnosticsProperty<Offset>("delta", Delta, defaultValue: Dart:uiDefaultClass.Offset.Zero, level: DiagnosticLevel.Debug));
+            properties.Add(new DiagnosticsProperty<Offset>("delta", Delta, defaultValue: Dart.UI.UiDefaultClass.Offset.Zero, level: DiagnosticLevel.Debug));
             properties.Add(new DiagnosticsProperty<Offset>("localDelta", LocalDelta, defaultValue: Delta, level: DiagnosticLevel.Debug));
-            properties.Add(new DiagnosticsProperty<TimeSpan>("timeStamp", TimeStamp, defaultValue: Dart:coreDefaultClass.Duration.Zero, level: DiagnosticLevel.Debug));
+            properties.Add(new DiagnosticsProperty<TimeSpan>("timeStamp", TimeStamp, defaultValue: Dart.CoreDefaultClass.Duration.Zero, level: DiagnosticLevel.Debug));
             properties.Add(new IntProperty("pointer", Pointer, level: DiagnosticLevel.Debug));
             properties.Add(new EnumProperty<PointerDeviceKind>("kind", Kind, level: DiagnosticLevel.Debug));
             properties.Add(new IntProperty("device", Device, defaultValue: 0, level: DiagnosticLevel.Debug));

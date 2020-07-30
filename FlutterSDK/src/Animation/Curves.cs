@@ -706,7 +706,7 @@ namespace FlutterSDK.Animation.Curves
 
 
 
-            Math.Dart:mathDefaultClass.Random rand = new Math.Random(SamplingSeed);
+            Dart.Math.Random rand = new Math.Random(SamplingSeed);
             bool IsFlat(Offset p, Offset q, Offset r)
             {
                 Offset pr = p - r;
@@ -863,9 +863,9 @@ namespace FlutterSDK.Animation.Curves
                 Offset diffCurve10 = curve[1] - curve[0];
                 Offset diffCurve21 = curve[2] - curve[1];
                 Offset diffCurve32 = curve[3] - curve[2];
-                double t01 = Math.Dart:mathDefaultClass.Pow(diffCurve10.Distance, alpha).ToDouble();
-                double t12 = Math.Dart:mathDefaultClass.Pow(diffCurve21.Distance, alpha).ToDouble();
-                double t23 = Math.Dart:mathDefaultClass.Pow(diffCurve32.Distance, alpha).ToDouble();
+                double t01 = Dart.Math.MathDefaultClass.Pow(diffCurve10.Distance, alpha).ToDouble();
+                double t12 = Dart.Math.MathDefaultClass.Pow(diffCurve21.Distance, alpha).ToDouble();
+                double t23 = Dart.Math.MathDefaultClass.Pow(diffCurve32.Distance, alpha).ToDouble();
                 Offset m1 = (diffCurve21 + (diffCurve10 / t01 - (curve[2] - curve[0]) / (t01 + t12)) * t12) * reverseTension;
                 Offset m2 = (diffCurve21 + (diffCurve32 / t23 - (curve[3] - curve[1]) / (t12 + t23)) * t12) * reverseTension;
                 Offset sumM12 = m1 + m2;
@@ -965,7 +965,7 @@ namespace FlutterSDK.Animation.Curves
 
         private List<FlutterSDK.Animation.Curves.Curve2DSample> _ComputeSamples(List<FlutterBinding.UI.Offset> controlPoints, double tension)
         {
-            return CatmullRomSpline.Precompute(new List<Offset>() { Dart:uiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) }, tension: tension).GenerateSamples(start: 0.0, end: 1.0, tolerance: 1e-12).ToList();
+            return CatmullRomSpline.Precompute(new List<Offset>() { Dart.UI.UiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) }, tension: tension).GenerateSamples(start: 0.0, end: 1.0, tolerance: 1e-12).ToList();
         }
 
 
@@ -1001,11 +1001,11 @@ namespace FlutterSDK.Animation.Curves
                 return false;
             }
 
-            controlPoints = new List<Offset>() { Dart:uiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) };
+            controlPoints = new List<Offset>() { Dart.UiDefaultClass.Offset.Zero,  /* ...controlPoints */, new Offset(1.0, 1.0) };
             Offset startHandle = controlPoints[0] * 2.0 - controlPoints[1];
             Offset endHandle = controlPoints.Last() * 2.0 - controlPoints[controlPoints.Count - 2];
             controlPoints = new List<Offset>() { startHandle,  /* ...controlPoints */, endHandle };
-            double lastX = -Dart:coreDefaultClass.Double.Infinity;
+            double lastX = -Dart.CoreDefaultClass.Double.Infinity;
             for (int i = 0; i < controlPoints.Count; ++i)
             {
                 if (i > 1 && i < controlPoints.Count - 2 && (controlPoints[i].Dx <= 0.0 || controlPoints[i].Dx >= 1.0))
@@ -1024,7 +1024,7 @@ namespace FlutterSDK.Animation.Curves
             }
 
             bool success = true;
-            lastX = -Dart:coreDefaultClass.Double.Infinity;
+            lastX = -Dart.CoreDefaultClass.Double.Infinity;
             double tolerance = 1e-3;
             CatmullRomSpline testSpline = new CatmullRomSpline(controlPoints, tension: tension);
             double start = testSpline.FindInverse(0.0);
@@ -1111,7 +1111,7 @@ namespace FlutterSDK.Animation.Curves
             }
 
             double t2 = (t - startValue.Dx) / (endValue.Dx - startValue.Dx);
-            return Dart:uiDefaultClass.LerpDouble(startValue.Dy, endValue.Dy, t2);
+            return Dart.UI.UiDefaultClass.LerpDouble(startValue.Dy, endValue.Dy, t2);
         }
 
 
@@ -1268,7 +1268,7 @@ namespace FlutterSDK.Animation.Curves
         {
             double s = Period / 4.0;
             t = t - 1.0;
-            return -Math.Dart:mathDefaultClass.Pow(2.0, 10.0 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period) as double;
+            return -Dart.Math.MathDefaultClass.Pow(2.0, 10.0 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period) as double;
         }
 
 
@@ -1296,7 +1296,7 @@ namespace FlutterSDK.Animation.Curves
         public new double TransformInternal(double t)
         {
             double s = Period / 4.0;
-            return Math.Dart:mathDefaultClass.Pow(2.0, -10 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period)+1.0 as double;
+            return Dart.Math.MathDefaultClass.Pow(2.0, -10 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period) + 1.0 as double;
         }
 
 
@@ -1326,7 +1326,7 @@ namespace FlutterSDK.Animation.Curves
         {
             double s = Period / 4.0;
             t = 2.0 * t - 1.0;
-            if (t < 0.0) return -0.5 * Math.Dart:mathDefaultClass.Pow(2.0, 10.0 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period);else return Math.Dart:mathDefaultClass.Pow(2.0, -10.0 * t) * Math.Dart:mathDefaultClass.Sin((t - s) * (Math.Dart:mathDefaultClass.Pi * 2.0) / Period)*0.5 + 1.0 as double;
+            if (t < 0.0) return -0.5 * Dart.Math.MathDefaultClass.Pow(2.0, 10.0 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period); else return Dart.Math.MathDefaultClass.Pow(2.0, -10.0 * t) * Dart.Math.MathDefaultClass.Sin((t - s) * (Math.Dart.Math.MathDefaultClass.Pi * 2.0) / Period) * 0.5 + 1.0 as double;
         }
 
 

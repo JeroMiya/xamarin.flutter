@@ -313,11 +313,11 @@ namespace FlutterSDK.Foundation.Print
         {
             if (wrapWidth != null)
             {
-            Dart: coreDefaultClass.Print(message.Split('\n').ToList().Expand((string line) => =>PrintDefaultClass.DebugWordWrap(line, wrapWidth)).Join('\n'));
+                Dart.CoreDefaultClass.Print(message.Split('\n').ToList().Expand((string line) => =>PrintDefaultClass.DebugWordWrap(line, wrapWidth)).Join('\n'));
             }
             else
             {
-            Dart: coreDefaultClass.Print(message);
+                Dart.CoreDefaultClass.Print(message);
             }
 
         }
@@ -355,7 +355,7 @@ namespace FlutterSDK.Foundation.Print
             {
                 string line = PrintDefaultClass._DebugPrintBuffer.RemoveFirst();
                 PrintDefaultClass._DebugPrintedCharacters += line.Length;
-            Dart: coreDefaultClass.Print(line);
+                Dart.CoreDefaultClass.Print(line);
             }
 
             if (PrintDefaultClass._DebugPrintBuffer.IsNotEmpty)

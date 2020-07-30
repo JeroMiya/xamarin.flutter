@@ -616,8 +616,8 @@ namespace FlutterSDK.Material.Dropdown
 
         public new FlutterSDK.Rendering.Box.BoxConstraints GetConstraintsForChild(FlutterSDK.Rendering.Box.BoxConstraints constraints)
         {
-            double maxHeight = Math.Dart:mathDefaultClass.Max(0.0, constraints.MaxHeight - 2 * DropdownDefaultClass._KMenuItemHeight);
-            double width = Math.Dart:mathDefaultClass.Min(constraints.MaxWidth, ButtonRect.Width);
+            double maxHeight = Dart.Math.MathDefaultClass.Max(0.0, constraints.MaxHeight - 2 * DropdownDefaultClass._KMenuItemHeight);
+            double width = Dart.Math.MathDefaultClass.Min(constraints.MaxWidth, ButtonRect.Width);
             return new BoxConstraints(minWidth: width, maxWidth: width, minHeight: 0.0, maxHeight: maxHeight);
         }
 
@@ -753,23 +753,23 @@ namespace FlutterSDK.Material.Dropdown
         {
             double maxMenuHeight = availableHeight - 2.0 * DropdownDefaultClass._KMenuItemHeight;
             double buttonTop = buttonRect.Top;
-            double buttonBottom = Math.Dart:mathDefaultClass.Min(buttonRect.Bottom, availableHeight);
+            double buttonBottom = Dart.Math.MathDefaultClass.Min(buttonRect.Bottom, availableHeight);
             double selectedItemOffset = GetItemOffset(index);
-            double topLimit = Math.Dart:mathDefaultClass.Min(DropdownDefaultClass._KMenuItemHeight, buttonTop);
-            double bottomLimit = Math.Dart:mathDefaultClass.Max(availableHeight - DropdownDefaultClass._KMenuItemHeight, buttonBottom);
+            double topLimit = Dart.Math.MathDefaultClass.Min(DropdownDefaultClass._KMenuItemHeight, buttonTop);
+            double bottomLimit = Dart.Math.MathDefaultClass.Max(availableHeight - DropdownDefaultClass._KMenuItemHeight, buttonBottom);
             double menuTop = (buttonTop - selectedItemOffset) - (ItemHeights[SelectedIndex] - buttonRect.Height) / 2.0;
             double preferredMenuHeight = ConstantsDefaultClass.KMaterialListPadding.Vertical;
             if (Items.IsNotEmpty) preferredMenuHeight += ItemHeights.Reduce((double total, double height) => =>total + height);
-            double menuHeight = Math.Dart:mathDefaultClass.Min(maxMenuHeight, preferredMenuHeight);
+            double menuHeight = Dart.Math.MathDefaultClass.Min(maxMenuHeight, preferredMenuHeight);
             double menuBottom = menuTop + menuHeight;
-            if (menuTop < topLimit) menuTop = Math.Dart:mathDefaultClass.Min(buttonTop, topLimit);
+            if (menuTop < topLimit) menuTop = Dart.Math.MathDefaultClass.Min(buttonTop, topLimit);
             if (menuBottom > bottomLimit)
             {
-                menuBottom = Math.Dart:mathDefaultClass.Max(buttonBottom, bottomLimit);
+                menuBottom = Dart.Math.MathDefaultClass.Max(buttonBottom, bottomLimit);
                 menuTop = menuBottom - menuHeight;
             }
 
-            double scrollOffset = preferredMenuHeight <= maxMenuHeight ? 0 : Math.Dart:mathDefaultClass.Max(0.0, selectedItemOffset - (buttonTop - menuTop));
+            double scrollOffset = preferredMenuHeight <= maxMenuHeight ? 0 : Dart.Math.MathDefaultClass.Max(0.0, selectedItemOffset - (buttonTop - menuTop));
             return new _MenuLimits(menuTop, menuBottom, menuHeight, scrollOffset);
         }
 
@@ -1238,7 +1238,7 @@ namespace FlutterSDK.Material.Dropdown
         private void _HandleTap()
         {
             RenderBox itemBox = Context.FindRenderObject() as RenderBox;
-            Rect itemRect = itemBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero) & itemBox.Size;
+            Rect itemRect = itemBox.LocalToGlobal(Dart.UI.UiDefaultClass.Offset.Zero) & itemBox.Size;
             TextDirection textDirection = BasicDefaultClass.Directionality.Of(Context);
             EdgeInsetsGeometry menuMargin = ButtonthemeDefaultClass.ButtonTheme.Of(Context).AlignedDropdown ? DropdownDefaultClass._KAlignedMenuMargin : DropdownDefaultClass._KUnalignedMenuMargin;
             List<_MenuItem<T>> menuItems = new List<_MenuItem<T>>(Widget.Items.Count);
@@ -1288,7 +1288,7 @@ namespace FlutterSDK.Material.Dropdown
             Orientation result = MediaqueryDefaultClass.MediaQuery.Of(context, nullOk: true)?.Orientation;
             if (result == null)
             {
-                Size size = Dart:uiDefaultClass.Window.PhysicalSize;
+                Size size = Dart.UiDefaultClass.Window.PhysicalSize;
                 result = size.Width > size.Height ? Orientation.Landscape : Orientation.Portrait;
             }
 

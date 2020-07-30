@@ -428,7 +428,7 @@ namespace FlutterSDK.Material.Appbartheme
         public virtual FlutterSDK.Material.Appbartheme.AppBarTheme Lerp(FlutterSDK.Material.Appbartheme.AppBarTheme a, FlutterSDK.Material.Appbartheme.AppBarTheme b, double t)
         {
 
-            return new AppBarTheme(brightness: t < 0.5 ? a?.Brightness : b?.Brightness, color: Dart:uiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), iconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.IconTheme, b?.IconTheme, t), actionsIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.ActionsIconTheme, b?.ActionsIconTheme, t), textTheme: TextthemeDefaultClass.TextTheme.Lerp(a?.TextTheme, b?.TextTheme, t));
+            return new AppBarTheme(brightness: t < 0.5 ? a?.Brightness : b?.Brightness, color: Dart.UI.UiDefaultClass.Color.Lerp(a?.Color, b?.Color, t), elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), iconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.IconTheme, b?.IconTheme, t), actionsIconTheme: IconthemedataDefaultClass.IconThemeData.Lerp(a?.ActionsIconTheme, b?.ActionsIconTheme, t), textTheme: TextthemeDefaultClass.TextTheme.Lerp(a?.TextTheme, b?.TextTheme, t));
         }
 
 
@@ -436,7 +436,7 @@ namespace FlutterSDK.Material.Appbartheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is AppBarTheme && other.Brightness == Brightness && other.Color == Color && other.Elevation == Elevation && other.IconTheme == IconTheme && other.ActionsIconTheme == ActionsIconTheme && other.TextTheme == TextTheme;
         }

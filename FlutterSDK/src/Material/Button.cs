@@ -547,7 +547,7 @@ namespace FlutterSDK.Material.Button
             EdgeInsetsGeometry padding = Widget.Padding.Add(EdgeInsets.Only(left: densityAdjustment.Dx, top: densityAdjustment.Dy, right: densityAdjustment.Dx, bottom: densityAdjustment.Dy)).Clamp(EdgeinsetsDefaultClass.EdgeInsets.Zero, EdgeinsetsDefaultClass.EdgeInsetsGeometry.Infinity);
             Widget result = new ConstrainedBox(constraints: effectiveConstraints, child: new Material(elevation: _EffectiveElevation, textStyle: Widget.TextStyle?.CopyWith(color: effectiveTextColor), shape: effectiveShape, color: Widget.FillColor, type: Widget.FillColor == null ? MaterialType.Transparency : MaterialType.Button, animationDuration: Widget.AnimationDuration, clipBehavior: Widget.ClipBehavior, child: new InkWell(focusNode: Widget.FocusNode, canRequestFocus: Widget.Enabled, onFocusChange: _HandleFocusedChanged, autofocus: Widget.Autofocus, onHighlightChanged: _HandleHighlightChanged, splashColor: Widget.SplashColor, highlightColor: Widget.HighlightColor, focusColor: Widget.FocusColor, hoverColor: Widget.HoverColor, onHover: _HandleHoveredChanged, onTap: Widget.OnPressed, onLongPress: Widget.OnLongPress, enableFeedback: Widget.EnableFeedback, customBorder: effectiveShape, child: IconthemeDefaultClass.IconTheme.Merge(data: new IconThemeData(color: effectiveTextColor), child: new Container(padding: padding, child: new Center(widthFactor: 1.0, heightFactor: 1.0, child: Widget.Child))))));
             Size minSize = default(Size);
-            switch (Widget.MaterialTapTargetSize) { case MaterialTapTargetSize.Padded: minSize = new Size(ConstantsDefaultClass.KMinInteractiveDimension + densityAdjustment.Dx, ConstantsDefaultClass.KMinInteractiveDimension + densityAdjustment.Dy); break; case MaterialTapTargetSize.ShrinkWrap: minSize = Dart:uiDefaultClass.Size.Zero; break; }
+            switch (Widget.MaterialTapTargetSize) { case MaterialTapTargetSize.Padded: minSize = new Size(ConstantsDefaultClass.KMinInteractiveDimension + densityAdjustment.Dx, ConstantsDefaultClass.KMinInteractiveDimension + densityAdjustment.Dy); break; case MaterialTapTargetSize.ShrinkWrap: minSize = Dart.UiDefaultClass.Size.Zero; break; }
             return new Semantics(container: true, button: true, enabled: Widget.Enabled, child: new _InputPadding(minSize: minSize, child: result));
         }
 
@@ -608,7 +608,7 @@ namespace FlutterSDK.Material.Button
 
         public new double ComputeMinIntrinsicWidth(double height)
         {
-            if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMinIntrinsicWidth(height), MinSize.Width);
+            if (Child != null) return Dart.Math.MathDefaultClass.Max(Child.GetMinIntrinsicWidth(height), MinSize.Width);
             return 0.0;
         }
 
@@ -617,7 +617,7 @@ namespace FlutterSDK.Material.Button
 
         public new double ComputeMinIntrinsicHeight(double width)
         {
-            if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMinIntrinsicHeight(width), MinSize.Height);
+            if (Child != null) return Dart.Math.MathDefaultClass.Max(Child.GetMinIntrinsicHeight(width), MinSize.Height);
             return 0.0;
         }
 
@@ -626,7 +626,7 @@ namespace FlutterSDK.Material.Button
 
         public new double ComputeMaxIntrinsicWidth(double height)
         {
-            if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMaxIntrinsicWidth(height), MinSize.Width);
+            if (Child != null) return Dart.Math.MathDefaultClass.Max(Child.GetMaxIntrinsicWidth(height), MinSize.Width);
             return 0.0;
         }
 
@@ -635,7 +635,7 @@ namespace FlutterSDK.Material.Button
 
         public new double ComputeMaxIntrinsicHeight(double width)
         {
-            if (Child != null) return Math.Dart:mathDefaultClass.Max(Child.GetMaxIntrinsicHeight(width), MinSize.Height);
+            if (Child != null) return Dart.Math.MathDefaultClass.Max(Child.GetMaxIntrinsicHeight(width), MinSize.Height);
             return 0.0;
         }
 
@@ -648,15 +648,15 @@ namespace FlutterSDK.Material.Button
             if (Child != null)
             {
                 Child.Layout(constraints, parentUsesSize: true);
-                double height = Math.Dart:mathDefaultClass.Max(Child.Size.Width, MinSize.Width);
-                double width = Math.Dart:mathDefaultClass.Max(Child.Size.Height, MinSize.Height);
+                double height = Dart.Math.MathDefaultClass.Max(Child.Size.Width, MinSize.Width);
+                double width = Dart.Math.MathDefaultClass.Max(Child.Size.Height, MinSize.Height);
                 Size = constraints.Constrain(new Size(height, width));
                 BoxParentData childParentData = Child.ParentData as BoxParentData;
                 childParentData.Offset = AlignmentDefaultClass.Alignment.Center.AlongOffset(Size - Child.Size as Offset);
             }
             else
             {
-                Size = Dart:uiDefaultClass.Size.Zero;
+                Size = Dart.UiDefaultClass.Size.Zero;
             }
 
         }
@@ -671,7 +671,7 @@ namespace FlutterSDK.Material.Button
                 return true;
             }
 
-            Offset center = Child.Size.Center(Dart: uiDefaultClass.Offset.Zero);
+            Offset center = Child.Size.Center(Dart.UI.UiDefaultClass.Offset.Zero);
             return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: center, hitTest: (BoxHitTestResult result, Offset position) =>
             {
 

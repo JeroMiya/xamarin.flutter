@@ -690,7 +690,7 @@ namespace FlutterSDK.Material.Floatingactionbutton
             if (Child != null)
             {
                 Child.Layout(new BoxConstraints(), parentUsesSize: true);
-                Size = new Size(Math.Dart:mathDefaultClass.Max(constraints.MinWidth, Math.Dart:mathDefaultClass.Min(constraints.MaxWidth, Child.Size.Width)), Math.Dart:mathDefaultClass.Max(constraints.MinHeight, Math.Dart:mathDefaultClass.Min(constraints.MaxHeight, Child.Size.Height)));
+                Size = new Size(Dart.Math.MathDefaultClass.Max(constraints.MinWidth, Dart.Math.MathDefaultClass.Min(constraints.MaxWidth, Child.Size.Width)), Dart.Math.MathDefaultClass.Max(constraints.MinHeight, Dart.Math.MathDefaultClass.Min(constraints.MaxHeight, Child.Size.Height)));
                 AlignChild();
             }
             else

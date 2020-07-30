@@ -488,7 +488,7 @@ namespace FlutterSDK.Widgets.Scrollawareimageprovider
             {
                 BindingDefaultClass.SchedulerBinding.Instance.ScheduleFrameCallback((_) =>
                 {
-                Dart: asyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
+                    Dart.AsyncDefaultClass.ScheduleMicrotask(() => =>ResolveStreamForKey(configuration, stream, key, handleError));
                 }
                 );
                 return;

@@ -2294,10 +2294,11 @@ namespace FlutterSDK.Widgets.Basic
         public new string ToStringShort()
         {
             string type = default(string);
-            if (Width == Dart:coreDefaultClass.Double.Infinity && Height == Dart:coreDefaultClass.Double.Infinity){
+            if (Width == Dart.CoreDefaultClass.Double.Infinity && Height == Dart.CoreDefaultClass.Double.Infinity)
+            {
                 type = $"'{ObjectDefaultClass.ObjectRuntimeType(this, "SizedBox")}.expand'";
             }
-else if (Width == 0.0 && Height == 0.0)
+            else if (Width == 0.0 && Height == 0.0)
             {
                 type = $"'{ObjectDefaultClass.ObjectRuntimeType(this, "SizedBox")}.shrink'";
             }
@@ -2316,10 +2317,11 @@ else if (Width == 0.0 && Height == 0.0)
         {
             base.DebugFillProperties(properties);
             DiagnosticLevel level = default(DiagnosticLevel);
-            if ((Width == Dart:coreDefaultClass.Double.Infinity && Height == Dart:coreDefaultClass.Double.Infinity)|| (Width == 0.0 && Height == 0.0)){
+            if ((Width == Dart.CoreDefaultClass.Double.Infinity && Height == Dart.CoreDefaultClass.Double.Infinity) || (Width == 0.0 && Height == 0.0))
+            {
                 level = DiagnosticLevel.Hidden;
             }
-else
+            else
             {
                 level = DiagnosticLevel.Info;
             }
@@ -2609,8 +2611,8 @@ else
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
-            properties.Add(new DoubleProperty("maxWidth", MaxWidth, defaultValue: Dart:coreDefaultClass.Double.Infinity));
-            properties.Add(new DoubleProperty("maxHeight", MaxHeight, defaultValue: Dart:coreDefaultClass.Double.Infinity));
+            properties.Add(new DoubleProperty("maxWidth", MaxWidth, defaultValue: Dart.CoreDefaultClass.Double.Infinity));
+            properties.Add(new DoubleProperty("maxHeight", MaxHeight, defaultValue: Dart.CoreDefaultClass.Double.Infinity));
         }
 
 
@@ -4846,7 +4848,7 @@ else
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
-            properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.Image>("image", Image));
+            properties.Add(new DiagnosticsProperty<Dart.UI.Image>("image", Image));
             properties.Add(new DoubleProperty("width", Width, defaultValue: null));
             properties.Add(new DoubleProperty("height", Height, defaultValue: null));
             properties.Add(new DoubleProperty("scale", Scale, defaultValue: 1.0));
@@ -6129,7 +6131,8 @@ else
 
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
-            if (Size > Dart:uiDefaultClass.Size.Zero){
+            if (Size > Dart.UiDefaultClass.Size.Zero)
+            {
                 context.Canvas.DrawRect(offset & Size, new Paint()..Color = Color);
             }
 

@@ -534,7 +534,7 @@ namespace FlutterSDK.Widgets.Text
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             DefaultTextStyle defaultTextStyle = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, defaultTextStyle) ? child : new DefaultTextStyle(style: Style, textAlign: TextAlign, softWrap: SoftWrap, overflow: Overflow, maxLines: MaxLines, textWidthBasis: TextWidthBasis, textHeightBehavior: TextHeightBehavior, child: child);
+            return Dart.CoreDefaultClass.Identical(this, defaultTextStyle) ? child : new DefaultTextStyle(style: Style, textAlign: TextAlign, softWrap: SoftWrap, overflow: Overflow, maxLines: MaxLines, textWidthBasis: TextWidthBasis, textHeightBehavior: TextHeightBehavior, child: child);
         }
 
 
@@ -549,7 +549,7 @@ namespace FlutterSDK.Widgets.Text
             properties.Add(new EnumProperty<TextOverflow>("overflow", Overflow, defaultValue: null));
             properties.Add(new IntProperty("maxLines", MaxLines, defaultValue: null));
             properties.Add(new EnumProperty<TextWidthBasis>("textWidthBasis", TextWidthBasis, defaultValue: TextWidthBasis.Parent));
-            properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Dart.UI.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
         }
 
 
@@ -685,7 +685,7 @@ namespace FlutterSDK.Widgets.Text
             DefaultTextStyle defaultTextStyle = TextDefaultClass.DefaultTextStyle.Of(context);
             TextStyle effectiveTextStyle = Style;
             if (Style == null || Style.Inherit) effectiveTextStyle = defaultTextStyle.Style.Merge(Style);
-            if (MediaqueryDefaultClass.MediaQuery.BoldTextOverride(context)) effectiveTextStyle = effectiveTextStyle.Merge(new TextStyle(fontWeight: Dart:uiDefaultClass.FontWeight.Bold));
+            if (MediaqueryDefaultClass.MediaQuery.BoldTextOverride(context)) effectiveTextStyle = effectiveTextStyle.Merge(new TextStyle(fontWeight: Dart.UI.UiDefaultClass.FontWeight.Bold));
             Widget result = new RichText(textAlign: TextAlign ?? defaultTextStyle.TextAlign ?? TextAlign.Start, textDirection: TextDirection, locale: Locale, softWrap: SoftWrap ?? defaultTextStyle.SoftWrap, overflow: Overflow ?? defaultTextStyle.Overflow, textScaleFactor: textScaleFactor == default(double) ? MediaQuery.textScaleFactorOf(context) : textScaleFactor, maxLines: MaxLines ?? defaultTextStyle.MaxLines, strutStyle: StrutStyle, textWidthBasis: TextWidthBasis ?? defaultTextStyle.TextWidthBasis, textHeightBehavior: TextHeightBehavior ?? defaultTextStyle.TextHeightBehavior, text: new TextSpan(style: effectiveTextStyle, text: Data, children: TextSpan != null ? new List<InlineSpan>() { TextSpan } : null));
             if (SemanticsLabel != null)
             {
@@ -716,7 +716,7 @@ namespace FlutterSDK.Widgets.Text
             properties.Add(new DoubleProperty("textScaleFactor", TextScaleFactor, defaultValue: null));
             properties.Add(new IntProperty("maxLines", MaxLines, defaultValue: null));
             properties.Add(new EnumProperty<TextWidthBasis>("textWidthBasis", TextWidthBasis, defaultValue: null));
-            properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
+            properties.Add(new DiagnosticsProperty<Dart.UI.TextHeightBehavior>("textHeightBehavior", TextHeightBehavior, defaultValue: null));
             if (SemanticsLabel != null)
             {
                 properties.Add(new StringProperty("semanticsLabel", SemanticsLabel));

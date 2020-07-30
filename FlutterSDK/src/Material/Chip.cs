@@ -1900,7 +1900,8 @@ namespace FlutterSDK.Material.Chip
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other)){
+            if (Dart.CoreDefaultClass.Identical(this, other))
+            {
                 return true;
             }
 
@@ -2085,15 +2086,15 @@ namespace FlutterSDK.Material.Chip
 
 
 
-        private Size _BoxSize(FlutterSDK.Rendering.Box.RenderBox box) => box == null ? Dart : uiDefaultClass.Size.Zero:box.Size;
+        private Size _BoxSize(FlutterSDK.Rendering.Box.RenderBox box) => box == null ? Dart.UiDefaultClass.Size.Zero : box.Size;
 
 
 
-private Rect _BoxRect(FlutterSDK.Rendering.Box.RenderBox box) => box == null ? Dart : uiDefaultClass.Rect.Zero:_BoxParentData(box).Offset&box.Size;
+        private Rect _BoxRect(FlutterSDK.Rendering.Box.RenderBox box) => box == null ? Dart.UiDefaultClass.Rect.Zero : _BoxParentData(box).Offset & box.Size;
 
 
 
-private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Rendering.Box.RenderBox box) => box.ParentData as BoxParentData;
+        private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Rendering.Box.RenderBox box) => box.ParentData as BoxParentData;
 
 
 
@@ -2117,7 +2118,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         public new double ComputeMinIntrinsicHeight(double width)
         {
-            return Math.Dart:mathDefaultClass.Max(ChipDefaultClass._KChipHeight, Theme.Padding.Vertical + Theme.LabelPadding.Vertical + _MinHeight(Label, width));
+            return Dart.Math.MathDefaultClass.Max(ChipDefaultClass._KChipHeight, Theme.Padding.Vertical + Theme.LabelPadding.Vertical + _MinHeight(Label, width));
         }
 
 
@@ -2140,7 +2141,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             Size rawSize = _BoxSize(Label);
             if (Constraints.MaxWidth.IsFinite())
             {
-                double maxWidth = Math.Dart:mathDefaultClass.Max(0.0, Constraints.MaxWidth - iconSizes - Theme.LabelPadding.Horizontal - Theme.Padding.Horizontal);
+                double maxWidth = Dart.Math.MathDefaultClass.Max(0.0, Constraints.MaxWidth - iconSizes - Theme.LabelPadding.Horizontal - Theme.Padding.Horizontal);
                 Label.Layout(Constraints.CopyWith(minWidth: 0.0, maxWidth: maxWidth, minHeight: rawSize.Height, maxHeight: size.Height), parentUsesSize: true);
                 Size updatedSize = _BoxSize(Label);
                 return new Size(updatedSize.Width + Theme.LabelPadding.Horizontal, updatedSize.Height + Theme.LabelPadding.Vertical);
@@ -2155,7 +2156,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         private Size _LayoutAvatar(FlutterSDK.Rendering.Box.BoxConstraints contentConstraints, double contentSize)
         {
-            double requestedSize = Math.Dart:mathDefaultClass.Max(0.0, contentSize);
+            double requestedSize = Dart.Math.MathDefaultClass.Max(0.0, contentSize);
             BoxConstraints avatarConstraints = BoxConstraints.TightFor(width: requestedSize, height: requestedSize);
             Avatar.Layout(avatarConstraints, parentUsesSize: true);
             if (!Theme.ShowCheckmark && !Theme.ShowAvatar)
@@ -2184,7 +2185,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
 
         private Size _LayoutDeleteIcon(FlutterSDK.Rendering.Box.BoxConstraints contentConstraints, double contentSize)
         {
-            double requestedSize = Math.Dart:mathDefaultClass.Max(0.0, contentSize);
+            double requestedSize = Dart.Math.MathDefaultClass.Max(0.0, contentSize);
             BoxConstraints deleteIconConstraints = BoxConstraints.TightFor(width: requestedSize, height: requestedSize);
             DeleteIcon.Layout(deleteIconConstraints, parentUsesSize: true);
             if (!DeleteIconShowing)
@@ -2214,7 +2215,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             RenderBox hitTestChild = tapIsOnDeleteIcon ? (DeleteIcon ?? Label ?? Avatar) : (Label ?? Avatar);
             if (hitTestChild != null)
             {
-                Offset center = hitTestChild.Size.Center(Dart: uiDefaultClass.Offset.Zero);
+                Offset center = hitTestChild.Size.Center(Dart.UI.UiDefaultClass.Offset.Zero);
                 return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: position, hitTest: (BoxHitTestResult result, Offset position) =>
                 {
 
@@ -2234,7 +2235,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             BoxConstraints contentConstraints = Constraints.Loosen();
             Offset densityAdjustment = new Offset(0.0, Theme.VisualDensity.BaseSizeAdjustment.Dy / 2.0);
             Label.Layout(contentConstraints, parentUsesSize: true);
-            double contentSize = Math.Dart:mathDefaultClass.Max(ChipDefaultClass._KChipHeight - Theme.Padding.Vertical + Theme.LabelPadding.Vertical, _BoxSize(Label).Height + Theme.LabelPadding.Vertical);
+            double contentSize = Dart.Math.MathDefaultClass.Max(ChipDefaultClass._KChipHeight - Theme.Padding.Vertical + Theme.LabelPadding.Vertical, _BoxSize(Label).Height + Theme.LabelPadding.Vertical);
             Size avatarSize = _LayoutAvatar(contentConstraints, contentSize);
             Size deleteIconSize = _LayoutDeleteIcon(contentConstraints, contentSize);
             Size labelSize = new Size(_BoxSize(Label).Width, contentSize);
@@ -2250,9 +2251,9 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                 return boxOffset;
             }
 
-            Offset avatarOffset = Dart:uiDefaultClass.Offset.Zero;
-            Offset labelOffset = Dart:uiDefaultClass.Offset.Zero;
-            Offset deleteIconOffset = Dart:uiDefaultClass.Offset.Zero;
+            Offset avatarOffset = Dart.UiDefaultClass.Offset.Zero;
+            Offset labelOffset = Dart.UiDefaultClass.Offset.Zero;
+            Offset deleteIconOffset = Dart.UiDefaultClass.Offset.Zero;
             switch (TextDirection)
             {
                 case TextDirection.Rtl:
@@ -2268,7 +2269,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                     }
                     else
                     {
-                        DeleteButtonRect = Dart:uiDefaultClass.Rect.Zero;
+                        DeleteButtonRect = Dart.UiDefaultClass.Rect.Zero;
                     }
                     start -= deleteIconSize.Width; if (Theme.CanTapBody)
                     {
@@ -2276,7 +2277,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                     }
                     else
                     {
-                        PressRect = Dart:uiDefaultClass.Rect.Zero;
+                        PressRect = Dart.UiDefaultClass.Rect.Zero;
                     }
                     break;
                 case TextDirection.Ltr:
@@ -2291,7 +2292,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                     }
                     else
                     {
-                        PressRect = Dart:uiDefaultClass.Rect.Zero;
+                        PressRect = Dart.UiDefaultClass.Rect.Zero;
                     }
                     start -= _BoxSize(DeleteIcon).Width - deleteIconSize.Width; if (DeleteIconShowing)
                     {
@@ -2300,7 +2301,7 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
                     }
                     else
                     {
-                        DeleteButtonRect = Dart:uiDefaultClass.Rect.Zero;
+                        DeleteButtonRect = Dart.UiDefaultClass.Rect.Zero;
                     }
                     break;
             }
@@ -2346,14 +2347,14 @@ private FlutterSDK.Rendering.Box.BoxParentData _BoxParentData(FlutterSDK.Renderi
             if (t < 0.5)
             {
                 double strokeT = t * 2.0;
-                Offset drawMid = Dart:uiDefaultClass.Offset.Lerp(start, mid, strokeT);
+                Offset drawMid = Dart.UI.UiDefaultClass.Offset.Lerp(start, mid, strokeT);
                 path.MoveTo(origin.Dx + start.Dx, origin.Dy + start.Dy);
                 path.LineTo(origin.Dx + drawMid.Dx, origin.Dy + drawMid.Dy);
             }
             else
             {
                 double strokeT = (t - 0.5) * 2.0;
-                Offset drawEnd = Dart:uiDefaultClass.Offset.Lerp(mid, end, strokeT);
+                Offset drawEnd = Dart.UI.UiDefaultClass.Offset.Lerp(mid, end, strokeT);
                 path.MoveTo(origin.Dx + start.Dx, origin.Dy + start.Dy);
                 path.LineTo(origin.Dx + mid.Dx, origin.Dy + mid.Dy);
                 path.LineTo(origin.Dx + drawEnd.Dx, origin.Dy + drawEnd.Dy);

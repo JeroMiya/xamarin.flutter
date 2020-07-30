@@ -684,7 +684,7 @@ namespace FlutterSDK.Material.Slidertheme
 
             double trackLeft = offset.Dx + overlayWidth / 2;
             double trackTop = offset.Dy + (parentBox.Size.Height - trackHeight) / 2;
-            double trackWidth = parentBox.Size.Width - Math.Dart:mathDefaultClass.Max(thumbWidth, overlayWidth);
+            double trackWidth = parentBox.Size.Width - Dart.Math.MathDefaultClass.Max(thumbWidth, overlayWidth);
             return Rect.FromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
         }
 
@@ -887,7 +887,7 @@ namespace FlutterSDK.Material.Slidertheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             SliderTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new SliderTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new SliderTheme(data: Data, child: child);
         }
 
 
@@ -1078,7 +1078,7 @@ namespace FlutterSDK.Material.Slidertheme
 
 
 
-            return new SliderThemeData(trackHeight: Dart:uiDefaultClass.LerpDouble(a.TrackHeight, b.TrackHeight, t), activeTrackColor: Dart:uiDefaultClass.Color.Lerp(a.ActiveTrackColor, b.ActiveTrackColor, t), inactiveTrackColor: Dart:uiDefaultClass.Color.Lerp(a.InactiveTrackColor, b.InactiveTrackColor, t), disabledActiveTrackColor: Dart:uiDefaultClass.Color.Lerp(a.DisabledActiveTrackColor, b.DisabledActiveTrackColor, t), disabledInactiveTrackColor: Dart:uiDefaultClass.Color.Lerp(a.DisabledInactiveTrackColor, b.DisabledInactiveTrackColor, t), activeTickMarkColor: Dart:uiDefaultClass.Color.Lerp(a.ActiveTickMarkColor, b.ActiveTickMarkColor, t), inactiveTickMarkColor: Dart:uiDefaultClass.Color.Lerp(a.InactiveTickMarkColor, b.InactiveTickMarkColor, t), disabledActiveTickMarkColor: Dart:uiDefaultClass.Color.Lerp(a.DisabledActiveTickMarkColor, b.DisabledActiveTickMarkColor, t), disabledInactiveTickMarkColor: Dart:uiDefaultClass.Color.Lerp(a.DisabledInactiveTickMarkColor, b.DisabledInactiveTickMarkColor, t), thumbColor: Dart:uiDefaultClass.Color.Lerp(a.ThumbColor, b.ThumbColor, t), overlappingShapeStrokeColor: Dart:uiDefaultClass.Color.Lerp(a.OverlappingShapeStrokeColor, b.OverlappingShapeStrokeColor, t), disabledThumbColor: Dart:uiDefaultClass.Color.Lerp(a.DisabledThumbColor, b.DisabledThumbColor, t), overlayColor: Dart:uiDefaultClass.Color.Lerp(a.OverlayColor, b.OverlayColor, t), valueIndicatorColor: Dart:uiDefaultClass.Color.Lerp(a.ValueIndicatorColor, b.ValueIndicatorColor, t), overlayShape: t < 0.5 ? a.OverlayShape : b.OverlayShape, tickMarkShape: t < 0.5 ? a.TickMarkShape : b.TickMarkShape, thumbShape: t < 0.5 ? a.ThumbShape : b.ThumbShape, trackShape: t < 0.5 ? a.TrackShape : b.TrackShape, valueIndicatorShape: t < 0.5 ? a.ValueIndicatorShape : b.ValueIndicatorShape, rangeTickMarkShape: t < 0.5 ? a.RangeTickMarkShape : b.RangeTickMarkShape, rangeThumbShape: t < 0.5 ? a.RangeThumbShape : b.RangeThumbShape, rangeTrackShape: t < 0.5 ? a.RangeTrackShape : b.RangeTrackShape, rangeValueIndicatorShape: t < 0.5 ? a.RangeValueIndicatorShape : b.RangeValueIndicatorShape, showValueIndicator: t < 0.5 ? a.ShowValueIndicator : b.ShowValueIndicator, valueIndicatorTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a.ValueIndicatorTextStyle, b.ValueIndicatorTextStyle, t), minThumbSeparation: Dart:uiDefaultClass.LerpDouble(a.MinThumbSeparation, b.MinThumbSeparation, t), thumbSelector: t < 0.5 ? a.ThumbSelector : b.ThumbSelector);
+            return new SliderThemeData(trackHeight: Dart.UI.UiDefaultClass.LerpDouble(a.TrackHeight, b.TrackHeight, t), activeTrackColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ActiveTrackColor, b.ActiveTrackColor, t), inactiveTrackColor: Dart.UI.UiDefaultClass.Color.Lerp(a.InactiveTrackColor, b.InactiveTrackColor, t), disabledActiveTrackColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DisabledActiveTrackColor, b.DisabledActiveTrackColor, t), disabledInactiveTrackColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DisabledInactiveTrackColor, b.DisabledInactiveTrackColor, t), activeTickMarkColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ActiveTickMarkColor, b.ActiveTickMarkColor, t), inactiveTickMarkColor: Dart.UI.UiDefaultClass.Color.Lerp(a.InactiveTickMarkColor, b.InactiveTickMarkColor, t), disabledActiveTickMarkColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DisabledActiveTickMarkColor, b.DisabledActiveTickMarkColor, t), disabledInactiveTickMarkColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DisabledInactiveTickMarkColor, b.DisabledInactiveTickMarkColor, t), thumbColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ThumbColor, b.ThumbColor, t), overlappingShapeStrokeColor: Dart.UI.UiDefaultClass.Color.Lerp(a.OverlappingShapeStrokeColor, b.OverlappingShapeStrokeColor, t), disabledThumbColor: Dart.UI.UiDefaultClass.Color.Lerp(a.DisabledThumbColor, b.DisabledThumbColor, t), overlayColor: Dart.UI.UiDefaultClass.Color.Lerp(a.OverlayColor, b.OverlayColor, t), valueIndicatorColor: Dart.UI.UiDefaultClass.Color.Lerp(a.ValueIndicatorColor, b.ValueIndicatorColor, t), overlayShape: t < 0.5 ? a.OverlayShape : b.OverlayShape, tickMarkShape: t < 0.5 ? a.TickMarkShape : b.TickMarkShape, thumbShape: t < 0.5 ? a.ThumbShape : b.ThumbShape, trackShape: t < 0.5 ? a.TrackShape : b.TrackShape, valueIndicatorShape: t < 0.5 ? a.ValueIndicatorShape : b.ValueIndicatorShape, rangeTickMarkShape: t < 0.5 ? a.RangeTickMarkShape : b.RangeTickMarkShape, rangeThumbShape: t < 0.5 ? a.RangeThumbShape : b.RangeThumbShape, rangeTrackShape: t < 0.5 ? a.RangeTrackShape : b.RangeTrackShape, rangeValueIndicatorShape: t < 0.5 ? a.RangeValueIndicatorShape : b.RangeValueIndicatorShape, showValueIndicator: t < 0.5 ? a.ShowValueIndicator : b.ShowValueIndicator, valueIndicatorTextStyle: TextstyleDefaultClass.TextStyle.Lerp(a.ValueIndicatorTextStyle, b.ValueIndicatorTextStyle, t), minThumbSeparation: Dart.UI.UiDefaultClass.LerpDouble(a.MinThumbSeparation, b.MinThumbSeparation, t), thumbSelector: t < 0.5 ? a.ThumbSelector : b.ThumbSelector);
         }
 
 
@@ -1086,7 +1086,8 @@ namespace FlutterSDK.Material.Slidertheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other)){
+            if (Dart.CoreDefaultClass.Identical(this, other))
+            {
                 return true;
             }
 
@@ -1867,9 +1868,9 @@ namespace FlutterSDK.Material.Slidertheme
             switch (textDirection) { case TextDirection.Ltr: leftTrackPaint = activePaint; rightTrackPaint = inactivePaint; break; case TextDirection.Rtl: leftTrackPaint = inactivePaint; rightTrackPaint = activePaint; break; }
             Rect trackRect = GetPreferredRect(parentBox: parentBox, offset: offset, sliderTheme: sliderTheme, isEnabled: isEnabled, isDiscrete: isDiscrete);
             Rect leftTrackArcRect = Rect.FromLTWH(trackRect.Left, trackRect.Top, trackRect.Height, trackRect.Height);
-            if (!leftTrackArcRect.IsEmpty()) context.Canvas.DrawArc(leftTrackArcRect, Math.Dart:mathDefaultClass.Pi / 2, Math.Dart:mathDefaultClass.Pi, false, leftTrackPaint);
+            if (!leftTrackArcRect.IsEmpty()) context.Canvas.DrawArc(leftTrackArcRect, Dart.Math.MathDefaultClass.Pi / 2, Math.Dart.Math.MathDefaultClass.Pi, false, leftTrackPaint);
             Rect rightTrackArcRect = Rect.FromLTWH(trackRect.Right - trackRect.Height / 2, trackRect.Top, trackRect.Height, trackRect.Height);
-            if (!rightTrackArcRect.IsEmpty()) context.Canvas.DrawArc(rightTrackArcRect, -Math.Dart:mathDefaultClass.Pi / 2, Math.Dart:mathDefaultClass.Pi, false, rightTrackPaint);
+            if (!rightTrackArcRect.IsEmpty()) context.Canvas.DrawArc(rightTrackArcRect, -Dart.Math.MathDefaultClass.Pi / 2, Math.Dart.Math.MathDefaultClass.Pi, false, rightTrackPaint);
             Size thumbSize = sliderTheme.ThumbShape.GetPreferredSize(isEnabled, isDiscrete);
             Rect leftTrackSegment = Rect.FromLTRB(trackRect.Left + trackRect.Height / 2, trackRect.Top, thumbCenter.Dx - thumbSize.Width / 2, trackRect.Bottom);
             if (!leftTrackSegment.IsEmpty()) context.Canvas.DrawRect(leftTrackSegment, leftTrackPaint);
@@ -2063,7 +2064,7 @@ namespace FlutterSDK.Material.Slidertheme
             Rect trackRect = GetPreferredRect(parentBox: parentBox, offset: offset, sliderTheme: sliderTheme, isEnabled: isEnabled, isDiscrete: isDiscrete);
             double trackRadius = trackRect.Height / 2;
             Rect leftTrackArcRect = Rect.FromLTWH(trackRect.Left, trackRect.Top, trackRect.Height, trackRect.Height);
-            if (!leftTrackArcRect.IsEmpty()) context.Canvas.DrawArc(leftTrackArcRect, Math.Dart:mathDefaultClass.Pi / 2, Math.Dart:mathDefaultClass.Pi, false, inactivePaint);
+            if (!leftTrackArcRect.IsEmpty()) context.Canvas.DrawArc(leftTrackArcRect, Dart.Math.MathDefaultClass.Pi / 2, Math.Dart.Math.MathDefaultClass.Pi, false, inactivePaint);
             Rect leftTrackSegment = Rect.FromLTRB(trackRect.Left + trackRadius, trackRect.Top, leftThumbOffset.Dx - thumbRadius, trackRect.Bottom);
             if (!leftTrackSegment.IsEmpty()) context.Canvas.DrawRect(leftTrackSegment, inactivePaint);
             Rect middleTrackSegment = Rect.FromLTRB(leftThumbOffset.Dx + thumbRadius, trackRect.Top, rightThumbOffset.Dx - thumbRadius, trackRect.Bottom);
@@ -2071,7 +2072,7 @@ namespace FlutterSDK.Material.Slidertheme
             Rect rightTrackSegment = Rect.FromLTRB(rightThumbOffset.Dx + thumbRadius, trackRect.Top, trackRect.Right - trackRadius, trackRect.Bottom);
             if (!rightTrackSegment.IsEmpty()) context.Canvas.DrawRect(rightTrackSegment, inactivePaint);
             Rect rightTrackArcRect = Rect.FromLTWH(trackRect.Right - trackRect.Height, trackRect.Top, trackRect.Height, trackRect.Height);
-            if (!rightTrackArcRect.IsEmpty()) context.Canvas.DrawArc(rightTrackArcRect, -Math.Dart:mathDefaultClass.Pi / 2, Math.Dart:mathDefaultClass.Pi, false, inactivePaint);
+            if (!rightTrackArcRect.IsEmpty()) context.Canvas.DrawArc(rightTrackArcRect, -Dart.Math.MathDefaultClass.Pi / 2, Math.Dart.Math.MathDefaultClass.Pi, false, inactivePaint);
         }
 
 
@@ -2237,7 +2238,7 @@ namespace FlutterSDK.Material.Slidertheme
 
         public new Size GetPreferredSize(FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), bool isEnabled = default(bool))
         {
-            return Dart:uiDefaultClass.Size.Zero;
+            return Dart.UiDefaultClass.Size.Zero;
         }
 
 
@@ -2268,11 +2269,11 @@ namespace FlutterSDK.Material.Slidertheme
         public _EmptySliderComponentShape()
         { }
 
-        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) => Dart:uiDefaultClass.Size.Zero;
+        public new Size GetPreferredSize(bool isEnabled, bool isDiscrete) => Dart.UiDefaultClass.Size.Zero;
 
 
 
-public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double))
+        public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset center, FlutterSDK.Animation.Animation.Animation<double> activationAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), FlutterSDK.Animation.Animation.Animation<double> enableAnimation = default(FlutterSDK.Animation.Animation.Animation<double>), bool isDiscrete = default(bool), FlutterSDK.Painting.Textpainter.TextPainter labelPainter = default(FlutterSDK.Painting.Textpainter.TextPainter), FlutterSDK.Rendering.Box.RenderBox parentBox = default(FlutterSDK.Rendering.Box.RenderBox), FlutterSDK.Material.Slidertheme.SliderThemeData sliderTheme = default(FlutterSDK.Material.Slidertheme.SliderThemeData), TextDirection textDirection = default(TextDirection), double value = default(double))
         {
         }
 
@@ -2590,7 +2591,7 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
             double textScaleFactor = labelPainter.Height / _LabelTextDesignSize;
             double inverseTextScale = textScaleFactor != 0 ? 1.0 / textScaleFactor : 0.0;
             double labelHalfWidth = labelPainter.Width / 2.0;
-            double halfWidthNeeded = Math.Dart:mathDefaultClass.Max(0.0, inverseTextScale * labelHalfWidth - (_TopLobeRadius - _LabelPadding));
+            double halfWidthNeeded = Dart.Math.MathDefaultClass.Max(0.0, inverseTextScale * labelHalfWidth - (_TopLobeRadius - _LabelPadding));
             double shift = _GetIdealOffset(parentBox, halfWidthNeeded, textScaleFactor * scale, center);
             return shift * textScaleFactor;
         }
@@ -2605,7 +2606,7 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
             Offset topLeft = (topLobeRect.TopLeft * scale) + center;
             Offset bottomRight = (topLobeRect.BottomRight * scale) + center;
             double shift = 0.0;
-            double startGlobal = parentBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero).Dx;
+            double startGlobal = parentBox.LocalToGlobal(Dart.UI.UiDefaultClass.Offset.Zero).Dx;
             if (topLeft.Dx < startGlobal + edgeMargin)
             {
                 shift = startGlobal + edgeMargin - topLeft.Dx;
@@ -2620,11 +2621,11 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
             shift = scale == 0.0 ? 0.0 : shift / scale;
             if (shift < 0.0)
             {
-                shift = Math.Dart:mathDefaultClass.Max(shift, -halfWidthNeeded);
+                shift = Dart.Math.MathDefaultClass.Max(shift, -halfWidthNeeded);
             }
             else
             {
-                shift = Math.Dart:mathDefaultClass.Min(shift, halfWidthNeeded);
+                shift = Dart.Math.MathDefaultClass.Min(shift, halfWidthNeeded);
             }
 
             return shift;
@@ -2648,34 +2649,34 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
             canvas.Translate(center.Dx, center.Dy);
             canvas.Scale(overallScale, overallScale);
             double bottomNeckTriangleHypotenuse = _BottomNeckRadius + _BottomLobeRadius / overallScale;
-            double rightBottomNeckCenterY = -Math.Dart:mathDefaultClass.Sqrt(Math.Dart:mathDefaultClass.Pow(bottomNeckTriangleHypotenuse, 2) - Math.Dart:mathDefaultClass.Pow(_RightBottomNeckCenterX, 2));
-            double rightBottomNeckAngleEnd = Math.Dart:mathDefaultClass.Pi + Math.Dart:mathDefaultClass.Atan(rightBottomNeckCenterY / _RightBottomNeckCenterX);
+            double rightBottomNeckCenterY = -Dart.Math.MathDefaultClass.Sqrt(Dart.Math.MathDefaultClass.Pow(bottomNeckTriangleHypotenuse, 2) - Dart.Math.MathDefaultClass.Pow(_RightBottomNeckCenterX, 2));
+            double rightBottomNeckAngleEnd = Math.Dart.MathDefaultClass.Pi + Dart.Math.MathDefaultClass.Atan(rightBottomNeckCenterY / _RightBottomNeckCenterX);
             Path path = new Path();
             new Path().MoveTo(_MiddleNeckWidth / 2, rightBottomNeckCenterY);
             _AddArc(path, new Offset(_RightBottomNeckCenterX, rightBottomNeckCenterY), _BottomNeckRadius, _RightBottomNeckAngleStart, rightBottomNeckAngleEnd);
-            _AddArc(path, Dart: uiDefaultClass.Offset.Zero, _BottomLobeRadius / overallScale, rightBottomNeckAngleEnd - Math.Dart:mathDefaultClass.Pi, 2 * Math.Dart:mathDefaultClass.Pi - rightBottomNeckAngleEnd);
-            _AddArc(path, new Offset(-_RightBottomNeckCenterX, rightBottomNeckCenterY), _BottomNeckRadius, Math.Dart:mathDefaultClass.Pi - rightBottomNeckAngleEnd, 0);
-            double halfWidthNeeded = Math.Dart:mathDefaultClass.Max(0.0, inverseTextScale * labelHalfWidth - (_TopLobeRadius - _LabelPadding));
+            _AddArc(path, Dart.UI.UiDefaultClass.Offset.Zero, _BottomLobeRadius / overallScale, rightBottomNeckAngleEnd - Dart.Math.MathDefaultClass.Pi, 2 * Math.Dart.Math.MathDefaultClass.Pi - rightBottomNeckAngleEnd);
+            _AddArc(path, new Offset(-_RightBottomNeckCenterX, rightBottomNeckCenterY), _BottomNeckRadius, Dart.Math.MathDefaultClass.Pi - rightBottomNeckAngleEnd, 0);
+            double halfWidthNeeded = Dart.Math.MathDefaultClass.Max(0.0, inverseTextScale * labelHalfWidth - (_TopLobeRadius - _LabelPadding));
             double shift = _GetIdealOffset(parentBox, halfWidthNeeded, overallScale, center);
             double leftWidthNeeded = halfWidthNeeded - shift;
             double rightWidthNeeded = halfWidthNeeded + shift;
-            double leftAmount = Math.Dart:mathDefaultClass.Max(0.0, Math.Dart:mathDefaultClass.Min(1.0, leftWidthNeeded / _NeckTriangleBase));
-            double rightAmount = Math.Dart:mathDefaultClass.Max(0.0, Math.Dart:mathDefaultClass.Min(1.0, rightWidthNeeded / _NeckTriangleBase));
+            double leftAmount = Dart.Math.MathDefaultClass.Max(0.0, Dart.Math.MathDefaultClass.Min(1.0, leftWidthNeeded / _NeckTriangleBase));
+            double rightAmount = Dart.Math.MathDefaultClass.Max(0.0, Dart.Math.MathDefaultClass.Min(1.0, rightWidthNeeded / _NeckTriangleBase));
             double leftTheta = (1.0 - leftAmount) * _ThirtyDegrees;
             double rightTheta = (1.0 - rightAmount) * _ThirtyDegrees;
-            Offset leftTopNeckCenter = new Offset(-_NeckTriangleBase, _TopLobeCenter.Dy + Math.Dart:mathDefaultClass.Cos(leftTheta) * _NeckTriangleHypotenuse);
-            Offset neckRightCenter = new Offset(_NeckTriangleBase, _TopLobeCenter.Dy + Math.Dart:mathDefaultClass.Cos(rightTheta) * _NeckTriangleHypotenuse);
+            Offset leftTopNeckCenter = new Offset(-_NeckTriangleBase, _TopLobeCenter.Dy + Dart.Math.MathDefaultClass.Cos(leftTheta) * _NeckTriangleHypotenuse);
+            Offset neckRightCenter = new Offset(_NeckTriangleBase, _TopLobeCenter.Dy + Dart.Math.MathDefaultClass.Cos(rightTheta) * _NeckTriangleHypotenuse);
             double leftNeckArcAngle = _NinetyDegrees - leftTheta;
-            double rightNeckArcAngle = Math.Dart:mathDefaultClass.Pi + _NinetyDegrees - rightTheta;
-            double neckStretchBaseline = Math.Dart:mathDefaultClass.Max(0.0, rightBottomNeckCenterY - Math.Dart:mathDefaultClass.Max(leftTopNeckCenter.Dy, neckRightCenter.Dy));
-            double t = Math.Dart:mathDefaultClass.Pow(inverseTextScale, 3.0) as double;
+            double rightNeckArcAngle = Math.Dart.MathDefaultClass.Pi + _NinetyDegrees - rightTheta;
+            double neckStretchBaseline = Dart.Math.MathDefaultClass.Max(0.0, rightBottomNeckCenterY - Dart.Math.MathDefaultClass.Max(leftTopNeckCenter.Dy, neckRightCenter.Dy));
+            double t = Dart.Math.MathDefaultClass.Pow(inverseTextScale, 3.0) as double;
             double stretch = (neckStretchBaseline * t).Clamp(0.0, 10.0 * neckStretchBaseline) as double;
             Offset neckStretch = new Offset(0.0, neckStretchBaseline - stretch);
 
             _AddArc(path, leftTopNeckCenter + neckStretch, _TopNeckRadius, 0.0, -leftNeckArcAngle);
             _AddArc(path, _TopLobeCenter - new Offset(leftWidthNeeded, 0.0) + neckStretch, _TopLobeRadius, _NinetyDegrees + leftTheta, _TwoSeventyDegrees);
-            _AddArc(path, _TopLobeCenter + new Offset(rightWidthNeeded, 0.0) + neckStretch, _TopLobeRadius, _TwoSeventyDegrees, _TwoSeventyDegrees + Math.Dart:mathDefaultClass.Pi - rightTheta);
-            _AddArc(path, neckRightCenter + neckStretch, _TopNeckRadius, rightNeckArcAngle, Math.Dart:mathDefaultClass.Pi);
+            _AddArc(path, _TopLobeCenter + new Offset(rightWidthNeeded, 0.0) + neckStretch, _TopLobeRadius, _TwoSeventyDegrees, _TwoSeventyDegrees + Dart.Math.MathDefaultClass.Pi - rightTheta);
+            _AddArc(path, neckRightCenter + neckStretch, _TopNeckRadius, rightNeckArcAngle, Dart.Math.MathDefaultClass.Pi);
             if (strokePaintColor != null)
             {
                 Paint strokePaint = new Paint()..Color = strokePaintColor..StrokeWidth = 1.0..Style = PaintingStyle.Stroke;
@@ -2686,7 +2687,7 @@ public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, Flut
             canvas.Save();
             canvas.Translate(shift, -_DistanceBetweenTopBottomCenters + neckStretch.Dy);
             canvas.Scale(inverseTextScale, inverseTextScale);
-            labelPainter.Paint(canvas, Dart: uiDefaultClass.Offset.Zero - new Offset(labelHalfWidth, labelPainter.Height / 2.0));
+            labelPainter.Paint(canvas, Dart.UI.UiDefaultClass.Offset.Zero - new Offset(labelHalfWidth, labelPainter.Height / 2.0));
             canvas.Restore();
             canvas.Restore();
         }

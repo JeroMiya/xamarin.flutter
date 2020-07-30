@@ -477,7 +477,7 @@ namespace FlutterSDK.Services.Fontloader
             if (_Loaded) throw new StateError("FontLoader is already loaded");
             _Loaded = true;
             Iterable<Future<void>> loadFutures = _FontFutures.Map((Future<Uint8List> f) => =>f.Then((Uint8List list) => =>LoadFont(list, Family)));
-            return Dart:asyncDefaultClass.Future.Wait(loadFutures.ToList());
+            return Dart.AsyncDefaultClass.Future.Wait(loadFutures.ToList());
         }
 
 
@@ -491,7 +491,7 @@ namespace FlutterSDK.Services.Fontloader
         /// </Summary>
         public virtual Future<object> LoadFont(Uint8List list, string family)
         {
-            return Dart:uiDefaultClass.LoadFontFromList(list, fontFamily: family);
+            return Dart.UI.UiDefaultClass.LoadFontFromList(list, fontFamily: family);
         }
 
 

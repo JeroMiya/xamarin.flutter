@@ -590,7 +590,7 @@ namespace FlutterSDK.Rendering.Image
         public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
-            properties.Add(new DiagnosticsProperty<Ui.Dart:uiDefaultClass.Image>("image", Image));
+            properties.Add(new DiagnosticsProperty<Dart.UI.Image>("image", Image));
             properties.Add(new DoubleProperty("width", Width, defaultValue: null));
             properties.Add(new DoubleProperty("height", Height, defaultValue: null));
             properties.Add(new DoubleProperty("scale", Scale, defaultValue: 1.0));

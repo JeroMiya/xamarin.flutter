@@ -572,7 +572,7 @@ namespace FlutterSDK.Material.Slider
             OverlayController = new AnimationController(duration: ConstantsDefaultClass.KRadialReactionDuration, vsync: this);
             ValueIndicatorController = new AnimationController(duration: ValueIndicatorAnimationDuration, vsync: this);
             EnableController = new AnimationController(duration: EnableAnimationDuration, vsync: this);
-            PositionController = new AnimationController(duration: Dart:coreDefaultClass.Duration.Zero, vsync: this);
+            PositionController = new AnimationController(duration: Dart.CoreDefaultClass.Duration.Zero, vsync: this);
             EnableController.Value = Widget.OnChanged != null ? 1.0 : 0.0;
             PositionController.Value = _Unlerp(Widget.Value);
         }
@@ -679,7 +679,7 @@ namespace FlutterSDK.Material.Slider
 
         private FlutterSDK.Widgets.Framework.Widget _BuildCupertinoSlider(FlutterSDK.Widgets.Framework.BuildContext context)
         {
-            return new SizedBox(width: Dart:coreDefaultClass.Double.Infinity, child: new CupertinoSlider(value: Widget.Value, onChanged: Widget.OnChanged, onChangeStart: Widget.OnChangeStart, onChangeEnd: Widget.OnChangeEnd, min: Widget.Min, max: Widget.Max, divisions: Widget.Divisions, activeColor: Widget.ActiveColor));
+            return new SizedBox(width: Dart.CoreDefaultClass.Double.Infinity, child: new CupertinoSlider(value: Widget.Value, onChanged: Widget.OnChanged, onChangeStart: Widget.OnChangeStart, onChangeEnd: Widget.OnChangeEnd, min: Widget.Min, max: Widget.Max, divisions: Widget.Divisions, activeColor: Widget.ActiveColor));
         }
 
 
@@ -1011,17 +1011,17 @@ namespace FlutterSDK.Material.Slider
 
 
 
-        public new double ComputeMinIntrinsicHeight(double width) => Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMinIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new double ComputeMaxIntrinsicHeight(double width) => Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
+        public new double ComputeMaxIntrinsicHeight(double width) => Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight);
 
 
 
-public new void PerformResize()
+        public new void PerformResize()
         {
-            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Dart:mathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
+            Size = new Size(Constraints.HasBoundedWidth ? Constraints.MaxWidth : _MinPreferredTrackWidth + _MaxSliderPartWidth, Constraints.HasBoundedHeight ? Constraints.MaxHeight : Dart.Math.MathDefaultClass.Max(_MinPreferredTrackHeight, _MaxSliderPartHeight));
         }
 
 

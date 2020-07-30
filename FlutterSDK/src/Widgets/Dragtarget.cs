@@ -598,7 +598,7 @@ namespace FlutterSDK.Widgets.Dragtarget
         {
             if (Widget.MaxSimultaneousDrags != null && _ActiveCount >= Widget.MaxSimultaneousDrags) return null;
             Offset dragStartPoint = default(Offset);
-            switch (Widget.DragAnchor) { case DragAnchor.Child: RenderBox renderObject = Context.FindRenderObject() as RenderBox; dragStartPoint = renderObject.GlobalToLocal(position); break; case DragAnchor.Pointer: dragStartPoint = Dart:uiDefaultClass.Offset.Zero; break; }
+            switch (Widget.DragAnchor) { case DragAnchor.Child: RenderBox renderObject = Context.FindRenderObject() as RenderBox; dragStartPoint = renderObject.GlobalToLocal(position); break; case DragAnchor.Pointer: dragStartPoint = Dart.UiDefaultClass.Offset.Zero; break; }
             SetState(() =>
             {
                 _ActiveCount += 1;
@@ -933,7 +933,7 @@ namespace FlutterSDK.Widgets.Dragtarget
         private FlutterSDK.Widgets.Framework.Widget _Build(FlutterSDK.Widgets.Framework.BuildContext context)
         {
             RenderBox box = OverlayState.Context.FindRenderObject() as RenderBox;
-            Offset overlayTopLeft = box.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero);
+            Offset overlayTopLeft = box.LocalToGlobal(Dart.UI.UiDefaultClass.Offset.Zero);
             return new Positioned(left: _LastOffset.Dx - overlayTopLeft.Dx, top: _LastOffset.Dy - overlayTopLeft.Dy, child: new IgnorePointer(child: Feedback, ignoringSemantics: IgnoringFeedbackSemantics));
         }
 

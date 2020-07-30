@@ -739,7 +739,7 @@ namespace FlutterSDK.Painting.Strutstyle
         /// </Summary>
         public virtual FlutterSDK.Painting.Basictypes.RenderComparison CompareTo(FlutterSDK.Painting.Strutstyle.StrutStyle other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return RenderComparison.Identical;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return RenderComparison.Identical;
             if (FontFamily != other.FontFamily || FontSize != other.FontSize || FontWeight != other.FontWeight || FontStyle != other.FontStyle || Height != other.Height || Leading != other.Leading || ForceStrutHeight != other.ForceStrutHeight || !CollectionsDefaultClass.ListEquals(FontFamilyFallback, other.FontFamilyFallback)) return RenderComparison.Layout;
             return RenderComparison.Identical;
         }
@@ -768,7 +768,7 @@ namespace FlutterSDK.Painting.Strutstyle
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is StrutStyle && other.FontFamily == FontFamily && other.FontSize == FontSize && other.FontWeight == FontWeight && other.FontStyle == FontStyle && other.Height == Height && other.Leading == Leading && other.ForceStrutHeight == ForceStrutHeight;
         }

@@ -1429,7 +1429,7 @@ namespace FlutterSDK.Rendering.@object
 
 
             childContext = (childContext == null ? new PaintingContext(child._Layer, child.PaintBounds) : childContext);
-            child._PaintWithContext(childContext, Dart: uiDefaultClass.Offset.Zero);
+            child._PaintWithContext(childContext, Dart.UI.UiDefaultClass.Offset.Zero);
 
             childContext.StopRecordingIfNeeded();
         }
@@ -1925,7 +1925,7 @@ namespace FlutterSDK.Rendering.@object
         {
             OpacityLayer layer = oldLayer ?? new OpacityLayer();
             ..Alpha = alpha..Offset = offset;
-            PushLayer(layer, painter, Dart: uiDefaultClass.Offset.Zero);
+            PushLayer(layer, painter, Dart.UI.UiDefaultClass.Offset.Zero);
             return layer;
         }
 
@@ -2169,7 +2169,7 @@ namespace FlutterSDK.Rendering.@object
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Layout", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Layout", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             }
 
 
@@ -2192,7 +2192,7 @@ namespace FlutterSDK.Rendering.@object
 
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.FinishSync();
+                    Dart.DeveloperDefaultClass.Timeline.FinishSync();
                 }
 
             }
@@ -2231,7 +2231,7 @@ namespace FlutterSDK.Rendering.@object
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Compositing bits");
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Compositing bits");
             }
 
             _NodesNeedingCompositingBitsUpdate.Sort((RenderObject a, RenderObject b) => =>a.Depth - b.Depth);
@@ -2243,7 +2243,7 @@ namespace FlutterSDK.Rendering.@object
             _NodesNeedingCompositingBitsUpdate.Clear();
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.FinishSync();
+                Dart.DeveloperDefaultClass.Timeline.FinishSync();
             }
 
         }
@@ -2264,7 +2264,7 @@ namespace FlutterSDK.Rendering.@object
         {
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Paint", arguments: DebugDefaultClass.TimelineWhitelistArguments);
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Paint", arguments: DebugDefaultClass.TimelineWhitelistArguments);
             }
 
 
@@ -2297,7 +2297,7 @@ namespace FlutterSDK.Rendering.@object
 
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.FinishSync();
+                    Dart.DeveloperDefaultClass.Timeline.FinishSync();
                 }
 
             }
@@ -2371,7 +2371,7 @@ namespace FlutterSDK.Rendering.@object
             if (_SemanticsOwner == null) return;
             if (!ConstantsDefaultClass.KReleaseMode)
             {
-            Dart: developerDefaultClass.Timeline.StartSync("Semantics");
+                Dart.DeveloperDefaultClass.Timeline.StartSync("Semantics");
             }
 
 
@@ -2394,7 +2394,7 @@ namespace FlutterSDK.Rendering.@object
 
                 if (!ConstantsDefaultClass.KReleaseMode)
                 {
-                Dart: developerDefaultClass.Timeline.FinishSync();
+                    Dart.DeveloperDefaultClass.Timeline.FinishSync();
                 }
 
             }
@@ -4518,7 +4518,7 @@ namespace FlutterSDK.Rendering.@object
         {
 
             if (rect == null) return null;
-            if (rect.IsEmpty() || transform.IsZero()) return Dart:uiDefaultClass.Rect.Zero;
+            if (rect.IsEmpty() || transform.IsZero()) return Dart.UiDefaultClass.Rect.Zero;
             return MatrixutilsDefaultClass.MatrixUtils.InverseTransformRect(transform, rect);
         }
 

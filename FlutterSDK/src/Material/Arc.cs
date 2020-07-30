@@ -426,7 +426,7 @@ namespace FlutterSDK.Material.Arc
             double deltaY = delta.Dy.Abs();
             double distanceFromAtoB = delta.Distance;
             Offset c = new Offset(End.Dx, Begin.Dy);
-            double SweepAngle() => 2.0 * Math.Dart:mathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
+            double SweepAngle() => 2.0 * Dart.Math.MathDefaultClass.Asin(distanceFromAtoB / (2.0 * _Radius));
             if (deltaX > ArcDefaultClass._KOnAxisDelta && deltaY > ArcDefaultClass._KOnAxisDelta)
             {
                 if (deltaX < deltaY)
@@ -440,8 +440,8 @@ namespace FlutterSDK.Material.Arc
                     }
                     else
                     {
-                        _BeginAngle = Math.Dart:mathDefaultClass.Pi + SweepAngle() * (End.Dy - Begin.Dy).Sign;
-                        _EndAngle = Math.Dart:mathDefaultClass.Pi;
+                        _BeginAngle = Math.Dart.MathDefaultClass.Pi + SweepAngle() * (End.Dy - Begin.Dy).Sign;
+                        _EndAngle = Math.Dart.MathDefaultClass.Pi;
                     }
 
                 }
@@ -451,12 +451,12 @@ namespace FlutterSDK.Material.Arc
                     _Center = new Offset(Begin.Dx, Begin.Dy + (End.Dy - Begin.Dy).Sign * _Radius);
                     if (Begin.Dy < End.Dy)
                     {
-                        _BeginAngle = -Math.Dart:mathDefaultClass.Pi / 2.0;
+                        _BeginAngle = -Math.Dart.MathDefaultClass.Pi / 2.0;
                         _EndAngle = _BeginAngle + SweepAngle() * (End.Dx - Begin.Dx).Sign;
                     }
                     else
                     {
-                        _BeginAngle = Math.Dart:mathDefaultClass.Pi / 2.0;
+                        _BeginAngle = Math.Dart.MathDefaultClass.Pi / 2.0;
                         _EndAngle = _BeginAngle + SweepAngle() * (Begin.Dx - End.Dx).Sign;
                     }
 
@@ -482,10 +482,10 @@ namespace FlutterSDK.Material.Arc
             if (_Dirty) _Initialize();
             if (t == 0.0) return Begin;
             if (t == 1.0) return End;
-            if (_BeginAngle == null || _EndAngle == null) return Dart:uiDefaultClass.Offset.Lerp(Begin, End, t);
-            double angle = Dart:uiDefaultClass.LerpDouble(_BeginAngle, _EndAngle, t);
-            double x = Math.Dart:mathDefaultClass.Cos(angle) * _Radius;
-            double y = Math.Dart:mathDefaultClass.Sin(angle) * _Radius;
+            if (_BeginAngle == null || _EndAngle == null) return Dart.UI.UiDefaultClass.Offset.Lerp(Begin, End, t);
+            double angle = Dart.UI.UiDefaultClass.LerpDouble(_BeginAngle, _EndAngle, t);
+            double x = Dart.Math.MathDefaultClass.Cos(angle) * _Radius;
+            double y = Dart.Math.MathDefaultClass.Sin(angle) * _Radius;
             return _Center + new Offset(x, y);
         }
 
@@ -570,7 +570,7 @@ namespace FlutterSDK.Material.Arc
         private Offset _CornerFor(FlutterBinding.UI.Rect rect, FlutterSDK.Material.Arc._CornerId id)
         {
             switch (id) { case _CornerId.TopLeft: return rect.TopLeft; case _CornerId.TopRight: return rect.TopRight; case _CornerId.BottomLeft: return rect.BottomLeft; case _CornerId.BottomRight: return rect.BottomRight; }
-            return Dart:uiDefaultClass.Offset.Zero;
+            return Dart.UiDefaultClass.Offset.Zero;
         }
 
 
@@ -638,8 +638,8 @@ namespace FlutterSDK.Material.Arc
             if (t == 0.0) return Begin;
             if (t == 1.0) return End;
             Offset center = _CenterArc.Lerp(t);
-            double width = Dart:uiDefaultClass.LerpDouble(Begin.Width, End.Width, t);
-            double height = Dart:uiDefaultClass.LerpDouble(Begin.Height, End.Height, t);
+            double width = Dart.UI.UiDefaultClass.LerpDouble(Begin.Width, End.Width, t);
+            double height = Dart.UI.UiDefaultClass.LerpDouble(Begin.Height, End.Height, t);
             return Rect.FromLTWH(center.Dx - width / 2.0, center.Dy - height / 2.0, width, height);
         }
 

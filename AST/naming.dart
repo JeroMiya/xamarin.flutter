@@ -326,13 +326,18 @@ class Naming {
   }
 
   static String DefaultClassName(CompilationUnitElement element) {
-    var name = element.library.identifier
-            .replaceAll(".dart", "")
-            .replaceAll(".g", "")
-            .split("/")
-            .last +
-        "DefaultClass";
-    return getFormattedName(name, NameStyle.UpperCamelCase);
+    var prefix = element.library.identifier
+        .replaceAll(".dart", "")
+        .replaceAll(".g", "")
+        .replaceAll(':', '.')
+        .split("/")
+        .last;
+
+    var name = prefix + "DefaultClass";
+    var formattedName = name.split('.').map((String s) {
+      return getFormattedName(s, NameStyle.UpperCamelCase);
+    }).join('.');
+    return formattedName;
   }
 
   static String getTopLevelVariableName(TopLevelVariableElement element) {

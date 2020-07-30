@@ -459,7 +459,7 @@ namespace FlutterSDK.Services.Textediting
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is TextSelection && other.BaseOffset == BaseOffset && other.ExtentOffset == ExtentOffset && other.Affinity == Affinity && other.IsDirectional == IsDirectional;
         }
 

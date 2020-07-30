@@ -322,10 +322,10 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
 
         }
 
-        public new FontWeight Lerp(double t) => Dart:uiDefaultClass.FontWeight.Lerp(Begin, End, t);
+        public new FontWeight Lerp(double t) => Dart.UI.UiDefaultClass.FontWeight.Lerp(Begin, End, t);
 
 
-}
+    }
 
 
     /// <Summary>
@@ -829,7 +829,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
         private bool _HasDraggedTooFar(FlutterSDK.Gestures.Dragdetails.DragUpdateDetails details)
         {
             Offset offCenter = details.LocalPosition - new Offset(Size.Width / 2, Size.Height / 2);
-            return Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.Max(0, offCenter.Dx.Abs() - Size.Width / 2), 2) + Math.Dart:mathDefaultClass.Pow(Math.Dart:mathDefaultClass.Max(0, offCenter.Dy.Abs() - Size.Height / 2), 2) > SlidingsegmentedcontrolDefaultClass._KTouchYDistanceThreshold;
+            return Dart.Math.MathDefaultClass.Pow(Dart.Math.MathDefaultClass.Max(0, offCenter.Dx.Abs() - Size.Width / 2), 2) + Dart.Math.MathDefaultClass.Pow(Dart.Math.MathDefaultClass.Max(0, offCenter.Dy.Abs() - Size.Height / 2), 2) > SlidingsegmentedcontrolDefaultClass._KTouchYDistanceThreshold;
         }
 
 
@@ -843,7 +843,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childWidth = child.GetMinIntrinsicWidth(height);
-                maxMinChildWidth = Math.Dart:mathDefaultClass.Max(maxMinChildWidth, childWidth);
+                maxMinChildWidth = Dart.Math.MathDefaultClass.Max(maxMinChildWidth, childWidth);
                 child = childParentData.NextSibling;
             }
 
@@ -861,7 +861,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childWidth = child.GetMaxIntrinsicWidth(height);
-                maxMaxChildWidth = Math.Dart:mathDefaultClass.Max(maxMaxChildWidth, childWidth);
+                maxMaxChildWidth = Dart.Math.MathDefaultClass.Max(maxMaxChildWidth, childWidth);
                 child = childParentData.NextSibling;
             }
 
@@ -879,7 +879,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childHeight = child.GetMinIntrinsicHeight(width);
-                maxMinChildHeight = Math.Dart:mathDefaultClass.Max(maxMinChildHeight, childHeight);
+                maxMinChildHeight = Dart.Math.MathDefaultClass.Max(maxMinChildHeight, childHeight);
                 child = childParentData.NextSibling;
             }
 
@@ -897,7 +897,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             {
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 double childHeight = child.GetMaxIntrinsicHeight(width);
-                maxMaxChildHeight = Math.Dart:mathDefaultClass.Max(maxMaxChildHeight, childHeight);
+                maxMaxChildHeight = Dart.Math.MathDefaultClass.Max(maxMaxChildHeight, childHeight);
                 child = childParentData.NextSibling;
             }
 
@@ -944,15 +944,15 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
             double maxHeight = SlidingsegmentedcontrolDefaultClass._KMinSegmentedControlHeight;
             foreach (RenderBox child in GetChildrenAsList())
             {
-                childWidth = Math.Dart:mathDefaultClass.Max(childWidth, child.GetMaxIntrinsicWidth(Dart: coreDefaultClass.Double.Infinity) + 2 * SlidingsegmentedcontrolDefaultClass._KSegmentMinPadding);
+                childWidth = Dart.Math.MathDefaultClass.Max(childWidth, child.GetMaxIntrinsicWidth(Dart.CoreDefaultClass.Double.Infinity) + 2 * SlidingsegmentedcontrolDefaultClass._KSegmentMinPadding);
             }
 
-            childWidth = Math.Dart:mathDefaultClass.Min(childWidth, (constraints.MaxWidth - TotalSeparatorWidth) / ChildCount);
+            childWidth = Dart.Math.MathDefaultClass.Min(childWidth, (constraints.MaxWidth - TotalSeparatorWidth) / ChildCount);
             RenderBox child = FirstChild;
             while (child != null)
             {
                 double boxHeight = child.GetMaxIntrinsicHeight(childWidth);
-                maxHeight = Math.Dart:mathDefaultClass.Max(maxHeight, boxHeight);
+                maxHeight = Dart.Math.MathDefaultClass.Max(maxHeight, boxHeight);
                 child = ChildAfter(child);
             }
 
@@ -1104,7 +1104,7 @@ namespace FlutterSDK.Cupertino.Slidingsegmentedcontrol
                 _SegmentedControlContainerBoxParentData childParentData = child.ParentData as _SegmentedControlContainerBoxParentData;
                 if ((childParentData.Offset & child.Size).Contains(position))
                 {
-                    Offset center = (Dart: uiDefaultClass.Offset.Zero & child.Size).Center;
+                    Offset center = (Dart.UiDefaultClass.Offset.Zero & child.Size).Center;
                     return result.AddWithRawTransform(transform: MatrixutilsDefaultClass.MatrixUtils.ForceToPoint(center), position: center, hitTest: (BoxHitTestResult result, Offset position) =>
                     {
 

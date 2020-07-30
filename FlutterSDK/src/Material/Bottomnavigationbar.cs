@@ -578,8 +578,8 @@ namespace FlutterSDK.Material.Bottomnavigationbar
             double selectedFontSize = SelectedLabelStyle.FontSize;
             double selectedIconSize = SelectedIconTheme?.Size ?? IconSize;
             double unselectedIconSize = UnselectedIconTheme?.Size ?? IconSize;
-            double selectedIconDiff = Math.Dart:mathDefaultClass.Max(selectedIconSize - unselectedIconSize, 0);
-            double unselectedIconDiff = Math.Dart:mathDefaultClass.Max(unselectedIconSize - selectedIconSize, 0);
+            double selectedIconDiff = Dart.Math.MathDefaultClass.Max(selectedIconSize - unselectedIconSize, 0);
+            double unselectedIconDiff = Dart.Math.MathDefaultClass.Max(unselectedIconSize - selectedIconSize, 0);
             double bottomPadding = default(double);
             double topPadding = default(double);
             if (ShowSelectedLabels && !ShowUnselectedLabels)
@@ -760,7 +760,7 @@ namespace FlutterSDK.Material.Bottomnavigationbar
         {
             if (Widget.Items[index].BackgroundColor != null)
             {
-                _Circles.Add(new _Circle(state: this, index: index, color: Widget.Items[index].BackgroundColor, vsync: this)..Controller.AddStatusListener((AnimationStatus status) =>
+                _Circles.Add(new _Circle(state: this, index: index, color: Widget.Items[index].BackgroundColor, vsync: this).Controller.AddStatusListener((AnimationStatus status) =>
                 {
                     switch (status)
                     {
@@ -775,7 +775,7 @@ namespace FlutterSDK.Material.Bottomnavigationbar
                         case AnimationStatus.Dismissed: case AnimationStatus.Forward: case AnimationStatus.Reverse: break;
                     }
                 }
-                ));
+                );
             }
 
         }
@@ -857,7 +857,7 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
 
 
-            double additionalBottomPadding = Math.Dart:mathDefaultClass.Max(MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Bottom - Widget.SelectedFontSize / 2.0, 0.0);
+            double additionalBottomPadding = Dart.Math.MathDefaultClass.Max(MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Bottom - Widget.SelectedFontSize / 2.0, 0.0);
             Color backgroundColor = default(Color);
             switch (Widget.Type) { case BottomNavigationBarType.Fixed: backgroundColor = Widget.BackgroundColor; break; case BottomNavigationBarType.Shifting: backgroundColor = _BackgroundColor; break; }
             return new Semantics(explicitChildNodes: true, child: new Material(elevation: Widget.Elevation, color: backgroundColor, child: new ConstrainedBox(constraints: new BoxConstraints(minHeight: ConstantsDefaultClass.KBottomNavigationBarHeight + additionalBottomPadding), child: new CustomPaint(painter: new _RadialPainter(circles: _Circles.ToList(), textDirection: BasicDefaultClass.Directionality.Of(context)), child: new Material(type: MaterialType.Transparency, child: new Padding(padding: EdgeInsets.Only(bottom: additionalBottomPadding), child: MediaQuery.RemovePadding(context: context, removeBottom: true, child: _CreateContainer(_CreateTiles()))))))));
@@ -912,9 +912,9 @@ namespace FlutterSDK.Material.Bottomnavigationbar
 
         private double _MaxRadius(FlutterBinding.UI.Offset center, Size size)
         {
-            double maxX = Math.Dart:mathDefaultClass.Max(center.Dx, size.Width - center.Dx);
-            double maxY = Math.Dart:mathDefaultClass.Max(center.Dy, size.Height - center.Dy);
-            return Math.Dart:mathDefaultClass.Sqrt(maxX * maxX + maxY * maxY);
+            double maxX = Dart.Math.MathDefaultClass.Max(center.Dx, size.Width - center.Dx);
+            double maxY = Dart.Math.MathDefaultClass.Max(center.Dy, size.Height - center.Dy);
+            return Dart.Math.MathDefaultClass.Sqrt(maxX * maxX + maxY * maxY);
         }
 
 

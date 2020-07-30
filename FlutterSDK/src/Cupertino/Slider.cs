@@ -373,7 +373,7 @@ namespace FlutterSDK.Cupertino.Slider
         private void _HandleChanged(double value)
         {
 
-            double lerpValue = Dart:uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
+            double lerpValue = Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value);
             if (lerpValue != Widget.Value)
             {
                 Widget.OnChanged(lerpValue);
@@ -387,7 +387,7 @@ namespace FlutterSDK.Cupertino.Slider
         private void _HandleDragStart(double value)
         {
 
-            Widget.OnChangeStart(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
+            Widget.OnChangeStart(Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
         }
 
 
@@ -396,7 +396,7 @@ namespace FlutterSDK.Cupertino.Slider
         private void _HandleDragEnd(double value)
         {
 
-            Widget.OnChangeEnd(Dart: uiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
+            Widget.OnChangeEnd(Dart.UI.UiDefaultClass.LerpDouble(Widget.Min, Widget.Max, value));
         }
 
 
@@ -506,7 +506,7 @@ namespace FlutterSDK.Cupertino.Slider
         {
             if (IsInteractive)
             {
-                double extent = Math.Dart:mathDefaultClass.Max(SliderDefaultClass._KPadding, Size.Width - 2.0 * (SliderDefaultClass._KPadding + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
+                double extent = Dart.Math.MathDefaultClass.Max(SliderDefaultClass._KPadding, Size.Width - 2.0 * (SliderDefaultClass._KPadding + ThumbpainterDefaultClass.CupertinoThumbPainter.Radius));
                 double valueDelta = details.PrimaryDelta / extent;
                 switch (TextDirection) { case TextDirection.Rtl: _CurrentDragValue -= valueDelta; break; case TextDirection.Ltr: _CurrentDragValue += valueDelta; break; }
                 OnChanged(_DiscretizedCurrentDragValue);

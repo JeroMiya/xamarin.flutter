@@ -332,7 +332,8 @@ namespace FlutterSDK.Gestures.Converter
         /// </Summary>
         public virtual Iterable<FlutterSDK.Gestures.Events.PointerEvent> Expand(Iterable<PointerData> data, double devicePixelRatio)
         {
-            foreach (Ui.Dart:uiDefaultClass.PointerData datum  in data){
+            foreach (Dart.UI.PointerData datum in data)
+            {
                 Offset position = new Offset(datum.PhysicalX, datum.PhysicalY) / devicePixelRatio;
                 Offset delta = new Offset(datum.PhysicalDeltaX, datum.PhysicalDeltaY) / devicePixelRatio;
                 double radiusMinor = _ToLogicalPixels(datum.RadiusMinor, devicePixelRatio);

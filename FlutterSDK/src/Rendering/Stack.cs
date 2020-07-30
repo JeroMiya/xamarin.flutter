@@ -506,7 +506,7 @@ namespace FlutterSDK.Rendering.Stack
         /// </Summary>
         public virtual FlutterSDK.Rendering.Stack.RelativeRect Intersect(FlutterSDK.Rendering.Stack.RelativeRect other)
         {
-            return RelativeRect.FromLTRB(Math.Dart:mathDefaultClass.Max(Left, other.Left), Math.Dart:mathDefaultClass.Max(Top, other.Top), Math.Dart:mathDefaultClass.Max(Right, other.Right), Math.Dart:mathDefaultClass.Max(Bottom, other.Bottom));
+            return RelativeRect.FromLTRB(Dart.Math.MathDefaultClass.Max(Left, other.Left), Dart.Math.MathDefaultClass.Max(Top, other.Top), Dart.Math.MathDefaultClass.Max(Right, other.Right), Dart.Math.MathDefaultClass.Max(Bottom, other.Bottom));
         }
 
 
@@ -561,7 +561,7 @@ namespace FlutterSDK.Rendering.Stack
                 return RelativeRect.FromLTRB(b.Left * k, b.Top * k, b.Right * k, b.Bottom * k);
             }
 
-            return RelativeRect.FromLTRB(Dart: uiDefaultClass.LerpDouble(a.Left, b.Left, t), Dart: uiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart: uiDefaultClass.LerpDouble(a.Right, b.Right, t), Dart: uiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
+            return RelativeRect.FromLTRB(Dart.UI.UiDefaultClass.LerpDouble(a.Left, b.Left, t), Dart.UI.UiDefaultClass.LerpDouble(a.Top, b.Top, t), Dart.UI.UiDefaultClass.LerpDouble(a.Right, b.Right, t), Dart.UI.UiDefaultClass.LerpDouble(a.Bottom, b.Bottom, t));
         }
 
 
@@ -569,7 +569,7 @@ namespace FlutterSDK.Rendering.Stack
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             return other is RelativeRect && other.Left == Left && other.Top == Top && other.Right == Right && other.Bottom == Bottom;
         }
 
@@ -699,7 +699,7 @@ namespace FlutterSDK.Rendering.Stack
             while (child != null)
             {
                 StackParentData childParentData = child.ParentData as StackParentData;
-                if (!childParentData.IsPositioned) extent = Math.Dart:mathDefaultClass.Max(extent, mainChildSizeGetter(child));
+                if (!childParentData.IsPositioned) extent = Dart.Math.MathDefaultClass.Max(extent, mainChildSizeGetter(child));
 
                 child = childParentData.NextSibling;
             }
@@ -830,8 +830,8 @@ namespace FlutterSDK.Rendering.Stack
                     hasNonPositionedChildren = true;
                     child.Layout(nonPositionedConstraints, parentUsesSize: true);
                     Size childSize = child.Size;
-                    width = Math.Dart:mathDefaultClass.Max(width, childSize.Width);
-                    height = Math.Dart:mathDefaultClass.Max(height, childSize.Height);
+                    width = Dart.Math.MathDefaultClass.Max(width, childSize.Width);
+                    height = Dart.Math.MathDefaultClass.Max(height, childSize.Height);
                 }
 
                 child = childParentData.NextSibling;
@@ -897,7 +897,7 @@ namespace FlutterSDK.Rendering.Stack
         {
             if (_Overflow == Overflow.Clip && _HasVisualOverflow)
             {
-                context.PushClipRect(NeedsCompositing, offset, Dart: uiDefaultClass.Offset.Zero & Size, PaintStack);
+                context.PushClipRect(NeedsCompositing, offset, Dart.UI.UiDefaultClass.Offset.Zero & Size, PaintStack);
             }
             else
             {
@@ -909,11 +909,11 @@ namespace FlutterSDK.Rendering.Stack
 
 
 
-        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart : uiDefaultClass.Offset.Zero & Size:null ;
+        public new Rect DescribeApproximatePaintClip(FlutterSDK.Rendering.@object.RenderObject child) => _HasVisualOverflow ? Dart.UiDefaultClass.Offset.Zero & Size : null;
 
 
 
-public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
+        public new void DebugFillProperties(FlutterSDK.Foundation.Diagnostics.DiagnosticPropertiesBuilder properties)
         {
             base.DebugFillProperties(properties);
             properties.Add(new DiagnosticsProperty<AlignmentGeometry>("alignment", Alignment));

@@ -873,7 +873,7 @@ namespace FlutterSDK.Painting.Boxborder
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is Border && other.Top == Top && other.Right == Right && other.Bottom == Bottom && other.Left == Left;
         }
@@ -1088,7 +1088,7 @@ namespace FlutterSDK.Painting.Boxborder
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is BorderDirectional && other.Top == Top && other.Start == Start && other.End == End && other.Bottom == Bottom;
         }

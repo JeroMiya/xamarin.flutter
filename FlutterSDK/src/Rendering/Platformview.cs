@@ -840,7 +840,7 @@ namespace FlutterSDK.Rendering.Platformview
                 return;
             }
 
-            if (!(Dart: uiDefaultClass.Offset.Zero & Size).Contains(GlobalToLocal(@event.Position)))
+            if (!(Dart.UI.UiDefaultClass.Offset.Zero & Size).Contains(GlobalToLocal(@event.Position)))
             {
                 return;
             }

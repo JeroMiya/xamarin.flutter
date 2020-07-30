@@ -348,7 +348,7 @@ namespace FlutterSDK.Gestures.Binding
         /// </Summary>
         public virtual void CancelPointer(int pointer)
         {
-            if (_PendingPointerEvents.IsEmpty() && !Locked) Dart: asyncDefaultClass.ScheduleMicrotask(_FlushPointerEventQueue);
+            if (_PendingPointerEvents.IsEmpty() && !Locked) Dart.AsyncDefaultClass.ScheduleMicrotask(_FlushPointerEventQueue);
             _PendingPointerEvents.AddFirst(new PointerCancelEvent(pointer: pointer));
         }
 

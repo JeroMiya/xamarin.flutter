@@ -602,7 +602,7 @@ namespace FlutterSDK.Rendering.Tableborder
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is TableBorder && other.Top == Top && other.Right == Right && other.Bottom == Bottom && other.Left == Left && other.HorizontalInside == HorizontalInside && other.VerticalInside == VerticalInside;
         }

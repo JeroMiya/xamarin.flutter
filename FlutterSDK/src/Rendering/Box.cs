@@ -937,7 +937,7 @@ namespace FlutterSDK.Rendering.Box
                 if (candidate != null)
                 {
                     candidate += childParentData.Offset.Dy;
-                    if (result != null) result = Math.Dart:mathDefaultClass.Min(result, candidate);else result = candidate;
+                    if (result != null) result = Dart.Math.MathDefaultClass.Min(result, candidate); else result = candidate;
                 }
 
                 child = childParentData.NextSibling;
@@ -1569,9 +1569,9 @@ namespace FlutterSDK.Rendering.Box
 
             double horizontal = edges.Horizontal;
             double vertical = edges.Vertical;
-            double deflatedMinWidth = Math.Dart:mathDefaultClass.Max(0.0, MinWidth - horizontal);
-            double deflatedMinHeight = Math.Dart:mathDefaultClass.Max(0.0, MinHeight - vertical);
-            return new BoxConstraints(minWidth: deflatedMinWidth, maxWidth: Math.Dart:mathDefaultClass.Max(deflatedMinWidth, MaxWidth - horizontal), minHeight: deflatedMinHeight, maxHeight: Math.Dart:mathDefaultClass.Max(deflatedMinHeight, MaxHeight - vertical));
+            double deflatedMinWidth = Dart.Math.MathDefaultClass.Max(0.0, MinWidth - horizontal);
+            double deflatedMinHeight = Dart.Math.MathDefaultClass.Max(0.0, MinHeight - vertical);
+            return new BoxConstraints(minWidth: deflatedMinWidth, maxWidth: Dart.Math.MathDefaultClass.Max(deflatedMinWidth, MaxWidth - horizontal), minHeight: deflatedMinHeight, maxHeight: Dart.Math.MathDefaultClass.Max(deflatedMinHeight, MaxHeight - vertical));
         }
 
 
@@ -1830,7 +1830,7 @@ namespace FlutterSDK.Rendering.Box
 
 
 
-            return new BoxConstraints(minWidth: a.MinWidth.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MinWidth, b.MinWidth, t):Dart: coreDefaultClass.Double.Infinity, maxWidth: a.MaxWidth.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MaxWidth, b.MaxWidth, t):Dart: coreDefaultClass.Double.Infinity, minHeight: a.MinHeight.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MinHeight, b.MinHeight, t):Dart: coreDefaultClass.Double.Infinity, maxHeight: a.MaxHeight.IsFinite() ? Ui.Dart : uiDefaultClass.LerpDouble(a.MaxHeight, b.MaxHeight, t):Dart: coreDefaultClass.Double.Infinity);
+            return new BoxConstraints(minWidth: a.MinWidth.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MinWidth, b.MinWidth, t) : Dart.CoreDefaultClass.Double.Infinity, maxWidth: a.MaxWidth.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MaxWidth, b.MaxWidth, t) : Dart.CoreDefaultClass.Double.Infinity, minHeight: a.MinHeight.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MinHeight, b.MinHeight, t) : Dart.CoreDefaultClass.Double.Infinity, maxHeight: a.MaxHeight.IsFinite() ? Dart.UI.UiDefaultClass.LerpDouble(a.MaxHeight, b.MaxHeight, t) : Dart.CoreDefaultClass.Double.Infinity);
         }
 
 
@@ -1865,7 +1865,7 @@ namespace FlutterSDK.Rendering.Box
         public new bool Equals(@Object other)
         {
 
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
 
             return other is BoxConstraints && other.MinWidth == MinWidth && other.MaxWidth == MaxWidth && other.MinHeight == MinHeight && other.MaxHeight == MaxHeight;
@@ -3202,7 +3202,7 @@ namespace FlutterSDK.Rendering.Box
         {
             Matrix4 transform = GetTransformTo(ancestor);
             double det = transform.Invert();
-            if (det == 0.0) return Dart:uiDefaultClass.Offset.Zero;
+            if (det == 0.0) return Dart.UiDefaultClass.Offset.Zero;
             Vector3 n = Vector3(0.0, 0.0, 1.0);
             Vector3 i = transform.PerspectiveTransform(Vector3(0.0, 0.0, 0.0));
             Vector3 d = transform.PerspectiveTransform(Vector3(0.0, 0.0, 1.0)) - i;

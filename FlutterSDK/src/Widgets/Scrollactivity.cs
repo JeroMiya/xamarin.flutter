@@ -850,7 +850,7 @@ namespace FlutterSDK.Widgets.Scrollactivity
                         }
                         else
                         {
-                            return Math.Dart:mathDefaultClass.Min(MotionStartDistanceThreshold / 3.0, offset.Abs()) * offset.Sign;
+                            return Dart.Math.MathDefaultClass.Min(MotionStartDistanceThreshold / 3.0, offset.Abs()) * offset.Sign;
                         }
 
                     }

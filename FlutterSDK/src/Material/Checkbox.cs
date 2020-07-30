@@ -615,7 +615,7 @@ namespace FlutterSDK.Material.Checkbox
 
         private Color _ColorAt(double t)
         {
-            return OnChanged == null ? InactiveColor : (t >= 0.25 ? ActiveColor : Dart:uiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, t * 4.0));
+            return OnChanged == null ? InactiveColor : (t >= 0.25 ? ActiveColor : Dart.UI.UiDefaultClass.Color.Lerp(InactiveColor, ActiveColor, t * 4.0));
         }
 
 
@@ -633,7 +633,7 @@ namespace FlutterSDK.Material.Checkbox
         {
 
             double size = outer.Width;
-            RRect inner = outer.Deflate(Math.Dart:mathDefaultClass.Min(size / 2.0, CheckboxDefaultClass._KStrokeWidth + size * t));
+            RRect inner = outer.Deflate(Dart.Math.MathDefaultClass.Min(size / 2.0, CheckboxDefaultClass._KStrokeWidth + size * t));
             canvas.DrawDRRect(outer, inner, paint);
         }
 
@@ -650,14 +650,14 @@ namespace FlutterSDK.Material.Checkbox
             if (t < 0.5)
             {
                 double strokeT = t * 2.0;
-                Offset drawMid = Dart:uiDefaultClass.Offset.Lerp(start, mid, strokeT);
+                Offset drawMid = Dart.UI.UiDefaultClass.Offset.Lerp(start, mid, strokeT);
                 path.MoveTo(origin.Dx + start.Dx, origin.Dy + start.Dy);
                 path.LineTo(origin.Dx + drawMid.Dx, origin.Dy + drawMid.Dy);
             }
             else
             {
                 double strokeT = (t - 0.5) * 2.0;
-                Offset drawEnd = Dart:uiDefaultClass.Offset.Lerp(mid, end, strokeT);
+                Offset drawEnd = Dart.UI.UiDefaultClass.Offset.Lerp(mid, end, strokeT);
                 path.MoveTo(origin.Dx + start.Dx, origin.Dy + start.Dy);
                 path.LineTo(origin.Dx + mid.Dx, origin.Dy + mid.Dy);
                 path.LineTo(origin.Dx + drawEnd.Dx, origin.Dy + drawEnd.Dy);
@@ -675,8 +675,8 @@ namespace FlutterSDK.Material.Checkbox
             Offset start = new Offset(CheckboxDefaultClass._KEdgeSize * 0.2, CheckboxDefaultClass._KEdgeSize * 0.5);
             Offset mid = new Offset(CheckboxDefaultClass._KEdgeSize * 0.5, CheckboxDefaultClass._KEdgeSize * 0.5);
             Offset end = new Offset(CheckboxDefaultClass._KEdgeSize * 0.8, CheckboxDefaultClass._KEdgeSize * 0.5);
-            Offset drawStart = Dart:uiDefaultClass.Offset.Lerp(start, mid, 1.0 - t);
-            Offset drawEnd = Dart:uiDefaultClass.Offset.Lerp(mid, end, t);
+            Offset drawStart = Dart.UI.UiDefaultClass.Offset.Lerp(start, mid, 1.0 - t);
+            Offset drawEnd = Dart.UI.UiDefaultClass.Offset.Lerp(mid, end, t);
             canvas.DrawLine(origin + drawStart, origin + drawEnd, paint);
         }
 
@@ -686,7 +686,7 @@ namespace FlutterSDK.Material.Checkbox
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
             Canvas canvas = context.Canvas;
-            PaintRadialReaction(canvas, offset, Size.Center(Dart: uiDefaultClass.Offset.Zero));
+            PaintRadialReaction(canvas, offset, Size.Center(Dart.UI.UiDefaultClass.Offset.Zero));
             Paint strokePaint = _CreateStrokePaint();
             Offset origin = offset + (Size / 2.0 - Size.Square(CheckboxDefaultClass._KEdgeSize) / 2.0 as Offset);
             AnimationStatus status = Position.Status;

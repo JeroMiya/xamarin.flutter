@@ -649,7 +649,7 @@ namespace FlutterSDK.Material.Tooltip
         private void _CreateNewEntry()
         {
             RenderBox box = Context.FindRenderObject() as RenderBox;
-            Offset target = box.LocalToGlobal(box.Size.Center(Dart: uiDefaultClass.Offset.Zero));
+            Offset target = box.LocalToGlobal(box.Size.Center(Dart.UI.UiDefaultClass.Offset.Zero));
             Widget overlay = new Directionality(textDirection: BasicDefaultClass.Directionality.Of(Context), child: new _TooltipOverlay(message: Widget.Message, height: Height, padding: Padding, margin: Margin, decoration: Decoration, textStyle: TextStyle, animation: new CurvedAnimation(parent: _Controller, curve: CurvesDefaultClass.Curves.FastOutSlowIn), target: target, verticalOffset: VerticalOffset, preferBelow: PreferBelow));
             _Entry = new OverlayEntry(builder: (BuildContext context) => =>overlay);
             OverlayDefaultClass.Overlay.Of(Context, debugRequiredFor: Widget).Insert(_Entry);

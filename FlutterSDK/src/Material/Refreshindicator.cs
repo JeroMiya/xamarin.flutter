@@ -637,7 +637,7 @@ namespace FlutterSDK.Material.Refreshindicator
         {
 
             double newValue = _DragOffset / (containerExtent * RefreshindicatorDefaultClass._KDragContainerExtentPercentage);
-            if (_Mode == _RefreshIndicatorMode.Armed) newValue = Math.Dart:mathDefaultClass.Max(newValue, 1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit);
+            if (_Mode == _RefreshIndicatorMode.Armed) newValue = Dart.Math.MathDefaultClass.Max(newValue, 1.0 / RefreshindicatorDefaultClass._KDragSizeFactorLimit);
             _PositionController.Value = newValue.Clamp(0.0, 1.0) as double;
             if (_Mode == _RefreshIndicatorMode.Drag && _ValueColor.Value.Alpha == 0xFF) _Mode = _RefreshIndicatorMode.Armed;
         }

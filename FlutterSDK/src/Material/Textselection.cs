@@ -791,13 +791,13 @@ _OverflowOpen=!_OverflowOpen;
                 {
                     childParentData.Offset = new Offset(fitWidth, 0.0);
                     fitWidth += child.Size.Width;
-                    nextSize = new Size(fitWidth, Math.Dart:mathDefaultClass.Max(child.Size.Height, nextSize.Height));
+                    nextSize = new Size(fitWidth, Dart.Math.MathDefaultClass.Max(child.Size.Height, nextSize.Height));
                 }
                 else
                 {
                     childParentData.Offset = new Offset(0.0, overflowHeight);
                     overflowHeight += child.Size.Height;
-                    nextSize = new Size(Math.Dart:mathDefaultClass.Max(child.Size.Width, nextSize.Width), overflowHeight);
+                    nextSize = new Size(Dart.Math.MathDefaultClass.Max(child.Size.Width, nextSize.Width), overflowHeight);
                 }
 
             }
@@ -808,7 +808,7 @@ _OverflowOpen=!_OverflowOpen;
                 navButtonParentData.ShouldPaint = true;
                 if (OverflowOpen)
                 {
-                    navButtonParentData.Offset = IsAbove ? new Offset(0.0, overflowHeight) : Dart:uiDefaultClass.Offset.Zero;
+                    navButtonParentData.Offset = IsAbove ? new Offset(0.0, overflowHeight) : Dart.UiDefaultClass.Offset.Zero;
                     nextSize = new Size(nextSize.Width, IsAbove ? nextSize.Height + navButton.Size.Height : nextSize.Height);
                 }
                 else
@@ -960,7 +960,7 @@ _OverflowOpen=!_OverflowOpen;
 
         public new Offset GetPositionForChild(Size size, Size childSize)
         {
-            return new Offset(_CenterOn(Anchor.Dx, childSize.Width, TextselectionDefaultClass._KToolbarScreenPadding, size.Width - TextselectionDefaultClass._KToolbarScreenPadding), FitsAbove ? Math.Dart : mathDefaultClass.Max(UpperBounds, Anchor.Dy - childSize.Height):Anchor.Dy);
+            return new Offset(_CenterOn(Anchor.Dx, childSize.Width, TextselectionDefaultClass._KToolbarScreenPadding, size.Width - TextselectionDefaultClass._KToolbarScreenPadding), FitsAbove ? Dart.Math.MathDefaultClass.Max(UpperBounds, Anchor.Dy - childSize.Height) : Anchor.Dy);
         }
 
 
@@ -1062,7 +1062,7 @@ _OverflowOpen=!_OverflowOpen;
         public new FlutterSDK.Widgets.Framework.Widget BuildHandle(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textHeight)
         {
             Widget handle = new SizedBox(width: TextselectionDefaultClass._KHandleSize, height: TextselectionDefaultClass._KHandleSize, child: new CustomPaint(painter: new _TextSelectionHandlePainter(color: ThemeDefaultClass.Theme.Of(context).TextSelectionHandleColor)));
-            switch (type) { case TextSelectionHandleType.Left: return Transform.Rotate(angle: Math.Dart:mathDefaultClass.Pi / 2.0, child: handle); case TextSelectionHandleType.Right: return handle; case TextSelectionHandleType.Collapsed: return Transform.Rotate(angle: Math.Dart:mathDefaultClass.Pi / 4.0, child: handle); }
+            switch (type) { case TextSelectionHandleType.Left: return Transform.Rotate(angle: Math.Dart.MathDefaultClass.Pi / 2.0, child: handle); case TextSelectionHandleType.Right: return handle; case TextSelectionHandleType.Collapsed: return Transform.Rotate(angle: Math.Dart.MathDefaultClass.Pi / 4.0, child: handle); }
 
             return null;
         }
@@ -1077,7 +1077,7 @@ _OverflowOpen=!_OverflowOpen;
         /// </Summary>
         public new Offset GetHandleAnchor(FlutterSDK.Widgets.Textselection.TextSelectionHandleType type, double textLineHeight)
         {
-            switch (type) { case TextSelectionHandleType.Left: return new Offset(TextselectionDefaultClass._KHandleSize, 0); case TextSelectionHandleType.Right: return Dart:uiDefaultClass.Offset.Zero; default: return new Offset(TextselectionDefaultClass._KHandleSize / 2, -4); }
+            switch (type) { case TextSelectionHandleType.Left: return new Offset(TextselectionDefaultClass._KHandleSize, 0); case TextSelectionHandleType.Right: return Dart.UiDefaultClass.Offset.Zero; default: return new Offset(TextselectionDefaultClass._KHandleSize / 2, -4); }
         }
 
 

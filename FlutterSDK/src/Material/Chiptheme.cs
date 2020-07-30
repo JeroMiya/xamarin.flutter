@@ -460,7 +460,7 @@ namespace FlutterSDK.Material.Chiptheme
         public new FlutterSDK.Widgets.Framework.Widget Wrap(FlutterSDK.Widgets.Framework.BuildContext context, FlutterSDK.Widgets.Framework.Widget child)
         {
             ChipTheme ancestorTheme = context.FindAncestorWidgetOfExactType();
-            return Dart:coreDefaultClass.Identical(this, ancestorTheme) ? child : new ChipTheme(data: Data, child: child);
+            return Dart.CoreDefaultClass.Identical(this, ancestorTheme) ? child : new ChipTheme(data: Data, child: child);
         }
 
 
@@ -642,7 +642,7 @@ namespace FlutterSDK.Material.Chiptheme
         {
 
             if (a == null && b == null) return null;
-            return new ChipThemeData(backgroundColor: Dart:uiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), deleteIconColor: Dart:uiDefaultClass.Color.Lerp(a?.DeleteIconColor, b?.DeleteIconColor, t), disabledColor: Dart:uiDefaultClass.Color.Lerp(a?.DisabledColor, b?.DisabledColor, t), selectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedColor, b?.SelectedColor, t), secondarySelectedColor: Dart:uiDefaultClass.Color.Lerp(a?.SecondarySelectedColor, b?.SecondarySelectedColor, t), shadowColor: Dart:uiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), selectedShadowColor: Dart:uiDefaultClass.Color.Lerp(a?.SelectedShadowColor, b?.SelectedShadowColor, t), checkmarkColor: Dart:uiDefaultClass.Color.Lerp(a?.CheckmarkColor, b?.CheckmarkColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LabelPadding, b?.LabelPadding, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.LabelStyle, b?.LabelStyle, t), secondaryLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SecondaryLabelStyle, b?.SecondaryLabelStyle, t), brightness: t < 0.5 ? a?.Brightness ?? Brightness.Light : b?.Brightness ?? Brightness.Light, elevation: Dart:uiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), pressElevation: Dart:uiDefaultClass.LerpDouble(a?.PressElevation, b?.PressElevation, t));
+            return new ChipThemeData(backgroundColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.BackgroundColor, b?.BackgroundColor, t), deleteIconColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.DeleteIconColor, b?.DeleteIconColor, t), disabledColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.DisabledColor, b?.DisabledColor, t), selectedColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SelectedColor, b?.SelectedColor, t), secondarySelectedColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SecondarySelectedColor, b?.SecondarySelectedColor, t), shadowColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.ShadowColor, b?.ShadowColor, t), selectedShadowColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.SelectedShadowColor, b?.SelectedShadowColor, t), checkmarkColor: Dart.UI.UiDefaultClass.Color.Lerp(a?.CheckmarkColor, b?.CheckmarkColor, t), labelPadding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.LabelPadding, b?.LabelPadding, t), padding: EdgeinsetsDefaultClass.EdgeInsetsGeometry.Lerp(a?.Padding, b?.Padding, t), shape: BordersDefaultClass.ShapeBorder.Lerp(a?.Shape, b?.Shape, t), labelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.LabelStyle, b?.LabelStyle, t), secondaryLabelStyle: TextstyleDefaultClass.TextStyle.Lerp(a?.SecondaryLabelStyle, b?.SecondaryLabelStyle, t), brightness: t < 0.5 ? a?.Brightness ?? Brightness.Light : b?.Brightness ?? Brightness.Light, elevation: Dart.UI.UiDefaultClass.LerpDouble(a?.Elevation, b?.Elevation, t), pressElevation: Dart.UI.UiDefaultClass.LerpDouble(a?.PressElevation, b?.PressElevation, t));
         }
 
 
@@ -650,7 +650,8 @@ namespace FlutterSDK.Material.Chiptheme
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other)){
+            if (Dart.CoreDefaultClass.Identical(this, other))
+            {
                 return true;
             }
 

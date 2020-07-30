@@ -434,7 +434,7 @@ namespace FlutterSDK.Widgets.Heroes
         {
             RenderBox box = context.FindRenderObject() as RenderBox;
 
-            return MatrixutilsDefaultClass.MatrixUtils.TransformRect(box.GetTransformTo(ancestorContext?.FindRenderObject()), Dart: uiDefaultClass.Offset.Zero & box.Size);
+            return MatrixutilsDefaultClass.MatrixUtils.TransformRect(box.GetTransformTo(ancestorContext?.FindRenderObject()), Dart.UI.UiDefaultClass.Offset.Zero & box.Size);
         }
 
 
@@ -757,7 +757,7 @@ namespace FlutterSDK.Widgets.Heroes
                 else if (toHeroBox.HasSize)
                 {
                     RenderBox finalRouteBox = Manifest.ToRoute.SubtreeContext?.FindRenderObject() as RenderBox;
-                    Offset toHeroOrigin = toHeroBox.LocalToGlobal(Dart: uiDefaultClass.Offset.Zero, ancestor: finalRouteBox);
+                    Offset toHeroOrigin = toHeroBox.LocalToGlobal(Dart.UI.UiDefaultClass.Offset.Zero, ancestor: finalRouteBox);
                     if (toHeroOrigin != HeroRectTween.End.TopLeft)
                     {
                         Rect heroRectEnd = toHeroOrigin & HeroRectTween.End.Size;

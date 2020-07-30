@@ -422,7 +422,7 @@ namespace FlutterSDK.Material.Elevationoverlay
             ThemeData theme = ThemeDefaultClass.Theme.Of(context);
             if (elevation > 0.0 && theme.ApplyElevationOverlayColor && color == theme.ColorScheme.Surface)
             {
-                return Dart:uiDefaultClass.Color.AlphaBlend(OverlayColor(context, elevation), color);
+                return Dart.UI.UiDefaultClass.Color.AlphaBlend(OverlayColor(context, elevation), color);
             }
 
             return color;
@@ -443,7 +443,7 @@ namespace FlutterSDK.Material.Elevationoverlay
         public virtual Color OverlayColor(FlutterSDK.Widgets.Framework.BuildContext context, double elevation)
         {
             ThemeData theme = ThemeDefaultClass.Theme.Of(context);
-            double opacity = (4.5 * Math.Dart:mathDefaultClass.Log(elevation + 1) + 2)/ 100.0;
+            double opacity = (4.5 * Dart.Math.MathDefaultClass.Log(elevation + 1) + 2) / 100.0;
             return theme.ColorScheme.OnSurface.WithOpacity(opacity);
         }
 

@@ -689,7 +689,7 @@ namespace FlutterSDK.Cupertino.Route
         {
 
             double dragAreaWidth = BasicDefaultClass.Directionality.Of(context) == TextDirection.Ltr ? MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Left : MediaqueryDefaultClass.MediaQuery.Of(context).Padding.Right;
-            dragAreaWidth = Dart:mathDefaultClass.Max(dragAreaWidth, RouteDefaultClass._KBackGestureWidth);
+            dragAreaWidth = Dart.Math.MathDefaultClass.Max(dragAreaWidth, RouteDefaultClass._KBackGestureWidth);
             return new Stack(fit: StackFit.Passthrough, children: new List<Widget>() { Widget.Child, new PositionedDirectional(start: 0.0, width: dragAreaWidth, top: 0.0, bottom: 0.0, child: new Listener(onPointerDown: _HandlePointerDown, behavior: HitTestBehavior.Translucent)) });
         }
 
@@ -749,7 +749,7 @@ namespace FlutterSDK.Cupertino.Route
             if (velocity.Abs() >= RouteDefaultClass._KMinFlingVelocity) animateForward = velocity <= 0; else animateForward = Controller.Value > 0.5;
             if (animateForward)
             {
-                int droppedPageForwardAnimationTime = Dart:mathDefaultClass.Min(Dart: uiDefaultClass.LerpDouble(RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, 0, Controller.Value).Floor(), RouteDefaultClass._KMaxPageBackAnimationTime);
+                int droppedPageForwardAnimationTime = Dart.Math.MathDefaultClass.Min(Dart.UI.UiDefaultClass.LerpDouble(RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, 0, Controller.Value).Floor(), RouteDefaultClass._KMaxPageBackAnimationTime);
                 Controller.AnimateTo(1.0, duration: new TimeSpan(milliseconds: droppedPageForwardAnimationTime), curve: animationCurve);
             }
             else
@@ -757,7 +757,7 @@ namespace FlutterSDK.Cupertino.Route
                 Navigator.Pop();
                 if (Controller.IsAnimating)
                 {
-                    int droppedPageBackAnimationTime = Dart:uiDefaultClass.LerpDouble(0, RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, Controller.Value).Floor();
+                    int droppedPageBackAnimationTime = Dart.UI.UiDefaultClass.LerpDouble(0, RouteDefaultClass._KMaxDroppedSwipePageForwardAnimationTime, Controller.Value).Floor();
                     Controller.AnimateBack(0.0, duration: new TimeSpan(milliseconds: droppedPageBackAnimationTime), curve: animationCurve);
                 }
 

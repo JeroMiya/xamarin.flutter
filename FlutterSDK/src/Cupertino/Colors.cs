@@ -587,7 +587,7 @@ namespace FlutterSDK.Cupertino.Colors
 
         public new bool Equals(@Object other)
         {
-            if (Dart:coreDefaultClass.Identical(this, other))return true;
+            if (Dart.CoreDefaultClass.Identical(this, other)) return true;
             if (other.GetType() != GetType()) return false;
             return other is CupertinoDynamicColor && other.Value == Value && other.Color == Color && other.DarkColor == DarkColor && other.HighContrastColor == HighContrastColor && other.DarkHighContrastColor == DarkHighContrastColor && other.ElevatedColor == ElevatedColor && other.DarkElevatedColor == DarkElevatedColor && other.HighContrastElevatedColor == HighContrastElevatedColor && other.DarkHighContrastElevatedColor == DarkHighContrastElevatedColor;
         }

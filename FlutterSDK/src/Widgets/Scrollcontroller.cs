@@ -516,7 +516,7 @@ namespace FlutterSDK.Widgets.Scrollcontroller
 
             List<Future<void>> animations = new List<Future<void>>(_Positions.Count);
             for (int i = 0; i < _Positions.Count; i += 1) animations[i] = _Positions[i].AnimateTo(offset, duration: duration, curve: curve);
-            return Dart:asyncDefaultClass.Future.Wait(animations).Then((List<void> _) => =>null);
+            return Dart.AsyncDefaultClass.Future.Wait(animations).Then((List<void> _) => =>null);
         }
 
 

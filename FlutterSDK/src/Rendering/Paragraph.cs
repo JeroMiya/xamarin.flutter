@@ -728,7 +728,7 @@ namespace FlutterSDK.Rendering.Paragraph
         private void _LayoutText(double minWidth = 0.0, double maxWidth = default(double))
         {
             bool widthMatters = SoftWrap || Overflow == TextOverflow.Ellipsis;
-            _TextPainter.Layout(minWidth: minWidth, maxWidth: widthMatters ? maxWidth : Dart:coreDefaultClass.Double.Infinity);
+            _TextPainter.Layout(minWidth: minWidth, maxWidth: widthMatters ? maxWidth : Dart.CoreDefaultClass.Double.Infinity);
         }
 
 
@@ -831,13 +831,13 @@ namespace FlutterSDK.Rendering.Paragraph
                         {
                             double fadeEnd fadeStart = default(double);
                             switch (TextDirection) { case TextDirection.Rtl: fadeEnd = 0.0; fadeStart = fadeSizePainter.Width; break; case TextDirection.Ltr: fadeEnd = Size.Width; fadeStart = fadeEnd - fadeSizePainter.Width; break; }
-                            _OverflowShader = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(fadeStart, 0.0), new Offset(fadeEnd, 0.0), new List<Color>() { new Color(0xFFFFFFFF), new Color(0x00FFFFFF) });
+                            _OverflowShader = Dart.UI.Gradient.Linear(new Offset(fadeStart, 0.0), new Offset(fadeEnd, 0.0), new List<Color>() { new Color(0xFFFFFFFF), new Color(0x00FFFFFF) });
                         }
                         else
                         {
                             double fadeEnd = Size.Height;
                             double fadeStart = fadeEnd - fadeSizePainter.Height / 2.0;
-                            _OverflowShader = Ui.Dart:uiDefaultClass.Gradient.Linear(new Offset(0.0, fadeStart), new Offset(0.0, fadeEnd), new List<Color>() { new Color(0xFFFFFFFF), new Color(0x00FFFFFF) });
+                            _OverflowShader = Dart.UI.Gradient.Linear(new Offset(0.0, fadeStart), new Offset(0.0, fadeEnd), new List<Color>() { new Color(0xFFFFFFFF), new Color(0x00FFFFFF) });
                         }
                         break;
                 }
@@ -894,7 +894,7 @@ namespace FlutterSDK.Rendering.Paragraph
                 {
                     context.Canvas.Translate(offset.Dx, offset.Dy);
                     Paint paint = new Paint()..BlendMode = BlendMode.Modulate..Shader = _OverflowShader;
-                    context.Canvas.DrawRect(Dart: uiDefaultClass.Offset.Zero & Size, paint);
+                    context.Canvas.DrawRect(Dart.UI.UiDefaultClass.Offset.Zero & Size, paint);
                 }
 
                 context.Canvas.Restore();
@@ -1071,7 +1071,7 @@ namespace FlutterSDK.Rendering.Paragraph
             {
                 TextDirection initialDirection = currentDirection;
                 TextSelection selection = new TextSelection(baseOffset: start, extentOffset: start + info.Text.Length);
-                List < Ui.Dart:uiDefaultClass.TextBox > rects = GetBoxesForSelection(selection);
+                List<Dart.UI.TextBox> rects = GetBoxesForSelection(selection);
                 if (rects.IsEmpty())
                 {
                     continue;
@@ -1079,12 +1079,13 @@ namespace FlutterSDK.Rendering.Paragraph
 
                 Rect rect = rects.First.ToRect();
                 currentDirection = rects.First.Direction;
-                foreach (Ui.Dart:uiDefaultClass.TextBox textBox  in rects.Skip(1)){
+                foreach (Dart.UI.TextBox textBox in rects.Skip(1))
+                {
                     rect = rect.ExpandToInclude(textBox.ToRect());
                     currentDirection = textBox.Direction;
                 }
 
-                rect = Rect.FromLTWH(Math.Dart:mathDefaultClass.Max(0.0, rect.Left), Math.Dart:mathDefaultClass.Max(0.0, rect.Top), Math.Dart:mathDefaultClass.Min(rect.Width, Constraints.MaxWidth), Math.Dart:mathDefaultClass.Min(rect.Height, Constraints.MaxHeight));
+                rect = Rect.FromLTWH(Dart.Math.MathDefaultClass.Max(0.0, rect.Left), Dart.Math.MathDefaultClass.Max(0.0, rect.Top), Dart.Math.MathDefaultClass.Min(rect.Width, Constraints.MaxWidth), Dart.Math.MathDefaultClass.Min(rect.Height, Constraints.MaxHeight));
                 currentRect = Rect.FromLTRB(rect.Left.FloorToDouble() - 4.0, rect.Top.FloorToDouble() - 4.0, rect.Right.CeilToDouble() + 4.0, rect.Bottom.CeilToDouble() + 4.0);
                 if (info.IsPlaceholder)
                 {

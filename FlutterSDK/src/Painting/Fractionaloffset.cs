@@ -575,9 +575,9 @@ namespace FlutterSDK.Painting.Fractionaloffset
         {
 
             if (a == null && b == null) return null;
-            if (a == null) return new FractionalOffset(Ui.Dart:uiDefaultClass.LerpDouble(0.5, b.Dx, t), Ui.Dart:uiDefaultClass.LerpDouble(0.5, b.Dy, t));
-            if (b == null) return new FractionalOffset(Ui.Dart:uiDefaultClass.LerpDouble(a.Dx, 0.5, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Dy, 0.5, t));
-            return new FractionalOffset(Ui.Dart:uiDefaultClass.LerpDouble(a.Dx, b.Dx, t), Ui.Dart:uiDefaultClass.LerpDouble(a.Dy, b.Dy, t));
+            if (a == null) return new FractionalOffset(Dart.UI.UiDefaultClass.LerpDouble(0.5, b.Dx, t), Dart.UI.UiDefaultClass.LerpDouble(0.5, b.Dy, t));
+            if (b == null) return new FractionalOffset(Dart.UI.UiDefaultClass.LerpDouble(a.Dx, 0.5, t), Dart.UI.UiDefaultClass.LerpDouble(a.Dy, 0.5, t));
+            return new FractionalOffset(Dart.UI.UiDefaultClass.LerpDouble(a.Dx, b.Dx, t), Dart.UI.UiDefaultClass.LerpDouble(a.Dy, b.Dy, t));
         }
 
 

@@ -577,9 +577,9 @@ namespace FlutterSDK.Widgets.Scrollable
                 scrollable = ScrollableDefaultClass.Scrollable.Of(context);
             }
 
-            if (futures.IsEmpty() || duration == Dart:coreDefaultClass.Duration.Zero)return Future<void>.Value();
+            if (futures.IsEmpty() || duration == Dart.CoreDefaultClass.Duration.Zero) return Future<void>.Value();
             if (futures.Count == 1) return futures.Single();
-            return Dart:asyncDefaultClass.Future.Wait(futures).Then((List<void> _) => =>null);
+            return Dart.AsyncDefaultClass.Future.Wait(futures).Then((List<void> _) => =>null);
         }
 
 
@@ -658,7 +658,7 @@ namespace FlutterSDK.Widgets.Scrollable
             if (oldPosition != null)
             {
                 controller?.Detach(oldPosition);
-            Dart: asyncDefaultClass.ScheduleMicrotask(oldPosition.Dispose);
+                Dart.AsyncDefaultClass.ScheduleMicrotask(oldPosition.Dispose);
             }
 
             _Position = controller?.CreateScrollPosition(_Physics, this, oldPosition) ?? new ScrollPositionWithSingleContext(physics: _Physics, context: this, oldPosition: oldPosition);
@@ -851,7 +851,7 @@ namespace FlutterSDK.Widgets.Scrollable
                 delta *= -1;
             }
 
-            return Math.Dart:mathDefaultClass.Min(Math.Dart:mathDefaultClass.Max(Position.Pixels + delta, Position.MinScrollExtent), Position.MaxScrollExtent);
+            return Dart.Math.MathDefaultClass.Min(Dart.Math.MathDefaultClass.Max(Position.Pixels + delta, Position.MinScrollExtent), Position.MaxScrollExtent);
         }
 
 
@@ -1013,7 +1013,7 @@ namespace FlutterSDK.Widgets.Scrollable
             }
 
             _InnerNode = (_InnerNode == null ? new SemanticsNode(showOnScreen: ShowOnScreen) : _InnerNode);
-            ..IsMergedIntoParent = node.IsPartOfNodeMerging..Rect = Dart:uiDefaultClass.Offset.Zero & node.Rect.Size;
+            ..IsMergedIntoParent = node.IsPartOfNodeMerging..Rect = Dart.UiDefaultClass.Offset.Zero & node.Rect.Size;
             int firstVisibleIndex = default(int);
             List<SemanticsNode> excluded = new List<SemanticsNode>() { _InnerNode };
             List<SemanticsNode> included = new List<SemanticsNode>() { };
@@ -1026,7 +1026,7 @@ namespace FlutterSDK.Widgets.Scrollable
                 }
                 else
                 {
-                    if (!child.HasFlag(Dart: uiDefaultClass.SemanticsFlag.IsHidden)) firstVisibleIndex = (firstVisibleIndex == null ? child.IndexInParent : firstVisibleIndex);
+                    if (!child.HasFlag(Dart.UI.UiDefaultClass.SemanticsFlag.IsHidden)) firstVisibleIndex = (firstVisibleIndex == null ? child.IndexInParent : firstVisibleIndex);
                     included.Add(child);
                 }
 

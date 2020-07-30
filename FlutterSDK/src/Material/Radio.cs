@@ -685,10 +685,10 @@ namespace FlutterSDK.Material.Radio
         public new void Paint(FlutterSDK.Rendering.@object.PaintingContext context, FlutterBinding.UI.Offset offset)
         {
             Canvas canvas = context.Canvas;
-            PaintRadialReaction(canvas, offset, Size.Center(Dart: uiDefaultClass.Offset.Zero));
+            PaintRadialReaction(canvas, offset, Size.Center(Dart.UI.UiDefaultClass.Offset.Zero));
             Offset center = (offset & Size).Center;
             Color radioColor = OnChanged != null ? ActiveColor : InactiveColor;
-            Paint paint = new Paint()..Color = Dart:uiDefaultClass.Color.Lerp(InactiveColor, radioColor, Position.Value)..Style = PaintingStyle.Stroke..StrokeWidth = 2.0;
+            Paint paint = new Paint()..Color = Dart.UI.UiDefaultClass.Color.Lerp(InactiveColor, radioColor, Position.Value)..Style = PaintingStyle.Stroke..StrokeWidth = 2.0;
             canvas.DrawCircle(center, RadioDefaultClass._KOuterRadius, paint);
             if (!Position.IsDismissed)
             {
